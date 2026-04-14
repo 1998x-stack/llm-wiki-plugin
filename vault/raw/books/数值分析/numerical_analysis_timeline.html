@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数值分析发展史 - 从手工计算到现代科学计算的演化</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--deep-blue:#1a237e;--mid-blue:#283593;--light-blue:#3949ab;--gold:#ffd54f;--gold-dark:#ffb300;--bg:#fafafa;--card-bg:#fff;--text:#212121;--text-light:#616161;--shadow:0 2px 12px rgba(26,35,126,.10);--shadow-hover:0 6px 24px rgba(26,35,126,.18);--radius:10px;--tr:0.3s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden}
+a{color:var(--light-blue);text-decoration:none}
+.side-nav{position:fixed;left:0;top:0;width:260px;height:100vh;background:linear-gradient(180deg,var(--deep-blue),#0d1654);padding:24px 16px;overflow-y:auto;z-index:1000;transform:translateX(-100%);transition:transform var(--tr);display:flex;flex-direction:column;gap:4px}
+.side-nav.open{transform:translateX(0)}
+.side-nav h3{color:var(--gold);font-size:13px;letter-spacing:2px;margin:16px 0 8px;padding-left:8px}
+.side-nav a{display:block;color:rgba(255,255,255,.75);padding:7px 12px;border-radius:6px;font-size:13px;transition:all var(--tr)}
+.side-nav a:hover{color:#fff;background:rgba(255,213,79,.15)}
+.nav-toggle{position:fixed;left:16px;top:16px;z-index:1100;width:44px;height:44px;border-radius:50%;background:var(--deep-blue);color:#fff;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;opacity:0;pointer-events:none;transition:opacity var(--tr)}
+.nav-overlay.open{opacity:1;pointer-events:auto}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,var(--deep-blue) 0%,#0d47a1 50%,#1565c0 100%);color:#fff;padding:60px 24px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,213,79,.12),transparent 70%);top:-200px;right:-200px}
+.hero h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:2px;margin-bottom:16px;position:relative;z-index:1}
+.hero h1 span{color:var(--gold)}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(255,255,255,.85);margin-bottom:32px;position:relative;z-index:1}
+.hero .intro{max-width:720px;font-size:1.05rem;color:rgba(255,255,255,.72);line-height:1.9;position:relative;z-index:1}
+.hero .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;color:var(--gold);font-size:28px}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+.section{max-width:1100px;margin:0 auto;padding:80px 24px}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--deep-blue);text-align:center;margin-bottom:12px}
+.section-title::after{content:"";display:block;width:60px;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));margin:12px auto 0;border-radius:2px}
+.section-desc{text-align:center;color:var(--text-light);max-width:700px;margin:16px auto 48px;font-size:1.02rem}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.overview-card{background:var(--card-bg);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:all var(--tr);border-top:4px solid var(--gold)}
+.overview-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.overview-card h4{color:var(--deep-blue);font-size:1.1rem;margin-bottom:10px}
+.overview-card p{color:var(--text-light);font-size:.93rem;line-height:1.7}
+.era-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:40px;position:sticky;top:0;background:var(--bg);padding:16px 0;z-index:100;border-bottom:1px solid #e0e0e0}
+.era-tab{padding:8px 18px;border-radius:20px;border:2px solid #e0e0e0;background:#fff;color:var(--text-light);cursor:pointer;font-size:.88rem;font-weight:500;transition:all var(--tr);white-space:nowrap}
+.era-tab:hover{border-color:var(--gold);color:var(--deep-blue)}
+.era-tab.active{background:var(--deep-blue);color:#fff;border-color:var(--deep-blue)}
+.timeline{position:relative;padding:20px 0}
+.timeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--deep-blue),var(--gold));transform:translateX(-50%);border-radius:2px}
+.tl-node{position:relative;width:50%;padding:16px 40px 40px;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.tl-node.visible{opacity:1;transform:translateY(0)}
+.tl-node:nth-child(odd){margin-left:0;text-align:right;padding-right:60px}
+.tl-node:nth-child(even){margin-left:50%;padding-left:60px}
+.tl-dot{position:absolute;top:24px;width:18px;height:18px;border-radius:50%;background:var(--gold);border:4px solid var(--deep-blue);z-index:10;transition:all var(--tr)}
+.tl-node:nth-child(odd) .tl-dot{right:-9px}
+.tl-node:nth-child(even) .tl-dot{left:-9px}
+.tl-node:hover .tl-dot{transform:scale(1.4);box-shadow:0 0 0 6px rgba(255,213,79,.3)}
+.tl-card{background:var(--card-bg);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:all var(--tr);border-left:4px solid transparent;position:relative;text-align:left}
+.tl-node:nth-child(even) .tl-card{border-left:4px solid var(--gold)}
+.tl-node:nth-child(odd) .tl-card{border-right:4px solid var(--gold);border-left:none}
+.tl-node:hover .tl-card{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.tl-year{display:inline-block;background:linear-gradient(135deg,var(--deep-blue),var(--mid-blue));color:#fff;padding:4px 14px;border-radius:16px;font-size:.83rem;font-weight:600;margin-bottom:10px}
+.tl-card h3{color:var(--deep-blue);font-size:1.05rem;margin-bottom:4px}
+.tl-card .figures{color:var(--gold-dark);font-size:.88rem;font-weight:600;margin-bottom:8px}
+.tl-card .summary{color:var(--text-light);font-size:.9rem;line-height:1.7}
+.tl-detail{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.tl-node.expanded .tl-detail{max-height:800px;margin-top:12px}
+.tl-detail-inner{padding-top:12px;border-top:1px dashed #e0e0e0;font-size:.88rem;color:var(--text-light);line-height:1.8}
+.tl-detail-inner strong{color:var(--deep-blue)}
+.expand-hint{font-size:.78rem;color:var(--gold-dark);margin-top:6px;opacity:.8}
+.tl-node.expanded .expand-hint{display:none}
+.era-divider{text-align:center;padding:40px 0 20px;position:relative;width:100%}
+.era-divider h2{display:inline-block;background:var(--bg);padding:0 24px;position:relative;z-index:2;color:var(--deep-blue);font-size:1.3rem}
+.era-divider::before{content:"";position:absolute;left:10%;right:10%;top:58px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.figures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.figure-card{background:var(--card-bg);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:all var(--tr);text-align:center;border-bottom:4px solid var(--gold)}
+.figure-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.figure-avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--deep-blue),var(--light-blue));margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:700}
+.figure-card h4{color:var(--deep-blue);font-size:1.02rem;margin-bottom:2px}
+.figure-card .en-name{color:var(--text-light);font-size:.82rem}
+.figure-card .lifespan{color:var(--gold-dark);font-size:.8rem;font-weight:600;margin-bottom:8px}
+.figure-card p{color:var(--text-light);font-size:.88rem;line-height:1.7;text-align:left}
+.tp-list{display:flex;flex-direction:column;gap:28px}
+.tp-item{background:var(--card-bg);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:all var(--tr)}
+.tp-item:hover{box-shadow:var(--shadow-hover);transform:translateX(4px)}
+.tp-num{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:var(--deep-blue);font-size:1.3rem;font-weight:800}
+.tp-item h4{color:var(--deep-blue);font-size:1.05rem;margin-bottom:6px}
+.tp-item p{color:var(--text-light);font-size:.93rem;line-height:1.8}
+.impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.impact-card{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all var(--tr)}
+.impact-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px)}
+.impact-header{background:linear-gradient(135deg,var(--deep-blue),var(--mid-blue));color:#fff;padding:18px 24px}
+.impact-header h4{font-size:1.05rem;margin-bottom:2px}
+.impact-header .tag{font-size:.78rem;color:var(--gold)}
+.impact-body{padding:18px 24px}
+.impact-body p{color:var(--text-light);font-size:.9rem;line-height:1.8;margin-bottom:8px}
+.impact-body ul{padding-left:18px;color:var(--text-light);font-size:.88rem}
+.impact-body li{margin-bottom:5px;line-height:1.6}
+.footer{background:var(--deep-blue);color:rgba(255,255,255,.7);text-align:center;padding:40px 24px;font-size:.88rem}
+.footer strong{color:var(--gold)}
+@media(max-width:768px){
+.timeline::before{left:20px}
+.tl-node,.tl-node:nth-child(odd),.tl-node:nth-child(even){width:100%;margin-left:0;padding:10px 10px 24px 50px;text-align:left}
+.tl-dot,.tl-node:nth-child(odd) .tl-dot,.tl-node:nth-child(even) .tl-dot{left:11px;right:auto}
+.tl-node:nth-child(odd) .tl-card{border-right:none;border-left:4px solid var(--gold)}
+.era-tabs{overflow-x:auto;justify-content:flex-start;padding:10px 16px;flex-wrap:nowrap}
+.figures-grid{grid-template-columns:1fr 1fr}
+.tp-item{flex-direction:column;align-items:center;text-align:center}
+}
+@media(max-width:480px){.figures-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">&#9776;</button>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="side-nav" id="sideNav">
+<a href="#hero" style="color:var(--gold);font-weight:700;font-size:15px;margin-bottom:12px">数值分析发展史</a>
+<h3>页面导航</h3>
+<a href="#overview">概览</a><a href="#timeline">发展时间线</a><a href="#figures">人物长廊</a><a href="#turning">转折点</a><a href="#impact">现代影响</a>
+<h3>时间线分期</h3>
+<a href="#era-ancient">古代与前现代</a><a href="#era-early-modern">近代早期 1600-1800</a><a href="#era-19c">19 世纪</a><a href="#era-early20c">20 世纪前半叶</a><a href="#era-computer-birth">计算机诞生期</a><a href="#era-computer-mature">计算机成熟期</a><a href="#era-modern">现代 1980 至今</a>
+</nav>
+<section class="hero" id="hero">
+<h1>数值分析<span>发展史</span></h1>
+<p class="subtitle">从手工计算到现代科学计算的演化</p>
+<p class="intro">数值分析是数学中最古老也最具生命力的分支之一。它研究如何用有限步骤的算术运算逼近连续数学问题的解。从四千年前巴比伦人用迭代法求平方根，到今天超级计算机上运行的亿级方程求解器，数值分析始终站在数学与计算的交叉点上，为科学发现和工程实践提供不可或缺的计算工具。它不仅是现代科学计算的理论基石，更是连接纯粹数学与现实世界的关键桥梁。</p>
+<div class="scroll-hint">&#8595;</div>
+</section>
+<section class="section" id="overview">
+<h2 class="section-title">发展概览</h2>
+<p class="section-desc">数值分析与数学、物理、工程和计算机科学紧密交织，历经四千年演化，可归纳为以下核心维度。</p>
+<div class="overview-grid">
+<div class="overview-card"><h4>数学基础</h4><p>从古代迭代逼近到泛函分析框架，微积分、线性代数与逼近论构成三大理论支柱，提供收敛性、稳定性和误差分析的严格保障。Banach 不动点定理、Weierstrass 逼近定理等经典结果为算法设计提供了深刻的理论指导。</p></div>
+<div class="overview-card"><h4>物理与工程驱动</h4><p>天体力学轨道计算、流体力学湍流模拟、结构力学应力分析——实际需求始终推动数值方法发展。从 Newton 的行星运动到现代天气预报，数值分析在科学与工程中不可替代。</p></div>
+<div class="overview-card"><h4>计算机革命</h4><p>从 ENIAC 的诞生到 GPU 并行计算和量子计算的前沿，每一次硬件飞跃都催生新算法范式，根本改变数值分析面貌。LINPACK、LAPACK 等标准库推动了科学计算民主化。</p></div>
+<div class="overview-card"><h4>算法与复杂性</h4><p>从 Gauss 消元的 O(n^3) 到 Strassen 的 O(n^2.807)，从朴素 DFT 的 O(n^2) 到 FFT 的 O(n log n)，追求更低计算复杂度是数值分析的永恒主题。</p></div>
+<div class="overview-card"><h4>稳定性与误差</h4><p>Von Neumann、Turing 和 Wilkinson 建立了条件数、数值稳定性等核心概念，回答了有限精度算术下结果可信度这一根本问题，奠定现代误差分析理论。</p></div>
+<div class="overview-card"><h4>跨学科融合</h4><p>21 世纪，物理信息神经网络（PINNs）和神经常微分方程（Neural ODEs）标志计算科学新范式的到来，数据驱动与物理驱动方法正走向统一。</p></div>
+</div>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<section class="section" id="timeline">
+<h2 class="section-title">发展时间线</h2>
+<p class="section-desc">点击任意节点可展开详细信息。四千年的数值分析发展历程，从泥板上的算法到超级计算机上的仿真。</p>
+
+<div class="era-tabs">
+<button class="era-tab active" onclick="filterEra('all',this)">全部</button>
+<button class="era-tab" onclick="filterEra('ancient',this)">古代</button>
+<button class="era-tab" onclick="filterEra('early-modern',this)">近代早期</button>
+<button class="era-tab" onclick="filterEra('c19',this)">19 世纪</button>
+<button class="era-tab" onclick="filterEra('early20c',this)">20 世纪前半</button>
+<button class="era-tab" onclick="filterEra('computer-birth',this)">计算机诞生</button>
+<button class="era-tab" onclick="filterEra('computer-mature',this)">计算机成熟</button>
+<button class="era-tab" onclick="filterEra('modern',this)">现代</button>
+</div>
+
+<div class="timeline" id="timelineContainer">
+
+<!-- ========== 古代与前现代 ========== -->
+<div class="era-divider" id="era-ancient"><h2>古代与前现代</h2></div>
+
+<div class="tl-node visible" data-era="ancient" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">约公元前 2000 年</span>
+<h3>巴比伦平方根逼近法</h3>
+<div class="figures">巴比伦数学家</div>
+<div class="summary">巴比伦人在泥板上记录了一种计算平方根的迭代方法：反复取算术平均值来逼近真实值。这是人类已知最早的迭代算法，其本质就是后来 Newton 法的特例。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何计算一个数的平方根？<br>
+
+<strong>方法：</strong>给定求 sqrt(N)，取初始猜测 x0，反复计算 x_{n+1} = (x_n + N/x_n) / 2。这个公式在耶鲁巴比伦泥板 YBC 7289 上有清晰记录，该泥板精确给出了 sqrt(2) 的六位有效数字近似值 1.41421。<br>
+
+<strong>代表文献：</strong>YBC 7289 泥板（约公元前 1800-1600 年）。<br>
+
+<strong>重要性：</strong>这标志着人类首次有意识地使用迭代逼近策略求解数学问题，是所有迭代方法的思想萌芽。<br>
+
+<strong>后续影响：</strong>直接影响了 Newton 迭代法的提出，至今仍是教科书中介绍迭代法的经典起点。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="ancient" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">约公元前 250 年</span>
+<h3>Archimedes 计算圆周率</h3>
+<div class="figures">Archimedes（阿基米德）</div>
+<div class="summary">阿基米德用正多边形内接和外切圆的方法，通过不断倍增边数来逼近圆周率，得到 3+10/71 &lt; pi &lt; 3+1/7。这是穷竭法（Exhaustion Method）的经典应用，也是数值积分思想的先驱。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>精确计算圆周率 pi 的值。<br>
+
+<strong>方法：</strong>从正六边形开始，逐步倍增边数到正 96 边形，分别计算内接和外切多边形的周长，得到 pi 的上下界。本质上是用分段线性函数逼近曲线积分。<br>
+
+<strong>代表文献：</strong>《圆的度量》（Measurement of a Circle）。<br>
+
+<strong>重要性：</strong>这是人类首次系统性地用数值方法逼近一个超越数，也是数值积分（通过离散化逼近连续量）的最早实践。<br>
+
+<strong>后续影响：</strong>穷竭法的思想直接启发了后来的 Newton-Cotes 求积公式和 Gauss 求积公式。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="ancient" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">约公元 100 年</span>
+<h3>《九章算术》</h3>
+<div class="figures">中国数学家（刘徽注，约 263 年）</div>
+<div class="summary">《九章算术》系统记载了线性方程组的消元求解法（方程章）和开方术（求根法），其消元过程与后世 Gauss 消元法本质一致，比 Gauss 早约 1700 年。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>求解线性方程组与多项式方程的根。<br>
+
+<strong>方法：</strong>"方程"章描述了一种系统化的消元过程：将方程组排列成矩阵形式，通过逐列消元求解——这与现代 Gauss 消元法在本质上完全一致。"开方"章则提供了平方根和立方根的迭代求法。刘徽在注释中进一步发展了割圆术，将 pi 计算到 3.1416。<br>
+
+<strong>代表文献：</strong>《九章算术》及刘徽注。<br>
+
+<strong>重要性：</strong>这是线性代数数值方法的最早系统记载，也展示了古代中国在计算数学方面的卓越成就。<br>
+
+<strong>后续影响：</strong>消元法的思想在欧洲由 Gauss 于 19 世纪初重新系统化并推广。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="ancient" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">约公元 500 年</span>
+<h3>印度数学家的三角函数表与插值</h3>
+<div class="figures">Aryabhata（阿耶波多）</div>
+<div class="summary">Aryabhata 编制了精确的正弦函数差分表，并使用二次插值方法在表格值之间进行估计。这是插值法思想的重要早期实践，为后来的 Newton 插值和 Lagrange 插值奠定了基础。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算三角函数值？<br>
+
+<strong>方法：</strong>Aryabhata 在《Aryabhatiya》中给出了 24 个正弦值表（以 3.75 度为间隔），并发展了利用二阶差分进行插值的技术。其正弦差分递推关系实质上对应一个二阶线性差分方程。<br>
+
+<strong>代表文献：</strong>《Aryabhatiya》（499 年）。<br>
+
+<strong>重要性：</strong>差分表和插值法是数值分析中最基础的工具之一，Aryabhata 的工作是这些方法的最早系统实践。<br>
+
+<strong>后续影响：</strong>直接影响了后世印度和阿拉伯数学家的计算天文学，并最终传入欧洲，启发了 Newton 的有限差分理论。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 近代早期 ========== -->
+<div class="era-divider" id="era-early-modern"><h2>近代早期（1600 - 1800）</h2></div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1669 / 1687</span>
+<h3>Newton 迭代法</h3>
+<div class="figures">Isaac Newton（牛顿）</div>
+<div class="summary">Newton 在《De analysi》和《Principia》中提出了求解方程根的迭代方法：从初始猜测出发，利用函数的切线反复逼近零点。这一方法具有二次收敛速度，是数值分析中最重要的非线性方程求解算法。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何快速求解非线性方程 f(x) = 0？<br>
+
+<strong>方法：</strong>x_{n+1} = x_n - f(x_n)/f'(x_n)。Newton 最初将其应用于多项式方程的求根，后来 Raphson（1690 年）进一步简化了表述。<br>
+
+<strong>代表文献：</strong>《De analysi per aequationes numero terminorum infinitas》（1669），《Principia Mathematica》（1687）。<br>
+
+<strong>重要性：</strong>Newton 法是数值分析的基石之一，其二次收敛性使其远优于简单迭代。<br>
+
+<strong>后续影响：</strong>扩展为多维版本（Newton-Raphson 法）用于求解非线性方程组，并成为优化算法（如拟 Newton 法）的基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1676</span>
+<h3>Newton 插值公式与有限差分</h3>
+<div class="figures">Isaac Newton（牛顿）</div>
+<div class="summary">Newton 在致 Leibniz 的信件中系统阐述了前向差分（Forward Differences）插值公式，为从离散数据点构建连续函数提供了系统化的数学工具。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>已知若干离散点的函数值，如何构造经过这些点的多项式？<br>
+
+<strong>方法：</strong>利用前向差分算子 Delta f(x) = f(x+h) - f(x) 及其高阶差分，构建 Newton 前向差分插值公式。<br>
+
+<strong>代表文献：</strong>Epistola Posterior（1676），《Principia》中的差分表。<br>
+
+<strong>重要性：</strong>有限差分理论是数值微分和数值积分的核心工具，也是差分方程数值解法的基石。<br>
+
+<strong>后续影响：</strong>直接导致了 Newton-Cotes 求积公式的发展，并为后来 Richardson 的有限差分 PDE 解法奠定了基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1707</span>
+<h3>Newton-Cotes 求积公式</h3>
+<div class="figures">Isaac Newton, Roger Cotes</div>
+<div class="summary">基于 Newton 插值理论，Cotes 系统推导了用等距节点多项式插值来近似定积分的公式族。梯形法则和 Simpson 法则都是 Newton-Cotes 公式的特例。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何数值计算定积分？<br>
+
+<strong>方法：</strong>将积分区间等分，在节点上用多项式插值被积函数，然后精确积分该多项式。一阶为梯形法则（Trapezoidal Rule），二阶为 Simpson 法则。<br>
+
+<strong>代表文献：</strong>Cotes 遗著《Harmonia Mensurarum》（1722 年出版）。<br>
+
+<strong>重要性：</strong>这是数值积分的第一个系统化方法族，至今仍广泛用于工程计算。<br>
+
+<strong>后续影响：</strong>高阶 Newton-Cotes 公式的不稳定性促使 Gauss 发展了更优的非等距节点求积方法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1748 - 1768</span>
+<h3>Euler 常微分方程数值方法</h3>
+<div class="figures">Leonhard Euler（欧拉）</div>
+<div class="summary">Euler 在《积分学原理》中提出了求解常微分方程（ODE）初值问题的显式差分方法——后世称为 Euler 方法。虽然只有一阶精度，但它开创了 ODE 数值解法的先河。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>给定 dy/dx = f(x,y)，y(x0) = y0，如何数值求解 y(x)？<br>
+
+<strong>方法：</strong>y_{n+1} = y_n + h * f(x_n, y_n)，即用切线方向做线性外推。<br>
+
+<strong>代表文献：</strong>《Institutiones Calculi Integralis》（1768-1770）。<br>
+
+<strong>重要性：</strong>这是 ODE 数值解法的开山之作，概念简洁且具有教学价值。<br>
+
+<strong>后续影响：</strong>直接启发了 Runge-Kutta 方法族（19 世纪末）和现代自适应步长方法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1753</span>
+<h3>Euler 级数求和与发散级数</h3>
+<div class="figures">Leonhard Euler（欧拉）</div>
+<div class="summary">Euler 系统研究了级数的求和方法，包括对发散级数赋予"合理"值的技术（如 Euler 求和法）。这项工作拓展了数值计算中处理无穷级数的方法论。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算无穷级数的和，包括缓慢收敛或发散的级数？<br>
+
+<strong>方法：</strong>Euler 变换（Euler Transformation）通过交替级数加速收敛。对于发散级数，Euler 提出了解析延拓的思想来赋值。<br>
+
+<strong>重要性：</strong>级数加速收敛是数值分析中的重要技术，Euler 变换至今仍是标准方法之一。<br>
+
+<strong>后续影响：</strong>启发了 Aitken 加速法（1937）和 Richardson 外推法等现代收敛加速技术。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1770 年代</span>
+<h3>Lagrange 插值公式</h3>
+<div class="figures">Joseph-Louis Lagrange（拉格朗日）</div>
+<div class="summary">Lagrange 给出了任意非等距节点上多项式插值的显式公式，与 Newton 插值互为补充。Lagrange 基函数的优雅形式使其成为理论分析的首选工具。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>给定 n+1 个互不相同的点 (x_i, y_i)，构造唯一的 n 次多项式通过所有点。<br>
+
+<strong>方法：</strong>L(x) = sum_i y_i * prod_{j!=i} (x - x_j) / (x_i - x_j)。每个 Lagrange 基多项式在对应节点取值 1，其余节点取值 0。<br>
+
+<strong>代表文献：</strong>《Lecons elementaires sur les mathematiques》。<br>
+
+<strong>重要性：</strong>Lagrange 形式在理论分析（如插值误差估计）中极为方便。<br>
+
+<strong>后续影响：</strong>为 Gauss 求积公式、有限元方法中的形函数构造提供了理论基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1795（发现）/ 1809（发表）</span>
+<h3>Gauss 最小二乘法</h3>
+<div class="figures">Carl Friedrich Gauss（高斯）</div>
+<div class="summary">Gauss 在 1795 年（年仅 18 岁）发现了最小二乘法，用于从含误差的观测数据中拟合最优参数。1801 年他用此法成功预测了矮行星 Ceres 的轨道，使最小二乘法声名大噪。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何从超定方程组（方程数多于未知数）中求最优解？<br>
+
+<strong>方法：</strong>最小化残差平方和 min ||Ax - b||^2，导出法方程 A^T A x = A^T b。<br>
+
+<strong>代表文献：</strong>《Theoria Motus Corporum Coelestium》（1809）。<br>
+
+<strong>重要性：</strong>最小二乘法是统计学、信号处理、机器学习中最基础的拟合方法。<br>
+
+<strong>后续影响：</strong>催生了回归分析、Kalman 滤波、正则化理论等现代方法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early-modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1799</span>
+<h3>Horner 方法（多项式求值）</h3>
+<div class="figures">Paolo Ruffini, William George Horner</div>
+<div class="summary">Ruffini（1799）和 Horner（1819）独立提出了高效的多项式求值算法：将 n 次多项式求值从 O(n^2) 次乘法降低到 O(n) 次。这是计算机科学中算法优化的早期范例。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算多项式 p(x) = a_n*x^n + ... + a_1*x + a_0 在某点的值？<br>
+
+<strong>方法：</strong>秦九韶算法/Horner 法则：p(x) = (...((a_n*x + a_{n-1})*x + a_{n-2})*x + ... + a_0)，只需 n 次乘法和 n 次加法。值得注意的是，中国数学家秦九韶在 1247 年的《数书九章》中已经独立使用了这一方法。<br>
+
+<strong>重要性：</strong>这是最优的多项式求值算法（由 A.Ostrowski 于 1954 年证明在一般情况下不可能更少）。<br>
+
+<strong>后续影响：</strong>成为所有多项式计算的基础子程序，广泛应用于计算机图形学和科学计算。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 19 世纪 ========== -->
+<div class="era-divider" id="era-19c"><h2>19 世纪</h2></div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1805 / 1809</span>
+<h3>最小二乘法的正式发表</h3>
+<div class="figures">Adrien-Marie Legendre（勒让德）, Carl Friedrich Gauss（高斯）</div>
+<div class="summary">Legendre 于 1805 年首先发表了最小二乘法，Gauss 于 1809 年在《天体运动论》中给出了更深刻的概率论证明（结合正态分布理论）。两人的工作共同确立了最小二乘法的数学基础。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>为最小二乘法提供严格的数学基础和统计解释。<br>
+
+<strong>方法：</strong>Gauss 证明了在误差服从正态分布的假设下，最小二乘估计是最优的（后来由 Gauss-Markov 定理推广到更一般情形）。<br>
+
+<strong>代表文献：</strong>Legendre《Nouvelles methodes pour la determination des orbites des cometes》(1805)；Gauss《Theoria Motus》(1809)。<br>
+
+<strong>重要性：</strong>奠定了数据拟合与统计推断的数学基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1810 年代</span>
+<h3>Gauss 消元法系统化</h3>
+<div class="figures">Carl Friedrich Gauss（高斯）</div>
+<div class="summary">Gauss 在大地测量工作中系统化了线性方程组的消元求解法，包括回代过程和主元选取策略。虽然消元思想可追溯到《九章算术》，但 Gauss 赋予了它现代的矩阵语言和系统化的流程。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>高效求解线性方程组 Ax = b。<br>
+
+<strong>方法：</strong>通过行变换将系数矩阵化为上三角形式，再通过回代求解。加入列主元选取提高数值稳定性。计算量为 O(n^3)。<br>
+
+<strong>重要性：</strong>Gauss 消元法是线性代数数值方法的基石，几乎所有直接法线性方程组求解器都基于此。<br>
+
+<strong>后续影响：</strong>发展为 LU 分解、Cholesky 分解等现代矩阵分解方法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1814</span>
+<h3>Gauss 求积公式</h3>
+<div class="figures">Carl Friedrich Gauss（高斯）</div>
+<div class="summary">Gauss 发现，通过最优选择积分节点（而非使用等距节点），可以用 n 个点精确积分 2n-1 次多项式。Gauss 求积公式的精度是同阶 Newton-Cotes 公式的近两倍。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何用最少的函数求值次数达到最高的积分精度？<br>
+
+<strong>方法：</strong>选择正交多项式（Legendre 多项式）的零点作为节点。n 个 Gauss 点可以精确积分 2n-1 次多项式。<br>
+
+<strong>代表文献：</strong>《Methodus nova integralium valores per approximationem inveniendi》（1814）。<br>
+
+<strong>重要性：</strong>Gauss 求积是数值积分理论的巅峰之一。<br>
+
+<strong>后续影响：</strong>拓展为 Gauss-Legendre、Gauss-Laguerre、Gauss-Hermite 等变体，广泛用于有限元方法中的单元积分。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1837</span>
+<h3>Jacobi 迭代法</h3>
+<div class="figures">Carl Gustav Jacob Jacobi（雅可比）</div>
+<div class="summary">Jacobi 提出了求解线性方程组的迭代方法：将系数矩阵分解为对角部分和其余部分，通过逐步修正来逼近解。这是迭代法求解线性系统的先驱。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>对于大型稀疏线性系统，直接法（Gauss 消元）代价太高，能否用迭代法求解？<br>
+
+<strong>方法：</strong>将 A 分解为 A = D + L + U（对角+下三角+上三角），迭代 x^{k+1} = D^{-1}(b - (L+U)x^k)。<br>
+
+<strong>重要性：</strong>开创了线性系统迭代解法的先河，概念简洁。<br>
+
+<strong>后续影响：</strong>直接催生了 Gauss-Seidel 迭代（1864）和 SOR 方法（1950 年代），是现代 Krylov 子空间方法的远祖。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1845</span>
+<h3>Jacobi 特征值计算</h3>
+<div class="figures">Carl Gustav Jacob Jacobi（雅可比）</div>
+<div class="summary">Jacobi 提出了计算对称矩阵特征值的旋转方法：通过一系列平面旋转将矩阵逐步对角化。这是最早的特征值数值算法。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何数值计算矩阵的特征值和特征向量？<br>
+
+<strong>方法：</strong>Jacobi 旋转法通过 Givens 旋转消除非对角元素。每次旋转选择最大的非对角元素进行消除，迭代直到矩阵足够接近对角形式。<br>
+
+<strong>重要性：</strong>这是第一个实用的特征值算法，对对称正定矩阵保证收敛。<br>
+
+<strong>后续影响：</strong>后来被更高效的 QR 算法取代（1961），但 Jacobi 方法在并行计算环境中重新获得关注。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1854</span>
+<h3>Chebyshev 逼近理论</h3>
+<div class="figures">Pafnuty Chebyshev（切比雪夫）</div>
+<div class="summary">Chebyshev 建立了最佳一致逼近（Minimax Approximation）理论，证明了 Chebyshev 多项式在所有同次多项式中最大偏差最小。这一理论为函数逼近提供了最优解。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>用 n 次多项式逼近函数时，如何使最大误差最小？<br>
+
+<strong>方法：</strong>Chebyshev 多项式 T_n(x) = cos(n*arccos(x)) 在 [-1,1] 上以等波纹方式振荡，其零点是最优的插值节点。<br>
+
+<strong>代表文献：</strong>《Theorie des mecanismes connus sous le nom de parallelogrammes》（1854）。<br>
+
+<strong>重要性：</strong>Chebyshev 逼近理论是数值分析中函数逼近的基石，解释了等距节点插值（Runge 现象）为何失败。<br>
+
+<strong>后续影响：</strong>启发了 Remez 算法（1934）、谱方法（Spectral Methods）和现代高精度数值计算。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1864</span>
+<h3>Gauss-Seidel 迭代法</h3>
+<div class="figures">Philipp Ludwig von Seidel（赛德尔）</div>
+<div class="summary">Seidel 改进了 Jacobi 迭代法：在每步迭代中立即使用最新计算出的分量值。这种"即时更新"策略通常使收敛速度提高一倍。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何加速 Jacobi 迭代的收敛？<br>
+
+<strong>方法：</strong>x_i^{k+1} = (b_i - sum_{j&lt;i} a_{ij}*x_j^{k+1} - sum_{j&gt;i} a_{ij}*x_j^k) / a_{ii}，在计算第 i 个分量时使用已更新的前 i-1 个分量。<br>
+
+<strong>重要性：</strong>Gauss-Seidel 法的收敛条件更宽，速度更快。<br>
+
+<strong>后续影响：</strong>催生了超松弛迭代法（SOR, Successive Over-Relaxation），在 20 世纪成为 PDE 离散系统的标准求解器。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1883</span>
+<h3>Reynolds 数与计算流体力学的萌芽</h3>
+<div class="figures">Osborne Reynolds（雷诺）</div>
+<div class="summary">Reynolds 通过实验和理论分析引入了 Reynolds 数（惯性力与粘性力之比），为流体运动的分类提供了无量纲判据。这标志着流体力学问题数值化求解需求的萌芽。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何定量描述和预测流体的层流-湍流转变？<br>
+
+<strong>方法：</strong>引入无量纲数 Re = rho*v*L/mu 来刻画流体状态。<br>
+
+<strong>重要性：</strong>Reynolds 的工作使人们认识到 Navier-Stokes 方程的解析求解在高 Re 数下几乎不可能，必须发展数值方法。<br>
+
+<strong>后续影响：</strong>直接推动了 20 世纪计算流体力学（CFD）的发展。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1895</span>
+<h3>Runge ODE 方法</h3>
+<div class="figures">Carl Runge（龙格）</div>
+<div class="summary">Runge 将 Euler 方法推广为高阶方法：通过在每步内多次计算斜率并加权平均，显著提高了 ODE 数值解的精度，同时保持了显式方法的易用性。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何在不过度增加计算量的前提下，提高 ODE 数值解的精度？<br>
+
+<strong>方法：</strong>在每个时间步内，先用 Euler 法做预测，然后在预测点再次计算斜率，取加权平均作为最终步进方向。<br>
+
+<strong>代表文献：</strong>《Ueber die numerische Aufloesung von Differentialgleichungen》（1895）。<br>
+
+<strong>后续影响：</strong>Kutta（1901）将此方法推广为一般形式，创造了著名的 Runge-Kutta 方法族。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1897</span>
+<h3>Rayleigh 商</h3>
+<div class="figures">Lord Rayleigh（瑞利）</div>
+<div class="summary">Rayleigh 引入了 Rayleigh 商 R(x) = x^T A x / x^T x 作为对称矩阵特征值的最优估计。这个比值在变分意义上给出了最接近某特征值的标量。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何从近似特征向量快速估计对应的特征值？<br>
+
+<strong>方法：</strong>R(x) = x^T A x / x^T x 满足 min-max 原理，是最优的单向量特征值估计。<br>
+
+<strong>重要性：</strong>Rayleigh 商是特征值计算和有限元分析中的核心工具。<br>
+
+<strong>后续影响：</strong>成为 Lanczos 算法、QR 算法中位移策略的理论基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1901</span>
+<h3>Runge-Kutta 方法族</h3>
+<div class="figures">Martin Wilhelm Kutta（库塔）</div>
+<div class="summary">Kutta 将 Runge 的方法推广为一般框架，特别是经典的四阶 Runge-Kutta 方法（RK4），以每步四次函数求值达到四阶精度，至今仍是最广泛使用的 ODE 求解器之一。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何系统化地构造任意阶数的 ODE 数值方法？<br>
+
+<strong>方法：</strong>经典 RK4：k1=f(t,y), k2=f(t+h/2,y+h*k1/2), k3=f(t+h/2,y+h*k2/2), k4=f(t+h,y+h*k3), y_{n+1}=y_n+h*(k1+2*k2+2*k3+k4)/6。<br>
+
+<strong>代表文献：</strong>Kutta《Beitrag zur naherungsweisen Integration totaler Differentialgleichungen》（1901）。<br>
+
+<strong>重要性：</strong>RK4 在精度与计算量之间达到了完美平衡，是工程实践中的默认选择。<br>
+
+<strong>后续影响：</strong>发展为嵌入式 RK 方法（如 Dormand-Prince，MATLAB ode45 的默认方法）和自适应步长控制。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="c19" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1901</span>
+<h3>Runge 现象</h3>
+<div class="figures">Carl Runge（龙格）</div>
+<div class="summary">Runge 发现了一个令人惊讶的反直觉现象：用等距节点做高次多项式插值时，在区间端点附近会出现剧烈振荡，插值精度反而随次数增加而恶化。这一发现深刻影响了逼近理论的发展。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>为什么增加插值节点数不总能提高精度？<br>
+
+<strong>方法：</strong>经典反例：f(x) = 1/(1+25x^2)，在 [-1,1] 上用等距节点的高次多项式插值，端点处误差趋于无穷。<br>
+
+<strong>重要性：</strong>这一现象证明了等距节点插值的根本缺陷，推动了 Chebyshev 节点（非等距）的使用。<br>
+
+<strong>后续影响：</strong>成为逼近论教学的核心内容，促进了样条插值和分段方法的发展。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 20 世纪前半叶 ========== -->
+<div class="era-divider" id="era-early20c"><h2>20 世纪前半叶（1900 - 1945）</h2></div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1908</span>
+<h3>Schmidt 正交化过程</h3>
+<div class="figures">Erhard Schmidt（施密特）</div>
+<div class="summary">Schmidt 系统化了将一组线性无关向量转化为正交归一向量组的方法（Gram-Schmidt 正交化）。这一过程在数值线性代数中无处不在，是 QR 分解的基础。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何从一组线性无关向量构造正交基？<br>
+
+<strong>方法：</strong>逐步减去在已有正交向量上的投影分量，然后归一化。<br>
+
+<strong>重要性：</strong>正交化是数值计算中保证稳定性的关键操作。<br>
+
+<strong>后续影响：</strong>改良版 Modified Gram-Schmidt 具有更好的数值稳定性；是 QR 分解、Krylov 方法的核心子程序。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1911</span>
+<h3>Richardson 有限差分法与外推</h3>
+<div class="figures">Lewis Fry Richardson（理查森）</div>
+<div class="summary">Richardson 首次系统地将有限差分方法应用于偏微分方程（PDE）的数值求解，并提出了 Richardson 外推法——通过不同步长的结果组合来提高精度。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何数值求解偏微分方程？<br>
+
+<strong>方法：</strong>用有限差分逼近偏导数，将 PDE 转化为代数方程组。Richardson 外推法利用 f(h) 和 f(h/2) 的线性组合消除低阶误差项。<br>
+
+<strong>代表文献：</strong>《The approximate arithmetical solution of physical problems involving differential equations》(1911)。<br>
+
+<strong>重要性：</strong>这是 PDE 数值解法的开创性工作，外推法的精度提升思想影响深远。<br>
+
+<strong>后续影响：</strong>Romberg 积分法（将 Richardson 外推应用于梯形法则）成为高精度积分的标准方法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1920 年代</span>
+<h3>Richardson 天气预报尝试</h3>
+<div class="figures">Lewis Fry Richardson（理查森）</div>
+<div class="summary">Richardson 尝试用有限差分法数值求解大气方程来预测天气——这是人类历史上第一次大规模数值计算尝试。虽然由于缺乏计算机而以失败告终（手算需要 64000 人同时工作），但这一构想预见了计算科学的未来。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>能否通过数值求解大气动力学方程来预测天气？<br>
+
+<strong>方法：</strong>将大气分为网格单元，用有限差分法求解流体方程。Richardson 估算完成一次 6 小时预报需要 64000 名"计算员"在巨大的计算工厂中同步工作。<br>
+
+<strong>代表文献：</strong>《Weather Prediction by Numerical Process》（1922）。<br>
+
+<strong>重要性：</strong>虽然结果荒谬（预测的气压变化比实际大几个数量级，原因是初始数据未经平滑处理），但这一尝试预见了数值天气预报的未来。<br>
+
+<strong>后续影响：</strong>1950 年 Charney、Fjoertoft 和 von Neumann 在 ENIAC 上实现了第一次成功的数值天气预报。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1928</span>
+<h3>CFL 条件</h3>
+<div class="figures">Richard Courant, Kurt Friedrichs, Hans Lewy</div>
+<div class="summary">Courant、Friedrichs 和 Lewy 证明了偏微分方程有限差分格式收敛的必要条件：数值域的传播速度必须不小于物理波的传播速度。这就是著名的 CFL 条件，是计算数学中最重要的稳定性判据之一。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>有限差分格式在什么条件下是收敛的？<br>
+
+<strong>方法：</strong>对于波动方程 u_t + c*u_x = 0，CFL 条件要求 c*dt/dx &le; 1，即时间步长 dt 必须满足 dt &le; dx/c。<br>
+
+<strong>代表文献：</strong>《Ueber die partiellen Differenzengleichungen der mathematischen Physik》(1928)。<br>
+
+<strong>重要性：</strong>这是第一个严格的数值稳定性条件，揭示了离散化参数之间的内在约束。<br>
+
+<strong>后续影响：</strong>成为所有显式时间推进格式设计的基本约束，并启发了 Lax-Richtmyer 等价定理。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1930 年代</span>
+<h3>Banach 不动点定理</h3>
+<div class="figures">Stefan Banach（巴拿赫）</div>
+<div class="summary">Banach 的压缩映射原理为迭代法的收敛性提供了统一的理论框架：如果映射是压缩的（即 Lipschitz 常数 &lt; 1），则迭代必然收敛到唯一不动点。这一抽象定理在数值分析中有无数具体应用。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>迭代法 x_{n+1} = g(x_n) 何时收敛？收敛到什么？<br>
+
+<strong>方法：</strong>若 g 是完备度量空间上的压缩映射（||g(x)-g(y)|| &le; q||x-y||, q&lt;1），则 g 有唯一不动点 x*，且任意初始值的迭代序列均收敛到 x*。<br>
+
+<strong>重要性：</strong>为 Newton 法、Jacobi 迭代等几乎所有迭代算法的收敛性分析提供了统一框架。<br>
+
+<strong>后续影响：</strong>成为非线性方程组求解、微分方程解的存在唯一性证明的标准工具。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1937</span>
+<h3>Aitken 加速法</h3>
+<div class="figures">Alexander Aitken（艾特肯）</div>
+<div class="summary">Aitken 提出了著名的 Delta 平方加速法：从一个线性收敛的序列中，通过简单的代数组合提取出更快收敛的序列。这是序列变换（Series Transformation）方法的经典代表。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何加速缓慢收敛的迭代序列？<br>
+
+<strong>方法：</strong>给定序列 {x_n}，计算加速序列 x_n' = x_n - (x_{n+1}-x_n)^2 / (x_{n+2}-2*x_{n+1}+x_n)。<br>
+
+<strong>重要性：</strong>将线性收敛加速为超线性收敛，计算代价极小。<br>
+
+<strong>后续影响：</strong>与 Steffensen 迭代法结合，将不动点迭代的线性收敛提升为二次收敛。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1943</span>
+<h3>Courant 变分方法与三角剖分</h3>
+<div class="figures">Richard Courant（柯朗）</div>
+<div class="summary">Courant 提出用分片线性函数（定义在三角形网格上）来逼近变分问题的解。这一方法用三角元素离散化连续域，是有限元方法（FEM）的重要理论前驱。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何数值求解变分问题和椭圆型 PDE？<br>
+
+<strong>方法：</strong>将求解域划分为三角形网格，在每个三角形上用线性函数逼近，将连续变分问题转化为有限维代数方程组。<br>
+
+<strong>代表文献：</strong>《Variational methods for the solution of problems of equilibrium and vibrations》(1943)。<br>
+
+<strong>重要性：</strong>首次提出了三角形离散化加分片多项式逼近的思想。<br>
+
+<strong>后续影响：</strong>直接启发了 1960 年代有限元方法的系统化发展（Clough、Zienkiewicz 等）。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="early20c" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1944</span>
+<h3>Monte Carlo 方法的构想</h3>
+<div class="figures">Stanislaw Ulam（乌拉姆）, John von Neumann（冯诺依曼）</div>
+<div class="summary">在洛斯阿拉莫斯国家实验室的核武器研究中，Ulam 和 von Neumann 构想了用随机抽样来解决确定性数学问题的方法。这一思想后来被命名为 Monte Carlo 方法，彻底改变了高维问题的计算方式。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何处理维数灾难——传统网格方法在高维问题上指数级增长的计算量？<br>
+
+<strong>方法：</strong>用随机采样估计积分、模拟物理过程。核心思想：E[f(X)] 可以通过 f 在随机点上的平均值来估计，收敛速度 O(1/sqrt(N)) 与维数无关。<br>
+
+<strong>重要性：</strong>Monte Carlo 方法突破了维数灾难的限制，使高维问题的数值求解成为可能。<br>
+
+<strong>后续影响：</strong>发展为 Markov Chain Monte Carlo (MCMC)、粒子滤波等现代方法，在统计物理、金融工程、机器学习中应用广泛。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 计算机时代 - 诞生 ========== -->
+<div class="era-divider" id="era-computer-birth"><h2>计算机时代 - 诞生（1945 - 1960）</h2></div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1945</span>
+<h3>ENIAC 与电子计算时代的开启</h3>
+<div class="figures">John Mauchly, J. Presper Eckert</div>
+<div class="summary">ENIAC（电子数值积分和计算机）的诞生标志着电子计算时代的开始。数值分析从此不再受限于人工计算的速度，能够处理此前不可想象的大规模问题。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何将数值计算从人工手算提升到自动化？<br>
+
+<strong>方法：</strong>ENIAC 每秒可执行约 5000 次加法，比人工计算快约 1000 倍。它首先被用于氢弹模拟的数值计算。<br>
+
+<strong>重要性：</strong>电子计算机使数值分析从理论学科转变为实践学科——以前只能在纸上推导的算法，现在可以真正运行了。<br>
+
+<strong>后续影响：</strong>催生了数值稳定性分析（有限精度算术的误差问题变得至关重要）和大规模算法设计的全新研究方向。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1947</span>
+<h3>Von Neumann 与 Goldstine：数值稳定性分析</h3>
+<div class="figures">John von Neumann（冯诺依曼）, Herman Goldstine</div>
+<div class="summary">Von Neumann 和 Goldstine 在一篇里程碑式的论文中首次系统分析了矩阵求逆过程中的舍入误差传播，引入了条件数的概念。这标志着数值稳定性理论的诞生。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>有限精度浮点运算中的舍入误差如何影响矩阵计算的结果？<br>
+
+<strong>方法：</strong>通过分析 Gauss 消元过程中误差的增长，提出了矩阵条件数 cond(A) = ||A|| * ||A^{-1}|| 作为问题敏感度的度量。<br>
+
+<strong>代表文献：</strong>《Numerical inverting of matrices of high order》（1947）。<br>
+
+<strong>重要性：</strong>这是第一次严格地从数学角度分析计算机算术的误差问题，开创了数值稳定性理论。<br>
+
+<strong>后续影响：</strong>Turing（1948）和 Wilkinson（1960 年代）进一步发展了这一理论。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1948</span>
+<h3>Turing 矩阵过程中的舍入误差</h3>
+<div class="figures">Alan Turing（图灵）</div>
+<div class="summary">Turing 独立地分析了矩阵过程中的舍入误差问题，引入了"条件数"这一术语，并区分了"行为良好"和"行为不良"的矩阵。他的分析方法与 von Neumann 互补，共同奠定了误差分析的基础。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何判断一个矩阵计算问题是"容易的"还是"困难的"？<br>
+
+<strong>方法：</strong>Turing 将矩阵分为"satisfactory"（条件良好）和"unsatisfactory"（病态），前者的解对舍入误差不敏感，后者则可能完全不可靠。<br>
+
+<strong>代表文献：</strong>《Rounding-Off Errors in Matrix Processes》（1948）。<br>
+
+<strong>重要性：</strong>为后来 Wilkinson 的系统化误差分析奠定了概念基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1950</span>
+<h3>Lanczos 算法</h3>
+<div class="figures">Cornelius Lanczos（兰索斯）</div>
+<div class="summary">Lanczos 提出了一种高效计算大型对称矩阵特征值的迭代方法：通过构建 Krylov 子空间将大矩阵投影到小的三对角矩阵上，从而用极少的存储和运算获得极端特征值。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算大型稀疏对称矩阵的少数极端特征值？<br>
+
+<strong>方法：</strong>从随机向量出发，通过矩阵-向量乘法和正交化构建 Krylov 子空间 {v, Av, A^2v, ...}，得到三对角矩阵的特征值作为原矩阵特征值的近似。<br>
+
+<strong>重要性：</strong>Lanczos 算法只需矩阵-向量乘法，不需要显式存储矩阵，适合大规模问题。<br>
+
+<strong>后续影响：</strong>成为现代大规模特征值计算的核心方法之一；非对称版本发展为 Arnoldi 算法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1951</span>
+<h3>Remez 算法</h3>
+<div class="figures">Evgeny Remez（列梅兹）</div>
+<div class="summary">Remez 算法给出了计算最佳一致逼近多项式（Minimax Polynomial）的实用方法，将 Chebyshev 逼近理论从存在性定理转化为可计算的算法。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何实际计算函数的最佳一致逼近多项式？<br>
+
+<strong>方法：</strong>交换算法（Exchange Algorithm）：从初始节点集出发，迭代调整节点使误差等波纹（Equioscillation），直到满足 Chebyshev 等波纹定理。<br>
+
+<strong>重要性：</strong>使最佳逼近从理论概念变为实用工具。<br>
+
+<strong>后续影响：</strong>广泛用于数字滤波器设计（Parks-McClellan 算法）和数学函数库的高精度实现。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1952</span>
+<h3>共轭梯度法（CG）</h3>
+<div class="figures">Magnus Hestenes, Eduard Stiefel</div>
+<div class="summary">Hestenes 和 Stiefel 独立提出了共轭梯度法：一种同时具有直接法和迭代法特性的线性方程组求解方法。对于对称正定系统，CG 法理论上在 n 步内精确求解，实际中远在此之前就已收敛到足够精度。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效求解大型对称正定线性系统 Ax = b？<br>
+
+<strong>方法：</strong>在 Krylov 子空间中搜索使能量范数 ||x-x*||_A 最小的近似解。搜索方向相互 A-共轭，保证无需回溯。<br>
+
+<strong>代表文献：</strong>Hestenes & Stiefel《Methods of Conjugate Gradients for Solving Linear Systems》(1952)。<br>
+
+<strong>重要性：</strong>CG 法是 Krylov 子空间方法的先驱，至今仍是对称正定系统的首选求解器。<br>
+
+<strong>后续影响：</strong>催生了预条件 CG（PCG）、双共轭梯度法（BiCG）、GMRES 等现代 Krylov 方法族。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1956</span>
+<h3>Dahlquist 稳定性理论</h3>
+<div class="figures">Germund Dahlquist（达尔奎斯特）</div>
+<div class="summary">Dahlquist 建立了线性多步法（Linear Multistep Methods）的稳定性理论，引入了 A-稳定性概念，并证明了著名的"Dahlquist 壁垒"：A-稳定的线性多步法精度至多为二阶（梯形法则）。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>ODE 数值方法在处理刚性（Stiff）问题时何时会失败？<br>
+
+<strong>方法：</strong>将稳定性分析为测试方程 y' = lambda*y 的数值解行为。A-稳定性要求数值解对所有 Re(lambda) &lt; 0 的测试方程均不增长。<br>
+
+<strong>代表文献：</strong>Dahlquist 博士论文及后续论文（1956-1963）。<br>
+
+<strong>重要性：</strong>这是 ODE 数值方法稳定性理论的奠基之作，解释了为什么某些方法在刚性问题上失败。<br>
+
+<strong>后续影响：</strong>直接推动了隐式方法（如 BDF 方法）和刚性 ODE 求解器（如 Gear 方法）的发展。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1956</span>
+<h3>Lax-Richtmyer 等价定理</h3>
+<div class="figures">Peter Lax（拉克斯）, Robert Richtmyer</div>
+<div class="summary">Lax 和 Richtmyer 证明了数值分析中最深刻的定理之一：对于适定的线性初值问题，一致性 + 稳定性 = 收敛性。这一等价定理为 PDE 数值格式的设计提供了清晰的指导原则。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>有限差分格式的离散解何时收敛到 PDE 的真解？<br>
+
+<strong>方法：</strong>证明了对于相容格式（截断误差趋于零），稳定性是收敛的充分必要条件。<br>
+
+<strong>代表文献：</strong>Lax & Richtmyer《Survey of the stability of linear finite difference equations》(1956)。<br>
+
+<strong>重要性：</strong>将收敛性问题转化为更容易验证的稳定性问题，是计算数学的基本定理。<br>
+
+<strong>后续影响：</strong>成为所有 PDE 数值格式分析的理论框架。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1958</span>
+<h3>Householder 反射变换</h3>
+<div class="figures">Alston Householder</div>
+<div class="summary">Householder 提出了使用正交反射矩阵将向量映射到坐标轴的方法（Householder 反射）。与 Givens 旋转相比，Householder 反射可以一次消除一整列的非零元素，成为 QR 分解的高效实现基础。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效地实现正交三角分解（QR 分解）？<br>
+
+<strong>方法：</strong>构造 Householder 矩阵 H = I - 2vv^T/v^Tv，使得 Hx 的除第一个分量外全部为零。逐列应用即得 QR 分解。<br>
+
+<strong>重要性：</strong>Householder QR 比 Gram-Schmidt 正交化数值更稳定，成为现代 QR 分解的标准算法。<br>
+
+<strong>后续影响：</strong>是 QR 算法、SVD 计算和最小二乘问题求解的核心子程序。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-birth" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1958 年起</span>
+<h3>Wilkinson 舍入误差分析</h3>
+<div class="figures">James Hardy Wilkinson（威尔金森）</div>
+<div class="summary">Wilkinson 开始了对矩阵计算中舍入误差的系统化分析，发展了后向误差分析（Backward Error Analysis）方法论：与其问"计算结果离真解有多远"，不如问"计算结果是哪个邻近问题的精确解"。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何系统地评估数值算法在浮点运算下的可靠性？<br>
+
+<strong>方法：</strong>后向误差分析：证明计算得到的结果 x_hat 是某个扰动问题 (A+dA)x_hat = b+db 的精确解，其中 ||dA||/||A|| 和 ||db||/||b|| 很小。<br>
+
+<strong>重要性：</strong>后向误差分析是现代数值分析的核心方法论，为算法可靠性提供了深刻的理论保证。<br>
+
+<strong>后续影响：</strong>Wilkinson 因此工作获得 1970 年图灵奖。其方法论影响了 LAPACK 等所有现代数值软件的设计。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 计算机时代 - 成熟 ========== -->
+<div class="era-divider" id="era-computer-mature"><h2>计算机时代 - 成熟（1960 - 1980）</h2></div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1961</span>
+<h3>QR 算法</h3>
+<div class="figures">John G.F. Francis</div>
+<div class="summary">Francis 发明了 QR 算法——通过反复进行 QR 分解和反序相乘来计算矩阵的全部特征值。这是 20 世纪数值分析最重要的算法之一，被 SIAM 评为"20 世纪十大算法"之一。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何稳定高效地计算一般矩阵的全部特征值？<br>
+
+<strong>方法：</strong>迭代 A_k = Q_k R_k, A_{k+1} = R_k Q_k。加上位移策略（如 Wilkinson 位移），收敛速度为三次方。预先 Hessenberg 化后每步只需 O(n^2)。<br>
+
+<strong>重要性：</strong>QR 算法是所有现代特征值求解器（LAPACK 的 dgeev 等）的核心。<br>
+
+<strong>后续影响：</strong>结合 Householder 化简和隐式位移，成为密集矩阵特征值问题的最终解决方案。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1961</span>
+<h3>"有限元方法"正式命名</h3>
+<div class="figures">Ray Clough（克拉夫）</div>
+<div class="summary">Clough 在一篇结构力学论文中首次使用了"Finite Element Method"这一术语，正式命名了这一将连续域离散为有限个单元进行分析的方法。FEM 从此成为工程计算的标准工具。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何系统化地将 PDE 问题离散化求解？<br>
+
+<strong>方法：</strong>将求解域划分为简单几何元素（三角形、四面体等），在每个元素上用多项式基函数逼近解，通过变分原理或加权残值法建立代数方程组。<br>
+
+<strong>代表文献：</strong>Clough《The Finite Element Method in Plane Stress Analysis》(1960)。<br>
+
+<strong>重要性：</strong>FEM 统一了此前分散的结构分析方法，提供了系统化的计算框架。<br>
+
+<strong>后续影响：</strong>从结构力学扩展到流体力学、电磁学、热传导等几乎所有物理场问题。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1963</span>
+<h3>Wilkinson《代数过程中的舍入误差》</h3>
+<div class="figures">James Hardy Wilkinson（威尔金森）</div>
+<div class="summary">Wilkinson 出版了划时代的专著，系统总结了矩阵计算中舍入误差的后向分析理论。这本书确立了后向误差分析作为数值分析核心方法论的地位。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>为数值线性代数的可靠性提供全面的理论基础。<br>
+
+<strong>代表文献：</strong>《Rounding Errors in Algebraic Processes》（1963）。<br>
+
+<strong>重要性：</strong>这是数值分析中误差理论的里程碑，建立了分析数值算法可靠性的标准方法。<br>
+
+<strong>后续影响：</strong>后续著作《The Algebraic Eigenvalue Problem》(1965) 进一步发展了特征值问题的误差理论。Wilkinson 因此获得 1970 年图灵奖。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1964</span>
+<h3>Gear 刚性 ODE 方法</h3>
+<div class="figures">C. William Gear（齐尔）</div>
+<div class="summary">Gear 发展了专门求解刚性常微分方程（Stiff ODE）的 BDF（Backward Differentiation Formula）方法。刚性问题中包含时间尺度相差极大的分量，普通方法需要极小步长才能保持稳定，BDF 方法克服了这一限制。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效求解特征值分布范围极大的刚性 ODE 系统？<br>
+
+<strong>方法：</strong>BDF 方法使用多个过去时刻的值来隐式定义下一时刻，具有良好的 A-稳定性或 A(alpha)-稳定性。<br>
+
+<strong>代表文献：</strong>Gear《Numerical Initial Value Problems in Ordinary Differential Equations》(1971)。<br>
+
+<strong>重要性：</strong>开创了刚性 ODE 专用求解器的研究方向。<br>
+
+<strong>后续影响：</strong>发展为 LSODE、VODE、SUNDIALS 等广泛使用的科学计算软件包。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1965</span>
+<h3>快速傅里叶变换（FFT）</h3>
+<div class="figures">James Cooley, John Tukey</div>
+<div class="summary">Cooley 和 Tukey 发表了快速傅里叶变换算法，将离散傅里叶变换的计算量从 O(n^2) 降低到 O(n log n)。FFT 被称为"20 世纪最重要的算法之一"，彻底革命了信号处理、图像处理和科学计算。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算离散傅里叶变换 DFT？<br>
+
+<strong>方法：</strong>利用单位根的对称性，将 n 点 DFT 递归分解为两个 n/2 点 DFT。分治策略使复杂度从 O(n^2) 降至 O(n log n)。（Gauss 实际上在 1805 年已独立发现了类似思想。）<br>
+
+<strong>代表文献：</strong>Cooley & Tukey《An algorithm for the machine calculation of complex Fourier series》(1965)。<br>
+
+<strong>重要性：</strong>FFT 使百万点级的频谱分析成为可能，是数字信号处理的基石。<br>
+
+<strong>后续影响：</strong>应用于音频压缩（MP3）、图像压缩（JPEG）、通信调制（OFDM）、分子动力学模拟等无数领域。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1965</span>
+<h3>SVD 计算算法</h3>
+<div class="figures">Gene Golub（戈卢布）, William Kahan</div>
+<div class="summary">Golub 和 Kahan 给出了计算矩阵奇异值分解（SVD）的高效稳定算法。SVD 将矩阵分解为 A = U*Sigma*V^T，揭示了矩阵的内在几何结构。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何数值稳定地计算矩阵的奇异值分解？<br>
+
+<strong>方法：</strong>先将矩阵双对角化（Golub-Kahan 步骤），再用隐式位移 QR 迭代计算奇异值。<br>
+
+<strong>重要性：</strong>SVD 是数值线性代数中最强大的矩阵分解工具，用于秩确定、最小二乘、伪逆计算。<br>
+
+<strong>后续影响：</strong>成为主成分分析（PCA）、推荐系统、图像压缩、自然语言处理的数学基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1967</span>
+<h3>Zienkiewicz FEM 教科书</h3>
+<div class="figures">Olgierd Zienkiewicz（津凯维奇）</div>
+<div class="summary">Zienkiewicz 出版了首部全面系统的有限元方法教科书《The Finite Element Method in Structural and Continuum Mechanics》，使 FEM 从结构工程的专门方法普及为通用的数值求解框架。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何将有限元方法系统化，使其可被广泛学习和应用？<br>
+
+<strong>重要性：</strong>这本教科书将散布在不同工程领域的 FEM 实践统一为一个完整的方法论。<br>
+
+<strong>后续影响：</strong>推动了 ANSYS、ABAQUS、NASTRAN 等商业有限元软件的发展。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1969</span>
+<h3>Strassen 快速矩阵乘法</h3>
+<div class="figures">Volker Strassen（施特拉森）</div>
+<div class="summary">Strassen 证明了矩阵乘法不必需要 O(n^3) 次运算：通过巧妙地组合 7 次（而非 8 次）子矩阵乘法，将复杂度降至 O(n^2.807)。这一发现震惊了数学界，开创了快速矩阵乘法研究。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>矩阵乘法的最小运算次数是多少？<br>
+
+<strong>方法：</strong>将 2x2 矩阵乘法从 8 次乘法减少到 7 次，递归应用后复杂度为 O(n^{log_2 7}) = O(n^2.807)。<br>
+
+<strong>代表文献：</strong>Strassen《Gaussian elimination is not optimal》(1969)。<br>
+
+<strong>重要性：</strong>证明了"显而易见"的 O(n^3) 不是下界，矩阵乘法存在更快的算法。<br>
+
+<strong>后续影响：</strong>后续 Coppersmith-Winograd (O(n^2.376))、2024 年 DeepMind AlphaTensor 用 AI 发现新的快速矩阵乘法算法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1970</span>
+<h3>Brent 求根方法</h3>
+<div class="figures">Richard Brent（布伦特）</div>
+<div class="summary">Brent 将二分法的可靠性与逆二次插值的快速收敛性相结合，设计了一种既保证收敛又尽可能快速的求根方法。Brent 方法至今仍是一维方程求根的工业标准。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何设计一个既安全（保证收敛）又高效的求根算法？<br>
+
+<strong>方法：</strong>在每步中选择二分法、割线法或逆二次插值中预计效果最好的一种。如果加速方法不可靠，自动退回二分法。<br>
+
+<strong>重要性：</strong>Brent 方法体现了"稳健优先，效率兼顾"的设计哲学。<br>
+
+<strong>后续影响：</strong>成为 MATLAB fzero、Python scipy.optimize.brentq 等标准库函数的默认算法。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1971</span>
+<h3>Strang 与 Fix：有限元数学理论</h3>
+<div class="figures">Gilbert Strang（斯特朗）, George Fix</div>
+<div class="summary">Strang 和 Fix 出版了《An Analysis of the Finite Element Method》，为有限元方法提供了严格的数学理论基础，包括误差估计、收敛性证明和逼近阶数分析。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>有限元解与真解之间的误差如何随网格细化而减小？<br>
+
+<strong>方法：</strong>利用 Cea 引理和逼近理论证明最优误差估计。<br>
+
+<strong>重要性：</strong>使 FEM 从纯工程方法提升为有严格数学理论支撑的学科。<br>
+
+<strong>后续影响：</strong>推动了自适应有限元、后验误差估计等现代方法的发展。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1973</span>
+<h3>De Boor B-样条算法</h3>
+<div class="figures">Carl de Boor（德博尔）</div>
+<div class="summary">De Boor 给出了高效稳定的 B-样条曲线求值递推算法（De Boor 算法），类似于 De Casteljau 算法对 Bezier 曲线的作用。B-样条成为计算机辅助设计（CAD）和数值逼近的核心工具。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效稳定地计算 B-样条函数值？<br>
+
+<strong>方法：</strong>递推算法，类似于多项式的 Horner 法则，利用局部支撑和递推关系避免数值不稳定。<br>
+
+<strong>代表文献：</strong>De Boor《A Practical Guide to Splines》(1978)。<br>
+
+<strong>重要性：</strong>使 B-样条从理论工具变为实用的计算工具。<br>
+
+<strong>后续影响：</strong>成为 CAD/CAM 系统（NURBS）、等几何分析（IGA）的数学基础。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1974</span>
+<h3>Babuska-Brezzi inf-sup 条件</h3>
+<div class="figures">Ivo Babuska（巴布什卡）, Franco Brezzi（布雷齐）</div>
+<div class="summary">Babuska 和 Brezzi 独立建立了混合有限元方法稳定性的 inf-sup 条件（也称 LBB 条件）。这一条件揭示了为什么某些有限元空间的组合会导致虚假振荡或锁死现象。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>混合有限元（如 Stokes 流问题中的速度-压力对）何时是稳定的？<br>
+
+<strong>方法：</strong>速度空间 V 和压力空间 Q 必须满足 inf-sup 条件：inf_{q in Q} sup_{v in V} b(v,q)/(||v||*||q||) &ge; beta &gt; 0。<br>
+
+<strong>重要性：</strong>解释了为什么不能任意选择有限元空间对——不满足 inf-sup 条件会导致解的不稳定。<br>
+
+<strong>后续影响：</strong>指导了 Taylor-Hood 元等稳定元对的设计，影响了整个计算力学领域。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1977 / 1983</span>
+<h3>Golub 与 Van Loan：《矩阵计算》</h3>
+<div class="figures">Gene Golub（戈卢布）, Charles Van Loan</div>
+<div class="summary">Golub 和 Van Loan 的经典著作《Matrix Computations》首版于 1983 年出版，系统总结了数值线性代数的全部核心算法。这本书被誉为"数值线性代数的圣经"。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>为数值线性代数提供全面的算法参考。<br>
+
+<strong>重要性：</strong>涵盖了线性方程组、最小二乘、特征值、SVD 等全部核心主题，理论深度与算法细节兼备。<br>
+
+<strong>后续影响：</strong>至今已出至第四版（2013），引用超过 75000 次，是计算科学领域引用最高的教科书之一。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="computer-mature" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1979</span>
+<h3>LINPACK 标准线性代数库</h3>
+<div class="figures">Jack Dongarra（唐加拉）等</div>
+<div class="summary">LINPACK 是第一个标准化的数值线性代数软件库，提供了线性方程组求解和最小二乘问题的高质量 Fortran 子程序。它开创了"科学计算标准软件库"的理念。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何让高质量的数值算法成为所有科学家都能使用的标准工具？<br>
+
+<strong>方法：</strong>将 Wilkinson 等人开发的最佳算法封装为标准化的可移植子程序库。<br>
+
+<strong>重要性：</strong>开创了数值软件标准化和共享的范式。LINPACK 基准测试至今仍是超级计算机排名（TOP500）的标准。<br>
+
+<strong>后续影响：</strong>发展为 LAPACK（1992）和 ScaLAPACK（并行版本），成为 MATLAB、NumPy 等现代工具的底层。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== 现代 ========== -->
+<div class="era-divider" id="era-modern"><h2>现代（1980 至今）</h2></div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1983</span>
+<h3>多重网格方法（Multigrid）成熟</h3>
+<div class="figures">Achi Brandt（布兰特）, Wolfgang Hackbusch（哈克布什）</div>
+<div class="summary">多重网格方法通过在不同分辨率的网格层次间交替计算来消除不同尺度的误差分量，实现了椭圆型 PDE 的 O(N) 最优复杂度求解。这是计算数学中少有的达到理论下界的方法。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何突破传统迭代法对低频误差收敛缓慢的瓶颈？<br>
+
+<strong>方法：</strong>V-cycle/W-cycle：在细网格上做几步松弛消除高频误差，将残差限制到粗网格上求解（低频误差在粗网格上变为高频），再将粗网格修正插值回细网格。<br>
+
+<strong>重要性：</strong>多重网格是唯一已知的对椭圆型问题达到 O(N) 复杂度的通用方法。<br>
+
+<strong>后续影响：</strong>代数多重网格（AMG）使该方法适用于非结构网格和复杂几何。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1986</span>
+<h3>GMRES 算法</h3>
+<div class="figures">Yousef Saad（萨阿德）, Martin Schultz</div>
+<div class="summary">Saad 和 Schultz 提出了 GMRES（Generalized Minimal Residual）算法，将共轭梯度法的思想推广到非对称线性系统。GMRES 在 Krylov 子空间中最小化残差范数，对任意非奇异矩阵保证收敛。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效求解大型非对称稀疏线性系统？<br>
+
+<strong>方法：</strong>通过 Arnoldi 过程构建 Krylov 子空间的正交基，在该子空间中求解使残差最小的近似解。<br>
+
+<strong>代表文献：</strong>Saad & Schultz《GMRES: A Generalized Minimal Residual Algorithm》(1986)。<br>
+
+<strong>重要性：</strong>GMRES 是求解一般稀疏线性系统最可靠的 Krylov 方法。<br>
+
+<strong>后续影响：</strong>与预条件技术结合（如 ILU 预条件 GMRES），成为 CFD、电磁学等领域的标准求解器。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1988</span>
+<h3>多重网格教程</h3>
+<div class="figures">William Briggs（布里格斯）</div>
+<div class="summary">Briggs 出版了通俗易懂的多重网格方法教程《A Multigrid Tutorial》，使这一强大但理论复杂的方法得以在更广泛的工程和科学计算社区中普及。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>重要性：</strong>降低了多重网格方法的学习门槛，推动了其在工业界的采用。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1989</span>
+<h3>快速多极方法（FMM）</h3>
+<div class="figures">Leslie Greengard（格林加德）, Vladimir Rokhlin（罗克林）</div>
+<div class="summary">快速多极方法将 N 体问题（如万有引力、静电力的相互作用）的计算量从 O(N^2) 降低到 O(N)。它被《科学》杂志评为"20 世纪十大算法"之一。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何高效计算 N 个粒子之间的相互作用力/势能？<br>
+
+<strong>方法：</strong>将远场作用用多极展开近似：对于彼此远离的粒子群，不需要逐对计算，而是用整体的多极矩来近似群间相互作用。通过树状层次结构递归划分空间。<br>
+
+<strong>代表文献：</strong>Greengard & Rokhlin《A fast algorithm for particle simulations》(1987)。<br>
+
+<strong>重要性：</strong>突破了 N 体问题的 O(N^2) 瓶颈。<br>
+
+<strong>后续影响：</strong>应用于分子动力学、天体物理、边界元法和机器学习中的核方法加速。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1992</span>
+<h3>LAPACK 发布</h3>
+<div class="figures">E. Anderson, Z. Bai, J. Dongarra 等</div>
+<div class="summary">LAPACK（Linear Algebra PACKage）发布，取代 LINPACK 成为新一代标准数值线性代数库。LAPACK 针对现代计算机的缓存层次结构进行了优化，实现了接近硬件峰值的性能。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何在现代计算机体系结构上实现高性能的数值线性代数？<br>
+
+<strong>方法：</strong>采用分块算法（Block Algorithms）将计算组织为 BLAS-3（矩阵-矩阵）操作，最大化缓存利用率。<br>
+
+<strong>重要性：</strong>LAPACK 是几乎所有科学计算软件的底层基础——MATLAB、NumPy、R 都调用 LAPACK。<br>
+
+<strong>后续影响：</strong>发展为 ScaLAPACK（分布式并行）、MAGMA（GPU 加速）等现代版本。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">1996</span>
+<h3>Trefethen 与 Bau《数值线性代数》</h3>
+<div class="figures">Lloyd N. Trefethen（特雷费森）, David Bau</div>
+<div class="summary">这本教科书以独特的几何直觉和优雅的讲述方式重新诠释了数值线性代数，强调 SVD 作为统一视角，将矩阵分解、迭代方法和稳定性分析融为一体。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>重要性：</strong>改变了数值线性代数的教学方式，被全球顶尖大学广泛采用。<br>
+
+<strong>后续影响：</strong>培养了一代数值分析研究者的直觉和品味。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">2000 年代</span>
+<h3>Krylov 子空间方法主导大规模计算</h3>
+<div class="figures">多位研究者</div>
+<div class="summary">进入 21 世纪，预条件 Krylov 子空间方法（CG、GMRES、BiCGSTAB 等）成为大规模稀疏线性系统和特征值问题的主流求解策略。自适应预条件技术的发展使其能够处理百万至数十亿未知数的问题。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何求解百万级甚至更大的稀疏线性系统？<br>
+
+<strong>方法：</strong>Krylov 方法 + 代数多重网格（AMG）预条件成为"黄金搭档"。PETSc、Trilinos 等软件框架使其易于使用。<br>
+
+<strong>重要性：</strong>使之前不可能的超大规模模拟成为现实。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">2000 - 2010 年代</span>
+<h3>GPU 计算变革数值方法</h3>
+<div class="figures">NVIDIA, 科学计算社区</div>
+<div class="summary">GPU（图形处理单元）的通用计算能力（GPGPU）从根本上改变了数值方法的实现方式。CUDA（2007）和 OpenCL 使科学家能够利用数千个 GPU 核心进行大规模并行计算。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>如何利用 GPU 的大规模并行性加速数值计算？<br>
+
+<strong>方法：</strong>将算法重构为 SIMD（单指令多数据）友好的形式。cuBLAS、cuSPARSE 等 GPU 加速库使数值线性代数性能提升 10-100 倍。<br>
+
+<strong>重要性：</strong>GPU 计算使深度学习的训练成为可能，同时加速了 CFD、分子动力学等科学计算。<br>
+
+<strong>后续影响：</strong>推动了混合精度计算（低精度训练 + 高精度修正）和新型数值算法设计。
+</div>
+</div>
+</div>
+</div>
+
+<div class="tl-node visible" data-era="modern" onclick="this.classList.toggle('expanded')">
+<div class="tl-dot"></div>
+<div class="tl-card">
+<span class="tl-year">2010 年代至今</span>
+<h3>机器学习与数值分析的融合</h3>
+<div class="figures">Raissi, Karniadakis, Chen 等</div>
+<div class="summary">物理信息神经网络（PINNs, 2019）将 PDE 约束嵌入神经网络的损失函数中；神经常微分方程（Neural ODEs, 2018）将深度网络视为连续动力系统。数值分析与机器学习正在走向深度融合。</div>
+<div class="expand-hint">[ 点击展开详情 ]</div>
+<div class="tl-detail">
+<div class="tl-detail-inner">
+<strong>核心问题：</strong>能否用数据驱动的方式加速或替代传统的数值 PDE 求解器？<br>
+
+<strong>方法：</strong>PINNs：用神经网络参数化 PDE 的解，将 PDE 残差作为损失函数的一部分。Neural ODEs：将 ODE 求解器嵌入神经网络的前向/反向传播中。<br>
+
+<strong>代表文献：</strong>Raissi et al.《Physics-informed neural networks》(2019)；Chen et al.《Neural Ordinary Differential Equations》(2018, NeurIPS Best Paper)。<br>
+
+<strong>重要性：</strong>代表了计算科学的新范式——数据驱动与物理驱动方法的统一。<br>
+
+<strong>后续影响：</strong>正在改变天气预报（DeepMind GraphCast）、蛋白质结构预测（AlphaFold）、材料设计等领域的计算方式。
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- end timeline -->
+</section><!-- end timeline section -->
+
+<!-- ==================== FIGURES GALLERY ==================== -->
+<section class="section" id="figures">
+<h2 class="section-title">人物长廊</h2>
+<p class="section-desc">数值分析四千年历史中最具影响力的数学家与计算科学家。</p>
+<div class="figures-grid">
+
+<div class="figure-card">
+<div class="figure-avatar">N</div>
+<h4>牛顿</h4>
+<div class="en-name">Isaac Newton</div>
+<div class="lifespan">1643 - 1727</div>
+<p>迭代法、插值理论和数值积分的奠基人。Newton 法是最重要的非线性方程求解算法；Newton 插值公式和有限差分理论为数值分析提供了基本工具。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">E</div>
+<h4>欧拉</h4>
+<div class="en-name">Leonhard Euler</div>
+<div class="lifespan">1707 - 1783</div>
+<p>数学史上产出最丰的数学家。在数值分析领域开创了常微分方程数值解法（Euler 方法），发展了级数求和和收敛加速技术。其工作横跨纯粹数学与应用数学。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">G</div>
+<h4>高斯</h4>
+<div class="en-name">Carl Friedrich Gauss</div>
+<div class="lifespan">1777 - 1855</div>
+<p>"数学王子"。发明了最小二乘法、系统化了 Gauss 消元法、提出了 Gauss 求积公式。在数值分析的几乎每个分支都留下了深刻印记，其贡献至今仍是学科核心。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">L</div>
+<h4>拉格朗日</h4>
+<div class="en-name">Joseph-Louis Lagrange</div>
+<div class="lifespan">1736 - 1813</div>
+<p>分析力学创始人，Lagrange 插值公式的提出者。其变分方法为有限元方法的发展提供了理论基础。在逼近论和优化理论方面影响深远。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">J</div>
+<h4>雅可比</h4>
+<div class="en-name">Carl Gustav Jacob Jacobi</div>
+<div class="lifespan">1804 - 1851</div>
+<p>提出了 Jacobi 迭代法和 Jacobi 旋转法——分别是线性系统迭代求解和特征值计算的先驱方法。其工作奠定了迭代数值线性代数的基础。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">C</div>
+<h4>切比雪夫</h4>
+<div class="en-name">Pafnuty Chebyshev</div>
+<div class="lifespan">1821 - 1894</div>
+<p>最佳一致逼近理论的创始人。Chebyshev 多项式在函数逼近、谱方法和数值积分中至关重要。他证明了最佳逼近多项式以等波纹方式振荡。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">R</div>
+<h4>龙格</h4>
+<div class="en-name">Carl Runge</div>
+<div class="lifespan">1856 - 1927</div>
+<p>开创了高阶 ODE 数值方法（Runge-Kutta 方法的前驱），同时发现了等距节点高次多项式插值的致命缺陷（Runge 现象）。理论与实践的双重贡献者。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">K</div>
+<h4>库塔</h4>
+<div class="en-name">Martin Wilhelm Kutta</div>
+<div class="lifespan">1867 - 1944</div>
+<p>将 Runge 的方法推广为完整的方法族，创造了经典四阶 Runge-Kutta 方法（RK4）。这一方法以其精度与简洁的完美平衡成为工程计算的默认选择。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">R</div>
+<h4>理查森</h4>
+<div class="en-name">Lewis Fry Richardson</div>
+<div class="lifespan">1881 - 1953</div>
+<p>PDE 有限差分法和 Richardson 外推法的先驱。其天气预报数值计算的大胆尝试（1922）预见了计算科学的未来。和平主义者与数值方法开拓者的双重身份。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">C</div>
+<h4>柯朗</h4>
+<div class="en-name">Richard Courant</div>
+<div class="lifespan">1888 - 1972</div>
+<p>CFL 条件的共同提出者，有限元方法的重要先驱（1943 年三角剖分变分方法）。创建了纽约大学柯朗数学科学研究所（Courant Institute），培养了大量数值分析人才。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">T</div>
+<h4>图灵</h4>
+<div class="en-name">Alan Turing</div>
+<div class="lifespan">1912 - 1954</div>
+<p>计算机科学之父。在数值分析领域，他于 1948 年独立分析了矩阵计算中的舍入误差，引入了条件数概念，为数值稳定性理论做出了基础性贡献。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">vN</div>
+<h4>冯诺依曼</h4>
+<div class="en-name">John von Neumann</div>
+<div class="lifespan">1903 - 1957</div>
+<p>现代计算机体系结构之父。与 Goldstine 共同开创了数值稳定性分析，构想了 Monte Carlo 方法，推动了 ENIAC 上的数值天气预报。是理论与实践完美结合的典范。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">H</div>
+<h4>豪斯霍尔德</h4>
+<div class="en-name">Alston Householder</div>
+<div class="lifespan">1904 - 1993</div>
+<p>Householder 反射变换的发明者，使 QR 分解成为高效且数值稳定的标准算法。组织了系列 Gatlinburg/Householder 会议，塑造了数值线性代数学术社区。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">W</div>
+<h4>威尔金森</h4>
+<div class="en-name">James Hardy Wilkinson</div>
+<div class="lifespan">1919 - 1986</div>
+<p>后向误差分析（Backward Error Analysis）的奠基人，1970 年图灵奖得主。系统分析了舍入误差对数值算法的影响，使数值计算从经验走向科学。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">D</div>
+<h4>达尔奎斯特</h4>
+<div class="en-name">Germund Dahlquist</div>
+<div class="lifespan">1925 - 2005</div>
+<p>ODE 数值方法稳定性理论的奠基人。A-稳定性概念和 Dahlquist 壁垒定理深刻揭示了数值方法精度与稳定性之间的内在矛盾。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">L</div>
+<h4>拉克斯</h4>
+<div class="en-name">Peter Lax</div>
+<div class="lifespan">1926 -</div>
+<p>Lax-Richtmyer 等价定理（一致性 + 稳定性 = 收敛性）的提出者，2005 年 Abel 奖得主。在双曲守恒律、激波计算和 PDE 数值方法方面做出了奠基性贡献。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">G</div>
+<h4>戈卢布</h4>
+<div class="en-name">Gene Golub</div>
+<div class="lifespan">1932 - 2007</div>
+<p>数值线性代数领域的核心人物。SVD 计算算法的共同发明者，《Matrix Computations》的共同作者。长期担任 SIAM 主席，对学科建设贡献巨大。</p>
+</div>
+
+<div class="figure-card">
+<div class="figure-avatar">S</div>
+<h4>斯特朗</h4>
+<div class="en-name">Gilbert Strang</div>
+<div class="lifespan">1934 -</div>
+<p>有限元方法数学理论的先驱之一（Strang-Fix 条件），线性代数教育的革新者。其 MIT 公开课和教科书影响了全球数百万学生对线性代数和数值分析的理解。</p>
+</div>
+
+</div>
+</section>
+
+<!-- ==================== TURNING POINTS ==================== -->
+<section class="section" id="turning">
+<h2 class="section-title">历史转折点</h2>
+<p class="section-desc">数值分析从"计算技巧"走向"系统科学"的三个关键转变。</p>
+<div class="tp-list">
+
+<div class="tp-item">
+<div class="tp-num">1</div>
+<div>
+<h4>从计算技巧到系统理论（19 世纪 - 20 世纪初）</h4>
+<p>在 19 世纪之前，数值方法基本上是一些零散的计算技巧——巴比伦人的平方根迭代、Newton 的求根法、Euler 的 ODE 步进。转折发生在 19 世纪：Gauss 系统化了消元法并建立了最小二乘理论，Chebyshev 建立了严格的逼近理论，Jacobi 和 Seidel 发展了迭代方法论。到 20 世纪初，Banach 不动点定理、CFL 条件和 Lax-Richtmyer 等价定理的出现，标志着数值分析拥有了自己的基础定理和统一理论框架——它不再是"数学家不屑于做的计算苦力"，而是一门有深刻内涵的数学分支。</p>
+</div>
+</div>
+
+<div class="tp-item">
+<div class="tp-num">2</div>
+<div>
+<h4>计算机重塑学科面貌（1945 - 1965）</h4>
+<p>ENIAC 的诞生（1945）是数值分析历史上最戏剧性的转折点。在此之前，数值方法受限于人工计算的速度，只能处理小规模问题。计算机不仅使大规模计算成为可能，更催生了全新的研究课题：有限精度算术下的舍入误差问题（von Neumann & Goldstine 1947, Turing 1948, Wilkinson 1960s）在手算时代几乎不存在，但在机器计算中变得至关重要。FFT（1965）、QR 算法（1961）、共轭梯度法（1952）等划时代算法也是专为机器计算设计的。可以说，电子计算机不仅加速了数值分析的计算，更从根本上改变了它研究什么问题和如何研究。</p>
+</div>
+</div>
+
+<div class="tp-item">
+<div class="tp-num">3</div>
+<div>
+<h4>现代语言与概念体系的形成（1950 - 1970 年代）</h4>
+<p>现代数值分析的核心语言——<strong>稳定性</strong>（Stability）、<strong>条件数</strong>（Condition Number）、<strong>收敛阶</strong>（Order of Convergence）、<strong>计算复杂度</strong>（Computational Complexity）、<strong>后向误差</strong>（Backward Error）——主要在 1950-1970 年代形成。Von Neumann 和 Turing 引入了条件数的概念（1947-48）；Dahlquist 建立了 A-稳定性理论（1956）；Lax-Richtmyer 等价定理将收敛性问题转化为稳定性问题（1956）；Wilkinson 系统化了后向误差分析（1960s）；Strassen 将计算复杂性理论引入数值分析（1969）。这些概念和术语的确立标志着数值分析成为一门拥有独立方法论的成熟学科。当我们今天谈论"算法的数值稳定性"或"问题的条件数"时，我们使用的正是这一时期建立的语言。</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ==================== MODERN IMPACT ==================== -->
+<section class="section" id="impact">
+<h2 class="section-title">现代影响</h2>
+<p class="section-desc">数值分析如何深刻影响当今科学、工程与技术的各个领域。</p>
+<div class="impact-grid">
+
+<div class="impact-card">
+<div class="impact-header"><h4>科学计算</h4><div class="tag">Scientific Computing</div>
+</div>
+<div class="impact-body">
+<p>数值分析是科学计算的理论基础。从量子力学的薛定谔方程到宇宙学的 N 体模拟，几乎所有物理定律的计算机模拟都依赖数值方法。</p>
+<ul>
+<li>气候模型与天气预报（大气方程的有限差分/谱方法求解）</li>
+<li>量子化学（Hartree-Fock 和密度泛函理论的自洽迭代）</li>
+<li>天体物理（星系演化的 N 体模拟，使用快速多极方法）</li>
+<li>核聚变研究（等离子体磁流体的大规模 PDE 求解）</li>
+</ul>
+</div>
+</div>
+
+<div class="impact-card">
+<div class="impact-header"><h4>工程仿真</h4><div class="tag">Engineering Simulation (CFD, FEA)</div>
+</div>
+<div class="impact-body">
+<p>有限元方法（FEM）和计算流体力学（CFD）使虚拟原型取代了大量的物理实验，极大缩短了工程设计周期。</p>
+<ul>
+<li>航空航天（飞机机翼的气动设计、发动机热应力分析）</li>
+<li>汽车工业（碰撞仿真、NVH 分析、空气动力学优化）</li>
+<li>建筑工程（结构强度验证、抗震分析）</li>
+<li>生物医学（人工关节力学分析、血流 CFD 仿真）</li>
+</ul>
+</div>
+</div>
+
+<div class="impact-card">
+<div class="impact-header"><h4>优化</h4><div class="tag">Optimization</div>
+</div>
+<div class="impact-body">
+<p>数值优化是数值分析的核心分支之一，为运筹学、机器学习和工程设计提供算法基础。</p>
+<ul>
+<li>线性规划（单纯形法、内点法）</li>
+<li>非线性优化（拟 Newton 方法如 L-BFGS）</li>
+<li>全局优化（模拟退火、遗传算法）</li>
+<li>凸优化理论与算法（CVX, CVXPY 等求解器）</li>
+</ul>
+</div>
+</div>
+
+<div class="impact-card">
+<div class="impact-header"><h4>数据科学</h4><div class="tag">Data Science</div>
+</div>
+<div class="impact-body">
+<p>数据科学的核心算法——PCA、SVD、回归分析、矩阵分解——全部建立在数值分析的理论和算法之上。</p>
+<ul>
+<li>主成分分析（PCA）基于 SVD 分解</li>
+<li>推荐系统（矩阵分解、交替最小二乘）</li>
+<li>大规模数据降维（随机化 SVD、Johnson-Lindenstrauss 投影）</li>
+<li>时间序列分析（FFT、数值滤波）</li>
+</ul>
+</div>
+</div>
+
+<div class="impact-card">
+<div class="impact-header"><h4>机器学习</h4><div class="tag">Machine Learning</div>
+</div>
+<div class="impact-body">
+<p>深度学习的训练本质上是一个大规模数值优化问题。数值分析的概念（收敛性、稳定性、条件数）在理解和改进训练过程中至关重要。</p>
+<ul>
+<li>随机梯度下降（SGD）及其变体（Adam 等）是数值优化算法</li>
+<li>神经网络的数值稳定性（梯度消失/爆炸与条件数直接相关）</li>
+<li>物理信息神经网络（PINNs）将 PDE 求解与深度学习融合</li>
+<li>Neural ODEs 将 ODE 数值解法嵌入神经网络架构</li>
+</ul>
+</div>
+</div>
+
+<div class="impact-card">
+<div class="impact-header"><h4>高性能计算</h4><div class="tag">High-Performance Computing</div>
+</div>
+<div class="impact-body">
+<p>数值分析与高性能计算（HPC）共同演化。BLAS/LAPACK 的分层架构、分布式并行算法、GPU 加速——这些都是数值方法与计算机体系结构深度结合的产物。</p>
+<ul>
+<li>LINPACK/TOP500 基准测试衡量超级计算机性能</li>
+<li>PETSc、Trilinos 等并行数值软件框架</li>
+<li>Exascale 计算（百亿亿次）对数值算法的新挑战</li>
+<li>混合精度计算（FP16/BF16 训练 + FP64 验证）</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+<p><strong>数值分析发展史</strong> | 从古巴比伦到人工智能时代</p>
+<p style="margin-top:8px">四千年来，数值分析始终站在数学与计算的交叉点上，将抽象理论转化为改变世界的计算力量。</p>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// Navigation toggle
+function toggleNav() {
+    document.getElementById('sideNav').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+}
+// Close nav on link click
+document.querySelectorAll('.side-nav a').forEach(function(a) {
+    a.addEventListener('click', function() { toggleNav(); });
+});
+
+// Era filter
+function filterEra(era, btn) {
+    document.querySelectorAll('.era-tab').forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.tl-node').forEach(function(node) {
+        if (era === 'all' || node.getAttribute('data-era') === era) {
+            node.style.display = '';
+        } else {
+            node.style.display = 'none';
+        }
+    });
+    document.querySelectorAll('.era-divider').forEach(function(div) {
+        if (era === 'all') {
+            div.style.display = '';
+        } else {
+            var id = div.id || '';
+            // map era value to divider id
+            var mapping = {
+                'ancient': 'era-ancient',
+                'early-modern': 'era-early-modern',
+                'c19': 'era-19c',
+                'early20c': 'era-early20c',
+                'computer-birth': 'era-computer-birth',
+                'computer-mature': 'era-computer-mature',
+                'modern': 'era-modern'
+            };
+            div.style.display = (mapping[era] === id) ? '' : 'none';
+        }
+    });
+}
+
+// Scroll animation for timeline nodes
+(function() {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    // Initially hide, then observe
+    document.querySelectorAll('.tl-node').forEach(function(node) {
+        node.classList.remove('visible');
+        observer.observe(node);
+    });
+})();
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+</body>
+</html>

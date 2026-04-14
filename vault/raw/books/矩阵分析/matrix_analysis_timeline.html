@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>矩阵分析发展史：从行列式到现代理论</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--navy:#1a1a2e;--bg:#fafaf7;--card:#fff;--border:#e0ddd5;--text:#2c2c2c;--muted:#777;
+--e0:#6c3483;--e1:#b9770e;--e2:#1e8449;--e3:#1f618d;--e4:#c0392b;--e5:#2874a6;--e6:#117864;
+--serif:Georgia,"Songti SC","SimSun",serif;
+--sans:-apple-system,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+--shadow:0 2px 12px rgba(0,0,0,.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.85;font-size:16px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy),#16213e 60%,#0f3460);color:#fff;padding:72px 20px 56px;text-align:center}
+.hero h1{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:.04em;margin-bottom:10px}
+.hero .sub{font-size:clamp(.85rem,1.8vw,1.1rem);color:#b0c4de;font-weight:300;letter-spacing:.06em;margin-bottom:28px}
+.hero .intro{max-width:740px;margin:0 auto;font-size:.92rem;color:#c8d6e5;line-height:2;text-align:justify}
+.w{max-width:920px;margin:0 auto;padding:0 20px}
+
+/* GUIDE */
+.guide{padding:44px 0 36px}
+.guide h2,.figs h2,.tp h2,.refs h2{font-family:var(--serif);font-size:1.4rem;color:var(--navy);border-bottom:3px solid var(--navy);display:inline-block;padding-bottom:5px;margin-bottom:22px}
+.guide p{font-size:.93rem;line-height:2;color:#444;margin-bottom:14px;text-align:justify}
+.guide ol{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px 18px 18px 36px;margin:16px 0;font-size:.91rem;line-height:1.9}
+.guide ol li{margin-bottom:5px}
+.guide ol strong{color:var(--navy)}
+
+/* NAV */
+.enav{position:sticky;top:0;z-index:100;background:var(--navy);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.enav-inner{display:flex;justify-content:center;max-width:1000px;margin:0 auto}
+.eb{background:none;border:none;color:#9bb;font-size:.8rem;padding:12px 13px;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap;font-family:var(--sans)}
+.eb:hover,.eb.act{color:#fff;border-bottom-color:#e8b83d}
+@media(max-width:780px){.enav-inner{justify-content:flex-start}.eb{font-size:.74rem;padding:10px 9px}}
+
+/* SEARCH */
+.sbar{text-align:center;padding:14px 0 2px}
+.sbar input{padding:8px 16px;border:1px solid var(--border);border-radius:20px;width:min(340px,88%);font-size:.88rem;outline:none;font-family:var(--sans)}
+.sbar input:focus{border-color:var(--e3);box-shadow:0 0 0 3px rgba(31,97,141,.1)}
+
+/* ERA */
+.era{padding:44px 0 28px;border-bottom:1px solid var(--border)}
+.era h2{font-family:var(--serif);font-size:1.45rem;margin-bottom:4px}
+.era .sub2{font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.era .ov{font-size:.91rem;color:#555;line-height:2;text-align:justify;margin-bottom:8px}
+.era[data-c="0"] h2,.era[data-c="0"] .yr{color:var(--e0)}
+.era[data-c="1"] h2,.era[data-c="1"] .yr{color:var(--e1)}
+.era[data-c="2"] h2,.era[data-c="2"] .yr{color:var(--e2)}
+.era[data-c="3"] h2,.era[data-c="3"] .yr{color:var(--e3)}
+.era[data-c="4"] h2,.era[data-c="4"] .yr{color:var(--e4)}
+.era[data-c="5"] h2,.era[data-c="5"] .yr{color:var(--e5)}
+.era[data-c="6"] h2,.era[data-c="6"] .yr{color:var(--e6)}
+
+/* CARD */
+.cd{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);cursor:pointer;transition:box-shadow .2s}
+.cd:hover{box-shadow:0 4px 18px rgba(0,0,0,.11)}
+.cd-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.yr{font-family:var(--serif);font-size:1.4rem;font-weight:700;min-width:56px}
+.pn{font-size:1rem;font-weight:600;color:var(--navy)}
+.pn .nt{font-weight:400;color:var(--muted);font-size:.85rem}
+.ct{font-family:var(--serif);font-size:.95rem;font-weight:600;margin:8px 0 5px}
+.ds{font-size:.88rem;color:#555;line-height:1.85;text-align:justify}
+.xh{font-size:.76rem;color:#bbb;margin-top:6px;text-align:right}
+.dt{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border)}
+.cd.open .dt{display:block}
+.cd.open .xh{display:none}
+.ci{font-size:.83rem;color:var(--e3);font-style:italic;margin:6px 0}
+.wh{background:#fef9e7;border-left:4px solid #f4d03f;padding:9px 13px;border-radius:0 6px 6px 0;margin:9px 0;font-size:.85rem;line-height:1.7}
+.wh strong{color:var(--e1)}
+.im{font-size:.83rem;color:#666;margin:7px 0}
+.im strong{color:var(--navy)}
+.tg{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tg span{background:#eee;border-radius:11px;padding:2px 9px;font-size:.73rem;color:#555}
+
+/* FIGURES */
+.figs{padding:44px 0}
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;box-shadow:var(--shadow)}
+.fc h3{font-family:var(--serif);font-size:1rem;color:var(--navy);margin-bottom:1px}
+.fc .yl{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.fc p{font-size:.85rem;line-height:1.75;color:#555}
+
+/* TURNING */
+.tp{padding:44px 0;background:#f0efe8;margin:0 -9999px;padding-left:9999px;padding-right:9999px}
+.tp-in{max-width:920px;margin:0 auto}
+.tpi{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.tpn{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--e4);min-width:24px}
+.tpc{font-size:.9rem;line-height:1.8}
+.tpc strong{color:var(--navy)}
+
+/* REFS */
+.refs{padding:44px 0}
+.rt{width:100%;border-collapse:collapse;font-size:.83rem}
+.rt th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;font-weight:500;position:sticky;top:44px}
+.rt td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.rt tr:nth-child(even){background:#f5f4ef}
+.st{color:#d4a843;white-space:nowrap}
+@media(max-width:680px){.rt{font-size:.76rem}.rt th,.rt td{padding:6px 7px}}
+
+/* BTT */
+.btt{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;border:none;font-size:1.1rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.22);display:none;align-items:center;justify-content:center;z-index:200}
+.btt.v{display:flex}
+
+/* FOOTER */
+.ft{background:var(--navy);color:#8899aa;padding:24px 20px;text-align:center;font-size:.8rem;line-height:1.8}
+
+@media(max-width:600px){.hero{padding:44px 14px 32px}.w{padding:0 14px}.cd{padding:16px 14px}.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<h1>矩阵分析发展史：从行列式到现代理论</h1>
+<p class="sub">Matrix Analysis: A Historical Journey from Determinants to Modern Theory</p>
+<p class="intro">矩阵分析是线性代数中最精深、最富活力的分支之一。它研究矩阵的性质、分解、不等式与扰动行为，其历史跨越三个多世纪，从 Leibniz 书信中的行列式萌芽，到 Cayley 与 Sylvester 创立矩阵代数，再到 Weyl、von Neumann 建立的谱不等式大厦，直至当代随机矩阵与压缩感知的前沿应用。本页以时间轴的形式，梳理这一学科从诞生到成熟的完整脉络。</p>
+</header>
+
+<section class="guide"><div class="w">
+<h2>导读</h2>
+<p>"矩阵分析"（Matrix Analysis）这一术语在今天指的是线性代数中以矩阵为核心对象、侧重于不等式、分解、扰动与函数演算的理论体系。它区别于侧重向量空间抽象结构的"线性代数"，也区别于侧重计算效率的"数值线性代数"；但在历史上，三者的演进深度交织。理解矩阵分析的历史，就是理解数学如何从具体的方程求解需求，逐步抽象出普适的代数结构与分析工具的过程。</p>
+<p>这段历史大致可以分为六个阶段：</p>
+<ol>
+<li><strong>萌芽期（17-18 世纪）：</strong>行列式作为求解线性方程组的计算工具被发明，二次型的对角化初步出现。矩阵概念尚未被明确提出，但行列式理论已蕴含矩阵的核心思想。</li>
+<li><strong>行列式时代（1800-1850）：</strong>Cauchy 将行列式理论系统化，证明实对称矩阵特征值均为实数。Gauss 的二次型理论暗示了矩阵的合同变换与惯性定律。</li>
+<li><strong>矩阵代数诞生（1850-1880）：</strong>Sylvester 命名"矩阵"，Cayley 定义矩阵乘法并证明 Cayley-Hamilton 定理，Jordan 发表标准形理论，Frobenius 严格化整个体系。矩阵从行列式的附属物变成了独立的代数对象。</li>
+<li><strong>标准形与谱理论（1880-1920）：</strong>Schur 分解、Perron-Frobenius 定理、Weyl 特征值扰动不等式、Courant 极小极大原理相继诞生，矩阵的谱性质成为核心研究对象。</li>
+<li><strong>体系化与不等式（1920-1960）：</strong>von Neumann 将矩阵理论与算子理论连接，Ky Fan 系统化矩阵不等式，Hoffman-Wielandt 建立正规矩阵的扰动界。矩阵分析从散落的定理走向统一的理论体系。</li>
+<li><strong>数值革命与现代综合（1960 至今）：</strong>QR 算法与 SVD 算法让矩阵分解走出理论走入计算。Wilkinson 的舍入误差分析、Kato 的扰动理论巨著、Horn-Johnson 的《Matrix Analysis》共同奠定了现代矩阵分析的教科书体系。随机矩阵理论和压缩感知等应用将矩阵分析推向了更广阔的领域。</li>
+</ol>
+<p>研究这段历史之所以重要，是因为矩阵分析中的许多定理并非凭空出现，而是为了解决天体力学、量子力学和数值计算中的具体问题而被创造。理解它们的起源，有助于我们更深刻地把握其适用条件与推广方向，也能让我们领会到数学发展中"具体问题驱动抽象理论"这一反复出现的主题。</p>
+</div></section>
+
+<div class="sbar"><input type="text" id="si" placeholder="搜索人名、关键词或年份..." oninput="doFilter()"></div>
+
+<nav class="enav" id="enav"><div class="enav-inner">
+<button class="eb act" onclick="go('s0')">萌芽期</button>
+<button class="eb" onclick="go('s1')">行列式时代</button>
+<button class="eb" onclick="go('s2')">矩阵代数诞生</button>
+<button class="eb" onclick="go('s3')">标准形与谱理论</button>
+<button class="eb" onclick="go('s4')">体系化与不等式</button>
+<button class="eb" onclick="go('s5')">数值革命</button>
+<button class="eb" onclick="go('s6')">现代综合</button>
+</div></nav>
+
+<main class="w">
+
+<!-- ERA 0 -->
+<section class="era" id="s0" data-c="0">
+<h2>萌芽期 &mdash; Pre-1800</h2>
+<p class="sub2">从方程求解到行列式与二次型的初步理论</p>
+<p class="ov">在"矩阵"一词被正式提出之前的一百多年里，行列式已经作为求解线性方程组的实用工具被数学家们所使用。Leibniz 在通信中首次使用了行列式式的记号，Cramer 将其发展为完整的求解法则，Lagrange 在研究二次型时发现了对角化的早期形式，预示着特征值理论的诞生。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1693</span><span class="pn">Gottfried Wilhelm Leibniz <span class="nt">(德国)</span></span></div>
+<div class="ct">行列式记号的萌芽</div>
+<div class="ds">Leibniz 在致 l'Hopital 的书信中，使用双下标记号处理线性方程组，实质上引入了行列式的思想。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Leibniz 致 l'Hopital 书信，1693 年 4 月 28 日</p>
+<div class="wh"><strong>为什么重要：</strong>这是已知最早的行列式思想记录。Leibniz 敏锐地认识到系数的"排列结构"蕴含着方程组可解性的信息，这一洞见是行列式理论的真正起源。</div>
+<p class="im"><strong>后续影响：</strong>启发了 18 世纪 Cramer 的系统化工作以及日本数学家关孝和的独立发现。</p>
+<div class="tg"><span>行列式</span><span>线性方程组</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1750</span><span class="pn">Gabriel Cramer <span class="nt">(瑞士)</span></span></div>
+<div class="ct">Cramer 法则</div>
+<div class="ds">Cramer 在《代数曲线分析导论》中明确给出了用行列式求解线性方程组的公式，这是行列式第一次以完整算法形式出现。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Introduction a l'Analyse des lignes Courbes algebriques</em>, 1750</p>
+<div class="wh"><strong>为什么重要：</strong>Cramer 法则将行列式从零散记号变为可操作的计算程序，并隐含地指出了系数行列式为零时方程组无唯一解的判别条件。</div>
+<p class="im"><strong>后续影响：</strong>Cramer 法则至今仍是线性代数教学的标准内容。</p>
+<div class="tg"><span>行列式</span><span>Cramer 法则</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1759</span><span class="pn">Joseph-Louis Lagrange <span class="nt">(法国/意大利)</span></span></div>
+<div class="ct">实二次型的对角化</div>
+<div class="ds">Lagrange 证明了任何实二次型都可以通过合同变换化为对角形式，预示了特征值分解和惯性定律的雏形。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>Lagrange 的对角化方法是矩阵对角化理论的先驱。其核心思想——通过变量替换简化二次型——直接启发了后来 Cauchy 和 Sylvester 的工作。</div>
+<p class="im"><strong>后续影响：</strong>Gauss 系统化了二次型理论；Sylvester 的惯性定律是 Lagrange 思想的精确表述。</p>
+<div class="tg"><span>二次型</span><span>对角化</span><span>合同变换</span></div></div></div>
+</section>
+
+<!-- ERA 1 -->
+<section class="era" id="s1" data-c="1">
+<h2>行列式时代 &mdash; 1800-1850</h2>
+<p class="sub2">行列式理论的系统化与特征值概念的萌生</p>
+<p class="ov">19 世纪上半叶是行列式理论的黄金时代。Gauss 建立了二次型的完整框架，Cauchy 将"行列式"赋予现代含义并证明了实对称矩阵特征值均为实数。天体力学中的"永年方程"是驱动特征值理论发展的重要动力。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1801</span><span class="pn">Carl Friedrich Gauss <span class="nt">(德国)</span></span></div>
+<div class="ct">二次型的系统理论</div>
+<div class="ds">Gauss 在《算术研究》中建立了整数二次型的完整分类理论，实质上是矩阵合同理论的数论版本。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Disquisitiones Arithmeticae</em>, 1801</p>
+<div class="wh"><strong>为什么重要：</strong>Gauss 对二次型等价类的分类，在现代语言中就是对称矩阵在合同变换下的分类，奠定了 Sylvester 惯性定律的数论基础。</div>
+<p class="im"><strong>后续影响：</strong>启发了 Hermite、Minkowski 的整数矩阵理论。</p>
+<div class="tg"><span>二次型</span><span>合同理论</span><span>数论</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1812</span><span class="pn">Augustin-Louis Cauchy <span class="nt">(法国)</span></span></div>
+<div class="ct">行列式的现代定义与系统理论</div>
+<div class="ds">Cauchy 首次赋予"determinant"以现代含义，建立了行列式的乘法定理、展开定理、余子式理论，将行列式提升为严谨的数学理论。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Cauchy, J. Ecole Polytechnique, 1812</p>
+<div class="wh"><strong>为什么重要：</strong>行列式乘法定理 det(AB) = det(A)det(B) 是矩阵乘法理论的先声。Cauchy 将行列式从"方程求解工具"提升为具有内在结构的代数理论。</div>
+<div class="tg"><span>行列式</span><span>乘法定理</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1829</span><span class="pn">Augustin-Louis Cauchy <span class="nt">(法国)</span></span></div>
+<div class="ct">实对称矩阵特征值实性定理与交错定理</div>
+<div class="ds">Cauchy 在研究天体力学永年方程时，证明了实对称矩阵所有特征值均为实数，并发现了特征值交错定理：删去一行一列后子矩阵的特征值与原矩阵的特征值交替排列。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Sur l'equation a l'aide de laquelle on determine les inegalites seculaires des mouvements des planetes</em>, 1829</p>
+<div class="wh"><strong>为什么重要：</strong>这是矩阵分析历史上最重要的早期定理。特征值的实性保证了天体力学中振动模式的物理意义；交错定理揭示了矩阵特征值的精细结构，成为 Weyl 不等式和 Courant 极小极大原理的直接先驱。</div>
+<p class="im"><strong>后续影响：</strong>直接启发了 Fischer (1905)、Weyl (1912)、Courant (1920)。</p>
+<div class="tg"><span>谱理论</span><span>特征值</span><span>交错定理</span><span>天体力学</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1846</span><span class="pn">Carl Gustav Jacob Jacobi <span class="nt">(德国)</span></span></div>
+<div class="ct">行列式理论的进一步发展</div>
+<div class="ds">Jacobi 系统发展了行列式的恒等式，将行列式方法应用于微分方程和椭圆函数研究，特别是"函数行列式"（Jacobian）将行列式与微积分联系起来。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>Jacobian 成为多变量微积分和微分方程理论的基本工具，开辟了多元分析的新方向。</div>
+<div class="tg"><span>行列式</span><span>Jacobian</span></div></div></div>
+</section>
+
+<!-- ERA 2 -->
+<section class="era" id="s2" data-c="2">
+<h2>矩阵代数诞生 &mdash; 1850-1880</h2>
+<p class="sub2">从"行列式的附属物"到独立的代数对象</p>
+<p class="ov">1850 年代是数学史上的分水岭。Sylvester 创造"matrix"一词，Cayley 定义矩阵乘法并发表奠基论文。Jordan 提出标准形，Frobenius 严格化整个体系。短短三十年间，矩阵理论从无到有，迅速建立了包括标准形、秩、特征方程在内的完整体系。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1850</span><span class="pn">James Joseph Sylvester <span class="nt">(英国)</span></span></div>
+<div class="ct">"矩阵"一词的命名</div>
+<div class="ds">Sylvester 首次使用"matrix"一词，取拉丁语"母体"之意，指生成行列式的矩形数表，标志着矩阵从行列式的附属记号走向独立概念。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Sylvester, Philosophical Magazine, 1850</p>
+<div class="wh"><strong>为什么重要：</strong>命名意味着数学家开始将矩阵视为独立的数学对象，而非行列式的衍生物。这一概念转变是矩阵代数诞生的必要前提。</div>
+<div class="tg"><span>矩阵代数</span><span>术语</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1852</span><span class="pn">James Joseph Sylvester <span class="nt">(英国)</span></span></div>
+<div class="ct">二次型的惯性定律</div>
+<div class="ds">Sylvester 证明了惯性定律：实二次型经任何非退化线性变换后，正负项个数保持不变。实对称矩阵的正、负特征值个数是合同不变量。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>惯性定律揭示了对称矩阵的本质分类 -- 不需要知道具体特征值，只需知道"符号分布"就能完全分类。</div>
+<div class="tg"><span>惯性定律</span><span>二次型</span><span>不变量</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1858</span><span class="pn">Arthur Cayley <span class="nt">(英国)</span></span></div>
+<div class="ct">矩阵代数的奠基论文</div>
+<div class="ds">Cayley 发表《矩阵理论回忆录》，定义矩阵加法、乘法、逆运算、转置，并陈述 Cayley-Hamilton 定理。这篇论文被公认为矩阵代数的创始文献。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Cayley, <em>A Memoir on the Theory of Matrices</em>, Phil. Trans. Roy. Soc. London, 1858</p>
+<div class="wh"><strong>为什么重要：</strong>Cayley 创造性地将线性变换的复合运算解释为"矩阵乘法"，赋予了矩阵完整的代数结构。Cayley-Hamilton 定理揭示了矩阵特征多项式与矩阵本身之间的深刻联系。</div>
+<p class="im"><strong>后续影响：</strong>矩阵代数成为整个现代数学的基础语言。Cayley-Hamilton 定理在控制论中有核心应用。</p>
+<div class="tg"><span>矩阵代数</span><span>Cayley-Hamilton</span><span>矩阵乘法</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1866</span><span class="pn">Karl Weierstrass <span class="nt">(德国)</span></span></div>
+<div class="ct">初等因子理论</div>
+<div class="ds">Weierstrass 建立了矩阵束的初等因子理论，给出矩阵对在等价变换下的完全不变量，为 Jordan 标准形提供了代数基础。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>初等因子理论回答了"两个矩阵何时相似"这一核心问题。</div>
+<div class="tg"><span>初等因子</span><span>矩阵束</span><span>标准形</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1870</span><span class="pn">Camille Jordan <span class="nt">(法国)</span></span></div>
+<div class="ct">Jordan 标准形</div>
+<div class="ds">Jordan 在《代换与代数方程论》中提出 Jordan 标准形：任何复矩阵都相似于由 Jordan 块组成的分块对角矩阵，提供了矩阵在相似变换下的完全分类。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Jordan, <em>Traite des substitutions et des equations algebriques</em>, 1870</p>
+<div class="wh"><strong>为什么重要：</strong>Jordan 标准形完全刻画了线性变换的代数结构，统一了此前所有关于矩阵对角化的零散结果。</div>
+<p class="im"><strong>后续影响：</strong>在微分方程、控制理论、量子力学中有广泛应用。</p>
+<div class="tg"><span>Jordan 标准形</span><span>相似变换</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1878</span><span class="pn">Ferdinand Georg Frobenius <span class="nt">(德国)</span></span></div>
+<div class="ct">矩阵代数的严格化</div>
+<div class="ds">Frobenius 首次定义矩阵秩（rank），证明最小多项式的存在性，并给出 Cayley-Hamilton 定理的第一个完全严格证明，将 Cayley 的直觉洞见转化为无懈可击的数学。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Frobenius, <em>Uber lineare Substitutionen und bilineare Formen</em>, J. reine angew. Math. 84, 1878</p>
+<div class="wh"><strong>为什么重要：</strong>标志着矩阵代数从直觉驱动进入严格化阶段。秩成为矩阵理论最基本的数值不变量。</div>
+<div class="tg"><span>矩阵代数</span><span>秩</span><span>Cayley-Hamilton</span></div></div></div>
+</section>
+
+<!-- ERA 3 -->
+<section class="era" id="s3" data-c="3">
+<h2>标准形与谱理论 &mdash; 1880-1920</h2>
+<p class="sub2">从代数结构到分析性质：特征值的几何与分析</p>
+<p class="ov">19 世纪末到 20 世纪初，矩阵理论的重心从代数结构转向分析性质。Schur 酉三角化定理、Perron-Frobenius 正矩阵定理、Weyl 特征值扰动不等式和 Courant 极小极大原理标志着"矩阵分析"作为独立学科方向的真正诞生。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1905</span><span class="pn">Ernst Fischer <span class="nt">(奥地利)</span></span></div>
+<div class="ct">特征值的极大极小原理</div>
+<div class="ds">Fischer 证明了 Hermite 矩阵特征值的 max-min 表征：第 k 个特征值可表示为 Rayleigh 商在子空间上的极大极小值。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Fischer, <em>Uber quadratische Formen mit reellen Koeffizienten</em>, Monatshefte Math. Phys. 16, 1905</p>
+<div class="wh"><strong>为什么重要：</strong>将特征值问题从代数转化为分析（Rayleigh 商的极值问题），开辟了用变分方法研究特征值的全新路径。</div>
+<div class="tg"><span>谱理论</span><span>变分原理</span><span>Rayleigh 商</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1907</span><span class="pn">Oskar Perron <span class="nt">(德国)</span></span></div>
+<div class="ct">正矩阵的 Perron 定理</div>
+<div class="ds">Perron 证明了正矩阵有一个严格最大的正实特征值（Perron 根），对应特征向量也可取为正向量。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Perron, <em>Zur Theorie der Matrices</em>, Math. Ann. 64, 1907</p>
+<div class="wh"><strong>为什么重要：</strong>揭示了正矩阵谱结构的惊人简单性。后被 Frobenius 推广，成为马尔可夫链和 PageRank 的理论基础。</div>
+<div class="tg"><span>Perron-Frobenius</span><span>正矩阵</span><span>谱理论</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1909</span><span class="pn">Issai Schur <span class="nt">(德国)</span></span></div>
+<div class="ct">Schur 酉三角化定理</div>
+<div class="ds">Schur 证明了任何方阵都可通过酉相似变换化为上三角形式。比 Jordan 标准形更具计算实用性，因为酉矩阵在数值上是稳定的。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Schur, <em>Uber die charakteristischen Wurzeln einer linearen Substitution</em>, Math. Ann. 66, 1909</p>
+<div class="wh"><strong>为什么重要：</strong>Schur 分解对所有矩阵都存在，且酉变换保持范数和内积。大量矩阵不等式的证明都依赖于 Schur 分解。</div>
+<p class="im"><strong>后续影响：</strong>QR 算法本质上就是迭代地逼近 Schur 分解。Schur 补在统计学和优化中有重要应用。</p>
+<div class="tg"><span>Schur 分解</span><span>酉变换</span><span>谱理论</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1912</span><span class="pn">Hermann Weyl <span class="nt">(德国/美国)</span></span></div>
+<div class="ct">Hermite 矩阵的特征值扰动不等式</div>
+<div class="ds">Weyl 证明了 Hermite 矩阵特征值的扰动不等式：|lambda_k(A+B) - lambda_k(A)| 不超过 B 的谱范数。这回答了"矩阵被轻微修改后，特征值会如何变化？"这一根本问题。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Weyl, Math. Ann. 71, 1912</p>
+<div class="wh"><strong>为什么重要：</strong>Weyl 不等式是矩阵扰动理论的奠基成果。这对数值计算至关重要：计算中总存在舍入误差，我们需要知道这些误差对结果的影响。</div>
+<p class="im"><strong>后续影响：</strong>被 Ky Fan、Hoffman-Wielandt 大幅推广，形成矩阵扰动理论完整体系。</p>
+<div class="tg"><span>扰动理论</span><span>矩阵不等式</span><span>特征值</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1912</span><span class="pn">Ferdinand Georg Frobenius <span class="nt">(德国)</span></span></div>
+<div class="ct">Perron-Frobenius 定理的完整形式</div>
+<div class="ds">Frobenius 将 Perron 的正矩阵定理推广到非负不可约矩阵，完全刻画了周期矩阵的谱结构。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Frobenius, <em>Uber Matrizen aus nicht negativen Elementen</em>, Sitzungsber. Preuss. Akad., 1912</p>
+<div class="wh"><strong>为什么重要：</strong>Perron-Frobenius 定理是非负矩阵理论的基石。Google 的 PageRank 算法正是基于此定理。</div>
+<div class="tg"><span>Perron-Frobenius</span><span>非负矩阵</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1920</span><span class="pn">Richard Courant <span class="nt">(德国/美国)</span></span></div>
+<div class="ct">极小极大原理的统一表述</div>
+<div class="ds">Courant 给出了 Hermite 矩阵特征值极小极大表征的最优美形式，统一并推广了 Fischer 等人的工作。几乎所有重要的特征值不等式都可以从中直接推出。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>给出了特征值的内在刻画 -- 不依赖坐标选择或矩阵表示。成为偏微分方程谱理论和有限元分析的基本工具。</div>
+<div class="tg"><span>极小极大原理</span><span>变分方法</span><span>谱理论</span></div></div></div>
+</section>
+
+<!-- ERA 4 -->
+<section class="era" id="s4" data-c="4">
+<h2>体系化与不等式 &mdash; 1920-1960</h2>
+<p class="sub2">从散落的定理到统一的理论大厦</p>
+<p class="ov">20 世纪中叶，矩阵分析从独立的美丽定理发展为统一的理论。Courant-Hilbert 将变分特征值理论教科书化；von Neumann 将矩阵与算子理论对接；Ky Fan 系统化矩阵不等式；Hoffman-Wielandt 建立正规矩阵扰动界。理论的完善与计算的需求在此汇聚。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1924</span><span class="pn">R. Courant &amp; D. Hilbert <span class="nt">(德国)</span></span></div>
+<div class="ct">《数学物理方法》出版</div>
+<div class="ds">系统化了变分特征值理论、积分方程等内容，将矩阵的谱理论置于更广阔的算子理论背景中，被誉为"数学物理的圣经"。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Methoden der mathematischen Physik</em>, Springer, 1924</p>
+<div class="wh"><strong>为什么重要：</strong>展示了有限维（矩阵）与无限维（算子）理论之间的深刻平行关系，影响了整个 20 世纪数学物理。</div>
+<div class="tg"><span>谱理论</span><span>变分原理</span><span>教科书</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1932</span><span class="pn">John von Neumann <span class="nt">(匈牙利/美国)</span></span></div>
+<div class="ct">量子力学的数学基础与算子理论</div>
+<div class="ds">von Neumann 将量子力学严格建立在 Hilbert 空间算子理论之上。矩阵不再只是代数对象，而是有限维算子的特例。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Mathematische Grundlagen der Quantenmechanik</em>, Springer, 1932</p>
+<div class="wh"><strong>为什么重要：</strong>这一视角使得许多矩阵定理获得了自然的无限维推广，改变了矩阵理论的视角。</div>
+<div class="tg"><span>算子理论</span><span>量子力学</span><span>Hilbert 空间</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1937</span><span class="pn">John von Neumann <span class="nt">(匈牙利/美国)</span></span></div>
+<div class="ct">矩阵迹不等式</div>
+<div class="ds">von Neumann 证明了 |tr(AB)| 不超过 A 和 B 的奇异值按降序排列后对应相乘再求和。建立了矩阵积的迹与奇异值之间的精确关系。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Some matrix-inequalities and metrization of matrix-space</em>, Tomsk Univ. Rev. 1, 1937</p>
+<div class="wh"><strong>为什么重要：</strong>von Neumann 迹不等式是矩阵不等式理论中最优美的结果之一，在最优传输和量子信息中有重要应用。</div>
+<div class="tg"><span>矩阵不等式</span><span>迹不等式</span><span>奇异值</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1948</span><span class="pn">Alan Turing <span class="nt">(英国)</span></span></div>
+<div class="ct">LU 分解与舍入误差分析</div>
+<div class="ds">Turing 讨论了 LU 分解在浮点运算下的误差行为，是数值线性代数误差分析的先驱工作。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>开启了数值线性代数的先河，启发了 Wilkinson 后向误差分析框架的建立。</div>
+<div class="tg"><span>LU 分解</span><span>数值计算</span><span>误差分析</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1949</span><span class="pn">Ky Fan (樊畿) <span class="nt">(中国/美国)</span></span></div>
+<div class="ct">矩阵不等式的系统化与 Ky Fan 范数</div>
+<div class="ds">Ky Fan 在 1949-1951 年间系统化矩阵不等式理论，引入 Ky Fan k-范数（前 k 个最大奇异值之和），证明优超定理，推广 Weyl 不等式，建立特征值与奇异值的系统联系。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Ky Fan, <em>On a theorem of Weyl concerning eigenvalues</em>, PNAS 35, 1949</p>
+<div class="wh"><strong>为什么重要：</strong>被誉为"矩阵不等式之父"。将散落的不等式纳入以优超关系（majorization）为核心的统一框架，定义了矩阵不等式理论的范式。</div>
+<p class="im"><strong>后续影响：</strong>深刻影响了 Horn-Johnson《Matrix Analysis》和 Bhatia 的矩阵分析专著的组织结构。</p>
+<div class="tg"><span>矩阵不等式</span><span>Ky Fan 范数</span><span>优超关系</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1950</span><span class="pn">Alfred Horn <span class="nt">(美国)</span></span></div>
+<div class="ct">特征值的对数优超</div>
+<div class="ds">Horn 证明了矩阵积的特征值的对数与各因子特征值对数之间满足优超关系，将优超从加法扩展到乘法。他后来提出的 Horn 猜想成为矩阵分析中最著名的未解问题。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>Horn 猜想在 1999 年被 Knutson-Tao 解决，连接了矩阵分析、表示论和代数几何。</div>
+<div class="tg"><span>优超关系</span><span>特征值</span><span>Horn 猜想</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1953</span><span class="pn">A.J. Hoffman &amp; H.W. Wielandt <span class="nt">(美国/德国)</span></span></div>
+<div class="ct">正规矩阵的特征值扰动界</div>
+<div class="ds">证明了正规矩阵特征值的最佳匹配距离的平方和不超过矩阵差的 Frobenius 范数的平方。这是 Weyl 不等式对正规矩阵的自然推广。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Hoffman &amp; Wielandt, <em>The variation of the spectrum of a normal matrix</em>, Duke Math. J. 20, 1953</p>
+<div class="wh"><strong>为什么重要：</strong>表明正规矩阵的特征值对扰动的敏感性可被矩阵差的范数完全控制，为数值计算提供了坚实理论基础。</div>
+<div class="tg"><span>扰动理论</span><span>正规矩阵</span><span>特征值界</span></div></div></div>
+</section>
+
+<!-- ERA 5 -->
+<section class="era" id="s5" data-c="5">
+<h2>数值革命 &mdash; 1960-1990</h2>
+<p class="sub2">算法改变一切：从理论存在性到可计算性</p>
+<p class="ov">计算机的普及彻底改变了矩阵分析的面貌。QR 算法和 SVD 算法让分解定理成为可执行的算法。Wilkinson 的后向误差分析和 Kato 的扰动理论巨著分别从数值和理论两个方向深化了扰动理论。Horn-Johnson 的《Matrix Analysis》和 Golub-Van Loan 的《Matrix Computations》成为标准教科书。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1961</span><span class="pn">John G.F. Francis <span class="nt">(英国)</span></span></div>
+<div class="ct">QR 算法</div>
+<div class="ds">Francis 发明 QR 算法，通过反复 QR 分解迭代计算矩阵特征值。被誉为"20 世纪十大算法"之一。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Francis, <em>The QR transformation</em>, Computer J. 4, 1961-1962</p>
+<div class="wh"><strong>为什么重要：</strong>将 Schur 分解从理论定理变为 O(n^3) 时间内完成的计算程序，标志着数值线性代数的正式诞生。</div>
+<p class="im"><strong>后续影响：</strong>至今仍是 LAPACK 等标准库中计算特征值的核心算法。</p>
+<div class="tg"><span>QR 算法</span><span>数值计算</span><span>特征值</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1965</span><span class="pn">Gene H. Golub &amp; William Kahan <span class="nt">(美国/加拿大)</span></span></div>
+<div class="ct">SVD 计算算法</div>
+<div class="ds">Golub 和 Kahan 发表了计算奇异值分解（SVD）的高效算法。SVD 给出矩阵的"最佳低秩近似"，在 PCA、信号处理、推荐系统中有广泛应用。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Golub &amp; Kahan, SIAM J. Numer. Anal. 2, 1965</p>
+<div class="wh"><strong>为什么重要：</strong>SVD 成为现代数据科学的基石，图像压缩、自然语言处理都依赖于 SVD。</div>
+<div class="tg"><span>SVD</span><span>数值计算</span><span>奇异值</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1965</span><span class="pn">James H. Wilkinson <span class="nt">(英国)</span></span></div>
+<div class="ct">《代数特征值问题》出版</div>
+<div class="ds">Wilkinson 系统发展了后向误差分析理论，证明许多"不稳定"算法实际上是后向稳定的。彻底改变了数值分析的思维方式。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>The Algebraic Eigenvalue Problem</em>, Clarendon Press, 1965</p>
+<div class="wh"><strong>为什么重要：</strong>后向误差分析使稳定性分析变得优雅可行。Wilkinson 因此获图灵奖（1970）。</div>
+<div class="tg"><span>后向误差分析</span><span>数值稳定性</span><span>教科书</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1966</span><span class="pn">Tosio Kato (加藤敏夫) <span class="nt">(日本/美国)</span></span></div>
+<div class="ct">《线性算子扰动理论》出版</div>
+<div class="ds">Kato 系统发展了算子的解析扰动理论，揭示了特征值作为参数函数时的精细解析结构，将矩阵扰动理论提升到全新深度。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Perturbation Theory for Linear Operators</em>, Springer, Grundlehren 132, 1966</p>
+<div class="wh"><strong>为什么重要：</strong>算子扰动理论的权威参考，至今在量子力学和偏微分方程谱理论中被广泛引用。</div>
+<div class="tg"><span>扰动理论</span><span>算子理论</span><span>教科书</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1970</span><span class="pn">Chandler Davis &amp; William Kahan <span class="nt">(美国/加拿大)</span></span></div>
+<div class="ct">特征向量的 sin theta 扰动定理</div>
+<div class="ds">将扰动分析从特征值推广到特征子空间，证明两个 Hermite 矩阵的对应特征子空间之间的"旋转角度"可被矩阵差和特征值间距界定。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Davis &amp; Kahan, SIAM J. Numer. Anal. 7, 1970</p>
+<div class="wh"><strong>为什么重要：</strong>首次系统回答了"特征向量有多稳定"这一更困难的问题。在 PCA 和聚类中是不可替代的理论工具。</div>
+<div class="tg"><span>扰动理论</span><span>特征向量</span><span>sin theta 定理</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1983</span><span class="pn">Gene H. Golub &amp; Charles F. Van Loan <span class="nt">(美国)</span></span></div>
+<div class="ct">《Matrix Computations》出版</div>
+<div class="ds">系统整理矩阵分解算法、复杂度和数值稳定性理论，被誉为数值线性代数的"圣经"。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Matrix Computations</em>, Johns Hopkins Univ. Press, 1983（现已至第 4 版）</p>
+<div class="wh"><strong>为什么重要：</strong>培养了几代数值线性代数研究者，是引用次数最高的数学教科书之一。</div>
+<div class="tg"><span>数值线性代数</span><span>矩阵分解</span><span>教科书</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1985</span><span class="pn">Roger A. Horn &amp; Charles R. Johnson <span class="nt">(美国)</span></span></div>
+<div class="ct">《Matrix Analysis》出版</div>
+<div class="ds">第一次以"矩阵分析"为名的系统教科书，涵盖特征值理论、标准形、矩阵不等式、正矩阵、范数理论、扰动理论。它事实上定义了"矩阵分析"这门学科。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Matrix Analysis</em>, Cambridge Univ. Press, 1985（第 2 版 2013）</p>
+<div class="wh"><strong>为什么重要：</strong>这部著作是矩阵分析学科的"宪章"。引用次数超过 30000 次，成为全世界研究生院的标准教材。</div>
+<div class="tg"><span>矩阵分析</span><span>教科书</span><span>学科定义</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1990</span><span class="pn">G.W. Stewart &amp; Ji-guang Sun (孙继广) <span class="nt">(美国/中国)</span></span></div>
+<div class="ct">《Matrix Perturbation Theory》出版</div>
+<div class="ds">系统整理矩阵特征值、奇异值和特征子空间的扰动界，将 Weyl、Kato、Davis-Kahan 等人的散落结果统一为完整理论。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：<em>Matrix Perturbation Theory</em>, Academic Press, 1990</p>
+<div class="wh"><strong>为什么重要：</strong>矩阵扰动理论的权威参考，体现了中国数学家在该领域的重要地位。</div>
+<div class="tg"><span>扰动理论</span><span>教科书</span></div></div></div>
+</section>
+
+<!-- ERA 6 -->
+<section class="era" id="s6" data-c="6">
+<h2>现代综合 &mdash; 1990-至今</h2>
+<p class="sub2">从纯数学到跨学科融合</p>
+<p class="ov">进入 21 世纪，矩阵分析与多个新兴领域深度融合。Bhatia 从函数分析视角重构矩阵不等式；Knutson-Tao 解决 Horn 猜想；随机矩阵理论和压缩感知将矩阵分析推向统计物理和信号处理的前沿。在机器学习和量子计算中，矩阵分析已成为不可或缺的基础设施。</p>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1991</span><span class="pn">Horn &amp; Johnson <span class="nt">(美国)</span></span></div>
+<div class="ct">《Topics in Matrix Analysis》出版</div>
+<div class="ds">《Matrix Analysis》的姊妹篇，深入讨论矩阵方程、Hadamard 积、非负矩阵等进阶主题，使教科书体系更加完整。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>两本 Horn-Johnson 著作共同构成矩阵分析领域最权威的教科书组合。</div>
+<div class="tg"><span>矩阵分析</span><span>Hadamard 积</span><span>教科书</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1997</span><span class="pn">Rajendra Bhatia <span class="nt">(印度)</span></span></div>
+<div class="ct">《Matrix Analysis》(GTM 169) 出版</div>
+<div class="ds">从函数分析和算子理论视角重构矩阵分析核心内容，强调矩阵函数、算子单调性和凸性等深层结构。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Bhatia, <em>Matrix Analysis</em>, GTM 169, Springer, 1997</p>
+<div class="wh"><strong>为什么重要：</strong>如果 Horn-Johnson 是"代数路径"的集大成者，Bhatia 就是"分析路径"的代表。对量子信息理论产生深远影响。</div>
+<div class="tg"><span>矩阵分析</span><span>算子理论</span><span>矩阵函数</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">1999</span><span class="pn">Allen Knutson &amp; Terence Tao <span class="nt">(美国/澳大利亚)</span></span></div>
+<div class="ct">Horn 猜想的解决</div>
+<div class="ds">完全刻画了两个 Hermite 矩阵之和的特征值可能取值集合。证明巧妙连接了矩阵分析、Schubert 演算和几何不变量理论。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><p class="ci">文献：Knutson &amp; Tao, J. Amer. Math. Soc. 12, 1999</p>
+<div class="wh"><strong>为什么重要：</strong>Horn 猜想从 1962 年提出到 1999 年被解决，历时近四十年。蜂巢模型建立了矩阵分析与代数组合学之间的意外桥梁。</div>
+<div class="tg"><span>Horn 猜想</span><span>特征值</span><span>代数几何</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">2000s</span><span class="pn">Craig Tracy &amp; Harold Widom 等 <span class="nt">(美国)</span></span></div>
+<div class="ct">随机矩阵理论的爆发</div>
+<div class="ds">Tracy-Widom 分布描述大随机矩阵最大特征值的极限行为，成为继正态分布之后最重要的概率分布之一。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>揭示了大矩阵特征值的"普适性"现象，对统计物理、数论和无线通信有深远影响。</div>
+<div class="tg"><span>随机矩阵</span><span>Tracy-Widom</span><span>普适性</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">2006</span><span class="pn">Emmanuel Candes &amp; Terence Tao <span class="nt">(美国/澳大利亚)</span></span></div>
+<div class="ct">压缩感知的矩阵分析基础</div>
+<div class="ds">提出压缩感知理论，证明了在 RIP 条件下可从远少于 Nyquist 采样率的测量中精确恢复稀疏信号。RIP 条件本质上是对测量矩阵奇异值行为的要求。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>压缩感知在 MRI 加速、雷达等领域有广泛应用，矩阵分析是其核心数学工具。</div>
+<div class="tg"><span>压缩感知</span><span>RIP</span><span>稀疏恢复</span></div></div></div>
+
+<div class="cd" onclick="tog(this)"><div class="cd-h"><span class="yr">2010s</span><span class="pn">机器学习与量子信息社区</span></div>
+<div class="ct">矩阵分析在 ML 与量子信息中的核心角色</div>
+<div class="ds">矩阵集中不等式、算子单调函数、谱聚类、矩阵补全、量子态层析等应用将矩阵分析从纯数学学科演变为跨学科基础设施。</div>
+<p class="xh">点击展开详情</p>
+<div class="dt"><div class="wh"><strong>为什么重要：</strong>矩阵分析工具在统计学、计算机科学、物理学中的应用深度远超创始人的想象。</div>
+<div class="tg"><span>机器学习</span><span>量子信息</span><span>矩阵补全</span></div></div></div>
+</section>
+</main>
+
+<!-- KEY FIGURES -->
+<section class="figs"><div class="w">
+<h2>关键人物</h2>
+<div class="fg">
+<div class="fc"><h3>Augustin-Louis Cauchy</h3><p class="yl">1789-1857 | 法国</p><p>行列式理论的系统化者，证明实对称矩阵特征值均为实数，发现特征值交错定理。其永年方程研究是谱理论的起源。</p></div>
+<div class="fc"><h3>Arthur Cayley</h3><p class="yl">1821-1895 | 英国</p><p>矩阵代数的创始人。定义矩阵乘法，发表《矩阵理论回忆录》，陈述 Cayley-Hamilton 定理。</p></div>
+<div class="fc"><h3>James Joseph Sylvester</h3><p class="yl">1814-1897 | 英国</p><p>"matrix"一词的命名者，证明二次型惯性定律。与 Cayley 的合作构成了矩阵代数的两大基石。</p></div>
+<div class="fc"><h3>Camille Jordan</h3><p class="yl">1838-1922 | 法国</p><p>Jordan 标准形的创立者。其著作完全刻画了矩阵的相似类，是理解线性算子结构的核心工具。</p></div>
+<div class="fc"><h3>Ferdinand Georg Frobenius</h3><p class="yl">1849-1917 | 德国</p><p>矩阵代数的严格化者。定义秩，给出 Cayley-Hamilton 严格证明，将 Perron 定理推广为 Perron-Frobenius 定理。</p></div>
+<div class="fc"><h3>Issai Schur</h3><p class="yl">1875-1941 | 德国</p><p>Schur 分解和 Schur 补的发明者。Schur 分解是矩阵分析中最有用的理论工具之一。</p></div>
+<div class="fc"><h3>Hermann Weyl</h3><p class="yl">1885-1955 | 德国/美国</p><p>特征值扰动不等式的奠基人。Weyl 不等式是矩阵扰动理论的出发点。</p></div>
+<div class="fc"><h3>Richard Courant</h3><p class="yl">1888-1972 | 德国/美国</p><p>极小极大原理的统一表述者。将特征值的代数问题转化为变分分析问题，是推导不等式最强大的工具。</p></div>
+<div class="fc"><h3>John von Neumann</h3><p class="yl">1903-1957 | 匈牙利/美国</p><p>矩阵与算子理论的桥梁建筑者。证明迹不等式，将量子力学建立在 Hilbert 空间之上。</p></div>
+<div class="fc"><h3>Ky Fan (樊畿)</h3><p class="yl">1914-2010 | 中国/美国</p><p>"矩阵不等式之父"。引入 Ky Fan k-范数和优超定理，以优超关系为核心统一了矩阵不等式理论。</p></div>
+<div class="fc"><h3>James H. Wilkinson</h3><p class="yl">1919-1986 | 英国</p><p>后向误差分析的创始人。1970 年获图灵奖。使数值线性代数成为严谨的数学学科。</p></div>
+<div class="fc"><h3>Tosio Kato (加藤敏夫)</h3><p class="yl">1917-1999 | 日本/美国</p><p>算子扰动理论的集大成者。《线性算子扰动理论》至今仍是该领域的权威参考。</p></div>
+<div class="fc"><h3>Gene H. Golub</h3><p class="yl">1932-2007 | 美国</p><p>数值线性代数的领袖。发明 SVD 算法，与 Van Loan 合著《Matrix Computations》。被誉为"数值线性代数的教父"。</p></div>
+</div>
+</div></section>
+
+<!-- TURNING POINTS -->
+<section class="tp"><div class="tp-in">
+<h2>关键转折点</h2>
+<div class="tpi"><span class="tpn">1</span><div class="tpc"><strong>1829 -- Cauchy 证明实对称矩阵特征值为实数：</strong>这是矩阵谱理论的起源。特征值从此拥有了实在的分析地位。</div></div>
+<div class="tpi"><span class="tpn">2</span><div class="tpc"><strong>1858 -- Cayley 发表矩阵代数奠基论文：</strong>矩阵从行列式的记号载体变为独立的代数对象，"矩阵代数"由此诞生。</div></div>
+<div class="tpi"><span class="tpn">3</span><div class="tpc"><strong>1870 -- Jordan 标准形的提出：</strong>提供了矩阵在相似变换下的完全分类，解决了"两个矩阵何时本质相同"的根本问题。</div></div>
+<div class="tpi"><span class="tpn">4</span><div class="tpc"><strong>1909 -- Schur 证明酉三角化定理：</strong>给出比 Jordan 标准形更实用的分解，酉变换的数值稳定性使其成为理论和计算的双重利器。</div></div>
+<div class="tpi"><span class="tpn">5</span><div class="tpc"><strong>1912 -- Weyl 发表特征值扰动不等式：</strong>开创矩阵扰动理论，回答了"特征值对微小变化有多敏感"这一对数值计算至关重要的问题。</div></div>
+<div class="tpi"><span class="tpn">6</span><div class="tpc"><strong>1949 -- Ky Fan 系统化矩阵不等式：</strong>将散落的不等式纳入优超关系的统一框架，标志着从"技巧集合"走向"系统理论"。</div></div>
+<div class="tpi"><span class="tpn">7</span><div class="tpc"><strong>1961 -- QR 算法的发明：</strong>将 Schur 分解从理论定理变为可执行算法，标志着数值线性代数的正式诞生。</div></div>
+<div class="tpi"><span class="tpn">8</span><div class="tpc"><strong>1965 -- Wilkinson《代数特征值问题》出版：</strong>后向误差分析框架使数值线性代数获得了严谨的理论基础。</div></div>
+<div class="tpi"><span class="tpn">9</span><div class="tpc"><strong>1985 -- Horn-Johnson《Matrix Analysis》出版：</strong>第一次以"矩阵分析"为名的系统教科书，事实上定义了这门学科。</div></div>
+<div class="tpi"><span class="tpn">10</span><div class="tpc"><strong>1999 -- Knutson-Tao 解决 Horn 猜想：</strong>揭示了矩阵分析与代数几何、组合学之间意想不到的深层联系，标志着跨学科融合的新时代。</div></div>
+</div></section>
+
+<!-- REFERENCE TABLE -->
+<section class="refs"><div class="w">
+<h2>经典文献参考表</h2>
+<div style="overflow-x:auto">
+<table class="rt">
+<thead><tr><th>年份</th><th>作者</th><th>著作/论文</th><th>重要性</th></tr></thead>
+<tbody>
+<tr><td>1750</td><td>Cramer</td><td><em>Introduction a l'Analyse des lignes Courbes algebriques</em></td><td class="st">&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1801</td><td>Gauss</td><td><em>Disquisitiones Arithmeticae</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1829</td><td>Cauchy</td><td><em>Sur l'equation... des inegalites seculaires</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1858</td><td>Cayley</td><td><em>A Memoir on the Theory of Matrices</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1870</td><td>Jordan</td><td><em>Traite des substitutions et des equations algebriques</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1878</td><td>Frobenius</td><td><em>Uber lineare Substitutionen und bilineare Formen</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1907</td><td>Perron</td><td><em>Zur Theorie der Matrices</em> (Math. Ann. 64)</td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1909</td><td>Schur</td><td><em>Uber die charakteristischen Wurzeln...</em> (Math. Ann. 66)</td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1912</td><td>Weyl</td><td>特征值扰动不等式 (Math. Ann. 71)</td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1912</td><td>Frobenius</td><td><em>Uber Matrizen aus nicht negativen Elementen</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1924</td><td>Courant &amp; Hilbert</td><td><em>Methoden der mathematischen Physik</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1937</td><td>von Neumann</td><td><em>Some matrix-inequalities and metrization of matrix-space</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1949</td><td>Ky Fan</td><td>矩阵不等式系列论文 (PNAS 35 等)</td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1953</td><td>Hoffman &amp; Wielandt</td><td><em>The variation of the spectrum of a normal matrix</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1961</td><td>Francis</td><td><em>The QR transformation</em> (Computer J.)</td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1965</td><td>Wilkinson</td><td><em>The Algebraic Eigenvalue Problem</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1966</td><td>Kato</td><td><em>Perturbation Theory for Linear Operators</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1970</td><td>Davis &amp; Kahan</td><td>sin theta 定理 (SIAM J. Numer. Anal.)</td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1971</td><td>Wilkinson &amp; Reinsch</td><td><em>Handbook for Automatic Computation, Vol II</em></td><td class="st">&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1983</td><td>Golub &amp; Van Loan</td><td><em>Matrix Computations</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1985</td><td>Horn &amp; Johnson</td><td><em>Matrix Analysis</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1990</td><td>Stewart &amp; Sun</td><td><em>Matrix Perturbation Theory</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1991</td><td>Horn &amp; Johnson</td><td><em>Topics in Matrix Analysis</em></td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1997</td><td>Bhatia</td><td><em>Matrix Analysis</em> (GTM 169)</td><td class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</td></tr>
+<tr><td>1999</td><td>Knutson &amp; Tao</td><td>Horn 猜想的解决 (J. Amer. Math. Soc.)</td><td class="st">&#9733;&#9733;&#9733;&#9733;</td></tr>
+</tbody>
+</table>
+</div>
+</div></section>
+
+<footer class="ft">
+<p>矩阵分析发展史 | 内容基于公开学术资料整理</p>
+<p>主要参考：Horn &amp; Johnson <em>Matrix Analysis</em> (2013), Bhatia <em>Matrix Analysis</em> (1997), Hawkins <em>The Theory of Matrices in the 19th Century</em></p>
+</footer>
+
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+function go(id){var e=document.getElementById(id);if(!e)return;var n=document.getElementById('enav');var o=n?n.offsetHeight:48;window.scrollTo({top:e.getBoundingClientRect().top+window.pageYOffset-o-8,behavior:'smooth'})}
+function tog(c){c.classList.toggle('open')}
+window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('v',window.scrollY>500);
+var ss=document.querySelectorAll('.era'),bs=document.querySelectorAll('.eb'),cur=0,off=60;
+for(var i=0;i<ss.length;i++){if(ss[i].getBoundingClientRect().top<=off+10)cur=i}
+for(var j=0;j<bs.length;j++){bs[j].classList.toggle('act',j===cur)}},{passive:true});
+function doFilter(){var q=document.getElementById('si').value.trim().toLowerCase();document.querySelectorAll('.cd').forEach(function(c){c.style.display=(!q||c.textContent.toLowerCase().indexOf(q)!==-1)?'':'none'});document.querySelectorAll('.fc').forEach(function(c){c.style.display=(!q||c.textContent.toLowerCase().indexOf(q)!==-1)?'':'none'})}
+</script>
+</body>
+</html>

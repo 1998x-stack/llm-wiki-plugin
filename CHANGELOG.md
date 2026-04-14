@@ -11,6 +11,11 @@
 - 创建 growth 跟踪文件（skills-tracker.md, cognitive-patterns.md）
 - 实现 `wiki:ingest` Claude Code 命令
 
+### Phase 2 - 知识重建准备 (2026-04-15)
+- 从旧系统迁移 65 个源文件到 vault/raw/（articles + books）
+- 实现 `wiki:query` Claude Code 命令
+- 实现 `wiki:lint` Claude Code 命令
+
 ### Added
 - 系统设计文档：Obsidian Brain 完整架构设计 (`docs/superpowers/specs/2026-04-14-obsidian-brain-design.md`)
   - 融合 LLM Wiki v1、v2、kepano-Obsidian 三套方法论

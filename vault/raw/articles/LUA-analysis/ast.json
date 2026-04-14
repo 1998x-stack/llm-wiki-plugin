@@ -1,0 +1,1485 @@
+{
+  "project": "LUA-analysis",
+  "parsed_at": "2026-04-07T20:51:30.284048",
+  "parser_version": "1.0",
+  "summary": {
+    "total_files": 10,
+    "total_lines": 3096,
+    "languages": {
+      "c": 1,
+      "lua": 9
+    },
+    "total_functions": 169,
+    "total_classes": 2
+  },
+  "files": [
+    {
+      "imports": [
+        "#include <stdio.h>\n",
+        "#include <stdlib.h>\n",
+        "#include <string.h>\n",
+        "#include <math.h>\n",
+        "#include \"lua.h\"\n",
+        "#include \"lualib.h\"\n",
+        "#include \"lauxlib.h\"\n"
+      ],
+      "functions": [
+        {
+          "name": "*push_vec2(lua_State *L, double x, double y)",
+          "line_start": 70,
+          "line_end": 77,
+          "parameters": "",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "*check_vec2(lua_State *L, int idx)",
+          "line_start": 80,
+          "line_end": 82,
+          "parameters": "",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_new",
+          "line_start": 85,
+          "line_end": 90,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_length",
+          "line_start": 93,
+          "line_end": 97,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_normalize",
+          "line_start": 100,
+          "line_end": 109,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_dot",
+          "line_start": 112,
+          "line_end": 117,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_lerp",
+          "line_start": 120,
+          "line_end": 126,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_clone",
+          "line_start": 129,
+          "line_end": 133,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_unpack",
+          "line_start": 136,
+          "line_end": 141,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_tostring",
+          "line_start": 144,
+          "line_end": 148,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_add",
+          "line_start": 151,
+          "line_end": 156,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_sub",
+          "line_start": 159,
+          "line_end": 164,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_mul",
+          "line_start": 167,
+          "line_end": 178,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_div",
+          "line_start": 181,
+          "line_end": 187,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_unm",
+          "line_start": 190,
+          "line_end": 194,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_eq",
+          "line_start": 197,
+          "line_end": 202,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_index",
+          "line_start": 205,
+          "line_end": 217,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "vec2_newindex",
+          "line_start": 220,
+          "line_end": 230,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "register_vec2",
+          "line_start": 244,
+          "line_end": 267,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "*check_entity(lua_State *L, int idx)",
+          "line_start": 273,
+          "line_end": 275,
+          "parameters": "",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_new",
+          "line_start": 277,
+          "line_end": 296,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_update",
+          "line_start": 298,
+          "line_end": 304,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_get_pos",
+          "line_start": 306,
+          "line_end": 310,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_set_pos",
+          "line_start": 312,
+          "line_end": 317,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_get_vel",
+          "line_start": 319,
+          "line_end": 323,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_set_vel",
+          "line_start": 325,
+          "line_end": 330,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_is_alive",
+          "line_start": 332,
+          "line_end": 336,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_kill",
+          "line_start": 338,
+          "line_end": 342,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_tostring",
+          "line_start": 344,
+          "line_end": 350,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "entity_gc",
+          "line_start": 353,
+          "line_end": 358,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "register_entity",
+          "line_start": 371,
+          "line_end": 385,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "luaopen_mylib",
+          "line_start": 396,
+          "line_end": 414,
+          "parameters": "(lua_State *L)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "<anonymous>",
+          "line_start": 53,
+          "line_end": 55,
+          "bases": "",
+          "docstring": "",
+          "methods": []
+        },
+        {
+          "name": "<anonymous>",
+          "line_start": 57,
+          "line_end": 63,
+          "bases": "",
+          "docstring": "",
+          "methods": []
+        }
+      ],
+      "file": "lua-skill/scripts/c_binding_template.c",
+      "language": "c",
+      "total_lines": 438
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "Class.define",
+          "line_start": 28,
+          "line_end": 67,
+          "parameters": "(parent)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Class.extend",
+          "line_start": 72,
+          "line_end": 74,
+          "parameters": "(parent)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Class.mixin",
+          "line_start": 80,
+          "line_end": 89,
+          "parameters": "(target, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Class.isinstance",
+          "line_start": 95,
+          "line_end": 98,
+          "parameters": "(obj, klass)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Component:init",
+          "line_start": 107,
+          "line_end": 110,
+          "parameters": "(owner)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Component:update",
+          "line_start": 112,
+          "line_end": 112,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Component:draw",
+          "line_start": 113,
+          "line_end": 113,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Component:on_add",
+          "line_start": 114,
+          "line_end": 114,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Component:on_remove",
+          "line_start": 115,
+          "line_end": 115,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:init",
+          "line_start": 120,
+          "line_end": 127,
+          "parameters": "(x, y)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:add",
+          "line_start": 133,
+          "line_end": 140,
+          "parameters": "(ComponentClass, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:get",
+          "line_start": 145,
+          "line_end": 147,
+          "parameters": "(ComponentClass)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:get_any",
+          "line_start": 152,
+          "line_end": 157,
+          "parameters": "(ComponentClass)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:get_all",
+          "line_start": 162,
+          "line_end": 170,
+          "parameters": "(ComponentClass)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:remove",
+          "line_start": 174,
+          "line_end": 189,
+          "parameters": "(comp)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:has_tag",
+          "line_start": 194,
+          "line_end": 196,
+          "parameters": "(tag)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:add_tag",
+          "line_start": 199,
+          "line_end": 201,
+          "parameters": "(tag)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:remove_tag",
+          "line_start": 204,
+          "line_end": 206,
+          "parameters": "(tag)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:update",
+          "line_start": 208,
+          "line_end": 213,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:draw",
+          "line_start": 215,
+          "line_end": 220,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Entity:destroy",
+          "line_start": 222,
+          "line_end": 229,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:init",
+          "line_start": 237,
+          "line_end": 242,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:add",
+          "line_start": 244,
+          "line_end": 247,
+          "parameters": "(entity)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:remove",
+          "line_start": 249,
+          "line_end": 251,
+          "parameters": "(entity)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:_flush",
+          "line_start": 253,
+          "line_end": 278,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:update",
+          "line_start": 280,
+          "line_end": 285,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:draw",
+          "line_start": 287,
+          "line_end": 291,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:get_by_tag",
+          "line_start": 293,
+          "line_end": 295,
+          "parameters": "(tag)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "World:count",
+          "line_start": 297,
+          "line_end": 299,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/class_system.lua",
+      "language": "lua",
+      "total_lines": 310
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "new_task",
+          "line_start": 59,
+          "line_end": 68,
+          "parameters": "(co, resume_at, args)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "resume_task",
+          "line_start": 70,
+          "line_end": 88,
+          "parameters": "(task, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "wait",
+          "line_start": 95,
+          "line_end": 97,
+          "parameters": "(seconds)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "wait_frames",
+          "line_start": 100,
+          "line_end": 106,
+          "parameters": "(n)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "wait_until",
+          "line_start": 109,
+          "line_end": 113,
+          "parameters": "(condition_fn)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "wait_event",
+          "line_start": 116,
+          "line_end": 124,
+          "parameters": "(event_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.spawn",
+          "line_start": 134,
+          "line_end": 139,
+          "parameters": "(fn, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.after",
+          "line_start": 146,
+          "line_end": 152,
+          "parameters": "(delay, fn, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.every",
+          "line_start": 159,
+          "line_end": 168,
+          "parameters": "(interval, fn, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.cancel",
+          "line_start": 172,
+          "line_end": 174,
+          "parameters": "(task)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.update",
+          "line_start": 178,
+          "line_end": 205,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.emit",
+          "line_start": 210,
+          "line_end": 231,
+          "parameters": "(event_name, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.set_event_bus",
+          "line_start": 235,
+          "line_end": 237,
+          "parameters": "(bus)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.inject_globals",
+          "line_start": 241,
+          "line_end": 248,
+          "parameters": "(env)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.stats",
+          "line_start": 252,
+          "line_end": 258,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.clear",
+          "line_start": 261,
+          "line_end": 266,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Scheduler.reset_time",
+          "line_start": 269,
+          "line_end": 279,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/coroutine_scheduler.lua",
+      "language": "lua",
+      "total_lines": 291
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "EventBus.on",
+          "line_start": 52,
+          "line_end": 78,
+          "parameters": "(event_name, callback, priority)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.once",
+          "line_start": 85,
+          "line_end": 96,
+          "parameters": "(event_name, callback, priority)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.off",
+          "line_start": 101,
+          "line_end": 109,
+          "parameters": "(event_name, callback)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.emit",
+          "line_start": 114,
+          "line_end": 137,
+          "parameters": "(event_name, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.emit_deferred",
+          "line_start": 142,
+          "line_end": 144,
+          "parameters": "(event_name, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.flush",
+          "line_start": 147,
+          "line_end": 154,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.clear",
+          "line_start": 158,
+          "line_end": 164,
+          "parameters": "(event_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.count",
+          "line_start": 169,
+          "line_end": 171,
+          "parameters": "(event_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.has",
+          "line_start": 176,
+          "line_end": 178,
+          "parameters": "(event_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus._remove",
+          "line_start": 187,
+          "line_end": 196,
+          "parameters": "(event_name, entry)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "EventBus.namespace",
+          "line_start": 205,
+          "line_end": 243,
+          "parameters": "(ns)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/event_bus.lua",
+      "language": "lua",
+      "total_lines": 246
+    },
+    {
+      "imports": [
+        "local lfs_ok, lfs = pcall(require, \"lfs\")"
+      ],
+      "functions": [
+        {
+          "name": "get_mtime",
+          "line_start": 50,
+          "line_end": 70,
+          "parameters": "(path)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.watch",
+          "line_start": 79,
+          "line_end": 84,
+          "parameters": "(module_name, file_path)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.unwatch",
+          "line_start": 88,
+          "line_end": 90,
+          "parameters": "(module_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.check",
+          "line_start": 94,
+          "line_end": 109,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.reload",
+          "line_start": 114,
+          "line_end": 137,
+          "parameters": "(module_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.on_reload",
+          "line_start": 142,
+          "line_end": 152,
+          "parameters": "(fn)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.status",
+          "line_start": 156,
+          "line_end": 166,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.print_status",
+          "line_start": 169,
+          "line_end": 180,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HotReload.scan_dir",
+          "line_start": 185,
+          "line_end": 206,
+          "parameters": "(base_dir, prefix)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/hot_reload.lua",
+      "language": "lua",
+      "total_lines": 209
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "Assets.image",
+          "line_start": 49,
+          "line_end": 55,
+          "parameters": "(path)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Assets.font",
+          "line_start": 57,
+          "line_end": 67,
+          "parameters": "(path, size)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Assets.sound",
+          "line_start": 69,
+          "line_end": 74,
+          "parameters": "(path, kind)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Assets.quad",
+          "line_start": 77,
+          "line_end": 84,
+          "parameters": "(image, x, y, w, h)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera.new",
+          "line_start": 92,
+          "line_end": 104,
+          "parameters": "(x, y)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:follow",
+          "line_start": 106,
+          "line_end": 109,
+          "parameters": "(target, lerp)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:shake",
+          "line_start": 111,
+          "line_end": 114,
+          "parameters": "(duration, power)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:update",
+          "line_start": 116,
+          "line_end": 133,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:attach",
+          "line_start": 135,
+          "line_end": 141,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:detach",
+          "line_start": 143,
+          "line_end": 145,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Camera:to_world",
+          "line_start": 147,
+          "line_end": 153,
+          "parameters": "(sx, sy)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input.bind",
+          "line_start": 164,
+          "line_end": 166,
+          "parameters": "(action, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input.update",
+          "line_start": 168,
+          "line_end": 173,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input.is_down",
+          "line_start": 175,
+          "line_end": 181,
+          "parameters": "(action)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input.pressed",
+          "line_start": 183,
+          "line_end": 185,
+          "parameters": "(action)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input.released",
+          "line_start": 187,
+          "line_end": 189,
+          "parameters": "(action)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Input._was_down",
+          "line_start": 191,
+          "line_end": 196,
+          "parameters": "(action)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.switch",
+          "line_start": 206,
+          "line_end": 208,
+          "parameters": "(scene)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.push",
+          "line_start": 210,
+          "line_end": 219,
+          "parameters": "(scene)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.pop",
+          "line_start": 221,
+          "line_end": 229,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager._flush",
+          "line_start": 231,
+          "line_end": 242,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.update",
+          "line_start": 244,
+          "line_end": 249,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.draw",
+          "line_start": 251,
+          "line_end": 255,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "SceneManager.keypressed",
+          "line_start": 257,
+          "line_end": 261,
+          "parameters": "(key)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene.new",
+          "line_start": 269,
+          "line_end": 284,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:_create_ground",
+          "line_start": 286,
+          "line_end": 299,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:_on_begin_contact",
+          "line_start": 301,
+          "line_end": 301,
+          "parameters": "(a, b, coll)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:_on_end_contact",
+          "line_start": 302,
+          "line_end": 302,
+          "parameters": "(a, b, coll)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:on_enter",
+          "line_start": 304,
+          "line_end": 311,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:update",
+          "line_start": 313,
+          "line_end": 325,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:draw",
+          "line_start": 327,
+          "line_end": 363,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "GameScene:keypressed",
+          "line_start": 365,
+          "line_end": 367,
+          "parameters": "(key)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "love.load",
+          "line_start": 372,
+          "line_end": 378,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "love.update",
+          "line_start": 380,
+          "line_end": 384,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "love.draw",
+          "line_start": 386,
+          "line_end": 388,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "love.keypressed",
+          "line_start": 390,
+          "line_end": 392,
+          "parameters": "(key, scancode, isrepeat)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "love.resize",
+          "line_start": 394,
+          "line_end": 396,
+          "parameters": "(w, h)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/love2d_starter.lua",
+      "language": "lua",
+      "total_lines": 405
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "Pool.new",
+          "line_start": 51,
+          "line_end": 75,
+          "parameters": "(opts)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:acquire",
+          "line_start": 84,
+          "line_end": 113,
+          "parameters": "(...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:release",
+          "line_start": 118,
+          "line_end": 136,
+          "parameters": "(obj)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:each",
+          "line_start": 141,
+          "line_end": 153,
+          "parameters": "(fn, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:filter",
+          "line_start": 158,
+          "line_end": 164,
+          "parameters": "(pred)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:release_all",
+          "line_start": 167,
+          "line_end": 174,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:destroy",
+          "line_start": 177,
+          "line_end": 184,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:active_count",
+          "line_start": 191,
+          "line_end": 191,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:free_count",
+          "line_start": 193,
+          "line_end": 193,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:total_count",
+          "line_start": 195,
+          "line_end": 195,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:peak_count",
+          "line_start": 197,
+          "line_end": 197,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool:print_stats",
+          "line_start": 200,
+          "line_end": 205,
+          "parameters": "(name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Pool.for_struct",
+          "line_start": 216,
+          "line_end": 239,
+          "parameters": "(template, initial, max)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/object_pool.lua",
+      "language": "lua",
+      "total_lines": 242
+    },
+    {
+      "imports": [],
+      "functions": [],
+      "classes": [],
+      "file": "lua-skill/scripts/roblox_remote.lua",
+      "language": "lua",
+      "total_lines": 427
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "make_base_env",
+          "line_start": 74,
+          "line_end": 93,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox.new",
+          "line_start": 106,
+          "line_end": 144,
+          "parameters": "(opts)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:run",
+          "line_start": 152,
+          "line_end": 155,
+          "parameters": "(code, chunk_name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:run_file",
+          "line_start": 160,
+          "line_end": 166,
+          "parameters": "(filepath)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:inject",
+          "line_start": 171,
+          "line_end": 173,
+          "parameters": "(name, value)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:get",
+          "line_start": 178,
+          "line_end": 180,
+          "parameters": "(name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:reset_state",
+          "line_start": 183,
+          "line_end": 185,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:_execute",
+          "line_start": 191,
+          "line_end": 219,
+          "parameters": "(code, chunk_name, is_trusted)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox:_run_protected",
+          "line_start": 221,
+          "line_end": 258,
+          "parameters": "(fn)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "Sandbox.eval",
+          "line_start": 269,
+          "line_end": 275,
+          "parameters": "(code, inject, max_instr)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/sandbox.lua",
+      "language": "lua",
+      "total_lines": 278
+    },
+    {
+      "imports": [],
+      "functions": [
+        {
+          "name": "HSM.new",
+          "line_start": 56,
+          "line_end": 67,
+          "parameters": "(owner)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:state",
+          "line_start": 78,
+          "line_end": 102,
+          "parameters": "(name, handlers, children_fn)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:initial",
+          "line_start": 106,
+          "line_end": 112,
+          "parameters": "(name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:transition",
+          "line_start": 123,
+          "line_end": 134,
+          "parameters": "(from, to, condition, priority)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:start",
+          "line_start": 141,
+          "line_end": 144,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:goto",
+          "line_start": 149,
+          "line_end": 186,
+          "parameters": "(name, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:update",
+          "line_start": 190,
+          "line_end": 215,
+          "parameters": "(dt)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:send",
+          "line_start": 220,
+          "line_end": 224,
+          "parameters": "(msg, ...)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:current_name",
+          "line_start": 228,
+          "line_end": 230,
+          "parameters": "()",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:is",
+          "line_start": 235,
+          "line_end": 242,
+          "parameters": "(name)",
+          "decorators": [],
+          "docstring": ""
+        },
+        {
+          "name": "HSM:set_debug",
+          "line_start": 245,
+          "line_end": 247,
+          "parameters": "(enabled)",
+          "decorators": [],
+          "docstring": ""
+        }
+      ],
+      "classes": [],
+      "file": "lua-skill/scripts/state_machine.lua",
+      "language": "lua",
+      "total_lines": 250
+    }
+  ]
+}

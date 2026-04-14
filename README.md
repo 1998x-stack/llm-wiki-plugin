@@ -75,4 +75,4 @@ obsidian-brain/
 
 ## 当前状态
 
-Phase 1 完成 — vault 目录结构、schema 文档、模板、wiki:ingest 命令已就绪。
+Phase 2 完成 — 源文件已迁移，wiki:query 和 wiki:lint 命令就绪。可以开始 ingest 源材料。
