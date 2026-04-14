@@ -75,4 +75,13 @@ obsidian-brain/
 
 ## 当前状态
 
-Phase 5 完成 — 所有 8 个 agent 命令已实现（ingest, query, lint, consolidate, crystallize, journal, review, qa-import）。
+所有 Phase 完成。系统就绪，可以开始使用。
+
+### 快速开始
+
+1. 用 Obsidian 打开 `vault/` 目录作为 vault
+2. 在 vault 目录中运行 Claude Code
+3. 执行 `/project:wiki/ingest articles/文件名.md` 开始 ingest 源材料
+4. 执行 `/project:wiki/journal daily` 创建今天的日记
+5. （可选）运行 `./scripts/watch-raw.sh` 启动自动 ingest
+6. （可选）运行 `./scripts/cron-setup.sh` 安装定时任务

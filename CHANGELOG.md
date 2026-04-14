@@ -16,6 +16,14 @@
 - 实现 `wiki:query` Claude Code 命令
 - 实现 `wiki:lint` Claude Code 命令
 
+### Phase 7 - 自动化 (2026-04-15)
+- 添加 `scripts/watch-raw.sh`：fswatch 监控 raw/ 目录自动 ingest
+- 添加 `scripts/cron-setup.sh`：安装定时 consolidate/lint/review 任务
+
+### Final - Obsidian 配置 (2026-04-15)
+- 添加 `.obsidian/app.json` 和 `core-plugins.json`
+- 添加 vault 级 CLAUDE.md 快速参考
+
 ### Phase 3 - 个人层 (2026-04-15)
 - 实现 `wiki:journal` Claude Code 命令（daily / reflection / judgment）
 - 实现 `wiki:review` Claude Code 命令（weekly / monthly / quarterly 分形回顾）
