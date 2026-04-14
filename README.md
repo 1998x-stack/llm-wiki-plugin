@@ -72,3 +72,7 @@ obsidian-brain/
 5. QA 集成：qa-import skill
 6. 搜索增强：qmd MCP server（按需）
 7. 自动化完善：fswatch + cron + hooks
+
+## 当前状态
+
+Phase 1 完成 — vault 目录结构、schema 文档、模板、wiki:ingest 命令已就绪。
