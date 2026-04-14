@@ -75,4 +75,4 @@ obsidian-brain/
 
 ## 当前状态
 
-Phase 2 完成 — 源文件已迁移，wiki:query 和 wiki:lint 命令就绪。可以开始 ingest 源材料。
+Phase 5 完成 — 所有 8 个 agent 命令已实现（ingest, query, lint, consolidate, crystallize, journal, review, qa-import）。

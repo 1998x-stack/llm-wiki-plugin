@@ -16,6 +16,17 @@
 - 实现 `wiki:query` Claude Code 命令
 - 实现 `wiki:lint` Claude Code 命令
 
+### Phase 3 - 个人层 (2026-04-15)
+- 实现 `wiki:journal` Claude Code 命令（daily / reflection / judgment）
+- 实现 `wiki:review` Claude Code 命令（weekly / monthly / quarterly 分形回顾）
+
+### Phase 4 - 记忆系统 (2026-04-15)
+- 实现 `wiki:consolidate` Claude Code 命令（Working→Episodic→Semantic→Procedural 晋升 + 置信度衰减 + journal 模式扫描）
+- 实现 `wiki:crystallize` Claude Code 命令（会话结晶化 → working memory + wiki synthesis）
+
+### Phase 5 - QA 集成 (2026-04-15)
+- 实现 `wiki:qa-import` Claude Code 命令（jsonl/md 解析 → 主题聚类 → 洞见提取 → 双向链接）
+
 ### Added
 - 系统设计文档：Obsidian Brain 完整架构设计 (`docs/superpowers/specs/2026-04-14-obsidian-brain-design.md`)
   - 融合 LLM Wiki v1、v2、kepano-Obsidian 三套方法论
