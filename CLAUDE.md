@@ -4,34 +4,73 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repository Is
 
-This is a **design pattern documentation project** — not runnable code. It describes a pattern for building LLM-maintained personal knowledge bases (called an "LLM Wiki"). There is no build system, no tests, and no executable code.
+This is an **LLM Wiki Plugin** — an AI-powered personal knowledge operating system built on Obsidian. It combines three methodologies: LLM Wiki v1 (Karpathy), LLM Wiki v2 (agentmemory), and kepano-Obsidian.
 
-The repo contains two markdown documents that evolve the same core idea:
+The repo contains:
 
-| File | Role |
-|------|------|
-| `llm-wiki-v1.md` | Foundational concept: three-layer architecture, core operations, use cases |
-| `llm-wiki-v2.md` | Extended with production lessons: knowledge graph, lifecycle management, hybrid search, multi-agent patterns |
+| Directory | Role |
+|-----------|------|
+| `vault/` | Obsidian vault — the live knowledge base |
+| `vault/.claude/commands/wiki/` | Claude Code commands for knowledge operations |
+| `vault/scripts/` | Python and shell automation scripts |
+| `docs/` | Design specs, references, and changelog |
+| `static/` | GitHub Pages assets (graph visualization) |
 
-## Core Architecture (The Pattern Described)
+## Core Architecture
 
-The pattern uses three layers:
+Three-layer pattern:
+1. **Raw Sources** (`vault/raw/`) — immutable source documents. Read-only.
+2. **Wiki** (`vault/wiki/`) — LLM-generated knowledge pages with cross-references.
+3. **Schema** (`vault/_schema/`) — conventions, types, and quality rules.
 
-1. **Raw Sources** — immutable source documents (articles, papers, images). LLM reads only.
-2. **Wiki** — LLM-owned directory of markdown files: entity pages, concept pages, comparisons, syntheses with cross-references.
-3. **Schema** — a config document (e.g. CLAUDE.md) encoding conventions, workflows, and lint rules that make the LLM a disciplined knowledge worker.
+## Commands
 
-Key operations: **ingest** (process new sources into wiki), **query** (answer questions from wiki), **lint** (audit wiki for staleness, gaps, orphans).
+| Command | Purpose |
+|---------|---------|
+| `wiki:ingest` | Process raw source → wiki pages |
+| `wiki:ingest-loop` | Batch ingest with ralph-loop (Claude-powered) |
+| `wiki:ingest-loop-qwen` | Batch ingest with Qwen API |
+| `wiki:query` | Answer questions with BM25 + graph search |
+| `wiki:lint` | Health check + auto-repair |
+| `wiki:graph` | Build knowledge graph JSON |
+| `wiki:consolidate` | Memory layer promotion + decay |
+| `wiki:crystallize` | Session → structured summary |
+| `wiki:journal` | Journal assistance |
+| `wiki:review` | Fractal review (weekly/monthly/quarterly) |
+| `wiki:qa-import` | Import QA data → wiki insights |
 
-## How to Work With This Repo
+## Scripts
 
-- These documents are **templates/blueprints** meant to be adapted. When a user wants to instantiate the pattern, the output is a tailored schema document (CLAUDE.md) for their specific knowledge domain.
-- v2 extends v1 — read both when understanding the full design space. v1 is cleaner for introductions; v2 addresses scale concerns.
-- The central insight: the schema document is the real product. It encodes the conventions that make the wiki self-consistent over time.
+| Script | Purpose | Dependencies |
+|--------|---------|-------------|
+| `bm25_index.py` | BM25 search index (build/update/query) | jieba, rank_bm25 |
+| `qwen_ingest.py` | Qwen API wiki extraction | openai, pyyaml |
+| `build_graph.py` | Knowledge graph JSON builder | pyyaml |
+| `lint_wiki.py` | Standalone lint checker | pyyaml |
+| `hook_lint.sh` | PostToolUse hook: lint | — |
+| `hook_bm25.sh` | PostToolUse hook: BM25 update | — |
+| `hook_graph.sh` | PostToolUse hook: graph rebuild | — |
 
-## Key Concepts to Know
+## Hooks
 
-- **Crystallization** (v2): compounding knowledge from exploration into permanent wiki entries.
-- **Memory lifecycle** (v2): confidence scoring, supersession, and forgetting stale knowledge.
-- **Typed relationships** (v2): knowledge graph edges with labels (e.g., `implements`, `contradicts`, `extends`).
-- **Index and log files**: `index.md` serves as a table of contents; `log.md` records ingest history and decisions.
+PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
+1. **Lint** → validates page quality
+2. **BM25** → updates search index
+3. **Graph** → rebuilds graph.json
+
+Hook logs: `vault/log.hook.md`
+
+## Dependencies
+
+Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`
+
+Install: `pip install -r requirements.txt`
+
+## Key Concepts
+
+- **BM25 Index** (`vault/index/BM25/`): jieba-tokenized full-text search
+- **Graph** (`vault/graph.json`): knowledge graph for visualization
+- **QA Logs** (`vault/qa/`): ChatGPT-format Q&A records
+- **Crystallization**: compounding knowledge into permanent entries
+- **Memory lifecycle**: confidence scoring, supersession, decay
+- **Typed relationships**: edges with labels (extends, contradicts, etc.)

@@ -1,87 +1,210 @@
-# Obsidian Brain
+<h1 align="center">LLM Wiki Plugin</h1>
 
-融合三套方法论的个人知识操作系统：以 Obsidian vault 为核心数据层，AI Agent 为深度处理引擎。
+<p align="center"><strong>AI-powered personal knowledge operating system for Obsidian</strong></p>
 
-## 方法论来源
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Claude_Code-CLI-blueviolet?logo=anthropic&logoColor=white" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Obsidian-Vault-7c3aed?logo=obsidian&logoColor=white" alt="Obsidian">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License MIT">
+</p>
 
-| 来源 | 核心贡献 |
-|------|---------|
-| [LLM Wiki v1](llm-wiki-v1.md)（Karpathy） | 三层架构（raw/wiki/schema）、三个操作（ingest/query/lint） |
-| [LLM Wiki v2](llm-wiki-v2.md)（agentmemory） | 四层记忆、知识图谱、置信度衰减、结晶化、自动化 hooks |
-| [kepano-Obsidian](kepano-Obsidian%20使用方法论.md) | File-over-app、links-over-folders、低摩擦输入、分形回顾 |
+<p align="center"><img src="static/asset/graph.png" alt="Knowledge Graph" width="800"></p>
 
-## 系统定位
+---
 
-个人"第二大脑"——全面覆盖思考、学习、工作、成长。
+## Architecture
 
-**核心特征**：
-- **Obsidian vault 即数据层**：所有数据都是 markdown 文件，无独立后端
-- **AI Agent 做一切战术操作**：ingest、query、lint、consolidate、crystallize
-- **四层记忆**：Working → Episodic → Semantic → Procedural，自动晋升与衰减
-- **个人层与知识层分离**：journal/ 与 wiki/ 物理分离，自由互链
-- **高度自动化**：新文件自动 ingest、每日自动 consolidate、每周自动 lint
+```mermaid
+graph LR
+    subgraph "Raw Sources"
+        A1[articles/]
+        A2[books/]
+        A3[qa/]
+    end
 
-## Vault 结构
+    subgraph "Ingest Engine"
+        B1[wiki:ingest]
+        B2[ingest-loop-qwen]
+    end
+
+    subgraph "Wiki Layer"
+        C1[entities/]
+        C2[concepts/]
+        C3[syntheses/]
+        C4[qa-insights/]
+    end
+
+    subgraph "Index & Graph"
+        D1[index.md]
+        D2[BM25 Index]
+        D3[graph.json]
+        D4[graph.html]
+    end
+
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A1 --> B2
+    A2 --> B2
+    B1 --> C1
+    B1 --> C2
+    B1 --> C3
+    B2 --> C1
+    B2 --> C2
+    C1 --> D1
+    C2 --> D1
+    C3 --> D1
+    C4 --> D1
+    C1 --> D2
+    C2 --> D2
+    C3 --> D2
+    C1 --> D3
+    C2 --> D3
+    D3 --> D4
+```
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| **BM25 Search** | 中文分词 + BM25 全文检索，离线索引，毫秒级查询 |
+| **Qwen Batch Ingest** | 基于通义千问 API 的批量 ingest，无需 Claude 上下文 |
+| **Ralph-Loop** | 自动化循环 ingest，逐文件处理整个目录 |
+| **D3.js Knowledge Graph** | 交互式力导向图，支持 GitHub Pages 部署 |
+| **Hook System** | ingest 后自动触发 BM25 重建、图谱更新、lint 检查 |
+| **4-Layer Memory** | Working → Episodic → Semantic → Procedural 知识生命周期 |
+| **QA Integration** | QA 对话数据批量导入，自动提取洞见并双向链接 |
+| **CI/CD** | GitHub Actions 自动部署 graph.html 到 GitHub Pages |
+
+## Quick Start
+
+### Prerequisites
+
+- Python 3.10+
+- [Obsidian](https://obsidian.md/) desktop app
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI (`npm install -g @anthropic-ai/claude-code`)
+- (Optional) `DASHSCOPE_API_KEY` for Qwen batch ingest
+
+### Setup
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/1998x-stack/llm-wiki-plugin.git
+cd llm-wiki-plugin
+
+# 2. Install Python dependencies
+pip install -r requirements.txt
+
+# 3. Open vault/ as an Obsidian vault
+#    Obsidian → Open folder as vault → select vault/
+
+# 4. Start Claude Code in the vault directory
+cd vault
+claude
+
+# 5. Ingest your first source file
+/project:wiki/ingest raw/articles/your-file.md
+
+# 6. (Optional) Start auto-ingest loop
+bash scripts/setup-ingest-loop.sh raw/articles/
+
+# 7. (Optional) Build knowledge graph
+python3 scripts/build_graph.py
+```
+
+## Commands
+
+All commands are invoked via Claude Code's `/project:wiki/` prefix.
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `ingest` | `/project:wiki/ingest <path>` | 源材料 → wiki 页面，更新 index/log |
+| `query` | `/project:wiki/query <question>` | 基于知识库搜索并综合回答 |
+| `lint` | `/project:wiki/lint` | 检查孤页、矛盾、过期、缺失链接 |
+| `consolidate` | `/project:wiki/consolidate` | 记忆晋升 + 置信度衰减 |
+| `crystallize` | `/project:wiki/crystallize` | 会话探索 → 结构化摘要 |
+| `journal` | `/project:wiki/journal <type>` | 写日记（daily/reflection/judgment） |
+| `review` | `/project:wiki/review <scope>` | 分形回顾（weekly/monthly/quarterly） |
+| `qa-import` | `/project:wiki/qa-import <path>` | QA 数据批量导入 |
+| `ingest-loop` | `bash scripts/setup-ingest-loop.sh <dir>` | Ralph-loop 自动逐文件 ingest |
+| `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest |
+| `graph` | `python3 scripts/build_graph.py` | 构建知识图谱 JSON + HTML |
+
+## Vault Structure
 
 ```
-obsidian-brain/
-├── _schema/          # 系统规则（CLAUDE.md + 类型定义）
-├── _memory/          # 四层记忆系统
-│   ├── working/      # 当前会话观察
-│   ├── episodic/     # 会话摘要
-│   ├── semantic/     # 跨会话事实
-│   └── procedural/   # 工作流与模式
-├── raw/              # 不可变源材料
-├── wiki/             # LLM 生成的知识页面
-├── journal/          # 个人日记/思考/判断/成长
-├── templates/        # 模板
-├── index.md          # 内容目录
-└── log.md            # 操作日志
+vault/
+├── .claude/commands/wiki/   # 8 Claude Code commands
+├── .obsidian/               # Obsidian settings
+├── _schema/                 # 系统规则 (CLAUDE.md + 类型定义)
+│   ├── CLAUDE.md            # Master schema
+│   ├── entity-types.md      # 实体类型定义
+│   ├── relationship-types.md # 关系类型定义
+│   └── quality-rules.md     # 质量规则
+├── _memory/                 # 4-layer memory system
+│   ├── working/             # 当前会话观察
+│   ├── episodic/            # 会话摘要
+│   ├── semantic/            # 跨会话事实
+│   └── procedural/          # 工作流与模式
+├── raw/                     # 不可变源材料 (LLM read-only)
+│   ├── articles/            # 文章、论文、分析
+│   ├── books/               # 书籍章节
+│   └── qa/                  # QA 对话数据
+├── wiki/                    # LLM 生成的知识页面
+│   ├── entities/            # 人物、工具、项目
+│   ├── concepts/            # 概念、理论、方法
+│   ├── syntheses/           # 跨领域综合分析
+│   └── qa-insights/         # QA 提取的洞见
+├── journal/                 # 个人日记系统
+│   ├── daily/               # 每日笔记
+│   ├── reflections/         # 反思
+│   ├── judgments/            # 判断记录
+│   └── growth/              # 成长追踪
+├── qa/                      # QA 数据存放
+├── index/BM25/              # BM25 搜索索引
+├── templates/               # 5 套模板
+├── scripts/                 # Python & Shell 自动化脚本
+├── index.md                 # 内容目录
+├── log.md                   # 操作日志
+├── log.hook.md              # Hook 执行日志
+├── graph.json               # 知识图谱数据
+└── dashboard.md             # 仪表盘
 ```
 
-## Agent Skills
+## Knowledge Graph
 
-| Skill | 功能 |
-|-------|------|
-| `wiki:ingest` | 源材料 → wiki 页面 + 更新 index/log |
-| `wiki:query` | 搜索 → 综合答案 → 高质量答案自动归档 |
-| `wiki:lint` | 检查孤页/矛盾/过期/缺失链接 → 自动修复 |
-| `wiki:consolidate` | 记忆晋升 + 置信度衰减 |
-| `wiki:crystallize` | 探索过程 → 结构化摘要 |
-| `wiki:journal` | 辅助写日记，自动链接知识页面 |
-| `wiki:review` | kepano 式分形回顾 |
-| `wiki:qa-import` | QA jsonl → 洞见提取 → 双向链接 |
+Interactive D3.js force-directed graph visualizing all wiki entities, concepts, and their relationships.
 
-## 文档
+**Live demo:** [https://1998x-stack.github.io/llm-wiki-plugin/graph.html](https://1998x-stack.github.io/llm-wiki-plugin/graph.html)
 
-- [设计文档](docs/superpowers/specs/2026-04-14-obsidian-brain-design.md) — 完整系统设计
-- [v1 vs v2 对比](compare.md) — 两版 LLM Wiki 深度分析
+Build locally:
 
-## 交互入口
+```bash
+python3 scripts/build_graph.py --output vault/graph.json
+# Open the generated graph.html in your browser
+```
 
-- **Obsidian**：日常快速记录、浏览、链接
-- **AI Agent CLI**（Claude Code / Codex / OpenCode）：深度处理
-- **Web App**（可选）：只读视图层
+## Documentation
 
-## 实施路径
+| Document | Description |
+|----------|-------------|
+| [USERGUIDE.md](USERGUIDE.md) | 完整用户指南（中文） |
+| [docs/wiki.md](docs/wiki.md) | Wiki 系统技术文档 |
+| [docs/CHANGELOG.md](docs/CHANGELOG.md) | 版本变更记录 |
+| [llm-wiki-v1.md](llm-wiki-v1.md) | LLM Wiki v1 设计文档 (Karpathy) |
+| [llm-wiki-v2.md](llm-wiki-v2.md) | LLM Wiki v2 设计文档 (agentmemory) |
 
-1. 最小可行：vault 结构 + schema + ingest skill
-2. 知识重建：迁移源文件并重新 ingest
-3. 个人层：daily notes + journal + review
-4. 记忆系统：四层记忆 + consolidate + crystallize
-5. QA 集成：qa-import skill
-6. 搜索增强：qmd MCP server（按需）
-7. 自动化完善：fswatch + cron + hooks
+## Contributing
 
-## 当前状态
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-所有 Phase 完成。系统就绪，可以开始使用。
+For bug reports and feature requests, please use [GitHub Issues](https://github.com/1998x-stack/llm-wiki-plugin/issues).
 
-### 快速开始
+## License
 
-1. 用 Obsidian 打开 `vault/` 目录作为 vault
-2. 在 vault 目录中运行 Claude Code
-3. 执行 `/project:wiki/ingest articles/文件名.md` 开始 ingest 源材料
-4. 执行 `/project:wiki/journal daily` 创建今天的日记
-5. （可选）运行 `./scripts/watch-raw.sh` 启动自动 ingest
-6. （可选）运行 `./scripts/cron-setup.sh` 安装定时任务
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

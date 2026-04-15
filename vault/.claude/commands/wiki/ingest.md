@@ -9,10 +9,10 @@ $ARGUMENTS — 源文件路径（相对于 vault/raw/），或 "all" 处理所�
 ## 流程
 
 1. **读取源文件**
-   - 完整阅读 `raw/$ARGUMENTS`
-   - 如果是 .docx，使用 `pandoc` 或直接读取文本内容
-   - 如果是 .jsonl，按行解析
-   - 如果是 .pdf，提取文本
+   - 读取 `raw/$ARGUMENTS`
+   - 如果文件不存在 → 报告错误并停止
+   - 支持格式：`.md`（直接读取）、`.docx`（pandoc 转换）、`.jsonl`（按行解析）、`.pdf`（提取文本）
+   - 不支持的格式 → 报告错误并停止
 
 2. **提取实体和概念**
    - 识别文中提到的人物、公司、项目、工具、论文、书籍
@@ -28,6 +28,10 @@ $ARGUMENTS — 源文件路径（相对于 vault/raw/），或 "all" 处理所�
    - **新概念** → 在 `wiki/concepts/` 创建新页面
    - **已有页面** → 读取现有页面，追加新信息，更新 confidence 和 source_count
    - 文件名用自然中文：`游戏资产语义搜索.md`
+   - 每个页面创建/更新后，执行 BM25 索引更新：
+     ```
+     Bash: python3 scripts/bm25_index.py update <wiki_file_path>
+     ```
 
 5. **建立关系**
    - 在每个新建/更新的页面的 frontmatter relates_to 中添加关系
@@ -45,15 +49,19 @@ $ARGUMENTS — 源文件路径（相对于 vault/raw/），或 "all" 处理所�
    - 更新统计数字
 
 8. **更新 log.md**
-   - 追加条目：`## [YYYY-MM-DD] ingest | 源文件名`
+   - 追加条目：`## [YYYY-MM-DD HH:MM] ingest | 源文件名`
    - 列出创建了哪些页面、更新了哪些页面
+
+9. **验证**
+   - 对每个新建的页面运行：`Bash: python3 scripts/lint_wiki.py --file <path> --json`
+   - 如有 ERROR 级别问题，立即修复
 
 ## 质量要求
 
 - 每个新页面必须满足 `_schema/quality-rules.md` 中的必须标准
-- 概述部分不超过 200 字
+- 概述部分不超过 200 字符
 - 中文为主，专有名词保留英文
-- 第一次提到的重要概念加 [[链接]]
+- 第一次提到的重要概念必须加 [[链接]]
 
 ## 输出
 
@@ -62,3 +70,4 @@ $ARGUMENTS — 源文件路径（相对于 vault/raw/），或 "all" 处理所�
 - 创建了 N 个新页面
 - 更新了 N 个已有页面
 - 发现了 N 个矛盾（如有）
+- lint 验证结果

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Wiki — Knowledge Graph</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+    --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+    --input-bg: #f5f5f5; --stat-fg: #888;
+    --sidebar-bg: rgba(255,255,255,0.92);
+    --edge-default: #ccc;
+  }
+  .dark {
+    --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+    --surface: rgba(30,30,50,0.88); --border: #333;
+    --input-bg: #2a2a3e; --stat-fg: #777;
+    --sidebar-bg: rgba(26,26,46,0.92);
+    --edge-default: #444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--fg);
+    overflow: hidden; height: 100vh; width: 100vw;
+    transition: background 0.3s, color 0.3s;
+  }
+  /* Top bar */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    padding: 12px 16px 8px; background: var(--surface);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  }
+  #search-row { display: flex; gap: 8px; align-items: center; }
+  #search {
+    flex: 1; padding: 8px 14px; font-size: 14px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--input-bg); color: var(--fg);
+    outline: none; transition: border-color 0.3s;
+  }
+  #search:focus { border-color: #4A90D9; }
+  #theme-btn {
+    padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--input-bg); color: var(--fg); cursor: pointer;
+    font-size: 13px; white-space: nowrap; transition: background 0.3s;
+  }
+  #theme-btn:hover { background: var(--border); }
+  #stats {
+    margin-top: 6px; font-size: 12px; color: var(--stat-fg);
+    letter-spacing: 0.3px;
+  }
+  /* SVG */
+  svg { display: block; width: 100%; height: 100%; cursor: grab; }
+  svg:active { cursor: grabbing; }
+  .node-circle { cursor: pointer; stroke-width: 1.5; transition: opacity 0.3s; }
+  .node-label {
+    font-size: 10px; fill: var(--fg2); pointer-events: none;
+    transition: opacity 0.3s; user-select: none;
+  }
+  .edge-line { transition: opacity 0.3s; }
+  .faded { opacity: 0.08 !important; }
+  /* Sidebar */
+  #sidebar {
+    position: fixed; top: 0; right: -340px; width: 320px; height: 100%;
+    background: var(--sidebar-bg); backdrop-filter: blur(12px);
+    border-left: 1px solid var(--border); z-index: 20;
+    padding: 20px; overflow-y: auto; transition: right 0.3s ease;
+  }
+  #sidebar.open { right: 0; }
+  #sidebar-close {
+    position: absolute; top: 12px; right: 14px;
+    background: none; border: none; color: var(--fg); font-size: 20px;
+    cursor: pointer; line-height: 1;
+  }
+  #sidebar h2 { font-size: 18px; margin-bottom: 8px; padding-right: 30px; word-break: break-word; }
+  .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; color: #fff; font-weight: 600; margin-bottom: 10px;
+  }
+  .meta-row { font-size: 13px; color: var(--fg2); margin: 6px 0; }
+  .meta-row strong { color: var(--fg); }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; }
+  .tag {
+    font-size: 11px; padding: 2px 8px; border-radius: 10px;
+    background: var(--input-bg); color: var(--fg2); border: 1px solid var(--border);
+  }
+  #connected-list { list-style: none; margin-top: 6px; }
+  #connected-list li {
+    font-size: 12px; padding: 4px 0;
+    border-bottom: 1px solid var(--border); color: var(--fg2);
+  }
+  #connected-list li span.rel-type {
+    font-size: 10px; color: var(--stat-fg); margin-left: 4px;
+  }
+  #file-path { font-size: 11px; color: var(--stat-fg); margin-top: 12px; word-break: break-all; }
+  /* Legend */
+  #legend {
+    position: fixed; bottom: 16px; left: 16px; z-index: 10;
+    background: var(--surface); backdrop-filter: blur(8px);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  /* Error */
+  #error-msg {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    text-align: center; font-size: 16px; color: var(--fg2); display: none;
+  }
+  #error-msg code {
+    display: block; margin-top: 10px; font-size: 13px;
+    background: var(--input-bg); padding: 8px 14px; border-radius: 6px;
+  }
+  /* Responsive */
+  @media (max-width: 640px) {
+    #sidebar { width: 100%; right: -100%; }
+    #sidebar.open { right: 0; }
+    #legend { bottom: 8px; left: 8px; padding: 6px 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="search-row">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off" />
+    <button id="theme-btn">Dark</button>
+  </div>
+  <div id="stats"></div>
+</div>
+
+<svg id="graph"></svg>
+
+<div id="sidebar">
+  <button id="sidebar-close">&times;</button>
+  <h2 id="s-title"></h2>
+  <div id="s-badge" class="badge"></div>
+  <div class="meta-row"><strong>Confidence:</strong> <span id="s-conf"></span></div>
+  <div class="meta-row"><strong>Tags:</strong></div>
+  <div class="tag-list" id="s-tags"></div>
+  <div class="meta-row"><strong>Connected nodes:</strong></div>
+  <ul id="connected-list"></ul>
+  <div id="file-path"></div>
+</div>
+
+<div id="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#4A90D9"></div>Entity</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#50C878"></div>Concept</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#9B59B6"></div>Synthesis</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#E67E22"></div>QA-Insight</div>
+</div>
+
+<div id="error-msg">
+  <div>graph.json not found.</div>
+  <code>Run: python3 scripts/build_graph.py</code>
+</div>
+
+<script>
+(function() {
+  const TYPE_COLORS = {
+    entity: '#4A90D9', concept: '#50C878',
+    synthesis: '#9B59B6', 'qa-insight': '#E67E22'
+  };
+  const DEFAULT_COLOR = '#95a5a6';
+
+  const STRUCTURAL = new Set(['extends','implements','part_of','implemented_by']);
+  const CONFLICT   = new Set(['contradicts','supersedes']);
+
+  function edgeColor(rel) {
+    if (CONFLICT.has(rel))   return '#e74c3c';
+    if (STRUCTURAL.has(rel)) return '#888';
+    return '#aaa';
+  }
+
+  function nodeRadius(edgeCount, minE, maxE) {
+    if (maxE === minE) return 12;
+    const t = (edgeCount - minE) / (maxE - minE);
+    return 6 + t * 18; // 6..24
+  }
+
+  // Connected-components via BFS
+  function countComponents(nodes, edges) {
+    const adj = new Map();
+    nodes.forEach(n => adj.set(n.id, []));
+    edges.forEach(e => {
+      const s = typeof e.source === 'object' ? e.source.id : e.source;
+      const t = typeof e.target === 'object' ? e.target.id : e.target;
+      if (adj.has(s)) adj.get(s).push(t);
+      if (adj.has(t)) adj.get(t).push(s);
+    });
+    const visited = new Set();
+    let count = 0;
+    for (const n of nodes) {
+      if (visited.has(n.id)) continue;
+      count++;
+      const queue = [n.id];
+      while (queue.length) {
+        const cur = queue.pop();
+        if (visited.has(cur)) continue;
+        visited.add(cur);
+        (adj.get(cur) || []).forEach(nb => { if (!visited.has(nb)) queue.push(nb); });
+      }
+    }
+    return count;
+  }
+
+  function orphanCount(nodes, edges) {
+    const connected = new Set();
+    edges.forEach(e => {
+      connected.add(typeof e.source === 'object' ? e.source.id : e.source);
+      connected.add(typeof e.target === 'object' ? e.target.id : e.target);
+    });
+    return nodes.filter(n => !connected.has(n.id)).length;
+  }
+
+  // Theme
+  let dark = false;
+  const themeBtn = document.getElementById('theme-btn');
+  themeBtn.addEventListener('click', () => {
+    dark = !dark;
+    document.body.classList.toggle('dark', dark);
+    themeBtn.textContent = dark ? 'Light' : 'Dark';
+  });
+
+  // Load data
+  fetch('graph.json')
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => render(data))
+    .catch(() => { document.getElementById('error-msg').style.display = 'block'; });
+
+  function render(data) {
+    const nodes = data.nodes;
+    const edges = data.edges;
+
+    const edgeCounts = nodes.map(n => n.edge_count);
+    const minE = Math.min(...edgeCounts);
+    const maxE = Math.max(...edgeCounts);
+
+    // Stats
+    const comp = data.metadata ? data.metadata.component_count : countComponents(nodes, edges);
+    const orph = data.metadata ? data.metadata.orphan_count : orphanCount(nodes, edges);
+    document.getElementById('stats').textContent =
+      `Nodes: ${nodes.length}  |  Edges: ${edges.length}  |  Orphans: ${orph}  |  Components: ${comp}`;
+
+    // SVG setup
+    const svg = d3.select('#graph');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const g = svg.append('g');
+
+    // Zoom
+    const zoom = d3.zoom()
+      .scaleExtent([0.1, 8])
+      .on('zoom', (event) => g.attr('transform', event.transform));
+    svg.call(zoom);
+
+    // Simulation
+    const simulation = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(edges).id(d => d.id).distance(80))
+      .force('charge', d3.forceManyBody().strength(-200))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collide', d3.forceCollide().radius(d => nodeRadius(d.edge_count, minE, maxE) + 5));
+
+    // Edges
+    const link = g.append('g')
+      .selectAll('line')
+      .data(edges)
+      .join('line')
+      .attr('class', 'edge-line')
+      .attr('stroke', d => edgeColor(d.relation))
+      .attr('stroke-width', 1.5)
+      .attr('stroke-opacity', 0.4);
+
+    link.append('title').text(d => d.relation);
+
+    // Nodes group
+    const node = g.append('g')
+      .selectAll('g')
+      .data(nodes)
+      .join('g')
+      .attr('class', 'node-group');
+
+    // Circles
+    node.append('circle')
+      .attr('class', 'node-circle')
+      .attr('r', d => nodeRadius(d.edge_count, minE, maxE))
+      .attr('fill', d => TYPE_COLORS[d.type] || DEFAULT_COLOR)
+      .attr('stroke', d => d3.color(TYPE_COLORS[d.type] || DEFAULT_COLOR).darker(0.5));
+
+    // Labels
+    node.append('text')
+      .attr('class', 'node-label')
+      .attr('dx', d => nodeRadius(d.edge_count, minE, maxE) + 4)
+      .attr('dy', '0.35em')
+      .text(d => d.label);
+
+    // Drag
+    const drag = d3.drag()
+      .on('start', (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on('end', (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      });
+    node.call(drag);
+
+    // Tick
+    simulation.on('tick', () => {
+      link
+        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      node.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+
+    // Build adjacency for highlighting
+    const adjMap = new Map();
+    nodes.forEach(n => adjMap.set(n.id, { neighbors: new Set(), edges: [] }));
+    edges.forEach(e => {
+      const sId = typeof e.source === 'object' ? e.source.id : e.source;
+      const tId = typeof e.target === 'object' ? e.target.id : e.target;
+      if (adjMap.has(sId)) { adjMap.get(sId).neighbors.add(tId); adjMap.get(sId).edges.push(e); }
+      if (adjMap.has(tId)) { adjMap.get(tId).neighbors.add(sId); adjMap.get(tId).edges.push(e); }
+    });
+
+    // Click: highlight neighborhood + sidebar
+    let selectedId = null;
+
+    node.on('click', (event, d) => {
+      event.stopPropagation();
+      selectedId = d.id;
+      const neighbors = adjMap.get(d.id).neighbors;
+
+      node.select('circle').classed('faded', n => n.id !== d.id && !neighbors.has(n.id));
+      node.select('text').classed('faded', n => n.id !== d.id && !neighbors.has(n.id));
+      link.classed('faded', e => {
+        const sId = typeof e.source === 'object' ? e.source.id : e.source;
+        const tId = typeof e.target === 'object' ? e.target.id : e.target;
+        return sId !== d.id && tId !== d.id;
+      });
+
+      showSidebar(d, adjMap.get(d.id).edges, nodes);
+    });
+
+    // Double-click: zoom to node
+    node.on('dblclick', (event, d) => {
+      event.stopPropagation();
+      const r = nodeRadius(d.edge_count, minE, maxE);
+      const scale = 2;
+      const tx = width / 2 - d.x * scale;
+      const ty = height / 2 - d.y * scale;
+      svg.transition().duration(600)
+        .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    });
+
+    // Click background: reset
+    svg.on('click', () => {
+      selectedId = null;
+      node.select('circle').classed('faded', false);
+      node.select('text').classed('faded', false);
+      link.classed('faded', false);
+      document.getElementById('sidebar').classList.remove('open');
+    });
+
+    // Search
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) {
+        node.select('circle').classed('faded', false);
+        node.select('text').classed('faded', false);
+        link.classed('faded', false);
+        return;
+      }
+      node.select('circle').classed('faded', d => !d.label.toLowerCase().includes(q));
+      node.select('text').classed('faded', d => !d.label.toLowerCase().includes(q));
+      link.classed('faded', true);
+    });
+
+    // Resize
+    window.addEventListener('resize', () => {
+      simulation.force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2));
+      simulation.alpha(0.1).restart();
+    });
+  }
+
+  // Sidebar
+  function showSidebar(d, relEdges, allNodes) {
+    const sb = document.getElementById('sidebar');
+    sb.classList.add('open');
+
+    document.getElementById('s-title').textContent = d.label;
+
+    const badge = document.getElementById('s-badge');
+    badge.textContent = d.type;
+    badge.style.background = TYPE_COLORS[d.type] || DEFAULT_COLOR;
+
+    document.getElementById('s-conf').textContent = d.confidence != null ? d.confidence.toFixed(2) : '—';
+
+    const tagsEl = document.getElementById('s-tags');
+    tagsEl.innerHTML = '';
+    (d.tags || []).forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'tag';
+      span.textContent = t;
+      tagsEl.appendChild(span);
+    });
+
+    const nodeMap = new Map();
+    allNodes.forEach(n => nodeMap.set(n.id, n));
+
+    const list = document.getElementById('connected-list');
+    list.innerHTML = '';
+    const seen = new Set();
+    relEdges.forEach(e => {
+      const sId = typeof e.source === 'object' ? e.source.id : e.source;
+      const tId = typeof e.target === 'object' ? e.target.id : e.target;
+      const otherId = sId === d.id ? tId : sId;
+      const key = otherId + '|' + e.relation;
+      if (seen.has(key)) return;
+      seen.add(key);
+      const other = nodeMap.get(otherId);
+      const li = document.createElement('li');
+      li.innerHTML = `${other ? other.label : otherId} <span class="rel-type">${e.relation}</span>`;
+      list.appendChild(li);
+    });
+
+    document.getElementById('file-path').textContent = d.id;
+  }
+
+  document.getElementById('sidebar-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('sidebar').classList.remove('open');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+---
+description: "Batch ingest files from a folder using ralph-loop mechanism"
+argument-hint: "<folder_or_file_path>"
+---
+
+# wiki:ingest-loop
+
+批量处理 raw/ 中的源材料，逐个文件执行 ingest 流程。使用 ralph-loop 机制确保每个文件获得完整的 Claude 上下文。
+
+## 输入
+
+$ARGUMENTS — 文件夹路径或文件路径（相对于 vault/raw/）
+
+## 流程
+
+### 首次运行 — 设置阶段
+
+1. **运行设置脚本**
+   ```
+   Bash: bash scripts/setup-ingest-loop.sh "$ARGUMENTS"
+   ```
+   - 如果输出包含 `SINGLE_FILE=`，说明输入是单个文件，直接执行 wiki:ingest 逻辑处理该文件，跳过循环机制
+   - 如果设置成功，继续到步骤 2
+
+2. **读取状态文件**
+   - 读取 `.claude/ingest-loop.local.md` 获取文件列表和当前索引
+
+### 每次迭代
+
+3. **获取当前文件**
+   - 从状态文件读取 `files[current_index]`
+   - 如果 `current_index >= total`，跳到步骤 7
+
+4. **执行 ingest**
+   - 对当前文件执行完整的 wiki:ingest 流程：
+     - 读取源文件
+     - 提取实体和概念
+     - 查找已有页面（读取 index.md）
+     - 创建或更新 wiki 页面
+     - 建立关系
+     - 矛盾检查
+     - 更新 index.md 和 log.md
+   - 每个新建/更新的页面执行 BM25 更新：`Bash: python3 scripts/bm25_index.py update <wiki_file>`
+
+5. **更新状态**
+   - 读取 `.claude/ingest-loop.local.md`
+   - 将 `current_index` 加 1
+   - 将文件添加到 `completed[]`（成功）或 `failed[]`（失败）
+   - 写回状态文件
+
+6. **报告进度**
+   - 输出：`[current_index/total] Ingested: filename` 或 `Failed: filename — reason`
+
+### 完成处理
+
+7. **全部完成时**
+   - 运行 `Bash: python3 scripts/lint_wiki.py` 检查所有新创建的页面
+   - 输出最终摘要：创建/更新/跳过/失败 数量
+   - 删除状态文件：`Bash: rm .claude/ingest-loop.local.md`
+   - 输出：`<promise>ALL_FILES_INGESTED</promise>`
+
+## 质量要求
+
+- 每个页面必须满足 `_schema/quality-rules.md` 标准
+- 概述不超过 200 字
+- 中文为主，专有名词保留英文
+- 第一次提到的重要概念加 [[链接]]

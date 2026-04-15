@@ -7,5 +7,26 @@
       "Update(*)",
       "Bash(*)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash vault/scripts/hook_lint.sh \"$CLAUDE_TOOL_ARG_file_path\""
+          },
+          {
+            "type": "command",
+            "command": "bash vault/scripts/hook_bm25.sh \"$CLAUDE_TOOL_ARG_file_path\""
+          },
+          {
+            "type": "command",
+            "command": "bash vault/scripts/hook_graph.sh \"$CLAUDE_TOOL_ARG_file_path\""
+          }
+        ]
+      }
+    ]
   }
 }

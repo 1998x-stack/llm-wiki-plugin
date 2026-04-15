@@ -1,5 +1,44 @@
 # Changelog
 
+## [v2.0] - 2026-04-15
+
+### Added — Scripts Foundation
+- `scripts/bm25_index.py`: BM25 全文检索索引构建与查询（jieba 中文分词 + rank_bm25）
+- `scripts/build_graph.py`: 知识图谱 JSON 构建器（frontmatter + wikilink 提取，连通分量分析）
+- `scripts/lint_wiki.py`: Wiki 质量检查器（frontmatter 校验、链接完整性、index 一致性）
+- `scripts/qwen_ingest.py`: 通义千问 API 驱动的 wiki 页面提取（OpenAI 兼容接口）
+- `requirements.txt`: Python 依赖声明（jieba, rank_bm25, pyyaml, openai）
+
+### Added — Commands
+- `scripts/setup-ingest-loop.sh`: Ralph-loop 自动逐文件 ingest（Claude 驱动）
+- `scripts/setup-ingest-loop-qwen.sh`: Ralph-loop 自动逐文件 ingest（Qwen API 驱动）
+- `scripts/build_graph.py`: 知识图谱构建命令（`python3 scripts/build_graph.py`）
+- `vault/qa/`: QA 数据存放目录
+- `vault/wiki/qa-insights/`: QA 洞见提取输出目录
+
+### Added — Hooks & Automation
+- `scripts/hook_bm25.sh`: ingest 后自动重建 BM25 搜索索引
+- `scripts/hook_graph.sh`: ingest 后自动重建知识图谱 JSON
+- `scripts/hook_lint.sh`: ingest 后自动运行质量检查
+- `vault/log.hook.md`: Hook 执行日志
+- `scripts/setup-ingest-loop.sh`: Claude ingest-loop 自动化设置
+- `scripts/setup-ingest-loop-qwen.sh`: Qwen ingest-loop 自动化设置
+
+### Added — Documentation
+- `docs/wiki.md`: Wiki 系统技术文档
+- `USERGUIDE.md`: 完整用户指南（中文，覆盖安装、命令、工作流、排障）
+- `graph.html`: D3.js 交互式知识图谱可视化页面
+- `.github/workflows/deploy.yml`: GitHub Actions 自动部署 graph.html 到 GitHub Pages
+
+### Enhanced
+- `wiki:ingest` 命令：支持 hook 触发链（BM25 + graph + lint）
+- `wiki:query` 命令：集成 BM25 搜索结果作为候选来源
+- `wiki:lint` 命令：新增 Python lint 脚本后端支持
+- `templates/wiki-page.md`: 增加 confidence、sources、relates_to frontmatter 字段
+- `vault/CLAUDE.md`: 新增 hook 系统说明和 BM25 查询指引
+- `vault/_schema/CLAUDE.md`: 更新 ingest/query/lint 操作规范
+- `README.md`: 重写为专业 GitHub 项目 README（架构图、命令表、快速开始）
+
 ## [Unreleased]
 
 ### Phase 1 - 最小可行 vault (2026-04-15)
