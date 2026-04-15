@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_7">隐私与安全</h3>
 <p>系统引入了 <code>&lt;private&gt;</code> 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 <code>&lt;claude-mem-context&gt;</code> 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。</p>
 <h3 id="_8">项目现状</h3>
-<p>由 Alex Newman (<a href="Alex-Newman.html">Alex-Newman</a>) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
+<p>由 Alex Newman (<a href="Alex-Newman.html">@thedotmack</a>) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
 <h3 id="_9">数据库架构演进</h3>
 <p>系统经历了从 v3 到 v4 的重大重构：
 - <strong>v3 时代</strong>：采用粗粒度的 <code>sessions</code> -&gt; <code>memories</code> -&gt; <code>overviews</code> 模型，缺乏高效的全文检索能力，仅支持低效的 LIKE 查询。
@@ -200,13 +200,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_14">相关</h2>
 <ul>
 <li><a href="Claude-Code.html">Claude-Code</a></li>
-<li><a href="../concepts/LLM-Statelessness.html">LLM-Statelessness</a></li>
-<li><a href="Bun-Runtime.html">Bun-Runtime</a></li>
-<li><a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a></li>
-<li><a href="../concepts/渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a></li>
+<li><a href="../concepts/LLM-Statelessness.html">LLM Statelessness</a></li>
+<li><a href="Bun-Runtime.html">Bun Runtime</a></li>
+<li><a href="../concepts/Claude-Code-Hook-System.html">Claude Code Hook System</a></li>
+<li><a href="../concepts/渐进式披露-Progressive-Disclosure.html">渐进式披露</a></li>
 <li><a href="SQLite.html">SQLite</a></li>
 <li><a href="ChromaDB.html">ChromaDB</a></li>
-<li><a href="Alex-Newman.html">Alex-Newman</a></li>
+<li><a href="Alex-Newman.html">Alex Newman</a></li>
 <li><span style="color:#e74c3c" title="broken link">Lifecycle Hooks</span></li>
 <li><span style="color:#e74c3c" title="broken link">Worker Service</span></li>
 <li><span style="color:#e74c3c" title="broken link">Smart Install</span></li>
@@ -221,7 +221,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Claude-Code.html">&larr; Claude-Code</a>
-    <a href="DeepAgents.html">DeepAgents &rarr;</a>
+    <a href="Codex CLI.html">Codex CLI &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">生成函数</h1>
 <h2 id="_2">概述</h2>
-<p>生成函数（Generating Function，又称母函数）是将一个数列或概率分布编码为形式幂级数的数学工具：给定数列 {aₙ}，其生成函数为 G(x) = Σ aₙxⁿ。在<a href="概率论.html">概率论</a>中，生成函数将概率分布转化为代数对象，使得独立随机变量求和等运算变为幂级数乘法。这一工具由<a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>在《机会的学说》中引入，后经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>和欧拉大力发展，成为<a href="概率论.html">概率论</a>和<a href="组合数学.html">组合数学</a>的核心方法。</p>
+<p>生成函数（Generating Function，又称母函数）是将一个数列或概率分布编码为形式幂级数的数学工具：给定数列 {aₙ}，其生成函数为 G(x) = Σ aₙxⁿ。在<a href="概率论.html">概率论</a>中，生成函数将概率分布转化为代数对象，使得独立随机变量求和等运算变为幂级数乘法。这一工具由<a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>在《机会的学说》中引入，后经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>和欧拉大力发展，成为<a href="概率论.html">概率论</a>和<a href="组合数学.html">组合数学</a>的核心方法。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p><strong>概率生成函数（Probability Generating Function，PGF）</strong>：</p>
@@ -188,14 +188,14 @@ $$\phi_X(t) = E[e^{itX}]$$（MGF 的复数版本，总是存在的）</p>
 <li><strong>独立随机变量求和</strong>：直接相乘 PGF，无需卷积积分</li>
 <li><strong><a href="随机游走.html">随机游走</a>分析</strong>：生成函数方法简化了<a href="赌徒破产问题.html">赌徒破产问题</a>的求解</li>
 <li><strong>分支过程</strong>：Galton-Watson 过程（种群灭绝问题）通过 PGF 的不动点分析</li>
-<li><strong>保险理论</strong>：复合<a href="泊松分布.html">泊松分布</a>的索赔总额分布</li>
+<li><strong>保险理论</strong>：复合<a href="泊松分布.html">泊松过程</a>的索赔总额分布</li>
 </ol>
 <h3 id="_7">发展历史</h3>
 <ul>
 <li><strong>De Moivre（1718）</strong>：引入概率生成函数，用于计算赌博游戏的概率</li>
 <li><strong>欧拉（1748）</strong>：将生成函数系统化，用于数论和<a href="组合数学.html">组合数学</a></li>
-<li><strong><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1812）</strong>：发展矩生成函数，用于<a href="中心极限定理.html">中心极限定理</a>的证明</li>
-<li><strong>现代<a href="概率论.html">概率论</a></strong>：特征函数成为证明弱收敛（<a href="中心极限定理.html">中心极限定理</a> 等）的标准工具</li>
+<li><strong><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>（1812）</strong>：发展矩生成函数，用于<a href="中心极限定理.html">中心极限定理</a>的证明</li>
+<li><strong>现代<a href="概率论.html">概率论</a></strong>：特征函数成为证明弱收敛（<a href="中心极限定理.html">CLT</a> 等）的标准工具</li>
 </ul>
 <h2 id="_8">意义</h2>
 <p>生成函数将<strong>组合/概率问题转化为分析/代数问题</strong>，是<a href="概率论.html">概率论</a>从离散组合阶段进入连续分析阶段的重要工具之一。它揭示了一个深刻的思想：将数列"打包"为函数后，函数的性质（导数、乘积、零点等）对应数列的组合/概率性质。</p>

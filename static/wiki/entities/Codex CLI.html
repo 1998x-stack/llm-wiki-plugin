@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex CLI — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Codex CLI</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="codex-cli">Codex CLI</h1>
+<p>OpenAI 以 Rust 重写并开源的<strong>本地编码 Agent</strong>。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读仓库、改文件、跑命令。</p>
+<h2 id="_1">一句话定义</h2>
+<p><strong>LLM 推理引擎 + OS 级沙箱执行器 + 人机协同审批协议 + MCP 协议总线</strong></p>
+<h2 id="_2">整体分层架构</h2>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>组件</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户接入层</td>
+<td>TUI / codex exec / App Server</td>
+<td>用户交互入口</td>
+</tr>
+<tr>
+<td>会话管理层</td>
+<td>Session Store / Transcript / Resume / Subagent Pool</td>
+<td>会话持久化</td>
+</tr>
+<tr>
+<td>Agent Core</td>
+<td>codex-rs/core</td>
+<td>业务逻辑、Model I/O、Tool Dispatch</td>
+</tr>
+<tr>
+<td>策略层</td>
+<td><a href="../concepts/ExecPolicy.html">ExecPolicy</a></td>
+<td><span style="color:#e74c3c" title="broken link">ExecPolicy&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;协议层&lt;/td&gt;
+&lt;td&gt;[[MCP协议层</span></td>
+<td>双向 MCP：客户端连工具，服务端暴露自身</td>
+</tr>
+<tr>
+<td>沙箱层</td>
+<td><a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a></td>
+<td>macOS Seatbelt / Linux Landlock+seccomp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c1c9">核心组件（C1–C9）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>组件</th>
+<th>主要文件/crate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>TUI</td>
+<td><code>codex-rs/tui/</code></td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Exec Engine</td>
+<td><code>core/exec.rs</code>, <code>core/spawn.rs</code></td>
+</tr>
+<tr>
+<td>C3</td>
+<td><a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a></td>
+<td><code>linux-sandbox/</code>, macOS seatbelt</td>
+</tr>
+<tr>
+<td>C4</td>
+<td><a href="../concepts/ExecPolicy.html">ExecPolicy</a></td>
+<td><code>codex-rs/execpolicy/</code></td>
+</tr>
+<tr>
+<td>C5</td>
+<td><a href="../concepts/Codex会话管理器.html">Codex会话管理器</a></td>
+<td><code>core/session*.rs</code></td>
+</tr>
+<tr>
+<td>C6</td>
+<td><a href="../concepts/MCP协议层.html">MCP协议层</a></td>
+<td>protocol, mcp-server</td>
+</tr>
+<tr>
+<td>C7</td>
+<td><a href="../concepts/Codex多Agent调度.html">Codex多Agent调度</a></td>
+<td><code>core/subagent*.rs</code></td>
+</tr>
+<tr>
+<td>C8</td>
+<td><a href="../concepts/Codex配置系统.html">Codex配置系统</a></td>
+<td><code>config.toml</code></td>
+</tr>
+<tr>
+<td>C9</td>
+<td>Model Layer</td>
+<td><code>core/model*.rs</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">关键架构决策</h2>
+<h3 id="rust">Rust 重写</h3>
+<p>原版为 TypeScript，2025 年迁移 Rust 的核心理由：
+- <strong>原生沙箱绑定</strong>：Landlock/seccomp 必须在系统调用层做，应用层做不到
+- 零依赖静态二进制，消除 Node.js runtime 依赖
+- 确定性内存，无 GC 抖动
+- 真并发（Tokio async/await）</p>
+<blockquote>
+<p>工程智慧：选 Rust 不只是"性能更好"，更是为了<strong>在内核层做安全隔离</strong>。</p>
+</blockquote>
+<h3 id="policy-first">Policy-First 设计</h3>
+<p>先声明策略，再执行——而非"先执行再道歉"：</p>
+<pre><code>[用户配置] approval_policy + sandbox_mode
+         ↓
+[ExecPolicy] 每条命令过策略引擎
+         ↓
+[Sandbox]  OS 内核强制执行
+</code></pre>
+<p>策略层（意图）与沙箱层（执行边界）独立但协同，沙箱兜底。</p>
+<h3 id="wire-protocol">Wire Protocol 解耦</h3>
+<p>核心业务逻辑通过 Wire Protocol（<code>codex-rs/protocol</code>）与 UI 层解耦：
+- TUI、App Server、IDE Extension 共用同一个 <code>core</code> crate
+- 支持 Python/TypeScript 客户端通过协议接入
+- Codex 自身可作为 MCP Server 被其他 Agent 调用</p>
+<h2 id="_4">三道防线（不确定性 → 确定性）</h2>
+<p>LLM 输出是随机的，系统执行必须是可控的，用三道防线解决：</p>
+<ol>
+<li><strong>ExecPolicy（意图过滤）</strong> — allow / prompt / forbidden 三态决策</li>
+<li><strong>Approval Gate（人机协同）</strong> — 不确定命令暂停等待人类批准</li>
+<li><strong>OS Sandbox（执行隔离）</strong> — 内核级强制，LLM 无法绕过</li>
+</ol>
+<h2 id="_5">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/01_codex_architecture_overview.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Claude-Mem.html">&larr; Claude-Mem</a>
+    <a href="DeepAgents.html">DeepAgents &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

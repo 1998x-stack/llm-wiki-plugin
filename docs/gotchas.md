@@ -14,7 +14,7 @@ Issues are split into topical files under `docs/gotchas/`.
 | [knowledge-graph.md](gotchas/knowledge-graph.md) | Cross-domain connections, fix checklist | #9 |
 | [code-review-bugs.md](gotchas/code-review-bugs.md) | V2.1-V2.3 code review (12 bugs fixed) | #10 |
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
-| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math | #15-17 |
+| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math, B1 false-positive in code blocks | #15-17, #35 |
 | [v3.3-refactor.md](gotchas/v3.3-refactor.md) | wiki_utils, dedup, QA pipeline, XSS, debounce | #18-27 |
 | [v3.4-relink-reorganize.md](gotchas/v3.4-relink-reorganize.md) | relink substring matching, bold markers, hooks, macOS case, re-map.json, lint removal | #28-34 |
 
@@ -22,7 +22,7 @@ Issues are split into topical files under `docs/gotchas/`.
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| Fixed | 18 | Code bugs, script issues, XSS, edge directionality, macOS case-insensitive |
+| Fixed | 19 | Code bugs, script issues, XSS, edge directionality, macOS case-insensitive, B1 false-positive in code blocks |
 | Documented | 12 | yaml fallback, pickle, debounce, qa/ deprecation, relink substring, bold markers, hooks, re-map.json, 来源 boundary, lint removal |
 | Open | 4 | Remaining ingest files, broken links, source format, dedup semantic matching |
 

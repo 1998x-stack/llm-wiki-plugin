@@ -56,3 +56,22 @@ Hook 仅在 Write/Edit 到 `wiki/**/*.md` 时触发，但新创建的页面需�
 否则 M2 检查持续报告这些页面"未收录于任何主题图"。
 
 **修复**：每次批量 ingest 后运行 `wiki:lint`，按 M2 列表逐一将新页面加入对应 maps 文件。
+
+---
+
+## #35 — B1: lint_wiki.py 误报代码块内的 TOML [[table]] 语法为断链
+
+**Status**: Fixed (2026-04-15)
+
+`lint_wiki.py` 的 B1（断链）检查器使用正则扫描全文，**不跳过 fenced code block（` ``` ` 区块）内的内容**。
+因此，TOML 的数组表语法 `[[rule]]` 以及嵌套数组字面量 `[["git", "status"]]` 会被误识别为 wikilink，触发 B1 警告：
+
+```
+[WARN] B1 wiki/concepts/ExecPolicy.md: Broken link: [[rule]]
+[WARN] B1 wiki/concepts/ExecPolicy.md: Broken link: [["git", "push", "origin"]]
+[WARN] B1 wiki/concepts/ExecPolicy.md: Broken link: [["git", "status"]]
+```
+
+**When it bites**: 任何 wiki 页面的代码块中包含 `[[...]]` 形式的文本时都会触发，典型场景：TOML（`[[section]]`）、Python 列表嵌套（`[[a, b], [c, d]]`）、Markdown 表格内的 wikilink 示例。
+
+**Workaround/Fix**: 将代码块中包含 `[[...]]` 的 TOML 示例改为注释风格（`# key = value`）或纯文字描述，避免在代码块里出现双方括号。根本修复需在 `lint_wiki.py` 的 B1 检查前先剥离 fenced code block 内容再扫描。

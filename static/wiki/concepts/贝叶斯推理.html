@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">贝叶斯推理</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理（Bayesian Inference）是一种统计推断范式：将未知参数视为随机变量，通过<a href="贝叶斯定理.html">贝叶斯定理</a>将先验信念与观测数据结合，得到后验分布，从而不断更新对参数的认识。由<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>（1763年）创立逆概率框架，经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1774年独立发展并系统化），在20世纪计算能力提升后成为统计学和机器学习的核心范式之一，与频率学派形成两大统计推断传统。</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理（Bayesian Inference）是一种统计推断范式：将未知参数视为随机变量，通过<a href="贝叶斯定理.html">贝叶斯定理</a>将先验信念与观测数据结合，得到后验分布，从而不断更新对参数的认识。由<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>（1763年）创立逆概率框架，经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1774年独立发展并系统化），在20世纪计算能力提升后成为统计学和机器学习的核心范式之一，与频率学派形成两大统计推断传统。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心框架：先验 → 似然 → 后验</h3>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理的完整流程：</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理的完整流程：</p>
 <p>$$\underbrace{p(\theta \mid x)}<em>{\text{后验}} \propto \underbrace{p(x \mid \theta)}</em>{\text{似然}} \cdot \underbrace{p(\theta)}_{\text{先验}}$$</p>
 <table>
 <thead>
@@ -172,8 +172,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">与频率学派的根本分歧</h3>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理与频率学派（经典统计）在哲学上有根本分歧：</p>
-<p>| 维度 | 频率学派 | <a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>学派 |
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理与频率学派（经典统计）在哲学上有根本分歧：</p>
+<p>| 维度 | 频率学派 | <a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>学派 |
 |------|---------|---------|
 | 概率的含义 | 长期频率（客观的） | 信念程度（主观的或逻辑的） |
 | 参数的性质 | 固定但未知的常数 | 随机变量，有概率分布 |
@@ -181,11 +181,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 | 先验信息 | 不使用（客观性要求） | 显式编码先验信念 |
 | 不确定性表达 | 置信区间（频率意义） | 可信区间（概率意义） |</p>
 <h3 id="_6">贝叶斯方法的历史起源</h3>
-<p><strong>逆概率问题</strong>（Bayes, 1763年）：在当时，<a href="概率论.html">概率论</a>只能回答"已知 p，n 次试验 k 次成功的概率？"（正向问题）。<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>首次系统解决了<strong>逆向问题</strong>：已知 k 次成功，p 的分布是什么？</p>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>的关键洞见是将 p 视为随机变量，赋予其先验分布（均匀分布），然后通过观测数据计算后验分布。这在当时是概念上的革命：参数不再是"未知的固定常数"，而是有分布的随机量。</p>
-<p><strong><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>的独立发展（1774年）</strong>：<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>独立提出了更一般化的逆概率方法，并应用于天文学（彗星轨道推断）和人口统计学。由于<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>的工作更加完整和系统，<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>思想的实际传播主要通过<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>的工作实现。</p>
+<p><strong>逆概率问题</strong>（Bayes, 1763年）：在当时，<a href="概率论.html">概率论</a>只能回答"已知 p，n 次试验 k 次成功的概率？"（正向问题）。<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>首次系统解决了<strong>逆向问题</strong>：已知 k 次成功，p 的分布是什么？</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>的关键洞见是将 p 视为随机变量，赋予其先验分布（均匀分布），然后通过观测数据计算后验分布。这在当时是概念上的革命：参数不再是"未知的固定常数"，而是有分布的随机量。</p>
+<p><strong><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的独立发展（1774年）</strong>：<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>独立提出了更一般化的逆概率方法，并应用于天文学（彗星轨道推断）和人口统计学。由于<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的工作更加完整和系统，<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>思想的实际传播主要通过<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的工作实现。</p>
 <h3 id="_7">先验分布的选择问题</h3>
-<p>先验选择是<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理中最具争议的问题：</p>
+<p>先验选择是<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理中最具争议的问题：</p>
 <table>
 <thead>
 <tr>
@@ -198,45 +198,26 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>均匀先验</td>
 <td>"无差别原则"，所有值等可能</td>
-<td>p ~ U[0,1]（<span style="color:#e74c3c" title="broken link">托马斯·贝叶斯&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;共轭先验&lt;/td&gt;
-&lt;td&gt;后验与先验同族，计算便利&lt;/td&gt;
-&lt;td&gt;Beta-Binomial 共轭对&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Jeffreys 先验&lt;/td&gt;
-&lt;td&gt;关于参数变换不变的&quot;客观&quot;先验&lt;/td&gt;
-&lt;td&gt;由 Harold Jeffreys 提出&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;弱信息先验&lt;/td&gt;
-&lt;td&gt;编码极弱的领域知识&lt;/td&gt;
-&lt;td&gt;现代[[托马斯·贝叶斯&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;[[托马斯·贝叶斯</span>本人假设均匀先验（"在没有任何信息时，所有可能值等概率"），但这引发了持续至今的哲学争论：先验的"客观性"究竟是否可能？</p>
+<td>p ~ U[0,1]（<span style="color:#e74c3c" title="broken link">贝叶斯</span>本人假设均匀先验（"在没有任何信息时，所有可能值等概率"），但这引发了持续至今的哲学争论：先验的"客观性"究竟是否可能？</p>
 <h3 id="_8">先验影响随数据减弱</h3>
 <p>一个关键性质：<strong>随着数据量增加，先验的影响逐渐减弱，后验主要由数据决定</strong>。这与<a href="大数定律.html">大数定律</a>相呼应——足够多的数据会"淹没"任何合理的先验选择。</p>
-<p>形式上：若数据量 n → ∞，则后验分布趋近于以真实参数为中心的点质量（频率学派和<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>学派结论收敛）。</p>
+<p>形式上：若数据量 n → ∞，则后验分布趋近于以真实参数为中心的点质量（频率学派和<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>学派结论收敛）。</p>
 <h3 id="_9">现代应用</h3>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理在计算能力提升（尤其是 MCMC 方法，1990年代以来）后获得爆发式发展：</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理在计算能力提升（尤其是 MCMC 方法，1990年代以来）后获得爆发式发展：</p>
 <ul>
-<li><strong>机器学习</strong>：朴素<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>分类器、<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>网络、高斯过程、变分推断（VAE）</li>
-<li><strong>垃圾邮件过滤</strong>：朴素<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>是最早成功的邮件过滤算法</li>
-<li><strong>临床试验</strong>：自适应<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>设计，可以在试验进行中更新分析</li>
-<li><strong>信号处理</strong>：<a href="卡尔曼滤波.html">卡尔曼滤波</a>（线性高斯<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>滤波）在导航、追踪中广泛应用</li>
-<li><strong>大型语言模型</strong>：正则化和先验在某种意义上等价于<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>先验</li>
+<li><strong>机器学习</strong>：朴素<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>分类器、<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>网络、高斯过程、变分推断（VAE）</li>
+<li><strong>垃圾邮件过滤</strong>：朴素<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>是最早成功的邮件过滤算法</li>
+<li><strong>临床试验</strong>：自适应<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>设计，可以在试验进行中更新分析</li>
+<li><strong>信号处理</strong>：<a href="卡尔曼滤波.html">卡尔曼滤波</a>（线性高斯<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>滤波）在导航、追踪中广泛应用</li>
+<li><strong>大型语言模型</strong>：正则化和先验在某种意义上等价于<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>先验</li>
 </ul>
 <h3 id="vs">历史争议：频率学派 vs 贝叶斯学派</h3>
 <p>20世纪统计学的两大主导思想之间存在激烈争论：
 - <strong>频率学派</strong>（Neyman-Pearson, Fisher）：先验是主观的，科学方法应排除主观性
-- <strong><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>学派</strong>（Jeffreys, Savage, de Finetti）：不确定性的唯一一致度量是概率，先验是信息的编码</p>
+- <strong><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>学派</strong>（Jeffreys, Savage, de Finetti）：不确定性的唯一一致度量是概率，先验是信息的编码</p>
 <p>随着计算能力提升，21世纪的实践中两者越来越互补而非对立。</p>
 <h2 id="_10">意义</h2>
-<p><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>推理提供了<strong>"根据证据更新信念"</strong>的数学框架，这正是科学推理的核心。它将科学方法中隐含的推理过程（观察→假说修正→再观察）形式化为数学运算，是连接哲学认识论与应用统计学的桥梁。</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理提供了<strong>"根据证据更新信念"</strong>的数学框架，这正是科学推理的核心。它将科学方法中隐含的推理过程（观察→假说修正→再观察）形式化为数学运算，是连接哲学认识论与应用统计学的桥梁。</p>
 <h2 id="_11">来源</h2>
 <ul>
 <li>raw/books/概率论/05_bayes_essay_inverse_probability.md</li>

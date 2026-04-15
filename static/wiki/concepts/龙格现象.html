@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">龙格现象</h1>
 <h2 id="_2">概述</h2>
-<p>龙格现象（Runge's phenomenon）由德国数学家<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>（<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>）于 1901 年发现：以<strong>等距节点</strong>对连续函数进行多项式插值时，随节点数增加，插值多项式在区间端点附近的误差不仅不收敛，反而急剧发散。这一反直觉的发现动摇了"节点越多插值越好"的朴素认知，成为揭示<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>必要性的经典反例。</p>
+<p>龙格现象（Runge's phenomenon）由德国数学家<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>（<a href="../entities/卡尔·龙格.html">Carl Runge</a>）于 1901 年发现：以<strong>等距节点</strong>对连续函数进行多项式插值时，随节点数增加，插值多项式在区间端点附近的误差不仅不收敛，反而急剧发散。这一反直觉的发现动摇了"节点越多插值越好"的朴素认知，成为揭示<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>必要性的经典反例。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">龙格函数</h3>
 <p><strong>标准反例</strong>（龙格函数）：$f(x) = \dfrac{1}{1+25x^2}$，$x\in[-1,1]$</p>
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right), \quad k=1,\ldots,n+1$$</p>
 <p>这些节点在端点附近更密集，使 $\max|\omega_{n+1}(x)| = 1/2^n$（理论最小值），从根本上避免了龙格现象。</p>
 <p>其他缓解手段（效果有限）：
-- <a href="样条方法.html">样条方法</a>（分段低次多项式）
+- <a href="样条方法.html">样条插值</a>（分段低次多项式）
 - 增加正则化约束
 - 有理逼近（Padé）</p>
 <h3 id="_7">勒贝格常数：发散的深层机制</h3>

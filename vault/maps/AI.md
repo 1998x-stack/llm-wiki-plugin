@@ -1,7 +1,7 @@
 ---
 type: map
 topic: "AI"
-page_count: 53
+page_count: 62
 updated: 2026-04-15
 ---
 
@@ -9,6 +9,13 @@ updated: 2026-04-15
 
 ## 概念
 
+- [[Codex TUI]] — [[Codex CLI]] 的"驾驶舱"——不是简单的 REPL，而是一个**事件驱动状态机**，承担实时审批、diff 预览、会话导航、多 Agent 状态展示等功能。 (confidence: 0.9)
+- [[Codex会话管理器]] — [[Codex CLI]] 的上下文持久化层，解决 LLM 天然无状态与工程任务有状态之间的矛盾。通过 Session 持久化、Transcript 存储和 Resume 机制，将 Agent 变成"有记忆的协作者"。 (confidence: 0.9)
+- [[Codex多Agent调度]] — [[Codex CLI]] 的并行任务执行系统，让 Codex 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。 (confidence: 0.9)
+- [[Codex沙箱系统]] — [[Codex CLI]] 的执行边界层，用**操作系统内核级机制**限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截。 (confidence: 0.9)
+- [[Codex配置系统]] — [[Codex CLI]] 的"神经系统"，控制每一个可调行为。不是简单的配置文件，而是一个**多层继承、可版本化、环境感知**的配置管理体系。 (confidence: 0.9)
+- [[ExecPolicy]] — [[Codex CLI]] 的命令审批引擎：将"哪些命令允许、哪些需要审批、哪些禁止"变成可版本化、可测试、可共享的**策略声明文件**。 (confidence: 0.9)
+- [[MCP协议层]] — [[Codex CLI]] 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent 解耦。 (confidence: 0.9)
 - [[ACP协议]] — **Agent Client Protocol（ACP）** 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和 (confidence: 0.85)
 - [[AI设计推理层]] — AI 设计推理层是一种在 AI 助手生成 UI 代码**之前**插入专业设计决策过程的架构模式：通过知识库驱动的检索+推理，将用户的自然语言请求转化为产品类型专 (confidence: 0.88)
 - [[Agent Harness模式]] — **Agent Harness**（"马具"）是一种 AI Agent 工程架构模式：**不**从零实现 Agent 运行时，而是在现有 LLM 框架（如 La (confidence: 0.9)
@@ -44,6 +51,7 @@ updated: 2026-04-15
 
 - [[Boston Dynamics]] — Boston Dynamics 是一家世界领先的机器人工程公司，成立于 1992 年，由著名机器人学家 [[Marc H. Raibert]] 从麻省理工学院（ (confidence: 1.0)
 - [[Brian Gerkey]] — Brian Gerkey 是著名的机器人学家和开源软件倡导者，**ROS **([[ROS (Robot Operating System)|Robot Ope (confidence: 0.95)
+- [[Codex CLI]] — OpenAI 以 Rust 重写并开源的**本地编码 Agent**。一套把 LLM 决策与 OS 级执行边界融合的系统工程——LLM 推理引擎 + OS 级沙箱执行器 + 人机协同审批协议 + MCP 协议总线。 (confidence: 0.9)
 - [[ChromaDB]] — ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（Embeddings）。它支持 (confidence: 0.85)
 - [[Claude-Code]] — Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haik (confidence: 0.95)
 - [[DeepAgents]] — LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagen (confidence: 0.95)

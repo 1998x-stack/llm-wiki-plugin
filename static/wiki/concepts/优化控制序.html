@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">优化控制序</h1>
 <h2 id="_2">概述</h2>
-<p>优化控制序（Majorization）是一种刻画向量"分散程度"的偏序关系：向量 $x$ 被 $y$ 控制（$x \prec y$），直觉上意味着 $x$ 比 $y$ 更"均匀分散"。精确定义：$x \prec y \iff$ 对所有 $k$，$\sum_{i=1}^k x_{[i]} \leq \sum_{i=1}^k y_{[i]}$，且 $\sum_i x_i = \sum_i y_i$（其中 $x_{[1]}\geq\cdots$ 为降序排列）。在<a href="矩阵.html">矩阵</a>分析中，<a href="Ky Fan不等式.html">Ky Fan不等式</a>等价于 $\lambda(A+B) \prec_w \lambda(A)+\lambda(B)$（弱控制），而 Lidskii 不等式、<a href="奇异值分解.html">奇异值分解</a>不等式等均可统一表述为控制序关系。该理论连接了<a href="矩阵.html">矩阵</a>谱理论、量子信息、统计热力学等多个领域。</p>
+<p>优化控制序（Majorization）是一种刻画向量"分散程度"的偏序关系：向量 $x$ 被 $y$ 控制（$x \prec y$），直觉上意味着 $x$ 比 $y$ 更"均匀分散"。精确定义：$x \prec y \iff$ 对所有 $k$，$\sum_{i=1}^k x_{[i]} \leq \sum_{i=1}^k y_{[i]}$，且 $\sum_i x_i = \sum_i y_i$（其中 $x_{[1]}\geq\cdots$ 为降序排列）。在<a href="矩阵.html">矩阵</a>分析中，<a href="Ky Fan不等式.html">Ky Fan不等式</a>等价于 $\lambda(A+B) \prec_w \lambda(A)+\lambda(B)$（弱控制），而 Lidskii 不等式、<a href="奇异值分解.html">奇异值</a>不等式等均可统一表述为控制序关系。该理论连接了<a href="矩阵.html">矩阵</a>谱理论、量子信息、统计热力学等多个领域。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p><strong>控制序（Majorization）</strong>：$x \prec y$（$x$ 被 $y$ 控制）$\iff$
@@ -145,29 +145,29 @@ $$\sum_{i=1}^k x_{[i]} \leq \sum_{i=1}^k y_{[i]}, \quad k=1,\ldots,n-1, \quad \t
 <p><strong>直觉</strong>：$x \prec y$ 意味着 $x$ 是 $y$ 的"平均化"结果——$y$ 的元素分散程度更大，$x$ 更均匀。</p>
 <p><strong>等价刻画（Birkhoff 定理的推论）</strong>：$x \prec y \iff x = Dy$，其中 $D$ 为双随机<a href="矩阵.html">矩阵</a>（行列和均为1的非负<a href="矩阵.html">矩阵</a>）。</p>
 <h3 id="schur-">Schur-凸函数</h3>
-<p>函数 $\phi: \mathbb{R}^n \to \mathbb{R}$ 称为 <strong><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>-凸</strong>（<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>-convex），若 $x \prec y \Rightarrow \phi(x) \leq \phi(y)$。等价于 $\phi$ 是置换不变的且满足单调性条件。</p>
-<p><strong>重要的 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>-凸函数</strong>：
+<p>函数 $\phi: \mathbb{R}^n \to \mathbb{R}$ 称为 <strong><a href="../entities/伊赛·舒尔.html">Schur</a>-凸</strong>（<a href="../entities/伊赛·舒尔.html">Schur</a>-convex），若 $x \prec y \Rightarrow \phi(x) \leq \phi(y)$。等价于 $\phi$ 是置换不变的且满足单调性条件。</p>
+<p><strong>重要的 <a href="../entities/伊赛·舒尔.html">Schur</a>-凸函数</strong>：
 - $\phi(x) = \sum_i f(x_i)$，对凸函数 $f$（如 $f(t)=e^t, t^2, t\log t$）
 - $\phi(x) = \sum_{i=1}^k x_{[i]}$（Fan $k$-范数对特征值的定义）
 - $\phi(x) = \prod_{i=1}^k x_{[i]}$（前 $k$ 项之积）</p>
 <h3 id="_5">矩阵分析中的控制序</h3>
-<p><strong>特征值加法（<a href="../entities/樊畿.html">樊畿</a> 不等式，1949）</strong>：
+<p><strong>特征值加法（<a href="../entities/樊畿.html">Ky Fan</a> 不等式，1949）</strong>：
 $$\lambda(A+B) \prec_w \lambda(A) + \lambda(B)$$</p>
-<p><strong><a href="矩阵扰动理论.html">矩阵扰动理论</a>（Lidskii 不等式，1950）</strong>：
+<p><strong><a href="矩阵扰动理论.html">特征值扰动</a>（Lidskii 不等式，1950）</strong>：
 $$\lambda(A) - \lambda(B) \prec \lambda(A-B)$$</p>
-<p><strong><a href="奇异值分解.html">奇异值分解</a>（von Neumann <a href="Von Neumann迹不等式.html">Von Neumann迹不等式</a>，1937）</strong>：
-$$|\operatorname{tr}(A^*B)| \leq \sum_i \sigma_i(A)\sigma_i(B) \iff \sigma(\operatorname{Re}\,\operatorname{tr}) \text{ 被<a href="奇异值分解.html">奇异值分解</a>有序积控制}$$</p>
-<p><strong><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>-Horn 定理（1954）</strong>：$n \times n$ Hermitian <a href="矩阵.html">矩阵</a>对角元素向量 $d$ 与特征值向量 $\lambda$ 满足 $d \prec \lambda$；反之，对任意 $d \prec \lambda$，存在 Hermitian <a href="矩阵.html">矩阵</a>以 $d$ 为对角、以 $\lambda$ 为特征值。</p>
+<p><strong><a href="奇异值分解.html">奇异值</a>（von Neumann <a href="Von Neumann迹不等式.html">迹不等式</a>，1937）</strong>：
+$$|\operatorname{tr}(A^*B)| \leq \sum_i \sigma_i(A)\sigma_i(B) \iff \sigma(\operatorname{Re}\,\operatorname{tr}) \text{ 被<a href="奇异值分解.html">奇异值</a>有序积控制}$$</p>
+<p><strong><a href="../entities/伊赛·舒尔.html">Schur</a>-Horn 定理（1954）</strong>：$n \times n$ Hermitian <a href="矩阵.html">矩阵</a>对角元素向量 $d$ 与特征值向量 $\lambda$ 满足 $d \prec \lambda$；反之，对任意 $d \prec \lambda$，存在 Hermitian <a href="矩阵.html">矩阵</a>以 $d$ 为对角、以 $\lambda$ 为特征值。</p>
 <h3 id="horn">Horn 猜想与完整刻画</h3>
 <p><a href="Ky Fan不等式.html">Ky Fan不等式</a>给出了 $\lambda(A+B)$ 被 $\lambda(A), \lambda(B)$ 控制的<strong>必要条件</strong>。Horn（1962）猜测并最终由 Klyachko（1998）和 Knutson-Tao（1999）证明：</p>
 <blockquote>
-<p>三组实数 $\alpha, \beta, \gamma$ 是某三个 Hermitian <a href="矩阵.html">矩阵</a> $A, B, C = A+B$ 的特征值的充要条件，由一组递归定义的不等式系统（包含 <a href="../entities/樊畿.html">樊畿</a> 型不等式作为特例）完整描述。</p>
+<p>三组实数 $\alpha, \beta, \gamma$ 是某三个 Hermitian <a href="矩阵.html">矩阵</a> $A, B, C = A+B$ 的特征值的充要条件，由一组递归定义的不等式系统（包含 <a href="../entities/樊畿.html">Ky Fan</a> 型不等式作为特例）完整描述。</p>
 </blockquote>
 <p>这一完整刻画将<a href="矩阵.html">矩阵</a>特征值不等式与 Schubert 演算、量子上同调、表示论深刻联系，是21世纪初数学的重大成就。</p>
 <h3 id="_6">应用</h3>
 <p><strong>量子信息</strong>：密度<a href="矩阵.html">矩阵</a>特征值的 majorization 是量子态转换（Nielsen 1999）和量子纠缠蒸馏的充要条件；von Neumann 熵 $H(\rho) = -\operatorname{tr}(\rho\log\rho)$ 的次可加性由 majorization 导出。</p>
 <p><strong>统计热力学</strong>：热力学第二定律（熵增）等价于系统状态概率向量的 majorization 关系。</p>
-<p><strong>优化与凸分析</strong>：majorization 的 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>-凸函数理论提供了对称凸优化问题的统一框架，用于证明最优性条件。</p>
+<p><strong>优化与凸分析</strong>：majorization 的 <a href="../entities/伊赛·舒尔.html">Schur</a>-凸函数理论提供了对称凸优化问题的统一框架，用于证明最优性条件。</p>
 <p><strong><a href="矩阵.html">矩阵</a>补全/核范数</strong>：核范数（Fan $n$-范数）作为秩的凸松弛在 majorization 框架中有自然定位。</p>
 <h2 id="_7">来源</h2>
 <ul>

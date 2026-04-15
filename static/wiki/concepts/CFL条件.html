@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="cfl_1">CFL 条件与稳定性</h3>
 <p>CFL 条件是<strong>必要条件</strong>，不是充分条件：满足 CFL 条件的格式还可能因截断误差、耗散误差等原因不稳定。</p>
 <p>但对许多常用格式，CFL 条件恰好同时是稳定性的充要条件（如上述显式中心差分格式）。<a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>提供了精确验证：当 $\nu &gt; 1$ 时，至少一个傅里叶模式的放大因子 $&gt; 1$，误差指数增长。</p>
-<p><strong>Lax 等价定理</strong>（<a href="../entities/彼得·拉克斯.html">彼得·拉克斯</a>，1956）：对一致性差分格式，稳定性 ⟺ 收敛性。CFL 条件所代表的稳定性要求因此是收敛性的充要条件（在一致性保证的前提下）。</p>
+<p><strong>Lax 等价定理</strong>（<a href="../entities/彼得·拉克斯.html">Peter Lax</a>，1956）：对一致性差分格式，稳定性 ⟺ 收敛性。CFL 条件所代表的稳定性要求因此是收敛性的充要条件（在一致性保证的前提下）。</p>
 <h3 id="_5">热传导方程的类比</h3>
 <p>对显式差分格式的<strong>抛物型方程</strong>（热传导 $u_t = \alpha u_{xx}$），类似稳定性条件为：</p>
 <p>$$\frac{\alpha \Delta t}{(\Delta x)^2} \leq \frac{1}{2}$$</p>

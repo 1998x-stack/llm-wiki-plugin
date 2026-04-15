@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计哲学</strong>：正确性是门槛，效率是优化方向。不混淆两者，才能既坚持质量底线，又容纳 Agent 在探索中学习的空间。</p>
 <hr />
 <h2 id="vs_1">第二分离：确定性 vs 语义</h2>
-<p><strong>混淆陷阱</strong>：用子串匹配衡量语义等价（漏报），或用 <a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a> 评估固定格式（成本浪费）。</p>
+<p><strong>混淆陷阱</strong>：用子串匹配衡量语义等价（漏报），或用 <a href="../concepts/LLM-as-Judge.html">LLM Judge</a> 评估固定格式（成本浪费）。</p>
 <p><strong>解法</strong>：双轨成功断言
 - <strong>确定性断言</strong>：<code>final_text_contains</code>、<code>file_equals</code> → 事实性短答案、精确文件内容，成本低、可复现
 - <strong>语义断言</strong>（<a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a>）：<code>llm_judge(*criteria)</code> → 语义正确性、风格、推理完整性，默认 <code>claude-sonnet-4-6</code> 评判</p>

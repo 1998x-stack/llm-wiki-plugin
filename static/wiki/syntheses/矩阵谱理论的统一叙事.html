@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">矩阵谱理论的统一叙事</h1>
 <h2 id="_2">概述</h2>
-<p>本综合分析将1907–1966年间<a href="../concepts/矩阵.html">矩阵</a>/算子谱理论的九个核心贡献整合为一条连贯的知识谱系。这条链条从 <a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a> 的正<a href="../concepts/矩阵.html">矩阵</a>定理出发，经过 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>、<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>、<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>、von Neumann、<a href="../entities/樊畿.html">樊畿</a>、Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>、<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>，到达 <a href="../entities/加藤敏夫.html">加藤敏夫</a> 的无穷维算子<a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a>——每一步都回应前人留下的理论真空，并为后续工作打开新的路径。贯穿全程的三种证明范式（变分/极值、酉变换、双随机<a href="../concepts/矩阵.html">矩阵</a>）和一个隐形主线（<a href="../concepts/奇异值分解.html">奇异值分解</a>）构成了该领域方法论的骨架。</p>
+<p>本综合分析将1907–1966年间<a href="../concepts/矩阵.html">矩阵</a>/算子谱理论的九个核心贡献整合为一条连贯的知识谱系。这条链条从 <a href="../entities/奥斯卡·佩龙.html">Perron</a> 的正<a href="../concepts/矩阵.html">矩阵</a>定理出发，经过 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>、<a href="../entities/伊赛·舒尔.html">Schur</a>、<a href="../entities/赫尔曼·外尔.html">Weyl</a>、von Neumann、<a href="../entities/樊畿.html">Ky Fan</a>、Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>、<a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>，到达 <a href="../entities/加藤敏夫.html">Kato</a> 的无穷维算子<a href="../concepts/矩阵扰动理论.html">扰动理论</a>——每一步都回应前人留下的理论真空，并为后续工作打开新的路径。贯穿全程的三种证明范式（变分/极值、酉变换、双随机<a href="../concepts/矩阵.html">矩阵</a>）和一个隐形主线（<a href="../concepts/奇异值分解.html">奇异值分解</a>）构成了该领域方法论的骨架。</p>
 <hr />
 <h2 id="19071966">知识谱系：1907–1966</h2>
 <pre><code>1907 Perron → 正矩阵主特征值唯一性（连分数研究的意外副产品）
@@ -209,51 +209,51 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">三种证明范式</h2>
 <p>贯穿整个传统的三种核心方法论：</p>
 <h3 id="_4">范式一：变分/极值</h3>
-<p><strong>起点</strong>：<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>（1905）——Hermitian <a href="../concepts/矩阵.html">矩阵</a>第 $k$ 个特征值 = $k$ 维子空间上 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a> 商的 max-min</p>
+<p><strong>起点</strong>：<a href="../entities/恩斯特·菲舍尔.html">Fischer</a>（1905）——Hermitian <a href="../concepts/矩阵.html">矩阵</a>第 $k$ 个特征值 = $k$ 维子空间上 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 商的 max-min</p>
 <p><strong>传承链</strong>：
-- <a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> (1905) →<a href="../concepts/极大极小定理.html">极大极小定理</a>
-- <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> (1912) →<a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a>（用于证明加法不等式）
-- <a href="../entities/樊畿.html">樊畿</a> (1949) →<a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a>（替换"极小"为"求迹"，得部分和极值原理）
-- <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> (1908) → Collatz-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> 公式（<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>的变分刻画）</p>
+- <a href="../entities/恩斯特·菲舍尔.html">Fischer</a> (1905) →<a href="../concepts/极大极小定理.html">极大极小定理</a>
+- <a href="../entities/赫尔曼·外尔.html">Weyl</a> (1912) →<a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a>（用于证明加法不等式）
+- <a href="../entities/樊畿.html">Ky Fan</a> (1949) →<a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a>（替换"极小"为"求迹"，得部分和极值原理）
+- <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> (1908) → Collatz-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> 公式（<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>的变分刻画）</p>
 <p><strong>核心思想</strong>：把特征值的代数问题（特征方程的根）转化为 Grassmann 流形上的几何优化问题，用子空间维数论证建立不等式。</p>
 <h3 id="_5">范式二：酉变换/谱分解</h3>
-<p><strong>起点</strong>：<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>（1909）——任意复方阵可酉相似于上三角<a href="../concepts/矩阵.html">矩阵</a></p>
+<p><strong>起点</strong>：<a href="../entities/伊赛·舒尔.html">Schur</a>（1909）——任意复方阵可酉相似于上三角<a href="../concepts/矩阵.html">矩阵</a></p>
 <p><strong>传承链</strong>：
-- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> (1909) →<a href="../concepts/Schur分解.html">Schur分解</a>（<a href="../concepts/Schur分解.html">Schur分解</a>）
-- von Neumann (1937) →<a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a>（<a href="../concepts/奇异值分解.html">奇异值分解</a> 展开 + 酉不变性）
-- <a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a> (1965) →<a href="../concepts/后向误差分析.html">后向误差分析</a>（正交变换不放大误差，$\kappa(Q)=1$）
-- Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> (1953) → 酉对角化 → 双随机<a href="../concepts/矩阵.html">矩阵</a> → <a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a></p>
+- <a href="../entities/伊赛·舒尔.html">Schur</a> (1909) →<a href="../concepts/Schur分解.html">Schur分解</a>（<a href="../concepts/Schur分解.html">酉三角化</a>）
+- von Neumann (1937) →<a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a>（<a href="../concepts/奇异值分解.html">SVD</a> 展开 + 酉不变性）
+- <a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a> (1965) →<a href="../concepts/后向误差分析.html">后向误差分析</a>（正交变换不放大误差，$\kappa(Q)=1$）
+- Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> (1953) → 酉对角化 → 双随机<a href="../concepts/矩阵.html">矩阵</a> → <a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a></p>
 <p><strong>核心思想</strong>：酉/正交变换保范数、保内积、<a href="../concepts/条件数.html">条件数</a>为1，是数值稳定性的天然保障；谱分解将<a href="../concepts/矩阵.html">矩阵</a>性质归结为对角或三角标准形。</p>
 <h3 id="birkhoff">范式三：双随机矩阵 / Birkhoff 定理</h3>
 <p><strong>起点</strong>：Birkhoff（1946）——双随机<a href="../concepts/矩阵.html">矩阵</a>是置换<a href="../concepts/矩阵.html">矩阵</a>的凸组合（Birkhoff-von Neumann定理）</p>
 <p><strong>传承链</strong>：
 - von Neumann (1937) →<a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a>（$|W_{ij}|^2$ 构成双随机<a href="../concepts/矩阵.html">矩阵</a>，排序不等式）
-- Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> (1953) →<a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>（$|W_{ij}|^2 \to$ Birkhoff → 指派问题最小化）</p>
+- Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> (1953) →<a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>（$|W_{ij}|^2 \to$ Birkhoff → 指派问题最小化）</p>
 <p><strong>核心思想</strong>：将连续的<a href="../concepts/矩阵.html">矩阵</a>分析问题通过酉<a href="../concepts/矩阵.html">矩阵</a>的模方结构转化为双随机<a href="../concepts/矩阵.html">矩阵</a>上的线性函数；用凸集极值（置换<a href="../concepts/矩阵.html">矩阵</a>）的有限性，把连续优化转化为有限组合优化。这是"凸松弛 → 整数最优"的经典范式。</p>
 <hr />
 <h2 id="svd">奇异值分解（SVD）：隐形主线</h2>
-<p><a href="../concepts/奇异值分解.html">奇异值分解</a>（$A = U\Sigma V^*$）是连接所有结果的隐形骨架：</p>
-<p>| 定理 | <a href="../concepts/奇异值分解.html">奇异值分解</a> 的角色 |
+<p><a href="../concepts/奇异值分解.html">SVD</a>（$A = U\Sigma V^*$）是连接所有结果的隐形骨架：</p>
+<p>| 定理 | <a href="../concepts/奇异值分解.html">SVD</a> 的角色 |
 |------|----------|
-| <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 分解 | 对<a href="../concepts/正规矩阵.html">正规矩阵</a>，<a href="../concepts/奇异值分解.html">奇异值分解</a> 退化为谱定理（$U=V$，$\Sigma$ = |特征值|） |
-| von Neumann <a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a> | <a href="../concepts/奇异值分解.html">奇异值分解</a>直接出现在上界公式中 |
-| <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 1949 | <a href="../concepts/奇异值分解.html">奇异值分解</a>与特征值的关系不等式（$\prod_{i=1}^k|\lambda_i| \leq \prod_{i=1}^k\sigma_i$） |
-| <a href="../entities/樊畿.html">樊畿</a> $k$-范数 | 定义为前 $k$ 个<a href="../concepts/奇异值分解.html">奇异值分解</a>之和 |
-| Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> | 证明通过 <a href="../concepts/奇异值分解.html">奇异值分解</a> 展开<a href="../concepts/矩阵.html">矩阵</a>差的 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数 |
-| Eckart-Young 定理 | 截断 <a href="../concepts/奇异值分解.html">奇异值分解</a> 给出最优低秩逼近，用<a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a>证明 |
-| <a href="../concepts/后向误差分析.html">后向误差分析</a> | <a href="../concepts/条件数.html">条件数</a> $\kappa_2(A) = \sigma_1/\sigma_n$（最大/最小<a href="../concepts/奇异值分解.html">奇异值分解</a>比） |</p>
-<p><strong>核心洞见</strong>：<a href="../concepts/奇异值分解.html">奇异值分解</a>是<a href="../concepts/矩阵.html">矩阵</a>"内禀的"不变量，只依赖于 $A^*A$ 的特征值，不依赖于坐标系选取。所有酉不变范数都是<a href="../concepts/奇异值分解.html">奇异值分解</a>的对称规范函数（von Neumann 1937的基本定理）。</p>
+| <a href="../entities/伊赛·舒尔.html">Schur</a> 分解 | 对<a href="../concepts/正规矩阵.html">正规矩阵</a>，<a href="../concepts/奇异值分解.html">SVD</a> 退化为谱定理（$U=V$，$\Sigma$ = |特征值|） |
+| von Neumann <a href="../concepts/Von Neumann迹不等式.html">迹不等式</a> | <a href="../concepts/奇异值分解.html">奇异值</a>直接出现在上界公式中 |
+| <a href="../entities/赫尔曼·外尔.html">Weyl</a> 1949 | <a href="../concepts/奇异值分解.html">奇异值</a>与特征值的关系不等式（$\prod_{i=1}^k|\lambda_i| \leq \prod_{i=1}^k\sigma_i$） |
+| <a href="../entities/樊畿.html">Ky Fan</a> $k$-范数 | 定义为前 $k$ 个<a href="../concepts/奇异值分解.html">奇异值</a>之和 |
+| Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> | 证明通过 <a href="../concepts/奇异值分解.html">SVD</a> 展开<a href="../concepts/矩阵.html">矩阵</a>差的 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数 |
+| Eckart-Young 定理 | 截断 <a href="../concepts/奇异值分解.html">SVD</a> 给出最优低秩逼近，用<a href="../concepts/Von Neumann迹不等式.html">迹不等式</a>证明 |
+| <a href="../concepts/后向误差分析.html">后向误差分析</a> | <a href="../concepts/条件数.html">条件数</a> $\kappa_2(A) = \sigma_1/\sigma_n$（最大/最小<a href="../concepts/奇异值分解.html">奇异值</a>比） |</p>
+<p><strong>核心洞见</strong>：<a href="../concepts/奇异值分解.html">奇异值</a>是<a href="../concepts/矩阵.html">矩阵</a>"内禀的"不变量，只依赖于 $A^*A$ 的特征值，不依赖于坐标系选取。所有酉不变范数都是<a href="../concepts/奇异值分解.html">奇异值</a>的对称规范函数（von Neumann 1937的基本定理）。</p>
 <hr />
 <h2 id="hermitian">Hermitian/正规矩阵是特征值理论的"安全岛"</h2>
 <p>四个独立定理从不同角度确认了同一事实：</p>
 <ol>
-<li><strong><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 不等式</strong>：Hermitian <a href="../concepts/矩阵.html">矩阵</a>特征值 Lipschitz 连续，<a href="../concepts/条件数.html">条件数</a> = 1</li>
-<li><strong>Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a></strong>：<a href="../concepts/正规矩阵.html">正规矩阵</a>有 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数最优整体扰动界</li>
-<li><strong><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 不等式</strong>：$\sum|\lambda_i|^2 = |A|_F^2$ 当且仅当 $A$ 正规</li>
+<li><strong><a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式</strong>：Hermitian <a href="../concepts/矩阵.html">矩阵</a>特征值 Lipschitz 连续，<a href="../concepts/条件数.html">条件数</a> = 1</li>
+<li><strong>Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a></strong>：<a href="../concepts/正规矩阵.html">正规矩阵</a>有 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数最优整体扰动界</li>
+<li><strong><a href="../entities/伊赛·舒尔.html">Schur</a> 不等式</strong>：$\sum|\lambda_i|^2 = |A|_F^2$ 当且仅当 $A$ 正规</li>
 <li><strong><a href="../concepts/后向误差分析.html">后向误差分析</a></strong>：Hermitian 特征值计算误差与<a href="../concepts/条件数.html">条件数</a>无关</li>
 </ol>
 <p>而对于非<a href="../concepts/正规矩阵.html">正规矩阵</a>（如 Jordan 块），$\varepsilon$ 扰动可导致 $\varepsilon^{1/n}$ 量级的特征值偏移——稳定性崩塌。</p>
-<p><strong>实践含义</strong>：在<a href="../concepts/数值分析.html">数值分析</a>和机器学习中，遇到对称/Hermitian <a href="../concepts/矩阵.html">矩阵</a>是一种"祝福"——所有理论工具（<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>、<a href="../entities/樊畿.html">樊畿</a>、Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>、Davis-Kahan）都以最优形式成立，结果是最可靠的。</p>
+<p><strong>实践含义</strong>：在<a href="../concepts/数值分析.html">数值计算</a>和机器学习中，遇到对称/Hermitian <a href="../concepts/矩阵.html">矩阵</a>是一种"祝福"——所有理论工具（<a href="../entities/赫尔曼·外尔.html">Weyl</a>、<a href="../entities/樊畿.html">Ky Fan</a>、Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>、Davis-Kahan）都以最优形式成立，结果是最可靠的。</p>
 <hr />
 <h2 id="_6">应用的收敛性：同一张应用地图</h2>
 <p>所有九个贡献的应用最终汇聚到同一套场景：</p>
@@ -308,18 +308,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_7">纯粹数学→意外应用的反复出现</h2>
 <p>本次 ingest 记录了多个"纯粹动机催生广泛应用"的案例：</p>
 <ul>
-<li><strong><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a></strong>（1907）：研究多维连分数的收敛性 → 意外发现正<a href="../concepts/矩阵.html">矩阵</a>谱结构 → 成为 Markov 链/PageRank 的数学基础</li>
-<li><strong><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a></strong>（1912）：明确鄙视应用数学 → 建立了 Markov 链、PageRank、Leontief 模型的数学基础</li>
-<li><strong><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a></strong>（1912）：研究薄膜振动频率的渐近分布 → 建立<a href="../concepts/矩阵.html">矩阵</a>扰动不等式 → 成为数值算法误差分析的核心工具</li>
-<li><strong><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a></strong>（1909）：探索<a href="../concepts/矩阵.html">矩阵</a>分解的数值稳定替代 → <a href="../concepts/Schur分解.html">Schur分解</a> → 催生半个世纪后的 QR 算法</li>
+<li><strong><a href="../entities/奥斯卡·佩龙.html">Perron</a></strong>（1907）：研究多维连分数的收敛性 → 意外发现正<a href="../concepts/矩阵.html">矩阵</a>谱结构 → 成为 Markov 链/PageRank 的数学基础</li>
+<li><strong><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a></strong>（1912）：明确鄙视应用数学 → 建立了 Markov 链、PageRank、Leontief 模型的数学基础</li>
+<li><strong><a href="../entities/赫尔曼·外尔.html">Weyl</a></strong>（1912）：研究薄膜振动频率的渐近分布 → 建立<a href="../concepts/矩阵.html">矩阵</a>扰动不等式 → 成为数值算法误差分析的核心工具</li>
+<li><strong><a href="../entities/伊赛·舒尔.html">Schur</a></strong>（1909）：探索<a href="../concepts/矩阵.html">矩阵</a>分解的数值稳定替代 → <a href="../concepts/Schur分解.html">酉三角化</a> → 催生半个世纪后的 QR 算法</li>
 </ul>
 <p>这一模式提示：数学工具的最终用途往往远超创造者的预期，纯粹的理论动机是技术进步的持续驱动力。</p>
 <hr />
 <h2 id="_8">历史背景：战时数学</h2>
 <p>三位关键数学家在战争中完成核心工作：</p>
 <ul>
-<li><strong><a href="../entities/加藤敏夫.html">加藤敏夫</a></strong>：二战期间患肺结核，在与世隔绝中独立重新发现<a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a>核心</li>
-<li><strong><a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a></strong>：二战弹道计算实践 → <a href="../concepts/后向误差分析.html">后向误差分析</a>思想萌生</li>
+<li><strong><a href="../entities/加藤敏夫.html">加藤敏夫</a></strong>：二战期间患肺结核，在与世隔绝中独立重新发现<a href="../concepts/矩阵扰动理论.html">扰动理论</a>核心</li>
+<li><strong><a href="../entities/詹姆斯·威尔金森.html">威尔金森</a></strong>：二战弹道计算实践 → <a href="../concepts/后向误差分析.html">后向误差分析</a>思想萌生</li>
 <li><strong>冯·诺依曼</strong>：曼哈顿计划数值模拟需求 → 推动<a href="../concepts/矩阵.html">矩阵</a>计算稳定性研究</li>
 </ul>
 <p>外部压力（计算需求、物理应用、工程约束）与内部驱动（纯数学追求）的交织，塑造了这个时代<a href="../concepts/矩阵.html">矩阵</a>分析的研究方向。</p>

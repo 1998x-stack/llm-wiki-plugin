@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated": "2026-04-15T13:46:23.661417+00:00",
-    "total_nodes": 264,
-    "total_edges": 1957,
+    "generated": "2026-04-15T14:04:53.246278+00:00",
+    "total_nodes": 272,
+    "total_edges": 1993,
     "orphan_count": 0,
     "component_count": 1
   },
@@ -102,6 +102,61 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/Codex TUI.md",
+      "label": "Codex TUI",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/Codex会话管理器.md",
+      "label": "Codex会话管理器",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/Codex多Agent调度.md",
+      "label": "Codex多Agent调度",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/Codex沙箱系统.md",
+      "label": "Codex沙箱系统",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/Codex配置系统.md",
+      "label": "Codex配置系统",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/concepts/Context-Engineering.md",
       "label": "Context-Engineering",
       "type": "concept",
@@ -164,6 +219,17 @@
         "数学，工具，方法论"
       ],
       "edge_count": 17
+    },
+    {
+      "id": "wiki/concepts/ExecPolicy.md",
+      "label": "ExecPolicy",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 10
     },
     {
       "id": "wiki/concepts/FTS5.md",
@@ -383,6 +449,17 @@
         "工具，方法论，研究"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/concepts/MCP协议层.md",
+      "label": "MCP协议层",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/Master-Overrides设计系统持久化.md",
@@ -635,7 +712,7 @@
         "方法论",
         "研究"
       ],
-      "edge_count": 6
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/modern-cli-tools.md",
@@ -1970,7 +2047,7 @@
         "工具",
         "方法论"
       ],
-      "edge_count": 21
+      "edge_count": 22
     },
     {
       "id": "wiki/entities/Claude-Mem.md",
@@ -1984,6 +2061,17 @@
         "研究"
       ],
       "edge_count": 24
+    },
+    {
+      "id": "wiki/entities/Codex CLI.md",
+      "label": "Codex CLI",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "技术",
+        "工具"
+      ],
+      "edge_count": 20
     },
     {
       "id": "wiki/entities/DeepAgents.md",
@@ -3624,6 +3712,132 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/Codex TUI.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex TUI.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex TUI.md",
+      "target": "wiki/concepts/Codex会话管理器.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex TUI.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex会话管理器.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex会话管理器.md",
+      "target": "wiki/concepts/Codex沙箱系统.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex会话管理器.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex多Agent调度.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex多Agent调度.md",
+      "target": "wiki/concepts/Codex会话管理器.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex多Agent调度.md",
+      "target": "wiki/concepts/MCP协议层.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex多Agent调度.md",
+      "target": "wiki/concepts/Codex沙箱系统.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex多Agent调度.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex沙箱系统.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex沙箱系统.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex沙箱系统.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex沙箱系统.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex配置系统.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex配置系统.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex配置系统.md",
+      "target": "wiki/concepts/Codex沙箱系统.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex配置系统.md",
+      "target": "wiki/concepts/MCP协议层.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Codex配置系统.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Context-Engineering.md",
       "target": "wiki/concepts/分层记忆架构.md",
       "relation": "uses",
@@ -3812,6 +4026,30 @@
     {
       "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
       "target": "wiki/entities/PUMA 机器人.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ExecPolicy.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ExecPolicy.md",
+      "target": "wiki/concepts/Codex沙箱系统.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ExecPolicy.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ExecPolicy.md",
+      "target": "wiki/concepts/Codex TUI.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4838,6 +5076,24 @@
     {
       "source": "wiki/concepts/Legged Robots That Balance.md",
       "target": "wiki/concepts/边际消费倾向.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP协议层.md",
+      "target": "wiki/entities/Codex CLI.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP协议层.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP协议层.md",
+      "target": "wiki/entities/Codex CLI.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6038,6 +6294,18 @@
     {
       "source": "wiki/concepts/claude-cli-tools.md",
       "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/claude-cli-tools.md",
+      "target": "wiki/concepts/MCP协议层.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/claude-cli-tools.md",
+      "target": "wiki/entities/Codex CLI.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -11227,6 +11495,12 @@
     },
     {
       "source": "wiki/entities/Claude-Code.md",
+      "target": "wiki/concepts/MCP协议层.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude-Code.md",
       "target": "wiki/entities/Claude-Mem.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -11265,6 +11539,36 @@
       "source": "wiki/entities/Claude-Mem.md",
       "target": "wiki/entities/SQLite.md",
       "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Codex CLI.md",
+      "target": "wiki/concepts/ExecPolicy.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Codex CLI.md",
+      "target": "wiki/concepts/Codex沙箱系统.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Codex CLI.md",
+      "target": "wiki/concepts/Codex会话管理器.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Codex CLI.md",
+      "target": "wiki/concepts/MCP协议层.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Codex CLI.md",
+      "target": "wiki/concepts/Codex多Agent调度.md",
+      "relation": "uses",
       "bidirectional": false
     },
     {
@@ -15064,7 +15368,7 @@
   "components": [
     {
       "id": 0,
-      "size": 264,
+      "size": 272,
       "nodes": [
         "wiki/concepts/ACP协议.md",
         "wiki/concepts/AI设计推理层.md",
@@ -15073,11 +15377,17 @@
         "wiki/concepts/CFL条件.md",
         "wiki/concepts/Church-Turing 论题.md",
         "wiki/concepts/Claude-Code-Hook-System.md",
+        "wiki/concepts/Codex TUI.md",
+        "wiki/concepts/Codex会话管理器.md",
+        "wiki/concepts/Codex多Agent调度.md",
+        "wiki/concepts/Codex沙箱系统.md",
+        "wiki/concepts/Codex配置系统.md",
         "wiki/concepts/Context-Engineering.md",
         "wiki/concepts/DeepAgents中间件体系.md",
         "wiki/concepts/DeepAgents后端协议.md",
         "wiki/concepts/DeepAgents评估体系.md",
         "wiki/concepts/Denavit-Hartenberg 参数.md",
+        "wiki/concepts/ExecPolicy.md",
         "wiki/concepts/FTS5.md",
         "wiki/concepts/Gauss-Seidel方法.md",
         "wiki/concepts/Harrod-Domar 模型.md",
@@ -15096,6 +15406,7 @@
         "wiki/concepts/Laplace变换.md",
         "wiki/concepts/Lax-Richtmyer等价定理.md",
         "wiki/concepts/Legged Robots That Balance.md",
+        "wiki/concepts/MCP协议层.md",
         "wiki/concepts/Master-Overrides设计系统持久化.md",
         "wiki/concepts/PDDL.md",
         "wiki/concepts/Perron-Frobenius定理.md",
@@ -15226,6 +15537,7 @@
         "wiki/entities/ChromaDB.md",
         "wiki/entities/Claude-Code.md",
         "wiki/entities/Claude-Mem.md",
+        "wiki/entities/Codex CLI.md",
         "wiki/entities/DeepAgents.md",
         "wiki/entities/Dieter Fox.md",
         "wiki/entities/Heinrich A. Ernst.md",

@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">矩阵扰动理论</h1>
 <h2 id="_2">概述</h2>
-<p><a href="矩阵.html">矩阵</a>扰动理论（<a href="矩阵.html">矩阵</a> Perturbation Theory）研究<a href="矩阵.html">矩阵</a>特征值、<a href="奇异值分解.html">奇异值分解</a>和特征子空间在<a href="矩阵.html">矩阵</a>微小变化下的稳定性。<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>1912年的<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>开创了这一领域：当<a href="矩阵.html">矩阵</a> $A$ 受到扰动 $E$ 变为 $A+E$ 时，Hermitian 情形下特征值偏移量不超过 $|E|_2$。该理论是数值<a href="线性代数.html">线性代数</a>正确性分析的基础——浮点计算中的舍入误差相当于对精确<a href="矩阵.html">矩阵</a>施加扰动，扰动理论给出了计算结果与精确结果之间偏差的严格上界。</p>
+<p><a href="矩阵.html">矩阵</a>扰动理论（<a href="矩阵.html">Matrix</a> Perturbation Theory）研究<a href="矩阵.html">矩阵</a>特征值、<a href="奇异值分解.html">奇异值</a>和特征子空间在<a href="矩阵.html">矩阵</a>微小变化下的稳定性。<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>1912年的<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>开创了这一领域：当<a href="矩阵.html">矩阵</a> $A$ 受到扰动 $E$ 变为 $A+E$ 时，Hermitian 情形下特征值偏移量不超过 $|E|_2$。该理论是数值<a href="线性代数.html">线性代数</a>正确性分析的基础——浮点计算中的舍入误差相当于对精确<a href="矩阵.html">矩阵</a>施加扰动，扰动理论给出了计算结果与精确结果之间偏差的严格上界。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心问题</h3>
 <p>给定<a href="矩阵.html">矩阵</a> $A$ 及扰动 $E$，分析 $A+E$ 的以下量如何随 $|E|$ 变化：
 1. <strong>特征值</strong>（谱）：$\lambda_i(A+E) - \lambda_i(A)$ 的大小
 2. <strong>特征子空间</strong>：对应特征子空间的旋转角度
-3. <strong><a href="奇异值分解.html">奇异值分解</a></strong>：$\sigma_i(A+E) - \sigma_i(A)$ 的大小</p>
+3. <strong><a href="奇异值分解.html">奇异值</a></strong>：$\sigma_i(A+E) - \sigma_i(A)$ 的大小</p>
 <h3 id="_5">主要结果体系</h3>
 <p><strong>Hermitian <a href="矩阵.html">矩阵</a>（最完备的理论）</strong></p>
 <table>
@@ -184,33 +184,33 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>对非<a href="正规矩阵.html">正规矩阵</a>，特征值<a href="条件数.html">条件数</a>（敏感度）可以任意大。常用工具：
 - <strong>Bauer-Fike 定理</strong>：若 $A$ 可对角化（$A = XDX^{-1}$），则 $\lambda(A+E)$ 中每个元素到 $\lambda(A)$ 的距离不超过 $\kappa(X)|E|_2$（$\kappa(X) = |X||X^{-1}|$ 是<a href="条件数.html">条件数</a>）
 - <strong>伪谱</strong>（Pseudospectra）：$\varepsilon$-伪谱定义为 ${z \in \mathbb{C}: |(zI-A)^{-1}| \geq 1/\varepsilon}$，刻画了非<a href="正规矩阵.html">正规矩阵</a>特征值在扰动下可能到达的区域（Trefethen &amp; Embree 的理论）</p>
-<p><strong><a href="奇异值分解.html">奇异值分解</a>扰动</strong></p>
-<p>对任意（非方形）<a href="矩阵.html">矩阵</a>，<a href="奇异值分解.html">奇异值分解</a>满足类似 <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 的不等式：
+<p><strong><a href="奇异值分解.html">奇异值</a>扰动</strong></p>
+<p>对任意（非方形）<a href="矩阵.html">矩阵</a>，<a href="奇异值分解.html">奇异值</a>满足类似 <a href="../entities/赫尔曼·外尔.html">Weyl</a> 的不等式：
 $$|\sigma_i(A+E) - \sigma_i(A)| \leq |E|_2$$
-这是Hermitian情形的推论（对 $A^*A$ 应用<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>）。</p>
+这是Hermitian情形的推论（对 $A^*A$ 应用<a href="Weyl特征值不等式.html">Weyl不等式</a>）。</p>
 <h3 id="_6">谱间隙与子空间稳定性</h3>
 <p><strong>Davis-Kahan $\sin\Theta$ 定理（1970）</strong>是扰动理论中处理特征子空间的核心结果。设 $A = A + E$，$V$ 是 $A$ 对应若干特征值的不变子空间，$\hat V$ 是 $A+E$ 对应的近似子空间，则</p>
 <p>$$|\sin\Theta(V, \hat V)|_F \leq \frac{|E|_F}{\delta}$$</p>
 <p>其中 $\delta$ 是相关特征值与其余特征值之间的<strong>谱间隙</strong>（spectral gap）。</p>
 <p><strong>重要推论</strong>：谱间隙越小，特征子空间越难以从扰动数据中稳定估计。这是高维统计中 PCA 一致性理论的核心困难——当信噪比低时，样本主成分方向与总体主成分方向偏差大。</p>
 <h3 id="kato-1966">Kato 算子扰动论（1966）</h3>
-<p><a href="../entities/加藤敏夫.html">加藤敏夫</a>（<a href="../entities/加藤敏夫.html">加藤敏夫</a>）的专著 <em>Perturbation Theory for Linear Operators</em>（1966，引用21000+次）将 <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 型不等式推广到无穷维 Hilbert 空间的自伴算子，包括：
+<p><a href="../entities/加藤敏夫.html">加藤敏夫</a>（<a href="../entities/加藤敏夫.html">Tosio Kato</a>）的专著 <em>Perturbation Theory for Linear Operators</em>（1966，引用21000+次）将 <a href="../entities/赫尔曼·外尔.html">Weyl</a> 型不等式推广到无穷维 Hilbert 空间的自伴算子，包括：
 - 有界自伴算子的解析扰动
-- 无界自伴算子（如 Schrödinger 算子 $H_0 + V$）的 <a href="Kato-Rellich定理.html">Kato-Rellich定理</a>（自伴性在<a href="Kato-Rellich定理.html">Kato-Rellich定理</a>下的稳定性，1951年用于证明所有多体 Schrödinger 算子的自伴性）
+- 无界自伴算子（如 Schrödinger 算子 $H_0 + V$）的 <a href="Kato-Rellich定理.html">Kato-Rellich定理</a>（自伴性在<a href="Kato-Rellich定理.html">相对有界扰动</a>下的稳定性，1951年用于证明所有多体 Schrödinger 算子的自伴性）
 - 绝热定理与量子力学的严格基础</p>
-<p>量子力学能级微扰论（从一级近似到避免交叉的非简并理论）都可在 <a href="../entities/加藤敏夫.html">加藤敏夫</a> 框架中获得严格证明。</p>
+<p>量子力学能级微扰论（从一级近似到避免交叉的非简并理论）都可在 <a href="../entities/加藤敏夫.html">Kato</a> 框架中获得严格证明。</p>
 <h3 id="_7">数值分析中的应用</h3>
 <p>在浮点运算中，精确<a href="矩阵.html">矩阵</a> $A$ 被扰动为 $\hat A = A + E$（$|E| \approx \varepsilon_{\text{machine}} |A|$）。扰动理论保证：
 - <strong>Hermitian 特征值</strong>：计算误差 $\leq \varepsilon_{\text{machine}} |A|<em>2$（绝对误差），与<a href="条件数.html">条件数</a>无关
-- <strong>一般<a href="矩阵.html">矩阵</a>特征值</strong>：误差 $\leq \kappa(X) \varepsilon</em>{\text{machine}} |A|$，强烈依赖特征向量<a href="条件数.html">条件数</a>数</p>
+- <strong>一般<a href="矩阵.html">矩阵</a>特征值</strong>：误差 $\leq \kappa(X) \varepsilon</em>{\text{machine}} |A|$，强烈依赖特征向量<a href="条件数.html">矩阵条件</a>数</p>
 <p>这解释了"对称问题比非对称问题本质上更容易"这一<a href="数值分析.html">数值分析</a>核心信条的数学根源。</p>
 <h3 id="horn19621999">Horn猜想（1962–1999）</h3>
-<p><a href="Weyl特征值不等式.html">Weyl特征值不等式</a>给出了 $\lambda(A+B)$ 的必要条件（不等式约束）。Horn（1962）猜测这也是充分的：<strong><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>-Lidskii 型不等式构成了 $\lambda(A), \lambda(B), \lambda(A+B)$ 关系的完整刻画</strong>。</p>
+<p><a href="Weyl特征值不等式.html">Weyl不等式</a>给出了 $\lambda(A+B)$ 的必要条件（不等式约束）。Horn（1962）猜测这也是充分的：<strong><a href="../entities/赫尔曼·外尔.html">Weyl</a>-Lidskii 型不等式构成了 $\lambda(A), \lambda(B), \lambda(A+B)$ 关系的完整刻画</strong>。</p>
 <p>Klyachko（1998）和 Knutson-Tao（1999）用蜂巢模型证明了这一猜想，将<a href="矩阵.html">矩阵</a>分析与 Schubert 演算（代数几何）深度连接，是21世纪初最重要的数学成果之一。</p>
 <h2 id="_8">现代意义</h2>
 <p><a href="矩阵.html">矩阵</a>扰动理论为以下领域提供了统一的数学语言：</p>
 <ul>
-<li><strong>数值<a href="线性代数.html">线性代数</a></strong>：QR 算法、Lanczos 方法的<a href="后向误差分析.html">后向误差分析</a>证明</li>
+<li><strong>数值<a href="线性代数.html">线性代数</a></strong>：QR 算法、Lanczos 方法的<a href="后向误差分析.html">后向稳定性</a>证明</li>
 <li><strong>统计学习</strong>：PCA、谱聚类、低秩<a href="矩阵.html">矩阵</a>恢复的理论保证</li>
 <li><strong>量子力学</strong>：能级移动、避免交叉、绝热演化的严格分析</li>
 <li><strong>随机<a href="矩阵.html">矩阵</a></strong>：Wigner 半圆律、Tracy-Widom 分布的集中性质</li>

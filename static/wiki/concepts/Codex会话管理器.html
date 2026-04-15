@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex会话管理器 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Codex会话管理器</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="codex">Codex会话管理器</h1>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的上下文持久化层，解决 LLM 天然无状态与工程任务有状态之间的矛盾。通过 Session 持久化、Transcript 存储和 Resume 机制，将 Agent 变成"有记忆的协作者"。</p>
+<h2 id="_1">核心问题</h2>
+<p>LLM 每次 API 调用独立，没有内置记忆，上下文窗口有限。但工程任务可能持续数小时甚至数天，需要中断恢复，多步骤依赖前置结果。Session Manager 在无状态 LLM 之上构建<strong>有状态的任务上下文</strong>。</p>
+<h2 id="session">Session 数据结构</h2>
+<p>每个 Session 存储于 <code>~/.codex/sessions/&lt;session_id&gt;/</code>：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transcript.jsonl</code></td>
+<td>完整对话记录（JSONL 格式，流式追加）</td>
+</tr>
+<tr>
+<td><code>metadata.json</code></td>
+<td>Session ID、模型、workspace、sandbox 配置、git HEAD</td>
+</tr>
+<tr>
+<td><code>plan.json</code></td>
+<td>Agent 任务计划快照</td>
+</tr>
+<tr>
+<td><code>approvals.log</code></td>
+<td>人类审批记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>JSONL 格式选择原因</strong>：流式追加、崩溃安全（中断只丢当前行）、可用 <code>jq</code> 直接分析。</p>
+<h2 id="resume">Resume 机制</h2>
+<pre><code class="language-bash">codex resume          # 交互选择最近会话列表
+codex resume --last   # 直接跳最近会话
+codex resume &lt;id&gt;     # 指定 Session ID
+</code></pre>
+<p>Resume 时不简单地把 transcript 全塞进上下文，而是：
+1. 加载环境配置（metadata.json）
+2. 读取 transcript，<strong>智能压缩</strong>超出 context window 的早期轮次（保留所有审批记录和关键 tool 结果）
+3. 注入 continuation prompt
+4. 恢复 approval_policy 和 sandbox_mode 设置</p>
+<p><strong>不变量</strong>：原有 transcript 只读，新对话追加；原有审批在 resume 后依然有效。</p>
+<h2 id="fork">Fork 机制</h2>
+<pre><code class="language-bash">codex resume --fork &lt;session_id&gt;
+</code></pre>
+<p>从历史节点创建分支，尝试不同解决方案（类比 Git 分支，但在 Agent 对话层面操作）。原 Session 不变，Fork Session 可以走不同路径。</p>
+<h2 id="memories-session">Memories 系统（跨 Session 长期记忆）</h2>
+<p><code>~/.codex/memories/</code> — 跨 Session 的长期记忆层（workspace_prefs.md、global_knowledge.md）。在 <code>workspace-write</code> sandbox 模式下自动添加到可写路径。Agent 通过工具调用写入，下次启动时自动注入初始上下文。</p>
+<h2 id="exec">exec 模式</h2>
+<pre><code class="language-bash">codex exec &quot;生成单元测试&quot;           # 非交互，结果流式输出到 stdout
+codex exec --output jsonl &quot;重构&quot;    # JSONL 输出（适合脚本处理）
+codex exec --ephemeral &quot;快速问答&quot;   # 不持久化（CI/CD 环境使用）
+</code></pre>
+<h2 id="session_1">Session 生命周期</h2>
+<p>CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → 新 ACTIVE</p>
+<h2 id="_2">工程哲学</h2>
+<blockquote>
+<p><strong>Transcript 只追加，不修改</strong>——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断工作记忆"能力。</p>
+</blockquote>
+<h2 id="_3">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/05_codex_session_manager.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Codex TUI.html">&larr; Codex TUI</a>
+    <a href="Codex多Agent调度.html">Codex多Agent调度 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

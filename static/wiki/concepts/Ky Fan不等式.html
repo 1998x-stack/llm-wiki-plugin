@@ -135,29 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ky-fan">Ky Fan不等式</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/樊畿.html">樊畿</a>不等式（1949–1951）由<a href="../entities/樊畿.html">樊畿</a>在三篇 PNAS 论文中建立，将<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>从单个特征值的逐项控制提升为<strong>特征值部分和的整体控制</strong>。核心内容：(1) <strong>Fan极值原理</strong>——前 $k$ 个最大特征值之和等于 Hermitian <a href="矩阵.html">矩阵</a>在所有 $k$ 维子空间上"限制迹"的最大值；(2) <strong>Fan部分和不等式</strong>——$\sum_{i=1}^k\lambda_i(A+B) \leq \sum_{i=1}^k\lambda_i(A)+\sum_{i=1}^k\lambda_i(B)$；(3) <strong>Fan控制定理</strong>——所有 <a href="../entities/樊畿.html">樊畿</a> $k$-范数的控制等价于所有酉不变范数的控制。这套理论统一了特征值不等式与酉不变范数，是<a href="优化控制序.html">优化控制序</a> (Majorization) 理论的核心组成，并直接催生了 Horn 猜想的提出。</p>
+<p><a href="../entities/樊畿.html">Ky Fan</a>不等式（1949–1951）由<a href="../entities/樊畿.html">樊畿</a>在三篇 PNAS 论文中建立，将<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>从单个特征值的逐项控制提升为<strong>特征值部分和的整体控制</strong>。核心内容：(1) <strong>Fan极值原理</strong>——前 $k$ 个最大特征值之和等于 Hermitian <a href="矩阵.html">矩阵</a>在所有 $k$ 维子空间上"限制迹"的最大值；(2) <strong>Fan部分和不等式</strong>——$\sum_{i=1}^k\lambda_i(A+B) \leq \sum_{i=1}^k\lambda_i(A)+\sum_{i=1}^k\lambda_i(B)$；(3) <strong>Fan控制定理</strong>——所有 <a href="../entities/樊畿.html">Ky Fan</a> $k$-范数的控制等价于所有酉不变范数的控制。这套理论统一了特征值不等式与酉不变范数，是<a href="优化控制序.html">优化控制序</a> (Majorization) 理论的核心组成，并直接催生了 Horn 猜想的提出。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="ky-fan_1">定理一：Ky Fan 极值原理</h3>
 <p>设 $A$ 为 $n \times n$ Hermitian <a href="矩阵.html">矩阵</a>，特征值降序排列 $\lambda_1 \geq \cdots \geq \lambda_n$。则：</p>
 <p>$$\sum_{i=1}^{k} \lambda_i(A) = \max_{\dim V = k} \operatorname{tr}(P_V A P_V) = \max_{\substack{v_1,\ldots,v_k \ \text{标准正交}}} \sum_{j=1}^k \langle Av_j, v_j\rangle$$</p>
 <p>其中 $P_V$ 是到 $k$ 维子空间 $V$ 的正交投影。</p>
-<p><strong>与 Courant-<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 比较</strong>：
-- Courant-<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>：$\lambda_k = \max_{\dim V=k} \min_{x\in V, |x|=1} \langle Ax,x\rangle$（极大<strong>极小</strong>）
+<p><strong>与 Courant-<a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 比较</strong>：
+- Courant-<a href="../entities/恩斯特·菲舍尔.html">Fischer</a>：$\lambda_k = \max_{\dim V=k} \min_{x\in V, |x|=1} \langle Ax,x\rangle$（极大<strong>极小</strong>）
 - Fan极值原理：$\sum_{i=1}^k\lambda_i = \max_{\dim V=k} \operatorname{tr}(P_VAP_V)$（纯粹<strong>极大</strong>）</p>
 <p>Fan 的形式更简洁：把内层的"在 $V$ 中取极小"替换为"对 $V$ 求迹"，同时刻画了前 $k$ 个特征值的<strong>和</strong>而非单个特征值。</p>
 <h3 id="ky-fan_2">定理二：Ky Fan 部分和不等式</h3>
 <p>设 $A, B$ 为 $n \times n$ Hermitian <a href="矩阵.html">矩阵</a>，对任意 $1 \leq k \leq n$：</p>
 <p>$$\sum_{i=1}^{k} \lambda_i(A+B) \leq \sum_{i=1}^{k} \lambda_i(A) + \sum_{i=1}^{k} \lambda_i(B)$$</p>
-<p><strong>与 <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 不等式的关系</strong>：
-- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 特例）
+<p><strong>与 <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式的关系</strong>：
+- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（<a href="../entities/赫尔曼·外尔.html">Weyl</a> 特例）
 - $k=n$：两端均为 $\operatorname{tr}(A+B) = \operatorname{tr}(A)+\operatorname{tr}(B)$（等式）
-- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>（$k=1$）与迹等式（$k=n$）的一族不等式</p>
+- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 <a href="../entities/赫尔曼·外尔.html">Weyl</a>（$k=1$）与迹等式（$k=n$）的一族不等式</p>
 <p><strong>证明</strong>（极值原理的直接推论）：由极值原理，存在最优子空间 $V^*$ 使左端取最大值；在该子空间上，两项分别 $\leq$ 对应的部分和上界，相加即得。</p>
 <p><strong>Majorization 表述</strong>：Fan 不等式等价于弱<a href="优化控制序.html">优化控制序</a> $\lambda(A+B) \prec_w \lambda(A)+\lambda(B)$（详见<a href="优化控制序.html">优化控制序</a>）。</p>
 <h3 id="ky-fan-k-">定理三：Ky Fan $k$-范数与控制定理</h3>
 <p><strong>定义</strong>（Fan $k$-范数）：对任意 $n \times n$ <a href="矩阵.html">矩阵</a> $X$：
 $$|X|<em>{(k)} = \sum</em>{i=1}^{k} \sigma_i(X), \quad 1 \leq k \leq n$$</p>
-<p>其中 $\sigma_1 \geq \cdots \geq \sigma_n \geq 0$ 为<a href="奇异值分解.html">奇异值分解</a>（<a href="奇异值分解.html">奇异值分解</a>）。</p>
+<p>其中 $\sigma_1 \geq \cdots \geq \sigma_n \geq 0$ 为<a href="奇异值分解.html">奇异值</a>（<a href="奇异值分解.html">奇异值分解</a>）。</p>
 <table>
 <thead>
 <tr>
@@ -192,17 +192,17 @@ $$|X|<em>{(k)} = \sum</em>{i=1}^{k} \sigma_i(X), \quad 1 \leq k \leq n$$</p>
 <ol>
 <li><strong>变分方法</strong>：将特征值部分和化为 Grassmann 流形上的优化问题</li>
 <li><strong>维数论证</strong>：若 $\dim V + \dim W &gt; n$，则 $V \cap W \neq {0}$；用于在子空间交点处建立约束</li>
-<li><strong>Courant-<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 推广</strong>：将单向量 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a> 商替换为 $k$ 维子空间上的限制迹</li>
+<li><strong>Courant-<a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 推广</strong>：将单向量 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 商替换为 $k$ 维子空间上的限制迹</li>
 </ol>
 <h3 id="_4">后续影响</h3>
 <p><strong>Horn 猜想（1962→1999）</strong>：Alfred Horn 受 Fan 不等式启发，提出 Hermitian <a href="矩阵.html">矩阵</a>特征值和的完整充要约束（递归不等式系统）。Fan 不等式对应于最简单的情形（连续前 $k$ 项）。Klyachko（1998）和 Knutson-Tao（1999）通过 Schubert 演算、蜂巢模型最终解决。</p>
-<p><strong>Lidskii-Mirsky-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> 定理（1950）</strong>：$\lambda(A)-\lambda(B) \prec \lambda(A-B)$，用 <a href="优化控制序.html">优化控制序</a> 统一了扰动不等式。</p>
+<p><strong>Lidskii-Mirsky-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> 定理（1950）</strong>：$\lambda(A)-\lambda(B) \prec \lambda(A-B)$，用 <a href="优化控制序.html">majorization</a> 统一了扰动不等式。</p>
 <p><strong>Thompson-Freede 定理（1971）</strong>：将 Fan 类型不等式推广到非连续指标集，预示了 Horn 猜想的完整形式。</p>
 <h2 id="_5">应用</h2>
-<p><strong>量子信息</strong>：密度<a href="矩阵.html">矩阵</a>特征值的 <a href="优化控制序.html">优化控制序</a> 关系是量子纠缠转换可行性的充要条件（Nielsen 1999）；von Neumann 熵次可加性依赖 Fan 型特征值控制。</p>
+<p><strong>量子信息</strong>：密度<a href="矩阵.html">矩阵</a>特征值的 <a href="优化控制序.html">majorization</a> 关系是量子纠缠转换可行性的充要条件（Nielsen 1999）；von Neumann 熵次可加性依赖 Fan 型特征值控制。</p>
 <p><strong>主成分分析</strong>：PCA 寻求最大化数据协方差<a href="矩阵.html">矩阵</a>在 $k$ 维子空间上的限制迹——这正是 Fan 极值原理。</p>
 <p><strong>核范数正则化</strong>（推荐系统/<a href="矩阵.html">矩阵</a>补全）：核范数（Fan $n$-范数）作为秩的凸松弛，其理论基础在 Fan 控制定理中。</p>
-<p><strong>MIMO 通信</strong>：信道<a href="矩阵.html">矩阵</a><a href="奇异值分解.html">奇异值分解</a>决定子信道容量，Fan 范数为容量部分和提供框架。</p>
+<p><strong>MIMO 通信</strong>：信道<a href="矩阵.html">矩阵</a><a href="奇异值分解.html">奇异值</a>决定子信道容量，Fan 范数为容量部分和提供框架。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li>raw/books/矩阵分析/12_ky_fan_matrix_inequalities_1951.md</li>

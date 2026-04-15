@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex沙箱系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Codex沙箱系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="codex">Codex沙箱系统</h1>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong>操作系统内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 <a href="../entities/Codex CLI.html">Codex CLI</a> 三道防线中的最后一道。</p>
+<h2 id="os">为什么需要 OS 级沙箱</h2>
+<p>应用层过滤（如 <a href="ExecPolicy.html">ExecPolicy</a>）是<strong>意图层面的拦截</strong>，无法处理所有边缘情况：</p>
+<table>
+<thead>
+<tr>
+<th>风险类型</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>意图正确，命令错误</td>
+<td>LLM 想清理 dist/，写成了 <code>rm -rf /</code></td>
+</tr>
+<tr>
+<td>提示词注入</td>
+<td>仓库文件包含恶意指令，诱导 LLM 执行危险操作</td>
+</tr>
+<tr>
+<td>范围扩散</td>
+<td>Agent "顺手"修改 <code>~/.ssh/config</code> 或 <code>/etc/hosts</code></td>
+</tr>
+</tbody>
+</table>
+<p>OS 级沙箱提供<strong>执行层面的强制约束</strong>。</p>
+<h2 id="_1">三平台实现</h2>
+<h3 id="macos-apple-sandbox-seatbelt">macOS — Apple Sandbox (Seatbelt)</h3>
+<p>基于 Scheme 描述语言的访问控制策略（<code>sandbox-exec</code>），动态生成：全盘可读、只写工作区、禁止网络出站。支持 <code>--log-denials</code> 调试模式。</p>
+<h3 id="linux-landlock-seccomp">Linux — Landlock + seccomp（双层）</h3>
+<p><strong>层 1：Landlock</strong>（Linux 5.13+ 引入）</p>
+<p>基于 eBPF/LSM 的不可绕过文件系统沙箱：
+- 进程设置后<strong>无法提权取消</strong>（不可逆）
+- 规则自动继承到所有子进程（<code>cargo build</code>、<code>npm install</code> 等也受限）
+- 在 VFS 层拦截，无法被 <code>LD_PRELOAD</code> 或 ptrace 绕过</p>
+<p><strong>层 2：seccomp</strong>（系统调用过滤）</p>
+<p>在 Landlock 之上额外限制可用系统调用集：允许 <code>read/write/openat/execve</code>，拒绝 <code>socket/ptrace/mount</code> 等。两层叠加形成纵深防御，单层突破不等于完全逃逸。</p>
+<h3 id="windows">Windows</h3>
+<p>实验性支持（Job Objects + AppContainer），建议在 WSL 中使用 Linux 沙箱。</p>
+<h2 id="sandbox_mode">沙箱模式（sandbox_mode）</h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>文件系统</th>
+<th>网络</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read-only</code>（默认）</td>
+<td>全盘可读，不可写</td>
+<td>禁止</td>
+<td>审阅/规划阶段</td>
+</tr>
+<tr>
+<td><code>workspace-write</code></td>
+<td>工作区读写，其他只读</td>
+<td>默认禁止</td>
+<td>日常开发</td>
+</tr>
+<tr>
+<td><code>danger-full-access</code></td>
+<td>无限制</td>
+<td>无限制</td>
+<td>外部已隔离环境</td>
+</tr>
+</tbody>
+</table>
+<p><code>workspace-write</code> 模式启动时自动将当前工作目录 + <code>~/.codex/memories</code> 注入可写路径，无需手动配置。</p>
+<h2 id="_2">受保护路径</h2>
+<p>即使在 <code>workspace-write</code> 模式，以下路径强制只读：
+- <code>.git/</code> — 防止 Agent 修改 hooks 或 commit history
+- <code>.codex/</code> — 防止 Agent 修改自己的执行规则（反射性攻击防护）
+- <code>/etc/</code>、<code>/usr/</code>、<code>/bin/</code>、<code>~/.ssh/</code> 等系统路径</p>
+<h2 id="_3">网络访问控制</h2>
+<p>默认禁止网络（失败安全原则：宁可任务失败，不可数据外泄）。<a href="../entities/Codex CLI.html">Codex</a> Cloud 的两阶段模型：setup 阶段允许网络（安装依赖），agent 阶段禁止网络（执行任务）——依赖就绪后 agent 在离线状态运行。</p>
+<h2 id="execpolicy">与 ExecPolicy 的协同</h2>
+<pre><code>命令 → ExecPolicy（意图过滤）
+         ├── forbidden → 直接拒绝
+         ├── prompt → 等人类审批
+         └── allow → 进入 OS 沙箱（能力约束）
+                       ↓
+                  内核层强制执行（无法绕过）
+</code></pre>
+<p><strong>ExecPolicy 是意图过滤器，Sandbox 是能力约束器</strong>。两者各自独立，协同工作。</p>
+<h2 id="_4">调试工具</h2>
+<pre><code class="language-bash">codex sandbox macos --log-denials curl https://example.com
+codex sandbox linux cat /etc/passwd
+codex execpolicy check --rules ~/.codex/rules.toml git push --force
+</code></pre>
+<h2 id="_5">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/03_codex_sandbox_system.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Codex多Agent调度.html">&larr; Codex多Agent调度</a>
+    <a href="Codex配置系统.html">Codex配置系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

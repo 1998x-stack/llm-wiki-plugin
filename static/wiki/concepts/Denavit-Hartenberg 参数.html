@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 4.  <strong>关节角 ($\theta_i$)</strong>：绕 $z_{i-1}$ 轴，从 $x_{i-1}$ 到 $x_i$ 的角度（对于旋转关节，这是变量）。</p>
 <p>这四个参数可以构造出一个标准的 $4 \times 4$ <a href="齐次变换矩阵.html">齐次变换矩阵</a> $A_i$，该<a href="矩阵.html">矩阵</a>包含了旋转和平移信息。</p>
 <h3 id="paul">Paul 的标准化贡献</h3>
-<p>在 Paul 之前，DH 参数并未在机器人领域得到统一应用，不同的研究者使用不同的符号系统和坐标系定义。Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control</a>》中不仅采纳了 DH 方法，还对其进行了严格的标准化定义（通常称为“标准 DH"或"Classic DH"），并展示了如何从物理机器人图纸一步步提取 DH 参数表。他以 <a href="../entities/PUMA 机器人.html">PUMA 机器人</a> 机器人为例，手把手演示了从参数提取到正向运动学方程生成的全过程。这种“理论 + 实例”的写作方式，使得 DH 参数从一种抽象的机构学描述工具，变成了工程师手中可操作的建模利器。</p>
+<p>在 Paul 之前，DH 参数并未在机器人领域得到统一应用，不同的研究者使用不同的符号系统和坐标系定义。Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators</a>》中不仅采纳了 DH 方法，还对其进行了严格的标准化定义（通常称为“标准 DH"或"Classic DH"），并展示了如何从物理机器人图纸一步步提取 DH 参数表。他以 <a href="../entities/PUMA 机器人.html">PUMA 560</a> 机器人为例，手把手演示了从参数提取到正向运动学方程生成的全过程。这种“理论 + 实例”的写作方式，使得 DH 参数从一种抽象的机构学描述工具，变成了工程师手中可操作的建模利器。</p>
 <h3 id="_4">在运动学建模中的核心地位</h3>
 <p>DH 参数的最大优势在于其通用性和程序化潜力。对于任何串联开链机器人，只要确定了 DH 参数表，其正向运动学方程就可以自动写成一串<a href="矩阵.html">矩阵</a>连乘的形式：$T_{0n} = \prod A_i$。这一特性极大地简化了复杂机器人的建模过程，并为后来的计算机辅助设计（CAD）和运动学仿真软件奠定了基础。直到今天，全球所有主流工业机器人制造商（如 ABB, FANUC, KUKA）在其技术手册中仍使用 DH 参数来描述产品的运动学构型。当工程师说“给我这台机器人的 DH 表”时，他们使用的正是 Paul 所标准化的那套方法论。</p>
 <h3 id="_5">局限性与替代方案</h3>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="DeepAgents评估体系.html">&larr; DeepAgents评估体系</a>
-    <a href="FTS5.html">FTS5 &rarr;</a>
+    <a href="ExecPolicy.html">ExecPolicy &rarr;</a>
   </div>
 </div>
 </body>

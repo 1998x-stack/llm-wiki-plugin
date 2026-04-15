@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">詹姆斯·威尔金森</h1>
 <h2 id="_2">概述</h2>
-<p>詹姆斯·哈迪·威尔金森（James Hardy Wilkinson，1919–1986）是英国数学家，现代数值<a href="../concepts/线性代数.html">线性代数</a>的奠基人。1970年 ACM <a href="阿兰·图灵.html">阿兰·图灵</a>奖得主，1969年当选英国皇家学会院士（FRS）。剑桥大学三一学院毕业（师从 Hardy、Littlewood），二战期间从事弹道计算，1946年加入英国国家物理实验室（NPL），与<a href="阿兰·图灵.html">阿兰·图灵</a>共同参与 ACE 计算机设计，并亲手设计了 <a href="Pi-Agent.html">Pi-Agent</a>lot ACE 的乘法运算单元。在 NPL 与早期计算机十余年的实际计算经验，使他从计算实践中提炼出<strong><a href="../concepts/后向误差分析.html">后向误差分析</a></strong>（<a href="../concepts/后向误差分析.html">后向误差分析</a>）这一革命性方法论，系统建立了数值<a href="../concepts/线性代数.html">线性代数</a>的理论基础。其1965年专著《代数特征值问题》被公认为数值<a href="../concepts/线性代数.html">线性代数</a>的奠基之作。</p>
+<p>詹姆斯·哈迪·威尔金森（James Hardy Wilkinson，1919–1986）是英国数学家，现代数值<a href="../concepts/线性代数.html">线性代数</a>的奠基人。1970年 ACM <a href="阿兰·图灵.html">图灵</a>奖得主，1969年当选英国皇家学会院士（FRS）。剑桥大学三一学院毕业（师从 Hardy、Littlewood），二战期间从事弹道计算，1946年加入英国国家物理实验室（NPL），与<a href="阿兰·图灵.html">阿兰·图灵</a>共同参与 ACE 计算机设计，并亲手设计了 <a href="Pi-Agent.html">Pi</a>lot ACE 的乘法运算单元。在 NPL 与早期计算机十余年的实际计算经验，使他从计算实践中提炼出<strong><a href="../concepts/后向误差分析.html">后向误差分析</a></strong>（<a href="../concepts/后向误差分析.html">backward error analysis</a>）这一革命性方法论，系统建立了数值<a href="../concepts/线性代数.html">线性代数</a>的理论基础。其1965年专著《代数特征值问题》被公认为数值<a href="../concepts/线性代数.html">线性代数</a>的奠基之作。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">生平</h3>
 <table>
@@ -193,10 +193,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">后向误差分析（最重要贡献）</h3>
-<p>威尔金森的核心思想转变：将"计算结果距真实值多远"（正向误差）改为问"计算结果精确地解了哪个问题"（<a href="../concepts/后向误差分析.html">后向误差分析</a>）。</p>
-<p><strong>关键洞见</strong>：在 <a href="Pi-Agent.html">Pi-Agent</a>lot ACE 上计算多项式零点时，他发现计算得到的零点虽然不是原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点——<a href="../concepts/后向误差分析.html">后向误差分析</a>由此萌生。</p>
+<p>威尔金森的核心思想转变：将"计算结果距真实值多远"（正向误差）改为问"计算结果精确地解了哪个问题"（<a href="../concepts/后向误差分析.html">后向误差</a>）。</p>
+<p><strong>关键洞见</strong>：在 <a href="Pi-Agent.html">Pi</a>lot ACE 上计算多项式零点时，他发现计算得到的零点虽然不是原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点——<a href="../concepts/后向误差分析.html">后向误差分析</a>由此萌生。</p>
 <p><strong>方法论意义</strong>：
-- 将算法稳定性（<a href="../concepts/后向误差分析.html">后向误差分析</a> $|\delta A|/|A|$）与问题条件性（<a href="../concepts/条件数.html">条件数</a> $\kappa(A)$）<strong>清晰分离</strong>
+- 将算法稳定性（<a href="../concepts/后向误差分析.html">backward error</a> $|\delta A|/|A|$）与问题条件性（<a href="../concepts/条件数.html">条件数</a> $\kappa(A)$）<strong>清晰分离</strong>
 - "后向稳定的算法"有了客观判定标准
 - 彻底推翻了 Hotelling（1943）关于 Gauss 消去法误差指数增长的悲观预言</p>
 <p>详见 <a href="../concepts/后向误差分析.html">后向误差分析</a>。</p>
@@ -210,11 +210,11 @@ $$\mu_k = a_{nn} - \frac{\operatorname{sign}(\delta)\cdot b_{n-1}^2}{|\delta| + 
 - <a href="../concepts/后向误差分析.html">后向误差分析</a>框架（全书灵魂）
 - 特征值<a href="../concepts/条件数.html">条件数</a>理论（$\kappa(\lambda_i) = 1/|y_i^H x_i|$）
 - <a href="../concepts/QR算法.html">QR算法</a>收敛性分析与 Wilkinson 位移
-- Gauss 消去法的<a href="../concepts/后向误差分析.html">后向误差分析</a>（彻底解决 Hotelling 问题）
-- 正交变换（Givens旋转、<a href="../concepts/Householder变换.html">Householder变换</a>）的数值优越性</p>
+- Gauss 消去法的<a href="../concepts/后向误差分析.html">后向稳定性</a>（彻底解决 Hotelling 问题）
+- 正交变换（Givens旋转、<a href="../concepts/Householder变换.html">Householder反射</a>）的数值优越性</p>
 <h3 id="_6">软件遗产</h3>
 <p>EISPACK（1970s）→ LINPACK（1970s）→ <strong>LAPACK</strong>（1992至今）→ MATLAB、NumPy/SciPy 的核心计算引擎，均以威尔金森的理论框架和算法为基础。</p>
-<p>SIAM 设立了两项以其名字命名的奖项（1982年"<a href="../concepts/数值分析.html">数值分析</a>与科学计算奖"，1991年"数值软件奖"），是<a href="../concepts/数值分析.html">数值分析</a>领域最高荣誉之一。</p>
+<p>SIAM 设立了两项以其名字命名的奖项（1982年"<a href="../concepts/数值分析.html">数值分析</a>与科学计算奖"，1991年"数值软件奖"），是<a href="../concepts/数值分析.html">数值计算</a>领域最高荣誉之一。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li>raw/books/矩阵分析/14_wilkinson_algebraic_eigenvalue_problem_1965.md</li>

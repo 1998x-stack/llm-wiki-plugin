@@ -151,15 +151,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>其中对角块 $A_{11}, A_{22}, \ldots$ 均为不可约子<a href="矩阵.html">矩阵</a>（或 $1 \times 1$ 零块）。这一分解揭示了可约<a href="矩阵.html">矩阵</a>的层级结构，为分析一般非负<a href="矩阵.html">矩阵</a>提供了统一框架。</p>
 <h3 id="_6">不可约矩阵的谱性质</h3>
 <p>对不可约非负<a href="矩阵.html">矩阵</a> $A$：
-- <strong><a href="谱半径.html">谱半径</a>存在</strong>：<a href="谱半径.html">谱半径</a> $r = \rho(A) &gt; 0$ 是简单特征值
+- <strong><a href="谱半径.html">Perron根</a>存在</strong>：<a href="谱半径.html">谱半径</a> $r = \rho(A) &gt; 0$ 是简单特征值
 - <strong>正特征向量</strong>：$r$ 对应的左右特征向量均严格正
-- <strong>周期性（<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>）</strong>：若有向图中所有闭回路长度的最大公因数为 $h$，则模等于 $r$ 的特征值恰好有 $h$ 个，均匀分布于圆周</p>
+- <strong>周期性（<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>）</strong>：若有向图中所有闭回路长度的最大公因数为 $h$，则模等于 $r$ 的特征值恰好有 $h$ 个，均匀分布于圆周</p>
 <h3 id="primitive-matrix">本原矩阵（Primitive Matrix）</h3>
 <p>不可约<a href="矩阵.html">矩阵</a>的一个重要子类：</p>
 <p><strong>定义</strong>：不可约非负<a href="矩阵.html">矩阵</a> $A$ 称为<strong>本原</strong>（primitive / primitive），若其周期 $h = 1$，即有向图中所有闭回路长度的最大公因数为1。</p>
 <p><strong>等价条件</strong>：$\exists m$ 使 $A^m$ 的所有元素严格为正。</p>
 <p><strong>与正<a href="矩阵.html">矩阵</a>的关系</strong>：正<a href="矩阵.html">矩阵</a>（$a_{ij} &gt; 0$）$\Rightarrow$ 本原<a href="矩阵.html">矩阵</a> $\Rightarrow$ 不可约<a href="矩阵.html">矩阵</a>，但反向不成立。</p>
-<p><strong><a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>上界</strong>：本原<a href="矩阵.html">矩阵</a> $A$（$n \times n$）使 $A^m$ 全正的最小 $m$ 满足 $m \leq n^2 - 2n + 2$。</p>
+<p><strong><a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>上界</strong>：本原<a href="矩阵.html">矩阵</a> $A$（$n \times n$）使 $A^m$ 全正的最小 $m$ 满足 $m \leq n^2 - 2n + 2$。</p>
 <h3 id="h">周期指数 $h$ 的计算</h3>
 <p>对不可约<a href="矩阵.html">矩阵</a>，周期 $h$ 等于关联有向图的<strong>周期</strong>——图中所有有向闭回路长度的最大公因数。</p>
 <table>
@@ -195,7 +195,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_7">应用意义</h3>
 <p><strong>Markov链</strong>：不可约<a href="矩阵.html">矩阵</a> ↔ 不可约Markov链（任意状态可到达任意状态）；本原<a href="矩阵.html">矩阵</a> ↔ 遍历（aperiodic）Markov链，收敛到唯一平稳分布。</p>
-<p><strong>PageRank</strong>：Google<a href="矩阵.html">矩阵</a>须为不可约本原<a href="矩阵.html">矩阵</a>，才能保证<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>特征向量的唯一性（引入阻尼因子 $\alpha$ 的目的之一）。</p>
+<p><strong>PageRank</strong>：Google<a href="矩阵.html">矩阵</a>须为不可约本原<a href="矩阵.html">矩阵</a>，才能保证<a href="../entities/奥斯卡·佩龙.html">Perron</a>特征向量的唯一性（引入阻尼因子 $\alpha$ 的目的之一）。</p>
 <p><strong>正系统稳定性</strong>：不可约正系统的稳定性条件（$\rho(A) &lt; 1$）可精确刻画，可约情形则需逐块分析。</p>
 <p><strong>谱聚类</strong>：图的Laplacian<a href="矩阵.html">矩阵</a>不可约当且仅当图连通，这决定了谱聚类方法能否正确分离社区结构。</p>
 <h2 id="_8">来源</h2>

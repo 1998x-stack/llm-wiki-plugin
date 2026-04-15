@@ -79,6 +79,7 @@ updated: 2026-04-15
 - [[Sergey-Levine]] — Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习领域最具影响力的研究者之一（Google Scholar 引用超 23 ... (confidence: 0.95)
 - [[Willow Garage]] — Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由硅谷企业家 Scott Hassan 创立。该机构致力于个人机器人技术的研发，其... (confidence: 1.0)
 - [[Wolfram Burgard]] — Wolfram Burgard 是德国弗莱堡大学（University of Freiburg）教授，国际知名的机器人学专家，尤其在移动机器人导航、机器学习和同... (confidence: 0.95)
+- [[Codex CLI]] — OpenAI 以 Rust 重写并开源的**本地编码 Agent**。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终... (confidence: 0.9)
 
 <!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
@@ -271,6 +272,13 @@ updated: 2026-04-15
 - [[Church-Turing 论题]] — Church-Turing 论题断言：任何直觉上"可计算"的函数都是图灵可计算的（即可被图灵机计算）。这不是数学定理，而是一个关于"计算"这一概念在自然界中本质... (confidence: 0.95)
 - [[停机问题]] — 停机问题（Halting Problem）是 [[阿兰·图灵]] 于 1936 年证明的第一个不可判定问题：**不存在**一个通用算法，能判定任意给定程序在任意... (confidence: 0.98)
 - [[图灵机]] — 图灵机是由 [[阿兰·图灵]] 于 1936 年定义的抽象计算模型，通过模拟人类计算员的最简行为（读符号、写符号、移动、改变状态）来精确刻画"计算"的数学本质，... (confidence: 0.98)
+- [[Codex TUI]] — [[Codex CLI]] 的"驾驶舱"——不是简单的 REPL，而是一个**事件驱动状态机**，承担实时审批、diff 预览、会话导航、多 Agent 状态展... (confidence: 0.9)
+- [[Codex会话管理器]] — [[Codex CLI]] 的上下文持久化层，解决 LLM 天然无状态与工程任务有状态之间的矛盾。通过 Session 持久化、Transcript 存储和 R... (confidence: 0.9)
+- [[Codex多Agent调度]] — [[Codex CLI]] 的并行任务执行系统，让 Codex 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Agent 将复杂任务分解后，派遣... (confidence: 0.9)
+- [[Codex沙箱系统]] — [[Codex CLI]] 的执行边界层，用**操作系统内核级机制**限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核... (confidence: 0.9)
+- [[Codex配置系统]] — [[Codex CLI]] 的"神经系统"，控制每一个可调行为。不是简单的配置文件，而是一个**多层继承、可版本化、环境感知**的配置管理体系。 (confidence: 0.9)
+- [[ExecPolicy]] — [[Codex CLI]] 的命令审批引擎，位于 [[Codex沙箱系统]] 之前。将"哪些命令允许、哪些需要审批、哪些禁止"从硬编码逻辑中解放出来，变成**可... (confidence: 0.9)
+- [[MCP协议层]] — [[Codex CLI]] 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
@@ -286,9 +294,9 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：264
-- 实体：106
-- 概念：151
+- 总页面数：272
+- 实体：107
+- 概念：158
 - 综合分析：5
 - QA 洞见：1
 - 最后更新：2026-04-15

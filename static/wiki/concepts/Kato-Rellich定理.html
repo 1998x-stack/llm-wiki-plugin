@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="kato-rellich">Kato-Rellich定理</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich定理是算子<a href="矩阵扰动理论.html">矩阵扰动理论</a>的基础定理，由 Franz Rellich（1940年代）和<a href="../entities/加藤敏夫.html">加藤敏夫</a>（1951年）共同建立。<strong>核心结论：若 $A$ 是 Hilbert 空间上的自伴算子，$B$ 是 $A$-有界的对称算子且相对界 $a &lt; 1$，则 $A + B$ 在 $D(A)$ 上自伴。</strong> 其在量子力学中的应用是革命性的：<a href="../entities/加藤敏夫.html">加藤敏夫</a>1951年利用该定理一举证明了所有有限粒子系统（含 Coulomb 相互作用）的 Schrödinger Hamilton 算子的本质自伴性——解决了 von Neumann 未能解决的问题，为量子力学全部<a href="数值分析.html">数值分析</a>提供了数学合法性。</p>
+<p><a href="../entities/加藤敏夫.html">Kato</a>-Rellich定理是算子<a href="矩阵扰动理论.html">扰动理论</a>的基础定理，由 Franz Rellich（1940年代）和<a href="../entities/加藤敏夫.html">加藤敏夫</a>（1951年）共同建立。<strong>核心结论：若 $A$ 是 Hilbert 空间上的自伴算子，$B$ 是 $A$-有界的对称算子且相对界 $a &lt; 1$，则 $A + B$ 在 $D(A)$ 上自伴。</strong> 其在量子力学中的应用是革命性的：<a href="../entities/加藤敏夫.html">加藤</a>1951年利用该定理一举证明了所有有限粒子系统（含 Coulomb 相互作用）的 Schrödinger Hamilton 算子的本质自伴性——解决了 von Neumann 未能解决的问题，为量子力学全部<a href="数值分析.html">数值计算</a>提供了数学合法性。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定理精确陈述</h3>
 <p><strong>设</strong> $A$ 为 Hilbert 空间 $\mathcal{H}$ 上的自伴算子（定义域 $D(A)$），$B$ 为对称算子（$D(A) \subset D(B)$）且存在常数 $a &lt; 1$ 和 $b \geq 0$ 使得：</p>
@@ -144,38 +144,38 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>则 $A + B$ 在定义域 $D(A)$ 上<strong>自伴</strong>，且 $A + B$ 是<strong>本质自伴的</strong>当且仅当 $A$ 是本质自伴的。</p>
 <p><strong>关键条件</strong>：相对界 $a &lt; 1$（严格小于1）。若 $a = 1$，结论一般不成立。</p>
 <h3 id="_4">量子力学中的应用</h3>
-<p><strong>核心应用</strong>：多体 Schrödinger 算子的自伴性（<a href="../entities/加藤敏夫.html">加藤敏夫</a>，1951）</p>
+<p><strong>核心应用</strong>：多体 Schrödinger 算子的自伴性（<a href="../entities/加藤敏夫.html">加藤</a>，1951）</p>
 <p>考虑 $N$ 个量子粒子的 Hamilton 算子：
 $$H = -\sum_{i=1}^N \frac{\hbar^2}{2m_i}\Delta_i + \sum_{i&lt;j} \frac{e_i e_j}{|x_i - x_j|}$$</p>
 <p>在 $L^2(\mathbb{R}^{3N})$ 上，动能算子 $T = -\Delta$ 是自伴的，而 Coulomb 势能 $V = \sum_{i&lt;j} e_i e_j / |x_i - x_j|$ 是 $T$-有界的且相对界 $&lt; 1$（由 Hardy 不等式：$|r^{-1}u|_2 \leq c|\nabla u|_2$）。</p>
-<p>由 <a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich 定理，$H = T + V$ 自伴。</p>
+<p>由 <a href="../entities/加藤敏夫.html">Kato</a>-Rellich 定理，$H = T + V$ 自伴。</p>
 <p><strong>历史意义</strong>：这证明了原子（氢原子、氦原子等）、分子（H₂, NH₃等）的 Hamilton 算子的数学合法性，解决了 von Neumann 悬而未决的问题，为量子化学和量子力学的全部理论计算提供了基础。</p>
 <h3 id="_5">与有限维矩阵扰动的类比</h3>
-<p>| | 有限维（<a href="矩阵扰动理论.html">矩阵扰动理论</a>） | 无穷维（<a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich） |
+<p>| | 有限维（<a href="矩阵扰动理论.html">矩阵扰动理论</a>） | 无穷维（<a href="../entities/加藤敏夫.html">Kato</a>-Rellich） |
 |--|------------------------|----------------------|
 | 结构 | Hermitian <a href="矩阵.html">矩阵</a> | 自伴算子 |
 | 扰动条件 | $|E|_F$ 小 | $B$ 是 $A$-有界且相对界 $&lt;1$ |
 | 结论 | 特征值连续变化 | $A+B$ 仍自伴 |
-| 工具 | <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数，谱范数 | 算子域，图范数 |
-| 代表结果 | <a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 不等式，Hoffman-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> | <a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich 定理 |</p>
+| 工具 | <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数，谱范数 | 算子域，图范数 |
+| 代表结果 | <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式，Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a> | <a href="../entities/加藤敏夫.html">Kato</a>-Rellich 定理 |</p>
 <p>有限维情形：Hermitian <a href="矩阵.html">矩阵</a> $A$ 和任意 Hermitian 扰动 $B$ 之和仍是 Hermitian 的（自动成立）。无穷维情形：这需要专门的定理来保证，因为算子的定义域可能改变。</p>
 <h3 id="rellich-kato">解析扰动理论（Rellich-Kato）</h3>
 <p>当 $B(\kappa) = \kappa B^{(1)} + \kappa^2 B^{(2)} + \cdots$ 解析依赖于参数 $\kappa$ 时，$T(\kappa) = A + B(\kappa)$ 的离散特征值可展开为 $\kappa$ 的收敛幂级数：</p>
 <p>$$\lambda(\kappa) = \lambda_0 + \kappa\lambda_1 + \kappa^2\lambda_2 + \cdots$$</p>
-<p>这就是量子力学 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>-Schrödinger 微扰级数的严格数学基础：
+<p>这就是量子力学 <a href="../entities/瑞利勋爵.html">Rayleigh</a>-Schrödinger 微扰级数的严格数学基础：
 - $\lambda_1 = \langle \psi_0, B^{(1)}\psi_0\rangle$（一阶微扰修正）
 - $\lambda_2 = \sum_{n\neq 0} |\langle\psi_n, B^{(1)}\psi_0\rangle|^2 / (\lambda_0 - \lambda_n)$（二阶修正）</p>
 <h3 id="klmn">KLMN 定理（更广泛的二次型方法）</h3>
-<p>对于比 <a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich 更奇异的扰动（如量子力学中的 $1/r^2$ 势），可用二次型方法：</p>
-<p><strong>KLMN 定理</strong>（<a href="../entities/加藤敏夫.html">加藤敏夫</a>-Lax-Milgram-Nelson）：若下半有界闭二次型 $a$ 的扰动 $b$ 满足 $|b[u,u]| \leq \varepsilon a[u,u] + C_\varepsilon|u|^2$（$\varepsilon &lt; 1$），则 $a + b$ 仍是下半有界闭二次型，对应的算子自伴。</p>
+<p>对于比 <a href="../entities/加藤敏夫.html">Kato</a>-Rellich 更奇异的扰动（如量子力学中的 $1/r^2$ 势），可用二次型方法：</p>
+<p><strong>KLMN 定理</strong>（<a href="../entities/加藤敏夫.html">Kato</a>-Lax-Milgram-Nelson）：若下半有界闭二次型 $a$ 的扰动 $b$ 满足 $|b[u,u]| \leq \varepsilon a[u,u] + C_\varepsilon|u|^2$（$\varepsilon &lt; 1$），则 $a + b$ 仍是下半有界闭二次型，对应的算子自伴。</p>
 <h3 id="weyl-von-neumann-kato">本质谱的稳定性（Weyl-von Neumann-Kato）</h3>
-<p><strong><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>-von Neumann 定理的<a href="../entities/加藤敏夫.html">加藤敏夫</a>版</strong>：本质谱 $\sigma_{\text{ess}}(T)$ 在<strong>相对紧扰动</strong>（relatively compact perturbation）下保持不变：</p>
+<p><strong><a href="../entities/赫尔曼·外尔.html">Weyl</a>-von Neumann 定理的<a href="../entities/加藤敏夫.html">加藤</a>版</strong>：本质谱 $\sigma_{\text{ess}}(T)$ 在<strong>相对紧扰动</strong>（relatively compact perturbation）下保持不变：</p>
 <p>$$\sigma_{\text{ess}}(T + K) = \sigma_{\text{ess}}(T)$$</p>
 <p><strong>含义</strong>：紧扰动（对应有限秩或"衰减到无穷"的势能）不改变连续谱，只能改变离散特征值的有限个——这是量子力学"散射态不受有限范围势能影响"的数学表述。</p>
 <h2 id="_6">影响</h2>
-<p><strong>Davis-Kahan $\sin\Theta$ 定理（1970）</strong>：建立于<a href="../entities/加藤敏夫.html">加藤敏夫</a>的子空间间距理论，给出特征子空间旋转的定量界：$|\sin\Theta| \leq |E|/\delta$。是现代 PCA 一致性理论和谱聚类稳定性的核心工具。</p>
-<p><strong>Reed-Simon（1972-1978）</strong>：四卷本数学物理教材系统引用<a href="../entities/加藤敏夫.html">加藤敏夫</a>框架，<a href="../entities/加藤敏夫.html">加藤敏夫</a>-Rellich 是第二卷的核心。</p>
-<p><strong>量子化学</strong>：从 Hartree-Fock 方法到密度泛函理论，量子化学的一切<a href="数值分析.html">数值分析</a>都依赖于多体 Schrödinger 算子的自伴性——由 <a href="../entities/加藤敏夫.html">加藤敏夫</a> 定理保证。</p>
+<p><strong>Davis-Kahan $\sin\Theta$ 定理（1970）</strong>：建立于<a href="../entities/加藤敏夫.html">加藤</a>的子空间间距理论，给出特征子空间旋转的定量界：$|\sin\Theta| \leq |E|/\delta$。是现代 PCA 一致性理论和谱聚类稳定性的核心工具。</p>
+<p><strong>Reed-Simon（1972-1978）</strong>：四卷本数学物理教材系统引用<a href="../entities/加藤敏夫.html">加藤</a>框架，<a href="../entities/加藤敏夫.html">Kato</a>-Rellich 是第二卷的核心。</p>
+<p><strong>量子化学</strong>：从 Hartree-Fock 方法到密度泛函理论，量子化学的一切<a href="数值分析.html">数值计算</a>都依赖于多体 Schrödinger 算子的自伴性——由 <a href="../entities/加藤敏夫.html">Kato</a> 定理保证。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li>raw/books/矩阵分析/15_kato_perturbation_theory_1966.md</li>

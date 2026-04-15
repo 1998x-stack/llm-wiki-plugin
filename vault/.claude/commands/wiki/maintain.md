@@ -56,16 +56,17 @@ bash scripts/wiki.sh relink
 
 **终止条件**：snapshot_index.py 执行出错（脚本异常，非数据问题）→ 报告错误并停止。
 
-### 4. Check — 只读诊断
+### 4. Check — 只读诊断 + gotchas 追加
 
-执行 `wiki:check` 的完整流程（步骤 1-5）：
+执行 `wiki:check` 的完整流程（步骤 1-6）：
 
 - 运行 `bash scripts/wiki.sh lint_wiki --json`
 - 扫描所有 wiki/ 页面
 - 执行 A-I 检查项 + 语义检查
 - 生成诊断报告
+- **追加新 gotchas**：将发现的新模式写入 `../docs/gotchas/`（仓库根目录，非 vault/），并同步更新 `../docs/gotchas.md` 索引
 
-记录 ERROR / WARNING / INFO 数量，继续下一步。
+记录 ERROR / WARNING / INFO 数量及新增 gotchas 条数，继续下一步。
 
 ### 5. Lint — 自动修复
 
@@ -108,6 +109,7 @@ bash scripts/wiki.sh relink
 
 [4/6] Check
   - ERROR: A 个 | WARNING: B 个 | INFO: C 个
+  - 新 gotchas: G 条 → ../docs/gotchas/[file].md
 
 [5/6] Lint
   - 自动修复: X 个
@@ -127,7 +129,7 @@ bash scripts/wiki.sh relink
 - Reorganize-raw: N → N ✓ (M moved, F wiki files updated)
 - Relink: T terms, L new links across P pages
 - Reindex: OK (N 页面, K clusters)
-- Check: A errors, B warnings, C info
+- Check: A errors, B warnings, C info (G new gotchas → ../docs/gotchas/[file].md)
 - Lint: X 修复, Y 待处理
 - Build: N 节点, M 边 → static/ 已同步
 ```

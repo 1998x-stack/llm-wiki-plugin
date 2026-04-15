@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">随机游走</h1>
 <h2 id="_2">概述</h2>
-<p>随机游走是最简单的离散时间随机过程：每步以等概率 $\pm 1$ 移动，均方位移与步数成正比（$\mathbb{E}[S_n^2] = n$），是<a href="Wiener过程.html">Wiener过程</a>（<a href="Wiener过程.html">Wiener过程</a>）的离散前身。</p>
+<p>随机游走是最简单的离散时间随机过程：每步以等概率 $\pm 1$ 移动，均方位移与步数成正比（$\mathbb{E}[S_n^2] = n$），是<a href="Wiener过程.html">Wiener过程</a>（<a href="Wiener过程.html">布朗运动</a>）的离散前身。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>标准差：$\text{SD}(S_n) = \sqrt{n}$</p>
 </li>
 <li>
-<p><strong>连续极限——<a href="Wiener过程.html">Wiener过程</a></strong>：令时间步长 $\Delta t = T/n$，空间步长为 $\sqrt{\Delta t}$。令 $B^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt/T \rfloor}$，则当 $n \to \infty$ 时，$B^{(n)}(t)$ 在分布意义下收敛到<a href="Wiener过程.html">Wiener过程</a> $B(t)$。这一收敛由<a href="中心极限定理.html">中心极限定理</a>保证。关键等式：$\Delta B \propto \sqrt{\Delta t}$，而非 $\Delta t$——这正是<a href="Wiener过程.html">Wiener过程</a>处处不可微的根源。</p>
+<p><strong>连续极限——<a href="Wiener过程.html">布朗运动</a></strong>：令时间步长 $\Delta t = T/n$，空间步长为 $\sqrt{\Delta t}$。令 $B^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt/T \rfloor}$，则当 $n \to \infty$ 时，$B^{(n)}(t)$ 在分布意义下收敛到<a href="Wiener过程.html">Wiener过程</a> $B(t)$。这一收敛由<a href="中心极限定理.html">中心极限定理</a>保证。关键等式：$\Delta B \propto \sqrt{\Delta t}$，而非 $\Delta t$——这正是<a href="Wiener过程.html">布朗运动</a>处处不可微的根源。</p>
 </li>
 <li>
 <p><strong><a href="../entities/马尔可夫.html">马尔可夫</a>性</strong>：随机游走是<a href="马尔可夫链.html">马尔可夫链</a>的典型例子：$S_{n+1}$ 的分布只依赖于 $S_n$，不依赖于历史。</p>

@@ -73,3 +73,43 @@
      ERROR: M 个 | WARNING: K 个 | INFO: J 个
      ```
    - 列出所有发现的问题清单（不修复，只报告）
+
+6. **追加 gotchas**（如发现新模式）
+
+   > **路径**：`../docs/gotchas/`（相对于 vault/ 工作目录，即仓库根目录下的 `docs/gotchas/`）
+
+   检查报告中是否存在值得记录的**新模式**。以下情况应追加 gotcha：
+
+   - **脚本误报（false-positive）**：代码块内容被误识别为 wikilink（如 TOML `[[rule]]` 语法触发 B1 警告）
+   - **结构性缺陷**：揭示流程设计漏洞（如新建页面无法自动加入 map）
+   - **重复出现的问题**：同一错误模式在多个页面出现
+   - **非显而易见的修复**：修复方案不直观、将来容易重犯
+
+   **类别 → 文件映射**：
+
+   | 问题类型 | 目标文件 |
+   |---------|---------|
+   | 代码块内容误触 B1（broken link 误报） | `../docs/gotchas/script-fixes.md` |
+   | M2 unmapped 页面的规律性成因 | `../docs/gotchas/knowledge-graph.md` |
+   | F1-F4 frontmatter / index 问题 | `../docs/gotchas/ingest-issues.md` |
+   | 钩子或脚本行为异常 | `../docs/gotchas/hooks-and-paths.md` |
+   | 无合适归类 | 新建 `../docs/gotchas/check-issues.md` |
+
+   **追加流程**：
+
+   1. 扫描 `../docs/gotchas/` 下所有 `*.md`，找到最高 `## #N —` 编号，新条目从 N+1 开始
+   2. 在目标文件末尾追加，格式：
+
+      ```markdown
+      ## #N — [组件/检查码]: [一行摘要]
+
+      **Status**: New (YYYY-MM-DD)
+
+      [问题描述：触发条件、表现、根因]
+
+      **When it bites**: [具体触发场景]
+
+      **Workaround/Fix**: [已采取的措施或建议]
+      ```
+
+   3. 如果追加了新条目，同步更新 `../docs/gotchas.md` 索引表中对应行的 Issues 范围（如 `#15-17` → `#15-18`）

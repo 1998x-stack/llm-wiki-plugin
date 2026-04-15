@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">共轭梯度法</h1>
 <h2 id="_2">概述</h2>
-<p>共轭梯度法（Conjugate Gradient Method, CG）由赫斯坦尼斯（Hestenes）和施蒂费尔（Stiefel）于 1952 年提出，是求解对称正定（SPD）线性方程组 $Ax=b$ 的迭代方法。核心思想是构造一组关于<a href="矩阵.html">矩阵</a> $A$ 共轭（A-conjugate）的搜索方向，在 <a href="Krylov子空间方法.html">Krylov子空间方法</a>中寻找 $A$-范数最优近似解。CG 每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，存储仅需 4 个向量，收敛率依赖<a href="条件数.html">条件数</a>的<strong>平方根</strong>（远优于经典迭代法依赖<a href="条件数.html">条件数</a>本身）。配合预处理（PCG）是现代大规模科学计算的核心算法。</p>
+<p>共轭梯度法（Conjugate Gradient Method, CG）由赫斯坦尼斯（Hestenes）和施蒂费尔（Stiefel）于 1952 年提出，是求解对称正定（SPD）线性方程组 $Ax=b$ 的迭代方法。核心思想是构造一组关于<a href="矩阵.html">矩阵</a> $A$ 共轭（A-conjugate）的搜索方向，在 <a href="Krylov子空间方法.html">Krylov 子空间</a>中寻找 $A$-范数最优近似解。CG 每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，存储仅需 4 个向量，收敛率依赖<a href="条件数.html">条件数</a>的<strong>平方根</strong>（远优于经典迭代法依赖<a href="条件数.html">条件数</a>本身）。配合预处理（PCG）是现代大规模科学计算的核心算法。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">算法</h3>
 <p><strong>输入</strong>：SPD <a href="矩阵.html">矩阵</a> $A$，向量 $b$，初始猜测 $x_0$</p>
@@ -220,7 +220,7 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 </tr>
 </tbody>
 </table>
-<p>PCG 是现代大规模 <a href="有限元方法.html">有限元方法</a>/FDM/FVM 计算的<strong>事实标准</strong>求解器。</p>
+<p>PCG 是现代大规模 <a href="有限元方法.html">FEM</a>/FDM/FVM 计算的<strong>事实标准</strong>求解器。</p>
 <h3 id="_8">后续发展</h3>
 <table>
 <thead>

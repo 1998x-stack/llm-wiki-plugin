@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rayleigh">Rayleigh商</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商（<a href="../entities/瑞利勋爵.html">瑞利勋爵</a> Quotient）是实对称<a href="矩阵.html">矩阵</a> A 关于非零向量 x 定义的标量函数：R(x) = xᵀAx / xᵀx。其值域恰好是 A 的特征值区间 [λ_min, λ_max]，在特征向量处取得相应特征值。由<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年在声学和振动分析中引入，用于将最小特征值（基频）表达为变分极小值；后被<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>扩展为<a href="极大极小定理.html">极大极小定理</a>的核心工具，将所有特征值统一纳入变分框架。</p>
+<p><a href="../entities/瑞利勋爵.html">Rayleigh</a>商（<a href="../entities/瑞利勋爵.html">Rayleigh</a> Quotient）是实对称<a href="矩阵.html">矩阵</a> A 关于非零向量 x 定义的标量函数：R(x) = xᵀAx / xᵀx。其值域恰好是 A 的特征值区间 [λ_min, λ_max]，在特征向量处取得相应特征值。由<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年在声学和振动分析中引入，用于将最小特征值（基频）表达为变分极小值；后被<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>扩展为<a href="极大极小定理.html">极大极小定理</a>的核心工具，将所有特征值统一纳入变分框架。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定义</h3>
-<p>对于 n×n 实对称<a href="矩阵.html">矩阵</a> A，<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商为：</p>
+<p>对于 n×n 实对称<a href="矩阵.html">矩阵</a> A，<a href="../entities/瑞利勋爵.html">Rayleigh</a>商为：</p>
 <p>$$R(x) = \frac{x^T A x}{x^T x}, \quad x \in \mathbb{R}^n \setminus {0}$$</p>
 <p>等价地，对 Hermite <a href="矩阵.html">矩阵</a>：</p>
 <p>$$R(x) = \frac{x^<em> A x}{x^</em> x}, \quad x \in \mathbb{C}^n \setminus {0}$$</p>
@@ -177,30 +177,30 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p>最后一式将 R(x) 表达为特征值的凸组合，权重由 x 在特征向量基下的坐标决定。</p>
 <h3 id="rayleigh_1">Rayleigh 的物理起源</h3>
-<p>在弹性/声学系统中（刚度<a href="矩阵.html">矩阵</a> K，质量<a href="矩阵.html">矩阵</a> M），广义 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商为：</p>
+<p>在弹性/声学系统中（刚度<a href="矩阵.html">矩阵</a> K，质量<a href="矩阵.html">矩阵</a> M），广义 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商为：</p>
 <p>$$R(x) = \frac{x^T K x}{x^T M x}$$</p>
-<p>物理意义：<strong>弹性势能与动能的比</strong>。基频的平方等于此商的最小值。这一物理直觉（系统的"最经济"振动模式最先被激发）使 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a> 在1877年引入了这个商。</p>
+<p>物理意义：<strong>弹性势能与动能的比</strong>。基频的平方等于此商的最小值。这一物理直觉（系统的"最经济"振动模式最先被激发）使 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 在1877年引入了这个商。</p>
 <h3 id="fischer">在 Fischer 极大极小定理中的角色</h3>
-<p><a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理的核心是在<strong>子空间约束</strong>下对 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商施加双重极值：</p>
+<p><a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 定理的核心是在<strong>子空间约束</strong>下对 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商施加双重极值：</p>
 <p>$$\lambda_k = \max_{\dim V = k} \min_{x \in V,\, x \neq 0} R(x)$$</p>
-<p><a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商的凸组合表达（加权平均形式）是证明两个步骤（上界和下界论证）的关键工具。</p>
+<p><a href="../entities/瑞利勋爵.html">Rayleigh</a>商的凸组合表达（加权平均形式）是证明两个步骤（上界和下界论证）的关键工具。</p>
 <h3 id="_5">梯度与临界点</h3>
-<p><a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商关于 x 的梯度为：</p>
+<p><a href="../entities/瑞利勋爵.html">Rayleigh</a>商关于 x 的梯度为：</p>
 <p>$$\nabla R(x) = \frac{2}{x^T x}\left(Ax - R(x) \cdot x\right)$$</p>
-<p>临界点（∇R = 0）恰好是特征向量，临界值恰好是特征值。因此，<strong>求 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商的驻点等价于求特征向量</strong>。</p>
+<p>临界点（∇R = 0）恰好是特征向量，临界值恰好是特征值。因此，<strong>求 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商的驻点等价于求特征向量</strong>。</p>
 <h3 id="rayleigh-ritz">实际计算：Rayleigh-Ritz 方法</h3>
-<p>在<a href="数值分析.html">数值分析</a>中，<a href="../entities/瑞利勋爵.html">瑞利勋爵</a> 商用于<strong>特征值的迭代估计</strong>：</p>
+<p>在<a href="数值分析.html">数值计算</a>中，<a href="../entities/瑞利勋爵.html">Rayleigh</a> 商用于<strong>特征值的迭代估计</strong>：</p>
 <ol>
 <li>选取初始猜测向量 x₀</li>
 <li>计算 R(xₖ)（作为特征值近似）</li>
-<li>更新 x：如 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a> 商迭代（Rq = Axₖ - R(xₖ)xₖ 的法方程）</li>
-<li>收敛速度：<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商迭代对单纯特征值<strong>三次收敛</strong></li>
+<li>更新 x：如 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 商迭代（Rq = Axₖ - R(xₖ)xₖ 的法方程）</li>
+<li>收敛速度：<a href="../entities/瑞利勋爵.html">Rayleigh</a>商迭代对单纯特征值<strong>三次收敛</strong></li>
 </ol>
-<p><strong>Lanczos 算法</strong>正是在 Krylov 子空间上对 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商做约束极值，快速计算大稀疏<a href="矩阵.html">矩阵</a>的极端特征值。</p>
+<p><strong>Lanczos 算法</strong>正是在 Krylov 子空间上对 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商做约束极值，快速计算大稀疏<a href="矩阵.html">矩阵</a>的极端特征值。</p>
 <h3 id="rayleigh_2">广义 Rayleigh商与主成分分析</h3>
-<p>在主成分分析（PCA）中，协方差<a href="矩阵.html">矩阵</a> C 的 <a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商 R(x) = xᵀCx / xᵀx 的最大值方向给出第一主成分。<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理保证了最优 k 维投影子空间恰好是前 k 个特征向量张成的子空间，这是 PCA 最优性的数学根据。</p>
+<p>在主成分分析（PCA）中，协方差<a href="矩阵.html">矩阵</a> C 的 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商 R(x) = xᵀCx / xᵀx 的最大值方向给出第一主成分。<a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 定理保证了最优 k 维投影子空间恰好是前 k 个特征向量张成的子空间，这是 PCA 最优性的数学根据。</p>
 <h2 id="_6">意义</h2>
-<p><a href="../entities/瑞利勋爵.html">瑞利勋爵</a>商是将<strong>"代数的"特征值</strong>与<strong>"几何的"子空间方向</strong>联系起来的核心桥梁。它使得：</p>
+<p><a href="../entities/瑞利勋爵.html">Rayleigh</a>商是将<strong>"代数的"特征值</strong>与<strong>"几何的"子空间方向</strong>联系起来的核心桥梁。它使得：</p>
 <ul>
 <li>特征值可以通过优化（而非求多项式的根）来计算和估计</li>
 <li>近似特征向量能给出特征值的近似（且误差阶高两级：方向误差 ε → 特征值误差 ε²）</li>

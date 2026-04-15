@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">谱半径</h1>
 <h2 id="_2">概述</h2>
-<p><a href="矩阵.html">矩阵</a> $A$ 的<strong>谱半径</strong>（spectral radius）定义为其所有特征值绝对值的最大值：$\rho(A) = \max{|\lambda| : \det(\lambda I - A) = 0}$。谱半径是<a href="矩阵.html">矩阵</a>"最强振荡模式"的量化，决定了<a href="矩阵.html">矩阵</a>幂次 $A^k$ 的长期增长行为。对于元素全正的<a href="矩阵.html">矩阵</a>，<a href="Perron-Frobenius定理.html">Perron-Frobenius定理</a>保证谱半径恰好由一个正实特征值（<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>根）达到，使谱半径从抽象的 $\max|\lambda|$ 变成具有清晰几何含义的结构。</p>
+<p><a href="矩阵.html">矩阵</a> $A$ 的<strong>谱半径</strong>（spectral radius）定义为其所有特征值绝对值的最大值：$\rho(A) = \max{|\lambda| : \det(\lambda I - A) = 0}$。谱半径是<a href="矩阵.html">矩阵</a>"最强振荡模式"的量化，决定了<a href="矩阵.html">矩阵</a>幂次 $A^k$ 的长期增长行为。对于元素全正的<a href="矩阵.html">矩阵</a>，<a href="Perron-Frobenius定理.html">Perron-Frobenius定理</a>保证谱半径恰好由一个正实特征值（<a href="../entities/奥斯卡·佩龙.html">Perron</a>根）达到，使谱半径从抽象的 $\max|\lambda|$ 变成具有清晰几何含义的结构。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义与基本性质</h3>
 <p>$$\rho(A) = \max{|\lambda_1|, |\lambda_2|, \ldots, |\lambda_n|}$$</p>
@@ -155,19 +155,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这是离散时间动力系统、迭代算法收敛性分析的基础。</p>
 <h3 id="perron">Perron根：正矩阵中的谱半径</h3>
 <p>对于元素全正的<a href="矩阵.html">矩阵</a>（$a_{ij} &gt; 0$），<a href="Perron-Frobenius定理.html">Perron-Frobenius定理</a>给出更精细的结论：</p>
-<p>$$\rho(A) = r \quad (\text{<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>根})$$</p>
+<p>$$\rho(A) = r \quad (\text{<a href="../entities/奥斯卡·佩龙.html">Perron</a>根})$$</p>
 <p>且：
 - $r$ 是 $A$ 的正实特征值（而非复数或负数）
 - $r$ 是简单特征值（代数重数 = 1）
 - 所有其他特征值满足 $|\lambda| &lt; r$（严格不等式）</p>
 <p><strong>谱间隙</strong>（spectral gap）：$r - \max_{i \geq 2}|\lambda_i| &gt; 0$，控制幂法迭代和Markov链混合时间。</p>
 <h3 id="frobenius">Frobenius的极大极小刻画</h3>
-<p><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908）给出正<a href="矩阵.html">矩阵</a><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>根的变分刻画：</p>
+<p><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908）给出正<a href="矩阵.html">矩阵</a><a href="../entities/奥斯卡·佩龙.html">Perron</a>根的变分刻画：</p>
 <p>$$r = \max_{x &gt; 0} \min_i \frac{(Ax)<em>i}{x_i} = \min</em>{x &gt; 0} \max_i \frac{(Ax)_i}{x_i}$$</p>
-<p>这一双重极值给出了计算和估计<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>根的有效工具，精神上与<a href="极大极小定理.html">极大极小定理</a>相通。</p>
+<p>这一双重极值给出了计算和估计<a href="../entities/奥斯卡·佩龙.html">Perron</a>根的有效工具，精神上与<a href="极大极小定理.html">极大极小定理</a>相通。</p>
 <h3 id="_6">计算方法</h3>
-<p><strong>幂法</strong>：从正初始向量 $v_0$ 出发，迭代 $v_{k+1} = Av_k / |Av_k|$，则 $|Av_k| \to r$，$v_k \to$ <a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>向量，收敛速率 $O((|\lambda_2|/r)^k)$。</p>
-<p><strong>Krylov方法</strong>：将幂法在<a href="Krylov子空间方法.html">Krylov子空间方法</a>上精细化，用于大规模稀疏正<a href="矩阵.html">矩阵</a>（如PageRank的Google<a href="矩阵.html">矩阵</a>）。</p>
+<p><strong>幂法</strong>：从正初始向量 $v_0$ 出发，迭代 $v_{k+1} = Av_k / |Av_k|$，则 $|Av_k| \to r$，$v_k \to$ <a href="../entities/奥斯卡·佩龙.html">Perron</a>向量，收敛速率 $O((|\lambda_2|/r)^k)$。</p>
+<p><strong>Krylov方法</strong>：将幂法在<a href="Krylov子空间方法.html">Krylov子空间</a>上精细化，用于大规模稀疏正<a href="矩阵.html">矩阵</a>（如PageRank的Google<a href="矩阵.html">矩阵</a>）。</p>
 <h2 id="_7">应用</h2>
 <table>
 <thead>

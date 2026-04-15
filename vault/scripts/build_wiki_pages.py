@@ -261,6 +261,7 @@ def convert_wikilinks(html: str, current_path: str, page_map: dict[str, str]) ->
 
     def replace_link(m):
         name = m.group(1)
+        display = m.group(2) if m.group(2) else name
         if name in page_map:
             target_path = page_map[name]
             target_html = target_path.replace(".md", ".html")
@@ -271,9 +272,9 @@ def convert_wikilinks(html: str, current_path: str, page_map: dict[str, str]) ->
                 # Cross-subdir: go up then into target
                 up = "../" * len(current_dir.parts)
                 rel = up + target_html
-            return f'<a href="{escape_html(str(rel))}">{escape_html(name)}</a>'
-        return f'<span style="color:#e74c3c" title="broken link">{escape_html(name)}</span>'
-    return re.sub(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", replace_link, html)
+            return f'<a href="{escape_html(str(rel))}">{escape_html(display)}</a>'
+        return f'<span style="color:#e74c3c" title="broken link">{escape_html(display)}</span>'
+    return re.sub(r"\[\[([^\]|]+?)(?:\|([^\]]*?))?\]\]", replace_link, html)
 
 
 def build_meta_card(fm: dict) -> str:

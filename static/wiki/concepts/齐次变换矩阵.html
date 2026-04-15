@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">齐次变换矩阵</h1>
 <h2 id="_2">概述</h2>
-<p>齐次变换<a href="矩阵.html">矩阵</a>（Homogeneous Transformation <a href="矩阵.html">矩阵</a>）是机器人学中用于描述刚体在三维空间中位姿（位置和姿态）的核心数学工具，通常表示为一个 $4 \times 4$ 的<a href="矩阵.html">矩阵</a>。该<a href="矩阵.html">矩阵</a>巧妙地将 $3 \times 3$ 的旋转<a href="矩阵.html">矩阵</a> $R$ 和 $3 \times 1$ 的平移向量 $d$ 统一在一个结构中，使得旋转和平移的复合运算可以通过单一的<a href="矩阵.html">矩阵</a>乘法完成。在 <a href="../entities/Richard P. Paul.html">Richard P. Paul</a> 的经典著作中，它被确立为贯穿全书的统一数学语言，极大地简化了多连杆机器人运动学的建模与分析过程，避免了在不同坐标表示法之间转换的混乱。</p>
+<p>齐次变换<a href="矩阵.html">矩阵</a>（Homogeneous Transformation <a href="矩阵.html">Matrix</a>）是机器人学中用于描述刚体在三维空间中位姿（位置和姿态）的核心数学工具，通常表示为一个 $4 \times 4$ 的<a href="矩阵.html">矩阵</a>。该<a href="矩阵.html">矩阵</a>巧妙地将 $3 \times 3$ 的旋转<a href="矩阵.html">矩阵</a> $R$ 和 $3 \times 1$ 的平移向量 $d$ 统一在一个结构中，使得旋转和平移的复合运算可以通过单一的<a href="矩阵.html">矩阵</a>乘法完成。在 <a href="../entities/Richard P. Paul.html">Richard P. Paul</a> 的经典著作中，它被确立为贯穿全书的统一数学语言，极大地简化了多连杆机器人运动学的建模与分析过程，避免了在不同坐标表示法之间转换的混乱。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">数学定义与结构</h3>
 <p>齐次变换<a href="矩阵.html">矩阵</a> $T$ 的标准形式如下：
@@ -144,7 +144,7 @@ T = \begin{bmatrix} R &amp; d \ 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} r_{11}
 $$
 其中，$R$ 是一个正交旋转<a href="矩阵.html">矩阵</a>，描述了坐标系的方向；$d$ 是平移向量，描述了原点的位置；底部行 $[0, 0, 0, 1]$ 是为了满足齐次坐标的性质，使得仿射变换可以线性化表示。点的坐标在齐次空间中表示为 $[x, y, z, 1]^T$，通过左乘变换<a href="矩阵.html">矩阵</a>即可完成坐标系的转换。</p>
 <h3 id="_5">在机器人运动学中的应用</h3>
-<p>Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control</a>》中选择齐次变换<a href="矩阵.html">矩阵</a>作为统一工具，主要基于其优异的代数性质：
+<p>Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators</a>》中选择齐次变换<a href="矩阵.html">矩阵</a>作为统一工具，主要基于其优异的代数性质：
 1.  <strong>变换的复合</strong>：两个连续的变换（先 $T_1$ 后 $T_2$）可以直接通过<a href="矩阵.html">矩阵</a>乘法 $T_{total} = T_1 \cdot T_2$ 得到，这使得描述由多个连杆组成的机器人链条变得异常简洁。
 2.  <strong>逆变换</strong>：由于 $R$ 的正交性，齐次变换<a href="矩阵.html">矩阵</a>的逆可以通过简单的转置和向量运算快速求得，无需复杂的通用<a href="矩阵.html">矩阵</a>求逆算法，这对实时控制至关重要。
 3.  <strong>统一性</strong>：无论是点的坐标变换、坐标系的描述，还是运动轨迹的插值，都可以在同一个 $4 \times 4$ <a href="矩阵.html">矩阵</a>框架下完成。Paul 详细讨论了它与欧拉角、RPY 角、轴角表示等其他旋转描述方法之间的转换关系，建立了一个完整的数学工具箱。</p>

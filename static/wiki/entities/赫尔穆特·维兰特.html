@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">赫尔穆特·维兰特</h1>
 <h2 id="_2">概述</h2>
-<p>赫尔穆特·维兰特（Helmut Wielandt，1910–2001）是德国数学家，在<a href="../concepts/矩阵.html">矩阵</a>分析与群论两大领域均有奠基性贡献。1935年在柏林大学获博士学位（<a href="伊赛·舒尔.html">伊赛·舒尔</a> 学术圈），战后先后任职于美因茨大学和图宾根大学。他以两项重大贡献载入史册：1950年给出<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>的简洁新证明（引入 Collatz-Wielandt 变分公式），以及1953年与 Alan J. Hoffman 合作证明<a href="../concepts/正规矩阵.html">正规矩阵</a>的<a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>（<a href="格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数下特征值的最优整体扰动界）。</p>
+<p>赫尔穆特·维兰特（Helmut Wielandt，1910–2001）是德国数学家，在<a href="../concepts/矩阵.html">矩阵</a>分析与群论两大领域均有奠基性贡献。1935年在柏林大学获博士学位（<a href="伊赛·舒尔.html">Schur</a> 学术圈），战后先后任职于美因茨大学和图宾根大学。他以两项重大贡献载入史册：1950年给出<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>的简洁新证明（引入 Collatz-Wielandt 变分公式），以及1953年与 Alan J. Hoffman 合作证明<a href="../concepts/正规矩阵.html">正规矩阵</a>的<a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>（<a href="格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数下特征值的最优整体扰动界）。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">生平</h3>
 <table>
@@ -178,10 +178,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/table&gt;
 &lt;h3 id=&quot;perron-frobenius-1950&quot;&gt;对 Perron-Frobenius 定理的贡献（1950）&lt;/h3&gt;
 &lt;p&gt;发表于 &lt;em&gt;Mathematische Zeitschrift&lt;/em&gt; 第52卷，题为 &lt;em&gt;&quot;Unzerlegbare, nicht negative Matrizen&quot;&lt;/em&gt;（不可分解的非负[[矩阵</span>），给出了<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>至今最简洁、最优雅的证明之一。</p>
-<p><strong>Collatz-Wielandt 变分公式</strong>：将 <a href="奥斯卡·佩龙.html">奥斯卡·佩龙</a> 根刻画为极大极小问题：
+<p><strong>Collatz-Wielandt 变分公式</strong>：将 <a href="奥斯卡·佩龙.html">Perron</a> 根刻画为极大极小问题：
 $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$</p>
-<p>这一变分刻画同时简化了定理的证明并为计算 <a href="奥斯卡·佩龙.html">奥斯卡·佩龙</a> 根提供了实用算法。Wielandt 还证明了本原<a href="../concepts/矩阵.html">矩阵</a>（primitive matrix）的指数上界：使 $A^m$ 全正的最小 $m \leq n^2 - 2n + 2$。</p>
-<p>该论文成为教科书中 <a href="奥斯卡·佩龙.html">奥斯卡·佩龙</a>-<a href="格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 定理的标准证明。</p>
+<p>这一变分刻画同时简化了定理的证明并为计算 <a href="奥斯卡·佩龙.html">Perron</a> 根提供了实用算法。Wielandt 还证明了本原<a href="../concepts/矩阵.html">矩阵</a>（primitive matrix）的指数上界：使 $A^m$ 全正的最小 $m \leq n^2 - 2n + 2$。</p>
+<p>该论文成为教科书中 <a href="奥斯卡·佩龙.html">Perron</a>-<a href="格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 定理的标准证明。</p>
 <h3 id="hoffman-wielandt-1953">Hoffman-Wielandt 定理（1953）</h3>
 <p>与 Alan J. Hoffman 合作，发表于 <em>Duke Mathematical Journal</em>（第20卷，37–39页），全文仅三页。</p>
 <p><strong>核心结果</strong>：对两个 $n \times n$ <a href="../concepts/正规矩阵.html">正规矩阵</a> $A, B$，存在特征值的最优排列 $\pi$ 使得：
@@ -189,7 +189,7 @@ $$\min_{\pi \in S_n} \sum_{i=1}^n |\lambda_i(A) - \mu_{\pi(i)}(B)|^2 \leq |A - B
 <p>等号成立当且仅当 $A$ 与 $B$ 可被同一酉<a href="../concepts/矩阵.html">矩阵</a>同时对角化（即 $AB = BA$）。</p>
 <p>详见 <a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>。</p>
 <h3 id="alan-j-hoffman19242021">Alan J. Hoffman（合著者，1924–2021）</h3>
-<p>美国数学家，哥伦比亚大学博士（1950，Birkhoff 指导），曾任职于普林斯顿高等研究院、美国国家标准局、IBM Watson 研究中心，是 <em><a href="../concepts/线性代数.html">线性代数</a> and its Applications</em> 期刊的创刊主编。其在 Birkhoff-von Neumann 定理（双随机<a href="../concepts/矩阵.html">矩阵</a>）方面的积累为 Hoffman-Wielandt 定理的证明提供了关键灵感。</p>
+<p>美国数学家，哥伦比亚大学博士（1950，Birkhoff 指导），曾任职于普林斯顿高等研究院、美国国家标准局、IBM Watson 研究中心，是 <em><a href="../concepts/线性代数.html">Linear Algebra</a> and its Applications</em> 期刊的创刊主编。其在 Birkhoff-von Neumann 定理（双随机<a href="../concepts/矩阵.html">矩阵</a>）方面的积累为 Hoffman-Wielandt 定理的证明提供了关键灵感。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li>raw/books/矩阵分析/10_frobenius_nonnegative_matrices_1912.md（Wielandt 1950年Perron-Frobenius证明）</li>

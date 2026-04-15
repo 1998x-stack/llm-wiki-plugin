@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExecPolicy — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / ExecPolicy</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="execpolicy">ExecPolicy</h1>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的命令审批引擎，位于 <a href="Codex沙箱系统.html">Codex沙箱系统</a> 之前。将"哪些命令允许、哪些需要审批、哪些禁止"从硬编码逻辑中解放出来，变成<strong>可版本化、可测试、可共享的策略声明文件</strong>——即 Policy as Code。</p>
+<h2 id="_1">核心思想</h2>
+<p>传统做法是硬编码黑名单（脆弱、无法共享）。ExecPolicy 改为结构化规则文件（TOML），支持：
+- 版本控制（提交到 Git 与团队共享）
+- 内置单元测试（load time 自动验证）
+- 三态决策：<code>allow</code> / <code>prompt</code> / <code>forbidden</code></p>
+<h2 id="_2">规则语法</h2>
+<p>每条规则包含以下字段（TOML 数组表格式）：<code>name</code>（规则名）、<code>prefix</code>（命令前缀匹配）、<code>decision</code>（allow/prompt/forbidden）、<code>justification</code>（原因说明）、<code>match</code>/<code>not_match</code>（load-time 单元测试用例）。</p>
+<p><strong>前缀匹配语法</strong>：prefix 数组内嵌套数组表示"或"——例如 <code>["git", "log/status/diff"]</code> 匹配三个 git 只读命令；<code>["npm/yarn", "install"]</code> 同时匹配 npm 和 yarn 的 install 命令。</p>
+<h2 id="_3">三态决策</h2>
+<table>
+<thead>
+<tr>
+<th>决策</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allow</code></td>
+<td>直接放行，不触发审批弹窗</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>暂停，在 <a href="Codex TUI.html">Codex TUI</a> 显示 Approval Gate，等人类决策</td>
+</tr>
+<tr>
+<td><code>forbidden</code></td>
+<td>直接拒绝，并将 <code>justification</code>（含替代方案）返回给 LLM</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>forbidden</code> 的工程价值</strong>：LLM 收到 justification 后可自动纠错（如用 <code>--force-with-lease</code> 替代 <code>--force</code>），形成<strong>自动纠错循环</strong>。</p>
+<h2 id="_4">规则评估机制</h2>
+<ul>
+<li><strong>前缀树（Trie）匹配</strong>：O(k) 时间（k = 命令 token 数），load 时构建</li>
+<li><strong>优先级</strong>：更具体的规则优先（更长前缀）；同层 first-match</li>
+<li><strong>无匹配时</strong>：fallback 到 <code>approval_policy</code> 全局设置</li>
+<li><strong>Host Executable 解析</strong>：<code>--resolve-host-executables</code> 绑定绝对路径，防止 PATH 欺骗攻击</li>
+</ul>
+<h2 id="_5">规则文件层次</h2>
+<pre><code>/etc/codex/rules/           # 系统级（企业 IT 管理员）
+{project}/.codex/rules/     # 项目级（提交 Git，团队共享）
+~/.codex/rules/             # 用户级（个人偏好）
+</code></pre>
+<p>高优先级覆盖低优先级。项目级规则提交仓库，新成员 clone 后自动获得一致的安全策略。</p>
+<h2 id="approval_policy">与 approval_policy 的关系</h2>
+<pre><code>approval_policy = &quot;never&quot;     # 全局全自动
++ rule: git push → prompt     # 具体规则覆盖全局
+</code></pre>
+<p>具体规则 &gt; 全局 policy。</p>
+<h2 id="_6">调试</h2>
+<pre><code class="language-bash"># 检查命令会触发哪条规则（不实际执行）
+codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
+# → {&quot;decision&quot;: &quot;forbidden&quot;, &quot;matched_rule&quot;: &quot;...&quot;, &quot;justification&quot;: &quot;...&quot;}
+</code></pre>
+<p>规则文件加载时 <code>match/not_match</code> 示例自动运行——规则错误在启动时就被捕获。</p>
+<h2 id="_7">工程哲学</h2>
+<blockquote>
+<p><strong>ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"</strong>。规则在加载时验证，在执行时机械应用。没有临时判断，没有模糊地带。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。</p>
+</blockquote>
+<h2 id="_8">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/04_codex_execpolicy.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Denavit-Hartenberg 参数.html">&larr; Denavit-Hartenberg 参数</a>
+    <a href="FTS5.html">FTS5 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

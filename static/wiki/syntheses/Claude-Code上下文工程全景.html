@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code 上下文工程全景</h1>
 <h2 id="_1">综合洞见</h2>
-<p>Claude Code 的<a href="../concepts/Context-Engineering.html">Context-Engineering</a>本质是：<strong>在 <a href="../concepts/LLM-Statelessness.html">LLM-Statelessness</a>约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。</strong> 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。</p>
+<p>Claude Code 的<a href="../concepts/Context-Engineering.html">上下文工程</a>本质是：<strong>在 <a href="../concepts/LLM-Statelessness.html">LLM 无状态性</a>约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。</strong> 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。</p>
 <h2 id="llm">问题层：LLM 无状态性</h2>
 <p>LLM 的每次调用都从零状态开始。Claude Code 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。</p>
 <p>根本问题：<strong>"说过一次的话"和"已确认的约束"在系统里拥有相同地位</strong>——都在下一次会话后消失。</p>

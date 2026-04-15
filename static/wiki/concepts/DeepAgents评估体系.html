@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计意图</strong>：防止 Agent 因探索性多走一步就整例标红，同时仍能在报表中观察效率偏差。</p>
 <h3 id="utilspy">核心类型（<code>utils.py</code>）</h3>
 <p><strong><code>AgentStep</code></strong>：<code>index</code>（从1起）、<code>action</code>（<code>AIMessage</code>）、<code>observations</code>（<code>list[ToolMessage]</code>）——一个决策回合。</p>
-<p><strong><code>AgentTrajectory</code></strong>：<code>steps</code> + <code>files</code>（路径→内容映射），<code>answer</code> 属性取最后一步文本，<code>pretty()</code> 生成人类可读摘要（供 <a href="LLM-as-Judge.html">LLM-as-Judge</a> 消费）。</p>
+<p><strong><code>AgentTrajectory</code></strong>：<code>steps</code> + <code>files</code>（路径→内容映射），<code>answer</code> 属性取最后一步文本，<code>pretty()</code> 生成人类可读摘要（供 <a href="LLM-as-Judge.html">LLM Judge</a> 消费）。</p>
 <p><strong><code>TrajectoryScorer</code></strong>（不可变建造者）：</p>
 <pre><code class="language-python">scorer = (
     TrajectoryScorer()
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>组装 <code>query</code> + <code>initial_files</code> → <code>agent.invoke</code></li>
 <li>用 <code>thread_id</code> 生成轨迹（<code>AgentTrajectory</code>）</li>
 <li>LangSmith 记录规范化 inputs/outputs</li>
-<li>执行 <code>_assert_<a href="期望值.html">期望值</a>s</code>：先记录效率 feedback，再逐项运行成功断言</li>
+<li>执行 <code>_assert_<a href="期望值.html">expectation</a>s</code>：先记录效率 feedback，再逐项运行成功断言</li>
 </ol>
 <h3 id="categoriesjson">评估分类（<code>categories.json</code>）</h3>
 <table>

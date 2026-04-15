@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex TUI — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Codex TUI</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="codex-tui">Codex TUI</h1>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的"驾驶舱"——不是简单的 REPL，而是一个<strong>事件驱动状态机</strong>，承担实时审批、diff 预览、会话导航、多 Agent 状态展示等功能。</p>
+<h2 id="_1">核心问题</h2>
+<p>普通命令行 chatbot 是线性对话（输入→输出→循环），而 <a href="../entities/Codex CLI.html">Codex</a> TUI 要解决<strong>并发 Agent 行为的可视化与控制</strong>：Agent 后台多步执行 → 某步需要审批 → 同时人类可能在编辑 prompt → 多个 subagent 并行。</p>
+<h2 id="_2">架构层次</h2>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>渲染层</td>
+<td>Ratatui / 原生终端，全屏 alternate screen mode</td>
+</tr>
+<tr>
+<td>事件处理层</td>
+<td>键盘输入、Agent 消息、Tool 结果、审批请求</td>
+</tr>
+<tr>
+<td>状态管理层</td>
+<td>会话状态、Draft History、审批队列、Agent 树</td>
+</tr>
+<tr>
+<td>Wire Protocol 接口</td>
+<td>与 <code>codex-rs/core</code> 通过 protocol crate 通信</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">核心交互设计</h2>
+<h3 id="composer">Composer（输入框）</h3>
+<ul>
+<li>支持图片拖入（design spec、截图）</li>
+<li><code>@</code> 引用 Skills、MCP 工具、代码片段</li>
+<li>Draft 历史：<code>Up/Down</code> 恢复之前草稿（含图片附件）</li>
+<li><code>Ctrl+L</code> 清屏不清上下文（≠ <code>/clear</code> 会开新 session）</li>
+</ul>
+<h3 id="diff">实时 Diff 预览</h3>
+<p>Agent 提出文件修改时，TUI 渲染语法高亮的 diff。用户可选 <code>[A]pprove</code>、<code>[R]eject</code>（并告知原因）、<code>/copy</code>（复制输出）。</p>
+<h3 id="approval-gate-ui">Approval Gate UI</h3>
+<p>关键人机协同节点，展示待执行命令并提供三种审批粒度：</p>
+<table>
+<thead>
+<tr>
+<th>approval_policy</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>untrusted</code></td>
+<td>只允许已知安全的只读操作自动执行</td>
+</tr>
+<tr>
+<td><code>on-request</code></td>
+<td>需要时才暂停（推荐日常开发）</td>
+</tr>
+<tr>
+<td><code>never</code></td>
+<td>全自动，配合外部沙箱使用</td>
+</tr>
+<tr>
+<td><code>granular</code></td>
+<td>精细到每类动作独立配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">斜杠命令系统</h3>
+<p>内置"内部 CLI"：<code>/model</code>（切换模型）、<code>/clear</code>（新会话）、<code>/review</code>（独立 Agent 做 Code Review）、<code>/status</code>、<code>/copy</code>、<code>/theme</code>、<code>/permissions</code>（只读规划模式）、<code>/plugins</code>、<code>/title</code>、<code>/exit</code>。</p>
+<h2 id="alternate-screen">Alternate Screen 模式</h2>
+<p>TUI 默认使用终端 alternate screen buffer（类似 vim），全屏不污染 shell history，退出后恢复。可通过 <code>--no-alternate-screen</code> 或 <code>tui.alternate_screen = false</code> 禁用。</p>
+<h2 id="app-server">App Server 模式</h2>
+<pre><code class="language-bash">codex app-server  # 启动本地 WebSocket 服务器
+</code></pre>
+<p>VS Code Extension、桌面 App、Web 前端均可接入同一个 <code>core</code>，支持 bearer-token 鉴权连接远程 WebSocket。</p>
+<h2 id="_5">设计哲学</h2>
+<blockquote>
+<p><strong>TUI 的本质是"人类监督带宽的最大化"</strong>——Agent 速度远超人类审阅速度，TUI 在关键决策点精确呈现恰好需要的上下文，让人类在 2 秒内做出正确判断。</p>
+</blockquote>
+<p>三原则：最小化审批摩擦（常见安全操作自动放行）、最大化审批信息（危险操作展示完整 diff）、可逆性优先（所有 session 有 transcript，文件改动可 git 回滚）。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/02_codex_tui_component.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Claude-Code-Hook-System.html">&larr; Claude-Code-Hook-System</a>
+    <a href="Codex会话管理器.html">Codex会话管理器 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

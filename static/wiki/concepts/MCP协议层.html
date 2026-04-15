@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP协议层 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / MCP协议层</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="mcp">MCP协议层</h1>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。<a href="../entities/Codex CLI.html">Codex</a> 同时扮演 <strong>MCP 客户端</strong>（连接外部工具）和 <strong>MCP 服务端</strong>（将自身暴露给其他 Agent）两个角色。</p>
+<h2 id="_1">核心价值</h2>
+<p>传统方式每个工具都需要定制集成代码。MCP 方式：Agent 通过统一协议连接任意 MCP 兼容工具，工具复用，无需定制。</p>
+<h2 id="codex">Codex 双重身份</h2>
+<p><strong>作为 MCP Client</strong>：启动时连接 config.toml 声明的 MCP 服务器，通过 <code>tools/list</code> 发现工具，注入 LLM system prompt，将 LLM 的 tool_call 请求路由到对应服务器。</p>
+<p><strong>作为 MCP Server</strong>：</p>
+<pre><code class="language-bash">codex mcp-server  # 启动后暴露 codex_exec、codex_review 等工具
+</code></pre>
+<p>其他 Agent（Cursor、另一个 Codex 实例）可将整个 Codex Agent 作为工具节点调用——实现 Agent 可组合性。</p>
+<h2 id="mcp-client">MCP Client 配置</h2>
+<pre><code class="language-toml"># ~/.codex/config.toml
+[mcp_servers.context7]
+command = &quot;npx&quot;
+args = [&quot;-y&quot;, &quot;@upstash/context7-mcp@latest&quot;]
+enabled = true
+
+[mcp_servers.github]
+command = &quot;npx&quot;
+args = [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;]
+env = { GITHUB_TOKEN = &quot;$GITHUB_TOKEN&quot; }
+</code></pre>
+<h2 id="_2">传输协议</h2>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stdio</td>
+<td>最常用，Codex 启动子进程通信，无端口冲突</td>
+<td>本地工具</td>
+</tr>
+<tr>
+<td>HTTP/SSE</td>
+<td>支持 bearer-token 认证</td>
+<td>远程服务</td>
+</tr>
+<tr>
+<td>WebSocket</td>
+<td>双向实时，适合服务器主动推送</td>
+<td>实时场景</td>
+</tr>
+</tbody>
+</table>
+<h2 id="plugins">Plugins 系统</h2>
+<p>2026 年引入的基于 MCP 的插件系统：自动从 plugin registry 同步（无需手动配置）、统一处理认证、自动版本管理、TUI 内 <code>/plugins</code> 面板集成。</p>
+<h2 id="_3">安全控制</h2>
+<p>MCP 工具调用受 Approval 机制保护：
+- <code>read-only: true</code> → 自动放行
+- <code>destructive: true</code> → 强制审批（即使 <code>approval_policy = "never"</code>）</p>
+<p><strong>环境变量隔离</strong>（Shell Environment Policy）：精细控制哪些 env var 传递给子进程，防止密钥泄露。默认自动排除包含 <code>KEY/SECRET/TOKEN</code> 的变量。</p>
+<h2 id="_4">工程哲学</h2>
+<blockquote>
+<p><strong>MCP Layer 把"工具集成"从编程问题变成配置问题。</strong> Codex 同时是客户端和服务端，实现了 Agent 的"可组合性"——任何 Codex 实例都可以成为更大 Agent 系统的一个工具节点。</p>
+</blockquote>
+<h2 id="_5">来源</h2>
+<ul>
+<li><code>raw/articles/ai-tools/codex/06_codex_mcp_layer.md</code></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Legged Robots That Balance.html">&larr; Legged Robots That Balance</a>
+    <a href="Master-Overrides设计系统持久化.html">Master-Overrides设计系统持久化 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

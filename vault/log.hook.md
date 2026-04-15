@@ -119,3 +119,36 @@
 [2026-04-15 21:35] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Church-Turing 论题.md — OK
 [2026-04-15 21:35] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Church-Turing 论题.md — indexed
 [2026-04-15 21:35] GRAPH rebuild — OK
+[2026-04-15 21:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Codex CLI.md — OK
+[2026-04-15 21:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Codex CLI.md — indexed
+[2026-04-15 21:53] GRAPH rebuild — OK
+[2026-04-15 21:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex TUI.md — OK
+[2026-04-15 21:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex TUI.md — indexed
+[2026-04-15 21:54] GRAPH rebuild — OK
+[2026-04-15 21:55] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex沙箱系统.md — OK
+[2026-04-15 21:55] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex沙箱系统.md — indexed
+[2026-04-15 21:55] GRAPH rebuild — OK
+[2026-04-15 21:56] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — OK
+[2026-04-15 21:56] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — indexed
+[2026-04-15 21:56] GRAPH rebuild — OK
+[2026-04-15 21:56] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex会话管理器.md — OK
+[2026-04-15 21:56] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex会话管理器.md — indexed
+[2026-04-15 21:56] GRAPH rebuild — OK
+[2026-04-15 21:57] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/MCP协议层.md — OK
+[2026-04-15 21:57] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/MCP协议层.md — indexed
+[2026-04-15 21:57] GRAPH rebuild — OK
+[2026-04-15 21:58] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex多Agent调度.md — OK
+[2026-04-15 21:58] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex多Agent调度.md — indexed
+[2026-04-15 21:58] GRAPH rebuild — OK
+[2026-04-15 21:59] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex配置系统.md — OK
+[2026-04-15 21:59] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Codex配置系统.md — indexed
+[2026-04-15 21:59] GRAPH rebuild — OK
+[2026-04-15 22:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — OK
+[2026-04-15 22:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — indexed
+[2026-04-15 22:04] GRAPH rebuild — OK
+[2026-04-15 22:04] GRAPH skip — rebuilt 15s ago
+[2026-04-15 22:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — OK
+[2026-04-15 22:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — indexed
+[2026-04-15 22:04] GRAPH skip — rebuilt 22s ago
+[2026-04-15 22:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — OK
+[2026-04-15 22:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/ExecPolicy.md — indexed

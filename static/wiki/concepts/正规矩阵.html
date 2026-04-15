@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义与等价条件</h3>
 <p><strong>定义</strong>：$A$ 正规 $\iff$ $A^<em>A = AA^</em>$</p>
-<p><strong>等价条件（均由 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 分解给出）</strong>：
+<p><strong>等价条件（均由 <a href="../entities/伊赛·舒尔.html">Schur</a> 分解给出）</strong>：
 - $\exists$ 酉<a href="矩阵.html">矩阵</a> $Q$ 使 $A = QDQ^<em>$，$D$ 对角
-- $A$ 的 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 三角形式 $T$ 为对角<a href="矩阵.html">矩阵</a>
-- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 不等式取等：$\sum|\lambda_i|^2 = |A|_F^2$
+- $A$ 的 <a href="../entities/伊赛·舒尔.html">Schur</a> 三角形式 $T$ 为对角<a href="矩阵.html">矩阵</a>
+- <a href="../entities/伊赛·舒尔.html">Schur</a> 不等式取等：$\sum|\lambda_i|^2 = |A|_F^2$
 - $A$ 的特征向量构成 $\mathbb{C}^n$ 的标准正交基
 - $A$ 和 $A^</em>$ 有相同的特征向量</p>
 <h3 id="_5">正规矩阵的重要子类</h3>
@@ -194,12 +194,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$A = \sum_{i=1}^{n} \lambda_i q_i q_i^*$$</p>
 <p>其中 $\lambda_1, \ldots, \lambda_n$ 为 $A$ 的特征值，$q_1, \ldots, q_n$ 为对应的标准正交特征向量。这是<a href="极大极小定理.html">极大极小定理</a>对一般正规<a href="矩阵.html">矩阵</a>的推广（不再要求对称性）。</p>
 <h3 id="schur">与 Schur 不等式的关系</h3>
-<p><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 的等号条件：</p>
+<p><a href="../entities/伊赛·舒尔.html">Schur</a>不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 的等号条件：</p>
 <p>$$\sum_{i=1}^{n}|\lambda_i|^2 = |A|_F^2 \iff A \text{ 正规}$$</p>
-<p>这给出了判断正规性的计算友好准则：只需计算特征值和 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数（两者都是 $O(n^3)$ 操作），无需验证 $n^2$ 个<a href="矩阵.html">矩阵</a>元素的等式 $A^<em>A = AA^</em>$。</p>
+<p>这给出了判断正规性的计算友好准则：只需计算特征值和 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数（两者都是 $O(n^3)$ 操作），无需验证 $n^2$ 个<a href="矩阵.html">矩阵</a>元素的等式 $A^<em>A = AA^</em>$。</p>
 <h3 id="_7">非正规矩阵</h3>
 <p>非正规<a href="矩阵.html">矩阵</a>（$A^<em>A \neq AA^</em>$）具有"缺陷"（defective）特征结构：
-- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 不等式严格成立（严格上三角部分非零）
+- <a href="../entities/伊赛·舒尔.html">Schur</a> 不等式严格成立（严格上三角部分非零）
 - Jordan 块结构不可对角化
 - 幂次行为可能复杂（即使<a href="谱半径.html">谱半径</a> $&lt;1$ 也可能先增大后衰减）</p>
 <p><strong>Pseudospectrum</strong>（伪谱）是分析非正规<a href="矩阵.html">矩阵</a>的现代工具，Trefethen 专著 <em>Spectra and Pseudospectra</em> 系统阐述了这一方向。</p>

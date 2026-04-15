@@ -1211,3 +1211,17 @@ python3 scripts/build_graph.py
 - 页面: 约 70+ 实体与概念页面
 - 状态: 成功
 - 备注: 批量处理机器人学经典文献，涵盖运动学、规划、控制、学习等核心领域
+
+## 2026-04-15 — wiki:ingest-loop (Codex CLI 系列)
+
+**来源目录**：`raw/articles/ai-tools/codex/` (8 files)
+
+**新建页面**：
+- `wiki/entities/Codex CLI.md` — 主实体页：架构总览、三道防线、Rust 重写原因
+- `wiki/concepts/Codex TUI.md` — 交互终端：事件驱动状态机、Approval Gate UI、App Server 模式
+- `wiki/concepts/Codex沙箱系统.md` — macOS Seatbelt / Linux Landlock+seccomp 双层沙箱
+- `wiki/concepts/ExecPolicy.md` — Policy as Code 命令审批引擎，三态决策
+- `wiki/concepts/Codex会话管理器.md` — Session/Transcript/Resume/Fork/Memories 机制
+- `wiki/concepts/MCP协议层.md` — MCP 双重身份（客户端+服务端），Plugins 系统
+- `wiki/concepts/Codex多Agent调度.md` — spawn_agent/spawn_agents_on_csv，角色系统，地址路由
+- `wiki/concepts/Codex配置系统.md` — 6 层配置继承，Profile 系统，Feature Flags
