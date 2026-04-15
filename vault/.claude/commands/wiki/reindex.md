@@ -15,19 +15,19 @@ description: "重建知识库索引：验证完整性 + 按主题分类到 maps/
 ### 1. 完整性检查
 
 ```bash
-python3 scripts/snapshot_index.py
+bash scripts/wiki.sh snapshot_index
 ```
 
 解析 JSON 输出：
 - `ok: true` → 继续步骤 2
-- `missing` 非空 → 执行 `python3 scripts/snapshot_index.py --update`，报告新增条目
+- `missing` 非空 → 执行 `bash scripts/wiki.sh snapshot_index --update`，报告新增条目
 - `orphaned` 非空 → 手动从 index.md 删除对应行，报告删除条目
 - 再次执行确认 `ok: true`
 
 ### 2. 保存快照
 
 ```bash
-python3 scripts/snapshot_index.py --snapshot
+bash scripts/wiki.sh snapshot_index --snapshot
 ```
 
 快照保存到 `.claude/reindex.snapshot.json`，用于下次 reindex 时对比差异。

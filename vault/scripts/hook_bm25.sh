@@ -13,7 +13,7 @@ if [[ -z "$FILE_PATH" ]] || [[ "$FILE_PATH" != *"wiki/"* ]] || [[ "$FILE_PATH" =
     exit 0
 fi
 
-RESULT=$(cd "$VAULT_DIR" && python3 scripts/bm25_index.py update "$FILE_PATH" 2>&1)
+RESULT=$(cd "$VAULT_DIR" && bash scripts/wiki.sh bm25_index update "$FILE_PATH" 2>&1)
 STATUS=$?
 
 if [ $STATUS -eq 0 ]; then

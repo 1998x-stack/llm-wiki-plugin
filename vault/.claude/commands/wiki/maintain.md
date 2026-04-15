@@ -18,7 +18,7 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 执行 `wiki:reindex` 的完整流程（步骤 1-6）：
 
-- `python3 scripts/snapshot_index.py` 检查完整性
+- `bash scripts/wiki.sh snapshot_index` 检查完整性
 - 修复缺失/孤条目
 - 保存快照
 - 按 tags 构建主题分类
@@ -31,7 +31,7 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 执行 `wiki:check` 的完整流程（步骤 1-5）：
 
-- 运行 `python3 scripts/lint_wiki.py --json`
+- 运行 `bash scripts/wiki.sh lint_wiki --json`
 - 扫描所有 wiki/ 页面
 - 执行 A-I 检查项 + 语义检查
 - 生成诊断报告
@@ -51,10 +51,10 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 执行 `wiki:build` 的完整流程（步骤 1-6）：
 
-- `python3 scripts/build_graph.py` 构建图谱
+- `bash scripts/wiki.sh build_graph` 构建图谱
 - `cp graph.json ../static/graph.json` 同步
-- `python3 scripts/build_statistics.py` 构建统计
-- `python3 scripts/build_wiki_pages.py` 构建 HTML
+- `bash scripts/wiki.sh build_statistics` 构建统计
+- `bash scripts/wiki.sh build_wiki_pages` 构建 HTML
 - 验证所有产出
 - 更新 `log.md`
 

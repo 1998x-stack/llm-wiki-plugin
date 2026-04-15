@@ -44,8 +44,16 @@ Three-layer pattern:
 
 ## Scripts
 
+All Python scripts are invoked via the `wiki.sh` wrapper to handle CWD and PYTHONPATH:
+
+```bash
+bash vault/scripts/wiki.sh <script_name> [args...]    # from repo root
+bash scripts/wiki.sh <script_name> [args...]           # from vault/
+```
+
 | Script | Purpose | Dependencies |
 |--------|---------|-------------|
+| `wiki.sh` | CWD-safe wrapper for all Python scripts | — |
 | `wiki_utils.py` | Shared utilities (parse_frontmatter, tokenize, constants) | pyyaml |
 | `search_wiki.py` | Unified search (BM25 + maps + graph + RRF) | wiki_utils, rank_bm25 |
 | `bm25_index.py` | BM25 search index (build/update/query) | wiki_utils, rank_bm25 |

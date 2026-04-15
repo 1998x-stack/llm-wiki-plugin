@@ -46,7 +46,7 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
 
    - 如果输出包含 `SINGLE_FILE=`，提取文件路径：
      - **claude 引擎**：直接执行 wiki:ingest 逻辑处理该文件，跳过循环机制
-     - **qwen 引擎**：直接执行 `Bash: python3 scripts/qwen_ingest.py --raw "$file"`，跳过循环机制
+     - **qwen 引擎**：直接执行 `Bash: bash scripts/wiki.sh qwen_ingest --raw "$file"`，跳过循环机制
    - 如果设置成功，继续到步骤 2
 
 2. **读取状态文件**
@@ -95,11 +95,11 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
      - 建立关系
      - 矛盾检查
      - 更新 index.md 和 log.md
-     - 每个新建/更新的页面执行 BM25 更新：`Bash: python3 scripts/bm25_index.py update <wiki_file>`
+     - 每个新建/更新的页面执行 BM25 更新：`Bash: bash scripts/wiki.sh bm25_index update <wiki_file>`
 
    - **qwen 引擎**：调用 Qwen ingest（多页面模式）：
      ```
-     Bash: python3 scripts/qwen_ingest.py --raw "$file" --context-pages /tmp/wiki_pages_context.txt
+     Bash: bash scripts/wiki.sh qwen_ingest --raw "$file" --context-pages /tmp/wiki_pages_context.txt
      ```
      注意：不传 `--wiki` 参数，使用多页面模式。可选传 `--model` 指定模型。
 
@@ -127,13 +127,13 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
 
      **成功**：无 `errors` 且无 `existing_path`：
      - 将 `markdown` 字段内容写入目标文件
-     - 更新 BM25 索引：`Bash: python3 scripts/bm25_index.py update "<wiki_path>"`
+     - 更新 BM25 索引：`Bash: bash scripts/wiki.sh bm25_index update "<wiki_path>"`
 
 6. **（qwen 引擎）增量更新 index.md**
 
    每个文件处理完成后（不等到全部完成），执行：
    ```
-   Bash: python3 scripts/snapshot_index.py --update
+   Bash: bash scripts/wiki.sh snapshot_index --update
    ```
    这样如果循环中途崩溃，index.md 保持同步。
 
@@ -150,8 +150,8 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
 ### 完成处理
 
 9. **全部完成时**
-   - 运行 `Bash: python3 scripts/lint_wiki.py` 检查所有新创建的页面
-   - 运行 `Bash: python3 scripts/snapshot_index.py --update` 确保 index.md 最终一致
+   - 运行 `Bash: bash scripts/wiki.sh lint_wiki` 检查所有新创建的页面
+   - 运行 `Bash: bash scripts/wiki.sh snapshot_index --update` 确保 index.md 最终一致
    - **qwen 引擎额外步骤**：更新 log.md（追加批量 ingest 记录）
    - 输出最终摘要：
      - 创建：N 个页面

@@ -30,7 +30,7 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
    - 文件名用自然中文：`游戏资产语义搜索.md`
    - 每个页面创建/更新后，执行 BM25 索引更新：
      ```
-     Bash: python3 scripts/bm25_index.py update <wiki_file_path>
+     Bash: bash scripts/wiki.sh bm25_index update <wiki_file_path>
      ```
 
 5. **建立关系**
@@ -44,7 +44,7 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
      - 如果新信息更可靠（更新、更多来源），用 supersedes 标记旧声明
 
 7. **同步 index.md**
-   - 执行：`Bash: python3 scripts/snapshot_index.py --update`
+   - 执行：`Bash: bash scripts/wiki.sh snapshot_index --update`
    - 脚本自动检测新增/删除的页面并同步 index.md
    - 注意：index.md 是计算产物（由 snapshot_index.py 维护），不要手动编辑
 
@@ -53,7 +53,7 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
    - 列出创建了哪些页面、更新了哪些页面
 
 9. **验证**
-   - 对每个新建的页面运行：`Bash: python3 scripts/lint_wiki.py --file <path> --json`
+   - 对每个新建的页面运行：`Bash: bash scripts/wiki.sh lint_wiki --file <path> --json`
    - 如有 ERROR 级别问题，立即修复
 
 ## 质量要求

@@ -23,7 +23,7 @@ description: "构建所有静态产出：graph.json + statistics + wiki HTML"
 ### 1. Lint 检查（只读，不修复）
 
 ```bash
-python3 scripts/lint_wiki.py --json
+bash scripts/wiki.sh lint_wiki --json
 ```
 
 - 解析 JSON 输出，报告 errors/warnings 数量
@@ -33,7 +33,7 @@ python3 scripts/lint_wiki.py --json
 ### 2. 构建 graph.json
 
 ```bash
-python3 scripts/build_graph.py
+bash scripts/wiki.sh build_graph
 ```
 
 - 解析 JSON 输出，记录 nodes/edges/orphans/components 四个数值
@@ -44,7 +44,7 @@ python3 scripts/build_graph.py
 三个操作顺序执行（build_statistics.py 依赖 graph.json）：
 
 ```bash
-cp graph.json ../static/graph.json && python3 scripts/build_statistics.py && python3 scripts/build_wiki_pages.py
+cp graph.json ../static/graph.json && bash scripts/wiki.sh build_statistics && bash scripts/wiki.sh build_wiki_pages
 ```
 
 - 每条命令都会打印 JSON status，确认 `"status": "ok"`

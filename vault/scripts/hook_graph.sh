@@ -24,7 +24,7 @@ if [ -f "$GRAPH" ]; then
     fi
 fi
 
-RESULT=$(cd "$VAULT_DIR" && python3 scripts/build_graph.py 2>&1)
+RESULT=$(cd "$VAULT_DIR" && bash scripts/wiki.sh build_graph 2>&1)
 STATUS=$?
 
 if [ $STATUS -eq 0 ]; then

@@ -23,7 +23,7 @@ $ARGUMENTS — 回顾范围（可选）。默认为 "weekly"。
    - 填充"新的连接和发现"——找出本周新增的 [[链接]] 关系
 
 2.5. **搜索知识关联**
-   - 对本周高频主题，执行：`Bash: python3 scripts/search_wiki.py "<theme>" --top 5 --json`
+   - 对本周高频主题，执行：`Bash: bash scripts/wiki.sh search_wiki "<theme>" --top 5 --json`
    - 将搜索结果中的 topic_context 用于"升维建议"——知道该主题属于哪个知识领域
 
 3. **升维建议**

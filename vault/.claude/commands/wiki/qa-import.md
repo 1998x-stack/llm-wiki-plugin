@@ -85,5 +85,5 @@ $ARGUMENTS — QA 文件路径（相对于 raw/qa/），或 "all" 处理所有�
 
 ### 8. 更新 index.md 和 log.md
 
-- 执行：`Bash: python3 scripts/snapshot_index.py --update`
+- 执行：`Bash: bash scripts/wiki.sh snapshot_index --update`
 - log.md: `## [YYYY-MM-DD HH:MM] qa-import | 文件名 → N 个洞见`

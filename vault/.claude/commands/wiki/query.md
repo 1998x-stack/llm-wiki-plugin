@@ -9,7 +9,7 @@ $ARGUMENTS — 要回答的问题。
 ## 流程
 
 1. **统一搜索**
-   - 执行：`Bash: python3 scripts/search_wiki.py "$ARGUMENTS" --top 15 --json`
+   - 执行：`Bash: bash scripts/wiki.sh search_wiki "$ARGUMENTS" --top 15 --json`
    - 解析 JSON 结果，获取按相关度排序的页面列表
    - 注意 `topic_context` 字段 — 如果匹配到主题，优先深读该主题下的页面
    - 注意 `sources` 字段 — 多来源命中的页面更可信
@@ -26,7 +26,7 @@ $ARGUMENTS — 要回答的问题。
 4. **结晶化判断**
    - 如果回答综合了 3+ 个页面的信息，且形成了新的洞见：
      - 在 `wiki/syntheses/` 创建新页面保存这个分析
-     - 更新 index.md：`Bash: python3 scripts/snapshot_index.py --update`
+     - 更新 index.md：`Bash: bash scripts/wiki.sh snapshot_index --update`
      - 追加 log.md
 
 5. **写入 QA 记录**
