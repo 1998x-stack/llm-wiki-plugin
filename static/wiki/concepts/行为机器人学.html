@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行为机器人学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 行为机器人学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">机器人学，研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">行为机器人学</h1>
+<h2 id="_2">概述</h2>
+<p>行为机器人学（Behavior-based Robotics, BBR）是机器人学的一个主要研究范式，兴起于 1980 年代末，由 Rodney Brooks 及其<a href="包容体系结构.html">包容体系结构</a>理论直接催生。该学派的核心主张是：智能行为可以从多个简单行为模块（Behaviors）的并行交互中涌现，而无需依赖复杂的内部世界模型或符号推理。与传统“感知 - 规划 - 执行”（SMPA）范式不同，BBR 强调实时性、鲁棒性和与环境的直接耦合。它在 1990 年代成为与规划方法并驾齐驱的主流方向，并对群体机器人、足球机器人（RoboCup）及现代混合控制架构产生了深远影响。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">起源与核心信条</h3>
+<p>行为机器人学的诞生是对 1980 年代符号主义 AI 困境的直接回应。当时的主流方法（如 Shakey 机器人）依赖精确的世界模型和耗时的逻辑规划，导致系统在动态真实环境中反应迟钝且脆弱。Brooks 提出，智能不应建立在抽象表示之上，而应建立在“感知 - 行动”的直接映射上。BBR 的核心信条包括：
+1. <strong>无表示或最小表示</strong>：尽可能利用环境本身作为模型（The world is its own best model）。
+2. <strong>并行性与实时性</strong>：多个行为层同时运行，直接连接传感器和执行器，确保毫秒级响应。
+3. <strong>涌现性</strong>：复杂的全局行为（如导航、收集物体）由简单局部规则的交互自然产生，而非中央程序预设。</p>
+<h3 id="_5">关键技术机制</h3>
+<p>BBR 发展了一系列独特的技术来实现上述理念：
+- <strong>行为层分解</strong>：将控制任务垂直分解为独立的行为层（如避障、沿墙走、目标追踪）。
+- <strong>仲裁机制</strong>：解决多个行为同时请求控制权时的冲突。常见策略包括包容体系结构中的“抑制/抑止”机制、Maes 的“行为网络”（Behavior Networks）以及基于效用或投票的仲裁器。
+- <strong>运动模式（Motor Schema）</strong>：由 Ronald Arkin 提出，将行为定义为势场（引力或斥力），通过向量合成来决定机器人运动，是 BBR 的另一重要分支。</p>
+<h3 id="_6">应用领域与成就</h3>
+<ul>
+<li><strong>移动机器人导航</strong>：在非结构化环境中（如办公室、走廊）实现自主漫游和避障，无需预先建图。</li>
+<li><strong>RoboCup 机器人足球</strong>：由于比赛环境高度动态且对抗激烈，BBR 的实时反应特性使其成为早期参赛队伍的首选架构。</li>
+<li><strong>群体机器人学（Swarm Robotics）</strong>：BBR 的“简单个体产生复杂群体行为”思想直接启发了群体机器人研究，用于模拟蚁群、鱼群等集体智能。</li>
+<li><strong>商业产品</strong>：iRobot 的 Roomba 系列是 BBR 最成功的商业化案例，证明了简单反应式规则在特定任务上的高效性与经济性。</li>
+</ul>
+<h3 id="_7">局限与演进</h3>
+<p>尽管 BBR 在实时性和鲁棒性上表现优异，但其缺乏长期规划、记忆能力和学习机制的缺陷也逐渐显现。纯反应式系统难以完成需要多步推理或维持内部状态的任务（如复杂装配、长距离导航）。因此，1990 年代后期，学界开始转向“混合架构”（Hybrid Architecture），将 BBR 作为底层的反应层（Reaction Layer），与上层的符号规划层（Deliberative Layer）结合。这种融合保留了 BBR 的安全性和实时性，同时赋予了系统处理复杂任务的能力，成为现代机器人系统的标准范式。</p>
+<h3 id="_8">学术地位</h3>
+<p>行为机器人学不仅是一个技术流派，更是一场认识论的革命。它迫使 AI 社区重新审视“智能”、“表示”和“规划”的定义。Ronald Arkin 的著作《Behavior-Based Robotics》（1998）系统总结了该领域的理论与方法，使其成为机器人学教育的核心内容之一。即使在深度学习兴起的今天，BBR 关于具身交互和分布式控制的思想依然在强化学习和端到端控制研究中回响。</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/08-brooks-subsumption-architecture.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="包容体系结构.html">包容体系结构</a></li>
+<li><a href="../entities/Rodney Brooks.html">Rodney Brooks</a></li>
+<li><span style="color:#e74c3c" title="broken link">SMPA 范式</span></li>
+<li><span style="color:#e74c3c" title="broken link">群体机器人学</span></li>
+<li><span style="color:#e74c3c" title="broken link">混合架构</span></li>
+<li><span style="color:#e74c3c" title="broken link">增强型有限状态机</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="行业设计反模式系统.html">&larr; 行业设计反模式系统</a>
+    <a href="谱半径.html">谱半径 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

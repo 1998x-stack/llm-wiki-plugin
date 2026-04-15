@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>包容体系结构 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 包容体系结构</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">机器人学，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">包容体系结构</h1>
+<h2 id="_2">概述</h2>
+<p>包容体系结构（Subsumption Architecture）是由 Rodney Brooks 于 1986 年提出的一种革命性机器人控制架构。它彻底摒弃了传统人工智能中“感知 - 建模 - 规划 - 执行”（SMPA）的串行流水线，转而采用多层并行的行为层（behavior layers）设计。在该架构中，低层行为（如避障）直接连接传感器和执行器，高层行为（如探索）通过抑制（suppression）和抑止（inhibition）机制接管或修改低层输出，从而在不依赖内部世界模型的情况下涌现出复杂的自适应行为。这一理论奠定了行为机器人学的基础，并深刻影响了现代混合架构及端到端学习的发展。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心设计理念：垂直分解</h3>
+<p>传统 SMPA 范式采用“水平分解”，将系统划分为感知、建模、规划和执行等独立模块，数据按顺序流动，导致严重的延迟和脆弱性。包容体系结构则提出了“垂直分解”策略：将控制系统切分为多个自足的行为层。每一层都是一个完整的感知 - 行动回路，独立处理特定任务（如 Level 0 避障、Level 1 漫游、Level 2 探索）。这种设计消除了中央控制器和全局世界模型，践行了 Brooks 的名言：“世界就是它自己的最佳模型。”</p>
+<h3 id="_5">层间交互机制：抑制与抑止</h3>
+<p>行为层之间的协作通过两种精妙的信号机制实现：
+1. <strong>抑制（Suppression）</strong>：高层可以替换低层的输入信号，向其注入“虚拟”传感器数据，从而改变低层的行为上下文。
+2. <strong>抑止（Inhibition）</strong>：高层可以直接阻塞低层的输出信号，防止其到达执行器，从而接管控制权。
+这种“包容”关系意味着高层不是替代低层，而是在其基础上增加能力。关键优势在于系统的鲁棒性：即使高层故障，低层的安全行为（如避障）仍能独立运行，实现优雅降级（graceful degradation）。</p>
+<h3 id="afsm">实现基础：增强型有限状态机 (AFSM)</h3>
+<p>每一层内部逻辑由增强型有限状态机（Augmented Finite State Machine, AFSM）实现。AFSM 在传统状态机基础上增加了定时器、基于传感器值的条件判断以及输出抑制/抑止信号的能力。AFSM 计算复杂度极低，确保了毫秒级的实时响应，使得机器人能够在动态环境中快速反应，无需等待耗时的全局规划。</p>
+<h3 id="_6">增量构建方法论</h3>
+<p>包容体系结构支持类似生物进化的增量开发模式。开发者首先构建并验证最底层的生存行为（如避障），确保其在真实环境中可靠运行；随后在不修改已有代码的前提下，逐层叠加更高级的行为（如漫游、探索）。每添加一层均可独立测试，若新层导致异常可直接移除，系统自动回退至之前的稳定状态。这种方法极大地降低了复杂机器人系统的调试难度。</p>
+<h3 id="_7">历史影响与局限</h3>
+<p>该架构催生了“行为机器人学”学派，并在 iRobot Roomba 等产品中获得巨大商业成功。然而，纯反应式架构在处理需要长期规划、记忆或抽象推理的任务时存在局限。现代机器人系统多采用融合符号规划与反应式控制的“混合架构”（如三层架构），继承了包容体系结构的底层实时性优势，同时保留了高层的 deliberative 能力。此外，其“去表示化”思想在当代深度学习的端到端策略中得到了精神继承。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/08-brooks-subsumption-architecture.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/Rodney Brooks.html">Rodney Brooks</a></li>
+<li><span style="color:#e74c3c" title="broken link">SMPA 范式</span></li>
+<li><span style="color:#e74c3c" title="broken link">增强型有限状态机</span></li>
+<li><a href="行为机器人学.html">行为机器人学</a></li>
+<li><span style="color:#e74c3c" title="broken link">混合架构</span></li>
+<li><span style="color:#e74c3c" title="broken link">具身智能</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="勒贝格常数.html">&larr; 勒贝格常数</a>
+    <a href="卡尔曼滤波.html">卡尔曼滤波 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

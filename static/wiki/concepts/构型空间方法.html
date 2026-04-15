@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>构型空间方法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 构型空间方法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">计算几何</span><span class="tag">方法论</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">构型空间方法</h1>
+<h2 id="_2">概述</h2>
+<p><strong>构型空间方法（Configuration Space Approach）</strong>，简称 <strong>C-space 方法</strong>，是由 Tomas Lozano-Perez 在 1983 年系统形式化的一种机器人运动规划理论框架。该方法的核心思想是将描述机器人所有可能位姿（位置和姿态）的参数作为坐标轴，构建一个高维空间（即构型空间）。在此空间中，机器人被抽象为一个点，而环境中的障碍物被映射为“构型空间障碍物”（C-obstacle）。通过这种变换，原本复杂的“扩展体在三维空间中避障”的几何问题，被转化为“点在高维自由空间（C-free）中寻找连续路径”的拓扑搜索问题。这一概念突破统一了不同自由度机器人的规划接口，成为现代运动规划算法（如 PRM、RRT）的通用语言。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心定义与数学表述</h3>
+<p>构型空间 $C$ 是一个参数空间，其中的每一个点 $q \in C$ 唯一地对应于机器人的一个完整构型（configuration）。构型空间的维度等于机器人的自由度（Degrees of Freedom, DOF）。例如：
+*   平面平移机器人：$C = \mathbb{R}^2$，坐标为 $(x, y)$。
+*   平面刚体（平移 + 旋转）：$C = \mathbb{R}^2 \times S^1$，坐标为 $(x, y, \theta)$。
+*   六自由度机械臂：$C = \mathbb{T}^6$（六维环面），坐标为六个关节角度 $(\theta_1, \dots, \theta_6)$。</p>
+<p>在该框架下，定义两个关键子集：
+1.  <strong>C-obstacle ($C_{obs}$)</strong>：构型空间中所有会导致机器人与工作环境中的物理障碍物发生碰撞的点的集合。即 $C_{obs} = { q \in C \mid R(q) \cap O \neq \emptyset }$，其中 $R(q)$ 是机器人在构型 $q$ 下的占据区域，$O$ 是障碍物集合。
+2.  <strong>自由构型空间 ($C_{free}$)</strong>：构型空间中去除 $C_{obs}$ 后的剩余部分，即 $C_{free} = C \setminus C_{obs}$。</p>
+<p>运动规划问题由此被严格定义为：在 $C_{free}$ 中寻找一条从起始构型 $q_{start}$ 到目标构型 $q_{goal}$ 的连续路径 $\tau: [0, 1] \to C_{free}$。</p>
+<h3 id="c-obstacle-minkowski">C-obstacle 的计算与 Minkowski 和</h3>
+<p>计算 $C_{obs}$ 是该方法的技术核心。对于仅具有平移自由度的机器人，Lozano-Perez 证明了 $C_{obs}$ 可以通过<strong>Minkowski 和</strong>运算精确计算。若障碍物为 $P$，机器人参考点位于原点时的形状为 $R$，则 $C_{obs} = P \oplus (-R)$，其中 $-R$ 是 $R$ 关于原点的中心对称。几何上，这相当于让机器人的参考点沿障碍物边界滑动所扫过的区域。对于凸多边形，该运算可在 $O(m+n)$ 时间内完成。</p>
+<p>当涉及旋转自由度时，$C_{obs}$ 的边界变得复杂，通常由一系列曲面片组成（由障碍物的面、边、顶点与机器人的面、边、顶点相互作用产生）。此时往往需要采用近似方法，如将旋转角度离散化，对每个固定角度计算平移 $C_{obs}$ 并堆叠，或使用单元分解（Cell Decomposition）来近似表示自由空间。</p>
+<h3 id="_5">方法的优势与局限性</h3>
+<p><strong>优势</strong>：
+*   <strong>概念统一</strong>：无论机器人形状多么复杂，在 C-space 中均简化为点，使得路径搜索算法（如 A<em>、Dijkstra、随机采样）可以通用化。
+*   </em><em>解耦复杂性</em><em>：将实时的碰撞检测预处理为空间构建问题，路径搜索阶段只需进行简单的点包含测试或图遍历。
+*   </em><em>理论完备性</em>*：为分析运动规划问题的可判定性、复杂度（如 PSPACE-hard）提供了严格的数学基础。</p>
+<p><strong>局限性</strong>：
+*   <strong>维数灾难（Curse of Dimensionality）</strong>：随着自由度增加，C-space 维度线性增长，但 $C_{obs}$ 的显式表示和计算复杂度呈指数级爆炸。对于 6 自由度以上的机器人，精确计算 $C_{obs}$ 在实际中不可行。
+*   <strong>动态与环境假设</strong>：原始方法主要假设静态环境和刚性物体，未直接处理动态障碍物或非完整约束（如汽车不能横向移动），虽然后续研究对此进行了扩展。</p>
+<h3 id="_6">历史演变与现代应用</h3>
+<p>尽管 Lozano-Perez 原始论文中的精确计算方法受限于维数灾难，但 C-space 的概念框架生命力极强。20 世纪 90 年代诞生的<strong>采样方法</strong>（Sampling-based Methods），如概率路线图（PRM）和快速探索随机树（RRT），正是为了克服高维 C-space 的显式表示困难而生。这些方法不显式构建 $C_{obs}$，而是通过随机采样和碰撞检测器隐式地探索 $C_{free}$。今天，从工业机械臂的路径规划到自动驾驶汽车的轨迹生成，再到蛋白质折叠模拟，几乎所有主流规划系统（如 MoveIt!, OMPL）底层都遵循 C-space 范式。它已不再仅仅是一种算法，而是机器人学中描述运动问题的标准语言。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a></li>
+<li><a href="运动规划.html">运动规划</a></li>
+<li><span style="color:#e74c3c" title="broken link">Minkowski 和</span></li>
+<li><span style="color:#e74c3c" title="broken link">维数灾难</span></li>
+<li><span style="color:#e74c3c" title="broken link">概率路线图方法</span></li>
+<li><span style="color:#e74c3c" title="broken link">快速探索随机树</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="极大极小定理.html">&larr; 极大极小定理</a>
+    <a href="样本空间.html">样本空间 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pi-Agent — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Pi-Agent</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具</span><span class="tag">AI</span><span class="tag">Agent</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="pi-agent">Pi Agent</h1>
+<h2 id="_1">概述</h2>
+<p>Pi Agent 是由 <a href="Mario-Zechner.html">Mario-Zechner</a> 创建的极简 AI 编程代理工具包（TypeScript Monorepo），以 4 个工具 + &lt; 1000 token 系统提示实现了与重型 Agent 可比的编程能力。核心理念：投资于 <a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> 的简洁性和可控性，而非堆砌功能。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="1">1. 四层架构</h3>
+<p>Pi 由四个严格单向分层的包组成：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>包名</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td><code>pi-ai</code></td>
+<td>统一 LLM 通信层，支持 300+ 模型（零内部依赖）</td>
+</tr>
+<tr>
+<td>L1</td>
+<td><code>pi-agent-core</code></td>
+<td>Agent 循环：工具调用、执行、事件流（只依赖 pi-ai）</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><code>pi-coding-agent</code></td>
+<td>完整编程代理：会话管理、工具、扩展系统</td>
+</tr>
+<tr>
+<td>L2</td>
+<td><code>pi-tui</code></td>
+<td>终端 UI 框架：差分渲染消除闪烁</td>
+</tr>
+</tbody>
+</table>
+<p>每层只依赖下层，由构建系统强制执行。任何层可独立使用、替换或测试。</p>
+<h3 id="2">2. 四大设计哲学</h3>
+<ol>
+<li><strong>「不需要就不构建」</strong>——子代理、计划模式、权限弹窗等均通过扩展系统实现而非内置</li>
+<li><strong>严格单向分层</strong>——构建系统强制，L0 零依赖向上到 L2</li>
+<li><strong><a href="../concepts/Context-Engineering.html">Context-Engineering</a> 第一公民</strong>——每个进入 LLM 的 token 均可见可控，系统提示 &lt; 1000 token，无"秘密注入"</li>
+<li><strong>会话 JSONL 第一公民</strong>——JSONL 格式持久化，可序列化、可后处理、可跨 Provider 迁移</li>
+</ol>
+<h3 id="3">3. 与竞品的关键差异</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Claude Code</th>
+<th>Pi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统提示</td>
+<td>数千 token</td>
+<td>&lt; 1000 token</td>
+</tr>
+<tr>
+<td>内置工具</td>
+<td>20+</td>
+<td>4</td>
+</tr>
+<tr>
+<td>多 Provider</td>
+<td>否</td>
+<td>300+ 模型</td>
+</tr>
+<tr>
+<td>会话格式</td>
+<td>私有</td>
+<td>开放 JSONL</td>
+</tr>
+<tr>
+<td>可自托管</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-pi-agent-coreagent">3. pi-agent-core：Agent 循环的最简实现</h3>
+<p><code>pi-agent-core</code>（L1 层）是 Pi 工具包的核心传动系统，将一次性 LLM 调用组装成能持续运转的 <a href="../concepts/Agent循环.html">Agent循环</a>：</p>
+<ul>
+<li><strong><a href="../concepts/事件驱动Agent架构.html">事件驱动Agent架构</a></strong>：所有状态变化（text_delta、tool_call_start、tool_result 等）通过 <code>subscribe/emit</code> 模式发射，支持多订阅者——同一 Agent 核心可驱动终端 UI、Web UI、IM 机器人，零修改</li>
+<li><strong>双通道设计</strong>：工具结果分为 <code>output</code>（LLM 可见，计入 token）和 <code>details</code>（UI 可见，结构化数据，不占 LLM token）</li>
+<li><strong>工具参数验证</strong>：执行前用 TypeBox + AJV 校验，失败时生成详细错误消息反馈给 LLM，允许模型<strong>自我修正</strong></li>
+<li><strong>消息队列</strong>：用户在 Agent 执行中发出的新消息被队列化为"转向消息"（下次 LLM 调用前注入）或"跟进消息"（session_end 后执行）</li>
+<li><strong>会话持久化</strong>：<code>session.serialize()</code> 序列化完整状态，<code>restoreAgentSession()</code> 在新进程中恢复</li>
+</ul>
+<h3 id="4-terminal-bench">4. Terminal-Bench 验证</h3>
+<p>Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：<strong>Agent 性能瓶颈在于 Harness 设计质量和上下文精确性，而非工具数量。</strong></p>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/01-overview-philosophy.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/02-pi-ai.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/03-pi-agent-core.md</span></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Mario-Zechner.html">Mario-Zechner</a> — 创造者</li>
+<li><a href="OpenClaw.html">OpenClaw</a> — Pi 作为核心引擎</li>
+<li><a href="Claude-Code.html">Claude-Code</a> — 设计哲学对立</li>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> — Pi 是极简 Harness 的代表实现</li>
+<li><a href="../concepts/Context-Engineering.html">Context-Engineering</a> — 核心设计哲学</li>
+<li><a href="../concepts/LLM-Wire-Protocol统一模式.html">LLM-Wire-Protocol统一模式</a> — pi-ai 四协议统一</li>
+<li><a href="../concepts/跨Provider上下文迁移.html">跨Provider上下文迁移</a> — pi-ai 最独特能力</li>
+<li><a href="../concepts/Agent循环.html">Agent循环</a> — pi-agent-core 的核心心跳</li>
+<li><a href="../concepts/事件驱动Agent架构.html">事件驱动Agent架构</a> — pi-agent-core 驱动多 UI 的机制</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Petr Švestka.html">&larr; Petr Švestka</a>
+    <a href="Richard E. Fikes.html">Richard E. Fikes &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

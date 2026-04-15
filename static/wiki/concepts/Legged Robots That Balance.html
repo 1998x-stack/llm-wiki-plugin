@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legged Robots That Balance — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Legged Robots That Balance</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="legged-robots-that-balance">Legged Robots That Balance</h1>
+<h2 id="_1">概述</h2>
+<p>《Legged Robots That Balance》是 Marc H. Raibert 于 1986 年由 MIT Press 出版的学术专著，被视为腿式机器人学领域的奠基之作。本书系统地阐述了动态腿式运动的控制理论，提出了著名的"三分解控制框架"，将复杂的动态平衡问题分解为弹跳高度、前进速度和身体姿态三个子问题。书中详细记录了从单腿弹跳到四足奔跑的实验过程，证明了动态平衡（允许飞行相和重心脱离支撑区）的可行性。该书不仅是技术文献，更标志着腿式机器人研究从静态步行向动态运动的范式转移，直接催生了 Boston Dynamics 公司的成立及其后续产品。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心贡献：三分解控制框架</h3>
+<p>本书的核心在于提出了一种优雅的控制结构，将高维非线性的动态腿式运动分解为三个直觉性极强的子任务：
+1. <strong>弹跳高度控制</strong>：通过在支撑相向腿部弹簧注入能量来调节跳跃高度，本质上是能量控制问题。
+2. <strong>前进速度控制</strong>：利用"中性点"（neutral point）概念，通过调整落脚点在身体重心的前方或后方来实现加速或减速。
+3. <strong>身体姿态控制</strong>：在支撑相通过髋关节力矩维持躯干的期望角度，使用简单的 PD 控制器即可实现稳定。
+这种分解利用了时间尺度分离和弹簧 - 质量模型的特性，使得每个子问题可以用简单的线性控制律独立处理。</p>
+<h3 id="_4">实验验证与平台</h3>
+<p>Raibert 在书中详细描述了一系列液压驱动的实验平台。最初的实验是在二维平面约束下的单腿弹跳机器人，随后扩展到三维空间的单腿机器人、双足跑步机器人以及四足多步态机器人。实验结果显示，这些机器人不仅能实现稳定的连续弹跳和奔跑，还能在受到外部扰动（如被踢或推）后迅速恢复平衡。书中包含的大量实验视频和数据成为了机器人学史上的经典资料，直观展示了动态平衡的力量。</p>
+<h3 id="_5">从单腿到多腿的统一理论</h3>
+<p>本书的一个重要章节讨论了如何将单腿控制策略推广到多腿系统。Raibert 引入了"虚拟腿"（virtual leg）的概念，指出双足奔跑是两条真实腿的交替，而四足奔跑（如 trot, pace, bound）则是两组"虚拟腿"的交替。通过改变腿的相位关系和组合方式，同一套控制算法可以生成多种不同的步态。这一发现揭示了不同腿数动物运动背后共享的控制原理，极大地简化了多足机器人的控制器设计。</p>
+<h3 id="_6">历史意义与范式转移</h3>
+<p>在本书出版之前，腿式机器人研究主要受限于"静态稳定"范式，即要求重心始终落在支撑多边形内，导致机器人运动缓慢且笨拙。Raibert 通过本书证明了"动态稳定"的优越性：允许机器人在运动过程中经历不稳定的飞行相，通过主动控制维持整体平衡。这一范式转移不仅提高了机器人的速度和地形适应能力，也为后来的仿生机器人学奠定了理论基础。</p>
+<h3 id="_7">对后世的影响</h3>
+<p>本书的影响远远超出了学术界。Raibert 基于书中的理论于 1992 年创办了 Boston Dynamics，将书中的思想转化为 BigDog、Atlas 和 Spot 等现实产品。书中的落脚点规划思想被后来的研究者发展为 Capture Point 理论和模型预测控制（MPC）方法。此外，书中提出的弹簧 - 质量模型与生物力学领域的发现相互印证，成为理解动物运动和設計高性能机器人的通用语言。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/09-raibert-legged-robots-balance.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a></li>
+<li><a href="三分解控制框架.html">三分解控制框架</a></li>
+<li><a href="动态平衡.html">动态平衡</a></li>
+<li><a href="../entities/Boston Dynamics.html">Boston Dynamics</a></li>
+<li><a href="弹簧 - 质量模型.html">弹簧 - 质量模型</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lax-Richtmyer等价定理.html">&larr; Lax-Richtmyer等价定理</a>
+    <a href="Master-Overrides设计系统持久化.html">Master-Overrides设计系统持久化 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

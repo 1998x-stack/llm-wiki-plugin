@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard P. Paul — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Richard P. Paul</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究，工具，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="richard-p-paul">Richard P. Paul</h1>
+<h2 id="_1">概述</h2>
+<p>Richard P. Paul 是机器人运动学领域的奠基人之一，宾夕法尼亚大学教授。他于 1972 年在斯坦福大学获得博士学位，师从人工智能先驱 John McCarthy，并在 Stanford AI Lab 参与了 Stanford Arm 的开发。Paul 最著名的贡献是撰写了 1981 年的专著《Robot Manipulators: Mathematics, Programming, and Control》，该书被视为机器人学的第一本标准教科书。他系统性地将齐次变换、DH 参数和逆运动学解析解方法整合为一个完整的理论体系，定义了现代机器人学的教育范式，并推动了该领域从经验主义向数学化工程科学的转变。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">学术背景与早期贡献</h3>
+<p>Richard P. Paul 的学术生涯始于斯坦福大学，他在 1969 年至 1972 年间攻读博士学位，导师是图灵奖得主 John McCarthy。在斯坦福人工智能实验室（Stanford AI Lab）期间，Paul 直接参与了著名的 Stanford Arm（六自由度电驱动机械臂）的研发工作。这段经历使他有机会亲手解决将抽象数学理论应用于真实机械臂控制的工程问题，为其后来的理论构建积累了宝贵的实践经验。博士毕业后，他先后在普渡大学和宾夕法尼亚大学任教，将多年的研究成果和教学经验凝聚成书。</p>
+<h3 id="_4">机器人学理论的集大成者</h3>
+<p>Paul 的最大成就在于他敏锐地察觉到当时机器人领域理论知识碎片化的问题。在 1980 年代之前，关于运动学、控制理论和编程方法的文献分散在各大学的博士论文和技术报告中，缺乏统一的符号系统和数学框架。Paul 通过其专著，首次将坐标变换、正向/逆向运动学、雅可比分析、轨迹规划和力控制串联成一条逻辑严密的知识链。他不仅是一位理论家，更是一位卓越的整合者，成功地将 Denavit 和 Hartenberg 提出的四参数方法推广为行业标准，并开发了系统的逆运动学代数求解策略。</p>
+<h3 id="_5">教育与工业界的深远影响</h3>
+<p>Paul 的工作直接催生了全球大学中“机器人学导论”课程的系统化。在他之前，机器人教学多以专题讲座形式存在；在他之后，一套标准的课程大纲（坐标变换→运动学→动力学→控制）被确立下来，并被 John Craig、Mark Spong 等后续教材作者广泛继承。在工业界，Paul 建立的数学框架成为了不同厂商工程师之间的“共同语言”。DH 参数表和基于齐次变换的运动学算法成为了工业机器人技术文档的标配，极大地促进了 1980 年代工业机器人产业的标准化和蓬勃发展。</p>
+<h3 id="_6">方法论与创新精神</h3>
+<p>Paul 的研究风格体现了深厚的系统工程思维。他不仅关注纯数学推导，更强调理论与编程实践的结合。作为 AL 编程语言的参与开发者，他深入探讨了如何在编程语言层面支持空间推理和传感器集成。他的逆运动学求解方法（通过逐步左乘逆矩阵隔离变量）展示了高超的代数技巧，特别是针对具有球形手腕构型的工业机器人，他推导出的多组封闭解至今仍被广泛使用。Paul 的工作证明了机器人的设计和控制可以建立在严格的数学基础之上，彻底改变了人们对机器人技术本质的认知。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/05-paul-robot-manipulators-mathematics.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control</a></li>
+<li><span style="color:#e74c3c" title="broken link">John McCarthy</span></li>
+<li><span style="color:#e74c3c" title="broken link">Stanford AI Lab</span></li>
+<li><a href="../concepts/Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a></li>
+<li><span style="color:#e74c3c" title="broken link">Stanford Arm</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Richard E. Fikes.html">&larr; Richard E. Fikes</a>
+    <a href="Richard S. Hartenberg.html">Richard S. Hartenberg &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

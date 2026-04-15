@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomas Lozano-Perez — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Tomas Lozano-Perez</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">机器人学</span><span class="tag">计算几何</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="tomas-lozano-perez">Tomas Lozano-Perez</h1>
+<h2 id="_1">概述</h2>
+<p>Tomas Lozano-Perez 是麻省理工学院（MIT）的终身教授，机器人学与人工智能领域的杰出科学家。他于 1983 年发表的论文《Spatial Planning: A Configuration Space Approach》系统地提出了<strong>构型空间（Configuration Space, C-space）</strong>概念，将复杂的机器人运动规划问题转化为高维空间中的路径搜索问题，奠定了现代运动规划领域的理论基石。除了构型空间方法，他在计算机视觉、机器学习和计算化学等领域也有重要贡献。他是 IEEE、ACM 和 AAAI 的 Fellow，美国国家工程院院士，曾获得 IEEE Robotics Pioneer Award (2011) 和 IEEE Robotics and Automation Award (2021)。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">学术背景与职业生涯</h3>
+<p>Tomas Lozano-Perez 的学术生涯几乎全部在 MIT 度过。他于 1973 年获得 MIT 学士学位（SB '73），1976 年获硕士学位（SM '76），并于 1980 年在 MIT 获得博士学位（PhD '80）。他的博士论文及随后的研究工作直接催生了构型空间方法。他曾担任 MIT 人工智能实验室副主任以及电气工程与计算机科学系计算机科学副系主任。他的研究风格以深厚的数学基础和对实际算法可行性的关注著称，成功地将抽象的计算几何理论应用于具体的机器人控制问题。</p>
+<h3 id="_4">核心贡献：构型空间方法</h3>
+<p>Lozano-Perez 最具影响力的工作是将“机器人如何在有障碍物的环境中移动”这一问题进行了概念上的重构。在他之前，避障算法通常直接在工作空间（Work Space）中处理复杂的几何碰撞检测，这种方法难以推广到不同形状的机器人。Lozano-Perez 提出将所有描述机器人位姿的自由度作为坐标轴，构建一个高维的<strong>构型空间</strong>。在这个空间中，机器人被简化为一个点，而障碍物则被映射为“构型空间障碍物”（C-obstacle）。这一转换使得运动规划问题从“复杂形状物体的穿行”变成了“点在自由空间中的寻路”，极大地统一了该领域的理论框架。</p>
+<h3 id="_5">其他研究领域</h3>
+<p>除了运动规划，Lozano-Perez 的研究兴趣广泛：
+*   <strong>计算机视觉</strong>：早期提出了“解释树”（Interpretation Tree）方法，用于从传感器数据中识别物体位姿。
+*   <strong>机器学习</strong>：在多实例学习（Multiple Instance Learning）领域有开创性工作，特别是在医学影像分析中的应用。
+*   <strong>计算化学</strong>：利用运动规划算法解决蛋白质折叠和分子对接问题，展示了 C-space 方法在生物学领域的跨学科潜力。</p>
+<h3 id="_6">荣誉与奖项</h3>
+<p>鉴于其对机器人学的奠基性贡献，Lozano-Perez 获得了多项顶级荣誉。他是 IEEE、ACM 和 AAAI 三个主要专业协会的 Fellow。2011 年，他因在运动规划领域的开创性工作获得 IEEE Robotics Pioneer Award；2021 年，他又获得了 IEEE Robotics and Automation Award。他的 1983 年论文被引用超过 3700 次，是机器人学历史上被引用最多的论文之一，其提出的概念已成为现代机器人操作系统（如 ROS/MoveIt!）和规划库（如 OMPL）的核心基础。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../concepts/构型空间方法.html">构型空间方法</a></li>
+<li><a href="../concepts/运动规划.html">运动规划</a></li>
+<li><span style="color:#e74c3c" title="broken link">麻省理工学院人工智能实验室</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="TX-0 计算机.html">&larr; TX-0 计算机</a>
+    <a href="UI-UX-Pro-Max.html">UI-UX-Pro-Max &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

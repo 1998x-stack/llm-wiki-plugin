@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinodynamic Planning — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Kinodynamic Planning</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="kinodynamic-planning">Kinodynamic Planning</h1>
+<h2 id="_1">概述</h2>
+<p>Kinodynamic Planning（动力学运动规划）是一类同时考虑运动学约束（如非完整约束）和动力学约束（如速度、加速度、力矩限制）的运动规划问题。与传统仅关注几何路径的运动规划不同，Kinodynamic Planning 要求在状态空间（包括位置和速度）中寻找一条满足系统微分方程约束的可行轨迹。该概念由 Bruce Donald、Patrick Xavier、John Canny 和 John Reif 于 1993 年系统化提出，是高维复杂机器人系统规划的核心挑战。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">问题定义与挑战</h3>
+<p>Kinodynamic Planning 的核心难点在于状态空间的维度加倍（位置 + 速度）以及可达区域的复杂性。对于一个 $n$ 自由度的机械臂，其状态空间维度为 $2n$。在此空间中，任意两个状态之间不能简单地通过直线连接，因为系统必须遵循动力学方程 $\dot{x} = f(x, u)$，其中 $u$ 是控制输入。这意味着从一个状态到另一个状态的转移必须是通过合法的控制输入演化而来的轨迹，而非几何上的捷径。传统基于网格的方法因维数灾难在此类问题中失效，而基于势场的方法容易陷入局部极小值。</p>
+<h3 id="rrt">RRT 的解决方案</h3>
+<p><strong><a href="快速扩展随机树 (RRT).html">快速扩展随机树 (RRT)</a></strong> 的出现为 Kinodynamic Planning 提供了革命性的解决方案。RRT 的扩展步骤天然支持前向模拟：算法不需要解决困难的两点边值问题（即如何从状态 A 精确移动到状态 B），只需从当前状态 $x_{near}$ 选择一个随机控制输入 $u$，对动力学方程进行短时间积分得到新状态 $x_{new}$。只要模拟器是物理正确的，生成的每一步运动自动满足所有的运动和动力学约束。这种“构建即可行”的特性使得 RRT 成为该领域事实上的标准方法。</p>
+<h3 id="_4">应用领域</h3>
+<p>Kinodynamic Planning 在许多实际场景中至关重要，包括：
+*   <strong>自动驾驶</strong>：车辆不仅有转向角限制（非完整），还有加速度和加加速度（jerk）限制，以确保乘客舒适和车辆稳定。
+*   <strong>航空航天</strong>：飞行器和卫星的姿态控制受到推力大小和方向的严格限制。
+*   <strong>高速机械臂</strong>：高速运动的机械臂必须考虑惯性力和力矩限制，以避免结构损坏或失控。
+RRT 及其变体（如 Kinodynamic RRT*）在这些领域中成功实现了复杂动态系统的实时轨迹规划。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/11-lavalle-rapidly-exploring-random-trees.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="快速扩展随机树 (RRT).html">快速扩展随机树 (RRT)</a></li>
+<li><a href="运动规划.html">运动规划</a></li>
+<li><span style="color:#e74c3c" title="broken link">非完整约束</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Kato-Rellich定理.html">&larr; Kato-Rellich定理</a>
+    <a href="Krylov子空间方法.html">Krylov子空间方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

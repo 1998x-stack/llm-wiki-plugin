@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动态平衡 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 动态平衡</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">动态平衡</h1>
+<h2 id="_2">概述</h2>
+<p>动态平衡（Dynamic Balance）是指系统在运动过程中，通过主动控制力和力矩来维持整体稳定性，而不要求系统在每一时刻都处于静力平衡状态的一种控制模式。在腿式机器人学中，动态平衡特指允许机器人在运动过程中出现"飞行相"（flight phase，即所有脚离地）以及重心投影暂时脱离支撑多边形的情况。与传统的静态步行不同，动态平衡模仿了自然界动物（如奔跑的马、跳跃的袋鼠）的运动方式，利用动量和惯性来穿越不稳定区域，并通过及时的落脚和力矩调整恢复平衡。这一概念由 Marc H. Raibert 在 1980 年代系统化并成功应用于机器人控制，引发了腿式机器人领域的范式转移。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">静态稳定与动态稳定的对比</h3>
+<p>在动态平衡概念普及之前，腿式机器人主要遵循"静态稳定"（Static Stability）原则。静态稳定要求机器人的重心投影在任何时刻都必须落在由支撑脚构成的支撑多边形（support polygon）内部。这种策略虽然保证了机器人在任何时刻停止都不会摔倒，但严重限制了运动速度和灵活性，导致机器人只能缓慢、谨慎地移动，类似于人在冰面上挪步。
+相比之下，动态平衡允许重心暂时移出支撑多边形，甚至允许所有脚同时离地（飞行相）。系统通过控制每一步的落脚点位置和地面反作用力，使得整体的轨迹在长时间尺度上是稳定的。这种模式允许更高的速度、更好的能量效率（利用弹性储能）和更强的障碍跨越能力。</p>
+<h3 id="_5">飞行相与支撑相的交替</h3>
+<p>动态腿式运动的一个显著特征是支撑相（stance phase）与飞行相（flight phase）的交替。在支撑相，机器人通过脚与地面接触，利用地面反力改变动量和姿态；在飞行相，机器人处于自由抛体运动状态，无法通过地面力直接控制质心轨迹，只能通过调整肢体构型（如摆动腿的位置）为下一次触地做准备。动态平衡的核心挑战在于如何在这两种截然不同的动力学模态之间平滑切换，并确保在触地瞬间系统能够吸收冲击并重新建立稳定。</p>
+<h3 id="_6">倒立摆模型与中性点</h3>
+<p>理解动态平衡的一个关键物理模型是倒立摆（Inverted Pendulum）。在支撑相，腿式机器人可以近似为一个倒立摆，其本质上是不稳定的。为了维持平衡，控制器必须不断调整"支点"的位置。Raibert 提出的"中性点"（neutral point）概念是动态平衡控制的核心：这是一个特定的落脚位置，使得机器人在支撑相受到的加速和减速效应相互抵消。通过有意识地将脚落在中性点的前方或后方，控制器可以主动诱导加速或减速，从而在动态过程中维持速度稳定或进行机动。</p>
+<h3 id="_7">能量管理与弹性储能</h3>
+<p>动态平衡不仅仅是位置控制，还涉及能量的管理。在自然界中，动物通过肌腱和肌肉的弹性储能机制，在支撑相储存动能并在离地时释放，从而实现高效的奔跑。Raibert 的机器人使用了弹簧元件来模拟这一机制。动态平衡控制器需要在每个步态周期中精确地注入或耗散能量，以维持期望的弹跳高度和速度。这种基于能量的视角使得动态平衡系统能够像弹跳球一样运作，具有内在的被动稳定性倾向。</p>
+<h3 id="_8">鲁棒性与扰动恢复</h3>
+<p>动态平衡系统的一个显著优势是其对外部扰动的鲁棒性。由于系统本身就处于不断的动态调整中，当受到外部推力或地面不平的干扰时，控制器可以通过快速调整下一步的落脚点来补偿误差。例如，如果机器人被向后推导致速度减慢，控制器会自动将下一步的落脚点移得更靠后，从而产生更大的向前加速度来恢复速度。这种"自我修正"的能力是静态步行系统所不具备的，后者一旦重心超出支撑多边形往往难以恢复。</p>
+<h3 id="_9">应用领域与影响</h3>
+<p>动态平衡概念的应用彻底改变了腿式机器人的设计思路。从 Marc H. Raibert 早期的单腿弹跳器到 Boston Dynamics 的 BigDog、Atlas 和 Spot，所有高性能腿式机器人都依赖于动态平衡原理。此外，这一概念也影响了人形机器人的步态规划、外骨骼设计以及动画角色的运动合成。在生物力学领域，动态平衡理论帮助科学家更好地理解了动物运动的进化优势和神经控制机制。</p>
+<h2 id="_10">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/09-raibert-legged-robots-balance.md</span></li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="三分解控制框架.html">三分解控制框架</a></li>
+<li><a href="Legged Robots That Balance.html">Legged Robots That Balance</a></li>
+<li><span style="color:#e74c3c" title="broken link">静态步行</span></li>
+<li><a href="弹簧 - 质量模型.html">弹簧 - 质量模型</a></li>
+<li><a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="切比雪夫逼近理论.html">&larr; 切比雪夫逼近理论</a>
+    <a href="动物精神.html">动物精神 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

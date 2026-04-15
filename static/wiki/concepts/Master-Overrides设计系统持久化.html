@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master-Overrides设计系统持久化 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Master-Overrides设计系统持久化</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UI</span><span class="tag">设计系统</span><span class="tag">AI</span><span class="tag">持久化</span><span class="tag">上下文工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="master-overrides">Master + Overrides 设计系统持久化</h1>
+<h2 id="_1">概述</h2>
+<p>Master + Overrides 是一种解决 AI 无状态（Stateless）导致"设计失忆症"的文件架构模式：将设计决策写入项目文件系统，AI 通过读文件获得"记忆"。全局规范存 MASTER.md，页面专属差异存 pages/<page>.md，仅记录与 MASTER 不同之处。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心问题</h3>
+<p>每次新对话，AI 对项目的设计规范一无所知——颜色、字体、间距、风格全部重置。传统解法是在提示词里重复粘贴规范，但低效且随项目增长不可维护。</p>
+<p><strong>根本解法</strong>：把"有状态的设计决策"写入文件系统，让无状态的 AI 通过读文件获得持久"记忆"。</p>
+<h3 id="_4">文件结构</h3>
+<pre><code>design-system/
+├── MASTER.md              # 全局设计规范（项目唯一真相来源）
+└── pages/
+    ├── dashboard.md       # 仪表板专属覆盖
+    ├── checkout.md        # 结账页面专属覆盖
+    └── landing.md         # 落地页专属覆盖
+</code></pre>
+<h3 id="_5">层级检索规则</h3>
+<pre><code>1. 构建某页面时，先检查 design-system/pages/&lt;page&gt;.md
+2. 若页面文件存在：其规则覆盖 MASTER.md 的对应部分
+3. 若页面文件不存在：完全使用 MASTER.md
+4. 页面文件只记录「与 MASTER 不同的地方」，不重复
+</code></pre>
+<h3 id="mastermd">MASTER.md 标准包含</h3>
+<p>完整设计系统的 8 个维度：Identity（产品类型/目标用户）、Color System（亮/暗模式完整色板）、Typography System（字体 + 类型比例尺）、Spacing System（4px 基准网格）、Component Specifications（按钮/卡片/表单规格）、UI Style（主风格 + 动画 + 图标集）、Anti-Patterns（明确禁止事项）、Tech Stack Specifics（框架/工具链）。</p>
+<h3 id="_6">页面覆盖示例（只记录差异）</h3>
+<pre><code class="language-markdown"># Page Override: Checkout
+&gt; Overrides MASTER.md for /checkout route
+
+## Color Overrides
+- Error color: #DC2626 + red-50 background
+
+## Anti-Patterns (Page-specific)
+- ✗ NO dark mode on checkout（信任感问题）
+- ✗ NO animations on payment confirmation
+</code></pre>
+<h3 id="_7">上下文感知提示词模板</h3>
+<pre><code>我正在构建 [页面名] 页面。
+1. 阅读 design-system/MASTER.md
+2. 检查 design-system/pages/[页面名].md
+3. 若存在页面文件：其规则 &gt; MASTER（覆盖关系）
+4. 若不存在：仅使用 MASTER.md
+技术栈: [具体栈]
+任务: [需求]
+</code></pre>
+<h3 id="llm-statelessness">与 LLM-Statelessness 的关系</h3>
+<p>这是"以文件系统为状态"的具体应用——不依赖 AI 的记忆（跨会话不存在），而是依赖项目文件（始终存在）。类似模式：AGENTS.md、CLAUDE.md、GEMINI.md 等项目上下文文件。</p>
+<h2 id="uupm">设计哲学总结（UUPM 系列）</h2>
+<ol>
+<li><strong>知识结构化优先于丰富性</strong> — CSV + 优先级 + 条件判断，使 AI 可推理而非仅检索</li>
+<li><strong>反模式比正模式更有价值</strong> — 161 条规则的核心是行业经验的负样本库</li>
+<li><strong>工具链感知</strong> — 设计决策与实现路径合一（15 个栈专项指南）</li>
+<li><strong>持久化解决无状态</strong> — 设计决策写入文件系统，AI 读文件获得"记忆"</li>
+<li><strong>零依赖实用主义</strong> — BM25 + CSV + 标准库，可用性优先于精确性</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-07-persistence.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="LLM-Statelessness.html">LLM-Statelessness</a> — 此模式解决的根本问题</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — 文件系统作为上下文的工程策略</li>
+<li><a href="../entities/UI-UX-Pro-Max.html">UI-UX-Pro-Max</a> — 实现此模式的工具（--persist 参数）</li>
+<li><a href="AI设计推理层.html">AI设计推理层</a> — Master + Overrides 是设计推理层的持久化层</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Legged Robots That Balance.html">&larr; Legged Robots That Balance</a>
+    <a href="PDDL.html">PDDL &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识系统的六个工程反模式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../syntheses/index.html">syntheses</a> / 知识系统的六个工程反模式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">工具</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">知识系统的六个工程反模式</h1>
+<h2 id="_2">概述</h2>
+<p>在构建 LLM Wiki Plugin（AI 驱动的个人知识操作系统）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适用于任何由多个脚本/微服务组成的数据管线。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="1-silent-duplication">1. 隐性复制（Silent Duplication）</h3>
+<p>同一逻辑（如 YAML frontmatter 解析）在 6 个脚本中独立实现，每个实现行为略有不同（regex vs string-find vs yaml.safe_load）。表面上系统工作正常，但一个 bug 修复不会传播到其他副本，且边界行为不一致导致间歇性数据丢失。</p>
+<p><strong>诊断信号</strong>：grep 发现同名函数 &gt;3 处。
+<strong>修复模式</strong>：提取共享模块，确立"canonical implementation"。</p>
+<h3 id="2-api-stateless-api-gap">2. 无状态 API 调用缺少上下文补偿（Stateless API Gap）</h3>
+<p>当系统的一部分（Claude 引擎）是上下文感知的，而另一部分（Qwen API）是无状态的，两者产出质量差距巨大。无状态 API 不知道已有哪些页面、不知道正确的 <span style="color:#e74c3c" title="broken link">wikilink</span> 目标、不知道哪些实体已经存在。</p>
+<p><strong>诊断信号</strong>：API 调用方比内部引擎产出更多重复/断链。
+<strong>修复模式</strong>：在 API 调用前注入上下文（<code>--context-pages</code>），在 API 返回后做本地去重（<code>scan_existing_pages</code>）。</p>
+<h3 id="3-gate-keeper-data-loss">3. 入口严格导致静默数据丢失（Gate-Keeper Data Loss）</h3>
+<p>当 pipeline 在入口处拒绝有问题的数据（如 YAML 格式错误），数据被静默丢弃，没有错误日志，没有恢复路径。用户不知道发生了什么，也无法修复。</p>
+<p><strong>诊断信号</strong>：<code>continue</code> 语句在循环中跳过条目，没有对应的错误记录。
+<strong>修复模式</strong>：入口宽容（always save + error annotation），后续修复（lint/manual fix），持久错误日志。</p>
+<h3 id="4-writeread-misaligned-data-flow">4. Write/Read 路径不对齐（Misaligned Data Flow）</h3>
+<p>一个命令写入路径 A（<code>qa/</code>），另一个命令从路径 B（<code>raw/qa/</code>）读取。两条路径永远不交叉，导致数据孤岛。</p>
+<p><strong>诊断信号</strong>：grep 写入路径和读取路径，发现零交集。
+<strong>修复模式</strong>：统一为单一数据流 + snapshot 跟踪文件。</p>
+<h3 id="5-hook-hook-cost-explosion">5. Hook 成本随数据量线性增长（Hook Cost Explosion）</h3>
+<p>PostToolUse hook 在设计时（10 个 wiki 页面）很轻量，但数据量增长到 188 个页面后，每次编辑触发全量图谱重建（读取所有文件），成为隐性性能瓶颈。</p>
+<p><strong>诊断信号</strong>：hook 执行时间随页面数线性增长。
+<strong>修复模式</strong>：mtime 防抖 / 增量更新 / 批量延迟重建。</p>
+<h3 id="6-dedup-semantics-mismatch">6. 去重策略与语义不匹配（Dedup-Semantics Mismatch）</h3>
+<p>图谱边使用 <code>sorted([src, tgt])</code> 去重，对无向关系（wikilink）正确，但对有向关系（contradicts, supersedes）丢失了方向信息。A 矛盾 B ≠ B 矛盾 A。</p>
+<p><strong>诊断信号</strong>：去重后的数据无法还原出原始方向。
+<strong>修复模式</strong>：按关系类型选择去重策略（有向保序，无向排序）。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/qa/qa.snapshot.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a></li>
+<li><a href="../entities/Claude-Mem.html">Claude-Mem</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents评估设计哲学.html">&larr; DeepAgents评估设计哲学</a>
+    <a href="矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

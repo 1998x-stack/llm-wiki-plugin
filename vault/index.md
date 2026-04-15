@@ -46,6 +46,30 @@ updated: 2026-04-15
 - [[罗伯特·默顿·索洛]] — 罗伯特·默顿·索洛（Robert M. Solow，1924 年生）是美国著名经济学家，新古典增长理论的奠基人。他因对经济增长理论的贡献荣获 1987 年诺贝尔... (confidence: 1.0)
 - [[美国货币史，1867-1960]] — 《美国货币史，1867-1960》（*A Monetary History of the United States, 1867-1960*）是由米尔顿·弗里德... (confidence: 1.0)
 - [[A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices]] — 《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 Jacques Den... (confidence: 1.0)
+- [[Heinrich A. Ernst]] — Heinrich A. Ernst 是一位在机器人学和人工智能领域具有开创性贡献的研究者，以其 1962 年在麻省理工学院（MIT）完成的博士论文《MH-1, ... (confidence: 0.95)
+- [[MH-1 机械手]] — MH-1 是由 Heinrich A. Ernst 于 1962 年在麻省理工学院（MIT）开发的世界上第一个由计算机控制并具备触觉反馈的机械手系统。作为机器人... (confidence: 0.95)
+- [[Nils J. Nilsson]] — Nils J. Nilsson（1933-2019）是人工智能领域的先驱人物，斯坦福大学计算机科学系奠基性教授之一，曾任 SRI International 人... (confidence: 1.0)
+- [[Oussama Khatib]] — Oussama Khatib 是国际著名的机器人学专家，现任斯坦福大学计算机科学系教授兼机器人实验室主任。他于 1980 年在法国图卢兹高等航空航天学院获得电气... (confidence: 1.0)
+- [[Richard E. Fikes]] — Richard E. Fikes 是一位杰出的计算机科学家，曾任斯坦福研究院（SRI International）人工智能中心的研究员，后任职于 Xerox P... (confidence: 0.95)
+- [[Shakey 机器人]] — Shakey 是世界上第一个具备通用目的的移动机器人，由斯坦福研究院（SRI International）人工智能中心于 1960 年代末至 1970 年代初研... (confidence: 1.0)
+- [[TX-0 计算机]] — TX-0（Transistorized Experimental computer zero）是由麻省理工学院（MIT）林肯实验室在 1950 年代中期开发的一... (confidence: 0.85)
+- [[Unimate]] — Unimate 是世界上第一台投入实际应用的工业机器人，由 George Devol 发明并由 Joseph Engelberger 推广，于 1961 年首次... (confidence: 0.9)
+- [[Jean-Claude Latombe]] — Jean-Claude Latombe 是机器人运动规划领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成就是撰写... (confidence: 0.95)
+- [[Lydia Kavraki]] — Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 Jean-Cla... (confidence: 1.0)
+- [[Mark Overmars]] — Mark H. Overmars 是荷兰乌得勒支大学（Utrecht University）的杰出教授，主要研究领域为计算几何（Computational Ge... (confidence: 0.9)
+- [[PUMA 机器人]] — PUMA（Programmable Universal Machine for Assembly）系列机器人是由 Unimation 公司在 1970 年代末推... (confidence: 0.9)
+- [[Petr Švestka]] — Petr Švestka 是捷克裔计算机科学家，曾在荷兰乌得勒支大学（Utrecht University）师从 Mark Overmars 攻读博士学位。他是... (confidence: 0.85)
+- [[Richard P. Paul]] — Richard P. Paul 是机器人运动学领域的奠基人之一，宾夕法尼亚大学教授。他于 1972 年在斯坦福大学获得博士学位，师从人工智能先驱 John Mc... (confidence: 1.0)
+- [[Robot Manipulators: Mathematics, Programming, and Control]] — 《Robot Manipulators: Mathematics, Programming, and Control》是由 Richard P. Paul 于 ... (confidence: 1.0)
+- [[Rodney Brooks]] — Rodney A. Brooks（罗德尼·布鲁克斯）是澳大利亚裔计算机科学家、机器人学家及企业家，曾任 MIT 人工智能实验室主任。他是“行为机器人学”（Beh... (confidence: 1.0)
+- [[Tomas Lozano-Perez]] — Tomas Lozano-Perez 是麻省理工学院（MIT）的终身教授，机器人学与人工智能领域的杰出科学家。他于 1983 年发表的论文《Spatial Pl... (confidence: 1.0)
+- [[Mario-Zechner]] — Mario Zechner 是 libGDX 游戏引擎的创造者，拥有三十年工程经验的资深开发者。2025 年底因对 [[Claude-Code]] 复杂性的不满... (confidence: 0.85)
+- [[OpenClaw]] — OpenClaw 是一个多渠道 AI 助手，以 [[Pi-Agent]] 为核心引擎，支持 WhatsApp、Telegram、Discord、Slack、Si... (confidence: 0.85)
+- [[Pi-Agent]] — Pi Agent 是由 [[Mario-Zechner]] 创建的极简 AI 编程代理工具包（TypeScript Monorepo），以 4 个工具 + < ... (confidence: 0.9)
+- [[Steven M. LaValle]] — Steven M. LaValle 是国际知名的计算机科学家和机器人学家，现任芬兰奥卢大学（University of Oulu）教授。他以提出**快速扩展随机... (confidence: 1.0)
+- [[Boston Dynamics]] — Boston Dynamics 是一家世界领先的机器人工程公司，成立于 1992 年，由著名机器人学家 Marc H. Raibert 从麻省理工学院（MIT）... (confidence: 1.0)
+- [[Marc H. Raibert]] — Marc H. Raibert 是美国著名的计算机科学家和机器人学家，被誉为现代动态腿式机器人之父。他于 1977 年在麻省理工学院（MIT）获得博士学位，随后... (confidence: 1.0)
+- [[UI-UX-Pro-Max]] — UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Wind... (confidence: 0.9)
 
 <!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
@@ -197,23 +221,56 @@ updated: 2026-04-15
 - [[Claude-Code-Hook-System]] — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事... (confidence: 0.9)
 - [[LLM-Statelessness]] — LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从... (confidence: 0.95)
 - [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过... (confidence: 0.9)
+- [[PDDL]] — PDDL（Planning Domain Definition Language，规划领域定义语言）是自动规划领域的标准建模语言，由 Drew McDermot... (confidence: 0.95)
+- [[STRIPS 规划器]] — STRIPS（STanford Research Institute Problem Solver）是人工智能历史上最具影响力的自动规划系统之一，由 Richa... (confidence: 1.0)
+- [[人工势场法]] — 人工势场法（Artificial Potential Field, APF）是由 Oussama Khatib 于 1986 年提出的一种机器人实时避障与运动规... (confidence: 1.0)
+- [[卡尔曼滤波]] — 卡尔曼滤波（Kalman Filter, KF）是一种递归式的最优状态估计算法，由 Rudolf E. Kalman 于 1960 年提出。该方法通过将系统的动... (confidence: 1.0)
+- [[手眼协调]] — 手眼协调（Hand-Eye Coordination）是机器人学中的一个核心研究领域，指机器人系统整合视觉感知（眼）与机械操作（手）能力，以实现对物体的识别、定... (confidence: 0.9)
+- [[操作空间控制]] — 操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 Oussama Khatib 在 1980 年代系统... (confidence: 0.95)
+- [[包容体系结构]] — 包容体系结构（Subsumption Architecture）是由 Rodney Brooks 于 1986 年提出的一种革命性机器人控制架构。它彻底摒弃了传... (confidence: 1.0)
+- [[构型空间方法]] — **构型空间方法（Configuration Space Approach）**，简称 **C-space 方法**，是由 Tomas Lozano-Perez... (confidence: 1.0)
+- [[概率路线图 (PRM)]] — 概率路线图（Probabilistic Roadmap, PRM）是一种用于高维构型空间中机器人运动规划的采样算法，由 Lydia Kavraki 等人于 19... (confidence: 1.0)
+- [[行为机器人学]] — 行为机器人学（Behavior-based Robotics, BBR）是机器人学的一个主要研究范式，兴起于 1980 年代末，由 Rodney Brooks ... (confidence: 0.95)
+- [[运动规划]] — **运动规划（Motion Planning）**，又称路径规划（Path Planning），是机器人学和人工智能领域的核心问题之一。其基本任务是：给定一个机... (confidence: 0.95)
+- [[齐次变换矩阵]] — 齐次变换矩阵（Homogeneous Transformation Matrix）是机器人学中用于描述刚体在三维空间中位姿（位置和姿态）的核心数学工具，通常表示... (confidence: 1.0)
+- [[LLM-Wire-Protocol统一模式]] — [[Mario-Zechner]] 在构建 [[Pi-Agent]] 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire P... (confidence: 0.9)
+- [[跨Provider上下文迁移]] — Context Handoff 是 [[Pi-Agent]] pi-ai 层最独特的能力：一个会话可以在 Anthropic → OpenAI → Google... (confidence: 0.85)
+- [[Agent循环]] — Agent 循环（Agent Loop）是所有 AI Agent 的核心心跳：反复调用 LLM，根据停止原因分支——若 `stop` 则输出结果，若 `tool... (confidence: 0.92)
+- [[Kinodynamic Planning]] — Kinodynamic Planning（动力学运动规划）是一类同时考虑运动学约束（如非完整约束）和动力学约束（如速度、加速度、力矩限制）的运动规划问题。与传统... (confidence: 0.9)
+- [[RRT-Connect]] — RRT-Connect 是快速扩展随机树（RRT）算法的重要变体，由 Steven M. LaValle 和 James J. Kuffner Jr. 于 20... (confidence: 0.95)
+- [[Voronoi 偏置]] — Voronoi 偏置（Voronoi Bias）是快速扩展随机树（RRT）算法能够高效探索高维空间的核心数学机制。该现象指出，在均匀随机采样空间中，RRT 树中... (confidence: 0.95)
+- [[事件驱动Agent架构]] — 事件驱动 Agent 架构是指：Agent 循环内所有状态变化都通过**事件发射（emit）**通知订阅者，而不依赖返回值。同一 Agent 核心可同时驱动终端... (confidence: 0.9)
+- [[快速扩展随机树 (RRT)]] — 快速扩展随机树（Rapidly-Exploring Random Trees, RRT）是一种用于高维空间路径规划的采样算法，由 Steven M. LaVal... (confidence: 1.0)
+- [[AI设计推理层]] — AI 设计推理层是一种在 AI 助手生成 UI 代码**之前**插入专业设计决策过程的架构模式：通过知识库驱动的检索+推理，将用户的自然语言请求转化为产品类型专... (confidence: 0.88)
+- [[Legged Robots That Balance]] — 《Legged Robots That Balance》是 Marc H. Raibert 于 1986 年由 MIT Press 出版的学术专著，被视为腿式机... (confidence: 1.0)
+- [[Master-Overrides设计系统持久化]] — Master + Overrides 是一种解决 AI 无状态（Stateless）导致"设计失忆症"的文件架构模式：将设计决策写入项目文件系统，AI 通过读文... (confidence: 0.9)
+- [[三分解控制框架]] — 三分解控制框架（Three-Part Decomposition）是由 Marc H. Raibert 提出的一种用于动态腿式运动控制的核心理论架构。该框架将复... (confidence: 1.0)
+- [[动态平衡]] — 动态平衡（Dynamic Balance）是指系统在运动过程中，通过主动控制力和力矩来维持整体稳定性，而不要求系统在每一时刻都处于静力平衡状态的一种控制模式。在... (confidence: 0.95)
+- [[工程化UX规则体系]] — 工程化 UX 规则体系是将隐性设计经验编码为**带优先级标签、唯一 ID、可机器检索和自动验证的结构化规则**的方法：使 AI 能直接执行 UX 规则检查而不只... (confidence: 0.9)
+- [[弹簧 - 质量模型]] — 弹簧 - 质量模型（Spring-Mass Model），在腿式机器人学和生物力学中常被称为弹簧加载倒立摆（Spring-Loaded Inverted Pen... (confidence: 0.95)
+- [[技术栈感知设计规则]] — 技术栈感知设计规则是一种将**同一设计决策**按不同技术栈细化为具体实现模式的知识编码方式：相同的「圆角卡片 hover 效果」在 React、SwiftUI、... (confidence: 0.87)
+- [[结构化UI风格知识库]] — 结构化 UI 风格知识库是将每种 UI 视觉风格编码为**可机器检索和直接输出的结构化记录**的设计模式：除风格描述外，每条记录携带 AI Prompt 关键词... (confidence: 0.88)
+- [[行业色彩情绪映射]] — 行业色彩情绪映射是一种将产品类型与色彩方案通过**情绪关键词**对应起来的设计知识编码方式：颜色选择的依据不是「好看」，而是**行业惯例形成的用户信任联觉 + ... (confidence: 0.88)
+- [[行业设计反模式系统]] — 行业设计反模式系统是一种**以负样本为核心**的设计知识编码方式：为每种产品类型预定义「绝对不能做什么」，使 AI 生成 UI 时能自动规避行业隐性禁忌。核心洞... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
 - [[Claude-Code上下文工程全景]] — L0-L4分层记忆 + Hook系统 + 渐进式披露 + Prompt编排的完整实践综合 (confidence: 0.92)
 - [[DeepAgents评估设计哲学]] — 三重分离原则：正确性/效率、确定性/语义、能力/基础设施 (confidence: 0.9)
 - [[矩阵谱理论的统一叙事]] — 1907-1966年9个核心贡献的知识谱系：三种证明范式（变分/酉变换/双随机矩阵）、SVD作为隐形主线、Hermitian矩阵为"安全岛" (confidence: 0.92)
+- [[知识系统的六个工程反模式]] — 在构建 LLM Wiki Plugin（AI 驱动的个人知识操作系统）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适... (confidence: 0.9)
 
 ## QA 洞见 (wiki/qa-insights/)
 
 - [[数值PDE稳定收敛三角]] — CFL条件+冯·诺依曼分析+Lax-Richtmyer等价定理三者构成稳定-收敛完整闭环（来源：qa/2026-04-15.md） (confidence: 0.95)
+- [[Cargo-for-X全能工具链模式]] — Bun（JavaScript）和 uv（Python）代表了一种跨语言的工具链设计模式："Cargo for X"——用单一二进制文件统一运行时、包管理、构建和... (confidence: 0.85)
 
 ## 统计
 
-- 总页面数：188
-- 实体：73
-- 概念：110
-- 综合分析：4
+- 总页面数：245
+- 实体：97
+- 概念：141
+- 综合分析：5
 - QA 洞见：1
 - 最后更新：2026-04-15
 

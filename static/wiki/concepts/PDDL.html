@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDDL — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / PDDL</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="pddl">PDDL</h1>
+<h2 id="_1">概述</h2>
+<p>PDDL（Planning Domain Definition Language，规划领域定义语言）是自动规划领域的标准建模语言，由 Drew McDermott 等人于 1998 年为国际规划竞赛（IPC）设计。PDDL 本质上是 <a href="STRIPS 规划器.html">STRIPS 规划器</a> 表示法的形式化、标准化及扩展版本。它采用 STRIPS 风格的操作符定义（前提条件、效果）来描述规划领域，并用逻辑谓词描述初始状态和目标条件。随着版本的演进（如 PDDL 2.1 引入时间和数值，PDDL 3.0 引入偏好），PDDL 已成为连接不同规划算法与应用程序的通用接口，支撑着全球规划器的基准评测与研究交流。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="strips">起源与 STRIPS 的继承</h3>
+<p>PDDL 的诞生旨在解决自动规划研究中缺乏统一测试标准的问题。其核心语法和语义直接继承自 1971 年的 STRIPS 框架：
+*   <strong>领域定义（Domain Definition）</strong>：定义类型、谓词（Predicates）和操作符（Actions/Operators）。每个操作符依然遵循 STRIPS 的“前提条件 - 添加列表 - 删除列表”结构（在 PDDL 中表现为 <code>:precondition</code> 和 <code>:effect</code>）。
+*   <strong>问题定义（Problem Definition）</strong>：定义具体的对象实例、初始状态（Initial State）和目标状态（Goal State）。</p>
+<p>这种设计使得经典的 STRIPS 规划器可以直接处理早期的 PDDL 子集，保证了技术的延续性。</p>
+<h3 id="_3">版本演进与功能扩展</h3>
+<p>为了适应更复杂的现实应用，PDDL 经历了多次重要升级：
+*   <strong>PDDL 1.2</strong>：引入了基本的需求限制，支持量化效果。
+*   <strong>PDDL 2.1</strong>：这是一个里程碑式的版本，引入了时间维度（Durative Actions）和数值 fluents（Numeric Fluents），使得规划器可以处理资源约束和时序规划问题，突破了原始 STRIPS 仅处理离散逻辑状态的局限。
+*   <strong>PDDL 3.0</strong>：增加了软约束、偏好表达以及轨迹约束，允许用户指定“最好避免”的状态而不仅仅是“必须避免”的状态。</p>
+<h3 id="_4">在国际规划竞赛中的作用</h3>
+<p>PDDL 是国际规划竞赛（IPC）的官方输入格式。每届竞赛中，来自世界各地的研究团队提交各自的规划器（如 Fast Downward, LAMA 等），在统一的 PDDL 问题集上进行比拼。这种标准化的评测机制极大地推动了规划算法的效率提升和技术创新，使得现代规划器能够在秒级时间内解决包含数千个谓词的复杂问题，而这些问题是原始 STRIPS 无法想象的。</p>
+<h3 id="_5">与大语言模型的结合</h3>
+<p>在人工智能的新时代，PDDL 展现出了新的生命力。研究者发现，大语言模型（LLM）擅长将模糊的自然语言指令转化为结构化的 PDDL 描述，而经典的 PDDL 规划器则能保证生成计划的逻辑正确性和完备性。这种"LLM + PDDL"的混合架构正在成为具身智能和复杂任务自动化的重要技术路线，证明了 STRIPS/PDDL 范式在半个世纪后依然具有核心价值。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/04-fikes-nilsson-strips-planner.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="STRIPS 规划器.html">STRIPS 规划器</a></li>
+<li><span style="color:#e74c3c" title="broken link">国际规划竞赛</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Master-Overrides设计系统持久化.html">&larr; Master-Overrides设计系统持久化</a>
+    <a href="Perron-Frobenius定理.html">Perron-Frobenius定理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

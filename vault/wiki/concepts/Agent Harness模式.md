@@ -5,7 +5,7 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
-source_count: 2
+source_count: 3
 tags: [AI, Agent, 架构, 设计模式, LLM]
 aliases: [Harness模式, Agent Harness, batteries-included agent harness]
 relates_to:
@@ -17,6 +17,9 @@ relates_to:
     confidence: 0.9
   - target: "[[DeepAgents后端协议]]"
     type: related_to
+    confidence: 0.9
+  - target: "[[Pi-Agent]]"
+    type: implemented_by
     confidence: 0.9
 supersedes: null
 ---
@@ -79,11 +82,24 @@ supersedes: null
 - 能力通过参数渐进启用，零配置即可运行，按需扩展
 - 图仍是 LangGraph 原生产物，与 checkpoint、流式、可观测性方案直接对接
 
+### Pi Agent：极简 Harness 的反面验证
+
+[[Pi-Agent]] 代表了 Harness 设计谱系的另一端——**极简主义**。相比 [[DeepAgents]] 的 batteries-included 方式（11 个中间件、多后端协议），Pi 只有 4 个工具、< 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。
+
+这证明了 Harness 模式的关键变体：
+- **DeepAgents 路线**：组合丰富的中间件栈 → 适合企业级多场景
+- **Pi 路线**：极简工具 + 精确上下文控制 → 适合高级用户精确编程
+
+两者的共同点：都将 Model 与 Harness 清晰分离，都强调 [[Context-Engineering]] 的重要性。
+
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]
 - [[raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md]]
+- [[raw/articles/pi-agent/01-overview-philosophy.md]]
 
 ## 相关
-- [[DeepAgents]]
+- [[DeepAgents]] — batteries-included 代表
+- [[Pi-Agent]] — 极简代表
 - [[DeepAgents中间件体系]]
 - [[DeepAgents后端协议]]
+- [[Context-Engineering]]

@@ -4,6 +4,60 @@ type: log
 
 # 操作日志
 
+## [2026-04-15] maintain
+- Reindex: OK (245 页面, index 同步)
+- Check: 0 errors, 352 warnings (B1=206 断链, F3=140 概述过长, O1=3 孤页, B2=2, M2=1)
+- Lint: 修复 B2×2（BM25 补录）
+- Build: 245 节点, 1444 边, 0 孤页, 11 连通分量 → static/ 已同步
+
+## [2026-04-15] ingest-loop | raw/articles/UI-skill/ (7 files, claude engine)
+
+- 创建实体：`wiki/entities/UI-UX-Pro-Max.md`（source_count: 7，含全系列 relates_to）
+- 创建概念：`wiki/concepts/AI设计推理层.md`
+- 创建概念：`wiki/concepts/结构化UI风格知识库.md`（67 种风格 + 结构化元数据）
+- 创建概念：`wiki/concepts/行业设计反模式系统.md`（161 条负样本规则）
+- 创建概念：`wiki/concepts/行业色彩情绪映射.md`（161 套色板 + 57 组字体配对）
+- 创建概念：`wiki/concepts/工程化UX规则体系.md`（99 条 P0/P1/P2 UX 规则）
+- 创建概念：`wiki/concepts/技术栈感知设计规则.md`（15 个技术栈 + BM25 选型）
+- 创建概念：`wiki/concepts/Master-Overrides设计系统持久化.md`
+
+## [2026-04-15] ingest | raw/articles/pi-agent/03-pi-agent-core.md
+
+- 创建：`wiki/concepts/Agent循环.md` — Agent 循环核心结构、工具验证、消息队列
+- 创建：`wiki/concepts/事件驱动Agent架构.md` — subscribe/emit 模式、双通道设计、多 UI 驱动
+- 更新：`wiki/entities/Pi-Agent.md` — 新增 pi-agent-core 段落，source_count 2→3，新增两条 relates_to
+
+## [2026-04-15 20:45] ingest | raw/articles/pi-agent/02-pi-ai.md
+- 创建: wiki/concepts/LLM-Wire-Protocol统一模式.md (四协议覆盖 300+ 模型)
+- 创建: wiki/concepts/跨Provider上下文迁移.md (Context Handoff, Pi 最独特能力)
+- 更新: wiki/entities/Pi-Agent.md (追加 pi-ai 层, source_count 1→2, 新增 2 个 relates_to)
+- 矛盾: 无
+
+## [2026-04-15 20:30] ingest | raw/articles/pi-agent/01-overview-philosophy.md
+- 创建: wiki/entities/Mario-Zechner.md (libGDX 创造者, Pi Agent 作者)
+- 创建: wiki/entities/Pi-Agent.md (极简 AI 编程代理工具包)
+- 创建: wiki/entities/OpenClaw.md (多渠道 AI 助手, 14.5 万 Stars)
+- 更新: wiki/concepts/Agent Harness模式.md (追加 Pi Agent 极简路线对比, source_count 2→3)
+- 矛盾: Pi Agent vs Claude Code 设计哲学对立 (已标记 contradicts)
+
+## [2026-04-15 20:15] qa-import | all → 1 insight
+- 处理: 9 个 QA 文件 (8 原有 + 1 新发现)
+- 聚类: 6 个主题 (开发工具, Agent搜索, UrhoX, Claude Code, WASM, 数值分析)
+- 创建: wiki/qa-insights/Cargo-for-X全能工具链模式.md
+- 跳过: 8 个 (5 项目特定, 2 已有wiki页, 1 已结晶)
+- 快照: raw/qa/qa.snapshot.md 全部标记为 [x]
+
+## [2026-04-15 20:00] crystallize | v3.3 系统级重构
+- Working Memory: _memory/working/2026-04-15-06.md (6 条观察)
+  - O1: 代码重复是系统性的 → wiki_utils.py 共享模块
+  - O2: Qwen 管线无状态性 → --context-pages 上下文补偿
+  - O3: 错误容忍 vs 错误拒绝 → save-always + error annotation
+  - O4: QA 数据流不对齐 → 统一到 raw/qa/ + qa.snapshot.md
+  - O5: hook_graph O(N) 隐性开销 → 30s mtime 防抖
+  - O6: 有向图边去重丢失方向 → 按关系类型选择去重策略
+- Synthesis: wiki/syntheses/知识系统的六个工程反模式.md
+  - 跨 5 个概念域的综合洞见，提炼为 6 个可复用的反模式诊断
+
 ## [2026-04-15 19:50] maintain
 - Reindex: OK (185 pages, 13 topic clusters, 3 orphaned entries removed)
 - Check: 0 errors, 245 warnings (140 broken links, 101 overview length, 3 index, 1 map)

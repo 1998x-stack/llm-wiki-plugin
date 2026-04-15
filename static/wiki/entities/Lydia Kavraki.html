@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lydia Kavraki — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Lydia Kavraki</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究</span><span class="tag">工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="lydia-kavraki">Lydia Kavraki</h1>
+<h2 id="_1">概述</h2>
+<p>Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 Jean-Claude Latombe 等人共同提出了<strong>概率路线图（PRM）</strong>算法，该工作开创了采样规划（Sampling-based Planning）这一主导现代运动规划的方法论范式。Kavraki 的研究跨越了机器人运动规划、计算几何和计算生物学，她将 PRM 的思想成功应用于蛋白质折叠和药物设计等高维构型空间问题。因其开创性工作，她当选为 ACM Fellow 和 IEEE Fellow，并获得 IEEE RAS 先驱奖等多项荣誉。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">学术背景与合作网络</h3>
+<p>Kavraki 的学术生涯始于斯坦福大学（Stanford University），她在运动规划奠基人 Jean-Claude Latombe 的指导下攻读博士学位。她的博士研究聚焦于随机化运动规划，其核心成果即为 1996 年发表的里程碑式论文《Probabilistic Roadmaps for Path Planning in High-Dimensional Configuration Spaces》。这项研究体现了跨大西洋的学术合作，她与来自乌得勒支大学（Utrecht University）的 Mark Overmars 和 Petr Švestka 紧密合作，融合了斯坦福团队在实际机器人规划问题的深刻理解与乌得勒支团队在计算几何算法理论上的严谨分析。这种互补性使得 PRM 兼具实用性与理论深度。</p>
+<h3 id="prm">核心贡献：概率路线图 (PRM)</h3>
+<p>Kavraki 在 PRM 工作中的核心洞察是提出了一种全新的解决高维运动规划问题的思路：不再试图精确计算复杂的构型空间障碍物几何形状，而是通过随机采样构建一个稀疏的图（路线图）来近似自由空间的连通性。这一方法突破了困扰学界多年的“维数灾难”，使得 6 自由度甚至更高自由度的机器人路径规划在计算上变得可行。PRM 的“学习 - 查询”两阶段架构不仅解决了当时的工业痛点，更定义了过去三十年运动规划研究的主旋律。</p>
+<h3 id="_4">跨学科影响：从机器人到生物学</h3>
+<p>Kavraki 并未将 PRM 局限于传统机器人领域。在加入莱斯大学后，她极具远见地将这一算法思想拓展至计算生物学领域。她指出蛋白质分子可以被视为具有高自由度的“机器人”，其折叠过程等同于在高维构型空间中寻找低能量路径。利用 PRM 的采样策略，她的团队在蛋白质折叠预测、药物分子对接等方面取得了突破性进展，展示了随机采样方法在探索复杂生物大分子构象空间中的强大能力。</p>
+<h3 id="_5">荣誉与遗产</h3>
+<p>鉴于其在算法创新和跨学科应用上的卓越贡献，Kavraki 获得了学术界的高度认可：
+*   <strong>ACM Fellow (2010)</strong> 与 <strong>IEEE Fellow (2010)</strong>：表彰其在计算几何和机器人学领域的杰出贡献。
+*   <strong>IEEE RAS 先驱奖</strong>：肯定其作为采样规划领域开创者的地位。
+*   <strong>OMPL 与 MoveIt!</strong>：她创立并领导的 Rice University Kavraki Lab 维护着 Open Motion Planning Library (OMPL)，该库被集成在 ROS 的 MoveIt! 框架中，成为全球机器人开发者最常用的运动规划工具包。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/10-kavraki-probabilistic-roadmaps.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/概率路线图 (PRM).html">概率路线图 (PRM)</a></li>
+<li><a href="Jean-Claude Latombe.html">Jean-Claude Latombe</a></li>
+<li><span style="color:#e74c3c" title="broken link">Rice University</span></li>
+<li><span style="color:#e74c3c" title="broken link">Stanford University</span></li>
+<li><a href="Mark Overmars.html">Mark Overmars</a></li>
+<li><a href="Petr Švestka.html">Petr Švestka</a></li>
+<li><a href="../concepts/运动规划.html">运动规划</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Jean-Claude Latombe.html">&larr; Jean-Claude Latombe</a>
+    <a href="MH-1 机械手.html">MH-1 机械手 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

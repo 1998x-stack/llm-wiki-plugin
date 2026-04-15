@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操作空间控制 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 操作空间控制</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">控制理论</span><span class="tag">算法</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">操作空间控制</h1>
+<h2 id="_2">概述</h2>
+<p>操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 Oussama Khatib 在 1980 年代系统提出并完善。该方法的核心思想是直接在机器人的任务空间（通常是末端执行器的笛卡尔空间）中定义和控制动力学行为，而不是传统的在关节空间中进行控制。通过利用雅可比矩阵及其动力学扩展，OSC 能够将任务空间中指定的虚拟力或阻抗特性精确映射为关节力矩，从而实现直观、解耦且高性能的运动控制。它是连接高层运动规划（如人工势场法）与底层电机驱动的数学桥梁。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">基本原理与数学基础</h3>
+<p>在传统控制中，工程师需要在关节空间设计控制器，这往往导致任务空间的行为难以直观预测，尤其是在多自由度冗余机器人中。操作空间控制通过建立任务空间变量 $x$（如位置、姿态）与关节变量 $q$ 之间的动力学关系来解决这一问题。</p>
+<p>核心公式基于拉格朗日动力学方程的变换。给定任务空间的期望加速度 $\ddot{x}<em>{des}$ 和虚拟外力 $F</em>{ext}$，控制器计算所需的关节力矩 $\tau$：
+$$\tau = J^T(q) F + (I - J^T(q) \bar{J}^T(q)) \tau_{null}$$
+其中 $J(q)$ 是雅可比矩阵，$\bar{J}$ 是其动力学广义逆，$F$ 是任务空间中设计的控制力（例如来自人工势场的梯度力），$\tau_{null}$ 是用于处理冗余自由度的零空间力矩。这一公式确保了任务空间的动力学表现如同一个独立的质点系统，不受机器人自身惯性耦合的干扰。</p>
+<h3 id="_5">与人工势场法的协同</h3>
+<p>操作空间控制是<strong>人工势场法</strong>得以高效实施的关键载体。在 Khatib 的避障框架中，引力和斥力自然地定义在笛卡尔空间中（末端到目标的距离、连杆到障碍物的距离）。如果没有 OSC，这些力需要经过复杂的逆运动学和动力学转换才能作用于关节。OSC 提供了一种直接的映射机制 $\tau = J^T F$，使得势场产生的“虚拟力”能够瞬间转化为真实的关节力矩。这种结合使得机器人能够像受物理力场作用的粒子一样，在复杂环境中平滑、实时地运动。</p>
+<h3 id="_6">优势与应用</h3>
+<p>OSC 的主要优势在于<strong>解耦性</strong>和<strong>直观性</strong>。它允许设计师直接在任务层面指定刚度、阻尼和质量参数（阻抗控制），而不必关心底层关节的具体配置。这对于需要与环境进行物理交互的任务（如打磨、装配、人机协作）至关重要。此外，OSC 天然支持冗余机器人的优化控制，可以在完成主任务的同时，利用零空间优化次要目标（如避障、能耗最小化）。</p>
+<p>如今，OSC 已成为高端人形机器人（如 Boston Dynamics Atlas, Honda ASIMO）和精密工业机械臂的标准控制架构。它与模型预测控制（MPC）和全身控制（Whole-Body Control, WBC）紧密结合，代表了现代机器人控制理论的最高水平之一。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/07-khatib-artificial-potential-field.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/Oussama Khatib.html">Oussama Khatib</a></li>
+<li><a href="人工势场法.html">人工势场法</a></li>
+<li><span style="color:#e74c3c" title="broken link">雅可比矩阵</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="技术栈感知设计规则.html">&larr; 技术栈感知设计规则</a>
+    <a href="收敛假说.html">收敛假说 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

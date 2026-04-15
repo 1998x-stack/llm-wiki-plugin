@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>齐次变换矩阵 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 齐次变换矩阵</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，矩阵理论，工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">齐次变换矩阵</h1>
+<h2 id="_2">概述</h2>
+<p>齐次变换矩阵（Homogeneous Transformation Matrix）是机器人学中用于描述刚体在三维空间中位姿（位置和姿态）的核心数学工具，通常表示为一个 $4 \times 4$ 的矩阵。该矩阵巧妙地将 $3 \times 3$ 的旋转矩阵 $R$ 和 $3 \times 1$ 的平移向量 $d$ 统一在一个结构中，使得旋转和平移的复合运算可以通过单一的矩阵乘法完成。在 Richard P. Paul 的经典著作中，它被确立为贯穿全书的统一数学语言，极大地简化了多连杆机器人运动学的建模与分析过程，避免了在不同坐标表示法之间转换的混乱。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">数学定义与结构</h3>
+<p>齐次变换矩阵 $T$ 的标准形式如下：
+$$
+T = \begin{bmatrix} R &amp; d \ 0 &amp; 1 \end{bmatrix} = \begin{bmatrix} r_{11} &amp; r_{12} &amp; r_{13} &amp; d_x \ r_{21} &amp; r_{22} &amp; r_{23} &amp; d_y \ r_{31} &amp; r_{32} &amp; r_{33} &amp; d_z \ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}
+$$
+其中，$R$ 是一个正交旋转矩阵，描述了坐标系的方向；$d$ 是平移向量，描述了原点的位置；底部行 $[0, 0, 0, 1]$ 是为了满足齐次坐标的性质，使得仿射变换可以线性化表示。点的坐标在齐次空间中表示为 $[x, y, z, 1]^T$，通过左乘变换矩阵即可完成坐标系的转换。</p>
+<h3 id="_5">在机器人运动学中的应用</h3>
+<p>Paul 在《Robot Manipulators》中选择齐次变换矩阵作为统一工具，主要基于其优异的代数性质：
+1.  <strong>变换的复合</strong>：两个连续的变换（先 $T_1$ 后 $T_2$）可以直接通过矩阵乘法 $T_{total} = T_1 \cdot T_2$ 得到，这使得描述由多个连杆组成的机器人链条变得异常简洁。
+2.  <strong>逆变换</strong>：由于 $R$ 的正交性，齐次变换矩阵的逆可以通过简单的转置和向量运算快速求得，无需复杂的通用矩阵求逆算法，这对实时控制至关重要。
+3.  <strong>统一性</strong>：无论是点的坐标变换、坐标系的描述，还是运动轨迹的插值，都可以在同一个 $4 \times 4$ 矩阵框架下完成。Paul 详细讨论了它与欧拉角、RPY 角、轴角表示等其他旋转描述方法之间的转换关系，建立了一个完整的数学工具箱。</p>
+<h3 id="dh">与 DH 参数的结合</h3>
+<p>齐次变换矩阵是 <a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> 方法的载体。在机器人建模中，每个关节 - 连杆对由四个 DH 参数（$a, \alpha, d, \theta$）描述，这些参数直接用于构造相邻连杆间的齐次变换矩阵 $A_i$。整个机器人的正向运动学方程即表现为一系列 $A_i$ 矩阵的连乘：$T_{0n} = A_1(\theta_1) A_2(\theta_2) \cdots A_n(\theta_n)$。这种程序化的建模方法不仅降低了工程师的工作量，还为后来的计算机辅助建模工具（如 MATLAB Robotics Toolbox, ROS URDF）提供了理论基础。</p>
+<h3 id="_6">历史地位与现代演变</h3>
+<p>虽然齐次变换矩阵在 1981 年之前已被部分研究者使用，但正是通过 Paul 的著作，它才真正成为机器人学的“宪法级”标准。直至今日，尽管旋量理论（Screw Theory）和积指数公式（PoE）提供了另一种优雅的数学框架，齐次变换矩阵因其直观性和与现有工业标准（如 DH 参数）的完美契合，仍然是工业机器人编程、标定和控制中最常用的数学工具。在现代软件框架如 MoveIt! 和 OpenRAVE 中，其底层运动学引擎依然依赖于这一经典表示法。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/05-paul-robot-manipulators-mathematics.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control</a></li>
+<li><a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a></li>
+<li><a href="矩阵.html">矩阵</a></li>
+<li><span style="color:#e74c3c" title="broken link">旋转矩阵</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="黄金律资本水平.html">&larr; 黄金律资本水平</a>
+    <a href="龙格-库塔方法.html">龙格-库塔方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

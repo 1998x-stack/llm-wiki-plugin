@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TX-0 计算机 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / TX-0 计算机</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具，研究，AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="tx-0">TX-0 计算机</h1>
+<h2 id="_1">概述</h2>
+<p>TX-0（Transistorized Experimental computer zero）是由麻省理工学院（MIT）林肯实验室在 1950 年代中期开发的一台实验性晶体管计算机，是计算机历史上从真空管向晶体管过渡的重要里程碑。作为当时最先进的实验用计算机之一，TX-0 拥有 18 位字长、直接寻址能力和阴极射线管（CRT）显示器，常被用于实时控制和交互式计算研究。在机器人学领域，TX-0 因作为 Heinrich A. Ernst 开发的 MH-1 机械手的控制核心而闻名，它是历史上第一台用于实时控制物理机械手并处理传感器反馈的数字计算机，见证了机器人“感知 - 行动”闭环控制的首次实现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">技术规格与历史地位</h3>
+<p>TX-0 诞生于 1956 年，是世界上最早 fully transistorized（全晶体管化）的计算机之一，标志着计算技术从笨重、高耗能的真空管时代迈向小型化、高可靠性的晶体管时代。其内存容量约为 64K 字（18 位/字），主频仅为数百千赫兹，按现代标准看算力极其有限，但在当时已能支持复杂的实时数据处理任务。TX-0 的设计强调交互性，配备了 CRT 显示器和光笔输入设备，这使其成为人机交互（HCI）研究的早期平台。许多后来的计算机先驱，包括 LISP 语言的发明者 John McCarthy 和黑客文化的奠基人，都曾在 TX-0 上进行过开创性工作。</p>
+<h3 id="mh-1">在 MH-1 项目中的角色</h3>
+<p>在 1962 年的 MH-1 机械手项目中，TX-0 扮演了“大脑”的关键角色。Heinrich A. Ernst 利用 TX-0 编写了一套控制程序，实现了从触觉传感器读取模拟信号（经 ADC 转换）、解析接触状态、决策下一步动作以及输出控制命令（经 DAC 转换驱动液压阀）的全过程。由于 TX-0 的处理速度限制，控制回路的更新频率较低，这迫使 Ernst 设计了高效的任务分解算法和状态机逻辑，以在有限的计算资源下实现稳定的闭环控制。TX-0 的直接寻址能力和相对快速的 I/O 响应（相对于同期其他大型机）是其能被选用于实时机器人控制的重要原因。</p>
+<h3 id="_4">对实时控制研究的贡献</h3>
+<p>TX-0 在 MH-1 中的应用证明了数字计算机不仅可以用于离线科学计算，还可以用于实时的物理世界控制。这一应用拓展了计算机的功能边界，为后来的过程控制、数控机床和机器人操作系统奠定了基础。在 TX-0 上运行的 MH-1 控制程序展示了如何处理噪声传感器数据、如何在有限周期内完成决策以及如何应对硬件延迟等实际问题。这些经验直接影响了后续实时操作系统（RTOS）的设计理念。TX-0 的成功应用也激励了 MIT 及其他研究机构将更多计算资源投入到物理系统的智能化控制中，加速了控制理论与计算机科学的融合。</p>
+<h3 id="_5">局限性与时代特征</h3>
+<p>尽管 TX-0 在当时具有先进性，但其性能瓶颈在 MH-1 项目中暴露无遗。有限的指令执行速度导致系统无法处理高频传感器数据流，限制了机械手的运动速度和响应灵敏度。此外，TX-0 的存储容量限制了控制程序的复杂度，使得 Ernst 无法实现更高级的信号处理或模式识别算法，只能依赖简单的阈值比较和逻辑判断。这些局限性反映了 1960 年代初计算技术的整体水平，也解释了为何早期的感知型机器人只能在低速、简单任务中发挥作用。尽管如此，TX-0 作为连接抽象计算与物理操作的桥梁，其历史价值不可估量。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/03-ernst-mh1-hand-eye-coordination.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="MH-1 机械手.html">MH-1 机械手</a></li>
+<li><a href="Heinrich A. Ernst.html">Heinrich A. Ernst</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Steven M. LaValle.html">&larr; Steven M. LaValle</a>
+    <a href="Tomas Lozano-Perez.html">Tomas Lozano-Perez &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

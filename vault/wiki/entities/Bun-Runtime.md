@@ -22,6 +22,9 @@ relates_to:
   - target: "[[SQLite]]"
     type: uses
     confidence: 0.8
+  - target: "[[Cargo-for-X全能工具链模式]]"
+    type: implements
+    confidence: 0.85
 supersedes: null
 ---
 

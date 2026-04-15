@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robot Manipulators: Mathematics, Programming, and Control — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Robot Manipulators: Mathematics, Programming, and Control</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="robot-manipulators-mathematics-programming-and-control">Robot Manipulators: Mathematics, Programming, and Control</h1>
+<h2 id="_1">概述</h2>
+<p>《Robot Manipulators: Mathematics, Programming, and Control》是由 Richard P. Paul 于 1981 年出版的学术专著，被公认为机器人学领域的第一本“圣经”。该书首次系统化地整合了机器人操作臂的数学基础，包括齐次变换、正逆运动学、轨迹规划和力控制，将此前分散的理论统一到一个完整的数学框架中。它不仅定义了“机器人学”作为一门独立工程学科的基本内涵，还确立了延续至今的机器人学教育标准范式，对工业界和学术界产生了深远影响。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">历史背景与时代意义</h3>
+<p>在 1980 年代初，工业机器人市场爆发式增长，但编程效率低下且理论知识碎片化。当时的工程师依赖低效的“示教再现”方式，缺乏基于数学模型的离线编程方法。Paul 的著作应运而生，填补了从理论到实践的鸿沟。它将 Denavit-Hartenberg (DH) 参数、雅可比矩阵等分散在不同论文中的概念串联成一条完整的知识链，标志着机器人学从“工匠技术”向“工程科学”的转变。</p>
+<h3 id="dh">核心数学框架：齐次变换与 DH 参数</h3>
+<p>本书的核心设计决策是选择 4x4 <a href="../concepts/齐次变换矩阵.html">齐次变换矩阵</a> 作为统一的数学语言。这种矩阵能同时编码三维空间中的旋转和平移，使得多个连杆的级联变换可以通过简洁的矩阵连乘表示。在此基础上，Paul 将 <a href="../concepts/Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> 方法标准化，建立了从物理机器人到数学模型的通用建模流程。只要给出机器人的 DH 参数表，即可程序化地生成其正向运动学方程 $T_{0n} = A_1 \cdot A_2 \cdots A_n$。这一框架具有高度的通用性，成为后来所有计算机辅助建模工具的理论基石。</p>
+<h3 id="_4">逆运动学的解析求解策略</h3>
+<p>逆运动学是本书最具技术深度的部分。Paul 提出了一种系统性的代数操作策略，被称为"Paul-Shimano-Mayer 方法”。该方法通过依次将运动学方程两边左乘各连杆变换矩阵的逆，逐步分离出各个关节变量，从而求解非线性方程组。书中以 PUMA 560 机器人为例，详细推导了其逆运动学的 16 组封闭形式解析解，揭示了机器人几何构型（如球形手腕）与解析可解性之间的深层联系。这一成果直接解决了工业机器人离线编程的核心数学难题。</p>
+<h3 id="_5">微分运动学与轨迹规划</h3>
+<p>除了位置分析，本书还深入探讨了速度层面的微分运动学，引入了 <span style="color:#e74c3c" title="broken link">雅可比矩阵</span> 来描述关节速度与末端执行器速度之间的映射关系 $v = J(\theta)\dot{\theta}$。基于此，Paul 讨论了奇异构型的识别与回避，以及力/力矩在关节空间与笛卡尔空间的对偶传递。在轨迹规划方面，书中对比了关节空间插值（多项式拟合）与笛卡尔空间规划（直线/圆弧插值）的优劣，为平滑运动控制提供了理论指导。</p>
+<h3 id="_6">局限性与现代视角</h3>
+<p>尽管本书奠定了经典机器人学的基础，但也存在局限性，如主要聚焦于串联开链机器人，对动力学、冗余机器人及移动机器人的讨论较少。然而，从现代视角看，其核心理论依然具有持久的生命力。无论是现代的 ROS 生态系统（如 MoveIt!）、手术机器人还是工业自动化产线，其底层运动学引擎仍然运行着 Paul 所阐述的算法。虽然旋量理论（PoE）和数据驱动方法提供了新的视角，但 Paul 建立的框架在精度关键型应用中仍不可替代。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/05-paul-robot-manipulators-mathematics.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Richard P. Paul.html">Richard P. Paul</a></li>
+<li><a href="../concepts/Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a></li>
+<li><a href="../concepts/齐次变换矩阵.html">齐次变换矩阵</a></li>
+<li><a href="PUMA 机器人.html">PUMA 机器人</a></li>
+<li><span style="color:#e74c3c" title="broken link">Stanford Arm</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Richard S. Hartenberg.html">&larr; Richard S. Hartenberg</a>
+    <a href="Rodney Brooks.html">Rodney Brooks &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

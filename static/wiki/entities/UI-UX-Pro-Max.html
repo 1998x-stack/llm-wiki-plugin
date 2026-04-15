@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI-UX-Pro-Max — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / UI-UX-Pro-Max</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具</span><span class="tag">AI</span><span class="tag">设计</span><span class="tag">UI</span><span class="tag">Skill</span></div>
+</div>
+  <div class="content">
+    <h1 id="ui-ux-pro-max">UI UX Pro Max</h1>
+<h2 id="_1">概述</h2>
+<p>UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Windsurf 等 AI 编程助手设计，作为「设计推理层」让 AI 在生成 UI 代码前先完成专业设计决策。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心数字</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>规模</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UI 风格库</td>
+<td>67 种（极简主义到 Cyberpunk）</td>
+</tr>
+<tr>
+<td>色彩体系</td>
+<td>161 套（与 161 种产品类型一一对应）</td>
+</tr>
+<tr>
+<td>字体配对</td>
+<td>57 组（含 Google Fonts 直链）</td>
+</tr>
+<tr>
+<td>UX 准则</td>
+<td>99 条（最佳实践 + 反模式 + 可访问性）</td>
+</tr>
+<tr>
+<td>行业推理规则</td>
+<td>161 条（v2.0 核心）</td>
+</tr>
+<tr>
+<td>图表类型</td>
+<td>25 种</td>
+</tr>
+<tr>
+<td>支持技术栈</td>
+<td>15 个（React/Vue/SwiftUI/Flutter 等）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">三层架构</h3>
+<pre><code>Layer 3：AI 助手集成层（Claude Code / Cursor / Windsurf 等）
+           ↓ 调用
+Layer 2：推理引擎层（search.py + design_system.py）
+         BM25 + Regex 混合检索
+         5 路并行域搜索（产品→风格→颜色→字体→落地页）
+         161 条行业推理规则（JSON 条件判断）
+           ↓ 查询
+Layer 1：知识数据库层（CSV 文件集，~564KB）
+         styles.csv / colors.csv / typography.csv
+         products.csv / ux-guidelines.csv / charts.csv
+</code></pre>
+<h3 id="5">核心工作流（5 路并行搜索）</h3>
+<p>用户请求 → 5 路并行匹配（产品类型 / UI 风格 / 色彩方案 / 落地页模式 / 字体配对）→ 推理引擎整合 → 输出完整设计系统（Pattern + Style + Colors + Typography + 反模式警告）</p>
+<h3 id="_5">与传统设计资源的本质区别</h3>
+<p>传统设计资源是<strong>静态文档/模板库</strong>，UUPM 是<strong>动态推理引擎</strong>：按产品类型自动定制、自动检测反模式、技术栈感知、AI 对话自动触发。</p>
+<h3 id="_6">项目背景</h3>
+<ul>
+<li><strong>作者</strong>：NextLevelBuilder（越南开发者 @viettranx）</li>
+<li><strong>诞生</strong>：2024 年 12 月（v1.0.0 由 Claude Code 协同生成）</li>
+<li><strong>当前版本</strong>：v2.5.0（2026 年 3 月）</li>
+<li><strong>支持平台</strong>：18 个 AI 助手</li>
+<li><strong>语言</strong>：Python 78.2% + JavaScript 11.6% + TypeScript 6.7%</li>
+</ul>
+<h3 id="_7">安装方式</h3>
+<pre><code class="language-bash"># Claude Marketplace
+/plugin install ui-ux-pro-max@ui-ux-pro-max-skill
+
+# CLI（推荐）
+npm install -g uipro-cli
+uipro init --ai claude
+
+# 全局安装（跨项目）
+uipro init --ai claude --global   # 安装到 ~/.claude/skills/
+</code></pre>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-01-overview.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-02-styles.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-03-design-system-generator.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-04-colors-typography.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-05-ux-charts.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-06-stacks-search.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-07-persistence.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../concepts/AI设计推理层.html">AI设计推理层</a> — UUPM 实现的核心设计模式</li>
+<li><a href="../concepts/结构化UI风格知识库.html">结构化UI风格知识库</a> — styles.csv 的知识架构</li>
+<li><a href="../concepts/行业设计反模式系统.html">行业设计反模式系统</a> — 161 条推理规则的负样本库</li>
+<li><a href="../concepts/行业色彩情绪映射.html">行业色彩情绪映射</a> — 161 套色板的情绪逻辑</li>
+<li><a href="../concepts/工程化UX规则体系.html">工程化UX规则体系</a> — 99 条 UX 规则的工程化</li>
+<li><a href="../concepts/技术栈感知设计规则.html">技术栈感知设计规则</a> — 15 个技术栈专项指南</li>
+<li><a href="../concepts/Master-Overrides设计系统持久化.html">Master-Overrides设计系统持久化</a> — 解决 AI 设计失忆症</li>
+<li><a href="Claude-Code.html">Claude-Code</a> — 主要集成平台之一</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Tomas Lozano-Perez.html">&larr; Tomas Lozano-Perez</a>
+    <a href="Unimate.html">Unimate &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

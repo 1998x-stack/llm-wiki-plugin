@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-04-15T11:34:27.076569+00:00",
-    "total_nodes": 188,
-    "total_edges": 1164,
+    "generated": "2026-04-15T12:43:18.799909+00:00",
+    "total_nodes": 245,
+    "total_edges": 1444,
     "orphan_count": 0,
-    "component_count": 7
+    "component_count": 11
   },
   "nodes": [
     {
@@ -22,6 +22,20 @@
       "edge_count": 3
     },
     {
+      "id": "wiki/concepts/AI设计推理层.md",
+      "label": "AI设计推理层",
+      "type": "concept",
+      "confidence": 0.88,
+      "tags": [
+        "AI",
+        "设计",
+        "UI",
+        "架构",
+        "设计模式"
+      ],
+      "edge_count": 14
+    },
+    {
       "id": "wiki/concepts/Agent Harness模式.md",
       "label": "Agent Harness模式",
       "type": "concept",
@@ -33,7 +47,21 @@
         "设计模式",
         "LLM"
       ],
-      "edge_count": 10
+      "edge_count": 19
+    },
+    {
+      "id": "wiki/concepts/Agent循环.md",
+      "label": "Agent循环",
+      "type": "concept",
+      "confidence": 0.92,
+      "tags": [
+        "AI",
+        "Agent",
+        "架构",
+        "设计模式",
+        "LLM"
+      ],
+      "edge_count": 9
     },
     {
       "id": "wiki/concepts/CFL条件.md",
@@ -69,7 +97,7 @@
         "方法论",
         "AI"
       ],
-      "edge_count": 10
+      "edge_count": 18
     },
     {
       "id": "wiki/concepts/DeepAgents中间件体系.md",
@@ -119,12 +147,9 @@
       "type": "concept",
       "confidence": 1.0,
       "tags": [
-        "机器人学",
-        "矩阵理论",
-        "方法论",
-        "工具"
+        "数学，工具，方法论"
       ],
-      "edge_count": 8
+      "edge_count": 15
     },
     {
       "id": "wiki/concepts/FTS5.md",
@@ -237,6 +262,17 @@
       "edge_count": 13
     },
     {
+      "id": "wiki/concepts/Kinodynamic Planning.md",
+      "label": "Kinodynamic Planning",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "研究，方法论"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/concepts/Krylov子空间方法.md",
       "label": "Krylov子空间方法",
       "type": "concept",
@@ -270,7 +306,19 @@
         "概率论",
         "研究"
       ],
-      "edge_count": 9
+      "edge_count": 11
+    },
+    {
+      "id": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "label": "LLM-Wire-Protocol统一模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "技术",
+        "架构"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/LLM-as-Judge.md",
@@ -312,6 +360,42 @@
       "edge_count": 14
     },
     {
+      "id": "wiki/concepts/Legged Robots That Balance.md",
+      "label": "Legged Robots That Balance",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "工具，方法论，研究"
+      ],
+      "edge_count": 14
+    },
+    {
+      "id": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "label": "Master-Overrides设计系统持久化",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "UI",
+        "设计系统",
+        "AI",
+        "持久化",
+        "上下文工程"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/PDDL.md",
+      "label": "PDDL",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "工具，方法论"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/Perron-Frobenius定理.md",
       "label": "Perron-Frobenius定理",
       "type": "concept",
@@ -335,6 +419,17 @@
         "矩阵理论"
       ],
       "edge_count": 22
+    },
+    {
+      "id": "wiki/concepts/RRT-Connect.md",
+      "label": "RRT-Connect",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "方法论，工具"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/Rayleigh商.md",
@@ -373,6 +468,17 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/concepts/STRIPS 规划器.md",
+      "label": "STRIPS 规划器",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "方法论，研究"
+      ],
+      "edge_count": 11
+    },
+    {
       "id": "wiki/concepts/Schur分解.md",
       "label": "Schur分解",
       "type": "concept",
@@ -395,6 +501,17 @@
         "矩阵理论"
       ],
       "edge_count": 22
+    },
+    {
+      "id": "wiki/concepts/Voronoi 偏置.md",
+      "label": "Voronoi 偏置",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "数学，AI",
+        "方法论"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/concepts/Weyl特征值不等式.md",
@@ -484,6 +601,17 @@
       "edge_count": 1
     },
     {
+      "id": "wiki/concepts/三分解控制框架.md",
+      "label": "三分解控制框架",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "方法论，研究"
+      ],
+      "edge_count": 13
+    },
+    {
       "id": "wiki/concepts/不可约矩阵.md",
       "label": "不可约矩阵",
       "type": "concept",
@@ -515,6 +643,35 @@
       "tags": [
         "宏观经济学",
         "研究",
+        "方法论"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/事件驱动Agent架构.md",
+      "label": "事件驱动Agent架构",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "Agent",
+        "架构",
+        "设计模式",
+        "LLM",
+        "事件驱动"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/人工势场法.md",
+      "label": "人工势场法",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "机器人学",
+        "运动规划",
+        "控制理论",
+        "算法",
         "方法论"
       ],
       "edge_count": 8
@@ -631,6 +788,17 @@
       "edge_count": 25
     },
     {
+      "id": "wiki/concepts/动态平衡.md",
+      "label": "动态平衡",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "方法论，研究"
+      ],
+      "edge_count": 13
+    },
+    {
       "id": "wiki/concepts/动物精神.md",
       "label": "动物精神",
       "type": "concept",
@@ -655,6 +823,33 @@
         "数学"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/包容体系结构.md",
+      "label": "包容体系结构",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "机器人学，方法论，研究"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/卡尔曼滤波.md",
+      "label": "卡尔曼滤波",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "数值分析",
+        "概率论",
+        "矩阵理论",
+        "控制理论",
+        "机器人学",
+        "方法论",
+        "研究"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/古典概率定义.md",
@@ -705,6 +900,21 @@
       "edge_count": 34
     },
     {
+      "id": "wiki/concepts/工程化UX规则体系.md",
+      "label": "工程化UX规则体系",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "UI",
+        "UX",
+        "设计",
+        "AI",
+        "规则系统",
+        "可访问性"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/concepts/帕斯卡三角形.md",
       "label": "帕斯卡三角形",
       "type": "concept",
@@ -715,6 +925,16 @@
         "组合数学"
       ],
       "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/弹簧 - 质量模型.md",
+      "label": "弹簧 - 质量模型",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "数学，数值分析，研究"
+      ],
+      "edge_count": 10
     },
     {
       "id": "wiki/concepts/快速傅里叶变换.md",
@@ -730,6 +950,17 @@
       "edge_count": 21
     },
     {
+      "id": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "label": "快速扩展随机树 (RRT)",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "方法论，研究，工具"
+      ],
+      "edge_count": 13
+    },
+    {
       "id": "wiki/concepts/惯性律.md",
       "label": "惯性律",
       "type": "concept",
@@ -740,6 +971,43 @@
         "线性代数"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/手眼协调.md",
+      "label": "手眼协调",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "研究，方法论"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/技术栈感知设计规则.md",
+      "label": "技术栈感知设计规则",
+      "type": "concept",
+      "confidence": 0.87,
+      "tags": [
+        "UI",
+        "设计",
+        "技术栈",
+        "工程化",
+        "设计系统"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/concepts/操作空间控制.md",
+      "label": "操作空间控制",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "机器人学",
+        "控制理论",
+        "算法"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/收敛假说.md",
@@ -851,6 +1119,19 @@
       "edge_count": 29
     },
     {
+      "id": "wiki/concepts/构型空间方法.md",
+      "label": "构型空间方法",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "机器人学",
+        "计算几何",
+        "方法论",
+        "AI"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/样本空间.md",
       "label": "样本空间",
       "type": "concept",
@@ -897,6 +1178,19 @@
         "概率论"
       ],
       "edge_count": 52
+    },
+    {
+      "id": "wiki/concepts/概率路线图 (PRM).md",
+      "label": "概率路线图 (PRM)",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "方法论",
+        "数值分析",
+        "工具"
+      ],
+      "edge_count": 14
     },
     {
       "id": "wiki/concepts/欧拉方法.md",
@@ -1055,7 +1349,7 @@
         "线性代数",
         "矩阵理论"
       ],
-      "edge_count": 14
+      "edge_count": 16
     },
     {
       "id": "wiki/concepts/矩阵扰动理论.md",
@@ -1168,6 +1462,20 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/concepts/结构化UI风格知识库.md",
+      "label": "结构化UI风格知识库",
+      "type": "concept",
+      "confidence": 0.88,
+      "tags": [
+        "UI",
+        "设计",
+        "AI",
+        "知识库",
+        "设计系统"
+      ],
+      "edge_count": 10
+    },
+    {
       "id": "wiki/concepts/菲利普斯曲线.md",
       "label": "菲利普斯曲线",
       "type": "concept",
@@ -1190,6 +1498,46 @@
         "方法论"
       ],
       "edge_count": 10
+    },
+    {
+      "id": "wiki/concepts/行业色彩情绪映射.md",
+      "label": "行业色彩情绪映射",
+      "type": "concept",
+      "confidence": 0.88,
+      "tags": [
+        "UI",
+        "设计",
+        "色彩",
+        "心理学",
+        "行业规范"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/concepts/行业设计反模式系统.md",
+      "label": "行业设计反模式系统",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "UI",
+        "设计",
+        "AI",
+        "反模式",
+        "设计系统",
+        "知识工程"
+      ],
+      "edge_count": 11
+    },
+    {
+      "id": "wiki/concepts/行为机器人学.md",
+      "label": "行为机器人学",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "机器人学，研究，方法论"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/谱半径.md",
@@ -1237,7 +1585,7 @@
         "技术",
         "概率论"
       ],
-      "edge_count": 15
+      "edge_count": 17
     },
     {
       "id": "wiki/concepts/赌徒破产问题.md",
@@ -1252,6 +1600,18 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/concepts/跨Provider上下文迁移.md",
+      "label": "跨Provider上下文迁移",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI",
+        "技术",
+        "方法论"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/concepts/边际消费倾向.md",
       "label": "边际消费倾向",
       "type": "concept",
@@ -1262,6 +1622,19 @@
         "方法论"
       ],
       "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/运动规划.md",
+      "label": "运动规划",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "机器人学",
+        "AI",
+        "计算几何",
+        "方法论"
+      ],
+      "edge_count": 19
     },
     {
       "id": "wiki/concepts/递推方法.md",
@@ -1310,7 +1683,7 @@
         "机器学习",
         "数学"
       ],
-      "edge_count": 11
+      "edge_count": 13
     },
     {
       "id": "wiki/concepts/高斯求积公式.md",
@@ -1335,6 +1708,16 @@
         "方法论"
       ],
       "edge_count": 3
+    },
+    {
+      "id": "wiki/concepts/齐次变换矩阵.md",
+      "label": "齐次变换矩阵",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "数学，矩阵理论，工具"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/龙格-库塔方法.md",
@@ -1370,7 +1753,7 @@
         "研究",
         "方法论"
       ],
-      "edge_count": 6
+      "edge_count": 7
     },
     {
       "id": "wiki/entities/A.W. 菲利普斯.md",
@@ -1398,6 +1781,17 @@
       "edge_count": 2
     },
     {
+      "id": "wiki/entities/Boston Dynamics.md",
+      "label": "Boston Dynamics",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "工具，研究"
+      ],
+      "edge_count": 10
+    },
+    {
       "id": "wiki/entities/Bun-Runtime.md",
       "label": "Bun-Runtime",
       "type": "entity",
@@ -1407,7 +1801,7 @@
         "数值分析",
         "研究"
       ],
-      "edge_count": 7
+      "edge_count": 10
     },
     {
       "id": "wiki/entities/ChromaDB.md",
@@ -1432,7 +1826,7 @@
         "工具",
         "方法论"
       ],
-      "edge_count": 11
+      "edge_count": 21
     },
     {
       "id": "wiki/entities/Claude-Mem.md",
@@ -1445,7 +1839,7 @@
         "方法论",
         "研究"
       ],
-      "edge_count": 22
+      "edge_count": 24
     },
     {
       "id": "wiki/entities/DeepAgents.md",
@@ -1460,7 +1854,18 @@
         "开源",
         "Python"
       ],
-      "edge_count": 19
+      "edge_count": 20
+    },
+    {
+      "id": "wiki/entities/Heinrich A. Ernst.md",
+      "label": "Heinrich A. Ernst",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "研究，人物"
+      ],
+      "edge_count": 9
     },
     {
       "id": "wiki/entities/Jacques Denavit.md",
@@ -1473,6 +1878,40 @@
         "方法论"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/entities/Jean-Claude Latombe.md",
+      "label": "Jean-Claude Latombe",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "研究"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/entities/Lydia Kavraki.md",
+      "label": "Lydia Kavraki",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "研究",
+        "工具"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/entities/MH-1 机械手.md",
+      "label": "MH-1 机械手",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "工具，研究，方法论"
+      ],
+      "edge_count": 11
     },
     {
       "id": "wiki/entities/MONIAC.md",
@@ -1488,6 +1927,129 @@
       "edge_count": 3
     },
     {
+      "id": "wiki/entities/Marc H. Raibert.md",
+      "label": "Marc H. Raibert",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "工具，方法论，研究"
+      ],
+      "edge_count": 12
+    },
+    {
+      "id": "wiki/entities/Mario-Zechner.md",
+      "label": "Mario-Zechner",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "技术",
+        "工具",
+        "研究"
+      ],
+      "edge_count": 10
+    },
+    {
+      "id": "wiki/entities/Mark Overmars.md",
+      "label": "Mark Overmars",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "研究",
+        "数学"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/entities/Nils J. Nilsson.md",
+      "label": "Nils J. Nilsson",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "研究"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/entities/OpenClaw.md",
+      "label": "OpenClaw",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "工具",
+        "AI",
+        "Agent"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/entities/Oussama Khatib.md",
+      "label": "Oussama Khatib",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "机器人学",
+        "人物",
+        "研究者"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/PUMA 机器人.md",
+      "label": "PUMA 机器人",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "工具，研究"
+      ],
+      "edge_count": 2
+    },
+    {
+      "id": "wiki/entities/Petr Švestka.md",
+      "label": "Petr Švestka",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "研究"
+      ],
+      "edge_count": 9
+    },
+    {
+      "id": "wiki/entities/Pi-Agent.md",
+      "label": "Pi-Agent",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "工具",
+        "AI",
+        "Agent",
+        "技术"
+      ],
+      "edge_count": 24
+    },
+    {
+      "id": "wiki/entities/Richard E. Fikes.md",
+      "label": "Richard E. Fikes",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "研究"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/entities/Richard P. Paul.md",
+      "label": "Richard P. Paul",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "研究，工具，方法论"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/entities/Richard S. Hartenberg.md",
       "label": "Richard S. Hartenberg",
       "type": "entity",
@@ -1500,6 +2062,27 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "label": "Robot Manipulators: Mathematics, Programming, and Control",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "数学，工具，方法论，研究"
+      ],
+      "edge_count": 11
+    },
+    {
+      "id": "wiki/entities/Rodney Brooks.md",
+      "label": "Rodney Brooks",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "机器人学，研究，工具"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/entities/SQLite.md",
       "label": "SQLite",
       "type": "entity",
@@ -1510,6 +2093,76 @@
         "技术"
       ],
       "edge_count": 11
+    },
+    {
+      "id": "wiki/entities/Shakey 机器人.md",
+      "label": "Shakey 机器人",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "研究，工具"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/entities/Steven M. LaValle.md",
+      "label": "Steven M. LaValle",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "研究，工具"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/entities/TX-0 计算机.md",
+      "label": "TX-0 计算机",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "工具，研究，AI"
+      ],
+      "edge_count": 4
+    },
+    {
+      "id": "wiki/entities/Tomas Lozano-Perez.md",
+      "label": "Tomas Lozano-Perez",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "机器人学",
+        "计算几何",
+        "方法论"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/UI-UX-Pro-Max.md",
+      "label": "UI-UX-Pro-Max",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "工具",
+        "AI",
+        "设计",
+        "UI",
+        "Skill"
+      ],
+      "edge_count": 23
+    },
+    {
+      "id": "wiki/entities/Unimate.md",
+      "label": "Unimate",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "工具，研究"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/entities/亚伯拉罕·德莫弗.md",
@@ -2190,7 +2843,7 @@
         "技术",
         "概率论"
       ],
-      "edge_count": 14
+      "edge_count": 16
     },
     {
       "id": "wiki/entities/赫尔曼·外尔.md",
@@ -2341,6 +2994,18 @@
       "edge_count": 5
     },
     {
+      "id": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "label": "Cargo-for-X全能工具链模式",
+      "type": "qa-insight",
+      "confidence": 0.85,
+      "tags": [
+        "工具",
+        "技术",
+        "方法论"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/qa-insights/数值PDE稳定收敛三角.md",
       "label": "数值PDE稳定收敛三角",
       "type": "qa-insight",
@@ -2376,6 +3041,18 @@
         "软件工程"
       ],
       "edge_count": 7
+    },
+    {
+      "id": "wiki/syntheses/知识系统的六个工程反模式.md",
+      "label": "知识系统的六个工程反模式",
+      "type": "synthesis",
+      "confidence": 0.9,
+      "tags": [
+        "方法论",
+        "工具",
+        "技术"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/syntheses/矩阵谱理论的统一叙事.md",
@@ -2417,6 +3094,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/AI设计推理层.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "implemented_by",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/AI设计推理层.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/AI设计推理层.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/AI设计推理层.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Agent Harness模式.md",
       "target": "wiki/entities/DeepAgents.md",
       "relation": "implemented_by",
@@ -2436,7 +3137,25 @@
     },
     {
       "source": "wiki/concepts/Agent Harness模式.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "implemented_by",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness模式.md",
       "target": "wiki/entities/DeepAgents.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness模式.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness模式.md",
+      "target": "wiki/concepts/Context-Engineering.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2449,6 +3168,54 @@
     {
       "source": "wiki/concepts/Agent Harness模式.md",
       "target": "wiki/concepts/DeepAgents后端协议.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "implemented_by",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/concepts/事件驱动Agent架构.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/entities/Mario-Zechner.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/entities/DeepAgents.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent循环.md",
+      "target": "wiki/concepts/事件驱动Agent架构.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2574,12 +3341,6 @@
     },
     {
       "source": "wiki/concepts/Context-Engineering.md",
-      "target": "wiki/concepts/Agent Harness模式.md",
-      "relation": "wikilink",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/concepts/Context-Engineering.md",
       "target": "wiki/syntheses/Claude-Code上下文工程全景.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -2676,6 +3437,24 @@
     },
     {
       "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/concepts/齐次变换矩阵.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/concepts/齐次变换矩阵.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
       "target": "wiki/entities/Jacques Denavit.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -2683,6 +3462,12 @@
     {
       "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
       "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -3119,6 +3904,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/Kinodynamic Planning.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Kinodynamic Planning.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Kinodynamic Planning.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Kinodynamic Planning.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Krylov子空间方法.md",
       "target": "wiki/concepts/共轭梯度法.md",
       "relation": "related_to",
@@ -3251,6 +4060,36 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "target": "wiki/entities/Mario-Zechner.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/LLM-as-Judge.md",
       "target": "wiki/entities/DeepAgents.md",
       "relation": "wikilink",
@@ -3355,6 +4194,120 @@
     {
       "source": "wiki/concepts/Lax-Richtmyer等价定理.md",
       "target": "wiki/concepts/Richardson外推法.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/concepts/三分解控制框架.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/entities/Boston Dynamics.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/concepts/三分解控制框架.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/entities/Boston Dynamics.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Legged Robots That Balance.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/LLM-Statelessness.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/LLM-Statelessness.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/PDDL.md",
+      "target": "wiki/concepts/STRIPS 规划器.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/PDDL.md",
+      "target": "wiki/concepts/STRIPS 规划器.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -3497,6 +4450,36 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/RRT-Connect.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/RRT-Connect.md",
+      "target": "wiki/entities/Steven M. LaValle.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/RRT-Connect.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/RRT-Connect.md",
+      "target": "wiki/entities/Steven M. LaValle.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/RRT-Connect.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Rayleigh商.md",
       "target": "wiki/concepts/极大极小定理.md",
       "relation": "used_by",
@@ -3635,6 +4618,48 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Richard E. Fikes.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Nils J. Nilsson.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/concepts/PDDL.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Richard E. Fikes.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/STRIPS 规划器.md",
+      "target": "wiki/entities/Nils J. Nilsson.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Schur分解.md",
       "target": "wiki/entities/伊赛·舒尔.md",
       "relation": "implements",
@@ -3763,6 +4788,24 @@
     {
       "source": "wiki/concepts/Von Neumann迹不等式.md",
       "target": "wiki/concepts/Schur分解.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Voronoi 偏置.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Voronoi 偏置.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Voronoi 偏置.md",
+      "target": "wiki/concepts/运动规划.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4025,6 +5068,54 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/concepts/Legged Robots That Balance.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三分解控制框架.md",
+      "target": "wiki/entities/Boston Dynamics.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/不可约矩阵.md",
       "target": "wiki/concepts/Perron-Frobenius定理.md",
       "relation": "depends_on",
@@ -4171,6 +5262,72 @@
     {
       "source": "wiki/concepts/乘数效应.md",
       "target": "wiki/concepts/有效需求.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/事件驱动Agent架构.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "implemented_by",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/事件驱动Agent架构.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/事件驱动Agent架构.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/事件驱动Agent架构.md",
+      "target": "wiki/entities/OpenClaw.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/事件驱动Agent架构.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/entities/Oussama Khatib.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/concepts/操作空间控制.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/concepts/包容体系结构.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/entities/Oussama Khatib.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/concepts/操作空间控制.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/人工势场法.md",
+      "target": "wiki/concepts/包容体系结构.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4565,6 +5722,36 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/动态平衡.md",
+      "target": "wiki/concepts/三分解控制框架.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/动态平衡.md",
+      "target": "wiki/concepts/Legged Robots That Balance.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/动态平衡.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/动态平衡.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/动态平衡.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/动物精神.md",
       "target": "wiki/entities/就业、利息和货币通论.md",
       "relation": "implements",
@@ -4609,6 +5796,66 @@
     {
       "source": "wiki/concepts/勒贝格常数.md",
       "target": "wiki/concepts/切比雪夫逼近理论.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/包容体系结构.md",
+      "target": "wiki/entities/Rodney Brooks.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/包容体系结构.md",
+      "target": "wiki/concepts/行为机器人学.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/包容体系结构.md",
+      "target": "wiki/entities/Rodney Brooks.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/包容体系结构.md",
+      "target": "wiki/concepts/行为机器人学.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/concepts/高斯最小二乘法.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/concepts/贝叶斯推理.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/concepts/高斯最小二乘法.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/卡尔曼滤波.md",
+      "target": "wiki/concepts/贝叶斯推理.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4883,6 +6130,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/concepts/行业设计反模式系统.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/concepts/行业设计反模式系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工程化UX规则体系.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/帕斯卡三角形.md",
       "target": "wiki/entities/布莱兹·帕斯卡.md",
       "relation": "caused",
@@ -4921,6 +6204,30 @@
     {
       "source": "wiki/concepts/帕斯卡三角形.md",
       "target": "wiki/concepts/组合数学.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/弹簧 - 质量模型.md",
+      "target": "wiki/concepts/三分解控制框架.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/弹簧 - 质量模型.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/弹簧 - 质量模型.md",
+      "target": "wiki/concepts/Legged Robots That Balance.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/弹簧 - 质量模型.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4991,6 +6298,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/entities/Steven M. LaValle.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/concepts/RRT-Connect.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/concepts/Kinodynamic Planning.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/entities/Steven M. LaValle.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/惯性律.md",
       "target": "wiki/concepts/矩阵理论.md",
       "relation": "part_of",
@@ -5029,6 +6372,96 @@
     {
       "source": "wiki/concepts/惯性律.md",
       "target": "wiki/concepts/矩阵.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/MH-1 机械手.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/Heinrich A. Ernst.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/Unimate.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/MH-1 机械手.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/Heinrich A. Ernst.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/手眼协调.md",
+      "target": "wiki/entities/Unimate.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/concepts/工程化UX规则体系.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/concepts/工程化UX规则体系.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/技术栈感知设计规则.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/操作空间控制.md",
+      "target": "wiki/entities/Oussama Khatib.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/操作空间控制.md",
+      "target": "wiki/concepts/人工势场法.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/操作空间控制.md",
+      "target": "wiki/entities/Oussama Khatib.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -5375,6 +6808,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/构型空间方法.md",
+      "target": "wiki/entities/Tomas Lozano-Perez.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/构型空间方法.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/构型空间方法.md",
+      "target": "wiki/entities/Tomas Lozano-Perez.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/构型空间方法.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/样本空间.md",
       "target": "wiki/concepts/点数问题.md",
       "relation": "depends_on",
@@ -5563,6 +7020,66 @@
     {
       "source": "wiki/concepts/概率论.md",
       "target": "wiki/concepts/贝叶斯定理.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Lydia Kavraki.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Jean-Claude Latombe.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Mark Overmars.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Petr Švestka.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Lydia Kavraki.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Jean-Claude Latombe.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Mark Overmars.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/entities/Petr Švestka.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/概率路线图 (PRM).md",
+      "target": "wiki/concepts/运动规划.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6401,6 +7918,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/结构化UI风格知识库.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/结构化UI风格知识库.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/结构化UI风格知识库.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/结构化UI风格知识库.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/菲利普斯曲线.md",
       "target": "wiki/entities/A.W. 菲利普斯.md",
       "relation": "depends_on",
@@ -6433,6 +7974,96 @@
     {
       "source": "wiki/concepts/萨伊定律.md",
       "target": "wiki/entities/就业、利息和货币通论.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/concepts/行业设计反模式系统.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/concepts/行业设计反模式系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业色彩情绪映射.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/entities/UI-UX-Pro-Max.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行业设计反模式系统.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行为机器人学.md",
+      "target": "wiki/concepts/包容体系结构.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行为机器人学.md",
+      "target": "wiki/entities/Rodney Brooks.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行为机器人学.md",
+      "target": "wiki/entities/Rodney Brooks.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6695,6 +8326,48 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/entities/OpenClaw.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/跨Provider上下文迁移.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/边际消费倾向.md",
       "target": "wiki/concepts/乘数效应.md",
       "relation": "depends_on",
@@ -6709,6 +8382,24 @@
     {
       "source": "wiki/concepts/边际消费倾向.md",
       "target": "wiki/entities/就业、利息和货币通论.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/运动规划.md",
+      "target": "wiki/concepts/构型空间方法.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/运动规划.md",
+      "target": "wiki/entities/Tomas Lozano-Perez.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/运动规划.md",
+      "target": "wiki/entities/Tomas Lozano-Perez.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6941,6 +8632,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/齐次变换矩阵.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/齐次变换矩阵.md",
+      "target": "wiki/concepts/矩阵.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/齐次变换矩阵.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/齐次变换矩阵.md",
+      "target": "wiki/concepts/矩阵.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/龙格-库塔方法.md",
       "target": "wiki/concepts/欧拉方法.md",
       "relation": "extends",
@@ -7031,6 +8746,12 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/concepts/齐次变换矩阵.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/A.W. 菲利普斯.md",
       "target": "wiki/concepts/菲利普斯曲线.md",
       "relation": "caused",
@@ -7061,6 +8782,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/concepts/Legged Robots That Balance.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/concepts/三分解控制框架.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/entities/Marc H. Raibert.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Boston Dynamics.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Bun-Runtime.md",
       "target": "wiki/entities/Claude-Mem.md",
       "relation": "uses",
@@ -7070,6 +8827,12 @@
       "source": "wiki/entities/Bun-Runtime.md",
       "target": "wiki/entities/SQLite.md",
       "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Bun-Runtime.md",
+      "target": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "relation": "implements",
       "bidirectional": false
     },
     {
@@ -7211,6 +8974,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Heinrich A. Ernst.md",
+      "target": "wiki/entities/MH-1 机械手.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Heinrich A. Ernst.md",
+      "target": "wiki/concepts/手眼协调.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Heinrich A. Ernst.md",
+      "target": "wiki/entities/MH-1 机械手.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Heinrich A. Ernst.md",
+      "target": "wiki/entities/Unimate.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Jacques Denavit.md",
       "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
       "relation": "caused",
@@ -7229,9 +9016,387 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Jean-Claude Latombe.md",
+      "target": "wiki/concepts/概率路线图 (PRM).md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jean-Claude Latombe.md",
+      "target": "wiki/entities/Lydia Kavraki.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jean-Claude Latombe.md",
+      "target": "wiki/entities/Lydia Kavraki.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jean-Claude Latombe.md",
+      "target": "wiki/entities/Mark Overmars.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jean-Claude Latombe.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Lydia Kavraki.md",
+      "target": "wiki/concepts/概率路线图 (PRM).md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Lydia Kavraki.md",
+      "target": "wiki/entities/Jean-Claude Latombe.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Lydia Kavraki.md",
+      "target": "wiki/entities/Mark Overmars.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Lydia Kavraki.md",
+      "target": "wiki/entities/Petr Švestka.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Lydia Kavraki.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/entities/Heinrich A. Ernst.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/entities/TX-0 计算机.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/concepts/手眼协调.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/entities/Unimate.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/entities/TX-0 计算机.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MH-1 机械手.md",
+      "target": "wiki/entities/Unimate.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/MONIAC.md",
       "target": "wiki/entities/A.W. 菲利普斯.md",
       "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Marc H. Raibert.md",
+      "target": "wiki/concepts/Legged Robots That Balance.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Marc H. Raibert.md",
+      "target": "wiki/entities/Boston Dynamics.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Marc H. Raibert.md",
+      "target": "wiki/concepts/动态平衡.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Marc H. Raibert.md",
+      "target": "wiki/concepts/弹簧 - 质量模型.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/OpenClaw.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mario-Zechner.md",
+      "target": "wiki/entities/OpenClaw.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mark Overmars.md",
+      "target": "wiki/concepts/概率路线图 (PRM).md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mark Overmars.md",
+      "target": "wiki/entities/Petr Švestka.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Mark Overmars.md",
+      "target": "wiki/entities/Petr Švestka.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Nils J. Nilsson.md",
+      "target": "wiki/concepts/STRIPS 规划器.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Nils J. Nilsson.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Nils J. Nilsson.md",
+      "target": "wiki/entities/Richard E. Fikes.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Nils J. Nilsson.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Nils J. Nilsson.md",
+      "target": "wiki/entities/Richard E. Fikes.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OpenClaw.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OpenClaw.md",
+      "target": "wiki/entities/Mario-Zechner.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OpenClaw.md",
+      "target": "wiki/entities/Pi-Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Oussama Khatib.md",
+      "target": "wiki/concepts/人工势场法.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Oussama Khatib.md",
+      "target": "wiki/concepts/操作空间控制.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/PUMA 机器人.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/PUMA 机器人.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Petr Švestka.md",
+      "target": "wiki/concepts/概率路线图 (PRM).md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Petr Švestka.md",
+      "target": "wiki/entities/Mark Overmars.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Petr Švestka.md",
+      "target": "wiki/entities/Jean-Claude Latombe.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Petr Švestka.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/entities/Mario-Zechner.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/跨Provider上下文迁移.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/Agent循环.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/事件驱动Agent架构.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Pi-Agent.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard E. Fikes.md",
+      "target": "wiki/concepts/STRIPS 规划器.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard E. Fikes.md",
+      "target": "wiki/entities/Nils J. Nilsson.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard E. Fikes.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard E. Fikes.md",
+      "target": "wiki/entities/Shakey 机器人.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard P. Paul.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard P. Paul.md",
+      "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard P. Paul.md",
+      "target": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Richard P. Paul.md",
+      "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "relation": "wikilink",
       "bidirectional": false
     },
     {
@@ -7243,6 +9408,36 @@
     {
       "source": "wiki/entities/Richard S. Hartenberg.md",
       "target": "wiki/entities/Jacques Denavit.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "target": "wiki/entities/Richard P. Paul.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
+      "target": "wiki/concepts/齐次变换矩阵.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Rodney Brooks.md",
+      "target": "wiki/concepts/包容体系结构.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Rodney Brooks.md",
+      "target": "wiki/concepts/行为机器人学.md",
       "relation": "caused",
       "bidirectional": false
     },
@@ -7262,6 +9457,120 @@
       "source": "wiki/entities/SQLite.md",
       "target": "wiki/concepts/FTS5.md",
       "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Shakey 机器人.md",
+      "target": "wiki/entities/Nils J. Nilsson.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Steven M. LaValle.md",
+      "target": "wiki/concepts/快速扩展随机树 (RRT).md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Steven M. LaValle.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Steven M. LaValle.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/TX-0 计算机.md",
+      "target": "wiki/entities/Heinrich A. Ernst.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/TX-0 计算机.md",
+      "target": "wiki/entities/Heinrich A. Ernst.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Tomas Lozano-Perez.md",
+      "target": "wiki/concepts/构型空间方法.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Tomas Lozano-Perez.md",
+      "target": "wiki/concepts/运动规划.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/AI设计推理层.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/结构化UI风格知识库.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/行业设计反模式系统.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/行业色彩情绪映射.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/工程化UX规则体系.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/技术栈感知设计规则.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/concepts/Master-Overrides设计系统持久化.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/UI-UX-Pro-Max.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Unimate.md",
+      "target": "wiki/entities/MH-1 机械手.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Unimate.md",
+      "target": "wiki/concepts/手眼协调.md",
+      "relation": "contradicts",
       "bidirectional": false
     },
     {
@@ -9059,6 +11368,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "target": "wiki/entities/Bun-Runtime.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
+      "target": "wiki/entities/Bun-Runtime.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
       "target": "wiki/concepts/CFL条件.md",
       "relation": "wikilink",
@@ -9187,6 +11520,30 @@
     {
       "source": "wiki/syntheses/DeepAgents评估设计哲学.md",
       "target": "wiki/entities/DeepAgents.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/syntheses/知识系统的六个工程反模式.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/syntheses/知识系统的六个工程反模式.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/syntheses/知识系统的六个工程反模式.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/syntheses/知识系统的六个工程反模式.md",
+      "target": "wiki/entities/Claude-Mem.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -9393,9 +11750,10 @@
   "components": [
     {
       "id": 0,
-      "size": 134,
+      "size": 143,
       "nodes": [
         "wiki/concepts/CFL条件.md",
+        "wiki/concepts/Denavit-Hartenberg 参数.md",
         "wiki/concepts/Gauss-Seidel方法.md",
         "wiki/concepts/Hoffman-Wielandt定理.md",
         "wiki/concepts/Householder变换.md",
@@ -9426,6 +11784,7 @@
         "wiki/concepts/切比雪夫多项式.md",
         "wiki/concepts/切比雪夫逼近理论.md",
         "wiki/concepts/勒贝格常数.md",
+        "wiki/concepts/卡尔曼滤波.md",
         "wiki/concepts/古典概率定义.md",
         "wiki/concepts/后向误差分析.md",
         "wiki/concepts/大数定律.md",
@@ -9469,8 +11828,15 @@
         "wiki/concepts/马尔可夫链.md",
         "wiki/concepts/高斯最小二乘法.md",
         "wiki/concepts/高斯求积公式.md",
+        "wiki/concepts/齐次变换矩阵.md",
         "wiki/concepts/龙格-库塔方法.md",
         "wiki/concepts/龙格现象.md",
+        "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+        "wiki/entities/Jacques Denavit.md",
+        "wiki/entities/PUMA 机器人.md",
+        "wiki/entities/Richard P. Paul.md",
+        "wiki/entities/Richard S. Hartenberg.md",
+        "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
         "wiki/entities/亚伯拉罕·德莫弗.md",
         "wiki/entities/伊赛·舒尔.md",
         "wiki/entities/克里斯蒂安·惠更斯.md",
@@ -9533,10 +11899,12 @@
     },
     {
       "id": 1,
-      "size": 24,
+      "size": 41,
       "nodes": [
         "wiki/concepts/ACP协议.md",
+        "wiki/concepts/AI设计推理层.md",
         "wiki/concepts/Agent Harness模式.md",
+        "wiki/concepts/Agent循环.md",
         "wiki/concepts/Claude-Code-Hook-System.md",
         "wiki/concepts/Context-Engineering.md",
         "wiki/concepts/DeepAgents中间件体系.md",
@@ -9544,25 +11912,59 @@
         "wiki/concepts/DeepAgents评估体系.md",
         "wiki/concepts/FTS5.md",
         "wiki/concepts/LLM-Statelessness.md",
+        "wiki/concepts/LLM-Wire-Protocol统一模式.md",
         "wiki/concepts/LLM-as-Judge.md",
+        "wiki/concepts/Master-Overrides设计系统持久化.md",
         "wiki/concepts/bun-vs-uv.md",
         "wiki/concepts/claude-cli-tools.md",
         "wiki/concepts/modern-cli-tools.md",
+        "wiki/concepts/事件驱动Agent架构.md",
         "wiki/concepts/分层记忆架构.md",
+        "wiki/concepts/工程化UX规则体系.md",
+        "wiki/concepts/技术栈感知设计规则.md",
         "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
+        "wiki/concepts/结构化UI风格知识库.md",
+        "wiki/concepts/行业色彩情绪映射.md",
+        "wiki/concepts/行业设计反模式系统.md",
+        "wiki/concepts/跨Provider上下文迁移.md",
         "wiki/entities/Alex-Newman.md",
         "wiki/entities/Bun-Runtime.md",
         "wiki/entities/ChromaDB.md",
         "wiki/entities/Claude-Code.md",
         "wiki/entities/Claude-Mem.md",
         "wiki/entities/DeepAgents.md",
+        "wiki/entities/Mario-Zechner.md",
+        "wiki/entities/OpenClaw.md",
+        "wiki/entities/Pi-Agent.md",
         "wiki/entities/SQLite.md",
+        "wiki/entities/UI-UX-Pro-Max.md",
+        "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
         "wiki/syntheses/Claude-Code上下文工程全景.md",
-        "wiki/syntheses/DeepAgents评估设计哲学.md"
+        "wiki/syntheses/DeepAgents评估设计哲学.md",
+        "wiki/syntheses/知识系统的六个工程反模式.md"
       ]
     },
     {
       "id": 2,
+      "size": 13,
+      "nodes": [
+        "wiki/concepts/Kinodynamic Planning.md",
+        "wiki/concepts/RRT-Connect.md",
+        "wiki/concepts/Voronoi 偏置.md",
+        "wiki/concepts/快速扩展随机树 (RRT).md",
+        "wiki/concepts/构型空间方法.md",
+        "wiki/concepts/概率路线图 (PRM).md",
+        "wiki/concepts/运动规划.md",
+        "wiki/entities/Jean-Claude Latombe.md",
+        "wiki/entities/Lydia Kavraki.md",
+        "wiki/entities/Mark Overmars.md",
+        "wiki/entities/Petr Švestka.md",
+        "wiki/entities/Steven M. LaValle.md",
+        "wiki/entities/Tomas Lozano-Perez.md"
+      ]
+    },
+    {
+      "id": 3,
       "size": 12,
       "nodes": [
         "wiki/concepts/IS-LM 模型.md",
@@ -9580,7 +11982,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "size": 8,
       "nodes": [
         "wiki/concepts/Harrod-Domar 模型.md",
@@ -9594,17 +11996,53 @@
       ]
     },
     {
-      "id": 4,
-      "size": 4,
+      "id": 5,
+      "size": 6,
       "nodes": [
-        "wiki/concepts/Denavit-Hartenberg 参数.md",
-        "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
-        "wiki/entities/Jacques Denavit.md",
-        "wiki/entities/Richard S. Hartenberg.md"
+        "wiki/concepts/Legged Robots That Balance.md",
+        "wiki/concepts/三分解控制框架.md",
+        "wiki/concepts/动态平衡.md",
+        "wiki/concepts/弹簧 - 质量模型.md",
+        "wiki/entities/Boston Dynamics.md",
+        "wiki/entities/Marc H. Raibert.md"
       ]
     },
     {
-      "id": 5,
+      "id": 6,
+      "size": 6,
+      "nodes": [
+        "wiki/concepts/人工势场法.md",
+        "wiki/concepts/包容体系结构.md",
+        "wiki/concepts/操作空间控制.md",
+        "wiki/concepts/行为机器人学.md",
+        "wiki/entities/Oussama Khatib.md",
+        "wiki/entities/Rodney Brooks.md"
+      ]
+    },
+    {
+      "id": 7,
+      "size": 5,
+      "nodes": [
+        "wiki/concepts/PDDL.md",
+        "wiki/concepts/STRIPS 规划器.md",
+        "wiki/entities/Nils J. Nilsson.md",
+        "wiki/entities/Richard E. Fikes.md",
+        "wiki/entities/Shakey 机器人.md"
+      ]
+    },
+    {
+      "id": 8,
+      "size": 5,
+      "nodes": [
+        "wiki/concepts/手眼协调.md",
+        "wiki/entities/Heinrich A. Ernst.md",
+        "wiki/entities/MH-1 机械手.md",
+        "wiki/entities/TX-0 计算机.md",
+        "wiki/entities/Unimate.md"
+      ]
+    },
+    {
+      "id": 9,
       "size": 4,
       "nodes": [
         "wiki/concepts/理性预期假说.md",
@@ -9614,7 +12052,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 10,
       "size": 2,
       "nodes": [
         "wiki/entities/米尔顿·弗里德曼.md",

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodney Brooks — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Rodney Brooks</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">机器人学，研究，工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="rodney-brooks">Rodney Brooks</h1>
+<h2 id="_1">概述</h2>
+<p>Rodney A. Brooks（罗德尼·布鲁克斯）是澳大利亚裔计算机科学家、机器人学家及企业家，曾任 MIT 人工智能实验室主任。他是“行为机器人学”（Behavior-based Robotics）的奠基人，以 1986 年提出的<a href="../concepts/包容体系结构.html">包容体系结构</a>而闻名于世，该理论彻底挑战了当时主导 AI 界的符号主义范式。Brooks 主张智能应源于身体与环境的直接交互（具身智能），而非抽象的符号推理。他将学术成果成功转化为商业产品，联合创立了 iRobot 公司（代表作 Roomba 扫地机器人）和 Rethink Robotics（代表作 Baxter 协作机器人），对现代服务机器人和工业协作机器人领域产生了深远影响。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">学术背景与范式革命</h3>
+<p>Brooks 于 1981 年在斯坦福大学获得计算机科学博士学位，随后加入 MIT 人工智能实验室。在 1980 年代中期，面对主流 GOFAI（Good Old-Fashioned AI）在真实机器人应用中的失败（如 Shakey 机器人的缓慢与脆弱），Brooks 提出了激进的反叛观点。他在 1986 年的经典论文《A Robust Layered Control System for a Mobile Robot》中提出了<a href="../concepts/包容体系结构.html">包容体系结构</a>，主张抛弃内部世界模型和中央规划器，转而使用多层并行的行为层来控制机器人。这一思想引发了 AI 界关于“表示是否是智能必要条件”的大辩论，并直接催生了行为机器人学学派。</p>
+<h3 id="_4">核心哲学：具身智能与“大象不下棋”</h3>
+<p>Brooks 是“具身智能”（Embodied Intelligence）理念最早的倡导者之一。他著名地指出“大象不下棋”（Elephants Don't Play Chess），强调进化产生的复杂生物智能并不依赖于符号推理，而是源于感知与行动的紧密耦合。他认为“世界就是它自己的最佳模型”，反对花费大量计算资源构建易过时的内部地图。这一哲学不仅改变了机器人控制理论，也对当代认知科学和 AI 哲学产生了持久影响，特别是在大语言模型时代重新引发了关于“理解”与“身体”关系的讨论。</p>
+<h3 id="_5">创业成就与技术转化</h3>
+<p>Brooks 不仅是一位理论家，也是成功的创业者，致力于将前沿机器人技术带入日常生活和工业场景：
+- <strong>iRobot (1990)</strong>：与 Colin Angle 和 Helen Greiner 共同创立。其旗舰产品 Roomba 扫地机器人是<a href="../concepts/包容体系结构.html">包容体系结构</a>最成功的商业应用，利用简单的反应式规则实现了高效的家庭清洁，全球销量超过 4000 万台。
+- <strong>Rethink Robotics (2008)</strong>：旨在将协作机器人引入工厂。其产品 Baxter 和 Sawyer 采用了行为层思想来处理人机交互安全，开创了协作机器人（Cobots）产业先河，尽管公司于 2018 年关闭，但其理念已被广泛采纳。</p>
+<h3 id="_6">学术遗产与争议</h3>
+<p>Brooks 的工作在 1980-1990 年代引发了符号主义与行为主义的激烈交锋。虽然纯粹的包容体系结构因缺乏长期规划和学习能力而显示出局限性，但它推动了“混合架构”（Hybrid Architecture）的诞生，成为现代机器人系统（如自动驾驶汽车）的标准配置。他的“去表示化”主张在当今深度学习的端到端训练策略中找到了新的共鸣。Brooks 的职业生涯展示了从基础理论创新到大规模工业应用的完整路径，是机器人学史上最具影响力的人物之一。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/08-brooks-subsumption-architecture.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../concepts/包容体系结构.html">包容体系结构</a></li>
+<li><a href="../concepts/行为机器人学.html">行为机器人学</a></li>
+<li><span style="color:#e74c3c" title="broken link">具身智能</span></li>
+<li><span style="color:#e74c3c" title="broken link">iRobot</span></li>
+<li><span style="color:#e74c3c" title="broken link">Rethink Robotics</span></li>
+<li><span style="color:#e74c3c" title="broken link">SMPA 范式</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Robot Manipulators: Mathematics, Programming, and Control.html">&larr; Robot Manipulators: Mathematics, Programming, and Control</a>
+    <a href="SQLite.html">SQLite &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

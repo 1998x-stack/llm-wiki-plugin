@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工程化UX规则体系 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 工程化UX规则体系</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UI</span><span class="tag">UX</span><span class="tag">设计</span><span class="tag">AI</span><span class="tag">规则系统</span><span class="tag">可访问性</span></div>
+</div>
+  <div class="content">
+    <h1 id="ux">工程化 UX 规则体系</h1>
+<h2 id="_1">概述</h2>
+<p>工程化 UX 规则体系是将隐性设计经验编码为<strong>带优先级标签、唯一 ID、可机器检索和自动验证的结构化规则</strong>的方法：使 AI 能直接执行 UX 规则检查而不只是「知道一些原则」。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心设计决策</h3>
+<p><strong>规则必须可机器执行</strong>。每条规则包含：</p>
+<pre><code>id              → 唯一引用名（hover-state-required）
+category        → 分类（交互/可访问性/性能/布局...）
+priority        → P0/P1/P2 三级优先级
+description     → 详细描述
+anti_pattern    → 对应错误模式
+platform        → 适用平台（web/mobile/all）
+stack_notes     → 技术栈相关注记
+</code></pre>
+<h3 id="p0p1p2">P0/P1/P2 三级优先级框架</h3>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>含义</th>
+<th>示例规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong>（必须遵守）</td>
+<td>违反造成严重可用性或合规风险</td>
+<td>对比度 ≥ 4.5:1、focus 状态可见、可点击元素有 cursor:pointer</td>
+</tr>
+<tr>
+<td><strong>P1</strong>（强烈建议）</td>
+<td>违反降低体验质量</td>
+<td>hover 150-300ms 过渡、表单 blur 即时验证</td>
+</tr>
+<tr>
+<td><strong>P2</strong>（酌情处理）</td>
+<td>上下文依赖，有时可例外</td>
+<td>拇指区域优化、图表数据导出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="99">99 条规则分类全景</h3>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>代表规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交互状态</td>
+<td>hover-state-required、cursor-pointer-required、disabled-state-clarity</td>
+</tr>
+<tr>
+<td>可访问性</td>
+<td>contrast-minimum（4.5:1）、focus-visible-required、color-not-sole-indicator</td>
+</tr>
+<tr>
+<td>触控/移动端</td>
+<td>touch-target-minimum（44×44px）、safe-area-inset</td>
+</tr>
+<tr>
+<td>布局/响应式</td>
+<td>responsive-breakpoints（375/768/1024/1440px）、CLS 防止</td>
+</tr>
+<tr>
+<td>动画/性能</td>
+<td>animation-duration（150-300ms）、GPU 加速（transform/opacity）</td>
+</tr>
+<tr>
+<td>表单/输入</td>
+<td>inline-validation、placeholder-not-label、error-message-proximity</td>
+</tr>
+<tr>
+<td>图标使用</td>
+<td>no-emoji-as-icon（用 SVG）、icon-style-consistency</td>
+</tr>
+<tr>
+<td>平台适配</td>
+<td>dark-mode-pairing、elevation-consistent</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p0">P0 自动验收清单</h3>
+<p>每次代码生成后自动输出：</p>
+<pre><code>PRE-DELIVERY CHECKLIST（P0 必过项）:
+  [ ] cursor-pointer-required  — 所有可点击元素有 cursor:pointer
+  [ ] contrast-minimum         — 对比度 ≥ 4.5:1
+  [ ] hover-state-required     — 所有交互元素有 hover 状态
+  [ ] no-emoji-as-icon         — 无 emoji 图标（用 SVG）
+  [ ] focus-visible-required   — 焦点状态可见
+  [ ] prefers-reduced-motion   — 动画有降级处理
+  [ ] responsive-breakpoints   — 测试 375/768/1024/1440px
+</code></pre>
+<h3 id="_4">图表类型结构化推荐</h3>
+<p>同样思路应用于图表选择（25 种图表，按数据类型 + 展示目的推荐）：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>代表图表</th>
+<th>关键反模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>比较</td>
+<td>Bar Chart（≤12类别）、Radar</td>
+<td>Grouped Bar 超过 3 系列</td>
+</tr>
+<tr>
+<td>趋势</td>
+<td>Line Chart、Sparkline</td>
+<td>数据点 &lt; 5 时用折线（应用柱状）</td>
+</tr>
+<tr>
+<td>分布</td>
+<td>Histogram、Scatter Plot</td>
+<td>—</td>
+</tr>
+<tr>
+<td>构成</td>
+<td>Pie（&lt; 5 片）、Treemap</td>
+<td>Pie ≥ 6 片难以分辨</td>
+</tr>
+<tr>
+<td>关系</td>
+<td>Sankey、Network Graph</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心图表规则</strong>：Y 轴必须从 0 开始（截断是视觉欺骗）；颜色编码必须有图例且不能仅靠颜色区分。</p>
+<h3 id="_5">知识工程价值</h3>
+<p>将 UX「感觉对」的隐性经验转化为可检索的规则系统，使 AI 能：
+1. <strong>检索</strong>：按 category/priority/platform 过滤规则
+2. <strong>验证</strong>：对照 P0 清单检查生成代码
+3. <strong>引用</strong>：生成代码时引用具体规则 ID 作为注释</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/UI-skill/blog-05-ux-charts.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/UI-UX-Pro-Max.html">UI-UX-Pro-Max</a> — 实现平台（ux-guidelines.csv + charts.csv）</li>
+<li><a href="行业设计反模式系统.html">行业设计反模式系统</a> — 规则化设计禁忌的同类模式</li>
+<li><a href="结构化UI风格知识库.html">结构化UI风格知识库</a> — 同为隐性设计知识的结构化编码</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="奇异值分解.html">&larr; 奇异值分解</a>
+    <a href="帕斯卡三角形.html">帕斯卡三角形 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

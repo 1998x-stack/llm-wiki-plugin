@@ -201,21 +201,30 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>能力通过参数渐进启用，零配置即可运行，按需扩展</li>
 <li>图仍是 LangGraph 原生产物，与 checkpoint、流式、可观测性方案直接对接</li>
 </ul>
+<h3 id="pi-agent-harness">Pi Agent：极简 Harness 的反面验证</h3>
+<p><a href="../entities/Pi-Agent.html">Pi-Agent</a> 代表了 Harness 设计谱系的另一端——<strong>极简主义</strong>。相比 <a href="../entities/DeepAgents.html">DeepAgents</a> 的 batteries-included 方式（11 个中间件、多后端协议），Pi 只有 4 个工具、&lt; 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。</p>
+<p>这证明了 Harness 模式的关键变体：
+- <strong>DeepAgents 路线</strong>：组合丰富的中间件栈 → 适合企业级多场景
+- <strong>Pi 路线</strong>：极简工具 + 精确上下文控制 → 适合高级用户精确编程</p>
+<p>两者的共同点：都将 Model 与 Harness 清晰分离，都强调 <a href="Context-Engineering.html">Context-Engineering</a> 的重要性。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/01-overview-philosophy.md</span></li>
 </ul>
 <h2 id="_7">相关</h2>
 <ul>
-<li><a href="../entities/DeepAgents.html">DeepAgents</a></li>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a> — batteries-included 代表</li>
+<li><a href="../entities/Pi-Agent.html">Pi-Agent</a> — 极简代表</li>
 <li><a href="DeepAgents中间件体系.html">DeepAgents中间件体系</a></li>
 <li><a href="DeepAgents后端协议.html">DeepAgents后端协议</a></li>
+<li><a href="Context-Engineering.html">Context-Engineering</a></li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ACP协议.html">&larr; ACP协议</a>
-    <a href="CFL条件.html">CFL条件 &rarr;</a>
+    <a href="AI设计推理层.html">&larr; AI设计推理层</a>
+    <a href="Agent循环.html">Agent循环 &rarr;</a>
   </div>
 </div>
 </body>

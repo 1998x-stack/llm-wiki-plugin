@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事件驱动Agent架构 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 事件驱动Agent架构</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">设计模式</span><span class="tag">LLM</span><span class="tag">事件驱动</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">事件驱动 Agent 架构</h1>
+<h2 id="_1">概述</h2>
+<p>事件驱动 Agent 架构是指：Agent 循环内所有状态变化都通过<strong>事件发射（emit）</strong>通知订阅者，而不依赖返回值。同一 Agent 核心可同时驱动终端 UI、Web UI、IM 机器人等完全不同的上层界面。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心设计决策</h3>
+<p><strong>所有状态变化 → 事件，而非返回值。</strong></p>
+<pre><code class="language-typescript">session.subscribe((event) =&gt; {
+  switch (event.type) {
+    // LLM 响应阶段
+    case 'message_start':   /* 开始生成 */ break;
+    case 'text_delta':      /* 流式文本 */ break;
+    case 'thinking_delta':  /* 思维链内容 */ break;
+
+    // 工具调用阶段
+    case 'tool_call_start': /* 工具名+ID */ break;
+    case 'tool_call_delta': /* 参数流（实时显示文件路径等） */ break;
+    case 'tool_call_end':   /* 参数确定 */ break;
+    case 'tool_result':     /* 执行完成（LLM通道 + UI通道） */ break;
+    case 'tool_update':     /* onUpdate 推送的流式进度 */ break;
+
+    // 生命周期
+    case 'message_end':     /* 本轮生成完成 */ break;
+    case 'session_end':     /* Agent 循环结束 */ break;
+    case 'error':           /* 错误 */ break;
+  }
+});
+</code></pre>
+<h3 id="llm-vs-ui">双通道设计：LLM 通道 vs UI 通道</h3>
+<p><code>tool_result</code> 事件包含两个字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>消费者</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>output</code></td>
+<td>LLM</td>
+<td>影响后续推理的文本（计入 token 上下文）</td>
+</tr>
+<tr>
+<td><code>details</code></td>
+<td>UI</td>
+<td>结构化数据（exitCode、截图等），不占 LLM token</td>
+</tr>
+</tbody>
+</table>
+<p>这一分离保持了 LLM 上下文精简，同时允许 UI 展示丰富的结构化信息。</p>
+<h3 id="ui">多 UI 驱动能力</h3>
+<pre><code>AgentSession（pi-agent-core）
+    │
+    ├── pi-tui（终端 UI）   ← 事件 → 差分渲染终端输出
+    ├── pi-web-ui（Web UI） ← 事件 → 更新 React 组件
+    ├── OpenClaw（IM 平台） ← 事件 → 发送 Telegram/Discord 消息
+    └── 测试框架            ← 事件 → 断言验证、录制回放
+</code></pre>
+<p>同一套 Agent 核心代码零修改即可接入所有上层 UI。</p>
+<h3 id="async-generator">为何不用 async generator？</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>事件（subscribe/emit）</th>
+<th>Async Generator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>消费者数量</td>
+<td><strong>多订阅者</strong>（TUI + 日志 + 测试同时接收）</td>
+<td>单消费者</td>
+</tr>
+<tr>
+<td>耦合度</td>
+<td>发布者不感知消费者</td>
+<td>生产者-消费者紧耦合</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>增加 UI 只需注册新监听器</td>
+<td>需重构消费逻辑</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">会话持久化</h2>
+<p>事件流状态可序列化到磁盘，在新进程中完整恢复：</p>
+<pre><code class="language-typescript">const snapshot = session.serialize();
+// 下次启动时
+const restored = restoreAgentSession(snapshot, { model, tools });
+await restored.prompt('继续之前未完成的重构工作');
+</code></pre>
+<h2 id="_5">代表实现</h2>
+<p><a href="../entities/Pi-Agent.html">Pi-Agent</a> 的 <code>pi-agent-core</code> 包是此模式的参考实现，<a href="../entities/OpenClaw.html">OpenClaw</a> 是其多渠道 IM 接入的应用案例。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/03-pi-agent-core.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Agent循环.html">Agent循环</a> — 事件是 Agent 循环各阶段状态变化的通知机制</li>
+<li><a href="../entities/Pi-Agent.html">Pi-Agent</a> — 代表性实现</li>
+<li><a href="../entities/OpenClaw.html">OpenClaw</a> — 事件模型驱动多 IM 渠道的应用案例</li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — 更宏观的 Agent 工程架构模式</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="乘数效应.html">&larr; 乘数效应</a>
+    <a href="人工势场法.html">人工势场法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

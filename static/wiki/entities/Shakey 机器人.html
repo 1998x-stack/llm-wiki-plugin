@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakey 机器人 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Shakey 机器人</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="shakey">Shakey 机器人</h1>
+<h2 id="_1">概述</h2>
+<p>Shakey 是世界上第一个具备通用目的的移动机器人，由斯坦福研究院（SRI International）人工智能中心于 1960 年代末至 1970 年代初研发。该项目旨在将感知、推理和行动统一在一个系统中，使机器人能够理解自然语言指令，自主规划行动序列，并在真实物理环境中执行任务（如推箱子、开门、穿越房间）。Shakey 不仅是硬件工程的奇迹，更是人工智能软件的试验床，孕育了 A* 搜索算法、Hough 变换以及 STRIPS 规划器等影响深远的技术成果，被誉为现代智能机器人的鼻祖。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">系统架构与设计理念</h3>
+<p>Shakey 的名字来源于其起步和停止时的晃动特性。其硬件平台包括一个装有轮子的底座、金属框架、顶部的电视摄像头、测距仪以及碰撞传感器。然而，Shakey 真正的革命性在于其软件架构，它采用了分层控制系统：
+1.  <strong>底层运动控制</strong>：负责轮子转速、方向等具体执行细节。
+2.  <strong>中层动作执行</strong>：将高层指令分解为具体的运动原语（如“向前移动 2 米”、“推物体”）。
+3.  <strong>高层任务规划</strong>：由 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a> 担任，负责接收用户的高级目标（如“把 Box1 推到 Room3"），自动推理出达成目标所需的动作序列。</p>
+<p>这种“规划 - 执行”分离的架构成为了后来机器人系统设计的标准范式。</p>
+<h3 id="_4">核心技术突破</h3>
+<p>Shakey 项目产出了多项计算机科学史上的里程碑式成果：
+*   <strong>自动规划</strong>：为了解决“想清楚再行动”的问题，项目组开发了 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>，首次用形式化逻辑描述了动作的前提与效果，解决了复杂环境下的多步规划难题。
+*   <strong>路径搜索</strong>：为了在已知地图中寻找最优路径，Nils Nilsson 等人发明了 <span style="color:#e74c3c" title="broken link">A&lt;em&gt;搜索算法</span>，结合了启发式信息与代价评估，成为图搜索领域的黄金标准。
+*   </em><em>计算机视觉</em><em>：为了让机器人识别环境中的线条和物体边界，项目团队应用并推广了 Hough 变换，这是早期计算机视觉的关键算法。
+*   </em><em>感知整合</em>*：Shakey 能够通过摄像头识别简单的几何形状，构建内部的世界模型（World Model），并利用该模型进行逻辑推理，实现了从“感知”到“认知”的跨越。</p>
+<h3 id="_5">历史意义与局限</h3>
+<p>Shakey 证明了人工智能系统可以在真实物理世界中自主运行，而不仅仅停留在模拟或理论层面。它展示了符号主义 AI 在解决结构化问题上的强大能力。然而，受限于当时的计算能力和传感器技术，Shakey 的行动非常缓慢，且依赖于高度受控的环境（如特定的地板标记、光照条件）。尽管如此，它所确立的技术范式和算法遗产至今仍深刻影响着机器人学和人工智能的发展，特别是在具身智能（Embodied AI）和任务与运动规划（TAMP）领域。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/04-fikes-nilsson-strips-planner.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a></li>
+<li><span style="color:#e74c3c" title="broken link">A*搜索算法</span></li>
+<li><a href="Nils J. Nilsson.html">Nils J. Nilsson</a></li>
+<li><span style="color:#e74c3c" title="broken link">SRI International</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="SQLite.html">&larr; SQLite</a>
+    <a href="Steven M. LaValle.html">Steven M. LaValle &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nils J. Nilsson — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Nils J. Nilsson</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="nils-j-nilsson">Nils J. Nilsson</h1>
+<h2 id="_1">概述</h2>
+<p>Nils J. Nilsson（1933-2019）是人工智能领域的先驱人物，斯坦福大学计算机科学系奠基性教授之一，曾任 SRI International 人工智能中心负责人。他对 AI 的贡献具有双重奠基意义：一是与 Peter Hart 和 Bertram Raphael 共同发明了 <span style="color:#e74c3c" title="broken link">A*搜索算法</span>，定义了通用启发式搜索的标准；二是与 Richard E. Fikes 共同发明了 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>，确立了自动规划的形式化框架。Nilsson 是 Shakey 机器人项目的主要负责人，他的工作将搜索理论与规划实践紧密结合，深刻影响了过去半个世纪的人工智能发展轨迹。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">双重奠基：搜索与规划</h3>
+<p>Nilsson 在 AI 基础理论上的贡献罕见地覆盖了两个核心支柱。
+1.  <strong>搜索算法</strong>：1968 年，他参与提出的 A<em> 算法证明了在满足特定启发式条件下，可以找到从初始状态到目标状态的最优路径。这一算法成为了路径规划、游戏 AI 及各类优化问题的基石。
+2.  </em><em>自动规划</em>*：1971 年，他与 Fikes 合作开发的 STRIPS 规划器，创造性地将规划问题转化为状态空间搜索问题，并设计了高效的动作表示法。这使得复杂的逻辑推理能够应用于实时机器人控制。</p>
+<p>这两项工作内在联系紧密：STRIPS 本质上是将 A* 风格的搜索策略应用到了由逻辑谓词定义的状态空间中。</p>
+<h3 id="shakey">Shakey 机器人项目的领导角色</h3>
+<p>作为 Shakey 项目的核心领导者，Nilsson 不仅负责技术指导，还亲自参与了关键算法的设计。他推动了感知、推理和行动在单一系统中的集成，证明了符号主义 AI 在物理世界中的可行性。在他的领导下，Shakey 成为了第一个能理解自然语言指令、自主规划并执行任务的移动机器人，展示了 AI 从理论走向现实的巨大潜力。</p>
+<h3 id="_4">教育与传承</h3>
+<p>Nilsson 在斯坦福大学任教期间，培养了大批优秀的计算机科学家。他撰写的教科书《Artificial Intelligence: A New Synthesis》以及他在经典教材《Artificial Intelligence: A Modern Approach》中的贡献，使得 STRIPS 和 A* 成为全球 AI 课程的核心教学内容。他的治学风格强调数学严谨性与工程实用性的统一，为后世研究者树立了榜样。Nilsson 于 2019 年去世，但他留下的算法和思想依然是现代智能系统的核心组件。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/04-fikes-nilsson-strips-planner.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a></li>
+<li><span style="color:#e74c3c" title="broken link">A*搜索算法</span></li>
+<li><a href="Shakey 机器人.html">Shakey 机器人</a></li>
+<li><a href="Richard E. Fikes.html">Richard E. Fikes</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Mark Overmars.html">&larr; Mark Overmars</a>
+    <a href="OpenClaw.html">OpenClaw &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

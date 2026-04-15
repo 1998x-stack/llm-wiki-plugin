@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent循环 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Agent循环</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">设计模式</span><span class="tag">LLM</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">Agent 循环</h1>
+<h2 id="_1">概述</h2>
+<p>Agent 循环（Agent Loop）是所有 AI Agent 的核心心跳：反复调用 LLM，根据停止原因分支——若 <code>stop</code> 则输出结果，若 <code>toolUse</code> 则执行工具并将结果注入下一轮，直至任务完成。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">基本结构</h3>
+<pre><code>while (true):
+    response = LLM(messages + tools_definition)
+
+    if response.stopReason == &quot;stop&quot;:
+        break          # LLM 认为任务完成，输出文本
+
+    if response.stopReason == &quot;toolUse&quot;:
+        tool_results = execute_tools(response.toolCalls)
+        messages.append(tool_results)
+        # 继续循环，让 LLM 基于工具结果继续推理
+</code></pre>
+<h3 id="_4">魔鬼在细节里</h3>
+<p>基本结构简单，但工业级实现需解决五类问题：</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>处理策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工具执行<strong>失败</strong></td>
+<td>将错误作为工具结果反馈给 LLM，让其自我修正</td>
+</tr>
+<tr>
+<td>工具参数<strong>不合法</strong></td>
+<td>运行前用 AJV/JSON Schema 验证，生成详细错误消息</td>
+</tr>
+<tr>
+<td>执行中<strong>实时推送进度</strong></td>
+<td><code>onUpdate</code> 回调流式推送（bash 实时输出等）</td>
+</tr>
+<tr>
+<td>用户在执行中<strong>发出新指令</strong></td>
+<td>消息队列（转向消息 / 跟进消息）而非丢弃</td>
+</tr>
+<tr>
+<td><strong>中断</strong>正在运行的 Agent</td>
+<td>AbortSignal 传递给工具执行函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">工具参数验证</h3>
+<p>在工具执行之前用 TypeBox schema + AJV 校验参数，验证失败时生成详细错误消息反馈给 LLM，允许模型<strong>自我修正</strong>而非崩溃：</p>
+<pre><code>工具调用参数验证失败（bash）：
+  - command: 期望 string，收到 number (123)
+请使用正确的参数重新调用工具。
+</code></pre>
+<h3 id="_6">消息队列与并发交互</h3>
+<p>用户在 Agent 执行过程中发出的新消息被<strong>队列化</strong>，在合适时机注入：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>注入时机</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>转向消息</strong>（steering）</td>
+<td>下次 LLM 调用之前</td>
+<td>在 Agent 运行过程中调整方向</td>
+</tr>
+<tr>
+<td><strong>跟进消息</strong>（follow-up）</td>
+<td>整个 <code>session_end</code> 之后</td>
+<td>等当前任务完成后追加新任务</td>
+</tr>
+</tbody>
+</table>
+<h3 id="max_steps">为何不内置 max_steps？</h3>
+<blockquote>
+<p>"我从未发现 max_steps 这类限制有用。Agent 要么完成任务，要么卡住了——如果卡住了，max_steps 无法修复它，只会在错误的地方截断执行。" — <a href="../entities/Mario-Zechner.html">Mario-Zechner</a></p>
+</blockquote>
+<p>限制步数是用机械手段掩盖 Agent 能力不足，而非真正解决问题。</p>
+<h2 id="_7">代表实现</h2>
+<ul>
+<li><a href="../entities/Pi-Agent.html">Pi-Agent</a> 的 <code>pi-agent-core</code> 包：最简实现，约 &lt; 500 行 TypeScript</li>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a>：LangGraph 实现，以中间件链增强循环能力</li>
+</ul>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/pi-agent/03-pi-agent-core.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — 在 Agent 循环上叠加中间件、后端等能力的工程模式</li>
+<li><a href="事件驱动Agent架构.html">事件驱动Agent架构</a> — 驱动循环状态变化通知上层 UI 的机制</li>
+<li><a href="../entities/Pi-Agent.html">Pi-Agent</a> — 代表性极简实现</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent Harness模式.html">&larr; Agent Harness模式</a>
+    <a href="CFL条件.html">CFL条件 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

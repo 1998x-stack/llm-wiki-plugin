@@ -1,28 +1,28 @@
 {
-  "generated": "2026-04-15T11:34:27+00:00",
+  "generated": "2026-04-15T12:43:28+00:00",
   "summary": {
-    "total_nodes": 188,
-    "total_edges": 1164,
+    "total_nodes": 245,
+    "total_edges": 1444,
     "orphan_count": 0,
-    "component_count": 7,
-    "avg_degree": 5.83,
-    "density": 0.0312,
-    "diameter": 8,
-    "avg_clustering": 0.4953,
-    "bridge_count": 15
+    "component_count": 11,
+    "avg_degree": 5.49,
+    "density": 0.0225,
+    "diameter": 9,
+    "avg_clustering": 0.5404,
+    "bridge_count": 19
   },
   "type_distribution": {
-    "concept": 110,
-    "entity": 73,
-    "synthesis": 4,
-    "qa-insight": 1
+    "concept": 141,
+    "entity": 97,
+    "synthesis": 5,
+    "qa-insight": 2
   },
   "confidence_distribution": {
     "0.0-0.3": 0,
     "0.3-0.5": 0,
     "0.5-0.7": 0,
-    "0.7-0.9": 32,
-    "0.9-1.0": 156
+    "0.7-0.9": 42,
+    "0.9-1.0": 203
   },
   "top_connected": [
     {
@@ -111,173 +111,173 @@
       "edge_count": 25
     },
     {
+      "label": "Claude-Mem",
+      "type": "entity",
+      "edge_count": 24
+    },
+    {
+      "label": "Pi-Agent",
+      "type": "entity",
+      "edge_count": 24
+    },
+    {
       "label": "正规矩阵",
       "type": "concept",
       "edge_count": 23
-    },
-    {
-      "label": "高斯求积公式",
-      "type": "concept",
-      "edge_count": 23
-    },
-    {
-      "label": "QR算法",
-      "type": "concept",
-      "edge_count": 22
     }
   ],
   "top_betweenness": [
     {
-      "id": "wiki/concepts/数值分析.md",
-      "label": "数值分析",
-      "betweenness": 0.0806
-    },
-    {
       "id": "wiki/concepts/矩阵理论.md",
       "label": "矩阵理论",
-      "betweenness": 0.08
+      "betweenness": 0.0628
     },
     {
-      "id": "wiki/concepts/概率论.md",
-      "label": "概率论",
-      "betweenness": 0.0784
+      "id": "wiki/concepts/数值分析.md",
+      "label": "数值分析",
+      "betweenness": 0.053
     },
     {
       "id": "wiki/concepts/大数定律.md",
       "label": "大数定律",
-      "betweenness": 0.0757
+      "betweenness": 0.0498
     },
     {
-      "id": "wiki/entities/帕夫努季·利沃维奇·切比雪夫.md",
-      "label": "帕夫努季·利沃维奇·切比雪夫",
-      "betweenness": 0.0695
+      "id": "wiki/concepts/概率论.md",
+      "label": "概率论",
+      "betweenness": 0.0492
     },
     {
       "id": "wiki/concepts/谱半径.md",
       "label": "谱半径",
-      "betweenness": 0.0683
-    },
-    {
-      "id": "wiki/concepts/马尔可夫链.md",
-      "label": "马尔可夫链",
-      "betweenness": 0.0664
+      "betweenness": 0.0425
     },
     {
       "id": "wiki/concepts/Perron-Frobenius定理.md",
       "label": "Perron-Frobenius定理",
-      "betweenness": 0.06
+      "betweenness": 0.0425
+    },
+    {
+      "id": "wiki/concepts/马尔可夫链.md",
+      "label": "马尔可夫链",
+      "betweenness": 0.0423
+    },
+    {
+      "id": "wiki/entities/帕夫努季·利沃维奇·切比雪夫.md",
+      "label": "帕夫努季·利沃维奇·切比雪夫",
+      "betweenness": 0.0407
+    },
+    {
+      "id": "wiki/concepts/矩阵.md",
+      "label": "矩阵",
+      "betweenness": 0.0365
+    },
+    {
+      "id": "wiki/concepts/齐次变换矩阵.md",
+      "label": "齐次变换矩阵",
+      "betweenness": 0.0319
     },
     {
       "id": "wiki/concepts/高斯求积公式.md",
       "label": "高斯求积公式",
-      "betweenness": 0.0397
+      "betweenness": 0.0241
     },
     {
       "id": "wiki/concepts/共轭梯度法.md",
       "label": "共轭梯度法",
-      "betweenness": 0.0307
+      "betweenness": 0.0189
     },
     {
       "id": "wiki/concepts/快速傅里叶变换.md",
       "label": "快速傅里叶变换",
-      "betweenness": 0.0293
+      "betweenness": 0.0185
     },
     {
-      "id": "wiki/concepts/中心极限定理.md",
-      "label": "中心极限定理",
-      "betweenness": 0.0253
+      "id": "wiki/concepts/线性代数.md",
+      "label": "线性代数",
+      "betweenness": 0.0162
     },
     {
-      "id": "wiki/concepts/后向误差分析.md",
-      "label": "后向误差分析",
-      "betweenness": 0.024
-    },
-    {
-      "id": "wiki/concepts/QR算法.md",
-      "label": "QR算法",
-      "betweenness": 0.0227
-    },
-    {
-      "id": "wiki/concepts/有限元方法.md",
-      "label": "有限元方法",
-      "betweenness": 0.0214
+      "id": "wiki/concepts/Schur分解.md",
+      "label": "Schur分解",
+      "betweenness": 0.015
     }
   ],
   "top_pagerank": [
     {
       "id": "wiki/concepts/索洛增长模型.md",
       "label": "索洛增长模型",
-      "pagerank": 0.017
+      "pagerank": 0.0131
     },
     {
       "id": "wiki/concepts/概率论.md",
       "label": "概率论",
-      "pagerank": 0.0166
+      "pagerank": 0.0128
     },
     {
       "id": "wiki/concepts/矩阵理论.md",
       "label": "矩阵理论",
-      "pagerank": 0.0156
+      "pagerank": 0.0121
+    },
+    {
+      "id": "wiki/concepts/运动规划.md",
+      "label": "运动规划",
+      "pagerank": 0.0104
     },
     {
       "id": "wiki/concepts/数值分析.md",
       "label": "数值分析",
-      "pagerank": 0.0133
+      "pagerank": 0.0102
     },
     {
       "id": "wiki/entities/Claude-Mem.md",
       "label": "Claude-Mem",
-      "pagerank": 0.013
+      "pagerank": 0.0099
     },
     {
       "id": "wiki/entities/就业、利息和货币通论.md",
       "label": "就业、利息和货币通论",
-      "pagerank": 0.0123
+      "pagerank": 0.0095
     },
     {
       "id": "wiki/concepts/大数定律.md",
       "label": "大数定律",
-      "pagerank": 0.0115
+      "pagerank": 0.0088
+    },
+    {
+      "id": "wiki/entities/Claude-Code.md",
+      "label": "Claude-Code",
+      "pagerank": 0.0085
     },
     {
       "id": "wiki/concepts/奇异值分解.md",
       "label": "奇异值分解",
-      "pagerank": 0.0105
+      "pagerank": 0.0081
     },
     {
       "id": "wiki/concepts/高斯求积公式.md",
       "label": "高斯求积公式",
-      "pagerank": 0.0102
+      "pagerank": 0.0078
     },
     {
       "id": "wiki/concepts/谱半径.md",
       "label": "谱半径",
-      "pagerank": 0.0102
+      "pagerank": 0.0078
     },
     {
       "id": "wiki/entities/DeepAgents.md",
       "label": "DeepAgents",
-      "pagerank": 0.0099
-    },
-    {
-      "id": "wiki/syntheses/Claude-Code上下文工程全景.md",
-      "label": "Claude-Code上下文工程全景",
-      "pagerank": 0.0098
+      "pagerank": 0.0074
     },
     {
       "id": "wiki/concepts/点数问题.md",
       "label": "点数问题",
-      "pagerank": 0.0096
+      "pagerank": 0.0073
     },
     {
-      "id": "wiki/concepts/期望值.md",
-      "label": "期望值",
-      "pagerank": 0.009
-    },
-    {
-      "id": "wiki/concepts/Schur分解.md",
-      "label": "Schur分解",
-      "pagerank": 0.0089
+      "id": "wiki/concepts/Context-Engineering.md",
+      "label": "Context-Engineering",
+      "pagerank": 0.007
     }
   ],
   "top_clustering": [
@@ -302,13 +302,13 @@
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/Denavit-Hartenberg 参数.md",
-      "label": "Denavit-Hartenberg 参数",
+      "id": "wiki/concepts/FTS5.md",
+      "label": "FTS5",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/FTS5.md",
-      "label": "FTS5",
+      "id": "wiki/concepts/Kinodynamic Planning.md",
+      "label": "Kinodynamic Planning",
       "clustering": 1.0
     },
     {
@@ -317,33 +317,33 @@
       "clustering": 1.0
     },
     {
+      "id": "wiki/concepts/RRT-Connect.md",
+      "label": "RRT-Connect",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/Voronoi 偏置.md",
+      "label": "Voronoi 偏置",
+      "clustering": 1.0
+    },
+    {
       "id": "wiki/concepts/Wiener积分.md",
       "label": "Wiener积分",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/分层记忆架构.md",
-      "label": "分层记忆架构",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/勒贝格常数.md",
-      "label": "勒贝格常数",
       "clustering": 1.0
     }
   ],
   "degree_distribution": {
-    "1": 14,
-    "2": 12,
-    "3": 40,
-    "4": 28,
-    "5": 16,
-    "6": 14,
-    "7": 16,
-    "8": 9,
-    "9": 9,
+    "1": 16,
+    "2": 24,
+    "3": 47,
+    "4": 44,
+    "5": 25,
+    "6": 18,
+    "7": 12,
+    "8": 16,
+    "9": 11,
     "10": 6,
-    "11": 6,
+    "11": 8,
     "12": 4,
     "13": 4,
     "14": 3,
@@ -354,94 +354,110 @@
     "25": 1
   },
   "center_nodes": [
+    "Jacobi迭代法",
     "Perron-Frobenius定理",
-    "不可约矩阵",
-    "谱半径",
-    "帕夫努季·利沃维奇·切比雪夫",
-    "马尔可夫"
+    "QR算法",
+    "Rayleigh商",
+    "Schur分解"
   ],
   "tag_frequency": {
-    "研究": 156,
-    "技术": 120,
-    "数学": 72,
-    "数值分析": 59,
+    "研究": 164,
+    "技术": 126,
+    "数学": 73,
+    "数值分析": 61,
+    "AI": 57,
     "历史": 53,
-    "概率论": 42,
-    "方法论": 40,
+    "方法论": 49,
+    "概率论": 43,
     "矩阵理论": 33,
     "宏观经济学": 26,
-    "AI": 18,
-    "工具": 14,
-    "Agent": 7,
+    "工具": 21,
+    "Agent": 11,
+    "机器人学": 10,
+    "UI": 8,
+    "设计": 7,
+    "架构": 7,
+    "LLM": 5,
     "组合数学": 5,
-    "机器人学": 4,
+    "设计模式": 4,
+    "设计系统": 4,
     "统计学": 4,
     "LangChain": 3,
-    "架构": 3,
-    "LLM": 3,
     "评估": 3,
     "数据库": 3,
+    "方法论，研究": 3,
+    "控制理论": 3,
+    "算法": 3,
     "线性代数": 3,
     "数值方法": 3,
-    "协议": 2,
-    "测试": 2,
-    "机器学习": 2,
-    "网络": 1,
-    "设计模式": 1,
-    "中间件": 1,
-    "沙箱": 1,
-    "LangSmith": 1
+    "计算几何": 3
   },
   "growth_timeline": {
-    "2026-04-15": 188
+    "2026-04-15": 245
   },
   "relationship_types": {
-    "wikilink": 535,
-    "related_to": 125,
-    "caused": 121,
-    "extends": 112,
-    "implements": 80,
-    "uses": 59,
-    "depends_on": 51,
-    "part_of": 42,
-    "contradicts": 11,
+    "wikilink": 656,
+    "caused": 157,
+    "related_to": 142,
+    "extends": 130,
+    "implements": 125,
+    "uses": 77,
+    "depends_on": 59,
+    "part_of": 48,
+    "contradicts": 18,
     "synthesizes": 11,
+    "implemented_by": 5,
     "influenced": 5,
     "caused_by": 3,
     "originated_from": 3,
     "used_by": 2,
     "causes": 2,
-    "implemented_by": 1,
     "collaborated_with": 1
   },
   "orphans": [],
   "components": [
     {
       "id": 0,
-      "size": 134
+      "size": 143
     },
     {
       "id": 1,
-      "size": 24
+      "size": 41
     },
     {
       "id": 2,
-      "size": 12
+      "size": 13
     },
     {
       "id": 3,
-      "size": 8
+      "size": 12
     },
     {
       "id": 4,
-      "size": 4
+      "size": 8
     },
     {
       "id": 5,
-      "size": 4
+      "size": 6
     },
     {
       "id": 6,
+      "size": 6
+    },
+    {
+      "id": 7,
+      "size": 5
+    },
+    {
+      "id": 8,
+      "size": 5
+    },
+    {
+      "id": 9,
+      "size": 4
+    },
+    {
+      "id": 10,
       "size": 2
     }
   ]

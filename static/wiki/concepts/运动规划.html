@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动规划 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 运动规划</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">AI</span><span class="tag">计算几何</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">运动规划</h1>
+<h2 id="_2">概述</h2>
+<p><strong>运动规划（Motion Planning）</strong>，又称路径规划（Path Planning），是机器人学和人工智能领域的核心问题之一。其基本任务是：给定一个机器人（或可移动物体）、一个包含障碍物的工作环境、一个起始状态和一个目标状态，自动计算出一条从起始状态到目标状态的连续、无碰撞的运动轨迹。该问题在早期被称为“钢琴搬运工问题”（Piano Movers' Problem），因其几何复杂性而闻名。自 1983 年 Tomas Lozano-Perez 提出<strong>构型空间（C-space）</strong>方法以来，运动规划已从特定的几何启发式算法发展为拥有严格数学理论基础（包括拓扑学、计算几何和代数几何）的独立学科，广泛应用于工业自动化、自动驾驶、计算机动画及生物信息学等领域。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">问题定义与复杂性</h3>
+<p>运动规划的输入通常包括：
+1.  <strong>机器人几何模型</strong>：描述机器人的形状、尺寸及运动学结构（如连杆长度、关节类型）。
+2.  <strong>环境模型</strong>：描述工作空间中静态或动态障碍物的几何形状及位置。
+3.  <strong>约束条件</strong>：包括几何碰撞约束、运动学约束（如关节限位）和动力学约束（如速度、加速度限制）。
+4.  <strong>起止构型</strong>：起始点 $q_{start}$ 和目标点 $q_{goal}$。</p>
+<p>输出是一条参数化路径 $\tau(t)$，满足 $\tau(0)=q_{start}$，$\tau(1)=q_{goal}$，且对于所有 $t$，$\tau(t)$ 均处于无碰撞状态并满足所有约束。</p>
+<p>该问题的计算复杂度极高。Schwartz 和 Sharir 在 1980 年代证明，一般的运动规划问题是 <strong>PSPACE-hard</strong> 的。这意味着随着机器人自由度的增加，求解时间可能呈指数级增长。这种复杂性主要源于高维空间中自由空间（C-free）的拓扑结构极其复杂，可能包含狭窄通道、多个连通分量等难以探测的特征。</p>
+<h3 id="_5">主要方法论流派</h3>
+<p>运动规划算法的发展大致经历了以下几个阶段：</p>
+<ol>
+<li>
+<p><strong>精确方法（Exact Methods）</strong>：
+    旨在构建自由空间的精确几何表示。代表方法包括<strong>单元分解法（Cell Decomposition）</strong>和<strong>可见性图（Visibility Graph）</strong>。Lozano-Perez 早期的工作属于此类，利用 C-space 和 Minkowski 和精确计算障碍物边界。这类方法具有完备性（若路径存在必能找到），但受限于“维数灾难”，仅适用于低自由度（2D 或 3D）系统。</p>
+</li>
+<li>
+<p><strong>势场法（Potential Field Methods）</strong>：
+    由 Khatib (1986) 提出，将目标视为引力源，障碍物视为斥力源，机器人沿合力方向运动。该方法计算效率高，适合实时控制，但容易陷入局部极小值（Local Minima），导致无法找到路径，因此不具备完备性。</p>
+</li>
+<li>
+<p><strong>采样方法（Sampling-based Methods）</strong>：
+    为了解决高维空间的复杂性，1990 年代中期诞生了基于采样的算法，彻底改变了该领域。</p>
+<ul>
+<li><strong>概率路线图（PRM, Probabilistic Roadmap）</strong>：通过在 C-space 中随机采样无碰撞点并连接它们构建路网，适合多查询场景。</li>
+<li><strong>快速探索随机树（RRT, Rapidly-exploring Random Tree）</strong>：增量式地生长搜索树，偏向未探索区域，适合单次查询和高维空间。
+这些方法具有<strong>概率完备性</strong>（Probabilistic Completeness），即只要路径存在，随着采样数趋于无穷，找到路径的概率趋于 1。</li>
+</ul>
+</li>
+<li>
+<p><strong>基于优化的方法（Optimization-based Methods）</strong>：
+    近年来，将路径规划表述为非线性优化问题（如 CHOMP, STOMP, TrajOpt），直接在轨迹空间中进行梯度下降，以生成平滑且满足动力学约束的轨迹，常与采样方法结合使用。</p>
+</li>
+</ol>
+<h3 id="_6">应用领域</h3>
+<ul>
+<li><strong>工业机器人</strong>：自动焊接、装配、搬运，使机器人能适应环境变化而无需人工示教。</li>
+<li><strong>自动驾驶</strong>：车辆在复杂交通环境中的车道保持、变道和避障规划。</li>
+<li><strong>医疗机器人</strong>：手术器械在人体内部狭窄空间中的安全路径规划。</li>
+<li><strong>计算机动画</strong>：虚拟角色在复杂场景中的自然运动生成。</li>
+<li><strong>计算生物学</strong>：模拟蛋白质折叠过程，将其视为高维构象空间中的运动规划问题。</li>
+</ul>
+<h3 id="_7">挑战与未来方向</h3>
+<p>尽管取得了巨大进展，运动规划仍面临诸多挑战：处理动态不确定环境、考虑复杂的非完整约束（Nonholonomic Constraints）、多机器人协同规划中的冲突避免、以及在保证安全性的前提下实现实时规划。当前的研究热点还包括利用深度学习来学习 C-space 的结构或加速碰撞检测，以及开发具有渐近最优性（Asymptotic Optimality，如 RRT*）的算法以确保路径质量。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="构型空间方法.html">构型空间方法</a></li>
+<li><a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a></li>
+<li><span style="color:#e74c3c" title="broken link">维数灾难</span></li>
+<li><span style="color:#e74c3c" title="broken link">概率路线图方法</span></li>
+<li><span style="color:#e74c3c" title="broken link">快速探索随机树</span></li>
+<li><span style="color:#e74c3c" title="broken link">计算几何</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="边际消费倾向.html">&larr; 边际消费倾向</a>
+    <a href="递推方法.html">递推方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

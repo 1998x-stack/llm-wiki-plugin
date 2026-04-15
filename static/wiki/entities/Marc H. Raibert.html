@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marc H. Raibert — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Marc H. Raibert</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="marc-h-raibert">Marc H. Raibert</h1>
+<h2 id="_1">概述</h2>
+<p>Marc H. Raibert 是美国著名的计算机科学家和机器人学家，被誉为现代动态腿式机器人之父。他于 1977 年在麻省理工学院（MIT）获得博士学位，随后在卡内基梅隆大学（CMU）任教并创建了 Leg Laboratory（腿实验室）。1986 年，他将实验室迁回 MIT 并出版了开创性专著《Legged Robots That Balance》。Raibert 最核心的贡献是提出了动态平衡控制框架，证明了机器人可以通过主动控制实现类似动物的奔跑和跳跃。1992 年，他创办了 Boston Dynamics 公司，将学术理论转化为 BigDog、Atlas 和 Spot 等震惊世界的机器人产品。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="leg-laboratory">学术生涯与 Leg Laboratory</h3>
+<p>Raibert 的学术生涯始于对动态系统的深刻洞察。在 CMU 期间，他拒绝了当时主流的静态步行研究范式，转而探索如何让机器人在非稳定状态下运动。他创建的 Leg Laboratory 成为了全球动态腿式运动研究的中心。他的研究哲学强调"构建即理解"（understanding through building），坚持通过构建物理原型来验证理论，这一方法深刻影响了后来的机器人学研究文化。</p>
+<h3 id="_3">三分解控制框架的提出</h3>
+<p>Raibert 最伟大的科学成就是提出了"三分解控制框架"（Three-Part Decomposition）。他发现复杂的动态腿式运动可以优雅地分解为三个相对独立的子问题：弹跳高度控制（通过能量注入）、前进速度控制（通过落脚点规划）和身体姿态控制（通过髋关节力矩）。这一发现不仅解决了高维非线性系统的控制难题，还揭示了不同腿数动物运动背后的统一原理。</p>
+<h3 id="_4">从单腿到多腿的扩展</h3>
+<p>Raibert 展示了其控制框架惊人的可扩展性。他从最简单的单腿弹跳机器人入手，成功将控制逻辑推广到双足跑步机器人和四足多步态机器人。通过引入"虚拟腿"（virtual leg）的概念，他证明了四足动物的 trot（小跑）、pace（同侧步）和 bound（跳跃）等步态本质上都是单腿控制策略的时序编排。这一成果打破了以往每种腿数需要独立设计控制器的局限。</p>
+<h3 id="boston-dynamics">创办 Boston Dynamics</h3>
+<p>1992 年，Raibert 离开学术界创办了 Boston Dynamics，将动态平衡理论工程化。在他的领导下，公司开发了 BigDog（2005），这是第一台能在崎岖地形自主运行的液压驱动四足机器人；Atlas（2013），具备后空翻和跑酷能力的人形机器人；以及 Spot（2019），首款商业化的四足机器人。这些产品不仅验证了 Raibert 三十年前提出的理论，更推动了整个机器人行业的进步。</p>
+<h3 id="_5">荣誉与影响</h3>
+<p>Raibert 的工作完成了腿式机器人从"静态稳定"到"动态稳定"的范式转移。他的专著《Legged Robots That Balance》被引用数千次，成为该领域被引频率最高的文献之一。他与生物力学领域的交叉研究（如与 Robert Full 和 Reinhard Blickhan 的合作）进一步验证了弹簧 - 质量模型在描述动物运动时的普适性。Raibert 的研究方法论和控制思想至今仍是理解动态腿式运动的基石。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/09-raibert-legged-robots-balance.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/Legged Robots That Balance.html">Legged Robots That Balance</a></li>
+<li><a href="Boston Dynamics.html">Boston Dynamics</a></li>
+<li><a href="../concepts/动态平衡.html">动态平衡</a></li>
+<li><a href="../concepts/弹簧 - 质量模型.html">弹簧 - 质量模型</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="MONIAC.html">&larr; MONIAC</a>
+    <a href="Mario-Zechner.html">Mario-Zechner &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heinrich A. Ernst — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Heinrich A. Ernst</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，人物</span></div>
+</div>
+  <div class="content">
+    <h1 id="heinrich-a-ernst">Heinrich A. Ernst</h1>
+<h2 id="_1">概述</h2>
+<p>Heinrich A. Ernst 是一位在机器人学和人工智能领域具有开创性贡献的研究者，以其 1962 年在麻省理工学院（MIT）完成的博士论文《MH-1, A Computer-Operated Mechanical Hand》而闻名。作为信息论之父 Claude E. Shannon 的学生，Ernst 成功地将香农的信息论思想应用于物理操作领域，设计并构建了历史上第一个具备触觉反馈的计算机控制机械手 MH-1。他的工作不仅解决了当时计算机与物理世界交互的关键技术难题，更确立了“感知 - 行动”闭环控制在机器人操作中的核心地位，被誉为机器人学从“盲目自动化”向“智能适应”转型的先驱人物。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">学术背景与师承关系</h3>
+<p>Heinrich A. Ernst 的学术生涯深受其导师 Claude E. Shannon 的影响。Shannon 在 1948 年提出的信息论为信息的量化、编码和传输建立了严格的数学框架。Ernst 敏锐地洞察到，这一抽象理论同样可以应用于物理世界的信号处理：如果声音和图像可以被数字化，那么来自物理接触的触觉信号（压力和力分布）同样可以被量化并用于计算决策。在 MIT 人工智能实验室（由 Marvin Minsky 和 John McCarthy 创立）浓厚的“具身智能”氛围中，Ernst 致力于探索如何让数字计算机“感受”并操控物理世界，这一愿景直接催生了 MH-1 项目。他的工作被视为 Shannon 信息论从通信领域向具身实践领域的一次大胆延伸。</p>
+<h3 id="mh-1">MH-1 项目的核心贡献</h3>
+<p>Ernst 在 MH-1 项目中展现了卓越的系统集成能力和概念创新能力。面对 1960 年代初缺乏现成传感器和控制理论的困境，他从头设计了触觉传感元件，开发了基于 TX-0 计算机的控制软件，并构建了液压驱动的机械手本体。他提出的核心思想是：机器人的行为不应是预定义的固定序列，而应是对环境状态的动态响应。为此，他设计了基于传感器反馈的状态转换机制，将抓取任务分解为接近、接触、抓取、提升四个阶段，并通过实时读取触觉数据来调整执行策略。这一方法成功证明了机器可以通过感知来适应未知环境，如自动补偿物体位置偏差和调节抓取力度。</p>
+<h3 id="_4">对机器人学范式的重塑</h3>
+<p>Ernst 的工作在机器人学发展史上具有分水岭意义。在他之前，以 Unimate 为代表的工业机器人遵循的是“精确重复”范式，依赖高精度的机械结构和预编程轨迹，对环境变化毫无适应能力。Ernst 通过 MH-1 提出了“智能适应”范式，强调传感器在控制回路中的核心作用。这种范式转变影响了随后几十年的研究方向，直接启发了 MIT AI Lab 后续的手眼协调研究（Hand-Eye Coordination），并为 1980 年代 Rodney Brooks 提出的行为机器人学（Behavior-Based Robotics）提供了早期的概念原型。Ernst 证明了感知与行动的紧密耦合是实现智能操作的关键，这一理念至今仍是机器人学的核心原则。</p>
+<h3 id="_5">遗产与影响</h3>
+<p>尽管受限于当时的硬件条件，MH-1 未能立即投入实际应用，但 Ernst 的理论和方法论为后世留下了宝贵财富。他关于任务分解、闭环控制和传感器融合的思想，在现代机器人操作系统（ROS）、灵巧手控制以及基于学习的操作策略中依然清晰可见。随着 21 世纪触觉感知技术（如 GelSight）和深度强化学习的发展，Ernst 在 60 年前提出的问题——“机器如何通过触摸理解世界”——再次成为研究热点。Heinrich A. Ernst 因此被公认为触觉机器人学和智能操作领域的奠基人之一，其博士论文也被视为该领域的经典文献。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/03-ernst-mh1-hand-eye-coordination.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="MH-1 机械手.html">MH-1 机械手</a></li>
+<li><span style="color:#e74c3c" title="broken link">Claude E. Shannon</span></li>
+<li><a href="../concepts/手眼协调.html">手眼协调</a></li>
+<li><a href="Unimate.html">Unimate</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents.html">&larr; DeepAgents</a>
+    <a href="Jacques Denavit.html">Jacques Denavit &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

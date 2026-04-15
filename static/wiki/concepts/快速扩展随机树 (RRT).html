@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速扩展随机树 (RRT) — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 快速扩展随机树 (RRT)</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究，工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="rrt">快速扩展随机树 (RRT)</h1>
+<h2 id="_1">概述</h2>
+<p>快速扩展随机树（Rapidly-Exploring Random Trees, RRT）是一种用于高维空间路径规划的采样算法，由 Steven M. LaValle 于 1998 年提出。该算法通过构建一棵以起始点为根的树，利用随机采样引导树向未探索区域生长，从而高效地解决单查询运动规划问题。RRT 的核心优势在于其极致的简洁性、对非完整约束和动力学约束的天然适应性，以及增量式构建带来的实时响应能力。作为基于采样的运动规划两大支柱之一（另一为 PRM），RRT 已广泛应用于机器人学、自动驾驶及手术导航等领域。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心算法循环</h3>
+<p>RRT 算法维护一棵树 $T$，初始仅包含起始构型 $q_{init}$。算法反复执行以下循环直至找到目标或达到迭代上限：
+1.  <strong>随机采样</strong>：在构型空间中均匀随机生成一点 $q_{rand}$。
+2.  <strong>最近邻搜索</strong>：在树 $T$ 中寻找距离 $q_{rand}$ 最近的节点 $q_{near}$。
+3.  <strong>延伸</strong>：从 $q_{near}$ 向 $q_{rand}$ 方向延伸固定步长 $\epsilon$，得到新节点 $q_{new}$。
+4.  <strong>碰撞检测</strong>：检查边 $(q_{near}, q_{new})$ 是否无碰撞。若无碰撞，将 $q_{new}$ 加入树中；否则丢弃。
+5.  <strong>目标检查</strong>：若 $q_{new}$ 足够接近目标 $q_{goal}$，则回溯路径并终止。</p>
+<h3 id="voronoi">Voronoi 偏置机制</h3>
+<p>RRT 高效性的数学基础是<strong>Voronoi 偏置（Voronoi Bias）</strong>。当进行均匀随机采样时，树中每个节点被选为 $q_{near}$ 的概率正比于其 Voronoi 区域的体积。位于树边缘、周围大片空间尚未被探索的节点拥有更大的 Voronoi 区域，因此更大概率被选中进行扩展。这种机制使 RRT 无需显式启发式函数，即可自然地倾向于向未探索区域生长，避免了在已充分探索区域的冗余计算。</p>
+<h3 id="_4">处理非完整与动力学约束</h3>
+<p>与传统方法不同，RRT 的延伸步骤天然支持前向模拟：算法不需要解决困难的两点边值问题（即如何从状态 A 精确移动到状态 B），只需从当前状态 $x_{near}$ 选择一个随机控制输入 $u$，对动力学方程进行短时间积分得到新状态 $x_{new}$。只要模拟器是物理正确的，生成的每一步运动自动满足所有的运动和动力学约束。这种“构建即可行”的特性使得 RRT 成为该领域事实上的标准方法。</p>
+<h3 id="_5">局限性与改进</h3>
+<p>基本 RRT 存在路径质量差（锯齿状）和不保证最优性的缺陷。为解决这些问题，后续提出了 <strong><span style="color:#e74c3c" title="broken link">RRT*</span></strong> 算法，通过重新选择父节点和重布线（rewiring）实现了渐近最优性。此外，针对窄通道问题，研究者开发了多种自适应采样策略。尽管存在局限，RRT 及其变体因其模块化和易实现性，已成为 <strong><span style="color:#e74c3c" title="broken link">OMPL</span></strong> 等标准库的核心组件。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/11-lavalle-rapidly-exploring-random-trees.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">概率路线图方法</span></li>
+<li><a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a></li>
+<li><a href="RRT-Connect.html">RRT-Connect</a></li>
+<li><span style="color:#e74c3c" title="broken link">RRT*</span></li>
+<li><a href="运动规划.html">运动规划</a></li>
+<li><a href="Kinodynamic Planning.html">Kinodynamic Planning</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="快速傅里叶变换.html">&larr; 快速傅里叶变换</a>
+    <a href="惯性律.html">惯性律 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
