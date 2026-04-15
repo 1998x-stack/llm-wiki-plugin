@@ -32,7 +32,8 @@ Three-layer pattern:
 | `wiki:ingest-loop-qwen` | Batch ingest with Qwen API |
 | `wiki:query` | Answer questions with BM25 + graph search |
 | `wiki:lint` | Health check + auto-repair |
-| `wiki:graph` | Build knowledge graph JSON |
+| `wiki:graph` | Build knowledge graph + statistics + wiki HTML (`--full`) |
+| `wiki:reindex` | Validate index integrity + generate topic maps |
 | `wiki:consolidate` | Memory layer promotion + decay |
 | `wiki:crystallize` | Session → structured summary |
 | `wiki:journal` | Journal assistance |
@@ -44,7 +45,7 @@ Three-layer pattern:
 | Script | Purpose | Dependencies |
 |--------|---------|-------------|
 | `bm25_index.py` | BM25 search index (build/update/query) | jieba, rank_bm25 |
-| `qwen_ingest.py` | Qwen API wiki extraction | openai, pyyaml |
+| `qwen_ingest.py` | Qwen API wiki extraction (multi-page: `--raw` only; legacy: `--raw --wiki`) | openai, pyyaml |
 | `build_graph.py` | Knowledge graph JSON builder (`--full` also builds statistics + wiki HTML) | pyyaml |
 | `build_statistics.py` | Statistics JSON from graph + frontmatter | pyyaml |
 | `build_wiki_pages.py` | Wiki markdown → static HTML | pyyaml, markdown |
@@ -65,7 +66,7 @@ Hook logs: `vault/log.hook.md`
 
 ## Dependencies
 
-Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`
+Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`, `markdown`
 
 Install: `pip install -r requirements.txt`
 

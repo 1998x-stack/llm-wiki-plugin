@@ -40,6 +40,8 @@ graph LR
         D2[BM25 Index]
         D3[graph.json]
         D4[graph.html]
+        D5[statistics.html]
+        D6[wiki/*.html]
     end
 
     A1 --> B1
@@ -62,6 +64,9 @@ graph LR
     C1 --> D3
     C2 --> D3
     D3 --> D4
+    D3 --> D5
+    C1 --> D6
+    C2 --> D6
 ```
 
 ## Features
@@ -72,10 +77,13 @@ graph LR
 | **Qwen Batch Ingest** | 基于通义千问 API 的批量 ingest，无需 Claude 上下文 |
 | **Ralph-Loop** | 自动化循环 ingest，逐文件处理整个目录 |
 | **D3.js Knowledge Graph** | 交互式力导向图，支持 GitHub Pages 部署 |
+| **Statistics Dashboard** | Chart.js 统计看板：类型分布、置信度、标签频率、增长时间线 |
+| **Static Wiki Viewer** | Wiki 页面 HTML 化，支持搜索、导航、元数据卡片 |
 | **Hook System** | ingest 后自动触发 BM25 重建、图谱更新、lint 检查 |
+| **Index Integrity** | snapshot_index.py 验证 index.md 完整性，防止条目丢失 |
 | **4-Layer Memory** | Working → Episodic → Semantic → Procedural 知识生命周期 |
 | **QA Integration** | QA 对话数据批量导入，自动提取洞见并双向链接 |
-| **CI/CD** | GitHub Actions 自动部署 graph.html 到 GitHub Pages |
+| **CI/CD** | GitHub Actions 自动部署 graph + statistics + wiki 到 GitHub Pages |
 
 ## Quick Start
 
@@ -128,8 +136,9 @@ All commands are invoked via Claude Code's `/project:wiki/` prefix.
 | `review` | `/project:wiki/review <scope>` | 分形回顾（weekly/monthly/quarterly） |
 | `qa-import` | `/project:wiki/qa-import <path>` | QA 数据批量导入 |
 | `ingest-loop` | `bash scripts/setup-ingest-loop.sh <dir>` | Ralph-loop 自动逐文件 ingest |
-| `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest |
-| `graph` | `python3 scripts/build_graph.py` | 构建知识图谱 JSON + HTML |
+| `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest（多页面模式） |
+| `graph` | `python3 scripts/build_graph.py --full` | 构建知识图谱 + 统计 + wiki HTML |
+| `reindex` | `/project:wiki/reindex` | 验证 index 完整性 + 生成主题 maps |
 
 ## Vault Structure
 
@@ -164,6 +173,7 @@ vault/
 ├── qa/                      # QA 数据存放
 ├── index/BM25/              # BM25 搜索索引
 ├── templates/               # 5 套模板
+├── maps/                    # 主题分类索引
 ├── scripts/                 # Python & Shell 自动化脚本
 ├── index.md                 # 内容目录
 ├── log.md                   # 操作日志
@@ -172,17 +182,23 @@ vault/
 └── dashboard.md             # 仪表盘
 ```
 
-## Knowledge Graph
+## Static Site
 
-Interactive D3.js force-directed graph visualizing all wiki entities, concepts, and their relationships.
+Three interconnected pages deployed to GitHub Pages:
 
-**Live demo:** [https://1998x-stack.github.io/llm-wiki-plugin/graph.html](https://1998x-stack.github.io/llm-wiki-plugin/graph.html)
+| Page | Description |
+|------|-------------|
+| [**graph.html**](https://1998x-stack.github.io/llm-wiki-plugin/graph.html) | Interactive D3.js force-directed knowledge graph |
+| [**statistics.html**](https://1998x-stack.github.io/llm-wiki-plugin/statistics.html) | Chart.js dashboard (type distribution, confidence, tags, growth) |
+| [**wiki/index.html**](https://1998x-stack.github.io/llm-wiki-plugin/wiki/index.html) | Searchable wiki page viewer with metadata cards |
 
 Build locally:
 
 ```bash
-python3 scripts/build_graph.py --output vault/graph.json
-# Open the generated graph.html in your browser
+cd vault
+python3 scripts/build_graph.py --output ../static/graph.json --full
+# Serves graph.json, graph-statistics.json, and wiki/*.html
+python3 -m http.server 8080 --directory ../static
 ```
 
 ## Documentation

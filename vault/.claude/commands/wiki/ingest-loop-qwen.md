@@ -36,26 +36,22 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 vault/raw/）
    - 从状态文件读取 `files[current_index]`
    - 如果 `current_index >= total`，跳到步骤 8
 
-4. **确定目标路径**
-   - 读取源文件内容，判断应该归类为 entity 还是 concept：
-     - 如果主要描述一个人/公司/项目/工具/论文/书籍 → `wiki/entities/<标题>.md`
-     - 如果主要描述一个理论/方法/算法/定义 → `wiki/concepts/<标题>.md`
-   - 从文件名提取标题作为初始命名
-
-5. **调用 Qwen ingest**
+4. **调用 Qwen ingest（多页面模式）**
    ```
-   Bash: cd vault && python3 scripts/qwen_ingest.py --raw "<raw_path>" --wiki "<wiki_path>"
+   Bash: cd vault && python3 scripts/qwen_ingest.py --raw "<raw_path>"
    ```
+   注意：不传 `--wiki` 参数，使用多页面模式。
 
-6. **解析结果**
-   - 解析 stdout JSON 输出：
-     - `SUCCESS` → 记录成功，继续
-     - `ERROR` → 添加到 failed[]，记录错误信息，继续下一个文件
-     - `LINT_WARNING` → 添加到 completed[]，记录警告信息，继续
-   - 成功或有警告时，更新 BM25 索引：
-     ```
-     Bash: cd vault && python3 scripts/bm25_index.py update "<wiki_path>"
-     ```
+5. **解析 JSON 结果**
+   - 解析 stdout JSON：
+     - `status: "SUCCESS"` → `pages` 数组包含提取的页面列表
+     - `status: "ERROR"` → 添加到 failed[]，记录错误信息，继续下一个文件
+   - 对 `pages` 数组中的每个页面：
+     - 读取 `type`（entity/concept）和 `wiki_name`
+     - 确定路径：`wiki/entities/<wiki_name>.md` 或 `wiki/concepts/<wiki_name>.md`
+     - 将 `markdown` 字段内容写入目标文件
+     - 更新 BM25 索引：`python3 scripts/bm25_index.py update "<wiki_path>"`
+   - 记录：一个源文件可能产出多个 wiki 页面
 
 7. **更新状态**
    - 读取 `.claude/ingest-loop-qwen.local.md`

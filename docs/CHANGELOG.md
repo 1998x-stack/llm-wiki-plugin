@@ -1,5 +1,43 @@
 # Changelog
 
+## [v2.3] - 2026-04-15
+
+### Enhanced
+- `wiki:reindex` command: detailed step-by-step workflow with tag taxonomy, maps format spec, error handling
+- `qwen_ingest.py`: multi-page extraction — one raw file can produce multiple wiki pages via `---PAGE_BREAK---` delimiter
+  - New JSON output: `{"status": "SUCCESS", "pages": [{"type", "wiki_name", "markdown"}]}`
+  - Legacy `--wiki` mode preserved for backwards compatibility
+- `ingest-loop-qwen.md`: updated to use multi-page mode, auto-determines entity/concept paths from JSON
+- `CLAUDE.md`: updated scripts table with all V2.1-V2.3 additions
+- `README.md`: added static site features (statistics dashboard, wiki viewer), updated commands table
+
+## [v2.2] - 2026-04-15
+
+### Fixed
+- Created missing hook scripts (`hook_lint.sh`, `hook_bm25.sh`, `hook_graph.sh`) — were referenced but never created
+- Recovered `index.md` from hub-rewrite, now contains all 121 page entries
+- Fixed View Page button in graph.html — removed duplicate `wiki/` prefix in URL
+- Replaced `build_reindex.py` with `snapshot_index.py` — validates index integrity without overwriting
+
+### Enhanced
+- `build_graph.py`: added `--full` flag to also build statistics JSON + wiki HTML pages
+- `deploy.yml`: simplified from 4 build steps to single `build_graph.py --full`
+- `wiki:graph` command: updated to use `--full` flag
+
+## [v2.1] - 2026-04-15
+
+### Added
+- `build_wiki_pages.py`: converts wiki/*.md to static HTML with topbar nav, metadata cards, wikilinks
+- `statistics.html`: Chart.js dashboard with type/confidence/tag/growth/relationship charts
+- `build_statistics.py`: generates `graph-statistics.json` from graph + frontmatter
+- `build_reindex.py`: topic-clustered index maps in `vault/maps/`
+- `wiki:reindex` command: topic-clustered indexing
+- Graph.html: topbar navigation (Graph | Statistics | Wiki) + "View Page" button in sidebar
+- `deploy.yml`: added wiki pages, statistics, reindex build steps
+
+### Content
+- Batch ingest: 50+ new wiki pages from 数值分析 and 概率论 chapters
+
 ## [v2.0] - 2026-04-15
 
 ### Added — Scripts Foundation
