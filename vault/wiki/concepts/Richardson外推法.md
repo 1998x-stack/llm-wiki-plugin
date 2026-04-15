@@ -6,28 +6,35 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Richardson Extrapolation", "延迟趋近极限法", "Deferred Approach to the Limit", "Richardson误差消除"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Richardson Extrapolation
+- 延迟趋近极限法
+- Deferred Approach to the Limit
+- Richardson误差消除
 relates_to:
-  - target: "[[刘易斯·弗赖·理查森]]"
-    type: caused
-    confidence: 0.95
-  - target: "[[Romberg积分]]"
-    type: extends
-    confidence: 0.9
-    note: Romberg积分是Richardson外推法在梯形法则上的递归应用，1955年Romberg正式提出
-  - target: "[[高斯求积公式]]"
-    type: related_to
-    confidence: 0.7
-    note: 两者都是提升数值积分精度的方法，路线不同：Gauss先验优化节点，Richardson后验外推修正
-  - target: "[[欧拉方法]]"
-    type: related_to
-    confidence: 0.65
-    note: 欧拉-麦克劳林求和公式给出梯形法则的渐近误差展开，是Richardson外推应用于积分的数学基础
-  - target: "[[Jacobi迭代法]]"
-    type: related_to
-    confidence: 0.6
-    note: 理查森1911年论文中同时发展了迭代法求解大型线性方程组，与Jacobi迭代思想相通
+- target: '[[刘易斯·弗赖·理查森]]'
+  type: caused
+  confidence: 0.95
+- target: '[[Romberg积分]]'
+  type: extends
+  confidence: 0.9
+  note: Romberg积分是Richardson外推法在梯形法则上的递归应用，1955年Romberg正式提出
+- target: '[[高斯求积公式]]'
+  type: related_to
+  confidence: 0.7
+  note: 两者都是提升数值积分精度的方法，路线不同：Gauss先验优化节点，Richardson后验外推修正
+- target: '[[欧拉方法]]'
+  type: related_to
+  confidence: 0.65
+  note: 欧拉-麦克劳林求和公式给出梯形法则的渐近误差展开，是Richardson外推应用于积分的数学基础
+- target: '[[Jacobi迭代法]]'
+  type: related_to
+  confidence: 0.6
+  note: 理查森1911年论文中同时发展了迭代法求解大型线性方程组，与Jacobi迭代思想相通
 supersedes: null
 ---
 

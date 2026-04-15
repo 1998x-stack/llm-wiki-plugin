@@ -6,27 +6,34 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Hoffman-Wielandt theorem", "HW不等式", "Hoffman-Wielandt inequality", "正规矩阵特征值扰动"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Hoffman-Wielandt theorem
+- HW不等式
+- Hoffman-Wielandt inequality
+- 正规矩阵特征值扰动
 relates_to:
-  - target: "[[赫尔穆特·维兰特]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[矩阵扰动理论]]"
-    type: part_of
-    confidence: 0.95
-  - target: "[[Weyl特征值不等式]]"
-    type: extends
-    confidence: 0.9
-  - target: "[[正规矩阵]]"
-    type: depends_on
-    confidence: 0.9
-  - target: "[[Von Neumann迹不等式]]"
-    type: uses
-    confidence: 0.85
-  - target: "[[奇异值分解]]"
-    type: uses
-    confidence: 0.75
+- target: '[[赫尔穆特·维兰特]]'
+  type: implements
+  confidence: 0.95
+- target: '[[矩阵扰动理论]]'
+  type: part_of
+  confidence: 0.95
+- target: '[[Weyl特征值不等式]]'
+  type: extends
+  confidence: 0.9
+- target: '[[正规矩阵]]'
+  type: depends_on
+  confidence: 0.9
+- target: '[[Von Neumann迹不等式]]'
+  type: uses
+  confidence: 0.85
+- target: '[[奇异值分解]]'
+  type: uses
+  confidence: 0.75
 supersedes: null
 ---
 

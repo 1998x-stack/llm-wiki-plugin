@@ -6,27 +6,35 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Weyl inequality", "Weyl不等式", "Weyl加法不等式", "特征值扰动界", "Weyl eigenvalue inequalities"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Weyl inequality
+- Weyl不等式
+- Weyl加法不等式
+- 特征值扰动界
+- Weyl eigenvalue inequalities
 relates_to:
-  - target: "[[赫尔曼·外尔]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[极大极小定理]]"
-    type: depends_on
-    confidence: 0.95
-  - target: "[[矩阵扰动理论]]"
-    type: caused
-    confidence: 0.9
-  - target: "[[正规矩阵]]"
-    type: depends_on
-    confidence: 0.85
-  - target: "[[Schur分解]]"
-    type: uses
-    confidence: 0.7
-  - target: "[[谱半径]]"
-    type: uses
-    confidence: 0.7
+- target: '[[赫尔曼·外尔]]'
+  type: implements
+  confidence: 0.95
+- target: '[[极大极小定理]]'
+  type: depends_on
+  confidence: 0.95
+- target: '[[矩阵扰动理论]]'
+  type: caused
+  confidence: 0.9
+- target: '[[正规矩阵]]'
+  type: depends_on
+  confidence: 0.85
+- target: '[[Schur分解]]'
+  type: uses
+  confidence: 0.7
+- target: '[[谱半径]]'
+  type: uses
+  confidence: 0.7
 supersedes: null
 ---
 

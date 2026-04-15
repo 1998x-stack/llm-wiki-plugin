@@ -6,21 +6,28 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Kato-Rellich theorem", "Kato定理", "相对有界扰动", "量子Hamilton算子自伴性"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Kato-Rellich theorem
+- Kato定理
+- 相对有界扰动
+- 量子Hamilton算子自伴性
 relates_to:
-  - target: "[[加藤敏夫]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[矩阵扰动理论]]"
-    type: extends
-    confidence: 0.9
-  - target: "[[Weyl特征值不等式]]"
-    type: extends
-    confidence: 0.75
-  - target: "[[正规矩阵]]"
-    type: uses
-    confidence: 0.7
+- target: '[[加藤敏夫]]'
+  type: implements
+  confidence: 0.95
+- target: '[[矩阵扰动理论]]'
+  type: extends
+  confidence: 0.9
+- target: '[[Weyl特征值不等式]]'
+  type: extends
+  confidence: 0.75
+- target: '[[正规矩阵]]'
+  type: uses
+  confidence: 0.7
 supersedes: null
 ---
 

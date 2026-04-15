@@ -6,27 +6,35 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Schur Decomposition", "Schur分解定理", "酉三角化", "Schur标准形", "Schur形式"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Schur Decomposition
+- Schur分解定理
+- 酉三角化
+- Schur标准形
+- Schur形式
 relates_to:
-  - target: "[[伊赛·舒尔]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[矩阵理论]]"
-    type: part_of
-    confidence: 0.9
-  - target: "[[正规矩阵]]"
-    type: depends_on
-    confidence: 0.9
-  - target: "[[QR算法]]"
-    type: caused
-    confidence: 0.9
-  - target: "[[谱半径]]"
-    type: uses
-    confidence: 0.75
-  - target: "[[极大极小定理]]"
-    type: uses
-    confidence: 0.6
+- target: '[[伊赛·舒尔]]'
+  type: implements
+  confidence: 0.95
+- target: '[[矩阵理论]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[正规矩阵]]'
+  type: depends_on
+  confidence: 0.9
+- target: '[[QR算法]]'
+  type: caused
+  confidence: 0.9
+- target: '[[谱半径]]'
+  type: uses
+  confidence: 0.75
+- target: '[[极大极小定理]]'
+  type: uses
+  confidence: 0.6
 supersedes: null
 ---
 

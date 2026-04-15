@@ -6,21 +6,27 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Rayleigh Quotient", "瑞利商", "Rayleigh-Ritz商"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Rayleigh Quotient
+- 瑞利商
+- Rayleigh-Ritz商
 relates_to:
-  - target: "[[极大极小定理]]"
-    type: used_by
-    confidence: 0.95
-  - target: "[[矩阵理论]]"
-    type: part_of
-    confidence: 0.9
-  - target: "[[瑞利勋爵]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[恩斯特·菲舍尔]]"
-    type: used_by
-    confidence: 0.9
+- target: '[[极大极小定理]]'
+  type: used_by
+  confidence: 0.95
+- target: '[[矩阵理论]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[瑞利勋爵]]'
+  type: implements
+  confidence: 0.95
+- target: '[[恩斯特·菲舍尔]]'
+  type: used_by
+  confidence: 0.9
 supersedes: null
 ---
 

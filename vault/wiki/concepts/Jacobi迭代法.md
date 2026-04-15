@@ -6,28 +6,34 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Jacobi Iterative Method", "同时位移法", "method of simultaneous displacements"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Jacobi Iterative Method
+- 同时位移法
+- method of simultaneous displacements
 relates_to:
-  - target: "[[卡尔·古斯塔夫·雅各布·雅可比]]"
-    type: caused
-    confidence: 0.95
-  - target: "[[谱半径]]"
-    type: depends_on
-    confidence: 0.9
-    note: 迭代矩阵谱半径 ρ(B_J)<1 是收敛的充要条件
-  - target: "[[Gauss-Seidel方法]]"
-    type: related_to
-    confidence: 0.9
-    note: 同期发展的互补迭代方法，各有优劣
-  - target: "[[矩阵理论]]"
-    type: extends
-    confidence: 0.8
-    note: 基于矩阵分裂 A=D+L+U 的迭代框架
-  - target: "[[高斯求积公式]]"
-    type: related_to
-    confidence: 0.6
-    note: 雅可比同时研究最小二乘法（Gauss求积驱动力）与线性方程组迭代求解
+- target: '[[卡尔·古斯塔夫·雅各布·雅可比]]'
+  type: caused
+  confidence: 0.95
+- target: '[[谱半径]]'
+  type: depends_on
+  confidence: 0.9
+  note: 迭代矩阵谱半径 ρ(B_J)<1 是收敛的充要条件
+- target: '[[Gauss-Seidel方法]]'
+  type: related_to
+  confidence: 0.9
+  note: 同期发展的互补迭代方法，各有优劣
+- target: '[[矩阵理论]]'
+  type: extends
+  confidence: 0.8
+  note: 基于矩阵分裂 A=D+L+U 的迭代框架
+- target: '[[高斯求积公式]]'
+  type: related_to
+  confidence: 0.6
+  note: 雅可比同时研究最小二乘法（Gauss求积驱动力）与线性方程组迭代求解
 supersedes: null
 ---
 

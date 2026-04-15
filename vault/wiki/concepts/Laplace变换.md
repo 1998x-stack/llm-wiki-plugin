@@ -6,20 +6,26 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Laplace Transform", "拉普拉斯变换", "L变换"]
+tags:
+- 技术
+- 研究
+- 数学
+aliases:
+- Laplace Transform
+- 拉普拉斯变换
+- L变换
 relates_to:
-  - target: "[[皮埃尔-西蒙·拉普拉斯]]"
-    type: caused
-    confidence: 0.9
-  - target: "[[生成函数]]"
-    type: extends
-    confidence: 0.85
-    note: Laplace变换是生成函数从离散到连续的推广；两者都将函数"编码"为更易分析的形式
-  - target: "[[概率论]]"
-    type: related_to
-    confidence: 0.8
-    note: Laplace在处理连续概率问题时引入，是矩母函数和特征函数的早期形式
+- target: '[[皮埃尔-西蒙·拉普拉斯]]'
+  type: caused
+  confidence: 0.9
+- target: '[[生成函数]]'
+  type: extends
+  confidence: 0.85
+  note: Laplace变换是生成函数从离散到连续的推广；两者都将函数"编码"为更易分析的形式
+- target: '[[概率论]]'
+  type: related_to
+  confidence: 0.8
+  note: Laplace在处理连续概率问题时引入，是矩母函数和特征函数的早期形式
 supersedes: null
 ---
 

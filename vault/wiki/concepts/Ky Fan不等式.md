@@ -6,27 +6,36 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Ky Fan inequality", "Fan不等式", "Ky Fan极值原理", "Fan k-范数", "Fan控制定理", "Ky Fan dominance"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Ky Fan inequality
+- Fan不等式
+- Ky Fan极值原理
+- Fan k-范数
+- Fan控制定理
+- Ky Fan dominance
 relates_to:
-  - target: "[[樊畿]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[Weyl特征值不等式]]"
-    type: extends
-    confidence: 0.95
-  - target: "[[极大极小定理]]"
-    type: extends
-    confidence: 0.9
-  - target: "[[优化控制序]]"
-    type: caused
-    confidence: 0.9
-  - target: "[[Von Neumann迹不等式]]"
-    type: extends
-    confidence: 0.85
-  - target: "[[奇异值分解]]"
-    type: depends_on
-    confidence: 0.85
+- target: '[[樊畿]]'
+  type: implements
+  confidence: 0.95
+- target: '[[Weyl特征值不等式]]'
+  type: extends
+  confidence: 0.95
+- target: '[[极大极小定理]]'
+  type: extends
+  confidence: 0.9
+- target: '[[优化控制序]]'
+  type: caused
+  confidence: 0.9
+- target: '[[Von Neumann迹不等式]]'
+  type: extends
+  confidence: 0.85
+- target: '[[奇异值分解]]'
+  type: depends_on
+  confidence: 0.85
 supersedes: null
 ---
 

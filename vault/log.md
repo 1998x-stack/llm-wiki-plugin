@@ -851,3 +851,67 @@ python3 scripts/build_graph.py
 
 **低优先级**:
 6. 清理 index.md 中的过期条目
+
+## [2026-04-15 15:00] lint | 全库健康检查
+
+- 扫描: 121 个页面
+- ERROR: 0 个 | WARNING: 175 个 | INFO: 0 个
+- 自动修复: 10 个（BM25 索引同步）
+- 需要人工处理: 1 个（index.md 权限待批）
+
+### 详细问题
+
+**B2 — BM25 缺失（已修复 10 个）**
+- wiki/concepts/Laplace变换.md ✓
+- wiki/concepts/切比雪夫不等式.md ✓
+- wiki/concepts/最大似然原理.md ✓
+- wiki/concepts/概率公理体系.md ✓
+- wiki/concepts/泊松分布.md ✓
+- wiki/concepts/马尔可夫链.md ✓
+- wiki/entities/埃米尔·博雷尔.md ✓
+- wiki/entities/安德烈·柯尔莫哥洛夫.md ✓
+- wiki/entities/安德烈·马尔可夫.md ✓
+- wiki/entities/西梅翁·泊松.md ✓
+
+**I2 — 过期索引条目（需人工）**
+- index.md 第 27 行：模板注释 `[[页面名]]` 触发检测，建议删除该注释行
+
+**O1 — 孤页（8 个，无入链）**
+- wiki/syntheses/DeepAgents评估设计哲学.md
+- wiki/concepts/bun-vs-uv.md
+- wiki/concepts/claude-cli-tools.md
+- wiki/concepts/modern-cli-tools.md
+- wiki/entities/卢卡·帕西奥利.md
+- wiki/concepts/最大似然原理.md
+- wiki/entities/梅雷骑士.md
+- wiki/syntheses/矩阵谱理论的统一叙事.md
+
+**B1 — 断链（85 处，65 个唯一目标）**
+- 高频缺失页面：[[数值分析]]、[[线性代数]]、[[矩阵]]、[[马尔可夫]]、[[离散傅里叶变换]]
+- CLI 相关：[[Bun]]、[[uv]]、[[Node.js]]、[[Python]]、[[Rust]]、[[ripgrep]] 等
+- 人物缺失：[[约瑟夫·拉弗森]]、[[托马斯·辛普森]]、[[赫尔曼·戈尔茨坦]]、[[阿瑟·凯莱]] 等
+
+**F3 — 概述超长（71 个，均为 WARNING）**
+- 超出 200 字符限制，不影响功能，建议按需精简
+
+**图谱连通性（H）**
+- 5 个连通分量：
+  - 3 个单节点孤立：bun-vs-uv.md、claude-cli-tools.md、modern-cli-tools.md
+  - 1 个 8 节点群：DeepAgents 相关页面（独立主题）
+  - 1 个主群：110 节点（数学/概率知识库）
+
+## [2026-04-15 15:30] ingest | raw/books/概率论/13_wiener_brownian_motion.md
+
+- 处理源文件：Wiener 过程与布朗运动（13_wiener_brownian_motion.md）
+- 创建新实体页面：2 个
+  - [[诺伯特·维纳]]：MIT 数学家（1894–1964），Wiener 过程创立者，控制论奠基人
+  - [[路易·巴舍利耶]]：法国数学家，1900 年博士论文首次将布朗运动类随机过程用于股价建模
+- 创建新概念页面：5 个
+  - [[Wiener过程]]：布朗运动的严格数学定义，独立平稳正态增量 + 连续但处处不可微路径
+  - [[Wiener测度]]：C₀[0,1] 上的概率测度，无穷维空间第一个严格概率测度（1923）
+  - [[Wiener积分]]：路径空间上对确定性函数的积分，Itô 积分的前身
+  - [[Itô随机积分]]：Itô（1944）推广 Wiener 积分至随机被积函数，含 Itô 公式
+  - [[随机游走]]：每步等概率 ±1 的离散随机过程，Wiener 过程的离散前身
+- 更新 index.md：添加 7 个新页面条目，统计从 121→128（实体 48→50，概念 71→76）
+- 矛盾检查：未发现矛盾信息（已有马尔可夫链等页面内容相互补充）
+- BM25 索引：7 个新页面全部索引成功

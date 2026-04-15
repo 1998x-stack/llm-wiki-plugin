@@ -6,21 +6,27 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Romberg Integration", "Romberg方法", "Richardson-Romberg积分"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Romberg Integration
+- Romberg方法
+- Richardson-Romberg积分
 relates_to:
-  - target: "[[Richardson外推法]]"
-    type: implements
-    confidence: 0.95
-    note: Romberg积分是Richardson递归外推法在梯形法则上的最优雅应用
-  - target: "[[高斯求积公式]]"
-    type: related_to
-    confidence: 0.75
-    note: 两者竞争精度第一，Romberg实现嵌套节点（可重用旧计算），Gauss更高精度但节点非嵌套
-  - target: "[[刘易斯·弗赖·理查森]]"
-    type: extends
-    confidence: 0.85
-    note: Romberg 1955年将理查森外推系统化为积分方法
+- target: '[[Richardson外推法]]'
+  type: implements
+  confidence: 0.95
+  note: Romberg积分是Richardson递归外推法在梯形法则上的最优雅应用
+- target: '[[高斯求积公式]]'
+  type: related_to
+  confidence: 0.75
+  note: 两者竞争精度第一，Romberg实现嵌套节点（可重用旧计算），Gauss更高精度但节点非嵌套
+- target: '[[刘易斯·弗赖·理查森]]'
+  type: extends
+  confidence: 0.85
+  note: Romberg 1955年将理查森外推系统化为积分方法
 supersedes: null
 ---
 

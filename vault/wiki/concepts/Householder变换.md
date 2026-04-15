@@ -6,32 +6,42 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Householder Reflection", "Householder反射", "Householder矩阵", "QR分解", "QR decomposition", "Householder三角化"]
+tags:
+- 技术
+- 研究
+- 数值分析
+- 矩阵理论
+aliases:
+- Householder Reflection
+- Householder反射
+- Householder矩阵
+- QR分解
+- QR decomposition
+- Householder三角化
 relates_to:
-  - target: "[[阿尔斯顿·豪斯霍尔德]]"
-    type: caused
-    confidence: 0.95
-  - target: "[[QR算法]]"
-    type: implements
-    confidence: 0.9
-    note: Hessenberg化简是QR算法高效实现的关键预处理（每步QR迭代由O(n^3)降为O(n^2)）
-  - target: "[[奇异值分解]]"
-    type: implements
-    confidence: 0.85
-    note: Golub-Kahan双对角化（1965）用Householder将矩阵化为双对角形，是SVD计算的标准方法
-  - target: "[[Schur分解]]"
-    type: implements
-    confidence: 0.8
-    note: Householder变换是计算Schur分解的工具（先化Hessenberg，再用QR迭代至三角形）
-  - target: "[[后向误差分析]]"
-    type: related_to
-    confidence: 0.85
-    note: 正交变换κ(H)=1不放大误差，是Wilkinson后向稳定性分析中"酉变换优越性"论点的核心例证
-  - target: "[[条件数]]"
-    type: related_to
-    confidence: 0.8
-    note: 正交矩阵条件数κ=1（最优），这是Householder变换比高斯消元数值稳定的根本原因
+- target: '[[阿尔斯顿·豪斯霍尔德]]'
+  type: caused
+  confidence: 0.95
+- target: '[[QR算法]]'
+  type: implements
+  confidence: 0.9
+  note: Hessenberg化简是QR算法高效实现的关键预处理（每步QR迭代由O(n^3)降为O(n^2)）
+- target: '[[奇异值分解]]'
+  type: implements
+  confidence: 0.85
+  note: Golub-Kahan双对角化（1965）用Householder将矩阵化为双对角形，是SVD计算的标准方法
+- target: '[[Schur分解]]'
+  type: implements
+  confidence: 0.8
+  note: Householder变换是计算Schur分解的工具（先化Hessenberg，再用QR迭代至三角形）
+- target: '[[后向误差分析]]'
+  type: related_to
+  confidence: 0.85
+  note: 正交变换κ(H)=1不放大误差，是Wilkinson后向稳定性分析中"酉变换优越性"论点的核心例证
+- target: '[[条件数]]'
+  type: related_to
+  confidence: 0.8
+  note: 正交矩阵条件数κ=1（最优），这是Householder变换比高斯消元数值稳定的根本原因
 supersedes: null
 ---
 

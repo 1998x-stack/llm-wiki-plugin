@@ -6,28 +6,36 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Lax Equivalence Theorem", "Lax-Richtmyer Theorem", "数值分析基本定理", "Fundamental Theorem of Numerical Analysis", "Lax等价定理"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Lax Equivalence Theorem
+- Lax-Richtmyer Theorem
+- 数值分析基本定理
+- Fundamental Theorem of Numerical Analysis
+- Lax等价定理
 relates_to:
-  - target: "[[彼得·拉克斯]]"
-    type: caused
-    confidence: 0.95
-  - target: "[[CFL条件]]"
-    type: extends
-    confidence: 0.9
-    note: 等价定理是CFL条件（1928年特定问题稳定性必要条件）的深远推广：稳定性是收敛性的充要条件
-  - target: "[[冯·诺依曼稳定性分析]]"
-    type: related_to
-    confidence: 0.9
-    note: 冯·诺依曼分析是验证稳定性的工具；等价定理赋予其更深的理论意义——通过冯·诺依曼验证的稳定性+相容性直接保证收敛性
-  - target: "[[有限元方法]]"
-    type: extends
-    confidence: 0.75
-    note: 等价定理的哲学"近似性+稳定性=收敛性"被推广到有限元（Cea引理/Strang引理）
-  - target: "[[Richardson外推法]]"
-    type: related_to
-    confidence: 0.5
-    note: 两者均是从有限差分法数值误差分析角度提升数值解可靠性的理论工具
+- target: '[[彼得·拉克斯]]'
+  type: caused
+  confidence: 0.95
+- target: '[[CFL条件]]'
+  type: extends
+  confidence: 0.9
+  note: 等价定理是CFL条件（1928年特定问题稳定性必要条件）的深远推广：稳定性是收敛性的充要条件
+- target: '[[冯·诺依曼稳定性分析]]'
+  type: related_to
+  confidence: 0.9
+  note: 冯·诺依曼分析是验证稳定性的工具；等价定理赋予其更深的理论意义——通过冯·诺依曼验证的稳定性+相容性直接保证收敛性
+- target: '[[有限元方法]]'
+  type: extends
+  confidence: 0.75
+  note: 等价定理的哲学"近似性+稳定性=收敛性"被推广到有限元（Cea引理/Strang引理）
+- target: '[[Richardson外推法]]'
+  type: related_to
+  confidence: 0.5
+  note: 两者均是从有限差分法数值误差分析角度提升数值解可靠性的理论工具
 supersedes: null
 ---
 

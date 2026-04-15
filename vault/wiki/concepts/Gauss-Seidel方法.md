@@ -6,25 +6,32 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Gauss-Seidel Method", "逐次位移法", "method of successive displacements", "高斯-赛德尔迭代"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Gauss-Seidel Method
+- 逐次位移法
+- method of successive displacements
+- 高斯-赛德尔迭代
 relates_to:
-  - target: "[[菲利普·路德维希·冯·赛德尔]]"
-    type: caused
-    confidence: 0.85
-    note: 赛德尔1874年正式发表逐次位移法
-  - target: "[[Jacobi迭代法]]"
-    type: extends
-    confidence: 0.9
-    note: 同类迭代框架，利用最新值代替旧值
-  - target: "[[谱半径]]"
-    type: depends_on
-    confidence: 0.9
-    note: 迭代矩阵 B_GS = -(D+L)^{-1}U 的谱半径<1 是收敛充要条件
-  - target: "[[卡尔·弗里德里希·高斯]]"
-    type: related_to
-    confidence: 0.6
-    note: 以高斯命名但历史文献未确认高斯明确使用过此方法
+- target: '[[菲利普·路德维希·冯·赛德尔]]'
+  type: caused
+  confidence: 0.85
+  note: 赛德尔1874年正式发表逐次位移法
+- target: '[[Jacobi迭代法]]'
+  type: extends
+  confidence: 0.9
+  note: 同类迭代框架，利用最新值代替旧值
+- target: '[[谱半径]]'
+  type: depends_on
+  confidence: 0.9
+  note: 迭代矩阵 B_GS = -(D+L)^{-1}U 的谱半径<1 是收敛充要条件
+- target: '[[卡尔·弗里德里希·高斯]]'
+  type: related_to
+  confidence: 0.6
+  note: 以高斯命名但历史文献未确认高斯明确使用过此方法
 supersedes: null
 ---
 

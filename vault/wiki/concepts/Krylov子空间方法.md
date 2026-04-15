@@ -6,25 +6,32 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["Krylov Subspace Methods", "Krylov Methods", "Krylov子空间", "Krylov subspace"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- Krylov Subspace Methods
+- Krylov Methods
+- Krylov子空间
+- Krylov subspace
 relates_to:
-  - target: "[[共轭梯度法]]"
-    type: related_to
-    confidence: 0.95
-    note: CG是Krylov方法家族中最早也是最重要的成员（1952）
-  - target: "[[Jacobi迭代法]]"
-    type: extends
-    confidence: 0.7
-    note: Krylov方法是对经典定点迭代法的根本性超越，收敛率从O(1/κ)改善为O(1/√κ)
-  - target: "[[条件数]]"
-    type: depends_on
-    confidence: 0.85
-    note: Krylov方法的收敛速率由条件数（或特征值分布）决定
-  - target: "[[快速傅里叶变换]]"
-    type: related_to
-    confidence: 0.5
-    note: 两者均是20世纪十大算法，均改变了大规模计算的可行性边界
+- target: '[[共轭梯度法]]'
+  type: related_to
+  confidence: 0.95
+  note: CG是Krylov方法家族中最早也是最重要的成员（1952）
+- target: '[[Jacobi迭代法]]'
+  type: extends
+  confidence: 0.7
+  note: Krylov方法是对经典定点迭代法的根本性超越，收敛率从O(1/κ)改善为O(1/√κ)
+- target: '[[条件数]]'
+  type: depends_on
+  confidence: 0.85
+  note: Krylov方法的收敛速率由条件数（或特征值分布）决定
+- target: '[[快速傅里叶变换]]'
+  type: related_to
+  confidence: 0.5
+  note: 两者均是20世纪十大算法，均改变了大规模计算的可行性边界
 supersedes: null
 ---
 

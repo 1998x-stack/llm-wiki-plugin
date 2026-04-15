@@ -6,30 +6,37 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [研究, 技术]
-aliases: ["Perron定理", "Perron-Frobenius theorem", "非负矩阵谱定理", "Perron根定理"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- Perron定理
+- Perron-Frobenius theorem
+- 非负矩阵谱定理
+- Perron根定理
 relates_to:
-  - target: "[[奥斯卡·佩龙]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[格奥尔格·弗罗贝尼乌斯]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[谱半径]]"
-    type: depends_on
-    confidence: 0.95
-  - target: "[[矩阵理论]]"
-    type: part_of
-    confidence: 0.9
-  - target: "[[极大极小定理]]"
-    type: uses
-    confidence: 0.8
-  - target: "[[大数定律]]"
-    type: extends
-    confidence: 0.6
-  - target: "[[不可约矩阵]]"
-    type: depends_on
-    confidence: 0.9
+- target: '[[奥斯卡·佩龙]]'
+  type: implements
+  confidence: 0.95
+- target: '[[格奥尔格·弗罗贝尼乌斯]]'
+  type: implements
+  confidence: 0.95
+- target: '[[谱半径]]'
+  type: depends_on
+  confidence: 0.95
+- target: '[[矩阵理论]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[极大极小定理]]'
+  type: uses
+  confidence: 0.8
+- target: '[[大数定律]]'
+  type: extends
+  confidence: 0.6
+- target: '[[不可约矩阵]]'
+  type: depends_on
+  confidence: 0.9
 supersedes: null
 ---
 

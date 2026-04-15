@@ -6,32 +6,41 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 研究]
-aliases: ["CFL Condition", "Courant-Friedrichs-Lewy Condition", "柯朗条件", "柯朗数", "CFL number", "CFL数"]
+tags:
+- 技术
+- 研究
+- 数值分析
+aliases:
+- CFL Condition
+- Courant-Friedrichs-Lewy Condition
+- 柯朗条件
+- 柯朗数
+- CFL number
+- CFL数
 relates_to:
-  - target: "[[理查德·柯朗]]"
-    type: caused
-    confidence: 0.95
-  - target: "[[冯·诺依曼稳定性分析]]"
-    type: related_to
-    confidence: 0.9
-    note: 冯·诺依曼稳定性分析提供了验证CFL条件的具体傅里叶工具
-  - target: "[[Richardson外推法]]"
-    type: related_to
-    confidence: 0.7
-    note: 理查森1922年天气预报失败的主因之一正是违反了CFL条件
-  - target: "[[有限元方法]]"
-    type: related_to
-    confidence: 0.7
-    note: 有限元显式时间步进（如显式中心差分）同样受CFL条件约束
-  - target: "[[谱方法]]"
-    type: related_to
-    confidence: 0.65
-    note: 谱方法显式时间积分也受CFL类约束，通常比有限差分更严格
-  - target: "[[Lax-Richtmyer等价定理]]"
-    type: related_to
-    confidence: 0.9
-    note: CFL是稳定性的必要条件；等价定理指出违反CFL（不稳定）的格式也不收敛——二者完美衔接
+- target: '[[理查德·柯朗]]'
+  type: caused
+  confidence: 0.95
+- target: '[[冯·诺依曼稳定性分析]]'
+  type: related_to
+  confidence: 0.9
+  note: 冯·诺依曼稳定性分析提供了验证CFL条件的具体傅里叶工具
+- target: '[[Richardson外推法]]'
+  type: related_to
+  confidence: 0.7
+  note: 理查森1922年天气预报失败的主因之一正是违反了CFL条件
+- target: '[[有限元方法]]'
+  type: related_to
+  confidence: 0.7
+  note: 有限元显式时间步进（如显式中心差分）同样受CFL条件约束
+- target: '[[谱方法]]'
+  type: related_to
+  confidence: 0.65
+  note: 谱方法显式时间积分也受CFL类约束，通常比有限差分更严格
+- target: '[[Lax-Richtmyer等价定理]]'
+  type: related_to
+  confidence: 0.9
+  note: CFL是稳定性的必要条件；等价定理指出违反CFL（不稳定）的格式也不收敛——二者完美衔接
 supersedes: null
 ---
 

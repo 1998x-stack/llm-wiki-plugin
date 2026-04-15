@@ -6,24 +6,31 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["von Neumann trace inequality", "迹不等式", "Von Neumann不等式", "trace inequality"]
+tags:
+- 研究
+- 技术
+- 矩阵理论
+aliases:
+- von Neumann trace inequality
+- 迹不等式
+- Von Neumann不等式
+- trace inequality
 relates_to:
-  - target: "[[约翰·冯·诺依曼]]"
-    type: implements
-    confidence: 0.95
-  - target: "[[奇异值分解]]"
-    type: depends_on
-    confidence: 0.95
-  - target: "[[矩阵理论]]"
-    type: part_of
-    confidence: 0.9
-  - target: "[[Weyl特征值不等式]]"
-    type: extends
-    confidence: 0.75
-  - target: "[[Schur分解]]"
-    type: uses
-    confidence: 0.7
+- target: '[[约翰·冯·诺依曼]]'
+  type: implements
+  confidence: 0.95
+- target: '[[奇异值分解]]'
+  type: depends_on
+  confidence: 0.95
+- target: '[[矩阵理论]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[Weyl特征值不等式]]'
+  type: extends
+  confidence: 0.75
+- target: '[[Schur分解]]'
+  type: uses
+  confidence: 0.7
 supersedes: null
 ---
 
