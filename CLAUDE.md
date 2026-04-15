@@ -46,14 +46,15 @@ Three-layer pattern:
 
 | Script | Purpose | Dependencies |
 |--------|---------|-------------|
-| `search_wiki.py` | Unified search (BM25 + maps + graph + RRF) | jieba, rank_bm25, pyyaml |
-| `bm25_index.py` | BM25 search index (build/update/query) | jieba, rank_bm25 |
-| `qwen_ingest.py` | Qwen API wiki extraction (multi-page: `--raw` only; legacy: `--raw --wiki`) | openai, pyyaml |
-| `build_graph.py` | Knowledge graph JSON builder (outputs `graph.json`) | pyyaml |
-| `build_statistics.py` | Statistics JSON from graph + frontmatter | pyyaml |
-| `build_wiki_pages.py` | Wiki markdown → static HTML | pyyaml, markdown |
-| `snapshot_index.py` | Index integrity checker (check/update/snapshot) | pyyaml |
-| `lint_wiki.py` | Standalone lint checker | pyyaml |
+| `wiki_utils.py` | Shared utilities (parse_frontmatter, tokenize, constants) | pyyaml |
+| `search_wiki.py` | Unified search (BM25 + maps + graph + RRF) | wiki_utils, rank_bm25 |
+| `bm25_index.py` | BM25 search index (build/update/query) | wiki_utils, rank_bm25 |
+| `qwen_ingest.py` | Qwen API wiki extraction (multi-page: `--raw` only; legacy: `--raw --wiki`) | wiki_utils, openai |
+| `build_graph.py` | Knowledge graph JSON builder (outputs `graph.json`) | wiki_utils |
+| `build_statistics.py` | Statistics JSON from graph + frontmatter | wiki_utils, networkx |
+| `build_wiki_pages.py` | Wiki markdown → static HTML | wiki_utils, markdown |
+| `snapshot_index.py` | Index integrity checker (check/update/snapshot) | wiki_utils |
+| `lint_wiki.py` | Standalone lint checker | wiki_utils |
 | `hook_lint.sh` | PostToolUse hook: lint | — |
 | `hook_bm25.sh` | PostToolUse hook: BM25 update | — |
 | `hook_graph.sh` | PostToolUse hook: graph rebuild | — |

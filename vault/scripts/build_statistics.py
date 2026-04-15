@@ -10,36 +10,21 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-import yaml
+from wiki_utils import VAULT_DIR, WIKI_DIR, GRAPH_PATH, parse_frontmatter
 
 try:
     import networkx as nx
     HAS_NX = True
 except ImportError:
     HAS_NX = False
+    print("WARNING: networkx not installed — advanced graph metrics unavailable", file=sys.stderr)
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-VAULT_DIR = SCRIPT_DIR.parent
-WIKI_DIR = VAULT_DIR / "wiki"
-GRAPH_PATH = VAULT_DIR / "graph.json"
 DEFAULT_OUTPUT = VAULT_DIR.parent / "static" / "graph-statistics.json"
-
-
-def parse_frontmatter(text: str) -> dict | None:
-    if not text.startswith("---"):
-        return None
-    end = text.find("---", 3)
-    if end == -1:
-        return None
-    try:
-        fm = yaml.safe_load(text[3:end])
-        return fm if isinstance(fm, dict) else None
-    except yaml.YAMLError:
-        return None
 
 
 def main():
@@ -90,7 +75,7 @@ def main():
 
     for fp in sorted(WIKI_DIR.rglob("*.md")):
         text = fp.read_text(encoding="utf-8")
-        fm = parse_frontmatter(text)
+        fm, _ = parse_frontmatter(text)
         if fm is None:
             continue
         for t in (fm.get("tags") or []):

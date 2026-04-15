@@ -13,46 +13,14 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-import jieba
-import yaml
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-VAULT_DIR = SCRIPT_DIR.parent
-WIKI_DIR = VAULT_DIR / "wiki"
-INDEX_DIR = VAULT_DIR / "index" / "BM25"
-MAPS_DIR = VAULT_DIR / "maps"
-GRAPH_PATH = VAULT_DIR / "graph.json"
+from wiki_utils import (
+    VAULT_DIR, WIKI_DIR, INDEX_DIR, MAPS_DIR, GRAPH_PATH,
+    tokenize, parse_frontmatter, resolve_page_name,
+)
 
 CORPUS_PATH = INDEX_DIR / "corpus.pkl"
 INDEX_PATH = INDEX_DIR / "index.pkl"
 DOCMAP_PATH = INDEX_DIR / "docmap.json"
-
-WIKI_SUBDIRS = ["concepts", "entities", "syntheses", "qa-insights"]
-
-STOP_WORDS = set([
-    "的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一",
-    "一个", "上", "也", "很", "到", "说", "要", "去", "你", "会", "着",
-    "没有", "看", "好", "自己", "这", "他", "她", "它", "们", "那", "些",
-    "什么", "可以", "这个", "那个", "如果", "因为", "所以", "但是", "而且",
-    "或者", "以及", "还是", "已经", "可能", "应该", "需要", "通过", "进行",
-    "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
-    "have", "has", "had", "do", "does", "did", "will", "would", "could",
-    "should", "may", "might", "shall", "can", "need", "dare", "ought",
-    "and", "or", "but", "if", "for", "of", "in", "on", "at", "to", "from",
-    "by", "with", "as", "it", "its", "this", "that", "these", "those",
-    "not", "no", "nor", "so", "than", "too", "very",
-])
-
-
-def tokenize(text: str) -> list[str]:
-    text = re.sub(r"\[\[([^\]]+)\]\]", r"\1", text)
-    text = re.sub(r"[#*`>|_\-=]", " ", text)
-    tokens = list(jieba.cut_for_search(text))
-    return [
-        t.strip().lower()
-        for t in tokens
-        if t.strip() and t.strip().lower() not in STOP_WORDS and len(t.strip()) > 1
-    ]
 
 
 def read_frontmatter(path: Path) -> dict:
@@ -61,24 +29,8 @@ def read_frontmatter(path: Path) -> dict:
         text = path.read_text(encoding="utf-8")
     except OSError:
         return {}
-    if not text.startswith("---"):
-        return {}
-    end = text.find("---", 3)
-    if end == -1:
-        return {}
-    try:
-        return yaml.safe_load(text[3:end]) or {}
-    except yaml.YAMLError:
-        return {}
-
-
-def resolve_page_name(name: str) -> Optional[str]:
-    """Try to find wiki/{subdir}/{name}.md. Return relative path from VAULT_DIR or None."""
-    for subdir in WIKI_SUBDIRS:
-        candidate = WIKI_DIR / subdir / f"{name}.md"
-        if candidate.exists():
-            return str(candidate.relative_to(VAULT_DIR))
-    return None
+    fm, _ = parse_frontmatter(text)
+    return fm or {}
 
 
 # ---------------------------------------------------------------------------

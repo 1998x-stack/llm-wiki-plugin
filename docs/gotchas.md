@@ -15,14 +15,15 @@ Issues are split into topical files under `docs/gotchas/`.
 | [code-review-bugs.md](gotchas/code-review-bugs.md) | V2.1-V2.3 code review (12 bugs fixed) | #10 |
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
 | [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math | #15-17 |
+| [v3.3-refactor.md](gotchas/v3.3-refactor.md) | wiki_utils, dedup, QA pipeline, XSS, debounce | #18-27 |
 
 ## Quick Status
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| Fixed | 14 | Code bugs, script issues, deployment blockers |
-| Documented | 2 | claude -p allowedTools, cross-domain connections |
-| Open | 3 | Remaining ingest files 14-16, broken links, source format |
+| Fixed | 17 | Code bugs, script issues, XSS, edge directionality |
+| Documented | 6 | yaml fallback, pickle, debounce, qa/ deprecation, raw/qa exception, jieba stderr |
+| Open | 4 | Remaining ingest files, broken links, source format, dedup semantic matching |
 
 ## Fix Checklist (remaining)
 
@@ -31,5 +32,6 @@ Issues are split into topical files under `docs/gotchas/`.
 | HIGH | Complete ingest files 14-16 (Kolmogorov/Doob/Ito) |
 | MEDIUM | Fix broken link `[[马尔可夫]]` → `[[安德烈·马尔可夫]]` |
 | MEDIUM | Fix broken link `[[切比雪夫不等式]]` link mismatch |
+| MEDIUM | Migrate legacy `qa/` files to `raw/qa/` format |
 | LOW | Create `[[离散傅里叶变换]]` concept page |
 | LOW | Standardize source section format (bare string → `[[raw/...]]`) |

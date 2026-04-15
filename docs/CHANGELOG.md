@@ -1,5 +1,50 @@
 # Changelog
 
+## [v3.3] - 2026-04-15
+
+### Added
+- **`scripts/wiki_utils.py`**: shared utility module — canonical `parse_frontmatter`, `tokenize`, `STOP_WORDS`, path constants, `escape_html`. Eliminates 6 duplicated frontmatter parsers, 2 duplicated stop word lists, 2 duplicated tokenizers
+- **`qwen_ingest.py` — save-always mode**: pages with broken YAML frontmatter are now included in output with `"errors"` field instead of being silently dropped. Caller decides whether to write them
+- **`qwen_ingest.py` — dedup**: new `scan_existing_pages()` checks wiki/ by filename + aliases. Matched pages get `"existing_path"` in output
+- **`qwen_ingest.py` — `--context-pages`**: injects existing page names into Qwen prompt for accurate `[[wikilinks]]`
+- **`qwen_ingest.py` — `--model`**: configurable model name (default `qwen3.5-plus`)
+- **`qwen_ingest.py` — retry**: exponential backoff (3 attempts, 2s/4s/8s) on API failures
+- **`qwen_ingest.py` — truncation**: raw content >100K chars truncated with warning
+- **`ingest-loop.md` — error log**: persistent `.claude/ingest-loop-qwen.error.md` (not deleted on completion)
+- **`ingest-loop.md` — dedup handling**: pages with `existing_path` skipped, pages with `errors` saved for later fix
+- **`ingest-loop.md` — incremental index**: `snapshot_index.py --update` runs after each file, not just at completion
+
+### Fixed
+- **XSS in `build_wiki_pages.py`**: wikilink names and paths now escaped with `html.escape()` before insertion into HTML
+- **Edge directionality in `build_graph.py`**: directed relations (`contradicts`, `supersedes`, `extends`, `implements`, `caused`, `depends_on`) now preserve source→target order. Undirected relations (`wikilink`, `related_to`) still dedup via sorted key
+- **Overview threshold inconsistency**: `qwen_ingest.py` warning threshold aligned to 200 chars (was 300), matching `lint_wiki.py` and `_schema/quality-rules.md`
+- **Double file reads in `lint_wiki.py`**: orphan check now reuses cached file contents instead of re-reading all wiki files. ~185 file reads eliminated per full lint run
+
+### Improved
+- **`hook_graph.sh` debounce**: skips graph rebuild if `graph.json` was modified within last 30 seconds. Prevents 185-file re-scan on rapid consecutive wiki edits
+- **`build_statistics.py` networkx warning**: prints stderr warning when `networkx` not installed instead of silently returning zeros for all advanced metrics
+- **All Python scripts**: refactored to import from `wiki_utils.py` — consistent frontmatter parsing, tokenization, and path resolution across the codebase
+
+### Refactored
+- `bm25_index.py`: removed duplicated `strip_frontmatter`, `tokenize`, `extract_title`, `extract_type`, `STOP_WORDS`
+- `search_wiki.py`: removed duplicated `tokenize`, `read_frontmatter`, `resolve_page_name`, `STOP_WORDS`
+- `build_graph.py`: removed duplicated `parse_frontmatter`, `strip_wikilink`, `WIKILINK_RE`
+- `build_statistics.py`: removed duplicated `parse_frontmatter`
+- `build_wiki_pages.py`: removed duplicated `parse_frontmatter`
+- `lint_wiki.py`: removed duplicated `parse_frontmatter`
+- `snapshot_index.py`: removed duplicated `parse_frontmatter`
+- `qwen_ingest.py`: removed duplicated `parse_frontmatter`
+
+### Changed
+- **`wiki:query` QA output**: now writes to `raw/qa/qa-YYYYMMDD-HHMMSS.md` (one file per query) instead of appending to `qa/YYYY-MM-DD.md`. New format includes frontmatter with `type: qa`, `question`, `date`, `citations`
+- **`wiki:query` snapshot tracking**: appends new QA file to `raw/qa/qa.snapshot.md` after each query
+- **`wiki:qa-import` snapshot-driven**: `all` mode reads `raw/qa/qa.snapshot.md` to skip already-imported files. Builds snapshot if missing. Updates checklist on completion
+- **`qa/` folder deprecated**: all QA data now lives in `raw/qa/`. Legacy `qa/` files not auto-migrated
+
+### Documentation
+- **`docs/gotchas/v3.3-refactor.md`**: 10 new gotchas (#18-27) covering wiki_utils fallback, pickle portability, dedup limitations, debounce behavior, QA pipeline changes, XSS fix, edge directionality, jieba stderr
+- **`docs/gotchas.md`**: updated index with v3.3 file, status counts refreshed
+
 ## [v3.2] - 2026-04-15
 
 ### Added

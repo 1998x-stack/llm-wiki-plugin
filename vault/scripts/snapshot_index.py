@@ -14,12 +14,9 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-import yaml
+from wiki_utils import VAULT_DIR, WIKI_DIR, INDEX_FILE, parse_frontmatter
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-VAULT_DIR = SCRIPT_DIR.parent
-WIKI_DIR = VAULT_DIR / "wiki"
-INDEX_PATH = VAULT_DIR / "index.md"
+INDEX_PATH = INDEX_FILE
 SNAPSHOT_PATH = VAULT_DIR / ".claude" / "reindex.snapshot.json"
 
 TYPE_SECTIONS = {
@@ -28,19 +25,6 @@ TYPE_SECTIONS = {
     "synthesis": "\u7efc\u5408\u5206\u6790 (wiki/syntheses/)",
     "qa-insight": "QA \u6d1e\u89c1 (wiki/qa-insights/)",
 }
-
-
-def parse_frontmatter(text):
-    if not text.startswith("---"):
-        return None
-    end = text.find("---", 3)
-    if end == -1:
-        return None
-    try:
-        fm = yaml.safe_load(text[3:end])
-        return fm if isinstance(fm, dict) else None
-    except yaml.YAMLError:
-        return None
 
 
 def extract_overview(text):
@@ -68,7 +52,7 @@ def scan_wiki():
     pages = {}
     for fp in sorted(WIKI_DIR.rglob("*.md")):
         text = fp.read_text(encoding="utf-8")
-        fm = parse_frontmatter(text)
+        fm, _ = parse_frontmatter(text)
         if fm is None:
             continue
         pages[fp.stem] = {

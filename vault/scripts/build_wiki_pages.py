@@ -11,17 +11,13 @@ import json
 import re
 from pathlib import Path
 
-import yaml
+from wiki_utils import VAULT_DIR, WIKI_DIR, parse_frontmatter, escape_html
 
 try:
     import markdown as md_lib
 except ImportError:
     print("Error: 'markdown' package required. Run: pip install markdown")
     raise SystemExit(1)
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-VAULT_DIR = SCRIPT_DIR.parent
-WIKI_DIR = VAULT_DIR / "wiki"
 
 TYPE_COLORS = {
     "entity": "#4A90D9",
@@ -259,19 +255,6 @@ document.getElementById('search').addEventListener('input', function() {{
 </html>"""
 
 
-def parse_frontmatter(text: str) -> tuple[dict | None, str]:
-    if not text.startswith("---"):
-        return None, text
-    end = text.find("---", 3)
-    if end == -1:
-        return None, text
-    try:
-        fm = yaml.safe_load(text[3:end])
-        return (fm, text[end + 3:].strip()) if isinstance(fm, dict) else (None, text)
-    except yaml.YAMLError:
-        return None, text
-
-
 def convert_wikilinks(html: str, current_path: str, page_map: dict[str, str]) -> str:
     """Convert [[wikilink]] in HTML to <a> tags."""
     current_dir = Path(current_path).parent
@@ -288,8 +271,8 @@ def convert_wikilinks(html: str, current_path: str, page_map: dict[str, str]) ->
                 # Cross-subdir: go up then into target
                 up = "../" * len(current_dir.parts)
                 rel = up + target_html
-            return f'<a href="{rel}">{name}</a>'
-        return f'<span style="color:#e74c3c" title="broken link">{name}</span>'
+            return f'<a href="{escape_html(str(rel))}">{escape_html(name)}</a>'
+        return f'<span style="color:#e74c3c" title="broken link">{escape_html(name)}</span>'
     return re.sub(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", replace_link, html)
 
 

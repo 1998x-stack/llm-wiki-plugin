@@ -13,42 +13,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 from pathlib import Path
 
-import yaml
+from wiki_utils import WIKI_DIR, WIKILINK_RE, parse_frontmatter, strip_wikilink
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-
-WIKILINK_RE = re.compile(r"\[\[([^\]|]+)(?:\|[^\]]*)?\]\]")
-
-WIKI_DIR = Path(__file__).resolve().parent.parent / "wiki"
-
-
-def parse_frontmatter(text: str):
-    """Return (frontmatter_dict, body_str) or (None, text)."""
-    if not text.startswith("---"):
-        return None, text
-    end = text.find("---", 3)
-    if end == -1:
-        return None, text
-    try:
-        fm = yaml.safe_load(text[3:end])
-    except yaml.YAMLError:
-        return None, text
-    body = text[end + 3 :]
-    return fm, body
-
-
-def strip_wikilink(s: str) -> str:
-    """'[[Foo]]' -> 'Foo', also handles bare names."""
-    m = re.match(r"^\[\[([^\]|]+)(?:\|[^\]]*)?\]\]$", s)
-    return m.group(1) if m else s
 
 
 def label_to_id(label: str, label_to_path: dict) -> str | None:
@@ -87,10 +61,16 @@ def build_graph(wiki_dir: Path):
         label_to_path[label] = rel
 
     # --- Pass 2: extract edges ---
-    edge_set = {}  # (sorted_source, sorted_target, relation) -> edge dict
+    # Directed relations preserve source→target order.
+    # Undirected relations (wikilink, related_to) dedup via sorted key.
+    DIRECTED_RELATIONS = {"contradicts", "supersedes", "extends", "implements", "caused", "depends_on"}
+    edge_set = {}  # key -> edge dict
 
     def add_edge(src_id: str, tgt_id: str, relation: str, bidirectional: bool = False):
-        key = (tuple(sorted([src_id, tgt_id])), relation)
+        if relation in DIRECTED_RELATIONS:
+            key = (src_id, tgt_id, relation)
+        else:
+            key = (tuple(sorted([src_id, tgt_id])), relation)
         if key not in edge_set:
             edge_set[key] = {
                 "source": src_id,

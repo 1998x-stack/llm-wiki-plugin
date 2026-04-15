@@ -3,13 +3,26 @@
 
 Usage:
     python3 scripts/qwen_ingest.py --raw <raw_file>
+    python3 scripts/qwen_ingest.py --raw <raw_file> --model qwen-plus
+    python3 scripts/qwen_ingest.py --raw <raw_file> --context-pages pages.txt
     python3 scripts/qwen_ingest.py --raw <raw_file> --wiki <wiki_file>   (legacy single-page mode)
 
 Reads a raw source file, calls Qwen to extract entities/concepts.
 One raw file may produce multiple wiki pages.
 
-Output JSON:
-    {"status": "SUCCESS", "pages": [{"type": "entity", "wiki_name": "...", "markdown": "..."}]}
+Features:
+    - Retry with exponential backoff (3 attempts)
+    - Input truncation at 100K chars
+    - Dedup against existing wiki pages (by title + aliases)
+    - Context injection for accurate [[wikilinks]]
+    - Pages with YAML errors are included (not skipped) with "errors" field
+
+Output JSON (multi-page mode):
+    {"status": "SUCCESS", "has_errors": false, "pages": [
+        {"type": "entity", "wiki_name": "...", "markdown": "..."},
+        {"type": "concept", "wiki_name": "...", "markdown": "...", "errors": ["..."]},
+        {"type": "entity", "wiki_name": "...", "markdown": "...", "existing_path": "wiki/..."}
+    ]}
     {"status": "ERROR", "error": "..."}
 
 Legacy mode (--wiki): writes single file, returns flat status (backwards compatible).
@@ -22,14 +35,12 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import date
 from pathlib import Path
 from typing import Optional
 
-try:
-    import yaml
-except ImportError:
-    yaml = None
+from wiki_utils import parse_frontmatter
 
 try:
     from openai import OpenAI
@@ -37,6 +48,10 @@ except ImportError:
     OpenAI = None
 
 TODAY = date.today().strftime("%Y-%m-%d")
+
+MAX_CONTENT_CHARS = 100_000
+DEFAULT_MODEL = "qwen3.5-plus"
+MAX_RETRIES = 3
 
 SYSTEM_PROMPT = """你是一个知识库维护者。你的任务是从源材料中提取所有重要的实体和概念，为每个生成一个结构化的 wiki 页面。
 
@@ -140,32 +155,6 @@ def strip_code_block(text: str) -> str:
     return text
 
 
-def parse_frontmatter(text: str) -> tuple[Optional[dict], str]:
-    """Extract YAML frontmatter and body from markdown text."""
-    if not text.startswith("---"):
-        return None, text
-    end = text.find("---", 3)
-    if end == -1:
-        return None, text
-    fm_raw = text[3:end].strip()
-    body = text[end + 3 :].strip()
-    if yaml is None:
-        # Fallback: simple key-value parse
-        fm = {}
-        for line in fm_raw.split("\n"):
-            if ":" in line and not line.startswith(" ") and not line.startswith("-"):
-                key, val = line.split(":", 1)
-                fm[key.strip()] = val.strip()
-        return fm, body
-    try:
-        fm = yaml.safe_load(fm_raw)
-        if not isinstance(fm, dict):
-            return None, text
-        return fm, body
-    except yaml.YAMLError:
-        return None, text
-
-
 def lint_page(content: str) -> tuple[list[str], list[str]]:
     """Lint a wiki page. Returns (critical_errors, warnings)."""
     critical = []
@@ -217,7 +206,7 @@ def lint_page(content: str) -> tuple[list[str], list[str]]:
             critical.append(f"Overview too short: {char_count} chars (min 50)")
         elif char_count < 50:
             warnings.append(f"Overview short: {char_count} chars (recommended 50-200)")
-        elif char_count > 300:
+        elif char_count > 200:
             warnings.append(f"Overview long: {char_count} chars (recommended 50-200)")
     else:
         critical.append("Missing ## 概述 section")
@@ -248,7 +237,34 @@ def lint_page(content: str) -> tuple[list[str], list[str]]:
     return critical, warnings
 
 
-def call_qwen(raw_content: str, raw_path: str) -> str:
+def scan_existing_pages() -> dict[str, str]:
+    """Scan wiki/ for existing pages. Returns {normalized_name: relative_path}.
+
+    Matches by filename stem and by aliases in frontmatter.
+    """
+    script_dir = Path(__file__).resolve().parent
+    wiki_dir = script_dir.parent / "wiki"
+    existing = {}
+    for fp in wiki_dir.rglob("*.md"):
+        if fp.name == ".gitkeep":
+            continue
+        stem = fp.stem
+        rel = str(fp.relative_to(script_dir.parent))
+        existing[stem] = rel
+        # Also index aliases from frontmatter
+        try:
+            text = fp.read_text(encoding="utf-8")
+            fm, _ = parse_frontmatter(text)
+            if fm and isinstance(fm.get("aliases"), list):
+                for alias in fm["aliases"]:
+                    if alias and isinstance(alias, str):
+                        existing[alias.strip()] = rel
+        except (OSError, UnicodeDecodeError):
+            pass
+    return existing
+
+
+def call_qwen(raw_content: str, raw_path: str, model: str = DEFAULT_MODEL) -> str:
     """Call Qwen3-Plus API to extract wiki page from raw content."""
     if OpenAI is None:
         print(
@@ -280,19 +296,25 @@ def call_qwen(raw_content: str, raw_path: str) -> str:
 
     user_message = f"源文件路径：{raw_path}\n\n---\n\n{raw_content}"
 
-    try:
-        response = client.chat.completions.create(
-            model="qwen3.5-plus",
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_message},
-            ],
-            extra_body={"enable_thinking": False},
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        print(json.dumps({"status": "ERROR", "error": f"API call failed: {e}"}))
-        sys.exit(1)
+    for attempt in range(MAX_RETRIES):
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_message},
+                ],
+                extra_body={"enable_thinking": False},
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            if attempt < MAX_RETRIES - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"Retry {attempt + 1}/{MAX_RETRIES} in {wait}s: {e}", file=sys.stderr)
+                time.sleep(wait)
+            else:
+                print(json.dumps({"status": "ERROR", "error": f"API failed after {MAX_RETRIES} attempts: {e}"}))
+                sys.exit(1)
 
 
 def split_pages(text: str) -> list[str]:
@@ -317,6 +339,8 @@ def main():
     )
     parser.add_argument("--raw", required=True, help="Path to raw source file")
     parser.add_argument("--wiki", default=None, help="Path to output wiki file (legacy single-page mode)")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Qwen model name (default: {DEFAULT_MODEL})")
+    parser.add_argument("--context-pages", default=None, help="File containing existing page names for dedup/linking")
     args = parser.parse_args()
 
     raw_path = Path(args.raw)
@@ -333,8 +357,24 @@ def main():
         print(json.dumps({"status": "ERROR", "error": f"Raw file is empty: {raw_path}"}))
         sys.exit(1)
 
+    # Truncate if too large
+    truncated = False
+    original_len = len(raw_content)
+    if original_len > MAX_CONTENT_CHARS:
+        raw_content = raw_content[:MAX_CONTENT_CHARS]
+        truncated = True
+        print(f"Content truncated: {original_len} → {MAX_CONTENT_CHARS} chars", file=sys.stderr)
+
+    # Inject existing page context into prompt if provided
+    if args.context_pages:
+        ctx_path = Path(args.context_pages)
+        if ctx_path.exists():
+            ctx_text = ctx_path.read_text(encoding="utf-8").strip()
+            if ctx_text:
+                raw_content += f"\n\n---\n\n## 已有知识库页面（请使用精确的 [[页面名]] 链接，如果提取的实体与已有页面相同请使用相同标题）\n\n{ctx_text}"
+
     # Call Qwen API
-    response_text = call_qwen(raw_content, str(raw_path))
+    response_text = call_qwen(raw_content, str(raw_path), model=args.model)
 
     # Strip thinking tags from full response before splitting
     response_text = strip_thinking_tags(response_text)
@@ -371,46 +411,49 @@ def main():
         return
 
     # --- Multi-page mode: return JSON with all pages ---
+    # Scan existing pages for dedup
+    existing_pages = scan_existing_pages()
+
     result_pages = []
-    all_warnings = []
+    has_errors = False
 
     for content in pages_raw:
         info = extract_page_info(content)
         critical_errors, warnings = lint_page(content)
 
-        if critical_errors:
-            all_warnings.append({
-                "wiki_name": info["wiki_name"],
-                "critical": critical_errors,
-                "skipped": True,
-            })
-            continue
-
-        result_pages.append({
+        page_entry = {
             "type": info["type"],
             "wiki_name": info["wiki_name"],
             "markdown": content,
-        })
+        }
+
+        if critical_errors:
+            page_entry["errors"] = critical_errors
+            has_errors = True
         if warnings:
-            all_warnings.append({
-                "wiki_name": info["wiki_name"],
-                "warnings": warnings,
-                "skipped": False,
-            })
+            page_entry["warnings"] = warnings
+
+        # Dedup: check if page already exists
+        wiki_name = info["wiki_name"]
+        if wiki_name in existing_pages:
+            page_entry["existing_path"] = existing_pages[wiki_name]
+
+        result_pages.append(page_entry)
 
     if not result_pages:
         print(json.dumps({
             "status": "ERROR",
-            "error": "All pages failed lint",
-            "details": all_warnings,
+            "error": "No pages extracted from response",
         }, ensure_ascii=False))
         sys.exit(1)
 
     output = {
         "status": "SUCCESS",
         "pages": result_pages,
-        "warnings": all_warnings if all_warnings else [],
+        "has_errors": has_errors,
     }
+    if truncated:
+        output["truncated_from"] = original_len
     print(json.dumps(output, ensure_ascii=False))
 
 

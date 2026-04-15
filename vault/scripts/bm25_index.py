@@ -11,69 +11,16 @@ Usage:
 import argparse
 import json
 import pickle
-import re
 import sys
 from pathlib import Path
 
-import jieba
 from rank_bm25 import BM25Okapi
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-VAULT_DIR = SCRIPT_DIR.parent
-WIKI_DIR = VAULT_DIR / "wiki"
-INDEX_DIR = VAULT_DIR / "index" / "BM25"
+from wiki_utils import VAULT_DIR, WIKI_DIR, INDEX_DIR, tokenize, extract_title, extract_type
 
 CORPUS_PATH = INDEX_DIR / "corpus.pkl"
 INDEX_PATH = INDEX_DIR / "index.pkl"
 DOCMAP_PATH = INDEX_DIR / "docmap.json"
-
-STOP_WORDS = set([
-    "的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一",
-    "一个", "上", "也", "很", "到", "说", "要", "去", "你", "会", "着",
-    "没有", "看", "好", "自己", "这", "他", "她", "它", "们", "那", "些",
-    "什么", "可以", "这个", "那个", "如果", "因为", "所以", "但是", "而且",
-    "或者", "以及", "还是", "已经", "可能", "应该", "需要", "通过", "进行",
-    "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
-    "have", "has", "had", "do", "does", "did", "will", "would", "could",
-    "should", "may", "might", "shall", "can", "need", "dare", "ought",
-    "and", "or", "but", "if", "for", "of", "in", "on", "at", "to", "from",
-    "by", "with", "as", "it", "its", "this", "that", "these", "those",
-    "not", "no", "nor", "so", "than", "too", "very",
-])
-
-
-def strip_frontmatter(text: str) -> str:
-    if text.startswith("---"):
-        end = text.find("---", 3)
-        if end != -1:
-            return text[end + 3:].strip()
-    return text
-
-
-def tokenize(text: str) -> list[str]:
-    text = strip_frontmatter(text)
-    text = re.sub(r"\[\[([^\]]+)\]\]", r"\1", text)
-    text = re.sub(r"[#*`>|_\-=]", " ", text)
-    tokens = list(jieba.cut_for_search(text))
-    return [t.strip().lower() for t in tokens if t.strip() and t.strip().lower() not in STOP_WORDS and len(t.strip()) > 1]
-
-
-def extract_title(text: str) -> str:
-    for line in text.split("\n"):
-        if line.startswith("title:"):
-            return line.split(":", 1)[1].strip().strip('"').strip("'")
-        if line.startswith("# "):
-            return line[2:].strip()
-    return ""
-
-
-def extract_type(text: str) -> str:
-    for line in text.split("\n"):
-        if line.startswith("type:"):
-            return line.split(":", 1)[1].strip()
-        if line.strip() == "---" and not text.startswith("---"):
-            break
-    return "unknown"
 
 
 def load_state() -> tuple[list[dict], dict]:

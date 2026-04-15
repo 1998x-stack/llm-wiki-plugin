@@ -9,16 +9,12 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
-import yaml
+from wiki_utils import VAULT_DIR, WIKI_DIR, MAPS_DIR, INDEX_FILE, parse_frontmatter
 
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
 
-VAULT_DIR = Path(__file__).resolve().parent.parent
-WIKI_DIR = VAULT_DIR / "wiki"
-MAPS_DIR = VAULT_DIR / "maps"
-INDEX_FILE = VAULT_DIR / "index.md"
 DOCMAP_FILE = VAULT_DIR / "index" / "BM25" / "docmap.json"
 
 REQUIRED_FIELDS = {"type", "status", "confidence", "created", "tags", "relates_to"}
@@ -30,20 +26,6 @@ SEVERITY_WARN = "warning"
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-
-def parse_frontmatter(text: str) -> Tuple[Optional[dict], str]:
-    """Return (meta_dict, body_str) or (None, body_str) if YAML is invalid."""
-    m = re.match(r"^---\n(.*?)\n---\n?(.*)", text, re.DOTALL)
-    if not m:
-        return None, text
-    try:
-        meta = yaml.safe_load(m.group(1))
-        if not isinstance(meta, dict):
-            return None, text
-        return meta, m.group(2)
-    except yaml.YAMLError:
-        return None, text
-
 
 def collect_wiki_files(single: Optional[str] = None) -> List[Path]:
     """Return list of wiki .md files to check."""
@@ -78,10 +60,11 @@ def load_docmap() -> Optional[dict]:
 # ---------------------------------------------------------------------------
 
 def check_file(path: Path, index_links: Set[str], all_pages: Set[str],
-               docmap: Optional[dict], do_fix: bool) -> List[dict]:
+               docmap: Optional[dict], do_fix: bool,
+               cached_text: Optional[str] = None) -> List[dict]:
     """Run all per-file checks. Return list of finding dicts."""
     findings: List[dict] = []
-    text = path.read_text(encoding="utf-8")
+    text = cached_text if cached_text is not None else path.read_text(encoding="utf-8")
     meta, body = parse_frontmatter(text)
     page_name = path.stem
     rel = str(path.relative_to(VAULT_DIR))
@@ -161,13 +144,19 @@ def check_file(path: Path, index_links: Set[str], all_pages: Set[str],
     return findings
 
 
-def check_orphans(all_pages: Set[str], wiki_files: List[Path]) -> List[dict]:
-    """O1: pages with no inbound links from other wiki pages."""
+def check_orphans(all_pages: Set[str], wiki_files: List[Path],
+                   file_texts: Optional[Dict[str, str]] = None) -> List[dict]:
+    """O1: pages with no inbound links from other wiki pages.
+
+    If file_texts is provided, reuses already-read content to avoid re-reading files.
+    """
     findings: List[dict] = []
     # Build inbound link map
     inbound: Dict[str, int] = {name: 0 for name in all_pages}
     for p in wiki_files:
-        body = p.read_text(encoding="utf-8")
+        body = file_texts.get(str(p)) if file_texts else None
+        if body is None:
+            body = p.read_text(encoding="utf-8")
         links = re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]+)?\]\]", body)
         for link in links:
             if link in inbound:
@@ -175,7 +164,6 @@ def check_orphans(all_pages: Set[str], wiki_files: List[Path]) -> List[dict]:
 
     for name, count in sorted(inbound.items()):
         if count == 0:
-            # Find the file for a nice path
             matches = [f for f in wiki_files if f.stem == name]
             rel = str(matches[0].relative_to(VAULT_DIR)) if matches else name
             findings.append(dict(
@@ -243,12 +231,23 @@ def main():
 
     findings: List[dict] = []
 
+    # Cache file contents to avoid double reads in orphan check
+    file_texts: Dict[str, str] = {}
     for wf in wiki_files:
-        findings.extend(check_file(wf, index_links, all_pages, docmap, args.fix))
+        file_texts[str(wf)] = wf.read_text(encoding="utf-8")
+
+    for wf in wiki_files:
+        findings.extend(check_file(wf, index_links, all_pages, docmap, args.fix,
+                                   cached_text=file_texts.get(str(wf))))
 
     # Global checks only when scanning all files
     if args.file is None:
-        findings.extend(check_orphans(all_pages, list(WIKI_DIR.rglob("*.md"))))
+        all_wiki_files = list(WIKI_DIR.rglob("*.md"))
+        # Read any files not yet cached (shouldn't happen in full scan)
+        for wf in all_wiki_files:
+            if str(wf) not in file_texts:
+                file_texts[str(wf)] = wf.read_text(encoding="utf-8")
+        findings.extend(check_orphans(all_pages, all_wiki_files, file_texts))
         findings.extend(check_stale_index(index_links, all_pages))
         findings.extend(check_maps_consistency(all_pages))
 

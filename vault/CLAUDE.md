@@ -21,7 +21,9 @@ This is an Obsidian Brain vault — a personal knowledge operating system.
 
 | Directory | Purpose |
 |-----------|---------|
-| `qa/` | QA log files — ChatGPT-format question/answer records |
+| `raw/qa/` | QA source files — wiki:query writes here, wiki:qa-import reads here |
+| `raw/qa/qa.snapshot.md` | QA import checklist — tracks processed/unprocessed files |
+| `qa/` | **Deprecated** — legacy QA log location, use raw/qa/ instead |
 | `index/BM25/` | BM25 search index files (corpus.pkl, index.pkl, docmap.json) |
 | `graph.json` | Knowledge graph data for D3.js visualization |
 | `log.hook.md` | Hook execution log (lint, BM25, graph hook results) |
@@ -31,7 +33,7 @@ This is an Obsidian Brain vault — a personal knowledge operating system.
 Three PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
 1. `hook_lint.sh` — validates page quality, logs to log.hook.md
 2. `hook_bm25.sh` — updates BM25 index for modified page
-3. `hook_graph.sh` — rebuilds graph.json
+3. `hook_graph.sh` — rebuilds graph.json (30s debounce)
 
 ## Key Commands
 

@@ -1,6 +1,6 @@
 # wiki:query
 
-基于知识库回答问题，使用统一搜索（BM25 + maps 主题扩展 + 图谱遍历）增强检索，将问答记录写入本地文件。
+基于知识库回答问题，使用统一搜索（BM25 + maps 主题扩展 + 图谱遍历）增强检索，将问答记录写入 raw/qa/ 供后续 qa-import。
 
 ## 输入
 
@@ -18,42 +18,41 @@ $ARGUMENTS — 要回答的问题。
    - 读取所有找到的相关页面的完整内容
    - 注意 confidence 值——低置信度的信息标注 "（置信度较低）"
 
-4. **综合回答**
+3. **综合回答**
    - 用中文回答
    - 引用来源页面：`来源：[[页面名]]`
    - 如果信息不足，明确说明哪些方面缺少数据
 
-5. **结晶化判断**
+4. **结晶化判断**
    - 如果回答综合了 3+ 个页面的信息，且形成了新的洞见：
      - 在 `wiki/syntheses/` 创建新页面保存这个分析
-     - 更新 index.md
+     - 更新 index.md：`Bash: python3 scripts/snapshot_index.py --update`
      - 追加 log.md
 
-6. **写入 QA 记录**
-   - 将问答写入 `qa/YYYY-MM-DD.md`（使用 Write 工具）
-   - 如果文件不存在，先创建文件头：
+5. **写入 QA 记录**
+   - 将问答写入 `raw/qa/qa-YYYYMMDD-HHMMSS.md`（使用 Write 工具）
+   - 文件格式：
      ```markdown
      ---
-     type: qa-log
-     date: YYYY-MM-DD
+     type: qa
+     question: "原始问题"
+     date: "YYYY-MM-DD"
+     citations: ["页面名1", "页面名2"]
      ---
 
-     # QA Log — YYYY-MM-DD
-     ```
-   - 追加本次问答（使用 Edit 工具 append 到文件末尾）：
-     ```markdown
-     ---
-
-     ## Prompt
+     ## 问题
 
      <原始问题>
 
-     ## Response
+     ## 回答
 
      <完整回答，包含引用>
-
-     ---
      ```
+   - 注意：每次 query 创建独立文件，文件名包含时间戳，避免冲突
+
+6. **更新 QA 快照**
+   - 追加新文件到 `raw/qa/qa.snapshot.md`（如果不存在则创建）
+   - 追加格式：`- [ ] qa-YYYYMMDD-HHMMSS.md — 主题关键词`
 
 7. **更新 last_accessed**
    - 更新所有被引用页面的 `last_accessed` 字段为今天日期
