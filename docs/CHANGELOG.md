@@ -39,7 +39,7 @@
 - **`wiki:query` QA output**: now writes to `raw/qa/qa-YYYYMMDD-HHMMSS.md` (one file per query) instead of appending to `qa/YYYY-MM-DD.md`. New format includes frontmatter with `type: qa`, `question`, `date`, `citations`
 - **`wiki:query` snapshot tracking**: appends new QA file to `raw/qa/qa.snapshot.md` after each query
 - **`wiki:qa-import` snapshot-driven**: `all` mode reads `raw/qa/qa.snapshot.md` to skip already-imported files. Builds snapshot if missing. Updates checklist on completion
-- **`qa/` folder deprecated**: all QA data now lives in `raw/qa/`. Legacy `qa/` files not auto-migrated
+- **`qa/` folder removed**: all QA data now lives in `raw/qa/`
 
 ### Documentation
 - **`docs/gotchas/v3.3-refactor.md`**: 10 new gotchas (#18-27) covering wiki_utils fallback, pickle portability, dedup limitations, debounce behavior, QA pipeline changes, XSS fix, edge directionality, jieba stderr

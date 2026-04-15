@@ -32,6 +32,5 @@ Issues are split into topical files under `docs/gotchas/`.
 | HIGH | Complete ingest files 14-16 (Kolmogorov/Doob/Ito) |
 | MEDIUM | Fix broken link `[[马尔可夫]]` → `[[安德烈·马尔可夫]]` |
 | MEDIUM | Fix broken link `[[切比雪夫不等式]]` link mismatch |
-| MEDIUM | Migrate legacy `qa/` files to `raw/qa/` format |
 | LOW | Create `[[离散傅里叶变换]]` concept page |
 | LOW | Standardize source section format (bare string → `[[raw/...]]`) |
