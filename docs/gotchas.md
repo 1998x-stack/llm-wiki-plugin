@@ -238,7 +238,7 @@ pip install jieba rank-bm25 pyyaml
 
 ---
 
-## 11. wiki:graph 非交互模式 max_turns（已记录）
+## 11. wiki:graph 非交互模式 max_turns（已修复）
 
 > 2026-04-15 claude -p integration test
 
@@ -246,12 +246,7 @@ pip install jieba rank-bm25 pyyaml
 
 **根因**：`wiki:graph` 命令的 lint 步骤尝试自动修复断链（Edit wiki 页面），但非交互模式下 Edit 权限被拒，agent 反复重试消耗 turns。
 
-**影响**：graph 构建本身（`build_graph.py --full`）作为脚本运行正常，只是 Claude 命令的 lint+fix 工作流在 CI/非交互环境不可用。
-
-**建议修复**：
-- 方案 A：`wiki:graph` 的 lint 步骤改为只读（报告问题但不自动修复）
-- 方案 B：在 `claude -p` 调用时增大 `--max-turns 60`
-- 方案 C：将 lint 和 graph 分为两个独立步骤
+**修复**：采用方案 A — `graph.md` 的 lint 步骤改为只读（只运行 `lint_wiki.py --json` 报告，不自动修复）。Re-test: 9 turns/$0.24 PASS。
 
 ---
 

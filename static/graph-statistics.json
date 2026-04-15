@@ -1,22 +1,28 @@
 {
-  "generated": "2026-04-15T07:15:19+00:00",
+  "generated": "2026-04-15T07:44:27+00:00",
   "summary": {
-    "total_nodes": 128,
-    "total_edges": 828,
+    "total_nodes": 134,
+    "total_edges": 844,
     "orphan_count": 3,
-    "component_count": 5
+    "component_count": 6,
+    "avg_degree": 6.18,
+    "density": 0.0465,
+    "diameter": 8,
+    "avg_clustering": 0.4906,
+    "bridge_count": 10
   },
   "type_distribution": {
-    "concept": 76,
-    "entity": 50,
-    "synthesis": 2
+    "concept": 78,
+    "entity": 53,
+    "synthesis": 2,
+    "qa-insight": 1
   },
   "confidence_distribution": {
     "0.0-0.3": 0,
     "0.3-0.5": 0,
     "0.5-0.7": 0,
-    "0.7-0.9": 20,
-    "0.9-1.0": 108
+    "0.7-0.9": 21,
+    "0.9-1.0": 113
   },
   "top_connected": [
     {
@@ -120,15 +126,249 @@
       "edge_count": 21
     }
   ],
+  "top_betweenness": [
+    {
+      "id": "wiki/concepts/谱半径.md",
+      "label": "谱半径",
+      "betweenness": 0.15
+    },
+    {
+      "id": "wiki/concepts/概率论.md",
+      "label": "概率论",
+      "betweenness": 0.1374
+    },
+    {
+      "id": "wiki/concepts/马尔可夫链.md",
+      "label": "马尔可夫链",
+      "betweenness": 0.1327
+    },
+    {
+      "id": "wiki/concepts/大数定律.md",
+      "label": "大数定律",
+      "betweenness": 0.127
+    },
+    {
+      "id": "wiki/entities/帕夫努季·利沃维奇·切比雪夫.md",
+      "label": "帕夫努季·利沃维奇·切比雪夫",
+      "betweenness": 0.1102
+    },
+    {
+      "id": "wiki/concepts/Perron-Frobenius定理.md",
+      "label": "Perron-Frobenius定理",
+      "betweenness": 0.0999
+    },
+    {
+      "id": "wiki/concepts/矩阵理论.md",
+      "label": "矩阵理论",
+      "betweenness": 0.0841
+    },
+    {
+      "id": "wiki/concepts/快速傅里叶变换.md",
+      "label": "快速傅里叶变换",
+      "betweenness": 0.0699
+    },
+    {
+      "id": "wiki/concepts/高斯求积公式.md",
+      "label": "高斯求积公式",
+      "betweenness": 0.0625
+    },
+    {
+      "id": "wiki/concepts/共轭梯度法.md",
+      "label": "共轭梯度法",
+      "betweenness": 0.0613
+    },
+    {
+      "id": "wiki/concepts/QR算法.md",
+      "label": "QR算法",
+      "betweenness": 0.0514
+    },
+    {
+      "id": "wiki/concepts/Richardson外推法.md",
+      "label": "Richardson外推法",
+      "betweenness": 0.049
+    },
+    {
+      "id": "wiki/entities/卡尔·弗里德里希·高斯.md",
+      "label": "卡尔·弗里德里希·高斯",
+      "betweenness": 0.0475
+    },
+    {
+      "id": "wiki/concepts/中心极限定理.md",
+      "label": "中心极限定理",
+      "betweenness": 0.0452
+    },
+    {
+      "id": "wiki/concepts/Jacobi迭代法.md",
+      "label": "Jacobi迭代法",
+      "betweenness": 0.0446
+    }
+  ],
+  "top_pagerank": [
+    {
+      "id": "wiki/concepts/概率论.md",
+      "label": "概率论",
+      "pagerank": 0.0242
+    },
+    {
+      "id": "wiki/concepts/矩阵理论.md",
+      "label": "矩阵理论",
+      "pagerank": 0.0184
+    },
+    {
+      "id": "wiki/entities/Claude-Mem.md",
+      "label": "Claude-Mem",
+      "pagerank": 0.0181
+    },
+    {
+      "id": "wiki/concepts/大数定律.md",
+      "label": "大数定律",
+      "pagerank": 0.0158
+    },
+    {
+      "id": "wiki/entities/DeepAgents.md",
+      "label": "DeepAgents",
+      "pagerank": 0.0157
+    },
+    {
+      "id": "wiki/concepts/谱半径.md",
+      "label": "谱半径",
+      "pagerank": 0.0148
+    },
+    {
+      "id": "wiki/concepts/高斯求积公式.md",
+      "label": "高斯求积公式",
+      "pagerank": 0.0136
+    },
+    {
+      "id": "wiki/concepts/奇异值分解.md",
+      "label": "奇异值分解",
+      "pagerank": 0.0133
+    },
+    {
+      "id": "wiki/concepts/期望值.md",
+      "label": "期望值",
+      "pagerank": 0.0132
+    },
+    {
+      "id": "wiki/concepts/点数问题.md",
+      "label": "点数问题",
+      "pagerank": 0.0129
+    },
+    {
+      "id": "wiki/concepts/快速傅里叶变换.md",
+      "label": "快速傅里叶变换",
+      "pagerank": 0.0129
+    },
+    {
+      "id": "wiki/concepts/极大极小定理.md",
+      "label": "极大极小定理",
+      "pagerank": 0.0126
+    },
+    {
+      "id": "wiki/concepts/切比雪夫逼近理论.md",
+      "label": "切比雪夫逼近理论",
+      "pagerank": 0.0123
+    },
+    {
+      "id": "wiki/concepts/矩阵扰动理论.md",
+      "label": "矩阵扰动理论",
+      "pagerank": 0.0121
+    },
+    {
+      "id": "wiki/concepts/Schur分解.md",
+      "label": "Schur分解",
+      "pagerank": 0.012
+    }
+  ],
+  "top_clustering": [
+    {
+      "id": "wiki/concepts/Agent Harness模式.md",
+      "label": "Agent Harness模式",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/DeepAgents中间件体系.md",
+      "label": "DeepAgents中间件体系",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/DeepAgents后端协议.md",
+      "label": "DeepAgents后端协议",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/DeepAgents评估体系.md",
+      "label": "DeepAgents评估体系",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/LLM-as-Judge.md",
+      "label": "LLM-as-Judge",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/Wiener积分.md",
+      "label": "Wiener积分",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/勒贝格常数.md",
+      "label": "勒贝格常数",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/entities/卢卡·帕西奥利.md",
+      "label": "卢卡·帕西奥利",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/entities/奥斯卡·佩龙.md",
+      "label": "奥斯卡·佩龙",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/entities/布鲁克·泰勒.md",
+      "label": "布鲁克·泰勒",
+      "clustering": 1.0
+    }
+  ],
+  "degree_distribution": {
+    "0": 3,
+    "1": 8,
+    "2": 8,
+    "3": 25,
+    "4": 15,
+    "5": 10,
+    "6": 10,
+    "7": 16,
+    "8": 4,
+    "9": 9,
+    "10": 6,
+    "11": 5,
+    "12": 5,
+    "13": 1,
+    "14": 4,
+    "15": 2,
+    "16": 1,
+    "20": 1,
+    "24": 1
+  },
+  "center_nodes": [
+    "Gauss-Seidel方法",
+    "Jacobi迭代法",
+    "QR算法",
+    "中心极限定理",
+    "切比雪夫多项式"
+  ],
   "tag_frequency": {
     "研究": 116,
     "技术": 114,
     "数学": 56,
     "历史": 47,
-    "数值分析": 26,
+    "数值分析": 27,
     "矩阵理论": 18,
     "概率论": 15,
-    "AI": 8,
+    "AI": 12,
     "Agent": 7,
     "组合数学": 5,
     "统计学": 4,
@@ -143,35 +383,35 @@
     "机器学习": 2,
     "网络": 1,
     "设计模式": 1,
+    "工具，方法论": 1,
     "中间件": 1,
     "沙箱": 1,
     "LangSmith": 1,
+    "概率论，研究": 1,
     "工作": 1,
     "科学计算": 1,
-    "开源": 1,
-    "Python": 1,
-    "设计哲学": 1
+    "工具，研究": 1
   },
   "growth_timeline": {
-    "2026-04-15": 128
+    "2026-04-15": 134
   },
   "relationship_types": {
-    "wikilink": 392,
-    "related_to": 83,
+    "wikilink": 401,
+    "related_to": 86,
     "extends": 82,
-    "caused": 73,
+    "caused": 74,
     "implements": 56,
-    "uses": 48,
+    "uses": 50,
     "depends_on": 44,
     "part_of": 30,
     "influenced": 5,
     "caused_by": 3,
     "originated_from": 3,
     "synthesizes": 3,
+    "contradicts": 2,
     "used_by": 2,
     "implemented_by": 1,
     "causes": 1,
-    "contradicts": 1,
     "collaborated_with": 1
   },
   "orphans": [
@@ -182,7 +422,7 @@
   "components": [
     {
       "id": 0,
-      "size": 117
+      "size": 118
     },
     {
       "id": 1,
@@ -190,7 +430,7 @@
     },
     {
       "id": 2,
-      "size": 1
+      "size": 5
     },
     {
       "id": 3,
@@ -198,6 +438,10 @@
     },
     {
       "id": 4,
+      "size": 1
+    },
+    {
+      "id": 5,
       "size": 1
     }
   ]

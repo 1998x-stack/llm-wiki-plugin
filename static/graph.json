@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-04-15T07:15:19.304038+00:00",
-    "total_nodes": 128,
-    "total_edges": 828,
+    "generated": "2026-04-15T07:44:27.112697+00:00",
+    "total_nodes": 134,
+    "total_edges": 844,
     "orphan_count": 3,
-    "component_count": 5
+    "component_count": 6
   },
   "nodes": [
     {
@@ -45,7 +45,18 @@
         "研究",
         "数值分析"
       ],
-      "edge_count": 16
+      "edge_count": 18
+    },
+    {
+      "id": "wiki/concepts/Claude-Code-Hook-System.md",
+      "label": "Claude-Code-Hook-System",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "工具，方法论"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/DeepAgents中间件体系.md",
@@ -186,6 +197,17 @@
       "edge_count": 16
     },
     {
+      "id": "wiki/concepts/LLM-Statelessness.md",
+      "label": "LLM-Statelessness",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "概率论，研究"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/LLM-as-Judge.md",
       "label": "LLM-as-Judge",
       "type": "concept",
@@ -221,7 +243,7 @@
         "研究",
         "数值分析"
       ],
-      "edge_count": 11
+      "edge_count": 13
     },
     {
       "id": "wiki/concepts/Perron-Frobenius定理.md",
@@ -451,7 +473,7 @@
         "研究",
         "数值分析"
       ],
-      "edge_count": 17
+      "edge_count": 19
     },
     {
       "id": "wiki/concepts/切比雪夫不等式.md",
@@ -940,6 +962,38 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/entities/Alex-Newman.md",
+      "label": "Alex-Newman",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "工具，研究"
+      ],
+      "edge_count": 2
+    },
+    {
+      "id": "wiki/entities/Bun-Runtime.md",
+      "label": "Bun-Runtime",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "工具，数值分析，研究"
+      ],
+      "edge_count": 2
+    },
+    {
+      "id": "wiki/entities/Claude-Mem.md",
+      "label": "Claude-Mem",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "AI",
+        "工具，方法论，研究"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/entities/DeepAgents.md",
       "label": "DeepAgents",
       "type": "entity",
@@ -1211,7 +1265,7 @@
         "数学",
         "历史"
       ],
-      "edge_count": 8
+      "edge_count": 9
     },
     {
       "id": "wiki/entities/恩斯特·菲舍尔.md",
@@ -1301,7 +1355,7 @@
         "数学",
         "历史"
       ],
-      "edge_count": 9
+      "edge_count": 10
     },
     {
       "id": "wiki/entities/瑞利勋爵.md",
@@ -1584,6 +1638,17 @@
       "edge_count": 5
     },
     {
+      "id": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "label": "数值PDE稳定收敛三角",
+      "type": "qa-insight",
+      "confidence": 0.95,
+      "tags": [
+        "数值分析",
+        "稳定性"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/syntheses/DeepAgents评估设计哲学.md",
       "label": "DeepAgents评估设计哲学",
       "type": "synthesis",
@@ -1698,6 +1763,12 @@
     },
     {
       "source": "wiki/concepts/CFL条件.md",
+      "target": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/CFL条件.md",
       "target": "wiki/entities/理查德·柯朗.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -1723,6 +1794,18 @@
     {
       "source": "wiki/concepts/CFL条件.md",
       "target": "wiki/concepts/谱方法.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude-Code-Hook-System.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude-Code-Hook-System.md",
+      "target": "wiki/entities/Claude-Mem.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2249,6 +2332,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/LLM-Statelessness.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "contradicts",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Statelessness.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/LLM-as-Judge.md",
       "target": "wiki/entities/DeepAgents.md",
       "relation": "wikilink",
@@ -2317,6 +2412,12 @@
     {
       "source": "wiki/concepts/Lax-Richtmyer等价定理.md",
       "target": "wiki/concepts/Richardson外推法.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lax-Richtmyer等价定理.md",
+      "target": "wiki/qa-insights/数值PDE稳定收敛三角.md",
       "relation": "related_to",
       "bidirectional": false
     },
@@ -3205,6 +3306,12 @@
     {
       "source": "wiki/concepts/冯·诺依曼稳定性分析.md",
       "target": "wiki/concepts/后向误差分析.md",
+      "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/冯·诺依曼稳定性分析.md",
+      "target": "wiki/qa-insights/数值PDE稳定收敛三角.md",
       "relation": "related_to",
       "bidirectional": false
     },
@@ -5099,6 +5206,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Alex-Newman.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Alex-Newman.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Bun-Runtime.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Bun-Runtime.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/DeepAgents.md",
       "target": "wiki/concepts/Agent Harness模式.md",
       "relation": "implements",
@@ -6413,6 +6544,36 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "target": "wiki/concepts/CFL条件.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "target": "wiki/concepts/冯·诺依曼稳定性分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "target": "wiki/concepts/Lax-Richtmyer等价定理.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "target": "wiki/entities/彼得·拉克斯.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/qa-insights/数值PDE稳定收敛三角.md",
+      "target": "wiki/entities/理查德·柯朗.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/syntheses/DeepAgents评估设计哲学.md",
       "target": "wiki/concepts/DeepAgents评估体系.md",
       "relation": "synthesizes",
@@ -6589,7 +6750,7 @@
   "components": [
     {
       "id": 0,
-      "size": 117,
+      "size": 118,
       "nodes": [
         "wiki/concepts/CFL条件.md",
         "wiki/concepts/Gauss-Seidel方法.md",
@@ -6707,6 +6868,7 @@
         "wiki/entities/阿德里安-马里·勒让德.md",
         "wiki/entities/雅各布·伯努利.md",
         "wiki/entities/马格努斯·赫斯坦尼斯.md",
+        "wiki/qa-insights/数值PDE稳定收敛三角.md",
         "wiki/syntheses/矩阵谱理论的统一叙事.md"
       ]
     },
@@ -6726,20 +6888,31 @@
     },
     {
       "id": 2,
-      "size": 1,
+      "size": 5,
       "nodes": [
-        "wiki/concepts/bun-vs-uv.md"
+        "wiki/concepts/Claude-Code-Hook-System.md",
+        "wiki/concepts/LLM-Statelessness.md",
+        "wiki/entities/Alex-Newman.md",
+        "wiki/entities/Bun-Runtime.md",
+        "wiki/entities/Claude-Mem.md"
       ]
     },
     {
       "id": 3,
       "size": 1,
       "nodes": [
-        "wiki/concepts/claude-cli-tools.md"
+        "wiki/concepts/bun-vs-uv.md"
       ]
     },
     {
       "id": 4,
+      "size": 1,
+      "nodes": [
+        "wiki/concepts/claude-cli-tools.md"
+      ]
+    },
+    {
+      "id": 5,
       "size": 1,
       "nodes": [
         "wiki/concepts/modern-cli-tools.md"

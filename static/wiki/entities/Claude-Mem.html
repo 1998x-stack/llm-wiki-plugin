@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude-Mem — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Claude-Mem</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="claude-mem">Claude-Mem</h1>
+<h2 id="_1">概述</h2>
+<p>Claude-Mem 是一个专为 <strong>Claude Code</strong> 设计的开源持久化记忆插件，旨在解决大型语言模型（LLM）固有的“无状态”缺陷。通过自动捕获会话中的工具调用、利用 AI 进行智能压缩并存储于本地数据库，它使 AI 编程助手能够跨越多次会话保留项目上下文、逻辑边界及配置细节。该系统采用“两进程 + 一数据库”架构，结合 Hook 系统与后台 Worker 服务，实现了零用户干预的自动化记忆管理，显著降低了重复解释的摩擦成本。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心功能与设计哲学</h3>
+<p>Claude-Mem 的核心命题是赋予 AI 编程助手真实的项目记忆。在传统模式下，LLM 每次新建会话都会丢失之前的上下文，导致开发者需要反复解释项目背景、调试历史及配置细节。Claude-Mem 通过以下四个步骤解决这一问题：
+1. <strong>自动捕获</strong>：利用 Claude Code 的钩子系统（Hook System）实时监听所有工具调用（如文件读写、命令执行）。
+2. <strong>AI 压缩</strong>：调用 Claude Agent SDK 将原始的工具日志提炼为结构化的「观察记录」（Observations），去除冗余信息。
+3. <strong>持久存储</strong>：将压缩后的记忆存入本地的 SQLite 数据库，并可选地使用 ChromaDB 进行向量嵌入。
+4. <strong>智能注入</strong>：在新会话启动时，自动检索相关历史上下文并注入到初始提示词中，实现记忆的无缝延续。</p>
+<h3 id="_4">系统架构</h3>
+<p>系统采用“两进程 + 一数据库”模型：
+- <strong>主进程（Claude Code）</strong>：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
+- <strong>后台服务（Worker Service）</strong>：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
+- <strong>数据层</strong>：使用 SQLite 配合 FTS5 进行全文检索，结合 ChromaDB 进行语义向量检索，形成混合检索能力。</p>
+<h3 id="hook">Hook 架构细节</h3>
+<p>Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 <strong>Lifecycle Hooks</strong> 机制，在特定时间节点介入工作流：
+- <strong>Hook 层</strong>：运行在 Claude Code 进程中的 6 个脚本（<code>smart-install.js</code>, <code>context-hook.js</code>, <code>new-hook.js</code>, <code>save-hook.js</code>, <code>summary-hook.js</code>, <code>cleanup-hook.js</code>），负责数据采集、预处理和指令下发。
+- <strong>Worker 层</strong>：独立的后台服务，负责接收 Hook 发送的数据，调用 LLM 进行智能压缩，并将结果存入数据库。
+- <strong>通信模式</strong>：所有 Hook 通过 <strong>stdin/stdout</strong> 与宿主环境通信。输入为序列化的 JSON 上下文数据，输出为控制指令或注入内容（如 <code>additionalContext</code>）。</p>
+<h3 id="_5">核心设计原则</h3>
+<ul>
+<li><strong>唯一性</strong>：以 <code>session_id</code> 作为全局不变量和主键，确保多轮对话数据关联正确。</li>
+<li><strong>幂等性</strong>：关键数据库操作（如创建会话）使用 <code>INSERT OR IGNORE</code>，防止重复触发导致数据冗余。</li>
+<li><strong>边缘脱敏</strong>：隐私标签（如 <code>&lt;private&gt;</code>）在数据离开 Hook 进程前即被剥离，确保敏感信息不进入存储层。</li>
+<li><strong>非阻塞</strong>：除必要的健康检查外，大部分与 Worker 的通信采用“即发即忘”模式（带超时限制），避免阻塞用户的主工作流。</li>
+</ul>
+<h3 id="_6">技术选型优势</h3>
+<ul>
+<li><strong>Bun 运行时</strong>：替代了早期的 PM2+Node.js 方案，利用 <code>bun:sqlite</code> 获得更高的性能和更低的冷启动时间，且无需额外依赖。</li>
+<li><strong>零基础设施依赖</strong>：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 SQLite，极大降低了部署门槛。</li>
+<li><strong>即发即忘（Fire-and-Forgert）通信</strong>：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。</li>
+</ul>
+<h3 id="_7">隐私与安全</h3>
+<p>系统引入了 <code>&lt;private&gt;</code> 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 <code>&lt;claude-mem-context&gt;</code> 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。</p>
+<h3 id="_8">项目现状</h3>
+<p>由 Alex Newman (@thedotmack) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
+<h3 id="_9">数据库架构演进</h3>
+<p>系统经历了从 v3 到 v4 的重大重构：
+- <strong>v3 时代</strong>：采用粗粒度的 <code>sessions</code> -&gt; <code>memories</code> -&gt; <code>overviews</code> 模型，缺乏高效的全文检索能力，仅支持低效的 LIKE 查询。
+- <strong>v4 时代（当前）</strong>：引入了细粒度的 <code>observations</code>（观察记录）作为记忆原子单元，每条工具调用（如 Read/Bash/Write）都被独立记录并结构化。新增了 <code>session_summaries</code>（会话摘要）提供宏观叙事，以及 <code>user_prompts</code> 存档用户原始指令。这种分层模型支持更精准的上下文注入策略：先呈现宏观摘要，再补充微观细节。</p>
+<h3 id="_10">三层存储架构</h3>
+<p>Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
+1. <strong>关系型数据层</strong>：利用 SQLite 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
+2. <strong>全文检索层</strong>：利用 <span style="color:#e74c3c" title="broken link">FTS5</span> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
+3. <strong>语义向量层</strong>：可选集成 <span style="color:#e74c3c" title="broken link">ChromaDB</span>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
+<h3 id="_11">检索工作流</h3>
+<p>系统根据查询类型自动选择最优检索策略：
+- <strong>精确关键词检索</strong>：优先使用 FTS5 实现毫秒级响应
+- <strong>语义相似度检索</strong>：当 FTS5 召回不足时，启用 ChromaDB 进行模糊匹配
+- <strong>混合检索</strong>：复杂查询可能组合多种检索方式，通过重排序确保最相关结果优先</p>
+<h3 id="_12">工程特性</h3>
+<ul>
+<li><strong>解耦设计</strong>：内部使用 <code>sdk_session_id</code>，外部兼容 <code>claude_session_id</code>，便于未来扩展支持其他 AI 工具（如 Cursor）。</li>
+<li><strong>自动化同步</strong>：通过 9 个 SQLite 触发器（Insert/Update/Delete）自动维护 FTS5 索引，对应用层完全透明。</li>
+<li><strong>安全性</strong>：内置严格的 FTS5 查询转义机制，并通过 332 个测试用例防止 SQL 注入。</li>
+<li><strong>迁移系统</strong>：拥有完善的 10 步迁移历史，确保版本升级时的数据完整性和向后兼容性。</li>
+</ul>
+<h2 id="_13">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_01_overview.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_02_hooks.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_04_database.md</span></li>
+</ul>
+<h2 id="_14">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Claude Code</span></li>
+<li><span style="color:#e74c3c" title="broken link">LLM Statelessness</span></li>
+<li><span style="color:#e74c3c" title="broken link">Bun Runtime</span></li>
+<li><span style="color:#e74c3c" title="broken link">SQLite</span></li>
+<li><span style="color:#e74c3c" title="broken link">ChromaDB</span></li>
+<li><span style="color:#e74c3c" title="broken link">Alex Newman</span></li>
+<li><span style="color:#e74c3c" title="broken link">Lifecycle Hooks</span></li>
+<li><span style="color:#e74c3c" title="broken link">Worker Service</span></li>
+<li><span style="color:#e74c3c" title="broken link">Smart Install</span></li>
+<li><span style="color:#e74c3c" title="broken link">Context Hook</span></li>
+<li><span style="color:#e74c3c" title="broken link">New Hook</span></li>
+<li><span style="color:#e74c3c" title="broken link">Save Hook</span></li>
+<li><span style="color:#e74c3c" title="broken link">Summary Hook</span></li>
+<li><span style="color:#e74c3c" title="broken link">Cleanup Hook</span></li>
+<li><span style="color:#e74c3c" title="broken link">FTS5</span></li>
+<li><span style="color:#e74c3c" title="broken link">三层存储架构</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Bun-Runtime.html">&larr; Bun-Runtime</a>
+    <a href="DeepAgents.html">DeepAgents &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

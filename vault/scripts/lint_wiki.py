@@ -17,6 +17,7 @@ import yaml
 
 VAULT_DIR = Path(__file__).resolve().parent.parent
 WIKI_DIR = VAULT_DIR / "wiki"
+MAPS_DIR = VAULT_DIR / "maps"
 INDEX_FILE = VAULT_DIR / "index.md"
 DOCMAP_FILE = VAULT_DIR / "index" / "BM25" / "docmap.json"
 
@@ -55,11 +56,11 @@ def collect_wiki_files(single: Optional[str] = None) -> List[Path]:
 
 
 def load_index_links() -> Set[str]:
-    """Return set of page names referenced in index.md as [[Name]]."""
+    """Return set of page names referenced in index.md as [[Name]] or [[Name|Alias]]."""
     if not INDEX_FILE.exists():
         return set()
     text = INDEX_FILE.read_text(encoding="utf-8")
-    return set(re.findall(r"\[\[([^\]]+)\]\]", text))
+    return set(re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", text))
 
 
 def load_docmap() -> Optional[dict]:
@@ -194,6 +195,35 @@ def check_stale_index(index_links: Set[str], all_pages: Set[str]) -> List[dict]:
     return findings
 
 
+def check_maps_consistency(all_pages: Set[str]) -> List[dict]:
+    """M1/M2: check maps/*.md files reference valid wiki pages and cover all pages."""
+    findings: List[dict] = []
+    if not MAPS_DIR.exists():
+        return findings
+
+    mapped_pages: Set[str] = set()
+    for mp in sorted(MAPS_DIR.glob("*.md")):
+        text = mp.read_text(encoding="utf-8")
+        links = set(re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", text))
+        rel = str(mp.relative_to(VAULT_DIR))
+        for link in links:
+            if link not in all_pages:
+                findings.append(dict(
+                    file=rel, check="M1", severity=SEVERITY_WARN,
+                    message="Map references non-existent page: [[%s]]" % link, fixed=False))
+            mapped_pages.add(link)
+
+    # M2: pages not in any map
+    unmapped = all_pages - mapped_pages
+    if unmapped:
+        findings.append(dict(
+            file="maps/", check="M2", severity=SEVERITY_WARN,
+            message="%d pages not in any map: %s" % (len(unmapped), ", ".join(sorted(unmapped)[:10])),
+            fixed=False))
+
+    return findings
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -220,6 +250,7 @@ def main():
     if args.file is None:
         findings.extend(check_orphans(all_pages, list(WIKI_DIR.rglob("*.md"))))
         findings.extend(check_stale_index(index_links, all_pages))
+        findings.extend(check_maps_consistency(all_pages))
 
     errors = [f for f in findings if f["severity"] == SEVERITY_ERROR]
     warnings = [f for f in findings if f["severity"] == SEVERITY_WARN]

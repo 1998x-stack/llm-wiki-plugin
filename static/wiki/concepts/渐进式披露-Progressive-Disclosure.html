@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渐进式披露-Progressive-Disclosure — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 渐进式披露-Progressive-Disclosure</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论，研究，AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="progressive-disclosure">渐进式披露 (Progressive Disclosure)</h1>
+<h2 id="_1">概述</h2>
+<p>渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过载和资源浪费。在 AI 系统设计中，该原则表现为优先提供高层摘要或元数据，仅在用户明确表达进一步兴趣时，才提供详细的底层数据。在 Claude-Mem 系统中，这一原则被具体化为“三层检索工作流”，有效解决了大语言模型上下文窗口有限和注意力稀释的核心痛点。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">理论基础与起源</h3>
+<p>渐进式披露最初源于人机交互（HCI）领域，用于简化复杂软件的界面，避免新手用户被过多的选项和功能吓退。其核心思想是：<strong>默认只显示最常用、最核心的信息，将高级或详细信息隐藏在次级界面中，待用户需要时再展开。</strong>
+在 LLM 时代，这一概念被赋予了新的内涵。由于 Token 成本高昂且上下文窗口有限，“用户”不仅是人类，更是消耗资源的 AI 模型。此时的渐进式披露不仅是为了易用性，更是为了<strong>经济性</strong>和<strong>推理质量</strong>。</p>
+<h3 id="ai">在 AI 检索系统中的实施</h3>
+<p>在传统的 RAG（检索增强生成）系统中，系统往往会一次性将所有检索到的文档片段全部填入 Context，这是一种“全量披露”的反面教材。相比之下，基于渐进式披露的架构（如 Claude-Mem）采用以下策略：</p>
+<h4 id="1">1. 分层信息结构</h4>
+<ul>
+<li><strong>第一层（索引层）</strong>：仅披露元数据（标题、时间、类型、简短摘要）。这一层的信息密度极高，Token 消耗极低，足以让模型进行相关性判断和筛选。</li>
+<li><strong>第二层（上下文层）</strong>：披露局部关联信息（如时间线上的前后事件）。这一层提供了叙事连贯性，帮助模型理解孤立事件的背景，但仍保持较高的抽象度。</li>
+<li><strong>第三层（详情层）</strong>：仅对经过前两层筛选的高置信度目标，披露完整的原始内容。此时模型已经明确了关注点，全量信息的投入能产生最大的推理价值。</li>
+</ul>
+<h4 id="2">2. 主动筛选机制</h4>
+<p>渐进式披露不仅仅是被动地隐藏信息，更强调<strong>主动筛选</strong>。系统通过工作流设计，强迫模型参与筛选过程。模型必须先在第一层“看目录”，然后在第二层“翻章节”，最后才能在第三层“读正文”。这种互动过程利用了模型的智能进行预过滤，确保了进入最终推理阶段的信息都是高信噪比的。</p>
+<h3 id="_4">核心价值</h3>
+<ul>
+<li><strong>Token 经济性</strong>：通过避免加载大量无关的详细信息，显著降低了 API 调用成本。在 Claude-Mem 的案例中，实现了约 10 倍的 Token 节省。</li>
+<li><strong>注意力聚焦</strong>：减少了上下文中的噪声，防止模型因信息过载而产生幻觉或忽略关键细节（注意力稀释效应）。</li>
+<li><strong>推理深度</strong>：模型可以将有限的上下文窗口容量集中在最相关的问题上，从而进行更深度的分析和推理，而不是浅尝辄止地处理大量碎片信息。</li>
+<li><strong>可控性</strong>：开发者可以通过控制披露的粒度和顺序，精确引导模型的思考路径，使系统行为更加可控和可预测。</li>
+</ul>
+<h3 id="_5">与其他概念的关系</h3>
+<p>渐进式披露是<strong>上下文工程 (Context Engineering)</strong> 的核心支柱之一。它与<strong>提示词工程即架构</strong>紧密相连，后者提供了实现渐进式披露的技术手段（如工具参数约束）。同时，它也是<strong>三层渐进式检索架构</strong>的理论基础，解释了为什么要这样设计工作流。</p>
+<h3 id="_6">应用场景扩展</h3>
+<p>除了记忆检索，渐进式披露还可应用于：
+-   <strong>长文档分析</strong>：先总结章节大意，再按需读取具体段落。
+-   <strong>代码库导航</strong>：先展示文件结构和函数签名，再读取具体实现代码。
+-   <strong>多轮对话管理</strong>：根据对话进展，动态注入相关的背景知识，而非一开始就灌输所有设定。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_05_search.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">上下文工程 (Context Engineering)</span></li>
+<li><span style="color:#e74c3c" title="broken link">Claude-Mem 三层渐进式检索架构</span></li>
+<li><span style="color:#e74c3c" title="broken link">提示词工程即架构 (Prompt Engineering as Architecture)</span></li>
+<li><span style="color:#e74c3c" title="broken link">RAG (Retrieval-Augmented Generation)</span></li>
+<li><span style="color:#e74c3c" title="broken link">Token 优化策略</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="泊松分布.html">&larr; 泊松分布</a>
+    <a href="点数问题.html">点数问题 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

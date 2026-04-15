@@ -107,6 +107,8 @@ def build_graph(wiki_dir: Path):
         # Frontmatter relates_to
         if fm:
             for entry in fm.get("relates_to", []) or []:
+                if not isinstance(entry, dict):
+                    continue
                 target_label = strip_wikilink(entry.get("target", ""))
                 relation = entry.get("type", "related_to")
                 tgt_id = label_to_id(target_label, label_to_path)

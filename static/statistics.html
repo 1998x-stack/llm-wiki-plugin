@@ -133,12 +133,19 @@ th { color: var(--fg2); font-weight: 600; font-size: 11px; text-transform: upper
   <h1>Knowledge Graph Statistics</h1>
   <div class="subtitle" id="generated"></div>
 
-  <!-- Summary cards -->
+  <!-- Summary cards row 1 -->
   <div class="summary-row">
     <div class="summary-card"><div class="num" id="s-nodes">—</div><div class="label">Nodes</div></div>
     <div class="summary-card"><div class="num" id="s-edges">—</div><div class="label">Edges</div></div>
     <div class="summary-card"><div class="num" id="s-orphans">—</div><div class="label">Orphans</div></div>
     <div class="summary-card"><div class="num" id="s-components">—</div><div class="label">Components</div></div>
+  </div>
+  <!-- Summary cards row 2 (networkx) -->
+  <div class="summary-row">
+    <div class="summary-card"><div class="num" id="s-avgdeg">—</div><div class="label">Avg Degree</div></div>
+    <div class="summary-card"><div class="num" id="s-density">—</div><div class="label">Density</div></div>
+    <div class="summary-card"><div class="num" id="s-diameter">—</div><div class="label">Diameter</div></div>
+    <div class="summary-card"><div class="num" id="s-clustering">—</div><div class="label">Avg Clustering</div></div>
   </div>
 
   <!-- Charts -->
@@ -162,6 +169,14 @@ th { color: var(--fg2); font-weight: 600; font-size: 11px; text-transform: upper
     <div class="chart-card wide">
       <h3>Growth Timeline</h3>
       <canvas id="chart-growth"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Degree Distribution</h3>
+      <canvas id="chart-degree"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Top PageRank</h3>
+      <canvas id="chart-pagerank"></canvas>
     </div>
   </div>
 
@@ -235,6 +250,10 @@ async function init() {
   document.getElementById('s-edges').textContent = s.total_edges;
   document.getElementById('s-orphans').textContent = s.orphan_count;
   document.getElementById('s-components').textContent = s.component_count;
+  document.getElementById('s-avgdeg').textContent = s.avg_degree || '—';
+  document.getElementById('s-density').textContent = s.density || '—';
+  document.getElementById('s-diameter').textContent = s.diameter || '—';
+  document.getElementById('s-clustering').textContent = s.avg_clustering || '—';
 
   // Type distribution doughnut
   const typeLabels = Object.keys(data.type_distribution);
@@ -329,6 +348,45 @@ async function init() {
     }));
   } else {
     document.getElementById('chart-growth').parentElement.innerHTML = '<h3>Growth Timeline</h3><p style="color:var(--fg2);font-size:13px">No growth data available (pages missing "created" field)</p>';
+  }
+
+  // Degree distribution
+  const degDist = data.degree_distribution || {};
+  const degLabels = Object.keys(degDist).map(Number).sort((a,b) => a-b).map(String);
+  const degData = degLabels.map(k => degDist[k]);
+  if (degLabels.length > 0) {
+    charts.push(new Chart(document.getElementById('chart-degree'), {
+      type: 'bar',
+      data: { labels: degLabels, datasets: [{ data: degData, backgroundColor: '#50C87880', borderColor: '#50C878', borderWidth: 1, borderRadius: 2 }] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { title: { display: true, text: 'Degree', color: fg2 }, ticks: { color: fg2 }, grid: { display: false } },
+          y: { title: { display: true, text: 'Count', color: fg2 }, ticks: { color: fg2 }, grid: { color: border } }
+        }
+      }
+    }));
+  }
+
+  // PageRank
+  const prData = data.top_pagerank || [];
+  if (prData.length > 0) {
+    charts.push(new Chart(document.getElementById('chart-pagerank'), {
+      type: 'bar',
+      data: {
+        labels: prData.map(p => p.label),
+        datasets: [{ data: prData.map(p => p.pagerank), backgroundColor: '#9B59B6aa', borderColor: '#9B59B6', borderWidth: 1, borderRadius: 4 }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: fg2 }, grid: { color: border } },
+          y: { ticks: { color: fg2, font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    }));
   }
 
   // Top connected table
