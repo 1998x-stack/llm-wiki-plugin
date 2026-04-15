@@ -80,6 +80,8 @@ graph LR
 | **Statistics Dashboard** | Chart.js 统计看板：类型分布、置信度、标签频率、增长时间线 |
 | **Static Wiki Viewer** | Wiki 页面 HTML 化，支持搜索、导航、元数据卡片 |
 | **Hook System** | ingest 后自动触发 BM25 重建、图谱更新、lint 检查 |
+| **Unified Search** | BM25 + maps topic expansion + graph traversal with RRF fusion |
+| **Format Conversion** | markitdown 批量转换 PDF/DOCX/PPTX/XLSX → markdown |
 | **Index Integrity** | snapshot_index.py 验证 index.md 完整性，防止条目丢失 |
 | **4-Layer Memory** | Working → Episodic → Semantic → Procedural 知识生命周期 |
 | **QA Integration** | QA 对话数据批量导入，自动提取洞见并双向链接 |
@@ -128,7 +130,7 @@ All commands are invoked via Claude Code's `/project:wiki/` prefix.
 | Command | Usage | Description |
 |---------|-------|-------------|
 | `ingest` | `/project:wiki/ingest <path>` | 源材料 → wiki 页面，更新 index/log |
-| `query` | `/project:wiki/query <question>` | 基于知识库搜索并综合回答 |
+| `query` | `/project:wiki/query <question>` | BM25 + maps + graph 统一搜索并综合回答 |
 | `lint` | `/project:wiki/lint` | 检查孤页、矛盾、过期、缺失链接 |
 | `consolidate` | `/project:wiki/consolidate` | 记忆晋升 + 置信度衰减 |
 | `crystallize` | `/project:wiki/crystallize` | 会话探索 → 结构化摘要 |
@@ -139,12 +141,13 @@ All commands are invoked via Claude Code's `/project:wiki/` prefix.
 | `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest（多页面模式） |
 | `graph` | `python3 scripts/build_graph.py --full` | 构建知识图谱 + 统计 + wiki HTML |
 | `reindex` | `/project:wiki/reindex` | 验证 index 完整性 + 生成主题 maps |
+| `convert-to-markdown` | `/project:wiki/convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure
 
 ```
 vault/
-├── .claude/commands/wiki/   # 8 Claude Code commands
+├── .claude/commands/wiki/   # 13 Claude Code commands
 ├── .obsidian/               # Obsidian settings
 ├── _schema/                 # 系统规则 (CLAUDE.md + 类型定义)
 │   ├── CLAUDE.md            # Master schema
@@ -208,8 +211,8 @@ python3 -m http.server 8080 --directory ../static
 | [USERGUIDE.md](USERGUIDE.md) | 完整用户指南（中文） |
 | [docs/wiki.md](docs/wiki.md) | Wiki 系统技术文档 |
 | [docs/CHANGELOG.md](docs/CHANGELOG.md) | 版本变更记录 |
-| [llm-wiki-v1.md](llm-wiki-v1.md) | LLM Wiki v1 设计文档 (Karpathy) |
-| [llm-wiki-v2.md](llm-wiki-v2.md) | LLM Wiki v2 设计文档 (agentmemory) |
+| [llm-wiki-v1.md](docs/references/llm-wiki-v1.md) | LLM Wiki v1 设计文档 (Karpathy) |
+| [llm-wiki-v2.md](docs/references/llm-wiki-v2.md) | LLM Wiki v2 设计文档 (agentmemory) |
 
 ## Contributing
 
