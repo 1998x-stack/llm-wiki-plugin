@@ -7,7 +7,10 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [数学，方法论，研究]
+tags:
+  - 宏观经济学
+  - 研究
+  - 方法论
 aliases: ["Harrod-Domar Growth Model", "哈罗德 - 多马模型"]
 relates_to:
   - target: "[[索洛增长模型]]"

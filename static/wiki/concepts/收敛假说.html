@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>收敛假说 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 收敛假说</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">收敛假说</h1>
+<h2 id="_2">概述</h2>
+<p>收敛假说是索洛增长模型导出的一个重要经验预测，指贫穷国家的人均收入增长率倾向于高于富裕国家，从而导致各国人均收入水平随时间推移逐渐趋同的现象。这一假说的理论基础是资本边际报酬递减：在资本稀缺的贫穷国家，资本回报率更高，从而激励更快的资本积累和增长。根据控制变量的不同，收敛分为“绝对收敛”和“条件收敛”。实证研究表明，虽然全球范围内的绝对收敛证据较弱，但在控制了结构参数后的条件收敛得到了广泛支持。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="1">1. 理论机制</h3>
+<p>收敛假说直接源于新古典生产函数的<strong>边际报酬递减</strong>性质。在索洛模型中，如果一个国家的初始有效劳动人均资本 $k$ 低于其稳态水平 $k^<em>$，那么其资本的边际产品将较高，进而带来较高的投资回报率和经济增长率。随着资本积累，$k$ 逐渐接近 $k^</em>$，增长率随之放缓。因此，初始越贫穷（距离稳态越远）的国家，理论上应该增长得越快，呈现出“追赶效应”（Catch-up Effect）。</p>
+<h3 id="2">2. 绝对收敛与条件收敛</h3>
+<ul>
+<li><strong>绝对收敛（Absolute Convergence）</strong>：假设所有国家具有相同的结构参数（储蓄率 $s$、人口增长率 $n$、技术进步率 $g$ 等），即拥有相同的稳态。在这种情况下，贫穷国家无条件地比富裕国家增长更快。然而，全球数据的实证检验（如 Barro &amp; Sala-i-Martin, 1992）并不支持绝对的全球收敛，因为各国结构和制度差异巨大。</li>
+<li><strong>条件收敛（Conditional Convergence）</strong>：承认各国具有不同的稳态水平。该假说认为，在控制了决定稳态的结构变量（如教育水平、制度质量、储蓄率）后，各国会趋向于<strong>各自</strong>的稳态。初始状态离自身稳态越远的国家，增长越快。Mankiw, Romer &amp; Weil (1992) 的研究证实，一旦引入人力资本并控制其他变量，数据强烈支持条件收敛。</li>
+</ul>
+<h3 id="3">3. 俱乐部收敛与实证争议</h3>
+<p>除了上述两种形式，学者们还提出了“俱乐部收敛”（Club Convergence），即只有在一组具有相似特征的国家内部（如 OECD 国家）才会发生收敛，而不同俱乐部之间可能长期保持差距。实证数据显示，OECD 国家间存在强收敛，但许多发展中国家陷入了“中等收入陷阱”，未能实现对发达国家的追赶。这表明除了资本积累，制度、技术和人力资本的差异是阻碍收敛的关键因素。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/03-solow-growth-model-1956.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="索洛增长模型.html">索洛增长模型</a></li>
+<li><span style="color:#e74c3c" title="broken link">边际报酬递减</span></li>
+<li><span style="color:#e74c3c" title="broken link">中等收入陷阱</span></li>
+<li><span style="color:#e74c3c" title="broken link">人力资本</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="惯性律.html">&larr; 惯性律</a>
+    <a href="数值分析.html">数值分析 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

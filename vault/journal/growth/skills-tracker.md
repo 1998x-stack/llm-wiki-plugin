@@ -41,6 +41,13 @@ updated: 2026-04-15
 - 深度评估：入门（Kato-Rellich定理、Schrödinger算子自伴性）
 - 趋势：↑ 新兴（随 Kato 的 ingest 浮现）
 
+### Wiki 系统工程
+- 首次出现：2026-04-15
+- 最近活跃：2026-04-15
+- 深度评估：进阶（代码审查、测试基础设施、hook 系统、命令流水线设计）
+- 趋势：↑ 增长（v3.0→v3.2 迭代，maintain 命令、hook 修复）
+- 覆盖范围：PostToolUse hooks、lint/check 分离、build 管道、集成测试、CI 成本分析
+
 ## 待关注方向
 
 - **概率论**（前一会话已有 Pascal/Fermat/Bayes/Laplace 系列）

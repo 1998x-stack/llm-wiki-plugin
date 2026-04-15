@@ -17,6 +17,7 @@
    - [wiki:check](#wikicheck)
    - [wiki:lint](#wikilint)
    - [wiki:build](#wikibuild)
+   - [wiki:maintain](#wikimaintain)
    - [wiki:consolidate](#wikiconsolidate)
 5. [知识沉淀命令](#知识沉淀命令)
    - [wiki:crystallize](#wikicrystallize)
@@ -43,7 +44,7 @@
 | `wiki:check` | 只读健康诊断 (A-I 项) | 无 | 检查报告（不修改文件） |
 | `wiki:lint` | 健康检查 + 自动修复 | 无 | lint 报告 + 自动修复 |
 | `wiki:build` | 构建所有静态产出 | 无 | graph.json + statistics + wiki HTML |
-| `wiki:graph` | wiki:build 的别名 | 无 | 同 wiki:build |
+| `wiki:maintain` | 一键维护 (reindex→check→lint→build) | 无 | 索引 + 诊断 + 修复 + 静态产出 |
 | `wiki:consolidate` | 记忆晋升 + 衰减 | `--deep`（可选） | 记忆层更新 |
 | `wiki:crystallize` | 会话 → 结构化摘要 | 主题描述（可选） | working memory + 可选 synthesis |
 | `wiki:journal` | 日记 / 反思 / 判断 | `daily` / `reflection` / `judgment` | journal 文件 |
@@ -187,8 +188,6 @@ State file: .claude/ingest-loop.local.md
 ```
 /wiki:ingest-loop raw/papers --engine=qwen
 ```
-
-> `wiki:ingest-loop-qwen` 是 `wiki:ingest-loop --engine=qwen` 的别名，向后兼容。
 
 **Qwen 模式前置条件**：环境变量 `DASHSCOPE_API_KEY` 已设置，已安装 `openai` + `pyyaml`。
 
@@ -360,8 +359,6 @@ Lint Report 2026-04-15
 
 **用途**：构建所有静态产出：graph.json、graph-statistics.json、static/wiki/ HTML 页面。
 
-> 别名：`wiki:graph`（向后兼容）
-
 **输入格式**：
 
 ```
@@ -420,7 +417,7 @@ Lint Report 2026-04-15
 **示例**：
 
 ```
-/wiki:graph
+/wiki:build
 ```
 
 期望输出：
@@ -435,6 +432,51 @@ Graph build complete:
   components: 5
 
 Output: vault/graph.json
+```
+
+---
+
+### wiki:maintain
+
+**用途**：一键执行完整知识库维护流水线：reindex → check → lint → build。等价于依次运行四个子命令，但在关键步骤失败时提前终止。
+
+**输入格式**：
+
+```
+/wiki:maintain
+```
+
+无需参数。
+
+**执行流程**：
+
+1. **Reindex** — 验证 index.md 完整性，修复缺失/孤条目，保存快照，按 tags 构建主题分类，生成 `maps/*.md`
+2. **Check** — 运行 `lint_wiki.py --json` + A-I 全部检查项 + 语义检查，生成诊断报告
+3. **Lint** — 基于诊断结果自动修复（frontmatter、断链、index.md、BM25），生成 lint 报告
+4. **Build** — 构建 graph.json + statistics + wiki HTML，同步到 `static/`
+
+**终止条件**：步骤 1 脚本异常时终止。步骤 2-4 的 warnings 不阻断流程。
+
+**适用场景**：
+- 批量 ingest 后的全面维护
+- 每周例行维护（替代手动 lint + build）
+- 发布前检查
+
+**示例**：
+
+```
+/wiki:maintain
+```
+
+期望输出：
+
+```
+=== wiki:maintain 完成 ===
+
+[1/4] Reindex — OK (121 页面, 5 clusters)
+[2/4] Check — 0 errors, 3 warnings, 2 info
+[3/4] Lint — 2 修复, 1 待处理
+[4/4] Build — 121 节点, 245 边 → static/ 已同步
 ```
 
 ---
@@ -1174,8 +1216,7 @@ python3 scripts/lint_wiki.py --fix
 | O1 | 孤页——没有入链（仅全量扫描） | warning |
 
 **退出码**：
-- `0`：无问题
-- `1`：有 warning
+- `0`：无问题或仅有 warning
 - `2`：有 error
 
 **JSON 输出格式**：
@@ -1257,13 +1298,19 @@ vault/
 ├── .claude/
 │   ├── commands/wiki/        # 命令定义
 │   │   ├── ingest.md
+│   │   ├── ingest-loop.md
 │   │   ├── query.md
+│   │   ├── check.md
 │   │   ├── lint.md
+│   │   ├── build.md
+│   │   ├── reindex.md
+│   │   ├── maintain.md
 │   │   ├── consolidate.md
 │   │   ├── crystallize.md
 │   │   ├── journal.md
 │   │   ├── review.md
-│   │   └── qa-import.md
+│   │   ├── qa-import.md
+│   │   └── convert-to-markdown.md
 │   └── settings.local.json   # hooks 配置
 ├── _schema/
 │   ├── CLAUDE.md              # 完整操作规范

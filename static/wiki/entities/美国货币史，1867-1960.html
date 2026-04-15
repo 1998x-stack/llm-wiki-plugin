@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美国货币史，1867-1960 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 美国货币史，1867-1960</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">方法论</span><span class="tag">数学</span></div>
+</div>
+  <div class="content">
+    <h1 id="1867-1960">美国货币史，1867-1960</h1>
+<h2 id="_1">概述</h2>
+<p>《美国货币史，1867-1960》（<em>A Monetary History of the United States, 1867-1960</em>）是由米尔顿·弗里德曼与安娜·施瓦茨合著，于 1963 年出版的经济学巨著。该书通过对美国近百年货币数据的系统性梳理，提出了“货币供应量的变动是驱动经济周期波动的首要力量”这一核心命题。书中对大萧条成因的重新诠释——将其归咎于美联储的政策失误而非市场内在不稳定性——彻底改变了宏观经济学范式，并深刻影响了现代中央银行的危机应对策略，被誉为二十世纪最具影响力的经济学著作之一。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">写作背景与数据工程</h3>
+<p>本书是国家经济研究局（NBER）项目的成果，耗时超过十二年（1948-1963）。在计算机尚未普及的年代，作者团队完成了浩大的数据工程，搜集整理了从 1867 年（南北战争后）至 1960 年（肯尼迪时代）的近百年货币统计数据。这些数据涵盖了货币存量（M1 和 M2 口径）、银行准备金、货币乘数、利率等关键指标。安娜·施瓦茨在其中承担了绝大部分的数据搜集与初步分析工作，其贡献长期被低估，但实际上构成了全书坚实的实证基础。</p>
+<h3 id="_4">核心论点：货币与经济周期的因果链</h3>
+<p>全书的核心逻辑建立在严密的因果推断之上：
+1. <strong>高度相关性</strong>：历史数据显示，货币供应量的加速增长通常先于经济扩张，而收缩则先于衰退。
+2. <strong>因果方向</strong>：通过识别“外生”货币冲击（如政策失误、制度变迁、官员去世等），作者论证了是从货币到收入的因果关系，而非反向。
+3. <strong>联储的责任</strong>：联邦储备系统的政策行为是货币供应变动的最重要决定因素，而其历史记录充满了严重的判断失误。
+4. <strong>结论</strong>：经济周期在很大程度上是“货币现象”。</p>
+<h3 id="_5">第七章：大收缩与大萧条的重构</h3>
+<p>书中第七章《大收缩（1929-1933）》是最具影响力的部分。作者详细记录了 1930 年至 1933 年间发生的四波银行恐慌，指出在这四年间约有 11,000 家银行倒闭，导致货币供应量（M2）收缩了约 33%。弗里德曼和施瓦茨尖锐地批评美联储未能履行“最后贷款人”职能，反而在危机中提高贴现率以保卫金本位，加剧了通货紧缩。他们提出著名的反事实推论：若纽约联储行长本杰明·斯特朗未在 1928 年去世，大萧条可能不会发生或程度会轻得多。</p>
+<h3 id="_6">方法论创新：叙事性实证</h3>
+<p>面对宏观经济领域无法进行受控实验的难题，本书独创了“叙事性实证”方法。这种方法将定量统计分析与详细的历史叙事相结合，利用丰富的制度细节来识别因果方向。通过聚焦那些由非经济因素（如人事变动、偶然事件）引起的货币供应变化，作者成功规避了时间序列分析中的内生性和反向因果问题，为货币主义理论提供了坚实的历史证据。</p>
+<h3 id="_7">深远影响与现代遗产</h3>
+<p>本书直接催生了货币主义学派，并促使米尔顿·弗里德曼获得 1976 年诺贝尔经济学奖。其思想在 2008 年金融危机中得到了验证与应用：时任美联储主席本·伯南克承认大萧条是美联储的过错，并依据本书的逻辑实施了量化宽松（QE）和紧急救助政策，避免了重蹈 1930 年代的覆辙。尽管面临关于“反向因果”和“信贷渠道”的学术批评，该书确立的“货币政策至关重要”已成为全球央行的共识。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/06-friedman-schwartz-monetary-history-1963.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="米尔顿·弗里德曼.html">米尔顿·弗里德曼</a></li>
+<li><span style="color:#e74c3c" title="broken link">安娜·施瓦茨</span></li>
+<li><span style="color:#e74c3c" title="broken link">货币主义</span></li>
+<li><span style="color:#e74c3c" title="broken link">大萧条</span></li>
+<li><span style="color:#e74c3c" title="broken link">联邦储备系统</span></li>
+<li><span style="color:#e74c3c" title="broken link">叙事性实证方法</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="罗伯特·默顿·索洛.html">&larr; 罗伯特·默顿·索洛</a>
+    <a href="艾萨克·牛顿.html">艾萨克·牛顿 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

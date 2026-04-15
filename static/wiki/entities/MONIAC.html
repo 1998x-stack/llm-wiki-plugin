@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MONIAC — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / MONIAC</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="moniac">MONIAC</h1>
+<h2 id="_1">概述</h2>
+<p>MONIAC（Monetary National Income Analogue Computer），又称“菲利普斯机器”，是由经济学家 A.W. 菲利普斯于 1949 年建造的一台液压模拟计算机。这台机器利用透明塑料水箱、水管和阀门构成的物理系统，生动且准确地模拟了货币在国家经济中的流动过程。在电子计算机普及之前，MONIAC 是宏观经济学教学和policy 模拟的重要工具，被伦敦政治经济学院、剑桥大学以及多个国家的中央银行采购使用。它不仅展示了菲利普斯将工程学原理应用于经济学的独特才华，也是早期系统动力学和控制论在经济领域应用的杰出代表。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">设计与原理</h3>
+<p>MONIAC 的核心设计理念是将抽象的经济流量转化为直观的水流。机器高约 2 米，由一系列透明的塑料水箱组成，每个水箱代表经济中的一个部门或账户，如“家庭”、“企业”、“政府”、“国外部门”等。连接这些水箱的管道代表资金流动的路径。
+- <strong>收入与支出</strong>：水流从一个水箱流向另一个水箱模拟了收入和支出的过程。
+- <strong>税收与储蓄</strong>：特定的阀门控制着流向“政府税务箱”或“储蓄箱”的水量，模拟税率和储蓄率的变化。
+- <strong>乘数效应</strong>：通过调节阀门的开度，观察者可以直观地看到财政注入（如政府支出增加）如何通过乘数效应在整个系统中放大，最终影响总产出。</p>
+<h3 id="_4">功能与应用</h3>
+<p>MONIAC 不仅仅是一个教学演示模型，它具备实际的计算和模拟能力。操作者可以通过改变阀门设置来模拟不同的财政政策（如改变税率、增加政府支出）和货币政策（如改变货币供应量）。机器中的水位计会实时显示各经济变量的变化，从而预测政策实施后的均衡状态。
+由于其准确性，MONIAC 被广泛用于：
+1. <strong>学术研究</strong>：帮助经济学家理解宏观经济变量之间的动态互动。
+2. <strong>政策制定</strong>：部分中央银行曾利用它来测试政策方案的效果。
+3. <strong>教育教学</strong>：作为生动的教具，让学生直观理解凯恩斯主义的宏观模型。</p>
+<h3 id="_5">历史意义与遗产</h3>
+<p>MONIAC 体现了 A.W. 菲利普斯独特的跨学科视角。作为一名前工程师，他没有局限于传统的数学推导，而是构建了一个物理实体来探索经济系统的稳定性。这台机器也反映了控制论思想在经济学中的早期萌芽——通过反馈机制（如自动稳定器）来调节系统平衡。虽然随着电子计算机的发展，MONIAC 逐渐退出了实用领域，但它作为经济学史上的奇观和工程学与社会科学结合的典范，至今仍被保留在多家博物馆和大学中，象征着宏观建模的一个独特时代。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/04-phillips-curve-1958.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="A.W. 菲利普斯.html">A.W. 菲利普斯</a></li>
+<li><span style="color:#e74c3c" title="broken link">控制论</span></li>
+<li><span style="color:#e74c3c" title="broken link">凯恩斯主义经济学</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Jacques Denavit.html">&larr; Jacques Denavit</a>
+    <a href="Richard S. Hartenberg.html">Richard S. Hartenberg &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

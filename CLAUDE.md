@@ -28,14 +28,13 @@ Three-layer pattern:
 | Command | Purpose |
 |---------|---------|
 | `wiki:ingest` | Process raw source → wiki pages |
-| `wiki:ingest-loop` | Batch ingest with ralph-loop (Claude-powered) |
-| `wiki:ingest-loop-qwen` | Batch ingest with Qwen API |
+| `wiki:ingest-loop` | Batch ingest with ralph-loop (`--engine=qwen` for Qwen API) |
 | `wiki:query` | Answer questions with unified search (BM25 + maps + graph) |
 | `wiki:check` | Read-only diagnostics (no auto-repair) |
 | `wiki:lint` | Health check + auto-repair (calls check first) |
 | `wiki:build` | Build all static assets: graph + statistics + wiki HTML |
-| `wiki:graph` | Alias for wiki:build |
 | `wiki:reindex` | Validate index integrity + generate topic maps |
+| `wiki:maintain` | Full pipeline: reindex → check → lint → build |
 | `wiki:consolidate` | Memory layer promotion + decay |
 | `wiki:crystallize` | Session → structured summary |
 | `wiki:journal` | Journal assistance |

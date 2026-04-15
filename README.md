@@ -141,15 +141,16 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 | `review` | `/wiki:review <scope>` | 分形回顾（weekly/monthly/quarterly） |
 | `qa-import` | `/wiki:qa-import <path>` | QA 数据批量导入 |
 | `ingest-loop` | `/wiki:ingest-loop <dir> [--engine=qwen]` | Ralph-loop 批量 ingest（默认 Claude，--engine=qwen 用 Qwen API） |
-| `graph / build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
+| `build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
 | `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
+| `maintain` | `/wiki:maintain` | 一键维护: reindex → check → lint → build |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure
 
 ```
 vault/
-├── .claude/commands/wiki/   # 15 Claude Code commands
+├── .claude/commands/wiki/   # 14 Claude Code commands
 ├── .obsidian/               # Obsidian settings
 ├── _schema/                 # 系统规则 (CLAUDE.md + 类型定义)
 │   ├── CLAUDE.md            # Master schema

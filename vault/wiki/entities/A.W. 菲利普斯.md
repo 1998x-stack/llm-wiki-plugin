@@ -7,7 +7,11 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究，方法论，工具]
+tags:
+  - 宏观经济学
+  - 工具
+  - 研究
+  - 方法论
 aliases: ["Alban William Housego Phillips", "奥尔班·威廉·菲利普斯"]
 relates_to:
   - target: "[[菲利普斯曲线]]"

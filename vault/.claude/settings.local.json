@@ -15,15 +15,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/hook_lint.sh \"$CLAUDE_TOOL_ARG_file_path\""
+            "command": "bash scripts/hook_lint.sh"
           },
           {
             "type": "command",
-            "command": "bash scripts/hook_bm25.sh \"$CLAUDE_TOOL_ARG_file_path\""
+            "command": "bash scripts/hook_bm25.sh"
           },
           {
             "type": "command",
-            "command": "bash scripts/hook_graph.sh \"$CLAUDE_TOOL_ARG_file_path\""
+            "command": "bash scripts/hook_graph.sh"
           }
         ]
       }

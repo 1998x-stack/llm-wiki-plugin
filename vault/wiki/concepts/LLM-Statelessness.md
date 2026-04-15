@@ -8,6 +8,9 @@ updated: 2026-04-15
 last_accessed: '2026-04-15'
 source_count: 1
 tags:
+  - AI
+  - 概率论
+  - 研究
 - AI
 - 概率论，研究
 aliases:

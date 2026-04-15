@@ -4,6 +4,22 @@ type: log
 
 # 操作日志
 
+## [2026-04-15 18:42] crystallize | Wiki 系统工程：maintain 命令 + hooks 修复
+- Working Memory: _memory/working/2026-04-15-05.md (5 条观察)
+  - O1: Claude Code hooks 协议误解 → 沉默失败模式
+  - O2: 路径匹配过宽陷阱（O22 再现）
+  - O3: 管道命令的阶段间合约设计
+  - O4: 文档散布（7 处同步）的系统性代价
+  - O5: Consolidate 在知识库早期的局限性
+- 结晶化: 否（系统工程元观察，未连接 3+ 知识页面）
+
+## [2026-04-15 18:35] consolidate
+- Working → Episodic: 处理了 1 个 working memory (2026-04-15-04), 新增 6 条观察 (O20-O25)
+- Episodic → Semantic: 0 个晋升（仅 1 天数据，需 3+ 天）
+- 置信度衰减: 0 个（无 semantic memory）
+- Journal 模式: 更新了工具分离思维（3次出现），新增 2 个待观察候选
+- Skills tracker: 新增"Wiki 系统工程"领域
+
 ## [2026-04-15 17:01] graph
 - 知识图谱: 173 节点, 1074 边, 0 孤页, 4 连通分量
 - 同步: graph.json + graph-statistics.json + wiki HTML (173 页)
@@ -1072,3 +1088,25 @@ python3 scripts/build_graph.py
 - 图谱：7 components → 2 components，孤立节点 4 → 0
 - 新建 stub 页面 19 个（数值分析、龙格-库塔方法、泰勒级数、线性代数、矩阵、组合数学、惯性律、离散傅里叶变换、结构力学、FTS5、大卫·希尔伯特、马尔可夫、李雅普诺夫、约瑟夫·拉弗森、托马斯·辛普森、阿瑟·凯莱、Claude-Code、SQLite、ChromaDB）
 - Gotchas 已追加至 docs/gotchas/script-fixes.md（孤页空格/连字符、I2假阳性、maps手动维护）
+
+## [2026-04-15 18:10] lint
+- 扫描: 185 个页面
+- ERROR: 0 | WARNING: 263 | INFO: 2
+- 自动修复: 35 个
+  - F (index.md): snapshot_index.py --update → +29 页录入
+  - O1 (孤页): 6 页添加入链（Context-Engineering→Claude-Code上下文工程全景, 就业利息和货币通论→动物精神, 菲利普斯曲线→理性预期假说, 罗伯特·默顿·索洛→索洛残差, 米尔顿·弗里德曼→美国货币史，1867-1960, 龙格现象→龙格现象全景解析）
+- 需要人工处理: 228 个
+  - B1 断链 (133): 全部为待创建页面目标，无近似匹配，需 ingest 新页面
+  - F3 概述超长 (97): 系统性模板问题，建议放宽限制至 350 chars
+  - M2 未归图 (28): 需运行 wiki:reindex 更新 maps/
+  - H 图谱缺失 (12): 需运行 wiki:build 重建图谱
+
+## [2026-04-15 18:12] graph
+- 知识图谱: 188 节点, 1105 边, 0 孤页, 7 连通分量
+- 同步: graph.json + graph-statistics.json + wiki HTML (188 页)
+
+## [2026-04-15 18:22] reindex
+- 完整性: OK (188 页面, 0 缺失, 0 孤条目)
+- Tags 修复: 32 个页面（中文逗号修正 21 个，宏观经济学补标 26 个）
+- 主题分类: 9 个 → 数值分析(59), 矩阵理论(31), 概率论(41), 宏观经济学(23), AI(15), 组合数学(5), 工具(5), 数学(3), 机器人学(3)
+- 快照保存: .claude/reindex.snapshot.json

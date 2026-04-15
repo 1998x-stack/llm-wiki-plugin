@@ -1,5 +1,31 @@
 # Changelog
 
+## [v3.2] - 2026-04-15
+
+### Added
+- **`wiki:maintain`**: new pipeline command that chains reindex → check → lint → build in one invocation with early-exit on critical errors
+
+### Fixed
+- **PostToolUse hooks**: hooks were not receiving file paths — `$CLAUDE_TOOL_ARG_file_path` is not a real Claude Code variable. Hooks now read `tool_input.file_path` from stdin JSON (the correct Claude Code hooks protocol)
+- **Hook path filter**: `*"wiki/"*` was too broad, matching `.claude/commands/wiki/` files. Added `.claude/` exclusion
+- **settings.local.json**: removed non-existent `$CLAUDE_TOOL_ARG_file_path` args from hook commands
+
+### Documentation
+- DAG.mmd updated: added `wiki:maintain` node with pipeline style, removed stale `wiki:graph` alias node
+- All docs updated: CLAUDE.md (root + vault), README.md, USERGUIDE.md, docs/wiki.md, docs/CHANGELOG.md
+
+## [v3.1.2] - 2026-04-15
+
+### Removed
+- **`wiki:graph` alias**: removed — use `wiki:build` directly
+- **`wiki:ingest-loop-qwen` alias**: removed — use `wiki:ingest-loop <dir> --engine=qwen`
+
+### Fixed
+- `lint_wiki.py`: warnings-only no longer exits with code 1 (was causing `wiki:check` to report false failures)
+
+### Documentation
+- All docs updated to remove alias references (CLAUDE.md, README.md, USERGUIDE.md, docs/wiki.md)
+
 ## [v3.1.1] - 2026-04-15
 
 ### Fixed
@@ -9,8 +35,8 @@
 
 ### Refactored
 - **lint/check split**: new `wiki:check` (read-only diagnostics), `wiki:lint` now calls check first then repairs
-- **graph → build rename**: new `wiki:build` (builds all static assets), `wiki:graph` is now a thin alias
-- **ingest-loop merge**: `wiki:ingest-loop` now accepts `--engine=qwen` flag, `wiki:ingest-loop-qwen` is a thin alias
+- **graph → build rename**: `wiki:graph` renamed to `wiki:build` (builds all static assets)
+- **ingest-loop merge**: `wiki:ingest-loop` now accepts `--engine=qwen` flag
 - **index.md as computed artifact**: `wiki:ingest` now calls `snapshot_index.py --update` instead of manual append
 
 ### Fixed

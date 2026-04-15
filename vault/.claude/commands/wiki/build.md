@@ -6,8 +6,6 @@ description: "构建所有静态产出：graph.json + statistics + wiki HTML"
 
 构建所有静态产出：graph.json、graph-statistics.json、static/wiki/ HTML 页面。
 
-> 别名：`wiki:graph`（向后兼容）
-
 **工作目录：`vault/`**
 
 ## 产出清单

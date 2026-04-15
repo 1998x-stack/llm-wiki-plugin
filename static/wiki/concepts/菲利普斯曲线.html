@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>菲利普斯曲线 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 菲利普斯曲线</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">宏观经济学，研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">菲利普斯曲线</h1>
+<h2 id="_2">概述</h2>
+<p>菲利普斯曲线（Phillips Curve）最初由 A.W. 菲利普斯于 1958 年提出，描述了失业率与名义工资变化率之间稳定的负向非线性关系。该曲线基于英国 1861-1957 年的长期历史数据，揭示了劳动力市场紧张时工资上涨较快，而松弛时工资下降较慢（向下刚性）的经验规律。随后，这一概念被萨缪尔森和索洛扩展为通胀率与失业率之间的权衡关系，成为 1960 年代凯恩斯主义政策制定的核心依据。尽管后来受到弗里德曼和费尔普斯的理论挑战以及 1970 年代滞胀经验的证伪，菲利普斯曲线经过多次修正（如引入预期和微观基础），至今仍是宏观经济学中分析通胀动态最核心的框架之一。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">原始形态与发现</h3>
+<p>菲利普斯在 1958 年的经典论文中，使用了英国近一个世纪的数据（分为 1861-1913、1913-1948、1948-1957 三个时段）。他通过分组平均和目测法拟合出一条曲线，发现当失业率较低时，名义工资年变化率较高；反之亦然。具体的数学形式为 $dW/W + a = b \cdot U^c$。菲利普斯观察到，当失业率约为 5.5% 时，工资变化率为零；而当失业率降至 2.5% 时，工资增长率约为 2%。他强调这是一种基于供求逻辑的经验规律：低失业导致劳动力短缺，雇主竞相加薪；而高失业时，由于工会力量和工资刚性，工资下降缓慢。</p>
+<h3 id="_5">从工资到通胀的转换</h3>
+<p>1960 年，保罗·萨缪尔森和罗伯特·索洛对原始曲线进行了关键改造。他们将变量从“名义工资变化率”转换为“价格通胀率”，逻辑基于：价格通胀率 = 工资增长率 - 劳动生产率增长率。这一转换将地域从英国推广到美国，并正式命名为“菲利普斯曲线”。更重要的是，他们赋予了其政策含义：通胀与失业之间存在一个稳定的“政策菜单”。政策制定者似乎可以通过容忍较高的通胀来“购买”较低的失业率，这一观点深刻影响了肯尼迪和约翰逊政府的经济政策。</p>
+<h3 id="_6">理论的瓦解与重构</h3>
+<p>原始菲利普斯曲线的稳定性在 1960 年代末受到严峻挑战。米尔顿·弗里德曼和埃德蒙·费尔普斯独立指出，原始模型忽略了“通胀预期”。工人和企业关注的是实际工资而非名义工资。因此，长期的菲利普斯曲线应该是垂直的，位于“自然失业率”处。如果政府试图通过扩张性政策将失业率维持在自然率以下，只会导致通胀加速上升（加速主义假说），而无法长期降低失业。1970 年代的“滞胀”（高通胀与高失业并存）现象彻底证伪了原始的负相关关系，验证了弗里德曼 - 费尔普斯的预测。</p>
+<h3 id="_7">现代演变</h3>
+<p>进入 1990 年代，新凯恩斯主义者构建了具有微观基础的“新凯恩斯主义菲利普斯曲线”（NKPC）。该模型引入了理性预期和价格粘性（如 Calvo 定价），公式变为 $\pi_t = \beta E_t[\pi_{t+1}] + \kappa x_t$，其中通胀取决于对未来通胀的预期和当前的产出缺口。近年来，菲利普斯曲线呈现出“扁平化”特征，即失业率变动对通胀的影响减弱，这可能与全球化、央行信誉导致的预期锚定以及劳动力市场结构变化有关。尽管如此，它依然是理解宏观经济波动和制定货币政策不可或缺的工具。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/04-phillips-curve-1958.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/A.W. 菲利普斯.html">A.W. 菲利普斯</a></li>
+<li><span style="color:#e74c3c" title="broken link">萨缪尔森 - 索洛改造</span></li>
+<li><span style="color:#e74c3c" title="broken link">预期增强型菲利普斯曲线</span></li>
+<li><span style="color:#e74c3c" title="broken link">新凯恩斯主义菲利普斯曲线</span></li>
+<li><span style="color:#e74c3c" title="broken link">自然失业率</span></li>
+<li><a href="理性预期假说.html">理性预期假说</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="结构力学.html">&larr; 结构力学</a>
+    <a href="萨伊定律.html">萨伊定律 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

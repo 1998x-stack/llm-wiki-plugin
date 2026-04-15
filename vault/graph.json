@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-04-15T09:01:01.046827+00:00",
-    "total_nodes": 173,
-    "total_edges": 1074,
+    "generated": "2026-04-15T10:29:12.218747+00:00",
+    "total_nodes": 188,
+    "total_edges": 1101,
     "orphan_count": 0,
-    "component_count": 4
+    "component_count": 7
   },
   "nodes": [
     {
@@ -50,13 +50,10 @@
     {
       "id": "wiki/concepts/Claude-Code-Hook-System.md",
       "label": "Claude-Code-Hook-System",
-      "type": "concept",
-      "confidence": 0.9,
-      "tags": [
-        "AI",
-        "工具，方法论"
-      ],
-      "edge_count": 7
+      "type": "unknown",
+      "confidence": null,
+      "tags": [],
+      "edge_count": 5
     },
     {
       "id": "wiki/concepts/Context-Engineering.md",
@@ -68,7 +65,7 @@
         "方法论",
         "AI"
       ],
-      "edge_count": 10
+      "edge_count": 9
     },
     {
       "id": "wiki/concepts/DeepAgents中间件体系.md",
@@ -113,6 +110,19 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "label": "Denavit-Hartenberg 参数",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "机器人学",
+        "矩阵理论",
+        "方法论",
+        "工具"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/FTS5.md",
       "label": "FTS5",
       "type": "concept",
@@ -143,7 +153,9 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "数学，方法论，研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 2
     },
@@ -178,7 +190,9 @@
       "type": "concept",
       "confidence": 1.0,
       "tags": [
-        "数学，方法论，研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 10
     },
@@ -245,13 +259,10 @@
     {
       "id": "wiki/concepts/LLM-Statelessness.md",
       "label": "LLM-Statelessness",
-      "type": "concept",
-      "confidence": 0.95,
-      "tags": [
-        "AI",
-        "概率论，研究"
-      ],
-      "edge_count": 9
+      "type": "unknown",
+      "confidence": null,
+      "tags": [],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/LLM-as-Judge.md",
@@ -494,9 +505,9 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "数学",
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 7
     },
@@ -526,6 +537,18 @@
       "edge_count": 19
     },
     {
+      "id": "wiki/concepts/内生增长理论.md",
+      "label": "内生增长理论",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/冯·诺依曼稳定性分析.md",
       "label": "冯·诺依曼稳定性分析",
       "type": "concept",
@@ -543,7 +566,9 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "研究，方法论"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 8
     },
@@ -603,9 +628,10 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
+        "宏观经济学",
         "概率论",
-        "方法论",
-        "研究"
+        "研究",
+        "方法论"
       ],
       "edge_count": 2
     },
@@ -708,6 +734,18 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/收敛假说.md",
+      "label": "收敛假说",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/数值分析.md",
       "label": "数值分析",
       "type": "concept",
@@ -718,6 +756,18 @@
         "计算"
       ],
       "edge_count": 30
+    },
+    {
+      "id": "wiki/concepts/新古典生产函数.md",
+      "label": "新古典生产函数",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/最大似然原理.md",
@@ -738,9 +788,9 @@
       "type": "concept",
       "confidence": 1.0,
       "tags": [
-        "数学",
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 7
     },
@@ -907,8 +957,9 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "数学",
+        "宏观经济学",
         "概率论",
+        "研究",
         "方法论"
       ],
       "edge_count": 5
@@ -919,21 +970,19 @@
       "type": "concept",
       "confidence": 0.9,
       "tags": [
-        "数学",
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 7
     },
     {
       "id": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
       "label": "渐进式披露-Progressive-Disclosure",
-      "type": "concept",
-      "confidence": 0.9,
-      "tags": [
-        "方法论，研究，AI"
-      ],
-      "edge_count": 5
+      "type": "unknown",
+      "confidence": null,
+      "tags": [],
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/点数问题.md",
@@ -958,6 +1007,19 @@
         "数值分析"
       ],
       "edge_count": 13
+    },
+    {
+      "id": "wiki/concepts/理性预期假说.md",
+      "label": "理性预期假说",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "概率论",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 1
     },
     {
       "id": "wiki/concepts/生成函数.md",
@@ -1026,9 +1088,23 @@
       "type": "concept",
       "confidence": 1.0,
       "tags": [
-        "数学，方法论，研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
-      "edge_count": 4
+      "edge_count": 12
+    },
+    {
+      "id": "wiki/concepts/索洛残差.md",
+      "label": "索洛残差",
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/线性代数.md",
@@ -1080,13 +1156,26 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/concepts/菲利普斯曲线.md",
+      "label": "菲利普斯曲线",
+      "type": "concept",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/萨伊定律.md",
       "label": "萨伊定律",
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 8
     },
@@ -1156,9 +1245,9 @@
       "type": "concept",
       "confidence": 0.95,
       "tags": [
-        "数学",
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 4
     },
@@ -1224,6 +1313,18 @@
       "edge_count": 23
     },
     {
+      "id": "wiki/concepts/黄金律资本水平.md",
+      "label": "黄金律资本水平",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/龙格-库塔方法.md",
       "label": "龙格-库塔方法",
       "type": "concept",
@@ -1248,13 +1349,39 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "label": "A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "机器人学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/A.W. 菲利普斯.md",
+      "label": "A.W. 菲利普斯",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "工具",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/entities/Alex-Newman.md",
       "label": "Alex-Newman",
       "type": "entity",
       "confidence": 0.9,
       "tags": [
         "AI",
-        "工具，研究"
+        "工具",
+        "研究"
       ],
       "edge_count": 2
     },
@@ -1264,7 +1391,9 @@
       "type": "entity",
       "confidence": 0.85,
       "tags": [
-        "工具，数值分析，研究"
+        "工具",
+        "数值分析",
+        "研究"
       ],
       "edge_count": 7
     },
@@ -1291,7 +1420,7 @@
         "工具",
         "方法论"
       ],
-      "edge_count": 11
+      "edge_count": 10
     },
     {
       "id": "wiki/entities/Claude-Mem.md",
@@ -1300,9 +1429,11 @@
       "confidence": 1.0,
       "tags": [
         "AI",
-        "工具，方法论，研究"
+        "工具",
+        "方法论",
+        "研究"
       ],
-      "edge_count": 22
+      "edge_count": 20
     },
     {
       "id": "wiki/entities/DeepAgents.md",
@@ -1318,6 +1449,43 @@
         "Python"
       ],
       "edge_count": 19
+    },
+    {
+      "id": "wiki/entities/Jacques Denavit.md",
+      "label": "Jacques Denavit",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "机器人学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/MONIAC.md",
+      "label": "MONIAC",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "宏观经济学",
+        "工具",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 3
+    },
+    {
+      "id": "wiki/entities/Richard S. Hartenberg.md",
+      "label": "Richard S. Hartenberg",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "机器人学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/entities/SQLite.md",
@@ -1559,8 +1727,9 @@
       "type": "entity",
       "confidence": 1.0,
       "tags": [
-        "方法论",
-        "研究"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 16
     },
@@ -1800,6 +1969,19 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/entities/米尔顿·弗里德曼.md",
+      "label": "米尔顿·弗里德曼",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/约瑟夫·拉弗森.md",
       "label": "约瑟夫·拉弗森",
       "type": "entity",
@@ -1846,6 +2028,7 @@
       "type": "entity",
       "confidence": 1.0,
       "tags": [
+        "宏观经济学",
         "研究",
         "方法论"
       ],
@@ -1857,7 +2040,9 @@
       "type": "entity",
       "confidence": 1.0,
       "tags": [
-        "研究，方法论"
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 4
     },
@@ -1867,7 +2052,21 @@
       "type": "entity",
       "confidence": 1.0,
       "tags": [
-        "研究，方法论"
+        "宏观经济学",
+        "研究",
+        "方法论"
+      ],
+      "edge_count": 4
+    },
+    {
+      "id": "wiki/entities/美国货币史，1867-1960.md",
+      "label": "美国货币史，1867-1960",
+      "type": "entity",
+      "confidence": 1.0,
+      "tags": [
+        "宏观经济学",
+        "研究",
+        "方法论"
       ],
       "edge_count": 2
     },
@@ -2316,18 +2515,6 @@
     {
       "source": "wiki/concepts/Claude-Code-Hook-System.md",
       "target": "wiki/entities/Claude-Mem.md",
-      "relation": "uses",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/concepts/Claude-Code-Hook-System.md",
-      "target": "wiki/entities/Claude-Code.md",
-      "relation": "part_of",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/concepts/Claude-Code-Hook-System.md",
-      "target": "wiki/entities/Claude-Mem.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2364,6 +2551,12 @@
     {
       "source": "wiki/concepts/Context-Engineering.md",
       "target": "wiki/concepts/Agent Harness模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Context-Engineering.md",
+      "target": "wiki/syntheses/Claude-Code上下文工程全景.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2442,6 +2635,30 @@
     {
       "source": "wiki/concepts/DeepAgents评估体系.md",
       "target": "wiki/syntheses/DeepAgents评估设计哲学.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Jacques Denavit.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Jacques Denavit.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2995,12 +3212,6 @@
       "source": "wiki/concepts/Ky Fan不等式.md",
       "target": "wiki/concepts/极大极小定理.md",
       "relation": "wikilink",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/concepts/LLM-Statelessness.md",
-      "target": "wiki/entities/Claude-Mem.md",
-      "relation": "contradicts",
       "bidirectional": false
     },
     {
@@ -4030,6 +4241,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/内生增长理论.md",
+      "target": "wiki/concepts/索洛增长模型.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/内生增长理论.md",
+      "target": "wiki/concepts/索洛增长模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/冯·诺依曼稳定性分析.md",
       "target": "wiki/entities/约翰·冯·诺依曼.md",
       "relation": "caused",
@@ -4762,6 +4985,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/收敛假说.md",
+      "target": "wiki/concepts/索洛增长模型.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/收敛假说.md",
+      "target": "wiki/concepts/索洛增长模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/数值分析.md",
       "target": "wiki/concepts/欧拉方法.md",
       "relation": "related_to",
@@ -4818,6 +5053,18 @@
     {
       "source": "wiki/concepts/数值分析.md",
       "target": "wiki/concepts/后向误差分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/新古典生产函数.md",
+      "target": "wiki/concepts/索洛增长模型.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/新古典生产函数.md",
+      "target": "wiki/concepts/索洛增长模型.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -5538,12 +5785,6 @@
     {
       "source": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
       "target": "wiki/concepts/Context-Engineering.md",
-      "relation": "implements",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
-      "target": "wiki/concepts/Context-Engineering.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -5927,6 +6168,30 @@
     },
     {
       "source": "wiki/concepts/索洛增长模型.md",
+      "target": "wiki/concepts/黄金律资本水平.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/索洛增长模型.md",
+      "target": "wiki/entities/罗伯特·默顿·索洛.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/索洛增长模型.md",
+      "target": "wiki/concepts/黄金律资本水平.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/索洛残差.md",
+      "target": "wiki/entities/罗伯特·默顿·索洛.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/索洛残差.md",
       "target": "wiki/entities/罗伯特·默顿·索洛.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -6048,6 +6313,24 @@
     {
       "source": "wiki/concepts/结构力学.md",
       "target": "wiki/concepts/数值分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/菲利普斯曲线.md",
+      "target": "wiki/entities/A.W. 菲利普斯.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/菲利普斯曲线.md",
+      "target": "wiki/entities/A.W. 菲利普斯.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/菲利普斯曲线.md",
+      "target": "wiki/concepts/理性预期假说.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6586,6 +6869,66 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/龙格现象.md",
+      "target": "wiki/syntheses/龙格现象全景解析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/entities/Jacques Denavit.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/concepts/Denavit-Hartenberg 参数.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/entities/Jacques Denavit.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A.W. 菲利普斯.md",
+      "target": "wiki/concepts/菲利普斯曲线.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A.W. 菲利普斯.md",
+      "target": "wiki/entities/MONIAC.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/A.W. 菲利普斯.md",
+      "target": "wiki/entities/MONIAC.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Alex-Newman.md",
       "target": "wiki/entities/Claude-Mem.md",
       "relation": "caused",
@@ -6745,6 +7088,24 @@
       "source": "wiki/entities/DeepAgents.md",
       "target": "wiki/concepts/LLM-as-Judge.md",
       "relation": "related_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jacques Denavit.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jacques Denavit.md",
+      "target": "wiki/entities/Richard S. Hartenberg.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/MONIAC.md",
+      "target": "wiki/entities/A.W. 菲利普斯.md",
+      "relation": "depends_on",
       "bidirectional": false
     },
     {
@@ -7750,6 +8111,12 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/米尔顿·弗里德曼.md",
+      "target": "wiki/entities/美国货币史，1867-1960.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/约瑟夫·拉弗森.md",
       "target": "wiki/concepts/牛顿法.md",
       "relation": "related_to",
@@ -7825,6 +8192,12 @@
       "source": "wiki/entities/约翰·理查德·希克斯.md",
       "target": "wiki/concepts/凯恩斯革命.md",
       "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/美国货币史，1867-1960.md",
+      "target": "wiki/entities/米尔顿·弗里德曼.md",
+      "relation": "uses",
       "bidirectional": false
     },
     {
@@ -8357,12 +8730,6 @@
     },
     {
       "source": "wiki/syntheses/Claude-Code上下文工程全景.md",
-      "target": "wiki/concepts/Context-Engineering.md",
-      "relation": "wikilink",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/syntheses/Claude-Code上下文工程全景.md",
       "target": "wiki/concepts/分层记忆架构.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -8587,12 +8954,6 @@
       "source": "wiki/syntheses/龙格现象全景解析.md",
       "target": "wiki/concepts/龙格-库塔方法.md",
       "relation": "related_to",
-      "bidirectional": false
-    },
-    {
-      "source": "wiki/syntheses/龙格现象全景解析.md",
-      "target": "wiki/concepts/龙格现象.md",
-      "relation": "wikilink",
       "bidirectional": false
     },
     {
@@ -8830,11 +9191,44 @@
     },
     {
       "id": 3,
-      "size": 3,
+      "size": 8,
       "nodes": [
         "wiki/concepts/Harrod-Domar 模型.md",
+        "wiki/concepts/内生增长理论.md",
+        "wiki/concepts/收敛假说.md",
+        "wiki/concepts/新古典生产函数.md",
         "wiki/concepts/索洛增长模型.md",
+        "wiki/concepts/索洛残差.md",
+        "wiki/concepts/黄金律资本水平.md",
         "wiki/entities/罗伯特·默顿·索洛.md"
+      ]
+    },
+    {
+      "id": 4,
+      "size": 4,
+      "nodes": [
+        "wiki/concepts/Denavit-Hartenberg 参数.md",
+        "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+        "wiki/entities/Jacques Denavit.md",
+        "wiki/entities/Richard S. Hartenberg.md"
+      ]
+    },
+    {
+      "id": 5,
+      "size": 4,
+      "nodes": [
+        "wiki/concepts/理性预期假说.md",
+        "wiki/concepts/菲利普斯曲线.md",
+        "wiki/entities/A.W. 菲利普斯.md",
+        "wiki/entities/MONIAC.md"
+      ]
+    },
+    {
+      "id": 6,
+      "size": 2,
+      "nodes": [
+        "wiki/entities/米尔顿·弗里德曼.md",
+        "wiki/entities/美国货币史，1867-1960.md"
       ]
     }
   ]

@@ -275,8 +275,6 @@ def main():
 
     if errors:
         sys.exit(2)
-    elif warnings:
-        sys.exit(1)
     else:
         sys.exit(0)
 

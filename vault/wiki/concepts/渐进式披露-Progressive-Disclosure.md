@@ -8,6 +8,9 @@ updated: 2026-04-15
 last_accessed: '2026-04-15'
 source_count: 1
 tags:
+  - 方法论
+  - 研究
+  - AI
 - 方法论，研究，AI
 aliases:
 - Progressive Disclosure

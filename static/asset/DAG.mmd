@@ -12,8 +12,8 @@ subgraph CMDS["Wiki Commands"]
     C_CHECK["wiki:check"]
     C_LINT["wiki:lint"]
     C_BUILD["wiki:build"]
-    C_GRAPH["wiki:graph<br/><small>alias → build</small>"]
     C_REINDEX["wiki:reindex"]
+    C_MAINTAIN["wiki:maintain<br/><small>reindex→check→lint→build</small>"]
     C_CONSOLIDATE["wiki:consolidate"]
     C_CRYSTALLIZE["wiki:crystallize"]
     C_JOURNAL["wiki:journal"]
@@ -83,9 +83,12 @@ C_BUILD --> PY_GRAPH
 C_BUILD --> PY_STATS
 C_BUILD --> PY_WIKI
 
-C_GRAPH -.->|"alias"| C_BUILD
-
 C_REINDEX --> PY_SNAP
+
+C_MAINTAIN -.->|"1. calls"| C_REINDEX
+C_MAINTAIN -.->|"2. calls"| C_CHECK
+C_MAINTAIN -.->|"3. calls"| C_LINT
+C_MAINTAIN -.->|"4. calls"| C_BUILD
 
 C_JOURNAL -->|"related"| PY_SEARCH
 C_REVIEW -->|"connections"| PY_SEARCH
@@ -128,6 +131,7 @@ C_QAIMPORT --> D_INDEX
 C_QAIMPORT --> D_LOG
 C_REINDEX --> D_MAPS
 C_BUILD --> D_STATIC
+C_MAINTAIN --> D_LOG
 
 %% ─────────────────────────────────────────────
 %%  STYLES
@@ -138,10 +142,10 @@ classDef pyscript fill:#7EC8A4,stroke:#4A8A6A,color:#000,rx:4
 classDef shscript fill:#F5A623,stroke:#B87A1A,color:#000,rx:4
 classDef hook     fill:#E07070,stroke:#A03030,color:#fff,rx:4
 classDef data     fill:#D0C0F0,stroke:#7060A0,color:#000,rx:4
-classDef alias    fill:#95B8D1,stroke:#5A7A8F,color:#000,rx:6,stroke-dasharray:5 5
+classDef pipeline fill:#9B59B6,stroke:#6C3483,color:#fff,rx:6
 
 class C_INGEST,C_LOOP,C_QUERY,C_CHECK,C_LINT,C_BUILD,C_REINDEX,C_CONSOLIDATE,C_CRYSTALLIZE,C_JOURNAL,C_REVIEW,C_QAIMPORT,C_CONVERT command
-class C_GRAPH alias
+class C_MAINTAIN pipeline
 class PY_BM25,PY_GRAPH,PY_STATS,PY_WIKI,PY_SNAP,PY_LINT,PY_QWEN,PY_SEARCH pyscript
 class SH_LOOP,SH_QWEN shscript
 class H_LINT,H_BM25,H_GRAPH hook

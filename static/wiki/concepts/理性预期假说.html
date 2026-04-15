@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>理性预期假说 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 理性预期假说</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论，概率论，研究，数学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">理性预期假说</h1>
+<h2 id="_2">概述</h2>
+<p>理性预期假说（Rational Expectations Hypothesis）是由约翰·弗雷泽·穆思（John F. Muth）于 1961 年提出的经济学核心概念。该假说认为，经济主体对未来的预期本质上是基于相关经济理论的知情预测，即预期值等于基于所有可用信息集的条件数学期望。与传统的适应性预期不同，理性预期假设经济主体不会犯系统性的、可预见的错误，任何预测误差仅源于不可预见的随机冲击。这一理论彻底改变了宏观经济学的建模方式，成为现代动态随机一般均衡（DSGE）模型的基石，并引发了关于政策有效性的深刻辩论。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心定义与数学表述</h3>
+<p>理性预期的核心思想在于“信息不会被浪费”。穆思在 1961 年的论文中指出，由于获取和处理信息是有成本的，理性的经济主体会充分利用所有可获得的信息来形成预测，以避免系统性偏差。</p>
+<p>用数学语言严格表述，若 $x_t$ 为 $t$ 时期的经济变量，$I_{t-1}$ 为 $t-1$ 时期所有可用信息的集合，则理性预期 $x^e_t$ 定义为：
+$$ x^e_t = E[x_t | I_{t-1}] $$
+其中 $E[\cdot]$ 表示基于正确经济模型的条件数学期望。这意味着预期误差 $\epsilon_t = x_t - x^e_t$ 必须满足两个关键性质：
+1. <strong>无偏性</strong>：$E[\epsilon_t] = 0$，即长期来看预测既不高估也不低估。
+2. <strong>正交性</strong>：预测误差与信息集 $I_{t-1}$ 中的任何变量都不相关，即 $Cov(\epsilon_t, z) = 0$，对于所有 $z \in I_{t-1}$。如果存在相关性，说明主体未充分利用信息，可以通过改进预测模型来获利，这与理性假设矛盾。</p>
+<h3 id="_5">三大支撑论证</h3>
+<p>穆思为其假说提供了三个强有力的逻辑支撑：
+1. <strong>信息稀缺性论证</strong>：信息是昂贵的资源。如果存在一种能系统性改善预测的方法且收益大于成本，竞争压力将迫使经济主体采用该方法。因此，均衡状态下不应存在廉价的系统性预测错误。
+2. <strong>结构依赖性论证</strong>：预期不是独立的心理现象，而是依赖于整个经济系统的结构。当政策规则或经济结构发生变化时（如央行改变通胀目标），理性主体会立即调整其预期形成机制，而不是像适应性预期那样缓慢滞后。这一观点后来成为了<span style="color:#e74c3c" title="broken link">卢卡斯批判</span>的理论基础。
+3. <strong>不动点性质</strong>：理性预期是一个自我一致的不动点。如果公开发布的预测会影响经济行为从而改变结果，那么理性预期本身就已经将这种反馈效应纳入了计算。预期与模型的实际运行结果在统计意义上是一致的。</p>
+<h3 id="_6">与适应性预期的根本区别</h3>
+<p>在穆思之前，主流经济学多采用<strong>适应性预期</strong>（Adaptive Expectations），即主体仅根据过去的预测误差进行修正（$x^e_t = x^e_{t-1} + \lambda(x_{t-1} - x^e_{t-1})$）。这种方法是纯粹后顾的（backward-looking），导致在经济结构发生突变时，主体会持续犯下系统性错误。
+相比之下，理性预期是前瞻的（forward-looking）。它要求主体了解（或学习出）经济的真实结构模型。虽然在短期内，由于随机冲击的存在，预测仍会有误差，但这些误差是白噪声，不具备序列相关性，无法被用来进一步改进预测。</p>
+<h3 id="_7">方法论遗产与应用</h3>
+<p>理性预期假说彻底重塑了宏观经济学。它迫使模型构建者明确指定微观基础，消除了以往模型中随意设定的预期参数。
+- <strong>政策无效性命题</strong>：结合市场出清假设，萨金特和华莱士推导出系统性的货币政策对实际产出无效，只有未预期到的货币冲击才能影响实体经济。
+- <strong>资产定价</strong>：有效市场假说（EMH）被视为理性预期在金融市场的直接应用，即价格反映了所有可用信息。
+- <strong>计量经济学</strong>：催生了广义矩估计（GMM）等方法，利用预期误差的正交条件作为矩条件进行参数估计。</p>
+<p>尽管面临来自<span style="color:#e74c3c" title="broken link">有限理性</span>和行为经济学的挑战，理性预期至今仍是宏观经济学基准模型的核心假设，代表着一种避免引入临时性（ad hoc）假设的方法论纪律。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/05-muth-rational-expectations-1961.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">约翰·弗雷泽·穆思</span></li>
+<li><span style="color:#e74c3c" title="broken link">适应性预期</span></li>
+<li><span style="color:#e74c3c" title="broken link">卢卡斯批判</span></li>
+<li><span style="color:#e74c3c" title="broken link">有限理性</span></li>
+<li><span style="color:#e74c3c" title="broken link">蛛网模型</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="牛顿法.html">&larr; 牛顿法</a>
+    <a href="生成函数.html">生成函数 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

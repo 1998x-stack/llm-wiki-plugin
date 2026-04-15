@@ -7,47 +7,11 @@
 
 ## 1. Concrete Command Refactors
 
-### 1.1 Split: wiki:lint → wiki:check + wiki:lint
+### ~~1.1 Split: wiki:lint → wiki:check + wiki:lint~~ (DONE in v3.1)
 
-**Problem:** `wiki:lint` does 9 checks (A-I) + semantic analysis + auto-repair in one command. Too many responsibilities.
+### ~~1.2 Rename: wiki:graph → wiki:build~~ (DONE in v3.1, alias removed in v3.1.2)
 
-**Proposed split:**
-- `wiki:check` — **read-only** diagnostics. Runs all checks A-I plus semantic analysis, generates report. Never modifies files.
-- `wiki:lint` — calls `wiki:check` first, then auto-repairs fixable issues.
-
-**Why:** Separates "what's wrong?" from "fix it." Useful for CI (run check without side effects) and for reviewing before auto-repair.
-
-**Effort:** Low. Extract check logic from lint.md into check.md, have lint.md call check first.
-
----
-
-### 1.2 Rename: wiki:graph → wiki:build
-
-**Problem:** `wiki:graph` doesn't just build the graph — it builds graph.json, statistics.json, and all wiki HTML pages. The name is misleading.
-
-**Proposed:** Rename to `wiki:build` (builds all static assets).
-
-**Why:** Accurate naming. Users currently don't know that running "graph" also regenerates HTML and statistics.
-
-**Effort:** Low. Rename command file, update all references.
-
-**Risk:** Breaking existing muscle memory. Consider keeping `wiki:graph` as an alias that calls `wiki:build`.
-
----
-
-### 1.3 Merge: wiki:ingest-loop + wiki:ingest-loop-qwen → wiki:ingest-loop --engine=\<claude|qwen\>
-
-**Problem:** Two commands share 90% of logic (setup script, state management, progress tracking). Only the extraction engine differs.
-
-**Proposed:**
-```
-/wiki:ingest-loop <folder>                  # default: claude engine
-/wiki:ingest-loop <folder> --engine=qwen    # qwen engine
-```
-
-**Why:** DRY. Reduces maintenance burden. New engines (e.g. local LLM) can be added via the same flag.
-
-**Effort:** Medium. Merge the two command files, parameterize setup scripts.
+### ~~1.3 Merge: wiki:ingest-loop + wiki:ingest-loop-qwen~~ (DONE in v3.1, alias removed in v3.1.2)
 
 ---
 

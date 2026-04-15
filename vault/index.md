@@ -35,6 +35,17 @@ updated: 2026-04-15
 - [[约瑟夫·拉弗森]] — 约瑟夫·拉弗森（Joseph Raphson，约1648–1715）是英国数学家，以独立发展"牛顿-拉弗森方法"的高效形式而著称。他在1690年的著作《普遍分析... (confidence: 0.8)
 - [[阿瑟·凯莱]] — 阿瑟·凯莱（Arthur Cayley，1821–1895）是英国数学家，**矩阵理论**的创始人之一。他在1855–1858年间系统建立矩阵代数理论，定义矩阵... (confidence: 0.85)
 - [[马尔可夫]] — 安德烈·安德烈耶维奇·马尔可夫（Andrey Markov，1856–1922）是俄国数学家，圣彼得堡数学学派的核心成员，切比雪夫的学生。他最重要的贡献是创立了... (confidence: 0.85)
+- [[A.W. 菲利普斯]] — 奥尔班·威廉·菲利普斯（A.W. Phillips, 1914-1975）是一位新西兰裔英国经济学家和工程师。他以其非凡的人生经历著称，从猎鳄者、矿工到二战战俘... (confidence: 1.0)
+- [[Jacques Denavit]] — Jacques Denavit 是一位在机构学和机器人学领域具有开创性贡献的学者。他最著名的成就是与 Richard S. Hartenberg 合作，于 19... (confidence: 0.95)
+- [[MONIAC]] — MONIAC（Monetary National Income Analogue Computer），又称“菲利普斯机器”，是由经济学家 A.W. 菲利普斯于 ... (confidence: 0.95)
+- [[Richard S. Hartenberg]] — Richard S. Hartenberg 是 20 世纪中期著名的机构学专家，以其在运动学符号系统化方面的杰出贡献而闻名。他与 Jacques Denavit... (confidence: 0.95)
+- [[就业、利息和货币通论]] — 《就业、利息和货币通论》（*The General Theory of Employment, Interest and Money*）是英国经济学家约翰·梅纳... (confidence: 1.0)
+- [[米尔顿·弗里德曼]] — 米尔顿·弗里德曼（Milton Friedman，1912-2006）是二十世纪最具影响力的经济学家之一，芝加哥学派领军人物，1976 年诺贝尔经济学奖得主。他... (confidence: 1.0)
+- [[约翰·梅纳德·凯恩斯]] — 约翰·梅纳德·凯恩斯（John Maynard Keynes，1883–1946）是 20 世纪最具影响力的英国经济学家，现代宏观经济学的创始人。他在大萧条时期... (confidence: 1.0)
+- [[约翰·理查德·希克斯]] — 约翰·理查德·希克斯（John R. Hicks，1904-1989）是英国著名经济学家，1972 年诺贝尔经济学奖得主（与肯尼斯·阿罗共同获得）。他在微观经济... (confidence: 1.0)
+- [[罗伯特·默顿·索洛]] — 罗伯特·默顿·索洛（Robert M. Solow，1924 年生）是美国著名经济学家，新古典增长理论的奠基人。他因对经济增长理论的贡献荣获 1987 年诺贝尔... (confidence: 1.0)
+- [[美国货币史，1867-1960]] — 《美国货币史，1867-1960》（*A Monetary History of the United States, 1867-1960*）是由米尔顿·弗里德... (confidence: 1.0)
+- [[A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices]] — 《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 Jacques Den... (confidence: 1.0)
 
 <!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
@@ -167,6 +178,25 @@ updated: 2026-04-15
 - [[组合数学]] — 组合数学（Combinatorics）研究有限或离散结构的计数、排列、组合与存在性问题。核心工具包括排列、组合、鸽巢原理、容斥原理、母函数、图论等。组合数学与概... (confidence: 0.85)
 - [[结构力学]] — 结构力学（Structural Mechanics）是固体力学的分支，研究结构（桥梁、建筑、机械零件等）在外力作用下的应力、应变、变形和稳定性。其核心问题是：给... (confidence: 0.8)
 - [[龙格-库塔方法]] — 龙格-库塔方法（Runge-Kutta Methods）是一族用于数值求解常微分方程（ODE）初值问题的迭代算法，由卡尔·龙格（1895）和马丁·威廉·库塔（1... (confidence: 0.9)
+- [[Denavit-Hartenberg 参数]] — Denavit-Hartenberg（DH）参数是一种用于描述串联机器人机械臂及低副机构运动学关系的标准化符号系统。该方法由 Jacques Denavit 和... (confidence: 1.0)
+- [[Harrod-Domar 模型]] — Harrod-Domar 模型是由英国经济学家罗伊·哈罗德（Roy Harrod, 1939）和美国经济学家埃夫塞·多马（Evsey Domar, 1946）分... (confidence: 0.95)
+- [[IS-LM 模型]] — IS-LM 模型（Investment-Saving / Liquidity preference-Money supply model）是宏观经济学中用于分析... (confidence: 1.0)
+- [[乘数效应]] — 乘数效应（Multiplier Effect）是宏观经济学中的一个关键概念，由凯恩斯在《就业、利息和货币通论》中系统化阐述。它描述了初始的支出增加（如政府投资、... (confidence: 0.95)
+- [[内生增长理论]] — 内生增长理论（Endogenous Growth Theory）是 20 世纪 80 年代兴起的一系列经济增长模型的统称，旨在克服索洛增长模型中将技术进步视为外... (confidence: 0.85)
+- [[凯恩斯革命]] — 凯恩斯革命（Keynesian Revolution）是指 20 世纪 30 年代由约翰·梅纳德·凯恩斯发起的经济学范式转变，其标志是 1936 年《就业、利息... (confidence: 0.95)
+- [[动物精神]] — “动物精神”（Animal Spirits）是约翰·梅纳德·凯恩斯在《就业、利息和货币通论》中提出的著名概念，用于描述驱动人类经济行为（特别是投资决策）的非理性... (confidence: 0.95)
+- [[收敛假说]] — 收敛假说是索洛增长模型导出的一个重要经验预测，指贫穷国家的人均收入增长率倾向于高于富裕国家，从而导致各国人均收入水平随时间推移逐渐趋同的现象。这一假说的理论基础... (confidence: 0.9)
+- [[新古典生产函数]] — 新古典生产函数是新古典增长理论（如索洛模型）的核心数学工具，用于描述资本（K）和劳动（L，通常经过技术水平 A 调整）如何结合产生总产出（Y）。与早期的固定比例... (confidence: 1.0)
+- [[有效需求]] — 有效需求（Effective Demand）是凯恩斯主义经济学的核心概念，指经济社会在某一特定价格水平下，消费者、企业和政府愿意且能够购买的商品和服务的总量。与... (confidence: 1.0)
+- [[流动性偏好理论]] — 流动性偏好理论（Liquidity Preference Theory）是凯恩斯在《就业、利息和货币通论》中提出的关于货币需求和利率决定的核心理论。该理论认为，... (confidence: 0.95)
+- [[流动性陷阱]] — 流动性陷阱（Liquidity Trap）是凯恩斯主义经济学中的一种极端经济状态，指当名义利率降低到无可再降的低水平（接近零）时，人们预期利率未来只会上升（债券... (confidence: 0.9)
+- [[理性预期假说]] — 理性预期假说（Rational Expectations Hypothesis）是由约翰·弗雷泽·穆思（John F. Muth）于 1961 年提出的经济学核... (confidence: 1.0)
+- [[索洛增长模型]] — 索洛增长模型（Solow Growth Model）是由罗伯特·默顿·索洛（Robert M. Solow）于 1956 年提出的新古典宏观经济增长理论。该模型... (confidence: 1.0)
+- [[索洛残差]] — 索洛残差（Solow Residual）是指在增长核算中，总产出增长率减去资本和劳动等要素投入加权增长率后的剩余部分。它由罗伯特·索洛在 1957 年提出，被视... (confidence: 0.95)
+- [[菲利普斯曲线]] — 菲利普斯曲线（Phillips Curve）最初由 A.W. 菲利普斯于 1958 年提出，描述了失业率与名义工资变化率之间稳定的负向非线性关系。该曲线基于英国... (confidence: 1.0)
+- [[萨伊定律]] — 萨伊定律（Say's Law），又称“市场定律”，是古典经济学的核心信条之一，由法国经济学家让 - 巴蒂斯特·萨伊（Jean-Baptiste Say）在 19... (confidence: 0.95)
+- [[边际消费倾向]] — 边际消费倾向（Marginal Propensity to Consume, 简称 MPC）是凯恩斯消费理论中的核心参数，定义为每增加一单位可支配收入中用于消费... (confidence: 0.95)
+- [[黄金律资本水平]] — 黄金律资本水平（Golden Rule Level of Capital）是索洛增长模型中的一个规范性概念，由埃德蒙·费尔普斯（Edmund Phelps）于 ... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
@@ -180,10 +210,10 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：156
-- 实体：62
-- 概念：91
-- 综合分析：2
+- 总页面数：188
+- 实体：73
+- 概念：110
+- 综合分析：4
 - QA 洞见：1
 - 最后更新：2026-04-15
 

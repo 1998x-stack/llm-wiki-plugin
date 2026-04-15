@@ -92,7 +92,7 @@ Claude Code 会自动读取 `vault/CLAUDE.md` 和 `vault/_schema/CLAUDE.md`，�
 在 Claude Code 中输入 `/wiki:` 然后按 Tab，应该看到所有命令：
 
 ```
-ingest  query  check  lint  consolidate  crystallize  journal  review  qa-import  ingest-loop  build  reindex
+ingest  query  check  lint  consolidate  crystallize  journal  review  qa-import  ingest-loop  build  reindex  maintain  convert-to-markdown
 ```
 
 ### Step 6: （可选）配置 Qwen API
@@ -469,11 +469,9 @@ Lint Results:
 - 默认（无 flag）：使用 Claude Code 处理，质量最高，消耗 Claude 上下文
 - `--engine=qwen`：使用通义千问 API，快速，不消耗 Claude 上下文，适合大批量场景。需要设置 `DASHSCOPE_API_KEY`
 
-> **注：** `wiki:ingest-loop-qwen` 是 `wiki:ingest-loop --engine=qwen` 的别名，两者等效。
-
 ### 4.11 `wiki:build` — 构建所有静态产出
 
-**功能：** 扫描所有 wiki 页面，构建知识图谱、统计数据和静态 HTML wiki 查看器。这是 v3.1 的主命令，`wiki:graph` 是其别名。
+**功能：** 扫描所有 wiki 页面，构建知识图谱、统计数据和静态 HTML wiki 查看器。
 
 **用法：**
 
@@ -481,17 +479,30 @@ Lint Results:
 /wiki:build
 ```
 
-等效别名：
-
-```
-/wiki:graph   # wiki:graph 现为 wiki:build 的别名
-```
-
 **输出：**
 
 - `graph.json`：节点（页面）和边（wikilink + frontmatter 关系）的 JSON 数据
 - `graph-statistics.json`：类型分布、置信度、标签频率等统计数据
 - `static/wiki/*.html`：静态 HTML wiki 查看器页面
+
+### 4.12 `wiki:maintain` — 一键维护
+
+**功能：** 一键执行完整维护流水线：reindex → check → lint → build。等价于依次运行四个命令，但在关键步骤失败时提前终止。
+
+**用法：**
+
+```
+/wiki:maintain
+```
+
+**处理流程：**
+
+1. **Reindex** — 验证 index.md 完整性，生成主题分类 maps
+2. **Check** — 只读诊断，生成问题报告
+3. **Lint** — 基于诊断结果自动修复可修复的问题
+4. **Build** — 构建 graph.json + statistics + wiki HTML
+
+**适用场景：** 批量 ingest 后的全面维护、每周例行维护、发布前检查。
 
 ---
 
@@ -521,9 +532,8 @@ Lint Results:
 ```
 每周日：
 1. /wiki:review weekly         — 回顾本周
-2. /wiki:lint                  — 健康检查 + 修复
-3. /wiki:build                 — 更新图谱和静态产出
-4. 在 Obsidian 图谱视图中浏览连接       — 发现模式
+2. /wiki:maintain              — 一键维护（reindex→check→lint→build）
+3. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
 
 ### 5.3 批量 Ingest 流程
@@ -537,8 +547,6 @@ Lint Results:
 # 方式 2：Qwen API 批量处理（快速，不消耗 Claude 上下文）
 # 需要先设置：export DASHSCOPE_API_KEY="your-key"
 /wiki:ingest-loop raw/books/矩阵分析/ --engine=qwen
-# 或使用别名：
-/wiki:ingest-loop-qwen raw/books/矩阵分析/
 ```
 
 ```bash
@@ -550,7 +558,7 @@ python3 scripts/build_graph.py
 ### 5.4 知识图谱探索
 
 ```
-# 1. 构建图谱（使用 wiki:build 主命令，或其别名 wiki:graph）
+# 1. 构建图谱
 /wiki:build
 
 # 2. 在浏览器中打开 graph.html 查看交互式图谱
@@ -1015,9 +1023,9 @@ cd vault-cs && claude
 /wiki:consolidate                        记忆整理
 /wiki:crystallize                        会话结晶
 /wiki:qa-import <path>                   导入 QA 数据
-/wiki:ingest-loop <dir>                  Ralph-loop 批量 ingest（Claude）
-/wiki:ingest-loop <dir> --engine=qwen   Ralph-loop 批量 ingest（Qwen）
+/wiki:ingest-loop <dir> [--engine=qwen]  Ralph-loop 批量 ingest
 /wiki:build                              构建 graph + statistics + wiki HTML
+/wiki:maintain                           一键维护: reindex→check→lint→build
 ```
 
 ### 常用脚本

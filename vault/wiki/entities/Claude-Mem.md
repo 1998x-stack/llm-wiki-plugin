@@ -7,7 +7,11 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 3
-tags: [AI, 工具，方法论，研究]
+tags:
+  - AI
+  - 工具
+  - 方法论
+  - 研究
 aliases: ["Claude Memory Plugin", "Claude Code Memory", "Claude Memory"]
 relates_to:
   - target: "[[Claude-Code]]"

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">研究</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="a-kinematic-notation-for-lower-pair-mechanisms-based-on-matrices">A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices</h1>
+<h2 id="_1">概述</h2>
+<p>《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 Jacques Denavit 和 Richard S. Hartenberg 于 1955 年 6 月发表在《ASME Journal of Applied Mechanics》上的里程碑式论文。该文首次提出了利用四个参数和齐次变换矩阵来系统化描述任意低副机构（Lower-Pair Mechanisms）运动学关系的方法。这篇论文不仅解决了当时机构学领域描述方法混乱的问题，更为后来诞生的机器人学提供了核心的数学工具——<strong>Denavit-Hartenberg (DH) 参数</strong>，被公认为机器人运动学理论的奠基之作。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="1">1. 发表背景与动机</h3>
+<p>在 1955 年之前，机构学领域缺乏统一的运动学描述标准。德国工程师 Franz Reuleaux 的符号系统虽具开创性，但无法定量描述空间运动所需的变量数量。随着航空航天和自动化技术的发展，<strong>空间机构</strong>（三维运动）的分析需求激增，传统的几何直觉方法显得笨拙且难以计算机化。同时，矩阵代数在工程中的应用正在兴起，但缺乏将其应用于机构几何关系的系统方法。本论文旨在回答：<strong>能否找到一种最小化、系统化的符号体系，用方程和矩阵无歧义地描述任意空间机构？</strong></p>
+<h3 id="2">2. 核心理论与方法</h3>
+<p>论文提出了革命性的解决方案：
+*   <strong>四参数充分性证明</strong>：作者证明了两个相邻连杆间的相对位姿仅需四个参数（$\theta, d, a, \alpha$）即可完整描述。这是信息论意义上的最小表示，利用了相邻关节轴之间的几何约束，将刚体变换的 6 个自由度压缩至 4 个。
+*   <strong>坐标系建立规则</strong>：定义了严格的坐标系附着规则（$z$ 轴沿关节轴，$x$ 轴沿公垂线），消除了人为定义的歧义。
+*   <strong>矩阵变换公式</strong>：推导了标准的 4×4 齐次变换矩阵形式，将旋转和平移操作统一表达。
+*   <strong>链式乘法原理</strong>：展示了如何通过矩阵连乘（$T_{0n} = T_{01} \cdot T_{12} \cdots$）求解多连杆系统的末端位姿，实现了运动学分析的算法化。</p>
+<h3 id="3">3. 验证与实例</h3>
+<p>作为一篇理论方法论文，作者通过两个具体的空间机构实例验证了方法的可行性：
+1.  <strong>空间四杆机构</strong>的运动学分析。
+2.  <strong>空间曲柄滑块机构</strong>的运动学分析。
+结果显示，DH 方法能够系统地处理三维复杂运动链，得出的结果与传统几何方法一致，但过程更加规范且易于推广。</p>
+<h3 id="4">4. 历史地位与局限性</h3>
+<ul>
+<li><strong>历史地位</strong>：该论文是机器人学的“语法”起源。尽管发表时现代工业机器人尚未问世，但它为 1960 年代以后的机器人技术发展提供了现成的数学语言。Richard Paul (1981) 和 John Craig (1986) 等后续学者将其系统化并推广至整个机器人社区。</li>
+<li><strong>局限性</strong>：论文也指出了方法的一些固有局限，如在处理平行关节轴时的奇异性问题（公垂线不唯一），以及主要针对开链机构的设计。这些局限在后来的研究中催生了“改进的 DH 约定”和旋量理论等补充方法。</li>
+</ul>
+<h3 id="5">5. 引用信息</h3>
+<ul>
+<li><strong>期刊</strong>: ASME Journal of Applied Mechanics, Vol. 22, Issue 2, pp. 215–221</li>
+<li><strong>DOI</strong>: 10.1115/1.4011045</li>
+<li><strong>单位</strong>: Northwestern University, USA</li>
+</ul>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/01-denavit-hartenberg-kinematic-notation.md</span></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a></li>
+<li><a href="Jacques Denavit.html">Jacques Denavit</a></li>
+<li><a href="Richard S. Hartenberg.html">Richard S. Hartenberg</a></li>
+<li><span style="color:#e74c3c" title="broken link">ASME Journal of Applied Mechanics</span></li>
+<li><span style="color:#e74c3c" title="broken link">齐次变换矩阵</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="A.W. 菲利普斯.html">A.W. 菲利普斯 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

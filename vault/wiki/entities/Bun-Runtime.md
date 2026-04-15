@@ -7,7 +7,10 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [工具，数值分析，研究]
+tags:
+  - 工具
+  - 数值分析
+  - 研究
 aliases: ["Bun.js", "Bun JS Runtime"]
 relates_to:
   - target: "[[Claude-Mem]]"

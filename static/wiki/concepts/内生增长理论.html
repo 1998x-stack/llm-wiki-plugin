@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内生增长理论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 内生增长理论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">内生增长理论</h1>
+<h2 id="_2">概述</h2>
+<p>内生增长理论（Endogenous Growth Theory）是 20 世纪 80 年代兴起的一系列经济增长模型的统称，旨在克服索洛增长模型中将技术进步视为外生变量的局限。以保罗·罗默（Paul Romer）和罗伯特·卢卡斯（Robert Lucas）为代表的学者，通过将技术研发、人力资本积累和知识溢出等机制内生化到模型中，解释了长期经济增长率的决定因素。该理论认为，经济政策、研发投入和教育投资可以直接影响长期的经济增长率，而不仅仅是收入水平。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="1">1. 对索洛模型的批判与继承</h3>
+<p>索洛模型虽然成功解释了收敛现象和增长核算，但其核心缺陷在于将长期增长的唯一驱动力——技术进步（$g$）——视为外生的“天上掉下的馅饼”。模型无法回答为什么有些国家技术进步快而有些慢，也无法分析 R&amp;D 政策的效果。内生增长理论继承了索洛的分析框架，但摒弃了资本边际报酬递减的严格假设，或者引入了具有正外部性的知识资本，从而使得增长率在模型内部由经济主体的决策决定。</p>
+<h3 id="2">2. 核心机制</h3>
+<p>内生增长模型通常通过以下几种机制实现内生增长：
+*   <strong>知识溢出与收益递增</strong>：罗默（1986, 1990）的模型强调，知识具有非竞争性和部分排他性。企业进行的研发投资不仅使自己受益，还会通过溢出效应提高整个社会的生产率，导致社会层面的资本（包括知识资本）边际报酬不递减，甚至递增。
+*   <strong>人力资本积累</strong>：卢卡斯（1988）的模型聚焦于人力资本。他认为个人通过教育和“干中学”积累技能，这种人力资本的积累可以抵消物质资本的边际报酬递减，从而维持长期的正增长率。
+*   <strong>创造性破坏</strong>：阿吉翁和豪伊特（Aghion &amp; Howitt, 1992）引入了熊彼特的“创造性破坏”概念，将增长建模为新产品质量不断替代旧产品的过程，创新频率由利润动机驱动。</p>
+<h3 id="3">3. 政策含义</h3>
+<p>与索洛模型不同，内生增长理论赋予了政府政策更积极的作用。在索洛框架下，补贴研发或教育只能产生水平效应（提高收入水平）；而在内生增长框架下，这些政策可以产生<strong>增长效应</strong>，永久性地提高经济的增长率。这为各国政府大力投资基础研究、教育体系和知识产权保护提供了坚实的理论依据。尽管内生增长模型在数学上更为复杂且预测能力尚存争议，但它极大地丰富了我们对创新和经济长期动力的理解。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/03-solow-growth-model-1956.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="索洛增长模型.html">索洛增长模型</a></li>
+<li><span style="color:#e74c3c" title="broken link">技术进步</span></li>
+<li><span style="color:#e74c3c" title="broken link">保罗·罗默</span></li>
+<li><span style="color:#e74c3c" title="broken link">罗伯特·卢卡斯</span></li>
+<li><span style="color:#e74c3c" title="broken link">人力资本</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="共轭梯度法.html">&larr; 共轭梯度法</a>
+    <a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
