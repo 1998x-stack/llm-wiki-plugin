@@ -8,13 +8,11 @@ description: "构建知识图谱 graph.json"
 
 ## 流程
 
-1. **执行 lint 检查**
-   - 重点检查：
-     - **B. 孤页检查** — 找出没有被任何其他页面链接到的页面
-     - **C. 断链检查** — 找出所有 [[链接]] 指向不存在的页面的情况
-   - 自动修复可修复的问题：
-     - 近似名称的断链 → 自动修正
-     - 缺失的 index.md 条目 → 自动添加
+1. **执行 lint 检查（只读，不修复）**
+   - 执行：`Bash: cd vault && python3 scripts/lint_wiki.py --json`
+   - 解析 JSON 输出，报告 errors/warnings 数量
+   - **不要自动修复任何问题** — 仅报告，修复由 `wiki:lint` 命令负责
+   - 如有 errors > 0，报告但继续构建图谱
 
 2. **构建图谱 + 静态站点**
    - 执行：`Bash: cd vault && python3 scripts/build_graph.py --full`
