@@ -2,6 +2,8 @@
 
 将当前会话的探索过程蒸馏为结构化摘要，写入 wiki 和记忆系统。
 
+> **与 consolidate 的分工**：crystallize 只负责"捕获"当前会话的观察（写入 working memory 和可选的 synthesis 页面）。记忆的晋升、强化和衰减由 `wiki:consolidate` 负责。
+
 ## 输入
 
 $ARGUMENTS — 可选的会话主题描述。如果不提供，自动从当前对话上下文推断。
@@ -30,10 +32,5 @@ $ARGUMENTS — 可选的会话主题描述。如果不提供，自动从当前�
      - 更新相关页面的 relates_to
      - 更新 index.md
 
-4. **强化已有知识**
-   - 如果会话确认了已有 semantic memory 中的事实：
-     - 更新对应 semantic memory 的 last_confirmed 和 confirmation_count
-     - 重置衰减曲线
-
-5. **记录**
+4. **记录**
    - 追加 log.md：`## [YYYY-MM-DD] crystallize | 会话主题`

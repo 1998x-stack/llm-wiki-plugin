@@ -1,6 +1,6 @@
 # wiki:query
 
-基于知识库回答问题，使用 BM25 搜索增强检索，将问答记录写入本地文件。
+基于知识库回答问题，使用统一搜索（BM25 + maps 主题扩展 + 图谱遍历）增强检索，将问答记录写入本地文件。
 
 ## 输入
 
@@ -8,17 +8,13 @@ $ARGUMENTS — 要回答的问题。
 
 ## 流程
 
-1. **BM25 搜索**
-   - 执行：`Bash: python3 scripts/bm25_index.py query "$ARGUMENTS" -n 10`
-   - 解析 JSON 结果，获取 top-10 相关页面路径和评分
+1. **统一搜索**
+   - 执行：`Bash: python3 scripts/search_wiki.py "$ARGUMENTS" --top 15 --json`
+   - 解析 JSON 结果，获取按相关度排序的页面列表
+   - 注意 `topic_context` 字段 — 如果匹配到主题，优先深读该主题下的页面
+   - 注意 `sources` 字段 — 多来源命中的页面更可信
 
-2. **扩展搜索**
-   - 读取 `index.md` 找到可能相关的页面（关键词匹配）
-   - 读取 BM25 命中页面的 frontmatter，沿 relates_to 扩展搜索范围
-   - 如果相关页面不够，用 Grep 在 wiki/ 中搜索关键词
-   - 合并所有搜索结果（BM25 + index + relates_to + grep），去重
-
-3. **读取相关页面**
+2. **读取相关页面**
    - 读取所有找到的相关页面的完整内容
    - 注意 confidence 值——低置信度的信息标注 "（置信度较低）"
 
@@ -59,9 +55,5 @@ $ARGUMENTS — 要回答的问题。
      ---
      ```
 
-7. **自动导入洞见**
-   - 执行 wiki:qa-import 处理今天的 QA 文件：
-     按 qa-import 命令的流程处理 `qa/YYYY-MM-DD.md`
-
-8. **更新 last_accessed**
+7. **更新 last_accessed**
    - 更新所有被引用页面的 `last_accessed` 字段为今天日期

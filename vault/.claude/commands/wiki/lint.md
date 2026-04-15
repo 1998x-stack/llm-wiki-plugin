@@ -47,8 +47,10 @@
    - 缺失条目 → 执行：`Bash: python3 scripts/bm25_index.py update <missing_file>`
 
    **H. 图谱连通性**
-   - 执行：`Bash: python3 scripts/build_graph.py`
-   - 读取 graph.json，检查是否有小于 3 个节点的孤立子图
+   - 如果 `graph.json` 存在，读取其内容
+   - 如果 `graph.json` 不存在，跳过此检查并报告 INFO: "graph.json 不存在，跳过连通性检查。运行 wiki:graph 构建图谱。"
+   - 从 graph.json 的 `components` 字段检查是否有小于 3 个节点的孤立子图
+   - 从 `orphans` 字段报告孤页
    - 报告为 WARNING
 
    **I. 模板合规性**
