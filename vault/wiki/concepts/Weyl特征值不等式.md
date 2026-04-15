@@ -126,7 +126,7 @@ Alfred Horn 在1962年提出：[[赫尔曼·外尔|Weyl]]-Lidskii 型不等式�
 
 ## 来源
 
-- raw/books/矩阵分析/09_weyl_eigenvalue_inequalities_1912.md
+- [[raw/books/矩阵分析/09_weyl_eigenvalue_inequalities_1912.md]]
 
 ## 相关
 

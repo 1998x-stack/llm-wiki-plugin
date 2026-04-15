@@ -8,28 +8,37 @@ $ARGUMENTS — 要回答的问题。
 
 ## 流程
 
-1. **统一搜索**
-   - 执行：`Bash: bash scripts/wiki.sh search_wiki "$ARGUMENTS" --top 15 --json`
+1. **查询改写**
+   - 分析 `$ARGUMENTS`，提取核心关键词，生成优化后的搜索查询 `REWRITTEN_QUERY`
+   - 改写规则：
+     - 去除疑问词和语气助词（什么、如何、为什么、怎么、吗、呢、是否）
+     - 展开缩写和别名（如 "RAG" → "RAG 检索增强生成"，"CE" → "CE Context-Engineering"）
+     - 如果问题涉及 X 与 Y 的关系，确保两个术语都出现在查询中
+     - 保留原始核心术语，追加同义词/扩展词
+   - 示例：`"什么是Context Engineering？"` → `"Context-Engineering 上下文工程"`
+
+2. **统一搜索**
+   - 执行：`Bash: bash scripts/wiki.sh search_wiki "REWRITTEN_QUERY" --top 15 --json`
    - 解析 JSON 结果，获取按相关度排序的页面列表
    - 注意 `topic_context` 字段 — 如果匹配到主题，优先深读该主题下的页面
    - 注意 `sources` 字段 — 多来源命中的页面更可信
 
-2. **读取相关页面**
+3. **读取相关页面**
    - 读取所有找到的相关页面的完整内容
    - 注意 confidence 值——低置信度的信息标注 "（置信度较低）"
 
-3. **综合回答**
+4. **综合回答**
    - 用中文回答
    - 引用来源页面：`来源：[[页面名]]`
    - 如果信息不足，明确说明哪些方面缺少数据
 
-4. **结晶化判断**
+5. **结晶化判断**
    - 如果回答综合了 3+ 个页面的信息，且形成了新的洞见：
      - 在 `wiki/syntheses/` 创建新页面保存这个分析
      - 更新 index.md：`Bash: bash scripts/wiki.sh snapshot_index --update`
      - 追加 log.md
 
-5. **写入 QA 记录**
+6. **写入 QA 记录**
    - 将问答写入 `raw/qa/qa-YYYYMMDD-HHMMSS.md`（使用 Write 工具）
    - 文件格式：
      ```markdown
@@ -50,9 +59,9 @@ $ARGUMENTS — 要回答的问题。
      ```
    - 注意：每次 query 创建独立文件，文件名包含时间戳，避免冲突
 
-6. **更新 QA 快照**
+7. **更新 QA 快照**
    - 追加新文件到 `raw/qa/qa.snapshot.md`（如果不存在则创建）
    - 追加格式：`- [ ] qa-YYYYMMDD-HHMMSS.md — 主题关键词`
 
-7. **更新 last_accessed**
+8. **更新 last_accessed**
    - 更新所有被引用页面的 `last_accessed` 字段为今天日期

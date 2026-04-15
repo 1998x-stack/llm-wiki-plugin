@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>联合训练 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 联合训练</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">训练方法</span><span class="tag">深度学习</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">联合训练</h1>
+<h2 id="_2">概述</h2>
+<p>多组件模型的训练范式，各组件共享同一损失函数、同时优化参数，使组件在训练过程中自动协调分工、互补不足，区别于集成学习中各模型独立训练后推理时组合预测。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>与集成学习的本质区别</strong>：集成学习中各子模型独立训练、彼此互不知晓，仅在推理时组合预测（投票、加权平均）；联合训练中所有组件同时训练、共享损失函数，梯度从输出层反向传播到每个组件。</li>
+<li><strong>互补性优势</strong>：在联合训练中，每个组件"知道"其他组件的存在，自动调整自身去弥补对方的不足。例如 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 中，Wide 组件不需要成为完整的线性模型，只需少量交叉特征补足 Deep 组件的记忆短板。</li>
+<li><strong>模型紧凑性</strong>：联合训练允许各组件轻量化——因为每个组件只需负责对方不擅长的部分。Wide &amp; Deep 的 Wide 组件可以非常小（少量交叉特征），而集成方法中每个模型都需要相对完整才能达到合理精度。</li>
+<li><strong>端到端优化</strong>：整个模型针对最终目标函数统一优化，避免子模型之间目标不一致的问题。集成学习中各子模型可能优化不同的中间目标，导致最终组合时出现目标冲突。</li>
+<li><strong>差异化优化策略</strong>：联合训练不要求所有组件使用相同优化器。Wide &amp; Deep 中 Wide 组件用 FTRL+L1（产生稀疏解，适合高维稀疏特征），Deep 组件用 AdaGrad（自适应学习率，适合稠密参数），两者在同一损失函数下协同优化。</li>
+<li><strong>数学表达</strong>：以 Wide &amp; Deep 为例，$P(Y=1|\mathbf{x}) = \sigma(\mathbf{w}<em>{wide}^T [\mathbf{x}, \phi(\mathbf{x})] + \mathbf{w}</em>{deep}^T a^{(l_f)} + b)$，损失函数对 $\mathbf{w}<em>{wide}$ 和 $\mathbf{w}</em>{deep}$ 同时求梯度。</li>
+<li><strong>在推荐系统中的影响</strong>：联合训练是 Wide &amp; Deep 从"概念框架"落地为"可行方案"的关键技术桥梁，深刻影响了后续所有"双路"模型的设计，包括 <a href="../entities/DeepFM.html">DeepFM</a>、DCN、xDeepFM 等。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li>Heng-Tze Cheng et al. — Wide &amp; Deep Learning for Recommender Systems, DLRS 2016 (arXiv:1606.07792)</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> — 联合训练的经典应用</li>
+<li><a href="模型融合.html">模型融合</a> — 与集成学习的对比</li>
+<li><a href="记忆与泛化.html">记忆与泛化</a> — 联合训练实现的核心目标</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="绝对位置编码.html">&larr; 绝对位置编码</a>
+    <a href="自注意力机制.html">自注意力机制 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

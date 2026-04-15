@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>对比学习 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 对比学习</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">表征学习</span><span class="tag">推荐系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="contrastive-learning">对比学习 Contrastive Learning</h1>
+<h2 id="_1">概述</h2>
+<p>一种通过拉近正样本对、推远负样本对来学习高质量表征的机器学习范式，在推荐系统中用于增强用户和物品的向量表示。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心思想</strong>：通过构造正样本对（相似实例）和负样本对（不同实例），训练模型使正样本对在表征空间中靠近、负样本对远离。典型损失函数为 <a href="InfoNCE.html">InfoNCE</a>/NT-Xent。</p>
+</li>
+<li>
+<p><strong>与 <a href="BPR.html">BPR</a> 的对应关系</strong>：<a href="BPR.html">BPR</a> 可理解为对比学习的早期实践。<a href="BPR.html">BPR</a> 的正样本 = 用户交互过的物品，负样本 = 用户未交互的物品，损失函数 ln σ(x̂_ui - x̂_uj) 与 <a href="InfoNCE.html">InfoNCE</a> 结构一致。当 <a href="InfoNCE.html">InfoNCE</a> 只使用一个负样本时退化为 <a href="BPR.html">BPR</a> Loss。</p>
+</li>
+<li>
+<p><strong>现代图对比学习推荐</strong>：SGL、SimGCL、LightGCL 等模型组合两种损失：L = L_<a href="BPR.html">BPR</a> + λ · L_CL，其中 L_<a href="BPR.html">BPR</a> 负责排序学习，L_CL 负责表征学习，两者互补提升推荐质量。</p>
+</li>
+<li>
+<p><strong>与 <a href="BPR.html">BPR</a> 的关键差异</strong>：
+   | 维度 | <a href="BPR.html">BPR</a> (2009) | 现代对比学习 (SimCLR 等) |
+   |------|-----------|------------------------|
+   | 正样本 | 用户交互过的物品 | 同一实例的不同增强视图 |
+   | 负样本 | 用户未交互的物品 | 不同实例 |
+   | 采样策略 | 均匀随机采样 | Mini-batch 内采样 |</p>
+</li>
+<li>
+<p><strong>数据增强策略</strong>：对比学习依赖数据增强构造正样本对，在推荐系统中常见的增强方式包括图结构扰动（边 dropout）、特征掩码、视图生成等。</p>
+</li>
+<li>
+<p><strong>在推荐系统中的价值</strong>：对比学习通过自监督信号增强表征质量，尤其在数据稀疏场景下能有效缓解<a href="冷启动问题.html">冷启动问题</a>，提升模型的泛化能力。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="../entities/BPR 论文.html">BPR 论文</a> — Rendle et al. (2009) UAI 2009, 现代视角审视：对比学习先驱分析</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="BPR.html">BPR</a> — compares_to</li>
+<li><a href="负采样.html">负采样</a> — uses</li>
+<li><a href="InfoNCE.html">InfoNCE</a> — implements</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="奇异值分解.html">&larr; 奇异值分解</a>
+    <a href="嵌入表示.html">嵌入表示 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

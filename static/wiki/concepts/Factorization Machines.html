@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factorization Machines — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Factorization Machines</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">特征工程</span><span class="tag">因子分解机</span></div>
+</div>
+  <div class="content">
+    <h1 id="factorization-machines">Factorization Machines</h1>
+<h2 id="_1">概述</h2>
+<p>一种通过<a href="嵌入表示.html">隐向量</a>内积建模特征间二阶交互的通用预测模型，由 <a href="../entities/Steffen Rendle.html">Steffen Rendle</a> 提出，可视为<a href="矩阵分解.html">矩阵分解</a>在更广泛特征空间上的推广。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>提出背景</strong>：<a href="../entities/Steffen Rendle.html">Steffen Rendle</a>（<a href="BPR.html">BPR</a> 第一作者）在 <a href="BPR.html">BPR</a> 之后的工作中提出了 Factorization Machines，将<a href="矩阵分解.html">矩阵分解</a>的思想推广到任意实值特征向量，而不仅限于用户-物品交互<a href="矩阵.html">矩阵</a>。</p>
+</li>
+<li>
+<p><strong>模型公式</strong>：F<a href="Solomonoff先验.html">M(x)</a> = w₀ + Σ_i w_i x_i + Σ_i Σ_j&gt;i ⟨v_i, v_j⟩ x_i x_j，其中 w₀ 为全局偏置，w_i 为一阶权重，v_i 为特征 i 的<a href="嵌入表示.html">隐向量</a>，通过<a href="嵌入表示.html">隐向量</a>内积 ⟨v_i, v_j⟩ 建模特征对的交互。</p>
+</li>
+<li>
+<p><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当输入特征仅为用户 one-hot 和物品 one-hot 时，FM 退化为标准的<a href="矩阵分解.html">矩阵分解</a>模型。FM 可处理额外的上下文特征（如时间、地点、物品属性等）。</p>
+</li>
+<li>
+<p><strong>计算效率</strong>：FM 的二阶交互项可通过代数变换从 O(n²) 优化到 O(nk) 计算复杂度，其中 n 为特征数量，k 为<a href="嵌入表示.html">隐向量</a>维度，使得 FM 在高维稀疏特征空间上高效运行。</p>
+</li>
+<li>
+<p><strong>后续发展</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 等深度推荐模型将 FM 与深度神经网络结合，FM 部分负责低阶<a href="特征交叉.html">特征交互</a>，DNN 部分负责高阶<a href="特征交叉.html">特征交互</a>，两者共享输入<a href="嵌入表示.html">嵌入层</a>。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="../entities/BPR 论文.html">BPR 论文</a> — Rendle et al. (2009) UAI 2009, Steffen Rendle 后续工作提及</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="矩阵分解.html">矩阵分解</a> — extends</li>
+<li><a href="BPR.html">BPR</a> — relates_to</li>
+<li><a href="隐式反馈.html">隐式反馈</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="FTS5.html">&larr; FTS5</a>
+    <a href="Gauss-Seidel方法.html">Gauss-Seidel方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,44 +1,65 @@
 {
-  "generated": "2026-04-15T16:12:48+00:00",
+  "generated": "2026-04-15T17:42:27+00:00",
   "summary": {
-    "total_nodes": 291,
-    "total_edges": 2144,
+    "total_nodes": 474,
+    "total_edges": 3596,
     "orphan_count": 0,
     "component_count": 1,
-    "avg_degree": 8.52,
-    "density": 0.0294,
+    "avg_degree": 8.89,
+    "density": 0.0188,
     "diameter": 9,
-    "avg_clustering": 0.5495,
-    "bridge_count": 4
+    "avg_clustering": 0.5554,
+    "bridge_count": 5
   },
   "type_distribution": {
-    "concept": 176,
-    "entity": 108,
+    "concept": 276,
+    "entity": 190,
     "synthesis": 5,
-    "qa-insight": 2
+    "qa-insight": 2,
+    "paper": 1
   },
   "confidence_distribution": {
     "0.0-0.3": 0,
     "0.3-0.5": 0,
-    "0.5-0.7": 0,
-    "0.7-0.9": 46,
-    "0.9-1.0": 245
+    "0.5-0.7": 49,
+    "0.7-0.9": 146,
+    "0.9-1.0": 279
   },
   "top_connected": [
     {
-      "label": "概率论",
+      "label": "信息论",
       "type": "concept",
-      "edge_count": 76
+      "edge_count": 107
     },
     {
       "label": "矩阵",
       "type": "concept",
-      "edge_count": 73
+      "edge_count": 91
+    },
+    {
+      "label": "矩阵分解",
+      "type": "concept",
+      "edge_count": 84
+    },
+    {
+      "label": "协同过滤",
+      "type": "concept",
+      "edge_count": 79
+    },
+    {
+      "label": "概率论",
+      "type": "concept",
+      "edge_count": 77
     },
     {
       "label": "数值分析",
       "type": "concept",
-      "edge_count": 61
+      "edge_count": 62
+    },
+    {
+      "label": "奇异值分解",
+      "type": "concept",
+      "edge_count": 55
     },
     {
       "label": "矩阵理论",
@@ -46,14 +67,29 @@
       "edge_count": 54
     },
     {
-      "label": "奇异值分解",
-      "type": "concept",
-      "edge_count": 46
-    },
-    {
       "label": "Context-Engineering",
       "type": "concept",
+      "edge_count": 47
+    },
+    {
+      "label": "Netflix Prize",
+      "type": "entity",
       "edge_count": 45
+    },
+    {
+      "label": "克劳德·香农",
+      "type": "entity",
+      "edge_count": 45
+    },
+    {
+      "label": "GroupLens",
+      "type": "entity",
+      "edge_count": 44
+    },
+    {
+      "label": "Factorization Machines",
+      "type": "entity",
+      "edge_count": 41
     },
     {
       "label": "Agent Harness模式",
@@ -71,216 +107,191 @@
       "edge_count": 38
     },
     {
+      "label": "MinerU",
+      "type": "entity",
+      "edge_count": 38
+    },
+    {
+      "label": "矩阵扰动理论",
+      "type": "concept",
+      "edge_count": 37
+    },
+    {
       "label": "矩阵谱理论的统一叙事",
       "type": "synthesis",
       "edge_count": 37
     },
     {
-      "label": "矩阵扰动理论",
-      "type": "concept",
-      "edge_count": 36
-    },
-    {
       "label": "谱半径",
       "type": "concept",
       "edge_count": 36
-    },
-    {
-      "label": "Schur分解",
-      "type": "concept",
-      "edge_count": 34
-    },
-    {
-      "label": "后向误差分析",
-      "type": "concept",
-      "edge_count": 34
-    },
-    {
-      "label": "极大极小定理",
-      "type": "concept",
-      "edge_count": 34
-    },
-    {
-      "label": "点数问题",
-      "type": "concept",
-      "edge_count": 33
-    },
-    {
-      "label": "Perron-Frobenius定理",
-      "type": "concept",
-      "edge_count": 32
-    },
-    {
-      "label": "皮埃尔-西蒙·拉普拉斯",
-      "type": "entity",
-      "edge_count": 32
-    },
-    {
-      "label": "期望值",
-      "type": "concept",
-      "edge_count": 30
-    },
-    {
-      "label": "条件数",
-      "type": "concept",
-      "edge_count": 30
     }
   ],
   "top_betweenness": [
     {
       "id": "wiki/concepts/矩阵.md",
       "label": "矩阵",
-      "betweenness": 0.274
+      "betweenness": 0.3293
     },
     {
-      "id": "wiki/entities/Pi-Agent.md",
-      "label": "Pi-Agent",
-      "betweenness": 0.1984
-    },
-    {
-      "id": "wiki/concepts/期望值.md",
-      "label": "期望值",
-      "betweenness": 0.1329
-    },
-    {
-      "id": "wiki/concepts/数值分析.md",
-      "label": "数值分析",
-      "betweenness": 0.1324
-    },
-    {
-      "id": "wiki/concepts/运动规划.md",
-      "label": "运动规划",
-      "betweenness": 0.1079
+      "id": "wiki/concepts/信息论.md",
+      "label": "信息论",
+      "betweenness": 0.1244
     },
     {
       "id": "wiki/concepts/概率论.md",
       "label": "概率论",
-      "betweenness": 0.0989
+      "betweenness": 0.0832
     },
     {
-      "id": "wiki/concepts/边际消费倾向.md",
-      "label": "边际消费倾向",
-      "betweenness": 0.0768
+      "id": "wiki/concepts/矩阵分解.md",
+      "label": "矩阵分解",
+      "betweenness": 0.0793
     },
     {
-      "id": "wiki/concepts/后向误差分析.md",
-      "label": "后向误差分析",
-      "betweenness": 0.076
+      "id": "wiki/concepts/协同过滤.md",
+      "label": "协同过滤",
+      "betweenness": 0.0779
+    },
+    {
+      "id": "wiki/concepts/数值分析.md",
+      "label": "数值分析",
+      "betweenness": 0.0763
     },
     {
       "id": "wiki/concepts/Context-Engineering.md",
       "label": "Context-Engineering",
-      "betweenness": 0.0759
+      "betweenness": 0.0716
     },
     {
-      "id": "wiki/concepts/DeepAgents评估体系.md",
-      "label": "DeepAgents评估体系",
-      "betweenness": 0.069
+      "id": "wiki/concepts/期望值.md",
+      "label": "期望值",
+      "betweenness": 0.0681
     },
     {
-      "id": "wiki/concepts/Agent Harness模式.md",
-      "label": "Agent Harness模式",
-      "betweenness": 0.0636
+      "id": "wiki/entities/Pi-Agent.md",
+      "label": "Pi-Agent",
+      "betweenness": 0.0607
     },
     {
-      "id": "wiki/entities/詹姆斯·威尔金森.md",
-      "label": "詹姆斯·威尔金森",
-      "betweenness": 0.0596
+      "id": "wiki/concepts/边际消费倾向.md",
+      "label": "边际消费倾向",
+      "betweenness": 0.0516
     },
     {
-      "id": "wiki/concepts/操作空间控制.md",
-      "label": "操作空间控制",
-      "betweenness": 0.0577
+      "id": "wiki/concepts/奇异值分解.md",
+      "label": "奇异值分解",
+      "betweenness": 0.0512
     },
     {
-      "id": "wiki/concepts/bun-vs-uv.md",
-      "label": "bun-vs-uv",
-      "betweenness": 0.0539
+      "id": "wiki/concepts/Transformer架构.md",
+      "label": "Transformer架构",
+      "betweenness": 0.0462
     },
     {
-      "id": "wiki/entities/Claude-Code.md",
-      "label": "Claude-Code",
-      "betweenness": 0.049
+      "id": "wiki/concepts/运动规划.md",
+      "label": "运动规划",
+      "betweenness": 0.0419
+    },
+    {
+      "id": "wiki/concepts/信噪比.md",
+      "label": "信噪比",
+      "betweenness": 0.039
+    },
+    {
+      "id": "wiki/concepts/三分解控制框架.md",
+      "label": "三分解控制框架",
+      "betweenness": 0.038
     }
   ],
   "top_pagerank": [
     {
       "id": "wiki/concepts/矩阵.md",
       "label": "矩阵",
-      "pagerank": 0.0191
+      "pagerank": 0.0151
+    },
+    {
+      "id": "wiki/concepts/信息论.md",
+      "label": "信息论",
+      "pagerank": 0.0123
+    },
+    {
+      "id": "wiki/concepts/协同过滤.md",
+      "label": "协同过滤",
+      "pagerank": 0.0094
     },
     {
       "id": "wiki/concepts/数值分析.md",
       "label": "数值分析",
-      "pagerank": 0.0152
+      "pagerank": 0.0094
     },
     {
       "id": "wiki/concepts/概率论.md",
       "label": "概率论",
-      "pagerank": 0.0142
+      "pagerank": 0.0089
+    },
+    {
+      "id": "wiki/concepts/矩阵分解.md",
+      "label": "矩阵分解",
+      "pagerank": 0.0089
     },
     {
       "id": "wiki/concepts/Context-Engineering.md",
       "label": "Context-Engineering",
-      "pagerank": 0.0102
-    },
-    {
-      "id": "wiki/concepts/Agent Harness模式.md",
-      "label": "Agent Harness模式",
-      "pagerank": 0.0094
-    },
-    {
-      "id": "wiki/concepts/运动规划.md",
-      "label": "运动规划",
-      "pagerank": 0.0094
-    },
-    {
-      "id": "wiki/entities/Claude-Code.md",
-      "label": "Claude-Code",
-      "pagerank": 0.0077
+      "pagerank": 0.0063
     },
     {
       "id": "wiki/concepts/奇异值分解.md",
       "label": "奇异值分解",
-      "pagerank": 0.0074
+      "pagerank": 0.0059
     },
     {
-      "id": "wiki/concepts/大数定律.md",
-      "label": "大数定律",
-      "pagerank": 0.0074
+      "id": "wiki/concepts/运动规划.md",
+      "label": "运动规划",
+      "pagerank": 0.0057
     },
     {
-      "id": "wiki/entities/约翰·梅纳德·凯恩斯.md",
-      "label": "约翰·梅纳德·凯恩斯",
-      "pagerank": 0.0073
+      "id": "wiki/concepts/Agent Harness模式.md",
+      "label": "Agent Harness模式",
+      "pagerank": 0.0056
     },
     {
-      "id": "wiki/concepts/矩阵理论.md",
-      "label": "矩阵理论",
-      "pagerank": 0.0073
+      "id": "wiki/entities/安德烈·柯尔莫哥洛夫.md",
+      "label": "安德烈·柯尔莫哥洛夫",
+      "pagerank": 0.0051
     },
     {
-      "id": "wiki/entities/Pi-Agent.md",
-      "label": "Pi-Agent",
-      "pagerank": 0.007
+      "id": "wiki/entities/Wide & Deep.md",
+      "label": "Wide & Deep",
+      "pagerank": 0.0048
     },
     {
-      "id": "wiki/syntheses/矩阵谱理论的统一叙事.md",
-      "label": "矩阵谱理论的统一叙事",
-      "pagerank": 0.0069
+      "id": "wiki/entities/克劳德·香农.md",
+      "label": "克劳德·香农",
+      "pagerank": 0.0048
     },
     {
-      "id": "wiki/concepts/线性代数.md",
-      "label": "线性代数",
-      "pagerank": 0.0068
+      "id": "wiki/entities/DeepFM.md",
+      "label": "DeepFM",
+      "pagerank": 0.0048
     },
     {
-      "id": "wiki/entities/Claude-Mem.md",
-      "label": "Claude-Mem",
-      "pagerank": 0.0065
+      "id": "wiki/entities/MinerU.md",
+      "label": "MinerU",
+      "pagerank": 0.0047
     }
   ],
   "top_clustering": [
+    {
+      "id": "wiki/concepts/Adjusted Cosine Similarity.md",
+      "label": "Adjusted Cosine Similarity",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/Batch Normalization.md",
+      "label": "Batch Normalization",
+      "clustering": 1.0
+    },
     {
       "id": "wiki/concepts/Claude-Code-Hook-System.md",
       "label": "Claude-Code-Hook-System",
@@ -302,6 +313,11 @@
       "clustering": 1.0
     },
     {
+      "id": "wiki/concepts/Kraft不等式.md",
+      "label": "Kraft不等式",
+      "clustering": 1.0
+    },
+    {
       "id": "wiki/concepts/Laplace变换.md",
       "label": "Laplace变换",
       "clustering": 1.0
@@ -315,117 +331,111 @@
       "id": "wiki/concepts/RRT-Connect.md",
       "label": "RRT-Connect",
       "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/Think工具.md",
-      "label": "Think工具",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/Wiener积分.md",
-      "label": "Wiener积分",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/内生增长理论.md",
-      "label": "内生增长理论",
-      "clustering": 1.0
     }
   ],
   "degree_distribution": {
-    "1": 4,
-    "2": 10,
-    "3": 20,
-    "4": 38,
-    "5": 41,
-    "6": 31,
-    "7": 24,
-    "8": 22,
-    "9": 12,
-    "10": 17,
-    "11": 12,
-    "12": 10,
-    "13": 7,
-    "14": 6,
-    "15": 8,
-    "16": 4,
-    "17": 1,
-    "18": 5,
-    "19": 5,
-    "20": 2,
-    "21": 1,
+    "1": 5,
+    "2": 19,
+    "3": 36,
+    "4": 44,
+    "5": 59,
+    "6": 53,
+    "7": 41,
+    "8": 48,
+    "9": 22,
+    "10": 26,
+    "11": 22,
+    "12": 12,
+    "13": 11,
+    "14": 8,
+    "15": 11,
+    "16": 10,
+    "17": 4,
+    "18": 8,
+    "19": 9,
+    "20": 6,
+    "21": 2,
     "22": 2,
-    "23": 1,
-    "24": 2,
+    "23": 2,
+    "24": 3,
+    "25": 1,
+    "26": 1,
     "27": 2,
-    "28": 1,
-    "46": 1,
+    "37": 1,
     "47": 1,
-    "65": 1
+    "48": 1,
+    "49": 1,
+    "50": 1,
+    "51": 1,
+    "83": 1
   },
   "center_nodes": [
     "操作空间控制"
   ],
   "tag_frequency": {
-    "研究": 168,
-    "技术": 153,
-    "AI": 85,
-    "数学": 74,
-    "方法论": 65,
+    "技术": 225,
+    "研究": 222,
+    "数学": 103,
+    "AI": 102,
+    "推荐系统": 101,
+    "方法论": 68,
     "数值分析": 61,
     "历史": 53,
     "概率论": 43,
+    "工具": 33,
     "矩阵理论": 33,
-    "工具": 29,
+    "深度学习": 26,
     "宏观经济学": 26,
+    "机器学习": 17,
     "机器人学": 16,
+    "协同过滤": 15,
+    "CTR预估": 14,
+    "矩阵分解": 13,
     "Agent": 11,
     "UI": 8,
+    "人物": 8,
     "设计": 7,
     "架构": 7,
     "工具，研究": 7,
+    "统计学": 6,
     "算法": 6,
+    "信息过滤": 6,
     "LLM": 5,
     "组合数学": 5,
-    "设计模式": 4,
-    "设计系统": 4,
-    "控制理论": 4,
-    "统计学": 4,
-    "研究，人物": 4,
-    "LangChain": 3,
-    "计算理论": 3,
-    "计算机科学": 3,
-    "基础理论": 3,
-    "评估": 3
+    "分解模型": 5
   },
   "growth_timeline": {
-    "2026-04-15": 291
+    "2026-04-15": 291,
+    "2026-04-16": 474
   },
   "relationship_types": {
-    "wikilink": 1215,
-    "related_to": 181,
-    "caused": 172,
-    "implements": 140,
-    "extends": 139,
-    "uses": 110,
-    "part_of": 66,
-    "depends_on": 63,
-    "contradicts": 19,
+    "wikilink": 2068,
+    "implements": 257,
+    "caused": 248,
+    "related_to": 224,
+    "uses": 195,
+    "extends": 186,
+    "part_of": 184,
+    "depends_on": 101,
+    "compares_to": 51,
+    "contradicts": 21,
+    "relates_to": 14,
     "synthesizes": 11,
     "implemented_by": 8,
     "caused_by": 6,
+    "supersedes": 6,
     "influenced": 5,
     "originated_from": 3,
+    "employs": 3,
     "used_by": 2,
     "causes": 2,
-    "compares_to": 1,
     "collaborated_with": 1
   },
   "orphans": [],
   "components": [
     {
       "id": 0,
-      "size": 291
+      "size": 474
     }
   ]
 }

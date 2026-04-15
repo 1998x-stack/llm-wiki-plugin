@@ -104,4 +104,4 @@ codex execpolicy check --rules ~/.codex/rules.toml git push --force
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/03_codex_sandbox_system.md`
+- [[raw/articles/ai-tools/codex/03_codex_sandbox_system.md]]

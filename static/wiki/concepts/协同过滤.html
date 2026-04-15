@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>协同过滤 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 协同过滤</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">信息过滤</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">协同过滤</h1>
+<h2 id="_2">概述</h2>
+<p>协同过滤（Collaborative Filtering, CF）是一种信息过滤方法，通过收集和分析用户群体对文档或物品的主观评价与行为数据，利用群体智慧帮助个体从海量信息中筛选出有价值的内容。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心定义</strong>：协同过滤的含义是"人们通过记录自己对所阅读文档的反应，来协作地帮助彼此进行信息过滤"。这一术语由 <a href="../entities/Douglas Terry.html">Douglas Terry</a> 在开发 <a href="../entities/Tapestry 系统.html">Tapestry 系统</a> 过程中首次创造并发表于 1992 年 CACM 论文。</p>
+</li>
+<li>
+<p><strong>手动协同过滤 vs 自动协同过滤</strong>：</p>
+</li>
+<li><strong>手动 CF（<a href="../entities/Tapestry 系统.html">Tapestry</a>, 1992）</strong>：用户需要知道并主动选择信任特定的人，自行编写查询规则（如 TQL）。适用于小型熟人社区。</li>
+<li>
+<p><strong>自动 CF（<a href="../entities/GroupLens.html">GroupLens</a>, 1994 及以后）</strong>：系统自动计算用户间相似度，发现品味相近的陌生人并生成推荐。可扩展到大规模用户群。</p>
+</li>
+<li>
+<p><strong>核心机制</strong>：</p>
+</li>
+<li><strong><a href="显式反馈.html">显式反馈</a></strong>：用户主动点击"Like It!"/"Hate It!"、评分、撰写评论</li>
+<li><strong><a href="隐式反馈.html">隐式反馈</a></strong>：通过点击、购买、浏览时长等行为推断偏好</li>
+<li>
+<p><strong>标注共享</strong>：用户的评价被存储并公开，其他人的过滤器可引用这些标注</p>
+</li>
+<li>
+<p><strong>与基于内容过滤的区别</strong>：<a href="基于内容的过滤.html">基于内容的过滤</a> 关注"文档是什么"（关键词、主题、元数据），协同过滤关注"别人怎么评价"。两者互补，现代推荐系统通常将二者融合为 <a href="混合推荐系统.html">混合推荐系统</a>。</p>
+</li>
+<li>
+<p><strong>关键挑战</strong>：</p>
+</li>
+<li><a href="冷启动问题.html">冷启动问题</a>：新用户无历史数据、新物品无评价时无法推荐</li>
+<li>标注稀疏性：绝大多数文档/物品缺乏用户评价</li>
+<li>规模限制：手动 CF 仅适用于小型社区</li>
+<li>
+<p>激励不对称：标注成本由标注者承担，收益由他人享受</p>
+</li>
+<li>
+<p><strong>历史影响</strong>：从 <a href="../entities/Tapestry 系统.html">Tapestry</a> 的"推荐卡片"到 <a href="../entities/Amazon.html">Amazon</a> 的"购买了的人还买了"，再到 <a href="../entities/Netflix.html">Netflix</a>、<a href="../entities/YouTube.html">YouTube</a>、TikTok 的推荐引擎，协同过滤的核心思想——利用群体智慧帮助个体做出选择——一脉相承，支撑起价值数千亿美元的推荐系统产业。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="../entities/Tapestry 系统.html">Tapestry 系统</a> — Goldberg et al. (1992), "Using Collaborative Filtering to Weave an Information Tapestry", CACM 35(12), 61-70</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/推荐系统/02-grouplens-collaborative-filtering.md</span> — GroupLens 自动化协同过滤详解</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/Tapestry 系统.html">Tapestry 系统</a> — 首次提出协同过滤术语和概念</li>
+<li><a href="../entities/GroupLens.html">GroupLens</a> — 实现自动化协同过滤的里程碑系统</li>
+<li><a href="基于内容的过滤.html">基于内容的过滤</a> — 与协同过滤互补的信息过滤方法</li>
+<li><a href="混合推荐系统.html">混合推荐系统</a> — 融合内容过滤与协同过滤的主流范式</li>
+<li><a href="冷启动问题.html">冷启动问题</a> — 协同过滤面临的经典挑战</li>
+<li><a href="显式反馈.html">显式反馈</a> — 协同过滤的核心数据来源</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="包容体系结构.html">&larr; 包容体系结构</a>
+    <a href="卡尔曼滤波.html">卡尔曼滤波 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

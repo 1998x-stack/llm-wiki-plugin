@@ -4,7 +4,7 @@ status: active
 confidence: 0.92
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: 2026-04-15
+last_accessed: 2026-04-16
 source_count: 2
 tags: [技术, AI, 方法论]
 aliases: ["Multi-Agent Architecture", "多智能体架构", "多Agent系统", "Orchestrator-Worker"]

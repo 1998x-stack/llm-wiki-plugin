@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepFM — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / DeepFM</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">CTR预估</span><span class="tag">深度学习</span><span class="tag">分解模型</span></div>
+</div>
+  <div class="content">
+    <h1 id="deepfm">DeepFM</h1>
+<h2 id="_1">概述</h2>
+<p>Guo 等人于 IJCAI 2017 提出的 <a href="Factorization Machines.html">FM</a> + DNN 并行架构模型，<a href="Factorization Machines.html">FM</a> 组件捕获显式低阶交互，DNN 组件捕获隐式高阶交互，共享<a href="../concepts/嵌入表示.html">嵌入层</a>，无需手工特征工程。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>并行架构</strong>：DeepFM 由两部分并行组成——FM 部分（浅层模块）负责捕获显式的低阶（二阶）<a href="../concepts/特征交叉.html">特征交互</a>，DNN 部分（深层模块）负责捕获隐式的高阶非线性<a href="../concepts/特征交叉.html">特征交互</a>。两部分共享同一组<a href="../concepts/嵌入表示.html">嵌入向量</a>，联合训练。最终输出为 sigmoid(y_FM + y_DNN)。</li>
+<li><strong>共享嵌入</strong>：FM 和 DNN 共享类别型特征的<a href="../concepts/嵌入表示.html">嵌入表示</a>，避免了分别学习导致的参数冗余和不一致性。这种"浅层 + 深层"的并行设计模式已成为推荐系统的标准架构。共享嵌入带来三重优势：参数效率、联合优化、消除预训练。</li>
+<li><strong>无需手工特征</strong>：DeepFM 的端到端设计消除了对人工构造交叉特征的依赖，模型自动学习<a href="../concepts/特征交叉.html">特征交互</a>，大幅降低了特征工程成本。相比 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的 Wide 部分需要手工 cross-product 特征，DeepFM 用 FM 完全替代。</li>
+<li><strong>与 FM 的关系</strong>：DeepFM 直接在架构中保留了完整的 <a href="Factorization Machines.html">FM</a> 组件作为"浅层"模块，是 <a href="Factorization Machines.html">FM</a> 思想在深度学习时代的自然延伸。<a href="Factorization Machines.html">FM</a> 负责低阶交互的显式建模，DNN 补足高阶交互的隐式学习，两者互补。</li>
+<li><strong><a href="../concepts/CTR 预估.html">CTR 预估</a>效果</strong>：在 Criteo 数据集上 AUC=0.8016、LogLoss=0.44985（最优）；在华为应用市场约10亿条记录的真实数据上 AUC=0.8715。在线 A/B 测试中 DeepFM-D 相比精心调优的 LR 模型，CTR 提升超过 10%。</li>
+<li><strong>后续影响</strong>：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（Google 2017，Cross Network 显式交叉）、xDeepFM（微软 2018，CIN 向量级显式交叉）、AutoInt（2019，多头自注意力可解释交互）等。</li>
+<li><strong>局限性</strong>：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 xDeepFM、AutoInt、DIN 分别针对这些局限进行了改进。</li>
+<li><strong>架构一般性</strong>：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep 共享嵌入"是可替换 Deep 部分实现的通用范式。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1703.04247">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction (IJCAI 2017)</a> — Guo, Tang, Ye, Li, He. 华为诺亚方舟实验室</li>
+<li><a href="https://arxiv.org/abs/1804.04950">DeepFM 扩展版 (arXiv 2018)</a> — 补充在线 A/B 测试等内容</li>
+<li><a href="raw/books/推荐系统/09-deepfm.md">raw/books/推荐系统/09-deepfm.md</a> — 深度解读笔记</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Factorization Machines.html">Factorization Machines</a> — 浅层模块基础</li>
+<li><a href="../concepts/特征交叉.html">特征交叉</a> — FM 部分建模目标</li>
+<li><a href="../concepts/嵌入表示.html">嵌入表示</a> — 共享嵌入层</li>
+<li><a href="../concepts/CTR 预估.html">CTR 预估</a> — 主要应用场景</li>
+<li><a href="FFM.html">FFM</a> — 同代 FM 扩展模型</li>
+<li><span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> — DeepFM 直接改进的前作</li>
+<li><span style="color:#e74c3c" title="broken link">xDeepFM</span> — 引入 CIN 显式高阶交互的后续工作</li>
+<li><span style="color:#e74c3c" title="broken link">DCN</span> — Cross Network 显式交叉的并行工作</li>
+<li><span style="color:#e74c3c" title="broken link">AutoInt</span> — 多头自注意力可解释交互的后续工作</li>
+<li><span style="color:#e74c3c" title="broken link">DIN</span> — 引入注意力建模用户兴趣序列的后续工作</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents.html">&larr; DeepAgents</a>
+    <a href="Dieter Fox.html">Dieter Fox &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

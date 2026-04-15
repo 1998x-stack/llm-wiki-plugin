@@ -148,38 +148,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$|g(\xi)|^2 = 1 + \nu^2\sin^2(\xi\Delta x)$，当 $\nu \neq 0$ 时恒 $&gt; 1$——<strong>无条件不稳定</strong>！</p>
 <p>对<strong>Lax-Friedrichs 格式</strong>（Lax 1954年修改为稳定格式），放大因子在 $\nu = c\Delta t/\Delta x \leq 1$ 时满足 $|g(\xi)| \leq 1$——这精确验证了<a href="CFL条件.html">CFL条件</a>。</p>
 <h3 id="cfl">与 CFL 条件的关系</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>CFL 条件（1928）</th>
-<th>冯·诺依曼分析（1940s）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>来源</td>
-<td>依赖域几何论证（物理直觉）</td>
-<td>傅里叶模式代数计算（定量工具）</td>
-</tr>
-<tr>
-<td>输出</td>
-<td>收敛必要条件</td>
-<td>精确稳定性充要条件（对线性格式）</td>
-</tr>
-<tr>
-<td>适用范围</td>
-<td>显式格式，双曲方程</td>
-<td>线性格式，任意类型方程</td>
-</tr>
-<tr>
-<td>局限性</td>
-<td>必要非充分</td>
-<td>仅适用线性、常系数格式</td>
-</tr>
-</tbody>
-</table>
-<p>对许多格式，两者条件完全一致；冯·诺依曼分析提供了 CFL 条件的数学"证明"。</p>
+<p>|  | <a href="协同过滤.html">CF</a>L 条件（1928）| 冯·诺依曼分析（1940s）|
+|--|---|---|
+| 来源 | 依赖域几何论证（物理直觉）| 傅里叶模式代数计算（定量工具）|
+| 输出 | 收敛必要条件 | 精确稳定性充要条件（对线性格式）|
+| 适用范围 | 显式格式，双曲方程 | 线性格式，任意类型方程 |
+| 局限性 | 必要非充分 | 仅适用线性、常系数格式 |</p>
+<p>对许多格式，两者条件完全一致；冯·诺依曼分析提供了 <a href="协同过滤.html">CF</a>L 条件的数学"证明"。</p>
 <h3 id="lax-1956">Lax 等价定理（1956）</h3>
 <p><a href="../entities/彼得·拉克斯.html">Peter Lax</a> 和 R. D. Richtmyer 将冯·诺依曼分析的稳定性概念与收敛性正式联系起来：</p>
 <p><strong>Lax 等价定理</strong>：对于适定的线性初值问题的一致差分格式，<strong>稳定性 ⟺ 收敛性</strong>。</p>
@@ -189,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$g(\xi) = 1 - 4r\sin^2!\left(\frac{\xi\Delta x}{2}\right), \quad r = \frac{\nu\Delta t}{(\Delta x)^2}$$</p>
 <p>稳定条件 $|g(\xi)| \leq 1$ 要求 $r \leq 1/2$，即：</p>
 <p>$$\Delta t \leq \frac{(\Delta x)^2}{2\nu}$$</p>
-<p>这是经典的抛物型方程时间步长限制：空间步长减半则时间步长须减至四分之一（比波动方程的 CFL 更严格）。</p>
+<p>这是经典的抛物型方程时间步长限制：空间步长减半则时间步长须减至四分之一（比波动方程的 <a href="协同过滤.html">CF</a>L 更严格）。</p>
 <h3 id="1947">矩阵计算误差分析（1947 论文）</h3>
 <p>冯·诺依曼与戈尔茨坦（Herman Goldstine）的 1947 年<a href="矩阵.html">矩阵</a>求逆论文是另一重要贡献，奠定了数值<a href="线性代数.html">线性代数</a>误差分析基础：</p>
 <ul>
@@ -223,7 +198,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="内生增长理论.html">&larr; 内生增长理论</a>
-    <a href="凯恩斯革命.html">凯恩斯革命 &rarr;</a>
+    <a href="冷启动问题.html">冷启动问题 &rarr;</a>
   </div>
 </div>
 </body>

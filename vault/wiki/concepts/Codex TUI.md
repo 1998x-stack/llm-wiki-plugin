@@ -86,4 +86,4 @@ VS Code Extension、桌面 App、Web 前端均可接入同一个 `core`，支持
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/02_codex_tui_component.md`
+- [[raw/articles/ai-tools/codex/02_codex_tui_component.md]]

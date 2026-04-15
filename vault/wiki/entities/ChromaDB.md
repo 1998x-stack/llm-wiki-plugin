@@ -22,7 +22,7 @@ supersedes: null
 # ChromaDB
 
 ## 概述
-ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（Embeddings）。它支持语义搜索——将文本转换为高维向量后，按语义相似度检索，而非关键词匹配。在 [[Claude-Mem]] 中，ChromaDB 作为可选的向量存储后端，为记忆检索提供语义搜索能力，补充 [[SQLite]] 的 [[FTS5]] 关键词搜索。
+ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（[[Embedding]]s）。它支持语义搜索——将文本转换为高维向量后，按语义相似度检索，而非关键词匹配。在 [[Claude-Mem]] 中，ChromaDB 作为可选的向量存储后端，为记忆检索提供语义搜索能力，补充 [[SQLite]] 的 [[FTS5]] 关键词搜索。
 
 ## 关键内容
 - **核心功能**：存储文档及其向量嵌入；支持近似最近邻（ANN）相似度搜索；支持元数据过滤
@@ -31,7 +31,7 @@ ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 
 - **生态**：与 LangChain、LlamaIndex 等 [[检索增强生成|RAG]] 框架深度集成
 
 ## 来源
-- 综合自 wiki 内部引用（Claude-Mem 等页面）
+- 综合自内部引用：[[Claude-Mem]] 等
 
 ## 相关
 - [[Claude-Mem]]

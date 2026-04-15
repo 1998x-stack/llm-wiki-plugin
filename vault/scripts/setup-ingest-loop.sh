@@ -33,7 +33,7 @@ FILES=()
 while IFS= read -r -d '' file; do
     rel=$(python3 -c "import os; print(os.path.relpath('$file', '$VAULT_DIR'))")
     FILES+=("$rel")
-done < <(find "$FULL_PATH" -type f \( -name "*.md" -o -name "*.pdf" -o -name "*.docx" -o -name "*.jsonl" \) -print0 | sort -z)
+done < <(find "$FULL_PATH" -type f \( -name "*.md" -o -name "*.jsonl" \) -print0 | sort -z)
 
 TOTAL=${#FILES[@]}
 

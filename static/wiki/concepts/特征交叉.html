@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特征交叉 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 特征交叉</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">机器学习</span><span class="tag">特征工程</span><span class="tag">CTR预估</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">特征交叉</h1>
+<h2 id="_2">概述</h2>
+<p>机器学习中将两个或多个原始特征组合成新特征的过程，用于捕获特征之间的联合效应，是提升推荐系统和 <a href="CTR 预估.html">CTR 预估</a>模型精度的核心手段。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>定义与动机</strong>：单个特征只能建模独立影响，而特征交叉（如"用户年龄 × 广告类别"）能捕获联合效应。在推荐系统中，用户 ID 和物品 ID 的交叉直接建模个性化偏好；在 <a href="CTR 预估.html">CTR 预估</a>中，"性别=男 AND 广告类别=体育"的交叉能捕获特定人群的点击倾向。</li>
+<li><strong>传统方法</strong>：工程师手工构造交叉特征——对类别型特征做笛卡尔积、对数值型特征做分桶后交叉。这项工作耗时且高度依赖领域经验，难以迁移到新任务。多项式核 SVM 理论上可自动建模交叉，但在高度稀疏数据上完全失败，因为独立参数 $w_{ij}$ 需要特征 $i$ 和 $j$ 共现才能学习。</li>
+<li><strong><a href="../entities/Factorization Machines.html">FM</a> 的解决方案</strong>：<a href="../entities/Factorization Machines.html">Factorization Machines</a> 通过<a href="嵌入表示.html">隐向量</a>分解 $\langle \mathbf{v}_i, \mathbf{v}_j \rangle$ 建模特征交叉，参数不再独立而是通过<a href="嵌入表示.html">隐向量</a>相互关联。即使特征 $i$ 和 $j$ 从未共现，只要 $\mathbf{v}_i$ 和 $\mathbf{v}_j$ 从其他交互中学到合理表示，<a href="../entities/Factorization Machines.html">FM</a> 仍能预测其交叉效应。</li>
+<li><strong>线性复杂度</strong>：<a href="../entities/Factorization Machines.html">FM</a> 通过代数变换将二阶特征交叉的计算复杂度从 $O(kn^2)$ 降至 $O(kn)$，使得在百万甚至千万维特征空间中进行交叉建模成为可能。这是 <a href="../entities/Factorization Machines.html">FM</a> 能够在工业界落地的前提条件。</li>
+<li><strong>高阶交叉</strong>：标准 <a href="../entities/Factorization Machines.html">FM</a> 仅支持二阶交叉。高阶 <a href="../entities/Factorization Machines.html">FM</a> 因组合爆炸导致的计算复杂度和数值不稳定性在实践中很少使用。后续工作如 x<a href="../entities/DeepFM.html">DeepFM</a> 的 CIN 网络尝试显式建模高阶交叉，而 DNN 则隐式学习高阶交互。</li>
+<li><strong>交叉的等权问题</strong>：<a href="../entities/Factorization Machines.html">FM</a> 对所有特征对交叉一视同仁，无法区分有意义的交叉与噪声。<a href="../entities/FFM.html">FFM</a> 通过场感知机制为不同语义类别的交叉使用不同<a href="嵌入表示.html">隐向量</a>来缓解此问题。<span style="color:#e74c3c" title="broken link">AFM</span>（Attentional <a href="../entities/Factorization Machines.html">FM</a>）用注意力机制为不同交叉分配不同权重。</li>
+<li><strong>与<a href="嵌入表示.html">嵌入表示</a>的关系</strong>：特征交叉的<a href="嵌入表示.html">隐向量</a> $\mathbf{v}_i$ 本质上就是类别型特征的<a href="嵌入表示.html">嵌入表示</a>。现代推荐系统中，<a href="嵌入表示.html">嵌入层</a>可以看作 <a href="../entities/Factorization Machines.html">FM</a> <a href="嵌入表示.html">隐向量</a>的自然延伸，几乎所有深度模型都会为每个类别型特征学习低维<a href="Embedding.html">嵌入向量</a>。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1209.3994">Factorization Machines (Rendle 2010)</a></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/Factorization Machines.html">Factorization Machines</a> — 自动学习特征交叉的统一框架</li>
+<li><a href="嵌入表示.html">嵌入表示</a> — 特征交叉的隐向量即嵌入</li>
+<li><a href="CTR 预估.html">CTR 预估</a> — 特征交叉的核心应用场景</li>
+<li><a href="协同过滤.html">协同过滤</a> — 用户-物品交叉是 CF 的核心</li>
+<li><a href="../entities/FFM.html">FFM</a> — 场感知特征交叉</li>
+<li><span style="color:#e74c3c" title="broken link">AFM</span> — 注意力加权的特征交叉</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="牛顿法.html">&larr; 牛顿法</a>
+    <a href="率失真函数.html">率失真函数 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

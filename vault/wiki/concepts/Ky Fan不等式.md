@@ -119,11 +119,11 @@ $$\|A\|_{(k)} \leq \|B\|_{(k)}, \; \forall k = 1,\ldots,n \quad \Longleftrightar
 
 **核范数正则化**（推荐系统/[[矩阵]]补全）：核范数（Fan $n$-范数）作为秩的凸松弛，其理论基础在 Fan 控制定理中。
 
-**MIMO 通信**：信道[[矩阵]][[奇异值分解|奇异值]]决定子信道容量，Fan 范数为容量部分和提供框架。
+**MIMO 通信**：信道[[矩阵]][[奇异值分解|奇异值]]决定子[[信道容量]]，Fan 范数为容量部分和提供框架。
 
 ## 来源
 
-- raw/books/矩阵分析/12_ky_fan_matrix_inequalities_1951.md
+- [[raw/books/矩阵分析/12_ky_fan_matrix_inequalities_1951.md]]
 
 ## 相关
 

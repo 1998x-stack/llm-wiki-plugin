@@ -31,7 +31,7 @@ FTS5（Full-Text Search version 5）是 [[SQLite]] 的内置全文搜索扩展�
 - **局限**：不支持语义搜索（需向量数据库如 [[ChromaDB]] 补充）；对中文等无空格语言需配合分词器
 
 ## 来源
-- 综合自 wiki 内部引用（Claude-Mem 等页面）
+- 综合自内部引用：[[Claude-Mem]] 等
 
 ## 相关
 - [[SQLite]]

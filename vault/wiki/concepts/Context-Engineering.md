@@ -5,7 +5,7 @@ status: active
 confidence: 0.92
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: '2026-04-15'
+last_accessed: '2026-04-16'
 source_count: 2
 tags:
 - 技术
@@ -170,11 +170,11 @@ $$
 
 ### Anthropic 工程视角的补充（2026）
 
-Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻找到最小化的高信噪比 token 集合，最大化目标行为的概率。**
+Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻找到最小化的高[[信噪比]] token 集合，最大化目标行为的概率。**
 
 **[[上下文腐烂]]（[[上下文腐烂|Context Rot]]）**：[[ChromaDB|Chroma]] Research 基准研究发现，随上下文 token 增加，模型从上下文中准确召回信息的能力持续下降。这不是硬性崖式截止，而是性能梯度——是上下文工程存在的核心动机。
 
-**[[注意力预算]]（[[注意力预算|Attention Budget]]）**：Transformer n² 注意力机制导致每个新 token 都消耗有限的[[注意力预算|注意力资源]]，上下文增长时每对 token 关系可获得的参数容量被稀释。
+**[[注意力预算]]（[[注意力预算|Attention Budget]]）**：[[Transformer架构|Transformer]] n² 注意力机制导致每个新 token 都消耗有限的[[注意力预算|注意力资源]]，上下文增长时每对 token 关系可获得的参数容量被稀释。
 
 **长时任务的三种技术**（Anthropic 实践）：
 1. **Compaction**：对话历史摘要压缩 → 适合需要流式回话的复杂推理
@@ -187,9 +187,9 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 
 - [[raw/articles/ai-engineering/prompt-context/context-design.md]]
 - [[raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md]]
-- Anthropic: [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
-- Liu et al. (2023): *Lost in the Middle: How Language Models Use Long Contexts*
-- MemGPT: [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)
+- [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — Anthropic
+- [Lost in the Middle (Liu et al. 2023)](https://arxiv.org/abs/2307.03172)
+- [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) — MemGPT
 
 ## 相关
 

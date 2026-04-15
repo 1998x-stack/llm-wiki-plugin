@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pde-">数值 PDE 稳定-收敛三角</h1>
 <h2 id="_1">核心洞见</h2>
-<p>CFL 条件（1928）、<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>（1940s）、Lax-Richtmyer 等价定理（1956）三者构成数值 PDE 的<strong>完整稳定-收敛闭环</strong>——三个工具各司其职，缺一不可：</p>
+<p><a href="../concepts/协同过滤.html">CF</a>L 条件（1928）、<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>（1940s）、Lax-Richtmyer 等价定理（1956）三者构成数值 PDE 的<strong>完整稳定-收敛闭环</strong>——三个工具各司其职，缺一不可：</p>
 <pre><code>CFL 条件
 （必要条件，物理几何直觉）
         ↓ 冯·诺依曼分析将其转化为
@@ -148,14 +148,14 @@ Lax-Richtmyer 等价定理
 （相容 + 稳定 ⟺ 收敛）
 </code></pre>
 <h2 id="_2">证据</h2>
-<p><strong>Q（qa/2026-04-15.md L10）</strong>：CFL 条件是什么？它与<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>有什么关系？</p>
+<p><strong>Q（qa/2026-04-15.md L10）</strong>：<a href="../concepts/协同过滤.html">CF</a>L 条件是什么？它与<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>有什么关系？</p>
 <p><strong>A 中的关键推导链</strong>：</p>
 <ol>
 <li>
-<p><strong>CFL → 必要条件</strong>：$\nu = c\Delta t/\Delta x \leq 1$ 来自依赖域几何论证——特征线不得"穿出"数值信息锥，否则格式看不到物理信息，<em>不可能</em>收敛。</p>
+<p><strong><a href="../concepts/协同过滤.html">CF</a>L → 必要条件</strong>：$\nu = c\Delta t/\Delta x \leq 1$ 来自依赖域几何论证——特征线不得"穿出"数值信息锥，否则格式看不到物理信息，<em>不可能</em>收敛。</p>
 </li>
 <li>
-<p><strong>冯·诺依曼 → 证明 CFL</strong>：对 Lax-Friedrichs 格式，放大因子 $|g(\xi)| \leq 1$ 当且仅当 $\nu \leq 1$——将 CFL 从"物理直觉"转化为可计算的代数不等式，给出了 CFL 条件的数学证明。</p>
+<p><strong>冯·诺依曼 → 证明 <a href="../concepts/协同过滤.html">CF</a>L</strong>：对 Lax-Friedrichs 格式，放大因子 $|g(\xi)| \leq 1$ 当且仅当 $\nu \leq 1$——将 <a href="../concepts/协同过滤.html">CF</a>L 从"物理直觉"转化为可计算的代数不等式，给出了 <a href="../concepts/协同过滤.html">CF</a>L 条件的数学证明。</p>
 </li>
 <li>
 <p><strong>Lax-Richtmyer → 闭合</strong>：相容 + 稳定 ⟺ 收敛，稳定性验证（冯·诺依曼）直接保证收敛性。</p>
@@ -188,10 +188,10 @@ Lax-Richtmyer 等价定理
 </tr>
 </tbody>
 </table>
-<p><strong>容易混淆的点</strong>：中心差分迎风格式即使满足 CFL $\leq 1$ 也是无条件不稳定——这正说明 CFL 是必要非充分条件，需要<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼分析</a>进一步验证。</p>
+<p><strong>容易混淆的点</strong>：中心差分迎风格式即使满足 <a href="../concepts/协同过滤.html">CF</a>L $\leq 1$ 也是无条件不稳定——这正说明 <a href="../concepts/协同过滤.html">CF</a>L 是必要非充分条件，需要<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼分析</a>进一步验证。</p>
 <h2 id="_4">历史意义</h2>
 <p>三个工具的时间跨度达 28 年：
-- <strong>1928</strong>：CFL 论文——数学家为证明 PDE 存在性而发现，比计算机早约 20 年
+- <strong>1928</strong>：<a href="../concepts/协同过滤.html">CF</a>L 论文——数学家为证明 PDE 存在性而发现，比计算机早约 20 年
 - <strong>1940s</strong>：冯·诺依曼在洛斯阿拉莫斯曼哈顿计划中发展稳定性分析
 - <strong>1956</strong>：Lax-Richtmyer 将稳定性与收敛性正式桥接</p>
 <p>每个工具在其时代是独立的，而三者组合形成了数值 PDE 的理论核心。</p>

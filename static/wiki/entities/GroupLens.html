@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GroupLens — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / GroupLens</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">协同过滤</span><span class="tag">信息过滤</span><span class="tag">CSCW</span></div>
+</div>
+  <div class="content">
+    <h1 id="grouplens">GroupLens</h1>
+<h2 id="_1">概述</h2>
+<p>GroupLens 是历史上第一个自动化<a href="../concepts/协同过滤.html">协同过滤</a>系统，由 MIT 的 <a href="Paul Resnick.html">Paul Resnick</a> 与明尼苏达大学的 <a href="John Riedl.html">John Riedl</a> 团队于 1994 年联合开发，通过 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>计算用户相似度并预测评分，以开放式架构解决了 Usenet 新闻组的信息过载问题，奠定了现代推荐系统的技术基础。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>论文信息</strong>：<a href="Paul Resnick.html">Resnick</a>, P., Iacovou, N., Suchak, M., Bergstrom, P., &amp; Riedl, J. (1994). "GroupLens: An Open Architecture for <a href="../concepts/协同过滤.html">Collaborative Filtering</a> of Netnews." <em>Proceedings of CSCW '94</em>, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。</p>
+</li>
+<li>
+<p><strong>时代背景</strong>：1994 年 Usenet 新闻组每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。<a href="Tapestry 系统.html">Tapestry 系统</a> 虽首创"<a href="../concepts/协同过滤.html">协同过滤</a>"概念，但需手动指定信任对象，无法扩展。</p>
+</li>
+<li>
+<p><strong>核心假设</strong>："People who agreed in their subjective evaluation of past articles are likely to agree again in the future."（在过去文章的主观评价上达成一致的人，未来也可能再次达成一致。）这一"看似简单却意义深远"（deceptively simple）的洞察成为整个<a href="../concepts/协同过滤.html">协同过滤</a>领域的理论基石。</p>
+</li>
+<li>
+<p><strong>系统架构</strong>：由三类实体组成：</p>
+</li>
+<li><strong>新闻客户端（News Clients）</strong>：用户阅读和评分的界面，团队为 Gnus、xrn、tin 等主流 Unix 新闻阅读器和 Macintosh 客户端开发了修改版本</li>
+<li><strong>新闻服务器（News Servers）</strong>：标准 Usenet NNTP 服务器，通过创建专用"评分传输新闻组"在服务器间同步评分数据</li>
+<li>
+<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（<a href="Better Bit Bureau.html">BBB</a>，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
+</li>
+<li>
+<p><strong>用户相似度计算</strong>：采用 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：</p>
+</li>
+<li><strong>均值中心化</strong>：衡量评分偏离个人均值的模式，而非绝对评分值，因此能兼容不同评分习惯的用户</li>
+<li>
+<p><strong>方向鲁棒性</strong>：若两用户品味完全相反，产生负相关，系统可将对方的高分"翻译"为低分预测</p>
+</li>
+<li>
+<p><strong>加权预测公式</strong>：
+   $$\hat{r}<em>{u,j} = \bar{r}_u + \frac{\sum</em>{k \in N(u)} w(u,k) \cdot (r_{k,j} - \bar{r}<em>k)}{\sum</em>{k \in N(u)} |w(u,k)|}$$
+   该公式后来成为 <a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> 的标准范式，在随后十余年间被无数论文引用、扩展和改进。</p>
+</li>
+<li>
+<p><strong>开放式架构设计五大目标</strong>：</p>
+</li>
+<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 <a href="Better Bit Bureau.html">BBB</a> 服务器或客户端</li>
+<li><strong>易用性（Ease of Use）</strong>：评分操作简便，不打断正常阅读流程</li>
+<li><strong>与 Usenet 兼容（Compatibility）</strong>：建立在现有基础设施之上，无需迁移到新平台</li>
+<li><strong>可扩展性（Scalability）</strong>：能随用户数量增长而扩展</li>
+<li>
+<p><strong>隐私保护（Privacy）</strong>：用户可在假名下提交评分而不降低预测有效性</p>
+</li>
+<li>
+<p><strong>隐私保护机制</strong>：允许用户使用假名提交评分。由于相关系数计算只依赖评分模式而非真实身份，假名不会降低预测质量，实现了"可用性"与"隐私"之间的平衡。</p>
+</li>
+<li>
+<p><strong>大规模部署（1996-1997）</strong>：为期七周的公开试验中，从十余个新闻组招募 250 名志愿用户，提交 47,569 条评分，为 22,862 篇不同文章生成超过 600,000 条预测。关键发现：</p>
+</li>
+<li>个性化预测显著优于非个性化平均分</li>
+<li>按新闻组分区提升评分密度，缓解数据稀疏问题</li>
+<li>
+<p>95% 的预测请求在 2 秒内完成，评分提交在 1 秒内完成</p>
+</li>
+<li>
+<p><strong>历史影响</strong>：</p>
+<ul>
+<li>孵化出 <a href="MovieLens.html">MovieLens</a> 数据集（推荐系统领域最重要的公开数据集）</li>
+<li>1996 年创立 <a href="Net Perceptions.html">Net Perceptions</a> 公司（第一家专注于推荐引擎的商业公司，客户包括 <a href="Amazon.html">Amazon</a>.com、CDnow、Art.com）</li>
+<li>培养了推荐系统领域的一代领军人物（<a href="Joseph Konstan.html">Joseph Konstan</a>、Jonathan Herlocker、Loren Terveen 等）</li>
+<li>其开放分布式架构理念与今天联邦学习（Federated Learning）的核心思想惊人一致</li>
+</ul>
+</li>
+<li>
+<p><strong>局限性</strong>：</p>
+<ul>
+<li><a href="../concepts/冷启动问题.html">冷启动问题</a>：新用户无历史评分时无法提供个性化推荐</li>
+<li>数据稀疏性：用户-文章评分<a href="../concepts/矩阵.html">矩阵</a>极其稀疏，<a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>在共同评分少时不可靠</li>
+<li>显式评分的代价：用户主动打分增加操作负担</li>
+<li>可扩展性瓶颈：<a href="../concepts/基于用户的协同过滤.html">User-Based CF</a> 计算复杂度为 $O(n^2)$</li>
+<li>评分操纵风险：开放系统中恶意用户可蓄意提交虚假评分</li>
+</ul>
+</li>
+<li>
+<p><strong>社会影响预见</strong>：论文提出"全球村是否会碎裂成一个个部落？"这一问题，直接预见了后来被广泛讨论的 <a href="../concepts/信息茧房.html">信息茧房</a>（filter bubble）和"回声室"（echo chamber）现象——比 Eli Pariser 在 2011 年正式提出"<a href="../concepts/信息茧房.html">过滤气泡</a>"概念早了整整 17 年。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/基于物品的协同过滤.html">Item-Based CF</a> 论文（2001）</strong>：GroupLens 研究组的 Sarwar、Karypis、Konstan、Riedl 共同发表了 <a href="Item-Based Collaborative Filtering Recommendation Algorithms.html">Item-Based Collaborative Filtering Recommendation Algorithms</a>（WWW '01），首次系统性分析和评估了<a href="../concepts/基于物品的协同过滤.html">基于物品的协同过滤</a>方法，成为推荐系统领域引用量最高的论文之一（Google Scholar 超 10,000 次引用），与 1994 年的 GroupLens 原始论文、Koren 等人 2009 年关于<a href="../concepts/矩阵分解.html">矩阵分解</a>的工作共同构成了<a href="../concepts/协同过滤.html">协同过滤</a>领域的"三座高峰"。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/推荐系统/02-grouplens-collaborative-filtering.md</span> — 全文解读</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/推荐系统/03-item-based-collaborative-filtering.md</span> — 第 1 节（论文机构信息）</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/协同过滤.html">协同过滤</a> — GroupLens 实现并自动化的核心方法</li>
+<li><a href="Tapestry 系统.html">Tapestry 系统</a> — GroupLens 的前身，首创协同过滤概念但需手动干预</li>
+<li><a href="MovieLens.html">MovieLens</a> — 从 GroupLens 研究组直接孵化出的电影推荐平台和数据集</li>
+<li><a href="Net Perceptions.html">Net Perceptions</a> — GroupLens 团队创立的第一家推荐引擎商业公司</li>
+<li><a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> — GroupLens 开创的推荐范式</li>
+<li><a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> — GroupLens 计算用户相似度的核心算法</li>
+<li><a href="../concepts/信息茧房.html">信息茧房</a> — GroupLens 论文早于 17 年预见的社会后果</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Google.html">&larr; Google</a>
+    <a href="Hal Varian.html">Hal Varian &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

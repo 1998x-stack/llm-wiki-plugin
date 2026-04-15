@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="cfl">CFL 条件</h1>
 <h2 id="_1">概述</h2>
-<p>CFL 条件（Courant-Friedrichs-Lewy Condition）由<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>、Kurt Friedrichs 和 Hans Lewy 于 1928 年发表。其核心陈述是：求解双曲型偏微分方程的<strong>显式有限差分格式</strong>要收敛，必须满足"数值信息传播速度不慢于物理信息传播速度"的约束，量化为 CFL 数 $\nu = c\Delta t / \Delta x \leq 1$。这一条件原本是出于纯数学目的（PDE 存在性证明）被发现的，却成为所有显式时间步进数值方法必须遵守的基本约束，是计算科学中最重要的稳定性判据之一。</p>
+<p><a href="协同过滤.html">CF</a>L 条件（Courant-Friedrichs-Lewy Condition）由<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>、Kurt Friedrichs 和 Hans Lewy 于 1928 年发表。其核心陈述是：求解双曲型偏微分方程的<strong>显式有限差分格式</strong>要收敛，必须满足"数值信息传播速度不慢于物理信息传播速度"的约束，量化为 <a href="协同过滤.html">CF</a>L 数 $\nu = c\Delta t / \Delta x \leq 1$。这一条件原本是出于纯数学目的（PDE 存在性证明）被发现的，却成为所有显式时间步进数值方法必须遵守的基本约束，是计算科学中最重要的稳定性判据之一。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">数学表述</h3>
 <p><strong>一维波动方程</strong>：$u_{tt} = c^2 u_{xx}$，显式中心差分格式</p>
 <p>$$\frac{u_j^{n+1} - 2u_j^n + u_j^{n-1}}{(\Delta t)^2} = c^2 \frac{u_{j+1}^n - 2u_j^n + u_{j-1}^n}{(\Delta x)^2}$$</p>
-<p><strong>CFL 条件</strong>（一维，差分格式收敛的必要条件）：</p>
+<p><strong><a href="协同过滤.html">CF</a>L 条件</strong>（一维，差分格式收敛的必要条件）：</p>
 <p>$$\nu = \frac{c\Delta t}{\Delta x} \leq 1$$</p>
 <p><strong>二维推广</strong>（$\Delta x = \Delta y$ 时）：$c\Delta t/\Delta x \leq 1/\sqrt{2}$（更严格）</p>
 <p><strong>一般形式（依赖域论证）</strong>：</p>
@@ -152,16 +152,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>数值依赖域</strong>：显式格式中，$u_j^n$ 只依赖于初始时刻 $[x_j - n\Delta x,\; x_j + n\Delta x]$ 内的值（"信息锥"）。</p>
 <p>若 $c\Delta t/\Delta x &gt; 1$，特征线斜率大于信息锥边界斜率——特征线"穿出"信息锥，格式看不到沿这些特征线传播的初始数据，必然不能收敛到正确解。</p>
 <h3 id="cfl_1">CFL 条件与稳定性</h3>
-<p>CFL 条件是<strong>必要条件</strong>，不是充分条件：满足 CFL 条件的格式还可能因截断误差、耗散误差等原因不稳定。</p>
-<p>但对许多常用格式，CFL 条件恰好同时是稳定性的充要条件（如上述显式中心差分格式）。<a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>提供了精确验证：当 $\nu &gt; 1$ 时，至少一个傅里叶模式的放大因子 $&gt; 1$，误差指数增长。</p>
-<p><strong>Lax 等价定理</strong>（<a href="../entities/彼得·拉克斯.html">Peter Lax</a>，1956）：对一致性差分格式，稳定性 ⟺ 收敛性。CFL 条件所代表的稳定性要求因此是收敛性的充要条件（在一致性保证的前提下）。</p>
+<p><a href="协同过滤.html">CF</a>L 条件是<strong>必要条件</strong>，不是充分条件：满足 <a href="协同过滤.html">CF</a>L 条件的格式还可能因截断误差、耗散误差等原因不稳定。</p>
+<p>但对许多常用格式，<a href="协同过滤.html">CF</a>L 条件恰好同时是稳定性的充要条件（如上述显式中心差分格式）。<a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>提供了精确验证：当 $\nu &gt; 1$ 时，至少一个傅里叶模式的放大因子 $&gt; 1$，误差指数增长。</p>
+<p><strong>Lax 等价定理</strong>（<a href="../entities/彼得·拉克斯.html">Peter Lax</a>，1956）：对一致性差分格式，稳定性 ⟺ 收敛性。<a href="协同过滤.html">CF</a>L 条件所代表的稳定性要求因此是收敛性的充要条件（在一致性保证的前提下）。</p>
 <h3 id="_5">热传导方程的类比</h3>
 <p>对显式差分格式的<strong>抛物型方程</strong>（热传导 $u_t = \alpha u_{xx}$），类似稳定性条件为：</p>
 <p>$$\frac{\alpha \Delta t}{(\Delta x)^2} \leq \frac{1}{2}$$</p>
 <p>物理解释：扩散速度而非波速；约束更严格（$\Delta t \sim (\Delta x)^2$，空间步长减半时间步长须减四分之一）。</p>
 <h3 id="_6">历史意义：超前计算机时代的理论</h3>
-<p>CFL 论文发表于 1928 年——第一台电子计算机出现之前约 20 年。三位作者的初衷是<strong>纯数学</strong>：用差分方程作为工具证明 PDE 解的存在性，而非设计实际的计算算法。CFL 条件是证明过程中的"副产品"。</p>
-<p>这是科学史上"基础研究意想不到的实用价值"的经典案例。当<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>1922 年的数值天气预报产生荒谬结果时（预测气压变化 145 百帕 vs. 实际 &lt;1 百帕），原因之一正是他使用的时间步长违反了 CFL 条件——而此时 CFL 条件尚未被发现（1928 年）。</p>
+<p><a href="协同过滤.html">CF</a>L 论文发表于 1928 年——第一台电子计算机出现之前约 20 年。三位作者的初衷是<strong>纯数学</strong>：用差分方程作为工具证明 PDE 解的存在性，而非设计实际的计算算法。<a href="协同过滤.html">CF</a>L 条件是证明过程中的"副产品"。</p>
+<p>这是科学史上"基础研究意想不到的实用价值"的经典案例。当<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>1922 年的数值天气预报产生荒谬结果时（预测气压变化 145 百帕 vs. 实际 &lt;1 百帕），原因之一正是他使用的时间步长违反了 <a href="协同过滤.html">CF</a>L 条件——而此时 <a href="协同过滤.html">CF</a>L 条件尚未被发现（1928 年）。</p>
 <h3 id="vs">显式 vs 隐式方法的核心权衡</h3>
 <table>
 <thead>
@@ -173,9 +173,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td>CFL 限制</td>
+<td><span style="color:#e74c3c" title="broken link">协同过滤&lt;/td&gt;
+&lt;td&gt;CF</span>L 限制</td>
 <td>有（$\nu \leq 1$）</td>
-<td>无条件稳定（或宽松得多）</td>
 </tr>
 <tr>
 <td>每步计算</td>
@@ -190,49 +190,45 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>代表格式</td>
 <td>Lax-Friedrichs，Lax-Wendroff，显式 RK</td>
-<td>Crank-Nicolson，ADI，<span style="color:#e74c3c" title="broken link">Boston Dynamics&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;CFL 条件的严格性是选择隐式方法的重要动机。&lt;/p&gt;
-&lt;h3 id=&quot;cfl_2&quot;&gt;实际应用中的 CFL 数&lt;/h3&gt;
-&lt;p&gt;工程实践中，用户根据当前流场状态自适应调整时间步长：&lt;/p&gt;
-&lt;p&gt;$$\Delta t = \text{CFL}&lt;em&gt;{\max} \cdot \frac{\Delta x&lt;/em&gt;{\min}}{c_{\max}}$$&lt;/p&gt;
-&lt;p&gt;常取 $\text{CFL}_{\max} \approx 0.5 \sim 0.9$（安全余量）。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;应用领域&lt;/th&gt;
-&lt;th&gt;波速 $c$&lt;/th&gt;
-&lt;th&gt;典型约束&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;CFD（可压缩流）&lt;/td&gt;
-&lt;td&gt;声速（$\sim 340$ m/s 大气）&lt;/td&gt;
-&lt;td&gt;典型 CFL 数 0.5–0.8&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;全球天气模型（10 km 网格）&lt;/td&gt;
-&lt;td&gt;大气波速&lt;/td&gt;
-&lt;td&gt;时间步长 $\sim 30$ 秒&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;FDTD 电磁模拟&lt;/td&gt;
-&lt;td&gt;光速 $c = 1/\sqrt{\mu\epsilon}$&lt;/td&gt;
-&lt;td&gt;Yee 网格（1966）自然满足&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;地震波模拟&lt;/td&gt;
-&lt;td&gt;地震波速&lt;/td&gt;
-&lt;td&gt;空间分辨率决定 $\Delta t$&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;_7&quot;&gt;来源&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[[raw/books/数值分析/11_cfl_condition.md</span></li>
+<td>Crank-Nicolson，ADI，<span style="color:#e74c3c" title="broken link">CF</span>L 条件的严格性是选择隐式方法的重要动机。</p>
+<h3 id="cfl_2">实际应用中的 CFL 数</h3>
+<p>工程实践中，用户根据当前流场状态自适应调整时间步长：</p>
+<p>$$\Delta t = \text{<a href="协同过滤.html">CF</a>L}<em>{\max} \cdot \frac{\Delta x</em>{\min}}{c_{\max}}$$</p>
+<p>常取 $\text{<a href="协同过滤.html">CF</a>L}_{\max} \approx 0.5 \sim 0.9$（安全余量）。</p>
+<table>
+<thead>
+<tr>
+<th>应用领域</th>
+<th>波速 $c$</th>
+<th>典型约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e74c3c" title="broken link">协同过滤&lt;/td&gt;
+&lt;td&gt;CF</span>D（可压缩流）</td>
+<td>声速（$\sim 340$ m/s 大气）</td>
+</tr>
+<tr>
+<td>全球天气模型（10 km 网格）</td>
+<td>大气波速</td>
+<td>时间步长 $\sim 30$ 秒</td>
+</tr>
+<tr>
+<td>FDTD 电磁模拟</td>
+<td>光速 $c = 1/\sqrt{\mu\epsilon}$</td>
+<td>Yee 网格（1966）自然满足</td>
+</tr>
+<tr>
+<td>地震波模拟</td>
+<td>地震波速</td>
+<td>空间分辨率决定 $\Delta t$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/11_cfl_condition.md</span></li>
 </ul>
 <h2 id="_8">相关</h2>
 <ul>
@@ -244,8 +240,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Agent评估方法论.html">&larr; Agent评估方法论</a>
-    <a href="Church-Turing 论题.html">Church-Turing 论题 &rarr;</a>
+    <a href="Bias 建模.html">&larr; Bias 建模</a>
+    <a href="CTR 预估.html">CTR 预估 &rarr;</a>
   </div>
 </div>
 </body>

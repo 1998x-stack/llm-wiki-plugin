@@ -123,7 +123,7 @@ $$W_2^2(\mu_A, \mu_B) = \frac{1}{n} \min_\pi \sum_i |\lambda_i - \mu_{\pi(i)}|^2
 
 ## 来源
 
-- raw/books/矩阵分析/13_hoffman_wielandt_theorem_1953.md
+- [[raw/books/矩阵分析/13_hoffman_wielandt_theorem_1953.md]]
 
 ## 相关
 

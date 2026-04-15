@@ -97,10 +97,10 @@ OpenAI 以 Rust 重写并开源的**本地编码 Agent**。不是聊天机器人
 
 LLM 输出是随机的，系统执行必须是可控的，用三道防线解决：
 
-1. **ExecPolicy（意图过滤）** — allow / prompt / forbidden 三态决策
+1. **[[ExecPolicy]]（意图过滤）** — allow / prompt / forbidden 三态决策
 2. **Approval Gate（人机协同）** — 不确定命令暂停等待人类批准
 3. **OS Sandbox（执行隔离）** — 内核级强制，LLM 无法绕过
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/01_codex_architecture_overview.md`
+- [[raw/articles/ai-tools/codex/01_codex_architecture_overview.md]]

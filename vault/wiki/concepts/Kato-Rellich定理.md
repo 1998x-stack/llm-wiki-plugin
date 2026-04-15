@@ -110,7 +110,7 @@ $$\sigma_{\text{ess}}(T + K) = \sigma_{\text{ess}}(T)$$
 
 ## 来源
 
-- raw/books/矩阵分析/15_kato_perturbation_theory_1966.md
+- [[raw/books/矩阵分析/15_kato_perturbation_theory_1966.md]]
 
 ## 相关
 

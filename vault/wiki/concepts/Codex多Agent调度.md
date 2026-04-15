@@ -90,7 +90,7 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 2. 每个 Worker Agent 独立上下文、独立沙箱
 3. 主 Agent wait 所有 worker → 汇总报告
 
-**DevDay 2025 案例**：7 个终端同时跑 7 个 Codex 实例，各自开发一款 Phaser.js 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。
+**DevDay 2025 案例**：7 个终端同时跑 7 个 [[Codex CLI|Codex]] 实例，各自开发一款 Phaser.js 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。
 
 ## 工程哲学
 
@@ -98,4 +98,4 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/07_codex_multi_agent.md`
+- [[raw/articles/ai-tools/codex/07_codex_multi_agent.md]]

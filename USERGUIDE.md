@@ -232,6 +232,7 @@ journal/
 | `build_graph.py` | Python | 知识图谱 JSON 生成 |
 | `lint_wiki.py` | Python | Wiki 质量检查 |
 | `qwen_ingest.py` | Python | Qwen API 页面提取 |
+| `build_keywords.py` | Python | Wiki 关键词提取（jieba 自定义词典生成） |
 | `hook_bm25.sh` | Shell | Hook: ingest 后重建 BM25 索引 |
 | `hook_graph.sh` | Shell | Hook: ingest 后重建知识图谱 |
 | `hook_lint.sh` | Shell | Hook: ingest 后运行 lint |
@@ -487,7 +488,7 @@ Lint Results:
 
 ### 4.12 `wiki:maintain` — 一键维护
 
-**功能：** 一键执行完整维护流水线：reorganize-raw → reindex → check → build。等价于依次运行四个命令，但在关键步骤失败时提前终止。
+**功能：** 一键执行完整维护流水线：relink → reindex → check → lint → build。等价于依次运行五个命令，但在关键步骤失败时提前终止。
 
 **用法：**
 
@@ -532,7 +533,7 @@ Lint Results:
 ```
 每周日：
 1. /wiki:review weekly         — 回顾本周
-2. /wiki:maintain              — 一键维护（reorganize-raw→relink→reindex→check→lint→build）
+2. /wiki:maintain              — 一键维护（relink→reindex→check→lint→build）
 3. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
 
@@ -626,7 +627,7 @@ bash scripts/hook_lint.sh
 
 BM25（Best Matching 25）是经典的全文检索算法。系统实现流程：
 
-1. **分词：** 使用 jieba 对所有 wiki 页面进行中文分词
+1. **分词：** 使用 jieba 对所有 wiki 页面进行中文分词（加载 `wiki/keywords.txt` 自定义词典提升领域术语识别）
 2. **建索引：** 使用 rank_bm25 库构建倒排索引
 3. **存储：** 索引文件保存在 `index/BM25/` 目录
 4. **查询：** 输入查询词，返回按相关性排序的页面列表
@@ -1026,8 +1027,7 @@ cd vault-cs && claude
 /wiki:ingest-loop <dir> [--engine=qwen]  Ralph-loop 批量 ingest
 /wiki:build                              构建 graph + statistics + wiki HTML
 /wiki:relink                             自动链接未链接术语（最长匹配优先）
-/wiki:reorganize-raw                     重分类 raw/ 到嵌套目录 + 更新 wiki 引用
-/wiki:maintain                           一键维护: reorganize-raw→relink→reindex→check→lint→build
+/wiki:maintain                           一键维护: relink→reindex→check→lint→build
 ```
 
 ### 常用脚本

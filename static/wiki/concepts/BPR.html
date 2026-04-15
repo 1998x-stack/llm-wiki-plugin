@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPR — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / BPR</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">排序学习</span><span class="tag">隐式反馈</span><span class="tag">贝叶斯方法</span></div>
+</div>
+  <div class="content">
+    <h1 id="bpr-bayesian-personalized-ranking">BPR (Bayesian Personalized Ranking)</h1>
+<h2 id="_1">概述</h2>
+<p>一种基于<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>最大后验估计的 pairwise 学习框架，将<a href="隐式反馈.html">隐式反馈</a>推荐问题从评分预测重新定义为个性化偏好排序学习。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心思想</strong>：不预测用户对物品的绝对分数，而是学习物品之间的相对偏好排序。对于用户交互过的物品 i 和未交互的物品 j，假设 i &gt;_u j，通过大量 pairwise 比较推导全局排名。</p>
+</li>
+<li>
+<p><strong>数学推导</strong>：基于<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a> MAP 推导，使用 logistic sigmoid 函数建模偏好似然 p(i &gt;_u j | Θ) = σ(x̂_uij)，施加零均值高斯先验 p(Θ)，得到目标函数 B<a href="Probabilistic Robotics.html">PR</a>-OPT = Σ ln σ(x̂_uij) - λ‖Θ‖²。</p>
+</li>
+<li>
+<p><strong>与 <a href="AUC.html">AUC</a> 的等价性</strong>：B<a href="Probabilistic Robotics.html">PR</a>-OPT 是 <a href="AUC.html">AUC</a> 的可微光滑近似（用 ln σ(x) 替代 Heaviside 阶跃函数），优化 B<a href="Probabilistic Robotics.html">PR</a> 近似等价于直接优化排序质量。</p>
+</li>
+<li>
+<p><strong>LearnB<a href="Probabilistic Robotics.html">PR</a> 算法</strong>：采用 bootstrap 随机采样三元组 (u, i, j) 的 SGD 算法，相比按用户遍历的梯度下降收敛更快、随时可停、梯度估计更均匀。</p>
+</li>
+<li>
+<p><strong>模型无关性</strong>：B<a href="Probabilistic Robotics.html">PR</a> 是通用优化准则，可与任何产生评分预测的模型结合，如 B<a href="Probabilistic Robotics.html">PR</a>-<a href="矩阵分解.html">MF</a>（<a href="矩阵分解.html">矩阵分解</a>）和 B<a href="Probabilistic Robotics.html">PR</a>-kNN（自适应 k 近邻）。</p>
+</li>
+<li>
+<p><strong>局限性</strong>：均匀<a href="负采样.html">负采样</a>信息量低、仅考虑 pairwise 无法建模全局排序、继承<a href="协同过滤.html">协同过滤</a>的<a href="冷启动问题.html">冷启动问题</a>、对交互行为的假设过于粗糙。</p>
+</li>
+<li>
+<p><strong>历史影响</strong>：2009年发表后成为<a href="隐式反馈.html">隐式反馈</a>推荐的标准范式，B<a href="Probabilistic Robotics.html">PR</a> Loss 至今仍是 LightGCN、Neu<a href="矩阵分解.html">MF</a>、<a href="../entities/DeepFM.html">DeepFM</a> 等模型的核心训练目标，6000+ 引用量。</p>
+</li>
+<li>
+<p><strong>与<a href="对比学习.html">对比学习</a>的关系</strong>：B<a href="Probabilistic Robotics.html">PR</a> 可理解为<a href="对比学习.html">对比学习</a>的早期实践，当 <a href="InfoNCE.html">InfoNCE</a> 损失只使用一个负样本时退化为 B<a href="Probabilistic Robotics.html">PR</a> Loss。现代图<a href="对比学习.html">对比学习</a>推荐模型通常组合 L_B<a href="Probabilistic Robotics.html">PR</a> + λ·L_CL。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="../entities/BPR 论文.html">BPR 论文</a> — Rendle et al. (2009) UAI 2009, BPR 原始论文</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="协同过滤.html">协同过滤</a> — extends</li>
+<li><a href="矩阵分解.html">矩阵分解</a> — implements</li>
+<li><a href="隐式反馈.html">隐式反馈</a> — depends_on</li>
+<li><a href="Pointwise 学习.html">Pointwise 学习</a> — compares_to</li>
+<li><a href="负采样.html">负采样</a> — uses</li>
+<li><a href="AUC.html">AUC</a> — relates_to</li>
+<li><a href="../entities/BPR 论文.html">BPR 论文</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent评估方法论.html">&larr; Agent评估方法论</a>
+    <a href="Batch Normalization.html">Batch Normalization &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

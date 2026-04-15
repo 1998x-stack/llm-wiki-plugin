@@ -122,8 +122,8 @@ $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i > 0} \frac{(Ax)_i}{x_i}$$
 
 ## 来源
 
-- raw/books/矩阵分析/07_perron_positive_matrices_1907.md
-- raw/books/矩阵分析/10_frobenius_nonnegative_matrices_1912.md
+- [[raw/books/矩阵分析/07_perron_positive_matrices_1907.md]]
+- [[raw/books/矩阵分析/10_frobenius_nonnegative_matrices_1912.md]]
 
 ## 相关
 

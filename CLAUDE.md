@@ -35,8 +35,7 @@ Three-layer pattern:
 | `wiki:build` | Build all static assets: graph + statistics + wiki HTML |
 | `wiki:reindex` | Validate index integrity + generate topic maps |
 | `wiki:relink` | Auto-link unlinked term mentions across wiki (longest-match-first) |
-| `wiki:reorganize-raw` | Reclassify raw/articles/ into nested categories + update wiki refs |
-| `wiki:maintain` | Full pipeline: reorganize-raw → relink → reindex → check → lint → build |
+| `wiki:maintain` | Full pipeline: relink → reindex → check → lint → build |
 | `wiki:consolidate` | Memory layer promotion + decay |
 | `wiki:crystallize` | Session → structured summary |
 | `wiki:journal` | Journal assistance |
@@ -68,6 +67,8 @@ bash scripts/wiki.sh <script_name> [args...]           # from vault/
 | `relink.py` | Auto-link unlinked wiki term mentions (longest-match-first) | wiki_utils |
 | `reclassify_raw.py` | Execute raw/ reclassification: reads `raw/re-map.json` → move → update wiki | — |
 | `lint_wiki.py` | Standalone lint checker | wiki_utils |
+| `build_keywords.py` | Wiki keywords extractor for jieba custom dict | wiki_utils |
+| `build_ingest_context.py` | Compact context package for ingest subagents | wiki_utils |
 | `hook_lint.sh` | PostToolUse hook: lint | — |
 | `hook_bm25.sh` | PostToolUse hook: BM25 update | — |
 | `hook_graph.sh` | PostToolUse hook: graph rebuild | — |
@@ -93,9 +94,10 @@ Install: `pip install -r requirements.txt`
 
 ## Key Concepts
 
-- **BM25 Index** (`vault/index/BM25/`): jieba-tokenized full-text search
+- **BM25 Index** (`vault/index/BM25/`): jieba-tokenized full-text search with custom dictionary (`wiki/keywords.txt`)
 - **Graph** (`vault/graph.json`): knowledge graph for visualization
 - **QA Logs** (`vault/qa/`): ChatGPT-format Q&A records
 - **Crystallization**: compounding knowledge into permanent entries
 - **Memory lifecycle**: confidence scoring, supersession, decay
 - **Typed relationships**: edges with labels (extends, contradicts, etc.)
+- **Custom Dictionary** (`wiki/keywords.txt`): auto-generated jieba user dict from wiki metadata (titles, aliases, tags)

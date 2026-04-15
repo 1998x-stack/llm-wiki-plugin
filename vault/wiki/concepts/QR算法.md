@@ -99,7 +99,7 @@ $$A_k - \mu_k I = Q_k R_k, \quad A_{k+1} = R_k Q_k + \mu_k I$$
 
 ## 来源
 
-- raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md
+- [[raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md]]
 
 ## 相关
 

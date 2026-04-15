@@ -1,6 +1,6 @@
 # Gotchas & Known Issues — Index
 
-> Last updated: 2026-04-15
+> Last updated: 2026-04-16
 
 Issues are split into topical files under `docs/gotchas/`.
 
@@ -10,7 +10,7 @@ Issues are split into topical files under `docs/gotchas/`.
 |------|--------|--------|
 | [ingest-issues.md](gotchas/ingest-issues.md) | Index errors, broken links, ingest-loop state | #1-4 |
 | [qwen-api.md](gotchas/qwen-api.md) | Model names, frontmatter failures, session summary | Qwen-specific |
-| [infrastructure.md](gotchas/infrastructure.md) | Source format, BM25, graph rebuild, hooks | #5-8 |
+| [infrastructure.md](gotchas/infrastructure.md) | Source format, BM25, graph rebuild, hooks, keywords pollution | #5-8, #36-37 |
 | [knowledge-graph.md](gotchas/knowledge-graph.md) | Cross-domain connections, fix checklist | #9 |
 | [code-review-bugs.md](gotchas/code-review-bugs.md) | V2.1-V2.3 code review (12 bugs fixed) | #10 |
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
@@ -22,9 +22,9 @@ Issues are split into topical files under `docs/gotchas/`.
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| Fixed | 19 | Code bugs, script issues, XSS, edge directionality, macOS case-insensitive, B1 false-positive in code blocks |
+| Fixed | 21 | Code bugs, script issues, XSS, edge directionality, macOS case-insensitive, B1 false-positive in code blocks, keywords.txt year-range pollution (28 entries), 来源 non-standard format (125 entries) |
 | Documented | 12 | yaml fallback, pickle, debounce, qa/ deprecation, relink substring, bold markers, hooks, re-map.json, 来源 boundary, lint removal |
-| Open | 4 | Remaining ingest files, broken links, source format, dedup semantic matching |
+| Open | 3 | Remaining ingest files, broken links, dedup semantic matching |
 
 ## Fix Checklist (remaining)
 
@@ -34,4 +34,4 @@ Issues are split into topical files under `docs/gotchas/`.
 | MEDIUM | Fix broken link `[[马尔可夫]]` → `[[安德烈·马尔可夫]]` |
 | MEDIUM | Fix broken link `[[切比雪夫不等式]]` link mismatch |
 | LOW | Create `[[离散傅里叶变换]]` concept page |
-| LOW | Standardize source section format (bare string → `[[raw/...]]`) |
+| ~~LOW~~ | ~~Standardize source section format (bare string → `[[raw/...]]`)~~ — **FIXED 2026-04-16** |

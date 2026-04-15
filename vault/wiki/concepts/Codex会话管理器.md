@@ -88,4 +88,4 @@ CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → �
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/05_codex_session_manager.md`
+- [[raw/articles/ai-tools/codex/05_codex_session_manager.md]]

@@ -16,11 +16,22 @@ description: "构建所有静态产出：graph.json + statistics + wiki HTML"
 | graph.json (static) | `../static/graph.json` | cp from vault |
 | graph-statistics.json | `../static/graph-statistics.json` | build_statistics.py |
 | wiki HTML | `../static/wiki/` | build_wiki_pages.py |
+| keywords.txt | `wiki/keywords.txt` | build_keywords.py |
 | log.md | `log.md` | 手动追加 |
 
 ## 流程
 
-### 1. Lint 检查（只读，不修复）
+### 1. 构建 keywords.txt（自定义分词词典）
+
+```bash
+bash scripts/wiki.sh build_keywords
+```
+
+- 解析 JSON 输出，记录 total_keywords / titles / aliases / tags 数量
+- 产出：`wiki/keywords.txt`（jieba 用户词典格式）
+- 此步骤确保后续 BM25 分词使用最新词典
+
+### 2. Lint 检查（只读，不修复）
 
 ```bash
 bash scripts/wiki.sh lint_wiki --json
@@ -30,7 +41,7 @@ bash scripts/wiki.sh lint_wiki --json
 - **不自动修复** — 修复由 `wiki:lint` 负责
 - 有 errors 也继续构建
 
-### 2. 构建 graph.json
+### 3. 构建 graph.json
 
 ```bash
 bash scripts/wiki.sh build_graph
@@ -39,7 +50,7 @@ bash scripts/wiki.sh build_graph
 - 解析 JSON 输出，记录 nodes/edges/orphans/components 四个数值
 - 产出：`graph.json`
 
-### 3. 同步 + 构建 statistics + 构建 HTML
+### 4. 同步 + 构建 statistics + 构建 HTML
 
 三个操作顺序执行（build_statistics.py 依赖 graph.json）：
 
@@ -50,7 +61,7 @@ cp graph.json ../static/graph.json && bash scripts/wiki.sh build_statistics && b
 - 每条命令都会打印 JSON status，确认 `"status": "ok"`
 - 如任何一步失败，报告错误并停止
 
-### 4. 验证所有产出
+### 5. 验证所有产出
 
 ```bash
 ls -la graph.json ../static/graph.json ../static/graph-statistics.json ../static/wiki/index.html
@@ -59,13 +70,13 @@ ls -la graph.json ../static/graph.json ../static/graph-statistics.json ../static
 - 确认 4 个文件都存在且非空
 - 如有缺失，报告哪个文件缺失
 
-### 5. 报告统计
+### 6. 报告统计
 
 - 从步骤 2 的 JSON 输出中提取：总节点数、总边数、孤页数、连通分量数
 - 读取 `../static/graph-statistics.json` 的 `top_connected` 前 10 项
 - 用表格或列表展示
 
-### 6. 更新 log.md
+### 7. 更新 log.md
 
 在 `log.md` 的 frontmatter 之后、第一个 `##` 之前插入：
 

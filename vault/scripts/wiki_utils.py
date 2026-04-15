@@ -31,6 +31,8 @@ INDEX_FILE = VAULT_DIR / "index.md"
 
 WIKI_SUBDIRS = ["concepts", "entities", "syntheses", "qa-insights"]
 
+KEYWORDS_PATH = WIKI_DIR / "keywords.txt"
+
 # ---------------------------------------------------------------------------
 # Wikilink regex
 # ---------------------------------------------------------------------------
@@ -128,13 +130,18 @@ def extract_type(text: str) -> str:
 # ---------------------------------------------------------------------------
 
 _jieba = None
+_jieba_dict_loaded = False
 
 
 def _get_jieba():
-    global _jieba
+    global _jieba, _jieba_dict_loaded
     if _jieba is None:
         import jieba
         _jieba = jieba
+    if not _jieba_dict_loaded:
+        _jieba_dict_loaded = True
+        if KEYWORDS_PATH.exists():
+            _jieba.load_userdict(str(KEYWORDS_PATH))
     return _jieba
 
 

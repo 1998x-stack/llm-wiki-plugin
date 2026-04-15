@@ -35,7 +35,7 @@ SQLite 是一个轻量级、无服务器、嵌入式的关系型数据库引擎�
 - **局限性**：不适合高并发写密集的多服务器场景；无内置网络访问控制
 
 ## 来源
-- 综合自 wiki 内部引用（Claude-Mem、Bun-Runtime 等页面）
+- 综合自内部引用：[[Claude-Mem]]、[[Bun-Runtime]] 等
 
 ## 相关
 - [[Claude-Mem]]

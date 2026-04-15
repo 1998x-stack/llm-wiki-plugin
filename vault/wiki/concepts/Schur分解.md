@@ -124,7 +124,7 @@ $$M/D = A - [[Boston Dynamics|BD]]^{-1}C$$
 
 ## 来源
 
-- raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md
+- [[raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md]]
 
 ## 相关
 

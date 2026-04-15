@@ -11,3 +11,4 @@
 - [x] qa-20260408-154946.md — imported 2026-04-15, 0 insights (already in wiki)
 - [x] qa-20260408-170640.md — imported 2026-04-15, 0 insights (project-specific)
 - [x] 2026-04-15.md — imported 2026-04-15, 0 insights (already crystallized)
+- [x] qa-20260416-143000.md — imported 2026-04-16, 0 insights (already in wiki)

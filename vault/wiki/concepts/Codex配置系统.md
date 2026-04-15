@@ -98,4 +98,4 @@ codex -c 'shell_environment_policy.include_only=["PATH"]' "隔离执行"
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/08_codex_config_system.md`
+- [[raw/articles/ai-tools/codex/08_codex_config_system.md]]

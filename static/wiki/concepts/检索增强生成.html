@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="rag">标准 RAG 流水线</h3>
 <p><strong>预处理阶段（离线）：</strong>
 1. 将知识库（文档语料）切分为若干百 token 的 Chunk
-2. 用嵌入模型（Embedding Model）将 Chunk 转换为向量
+2. 用嵌入模型（<a href="Embedding.html">Embedding</a> Model）将 Chunk 转换为向量
 3. 向量存入向量数据库，支持语义相似度检索</p>
 <p><strong>运行时阶段（在线）：</strong>
 4. 用户查询 → 向量化

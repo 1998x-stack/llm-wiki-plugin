@@ -113,7 +113,7 @@ $$\nabla R(x) = \frac{2}{x^T x}\left(Ax - R(x) \cdot x\right)$$
 
 ## 来源
 
-- raw/books/矩阵分析/06_fischer_minimax_theorem_1905.md
+- [[raw/books/矩阵分析/06_fischer_minimax_theorem_1905.md]]
 
 ## 相关
 

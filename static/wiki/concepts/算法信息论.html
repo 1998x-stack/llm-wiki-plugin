@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法信息论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 算法信息论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">算法信息论</h1>
+<h2 id="_2">概述</h2>
+<p>算法<a href="信息论.html">信息论</a>（Algorithmic <a href="信息论.html">Information Theory</a>, AIT）将<a href="信息论.html">信息论</a>与计算理论结合，用程序长度（而非概率分布）来度量信息的复杂性，是<a href="信息论.html">信息论</a>的第四大支柱。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">三大独立发源</h3>
+<table>
+<thead>
+<tr>
+<th>人物</th>
+<th>年份</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solomonoff</td>
+<td>1960/1964</td>
+<td><span style="color:#e74c3c" title="broken link">Solomonoff先验&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;[[安德烈·柯尔莫哥洛夫&lt;/td&gt;
+&lt;td&gt;Kolmogorov</span></td>
+<td>1965</td>
+</tr>
+<tr>
+<td>Chaitin</td>
+<td>1966</td>
+<td><span style="color:#e74c3c" title="broken link">Kolmogorov</span> 1965 年论文早 5 年）。</p>
+<h3 id="_5">核心概念</h3>
+<ul>
+<li><strong><a href="柯尔莫哥洛夫复杂性.html">柯尔莫哥洛夫复杂性</a></strong> K(x)：产生字符串 x 的最短程序长度</li>
+<li><strong><a href="Solomonoff先验.html">算法概率</a></strong> <a href="Solomonoff先验.html">M(x)</a>：所有能输出 x 的程序的概率之和</li>
+<li><strong><a href="算法随机性.html">算法随机性</a></strong>：如果 K(x) ≈ |x|，则 x 是算法随机的（不可压缩）</li>
+<li><strong>Chaitin 常数 Ω</strong>：随机程序停机的概率，不可计算的超越数</li>
+</ul>
+<h3 id="shannon">与 Shannon 信息论的对比</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Shannon <a href="信息论.html">信息论</a></th>
+<th>算法<a href="信息论.html">信息论</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息度量</td>
+<td>基于概率分布的熵 H(X)</td>
+<td>基于程序长度的复杂性 K(x)</td>
+</tr>
+<tr>
+<td>适用对象</td>
+<td>随机信源（统计集合）</td>
+<td>单个字符串（个体对象）</td>
+</tr>
+<tr>
+<td>先验知识</td>
+<td>需要知道概率分布</td>
+<td>不需要任何分布假设</td>
+</tr>
+<tr>
+<td>可计算性</td>
+<td>完全可计算</td>
+<td>不可计算</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai">与 AI 的关系</h3>
+<ul>
+<li><strong><a href="AIXI模型.html">AIXI</a> 模型</strong>：Hutter (2000) 将 Solomonoff 归纳与 Bellman 最优控制结合，提出理论上最优的通用 AI 模型</li>
+<li><strong><a href="最小描述长度原理.html">MDL</a> 原理</strong>：Rissanen (1978) 的最小描述长度是 Solomonoff 思想的可计算近似</li>
+<li><strong>LLM</strong>：大语言模型可视为 Solomonoff 归纳的一种可计算近似</li>
+</ul>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/信息论/08_solomonoff_1964_formal_theory_of_inductive_inference.md</span> — Solomonoff (1964) 深度解析</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/雷·所罗门诺夫.html">雷·所罗门诺夫</a> — 先驱</li>
+<li><a href="柯尔莫哥洛夫复杂性.html">柯尔莫哥洛夫复杂性</a> — 核心概念</li>
+<li><a href="Solomonoff先验.html">Solomonoff先验</a> — 核心概念</li>
+<li><a href="信息论.html">信息论</a> — 扩展的学科</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="算术编码.html">&larr; 算术编码</a>
+    <a href="算法随机性.html">算法随机性 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

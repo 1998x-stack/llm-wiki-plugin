@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deep Neural Networks for YouTube Recommendations — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Deep Neural Networks for YouTube Recommendations</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">深度学习</span><span class="tag">工业实践</span><span class="tag">RecSys</span></div>
+</div>
+  <div class="content">
+    <h1 id="deep-neural-networks-for-youtube-recommendations">Deep Neural Networks for YouTube Recommendations</h1>
+<h2 id="_1">概述</h2>
+<p>RecSys 2016 发表的里程碑论文，提出"候选生成 + 排序"两阶段架构，将推荐建模为超大规模多分类问题，奠定十年工业推荐系统基础范式。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>两阶段架构范式</strong>：提出经典的"候选生成（Candidate Generation）+ 排序（Ranking）"漏斗模型。候选生成从数十亿视频缩小到数百个（高召回率），排序从数百个精细化到数十个推荐结果（高精确率）。这一架构至今仍是全球推荐系统的标准骨架，影响了淘宝、抖音、<a href="Netflix.html">Netflix</a>、<a href="Spotify.html">Spotify</a> 等平台。详见 <a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a>。</p>
+</li>
+<li>
+<p><strong>极端多分类建模</strong>：将推荐问题形式化为超大规模多分类问题，类别数等于视频语料库大小。使用 <a href="../concepts/采样 Softmax.html">采样 Softmax</a> 技术，每次只采样数千个负样本来近似完整 softmax，大幅降低计算开销。训练时每个视频对应一个 embedding（softmax 层权重），用户通过神经网络前向计算得到 embedding。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/双塔模型.html">双塔模型</a> 原型</strong>：候选生成模型中"用户塔"和"物品塔"分别产生 embedding，然后通过内积计算相似度。用户侧输入包括观看历史（取平均，借鉴 Word2Vec CBOW 思想）、搜索历史、人口统计学特征等。服务时转化为 <a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> 问题，用 ANN 在亚线性时间内找到 Top-N 视频。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/Example Age.html">Example Age</a> 特征</strong>：解决新鲜度偏差（Freshness Bias）的精巧设计。将训练样本的"年龄"作为显式输入特征，让模型学到用户偏好新鲜内容的倾向。推理时将 Example Age 设为零，等价于告诉模型"预测当前时刻用户最可能观看什么"。这种"训练时暴露偏差，推理时消除偏差"的思路是 <span style="color:#e74c3c" title="broken link">因果推断</span> 和去偏研究的先驱。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/期望观看时长.html">期望观看时长</a> 优化目标</strong>：排序模型明确不优化 CTR（会鼓励标题党），而是优化期望观看时长。采用加权逻辑回归：正样本权重设为实际观看时长 T_i，负样本权重设为 1。推理时 e^{Wx+b} 近似等于 E[T]，直接作为排序得分。</p>
+</li>
+<li>
+<p><strong>用户均匀采样策略</strong>：为防止高活跃用户主导训练损失，对每个用户生成固定数量的训练样本，确保模型能为长尾用户提供合理推荐。</p>
+</li>
+<li>
+<p><strong>训练-服务不对称设计</strong>：论文多处体现"训练和服务可以且应该不同"的哲学——训练用 softmax + 采样，服务用 ANN 检索；训练时传入实际 Example Age，推理时设为零；标签选择预测用户未来观看行为而非随机 holdout。</p>
+</li>
+<li>
+<p><strong>在线 A/B 测试验证</strong>：核心实验结论来自线上 A/B 测试而非离线实验。深度模型替换浅层模型后在线效果显著提升，增加网络深度和宽度均有收益但边际递减。论文坦诚指出离线指标与在线效果间的 <span style="color:#e74c3c" title="broken link">offline-online gap</span>。</p>
+</li>
+<li>
+<p><strong>局限性</strong>：冷启动视频处理不充分；用户长期兴趣建模简单（平均操作丢失时序信息）；<a href="../concepts/特征交叉.html">特征交互</a>依赖 MLP 隐式学习，缺乏显式<a href="../concepts/特征交叉.html">特征交叉</a>如 <a href="Factorization Machines.html">Factorization Machines</a>；未讨论多目标优化和探索-利用平衡。后续工作如 DIN、DIEN、SASRec 等针对这些问题做了改进。</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：RecSys 历史上被引用最多的工业论文之一（Google Scholar 约 5000-6000+ 次引用）。确立了工业推荐系统的标准架构，推动了 <a href="../concepts/Embedding.html">Embedding</a> + ANN 检索生态的发展（<span style="color:#e74c3c" title="broken link">Faiss</span>、<span style="color:#e74c3c" title="broken link">ScaNN</span>、Milvus 等向量数据库的兴起与此范式密切相关）。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">07-youtube-dnn.md</span> — Deep Neural Networks for YouTube Recommendations 深度解读</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Paul Covington</span> — 第一作者</li>
+<li><span style="color:#e74c3c" title="broken link">Jay Adams</span> — 第二作者</li>
+<li><span style="color:#e74c3c" title="broken link">Emre Sargin</span> — 第三作者</li>
+<li><a href="YouTube.html">YouTube</a> — 研究平台</li>
+<li><span style="color:#e74c3c" title="broken link">RecSys 2016</span> — 发表会议</li>
+<li><a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a> — 本文确立的核心架构范式</li>
+<li><a href="../concepts/双塔模型.html">双塔模型</a> — 本文提出的模型原型</li>
+<li><a href="../concepts/Example Age.html">Example Age</a> — 本文提出的新鲜度偏差解决方案</li>
+<li><a href="../concepts/期望观看时长.html">期望观看时长</a> — 本文提出的排序优化目标</li>
+<li><a href="../concepts/采样 Softmax.html">采样 Softmax</a> — 本文使用的训练技术</li>
+<li><a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> — 本文服务时的检索方式</li>
+<li><span style="color:#e74c3c" title="broken link">offline-online gap</span> — 本文坦诚指出的评估挑战</li>
+<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — 本文超越的传统方法</li>
+<li><span style="color:#e74c3c" title="broken link">TensorFlow</span> — 本文使用的训练基础设施</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="David Nichols.html">&larr; David Nichols</a>
+    <a href="DeepAgents.html">DeepAgents &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

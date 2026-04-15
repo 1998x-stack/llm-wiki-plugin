@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>率失真函数 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 率失真函数</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">率失真函数</h1>
+<h2 id="_2">概述</h2>
+<p>率失真函数 R(D) 是在平均失真不超过 D 的所有条件分布 p(y|x) 中，使<a href="互信息.html">互信息</a> I(X;Y) 最小的值，刻画了比特率与失真之间的最优权衡曲线。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定义</h3>
+<p>$$R(D) = \min_{p(y|x): \mathbb{E}[d(X,Y)] \leq D} I(X;Y)$$</p>
+<p>即在所有满足平均失真不超过 D 的条件概率 p(y|x) 中，找到使<a href="互信息.html">互信息</a> I(X;Y) 最小的那个。</p>
+<h3 id="_5">三种直觉解释</h3>
+<ol>
+<li>
+<p><strong><a href="信息论.html">信息论</a>的</strong>：R(D) 是在"保真度约束"下你必须保留的信息量的最小值。信源的全部信息量是 H(X)，但你只需通过一个容量为 R(D) 的管道——可以丢弃 H(X) - R(D) 的"不重要"信息。</p>
+</li>
+<li>
+<p><strong>优化的</strong>：R(D) 是一个凸优化问题的解——在失真约束下最小化<a href="互信息.html">互信息</a>。可用 Blahut-Arimoto 算法迭代求解。</p>
+</li>
+<li>
+<p><strong>几何的</strong>：在率失真平面上，R(D) 曲线划分了两个区域——曲线以上是"可达区域"，曲线以下是"禁区"。</p>
+</li>
+</ol>
+<h3 id="_6">关键性质</h3>
+<ul>
+<li><strong>非递增</strong>：允许更多失真 → 需要更少比特</li>
+<li><strong>凸函数</strong>：减少失真的边际成本递增——将失真从 0.5 降到 0.4 比从 1.0 降到 0.9 需要更多额外比特</li>
+<li><strong>R(0) = H(X)</strong>：零失真回到<a href="信源编码定理.html">信源编码定理</a></li>
+<li><strong>R(D_max) = 0</strong>：失真足够大时不需要传输任何信息</li>
+</ul>
+<h3 id="-dr">失真-率函数 D(R)</h3>
+<p>D(R) 是 R(D) 的逆函数：给定比特率 R，可达到的最小失真是多少？在工程实践中，D(R) 有时更直观——直接回答"如果我用 R bit/符号来传输，最好能做到多精确？"</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/信息论/07_shannon_1959_rate_distortion_theory.md</span> — Shannon (1959) 深度解析</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="率失真理论.html">率失真理论</a> — 所属理论框架</li>
+<li><a href="互信息.html">互信息</a> — R(D) 的定义基础</li>
+<li><a href="信息论.html">信息论</a> — 所属学科</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="特征交叉.html">&larr; 特征交叉</a>
+    <a href="率失真理论.html">率失真理论 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

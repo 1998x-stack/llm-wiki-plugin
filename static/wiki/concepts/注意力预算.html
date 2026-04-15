@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">注意力预算</h1>
 <h2 id="_2">概述</h2>
-<p>注意力预算（Attention Budget）是对 Transformer 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类工作记忆的有限容量。</p>
+<p>注意力预算（Attention Budget）是对 <a href="Transformer架构.html">Transformer</a> 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类工作记忆的有限容量。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="n2">架构根因：n² 注意力计算</h3>
-<p>Transformer 架构的自注意力机制要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力计算，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
+<p><a href="Transformer架构.html">Transformer</a> 架构的<a href="自注意力机制.html">自注意力机制</a>要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力计算，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
 <pre><code>n=1000  →  1,000,000 对位关系
 n=10000 →  100,000,000 对位关系
 n=100k  →  10^10 对位关系（理论极值）
@@ -175,7 +175,7 @@ n=100k  →  10^10 对位关系（理论极值）
 <h3 id="_5">工程含义</h3>
 <p>注意力预算有限直接推出<a href="Context-Engineering.html">上下文工程</a>的核心指导原则：</p>
 <blockquote>
-<p><strong>找到最小化的高信噪比 token 集合，最大化目标行为的概率。</strong></p>
+<p><strong>找到最小化的高<a href="信噪比.html">信噪比</a> token 集合，最大化目标行为的概率。</strong></p>
 </blockquote>
 <p>具体工程手段：
 - <strong>系统提示精简</strong>：找到"合适高度"（right altitude）——不过于细碎、不过于抽象
@@ -214,6 +214,8 @@ n=100k  →  10^10 对位关系（理论极值）
 <li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（注意力预算是上下文工程的核心约束）</li>
 <li><a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — related_to（渐进式披露是保护注意力预算的策略）</li>
 <li><a href="即时上下文检索.html">即时上下文检索</a> — related_to（按需加载是节约注意力预算的主要手段）</li>
+<li><a href="Self-Attention机制.html">Self-Attention机制</a> — relates_to（注意力预算的根因在于自注意力的 n² 计算结构）</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — relates_to（Transformer 的架构设计决定了注意力预算的存在）</li>
 </ul>
   </div>
   <div class="page-nav">

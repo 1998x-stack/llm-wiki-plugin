@@ -83,6 +83,7 @@ graph LR
 | **Unified Search** | BM25 + maps topic expansion + graph traversal with RRF fusion |
 | **Format Conversion** | markitdown 批量转换 PDF/DOCX/PPTX/XLSX → markdown |
 | **Index Integrity** | snapshot_index.py 验证 index.md 完整性，防止条目丢失 |
+| **Custom Dictionary** | jieba 自定义词典从 wiki 元数据自动构建，提升领域术语分词精度 |
 | **4-Layer Memory** | Working → Episodic → Semantic → Procedural 知识生命周期 |
 | **QA Integration** | QA 对话数据批量导入，自动提取洞见并双向链接 |
 | **CI/CD** | GitHub Actions 自动部署 graph + statistics + wiki 到 GitHub Pages |
@@ -144,8 +145,7 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 | `build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
 | `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
 | `relink` | `/wiki:relink` | 自动链接 wiki 中未链接的术语提及（最长匹配优先） |
-| `reorganize-raw` | `/wiki:reorganize-raw` | 重分类 raw/ 到嵌套目录 + 更新 wiki 引用 |
-| `maintain` | `/wiki:maintain` | 一键维护: reorganize-raw → relink → reindex → check → lint → build |
+| `maintain` | `/wiki:maintain` | 一键维护: relink → reindex → check → lint → build |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure

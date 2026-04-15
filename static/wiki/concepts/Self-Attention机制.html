@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Attention机制 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Self-Attention机制</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">Transformer</span><span class="tag">注意力机制</span><span class="tag">NLP</span></div>
+</div>
+  <div class="content">
+    <h1 id="self-attention">Self-Attention机制</h1>
+<h2 id="_1">概述</h2>
+<p>Self-Attention（自注意力）是 <a href="Transformer架构.html">Transformer</a> 的核心机制，让序列中每个位置根据内容动态关注其他所有位置，从而获得全局上下文表示，时间复杂度为 O(n²d)。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">基本计算过程</h3>
+<p>输入<a href="矩阵.html">矩阵</a> $X \in \mathbb{R}^{n \times d}$（序列长度 n，维度 d）经三组线性变换映射为：</p>
+<p>$$Q = XW_Q,\quad K = XW_K,\quad V = XW_V$$</p>
+<p>其中 $Q, K, V \in \mathbb{R}^{n \times d_k}$。核心公式：</p>
+<p>$$\text{Attention}(Q,K,V)=\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</p>
+<p><strong>四步流程：</strong></p>
+<ol>
+<li><strong>计算注意力分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
+<li><strong>缩放</strong>：除以 $\sqrt{d_k}$，防止点积值过大导致 softmax 梯度消失</li>
+<li><strong>Softmax 归一化</strong>：对每行归一化，使权重之和为 1</li>
+<li><strong>加权求和</strong>：用注意力权重对 V 加权聚合，得到输出表示</li>
+</ol>
+<h3 id="_4">直觉理解</h3>
+<ul>
+<li><strong>Q（Query）</strong>：我想找什么信息</li>
+<li><strong>K（Key）</strong>：我这里有什么信息可供匹配</li>
+<li><strong>V（Value）</strong>：真正要取出的内容</li>
+</ul>
+<p>每个 token 以自身 Q 与所有 token 的 K 比较，决定从哪些位置取多少信息，再对对应 V 加权汇总。</p>
+<h3 id="_5">计算复杂度</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算 $QK^T$：$(n \times d)(d \times n)$</td>
+<td>$O(n^2 d)$</td>
+</tr>
+<tr>
+<td>注意力权重乘 $V$：$(n \times n)(n \times d)$</td>
+<td>$O(n^2 d)$</td>
+</tr>
+<tr>
+<td><strong>总时间复杂度</strong></td>
+<td>$O(n^2 d)$，简写 $O(n^2)$</td>
+</tr>
+<tr>
+<td><strong>空间复杂度</strong>（存储注意力<a href="矩阵.html">矩阵</a>）</td>
+<td>$O(n^2)$</td>
+</tr>
+</tbody>
+</table>
+<p>$O(n^2)$ 是 <a href="Transformer架构.html">Transformer</a> 处理长序列的主要瓶颈，<a href="注意力预算.html">注意力预算</a>随序列增长而被稀释。</p>
+<h3 id="rnncnn">与 RNN/CNN 的对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>RNN</th>
+<th>CNN</th>
+<th>Self-Attention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>并行化</td>
+<td>串行（时间步依赖）</td>
+<td>并行</td>
+<td>全并行</td>
+</tr>
+<tr>
+<td>感受野</td>
+<td>全局（需多步传播）</td>
+<td>局部</td>
+<td>天然全局</td>
+</tr>
+<tr>
+<td>长距依赖</td>
+<td>困难（梯度消失）</td>
+<td>困难</td>
+<td>直接</td>
+</tr>
+<tr>
+<td>复杂度（序列长度）</td>
+<td>$O(n)$</td>
+<td>$O(n)$</td>
+<td>$O(n^2)$</td>
+</tr>
+</tbody>
+</table>
+<p>Self-Attention 的优势：能直接建模长距离依赖，无需按顺序传播，每个位置可直接看到全局上下文。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/01-解释Transformer架构中的Self-Attention机制，并说明其计算复杂度.md</span> — 完整推导与复杂度分析</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="多头注意力.html">多头注意力</a> — extends（Multi-Head Attention 是 Self-Attention 的多子空间扩展）</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — part_of（Self-Attention 是 Transformer 的核心模块）</li>
+<li><a href="注意力预算.html">注意力预算</a> — relates_to（n² 复杂度是注意力预算有限的架构根因）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Schur分解.html">&larr; Schur分解</a>
+    <a href="Shannon-Hartley公式.html">Shannon-Hartley公式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

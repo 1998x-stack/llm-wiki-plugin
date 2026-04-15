@@ -90,4 +90,4 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/04_codex_execpolicy.md`
+- [[raw/articles/ai-tools/codex/04_codex_execpolicy.md]]

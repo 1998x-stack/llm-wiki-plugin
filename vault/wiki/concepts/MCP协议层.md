@@ -78,8 +78,8 @@ MCP 工具调用受 Approval 机制保护：
 
 ## 工程哲学
 
-> **MCP Layer 把"工具集成"从编程问题变成配置问题。** Codex 同时是客户端和服务端，实现了 Agent 的"可组合性"——任何 Codex 实例都可以成为更大 Agent 系统的一个工具节点。
+> **MCP Layer 把"工具集成"从编程问题变成配置问题。** [[Codex CLI|Codex]] 同时是客户端和服务端，实现了 Agent 的"可组合性"——任何 [[Codex CLI|Codex]] 实例都可以成为更大 Agent 系统的一个工具节点。
 
 ## 来源
 
-- `raw/articles/ai-tools/codex/06_codex_mcp_layer.md`
+- [[raw/articles/ai-tools/codex/06_codex_mcp_layer.md]]

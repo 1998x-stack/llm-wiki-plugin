@@ -45,7 +45,7 @@ Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面�
 Claude Code 支持并行 Agent 模式：主代理可将复杂任务分解为子任务，调度多个子代理并行处理，类似 MapReduce。
 
 ## 来源
-- 综合自 wiki 内部引用（Claude-Code-Hook-System、claude-cli-tools 等页面）
+- 综合自内部引用：[[Claude-Code-Hook-System]]、[[claude-cli-tools]] 等
 
 ## 相关
 - [[Claude-Mem]]

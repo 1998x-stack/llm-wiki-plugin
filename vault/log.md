@@ -5,6 +5,71 @@ type: log
 # 操作日志
 
 ## [2026-04-16] maintain
+- Relink: 1587 terms, 1585 new links across 189 pages
+- Reindex: OK (454 → 456 页面, +2 missing entries) | Schema 同步: 无变化
+- Check: 1 error, 615 warnings, 0 info — 1 error fixed (检索增强生成.md YAML indentation)
+- Lint: BM25 rebuild (472 pages indexed)
+- Build: 474 节点, 3596 边, 0 孤页, 1 连通分量 → static/ 已同步
+
+## [2026-04-16] ingest-loop | ChatGPT-Self-Attention机制解析（3文件 → 10页）
+- 创建：Self-Attention机制, 多头注意力, Transformer架构, 位置编码, 绝对位置编码, 相对位置编码, 自注意力机制, Layer Normalization, Batch Normalization, 残差连接
+- 更新：注意力预算
+- 来源：raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/（3文件）
+
+## [2026-04-16 01:30] crystallize | wiki:split-chat + maintain 管线精简
+- 新增 wiki:split-chat 命令 + split_chat_json.py 脚本
+- maintain 管线移除 reorganize-raw（6步→5步）
+- 更新 7 个文档文件，追加 v3.6 changelog
+- Working memory: _memory/working/2026-04-16-01.md (4 observations)
+- 结晶判断: 无跨概念综合洞见，不创建 synthesis
+
+## [2026-04-16 16:15] ingest | raw/books/信息论/07_shannon_1959_rate_distortion_theory.md
+- 创建 3 个概念页面：率失真理论、率失真函数、有损压缩
+- 更新 2 个已有页面：信息论（source_count +1，添加 relates_to）、克劳德·香农（source_count +1）
+- 同步 index.md：+3 页面
+
+## [2026-04-16 16:00] ingest | raw/books/信息论/06_huffman_1952_minimum_redundancy_codes.md
+- 创建 1 个实体页面：大卫·哈夫曼
+- 创建 4 个概念页面：Huffman编码、前缀码、Kraft不等式、算术编码
+- 更新 1 个已有页面：信源编码定理（source_count +1，添加 relates_to）
+- 同步 index.md：+5 页面
+
+## [2026-04-16 15:45] ingest | raw/books/信息论/05_kullback_leibler_1951_information_and_sufficiency.md
+- 创建 2 个实体页面：所罗门·库尔巴克、理查德·莱布勒
+- 创建 4 个概念页面：KL散度、交叉熵、数据处理不等式、信息几何
+- 更新 2 个已有页面：信息论（source_count +1，添加 relates_to）、信息熵（source_count +1）
+- 同步 index.md：+6 页面
+
+## [2026-04-16 15:30] ingest | raw/books/信息论/04_hamming_1950_error_correcting_codes.md
+- 创建 1 个实体页面：理查德·哈明
+- 创建 4 个概念页面：Hamming码、Hamming距离、Hamming界、纠错编码
+- 更新 1 个已有页面：信道编码定理（source_count +1，添加 relates_to）
+- 同步 index.md：+5 页面
+
+## [2026-04-16 15:15] ingest | raw/books/信息论/03_shannon_1949_communication_in_presence_of_noise.md
+- 创建 6 个新概念页面：Shannon-Hartley公式、采样定理、微分熵、球填充问题、分离定理、信噪比
+- 更新 3 个已有页面：克劳德·香农、信息论、信道容量（添加 relates_to 和 source_count）
+- 同步 index.md：+13 页面（含上次未同步的 7 个）
+
+## [2026-04-16 15:00] ingest | raw/books/信息论/01_hartley_1928_transmission_of_information.md
+- 创建 4 个实体页面：拉尔夫·哈特莱、奈奎斯特、克劳德·香农、贝尔实验室
+- 创建 3 个概念页面：信息论、Hartley信息量、信息与语义分离
+- 同步 index.md：+7 页面
+
+## [2026-04-16 14:40] ingest | raw/assets/MinerU/minerU_01_architecture.md
+- 创建 13 个实体页面：MinerU、上海人工智能实验室、PyMuPDF、pdfminer、PaddleOCR、UniMERNet、TableMaster、DocLayout-YOLO、LayoutLMv3、Marker、Nougat、pypdf、opendatalab
+- 创建 7 个概念页面：PDF解析、文档布局检测、光学字符识别、公式识别、表格识别、阅读顺序重建、文档结构化提取
+- 更新 1 个已有页面：检索增强生成（添加 relates_to 反向链接）
+- 同步 index.md：+20 页面
+
+## [2026-04-16 14:35] qa-import | qa-20260416-143000.md → 0 个洞见（已存在于 wiki）
+
+## [2026-04-16] wiki:query | 上下文工程核心原因与最新要点
+- 综合 8 个页面回答：Context Engineering、上下文腐烂、注意力预算、分层记忆架构、即时上下文检索、渐进式披露、多Agent架构、结构化笔记法
+- QA 记录：raw/qa/qa-20260416-143000.md
+- 更新 7 个页面 last_accessed
+
+## [2026-04-16] maintain
 - Reorganize-raw: 1003 → 1003 ✓ (0 moved, noop)
 - Relink: 1018 terms, 1 new link (SQLite entity)
 - Reindex: OK (291 页面, 7 clusters) | Schema 同步: 已更新（新增 `方法论` cluster）
@@ -1283,3 +1348,20 @@ python3 scripts/build_graph.py
 - `wiki/concepts/MCP协议层.md` — MCP 双重身份（客户端+服务端），Plugins 系统
 - `wiki/concepts/Codex多Agent调度.md` — spawn_agent/spawn_agents_on_csv，角色系统，地址路由
 - `wiki/concepts/Codex配置系统.md` — 6 层配置继承，Profile 系统，Feature Flags
+
+## [2026-04-16 16:30] ingest | raw/books/信息论/08_solomonoff_1964_formal_theory_of_inductive_inference.md
+- 创建 1 个实体页面：雷·所罗门诺夫
+- 创建 5 个概念页面：Solomonoff先验、算法信息论、柯尔莫哥洛夫复杂性、AIXI模型、Occam剃刀
+- 更新 1 个已有页面：信息论（source_count +1，添加 relates_to）
+- 同步 index.md：+6 页面
+
+## [2026-04-16 16:45] ingest | raw/books/信息论/09_kolmogorov_1965_three_approaches_to_information.md
+- 创建 1 个实体页面：格雷戈里·柴廷
+- 创建 3 个概念页面：算法随机性、前缀复杂性、归一化压缩距离
+- 更新 3 个已有页面：安德烈·柯尔莫哥洛夫（source_count +1，添加 relates_to）、柯尔莫哥洛夫复杂性（source_count +1，添加 relates_to）、信息论（source_count +1，添加 relates_to）
+- 同步 index.md：+4 页面（已在之前同步中捕获）
+
+## [2026-04-16 17:00] ingest | raw/books/信息论/10_chaitin_1966_length_of_programs.md
+- 创建 3 个概念页面：Chaitin常数、Berry悖论、最小描述长度原理
+- 更新 2 个已有页面：格雷戈里·柴廷（source_count +1，添加 relates_to）、柯尔莫哥洛夫复杂性（source_count +1）
+- 同步 index.md：+3 页面
