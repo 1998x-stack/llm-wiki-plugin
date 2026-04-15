@@ -239,6 +239,7 @@ def main():
             [sys.executable, str(script_dir / "build_statistics.py"),
              "--output", str(static_dir / "graph-statistics.json")],
             cwd=str(vault_dir), check=True,
+            stdout=subprocess.DEVNULL,
         )
 
         # Build wiki HTML pages
@@ -247,6 +248,7 @@ def main():
             [sys.executable, str(script_dir / "build_wiki_pages.py"),
              "--output", str(static_dir / "wiki")],
             cwd=str(vault_dir), check=True,
+            stdout=subprocess.DEVNULL,
         )
 
 

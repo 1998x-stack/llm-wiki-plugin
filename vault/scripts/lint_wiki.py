@@ -112,13 +112,16 @@ def check_file(path: Path, index_links: Set[str], all_pages: Set[str],
                 message="Overview section is %d chars (limit 200)" % len(overview_text),
                 fixed=False))
 
-    # F4: empty sections
-    sections = re.findall(r"^(#{1,3} .+)", body, re.MULTILINE)
+    # F4: empty sections (skip h1 page title, skip parent sections with sub-headings)
+    sections = re.findall(r"^(#{2,3} .+)", body, re.MULTILINE)
     for i, hdr in enumerate(sections):
         start = body.index(hdr) + len(hdr)
         end = body.index(sections[i + 1]) if i + 1 < len(sections) else len(body)
         content = body[start:end].strip()
         if not content:
+            # Skip parent h2 sections that have h3 children
+            if hdr.startswith("## ") and i + 1 < len(sections) and sections[i + 1].startswith("### "):
+                continue
             findings.append(dict(
                 file=rel, check="F4", severity=SEVERITY_WARN,
                 message="Empty section: %s" % hdr.strip(), fixed=False))
