@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天文学发展史 - 从远古到现代的星空探索之旅</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+  :root {
+    --bg-deep: #0a0e27;
+    --bg-card: rgba(15, 23, 60, 0.85);
+    --accent-gold: #f0c040;
+    --accent-blue: #4fc3f7;
+    --accent-purple: #b388ff;
+    --accent-cyan: #00e5ff;
+    --accent-pink: #ff80ab;
+    --accent-green: #69f0ae;
+    --accent-orange: #ffab40;
+    --text-primary: #e8eaf6;
+    --text-secondary: #9fa8da;
+    --line-color: rgba(79, 195, 247, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Star field background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,0.9), transparent),
+      radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1.5px 1.5px at 15% 80%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 60% 60%, rgba(240,192,64,0.6), transparent),
+      radial-gradient(2px 2px at 25% 35%, rgba(79,195,247,0.5), transparent),
+      radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.4), transparent);
+    background-size: 100% 100%;
+    z-index: -1;
+    animation: twinkle 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 3.2em;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  .hero .subtitle {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
+
+  .hero .divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+    margin: 30px auto;
+  }
+
+  /* Era Navigation */
+  .era-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 20px 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .era-nav a {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text-secondary);
+  }
+
+  .era-nav a:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(240,192,64,0.2);
+  }
+
+  /* Timeline Container */
+  .timeline-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 100px;
+    position: relative;
+  }
+
+  /* Central line */
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+      transparent,
+      var(--line-color) 5%,
+      var(--line-color) 95%,
+      transparent
+    );
+    transform: translateX(-50%);
+  }
+
+  /* Era Section */
+  .era-section {
+    margin-bottom: 60px;
+  }
+
+  .era-title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .era-title h2 {
+    font-family: 'Noto Serif SC', serif;
+    display: inline-block;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-size: 1.4em;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .era-ancient h2 { background: linear-gradient(135deg, rgba(240,192,64,0.2), rgba(255,171,64,0.2)); border: 1px solid rgba(240,192,64,0.4); color: var(--accent-gold); }
+  .era-classical h2 { background: linear-gradient(135deg, rgba(79,195,247,0.2), rgba(0,229,255,0.2)); border: 1px solid rgba(79,195,247,0.4); color: var(--accent-blue); }
+  .era-revolution h2 { background: linear-gradient(135deg, rgba(179,136,255,0.2), rgba(255,128,171,0.2)); border: 1px solid rgba(179,136,255,0.4); color: var(--accent-purple); }
+  .era-modern h2 { background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(105,240,174,0.2)); border: 1px solid rgba(0,229,255,0.4); color: var(--accent-cyan); }
+  .era-contemporary h2 { background: linear-gradient(135deg, rgba(105,240,174,0.2), rgba(255,128,171,0.2)); border: 1px solid rgba(105,240,174,0.4); color: var(--accent-green); }
+
+  /* Timeline Item */
+  .timeline-item {
+    position: relative;
+    width: 45%;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .timeline-item.left { margin-right: auto; text-align: right; }
+  .timeline-item.right { margin-left: auto; text-align: left; }
+
+  /* Connecting dot on the center line */
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 3;
+  }
+
+  .timeline-item.left::before { right: -37px; }
+  .timeline-item.right::before { left: -37px; }
+
+  .era-ancient .timeline-item::before { background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold); }
+  .era-classical .timeline-item::before { background: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue); }
+  .era-revolution .timeline-item::before { background: var(--accent-purple); box-shadow: 0 0 10px var(--accent-purple); }
+  .era-modern .timeline-item::before { background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
+  .era-contemporary .timeline-item::before { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); }
+
+  /* Connecting line to dot */
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 33px;
+    height: 2px;
+    width: 30px;
+  }
+
+  .timeline-item.left::after { right: -30px; background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.3)); }
+  .timeline-item.right::after { left: -30px; background: linear-gradient(to left, rgba(255,255,255,0.1), rgba(255,255,255,0.3)); }
+
+  .timeline-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .timeline-card .year {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .era-ancient .year { color: var(--accent-gold); }
+  .era-classical .year { color: var(--accent-blue); }
+  .era-revolution .year { color: var(--accent-purple); }
+  .era-modern .year { color: var(--accent-cyan); }
+  .era-contemporary .year { color: var(--accent-green); }
+
+  .timeline-card .event-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  .timeline-card .person {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .timeline-card .description {
+    font-size: 0.92em;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .timeline-card .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    margin-top: 12px;
+    font-weight: 700;
+  }
+
+  .tag-paper { background: rgba(240,192,64,0.15); color: var(--accent-gold); border: 1px solid rgba(240,192,64,0.3); }
+  .tag-discovery { background: rgba(0,229,255,0.15); color: var(--accent-cyan); border: 1px solid rgba(0,229,255,0.3); }
+  .tag-theory { background: rgba(179,136,255,0.15); color: var(--accent-purple); border: 1px solid rgba(179,136,255,0.3); }
+  .tag-instrument { background: rgba(105,240,174,0.15); color: var(--accent-green); border: 1px solid rgba(105,240,174,0.3); }
+  .tag-nobel { background: rgba(255,128,171,0.15); color: var(--accent-pink); border: 1px solid rgba(255,128,171,0.3); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .timeline-container::before { left: 20px; }
+    .timeline-item { width: calc(100% - 50px); margin-left: 50px !important; margin-right: 0 !important; text-align: left !important; }
+    .timeline-item::before { left: -37px !important; right: auto !important; }
+    .timeline-item::after { left: -30px !important; right: auto !important; background: linear-gradient(to left, rgba(255,255,255,0.1), rgba(255,255,255,0.3)) !important; }
+    .hero h1 { font-size: 2em; }
+    .era-nav { gap: 8px; }
+    .era-nav a { padding: 6px 14px; font-size: 0.8em; }
+  }
+
+  /* Scroll animation */
+  .timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>天文学发展史</h1>
+  <p class="subtitle">从远古星空到引力波 -- 人类仰望宇宙的四千年</p>
+  <div class="divider"></div>
+</div>
+
+<!-- Era Navigation -->
+<nav class="era-nav">
+  <a href="#era-ancient">远古萌芽</a>
+  <a href="#era-classical">古典体系</a>
+  <a href="#era-revolution">科学革命</a>
+  <a href="#era-modern">近代天文</a>
+  <a href="#era-contemporary">现代宇宙学</a>
+</nav>
+
+<!-- Timeline -->
+<div class="timeline-container">
+
+  <!-- ========== ERA 1: 远古萌芽 ========== -->
+  <div class="era-section era-ancient" id="era-ancient">
+    <div class="era-title"><h2>远古萌芽 (史前 - 公元前3世纪)</h2></div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">约公元前3万年</span>
+        <div class="event-title">拉斯科洞窟星图</div>
+        <div class="description">法国拉斯科洞窟壁画中可能包含昴宿星团、夏季大三角等天体的图形表示，被认为是人类最早的天文观测记录之一。</div>
+        <span class="tag tag-discovery">观测记录</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">约公元前4900年</span>
+        <div class="event-title">戈塞克圆环 -- 最早的太阳观测台</div>
+        <div class="person">德国新石器时代建筑</div>
+        <div class="description">由圆形壕沟、栅栏和与冬至日对齐的门组成，是世界上已知最早的太阳观测设施，用于追踪太阳运动和测量太阳年。</div>
+        <span class="tag tag-instrument">观测设施</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">约公元前3000年</span>
+        <div class="event-title">巨石阵 & 古埃及天文</div>
+        <div class="description">英国巨石阵与夏至日出方向精确对齐；古埃及人利用天狼星的偕日升确定一年的开始，制定了365天的太阳历。</div>
+        <span class="tag tag-discovery">历法天文</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">公元前750年</span>
+        <div class="event-title">巴比伦天文年历</div>
+        <div class="person">巴比伦天文学家</div>
+        <div class="description">巴比伦人编制了最早的天文历表，记录太阳、月亮和五大行星的运动规律，区分了恒星与行星，奠定了系统天文观测的基础。</div>
+        <span class="tag tag-paper">文献记录</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">约公元前585年</span>
+        <div class="event-title">泰勒斯预测日食</div>
+        <div class="person">泰勒斯 (Thales of Miletus, 约前624-前546)</div>
+        <div class="description">古希腊哲学家泰勒斯成功预测了一次日食，标志着天文学开始从神话走向理性思考。</div>
+        <span class="tag tag-theory">理论突破</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">约公元前500年</span>
+        <div class="event-title">毕达哥拉斯：地球是球体</div>
+        <div class="person">毕达哥拉斯 (Pythagoras, 约前570-前495)</div>
+        <div class="description">首次提出地球是球形而非扁平的概念，这一革命性的认识奠定了后世天文学建模的几何基础。</div>
+        <span class="tag tag-theory">理论突破</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">约公元前280年</span>
+        <div class="event-title">阿里斯塔克斯：最早的日心说</div>
+        <div class="person">阿里斯塔克斯 (Aristarchus of Samos, 约前310-前230)</div>
+        <div class="description">提出太阳位于宇宙中心、地球绕太阳公转的学说，比哥白尼早了约1800年。然而这一超前的理论在当时几乎无人接受。</div>
+        <span class="tag tag-theory">理论突破</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">约公元前270年</span>
+        <div class="event-title">厄拉托色尼测量地球周长</div>
+        <div class="person">厄拉托色尼 (Eratosthenes, 约前276-前194)</div>
+        <div class="description">通过比较亚历山大和阿斯旺的太阳仰角差异，精确估算了地球周长约为40,000公里，误差不到2%。</div>
+        <span class="tag tag-discovery">测量壮举</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">约公元前150-100年</span>
+        <div class="event-title">安提基特拉机械 & 喜帕恰斯星表</div>
+        <div class="person">喜帕恰斯 (Hipparchus, 约前190-前120)</div>
+        <div class="description">喜帕恰斯编制了首部恒星星表(850颗星)，发现岁差现象；同时期的安提基特拉机械被视为最早的天文计算器，能预测日月运动。</div>
+        <span class="tag tag-instrument">天文仪器</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ERA 2: 古典天文体系 ========== -->
+  <div class="era-section era-classical" id="era-classical">
+    <div class="era-title"><h2>古典体系 (公元2世纪 - 15世纪)</h2></div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">约公元150年</span>
+        <div class="event-title">托勒密《天文学大成》(Almagest)</div>
+        <div class="person">克劳狄乌斯-托勒密 (Claudius Ptolemy, 约100-170)</div>
+        <div class="description">总结古希腊天文学成就的巅峰之作。利用本轮-均轮体系构建了精密的地心说数学模型，列出48个星座、1022颗恒星。该体系统治了天文学近1300年。</div>
+        <span class="tag tag-paper">经典著作</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">185年 / 1054年</span>
+        <div class="event-title">中国天文学家记录超新星</div>
+        <div class="person">东汉/宋代天文官员</div>
+        <div class="description">公元185年的记录是人类历史上最早的超新星观测；1054年的"天关客星"对应蟹状星云的前身星爆发，为后世天体物理研究留下了珍贵的历史数据。</div>
+        <span class="tag tag-discovery">天象记录</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">约公元130年</span>
+        <div class="event-title">张衡与浑天说</div>
+        <div class="person">张衡 (78-139)</div>
+        <div class="description">东汉张衡提出"浑天说"，认为天如鸡蛋壳、地如蛋黄悬浮其中。他发明的浑天仪和地动仪代表了古代中国天文仪器的最高水平。</div>
+        <span class="tag tag-instrument">天文仪器</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">9-15世纪</span>
+        <div class="event-title">伊斯兰天文学的黄金时代</div>
+        <div class="person">花拉子密、乌鲁伯格等</div>
+        <div class="description">花拉子密编写了第一部阿拉伯天文学著作《天文历表》。乌鲁伯格在撒马尔罕建造了半径36米的巨型六分仪，编制了包含994颗恒星的精密星表。伊斯兰学者保存并发展了希腊天文遗产。</div>
+        <span class="tag tag-paper">文献传承</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1280年</span>
+        <div class="event-title">郭守敬与《授时历》</div>
+        <div class="person">郭守敬 (1231-1316)</div>
+        <div class="description">元代天文学家郭守敬创制简仪、仰仪等新式天文仪器，主持编定《授时历》，测定回归年长度为365.2425日，与现代公历值完全一致，精度领先世界300年。</div>
+        <span class="tag tag-instrument">精密测量</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ERA 3: 科学革命 ========== -->
+  <div class="era-section era-revolution" id="era-revolution">
+    <div class="era-title"><h2>科学革命 (16-17世纪)</h2></div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1543年</span>
+        <div class="event-title">哥白尼《天体运行论》</div>
+        <div class="person">尼古拉-哥白尼 (Nicolaus Copernicus, 1473-1543)</div>
+        <div class="description">提出日心说，将太阳置于宇宙中心，地球只是绕日运行的行星之一。这部著作在哥白尼临终之际出版，开启了科学革命的序幕，从根本上动摇了统治千年的地心说体系。</div>
+        <span class="tag tag-paper">划时代著作</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1572-1577年</span>
+        <div class="event-title">第谷-布拉赫的精密观测</div>
+        <div class="person">第谷-布拉赫 (Tycho Brahe, 1546-1601)</div>
+        <div class="description">在乌拉尼堡天文台进行了望远镜发明前最精确的天文观测。对仙后座超新星和大彗星的观测推翻了亚里士多德"天体不变"的教条。他积累的海量高精度数据成为开普勒发现行星运动定律的基石。</div>
+        <span class="tag tag-discovery">精密观测</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1609年</span>
+        <div class="event-title">开普勒《新天文学》</div>
+        <div class="person">约翰内斯-开普勒 (Johannes Kepler, 1571-1630)</div>
+        <div class="description">利用第谷留下的精密观测数据，发现行星轨道是椭圆形而非完美的圆。提出了行星运动三大定律：椭圆轨道定律、面积定律和调和定律，第一次揭示了行星运行的真实轨道。</div>
+        <span class="tag tag-paper">经典论文</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1610年</span>
+        <div class="event-title">伽利略《星际信使》</div>
+        <div class="person">伽利略-伽利莱 (Galileo Galilei, 1564-1642)</div>
+        <div class="description">用自制望远镜发现了月球表面的山脉与陨石坑、木星的四颗卫星、金星的盈亏变化和银河系由无数恒星组成。这些发现为日心说提供了决定性的观测证据，开辟了望远镜天文学的新纪元。</div>
+        <span class="tag tag-paper">经典著作</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1687年</span>
+        <div class="event-title">牛顿《自然哲学的数学原理》</div>
+        <div class="person">艾萨克-牛顿 (Isaac Newton, 1643-1727)</div>
+        <div class="description">提出运动三大定律和万有引力定律，用统一的数学框架解释了地面物体的运动和天体的运行。开普勒定律从经验法则升华为万有引力的必然推论，天文学从描述性科学飞跃为精密的定量科学。</div>
+        <span class="tag tag-paper">划时代著作</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ERA 4: 近代天文学 ========== -->
+  <div class="era-section era-modern" id="era-modern">
+    <div class="era-title"><h2>近代天文学 (18-19世纪)</h2></div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1705 / 1759年</span>
+        <div class="event-title">哈雷彗星的预言与回归</div>
+        <div class="person">爱德蒙-哈雷 (Edmond Halley, 1656-1742)</div>
+        <div class="description">哈雷运用牛顿力学计算出1682年出现的彗星将于1758年底至1759年初回归。彗星如期而至，完美验证了万有引力理论的预言能力，成为牛顿力学最辉煌的胜利。</div>
+        <span class="tag tag-theory">理论验证</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1781年</span>
+        <div class="event-title">威廉-赫歇尔发现天王星</div>
+        <div class="person">威廉-赫歇尔 (William Herschel, 1738-1822)</div>
+        <div class="description">业余天文学家赫歇尔用自制望远镜发现了天王星，这是自古以来人类发现的第一颗新行星，将已知太阳系的边界扩展了一倍。</div>
+        <span class="tag tag-discovery">行星发现</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1800年</span>
+        <div class="event-title">红外辐射的发现</div>
+        <div class="person">威廉-赫歇尔 (William Herschel)</div>
+        <div class="description">赫歇尔在实验中将太阳光通过棱镜分离，在可见红光之外发现了不可见的热辐射（红外线），奠定了光谱学和多波段天文学的基础。</div>
+        <span class="tag tag-discovery">光谱学开端</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1838年</span>
+        <div class="event-title">首次恒星视差测量</div>
+        <div class="person">弗里德里希-贝塞尔 (Friedrich Bessel, 1784-1846)</div>
+        <div class="description">贝塞尔利用恒星视差法测定了天鹅座61的距离（约11.4光年），这是人类首次测量太阳系以外天体的距离，为天文距离标尺奠定了基石。</div>
+        <span class="tag tag-discovery">距离测量</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1846年</span>
+        <div class="event-title">海王星的发现 -- 纸笔上的行星</div>
+        <div class="person">亚当斯 & 勒维耶 / 伽勒</div>
+        <div class="description">亚当斯和勒维耶各自独立地根据天王星轨道异常，用万有引力定律预言了一颗未知行星的位置。伽勒在预言位置附近发现了海王星，宣告了万有引力理论的彻底胜利。</div>
+        <span class="tag tag-theory">理论预言</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1868年</span>
+        <div class="event-title">氦元素的天文发现 -- 天体物理学诞生</div>
+        <div class="person">洛克耶 & 让森</div>
+        <div class="description">通过分析太阳光谱，发现了一种地球上尚未发现的新元素 -- 氦。这是人类首次在地球之外发现新元素，标志着"天体物理学"作为独立学科的诞生。</div>
+        <span class="tag tag-discovery">光谱分析</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ERA 5: 现代宇宙学 ========== -->
+  <div class="era-section era-contemporary" id="era-contemporary">
+    <div class="era-title"><h2>现代宇宙学 (20-21世纪)</h2></div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1905 / 1915年</span>
+        <div class="event-title">爱因斯坦的相对论</div>
+        <div class="person">阿尔伯特-爱因斯坦 (Albert Einstein, 1879-1955)</div>
+        <div class="description">1905年提出狭义相对论（E=mc^2）；1915年完成广义相对论，将引力重新诠释为时空弯曲。解决了水星近日点进动问题，预言了光线弯曲、引力红移和引力波，彻底革新了人类对时间、空间和引力的理解。</div>
+        <span class="tag tag-paper">划时代理论</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1929年</span>
+        <div class="event-title">哈勃定律 -- 宇宙在膨胀</div>
+        <div class="person">埃德温-哈勃 (Edwin Hubble, 1889-1953)</div>
+        <div class="description">发表于 PNAS 的论文"A relation between distance and radial velocity among extra-galactic nebulae"揭示了星系退行速度与距离成正比的关系（v=H0d），证明了宇宙正在膨胀。爱因斯坦因此放弃了宇宙学常数，称之为"一生最大的错误"。</div>
+        <span class="tag tag-paper">经典论文</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1948年</span>
+        <div class="event-title">大爆炸核合成理论</div>
+        <div class="person">伽莫夫、阿尔弗、赫尔曼</div>
+        <div class="description">伽莫夫及其学生提出了宇宙大爆炸核合成理论（alphaBetagamma论文），预言了宇宙早期的轻元素丰度，并预测宇宙中应存在约5K的微波背景辐射。</div>
+        <span class="tag tag-theory">理论预言</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1965年</span>
+        <div class="event-title">宇宙微波背景辐射(CMB)的发现</div>
+        <div class="person">彭齐亚斯 & 威尔逊 (Arno Penzias & Robert Wilson)</div>
+        <div class="description">利用贝尔实验室的号角天线发现了充满全天的3.5K微波背景辐射。论文标题极为谦逊："A Measurement of Excess Antenna Temperature at 4080 Mc/s"。这一发现为大爆炸理论提供了决定性证据，两人获1978年诺贝尔物理学奖。</div>
+        <span class="tag tag-nobel">诺贝尔奖 1978</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1967年</span>
+        <div class="event-title">脉冲星的发现</div>
+        <div class="person">休伊什 & 贝尔 (Hewish & Jocelyn Bell)</div>
+        <div class="description">研究生乔瑟琳-贝尔发现了第一颗脉冲星（快速旋转的中子星），最初被戏称为"LGM-1"（小绿人1号）。脉冲星的发现验证了中子星的存在，开辟了致密天体物理学的新领域。</div>
+        <span class="tag tag-nobel">诺贝尔奖 1974</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1970-1980年</span>
+        <div class="event-title">薇拉-鲁宾：暗物质的观测证据</div>
+        <div class="person">薇拉-鲁宾 & 肯特-福特 (Vera Rubin & Kent Ford)</div>
+        <div class="description">系统测量了60多个旋涡星系的旋转曲线，发现外围恒星的公转速度并未随距离减小（"平坦旋转曲线"）。这意味着星系中存在大量不可见的暗物质，其质量是可见物质的5-10倍。由此，暗物质从假说升格为宇宙学的核心支柱。</div>
+        <span class="tag tag-paper">经典论文</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">1990年</span>
+        <div class="event-title">哈勃空间望远镜升空</div>
+        <div class="person">NASA / ESA</div>
+        <div class="description">哈勃望远镜被航天飞机送入近地轨道，成为人类第一台大型空间光学望远镜。摆脱了大气干扰的哈勃拍摄了深空场图像，揭示了上百亿光年外的古老星系，深刻改变了人类对宇宙规模和演化的认知。</div>
+        <span class="tag tag-instrument">空间望远镜</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">1998年</span>
+        <div class="event-title">暗能量 -- 宇宙加速膨胀的发现</div>
+        <div class="person">里斯、珀尔马特、施密特 (Riess, Perlmutter, Schmidt)</div>
+        <div class="description">高红移超新星搜索团队和超新星宇宙学项目两个竞争团队独立发现：远处的Ia型超新星比预期更暗，意味着宇宙膨胀正在加速而非减速。这种神秘的加速力量被命名为"暗能量"，占宇宙总能量的约68%。被《Science》评为1998年度突破，三人获2011年诺贝尔物理学奖。</div>
+        <span class="tag tag-nobel">诺贝尔奖 2011</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">2015/2016年</span>
+        <div class="event-title">LIGO首次探测到引力波</div>
+        <div class="person">LIGO科学合作组织</div>
+        <div class="description">2015年9月14日，LIGO的两台探测器同时捕获到了来自13亿光年外两个黑洞合并产生的引力波信号（GW150914）。信号频率从35Hz扫至250Hz，峰值应变仅10^-21。这是人类首次直接探测到引力波，验证了爱因斯坦100年前的预言，开启了引力波天文学的新时代。</div>
+        <span class="tag tag-nobel">诺贝尔奖 2017</span>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-card">
+        <span class="year">2019年</span>
+        <div class="event-title">事件视界望远镜：首张黑洞照片</div>
+        <div class="person">EHT合作组织 (200+研究者)</div>
+        <div class="description">由全球8台射电望远镜组成的地球尺度虚拟望远镜阵列，在1.3mm波长上成功拍摄了M87星系中心超大质量黑洞的阴影图像。黑洞质量为65亿太阳质量，事件视界直径约400亿公里。这是人类首次获得黑洞的直接视觉证据，图像与广义相对论预言高度吻合。</div>
+        <span class="tag tag-paper">里程碑成就</span>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-card">
+        <span class="year">2021年</span>
+        <div class="event-title">詹姆斯-韦伯空间望远镜(JWST)升空</div>
+        <div class="person">NASA / ESA / CSA</div>
+        <div class="description">有史以来最强大的空间望远镜在圣诞节发射升空，部署于150万公里外的L2拉格朗日点。其6.5米口径的镀金镜面专注于红外波段，能窥探宇宙诞生后数亿年的第一代恒星和星系，探测系外行星大气成分，揭示恒星和行星的形成过程。</div>
+        <span class="tag tag-instrument">空间望远镜</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>天文学发展史时间线 | 从远古星空到引力波的探索之旅</p>
+  <p style="margin-top: 8px;">数据来源:
+    <a href="https://en.wikipedia.org/wiki/Timeline_of_astronomy">Wikipedia: Timeline of Astronomy</a> |
+    <a href="https://zh.wikipedia.org/zh-hans/%E5%A4%A9%E6%96%87%E5%AD%A6%E5%8F%B2">维基百科: 天文学史</a> |
+    <a href="https://www.astronomytrek.com/important-dates-in-the-timeline-of-astronomy/">Astronomy Trek</a>
+  </p>
+</div>
+
+</body>
+</html>

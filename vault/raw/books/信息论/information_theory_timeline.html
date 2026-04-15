@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信息论发展史 | A History of Information Theory</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #23233a;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --accent3: #ff6b6b;
+    --text: #e8e6e3;
+    --text2: #9e9ba8;
+    --border: #2e2e44;
+    --glow: rgba(108, 99, 255, .25);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ===== Hero ===== */
+  .hero {
+    text-align: center;
+    padding: 100px 24px 60px;
+    background: linear-gradient(180deg, #16162a 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(108,99,255,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text2);
+    max-width: 720px;
+    margin: 20px auto 0;
+    line-height: 1.9;
+  }
+  .hero .formula {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 12px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: "Cambria Math", "Latin Modern Math", serif;
+    font-size: 1.25rem;
+    color: var(--accent2);
+    letter-spacing: .04em;
+  }
+
+  /* ===== Nav ===== */
+  .era-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15,15,20,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: center; gap: 4px;
+    padding: 10px 16px;
+    overflow-x: auto;
+  }
+  .era-nav a {
+    padding: 6px 16px; border-radius: 6px;
+    font-size: .85rem; color: var(--text2);
+    white-space: nowrap; transition: .2s;
+  }
+  .era-nav a:hover { background: var(--surface); color: #fff; text-decoration: none; }
+
+  /* ===== Container ===== */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Era Section ===== */
+  .era {
+    padding: 64px 0 32px;
+  }
+  .era-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 40px;
+  }
+  .era-badge {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+  .era-header h2 {
+    font-size: 1.6rem; font-weight: 700;
+  }
+  .era-header p {
+    font-size: .92rem; color: var(--text2); margin-top: 2px;
+  }
+
+  /* ===== Timeline ===== */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: "";
+    position: absolute; left: 14px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%);
+  }
+
+  .event {
+    position: relative;
+    margin-bottom: 36px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .event:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 24px var(--glow);
+  }
+  .event::before {
+    content: "";
+    position: absolute;
+    left: -33px; top: 28px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    z-index: 1;
+  }
+  .event .year-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: .78rem;
+    font-weight: 700;
+    background: rgba(108,99,255,.15);
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .event h3 {
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .event .people {
+    font-size: .88rem; color: var(--accent2); margin-bottom: 10px;
+  }
+  .event .desc {
+    font-size: .93rem; color: var(--text2); line-height: 1.8;
+  }
+  .event .tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+  }
+  .event .tag {
+    padding: 2px 10px; border-radius: 4px;
+    font-size: .75rem;
+    background: var(--surface2);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .event .tag.impact { border-color: var(--accent3); color: var(--accent3); }
+  .event .tag.link { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 60px 24px 40px;
+    font-size: .84rem;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .timeline { padding-left: 28px; }
+    .timeline::before { left: 8px; }
+    .event::before { left: -25px; }
+    .event { padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <h1>信息论发展史</h1>
+  <p class="subtitle">
+    从 Hartley 的对数度量到 Shannon 的数学革命，从纠错编码到算法信息论——
+    一场贯穿二十世纪、重塑人类文明底层逻辑的智识历程。
+  </p>
+  <div class="formula">H(X) = &minus;&sum; p(x) log p(x)</div>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="era-nav">
+  <a href="#era0">史前时期</a>
+  <a href="#era1">奠基时代</a>
+  <a href="#era2">黄金十年</a>
+  <a href="#era3">编码革命</a>
+  <a href="#era4">算法信息论</a>
+  <a href="#era5">现代拓展</a>
+</nav>
+
+<div class="container">
+
+<!-- ================================================================ -->
+<!--                      ERA 0: 史前时期                              -->
+<!-- ================================================================ -->
+<section class="era" id="era0">
+  <div class="era-header">
+    <div class="era-badge">0</div>
+    <div>
+      <h2>史前时期 (1832&ndash;1927)</h2>
+      <p>电报、统计力学与概率论为信息度量埋下种子</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">1832&ndash;1844</span>
+      <h3>Morse 电码与电报通信</h3>
+      <div class="people">Samuel Morse, Alfred Vail</div>
+      <div class="desc">
+        Morse 电码是人类第一个有意识优化的变长编码方案：常用字母（如 E）分配较短编码，罕见字母（如 Z）分配较长编码。
+        这一直觉性的设计预示了最优编码理论，比 Huffman 编码早了整整一个世纪。
+        1844 年第一条电报"What hath God wrought"标志着远距离即时通信的诞生。
+      </div>
+      <div class="tags">
+        <span class="tag">变长编码</span>
+        <span class="tag">电报通信</span>
+        <span class="tag link">→ Huffman 1952</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1872&ndash;1877</span>
+      <h3>Boltzmann 熵与统计力学</h3>
+      <div class="people">Ludwig Boltzmann</div>
+      <div class="desc">
+        Boltzmann 提出 S = k log W，将热力学熵与微观状态数的对数联系起来。
+        这一公式建立了"无序度"与"对数计数"之间的深刻关联。Shannon 在 1948 年明确承认其信息熵公式的形式受 Boltzmann 启发，
+        并在 von Neumann 的建议下将其命名为"熵"(entropy)——因为"没人真正理解熵是什么，所以在辩论中你总能占上风"。
+      </div>
+      <div class="tags">
+        <span class="tag">统计力学</span>
+        <span class="tag">热力学熵</span>
+        <span class="tag link">→ Shannon 1948</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1924</span>
+      <h3>Nyquist 的电报速度理论</h3>
+      <div class="people">Harry Nyquist</div>
+      <div class="desc">
+        Nyquist 在"Certain Factors Affecting Telegraph Speed"中首次分析了信道传输速率的物理限制。
+        他指出，一条带宽为 W 的信道每秒最多传输 2W 个独立脉冲。
+        这一结论后来被 Shannon 吸收并推广为信道容量定理的一部分。
+        Nyquist 还注意到，如果使用 m 个不同的信号电平，信息量应该与 log m 成正比。
+      </div>
+      <div class="tags">
+        <span class="tag">采样定理</span>
+        <span class="tag">带宽限制</span>
+        <span class="tag link">→ Hartley 1928</span>
+        <span class="tag link">→ Shannon 1949</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--                    ERA 1: 奠基时代                                -->
+<!-- ================================================================ -->
+<section class="era" id="era1">
+  <div class="era-header">
+    <div class="era-badge">I</div>
+    <div>
+      <h2>奠基时代 (1928&ndash;1948)</h2>
+      <p>从 Hartley 的对数度量到 Shannon 的信息熵——信息学科的诞生</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">1928</span>
+      <h3>Hartley: "Transmission of Information"</h3>
+      <div class="people">Ralph V. L. Hartley</div>
+      <div class="desc">
+        Hartley 在 Bell System Technical Journal 发表了信息度量的开创性论文。
+        他首次将"信息"从模糊的日常概念转化为可量化的物理量，提出信息量 H = n log s（n 为符号数，s 为符号表大小）。
+        关键贡献：(1) 将信息与"意义"分离——信息量仅取决于选择的自由度，不取决于语义；
+        (2) 使用对数度量保证可加性——两条独立消息的信息量等于各自信息量之和。
+        这一框架是 Shannon 理论的直接前驱。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">对数度量</span>
+        <span class="tag">信息与语义分离</span>
+        <span class="tag link">→ Shannon 1948</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1940&ndash;1945</span>
+      <h3>二战密码学与通信安全</h3>
+      <div class="people">Claude Shannon, Alan Turing</div>
+      <div class="desc">
+        Shannon 在贝尔实验室参与军事密码学研究，于 1945 年完成机密报告"A Mathematical Theory of Cryptography"
+        （1949 年以"Communication Theory of Secrecy Systems"公开发表）。
+        他将密码系统形式化为从明文空间到密文空间的映射，引入"完善保密性"(perfect secrecy)概念，
+        证明了一次性密码本(one-time pad)是唯一满足完善保密性的系统。
+        这段经历使 Shannon 深刻理解了信息、冗余与安全性之间的关系，为 1948 年论文的核心思想奠定了基础。
+      </div>
+      <div class="tags">
+        <span class="tag">密码学</span>
+        <span class="tag">完善保密性</span>
+        <span class="tag link">→ Shannon 1948</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1948 年 7&ndash;10 月</span>
+      <h3>Shannon: "A Mathematical Theory of Communication"</h3>
+      <div class="people">Claude E. Shannon</div>
+      <div class="desc">
+        <strong>信息论的创世论文。</strong>Shannon 在 Bell System Technical Journal 分两期发表了这篇论文（7 月与 10 月），
+        建立了整个信息论的数学框架。核心贡献包括：
+        <br><br>
+        <strong>1. 信息熵</strong> H(X) = &minus;&sum; p(x) log p(x)，量化了随机变量的不确定性，统一了信息度量。<br>
+        <strong>2. 信源编码定理</strong>（无损压缩下界）：任何无损编码的平均码长不能低于信源的熵。<br>
+        <strong>3. 信道编码定理</strong>（有噪通信的可靠性）：只要传输速率低于信道容量 C，就存在编码方案使得错误概率任意小。<br>
+        <strong>4. 信道容量公式</strong> C = max I(X;Y)，将通信的终极极限凝练为一个优化问题。<br><br>
+        这篇论文被 Scientific American 誉为"二十世纪最重要的硕士论文"，
+        它不仅奠定了数字通信的理论基础，还深刻影响了统计学、计算机科学、语言学、生物学等领域。
+      </div>
+      <div class="tags">
+        <span class="tag impact">信息论创世</span>
+        <span class="tag">信息熵</span>
+        <span class="tag">信源编码定理</span>
+        <span class="tag">信道编码定理</span>
+        <span class="tag">信道容量</span>
+        <span class="tag link">→ 后续所有工作</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--                    ERA 2: 黄金十年                                -->
+<!-- ================================================================ -->
+<section class="era" id="era2">
+  <div class="era-header">
+    <div class="era-badge">II</div>
+    <div>
+      <h2>黄金十年 (1949&ndash;1959)</h2>
+      <p>纠错编码、最优压缩与率失真理论——信息论的快速展开</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">1949</span>
+      <h3>Shannon: "Communication in the Presence of Noise"</h3>
+      <div class="people">Claude E. Shannon</div>
+      <div class="desc">
+        发表于 Proceedings of the IRE。Shannon 在此论文中给出了连续信道（加性高斯白噪声信道）的容量公式：
+        C = W log(1 + S/N)，其中 W 为带宽，S/N 为信噪比。
+        这一公式将 Nyquist 的带宽约束和 Hartley 的信息度量统一在一个优雅的框架中。
+        该论文还严格证明了采样定理（将连续信号与离散样本等价），
+        虽然 Nyquist (1928) 和 Kotelnikov (1933) 已有相关结果，但 Shannon 的表述最为清晰和完整。
+        至今，Shannon-Hartley 定理仍是通信系统设计的基本约束。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">AWGN 信道容量</span>
+        <span class="tag">采样定理</span>
+        <span class="tag">Shannon-Hartley 定理</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1950</span>
+      <h3>Hamming: "Error Detecting and Error Correcting Codes"</h3>
+      <div class="people">Richard W. Hamming</div>
+      <div class="desc">
+        Hamming 在 Bell System Technical Journal 发表了纠错编码领域的奠基论文。
+        动机直接来自实践：他在贝尔实验室使用的计算机经常因穿孔卡片读取错误而中断。
+        他引入了 Hamming 距离（两个等长码字之间不同位的数目），
+        构造了具有系统纠错能力的 Hamming(7,4) 码——用 7 位传输 4 位数据，可纠正任何单个比特错误。
+        Hamming 还建立了码的距离与纠错能力的对应关系，以及著名的 Hamming 界(球填充界)。
+        这项工作开启了代数编码理论，直接催生了后来的 BCH 码、Reed-Solomon 码等。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">Hamming 距离</span>
+        <span class="tag">纠错编码</span>
+        <span class="tag link">→ BCH, Reed-Solomon</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1951</span>
+      <h3>Kullback & Leibler: "On Information and Sufficiency"</h3>
+      <div class="people">Solomon Kullback, Richard A. Leibler</div>
+      <div class="desc">
+        发表于 Annals of Mathematical Statistics。
+        Kullback 和 Leibler 引入了后来以他们名字命名的 KL 散度：
+        D(P||Q) = &sum; P(x) log [P(x)/Q(x)]，度量两个概率分布之间的"距离"。
+        严格来说，KL 散度不是一个度量（不满足对称性和三角不等式），而是一个"伪距离"或"信息增益"。
+        这个概念的重要性在于它连接了 Fisher 的充分统计量理论和 Shannon 的信息论，
+        成为统计推断、机器学习、变分推断、最大熵方法的核心工具。
+        现代深度学习中 VAE 的 ELBO、KL 正则化等都直接使用了这一概念。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">KL 散度</span>
+        <span class="tag">统计充分性</span>
+        <span class="tag link">→ 最大似然, EM, VAE</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1952</span>
+      <h3>Huffman: "A Method for the Construction of Minimum-Redundancy Codes"</h3>
+      <div class="people">David A. Huffman</div>
+      <div class="desc">
+        MIT 研究生 Huffman 在 Robert Fano 的信息论课上完成了这项工作——
+        作为期末论文的替代选择（另一个选择是参加期末考试）。
+        Huffman 构造了一个自底向上的贪心算法，证明能生成最优前缀码：
+        对于给定的符号概率分布，没有其他前缀码能实现更短的平均码长。
+        这一算法的优雅之处在于其最优性有严格证明，比 Shannon-Fano 编码（自顶向下）性能更优。
+        Huffman 编码至今仍被广泛使用（JPEG、DEFLATE/ZIP、MP3 等格式的组件），
+        是数据压缩领域最基础的算法之一。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">最优前缀码</span>
+        <span class="tag">贪心算法</span>
+        <span class="tag link">→ JPEG, ZIP, MP3</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1954</span>
+      <h3>McMillan 不等式与 Kraft 不等式</h3>
+      <div class="people">Brockway McMillan, Leon Kraft</div>
+      <div class="desc">
+        McMillan 证明了唯一可译码的码字长度必须满足 Kraft 不等式 &sum; 2<sup>&minus;l_i</sup> &le; 1，
+        且这一约束与前缀码完全等价。这意味着在寻找最优编码时，只需在前缀码中搜索即可，
+        极大简化了编码理论。这一结果为 Huffman 编码的最优性提供了更深层的理论支撑。
+      </div>
+      <div class="tags">
+        <span class="tag">Kraft 不等式</span>
+        <span class="tag">唯一可译码</span>
+        <span class="tag link">→ Huffman 编码</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1955&ndash;1956</span>
+      <h3>Shannon 的信息论注记与上界方法</h3>
+      <div class="people">Claude E. Shannon</div>
+      <div class="desc">
+        Shannon 在这一时期发表了一系列技术注记，发展了随机编码论证(random coding argument)的精细化方法，
+        给出了信道编码的错误指数(error exponent)的上界和下界。
+        这些结果深化了信道编码定理：不仅证明了可靠通信的可能性，
+        还量化了错误概率随码长增长而指数衰减的速率。
+      </div>
+      <div class="tags">
+        <span class="tag">错误指数</span>
+        <span class="tag">随机编码</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1956</span>
+      <h3>第一届信息论国际研讨会 (Dartmouth)</h3>
+      <div class="people">Shannon, McCarthy, Minsky, et al.</div>
+      <div class="desc">
+        在达特茅斯会议上，信息论、人工智能和计算理论的先驱们汇聚一堂。
+        虽然这次会议更以"人工智能"的诞生著称，但信息论在会议中扮演了重要角色——
+        与会者讨论了信息论如何应用于学习、模式识别和语言建模。
+        Shannon 本人展示了他的"终极机器"(Ultimate Machine)——一个只会关闭自己的机器。
+      </div>
+      <div class="tags">
+        <span class="tag">跨学科</span>
+        <span class="tag">人工智能</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1957</span>
+      <h3>Jaynes: 最大熵原理</h3>
+      <div class="people">Edwin T. Jaynes</div>
+      <div class="desc">
+        Jaynes 发表"Information Theory and Statistical Mechanics"，
+        提出最大熵原理(MaxEnt)：在满足给定约束条件下，应选择熵最大的概率分布。
+        这一原理将 Shannon 信息熵与 Gibbs/Boltzmann 统计力学彻底统一，
+        并为贝叶斯推断提供了信息论基础。
+        最大熵方法后来成为自然语言处理、经济学、生态学等领域的标准工具。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑</span>
+        <span class="tag">最大熵原理</span>
+        <span class="tag">贝叶斯统计</span>
+        <span class="tag link">→ NLP, 物理学</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1959</span>
+      <h3>Shannon: "Coding Theorems for a Discrete Source with a Fidelity Criterion"</h3>
+      <div class="people">Claude E. Shannon</div>
+      <div class="desc">
+        Shannon 提出率失真理论(Rate-Distortion Theory)，解决了有损压缩的基本极限问题：
+        给定可接受的失真水平 D，压缩数据所需的最低比特率 R(D) 是多少？
+        率失真函数 R(D) 的定义为：R(D) = min I(X;Y)，其中最小化在所有满足 E[d(X,Y)] &le; D 的条件分布上进行。
+        这一理论补完了 Shannon 信息论的三大支柱（信源编码、信道编码、率失真），
+        为后来的音频压缩（MP3）、视频压缩（H.264/H.265）、图像压缩（JPEG）提供了理论基础。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">率失真理论</span>
+        <span class="tag">有损压缩</span>
+        <span class="tag link">→ MP3, H.264, JPEG</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1959&ndash;1960</span>
+      <h3>Elias, Fano, Reed-Solomon: 编码理论大发展</h3>
+      <div class="people">Peter Elias, Robert Fano, Irving Reed, Gustave Solomon</div>
+      <div class="desc">
+        这一时期见证了编码理论的爆炸式发展：
+        Elias 引入了卷积码(1955)；
+        Reed 和 Solomon 提出了 Reed-Solomon 码(1960)，基于有限域多项式求值的代数构造；
+        Bose、Chaudhuri 和 Hocquenghem 独立发现了 BCH 码(1959&ndash;1960)。
+        这些编码方案将 Shannon 的存在性证明转化为可构造的实际算法，
+        至今仍是 CD/DVD、QR 码、深空通信、5G NR 的核心纠错机制。
+      </div>
+      <div class="tags">
+        <span class="tag">卷积码</span>
+        <span class="tag">Reed-Solomon 码</span>
+        <span class="tag">BCH 码</span>
+        <span class="tag link">→ CD, QR码, 5G</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--                    ERA 3: 编码革命                                -->
+<!-- ================================================================ -->
+<section class="era" id="era3">
+  <div class="era-header">
+    <div class="era-badge">III</div>
+    <div>
+      <h2>编码革命与信息论扩展 (1960&ndash;1979)</h2>
+      <p>从代数编码到算术编码，从信息论到算法复杂性——理论与实践的双重突破</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">1961</span>
+      <h3>Rényi 熵</h3>
+      <div class="people">Alfréd Rényi</div>
+      <div class="desc">
+        Rényi 提出了一族参数化的熵度量 H_α(X) = (1/(1&minus;α)) log &sum; p(x)^α，
+        Shannon 熵是 α → 1 时的特殊情况。
+        不同的 α 值对应不同的"稀有事件敏感度"：
+        α = 0 给出 Hartley 熵（仅依赖支撑集大小），α = 2 给出碰撞熵（密码学常用），
+        α → &infin; 给出最小熵（最保守的不确定性度量）。
+        Rényi 熵在密码学、量子信息论和多重分形分析中有广泛应用。
+      </div>
+      <div class="tags">
+        <span class="tag">Rényi 熵</span>
+        <span class="tag">参数化熵族</span>
+        <span class="tag link">→ 密码学, 量子信息</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1964</span>
+      <h3>Solomonoff: "A Formal Theory of Inductive Inference"</h3>
+      <div class="people">Ray Solomonoff</div>
+      <div class="desc">
+        Solomonoff 提出了算法概率(algorithmic probability)理论，试图用可计算性理论为归纳推理奠定数学基础。
+        核心思想：对一个二进制串 x，其先验概率正比于能输出 x 的所有程序的概率之和（按程序长度的 2^{-l} 加权）。
+        这一理论将 Occam 剃刀原理形式化——简短的解释（短程序）获得更高的先验概率。
+        Solomonoff 归纳推理被认为是"完美"的预测理论（理论上最优），
+        虽然不可计算，但为后来的最小描述长度(MDL)原理和 Kolmogorov 复杂性提供了直接灵感。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">算法概率</span>
+        <span class="tag">归纳推理</span>
+        <span class="tag link">→ Kolmogorov 1965, MDL</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1965</span>
+      <h3>Kolmogorov: "Three Approaches to the Quantitative Definition of Information"</h3>
+      <div class="people">Andrey N. Kolmogorov</div>
+      <div class="desc">
+        概率论的奠基人 Kolmogorov 提出了算法信息论的另一条独立路径：
+        Kolmogorov 复杂性 K(x) 定义为能在通用图灵机上输出字符串 x 的最短程序的长度。
+        Kolmogorov 对比了三种信息量化方法：(1) 组合方法，(2) 概率方法（Shannon），(3) 算法方法。
+        他论证了算法复杂性是最基本的——Shannon 熵可以从 Kolmogorov 复杂性推导出来（对遍历信源取期望）。
+        K(x) 不可计算这一事实反而揭示了信息概念的深层本质：
+        随机性不是概率分布的性质，而是单个对象的内禀属性。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">Kolmogorov 复杂性</span>
+        <span class="tag">算法信息论</span>
+        <span class="tag link">→ Chaitin, 可计算性理论</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1966</span>
+      <h3>Chaitin: "On the Length of Programs for Computing Finite Binary Sequences"</h3>
+      <div class="people">Gregory J. Chaitin</div>
+      <div class="desc">
+        年仅 19 岁的 Chaitin 独立发现了与 Kolmogorov 等价的程序长度复杂性概念。
+        Chaitin 更进一步，引入了著名的 Chaitin 常数 &Omega;——
+        一台通用图灵机随机输入程序后停机的概率，这是一个良定义但不可计算的实数。
+        &Omega; 具有令人惊叹的性质：它是正规数（各数字等概率出现），但其任何一位都无法被有限公理系统完全确定。
+        Chaitin 的工作将 Gödel 不完备定理、Turing 停机问题和信息论深刻地联系在一起，
+        揭示了数学真理的信息论极限。
+      </div>
+      <div class="tags">
+        <span class="tag impact">里程碑论文</span>
+        <span class="tag">Chaitin 常数 &Omega;</span>
+        <span class="tag">算法随机性</span>
+        <span class="tag link">→ Gödel, Turing</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1967</span>
+      <h3>Viterbi 算法</h3>
+      <div class="people">Andrew Viterbi</div>
+      <div class="desc">
+        Viterbi 提出了用于卷积码最大似然解码的高效算法。
+        该算法本质上是一个动态规划方法，在隐 Markov 模型(HMM)的状态格图上寻找最优路径。
+        其计算复杂度仅为 O(n · S²)，远低于穷举搜索。
+        Viterbi 算法后来远超编码理论的范畴，成为语音识别(HMM 解码)、
+        生物信息学(基因序列比对)、NLP(词性标注) 的标准工具。
+      </div>
+      <div class="tags">
+        <span class="tag">卷积码解码</span>
+        <span class="tag">动态规划</span>
+        <span class="tag link">→ HMM, 语音识别</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1972&ndash;1976</span>
+      <h3>Lempel-Ziv 压缩算法</h3>
+      <div class="people">Abraham Lempel, Jacob Ziv</div>
+      <div class="desc">
+        Lempel 和 Ziv 提出了两个划时代的无损压缩算法：
+        LZ77 (1977) 基于滑动窗口的字典编码，LZ78 (1978) 基于自适应字典构建。
+        这两个算法的革命性在于它们是通用的——不需要预先知道信源的概率分布，
+        且对任何遍历信源都渐近达到 Shannon 熵率。
+        LZ 算法直接催生了 GIF、PNG、ZIP、gzip 等至今仍在使用的压缩格式，
+        是互联网数据传输的基础设施。
+      </div>
+      <div class="tags">
+        <span class="tag impact">实际突破</span>
+        <span class="tag">字典编码</span>
+        <span class="tag">通用压缩</span>
+        <span class="tag link">→ ZIP, PNG, gzip</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1976</span>
+      <h3>算术编码的理论与实现</h3>
+      <div class="people">Jorma Rissanen, Richard Pasco</div>
+      <div class="desc">
+        Rissanen 和 Pasco 独立提出了算术编码(Arithmetic Coding)的实用方案。
+        与 Huffman 编码不同，算术编码不需要将每个符号映射到整数长度的码字，
+        而是将整个消息映射到 [0,1) 区间中的一个子区间。
+        这使得算术编码能够逼近 Shannon 熵极限到任意精度（每符号仅损失约 0.01 bit），
+        性能严格优于 Huffman 编码。算术编码成为现代压缩标准（H.264、H.265、JPEG2000）的核心组件。
+      </div>
+      <div class="tags">
+        <span class="tag">算术编码</span>
+        <span class="tag">趋近 Shannon 极限</span>
+        <span class="tag link">→ H.264, JPEG2000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--                    ERA 4: 算法信息论                              -->
+<!-- ================================================================ -->
+<section class="era" id="era4">
+  <div class="era-header">
+    <div class="era-badge">IV</div>
+    <div>
+      <h2>算法信息论与网络信息论 (1980&ndash;1999)</h2>
+      <p>MDL 原理、Turbo 码、LDPC 码复兴——逼近 Shannon 极限</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">1978</span>
+      <h3>Rissanen: 最小描述长度(MDL)原理</h3>
+      <div class="people">Jorma Rissanen</div>
+      <div class="desc">
+        Rissanen 将 Kolmogorov 复杂性的思想转化为可实践的统计方法论：
+        最小描述长度(MDL)原理。核心思想是：最好的模型是能最短描述数据的模型——
+        将模型选择问题转化为压缩问题。MDL 自然地惩罚模型复杂度（因为更复杂的模型本身需要更多位来描述），
+        提供了一个不依赖先验分布的模型选择准则。
+        MDL 与 Akaike 信息准则(AIC)和贝叶斯信息准则(BIC)有深刻联系，
+        至今仍是统计学习理论的重要工具。
+      </div>
+      <div class="tags">
+        <span class="tag">MDL 原理</span>
+        <span class="tag">模型选择</span>
+        <span class="tag link">→ AIC, BIC, 机器学习</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1993</span>
+      <h3>Turbo 码：逼近 Shannon 极限</h3>
+      <div class="people">Claude Berrou, Alain Glavieux, Punya Thitimajshima</div>
+      <div class="desc">
+        Berrou 等人在 ICC'93 上发表了 Turbo 码，这是自 Shannon 1948 年论文以来编码理论最重大的实际突破。
+        Turbo 码使用两个并行级联的卷积编码器和一个交织器，配合迭代软判决解码(turbo decoding)，
+        在实际可实现的复杂度下达到了距 Shannon 极限仅 0.7 dB 的性能。
+        这一结果震惊了编码理论界——在此之前，学术界普遍认为达到 Shannon 极限需要
+        不可实现的码长或复杂度。Turbo 码被 3G/4G 移动通信标准采用。
+      </div>
+      <div class="tags">
+        <span class="tag impact">重大突破</span>
+        <span class="tag">Turbo 码</span>
+        <span class="tag">迭代解码</span>
+        <span class="tag link">→ 3G/4G 通信</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1996</span>
+      <h3>LDPC 码复兴</h3>
+      <div class="people">Robert Gallager (1962 原创), David MacKay (复兴)</div>
+      <div class="desc">
+        Gallager 早在 1962 年就发明了低密度奇偶校验(LDPC)码，但因当时缺乏足够的计算能力而被忽视了三十多年。
+        1996 年，MacKay 和 Neal 重新发现并证明 LDPC 码在迭代置信传播(belief propagation)解码下
+        能达到与 Turbo 码相当甚至更优的性能，且结构更规则、更易于硬件实现。
+        LDPC 码被 5G NR、Wi-Fi 6 (802.11ax)、DVB-S2 等现代标准采用，
+        是目前最接近 Shannon 极限的实用编码方案之一。
+      </div>
+      <div class="tags">
+        <span class="tag impact">重大复兴</span>
+        <span class="tag">LDPC 码</span>
+        <span class="tag">置信传播</span>
+        <span class="tag link">→ 5G, Wi-Fi 6</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">1995&ndash;1999</span>
+      <h3>网络信息论的兴起</h3>
+      <div class="people">Thomas Cover, Abbas El Gamal, et al.</div>
+      <div class="desc">
+        随着互联网的兴起，信息论扩展到多用户/网络场景：
+        多接入信道(MAC)、广播信道、中继信道、干扰信道的容量域研究取得重要进展。
+        Ahlswede 等人 (2000) 提出的网络编码理论证明，在网络中间节点进行编码（而不仅仅是路由转发）
+        可以达到更高的吞吐量，这一发现深刻改变了对网络通信极限的理解。
+      </div>
+      <div class="tags">
+        <span class="tag">网络信息论</span>
+        <span class="tag">多用户信道</span>
+        <span class="tag">网络编码</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!--                    ERA 5: 现代拓展                                -->
+<!-- ================================================================ -->
+<section class="era" id="era5">
+  <div class="era-header">
+    <div class="era-badge">V</div>
+    <div>
+      <h2>现代拓展 (2000&ndash;至今)</h2>
+      <p>量子信息、Polar 码、深度学习——Shannon 遗产在新世纪的延续</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="event">
+      <span class="year-badge">2000&ndash;2010</span>
+      <h3>量子信息论</h3>
+      <div class="people">Charles Bennett, Peter Shor, Alexander Holevo, et al.</div>
+      <div class="desc">
+        量子信息论将 Shannon 的框架推广到量子力学：
+        量子信道容量(Holevo 容量)、量子纠错码、量子密钥分发(QKD)。
+        von Neumann 熵 S(ρ) = &minus;Tr(ρ log ρ) 替代了 Shannon 熵在量子态中的角色。
+        Shor 算法(1994) 和量子纠错(1995) 的发现推动了量子计算和量子通信的蓬勃发展。
+        Bennett 和 Brassard 的 BB84 量子密钥分发协议展示了量子信息论的实际安全应用。
+      </div>
+      <div class="tags">
+        <span class="tag">量子信息论</span>
+        <span class="tag">von Neumann 熵</span>
+        <span class="tag">量子纠错</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">2009</span>
+      <h3>Arıkan: Polar 码——可证明达到 Shannon 极限</h3>
+      <div class="people">Erdal Arıkan</div>
+      <div class="desc">
+        Arıkan 提出了 Polar 码，这是第一个被严格证明能在任何对称二进制离散无记忆信道上
+        达到 Shannon 容量的显式构造编码方案，且编码和解码复杂度均为 O(N log N)。
+        Polar 码基于"信道极化"(channel polarization)现象：通过递归变换，
+        将 N 个相同的信道转化为 N 个极化的子信道——一些趋向完美，另一些趋向完全无用。
+        只在"好"的子信道上发送数据即可达到容量。
+        Polar 码被 5G NR 控制信道标准采用。
+      </div>
+      <div class="tags">
+        <span class="tag impact">理论突破</span>
+        <span class="tag">Polar 码</span>
+        <span class="tag">信道极化</span>
+        <span class="tag link">→ 5G NR 控制信道</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">2015&ndash;至今</span>
+      <h3>深度学习与信息论的交汇</h3>
+      <div class="people">Kingma, Welling, Tishby, et al.</div>
+      <div class="desc">
+        信息论与深度学习的交叉催生了多个重要方向：
+        <br>
+        <strong>变分自编码器(VAE)</strong>：ELBO 目标函数本质是重构损失 + KL 散度正则化。<br>
+        <strong>信息瓶颈(Information Bottleneck)</strong>：Tishby (2000, 2015) 提出用互信息约束理解深度学习的表征学习。<br>
+        <strong>交叉熵损失</strong>：深度学习分类任务的标准损失函数就是交叉熵 &minus;&sum; y log ŷ。<br>
+        <strong>扩散模型</strong>：DDPM/Score-based 模型与率失真理论有深刻联系。<br>
+        <strong>大语言模型(LLM)</strong>：GPT/BERT 等模型的训练目标本质上是最小化交叉熵，
+        即逼近语言的 Shannon 熵率——Shannon 1948 年论文中关于英语熵率的讨论跨越 70 年后在 LLM 中得到回应。
+      </div>
+      <div class="tags">
+        <span class="tag">VAE</span>
+        <span class="tag">信息瓶颈</span>
+        <span class="tag">交叉熵</span>
+        <span class="tag">大语言模型</span>
+        <span class="tag link">→ Shannon 1948 的回响</span>
+      </div>
+    </div>
+
+    <div class="event">
+      <span class="year-badge">2020&ndash;至今</span>
+      <h3>信息论的持续前沿</h3>
+      <div class="people">当代研究者群体</div>
+      <div class="desc">
+        信息论仍在活跃发展的前沿方向包括：
+        <br>
+        <strong>有限码长信息论</strong>：超越渐近理论，精确刻画有限码长下的性能。<br>
+        <strong>语义通信</strong>：重新引入 Shannon 当年"搁置"的语义问题，研究语义层面的通信效率。<br>
+        <strong>分布式信息论</strong>：联邦学习、分布式计算中的信息论约束。<br>
+        <strong>隐私与信息论</strong>：差分隐私、信息论安全与互信息约束的关系。<br>
+        <strong>因果推断与信息论</strong>：Directed information、因果熵在因果发现中的应用。<br><br>
+        Shannon 在 1948 年播下的种子，至今仍在结出新的果实。
+      </div>
+      <div class="tags">
+        <span class="tag">有限码长</span>
+        <span class="tag">语义通信</span>
+        <span class="tag">隐私</span>
+        <span class="tag">因果推断</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>信息论发展时间线 &middot; 从 Hartley (1928) 到现代深度学习</p>
+  <p style="margin-top:8px;">H(X) = &minus;&sum; p(x) log p(x) &mdash; 一个公式，改变了整个世界</p>
+</footer>
+
+</body>
+</html>

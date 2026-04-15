@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宏观经济学发展史 | 时间线</title>
+<style>
+  /* ── reset & base ── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI','PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif;
+    background:#0b0e17;
+    color:#c9d1d9;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  /* ── hero ── */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;
+    background:radial-gradient(ellipse at 50% 0%,#1a2744 0%,#0b0e17 70%);
+    padding:40px 20px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;top:-120px;left:50%;
+    width:600px;height:600px;
+    background:radial-gradient(circle,rgba(56,139,253,.12) 0%,transparent 70%);
+    transform:translateX(-50%);pointer-events:none;
+  }
+  .hero h1{
+    font-size:clamp(2rem,5vw,3.6rem);
+    font-weight:800;
+    background:linear-gradient(135deg,#58a6ff,#bc8cff,#f778ba);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:16px;letter-spacing:2px;
+  }
+  .hero .subtitle{
+    font-size:clamp(1rem,2.5vw,1.35rem);
+    color:#8b949e;max-width:700px;
+    margin-bottom:40px;
+  }
+  .hero .scroll-hint{
+    animation:bounce 2s infinite;
+    font-size:28px;color:#58a6ff;cursor:pointer;
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(10px)}
+  }
+
+  /* ── nav pills ── */
+  .era-nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,14,23,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #21262d;
+    padding:12px 20px;
+    display:flex;flex-wrap:wrap;gap:8px;
+    justify-content:center;
+  }
+  .era-nav a{
+    display:inline-block;padding:6px 16px;
+    border-radius:20px;font-size:13px;font-weight:600;
+    text-decoration:none;transition:.25s;
+    border:1px solid #30363d;color:#8b949e;
+  }
+  .era-nav a:hover{
+    border-color:#58a6ff;color:#58a6ff;
+    background:rgba(56,139,253,.08);
+  }
+
+  /* ── section header ── */
+  .era-section{padding:80px 20px 40px;max-width:1100px;margin:0 auto}
+  .era-title{
+    font-size:clamp(1.4rem,3vw,2rem);font-weight:700;
+    margin-bottom:8px;
+  }
+  .era-desc{color:#8b949e;font-size:15px;max-width:780px;margin-bottom:48px;line-height:1.8}
+
+  /* ── colour themes per era ── */
+  .era-classical .era-title{color:#f0883e}
+  .era-classical .dot{background:#f0883e;box-shadow:0 0 12px rgba(240,136,62,.4)}
+  .era-classical .card{border-left-color:#f0883e}
+
+  .era-keynesian .era-title{color:#58a6ff}
+  .era-keynesian .dot{background:#58a6ff;box-shadow:0 0 12px rgba(56,139,253,.4)}
+  .era-keynesian .card{border-left-color:#58a6ff}
+
+  .era-monetarist .era-title{color:#3fb950}
+  .era-monetarist .dot{background:#3fb950;box-shadow:0 0 12px rgba(63,185,80,.4)}
+  .era-monetarist .card{border-left-color:#3fb950}
+
+  .era-newclassical .era-title{color:#bc8cff}
+  .era-newclassical .dot{background:#bc8cff;box-shadow:0 0 12px rgba(188,140,255,.4)}
+  .era-newclassical .card{border-left-color:#bc8cff}
+
+  .era-newkeynesian .era-title{color:#f778ba}
+  .era-newkeynesian .dot{background:#f778ba;box-shadow:0 0 12px rgba(247,120,186,.4)}
+  .era-newkeynesian .card{border-left-color:#f778ba}
+
+  .era-modern .era-title{color:#79c0ff}
+  .era-modern .dot{background:#79c0ff;box-shadow:0 0 12px rgba(121,192,255,.4)}
+  .era-modern .card{border-left-color:#79c0ff}
+
+  /* ── timeline layout ── */
+  .timeline{
+    position:relative;
+    padding-left:36px;
+  }
+  .timeline::before{
+    content:'';position:absolute;
+    left:14px;top:0;bottom:0;
+    width:2px;
+    background:linear-gradient(180deg,#30363d 0%,#21262d 100%);
+  }
+
+  /* ── single event ── */
+  .event{
+    position:relative;
+    margin-bottom:36px;
+    opacity:0;transform:translateY(30px);
+    transition:opacity .6s ease,transform .6s ease;
+  }
+  .event.visible{opacity:1;transform:translateY(0)}
+
+  .dot{
+    position:absolute;left:-29px;top:18px;
+    width:14px;height:14px;border-radius:50%;
+    z-index:2;
+  }
+
+  .card{
+    background:#161b22;
+    border:1px solid #21262d;
+    border-left:3px solid #58a6ff;
+    border-radius:8px;
+    padding:24px 28px;
+    transition:transform .3s,box-shadow .3s;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+  }
+
+  .card .year{
+    display:inline-block;
+    font-size:13px;font-weight:700;
+    padding:2px 10px;border-radius:12px;
+    margin-bottom:10px;
+  }
+  .era-classical .card .year{background:rgba(240,136,62,.15);color:#f0883e}
+  .era-keynesian .card .year{background:rgba(56,139,253,.15);color:#58a6ff}
+  .era-monetarist .card .year{background:rgba(63,185,80,.15);color:#3fb950}
+  .era-newclassical .card .year{background:rgba(188,140,255,.15);color:#bc8cff}
+  .era-newkeynesian .card .year{background:rgba(247,120,186,.15);color:#f778ba}
+  .era-modern .card .year{background:rgba(121,192,255,.15);color:#79c0ff}
+
+  .card h3{
+    font-size:17px;font-weight:700;color:#e6edf3;
+    margin-bottom:6px;
+  }
+  .card .author{font-size:13px;color:#8b949e;margin-bottom:10px}
+  .card p{font-size:14px;color:#9eaab6;line-height:1.75}
+  .card .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+  .card .tag{
+    font-size:11px;padding:2px 8px;border-radius:10px;
+    background:rgba(139,148,158,.1);color:#8b949e;
+    border:1px solid #30363d;
+  }
+
+  /* ── milestone ribbon ── */
+  .milestone .card{
+    position:relative;
+    overflow:hidden;
+  }
+  .milestone .card::after{
+    content:'MILESTONE';
+    position:absolute;top:12px;right:-28px;
+    font-size:9px;font-weight:800;letter-spacing:1.5px;
+    padding:3px 36px;
+    transform:rotate(45deg);
+    color:#fff;
+  }
+  .era-classical .milestone .card::after{background:#f0883e}
+  .era-keynesian .milestone .card::after{background:#58a6ff}
+  .era-monetarist .milestone .card::after{background:#3fb950}
+  .era-newclassical .milestone .card::after{background:#bc8cff}
+  .era-newkeynesian .milestone .card::after{background:#f778ba}
+  .era-modern .milestone .card::after{background:#79c0ff}
+
+  /* ── stats bar ── */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    max-width:1100px;margin:0 auto 60px;
+    padding:0 20px;
+  }
+  .stat-card{
+    background:#161b22;border:1px solid #21262d;
+    border-radius:8px;padding:24px;text-align:center;
+  }
+  .stat-card .num{
+    font-size:2.4rem;font-weight:800;
+    background:linear-gradient(135deg,#58a6ff,#bc8cff);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .stat-card .label{font-size:13px;color:#8b949e;margin-top:4px}
+
+  /* ── footer ── */
+  footer{
+    text-align:center;padding:60px 20px;
+    color:#484f58;font-size:13px;
+    border-top:1px solid #21262d;
+  }
+  footer a{color:#58a6ff;text-decoration:none}
+
+  /* ── responsive ── */
+  @media(max-width:640px){
+    .timeline{padding-left:28px}
+    .dot{left:-22px;width:12px;height:12px}
+    .card{padding:18px 16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <h1>宏观经济学发展史</h1>
+  <p class="subtitle">
+    从亚当·斯密的"看不见的手"到 DSGE 模型 ——
+    跨越 250 年的思想革命，12 篇改变世界的经典论文
+  </p>
+  <div class="scroll-hint" onclick="document.getElementById('stats').scrollIntoView()">&#8595;</div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<div class="stats" id="stats">
+  <div class="stat-card"><div class="num">250+</div><div class="label">年发展历程</div></div>
+  <div class="stat-card"><div class="num">12</div><div class="label">里程碑论文</div></div>
+  <div class="stat-card"><div class="num">9</div><div class="label">诺贝尔奖获得者</div></div>
+  <div class="stat-card"><div class="num">7</div><div class="label">理论范式转变</div></div>
+</div>
+
+<!-- ═══════════════ ERA NAV ═══════════════ -->
+<nav class="era-nav">
+  <a href="#era1">古典学派</a>
+  <a href="#era2">凯恩斯革命</a>
+  <a href="#era3">货币主义</a>
+  <a href="#era4">新古典 & 理性预期</a>
+  <a href="#era5">新凯恩斯主义</a>
+  <a href="#era6">现代综合 & 后危机</a>
+</nav>
+
+<!-- ═══════════════ ERA 1: CLASSICAL ═══════════════ -->
+<section class="era-section era-classical" id="era1">
+  <h2 class="era-title">第一幕 &middot; 古典经济学时期 (1776 &ndash; 1935)</h2>
+  <p class="era-desc">
+    "看不见的手"主宰一切。从亚当·斯密到马歇尔，古典经济学家坚信市场自我调节、供给自动创造需求。
+    这一信念在 1929 年大萧条面前遭到致命挑战。
+  </p>
+  <div class="timeline">
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1776</span>
+        <h3>亚当·斯密《国富论》</h3>
+        <div class="author">Adam Smith</div>
+        <p>"看不见的手"——市场通过价格机制自动实现资源最优配置。奠定了古典经济学的基石，也是现代经济学的起点。</p>
+        <div class="tags"><span class="tag">自由市场</span><span class="tag">分工理论</span><span class="tag">经济学奠基</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1803</span>
+        <h3>萨伊定律</h3>
+        <div class="author">Jean-Baptiste Say</div>
+        <p>"供给创造自身的需求"——生产过程本身会创造足够的收入来购买所有产出。这一信条统治经济学思想超过一个世纪。</p>
+        <div class="tags"><span class="tag">供给侧</span><span class="tag">市场出清</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1898</span>
+        <h3>维克塞尔《利息与价格》</h3>
+        <div class="author">Knut Wicksell</div>
+        <p>提出"自然利率"与"市场利率"的区分，当两者偏离时会引发通胀或通缩。这一框架深刻影响了弗里德曼和现代货币政策理论。</p>
+        <div class="tags"><span class="tag">自然利率</span><span class="tag">货币理论</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1911</span>
+        <h3>费雪《货币的购买力》&mdash; 交易方程式 MV=PT</h3>
+        <div class="author">Irving Fisher</div>
+        <p>将货币数量论数学化，建立了货币供给与物价水平之间的系统联系。名义利率与实际利率的区分（费雪效应）至今仍是金融学基础。</p>
+        <div class="tags"><span class="tag">货币数量论</span><span class="tag">费雪方程</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1928</span>
+        <h3>拉姆齐最优增长模型</h3>
+        <div class="author">Frank Ramsey</div>
+        <p>用变分法求解最优储蓄率问题。这篇论文开创了三个独立领域：博弈论、最优税收和激励理论、最优增长理论。现代增长理论的真正起点。</p>
+        <div class="tags"><span class="tag">最优增长</span><span class="tag">拉姆齐模型</span><span class="tag">变分法</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1929&ndash;1933</span>
+        <h3>大萧条 &mdash; 古典学派的危机</h3>
+        <div class="author">历史事件</div>
+        <p>美国失业率飙升至 25%，GDP 暴跌 30%。古典经济学家坚称"市场会自我修复"，但经济持续低迷长达十年。萨伊定律的信誉崩塌，为凯恩斯革命铺平了道路。</p>
+        <div class="tags"><span class="tag">经济危机</span><span class="tag">失业</span><span class="tag">范式危机</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ERA 2: KEYNESIAN ═══════════════ -->
+<section class="era-section era-keynesian" id="era2">
+  <h2 class="era-title">第二幕 &middot; 凯恩斯革命 (1936 &ndash; 1960s)</h2>
+  <p class="era-desc">
+    凯恩斯彻底颠覆了古典范式：有效需求不足才是失业的根源，政府必须通过财政政策干预经济。
+    宏观经济学作为独立学科由此诞生。
+  </p>
+  <div class="timeline">
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1936</span>
+        <h3>凯恩斯《就业、利息和货币通论》</h3>
+        <div class="author">John Maynard Keynes &middot; 宏观经济学奠基之作</div>
+        <p>
+          否定萨伊定律，提出有效需求决定就业水平。引入"动物精神"、流动性偏好、消费函数、乘数效应等核心概念。
+          2017 年被评为"塑造现代英国的最重要学术著作"。
+        </p>
+        <div class="tags">
+          <span class="tag">有效需求</span><span class="tag">动物精神</span>
+          <span class="tag">乘数效应</span><span class="tag">财政政策</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1937</span>
+        <h3>希克斯 IS-LM 模型</h3>
+        <div class="author">John R. Hicks &middot; 1972 诺贝尔奖</div>
+        <p>
+          《凯恩斯先生与古典学派》将凯恩斯的文字理论数学化为 IS-LM 图形框架。
+          IS 曲线（商品市场均衡）与 LM 曲线（货币市场均衡）的交点决定均衡利率与产出。
+          该模型主导宏观经济教学长达 40 年。
+        </p>
+        <div class="tags">
+          <span class="tag">IS-LM</span><span class="tag">一般均衡</span>
+          <span class="tag">图形化分析</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1939 &amp; 1946</span>
+        <h3>哈罗德-多马增长模型</h3>
+        <div class="author">Roy Harrod &amp; Evsey Domar</div>
+        <p>
+          第一个现代经济增长模型。推测稳定的长期增长是可能的，但均衡如同"刀刃"——极其脆弱。
+          参数的微小偏离即导致失业膨胀或持续通胀。
+        </p>
+        <div class="tags"><span class="tag">刀刃均衡</span><span class="tag">增长理论</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1948</span>
+        <h3>萨缪尔森《经济学》教科书</h3>
+        <div class="author">Paul Samuelson &middot; 1970 诺贝尔奖</div>
+        <p>
+          将凯恩斯主义系统化、教科书化，并完成"新古典综合"——将凯恩斯的宏观框架与新古典微观经济学融合。
+          全球销售超过 400 万册，翻译成 40 余种语言。
+        </p>
+        <div class="tags"><span class="tag">新古典综合</span><span class="tag">教科书</span></div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1956</span>
+        <h3>索洛新古典增长模型</h3>
+        <div class="author">Robert M. Solow &middot; 1987 诺贝尔奖</div>
+        <p>
+          《对经济增长理论的一个贡献》克服了哈罗德-多马模型的"刀刃"问题。
+          核心结论：由于边际收益递减，经济将收敛到稳态；只有技术进步才能驱动人均产出持续增长。
+          奠定了现代增长理论的基础框架。
+        </p>
+        <div class="tags">
+          <span class="tag">稳态收敛</span><span class="tag">技术进步</span>
+          <span class="tag">索洛残差</span><span class="tag">增长核算</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1958</span>
+        <h3>菲利普斯曲线</h3>
+        <div class="author">A.W. Phillips</div>
+        <p>
+          利用英国近百年数据发现失业率与工资增长率的稳定反向关系。
+          Samuelson &amp; Solow (1960) 将其扩展为通胀-失业权衡曲线，
+          成为凯恩斯主义政策制定者的核心工具。
+        </p>
+        <div class="tags">
+          <span class="tag">通胀-失业权衡</span><span class="tag">经验规律</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1958</span>
+        <h3>萨缪尔森 世代交叠模型 (OLG)</h3>
+        <div class="author">Paul Samuelson</div>
+        <p>
+          《精确的消费贷款利息模型》——新生世代不断进入、旧世代退出的动态模型。
+          证明了竞争均衡可能不是帕累托有效的（第一福利定理失效），
+          为养老金、国债、法定货币的分析提供了理论基础。
+        </p>
+        <div class="tags"><span class="tag">OLG 模型</span><span class="tag">福利经济学</span><span class="tag">代际转移</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ERA 3: MONETARIST ═══════════════ -->
+<section class="era-section era-monetarist" id="era3">
+  <h2 class="era-title">第三幕 &middot; 货币主义反革命 (1961 &ndash; 1970s)</h2>
+  <p class="era-desc">
+    弗里德曼以强大的经验证据和理论论证挑战凯恩斯主义正统：货币至关重要，
+    政府不能永久性地用通胀换取低失业率。1970 年代的滞胀成为货币主义的"实验证明"。
+  </p>
+  <div class="timeline">
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1961</span>
+        <h3>穆斯 &mdash; 理性预期假说</h3>
+        <div class="author">John F. Muth</div>
+        <p>
+          《理性预期与价格运动理论》提出经济主体的预期等同于经济理论的预测。
+          论文发表后长期被忽视，直到卢卡斯将其引入宏观经济学才引发革命。
+          "如果预期不是适度理性的，经济学家就可以通过商品投机获利。"
+        </p>
+        <div class="tags">
+          <span class="tag">理性预期</span><span class="tag">信息效率</span>
+          <span class="tag">预期革命的种子</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1963</span>
+        <h3>弗里德曼 &amp; 施瓦茨《美国货币史》</h3>
+        <div class="author">Milton Friedman &amp; Anna Schwartz &middot; Friedman 1976 诺贝尔奖</div>
+        <p>
+          860 页巨著证明货币供给变动深刻影响美国经济波动。最具颠覆性的结论：
+          大萧条是美联储政策失误——而非市场失灵——的后果。
+          伯南克曾公开致歉："你们说得对，是我们（美联储）造成的。"
+        </p>
+        <div class="tags">
+          <span class="tag">货币主义</span><span class="tag">大萧条</span>
+          <span class="tag">叙事方法</span><span class="tag">央行政策</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1968</span>
+        <h3>弗里德曼《货币政策的作用》</h3>
+        <div class="author">Milton Friedman &middot; AEA 主席演讲</div>
+        <p>
+          仅 17 页，却被誉为"宏观经济思想史的转折点"。
+          提出自然失业率假说：长期菲利普斯曲线是垂直的，
+          货币政策无法永久性地降低失业率至自然率以下。
+          至今仍是通胀目标制框架的理论基础。
+        </p>
+        <div class="tags">
+          <span class="tag">自然失业率</span><span class="tag">垂直菲利普斯曲线</span>
+          <span class="tag">货币中性</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1970</span>
+        <h3>阿克洛夫《柠檬市场》</h3>
+        <div class="author">George A. Akerlof &middot; 2001 诺贝尔奖</div>
+        <p>
+          仅 12 页，曾被三家顶刊拒稿。以二手车市场为例，揭示信息不对称导致逆向选择，
+          劣品驱逐良品，市场可能完全崩溃。
+          开创了信息经济学整个领域。
+        </p>
+        <div class="tags">
+          <span class="tag">信息不对称</span><span class="tag">逆向选择</span>
+          <span class="tag">市场失灵</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1970s</span>
+        <h3>滞胀危机 &mdash; 凯恩斯主义的溃败</h3>
+        <div class="author">历史事件</div>
+        <p>
+          石油危机引发高通胀与高失业并存的"滞胀"——简单的菲利普斯曲线无法解释的现象。
+          凯恩斯主义的政策处方（扩大需求压低失业）完全失效。
+          货币主义和理性预期学派趁势崛起。
+        </p>
+        <div class="tags"><span class="tag">滞胀</span><span class="tag">石油危机</span><span class="tag">范式转变</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ERA 4: NEW CLASSICAL ═══════════════ -->
+<section class="era-section era-newclassical" id="era4">
+  <h2 class="era-title">第四幕 &middot; 理性预期革命 &amp; 新古典宏观经济学 (1970s &ndash; 1980s)</h2>
+  <p class="era-desc">
+    卢卡斯将理性预期引入宏观经济学，Kydland &amp; Prescott 建立真实商业周期理论。
+    核心信条：人们是理性的，政府干预系统性地无效甚至有害。
+  </p>
+  <div class="timeline">
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1976</span>
+        <h3>卢卡斯批判</h3>
+        <div class="author">Robert E. Lucas, Jr. &middot; 1995 诺贝尔奖</div>
+        <p>
+          《计量经济政策评估：一个批判》论证了基于历史数据估计的计量模型不能用于预测新政策效果，
+          因为理性经济主体会根据政策变化调整行为。
+          从根本上改变了宏观经济建模方法论，催生了 DSGE 模型时代。
+        </p>
+        <div class="tags">
+          <span class="tag">卢卡斯批判</span><span class="tag">理性预期</span>
+          <span class="tag">微观基础</span><span class="tag">政策无效</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1977</span>
+        <h3>"规则而非相机抉择"</h3>
+        <div class="author">Finn Kydland &amp; Edward Prescott</div>
+        <p>
+          论证了相机抉择政策存在"时间不一致性"问题——
+          事前最优的政策承诺在事后可能不再最优，理性经济人会预见到这一点。
+          为货币政策规则化提供了强有力的理论支撑。
+        </p>
+        <div class="tags"><span class="tag">时间不一致性</span><span class="tag">政策规则</span></div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1982</span>
+        <h3>真实商业周期理论 (RBC)</h3>
+        <div class="author">Finn Kydland &amp; Edward Prescott &middot; 2004 诺贝尔奖</div>
+        <p>
+          《建造时间与总量波动》提出经济波动是竞争性经济对技术冲击的最优反应，
+          不需要需求冲击或市场失灵即可解释 70% 的产出波动。
+          引入"校准"方法论，彻底改变了宏观经济学的研究范式。
+        </p>
+        <div class="tags">
+          <span class="tag">RBC</span><span class="tag">技术冲击</span>
+          <span class="tag">校准方法</span><span class="tag">最优波动</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ERA 5: NEW KEYNESIAN ═══════════════ -->
+<section class="era-section era-newkeynesian" id="era5">
+  <h2 class="era-title">第五幕 &middot; 新凯恩斯主义 &amp; 内生增长 (1980s &ndash; 1990s)</h2>
+  <p class="era-desc">
+    新凯恩斯主义者接受理性预期框架，但加入价格粘性、菜单成本、效率工资等微观基础，
+    证明市场摩擦使政府干预仍有空间。同期，内生增长理论将技术进步内生化。
+  </p>
+  <div class="timeline">
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1986</span>
+        <h3>罗默 &mdash; 内生增长理论</h3>
+        <div class="author">Paul M. Romer &middot; 2018 诺贝尔奖</div>
+        <p>
+          《递增报酬与长期增长》将知识视为具有递增边际生产率的生产要素。
+          核心洞见："思想"是非竞争性的——一旦被发明，任何人都可以同时使用而不减损价值。
+          税收政策、基础研究和教育因此能影响经济的长期增长前景。
+        </p>
+        <div class="tags">
+          <span class="tag">内生增长</span><span class="tag">知识溢出</span>
+          <span class="tag">递增报酬</span><span class="tag">非竞争性</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1989</span>
+        <h3>曼昆批判 RBC 理论</h3>
+        <div class="author">N. Gregory Mankiw</div>
+        <p>
+          《真实商业周期：新凯恩斯主义视角》指出 RBC 理论过度依赖不可观测的大规模技术冲击
+          和不切实际的劳动力供给弹性假设，无法解释非自愿失业现象。
+          新凯恩斯主义由此确立为主流宏观经济思想之一。
+        </p>
+        <div class="tags"><span class="tag">新凯恩斯批判</span><span class="tag">非自愿失业</span></div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">1993</span>
+        <h3>泰勒规则</h3>
+        <div class="author">John B. Taylor</div>
+        <p>
+          《相机抉择与政策规则的实践》提出简明的利率决策公式：
+          名义利率 = 通胀率 + 0.5&times;产出缺口 + 0.5&times;(通胀率-2%) + 2%。
+          "泰勒原则"——通胀上升时实际利率必须上升——成为现代货币政策的核心信条。
+        </p>
+        <div class="tags">
+          <span class="tag">泰勒规则</span><span class="tag">货币政策基准</span>
+          <span class="tag">规则 vs 相机抉择</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ERA 6: MODERN ═══════════════ -->
+<section class="era-section era-modern" id="era6">
+  <h2 class="era-title">第六幕 &middot; 新新古典综合 &amp; 后危机时代 (1999 &ndash; 至今)</h2>
+  <p class="era-desc">
+    新古典与新凯恩斯融合为 DSGE 范式，但 2008 年金融危机暴露其重大缺陷。
+    后危机时代，异质性代理人模型（HANK）、金融摩擦和 MMT 争论方兴未艾。
+  </p>
+  <div class="timeline">
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">2003</span>
+        <h3>伍德福德《利息与价格》</h3>
+        <div class="author">Michael Woodford</div>
+        <p>
+          现代货币政策理论的集大成之作。将新凯恩斯 DSGE 模型体系化，
+          强调"预期管理"和"前瞻性指引"在货币政策中的核心作用。
+          被称为"新凯恩斯主义的《通论》"。
+        </p>
+        <div class="tags"><span class="tag">DSGE</span><span class="tag">预期管理</span><span class="tag">新综合</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">2007</span>
+        <h3>Smets-Wouters DSGE 模型</h3>
+        <div class="author">Frank Smets &amp; Rafael Wouters</div>
+        <p>
+          构建了一个中等规模的 DSGE 模型，在预测精度上可以匹配甚至超越传统的 VAR 模型。
+          成为各国中央银行政策分析的标准工具。
+        </p>
+        <div class="tags"><span class="tag">DSGE</span><span class="tag">央行建模</span><span class="tag">预测</span></div>
+      </div>
+    </div>
+
+    <div class="event milestone">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">2008&ndash;2009</span>
+        <h3>全球金融危机 &amp; 大衰退</h3>
+        <div class="author">历史事件</div>
+        <p>
+          次贷危机引发全球金融海啸。主流 DSGE 模型未能预警——
+          它们缺乏金融摩擦、忽视异质性代理人、无法捕捉系统性风险。
+          宏观经济学遭遇深刻反思。
+          美联储参照弗里德曼的教训大规模注入流动性，避免了大萧条的重演。
+        </p>
+        <div class="tags"><span class="tag">金融危机</span><span class="tag">量化宽松</span><span class="tag">范式反思</span></div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="dot"></div>
+      <div class="card">
+        <span class="year">2010s&ndash;至今</span>
+        <h3>后危机宏观经济学前沿</h3>
+        <div class="author">Kaplan, Moll, Auclert 等</div>
+        <p>
+          异质性代理人新凯恩斯模型（HANK）取代代表性代理人假设；
+          金融摩擦被纳入核心框架；
+          现代货币理论（MMT）引发激烈争论；
+          气候经济学、数字货币、AI 对劳动市场的影响成为新的研究热点。
+        </p>
+        <div class="tags">
+          <span class="tag">HANK</span><span class="tag">金融摩擦</span>
+          <span class="tag">MMT</span><span class="tag">气候经济学</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ EVOLUTION DIAGRAM ═══════════════ -->
+<section class="era-section" style="text-align:center">
+  <h2 class="era-title" style="color:#58a6ff">思想演进的辩证螺旋</h2>
+  <div style="
+    display:inline-block;text-align:left;
+    background:#161b22;border:1px solid #21262d;border-radius:12px;
+    padding:36px 40px;margin-top:24px;font-size:15px;line-height:2.2;
+    max-width:600px;width:100%;
+  ">
+    <span style="color:#f0883e;font-weight:700">古典学派</span>（市场万能）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 大萧条证伪<br>
+    <span style="color:#58a6ff;font-weight:700">凯恩斯革命</span>（政府干预）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 滞胀证伪<br>
+    <span style="color:#3fb950;font-weight:700">货币主义反革命</span>（货币至上）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 理性预期深化<br>
+    <span style="color:#bc8cff;font-weight:700">新古典宏观</span>（微观基础 + 政策无效）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 经验反驳<br>
+    <span style="color:#f778ba;font-weight:700">新凯恩斯主义</span>（理性预期 + 市场摩擦）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 融合<br>
+    <span style="color:#79c0ff;font-weight:700">新新古典综合</span>（DSGE 模型）<br>
+    &nbsp;&nbsp;&darr;&nbsp; 2008 金融危机<br>
+    <span style="color:#ffa657;font-weight:700">后危机反思</span>（HANK &middot; 金融摩擦 &middot; MMT）
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <p>宏观经济学发展史时间线 &middot; 基于公开学术资料整理</p>
+  <p style="margin-top:8px">
+    参考来源：
+    <a href="https://en.wikipedia.org/wiki/History_of_macroeconomic_thought" target="_blank">Wikipedia</a> &middot;
+    <a href="https://www.aeaweb.org/articles?id=10.1257/aer.101.1.1" target="_blank">AER Top 20</a> &middot;
+    <a href="https://www.cambridge.org/core/books/history-of-macroeconomics-from-keynes-to-lucas-and-beyond/07A9A46C2F5EEA91867BB979C6557169" target="_blank">De Vroey (2016)</a>
+  </p>
+</footer>
+
+<!-- ═══════════════ SCROLL ANIMATION ═══════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const events=document.querySelectorAll('.event');
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+    });
+  },{threshold:0.15});
+  events.forEach(e=>observer.observe(e));
+});
+</script>
+</body>
+</html>

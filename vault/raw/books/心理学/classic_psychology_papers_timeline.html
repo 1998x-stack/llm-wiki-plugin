@@ -1,0 +1,384 @@
+
+<h2 class="sr-only">经典心理学论文时间线，涵盖1879年至1974年共14篇奠基性研究</h2>
+<style>
+:root { --accent: #534AB7; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.container { padding: 1.5rem 1rem 2rem; }
+.header { margin-bottom: 2rem; }
+.header h1 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.header p { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+
+.filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.filter-btn { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; color: var(--color-text-secondary); transition: all .15s; }
+.filter-btn:hover { background: var(--color-background-secondary); }
+.filter-btn.active { background: #EEEDFE; border-color: #AFA9EC; color: #3C3489; }
+@media (prefers-color-scheme: dark) {
+  .filter-btn.active { background: #3C3489; border-color: #534AB7; color: #CECBF6; }
+}
+
+.timeline { position: relative; padding-left: 0; }
+.spine { position: absolute; left: 72px; top: 0; bottom: 0; width: 1px; background: var(--color-border-tertiary); }
+
+.entry { display: flex; gap: 0; margin-bottom: 1.5rem; cursor: pointer; }
+.entry:hover .card { border-color: var(--color-border-primary); }
+.entry.hidden { display: none; }
+
+.year-col { width: 72px; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; padding-right: 16px; padding-top: 14px; }
+.year { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); }
+
+.dot-col { width: 0; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; padding-top: 16px; position: relative; z-index: 1; }
+.dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; flex-shrink: 0; margin-left: -5px; }
+@media (prefers-color-scheme: dark) { .dot { border-color: #1a1a1a; } }
+
+.card-col { flex: 1; padding-left: 20px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 12px 14px; transition: border-color .15s; }
+.card-header { display: flex; align-items: flex-start; gap: 8px; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; flex-shrink: 0; margin-top: 2px; font-weight: 500; }
+.card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); line-height: 1.4; }
+.card-author { font-size: 12px; color: var(--color-text-secondary); margin-top: 3px; }
+.card-desc { font-size: 12px; color: var(--color-text-secondary); margin-top: 6px; line-height: 1.6; }
+.card-more { font-size: 12px; color: #534AB7; margin-top: 6px; cursor: pointer; }
+.card-more:hover { text-decoration: underline; }
+
+.c-behaviorism .dot { background: #D85A30; }
+.c-behaviorism .badge { background: #FAECE7; color: #712B13; }
+@media (prefers-color-scheme: dark) {
+  .c-behaviorism .badge { background: #712B13; color: #F5C4B3; }
+}
+.c-psychoanalysis .dot { background: #534AB7; }
+.c-psychoanalysis .badge { background: #EEEDFE; color: #3C3489; }
+@media (prefers-color-scheme: dark) {
+  .c-psychoanalysis .badge { background: #3C3489; color: #CECBF6; }
+}
+.c-social .dot { background: #1D9E75; }
+.c-social .badge { background: #E1F5EE; color: #085041; }
+@media (prefers-color-scheme: dark) {
+  .c-social .badge { background: #085041; color: #9FE1CB; }
+}
+.c-cognitive .dot { background: #BA7517; }
+.c-cognitive .badge { background: #FAEEDA; color: #633806; }
+@media (prefers-color-scheme: dark) {
+  .c-cognitive .badge { background: #633806; color: #FAC775; }
+}
+.c-humanistic .dot { background: #3B8BD4; }
+.c-humanistic .badge { background: #E6F1FB; color: #0C447C; }
+@media (prefers-color-scheme: dark) {
+  .c-humanistic .badge { background: #0C447C; color: #B5D4F4; }
+}
+.c-developmental .dot { background: #D4537E; }
+.c-developmental .badge { background: #FBEAF0; color: #4B1528; }
+@media (prefers-color-scheme: dark) {
+  .c-developmental .badge { background: #4B1528; color: #F4C0D1; }
+}
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>经典心理学论文时间线</h1>
+    <p>1879 — 1974 · 14篇改变人类自我认知的奠基之作</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filter('all', this)">全部</button>
+    <button class="filter-btn" onclick="filter('behaviorism', this)">行为主义</button>
+    <button class="filter-btn" onclick="filter('psychoanalysis', this)">精神分析</button>
+    <button class="filter-btn" onclick="filter('social', this)">社会心理</button>
+    <button class="filter-btn" onclick="filter('cognitive', this)">认知心理</button>
+    <button class="filter-btn" onclick="filter('humanistic', this)">人本主义</button>
+    <button class="filter-btn" onclick="filter('developmental', this)">发展心理</button>
+  </div>
+
+  <div class="timeline">
+    <div class="spine"></div>
+
+    <div class="entry c-psychoanalysis" data-cat="psychoanalysis">
+      <div class="year-col"><span class="year">1879</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">精神分析</span>
+            <div>
+              <div class="card-title">心理学实验室的建立</div>
+              <div class="card-author">威廉·冯特 (Wilhelm Wundt)</div>
+            </div>
+          </div>
+          <div class="card-desc">在莱比锡建立世界第一个心理学实验室，标志着心理学从哲学中独立，成为一门实验科学。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍冯特1879年建立心理学实验室的历史意义，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-psychoanalysis" data-cat="psychoanalysis">
+      <div class="year-col"><span class="year">1900</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">精神分析</span>
+            <div>
+              <div class="card-title">《梦的解析》</div>
+              <div class="card-author">西格蒙德·弗洛伊德 (Sigmund Freud)</div>
+            </div>
+          </div>
+          <div class="card-desc">提出梦是通往无意识的"皇家大道"，系统构建精神分析理论，革命性地改变了人类对心理的认知。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍弗洛伊德1900年《梦的解析》，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-behaviorism" data-cat="behaviorism">
+      <div class="year-col"><span class="year">1906</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">行为主义</span>
+            <div>
+              <div class="card-title">条件反射实验</div>
+              <div class="card-author">伊万·巴甫洛夫 (Ivan Pavlov)</div>
+            </div>
+          </div>
+          <div class="card-desc">以狗的唾液分泌实验发现"经典条件反射"，证明行为可由外部刺激塑造，开创行为主义先河。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍巴甫洛夫1906年条件反射实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-behaviorism" data-cat="behaviorism">
+      <div class="year-col"><span class="year">1913</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">行为主义</span>
+            <div>
+              <div class="card-title">《行为主义者眼中的心理学》</div>
+              <div class="card-author">约翰·华生 (John B. Watson)</div>
+            </div>
+          </div>
+          <div class="card-desc">宣告行为主义革命，主张心理学应只研究可观察行为，彻底排斥意识与内省，史称"行为主义宣言"。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍华生1913年行为主义宣言，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-behaviorism" data-cat="behaviorism">
+      <div class="year-col"><span class="year">1920</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">行为主义</span>
+            <div>
+              <div class="card-title">小艾伯特实验</div>
+              <div class="card-author">华生 & 雷纳 (Watson & Rayner)</div>
+            </div>
+          </div>
+          <div class="card-desc">对11个月婴儿植入恐惧条件反射，证明情绪反应可被习得，是心理学史上最著名也最具争议的实验。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍华生和雷纳1920年小艾伯特实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-behaviorism" data-cat="behaviorism">
+      <div class="year-col"><span class="year">1938</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">行为主义</span>
+            <div>
+              <div class="card-title">《有机体的行为》</div>
+              <div class="card-author">B.F. 斯金纳 (B.F. Skinner)</div>
+            </div>
+          </div>
+          <div class="card-desc">提出"操作性条件反射"理论，发明斯金纳箱，系统阐明强化与惩罚机制，将行为主义推向顶峰。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍斯金纳1938年操作性条件反射理论，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-humanistic" data-cat="humanistic">
+      <div class="year-col"><span class="year">1943</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">人本主义</span>
+            <div>
+              <div class="card-title">《人类动机理论》</div>
+              <div class="card-author">亚伯拉罕·马斯洛 (Abraham Maslow)</div>
+            </div>
+          </div>
+          <div class="card-desc">提出著名的"需求层次理论"，将人类动机分为五层金字塔，从生理需求到自我实现，影响深远至今。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍马斯洛1943年需求层次理论，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-cognitive" data-cat="cognitive">
+      <div class="year-col"><span class="year">1957</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">认知心理</span>
+            <div>
+              <div class="card-title">《认知失调理论》</div>
+              <div class="card-author">利昂·费斯廷格 (Leon Festinger)</div>
+            </div>
+          </div>
+          <div class="card-desc">提出当信念与行为产生矛盾时，人会产生心理不适并主动消除，揭示了人类自我合理化的深层机制。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍费斯廷格1957年认知失调理论，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-developmental" data-cat="developmental">
+      <div class="year-col"><span class="year">1958</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">发展心理</span>
+            <div>
+              <div class="card-title">《爱的本质》</div>
+              <div class="card-author">哈里·哈洛 (Harry Harlow)</div>
+            </div>
+          </div>
+          <div class="card-desc">恒河猴实验证明婴儿依恋的核心是接触安慰而非食物，彻底推翻了当时流行的"哺育依恋"理论。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍哈洛1958年爱的本质恒河猴实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-social" data-cat="social">
+      <div class="year-col"><span class="year">1961</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">社会心理</span>
+            <div>
+              <div class="card-title">波波玩偶实验</div>
+              <div class="card-author">阿尔伯特·班杜拉 (Albert Bandura)</div>
+            </div>
+          </div>
+          <div class="card-desc">儿童观看成人攻击玩偶后模仿其行为，证明攻击性可通过观察习得，创立社会学习理论。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍班杜拉1961年波波玩偶实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-social" data-cat="social">
+      <div class="year-col"><span class="year">1963</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">社会心理</span>
+            <div>
+              <div class="card-title">服从权威实验</div>
+              <div class="card-author">斯坦利·米尔格拉姆 (Stanley Milgram)</div>
+            </div>
+          </div>
+          <div class="card-desc">65%的普通人在权威命令下会对他人施以"致命"电击，揭示了平庸之恶的真实面目，震惊世界。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍米尔格拉姆1963年服从权威实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-cognitive" data-cat="cognitive">
+      <div class="year-col"><span class="year">1967</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">认知心理</span>
+            <div>
+              <div class="card-title">习得性无助实验</div>
+              <div class="card-author">马丁·塞利格曼 (Martin Seligman)</div>
+            </div>
+          </div>
+          <div class="card-desc">动物在不可控电击后放弃逃跑，习得无助感。该理论后被应用于抑郁症研究，开创积极心理学运动。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍塞利格曼1967年习得性无助实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-social" data-cat="social">
+      <div class="year-col"><span class="year">1971</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">社会心理</span>
+            <div>
+              <div class="card-title">斯坦福监狱实验</div>
+              <div class="card-author">菲利普·津巴多 (Philip Zimbardo)</div>
+            </div>
+          </div>
+          <div class="card-desc">正常大学生扮演狱卒后迅速表现出残忍，实验被迫提前终止，揭示情境力量如何腐蚀人性。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍津巴多1971年斯坦福监狱实验，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-social" data-cat="social">
+      <div class="year-col"><span class="year">1973</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">社会心理</span>
+            <div>
+              <div class="card-title">《理智之人在疯人院》</div>
+              <div class="card-author">大卫·罗森汉 (David Rosenhan)</div>
+            </div>
+          </div>
+          <div class="card-desc">8名正常人伪装进入精神病院，被院方视为"真患者"长达数周，引发精神病诊断体系的根本性危机。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍罗森汉1973年理智之人在疯人院研究，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry c-cognitive" data-cat="cognitive">
+      <div class="year-col"><span class="year">1974</span></div>
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="badge">认知心理</span>
+            <div>
+              <div class="card-title">《不确定性下的判断：启发式与偏差》</div>
+              <div class="card-author">卡尼曼 & 特沃斯基 (Kahneman & Tversky)</div>
+            </div>
+          </div>
+          <div class="card-desc">系统证明人类决策依赖直觉捷径而非理性计算，奠定行为经济学基础，卡尼曼因此获诺贝尔经济学奖。</div>
+          <div class="card-more" onclick="sendPrompt('详细介绍卡尼曼和特沃斯基1974年启发式与偏差论文，写一篇深度科普文章')">深度分析 ↗</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function filter(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) {
+      e.classList.remove('hidden');
+    } else {
+      e.classList.add('hidden');
+    }
+  });
+}
+</script>

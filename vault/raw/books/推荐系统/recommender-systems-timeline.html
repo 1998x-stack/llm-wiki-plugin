@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推荐系统发展史：从信息过滤到生成式智能（1979–2026）</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card-bg: #1a1d27;
+    --card-border: #2a2d3a;
+    --accent-1: #6366f1;
+    --accent-2: #8b5cf6;
+    --accent-3: #06b6d4;
+    --accent-4: #10b981;
+    --accent-5: #f59e0b;
+    --accent-6: #ef4444;
+    --accent-7: #ec4899;
+    --accent-8: #14b8a6;
+    --accent-9: #f97316;
+    --accent-10: #a855f7;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --timeline-line: #334155;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0f1117 0%, #1e1b4b 40%, #172554 70%, #0f1117 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #818cf8, #06b6d4, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero .meta-info {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .meta-info .stat {
+    text-align: center;
+  }
+
+  .stat .number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Navigation */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 17, 23, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-bar a {
+    white-space: nowrap;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .nav-bar a:hover {
+    color: var(--text-primary);
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Era Section */
+  .era-section {
+    padding: 4rem 0 2rem;
+  }
+
+  .era-header {
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+    border-left: 4px solid var(--accent-1);
+  }
+
+  .era-header .era-number {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .era-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .era-header .era-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 700px;
+  }
+
+  .era-context {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .era-context strong {
+    color: var(--text-primary);
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-line);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 1.2rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent-1);
+    z-index: 2;
+  }
+
+  .timeline-item.milestone::before {
+    width: 16px;
+    height: 16px;
+    left: -2.55rem;
+    background: var(--accent-5);
+    box-shadow: 0 0 0 2px var(--accent-5), 0 0 15px rgba(245, 158, 11, 0.3);
+  }
+
+  .timeline-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    transition: all 0.3s;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .timeline-card .year-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  .timeline-card .authors {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-card .contribution {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    line-height: 1.7;
+  }
+
+  .timeline-card .significance {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+    padding-top: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .significance .label {
+    font-weight: 600;
+    color: var(--accent-3);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .impact-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.3rem;
+    margin-top: 0.3rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+  }
+
+  /* Color Schemes for Eras */
+  .era-1 .era-header { border-color: var(--accent-1); }
+  .era-1 .timeline-item::before { background: var(--accent-1); box-shadow: 0 0 0 2px var(--accent-1); }
+  .era-1 .year-badge { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+
+  .era-2 .era-header { border-color: var(--accent-2); }
+  .era-2 .timeline-item::before { background: var(--accent-2); box-shadow: 0 0 0 2px var(--accent-2); }
+  .era-2 .year-badge { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+
+  .era-3 .era-header { border-color: var(--accent-3); }
+  .era-3 .timeline-item::before { background: var(--accent-3); box-shadow: 0 0 0 2px var(--accent-3); }
+  .era-3 .year-badge { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+
+  .era-4 .era-header { border-color: var(--accent-5); }
+  .era-4 .timeline-item::before { background: var(--accent-5); box-shadow: 0 0 0 2px var(--accent-5); }
+  .era-4 .year-badge { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+
+  .era-5 .era-header { border-color: var(--accent-4); }
+  .era-5 .timeline-item::before { background: var(--accent-4); box-shadow: 0 0 0 2px var(--accent-4); }
+  .era-5 .year-badge { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+  .era-6 .era-header { border-color: var(--accent-6); }
+  .era-6 .timeline-item::before { background: var(--accent-6); box-shadow: 0 0 0 2px var(--accent-6); }
+  .era-6 .year-badge { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+  .era-7 .era-header { border-color: var(--accent-7); }
+  .era-7 .timeline-item::before { background: var(--accent-7); box-shadow: 0 0 0 2px var(--accent-7); }
+  .era-7 .year-badge { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+  .era-8 .era-header { border-color: var(--accent-8); }
+  .era-8 .timeline-item::before { background: var(--accent-8); box-shadow: 0 0 0 2px var(--accent-8); }
+  .era-8 .year-badge { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; }
+
+  .era-9 .era-header { border-color: var(--accent-9); }
+  .era-9 .timeline-item::before { background: var(--accent-9); box-shadow: 0 0 0 2px var(--accent-9); }
+  .era-9 .year-badge { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+
+  .era-10 .era-header { border-color: var(--accent-10); }
+  .era-10 .timeline-item::before { background: var(--accent-10); box-shadow: 0 0 0 2px var(--accent-10); }
+  .era-10 .year-badge { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+  .milestone .year-badge {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  /* Paradigm Shift Banner */
+  .paradigm-shift {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .paradigm-shift h4 {
+    font-size: 1rem;
+    color: #818cf8;
+    margin-bottom: 0.4rem;
+  }
+
+  .paradigm-shift p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--card-border);
+    margin-top: 4rem;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+    .timeline { padding-left: 2rem; }
+    .timeline-item::before { left: -1.55rem; }
+    .timeline-item.milestone::before { left: -1.65rem; }
+    .timeline-card { padding: 1rem 1.2rem; }
+    .nav-bar { padding: 0.6rem 1rem; }
+    .era-header h2 { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>推荐系统发展史</h1>
+  <p class="subtitle">从信息过滤到生成式智能 —— 一部关于「理解人类偏好」的技术演化史<br>1979 – 2026</p>
+  <div class="meta-info">
+    <div class="stat">
+      <div class="number">47</div>
+      <div class="label">年跨度</div>
+    </div>
+    <div class="stat">
+      <div class="number">10</div>
+      <div class="label">核心阶段</div>
+    </div>
+    <div class="stat">
+      <div class="number">60+</div>
+      <div class="label">关键事件</div>
+    </div>
+    <div class="stat">
+      <div class="number">6</div>
+      <div class="label">范式转变</div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <a href="#era-1">萌芽期 1979–1994</a>
+  <a href="#era-2">建立期 1995–2002</a>
+  <a href="#era-3">工业化 2003–2005</a>
+  <a href="#era-4">MF黄金期 2006–2009</a>
+  <a href="#era-5">FM与LTR 2010–2013</a>
+  <a href="#era-6">深度学习兴起 2014–2016</a>
+  <a href="#era-7">深度CTR与序列 2017–2019</a>
+  <a href="#era-8">图与因果 2019–2021</a>
+  <a href="#era-9">大模型初探 2022–2023</a>
+  <a href="#era-10">生成式新纪元 2024–2026</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== ERA 1 ==================== -->
+<section id="era-1" class="era-section era-1">
+  <div class="era-header">
+    <div class="era-number">阶段一</div>
+    <h2>信息过滤萌芽与协同过滤概念诞生</h2>
+    <p class="era-desc">1979 – 1994 · 从人工分类到自动化推荐的思想启蒙</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>互联网尚未诞生或处于极早期。信息过载问题首先出现在电子邮件和新闻组中。研究者开始思考：能否让系统自动帮助用户筛选有价值的信息？这一阶段的核心贡献不在算法的精巧，而在于<strong>问题定义</strong>——将"帮人找到想要的东西"作为一个可计算的任务来研究。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1979</span>
+        <h3>Grundy 系统 —— 最早的个性化推荐原型</h3>
+        <div class="authors">Elaine Rich · 德克萨斯大学奥斯汀分校</div>
+        <div class="contribution">
+          世界上第一个已知的推荐系统原型。Grundy 通过问卷采访用户偏好，将用户分配到"刻板印象群组"中，为同一群组推荐相同的书籍。虽然方法粗糙，但首次将"个性化"作为自动系统的设计目标。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          标志着从"一刀切"的信息检索向"因人而异"的信息服务的观念转变。尽管当时没有使用"推荐系统"这一术语，但Grundy预示了整个领域的诞生方向。
+          <br>
+          <span class="impact-tag">个性化萌芽</span>
+          <span class="impact-tag">用户画像原型</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1979</span>
+        <h3>CITE 在线目录系统</h3>
+        <div class="authors">Tamás Doszkocs · 美国国家医学图书馆</div>
+        <div class="contribution">
+          为美国国家医学图书馆开发的在线目录系统，能够根据搜索词的相关性对书籍进行排序。这是信息检索领域从布尔匹配走向相关性排序的早期实践。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          "相关性排序"思想是日后所有推荐系统的核心基础之一——不只是找到匹配项，而是把最相关的排在前面。
+          <br><span class="impact-tag">相关性排序</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">1992 · 里程碑</span>
+        <h3>Tapestry 系统 —— "协同过滤"术语的诞生</h3>
+        <div class="authors">David Goldberg, David Nichols, Brian M. Oki, Douglas Terry · Xerox PARC</div>
+        <div class="contribution">
+          Xerox PARC 开发的实验性电子邮件过滤系统。用户可以对文档进行标注（注释），其他用户的过滤器可以利用这些标注来决定文档的优先级。论文首次提出了"collaborative filtering"（协同过滤）这一术语——人们通过记录和分享对文档的反应来协作过滤信息。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这是推荐系统学术史的公认起点。"协同过滤"从此成为推荐系统最核心的概念之一。Tapestry 提出的两个核心思想——基于内容的过滤和基于用户群体偏好的过滤——成为现代推荐系统两大范式的雏形。但 Tapestry 本身是手动的：用户需要手动选择要参考谁的标注。
+          <br>
+          <span class="impact-tag">定义性论文</span>
+          <span class="impact-tag">协同过滤诞生</span>
+          <span class="impact-tag">推荐系统元年</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">1994 · 里程碑</span>
+        <h3>GroupLens —— 第一个自动化协同过滤系统</h3>
+        <div class="authors">Paul Resnick, Nenad Iacovou, Mitesh Suchak, Peter Bergstrom, John Riedl · 明尼苏达大学</div>
+        <div class="contribution">
+          将 Tapestry 的手动协同过滤自动化。GroupLens 基于新闻组（Usenet），自动计算用户之间的相似度，并利用相似用户的评分来预测目标用户对未读文章的兴趣。这就是日后被称为"User-based Collaborative Filtering"（基于用户的协同过滤）的算法雏形。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          从"手动选择参考人"到"系统自动找到品味相似的人"——这一步的跨越奠定了协同过滤成为可工程化、可规模化技术的基础。GroupLens 团队后来创建了 MovieLens 数据集，至今仍是推荐系统研究最常用的基准之一。
+          <br>
+          <span class="impact-tag">自动化CF</span>
+          <span class="impact-tag">User-based CF</span>
+          <span class="impact-tag">MovieLens源头</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1994</span>
+        <h3>Ringo 系统 —— 音乐推荐先驱</h3>
+        <div class="authors">Upendra Shardanand, Pattie Maes · MIT Media Lab</div>
+        <div class="contribution">
+          将协同过滤从文本新闻组扩展到音乐推荐领域。用户对音乐艺术家评分，系统根据用户间的相似度推荐新的艺术家和专辑。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          证明了协同过滤的通用性——它不依赖于特定的内容领域，可以推广到任何有用户-物品交互的场景。同时也是社交推荐的早期探索。
+          <br><span class="impact-tag">跨领域验证</span><span class="impact-tag">音乐推荐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #1</h4>
+    <p>从「人工分类信息」到「系统自动匹配用户偏好」—— 推荐成为一个可计算问题</p>
+  </div>
+</section>
+
+<!-- ==================== ERA 2 ==================== -->
+<section id="era-2" class="era-section era-2">
+  <div class="era-header">
+    <div class="era-number">阶段二</div>
+    <h2>协同过滤与基于内容推荐的系统化建立</h2>
+    <p class="era-desc">1995 – 2002 · 两大范式确立，推荐系统进入学术主流</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>万维网爆发式增长，电子商务兴起（Amazon 1994, eBay 1995），用户面对的信息和商品数量急剧增加。搜索引擎解决了"主动查找"的需求，但"被动发现"——帮用户找到他们不知道自己想要什么的东西——成为新挑战。推荐系统从实验室项目走向商业应用。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1995</span>
+        <h3>Bellcore Video Recommender 与早期混合推荐</h3>
+        <div class="authors">多个研究团队 · 学术界与早期互联网公司</div>
+        <div class="contribution">
+          多个视频/电影推荐系统出现，开始探索将协同过滤与基于内容的推荐相结合的混合方法。研究者意识到，单纯的协同过滤在数据稀疏时表现不佳，而纯内容推荐又难以发现用户的"惊喜"偏好。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          "混合推荐"的思想从此萌芽，贯穿了推荐系统此后三十年的发展。几乎所有成功的工业推荐系统都是某种形式的混合系统。
+          <br><span class="impact-tag">混合推荐思想</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1997</span>
+        <h3>"Recommender Systems" 术语正式确立</h3>
+        <div class="authors">Paul Resnick, Hal R. Varian · Communications of the ACM</div>
+        <div class="contribution">
+          Resnick 和 Varian 在 CACM 上发表综述，正式提出"推荐系统"（Recommender Systems）这一术语，并系统地梳理了当时已有的各类推荐方法和系统。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          术语的统一使得分散在信息过滤、协同过滤、个性化等不同名目下的研究汇聚成一个明确的研究领域，加速了学术社区的形成。
+          <br><span class="impact-tag">领域命名</span><span class="impact-tag">学术社区形成</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1998</span>
+        <h3>Amazon 个性化推荐系统上线</h3>
+        <div class="authors">Amazon.com 工程团队</div>
+        <div class="contribution">
+          Amazon 将推荐系统作为核心商业功能部署。"购买了这个商品的顾客还购买了……"成为互联网上最成功的推荐功能之一。Amazon 的工程挑战——数以千万计的用户和商品——推动了推荐算法向可扩展方向发展。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          推荐系统第一次被证明可以直接驱动商业收入。Amazon 后来披露，其35%的收入来自推荐系统。这一数字让整个工业界对推荐系统的投入从"有趣的技术"升级为"核心竞争力"。
+          <br><span class="impact-tag">商业验证</span><span class="impact-tag">工业里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1998</span>
+        <h3>SVD 首次应用于协同过滤</h3>
+        <div class="authors">Daniel Billsus, Michael J. Pazzani · ICML 1998</div>
+        <div class="contribution">
+          在机器学习顶会 ICML 上首次将奇异值分解（SVD）应用于协同过滤任务，通过降维来学习用户和物品的潜在特征表示（latent features）。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这是"潜因子模型"（latent factor model）思想在推荐系统中的首次实践，为日后矩阵分解时代埋下了种子。但由于当时数据规模有限、SVD 计算成本高，这一方向暂时没有引发广泛关注。
+          <br><span class="impact-tag">潜因子模型起源</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">1999</span>
+        <h3>Music Genome Project —— 极致的内容推荐</h3>
+        <div class="authors">Tim Westergren · Pandora</div>
+        <div class="contribution">
+          通过超过450个人工标注的音乐属性（基因）来描述每首歌曲，然后根据用户喜欢的歌曲的基因组合来推荐新歌。这是基于内容推荐的极致案例——完全不依赖用户间的协同，而是深度理解内容本身。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          证明了基于内容推荐在某些垂直领域（音乐）可以做到极高质量，但也暴露了其核心限制：需要大量人工标注，难以规模化，且容易陷入"信息茧房"——只推荐相似的东西。
+          <br><span class="impact-tag">内容推荐标杆</span><span class="impact-tag">信息茧房警示</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2001 · 里程碑</span>
+        <h3>Item-based Collaborative Filtering —— 从用户到物品的范式转移</h3>
+        <div class="authors">Badrul Sarwar, George Karypis, Joseph Konstan, John Riedl · WWW 2001</div>
+        <div class="contribution">
+          提出了基于物品的协同过滤（Item-based CF）。与之前的 User-based CF 不同，Item-based CF 计算物品之间的相似度而非用户之间的相似度。由于物品相似度相对稳定（不像用户兴趣随时变化），可以预计算并缓存，极大提升了系统的可扩展性。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这是推荐系统工程化的关键转折点。User-based CF 随着用户规模增长而变得不可行（O(N²) 用户相似度计算），而 Item-based CF 巧妙地利用了"物品数量远小于用户数量"且"物品关系更稳定"的特性。Amazon 正是采用了这一方法才使其推荐系统能够服务于亿级用户。这篇论文是推荐系统领域引用量最高的论文之一。
+          <br>
+          <span class="impact-tag">范式转移</span>
+          <span class="impact-tag">可扩展性突破</span>
+          <span class="impact-tag">Amazon基石</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2002</span>
+        <h3>Slope One —— 简单高效的评分预测</h3>
+        <div class="authors">Daniel Lemire, Anna Maclachlan</div>
+        <div class="contribution">
+          提出了极简的协同过滤算法 Slope One，用物品间的平均评分差来预测未评分项。算法实现简单、易于理解、更新方便。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          在推荐算法日益复杂的趋势中，Slope One 提醒了一个重要原则：简单算法在很多场景下足够好。这一理念后来在 LightGCN（2020）等工作中再次得到呼应。
+          <br><span class="impact-tag">简约之美</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #2</h4>
+    <p>从「User-based CF」到「Item-based CF」—— 推荐系统从学术原型走向可规模化的工业系统</p>
+  </div>
+</section>
+
+<!-- ==================== ERA 3 ==================== -->
+<section id="era-3" class="era-section era-3">
+  <div class="era-header">
+    <div class="era-number">阶段三</div>
+    <h2>工业规模推荐系统与电商实践</h2>
+    <p class="era-desc">2003 – 2005 · 推荐系统成为互联网核心基础设施</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>Web 2.0 时代来临，用户从信息消费者变为内容生产者。社交网络（Friendster 2002, MySpace 2003, Facebook 2004）和视频平台（YouTube 2005）出现。搜索引擎（Google）已经主导了"主动查找"，但用户越来越需要"被动发现"。推荐系统从电商扩展到内容、社交、音乐等多个领域。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2003 · 里程碑</span>
+        <h3>Amazon Item-to-Item CF 论文公开</h3>
+        <div class="authors">Greg Linden, Brent Smith, Jeremy York · IEEE Internet Computing</div>
+        <div class="contribution">
+          Amazon 首次公开其推荐系统的技术细节。论文描述了如何在数千万用户和数百万商品的规模下实现实时推荐，核心方法是 Item-to-Item 协同过滤。相比传统方法，Amazon 的实现做了大量工程优化：预计算物品相似度表、增量更新、离线/在线混合架构。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这是工业界第一次完整披露大规模推荐系统的架构设计。论文证明了推荐系统在真实商业环境中的巨大价值，也揭示了学术研究与工业实践之间的巨大鸿沟——学术界关注的评分精度在工业场景中只是众多指标之一。
+          <br>
+          <span class="impact-tag">工业系统架构</span>
+          <span class="impact-tag">学术-工业鸿沟</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2004</span>
+        <h3>Last.fm 与社交音乐推荐</h3>
+        <div class="authors">Last.fm / Audioscrobbler</div>
+        <div class="contribution">
+          Last.fm 通过记录用户的真实播放行为（"Scrobble"）来构建推荐系统，开创了基于隐式反馈的大规模推荐实践。用户不需要主动评分，系统通过分析实际播放行为来理解偏好。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          从显式反馈（评分）到隐式反馈（行为）的转变具有深远意义。在现实中，绝大多数用户不会主动评分，但他们的点击、播放、购买等行为蕴含了丰富的偏好信息。隐式反馈的建模成为日后推荐系统研究的主流方向。
+          <br><span class="impact-tag">隐式反馈</span><span class="impact-tag">行为数据</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2005</span>
+        <h3>YouTube 上线 · 内容分发新时代</h3>
+        <div class="authors">YouTube · Google</div>
+        <div class="contribution">
+          YouTube 的出现标志着用户生成内容（UGC）时代的到来。海量视频内容使得推荐系统从"锦上添花"变为"核心需求"——没有推荐系统，用户根本无法在数亿视频中找到想看的内容。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          UGC 平台彻底改变了推荐系统的问题定义：物品（视频）数量从百万级暴增到亿级，新内容持续涌入（冷启动常态化），用户行为高度多样化。这些挑战推动了推荐系统从离线批处理走向实时在线的架构演进。
+          <br><span class="impact-tag">UGC推荐挑战</span><span class="impact-tag">实时推荐需求</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ERA 4 ==================== -->
+<section id="era-4" class="era-section era-4">
+  <div class="era-header">
+    <div class="era-number">阶段四</div>
+    <h2>Netflix Prize 与矩阵分解黄金时代</h2>
+    <p class="era-desc">2006 – 2009 · 一场百万美元竞赛如何改变了一个领域</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>2006年10月，Netflix 发布了一个包含1亿条评分记录的数据集，悬赏100万美元，奖励能将其推荐算法 Cinematch 的 RMSE 提升10%的团队。这场竞赛持续了近3年，吸引了来自186个国家的4万多支队伍参赛。它不仅催生了矩阵分解的黄金时代，更重要的是将推荐系统从小众学术领域推上了全球舞台，同时开创了"机器学习竞赛"的文化（日后 Kaggle 的灵感来源之一）。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2006 · 里程碑</span>
+        <h3>Netflix Prize 竞赛启动</h3>
+        <div class="authors">Netflix · 1亿评分 · 100万美元奖金</div>
+        <div class="contribution">
+          Netflix 发布了当时最大的公开评分数据集（480K 用户 × 17K 电影 × 100M 评分），以 RMSE 为指标，要求在 Cinematch（Netflix 自研系统，RMSE 0.9514）的基础上提升10%以上。竞赛提供了统一的评估框架，使得不同算法可以在同一标准下公平比较。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          Netflix Prize 的意义远超竞赛本身：(1) 它让全世界的研究者在同一个大规模真实数据集上工作，极大加速了推荐算法的迭代；(2) 它验证了矩阵分解方法的巨大潜力；(3) 它表明了模型融合（ensemble）的力量；(4) 它催生了一个价值数十亿美元的产业——机器学习竞赛平台。
+          <br>
+          <span class="impact-tag">历史性事件</span>
+          <span class="impact-tag">开放数据运动</span>
+          <span class="impact-tag">ML竞赛文化</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2006</span>
+        <h3>FunkSVD —— 矩阵分解的工程化突破</h3>
+        <div class="authors">Simon Funk（博客文章）</div>
+        <div class="contribution">
+          Simon Funk 在个人博客上发布了一种简洁高效的矩阵分解方法：不计算完整的 SVD，而是用随机梯度下降（SGD）直接优化用户向量和物品向量的内积来逼近评分矩阵。这一方法在 Netflix Prize 中迅速取得了顶尖成绩。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          FunkSVD 的重要性在于它展示了一个关键洞察：不需要对完整矩阵做精确分解，只需要优化已观测到的评分就够了。这使得矩阵分解变得实用——可以处理极度稀疏的大规模数据。一篇博客文章引发了一个算法范式，这在学术史上极为罕见。
+          <br>
+          <span class="impact-tag">SGD优化范式</span>
+          <span class="impact-tag">博客论文</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2008</span>
+        <h3>PMF —— 概率矩阵分解</h3>
+        <div class="authors">Andriy Mnih, Ruslan Salakhutdinov · NIPS 2008</div>
+        <div class="contribution">
+          将矩阵分解置于概率图模型框架下，用高斯假设对用户和物品的潜在因子建模，支持贝叶斯推断。为矩阵分解提供了理论基础和不确定性估计。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          连接了机器学习理论（贝叶斯方法）与推荐系统实践，使矩阵分解不仅是一种工程技巧，更成为有统计理论支撑的学习框架。后续的 Bayesian Personalized Ranking (BPR) 也建立在类似的概率建模思路上。
+          <br><span class="impact-tag">概率建模</span><span class="impact-tag">不确定性估计</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2008</span>
+        <h3>SVD++ —— 融合隐式反馈的矩阵分解</h3>
+        <div class="authors">Yehuda Koren · KDD 2008</div>
+        <div class="contribution">
+          在标准矩阵分解基础上，引入用户的隐式反馈信号（如浏览历史、购买记录）作为额外特征。SVD++ 显著超越了纯显式反馈的 MF 方法，表明隐式行为数据蕴含着评分无法捕捉的偏好信息。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          打破了"推荐 = 评分预测"的狭隘框架，展示了多源信号融合的价值。SVD++ 是 Netflix Prize 获胜方案的核心组件之一。
+          <br><span class="impact-tag">多源信号融合</span><span class="impact-tag">Netflix Prize核心</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2008</span>
+        <h3>隐式反馈协同过滤（ALS-WR）</h3>
+        <div class="authors">Yifan Hu, Yehuda Koren, Chris Volinsky · ICDM 2008</div>
+        <div class="contribution">
+          提出了专门针对隐式反馈数据（如播放次数、点击）的矩阵分解框架。引入"置信度"概念——用户与物品交互越多，系统对用户偏好的置信度越高。使用交替最小二乘法（ALS）优化，支持大规模并行计算。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这篇论文将矩阵分解从显式评分的世界引入到更广阔的隐式反馈世界。在现实产品中，隐式反馈（点击、播放、停留时长）远比显式评分（打分、评论）丰富，因此这一工作的实际影响远超基于评分的方法。Spark MLlib 的推荐模块正是基于此算法实现。
+          <br>
+          <span class="impact-tag">隐式反馈MF</span>
+          <span class="impact-tag">ALS并行优化</span>
+          <span class="impact-tag">Spark MLlib</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2009 · 里程碑</span>
+        <h3>Netflix Prize 结束 · 矩阵分解总结之作</h3>
+        <div class="authors">Yehuda Koren, Robert Bell, Chris Volinsky · IEEE Computer 2009</div>
+        <div class="contribution">
+          BellKor's Pragmatic Chaos 团队以 RMSE 0.8567 赢得竞赛（仅领先第二名20分钟提交）。Koren, Bell, Volinsky 在 IEEE Computer 上发表里程碑式综述《Matrix Factorization Techniques for Recommender Systems》，系统总结了矩阵分解的各种变体、优化方法、和实践经验。论文清晰地展示了如何通过 bias 建模、时间动态、隐式反馈融合等手段，将基础 MF 逐步增强为强大的推荐引擎。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这篇论文是推荐系统领域引用量最高的论文之一（Google Scholar 25000+次引用）。它标志着矩阵分解作为推荐系统标准范式的正式确立——在此后长达6-7年的时间里，MF 及其变体是工业界最主流的推荐算法。Netflix Prize 虽然结束了（Netflix 因隐私问题取消了第二届），但它开启的算法和工程创新持续影响了整个行业。
+          <br>
+          <span class="impact-tag">领域定义性论文</span>
+          <span class="impact-tag">25000+引用</span>
+          <span class="impact-tag">MF标准化</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2009 · 里程碑</span>
+        <h3>BPR —— 贝叶斯个性化排序</h3>
+        <div class="authors">Steffen Rendle, Christoph Freudenthaler, Zeno Gantner, Lars Schmidt-Thieme · UAI 2009</div>
+        <div class="contribution">
+          提出了一个全新的优化框架：不再预测绝对评分，而是直接优化物品的相对排序。BPR 从贝叶斯最大后验估计出发，推导出一个优雅的成对（pairwise）排序损失函数——对于每个用户，已交互物品应该排在未交互物品之前。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          BPR 标志着推荐系统目标函数的一次根本性转变：从评分预测（回归问题）到排序优化（排序问题）。现实中，用户关心的是"看到的推荐列表中哪些排在前面"，而不是"系统预测我给这部电影打几分"。BPR 的思想深刻影响了后续所有隐式反馈推荐方法的设计，包括 LightGCN、SASRec 等经典工作。
+          <br>
+          <span class="impact-tag">目标函数范式转变</span>
+          <span class="impact-tag">从评分到排序</span>
+          <span class="impact-tag">影响至今</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #3</h4>
+    <p>从「邻域方法」到「潜因子模型」—— 矩阵分解成为推荐系统的标准语言<br>
+    从「评分预测」到「排序优化」—— 推荐系统开始直接优化用户真正关心的目标</p>
+  </div>
+</section>
+
+<!-- ==================== ERA 5 ==================== -->
+<section id="era-5" class="era-section era-5">
+  <div class="era-header">
+    <div class="era-number">阶段五</div>
+    <h2>因子分解机、排序学习与 CTR 预测工业化</h2>
+    <p class="era-desc">2010 – 2013 · 特征工程的极致与工业系统的成熟</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>移动互联网爆发（iPhone 2007, App Store 2008），在线广告成为互联网最主要的商业模式。广告推荐（CTR 预测）成为最有经济价值的推荐问题。同时，推荐系统开始与搜索排序（Learning to Rank）融合，推荐不再是独立的研究方向，而是与搜索、广告形成"推搜广"三位一体的体系。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2010 · 里程碑</span>
+        <h3>Factorization Machines (FM) —— 统一的特征交互框架</h3>
+        <div class="authors">Steffen Rendle · ICDM 2010</div>
+        <div class="contribution">
+          提出了因子分解机（FM），一个优雅地统一了矩阵分解、SVD++、Polynomial Regression、SVM 等多种模型的通用框架。FM 对任意特征之间的二阶交互进行建模，但只需线性复杂度（通过分解交互权重矩阵为两个低秩向量的内积）。FM 可以处理任何形式的特征输入——不仅是 user-id 和 item-id，还包括上下文特征、用户属性、物品属性等。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          FM 是从"矩阵分解时代"过渡到"深度学习时代"的桥梁。它证明了一个核心洞察：推荐系统的本质是特征交互建模。MF 只是 FM 的特例（只有 user-id 和 item-id 两种特征时）。FM 直接催生了后续的 FFM、DeepFM、xDeepFM 等一系列工作，成为 CTR 预测领域最重要的基础架构之一。
+          <br>
+          <span class="impact-tag">统一框架</span>
+          <span class="impact-tag">特征交互建模</span>
+          <span class="impact-tag">CTR预测基石</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2010</span>
+        <h3>Field-aware Factorization Machines (FFM)</h3>
+        <div class="authors">Yuchin Juan et al.</div>
+        <div class="contribution">
+          在 FM 基础上引入"特征域"（field）概念：同一个特征与不同域的特征交互时，使用不同的隐向量。FFM 在多个 CTR 预测竞赛中取得冠军。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          FFM 进一步细化了特征交互建模的粒度，在工业级 CTR 预测中表现优异，尤其在计算广告领域被广泛采用。
+          <br><span class="impact-tag">精细化交互</span><span class="impact-tag">广告CTR冠军</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2011</span>
+        <h3>LambdaMART —— 排序学习的标杆</h3>
+        <div class="authors">Christopher J.C. Burges · Microsoft Research</div>
+        <div class="contribution">
+          LambdaMART 结合了 Lambda 梯度（直接优化 NDCG 等排序指标）和 MART（Multiple Additive Regression Trees，梯度提升树），成为排序学习领域最强的非深度学习方法之一。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          LambdaMART 统治了搜索排序和推荐排序数年之久，直到深度学习方法出现。它也是"搜索与推荐共享技术栈"的代表——很多公司将搜索排序的 Learning to Rank 技术直接应用于推荐系统的排序阶段。
+          <br><span class="impact-tag">排序学习标杆</span><span class="impact-tag">搜推技术融合</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2013</span>
+        <h3>DSSM —— 深度结构化语义模型</h3>
+        <div class="authors">Po-Sen Huang et al. · Microsoft · CIKM 2013</div>
+        <div class="contribution">
+          提出了 Deep Structured Semantic Models，用深度神经网络将 query 和 document 分别映射到低维语义空间，通过余弦相似度计算匹配分数。这是"双塔模型"（two-tower）的原型。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          DSSM 的"双塔"架构思想深刻影响了后续推荐系统的召回阶段设计。YouTube DNN（2016）和许多工业推荐系统的召回模型都采用了类似的双塔结构——用户塔和物品塔分别编码，通过近似最近邻搜索实现大规模候选集筛选。
+          <br><span class="impact-tag">双塔模型原型</span><span class="impact-tag">语义匹配</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2013</span>
+        <h3>FTRL-Proximal —— Google 在线学习框架</h3>
+        <div class="authors">H. Brendan McMahan et al. · Google · KDD 2013</div>
+        <div class="contribution">
+          Google 公开了其广告 CTR 预测系统的核心算法——Follow The Regularized Leader (FTRL) 的 Proximal 变体。该算法能够在十亿级特征空间中进行在线学习，同时通过 L1 正则化保持模型的稀疏性。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          FTRL 代表了大规模在线推荐/广告系统的工程巅峰：数十亿特征、每秒数百万预测、模型实时更新。它也揭示了一个重要现实：在工业推荐系统中，模型的可部署性、延迟、特征处理效率与模型精度同等重要。逻辑回归 + 海量特征 + 在线学习 的组合在很长时间内是工业 CTR 预测的主流方案。
+          <br>
+          <span class="impact-tag">在线学习</span>
+          <span class="impact-tag">十亿级特征</span>
+          <span class="impact-tag">工业标杆</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ERA 6 ==================== -->
+<section id="era-6" class="era-section era-6">
+  <div class="era-header">
+    <div class="era-number">阶段六</div>
+    <h2>深度学习推荐系统兴起</h2>
+    <p class="era-desc">2014 – 2016 · 神经网络重塑推荐系统的建模方式</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>深度学习在图像识别（AlexNet 2012）、语音识别和 NLP 领域取得了突破性成功。研究者开始思考：深度学习能否为推荐系统带来同样的革命？这一阶段的核心挑战是：如何将深度学习的表示学习能力引入推荐场景——一个以稀疏离散特征为主、与图像/文本截然不同的领域。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2015</span>
+        <h3>AutoRec —— 自编码器用于推荐</h3>
+        <div class="authors">Suvash Sedhain et al. · WWW 2015</div>
+        <div class="contribution">
+          最早将自编码器应用于协同过滤的工作之一。用自编码器重建用户-物品评分向量，隐层学习到的表示捕捉了用户的潜在偏好。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          虽然模型简单，但 AutoRec 开启了"用神经网络替代矩阵分解"的研究方向，为后续 NCF、VAE-CF 等工作铺平了道路。
+          <br><span class="impact-tag">深度CF起步</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2015 · 里程碑</span>
+        <h3>GRU4Rec —— 序列推荐的开创</h3>
+        <div class="authors">Balázs Hidasi, Alexandros Karatzoglou et al. · ICLR 2016 (arXiv 2015)</div>
+        <div class="contribution">
+          首次将循环神经网络（GRU）应用于基于会话的推荐（Session-based Recommendation）。将用户的一次浏览会话建模为序列，用 GRU 学习会话中点击序列的模式，预测用户下一步可能点击的物品。提出了 session-parallel mini-batch 训练和 ranking-based loss。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          GRU4Rec 开辟了一个全新的研究方向——序列推荐（Sequential Recommendation）。此前的推荐方法大多将用户的历史行为视为无序集合，忽略了行为发生的时间顺序。GRU4Rec 证明了序列信息对推荐质量至关重要。这一方向后来催生了 NARM、SASRec、BERT4Rec 等一系列工作，至今仍是推荐系统最活跃的研究方向之一。
+          <br>
+          <span class="impact-tag">序列推荐起源</span>
+          <span class="impact-tag">会话推荐</span>
+          <span class="impact-tag">开创性方向</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2016 · 里程碑</span>
+        <h3>YouTube Deep Neural Networks for Recommendations</h3>
+        <div class="authors">Paul Covington, Jay Adams, Emre Sargin · Google · RecSys 2016</div>
+        <div class="contribution">
+          Google 首次公开 YouTube 推荐系统的深度学习架构。系统分为两阶段：候选生成（Candidate Generation）和排序（Ranking）。候选生成阶段使用深度神经网络从数百万视频中筛选出几百个候选；排序阶段用另一个 DNN 对候选进行精细打分。论文还详细讨论了大量工程细节：样本构造、特征设计、serving 优化等。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这篇论文是工业级深度推荐系统的"圣经"。它定义了"召回 + 精排"的双阶段架构范式，至今仍是绝大多数工业推荐系统的基本架构。论文中讨论的"训练与服务不一致"（train-serving skew）、"利用搜索时信息进行负采样"等问题，至今仍是工程实践中的核心挑战。
+          <br>
+          <span class="impact-tag">工业架构范式</span>
+          <span class="impact-tag">召回+精排</span>
+          <span class="impact-tag">深度推荐圣经</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2016 · 里程碑</span>
+        <h3>Wide & Deep Learning</h3>
+        <div class="authors">Heng-Tze Cheng et al. · Google · DLRS 2016</div>
+        <div class="contribution">
+          提出了宽深学习模型，将"宽模型"（Wide，线性模型，擅长记忆特定特征组合）和"深模型"（Deep，DNN，擅长泛化到未见过的特征组合）联合训练。Wide 部分负责记忆（Memorization）——捕捉历史上被证明有效的稀疏特征交叉；Deep 部分负责泛化（Generalization）——通过 Embedding + DNN 发现新的特征模式。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          Wide & Deep 优雅地解决了推荐系统中"记忆 vs 泛化"的矛盾，成为工业界 CTR 预测模型的标杆架构。它的核心思想——将记忆能力和泛化能力结合到一个模型中——直接启发了 DeepFM、DCN 等后续工作。Google Play 应用商店在部署 Wide & Deep 后，应用安装量提升了 3.9%。
+          <br>
+          <span class="impact-tag">记忆+泛化</span>
+          <span class="impact-tag">CTR标杆</span>
+          <span class="impact-tag">工业验证</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2016</span>
+        <h3>IPS for Recommendations —— 因果推荐的开端</h3>
+        <div class="authors">Tobias Schnabel, Adith Swaminathan, Ashudeep Singh, Navin Chandak, Thorsten Joachims · ICML 2016</div>
+        <div class="contribution">
+          首次系统地将反事实推断（Counterfactual Inference）和逆概率加权（Inverse Propensity Scoring, IPS）引入推荐系统。论文指出：推荐系统的训练数据并非随机收集的，而是受到之前推荐策略的影响（选择偏差），因此直接用观测数据训练模型会导致系统性偏差。通过 IPS 校正，可以在一定程度上消除这种偏差。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这篇论文开启了"因果推荐"这一重要研究方向。选择偏差（selection bias）和反馈回路（feedback loop）是推荐系统最根本的问题之一——系统只能从自己推荐过的物品中获得反馈，导致"马太效应"（热门更热、冷门更冷）。因果推断提供了一套理论工具来理解和缓解这些问题。
+          <br>
+          <span class="impact-tag">因果推荐起源</span>
+          <span class="impact-tag">去偏学习</span>
+          <span class="impact-tag">反事实推断</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #4</h4>
+    <p>从「矩阵分解 + 特征工程」到「深度学习端到端建模」—— 推荐系统进入表示学习时代<br>
+    从「无序用户画像」到「序列行为建模」—— 用户的行为顺序本身成为关键信号</p>
+  </div>
+</section>
+
+<!-- ==================== ERA 7 ==================== -->
+<section id="era-7" class="era-section era-7">
+  <div class="era-header">
+    <div class="era-number">阶段七</div>
+    <h2>深度 CTR、序列推荐与注意力机制全面扩展</h2>
+    <p class="era-desc">2017 – 2019 · 推荐系统进入"模型爆炸"时代</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>Transformer/自注意力机制（2017 Attention Is All You Need）横扫 NLP 和 CV 领域。推荐系统研究也迎来了前所未有的繁荣期——每年有数百篇推荐系统论文发表。工业界和学术界都在探索：如何更好地建模用户行为的复杂性？如何同时优化多个目标？如何从用户行为序列中学到更多？
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2017 · 里程碑</span>
+        <h3>NCF —— 神经协同过滤</h3>
+        <div class="authors">Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu, Tat-Seng Chua · WWW 2017</div>
+        <div class="contribution">
+          提出用神经网络替代矩阵分解中的内积操作来建模用户-物品交互。NCF 框架将 GMF（Generalized Matrix Factorization）和 MLP 结合，用非线性神经网络捕捉更复杂的用户-物品交互模式。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          NCF 是"深度协同过滤"方向最具标志性的工作（引用量 7000+）。虽然后来有研究（Rendle et al. 2020）指出调优后的 MF 可以匹敌甚至超越 NCF，引发了关于"深度学习是否真的改善了协同过滤"的重要讨论，但 NCF 的框架思想——用可学习的函数替代固定的内积——深刻影响了后续工作。
+          <br>
+          <span class="impact-tag">深度CF标志</span>
+          <span class="impact-tag">范式讨论</span>
+          <span class="impact-tag">7000+引用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2017 · 里程碑</span>
+        <h3>DeepFM —— 端到端特征交互</h3>
+        <div class="authors">Huifeng Guo, Ruiming Tang, Yunming Ye, Zhenguo Li, Xiuqiang He · IJCAI 2017</div>
+        <div class="contribution">
+          将 FM（捕捉低阶特征交互）和 DNN（捕捉高阶特征交互）整合为端到端模型。与 Wide & Deep 不同，DeepFM 的 FM 部分和 Deep 部分共享 Embedding 输入，无需人工特征交叉。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          DeepFM 消除了 Wide & Deep 模型中 Wide 部分需要手工设计交叉特征的缺点，实现了真正的端到端学习。它成为工业界最广泛使用的 CTR 预测模型之一，也是 FM 与深度学习融合的代表作。后续的 DCN、xDeepFM、AutoInt 等工作都在这条路线上继续探索。
+          <br>
+          <span class="impact-tag">端到端CTR</span>
+          <span class="impact-tag">FM+DNN融合</span>
+          <span class="impact-tag">工业广泛采用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2017</span>
+        <h3>DCN —— Deep & Cross Network</h3>
+        <div class="authors">Ruoxi Wang et al. · Google · ADKDD 2017</div>
+        <div class="contribution">
+          提出交叉网络（Cross Network），通过有限阶的显式特征交叉层来替代 Wide 部分，自动学习任意阶的特征交互，而无需手工设计。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          DCN 及其升级版 DCN-V2 进一步推动了"自动化特征交互"的研究方向。Google 内部将其广泛应用于广告和推荐系统。
+          <br><span class="impact-tag">自动特征交叉</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2018 · 里程碑</span>
+        <h3>DIN —— 深度兴趣网络</h3>
+        <div class="authors">Guorui Zhou, Xiaoqiang Zhu et al. · Alibaba · KDD 2018</div>
+        <div class="contribution">
+          阿里巴巴提出的 Deep Interest Network，首次在 CTR 预测中引入注意力机制。核心洞察：用户的兴趣是多样的、与具体候选物品相关的。DIN 用注意力机制自适应地从用户的历史行为中提取与当前候选物品相关的兴趣表示——"用户对这个商品的兴趣"而非"用户的平均兴趣"。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          DIN 是推荐系统领域注意力机制应用的标志性工作。它揭示了一个被忽视的事实：用固定维度的向量来表示用户的所有兴趣是严重的信息瓶颈。后续的 DIEN（动态兴趣演化）、DSIN（会话兴趣分割）等工作都沿着这个方向继续深化。DIN 在阿里巴巴的广告系统中取得了显著的线上效果提升。
+          <br>
+          <span class="impact-tag">注意力机制推荐</span>
+          <span class="impact-tag">动态兴趣建模</span>
+          <span class="impact-tag">阿里核心模型</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2018 · 里程碑</span>
+        <h3>SASRec —— 自注意力序列推荐</h3>
+        <div class="authors">Wang-Cheng Kang, Julian McAuley · ICDM 2018</div>
+        <div class="contribution">
+          将 Transformer 的自注意力机制引入序列推荐，用 causal self-attention（因果自注意力）建模用户行为序列，预测下一个交互物品。SASRec 比 RNN 方法（GRU4Rec）快10倍以上，且在多个数据集上取得了最优性能。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          SASRec 标志着 Transformer 架构进入推荐系统的核心。与 GRU4Rec 的 RNN 范式相比，自注意力机制能够直接捕捉序列中任意位置之间的依赖关系，且更适合并行计算。SASRec 成为序列推荐的标准基线，也预示了推荐系统与大语言模型融合的方向。
+          <br>
+          <span class="impact-tag">Transformer入推荐</span>
+          <span class="impact-tag">序列推荐标杆</span>
+          <span class="impact-tag">10x加速</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2018 · 里程碑</span>
+        <h3>MMOE —— 多门专家混合模型</h3>
+        <div class="authors">Jiaqi Ma et al. · Google · KDD 2018</div>
+        <div class="contribution">
+          提出了 Multi-gate Mixture-of-Experts（MMOE）架构来解决多任务学习中的"负迁移"问题。在推荐系统中，往往需要同时优化多个目标（点击率、转化率、留存率、多样性等）。MMOE 使用多个专家网络和可学习的门控网络，让不同任务能够自适应地选择和组合专家。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          MMOE 定义了推荐系统多任务学习的基础架构。在现实推荐系统中，单一目标优化几乎总是不够的——只优化点击率会导致标题党，只优化播放时长会导致信息茧房。MMOE 及其后续变体（PLE、CGC 等）成为工业界多目标优化的标准方案。
+          <br>
+          <span class="impact-tag">多任务学习基础</span>
+          <span class="impact-tag">多目标优化</span>
+          <span class="impact-tag">工业标准方案</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2019</span>
+        <h3>BERT4Rec —— 双向序列推荐</h3>
+        <div class="authors">Fei Sun et al. · Alibaba · CIKM 2019</div>
+        <div class="contribution">
+          将 BERT 的双向自注意力和 Masked Language Model（MLM）预训练策略引入序列推荐。BERT4Rec 通过随机 mask 用户行为序列中的物品，训练模型预测被 mask 的物品，实现了双向的序列建模。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          BERT4Rec 将 NLP 的预训练范式迁移到了推荐领域，为后续"预训练 + 微调"的推荐范式铺平了道路。它也引发了"单向 vs 双向序列建模"的持续讨论。
+          <br><span class="impact-tag">预训练推荐</span><span class="impact-tag">双向建模</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2019</span>
+        <h3>DIEN —— 深度兴趣演化网络</h3>
+        <div class="authors">Guorui Zhou et al. · Alibaba · AAAI 2019</div>
+        <div class="contribution">
+          在 DIN 基础上引入 GRU 来建模用户兴趣的演化过程。使用辅助损失（auxiliary loss）来监督兴趣状态的学习，并用 AUGRU（注意力更新门GRU）来提取与目标物品相关的兴趣演化轨迹。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          从"静态兴趣捕捉"到"动态兴趣演化"——DIEN 进一步深化了用户行为建模的精细度，在阿里巴巴的电商广告系统中取得了显著效果。
+          <br><span class="impact-tag">兴趣演化建模</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #5</h4>
+    <p>从「手工特征工程」到「端到端自动特征交互」—— DeepFM/DCN/DIN 消灭了 CTR 预测中的手工劳动<br>
+    从「单目标优化」到「多目标联合优化」—— 推荐系统开始直面"推荐什么是好的"这个复杂问题</p>
+  </div>
+</section>
+
+<!-- ==================== ERA 8 ==================== -->
+<section id="era-8" class="era-section era-8">
+  <div class="era-header">
+    <div class="era-number">阶段八</div>
+    <h2>图推荐、多任务学习、因果推荐探索</h2>
+    <p class="era-desc">2019 – 2021 · 推荐系统走向更深层的理解与更广阔的视野</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>推荐系统的基础模型架构趋于成熟，研究重心开始转向：(1) 如何利用更丰富的信息（知识图谱、社交网络、多模态内容）？ (2) 如何解决推荐系统的根本性问题（偏差、公平性、可解释性）？ (3) 如何优化长期目标而非短期点击？这一阶段的特点是"宽度扩展"——推荐系统开始与图学习、因果推断、强化学习等领域深度交叉。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2019</span>
+        <h3>NGCF —— 神经图协同过滤</h3>
+        <div class="authors">Xiang Wang, Xiangnan He et al. · SIGIR 2019</div>
+        <div class="contribution">
+          首次将图神经网络（GNN）引入协同过滤，通过在用户-物品二部图上进行消息传递来学习用户和物品的嵌入。多阶邻居的信息聚合使得嵌入能够捕捉高阶协同信号。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          NGCF 开启了"图推荐"这一热门研究方向。虽然后来 LightGCN 证明了 NGCF 中的很多复杂设计是不必要的，但 NGCF 首次建立了"GNN + 推荐"的研究范式。
+          <br><span class="impact-tag">图推荐开创</span><span class="impact-tag">高阶协同信号</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2020 · 里程碑</span>
+        <h3>LightGCN —— 轻量图卷积推荐</h3>
+        <div class="authors">Xiangnan He, Kuan Deng et al. · SIGIR 2020</div>
+        <div class="contribution">
+          在 NGCF 的基础上进行了大胆的简化：去掉了 GNN 中的特征变换和非线性激活函数，只保留最简单的邻域聚合和层间组合。实验表明，这种极简设计不仅没有降低性能，反而显著提升了效果。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          LightGCN 的意义远超一个具体模型：它传递了"少即是多"（Less is More）的深刻信息——在协同过滤场景中，简单的邻域聚合已经足够捕捉协同信号，复杂的非线性变换反而引入了不必要的噪声。LightGCN 成为图推荐领域引用量最高的论文之一，也是后续工作的标准基线。
+          <br>
+          <span class="impact-tag">少即是多</span>
+          <span class="impact-tag">图推荐标杆</span>
+          <span class="impact-tag">简化设计哲学</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2020</span>
+        <h3>PLE —— 渐进式分层萃取网络</h3>
+        <div class="authors">Hongyan Tang et al. · Tencent · RecSys 2020</div>
+        <div class="contribution">
+          腾讯提出的多任务学习架构，改进了 MMOE 中所有任务共享同一组专家的设计，引入了任务特定专家和共享专家的分层结构，并通过渐进式萃取减少负迁移。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          PLE 在腾讯视频的推荐系统中取得了显著的线上效果提升，进一步推动了多任务学习在工业推荐系统中的普及。与 MMOE 一起构成了多目标推荐的技术体系。
+          <br><span class="impact-tag">多任务学习演进</span><span class="impact-tag">工业验证</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2020</span>
+        <h3>DRN 与强化学习推荐探索</h3>
+        <div class="authors">多个研究团队</div>
+        <div class="contribution">
+          多项工作探索将强化学习（RL）应用于推荐系统，将推荐过程建模为用户与系统之间的长期交互——系统的每次推荐（action）会影响用户的状态和未来行为，目标是最大化用户的长期价值（如留存率）而非单次点击。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          RL 推荐代表了推荐系统优化目标的又一次升级：从单步优化（点击率/转化率）到长期优化（用户生命周期价值）。但由于离线评估困难、在线探索成本高、样本效率低等问题，RL 推荐在工业界的大规模落地仍然有限。
+          <br><span class="impact-tag">长期价值优化</span><span class="impact-tag">探索与利用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2021</span>
+        <h3>推荐系统的公平性与多样性受到广泛关注</h3>
+        <div class="authors">学术界与监管机构</div>
+        <div class="contribution">
+          研究者开始系统地审视推荐系统的社会影响：信息茧房（filter bubble）、偏见放大（bias amplification）、公平性（fairness）、多样性（diversity）。欧盟 DSA（数字服务法案）等监管政策开始对推荐系统透明度提出要求。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          推荐系统从纯技术问题扩展为社会技术问题。"推荐什么是好的"不再仅仅是个性能指标优化的问题，而是涉及价值观、公共利益和法律合规的复杂考量。可解释推荐、公平推荐、多样性感知推荐成为重要研究方向。
+          <br><span class="impact-tag">社会影响</span><span class="impact-tag">监管合规</span><span class="impact-tag">价值观对齐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ERA 9 ==================== -->
+<section id="era-9" class="era-section era-9">
+  <div class="era-header">
+    <div class="era-number">阶段九</div>
+    <h2>大模型初探推荐 · 生成式推荐萌芽</h2>
+    <p class="era-desc">2022 – 2023 · 当 GPT 遇到推荐系统</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>ChatGPT（2022年11月）引发了 AI 的全民关注。大语言模型（LLM）展示出惊人的理解、推理和生成能力。推荐系统研究者开始思考一个根本性问题：LLM 能否理解用户偏好？能否直接"生成"推荐结果？推荐系统是否将从"排序器"（Ranker）进化为"生成器"（Generator）？这一阶段是探索与范式争论并存的时期。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2022 · 里程碑</span>
+        <h3>P5 —— 预训练、个性化提示与预测</h3>
+        <div class="authors">Shijie Geng, Shuchang Liu, Zuohui Fu, Yingqiang Ge, Yongfeng Zhang · RecSys 2022</div>
+        <div class="contribution">
+          提出了"Pretrain, Personalized Prompt, and Predict Paradigm"（P5），首次将推荐系统的多种任务（评分预测、序列推荐、解释生成、直接推荐、评论生成）统一为文本到文本的生成框架。基于 T5 模型，通过设计不同的 prompt 模板，用一个统一的生成模型来解决所有推荐任务。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          P5 是"大模型 + 推荐"方向的标志性工作。它首次严肃地回答了"能否用一个生成模型替代推荐系统中的多个专用模型"这个问题。虽然 P5 的实际性能在大规模场景中还不及传统方法，但它开启了一个全新的研究范式——将推荐问题转化为语言生成问题。
+          <br>
+          <span class="impact-tag">LLM推荐范式</span>
+          <span class="impact-tag">统一生成框架</span>
+          <span class="impact-tag">开创性工作</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2023</span>
+        <h3>LLM 作为推荐系统的三条路径</h3>
+        <div class="authors">多个研究团队</div>
+        <div class="contribution">
+          2023年涌现了大量 LLM + 推荐的研究工作，逐渐形成了三条技术路径：<br>
+          <strong>1. LLM-as-Ranker：</strong>用 LLM 直接做排序/评分，通过 prompt 让 LLM 为候选物品排序。<br>
+          <strong>2. LLM-as-Feature：</strong>用 LLM 生成物品/用户的语义表征，作为传统推荐模型的特征输入（如 LEARN 框架）。<br>
+          <strong>3. End-to-end Generative：</strong>端到端生成式推荐，将推荐完全建模为序列生成任务。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          三条路径各有优劣：LLM-as-Ranker 简单但延迟高；LLM-as-Feature 兼顾了 LLM 的语义能力和传统模型的效率；End-to-end 最有前景但面临效率和规模化挑战。这些路径的探索为后续工业落地奠定了基础。
+          <br><span class="impact-tag">三大技术路径</span><span class="impact-tag">范式探索</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2023</span>
+        <h3>推荐系统中的多模态融合加速</h3>
+        <div class="authors">多个研究团队</div>
+        <div class="contribution">
+          随着多模态大模型（如 GPT-4V）的出现，推荐系统开始更积极地融合文本、图像、视频、音频等多种模态的信息。物品的视觉特征、文本描述、用户评论等被联合建模。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          多模态推荐有望从根本上解决冷启动问题——即使一个新物品没有任何交互历史，模型也可以通过其图片、描述等内容理解它并做出推荐。
+          <br><span class="impact-tag">多模态融合</span><span class="impact-tag">冷启动解决</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ERA 10 ==================== -->
+<section id="era-10" class="era-section era-10">
+  <div class="era-header">
+    <div class="era-number">阶段十</div>
+    <h2>生成式推荐系统、智能体推荐与产业化新阶段</h2>
+    <p class="era-desc">2024 – 2026 · 推荐系统正在被重新定义</p>
+  </div>
+
+  <div class="era-context">
+    <strong>时代背景：</strong>大语言模型和生成式 AI 进入成熟期。推荐系统面临三十年来最深刻的范式变革：从"在候选集中选排序"到"直接生成推荐内容"；从"被动响应用户行为"到"主动理解用户意图"；从"多级级联架构"到"统一生成框架"。同时，工业界在 Scaling Laws、训练效率、实时性、成本控制等方面取得重要突破。
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item milestone">
+      <div class="timeline-card">
+        <span class="year-badge">2024 · 里程碑</span>
+        <h3>HSTU / Generative Recommender (GR) —— Meta 的工业级生成式推荐</h3>
+        <div class="authors">Meta (Facebook) · 研究与工程团队</div>
+        <div class="contribution">
+          Meta 发布了 Generative Recommender (GR)，基于 HSTU（Hierarchical Sequential Transduction Unit）架构，首次在工业级推荐系统中观测到类似大语言模型的 Scaling Laws——模型越大、数据越多、性能越好，且尚未看到饱和迹象。GR 将推荐建模为序列生成任务，统一了传统的多级级联架构（召回→粗排→精排→重排）为单一的生成框架。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          这是推荐系统领域的"GPT时刻"。Scaling Laws 的发现意味着推荐系统可能遵循与大语言模型相同的规律——投入更多算力和数据就能持续提升性能。如果这一结论在更广泛的场景中得到验证，它将从根本上改变推荐系统的研发方式：从精巧的模型设计转向规模化的基础设施建设。
+          <br>
+          <span class="impact-tag">推荐的Scaling Laws</span>
+          <span class="impact-tag">统一生成框架</span>
+          <span class="impact-tag">工业突破</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2024</span>
+        <h3>KuaiFormer —— 快手的生成式召回</h3>
+        <div class="authors">Kuaishou (快手) · 工程团队</div>
+        <div class="contribution">
+          快手将召回阶段重新定义为 next token prediction 任务，通过层级化的用户行为摘要来处理海量行为序列。该模型已部署到日活4亿的工业平台。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          验证了生成式推荐在超大规模商业系统中的可行性。与 Meta 的 GR 一起，证明了生成式推荐不仅是学术概念，更是可落地的工业方案。
+          <br><span class="impact-tag">4亿DAU验证</span><span class="impact-tag">生成式召回</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2024</span>
+        <h3>RecMind —— LLM 驱动的推荐智能体</h3>
+        <div class="authors">多个研究团队</div>
+        <div class="contribution">
+          提出将推荐系统构建为 LLM 驱动的自主智能体（Agent），能够进行规划、执行动作（如搜索、过滤、推荐）、并根据用户反馈迭代调整策略。推荐系统从"被动的排序器"向"主动的对话式助手"演变。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          智能体化推荐可能是推荐系统的下一个形态。想象一个推荐系统不仅能"推送你可能喜欢的"，还能主动问你"今天想看什么类型？"、"要不要试试新品类？"、"上次你提到想了解X领域，这里有几个不错的入门内容"。这将彻底改变用户与推荐系统的交互方式。
+          <br><span class="impact-tag">智能体推荐</span><span class="impact-tag">交互范式变革</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2025</span>
+        <h3>Netflix Foundation Model for Personalization</h3>
+        <div class="authors">Netflix · 2025</div>
+        <div class="contribution">
+          Netflix 发布个性化推荐的基础模型。不同于传统的为每个任务训练专用模型的做法，Netflix 尝试训练一个统一的基础模型来同时处理推荐、排序、搜索等多种个性化任务。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          从 2006 年的 Netflix Prize 到 2025 年的 Foundation Model，Netflix 的每次技术公开都标志着推荐系统发展的阶段性节点。基础模型方法如果成功，将大幅降低推荐系统的开发和维护成本。
+          <br><span class="impact-tag">基础模型</span><span class="impact-tag">统一个性化</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <span class="year-badge">2025–2026</span>
+        <h3>推荐-搜索-广告-内容分发大统一趋势</h3>
+        <div class="authors">工业界前沿</div>
+        <div class="contribution">
+          越来越多的公司开始将推荐、搜索、广告系统的底层模型和基础设施统一化。用户在搜索框输入的 query、在信息流中的浏览行为、对广告的点击反馈，都被纳入统一的用户理解模型。推荐系统的边界正在模糊——它不再是一个独立的系统，而是整个内容分发与信息组织体系的一部分。
+        </div>
+        <div class="significance">
+          <span class="label">为什么重要</span><br>
+          "推搜广"的大统一可能是推荐系统发展的最终形态之一。在这个框架下，"推荐"不再是一个单独的功能，而是贯穿用户整个数字生活的智能信息层。
+          <br><span class="impact-tag">推搜广统一</span><span class="impact-tag">信息组织革命</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paradigm-shift">
+    <h4>范式转变 #6（正在发生）</h4>
+    <p>从「多级级联排序系统」到「端到端生成式推荐」—— 推荐系统的架构正在被重写<br>
+    从「被动的排序器」到「主动的智能体」—— 推荐系统正在从工具进化为伙伴<br>
+    从「独立的推荐模块」到「统一的个性化基础设施」—— 推荐的边界正在消失</p>
+  </div>
+</section>
+
+<!-- Summary -->
+<section class="era-section" style="padding-bottom: 2rem;">
+  <div class="era-context" style="border: 1px solid rgba(99, 102, 241, 0.3); background: linear-gradient(135deg, rgba(15, 17, 23, 1), rgba(30, 27, 75, 0.5));">
+    <h3 style="color: #818cf8; margin-bottom: 1rem; font-size: 1.3rem;">六次范式转变：推荐系统 47 年演化的主线</h3>
+    <p style="margin-bottom: 0.8rem;"><strong style="color: #fbbf24;">1. 从人工到自动（1979→1994）</strong>：推荐成为可计算问题</p>
+    <p style="margin-bottom: 0.8rem;"><strong style="color: #a78bfa;">2. 从用户到物品（1994→2003）</strong>：Item-based CF 实现了工业规模化</p>
+    <p style="margin-bottom: 0.8rem;"><strong style="color: #22d3ee;">3. 从邻域到潜因子（2006→2010）</strong>：矩阵分解成为标准语言；从评分到排序，BPR 重新定义了优化目标</p>
+    <p style="margin-bottom: 0.8rem;"><strong style="color: #f87171;">4. 从特征工程到表示学习（2015→2017）</strong>：深度学习消灭了手工劳动；序列建模捕捉了行为的时间维度</p>
+    <p style="margin-bottom: 0.8rem;"><strong style="color: #f472b6;">5. 从单目标到多目标（2018→2021）</strong>：推荐系统开始直面"什么是好的推荐"这个价值问题</p>
+    <p><strong style="color: #c084fc;">6. 从排序到生成（2022→现在）</strong>：推荐系统正在从工具进化为伙伴，从模块进化为基础设施</p>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer class="footer">
+  <p>推荐系统发展史时间线 · 2026年4月</p>
+  <p style="margin-top: 0.5rem;">涵盖 1979–2026 年推荐系统发展的关键事件、论文、系统与范式转变</p>
+  <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #475569;">基于学术文献、工业报告与公开资料整理</p>
+</footer>
+
+</body>
+</html>

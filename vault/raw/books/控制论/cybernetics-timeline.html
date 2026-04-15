@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>控制论思想演化史 — 从蒸汽机调速器到自主智能体</title>
+<style>
+/* ========== Reset & Base ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0b0f1a;
+  --bg-secondary: #111827;
+  --bg-card: #1a2035;
+  --bg-card-hover: #1e2744;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #1e293b;
+  --line-color: #2d3a56;
+  --era-prehistory: #a78bfa;
+  --era-birth: #818cf8;
+  --era-information: #38bdf8;
+  --era-optimal: #06b6d4;
+  --era-systems: #2dd4bf;
+  --era-complexity: #34d399;
+  --era-learning: #fbbf24;
+  --era-agent: #f472b6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 24px 80px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(129,140,248,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, rgba(167,139,250,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(244,114,182,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+.hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8, #34d399, #fbbf24, #f472b6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+.hero .subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+}
+
+.hero .intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ========== Filter Bar ========== */
+.filter-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,15,26,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px 16px;
+}
+
+.filter-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.filter-btn .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.filter-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+
+.filter-btn.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.filter-btn.all-btn { font-weight: 600; }
+
+/* ========== Timeline Container ========== */
+.timeline-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  position: relative;
+}
+
+/* Central line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--line-color) 5%,
+    var(--line-color) 95%,
+    transparent 100%
+  );
+  transform: translateX(-1px);
+}
+
+/* ========== Timeline Item ========== */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px 20px 0;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.right {
+  margin-left: 50%;
+  padding: 20px 0 20px 40px;
+  transform: translateX(30px);
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Dot on center line */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  top: 30px;
+  right: -8px;
+  border: 3px solid var(--bg-primary);
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item.right::before {
+  right: auto;
+  left: -8px;
+}
+
+.timeline-item:hover::before {
+  transform: scale(1.3);
+}
+
+/* Era-specific dot colors */
+.timeline-item[data-era="prehistory"]::before  { background: var(--era-prehistory); box-shadow: 0 0 12px rgba(167,139,250,0.4); }
+.timeline-item[data-era="birth"]::before       { background: var(--era-birth); box-shadow: 0 0 12px rgba(129,140,248,0.4); }
+.timeline-item[data-era="information"]::before  { background: var(--era-information); box-shadow: 0 0 12px rgba(56,189,248,0.4); }
+.timeline-item[data-era="optimal"]::before     { background: var(--era-optimal); box-shadow: 0 0 12px rgba(6,182,212,0.4); }
+.timeline-item[data-era="systems"]::before     { background: var(--era-systems); box-shadow: 0 0 12px rgba(45,212,191,0.4); }
+.timeline-item[data-era="complexity"]::before  { background: var(--era-complexity); box-shadow: 0 0 12px rgba(52,211,153,0.4); }
+.timeline-item[data-era="learning"]::before    { background: var(--era-learning); box-shadow: 0 0 12px rgba(251,191,36,0.4); }
+.timeline-item[data-era="agent"]::before       { background: var(--era-agent); box-shadow: 0 0 12px rgba(244,114,182,0.4); }
+
+/* Connector line from dot to card */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  right: 6px;
+  width: 26px;
+  height: 1px;
+  background: var(--line-color);
+}
+
+.timeline-item.right::after {
+  right: auto;
+  left: 6px;
+}
+
+/* ========== Card ========== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.card .year {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* Year badge colors by era */
+[data-era="prehistory"] .year  { background: rgba(167,139,250,0.15); color: var(--era-prehistory); }
+[data-era="birth"] .year       { background: rgba(129,140,248,0.15); color: var(--era-birth); }
+[data-era="information"] .year  { background: rgba(56,189,248,0.15); color: var(--era-information); }
+[data-era="optimal"] .year     { background: rgba(6,182,212,0.15); color: var(--era-optimal); }
+[data-era="systems"] .year     { background: rgba(45,212,191,0.15); color: var(--era-systems); }
+[data-era="complexity"] .year  { background: rgba(52,211,153,0.15); color: var(--era-complexity); }
+[data-era="learning"] .year    { background: rgba(251,191,36,0.15); color: var(--era-learning); }
+[data-era="agent"] .year       { background: rgba(244,114,182,0.15); color: var(--era-agent); }
+
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.card .idea {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.75;
+}
+
+.card .impact {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 2px solid var(--border-color);
+  line-height: 1.7;
+}
+
+.card .paradigm {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.card .tag {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+}
+
+/* ========== Paradigm Shift Banner ========== */
+.paradigm-banner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 28px 24px;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.paradigm-banner.visible { opacity: 1; transform: translateY(0); }
+
+.paradigm-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+}
+
+.paradigm-banner .arrow {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.paradigm-banner .from {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.paradigm-banner .to {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+/* ========== Era Section Header ========== */
+.era-header {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 40px 24px 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.era-header.visible { opacity: 1; transform: translateY(0); }
+
+.era-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.era-header .era-range {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ========== Footer Summary ========== */
+.footer-summary {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+  text-align: center;
+}
+
+.footer-summary h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  background: linear-gradient(90deg, var(--era-prehistory), var(--era-agent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-summary p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 2;
+  margin-bottom: 16px;
+}
+
+.evolution-chain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.evolution-chain .chain-node {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.evolution-chain .chain-arrow {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--line-color); border-radius: 3px; }
+
+/* ========== Mobile Responsive ========== */
+@media (max-width: 768px) {
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-item,
+  .timeline-item.right {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px 16px 16px 52px;
+    transform: translateX(30px);
+  }
+
+  .timeline-item.visible { transform: translateX(0); }
+
+  .timeline-item::before,
+  .timeline-item.right::before {
+    left: 13px;
+    right: auto;
+  }
+
+  .timeline-item::after,
+  .timeline-item.right::after {
+    left: 27px;
+    right: auto;
+    width: 16px;
+  }
+
+  .filter-inner { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .filter-btn { flex-shrink: 0; }
+
+  .hero { padding: 60px 20px 50px; }
+
+  .paradigm-banner-inner { padding: 10px 18px; gap: 8px; }
+  .paradigm-banner .from, .paradigm-banner .to { font-size: 0.8rem; }
+}
+
+/* ========== Hidden state for filtering ========== */
+.timeline-item.filtered-out {
+  display: none !important;
+}
+
+.paradigm-banner.filtered-out,
+.era-header.filtered-out {
+  display: none !important;
+}
+
+/* ========== Back to Top ========== */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(129,140,248,0.2);
+  border: 1px solid rgba(129,140,248,0.3);
+  color: var(--era-birth);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top.show { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { transform: translateY(-2px); background: rgba(129,140,248,0.35); }
+
+/* ========== Node Counter ========== */
+.node-counter {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>控制论思想演化史<br>从蒸汽机调速器到自主智能体</h1>
+    <p class="subtitle">反馈 &middot; 信息 &middot; 控制 &middot; 系统 &middot; 学习 &middot; 智能 &mdash; 跨越三个世纪的思想之旅</p>
+    <p class="intro">
+      控制论不仅是一门学科，更是一种看待世界的方式。从 Watt 的蒸汽机调速器到今天的自主 AI Agent，
+      「反馈」这一核心概念以不同的面貌反复出现 &mdash; 它是稳定性的保证、是最优决策的基础、
+      是学习的机制、是智能的本质。本时间线追溯这一思想脉络的完整演化路径。
+    </p>
+  </div>
+</section>
+
+<!-- ==================== FILTER BAR ==================== -->
+<nav class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn all-btn active" data-filter="all">全部</button>
+    <button class="filter-btn" data-filter="prehistory"><span class="dot" style="background:var(--era-prehistory)"></span>前史与萌芽</button>
+    <button class="filter-btn" data-filter="birth"><span class="dot" style="background:var(--era-birth)"></span>控制论诞生</button>
+    <button class="filter-btn" data-filter="information"><span class="dot" style="background:var(--era-information)"></span>信息论与经典控制</button>
+    <button class="filter-btn" data-filter="optimal"><span class="dot" style="background:var(--era-optimal)"></span>最优控制黄金时代</button>
+    <button class="filter-btn" data-filter="systems"><span class="dot" style="background:var(--era-systems)"></span>系统论与管理控制</button>
+    <button class="filter-btn" data-filter="complexity"><span class="dot" style="background:var(--era-complexity)"></span>复杂系统与自组织</button>
+    <button class="filter-btn" data-filter="learning"><span class="dot" style="background:var(--era-learning)"></span>控制与学习融合</button>
+    <button class="filter-btn" data-filter="agent"><span class="dot" style="background:var(--era-agent)"></span>AI Agent 时代</button>
+  </div>
+  <div class="node-counter" id="nodeCounter">显示 45 / 45 个节点</div>
+</nav>
+
+<!-- ==================== TIMELINE ==================== -->
+<main class="timeline-container" id="timeline">
+
+  <!-- ===== ERA 1: 前史与萌芽 ===== -->
+  <div class="era-header" data-era-section="prehistory">
+    <h2 style="color:var(--era-prehistory)">前史与萌芽</h2>
+    <span class="era-range">Pre-1943</span>
+  </div>
+
+  <!-- 1 -->
+  <div class="timeline-item" data-era="prehistory">
+    <div class="card">
+      <span class="year">1788</span>
+      <h3>Watt 离心调速器</h3>
+      <p class="idea">James Watt 在蒸汽机上安装离心调速器，利用飞球的离心力自动调节蒸汽阀门开度。当转速升高时飞球张开、阀门关小、转速降低 &mdash; 构成了工程史上第一个完整的自动反馈回路。这一装置在无需人工干预的情况下维持了发动机的稳定转速。</p>
+      <p class="impact">影响：开创了自动控制的工程实践，反馈调节从此成为机械工程的核心概念，驱动了工业革命的加速。</p>
+      <div class="tags"><span class="tag">反馈控制</span><span class="tag">工程实践</span><span class="tag">工业革命</span></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="timeline-item right" data-era="prehistory">
+    <div class="card">
+      <span class="year">1868</span>
+      <h3>Maxwell 《论调速器》</h3>
+      <p class="idea">James Clerk Maxwell 发表《论调速器》(On Governors)，将 Watt 调速器从直觉工程提升到严格数学分析。他建立了调速器的微分方程模型，首次用特征方程的根来判定系统稳定性。这是反馈系统被纳入数学框架的开创性时刻。</p>
+      <p class="impact">影响：奠定了稳定性理论的基石，启发了 Routh 和 Hurwitz 的后续工作，使控制系统分析从经验走向科学。</p>
+      <div class="paradigm">范式跃迁：机械调节 &rarr; 数学分析</div>
+      <div class="tags"><span class="tag">稳定性理论</span><span class="tag">微分方程</span><span class="tag">数学建模</span></div>
+    </div>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="prehistory">
+    <div class="paradigm-banner-inner">
+      <span class="from">机械调节</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-prehistory)">数学分析</span>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="timeline-item" data-era="prehistory">
+    <div class="card">
+      <span class="year">1877</span>
+      <h3>Routh-Hurwitz 稳定性判据</h3>
+      <p class="idea">Edward Routh 和 Adolf Hurwitz 分别独立发展了基于特征多项式系数的代数判据，无需实际求根即可判定线性系统的稳定性。Routh 表阵列方法成为经典控制理论教育的标准内容。</p>
+      <p class="impact">影响：提供了实用的稳定性分析工具，使工程师能在设计阶段预判系统行为，是经典控制理论的基础判据之一。</p>
+      <div class="tags"><span class="tag">代数判据</span><span class="tag">稳定性分析</span><span class="tag">线性系统</span></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="timeline-item right" data-era="prehistory">
+    <div class="card">
+      <span class="year">1932</span>
+      <h3>Nyquist 稳定性判据</h3>
+      <p class="idea">Harry Nyquist 在贝尔实验室提出基于频率响应的稳定性判据。通过在复平面上绘制系统的开环传递函数曲线，利用围线定理判断闭环系统的稳定性。这将稳定性分析从时域推向了频域。</p>
+      <p class="impact">影响：频域方法革命性地简化了复杂系统的分析，为此后 Bode 图、增益裕度和相位裕度等核心概念铺平了道路。</p>
+      <div class="tags"><span class="tag">频域分析</span><span class="tag">闭环稳定性</span><span class="tag">贝尔实验室</span></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="timeline-item" data-era="prehistory">
+    <div class="card">
+      <span class="year">1934</span>
+      <h3>Hazen 伺服机构理论</h3>
+      <p class="idea">Harold Hazen 在 MIT 正式定义了「伺服机构」(servomechanism) 的概念 &mdash; 一种通过反馈控制使输出跟踪参考输入的自动装置。他系统阐述了误差驱动反馈系统的设计原则。</p>
+      <p class="impact">影响：将反馈控制从速度调节扩展到位置跟踪，为二战期间的火控系统和雷达伺服奠定了理论基础。</p>
+      <div class="tags"><span class="tag">伺服机构</span><span class="tag">跟踪控制</span><span class="tag">MIT</span></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="timeline-item right" data-era="prehistory">
+    <div class="card">
+      <span class="year">1936</span>
+      <h3>Turing 机</h3>
+      <p class="idea">Alan Turing 提出通用图灵机的概念，定义了可计算性的理论边界。任何能被精确描述的算法过程，都可以由这台假想的无限纸带机器执行。这不仅奠定了计算理论基础，也暗含了一个深刻的控制论问题：计算的极限在哪里？</p>
+      <p class="impact">影响：为此后的计算机科学和人工智能奠定了数学基础，「机器能否思考」的追问在此萌芽。</p>
+      <div class="tags"><span class="tag">可计算性</span><span class="tag">通用计算</span><span class="tag">理论基础</span></div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="timeline-item" data-era="prehistory">
+    <div class="card">
+      <span class="year">1938</span>
+      <h3>Bode 对数频率分析</h3>
+      <p class="idea">Hendrik Bode 在贝尔实验室发展了对数频率分析法，引入了 Bode 图（幅频/相频特性）和增益裕度、相位裕度等关键概念。这种图形化工具使工程师能直观地分析和设计反馈系统。</p>
+      <p class="impact">影响：Bode 图至今仍是控制系统设计的标准工具，其简洁直观的特性使复杂的频域分析成为工程师的日常技能。</p>
+      <div class="tags"><span class="tag">Bode 图</span><span class="tag">频域设计</span><span class="tag">工程工具</span></div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="timeline-item right" data-era="prehistory">
+    <div class="card">
+      <span class="year">1942</span>
+      <h3>Wiener 防空预测器</h3>
+      <p class="idea">Norbert Wiener 受美军委托开发防空火控系统，将统计预测理论与反馈控制相结合。通过对飞机轨迹进行时间序列预测并反馈校正射击，他发现了控制与通信之间的深层同构 &mdash; 这直接催生了控制论。</p>
+      <p class="impact">影响：战争需求驱动了控制论的诞生，Wiener 在此过程中意识到反馈、信息和控制是统一的概念框架。</p>
+      <div class="tags"><span class="tag">统计预测</span><span class="tag">军事应用</span><span class="tag">控制论前传</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ERA 2: 控制论诞生 ===== -->
+  <div class="era-header" data-era-section="birth">
+    <h2 style="color:var(--era-birth)">控制论诞生</h2>
+    <span class="era-range">1943 &mdash; 1950</span>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="birth">
+    <div class="paradigm-banner-inner">
+      <span class="from">工程控制</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-birth)">跨学科统一</span>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="timeline-item" data-era="birth">
+    <div class="card">
+      <span class="year">1943</span>
+      <h3>Rosenblueth / Wiener / Bigelow《行为、目的与目的论》</h3>
+      <p class="idea">这篇划时代论文提出了一个惊人的统一观点：所有「有目的的行为」&mdash; 无论来自动物还是机器 &mdash; 都可以用「负反馈」来解释。一个系统不断将当前状态与目标状态比较、修正偏差，就是目的性行为的本质。</p>
+      <p class="impact">影响：打破了生物与机器之间的认知壁垒，为控制论提供了哲学宣言，统一了目的论与机制论。</p>
+      <div class="paradigm">范式跃迁：目的论 vs 机制论 &rarr; 反馈统一框架</div>
+      <div class="tags"><span class="tag">目的性行为</span><span class="tag">负反馈</span><span class="tag">生物-机器统一</span></div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="timeline-item right" data-era="birth">
+    <div class="card">
+      <span class="year">1943</span>
+      <h3>McCulloch-Pitts 神经元模型</h3>
+      <p class="idea">Warren McCulloch 和 Walter Pitts 证明神经元的激发/抑制行为可以用逻辑命题来建模。每个神经元作为一个阈值逻辑单元，神经网络能够计算任何可计算函数。这将神经科学与数理逻辑、计算理论联系了起来。</p>
+      <p class="impact">影响：奠定了人工神经网络的理论基础，是连接主义人工智能的起点，也是控制论跨学科精神的典范。</p>
+      <div class="tags"><span class="tag">神经网络</span><span class="tag">逻辑建模</span><span class="tag">连接主义</span></div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="timeline-item" data-era="birth">
+    <div class="card">
+      <span class="year">1946-1953</span>
+      <h3>Macy 会议</h3>
+      <p class="idea">由 Josiah Macy Jr. 基金会资助的十次跨学科研讨会，汇聚了 Wiener、von Neumann、McCulloch、Bateson、Mead 等数学家、工程师、生物学家、心理学家和人类学家。他们讨论反馈、信息、计算在不同学科中的统一性，这是人类历史上最深远的跨学科对话之一。</p>
+      <p class="impact">影响：构建了控制论运动的社会网络和知识基础，催生了信息论、认知科学、系统论等多个学科领域。</p>
+      <div class="tags"><span class="tag">跨学科</span><span class="tag">Macy 基金会</span><span class="tag">学科交叉</span></div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="timeline-item right" data-era="birth">
+    <div class="card">
+      <span class="year">1948</span>
+      <h3>Wiener《控制论》出版</h3>
+      <p class="idea">Norbert Wiener 出版《控制论：或关于在动物和机器中控制和通信的科学》，正式宣告控制论的诞生。他提出了一个革命性的统一框架：反馈、信息和控制是理解一切复杂系统 &mdash; 无论是机器、生物还是社会 &mdash; 的共同语言。书名来自希腊语 kybernetes（舵手）。</p>
+      <p class="impact">影响：创立了一个全新学科，其影响辐射至计算机科学、认知科学、生物学、社会学和哲学，是 20 世纪最重要的思想事件之一。</p>
+      <div class="paradigm">核心思想：反馈 + 信息 + 控制 = 统一框架</div>
+      <div class="tags"><span class="tag">控制论宣言</span><span class="tag">反馈</span><span class="tag">信息</span><span class="tag">跨学科统一</span></div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="timeline-item" data-era="birth">
+    <div class="card">
+      <span class="year">1948</span>
+      <h3>Shannon《通信的数学理论》</h3>
+      <p class="idea">Claude Shannon 在贝尔实验室发表信息论的奠基论文，引入了「比特」(bit) 作为信息的基本单位，用熵来度量信息量。他证明了在噪声信道中可靠通信的理论极限（信道容量），将信息从模糊的日常概念提升为精确的数学量。</p>
+      <p class="impact">影响：信息论成为现代通信、数据压缩、密码学的理论基础，与控制论共同构成了信息时代的两根理论支柱。</p>
+      <div class="tags"><span class="tag">信息熵</span><span class="tag">信道容量</span><span class="tag">比特</span><span class="tag">信息论</span></div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="timeline-item right" data-era="birth">
+    <div class="card">
+      <span class="year">1950</span>
+      <h3>Turing "计算机器与智能"</h3>
+      <p class="idea">Alan Turing 发表著名论文《Computing Machinery and Intelligence》，提出了图灵测试：如果人类无法区分机器和人类的对话回答，就应承认机器具有智能。他系统地回应了「机器不能思考」的各种反对意见，为人工智能的哲学基础辩护。</p>
+      <p class="impact">影响：开启了 AI 哲学的核心议题，图灵测试至今仍是讨论机器智能的标准参照点，LLM 时代重新赋予了这个问题紧迫性。</p>
+      <div class="tags"><span class="tag">图灵测试</span><span class="tag">机器智能</span><span class="tag">AI 哲学</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ERA 3: 信息论与经典控制 ===== -->
+  <div class="era-header" data-era-section="information">
+    <h2 style="color:var(--era-information)">信息论与经典控制</h2>
+    <span class="era-range">1948 &mdash; 1960</span>
+  </div>
+
+  <!-- 15 -->
+  <div class="timeline-item" data-era="information">
+    <div class="card">
+      <span class="year">1952</span>
+      <h3>Ashby《大脑的设计》</h3>
+      <p class="idea">W. Ross Ashby 在《Design for a Brain》中提出超稳定系统(ultrastable system)的概念。系统在环境干扰下通过两层反馈保持稳定：快速的参数调节和缓慢的结构重组。这是自适应控制的理论原型 &mdash; 系统不仅响应干扰，还能改变自身结构以适应新环境。</p>
+      <p class="impact">影响：预见了自适应控制和元学习的核心思想，「改变规则的规则」至今仍是 AI 研究的前沿课题。</p>
+      <div class="tags"><span class="tag">超稳定系统</span><span class="tag">自适应</span><span class="tag">双层反馈</span></div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="timeline-item right" data-era="information">
+    <div class="card">
+      <span class="year">1954</span>
+      <h3>Bertalanffy《一般系统论》初版</h3>
+      <p class="idea">Ludwig von Bertalanffy 提出一般系统论(General System Theory)，强调系统的整体性不可还原为部分之和。他反对纯粹的还原论，主张研究系统的组织、层次和涌现性质。开放系统与环境交换物质、能量和信息以维持自身秩序。</p>
+      <p class="impact">影响：为跨学科的系统思维提供了理论框架，影响了生态学、管理学、社会科学等众多领域。</p>
+      <div class="tags"><span class="tag">系统论</span><span class="tag">整体性</span><span class="tag">反还原论</span><span class="tag">开放系统</span></div>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="timeline-item" data-era="information">
+    <div class="card">
+      <span class="year">1955</span>
+      <h3>Ziegler-Nichols PID 调参法则</h3>
+      <p class="idea">Ziegler 和 Nichols 提出的 PID 控制器调参经验法则（最初发表于 1942 年，1950 年代广泛应用）成为工业控制的标准方法。通过临界增益实验确定比例(P)、积分(I)、微分(D)三个参数，使得非专业人员也能快速整定控制器。</p>
+      <p class="impact">影响：PID 控制器至今仍占工业控制应用的 90% 以上，Ziegler-Nichols 法则是控制工程教育的必修内容。</p>
+      <div class="tags"><span class="tag">PID 控制</span><span class="tag">工业应用</span><span class="tag">经验法则</span></div>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="timeline-item right" data-era="information">
+    <div class="card">
+      <span class="year">1956</span>
+      <h3>Ashby《控制论导论》&mdash; 必要多样性定律</h3>
+      <p class="idea">Ashby 的教科书《An Introduction to Cybernetics》提出了著名的必要多样性定律(Law of Requisite Variety)：「只有多样性才能摧毁多样性」。一个控制器要有效调节一个系统，其自身的行为多样性必须至少等于系统的干扰多样性。这被称为控制论的第二定律。</p>
+      <p class="impact">影响：这一定律为控制系统的能力边界提供了基本约束，在管理学、信息安全、组织设计等领域有深远启示。</p>
+      <div class="paradigm">Ashby 定律：控制器多样性 &ge; 被控系统多样性</div>
+      <div class="tags"><span class="tag">必要多样性</span><span class="tag">控制极限</span><span class="tag">教科书</span></div>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="timeline-item" data-era="information">
+    <div class="card">
+      <span class="year">1956</span>
+      <h3>Dartmouth 会议 &mdash; AI 正式命名</h3>
+      <p class="idea">John McCarthy 等人在 Dartmouth 学院组织了为期两个月的研讨会，正式创造了「人工智能」(Artificial Intelligence)这一术语。这标志着 AI 作为独立学科从控制论中「分家」&mdash; AI 追求符号推理和搜索，控制论关注连续系统和反馈。</p>
+      <p class="impact">影响：AI 与控制论的分离深刻影响了此后半个世纪的学术格局，直到深度强化学习时代两者才重新融合。</p>
+      <div class="tags"><span class="tag">人工智能</span><span class="tag">学科分化</span><span class="tag">符号主义</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ERA 4: 最优控制黄金时代 ===== -->
+  <div class="era-header" data-era-section="optimal">
+    <h2 style="color:var(--era-optimal)">最优控制黄金时代</h2>
+    <span class="era-range">1956 &mdash; 1970</span>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="optimal">
+    <div class="paradigm-banner-inner">
+      <span class="from">确定性控制</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-optimal)">最优决策</span>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="timeline-item right" data-era="optimal">
+    <div class="card">
+      <span class="year">1956</span>
+      <h3>Pontryagin 极大值原理</h3>
+      <p class="idea">Lev Pontryagin 及其团队提出极大值原理(Maximum Principle)，为连续非线性系统的最优控制提供了必要条件。通过引入伴随变量和 Hamiltonian 函数，证明最优控制必须在每个时刻最大化 Hamiltonian。这是变分法在控制论中的现代表述。</p>
+      <p class="impact">影响：与 Bellman 动态规划并列为最优控制理论的两大支柱，在航天、导弹制导和轨道优化中有关键应用。</p>
+      <div class="tags"><span class="tag">最优控制</span><span class="tag">Hamiltonian</span><span class="tag">连续系统</span></div>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="timeline-item" data-era="optimal">
+    <div class="card">
+      <span class="year">1957</span>
+      <h3>Bellman 动态规划</h3>
+      <p class="idea">Richard Bellman 提出动态规划(Dynamic Programming)和最优性原理(Principle of Optimality)：「最优策略的任何子序列也必须是最优的。」通过递归地将多阶段决策问题分解为单步子问题，他创造了求解序贯决策问题的通用框架。Bellman 方程成为强化学习的数学基石。</p>
+      <p class="impact">影响：动态规划不仅是最优控制的核心工具，更直接孕育了强化学习 &mdash; Q-Learning 本质上是 Bellman 方程的在线近似。</p>
+      <div class="paradigm">Bellman 方程：V(s) = max_a [R(s,a) + &gamma;V(s')]</div>
+      <div class="tags"><span class="tag">动态规划</span><span class="tag">最优性原理</span><span class="tag">RL 基础</span><span class="tag">序贯决策</span></div>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="timeline-item right" data-era="optimal">
+    <div class="card">
+      <span class="year">1960</span>
+      <h3>Kalman 滤波器</h3>
+      <p class="idea">Rudolf Kalman 提出了状态空间方法和 Kalman 滤波器 &mdash; 一种在含噪声的线性动态系统中进行递归最优状态估计的算法。他同时引入了可控性(controllability)和可观性(observability)这两个判断系统能否被控制和观测的基本概念，开创了现代控制理论。</p>
+      <p class="impact">影响：Kalman 滤波器是 Apollo 登月计划导航系统的核心算法，至今广泛应用于导航、机器人、金融和信号处理等领域。</p>
+      <div class="tags"><span class="tag">状态估计</span><span class="tag">可控可观</span><span class="tag">现代控制</span><span class="tag">Apollo</span></div>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="timeline-item" data-era="optimal">
+    <div class="card">
+      <span class="year">1961</span>
+      <h3>LQR/LQG 框架</h3>
+      <p class="idea">线性二次调节器(LQR)将 Bellman 动态规划应用于线性系统二次代价函数，得到了解析的最优反馈控制律。与 Kalman 滤波器结合，构成了线性二次高斯(LQG)控制 &mdash; 分离定理保证最优估计和最优控制可以独立设计再组合，而不损失全局最优性。</p>
+      <p class="impact">影响：LQG 是第一个将最优控制和最优估计统一起来的完整理论框架，成为现代控制工程的标准方法论。</p>
+      <div class="paradigm">分离定理：最优估计 + 最优控制 = 全局最优</div>
+      <div class="tags"><span class="tag">LQR</span><span class="tag">LQG</span><span class="tag">分离定理</span><span class="tag">最优反馈</span></div>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="timeline-item right" data-era="optimal">
+    <div class="card">
+      <span class="year">1963</span>
+      <h3>Lorenz 混沌发现</h3>
+      <p class="idea">Edward Lorenz 在研究大气对流模型时发现，确定性非线性系统可以表现出完全不可预测的行为。微小的初始条件差异会导致完全不同的演化轨迹 &mdash; 即著名的「蝴蝶效应」。这揭示了确定性与可预测性之间的鸿沟。</p>
+      <p class="impact">影响：混沌理论终结了拉普拉斯确定论的幻想，迫使控制论面对非线性和不确定性，催生了鲁棒控制和自适应控制。</p>
+      <div class="tags"><span class="tag">混沌理论</span><span class="tag">蝴蝶效应</span><span class="tag">非线性</span><span class="tag">不可预测性</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ERA 5: 系统论与管理控制 ===== -->
+  <div class="era-header" data-era-section="systems">
+    <h2 style="color:var(--era-systems)">系统论与管理控制</h2>
+    <span class="era-range">1948 &mdash; 1975</span>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="systems">
+    <div class="paradigm-banner-inner">
+      <span class="from">个体控制</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-systems)">系统整体</span>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="timeline-item" data-era="systems">
+    <div class="card">
+      <span class="year">1965</span>
+      <h3>Zadeh 模糊集合</h3>
+      <p class="idea">Lotfi Zadeh 提出模糊集合(Fuzzy Sets)理论，突破了经典集合论「非此即彼」的二值逻辑。一个元素可以以 0 到 1 之间的隶属度属于某个集合，这为处理人类语言中固有的模糊性和不确定性提供了数学工具。「大约」「差不多」「稍微」第一次有了精确的数学含义。</p>
+      <p class="impact">影响：模糊控制论在家电、工业过程控制中大获成功，证明了不精确的知识也可以产生精确的控制效果。</p>
+      <div class="tags"><span class="tag">模糊集合</span><span class="tag">隶属度</span><span class="tag">不确定性</span><span class="tag">模糊控制</span></div>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="timeline-item right" data-era="systems">
+    <div class="card">
+      <span class="year">1968</span>
+      <h3>Bertalanffy 一般系统论正式出版</h3>
+      <p class="idea">Bertalanffy 的《General System Theory》正式出版，系统整理了二十年来的系统思想。他提出系统科学的三大支柱：系统技术（工程优化）、系统科学（数学建模）和系统哲学（认识论反思），为跨学科的系统方法论提供了完整体系。</p>
+      <p class="impact">影响：一般系统论成为环境科学、城市规划、医疗管理等复杂领域的思维工具，「系统思维」成为主流方法论。</p>
+      <div class="tags"><span class="tag">一般系统论</span><span class="tag">系统科学</span><span class="tag">跨学科方法</span></div>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="timeline-item" data-era="systems">
+    <div class="card">
+      <span class="year">1970</span>
+      <h3>Von Foerster 二阶控制论</h3>
+      <p class="idea">Heinz von Foerster 提出「二阶控制论」(second-order cybernetics)，也称「观察系统的控制论」。第一阶控制论研究被观察的系统，二阶控制论将观察者本身纳入系统 &mdash; 观察者不是站在系统外部的中立存在，而是系统的一部分。这导向了自我参照(self-reference)和建构主义认识论。</p>
+      <p class="impact">影响：深刻影响了社会学（Luhmann 的社会系统论）、心理治疗（家庭治疗）和哲学（建构主义），也预示了 AI 对齐问题中「观察者的角色」。</p>
+      <div class="paradigm">范式跃迁：观察系统 &rarr; 观察系统的系统</div>
+      <div class="tags"><span class="tag">二阶控制论</span><span class="tag">自我参照</span><span class="tag">建构主义</span></div>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="timeline-item right" data-era="systems">
+    <div class="card">
+      <span class="year">1972</span>
+      <h3>Beer《大脑的公司》&mdash; VSM 模型</h3>
+      <p class="idea">Stafford Beer 在《Brain of the Firm》中提出可行系统模型(Viable System Model, VSM)，将 Ashby 的控制论原理应用于组织管理。VSM 将一个可生存的组织类比为神经系统，划分为五个系统层次：操作(S1)、协调(S2)、优化(S3)、适应(S4)和政策(S5)。</p>
+      <p class="impact">影响：VSM 成为管理控制论的核心模型，对组织设计、企业治理和公共管理产生了持久影响。</p>
+      <div class="tags"><span class="tag">管理控制论</span><span class="tag">VSM</span><span class="tag">组织设计</span></div>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="timeline-item" data-era="systems">
+    <div class="card">
+      <span class="year">1972</span>
+      <h3>Cybersyn 项目</h3>
+      <p class="idea">Stafford Beer 受智利 Allende 政府邀请，实施了 Cybersyn &mdash; 一个基于控制论原理的实时国家经济管理系统。通过电传网络收集全国工厂数据，在中央「作战室」用可行系统模型监控经济运行，用统计算法检测异常。这是控制论在社会治理中最大胆的实验。</p>
+      <p class="impact">影响：虽因 1973 年政变而终结，但 Cybersyn 证明了控制论原理在宏观经济管理中的可行性，至今仍是技术与政治交汇的经典案例。</p>
+      <div class="tags"><span class="tag">社会控制论</span><span class="tag">经济管理</span><span class="tag">智利</span><span class="tag">实时系统</span></div>
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="timeline-item right" data-era="systems">
+    <div class="card">
+      <span class="year">1973</span>
+      <h3>Maturana & Varela 自创生</h3>
+      <p class="idea">Humberto Maturana 和 Francisco Varela 提出自创生(autopoiesis)概念：生命系统是自我生产的组织闭合网络 &mdash; 系统的组分不断通过自身的运作过程再生产自身。这将控制论从「控制外部环境」转向了「理解生命的自我维持」。</p>
+      <p class="impact">影响：自创生理论深刻影响了生物学（生命定义）、社会学（Luhmann 的自创生社会系统）和认知科学（具身认知），也与当代自主 Agent 的「自我维持」目标形成了呼应。</p>
+      <div class="tags"><span class="tag">自创生</span><span class="tag">生命定义</span><span class="tag">组织闭合</span><span class="tag">自我生产</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ERA 6: 复杂系统与自组织 ===== -->
+  <div class="era-header" data-era-section="complexity">
+    <h2 style="color:var(--era-complexity)">复杂系统与自组织</h2>
+    <span class="era-range">1965 &mdash; 1995</span>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="complexity">
+    <div class="paradigm-banner-inner">
+      <span class="from">线性 / 确定</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-complexity)">非线性 / 不确定</span>
+    </div>
+  </div>
+
+  <!-- 31 -->
+  <div class="timeline-item" data-era="complexity">
+    <div class="card">
+      <span class="year">1977</span>
+      <h3>Prigogine 耗散结构 &mdash; 诺贝尔奖</h3>
+      <p class="idea">Ilya Prigogine 因耗散结构(dissipative structures)理论获得诺贝尔化学奖。他证明远离热力学平衡态的开放系统可以自发产生有序结构 &mdash; 通过持续的能量耗散和物质交换来维持自身秩序。这从根本上挑战了热力学第二定律的「宇宙趋向混乱」的简单解读。</p>
+      <p class="impact">影响：为自组织现象提供了热力学基础，解释了从化学振荡到生命起源的广泛现象，是复杂性科学的里程碑。</p>
+      <div class="tags"><span class="tag">耗散结构</span><span class="tag">自组织</span><span class="tag">远离平衡</span><span class="tag">诺贝尔奖</span></div>
+    </div>
+  </div>
+
+  <!-- 32 -->
+  <div class="timeline-item right" data-era="complexity">
+    <div class="card">
+      <span class="year">1979</span>
+      <h3>Haken 协同学</h3>
+      <p class="idea">Hermann Haken 发展了协同学(Synergetics)理论，研究大量子系统如何通过协作产生宏观有序结构。他提出序参量(order parameter)和役使原理(slaving principle)：在相变点附近，少数慢变量(序参量)支配了大量快变量的行为，从而使复杂系统的分析极大简化。</p>
+      <p class="impact">影响：协同学提供了理解涌现现象的一般框架，在激光物理、流体力学、神经科学和社会动力学中都有成功应用。</p>
+      <div class="tags"><span class="tag">协同学</span><span class="tag">序参量</span><span class="tag">涌现</span><span class="tag">相变</span></div>
+    </div>
+  </div>
+
+  <!-- 33 -->
+  <div class="timeline-item" data-era="complexity">
+    <div class="card">
+      <span class="year">1984</span>
+      <h3>圣菲研究所 &mdash; 复杂适应系统</h3>
+      <p class="idea">圣菲研究所(Santa Fe Institute)成立，汇聚了物理学家、生物学家、经济学家和计算机科学家，专注研究复杂适应系统(Complex Adaptive Systems, CAS)。CAS 的核心特征是：大量自主 Agent 通过局部交互产生全局涌现行为，系统持续适应和进化。</p>
+      <p class="impact">影响：复杂性科学成为独立的研究范式，对经济学（复杂经济学）、生态学（生态网络）和社会科学（涌现秩序）产生了变革性影响。</p>
+      <div class="tags"><span class="tag">复杂适应系统</span><span class="tag">涌现</span><span class="tag">圣菲研究所</span><span class="tag">多 Agent</span></div>
+    </div>
+  </div>
+
+  <!-- 34 -->
+  <div class="timeline-item right" data-era="complexity">
+    <div class="card">
+      <span class="year">1986</span>
+      <h3>Rumelhart / Hinton / Williams 反向传播</h3>
+      <p class="idea">David Rumelhart、Geoffrey Hinton 和 Ronald Williams 在《Nature》上发表了反向传播算法(backpropagation)的系统阐述，使多层神经网络的训练成为可能。误差信号从输出层逐层向后传播，调整每一层的连接权重 &mdash; 这本质上是误差反馈的层次化版本。</p>
+      <p class="impact">影响：反向传播是深度学习革命的算法基石，也是控制论「反馈」思想在学习系统中的最成功应用。</p>
+      <div class="paradigm">范式跃迁：硬编码控制 &rarr; 学习型控制</div>
+      <div class="tags"><span class="tag">反向传播</span><span class="tag">神经网络</span><span class="tag">误差反馈</span><span class="tag">深度学习</span></div>
+    </div>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="complexity">
+    <div class="paradigm-banner-inner">
+      <span class="from">硬编码控制</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-learning)">学习型控制</span>
+    </div>
+  </div>
+
+  <!-- ===== ERA 7: 控制与学习的融合 ===== -->
+  <div class="era-header" data-era-section="learning">
+    <h2 style="color:var(--era-learning)">控制与学习的融合</h2>
+    <span class="era-range">1989 &mdash; 2018</span>
+  </div>
+
+  <!-- 35 -->
+  <div class="timeline-item" data-era="learning">
+    <div class="card">
+      <span class="year">1989</span>
+      <h3>Watkins Q-Learning</h3>
+      <p class="idea">Christopher Watkins 提出 Q-Learning 算法 &mdash; 一种无模型的强化学习方法，通过与环境的试错交互直接学习最优策略。Agent 维护一个动作价值函数 Q(s,a)，在每一步根据实际奖励和对未来的估计更新 Q 值。这本质上是 Bellman 最优方程的在线随机近似。</p>
+      <p class="impact">影响：Q-Learning 证明了不需要完整的环境模型也能学到最优控制策略，开启了无模型强化学习的广阔天地。</p>
+      <div class="tags"><span class="tag">Q-Learning</span><span class="tag">无模型 RL</span><span class="tag">试错学习</span><span class="tag">Bellman</span></div>
+    </div>
+  </div>
+
+  <!-- 36 -->
+  <div class="timeline-item right" data-era="learning">
+    <div class="card">
+      <span class="year">1997</span>
+      <h3>Sutton & Barto《强化学习导论》</h3>
+      <p class="idea">Richard Sutton 和 Andrew Barto 的教科书将强化学习建立为统一的理论框架，系统整合了三个源流：最优控制(Bellman)、心理学(试错学习)和 AI(规划与搜索)。时序差分学习(TD Learning)被确立为 RL 的核心算法范式 &mdash; 用当前估计更新过去的估计，无需等待最终结果。</p>
+      <p class="impact">影响：这本书定义了现代 RL 的学科边界和研究议程，是每位 RL 研究者的必读经典，被引用超过 80,000 次。</p>
+      <div class="paradigm">RL = 控制论 + 心理学 + AI 的交汇</div>
+      <div class="tags"><span class="tag">强化学习</span><span class="tag">TD 学习</span><span class="tag">统一框架</span><span class="tag">教科书</span></div>
+    </div>
+  </div>
+
+  <!-- 37 -->
+  <div class="timeline-item" data-era="learning">
+    <div class="card">
+      <span class="year">2006</span>
+      <h3>Todorov / Toussaint &mdash; 控制即推断</h3>
+      <p class="idea">Emanuel Todorov 和 Marc Toussaint 分别从不同角度提出「控制即推断」(Control as Inference)的深刻洞见：最优控制问题可以被重新表述为概率图模型上的贝叶斯推断问题。控制策略对应后验分布，代价函数对应似然函数，最优控制等价于最大后验估计。</p>
+      <p class="impact">影响：揭示了控制理论与概率推断之间出人意料的数学等价性，为后来控制、推断和学习的三位一体统一奠定了基础。</p>
+      <div class="tags"><span class="tag">控制即推断</span><span class="tag">贝叶斯</span><span class="tag">概率图模型</span><span class="tag">数学等价</span></div>
+    </div>
+  </div>
+
+  <!-- 38 -->
+  <div class="timeline-item right" data-era="learning">
+    <div class="card">
+      <span class="year">2013</span>
+      <h3>DQN &mdash; 深度强化学习</h3>
+      <p class="idea">DeepMind 的 Mnih 等人将深度卷积神经网络与 Q-Learning 结合，创造了 Deep Q-Network (DQN)。DQN 直接从原始像素输入学习玩 Atari 游戏，用经验回放和目标网络稳定训练。这实现了端到端的感知-决策一体化 &mdash; 从看到的画面直接输出最优动作。</p>
+      <p class="impact">影响：DQN 在多款 Atari 游戏上达到或超过人类水平，证明了深度学习 + 强化学习的巨大潜力，引爆了深度 RL 的研究热潮。</p>
+      <div class="tags"><span class="tag">DQN</span><span class="tag">端到端学习</span><span class="tag">Atari</span><span class="tag">DeepMind</span></div>
+    </div>
+  </div>
+
+  <!-- 39 -->
+  <div class="timeline-item" data-era="learning">
+    <div class="card">
+      <span class="year">2016</span>
+      <h3>AlphaGo &mdash; RL 的 Sputnik 时刻</h3>
+      <p class="idea">DeepMind 的 AlphaGo 以 4:1 战胜世界围棋冠军李世石，震惊世界。系统结合了蒙特卡洛树搜索、深度价值网络和策略网络，通过自我对弈的强化学习不断进化。AlphaGo 的走法超越了人类千年积累的围棋知识，证明了反馈驱动的学习可以超越人类直觉。</p>
+      <p class="impact">影响：如同 1957 年苏联发射 Sputnik 卫星一样，AlphaGo 改变了公众和学界对 AI 能力边界的认知，大量资源涌入 AI 研究。</p>
+      <div class="tags"><span class="tag">AlphaGo</span><span class="tag">围棋</span><span class="tag">自我对弈</span><span class="tag">超越人类</span></div>
+    </div>
+  </div>
+
+  <!-- 40 -->
+  <div class="timeline-item right" data-era="learning">
+    <div class="card">
+      <span class="year">2018</span>
+      <h3>Levine CaI 综述 &mdash; 控制 = 推断 = 学习</h3>
+      <p class="idea">Sergey Levine 发表了「Reinforcement Learning and Control as Probabilistic Inference」综述论文，系统论证了三个看似不同的领域 &mdash; 最优控制、概率推断和强化学习 &mdash; 在数学上的深层统一。通过概率图模型的变分推断框架，控制策略优化等价于后验推断，奖励函数等价于观测似然。</p>
+      <p class="impact">影响：这篇综述标志着控制论思想在 AI 时代的理论回归，三位一体的统一视角正在重新定义智能系统的设计范式。</p>
+      <div class="paradigm">范式跃迁：控制 &ne; 推断 &rarr; 控制 = 推断 = 学习</div>
+      <div class="tags"><span class="tag">理论统一</span><span class="tag">概率推断</span><span class="tag">三位一体</span><span class="tag">变分方法</span></div>
+    </div>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="learning">
+    <div class="paradigm-banner-inner">
+      <span class="from">控制 &ne; 推断</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-learning)">控制 = 推断 = 学习</span>
+    </div>
+  </div>
+
+  <!-- ===== ERA 8: AI Agent 时代 ===== -->
+  <div class="era-header" data-era-section="agent">
+    <h2 style="color:var(--era-agent)">AI Agent 时代</h2>
+    <span class="era-range">2020 &mdash; 2026</span>
+  </div>
+
+  <!-- Paradigm Banner -->
+  <div class="paradigm-banner" data-era-section="agent">
+    <div class="paradigm-banner-inner">
+      <span class="from">工具 AI</span>
+      <span class="arrow">&xrarr;</span>
+      <span class="to" style="color:var(--era-agent)">自主 Agent</span>
+    </div>
+  </div>
+
+  <!-- 41 -->
+  <div class="timeline-item" data-era="agent">
+    <div class="card">
+      <span class="year">2020</span>
+      <h3>GPT-3 &mdash; LLM 涌现</h3>
+      <p class="idea">OpenAI 发布 GPT-3，拥有 1750 亿参数。这个模型展现了惊人的涌现能力 &mdash; 仅通过「预测下一个 token」这一简单规则在大规模数据上训练，就自发产生了翻译、推理、代码生成等复杂能力。这是复杂系统中「简单规则 + 规模 = 复杂行为」的最震撼实证。</p>
+      <p class="impact">影响：GPT-3 重新定义了 AI 的能力边界，也呼应了控制论和复杂系统中关于涌现的核心命题 &mdash; 智能可能不需要显式编程，只需要正确的反馈信号和足够的规模。</p>
+      <div class="tags"><span class="tag">大语言模型</span><span class="tag">涌现能力</span><span class="tag">规模定律</span><span class="tag">GPT-3</span></div>
+    </div>
+  </div>
+
+  <!-- 42 -->
+  <div class="timeline-item right" data-era="agent">
+    <div class="card">
+      <span class="year">2022</span>
+      <h3>RLHF / ChatGPT &mdash; 人类反馈控制 AI</h3>
+      <p class="idea">OpenAI 通过人类反馈强化学习(RLHF)对 GPT 进行对齐训练，产生了 ChatGPT。人类评估者提供偏好反馈，训练奖励模型，再用 PPO 算法优化语言模型 &mdash; 这正是控制论的核心范式：人类作为「控制器」，通过反馈信号调节 AI 的行为。Wiener 在 1948 年的构想在此刻以最直接的方式实现。</p>
+      <p class="impact">影响：RLHF 使 AI 对齐成为工程可行的问题，ChatGPT 引发了全球性的 AI 应用热潮，也使「如何控制超级智能」成为紧迫议题。</p>
+      <div class="paradigm">RLHF = 控制论在 AI 对齐中的直接应用</div>
+      <div class="tags"><span class="tag">RLHF</span><span class="tag">AI 对齐</span><span class="tag">人类反馈</span><span class="tag">ChatGPT</span></div>
+    </div>
+  </div>
+
+  <!-- 43 -->
+  <div class="timeline-item" data-era="agent">
+    <div class="card">
+      <span class="year">2023</span>
+      <h3>LLM Agent 范式</h3>
+      <p class="idea">以 AutoGPT、BabyAGI 等项目为代表，LLM Agent 范式正式形成：大语言模型作为推理核心，接入工具调用(感知)、记忆系统(状态)和规划模块(决策)，构成完整的「感知 &rarr; 规划 &rarr; 行动 &rarr; 反馈」闭环。这是控制论反馈回路在 AI 系统架构层面的最新实现。</p>
+      <p class="impact">影响：Agent 范式正在重新定义 AI 的应用形态，从「工具」转变为「合作者」，也使控制论的核心问题 &mdash; 自主系统的稳定性、可控性和目的性 &mdash; 再次成为焦点。</p>
+      <div class="tags"><span class="tag">LLM Agent</span><span class="tag">工具调用</span><span class="tag">闭环控制</span><span class="tag">自主决策</span></div>
+    </div>
+  </div>
+
+  <!-- 44 -->
+  <div class="timeline-item right" data-era="agent">
+    <div class="card">
+      <span class="year">2025</span>
+      <h3>DeepSeek-R1 / RLVR &mdash; 自动化反馈</h3>
+      <p class="idea">DeepSeek-R1 等模型展示了强化学习与可验证奖励(Reinforcement Learning with Verifiable Rewards, RLVR)的威力：通过数学证明验证器、代码执行环境等自动化反馈系统替代人类标注，实现了推理能力的显著增强。反馈信号从人类偏好扩展到客观可验证的正确性。</p>
+      <p class="impact">影响：RLVR 解决了 RLHF 的可扩展性瓶颈，使 AI 能在数学和编程等可验证领域自主进化，推理增强成为 LLM 的新前沿。</p>
+      <div class="tags"><span class="tag">RLVR</span><span class="tag">自动化反馈</span><span class="tag">推理增强</span><span class="tag">DeepSeek</span></div>
+    </div>
+  </div>
+
+  <!-- 45 -->
+  <div class="timeline-item" data-era="agent">
+    <div class="card">
+      <span class="year">2025-2026</span>
+      <h3>Agentic AI &mdash; 多智能体协作</h3>
+      <p class="idea">Agentic AI 代表了控制论思想的最新综合：多个自主 Agent 在共享环境中通过协商、分工和反馈进行协作，每个 Agent 内部是感知-推理-行动的控制闭环，Agent 之间构成更高层次的社会控制网络。这与 Macy 会议时代的愿景惊人地呼应 &mdash; 只不过现在讨论的不再是理论可能，而是工程现实。</p>
+      <p class="impact">影响：从 Watt 的单机调速器到多 Agent 协作系统，控制论的核心命题 &mdash; 反馈、稳定性、自组织、涌现 &mdash; 在 AI 时代获得了全新的意义和紧迫性。</p>
+      <div class="paradigm">当代综合：反馈 + 涌现 + 自主 + 协作</div>
+      <div class="tags"><span class="tag">多 Agent</span><span class="tag">协作系统</span><span class="tag">控制论回归</span><span class="tag">当代综合</span></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ==================== FOOTER SUMMARY ==================== -->
+<footer class="footer-summary">
+  <h2>思想主线：反馈的永恒回归</h2>
+  <p>
+    从 1788 年 Watt 的蒸汽机调速器到 2026 年的 Agentic AI，控制论思想经历了三个世纪的演化，
+    但其内核始终如一 &mdash; <strong>反馈</strong>。反馈使系统稳定（Nyquist/Bode），
+    使决策最优（Bellman/Pontryagin），使组织可行（Beer），使秩序涌现（Prigogine），
+    使机器学习（Sutton/Barto），使 AI 对齐（RLHF）。每一次思想跃迁，不过是「反馈」
+    在更高层次上的重新发现。
+  </p>
+  <p>
+    今天的 AI Agent 正是控制论愿景的最完整实现：一个能够感知环境、维持内部状态、
+    规划行动并根据结果修正自身的自主系统。Wiener 在 1948 年写下的那句话 &mdash;
+    「我们正在进入一个用信息来控制的时代」&mdash; 终于在近八十年后成为了日常现实。
+  </p>
+
+  <div class="evolution-chain">
+    <span class="chain-node" style="background:rgba(167,139,250,0.15);color:var(--era-prehistory)">反馈控制</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(129,140,248,0.15);color:var(--era-birth)">信息论</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(6,182,212,0.15);color:var(--era-optimal)">最优控制</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(45,212,191,0.15);color:var(--era-systems)">系统论</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(52,211,153,0.15);color:var(--era-complexity)">复杂系统</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(251,191,36,0.15);color:var(--era-learning)">强化学习</span>
+    <span class="chain-arrow">&rarr;</span>
+    <span class="chain-node" style="background:rgba(244,114,182,0.15);color:var(--era-agent)">AI Agent</span>
+  </div>
+</footer>
+
+<!-- ==================== BACK TO TOP ==================== -->
+<button class="back-to-top" id="backToTop" title="回到顶部">&uarr;</button>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+(function() {
+  'use strict';
+
+  // ===== Scroll Animation (Intersection Observer) =====
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -60px 0px'
+  });
+
+  document.querySelectorAll('.timeline-item, .paradigm-banner, .era-header').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // ===== Filter Buttons =====
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var timelineItems = document.querySelectorAll('.timeline-item');
+  var paradigmBanners = document.querySelectorAll('.paradigm-banner');
+  var eraHeaders = document.querySelectorAll('.era-header');
+  var nodeCounter = document.getElementById('nodeCounter');
+  var totalNodes = timelineItems.length;
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = this.getAttribute('data-filter');
+
+      // Update active state
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+
+      var visibleCount = 0;
+
+      // Filter timeline items
+      timelineItems.forEach(function(item) {
+        if (filter === 'all' || item.getAttribute('data-era') === filter) {
+          item.classList.remove('filtered-out');
+          visibleCount++;
+          // Re-trigger animation
+          setTimeout(function() { item.classList.add('visible'); }, 50);
+        } else {
+          item.classList.add('filtered-out');
+          item.classList.remove('visible');
+        }
+      });
+
+      // Filter paradigm banners and era headers
+      paradigmBanners.forEach(function(banner) {
+        var section = banner.getAttribute('data-era-section');
+        if (filter === 'all' || section === filter) {
+          banner.classList.remove('filtered-out');
+          setTimeout(function() { banner.classList.add('visible'); }, 50);
+        } else {
+          banner.classList.add('filtered-out');
+          banner.classList.remove('visible');
+        }
+      });
+
+      eraHeaders.forEach(function(header) {
+        var section = header.getAttribute('data-era-section');
+        if (filter === 'all' || section === filter) {
+          header.classList.remove('filtered-out');
+          setTimeout(function() { header.classList.add('visible'); }, 50);
+        } else {
+          header.classList.add('filtered-out');
+          header.classList.remove('visible');
+        }
+      });
+
+      // Update counter
+      nodeCounter.textContent = '\u663E\u793A ' + visibleCount + ' / ' + totalNodes + ' \u4E2A\u8282\u70B9';
+    });
+  });
+
+  // ===== Back to Top Button =====
+  var backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 600) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ===== Alternating layout assignment =====
+  // Items are already statically assigned left/right via classes.
+  // This ensures proper visual ordering on initial load.
+
+})();
+</script>
+
+</body>
+</html>

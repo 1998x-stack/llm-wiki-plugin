@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-15T14:51:24",
-  "total": 121,
+  "generated": "2026-04-15T16:28:09",
+  "total": 156,
   "pages": {
     "ACP协议": {
       "type": "concept",
@@ -12,10 +12,45 @@
       "confidence": 0.9,
       "path": "wiki/concepts/Agent Harness模式.md"
     },
+    "Alex-Newman": {
+      "type": "entity",
+      "confidence": 0.9,
+      "path": "wiki/entities/Alex-Newman.md"
+    },
+    "Bun-Runtime": {
+      "type": "entity",
+      "confidence": 0.85,
+      "path": "wiki/entities/Bun-Runtime.md"
+    },
     "CFL条件": {
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/CFL条件.md"
+    },
+    "ChromaDB": {
+      "type": "entity",
+      "confidence": 0.85,
+      "path": "wiki/entities/ChromaDB.md"
+    },
+    "Claude-Code": {
+      "type": "entity",
+      "confidence": 0.95,
+      "path": "wiki/entities/Claude-Code.md"
+    },
+    "Claude-Code-Hook-System": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/Claude-Code-Hook-System.md"
+    },
+    "Claude-Mem": {
+      "type": "entity",
+      "confidence": 1.0,
+      "path": "wiki/entities/Claude-Mem.md"
+    },
+    "Context-Engineering": {
+      "type": "concept",
+      "confidence": 0.92,
+      "path": "wiki/concepts/Context-Engineering.md"
     },
     "DeepAgents": {
       "type": "entity",
@@ -42,6 +77,11 @@
       "confidence": 0.9,
       "path": "wiki/syntheses/DeepAgents评估设计哲学.md"
     },
+    "FTS5": {
+      "type": "concept",
+      "confidence": 0.85,
+      "path": "wiki/concepts/FTS5.md"
+    },
     "Gauss-Seidel方法": {
       "type": "concept",
       "confidence": 0.85,
@@ -56,6 +96,11 @@
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/Householder变换.md"
+    },
+    "Itô随机积分": {
+      "type": "concept",
+      "confidence": 0.92,
+      "path": "wiki/concepts/Itô随机积分.md"
     },
     "Jacobi迭代法": {
       "type": "concept",
@@ -76,6 +121,11 @@
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/Ky Fan不等式.md"
+    },
+    "LLM-Statelessness": {
+      "type": "concept",
+      "confidence": 0.95,
+      "path": "wiki/concepts/LLM-Statelessness.md"
     },
     "LLM-as-Judge": {
       "type": "concept",
@@ -117,6 +167,11 @@
       "confidence": 0.9,
       "path": "wiki/concepts/Romberg积分.md"
     },
+    "SQLite": {
+      "type": "entity",
+      "confidence": 0.9,
+      "path": "wiki/entities/SQLite.md"
+    },
     "Schur分解": {
       "type": "concept",
       "confidence": 0.95,
@@ -131,6 +186,21 @@
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/Weyl特征值不等式.md"
+    },
+    "Wiener测度": {
+      "type": "concept",
+      "confidence": 0.93,
+      "path": "wiki/concepts/Wiener测度.md"
+    },
+    "Wiener积分": {
+      "type": "concept",
+      "confidence": 0.88,
+      "path": "wiki/concepts/Wiener积分.md"
+    },
+    "Wiener过程": {
+      "type": "concept",
+      "confidence": 0.97,
+      "path": "wiki/concepts/Wiener过程.md"
     },
     "bun-vs-uv": {
       "type": "concept",
@@ -186,6 +256,11 @@
       "type": "concept",
       "confidence": 0.9,
       "path": "wiki/concepts/冯·诺依曼稳定性分析.md"
+    },
+    "分层记忆架构": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/分层记忆架构.md"
     },
     "切比雪夫不等式": {
       "type": "concept",
@@ -257,6 +332,11 @@
       "confidence": 0.88,
       "path": "wiki/entities/埃米尔·博雷尔.md"
     },
+    "大卫·希尔伯特": {
+      "type": "entity",
+      "confidence": 0.9,
+      "path": "wiki/entities/大卫·希尔伯特.md"
+    },
     "大数定律": {
       "type": "concept",
       "confidence": 0.9,
@@ -327,10 +407,30 @@
       "confidence": 0.9,
       "path": "wiki/entities/恩斯特·菲舍尔.md"
     },
+    "惯性律": {
+      "type": "concept",
+      "confidence": 0.85,
+      "path": "wiki/concepts/惯性律.md"
+    },
     "托马斯·贝叶斯": {
       "type": "entity",
       "confidence": 0.85,
       "path": "wiki/entities/托马斯·贝叶斯.md"
+    },
+    "托马斯·辛普森": {
+      "type": "entity",
+      "confidence": 0.8,
+      "path": "wiki/entities/托马斯·辛普森.md"
+    },
+    "数值PDE稳定收敛三角": {
+      "type": "qa-insight",
+      "confidence": 0.95,
+      "path": "wiki/qa-insights/数值PDE稳定收敛三角.md"
+    },
+    "数值分析": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/数值分析.md"
     },
     "最大似然原理": {
       "type": "concept",
@@ -346,6 +446,11 @@
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/期望值.md"
+    },
+    "李雅普诺夫": {
+      "type": "entity",
+      "confidence": 0.85,
+      "path": "wiki/entities/李雅普诺夫.md"
     },
     "条件数": {
       "type": "concept",
@@ -412,6 +517,16 @@
       "confidence": 0.9,
       "path": "wiki/concepts/泊松分布.md"
     },
+    "泰勒级数": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/泰勒级数.md"
+    },
+    "渐进式披露-Progressive-Disclosure": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/渐进式披露-Progressive-Disclosure.md"
+    },
     "点数问题": {
       "type": "concept",
       "confidence": 0.95,
@@ -452,6 +567,11 @@
       "confidence": 0.95,
       "path": "wiki/entities/皮埃尔·德·费马.md"
     },
+    "矩阵": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/矩阵.md"
+    },
     "矩阵扰动理论": {
       "type": "concept",
       "confidence": 0.9,
@@ -467,6 +587,16 @@
       "confidence": 0.92,
       "path": "wiki/syntheses/矩阵谱理论的统一叙事.md"
     },
+    "离散傅里叶变换": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/离散傅里叶变换.md"
+    },
+    "约瑟夫·拉弗森": {
+      "type": "entity",
+      "confidence": 0.8,
+      "path": "wiki/entities/约瑟夫·拉弗森.md"
+    },
     "约翰·冯·诺依曼": {
       "type": "entity",
       "confidence": 0.95,
@@ -477,10 +607,25 @@
       "confidence": 0.9,
       "path": "wiki/entities/约翰·图基.md"
     },
+    "线性代数": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/线性代数.md"
+    },
+    "组合数学": {
+      "type": "concept",
+      "confidence": 0.85,
+      "path": "wiki/concepts/组合数学.md"
+    },
     "组合枚举法": {
       "type": "concept",
       "confidence": 0.9,
       "path": "wiki/concepts/组合枚举法.md"
+    },
+    "结构力学": {
+      "type": "concept",
+      "confidence": 0.8,
+      "path": "wiki/concepts/结构力学.md"
     },
     "艾萨克·牛顿": {
       "type": "entity",
@@ -517,6 +662,11 @@
       "confidence": 0.95,
       "path": "wiki/entities/詹姆斯·约瑟夫·西尔维斯特.md"
     },
+    "诺伯特·维纳": {
+      "type": "entity",
+      "confidence": 0.95,
+      "path": "wiki/entities/诺伯特·维纳.md"
+    },
     "谱半径": {
       "type": "concept",
       "confidence": 0.9,
@@ -552,6 +702,11 @@
       "confidence": 0.9,
       "path": "wiki/entities/赫尔穆特·维兰特.md"
     },
+    "路易·巴舍利耶": {
+      "type": "entity",
+      "confidence": 0.88,
+      "path": "wiki/entities/路易·巴舍利耶.md"
+    },
     "辛克维奇": {
       "type": "entity",
       "confidence": 0.9,
@@ -577,10 +732,25 @@
       "confidence": 0.9,
       "path": "wiki/entities/阿德里安-马里·勒让德.md"
     },
+    "阿瑟·凯莱": {
+      "type": "entity",
+      "confidence": 0.85,
+      "path": "wiki/entities/阿瑟·凯莱.md"
+    },
+    "随机游走": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/随机游走.md"
+    },
     "雅各布·伯努利": {
       "type": "entity",
       "confidence": 0.95,
       "path": "wiki/entities/雅各布·伯努利.md"
+    },
+    "马尔可夫": {
+      "type": "entity",
+      "confidence": 0.85,
+      "path": "wiki/entities/马尔可夫.md"
     },
     "马尔可夫链": {
       "type": "concept",
@@ -601,6 +771,11 @@
       "type": "concept",
       "confidence": 0.95,
       "path": "wiki/concepts/高斯求积公式.md"
+    },
+    "龙格-库塔方法": {
+      "type": "concept",
+      "confidence": 0.9,
+      "path": "wiki/concepts/龙格-库塔方法.md"
     },
     "龙格现象": {
       "type": "concept",

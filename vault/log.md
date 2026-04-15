@@ -4,6 +4,57 @@ type: log
 
 # 操作日志
 
+## 2026-04-15 — query: "龙格-库塔现象是什么，为什么存在，解决方法是什么"
+- BM25 命中: 龙格现象, 勒贝格常数, 切比雪夫逼近理论, 样条方法, 龙格-库塔方法
+- 澄清命名混淆: 「龙格-库塔现象」= 龙格现象（插值）+ 龙格-库塔方法（ODE）的混合
+- 结晶化: wiki/syntheses/龙格现象全景解析.md
+- last_accessed 更新: 6 页
+
+## 2026-04-15 — query: "claude code 上下文工程细节展开"
+- BM25 命中 10 页，核心: Context-Engineering, 分层记忆架构, 渐进式披露, Claude-Code-Hook-System
+- 结晶化: wiki/syntheses/Claude-Code上下文工程全景.md (综合 6 页)
+- QA 记录: qa/2026-04-15.md
+- last_accessed 更新: 6 页
+
+## 2026-04-15 — lint
+- 扫描: 156 个页面
+- 初始: 0 errors | 156 warnings
+- 最终: 0 errors | 143 warnings (-13)
+- 自动修复 (13 个):
+  - B1×5: [[Claude Code]]→[[Claude-Code]] (3 files), [[Bun]]→[[Bun-Runtime]], [[上下文工程...]]→[[Context-Engineering]]
+  - I2×2: 删除 index.md 模板占位符 [[页面名]] / [[PAGE_NAME]]
+  - O1×1: Claude-Code.md 孤页确认已有入链（false positive）
+  - M1×4: 重新生成 maps/*.md（摘要去除内嵌链接）
+  - 图谱: 995→1002 边（+6 新连接）
+- 需人工处理:
+  - F3 (76): 概述超 200 字 — 不强制截断，保留完整描述
+  - B1 (67): 指向未创建页面的预留链接（检索增强生成、Prompt缓存等）
+- 矛盾 (D): 9 条 contradicts 关系，均为已知对立（非语义冲突），无需 supersedes
+- 一致性 (G): BM25 156/156 ✓ | 连通分量 2（数学 133 节点 + AI 23 节点）
+
+## 2026-04-15 — graph
+- 构建知识图谱: 156 节点, 996 边, 0 孤页, 2 连通分量
+- Lint: 0 errors, 156 warnings (F3 概述超长 + B1 断链，无阻断项)
+- Top-3: 矩阵理论(52), 概率论(51), 奇异值分解(32)
+- 产出: graph.json, graph-statistics.json, static/wiki/ HTML
+
+## 2026-04-15 — reindex
+- 完整性: OK (156 页面, 0 缺失, 0 孤条目)
+- 新增索引: 19 页面 (snapshot_index --update)
+- Tags 修复: 65 个页面补充了主题 tag（数值分析/概率论/矩阵理论/AI）
+- 主题分类: 6 个 → 数值分析(61), 概率论(39), 矩阵理论(30), AI(16), 组合数学(5), 工具(5)
+- 生成 maps/: 数值分析.md, 概率论.md, 矩阵理论.md, AI.md, 组合数学.md, 工具.md
+- 快照: .claude/reindex.snapshot.json (156 pages)
+
+## 2026-04-15 — ingest: context-engineer/context-design.md
+
+- 来源：`raw/articles/context-engineer/context-design.md`
+- 操作：创建 2 个新概念页面
+  - `wiki/concepts/Context-Engineering.md` (confidence: 0.92)
+  - `wiki/concepts/分层记忆架构.md` (confidence: 0.9)
+- BM25 更新：两页均已更新
+- index.md：已追加两条目
+
 > 追加写入，不可修改历史条目。格式：`## [YYYY-MM-DD] 操作类型 | 描述`
 
 ## [2026-04-15] init | 知识库初始化
@@ -980,3 +1031,39 @@ python3 scripts/build_graph.py
 - 升维建议：4 个高频认知模式待创建 wiki 页面（工具分离思维、知识谱系优先、纯粹理论意外应用模式、经典+一阶修正）
 - 链接补全：daily note 中全部 4 个链接均已有对应页面，无需补充
 - 下周 P1：继续矩阵分析 ingest；P2：认知模式概念页落地；P3：孤页 + 断链修复
+
+## [2026-04-15 17:00] lint
+- 扫描: 135 个页面
+- ERROR: 0 个 | WARNING: 201 个 | INFO: 0 个
+- 自动修复: 1 个（B2：数值PDE稳定收敛三角.md 补入 BM25 索引）
+- 需要人工处理: 127 个
+
+**详细问题清单**
+
+| 检查项 | 数量 | 说明 |
+|--------|------|------|
+| F3 概述超长 | 74 | 大量 entity 页超 200 字，为旧批次惯例，不阻碍功能 |
+| B1 断链 | 111 | 85 个独立目标页面缺失，高频：数值分析(5x)、龙格-库塔方法(4x)、Claude Code(3x) |
+| B2 BM25缺失 | 1 | 已修复 |
+| O1 孤页 | 13 | 无入链：Alex-Newman, Bun-Runtime, Claude-Code-Hook-System, DeepAgents评估设计哲学, LLM-Statelessness, bun-vs-uv, claude-cli-tools, modern-cli-tools, 卢卡·帕西奥利, 最大似然原理, 梅雷骑士, 渐进式披露-Progressive-Disclosure, 矩阵谱理论的统一叙事 |
+| I2 索引旧条目 | 1 | `[[页面名]]` 为注释模板误判，为假阳性 |
+| M2 主题图缺失 | 14 | Alex-Newman, Bun-Runtime, Claude-Code-Hook-System, Claude-Mem, Itô随机积分, LLM-Statelessness, Wiener测度, Wiener积分, Wiener过程, 数值PDE稳定收敛三角 等 |
+
+**图谱连通性（WARNING）**
+- 7 个连通分量（主分量 118 节点，DeepAgents 子图 8 节点，Claude 生态子图 5 节点，4 个孤立单节点）
+- 4 个孤立节点：bun-vs-uv, claude-cli-tools, modern-cli-tools, 渐进式披露（因全部链接指向不存在的页面）
+- 根因：英文/工具类新页面（Bun、uv、Claude Code 等）尚未建立 wiki 条目
+
+**P1 行动项**
+1. 为断链最多的 5 个目标建页：数值分析、龙格-库塔方法、Claude Code、约瑟夫·拉弗森、线性代数
+2. 孤页修复：在相关页面中补充入链，或将孤页合并进相关 synthesis
+3. 主题图更新：将 Wiener 系列、Itô 积分纳入随机过程 map
+
+### lint fix 结果 (2026-04-15 17:30)
+- O1 孤页：13 → 0（全部修复）
+- B1 断链：111 → 67，unique targets：85 → 64
+- B2 BM25缺失：1 → 0（新增 19 个页面入库）
+- M2 主题图：已更新 AI.md（+11页）、数值分析.md（+5页）、矩阵理论.md（+4页）、概率论.md（+2页）、数学.md（+6页）
+- 图谱：7 components → 2 components，孤立节点 4 → 0
+- 新建 stub 页面 19 个（数值分析、龙格-库塔方法、泰勒级数、线性代数、矩阵、组合数学、惯性律、离散傅里叶变换、结构力学、FTS5、大卫·希尔伯特、马尔可夫、李雅普诺夫、约瑟夫·拉弗森、托马斯·辛普森、阿瑟·凯莱、Claude-Code、SQLite、ChromaDB）
+- Gotchas 已追加至 docs/gotchas/script-fixes.md（孤页空格/连字符、I2假阳性、maps手动维护）

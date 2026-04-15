@@ -10,7 +10,7 @@ source_count: 3
 tags: [AI, 工具，方法论，研究]
 aliases: ["Claude Memory Plugin", "Claude Code Memory", "Claude Memory"]
 relates_to:
-  - target: "[[Claude Code]]"
+  - target: "[[Claude-Code]]"
     type: extends
     confidence: 1.0
   - target: "[[LLM Statelessness]]"
@@ -132,12 +132,14 @@ Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用
 - [[raw/articles/claude-mem/blog_04_database.md]]
 
 ## 相关
-- [[Claude Code]]
-- [[LLM Statelessness]]
-- [[Bun Runtime]]
+- [[Claude-Code]]
+- [[LLM-Statelessness|LLM Statelessness]]
+- [[Bun-Runtime|Bun Runtime]]
+- [[Claude-Code-Hook-System|Claude Code Hook System]]
+- [[渐进式披露-Progressive-Disclosure|渐进式披露]]
 - [[SQLite]]
 - [[ChromaDB]]
-- [[Alex Newman]]
+- [[Alex-Newman|Alex Newman]]
 - [[Lifecycle Hooks]]
 - [[Worker Service]]
 - [[Smart Install]]

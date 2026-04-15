@@ -47,5 +47,6 @@ Bun 是一个现代化的 JavaScript 运行时（Runtime），旨在提供比 No
 
 ## 相关
 - [[Claude-Mem]]
+- [[bun-vs-uv|Bun vs uv 对比]]
 - [[Node.js]]
 - [[SQLite]]

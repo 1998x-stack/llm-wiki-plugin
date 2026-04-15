@@ -17,7 +17,7 @@ aliases:
   - Modern Package Managers Comparison
   - Rust Zig Rewritten Tools
 relates_to:
-  - target: "[[Bun]]"
+  - target: "[[Bun-Runtime]]"
     type: extends
     confidence: 1.0
   - target: "[[uv]]"
@@ -84,7 +84,7 @@ supersedes: null
 - [[raw/articles/CLI-tools/bun-vs-uv.md]]
 
 ## 相关
-- [[Bun]]
+- [[Bun-Runtime]]
 - [[uv]]
 - [[npm]]
 - [[pip]]
@@ -93,3 +93,4 @@ supersedes: null
 - [[Rust]]
 - [[Zig]]
 - [[Cargo]]
+- [[claude-cli-tools|Claude CLI 工具生态]]

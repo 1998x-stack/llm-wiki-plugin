@@ -6,30 +6,37 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["布朗运动", "Brownian Motion", "Wiener process", "标准布朗运动"]
+tags:
+- 研究
+- 技术
+- 概率论
+aliases:
+- 布朗运动
+- Brownian Motion
+- Wiener process
+- 标准布朗运动
 relates_to:
-  - target: "[[Wiener测度]]"
-    type: depends_on
-    confidence: 0.99
-  - target: "[[随机游走]]"
-    type: extends
-    confidence: 0.95
-  - target: "[[Itô随机积分]]"
-    type: extends
-    confidence: 0.95
-  - target: "[[马尔可夫链]]"
-    type: extends
-    confidence: 0.85
-  - target: "[[正态分布]]"
-    type: uses
-    confidence: 0.95
-  - target: "[[中心极限定理]]"
-    type: depends_on
-    confidence: 0.85
-  - target: "[[诺伯特·维纳]]"
-    type: depends_on
-    confidence: 0.99
+- target: '[[Wiener测度]]'
+  type: depends_on
+  confidence: 0.99
+- target: '[[随机游走]]'
+  type: extends
+  confidence: 0.95
+- target: '[[Itô随机积分]]'
+  type: extends
+  confidence: 0.95
+- target: '[[马尔可夫链]]'
+  type: extends
+  confidence: 0.85
+- target: '[[正态分布]]'
+  type: uses
+  confidence: 0.95
+- target: '[[中心极限定理]]'
+  type: depends_on
+  confidence: 0.85
+- target: '[[诺伯特·维纳]]'
+  type: depends_on
+  confidence: 0.99
 supersedes: null
 ---
 

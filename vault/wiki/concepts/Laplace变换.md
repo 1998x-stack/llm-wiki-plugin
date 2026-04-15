@@ -10,6 +10,7 @@ tags:
 - 技术
 - 研究
 - 数学
+- 数值分析
 aliases:
 - Laplace Transform
 - 拉普拉斯变换

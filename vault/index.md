@@ -26,8 +26,17 @@ updated: 2026-04-15
 - [[Alex-Newman]] — Alex Newman（社交媒体账号 @thedotmack）是一位开源软件开发者，以其在 AI 编程辅助工具领域的创新工作而闻名。他是 **Claude-Me... (confidence: 0.9)
 - [[Bun-Runtime]] — Bun 是一个现代化的 JavaScript 运行时（Runtime），旨在提供比 Node.js 更快的启动速度和执行性能。它内置了打包器、测试运行器以及高性... (confidence: 0.85)
 - [[Claude-Mem]] — Claude-Mem 是一个专为 **Claude Code** 设计的开源持久化记忆插件，旨在解决大型语言模型（LLM）固有的“无状态”缺陷。通过自动捕获会话... (confidence: 1.0)
+- [[ChromaDB]] — ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（Embeddings）。它支持... (confidence: 0.85)
+- [[Claude-Code]] — Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haik... (confidence: 0.95)
+- [[SQLite]] — SQLite 是一个轻量级、无服务器、嵌入式的关系型数据库引擎，由 D. Richard Hipp 于2000年创建。它将整个数据库存储为单个磁盘文件，无需独立... (confidence: 0.9)
+- [[大卫·希尔伯特]] — 大卫·希尔伯特（David Hilbert，1862–1943）是德国数学家，20世纪最具影响力的数学家之一。他在数学基础（公理化方法）、不变量理论、积分方程、... (confidence: 0.9)
+- [[托马斯·辛普森]] — 托马斯·辛普森（Thomas Simpson，1710–1761）是英国数学家，以**辛普森法则**（Simpson's Rule）闻名于世。辛普森法则是一种数... (confidence: 0.8)
+- [[李雅普诺夫]] — 亚历山大·米哈伊洛维奇·李雅普诺夫（Alexander Lyapunov，1857–1918）是俄国数学家和力学家，切比雪夫的学生。他在动力系统稳定性理论（李雅... (confidence: 0.85)
+- [[约瑟夫·拉弗森]] — 约瑟夫·拉弗森（Joseph Raphson，约1648–1715）是英国数学家，以独立发展"牛顿-拉弗森方法"的高效形式而著称。他在1690年的著作《普遍分析... (confidence: 0.8)
+- [[阿瑟·凯莱]] — 阿瑟·凯莱（Arthur Cayley，1821–1895）是英国数学家，**矩阵理论**的创始人之一。他在1855–1858年间系统建立矩阵代数理论，定义矩阵... (confidence: 0.85)
+- [[马尔可夫]] — 安德烈·安德烈耶维奇·马尔可夫（Andrey Markov，1856–1922）是俄国数学家，圣彼得堡数学学派的核心成员，切比雪夫的学生。他最重要的贡献是创立了... (confidence: 0.85)
 
-<!-- 格式：- [[页面名]] — 一行摘要 (confidence: X.X) -->
+<!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
 - [[艾萨克·牛顿]] — 英国数学家，微积分奠基人，牛顿法原始创造者 (confidence: 0.95)
 - [[帕夫努季·利沃维奇·切比雪夫]] — 俄罗斯数学家，圣彼得堡数学学派创始人，切比雪夫逼近理论创立者 (confidence: 0.9)
@@ -62,6 +71,8 @@ updated: 2026-04-15
 
 ## 概念 (wiki/concepts/)
 
+- [[Context-Engineering]] — LLM 上下文工程：有限注意力预算的策展与管理系统，Pareto/Zipf 驱动的分层热冷设计 (confidence: 0.92)
+- [[分层记忆架构]] — L0–L4 五层上下文记忆：Cached Prefix / Working Memory / Episodic / Semantic / Raw Archive (confidence: 0.9)
 - [[牛顿法]] — 数值分析最基本迭代求根算法，二次收敛速度 (confidence: 0.95)
 - [[快速傅里叶变换]] — Cooley-Tukey算法，将DFT复杂度从O(n²)降至O(n log n) (confidence: 0.95)
 - [[有限元方法]] — 求解偏微分方程的数值方法，将连续域离散化为有限单元 (confidence: 0.9)
@@ -146,9 +157,20 @@ updated: 2026-04-15
 - [[Claude-Code-Hook-System]] — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事... (confidence: 0.9)
 - [[LLM-Statelessness]] — LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从... (confidence: 0.95)
 - [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过... (confidence: 0.9)
+- [[FTS5]] — FTS5（Full-Text Search version 5）是 SQLite 的内置全文搜索扩展模块，提供高效的文本索引和检索能力。在 Claude-Mem... (confidence: 0.85)
+- [[惯性律]] — 西尔维斯特惯性律（Sylvester's Law of Inertia，1852）是线性代数中关于实对称双线性型的基本定理：对于任意实对称矩阵 $A$，无论选择... (confidence: 0.85)
+- [[数值分析]] — 数值分析（Numerical Analysis）是数学的一个分支，研究用有限步骤的算法近似求解数学问题的方法，并分析其误差、收敛性与稳定性。其核心目标是将连续的... (confidence: 0.9)
+- [[泰勒级数]] — 泰勒级数（Taylor Series）是将光滑函数在某点附近展开为幂级数的方法，由布鲁克·泰勒（1715）系统提出。若函数 $f$ 在点 $a$ 处无穷次可微，... (confidence: 0.9)
+- [[矩阵]] — 矩阵（Matrix）是由 $m \times n$ 个数按行列排列成的矩形阵列，是线性代数的核心对象。矩阵系统理论由阿瑟·凯莱（1855）奠基，用于表示线性变换... (confidence: 0.9)
+- [[离散傅里叶变换]] — 离散傅里叶变换（DFT）将有限长度的离散信号从时域变换到频域，公式为 $X[k] = \sum_{n=0}^{N-1} x[n] e^{-i2\pi kn/N}... (confidence: 0.9)
+- [[线性代数]] — 线性代数（Linear Algebra）是研究向量空间、线性映射及其通过矩阵表示的数学分支。核心对象包括向量、矩阵、行列式、特征值与特征向量、线性方程组。线性代... (confidence: 0.9)
+- [[组合数学]] — 组合数学（Combinatorics）研究有限或离散结构的计数、排列、组合与存在性问题。核心工具包括排列、组合、鸽巢原理、容斥原理、母函数、图论等。组合数学与概... (confidence: 0.85)
+- [[结构力学]] — 结构力学（Structural Mechanics）是固体力学的分支，研究结构（桥梁、建筑、机械零件等）在外力作用下的应力、应变、变形和稳定性。其核心问题是：给... (confidence: 0.8)
+- [[龙格-库塔方法]] — 龙格-库塔方法（Runge-Kutta Methods）是一族用于数值求解常微分方程（ODE）初值问题的迭代算法，由卡尔·龙格（1895）和马丁·威廉·库塔（1... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
+- [[Claude-Code上下文工程全景]] — L0-L4分层记忆 + Hook系统 + 渐进式披露 + Prompt编排的完整实践综合 (confidence: 0.92)
 - [[DeepAgents评估设计哲学]] — 三重分离原则：正确性/效率、确定性/语义、能力/基础设施 (confidence: 0.9)
 - [[矩阵谱理论的统一叙事]] — 1907-1966年9个核心贡献的知识谱系：三种证明范式（变分/酉变换/双随机矩阵）、SVD作为隐形主线、Hermitian矩阵为"安全岛" (confidence: 0.92)
 
@@ -158,9 +180,11 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：135
-- 实体：53
-- 概念：79
+- 总页面数：156
+- 实体：62
+- 概念：91
 - 综合分析：2
 - QA 洞见：1
 - 最后更新：2026-04-15
+
+- [[龙格现象全景解析]] — 龙格现象（插值发散）与龙格-库塔方法的澄清，含勒贝格常数、切比雪夫节点、样条三层解析 (confidence: 0.93)

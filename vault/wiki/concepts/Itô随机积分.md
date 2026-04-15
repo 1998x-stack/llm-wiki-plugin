@@ -6,18 +6,25 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Ito随机积分", "Itô integral", "伊藤积分", "随机积分"]
+tags:
+- 研究
+- 技术
+- 概率论
+aliases:
+- Ito随机积分
+- Itô integral
+- 伊藤积分
+- 随机积分
 relates_to:
-  - target: "[[Wiener过程]]"
-    type: depends_on
-    confidence: 0.99
-  - target: "[[Wiener积分]]"
-    type: extends
-    confidence: 0.95
-  - target: "[[马尔可夫链]]"
-    type: uses
-    confidence: 0.7
+- target: '[[Wiener过程]]'
+  type: depends_on
+  confidence: 0.99
+- target: '[[Wiener积分]]'
+  type: extends
+  confidence: 0.95
+- target: '[[马尔可夫链]]'
+  type: uses
+  confidence: 0.7
 supersedes: null
 ---
 

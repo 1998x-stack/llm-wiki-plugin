@@ -6,18 +6,24 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Wiener measure", "维纳测度", "路径空间测度"]
+tags:
+- 研究
+- 技术
+- 概率论
+aliases:
+- Wiener measure
+- 维纳测度
+- 路径空间测度
 relates_to:
-  - target: "[[Wiener过程]]"
-    type: caused
-    confidence: 0.99
-  - target: "[[概率公理体系]]"
-    type: extends
-    confidence: 0.9
-  - target: "[[诺伯特·维纳]]"
-    type: depends_on
-    confidence: 0.99
+- target: '[[Wiener过程]]'
+  type: caused
+  confidence: 0.99
+- target: '[[概率公理体系]]'
+  type: extends
+  confidence: 0.9
+- target: '[[诺伯特·维纳]]'
+  type: depends_on
+  confidence: 0.99
 supersedes: null
 ---
 

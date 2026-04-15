@@ -1,21 +1,26 @@
 ---
 type: concept
-title: "LLM Statelessness"
+title: LLM Statelessness
 status: active
 confidence: 0.95
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: 2026-04-15
+last_accessed: '2026-04-15'
 source_count: 1
-tags: [AI, 概率论，研究]
-aliases: ["LLM 无状态性", "Stateless LLM", "Session Amnesia"]
+tags:
+- AI
+- 概率论，研究
+aliases:
+- LLM 无状态性
+- Stateless LLM
+- Session Amnesia
 relates_to:
-  - target: "[[Claude-Mem]]"
-    type: contradicts
-    confidence: 0.95
-  - target: "[[Context Window]]"
-    type: depends_on
-    confidence: 0.8
+- target: '[[Claude-Mem]]'
+  type: contradicts
+  confidence: 0.95
+- target: '[[Context Window]]'
+  type: depends_on
+  confidence: 0.8
 supersedes: null
 ---
 

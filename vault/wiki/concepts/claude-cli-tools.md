@@ -17,7 +17,7 @@ aliases:
   - AI CLI Agents for Claude
   - Claude Command Line Tools
 relates_to:
-  - target: "[[Claude Code]]"
+  - target: "[[Claude-Code]]"
     type: extends
     confidence: 1.0
   - target: "[[Aider]]"
@@ -62,9 +62,10 @@ Claude CLI 生态在 2026 年已形成清晰的三层架构。第一层为**官�
 - [[raw/articles/CLI-tools/claude-cli-tools.md]]
 
 ## 相关
-- [[Claude Code]]
+- [[Claude-Code]]
 - [[Aider]]
 - [[MCP 协议]]
 - [[CLAUDE.md]]
 - [[Cursor CLI]]
 - [[OpenAI Codex]]
+- [[modern-cli-tools|现代 CLI 工具全景]]

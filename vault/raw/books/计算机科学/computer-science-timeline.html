@@ -1,0 +1,1538 @@
+<\!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>计算机科学发展史时间线</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2333;--card:#1c2333;--border:#30363d;--text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff;--accent2:#1f6feb;--gold:#f0c050;--gold2:#d4a030;--green:#3fb950;--purple:#bc8cff;--red:#f85149;--font:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC",sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.7;font-size:16px}
+::selection{background:var(--accent2);color:#fff}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.header{background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#1a1e2e 100%);border-bottom:1px solid var(--border);padding:60px 20px 40px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,rgba(88,166,255,0.08) 0%,transparent 70%);pointer-events:none}
+.header h1{font-size:clamp(28px,5vw,48px);font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;position:relative}
+.header .subtitle{color:var(--text2);font-size:clamp(14px,2.5vw,18px);max-width:700px;margin:0 auto 20px}
+.header .meta{color:var(--text2);font-size:13px;opacity:0.7}
+
+/* TOC */
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;max-width:900px;margin:30px auto;padding:28px 32px}
+.toc h2{font-size:18px;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.toc a{display:block;padding:8px 12px;border-radius:6px;color:var(--text);font-size:14px;transition:background .2s,color .2s}
+.toc a:hover{background:var(--bg3);color:var(--accent);text-decoration:none}
+.toc .toc-num{color:var(--accent);font-weight:700;margin-right:6px;font-size:13px}
+.toc .toc-era{color:var(--text2);font-size:12px;display:block;margin-top:2px}
+
+/* Main */
+.main{max-width:900px;margin:0 auto;padding:20px 20px 80px}
+
+/* Phase */
+.phase{margin:50px 0 30px;padding:24px 28px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:12px;border-left:4px solid var(--gold);position:relative}
+.phase-num{font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:4px}
+.phase h2{font-size:clamp(20px,3.5vw,26px);color:#e6edf3;font-weight:700}
+.phase .phase-era{color:var(--text2);font-size:14px;margin-top:4px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:40px;margin-left:16px}
+.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent2),var(--border),var(--accent2))}
+
+/* Event */
+.event{position:relative;margin-bottom:28px}
+.event::before{content:'';position:absolute;left:-28px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);z-index:1;box-shadow:0 0 8px rgba(88,166,255,0.3)}
+.event-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;transition:border-color .3s,box-shadow .3s}
+.event-card:hover{border-color:var(--accent2);box-shadow:0 4px 20px rgba(88,166,255,0.08)}
+.event-year{display:inline-block;background:var(--accent2);color:#fff;font-size:13px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:10px}
+.event-card h3{font-size:18px;color:#e6edf3;font-weight:700;margin-bottom:10px;line-height:1.4}
+.event-detail{margin-top:8px;padding-left:0}
+.event-detail .label{font-size:13px;font-weight:600;margin-bottom:3px}
+.label-contrib{color:var(--green)}
+.label-why{color:var(--gold)}
+.label-impact{color:var(--purple)}
+.event-detail p{font-size:14px;color:var(--text2);margin-bottom:10px;line-height:1.65}
+
+/* Summary */
+.summary{background:linear-gradient(135deg,#1a1e2e,#161b22);border:1px solid var(--gold2);border-radius:12px;padding:32px;margin:50px 0;position:relative;overflow:hidden}
+.summary::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent),var(--purple))}
+.summary h2{color:var(--gold);font-size:24px;margin-bottom:20px}
+.summary p{color:var(--text);font-size:15px;margin-bottom:14px;line-height:1.8}
+.summary .thread{background:var(--bg);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0;font-size:14px;color:var(--text2)}
+
+/* Back to top */
+.back-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;border-radius:50%;background:var(--accent2);color:#fff;border:none;cursor:pointer;font-size:20px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.4);z-index:99;transition:opacity .3s}
+.back-top:hover{background:var(--accent)}
+
+/* Responsive */
+@media(max-width:640px){
+  .main{padding:12px 12px 60px}
+  .timeline{padding-left:28px;margin-left:8px}
+  .timeline::before{left:8px}
+  .event::before{left:-24px;width:10px;height:10px}
+  .event-card{padding:16px}
+  .event-card h3{font-size:16px}
+  .toc{padding:20px 16px}
+  .toc-grid{grid-template-columns:1fr}
+  .phase{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+<h1>计算机科学发展史</h1>
+<p class="subtitle">从布尔代数到大语言模型 -- 跨越 180 年的思想与工程史诗</p>
+<p class="meta">涵盖 10 个关键阶段 / 80+ 里程碑事件 / 1843-2025</p>
+</header>
+
+<nav class="toc" id="toc">
+<h2>目录导航</h2>
+<div class="toc-grid">
+<a href="#phase1"><span class="toc-num">01</span>数学与逻辑基础期<span class="toc-era">1843 - 1936</span></a>
+<a href="#phase2"><span class="toc-num">02</span>可计算性理论建立期<span class="toc-era">1936 - 1945</span></a>
+<a href="#phase3"><span class="toc-num">03</span>早期电子计算与程序设计期<span class="toc-era">1945 - 1957</span></a>
+<a href="#phase4"><span class="toc-num">04</span>算法与语言体系形成期<span class="toc-era">1957 - 1969</span></a>
+<a href="#phase5"><span class="toc-num">05</span>操作系统/数据库/体系结构成熟期<span class="toc-era">1969 - 1978</span></a>
+<a href="#phase6"><span class="toc-num">06</span>网络与分布式系统扩展期<span class="toc-era">1978 - 1989</span></a>
+<a href="#phase7"><span class="toc-num">07</span>软件工程与大型系统期<span class="toc-era">1989 - 1999</span></a>
+<a href="#phase8"><span class="toc-num">08</span>互联网与 Web 深化期<span class="toc-era">1999 - 2006</span></a>
+<a href="#phase9"><span class="toc-num">09</span>云计算/大数据/深度学习时代<span class="toc-era">2006 - 2017</span></a>
+<a href="#phase10"><span class="toc-num">10</span>大模型与交叉融合时代<span class="toc-era">2017 - 至今</span></a>
+</div>
+</nav>
+
+<main class="main">
+<\!-- ========== PHASE 1 ========== -->
+<section class="phase" id="phase1">
+<div class="phase-num">第一阶段</div>
+<h2>数学与逻辑基础期</h2>
+<div class="phase-era">1843 - 1936</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1843</span>
+<h3>Ada Lovelace 的"分析机笔记"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>为 Charles Babbage 的分析机编写了第一个算法（伯努利数计算），并提出"机器可以操纵符号而不仅是数字"的先见之明。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一位程序员的诞生，预见了通用计算的可能性。在那个蒸汽驱动的时代，Lovelace 看到了远超同时代人的未来。</p>
+<p class="label label-impact">对后续影响</p>
+<p>她的思想直接指向了后来图灵关于通用计算的理论——机器不仅仅是计算器，而是可以处理任意符号系统的通用装置。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1847</span>
+<h3>George Boole《思想的法则》</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>创立布尔代数，将逻辑推理还原为代数运算，用数学公式表达"与""或""非"等逻辑关系。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一次将"思维"数学化，证明逻辑可以用 0 和 1 的运算表达。这是一个革命性的洞见：思想本身可以被计算。</p>
+<p class="label label-impact">对后续影响</p>
+<p>100 年后成为所有数字电路和计算机设计的数学基础；Claude Shannon 在硕士论文中直接应用布尔代数设计电路。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1854</span>
+<h3>Boole《思想的法则》正式出版</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>完整体系化了命题逻辑的代数化方法，建立了布尔代数的完备理论体系。</p>
+<p class="label label-why">为什么重要</p>
+<p>从初步探索到完整体系，标志着数理逻辑作为独立学科的成熟。</p>
+<p class="label label-impact">对后续影响</p>
+<p>为 Frege、Russell 等人的后续工作提供了坚实的代数基础。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1879</span>
+<h3>Gottlob Frege《概念文字》(Begriffsschrift)</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>创立现代谓词逻辑（一阶逻辑），发明了量词（∀ 全称量词、∃ 存在量词），使精确的形式化推理成为可能。</p>
+<p class="label label-why">为什么重要</p>
+<p>数理逻辑的真正开端。Frege 的形式化语言让我们可以无歧义地表达"所有""存在"这样的概念。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Russell、Hilbert、Gödel 等人的工作，为后来的自动定理证明和程序验证奠基。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1900</span>
+<h3>David Hilbert 提出 23 个数学问题</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在巴黎国际数学家大会上提出 23 个未解决的数学问题，其中第 2 问题（算术公理的一致性）和第 10 问题（丢番图方程的可判定性）直接催生了可计算性理论。</p>
+<p class="label label-why">为什么重要</p>
+<p>明确提出了"数学能否被完全形式化、机械化"这一核心问题，为整个 20 世纪的数理逻辑研究指明了方向。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接催生了 Gödel 的不完备定理和 Turing 的可计算性理论——正是对这些问题的回答，定义了计算的边界。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1928</span>
+<h3>Hilbert 提出判定问题（Entscheidungsproblem）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出"是否存在一种通用算法能判定任意数学命题的真假"这一终极问题。</p>
+<p class="label label-why">为什么重要</p>
+<p>这个问题的否定回答（由 Church 和 Turing 分别给出）定义了计算的根本边界——有些问题是任何算法都无法解决的。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接催生了图灵机和 λ 演算，这两个计算模型至今仍是理论计算机科学的基石。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1931</span>
+<h3>Kurt Gödel 不完备定理</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>证明了任何足够强的一致公理系统都包含无法在系统内被证明的真命题。同时引入了 Gödel 编码——将符号序列转化为数字的关键技术。</p>
+<p class="label label-why">为什么重要</p>
+<p>终结了 Hilbert 纲领，揭示了形式系统的根本局限。这是 20 世纪最深刻的智识成就之一：数学自身无法证明自身的完备性。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Gödel 编码成为可计算性理论的关键技术；不完备定理暗示了"机械化推理"存在固有边界，深刻影响了 AI 哲学和计算理论。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1936</span>
+<h3>Claude Shannon 硕士论文：开关电路与布尔代数</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>证明布尔代数可以用电路继电器实现，任何布尔函数都可以用开关电路表达，打通了"逻辑 → 硬件"的桥梁。</p>
+<p class="label label-why">为什么重要</p>
+<p>将 100 年前 Boole 的纯数学理论与物理电路连接起来。被称为"数字电路设计的创世论文"——可能是有史以来最重要的硕士论文。</p>
+<p class="label label-impact">对后续影响</p>
+<p>所有数字电路设计的理论基础。没有 Shannon 的这一洞见，电子计算机的设计将缺少坚实的理论指导。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 2 ========== -->
+<section class="phase" id="phase2">
+<div class="phase-num">第二阶段</div>
+<h2>可计算性理论建立期</h2>
+<div class="phase-era">1936 - 1945</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1936</span>
+<h3>Alan Turing "On Computable Numbers"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>定义了图灵机模型，证明了停机问题不可判定，从根本上回答了 Hilbert 的判定问题。通用图灵机的概念直接对应可编程计算机。</p>
+<p class="label label-why">为什么重要</p>
+<p>定义了"什么是可计算的"，建立了整个计算机科学的理论根基。这篇论文是计算机科学的创世文献。</p>
+<p class="label label-impact">对后续影响</p>
+<p>图灵机至今仍是计算复杂度理论和可计算性理论的标准模型，"图灵完备"成为衡量计算系统能力的基准。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1936</span>
+<h3>Alonzo Church λ 演算</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>独立于 Turing，通过 λ 演算也回答了判定问题；建立了基于函数的计算模型——一切计算都是函数的应用与抽象。</p>
+<p class="label label-why">为什么重要</p>
+<p>Church-Turing 论题确立了计算的统一定义：凡是能被图灵机计算的，也能被 λ 演算计算，反之亦然。</p>
+<p class="label label-impact">对后续影响</p>
+<p>λ 演算成为函数式编程语言（LISP、Haskell、ML）的理论基础，也深刻影响了类型论和程序语义学。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1938</span>
+<h3>Konrad Zuse 完成 Z1</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一台可编程的二进制机械计算机，独立于英美学术传统，在纳粹德国的公寓中完成。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了可编程计算机的概念可以被独立实现。Zuse 的工作展示了伟大思想可以在完全隔绝的环境中平行涌现。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Z3（1941）成为第一台功能完备的可编程计算机，Zuse 也独立发明了高级编程语言 Plankalkül。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1943</span>
+<h3>McCulloch &amp; Pitts 神经元逻辑模型</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了人工神经元的数学模型，证明神经网络可以计算任何逻辑函数，将生物神经元与布尔逻辑联系起来。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一个将生物学与计算理论连接的模型，开创了计算神经科学和人工智能的交叉领域。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接启发了后来的感知机（Rosenblatt, 1958）、神经网络和当今的深度学习革命。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1943-1945</span>
+<h3>Colossus 密码破译机（Bletchley Park）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一台大规模电子计算设备，使用真空管实现高速布尔运算，用于破译德国 Lorenz 密码。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了电子计算的实用性和速度优势。在战争的紧迫需求下，计算技术实现了从理论到工程的飞跃。</p>
+<p class="label label-impact">对后续影响</p>
+<p>战后计算机设计的重要经验来源，参与者（如 Turing、Flowers）后来成为英国计算机工业的奠基人。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1945</span>
+<h3>John von Neumann "First Draft of a Report on the EDVAC"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>确立了存储程序概念——指令和数据存储在同一内存中，CPU 按序从内存中取指令并执行。</p>
+<p class="label label-why">为什么重要</p>
+<p>定义了现代计算机的基本架构范式（冯·诺依曼架构）。几乎所有你今天使用的计算机，从手机到超级计算机，都遵循这一架构。</p>
+<p class="label label-impact">对后续影响</p>
+<p>冯·诺依曼架构统治了计算机设计 80 年，直到今天 GPU 和专用 AI 芯片才开始挑战其某些方面。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1945</span>
+<h3>Vannevar Bush "As We May Think"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了 Memex 概念——一种可以存储和链接所有知识的个人设备，用户可以在知识之间建立关联路径。</p>
+<p class="label label-why">为什么重要</p>
+<p>预见了超文本、搜索引擎和万维网。Bush 描述的几乎就是 50 年后 Tim Berners-Lee 实现的 Web。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Doug Engelbart 和 Ted Nelson 的超文本思想，最终催生了 WWW——人类有史以来最大的知识系统。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 3 ========== -->
+<section class="phase" id="phase3">
+<div class="phase-num">第三阶段</div>
+<h2>早期电子计算与程序设计期</h2>
+<div class="phase-era">1945 - 1957</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1946</span>
+<h3>ENIAC 投入运行</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一台通用电子数字计算机，使用 17,468 个真空管，每秒可执行 5000 次加法运算。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了电子计算机的可行性和巨大速度优势——比机械计算快了几个数量级。</p>
+<p class="label label-impact">对后续影响</p>
+<p>标志着电子计算时代的正式开始，此后所有计算机都走上了电子化道路。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1948</span>
+<h3>Claude Shannon "A Mathematical Theory of Communication"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>创立信息论，定义了信息的数学度量单位——比特（bit），建立了信道容量定理（Shannon 极限）。</p>
+<p class="label label-why">为什么重要</p>
+<p>将"信息"从模糊的日常概念变成精确可量化的数学对象。Shannon 单枪匹马创立了一个完整的学科。</p>
+<p class="label label-impact">对后续影响</p>
+<p>通信、编码、密码学、数据压缩、机器学习等领域的理论基石。没有信息论，就没有数字通信时代。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1949</span>
+<h3>Maurice Wilkes EDSAC 投入运行</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一台实用的存储程序计算机，在剑桥大学投入实际运算服务。</p>
+<p class="label label-why">为什么重要</p>
+<p>冯·诺依曼架构的首次完整工程实现——程序和数据真正存储在同一个内存中。</p>
+<p class="label label-impact">对后续影响</p>
+<p>验证了存储程序范式的可行性，此后所有通用计算机都采用这一基本设计。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1950</span>
+<h3>Alan Turing "Computing Machinery and Intelligence"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了图灵测试——判断机器是否具有智能的操作性标准：如果一个人无法区分对话对象是人还是机器，就认为机器具有智能。</p>
+<p class="label label-why">为什么重要</p>
+<p>开创性地提出了"机器能否思考"这一哲学-科学问题，并给出了可操作的判定方法，将哲学问题转化为可验证的科学问题。</p>
+<p class="label label-impact">对后续影响</p>
+<p>人工智能领域的思想先驱。图灵测试至今仍是讨论机器智能时最常引用的概念。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1951</span>
+<h3>Grace Hopper 开发第一个编译器（A-0）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个将人类可读的符号代码翻译为机器码的系统，证明了计算机可以帮助人类编程。</p>
+<p class="label label-why">为什么重要</p>
+<p>从根本上改变了编程方式——程序员不再需要直接编写机器码。Hopper 说服了一个怀疑的世界：计算机可以"理解"接近人类语言的指令。</p>
+<p class="label label-impact">对后续影响</p>
+<p>开启了高级编程语言和编译器技术的发展，催生了 FORTRAN、COBOL 和此后所有高级语言。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1956</span>
+<h3>Dartmouth 人工智能会议</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>John McCarthy 正式创造了 "Artificial Intelligence" 这一术语，召集 Minsky、Shannon、Simon 等人讨论机器智能的可能性。</p>
+<p class="label label-why">为什么重要</p>
+<p>人工智能作为独立学科正式诞生。与会者乐观地认为"一个暑假就能取得重大突破"——这种乐观虽然天真，却启动了整个领域。</p>
+<p class="label label-impact">对后续影响</p>
+<p>开启了 AI 研究的第一次浪潮（符号 AI 时代），催生了数十年的探索。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1956</span>
+<h3>Allen Newell &amp; Herbert Simon：Logic Theorist</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个 AI 程序，能够自动证明《数学原理》中的逻辑定理，其中一些证明甚至比原书更优雅。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了机器可以执行看似需要"智能"的推理任务，回应了"机器不可能思考"的质疑。</p>
+<p class="label label-impact">对后续影响</p>
+<p>启动了符号 AI（GOFAI, Good Old-Fashioned AI）的研究范式，主导了 AI 研究近三十年。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1957</span>
+<h3>John Backus 团队发布 FORTRAN</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个广泛使用的高级编程语言及其优化编译器，让科学家和工程师可以用接近数学公式的方式编写程序。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了高级语言可以生成接近手写汇编的高效代码，打消了业界对编译器效率的疑虑。</p>
+<p class="label label-impact">对后续影响</p>
+<p>开启了编程语言设计和编译器优化的整个领域。FORTRAN 至今仍在高性能计算领域广泛使用。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 4 ========== -->
+<section class="phase" id="phase4">
+<div class="phase-num">第四阶段</div>
+<h2>算法与语言体系形成期</h2>
+<div class="phase-era">1957 - 1969</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1958</span>
+<h3>John McCarthy 发明 LISP</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 λ 演算创造了 LISP 语言，引入了垃圾收集、递归函数、符号处理、代码即数据（homoiconicity）等开创性概念。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一个函数式编程语言，将 Church 的理论变成了实用的编程范式。LISP 的设计优雅到令人惊叹——整个语言可以用自身来定义。</p>
+<p class="label label-impact">对后续影响</p>
+<p>深刻影响了所有函数式语言（Scheme、Haskell、Clojure），也是早期 AI 研究的主要工具。Paul Graham 曾说"LISP 值得学习，因为它会让你成为更好的程序员"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1959</span>
+<h3>COBOL 诞生</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>面向商业数据处理的高级语言，由 Grace Hopper 主导设计，语法接近自然英语。</p>
+<p class="label label-why">为什么重要</p>
+<p>首次面向非科学计算需求设计编程语言，证明了编程语言可以为特定领域优化。</p>
+<p class="label label-impact">对后续影响</p>
+<p>大量银行、保险、政府的遗留系统至今仍在运行 COBOL。据估计全球仍有 2000 多亿行 COBOL 代码在生产环境中运行。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1960</span>
+<h3>ALGOL 60 报告</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>引入了 BNF 范式定义语法、块结构、递归过程、词法作用域，确立了编程语言设计和描述的科学标准。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一次用形式化方法精确定义编程语言的语法。ALGOL 60 本身虽然没有被广泛使用，但它的思想比任何具体语言都更持久。</p>
+<p class="label label-impact">对后续影响</p>
+<p>几乎所有后续语言（C、Pascal、Java、Python）都深受其影响。Dijkstra 说"ALGOL 60 是一个改进其前辈到让人认不出的伟大进步"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1961</span>
+<h3>John McCarthy 提出分时系统概念</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出多用户共享一台计算机的时间分片方案，每个用户都获得独占计算机的错觉。</p>
+<p class="label label-why">为什么重要</p>
+<p>从"批处理"到"交互式计算"的范式转变。用户第一次可以与计算机进行实时对话。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了 CTSS、Multics、UNIX 等操作系统。McCarthy 甚至预见了"计算将像水电一样成为公共服务"——这正是今天的云计算。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1962</span>
+<h3>Ivan Sutherland - Sketchpad</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个图形用户界面程序，支持用光笔直接在屏幕上绘图，引入了面向对象的概念（主对象和实例）。</p>
+<p class="label label-why">为什么重要</p>
+<p>开创了人机交互（HCI）和计算机图形学两个领域。Sutherland 证明了计算机可以成为创造性工具。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Xerox Alto、Macintosh 和所有现代 GUI。Alan Kay 称 Sketchpad 为"有史以来最重要的程序"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1962</span>
+<h3>J.C.R. Licklider 提出"星际计算机网络"构想</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了全球互联的计算机网络愿景——"银河网络"，每个节点都能访问任何其他节点上的数据和程序。</p>
+<p class="label label-why">为什么重要</p>
+<p>作为 ARPA 信息处理技术办公室主任，Licklider 有权力和资源推动这一愿景的实现。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了 ARPANET 的立项和资助，Licklider 被称为"互联网之父"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1964</span>
+<h3>IBM System/360</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个兼容的计算机系列——从小型到大型的不同型号可以运行相同的软件，分离了接口与实现。</p>
+<p class="label label-why">为什么重要</p>
+<p>创造了"计算机体系结构"的概念。IBM 投入 50 亿美元（相当于今天数百亿），这是当时最大的商业赌注。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了指令集架构（ISA）概念，影响了后续所有计算机设计。软硬件分离的思想至今仍是产业组织的基础。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1965</span>
+<h3>Gordon Moore 提出摩尔定律</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>观察并预测：集成电路上的晶体管数量大约每两年翻一番，而成本保持不变甚至下降。</p>
+<p class="label label-why">为什么重要</p>
+<p>为半导体工业的发展提供了惊人准确的预测框架，持续了近 50 年。</p>
+<p class="label label-impact">对后续影响</p>
+<p>指导了半个世纪的芯片设计策略。摩尔定律不仅是观察，更成为了自我实现的预言——整个产业按照它来规划路线图。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1965</span>
+<h3>Edsger Dijkstra：结构化编程与信号量</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出信号量（Semaphore）解决并发同步问题，倡导结构化编程方法论。</p>
+<p class="label label-why">为什么重要</p>
+<p>奠定了并发编程和操作系统中进程同步的基础理论。在多任务处理日益重要的时代，信号量提供了优雅的同步原语。</p>
+<p class="label label-impact">对后续影响</p>
+<p>信号量至今仍是操作系统教科书中的核心概念，也是理解互斥锁、条件变量等高级同步机制的基础。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1966</span>
+<h3>Böhm-Jacopini 定理</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>证明了任何可计算函数只需顺序、选择（if-else）、循环（while）三种控制结构即可表达。</p>
+<p class="label label-why">为什么重要</p>
+<p>为结构化编程提供了坚实的理论依据——goto 语句在理论上是不必要的。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接支撑了 Dijkstra 后来的"Go To 有害"论点，改变了编程语言设计的方向。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1967</span>
+<h3>Simula 67 诞生</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>由 Ole-Johan Dahl 和 Kristen Nygaard 在挪威创造，引入了类（class）、对象（object）、继承（inheritance）、多态等概念。</p>
+<p class="label label-why">为什么重要</p>
+<p>面向对象编程（OOP）的源头。Simula 证明了程序可以模拟现实世界的实体和关系。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Smalltalk、C++、Java、Python 等语言。OOP 成为主流编程范式长达数十年。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1967</span>
+<h3>Gene Amdahl 提出 Amdahl 定律</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>量化了并行计算的加速上限——系统的整体加速比受串行部分的比例制约。</p>
+<p class="label label-why">为什么重要</p>
+<p>揭示了并行化的根本局限：即使有无限多的处理器，只要有 5% 的串行部分，最大加速比也只有 20 倍。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍是评估并行系统性能的基本工具，在多核时代和 GPU 编程中尤为重要。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1968</span>
+<h3>Dijkstra "Go To Statement Considered Harmful"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>以一封致编辑的信，系统论证了 goto 语句使程序难以理解和验证，倡导使用结构化控制流。</p>
+<p class="label label-why">为什么重要</p>
+<p>标志着结构化编程运动的正式开始，推动了程序正确性的系统化思考。这封信可能是计算机科学史上最有影响力的一页纸。</p>
+<p class="label label-impact">对后续影响</p>
+<p>改变了整个编程语言设计的方向，goto 语句逐渐从主流语言中消失或被严格限制使用。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1968</span>
+<h3>Douglas Engelbart "The Mother of All Demos"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在旧金山的一场 90 分钟演示中，展示了鼠标、超文本、视频会议、版本控制、协作编辑和窗口系统。</p>
+<p class="label label-why">为什么重要</p>
+<p>一次演示预言了此后 50 年的计算交互方式。在场的 1000 名观众目睹了未来的降临。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Xerox PARC 的研究方向、Apple Macintosh 的设计，以及现代计算交互的所有方面。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1968</span>
+<h3>NATO 软件工程会议</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在德国加米施召开的会议上，首次正式使用"软件工程"（Software Engineering）这一术语。</p>
+<p class="label label-why">为什么重要</p>
+<p>承认了"软件危机"的存在——软件项目普遍超期、超预算、充满缺陷。命名一个问题是解决它的第一步。</p>
+<p class="label label-impact">对后续影响</p>
+<p>软件工程作为独立学科诞生，催生了结构化方法、瀑布模型，以及后来的敏捷开发等方法论。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1969</span>
+<h3>ARPANET 建立</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个分组交换网络，最初连接了 UCLA、SRI、UCSB 和犹他大学四个节点。</p>
+<p class="label label-why">为什么重要</p>
+<p>互联网的直接前身。第一条消息"LO"（本想发"LOGIN"，但系统崩溃了）成为了网络时代的开端。</p>
+<p class="label label-impact">对后续影响</p>
+<p>验证了分组交换技术的可行性，奠定了互联网的技术基础。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1969</span>
+<h3>Ken Thompson &amp; Dennis Ritchie 开始开发 UNIX</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在贝尔实验室创造了一个简洁、模块化的操作系统，确立了"一切皆文件"、管道、小工具组合等设计哲学。</p>
+<p class="label label-why">为什么重要</p>
+<p>UNIX 哲学——"做好一件事"、"组合优于集成"——至今影响深远。它不仅是操作系统，更是一种思维方式。</p>
+<p class="label label-impact">对后续影响</p>
+<p>UNIX 家族（Linux、macOS、Android、iOS）统治了现代操作系统版图。几乎每个人每天都在使用 UNIX 的后代。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 5 ========== -->
+<section class="phase" id="phase5">
+<div class="phase-num">第五阶段</div>
+<h2>操作系统/数据库/体系结构成熟期</h2>
+<div class="phase-era">1969 - 1978</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1970</span>
+<h3>Edgar F. Codd 关系数据模型</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"A Relational Model of Data for Large Shared Data Banks"，提出用数学关系（表）来组织数据，用关系代数操作数据。</p>
+<p class="label label-why">为什么重要</p>
+<p>将数据库从物理存储细节中解放出来，建立了声明式数据操作的理论基础——告诉系统"要什么"而非"怎么取"。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了 SQL 和所有关系型数据库（Oracle、MySQL、PostgreSQL）。直到今天，关系模型仍是数据管理的主流范式。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1971</span>
+<h3>Stephen Cook 与 NP 完全性</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"The Complexity of Theorem-Proving Procedures"，定义了 NP 完全性概念，证明了 SAT（布尔可满足性）问题是 NP 完全的。</p>
+<p class="label label-why">为什么重要</p>
+<p>建立了计算复杂度理论的核心框架，暗示了 P ≠ NP 猜想——可能存在"容易验证但难以求解"的问题类别。</p>
+<p class="label label-impact">对后续影响</p>
+<p>P vs NP 成为数学和计算机科学最重要的未解问题之一（克雷数学研究所百万美元悬赏问题）。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1972</span>
+<h3>Dennis Ritchie 开发 C 语言</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>创造了一种兼具高级语言表达力和底层硬件控制能力的系统编程语言。</p>
+<p class="label label-why">为什么重要</p>
+<p>直接用于重写 UNIX，证明了操作系统可以用高级语言实现。C 语言在效率和可移植性之间找到了完美平衡。</p>
+<p class="label label-impact">对后续影响</p>
+<p>C 语言及其后裔（C++、Java、C#、Go、Rust）至今统治系统编程领域。Linux 内核、Windows 内核、所有主流数据库都用 C/C++ 编写。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1972</span>
+<h3>Richard Karp 21 个 NP 完全问题</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>通过多项式时间归约，证明了 21 个经典优化问题（图着色、旅行商、背包等）都是 NP 完全的。</p>
+<p class="label label-why">为什么重要</p>
+<p>展示了 NP 完全性的普遍性——大量实际问题都属于这一类。这意味着如果你能高效解决其中任何一个，就能高效解决所有。</p>
+<p class="label label-impact">对后续影响</p>
+<p>使得复杂度理论从纯理论走向广泛实际应用，算法设计者学会了识别和应对 NP 困难问题。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1973</span>
+<h3>Ethernet 发明（Robert Metcalfe, Xerox PARC）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发明了以太网——局域网（LAN）通信标准，使用 CSMA/CD 协议解决共享介质的冲突问题。</p>
+<p class="label label-why">为什么重要</p>
+<p>使得办公室和校园中的计算机互联成为可能，开创了本地网络通信时代。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍是最广泛使用的有线局域网技术。以太网从 2.94 Mbps 演进到了 400 Gbps，速度提升了十万倍。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1973</span>
+<h3>Xerox Alto</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一台配备图形用户界面（GUI）、鼠标、以太网和所见即所得（WYSIWYG）文字处理器的个人计算机。</p>
+<p class="label label-why">为什么重要</p>
+<p>体现了 Engelbart 和 Alan Kay 的交互式计算愿景。虽然从未大规模商业化，但它展示了个人计算的未来形态。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Steve Jobs 参观 Xerox PARC 后深受震撼，直接启发了 Apple Lisa 和 Macintosh 的设计。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1974</span>
+<h3>Ritchie &amp; Thompson "The UNIX Time-Sharing System"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>完整描述了 UNIX 的设计哲学和系统结构，确立了"简单、模块化、可组合"的操作系统设计范式。</p>
+<p class="label label-why">为什么重要</p>
+<p>UNIX 的设计原则——"一切皆文件"、管道组合、文本作为通用接口——成为了软件设计的经典智慧。</p>
+<p class="label label-impact">对后续影响</p>
+<p>UNIX 哲学深刻影响了 Linux、GNU、开源运动和现代 DevOps 文化。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1974</span>
+<h3>Vint Cerf &amp; Bob Kahn TCP 协议</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"A Protocol for Packet Network Intercommunication"，提出了 TCP 协议——跨异构网络的端到端可靠通信协议。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了"不同网络如何互联"的根本问题。TCP 的分层设计使互联网可以在任何底层网络上运行。</p>
+<p class="label label-impact">对后续影响</p>
+<p>TCP/IP 成为互联网的核心协议栈，至今支撑着全球数十亿设备的通信。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1975</span>
+<h3>Fred Brooks《人月神话》</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 IBM System/360 的开发经验，提出了"Brooks 定律"：向延期项目增加人手只会使其更加延期。</p>
+<p class="label label-why">为什么重要</p>
+<p>第一次系统性地分析了大型软件项目管理的困难，揭示了软件开发中人月不可互换的本质规律。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍是软件工程领域最重要、被引用最多的著作之一。"没有银弹"的思想影响了整个行业。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1976</span>
+<h3>Diffie &amp; Hellman 公钥密码学</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"New Directions in Cryptography"，提出了公钥密码学概念——通信双方不需要提前共享密钥即可安全通信。</p>
+<p class="label label-why">为什么重要</p>
+<p>颠覆了数千年来密码学的基本假设。在此之前，安全通信必须预先通过安全信道交换密钥——这是一个鸡生蛋蛋生鸡的难题。</p>
+<p class="label label-impact">对后续影响</p>
+<p>RSA、TLS/SSL、数字签名、区块链等所有现代安全基础设施的理论源头。没有公钥密码学，就没有安全的电子商务。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1977</span>
+<h3>RSA 算法发表</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Rivest、Shamir、Adleman 提出了第一个实用的公钥密码算法，基于大整数分解的困难性。</p>
+<p class="label label-why">为什么重要</p>
+<p>将 Diffie-Hellman 的理论变成了可实现的密码系统，使公钥密码学从概念走向实用。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍广泛用于数字签名和密钥交换。RSA 是互联网安全基础设施的基石之一。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1978</span>
+<h3>John Backus 图灵奖演讲</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>FORTRAN 之父发表"Can Programming Be Liberated from the von Neumann Style?"，自我反思并批判了冯·诺依曼瓶颈，倡导函数式编程。</p>
+<p class="label label-why">为什么重要</p>
+<p>由主流命令式语言的创造者提出对主流范式的深刻批判——这种智识诚实极为罕见。</p>
+<p class="label label-impact">对后续影响</p>
+<p>推动了函数式编程的发展。其思想在并行计算和大数据时代（MapReduce 本质上就是函数式的）重新焕发了生命力。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1978</span>
+<h3>Leslie Lamport 逻辑时钟与分布式事件排序</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"Time, Clocks, and the Ordering of Events in a Distributed System"，定义了"happened-before"偏序关系和逻辑时钟。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了分布式系统中"事件顺序"的根本性问题——当没有全局时钟时，如何定义因果关系？</p>
+<p class="label label-impact">对后续影响</p>
+<p>所有分布式系统（区块链、分布式数据库、微服务）的理论基石。Lamport 时钟是分布式系统课程的第一课。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1978</span>
+<h3>Tony Hoare CSP（通信顺序进程）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"Communicating Sequential Processes"，提出了基于消息传递的并发计算模型——进程之间通过通道通信而非共享内存。</p>
+<p class="label label-why">为什么重要</p>
+<p>为并发编程提供了严格的数学基础，提出了共享内存之外的另一种并发范式。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接影响了 Erlang 的 Actor 模型和 Go 语言的 goroutine/channel 并发设计。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 6 ========== -->
+<section class="phase" id="phase6">
+<div class="phase-num">第六阶段</div>
+<h2>网络与分布式系统扩展期</h2>
+<div class="phase-era">1978 - 1989</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1979</span>
+<h3>Bjarne Stroustrup 开始开发 C++</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>将面向对象编程（来自 Simula）引入 C 语言，创造了"C with Classes"，后来演化为 C++。</p>
+<p class="label label-why">为什么重要</p>
+<p>使 OOP 能够用于系统级编程，在不牺牲性能的前提下提供了更高层次的抽象。</p>
+<p class="label label-impact">对后续影响</p>
+<p>C++ 成为大型系统、游戏引擎、浏览器引擎和高性能应用开发的主力语言。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1981</span>
+<h3>IBM PC 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发布了开放架构的个人计算机，使用 Intel 8088 处理器和 Microsoft DOS 操作系统。</p>
+<p class="label label-why">为什么重要</p>
+<p>通过开放标准使个人计算机产业爆发。IBM 的品牌背书使企业接受了 PC 的概念。</p>
+<p class="label label-impact">对后续影响</p>
+<p>PC 兼容机统治了个人计算市场，也意外地使 Intel 和 Microsoft 成为了产业的真正赢家。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1981</span>
+<h3>Leslie Lamport 拜占庭将军问题</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>精确定义了分布式系统中存在恶意节点时的共识问题——多个将军需要在有叛徒存在时达成一致行动方案。</p>
+<p class="label label-why">为什么重要</p>
+<p>建立了容错系统设计的理论基础，区分了"崩溃故障"和"拜占庭故障"（恶意行为）。</p>
+<p class="label label-impact">对后续影响</p>
+<p>拜占庭容错（BFT）成为区块链技术的核心概念。Bitcoin 本质上就是一个拜占庭容错的分布式系统。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1983</span>
+<h3>TCP/IP 成为 ARPANET 标准协议</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>ARPANET 从 NCP 协议切换到 TCP/IP，这一天（1983年1月1日）被称为"Flag Day"。</p>
+<p class="label label-why">为什么重要</p>
+<p>统一的协议标准使全球不同网络的互联成为可能。这是"互联网"名副其实的开端。</p>
+<p class="label label-impact">对后续影响</p>
+<p>标志着现代互联网的诞生。TCP/IP 成为全球网络通信的通用语言。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1983</span>
+<h3>Richard Stallman 发起 GNU 计划</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发起自由软件运动，宣布开发一个完全自由的类 UNIX 操作系统（GNU = GNU's Not Unix），并创建了 GPL 许可证。</p>
+<p class="label label-why">为什么重要</p>
+<p>提出了"软件自由"的哲学——用户有权运行、研究、修改和分发软件。这不仅是技术决策，更是社会运动。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接催生了开源运动和 Linux 生态系统。GCC、Emacs、Bash 等 GNU 工具至今仍是开发者的核心工具。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1984</span>
+<h3>Ken Thompson "Reflections on Trusting Trust"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在图灵奖演讲中展示了如何在编译器中植入不可检测的后门——即使审查所有源代码也无法发现。</p>
+<p class="label label-why">为什么重要</p>
+<p>揭示了信任链的根本脆弱性：你信任的编译器可能已经被篡改，而你无法仅通过检查源代码来发现。</p>
+<p class="label label-impact">对后续影响</p>
+<p>深刻影响了安全工程、供应链安全和可信计算领域。近年来的 SolarWinds 攻击印证了他 40 年前的警告。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1985</span>
+<h3>Radia Perlman 生成树协议（STP）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发明了生成树协议，解决了以太网中的环路问题，使大规模交换网络成为可能。</p>
+<p class="label label-why">为什么重要</p>
+<p>在保持冗余链路（提高可靠性）的同时消除了环路（避免广播风暴），这是一个优雅的工程权衡。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍是网络基础设施的核心协议。Perlman 被称为"互联网之母"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1986</span>
+<h3>Fred Brooks "No Silver Bullet"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>区分了软件工程中的"本质困难"（概念复杂性、变更性、不可见性）和"偶然困难"（语言、工具限制），论证不存在能让生产力提高十倍的银弹。</p>
+<p class="label label-why">为什么重要</p>
+<p>迫使业界正视软件工程的根本挑战：复杂性不是工具能消除的，因为它是问题本身固有的。</p>
+<p class="label label-impact">对后续影响</p>
+<p>至今仍是评价新方法论和新工具（包括 AI 辅助编程）时的重要参照框架。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1986</span>
+<h3>Rumelhart 等人反向传播算法普及</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在 Nature 发表论文，证明了多层神经网络可以通过反向传播（backpropagation）有效训练，学习数据中的内部表示。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了多层感知机的训练难题，复兴了在 Minsky 1969 年批评后陷入低谷的神经网络研究。</p>
+<p class="label label-impact">对后续影响</p>
+<p>反向传播至今仍是深度学习的核心训练算法。所有现代神经网络——从 CNN 到 Transformer——都依赖它。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1987</span>
+<h3>Perl 语言发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Larry Wall 创造了面向文本处理和系统管理的脚本语言，以强大的正则表达式支持和"做事不止一种方法"（TMTOWTDI）哲学著称。</p>
+<p class="label label-why">为什么重要</p>
+<p>开启了脚本语言和"胶水语言"的时代，证明了不是所有编程都需要编译型语言的严格性。</p>
+<p class="label label-impact">对后续影响</p>
+<p>影响了 Python、Ruby 等后续动态语言。Perl 在 Web 1.0 时代（CGI 脚本）发挥了关键作用。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1989</span>
+<h3>Tim Berners-Lee 提出万维网方案</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在 CERN 提交了一份提案"Information Management: A Proposal"，描述了基于超文本的信息管理系统——HTML（标记语言）+ URL（地址）+ HTTP（传输协议）。</p>
+<p class="label label-why">为什么重要</p>
+<p>创造了万维网（World Wide Web）。将 Bush 的 Memex 梦想、Nelson 的超文本概念和 Internet 基础设施结合成了一个可运行的系统。</p>
+<p class="label label-impact">对后续影响</p>
+<p>彻底改变了人类获取、分享和创造信息的方式。Web 是人类历史上最大的信息系统，也是最大的社会实验。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 7 ========== -->
+<section class="phase" id="phase7">
+<div class="phase-num">第七阶段</div>
+<h2>软件工程与大型系统期</h2>
+<div class="phase-era">1989 - 1999</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">1990</span>
+<h3>Tim Berners-Lee 实现第一个 Web 浏览器和服务器</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在 NeXT 工作站上实现了第一个 Web 浏览器（WorldWideWeb）和 Web 服务器（httpd），将 WWW 从概念变为可运行的系统。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了 Web 的可行性。Berners-Lee 选择将 Web 技术免费开放，而非申请专利——这一决定改变了世界。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Web 从 CERN 的内部工具迅速扩展到全球学术界，再到商业世界。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1991</span>
+<h3>Linus Torvalds 发布 Linux 内核</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>一个芬兰大学生在 comp.os.minix 新闻组发帖："我正在做一个（自由的）操作系统（只是个爱好，不会像 GNU 那样大而专业）"。</p>
+<p class="label label-why">为什么重要</p>
+<p>与 GNU 工具结合，Linux 创造了第一个完全自由的操作系统。开源协作开发模式的最成功范例。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Linux 成为服务器（90%+ 市场份额）、超级计算机（100%）、嵌入式设备和 Android 的核心。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1991</span>
+<h3>Python 语言发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Guido van Rossum 创造了一种强调可读性和简洁性的通用编程语言，以"优雅、明确、简单"为设计哲学。</p>
+<p class="label label-why">为什么重要</p>
+<p>降低了编程的门槛，让"代码可读性"成为语言设计的核心价值。Python 证明了易用性和强大功能可以兼得。</p>
+<p class="label label-impact">对后续影响</p>
+<p>成为数据科学、AI/ML、Web 开发、自动化等领域最流行的语言之一。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1991</span>
+<h3>Phil Zimmermann 发布 PGP</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>将公钥密码学带给普通用户的邮件加密工具（Pretty Good Privacy），使个人可以进行端到端加密通信。</p>
+<p class="label label-why">为什么重要</p>
+<p>使强加密技术从政府和军事领域走向民用。Zimmermann 因此面临美国政府的刑事调查，引发了著名的"加密战争"。</p>
+<p class="label label-impact">对后续影响</p>
+<p>推动了端到端加密的普及。今天 WhatsApp、Signal 等应用使用的加密技术都是 PGP 理念的延续。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1993</span>
+<h3>Mosaic 浏览器发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>NCSA 开发的第一个支持图文混排的图形化 Web 浏览器，让用户可以在同一页面中看到文字和图片。</p>
+<p class="label label-why">为什么重要</p>
+<p>使 Web 从学术界的纯文本工具变成了大众可以使用的多媒体平台。Mosaic 让"上网"变得直观而有趣。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了 Netscape（由 Mosaic 主要开发者 Marc Andreessen 联合创办）和此后的浏览器大战。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1994</span>
+<h3>设计模式（GoF, Gang of Four）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Gamma、Helm、Johnson、Vlissides 四人合著《设计模式》，总结了 23 种面向对象设计模式（工厂、观察者、策略等）。</p>
+<p class="label label-why">为什么重要</p>
+<p>将软件设计的经验知识体系化，建立了设计者之间交流的共同词汇。</p>
+<p class="label label-impact">对后续影响</p>
+<p>深刻影响了整个软件工程文化。虽然近年来有人批评过度使用设计模式，但其核心思想——识别和命名反复出现的设计问题——仍然有价值。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1995</span>
+<h3>Java 语言发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Sun Microsystems 发布 Java，实现了"一次编写，到处运行"——基于 JVM 虚拟机的跨平台语言。</p>
+<p class="label label-why">为什么重要</p>
+<p>通过虚拟机抽象解决了跨平台兼容性问题，同时提供了垃圾收集和内存安全。</p>
+<p class="label label-impact">对后续影响</p>
+<p>企业应用的主流语言。JVM 生态（Scala、Kotlin、Clojure）影响深远。Android 选择 Java 进一步扩大了其影响。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1995</span>
+<h3>JavaScript 诞生</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Brendan Eich 在 10 天内为 Netscape 浏览器创造了一种脚本语言，使 Web 页面具有动态交互能力。</p>
+<p class="label label-why">为什么重要</p>
+<p>赋予了 Web 页面"生命"——从静态文档变为动态应用。尽管仓促诞生，JavaScript 却成为了世界上使用最广泛的编程语言。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Node.js 使其扩展到服务端，React/Vue 重新定义了前端开发。JavaScript 成为全栈开发的通用语言。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1995</span>
+<h3>Apache HTTP Server 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>一群志愿者基于 NCSA httpd 开发的开源 Web 服务器，迅速成为市场份额最高的 Web 服务器。</p>
+<p class="label label-why">为什么重要</p>
+<p>开源软件在关键基础设施中的第一个重大商业成功，证明了社区驱动开发的可行性。</p>
+<p class="label label-impact">对后续影响</p>
+<p>推动了 LAMP（Linux + Apache + MySQL + PHP）技术栈和整个开源 Web 基础设施的发展。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1997</span>
+<h3>IBM Deep Blue 击败国际象棋世界冠军</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>专用硬件（每秒评估 2 亿个棋局）结合搜索算法和评估函数，在六局比赛中以 3.5:2.5 击败 Garry Kasparov。</p>
+<p class="label label-why">为什么重要</p>
+<p>首次在严肃的智力游戏中机器胜过人类世界冠军。这一刻标志着 AI 在特定领域超越人类的开端。</p>
+<p class="label label-impact">对后续影响</p>
+<p>引发了 AI 能力边界的广泛讨论，但也暴露了"暴力搜索"方法的局限性——需要 20 年后的 AlphaGo 才能攻克围棋。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1998</span>
+<h3>Lamport Paxos 算法正式发表</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"The Part-Time Parliament"，描述了在异步网络中实现分布式共识的 Paxos 算法——即使在消息丢失、节点崩溃的情况下也能保证安全性。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了分布式系统中最基本也是最困难的问题——共识：多个节点如何就一个值达成一致？</p>
+<p class="label label-impact">对后续影响</p>
+<p>Google Chubby、Apache ZooKeeper、Raft 等所有现代共识系统的理论基础。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1998</span>
+<h3>Google 与 PageRank 算法</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Larry Page 和 Sergey Brin 发表"The Anatomy of a Large-Scale Hypertextual Web Search Engine"，提出 PageRank 算法——利用 Web 链接结构评估网页重要性。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了 Web 规模下的信息检索问题。PageRank 的核心洞见：一个页面被多少高质量页面链接，就有多重要。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Google 成为互联网的入口。Web 搜索从研究课题变为核心商业基础设施，改变了人类获取信息的方式。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">1999</span>
+<h3>敏捷软件开发运动兴起（极限编程 XP）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Kent Beck 发布《极限编程解析》，提出迭代开发、持续反馈、测试驱动开发（TDD）、结对编程等实践。</p>
+<p class="label label-why">为什么重要</p>
+<p>对传统瀑布模型的根本性挑战——承认需求会变化，拥抱变化而非抗拒变化。</p>
+<p class="label label-impact">对后续影响</p>
+<p>2001 年《敏捷宣言》正式确立。Scrum、Kanban 等方法全面普及，改变了整个软件行业的开发方式。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 8 ========== -->
+<section class="phase" id="phase8">
+<div class="phase-num">第八阶段</div>
+<h2>互联网与 Web 深化期</h2>
+<div class="phase-era">1999 - 2006</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">2000</span>
+<h3>Roy Fielding 博士论文提出 REST</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>定义了 REST（Representational State Transfer）架构风格——基于资源、统一接口和无状态通信的 Web 服务设计方法。</p>
+<p class="label label-why">为什么重要</p>
+<p>为 Web API 设计提供了理论框架。REST 的优雅之处在于它利用了 HTTP 已有的语义（GET、POST、PUT、DELETE）。</p>
+<p class="label label-impact">对后续影响</p>
+<p>REST API 成为 Web 服务的事实标准，取代了复杂的 SOAP/WSDL。几乎所有现代 Web 服务都是 RESTful 的。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2001</span>
+<h3>维基百科上线</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Jimmy Wales 和 Larry Sanger 创建了大规模协作式知识创造平台，任何人都可以编辑。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了分布式、志愿式知识生产的可行性——数百万志愿者共同创造了人类历史上最大的百科全书。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Web 2.0 和用户生成内容（UGC）时代的代表。开放协作模式影响了开源社区和知识共享运动。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2001</span>
+<h3>敏捷宣言发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>17 位软件开发者在犹他州雪鸟度假村共同签署了 4 条价值观和 12 条原则——个体和互动高于流程和工具，可工作的软件高于详尽的文档。</p>
+<p class="label label-why">为什么重要</p>
+<p>以简洁有力的形式表达了对软件开发本质的重新认识：软件开发是人的活动，而非机械化的工业流程。</p>
+<p class="label label-impact">对后续影响</p>
+<p>Scrum、Kanban、DevOps 等方法全面普及。敏捷思想从软件开发扩展到了企业管理和产品设计。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2003</span>
+<h3>Google File System 论文</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>描述了 Google 内部使用的面向大规模数据的分布式文件系统——针对大文件、追加写入和流式读取优化。</p>
+<p class="label label-why">为什么重要</p>
+<p>展示了如何用廉价商用硬件构建可靠的大规模存储系统，颠覆了依赖昂贵专用硬件的传统思路。</p>
+<p class="label label-impact">对后续影响</p>
+<p>直接催生了开源实现 HDFS（Hadoop Distributed File System）和整个 Hadoop 生态系统。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2004</span>
+<h3>MapReduce 论文发表</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Jeffrey Dean 和 Sanjay Ghemawat 发表"MapReduce: Simplified Data Processing on Large Clusters"，用 Map 和 Reduce 两个简单抽象处理大规模并行计算。</p>
+<p class="label label-why">为什么重要</p>
+<p>将分布式计算从少数专家的领域变成了普通程序员可以使用的工具。程序员只需定义 Map 和 Reduce 函数，系统自动处理分发、容错和负载均衡。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了 Hadoop、Spark 等整个大数据处理生态，开启了"大数据时代"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2005</span>
+<h3>Git 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Linus Torvalds 在两周内创造了分布式版本控制系统 Git，每个开发者都拥有完整的代码历史。</p>
+<p class="label label-why">为什么重要</p>
+<p>使真正的分布式协作开发成为可能。与集中式系统（SVN）不同，Git 不依赖单一服务器。</p>
+<p class="label label-impact">对后续影响</p>
+<p>GitHub（2008）将 Git 与社交编程结合，使其成为全球软件开发的标准协作工具。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2006</span>
+<h3>Amazon Web Services (AWS) 发布 EC2 和 S3</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>第一个商用云计算平台——按需租用计算资源（EC2）和存储资源（S3），按实际使用量付费。</p>
+<p class="label label-why">为什么重要</p>
+<p>将计算基础设施从"固定资产"变为"按需服务"。创业公司不再需要购买和维护服务器。</p>
+<p class="label label-impact">对后续影响</p>
+<p>云计算革命改变了整个软件行业的部署和运营模式。AWS、Azure、GCP 三大云平台支撑了现代互联网。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2006</span>
+<h3>Geoffrey Hinton 深度信念网络</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"A Fast Learning Algorithm for Deep Belief Nets"，提出了逐层预训练方法，使深层神经网络的训练成为可能。</p>
+<p class="label label-why">为什么重要</p>
+<p>推翻了"深层网络无法有效训练"的学术共识。在神经网络经历了第二次寒冬后，Hinton 坚持不懈地证明了深度的价值。</p>
+<p class="label label-impact">对后续影响</p>
+<p>标志着深度学习复兴的开始。Hinton、LeCun、Bengio 三人后来被称为"深度学习三巨头"。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 9 ========== -->
+<section class="phase" id="phase9">
+<div class="phase-num">第九阶段</div>
+<h2>云计算/大数据/深度学习时代</h2>
+<div class="phase-era">2006 - 2017</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">2008</span>
+<h3>Bitcoin 白皮书（Satoshi Nakamoto）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>发表"Bitcoin: A Peer-to-Peer Electronic Cash System"，提出了基于工作量证明（Proof of Work）的去中心化电子现金系统。</p>
+<p class="label label-why">为什么重要</p>
+<p>首次在无信任的网络中实现了分布式共识和数字货币——巧妙结合了密码学、分布式系统和博弈论。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了区块链技术和去中心化应用（DeFi、NFT、智能合约）。Bitcoin 至今仍是最广为人知的加密货币。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2009</span>
+<h3>Go 语言发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Google 的 Robert Griesemer、Rob Pike 和 Ken Thompson 设计的系统编程语言，内置 CSP 风格的并发原语（goroutine 和 channel）。</p>
+<p class="label label-why">为什么重要</p>
+<p>将 Hoare 1978 年的 CSP 理论工程化，使并发编程变得简单——启动一百万个 goroutine 轻而易举。</p>
+<p class="label label-impact">对后续影响</p>
+<p>成为云原生和微服务开发的主流语言。Docker、Kubernetes、etcd 等核心基础设施都用 Go 编写。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2011</span>
+<h3>Apache Kafka 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>LinkedIn 开源的分布式事件流平台，支持高吞吐量、持久化的消息发布和订阅。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了大规模实时数据管道问题——将数据的生产者和消费者解耦。</p>
+<p class="label label-impact">对后续影响</p>
+<p>成为现代数据架构的核心组件。事件驱动架构和流式处理范式的基础设施。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2012</span>
+<h3>AlexNet 在 ImageNet 竞赛中获胜</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Alex Krizhevsky、Ilya Sutskever 和 Geoffrey Hinton 使用 GPU 训练的深度卷积神经网络，将 ImageNet 图像分类错误率从 26% 降低到 15.3%。</p>
+<p class="label label-why">为什么重要</p>
+<p>深度学习在实际任务中的突破性胜利。10.8 个百分点的提升震惊了整个计算机视觉界。</p>
+<p class="label label-impact">对后续影响</p>
+<p>引爆了深度学习革命，GPU 成为 AI 的核心硬件。NVIDIA 从游戏公司变成了 AI 巨头。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2013</span>
+<h3>Docker 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 Linux 容器（LXC/cgroup/namespace）的应用打包和分发工具，让应用程序带着完整运行环境一起分发。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了"在我的机器上能运行"的经典问题。Docker 使应用的构建、分发和部署实现了标准化。</p>
+<p class="label label-impact">对后续影响</p>
+<p>容器化成为云原生应用的标准部署方式。Docker Hub 成为全球最大的容器镜像仓库。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2014</span>
+<h3>Kubernetes 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Google 开源的容器编排平台（基于内部 Borg 系统的经验），自动化容器应用的部署、扩展和管理。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了"如何管理数千个容器"的问题。Kubernetes 使大规模分布式系统的运维变得可管理。</p>
+<p class="label label-impact">对后续影响</p>
+<p>成为云原生基础设施的事实标准。CNCF 生态系统围绕 Kubernetes 构建了完整的云原生技术栈。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2014</span>
+<h3>Ian Goodfellow 等提出 GAN</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了生成对抗网络（Generative Adversarial Network）——通过对抗训练让生成器和判别器相互博弈来生成逼真数据。</p>
+<p class="label label-why">为什么重要</p>
+<p>开创了高质量生成模型的新范式。Yann LeCun 称 GAN 为"过去 20 年机器学习最酷的想法"。</p>
+<p class="label label-impact">对后续影响</p>
+<p>推动了图像生成、风格迁移、Deepfake 等 AI 创作应用。后来被扩散模型（Diffusion Model）部分取代。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2014</span>
+<h3>Raft 共识算法发表</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Diego Ongaro 和 John Ousterhout 设计了更易理解的分布式共识算法 Raft，通过领导者选举和日志复制实现共识。</p>
+<p class="label label-why">为什么重要</p>
+<p>解决了 Paxos"太难理解"的工程问题。Raft 的设计目标就是"可理解性"——正确但难以理解的算法不如正确且易懂的算法。</p>
+<p class="label label-impact">对后续影响</p>
+<p>etcd、CockroachDB、TiKV 等现代分布式系统广泛采用 Raft。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2015</span>
+<h3>Rust 1.0 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Mozilla 开发的系统编程语言，通过所有权（ownership）和借用检查（borrow checker）在编译时保证内存安全，消除了数据竞争。</p>
+<p class="label label-why">为什么重要</p>
+<p>在不使用垃圾收集器的情况下消除了内存安全漏洞——这是系统编程 50 年来最重要的进步之一。</p>
+<p class="label label-impact">对后续影响</p>
+<p>正在逐步进入 Linux 内核、浏览器引擎（Servo）、区块链等关键基础设施。连续多年被评为"最受喜爱的编程语言"。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2015</span>
+<h3>TensorFlow 开源</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>Google 开源的大规模机器学习框架，支持从研究原型到生产部署的完整工作流。</p>
+<p class="label label-why">为什么重要</p>
+<p>大幅降低了深度学习的实践门槛。从此，深度学习不再是少数顶尖实验室的专利。</p>
+<p class="label label-impact">对后续影响</p>
+<p>与 PyTorch 一起成为深度学习的两大标准框架。Keras、TFLite 等生态工具进一步降低了使用门槛。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2016</span>
+<h3>AlphaGo 击败围棋世界冠军李世石</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>DeepMind 的 AlphaGo 使用深度强化学习（深度神经网络 + 蒙特卡洛树搜索），以 4:1 击败围棋世界冠军李世石。</p>
+<p class="label label-why">为什么重要</p>
+<p>围棋的搜索空间（10^170）远超国际象棋（10^47），长期被认为是 AI 在十年内无法攻克的领域。AlphaGo 提前了至少十年实现这一目标。</p>
+<p class="label label-impact">对后续影响</p>
+<p>证明了深度学习 + 强化学习的巨大潜力。AlphaGo Zero 后来在无人类知识的情况下从零自学超越了所有人类棋手。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2017</span>
+<h3>Vaswani et al. "Attention Is All You Need"</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>提出了 Transformer 架构——完全基于自注意力（Self-Attention）机制的序列模型，摒弃了 RNN 的顺序处理方式。</p>
+<p class="label label-why">为什么重要</p>
+<p>自注意力机制允许模型同时关注输入序列的所有位置，支持大规模并行训练。论文标题朴素而自信，后来被证明并非夸大。</p>
+<p class="label label-impact">对后续影响</p>
+<p>GPT、BERT、Claude 以及所有现代大语言模型的基础架构。Transformer 是近十年来最具影响力的 AI 架构创新。</p>
+</div></div></div>
+
+</div>
+<\!-- ========== PHASE 10 ========== -->
+<section class="phase" id="phase10">
+<div class="phase-num">第十阶段</div>
+<h2>大模型与交叉融合时代</h2>
+<div class="phase-era">2017 - 至今</div>
+</section>
+<div class="timeline">
+
+<div class="event"><div class="event-card">
+<span class="event-year">2018</span>
+<h3>BERT（Google）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 Transformer 编码器的双向预训练语言模型（Bidirectional Encoder Representations from Transformers），使用掩码语言模型和下一句预测两个预训练任务。</p>
+<p class="label label-why">为什么重要</p>
+<p>刷新了 11 项 NLP 任务的最佳成绩，开创了"预训练 + 微调"范式——用大量无标注文本预训练，再用少量标注数据微调。</p>
+<p class="label label-impact">对后续影响</p>
+<p>NLP 领域的范式转变。此后几乎所有 NLP 系统都基于预训练语言模型。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2018</span>
+<h3>GPT-1（OpenAI）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 Transformer 解码器的生成式预训练模型（Generative Pre-trained Transformer），使用自回归方式生成文本。</p>
+<p class="label label-why">为什么重要</p>
+<p>展示了无监督预训练在语言生成中的潜力。与 BERT 的双向编码不同，GPT 选择了单向的生成式路线。</p>
+<p class="label label-impact">对后续影响</p>
+<p>开启了 GPT 系列的发展路线。事后来看，生成式方向（GPT）比理解式方向（BERT）走得更远。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2020</span>
+<h3>GPT-3（OpenAI）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>1750 亿参数的大语言模型，展现了涌现能力（emergent abilities）和少样本学习（few-shot learning）——仅通过几个示例就能执行新任务。</p>
+<p class="label label-why">为什么重要</p>
+<p>证明了规模效应（Scaling Law）——足够大的模型可以执行从未专门训练过的任务。这暗示了通用智能的可能性。</p>
+<p class="label label-impact">对后续影响</p>
+<p>催生了大模型应用的商业化浪潮。Scaling Law 成为 AI 研究的核心指导原则。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2020</span>
+<h3>AlphaFold 2（DeepMind）</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>在 CASP14 竞赛中以压倒性优势解决了蛋白质结构预测的 50 年难题，预测精度达到了实验测量的水平。</p>
+<p class="label label-why">为什么重要</p>
+<p>AI 在自然科学中的里程碑式突破。蛋白质结构预测被列为生物学"圣杯"问题之一。</p>
+<p class="label label-impact">对后续影响</p>
+<p>展示了 AI 作为科学研究工具的巨大潜力。AlphaFold 数据库已预测了超过 2 亿个蛋白质结构，向全球研究者免费开放。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2022</span>
+<h3>ChatGPT 发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>基于 RLHF（Reinforcement Learning from Human Feedback）训练的对话式大语言模型，使 AI 可以进行自然、有用的对话。</p>
+<p class="label label-why">为什么重要</p>
+<p>将 AI 从技术圈带到了公众视野。发布两个月内用户超过 1 亿——这是历史上增长最快的消费级应用。</p>
+<p class="label label-impact">对后续影响</p>
+<p>引发了全球 AI 产业革命和社会讨论。AI 从此成为每个行业都必须认真对待的力量。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2023</span>
+<h3>GPT-4、Claude、LLaMA 等多个大模型发布</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>多模态能力（理解图像和文本）、推理能力大幅提升、开源（LLaMA）与闭源并行发展。AI 辅助编程工具（GitHub Copilot、Claude Code）改变了软件开发方式。</p>
+<p class="label label-why">为什么重要</p>
+<p>大模型能力持续提升，AI 正在从"玩具"变成"生产力工具"。开源模型的出现使 AI 民主化。</p>
+<p class="label label-impact">对后续影响</p>
+<p>AI 正在重塑软件工程、科学研究、教育、医疗和知识工作的所有方面。编程本身正在被 AI 改变。</p>
+</div></div></div>
+
+<div class="event"><div class="event-card">
+<span class="event-year">2024-2025</span>
+<h3>AI 代理（Agent）与推理模型</h3>
+<div class="event-detail">
+<p class="label label-contrib">核心贡献</p>
+<p>AI 系统从单轮问答走向多步推理和自主行动。推理模型（如 o1、Claude Opus）展现了链式思考和复杂问题解决能力。AI Agent 可以自主使用工具、浏览网页、编写和执行代码。</p>
+<p class="label label-why">为什么重要</p>
+<p>标志着 AI 从"工具"向"协作者"的转变。AI 不再只是回答问题，而是能够主动规划和执行复杂任务。</p>
+<p class="label label-impact">对后续影响</p>
+<p>正在重新定义人机协作的边界。未来的软件开发、科学研究和创造性工作将越来越依赖人类与 AI 的协作。</p>
+</div></div></div>
+
+</div>
+
+<\!-- ========== SUMMARY ========== -->
+<section class="summary" id="summary">
+<h2>总结：计算机科学 180 年的演化脉络</h2>
+
+<p>从 1843 年 Ada Lovelace 的手写笔记到 2025 年的 AI Agent，计算机科学走过了一段从纯粹思想到改变世界的旅程。回顾这段历史，几条清晰的脉络贯穿始终：</p>
+
+<div class="thread"><strong>脉络一：理论 - 系统 - 工程 - 生态的持续循环</strong><br>每一次重大突破都遵循这一模式：Boole 的布尔代数（理论）等了 100 年才被 Shannon 用于电路设计（系统），再经过工业化生产成为芯片（工程），最终构成了全球计算基础设施（生态）。同样，Church 和 Turing 的可计算性理论催生了编程语言，编程语言催生了软件工程，软件工程催生了开源社区和云服务生态。Transformer 论文（2017）到 ChatGPT 改变世界（2022）只用了五年——这个循环正在加速。</div>
+
+<div class="thread"><strong>脉络二：抽象层次不断提升</strong><br>机器码 - 汇编语言 - 高级语言 - 框架和库 - 云服务 - AI 辅助编程。每一层抽象都让程序员可以忽略底层细节，专注于更高层次的问题。今天的 AI 辅助编程（如 Claude Code）是这一趋势的最新体现：程序员描述意图，AI 生成代码。</div>
+
+<div class="thread"><strong>脉络三：连接规模不断扩大</strong><br>从单台计算机（1940s）到局域网（1970s）到互联网（1980s-1990s）到移动互联网（2000s-2010s）到万物互联（2020s）。每次连接规模的扩大都催生了新的应用形态和商业模式。</div>
+
+<div class="thread"><strong>脉络四：开源运动的持续推动</strong><br>从 Stallman 的 GNU 计划（1983）到 Torvalds 的 Linux（1991），从 Apache 到 Kubernetes，开源运动一次又一次证明：协作和共享可以创造比封闭和垄断更强大的技术。今天，几乎所有关键基础设施都建立在开源软件之上。</div>
+
+<div class="thread"><strong>脉络五：AI 的三次浪潮</strong><br>第一次浪潮（1950s-1970s）：符号 AI，基于逻辑和规则的推理。第二次浪潮（1980s-1990s）：连接主义/神经网络，反向传播算法的复兴。第三次浪潮（2010s-至今）：深度学习，从 AlexNet 到 Transformer 到大语言模型。每次浪潮都比上一次走得更远。</div>
+
+<div class="thread"><strong>脉络六：理论与实践的相互反哺</strong><br>Boole 不知道他的代数会用于电路设计；Church 不知道他的 λ 演算会成为编程语言的基础；Lamport 的分布式理论在区块链时代焕发新生。反过来，实践也提出了新的理论问题——大语言模型为什么能工作？涌现能力的本质是什么？理论和实践的互动，推动着整个学科不断前进。</div>
+
+<p style="margin-top:24px;color:#e6edf3;font-size:16px;line-height:1.9;">计算机科学的故事远未结束。从 Ada Lovelace 写下第一行算法到今天 AI 自主编写代码，这 180 年的旅程告诉我们：<strong>最深刻的变革，往往始于最纯粹的思想</strong>。Boole 没有想过电路，Turing 没有碰过晶体管，Shannon 没有见过互联网——但他们的理论定义了我们今天生活的数字世界。未来同样如此：今天某个角落里的纯粹思考，可能就是 50 年后改变世界的种子。</p>
+
+</section>
+
+</main>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="返回顶部">&#8593;</button>
+
+<footer style="text-align:center;padding:30px 20px 40px;color:var(--text2);font-size:13px;border-top:1px solid var(--border)">
+<p>计算机科学发展史时间线 | 涵盖 1843-2025 年 80+ 里程碑事件</p>
+<p style="margin-top:6px;opacity:0.6">内容仅供学习参考</p>
+</footer>
+
+<script>
+// Back to top button visibility
+const btn = document.getElementById('backTop');
+let ticking = false;
+window.addEventListener('scroll', function() {
+  if (\!ticking) {
+    window.requestAnimationFrame(function() {
+      btn.style.display = window.scrollY > 600 ? 'flex' : 'none';
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Smooth scroll for TOC links (fallback for older browsers)
+document.querySelectorAll('.toc a').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    var target = document.querySelector(href);
+    if (target && 'scrollBehavior' in document.documentElement.style) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', href);
+    }
+  });
+});
+
+// Intersection Observer for fade-in animation
+if ('IntersectionObserver' in window) {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.event-card').forEach(function(card) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+  });
+}
+</script>
+</body>
+</html>

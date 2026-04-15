@@ -6,18 +6,24 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [研究, 技术]
-aliases: ["Wiener integral", "维纳积分", "路径积分（Wiener）"]
+tags:
+- 研究
+- 技术
+- 概率论
+aliases:
+- Wiener integral
+- 维纳积分
+- 路径积分（Wiener）
 relates_to:
-  - target: "[[Wiener过程]]"
-    type: depends_on
-    confidence: 0.99
-  - target: "[[Itô随机积分]]"
-    type: extends
-    confidence: 0.95
-  - target: "[[诺伯特·维纳]]"
-    type: depends_on
-    confidence: 0.99
+- target: '[[Wiener过程]]'
+  type: depends_on
+  confidence: 0.99
+- target: '[[Itô随机积分]]'
+  type: extends
+  confidence: 0.95
+- target: '[[诺伯特·维纳]]'
+  type: depends_on
+  confidence: 0.99
 supersedes: null
 ---
 

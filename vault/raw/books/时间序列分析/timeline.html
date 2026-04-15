@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间序列分析发展史 | Timeline</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --card-bg: #131a2b;
+    --accent-blue: #4fc3f7;
+    --accent-purple: #b388ff;
+    --accent-green: #69f0ae;
+    --accent-orange: #ffab40;
+    --accent-pink: #ff80ab;
+    --accent-cyan: #84ffff;
+    --text-primary: #e8eaf6;
+    --text-secondary: #90a4ae;
+    --line-color: #263238;
+    --glow-blue: rgba(79, 195, 247, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--glow-blue), transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.25; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero .subtitle {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    animation: bounce 2s infinite;
+    z-index: 1;
+  }
+
+  .scroll-hint span {
+    display: block;
+    width: 24px; height: 24px;
+    border-right: 2px solid var(--accent-blue);
+    border-bottom: 2px solid var(--accent-blue);
+    transform: rotate(45deg);
+    opacity: 0.5;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  /* === ERA SECTIONS === */
+  .era {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .era-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .era-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .era-header .era-period {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 3px;
+  }
+
+  .era-header .era-line {
+    width: 60px;
+    height: 3px;
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+
+  /* era colors */
+  .era-foundations .era-line { background: var(--accent-green); }
+  .era-foundations h2 { color: var(--accent-green); }
+
+  .era-classical .era-line { background: var(--accent-blue); }
+  .era-classical h2 { color: var(--accent-blue); }
+
+  .era-econometric .era-line { background: var(--accent-orange); }
+  .era-econometric h2 { color: var(--accent-orange); }
+
+  .era-ml .era-line { background: var(--accent-purple); }
+  .era-ml h2 { color: var(--accent-purple); }
+
+  .era-dl .era-line { background: var(--accent-pink); }
+  .era-dl h2 { color: var(--accent-pink); }
+
+  .era-frontier .era-line { background: var(--accent-cyan); }
+  .era-frontier h2 { color: var(--accent-cyan); }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    padding: 1rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--line-color), transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 2.5rem 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s forwards;
+  }
+
+  .timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* dot on timeline */
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    top: 0.5rem;
+    z-index: 2;
+  }
+
+  .timeline-item:nth-child(odd)::before {
+    right: -7px;
+  }
+
+  .timeline-item:nth-child(even)::before {
+    left: -7px;
+  }
+
+  .era-foundations .timeline-item::before { background: var(--accent-green); box-shadow: 0 0 12px var(--accent-green); }
+  .era-classical .timeline-item::before { background: var(--accent-blue); box-shadow: 0 0 12px var(--accent-blue); }
+  .era-econometric .timeline-item::before { background: var(--accent-orange); box-shadow: 0 0 12px var(--accent-orange); }
+  .era-ml .timeline-item::before { background: var(--accent-purple); box-shadow: 0 0 12px var(--accent-purple); }
+  .era-dl .timeline-item::before { background: var(--accent-pink); box-shadow: 0 0 12px var(--accent-pink); }
+  .era-frontier .timeline-item::before { background: var(--accent-cyan); box-shadow: 0 0 12px var(--accent-cyan); }
+
+  /* card */
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  .card .year {
+    font-size: 2rem;
+    font-weight: 800;
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .card .title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .card .author {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+  }
+
+  .card .desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .card .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-nobel { background: rgba(255,215,0,0.15); color: #ffd740; border: 1px solid rgba(255,215,0,0.3); }
+  .tag-landmark { background: rgba(79,195,247,0.15); color: var(--accent-blue); border: 1px solid rgba(79,195,247,0.3); }
+  .tag-paradigm { background: rgba(179,136,255,0.15); color: var(--accent-purple); border: 1px solid rgba(179,136,255,0.3); }
+  .tag-dl { background: rgba(255,128,171,0.15); color: var(--accent-pink); border: 1px solid rgba(255,128,171,0.3); }
+  .tag-debate { background: rgba(255,171,64,0.15); color: var(--accent-orange); border: 1px solid rgba(255,171,64,0.3); }
+
+  /* === STATS BAR === */
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-item .num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-item .label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  /* === FOOTER === */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--line-color);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 1.5rem;
+    }
+
+    .timeline-item {
+      width: 100%;
+      left: 0 !important;
+      text-align: left !important;
+      padding-left: 3.5rem;
+      padding-right: 1rem;
+    }
+
+    .timeline-item::before {
+      left: 18px !important;
+      right: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="subtitle">From Sunspot Numbers to Foundation Models</p>
+  <h1>时间序列分析发展史</h1>
+  <p>一部跨越百年的方法论演化史 —— 从 1927 年 Yule 的自回归模型到 2023 年 Transformer 时代的范式之争，17 篇里程碑论文串联起时间序列分析的过去、现在与未来。</p>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><div class="num">17</div><div class="label">里程碑论文</div></div>
+  <div class="stat-item"><div class="num">96</div><div class="label">年发展历程 (1927-2023)</div></div>
+  <div class="stat-item"><div class="num">3</div><div class="label">诺贝尔奖得主</div></div>
+  <div class="stat-item"><div class="num">6</div><div class="label">技术时代</div></div>
+</div>
+
+<!-- ERA 1: FOUNDATIONS 1880-1940 -->
+<section class="era era-foundations">
+  <div class="era-header">
+    <div class="era-period">1880s - 1940s</div>
+    <h2>奠基时代</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">从古埃及尼罗河水位记录到现代统计学的数学根基</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1880</div>
+        <div class="title">T.N. Thiele — 早期时间序列模型</div>
+        <div class="author">Thorvald Nicolai Thiele</div>
+        <div class="desc">提出了包含回归分量、布朗运动和白噪声之和的时间序列模型，推导出递归估计程序 —— 这是卡尔曼滤波和 EM 算法的先驱。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1927</div>
+        <div class="title">自回归 (AR) 模型</div>
+        <div class="author">G. Udny Yule</div>
+        <div class="desc">论文 "On a Method of Investigating Periodicities in Disturbed Series"，首次将自回归模型应用于太阳黑子数据，挑战了传统的周期图分析方法。Yule-Walker 方程由此诞生。</div>
+        <span class="tag tag-landmark">奠基之作</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1938</div>
+        <div class="title">Wold 分解定理</div>
+        <div class="author">Herman Wold</div>
+        <div class="desc">博士论文 "A Study in the Analysis of Stationary Time Series"，证明了任何协方差平稳过程都可以唯一分解为确定性分量和纯不确定性分量（无穷阶 MA 过程），奠定了 ARMA 模型的理论基础。</div>
+        <span class="tag tag-landmark">理论基石</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERA 2: CLASSICAL 1950-1970 -->
+<section class="era era-classical">
+  <div class="era-header">
+    <div class="era-period">1950s - 1970s</div>
+    <h2>经典统计时代</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">指数平滑、卡尔曼滤波、ARIMA —— 方法论体系的黄金年代</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1957</div>
+        <div class="title">指数平滑法</div>
+        <div class="author">Charles C. Holt / Peter Winters</div>
+        <div class="desc">Holt 在 ONR 52 报告中提出指数加权移动平均法，Winters (1960) 将其扩展到季节性分量。Holt-Winters 方法至今仍是工业界最常用的预测工具之一。原始报告在 2004 年才正式出版。</div>
+        <span class="tag tag-landmark">工业标准</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1960</div>
+        <div class="title">卡尔曼滤波</div>
+        <div class="author">Rudolf E. Kalman</div>
+        <div class="desc">"A New Approach to Linear Filtering and Prediction Problems"，提出了线性滤波和预测问题的递归解法。从阿波罗登月到自动驾驶，卡尔曼滤波被誉为 20 世纪最伟大的算法之一。</div>
+        <span class="tag tag-paradigm">范式革命</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1969</div>
+        <div class="title">格兰杰因果检验</div>
+        <div class="author">Clive W. J. Granger</div>
+        <div class="desc">"Investigating Causal Relations by Econometric Models and Cross-spectral Methods"，首次给出时间序列因果关系的可检验定义：如果 X 的过去值有助于预测 Y，则 X "格兰杰因果于" Y。</div>
+        <span class="tag tag-nobel">2003 诺贝尔奖</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1970</div>
+        <div class="title">Box-Jenkins 方法 / ARIMA</div>
+        <div class="author">George E. P. Box & Gwilym M. Jenkins</div>
+        <div class="desc">"Time Series Analysis: Forecasting and Control"，将 AR、MA、差分整合为 ARIMA 模型，提出"识别-估计-诊断"的系统建模方法论，被称为时间序列分析的"革命性"著作。</div>
+        <span class="tag tag-paradigm">范式革命</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1974</div>
+        <div class="title">AIC 信息准则</div>
+        <div class="author">Hirotugu Akaike</div>
+        <div class="desc">"A New Look at the Statistical Model Identification"，提出赤池信息量准则（AIC），用 Kullback-Leibler 散度优雅地平衡了模型拟合度与复杂度，彻底改变了模型选择的方式。</div>
+        <span class="tag tag-landmark">模型选择基石</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERA 3: ECONOMETRIC REVOLUTION 1980-1990 -->
+<section class="era era-econometric">
+  <div class="era-header">
+    <div class="era-period">1980s - 1990s</div>
+    <h2>计量经济学革命</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">ARCH/GARCH、协整、体制转换 —— 金融时间序列分析的黄金时代</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1982</div>
+        <div class="title">ARCH 模型</div>
+        <div class="author">Robert F. Engle</div>
+        <div class="desc">"Autoregressive Conditional Heteroscedasticity with Estimates of the Variance of United Kingdom Inflation"，提出条件异方差模型，让时间序列的波动率成为可建模的对象，彻底变革了金融风险管理。</div>
+        <span class="tag tag-nobel">2003 诺贝尔奖</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1986</div>
+        <div class="title">GARCH 模型</div>
+        <div class="author">Tim Bollerslev</div>
+        <div class="desc">"Generalized Autoregressive Conditional Heteroskedasticity"，将 ARCH 推广为 GARCH，允许条件方差依赖于自身的滞后值，提供了更简约的波动率参数化。被引用超过 23,000 次。</div>
+        <span class="tag tag-landmark">金融计量核心</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1988</div>
+        <div class="title">Johansen 协整检验</div>
+        <div class="author">Soren Johansen</div>
+        <div class="desc">"Statistical Analysis of Cointegration Vectors"，在 VAR 框架下推导出协整向量的最大似然估计和似然比检验，为分析非平稳多变量时间序列之间的长期均衡关系提供了严格的统计工具。</div>
+        <span class="tag tag-landmark">多变量分析里程碑</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1989</div>
+        <div class="title">马尔可夫体制转换模型</div>
+        <div class="author">James D. Hamilton</div>
+        <div class="desc">"A New Approach to the Economic Analysis of Nonstationary Time Series and the Business Cycle"，用隐马尔可夫模型刻画经济周期的"扩张-衰退"体制转换，为非线性时间序列建模开辟了新方向。</div>
+        <span class="tag tag-paradigm">非线性建模先驱</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERA 4: ML ERA -->
+<section class="era era-ml">
+  <div class="era-header">
+    <div class="era-period">1997 - 2017</div>
+    <h2>机器学习时代</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">从 LSTM 到 Prophet —— 神经网络与自动化预测的崛起</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">1997</div>
+        <div class="title">LSTM 长短期记忆网络</div>
+        <div class="author">Sepp Hochreiter & Jurgen Schmidhuber</div>
+        <div class="desc">"Long Short-Term Memory"，通过门控机制和常误差流解决了 RNN 的梯度消失问题，使神经网络能够学习超过 1000 步的长期依赖，成为序列建模的统治性架构长达 20 年。被引用超过 98,000 次。</div>
+        <span class="tag tag-paradigm">深度学习基石</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">2017</div>
+        <div class="title">Facebook Prophet</div>
+        <div class="author">Sean J. Taylor & Benjamin Letham</div>
+        <div class="desc">"Forecasting at Scale"，提出可分解的加法回归模型（趋势 + 季节性 + 节假日），让非专家也能进行高质量的时间序列预测。开源工具 Prophet 迅速成为工业界的标配。</div>
+        <span class="tag tag-landmark">工业化预测</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERA 5: DEEP LEARNING -->
+<section class="era era-dl">
+  <div class="era-header">
+    <div class="era-period">2019 - 2021</div>
+    <h2>深度学习浪潮</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">N-BEATS 与 Informer —— 纯深度学习架构席卷时间序列预测</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">2019</div>
+        <div class="title">N-BEATS</div>
+        <div class="author">Boris Oreshkin, Dmitri Carpov, Nicolas Chapados, Yoshua Bengio</div>
+        <div class="desc">"Neural Basis Expansion Analysis for Interpretable Time Series Forecasting"，用纯全连接层 + 残差连接击败了 M4 竞赛冠军（混合 RNN + Holt-Winters），证明了"纯深度学习"在时间序列预测上的可行性。</div>
+        <span class="tag tag-dl">纯深度学习范式</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">2021</div>
+        <div class="title">Informer</div>
+        <div class="author">Haoyi Zhou et al.</div>
+        <div class="desc">"Beyond Efficient Transformer for Long Sequence Time-Series Forecasting"，提出 ProbSparse 注意力将复杂度从 O(L^2) 降至 O(L log L)，获得 AAAI 2021 最佳论文，开启了 Transformer 在时间序列领域的浪潮。</div>
+        <span class="tag tag-dl">AAAI 最佳论文</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ERA 6: FRONTIER -->
+<section class="era era-frontier">
+  <div class="era-header">
+    <div class="era-period">2023 - Present</div>
+    <h2>范式之争与基础模型</h2>
+    <p style="color:var(--text-secondary);max-width:600px;margin:0 auto;">DLinear 的反思、PatchTST 的回应 —— Transformer 是否真的有效？</p>
+    <div class="era-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">2023</div>
+        <div class="title">"Transformers 在时间序列中真的有效吗？"</div>
+        <div class="author">Ailing Zeng et al.</div>
+        <div class="desc">"Are Transformers Effective for Time Series Forecasting?" (AAAI 2023 Oral)，一个简单的单层线性模型 DLinear 在多数基准上击败了复杂的 Transformer 架构，引发了时间序列领域的深刻反思。</div>
+        <span class="tag tag-debate">范式之争</span>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="card">
+        <div class="year">2023</div>
+        <div class="title">PatchTST — Transformer 的回应</div>
+        <div class="author">Yuqi Nie et al.</div>
+        <div class="desc">"A Time Series is Worth 64 Words" (ICLR 2023)，借鉴 ViT 的 Patch 思想，将时间序列切分为子序列 patch 作为 token，结合通道独立策略，MSE 降低 21%，有力回应了"Transformer 无效"的质疑。</div>
+        <span class="tag tag-dl">Transformer 新范式</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:1rem;font-size:1rem;color:var(--text-primary);">从周期图到 Transformer，从单变量到多变量，从线性到非线性 —— 时间序列分析的每一次范式转移都在重新定义我们理解时间的方式。</p>
+  <p>Timeline of Time Series Analysis | 17 Landmark Papers (1927-2023)</p>
+  <p style="margin-top:0.5rem;">Created with deep research and careful curation</p>
+</footer>
+
+</body>
+</html>

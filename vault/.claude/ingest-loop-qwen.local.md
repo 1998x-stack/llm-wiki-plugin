@@ -1,19 +1,26 @@
 ---
 active: true
-source_path: "/Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/raw/articles/claude-mem"
+source_path: "/Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/raw/books/宏观经济学"
 files:
-  - "raw/articles/claude-mem/blog_01_overview.md"
-  - "raw/articles/claude-mem/blog_02_hooks.md"
-  - "raw/articles/claude-mem/blog_03_worker.md"
-  - "raw/articles/claude-mem/blog_04_database.md"
-  - "raw/articles/claude-mem/blog_05_search.md"
-  - "raw/articles/claude-mem/blog_06_philosophy.md"
-current_index: 6
-total: 6
-completed: ["raw/articles/claude-mem/blog_01_overview.md", "raw/articles/claude-mem/blog_02_hooks.md", "raw/articles/claude-mem/blog_04_database.md", "raw/articles/claude-mem/blog_05_search.md", "raw/articles/claude-mem/blog_06_philosophy.md"]
-failed: ["raw/articles/claude-mem/blog_03_worker.md — All pages failed lint (missing YAML frontmatter)"]
-started_at: "2026-04-15T07:18:14Z"
-session_id: "8C112D8B-0C32-4ADC-A55C-8E2109B4CE05"
+  - "raw/books/宏观经济学/01-keynes-general-theory-1936.md"
+  - "raw/books/宏观经济学/02-hicks-is-lm-1937.md"
+  - "raw/books/宏观经济学/03-solow-growth-model-1956.md"
+  - "raw/books/宏观经济学/04-phillips-curve-1958.md"
+  - "raw/books/宏观经济学/05-muth-rational-expectations-1961.md"
+  - "raw/books/宏观经济学/06-friedman-schwartz-monetary-history-1963.md"
+  - "raw/books/宏观经济学/07-friedman-role-monetary-policy-1968.md"
+  - "raw/books/宏观经济学/08-akerlof-market-for-lemons-1970.md"
+  - "raw/books/宏观经济学/09-lucas-critique-1976.md"
+  - "raw/books/宏观经济学/10-kydland-prescott-rbc-1982.md"
+  - "raw/books/宏观经济学/11-romer-endogenous-growth-1986.md"
+  - "raw/books/宏观经济学/12-taylor-rule-1993.md"
+current_index: 1
+total: 12
+completed:
+  - "raw/books/宏观经济学/01-keynes-general-theory-1936.md"
+failed: []
+started_at: "2026-04-15T08:37:46Z"
+session_id: "944D25A9-9776-432B-AB8B-1519401BFA52"
 completion_promise: "ALL_FILES_INGESTED_QWEN"
 ---
 

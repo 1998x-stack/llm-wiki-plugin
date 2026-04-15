@@ -1,0 +1,466 @@
+
+<style>
+  .tl-wrap { max-width: 680px; margin: 0 auto; padding: 8px 0 32px; font-family: var(--font-sans); }
+  .era-header { display: flex; align-items: center; gap: 12px; margin: 28px 0 12px; }
+  .era-pill { padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .era-line { flex: 1; height: 1px; background: var(--color-border-tertiary); }
+  .era-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); white-space: nowrap; }
+  .item { display: grid; grid-template-columns: 56px 1px 1fr; gap: 0 16px; margin-bottom: 4px; }
+  .year { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-align: right; padding-top: 14px; }
+  .spine { display: flex; flex-direction: column; align-items: center; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 18px; flex-shrink: 0; border: 2px solid; }
+  .vline { flex: 1; width: 1px; background: var(--color-border-tertiary); }
+  .card { padding: 10px 14px; border-radius: 10px; margin-bottom: 8px; border: 1px solid; cursor: pointer; transition: opacity .15s; }
+  .card:hover { opacity: .78; }
+  .card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .author { font-size: 12px; font-weight: 500; }
+  .title { font-size: 13px; font-weight: 400; font-style: italic; }
+  .key { font-size: 11px; margin-top: 4px; line-height: 1.5; }
+  .tag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 10px; margin-right: 4px; font-weight: 500; }
+
+  .era-classical .era-pill { background: #EEEDFE; color: #3C3489; }
+  .era-chicago  .era-pill { background: #E1F5EE; color: #085041; }
+  .era-mid      .era-pill { background: #FAEEDA; color: #633806; }
+  .era-late     .era-pill { background: #FAECE7; color: #712B13; }
+  .era-contemp  .era-pill { background: #E6F1FB; color: #0C447C; }
+
+  @media (prefers-color-scheme: dark) {
+    .era-classical .era-pill { background: #26215C; color: #CECBF6; }
+    .era-chicago  .era-pill { background: #04342C; color: #9FE1CB; }
+    .era-mid      .era-pill { background: #412402; color: #FAC775; }
+    .era-late     .era-pill { background: #4A1B0C; color: #F5C4B3; }
+    .era-contemp  .era-pill { background: #042C53; color: #B5D4F4; }
+  }
+
+  .c1 { --dot: #7F77DD; --bg: #EEEDFE; --bd: #AFA9EC; --txt: #3C3489; --key: #534AB7; --tag-bg: #CECBF6; --tag-c: #26215C; }
+  .c2 { --dot: #1D9E75; --bg: #E1F5EE; --bd: #5DCAA5; --txt: #085041; --key: #0F6E56; --tag-bg: #9FE1CB; --tag-c: #04342C; }
+  .c3 { --dot: #BA7517; --bg: #FAEEDA; --bd: #EF9F27; --txt: #633806; --key: #854F0B; --tag-bg: #FAC775; --tag-c: #412402; }
+  .c4 { --dot: #993C1D; --bg: #FAECE7; --bd: #F0997B; --txt: #712B13; --key: #993C1D; --tag-bg: #F5C4B3; --tag-c: #4A1B0C; }
+  .c5 { --dot: #185FA5; --bg: #E6F1FB; --bd: #85B7EB; --txt: #0C447C; --key: #185FA5; --tag-bg: #B5D4F4; --tag-c: #042C53; }
+
+  @media (prefers-color-scheme: dark) {
+    .c1 { --dot: #AFA9EC; --bg: #26215C; --bd: #7F77DD; --txt: #CECBF6; --key: #AFA9EC; --tag-bg: #3C3489; --tag-c: #CECBF6; }
+    .c2 { --dot: #5DCAA5; --bg: #04342C; --bd: #1D9E75; --txt: #9FE1CB; --key: #5DCAA5; --tag-bg: #085041; --tag-c: #9FE1CB; }
+    .c3 { --dot: #EF9F27; --bg: #412402; --bd: #BA7517; --txt: #FAC775; --key: #EF9F27; --tag-bg: #633806; --tag-c: #FAC775; }
+    .c4 { --dot: #F0997B; --bg: #4A1B0C; --bd: #993C1D; --txt: #F5C4B3; --key: #F0997B; --tag-bg: #712B13; --tag-c: #F5C4B3; }
+    .c5 { --dot: #85B7EB; --bg: #042C53; --bd: #185FA5; --txt: #B5D4F4; --key: #85B7EB; --tag-bg: #0C447C; --tag-c: #B5D4F4; }
+  }
+
+  .card { background: var(--bg); border-color: var(--bd); }
+  .author { color: var(--txt); }
+  .title { color: var(--key); }
+  .key { color: var(--txt); opacity: .85; }
+  .dot { background: var(--dot); border-color: var(--dot); }
+  .tag { background: var(--tag-bg); color: var(--tag-c); }
+</style>
+
+<div class="tl-wrap">
+
+<div class="era-header era-classical">
+  <div class="era-pill">古典时期 Classical Period</div>
+  <div class="era-line"></div>
+  <div class="era-label">1830 — 1920</div>
+</div>
+
+<div class="item c1">
+  <div class="year">1838</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析奥古斯特·孔德《实证哲学教程》这篇经典社会学著作')">
+    <div class="card-top"><span class="author">奥古斯特·孔德 Auguste Comte</span></div>
+    <div class="title">《实证哲学教程》Cours de philosophie positive（1830–1842）</div>
+    <div class="key">⚑ 创造"社会学"一词；提出人类知识三阶段定律；奠定实证主义社会学范式</div>
+    <div style="margin-top:5px"><span class="tag">实证主义</span><span class="tag">社会静力学/动力学</span><span class="tag">创始之作</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1848</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析马克思恩格斯《共产党宣言》这篇经典社会学著作')">
+    <div class="card-top"><span class="author">卡尔·马克思 & 弗里德里希·恩格斯</span></div>
+    <div class="title">《共产党宣言》The Communist Manifesto</div>
+    <div class="key">⚑ 历史唯物主义；阶级斗争理论；生产关系与上层建筑；社会变革机制</div>
+    <div style="margin-top:5px"><span class="tag">冲突理论</span><span class="tag">阶级分析</span><span class="tag">历史唯物主义</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1867</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析马克思《资本论》这部经典社会学著作')">
+    <div class="card-top"><span class="author">卡尔·马克思 Karl Marx</span></div>
+    <div class="title">《资本论》Das Kapital（第一卷）</div>
+    <div class="key">⚑ 剩余价值理论；商品拜物教；资本积累；异化劳动；政治经济学批判</div>
+    <div style="margin-top:5px"><span class="tag">政治经济学</span><span class="tag">异化</span><span class="tag">资本主义批判</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1873</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析赫伯特·斯宾塞《社会学研究》这部经典著作')">
+    <div class="card-top"><span class="author">赫伯特·斯宾塞 Herbert Spencer</span></div>
+    <div class="title">《社会学研究》The Study of Sociology</div>
+    <div class="key">⚑ 社会有机体论；社会达尔文主义；从军事型到工业型社会的演化理论</div>
+    <div style="margin-top:5px"><span class="tag">进化论</span><span class="tag">社会有机体</span><span class="tag">功能主义前身</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1893</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析涂尔干《社会分工论》这部经典社会学著作')">
+    <div class="card-top"><span class="author">埃米尔·涂尔干 Émile Durkheim</span></div>
+    <div class="title">《社会分工论》De la division du travail social</div>
+    <div class="key">⚑ 机械团结 vs. 有机团结；社会整合理论；集体意识；现代性与失范</div>
+    <div style="margin-top:5px"><span class="tag">功能主义</span><span class="tag">社会团结</span><span class="tag">现代性</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1895</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析涂尔干《社会学方法的准则》这部经典著作')">
+    <div class="card-top"><span class="author">埃米尔·涂尔干 Émile Durkheim</span></div>
+    <div class="title">《社会学方法的准则》Les Règles de la méthode sociologique</div>
+    <div class="key">⚑ "社会事实"概念；社会学对象的独立性；外在性与强制性；方法论宣言</div>
+    <div style="margin-top:5px"><span class="tag">方法论</span><span class="tag">社会事实</span><span class="tag">实证主义</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1897</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析涂尔干《自杀论》这部经典社会学著作')">
+    <div class="card-top"><span class="author">埃米尔·涂尔干 Émile Durkheim</span></div>
+    <div class="title">《自杀论》Le Suicide</div>
+    <div class="key">⚑ 利己型/利他型/失范型自杀；首次用统计方法研究社会现象；社会整合理论</div>
+    <div style="margin-top:5px"><span class="tag">实证研究范本</span><span class="tag">社会整合</span><span class="tag">失范</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1899</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析韦伯勒斯坦·杜波依斯《费城黑人》这部经典著作')">
+    <div class="card-top"><span class="author">W.E.B. 杜波依斯 W.E.B. Du Bois</span></div>
+    <div class="title">《费城黑人》The Philadelphia Negro</div>
+    <div class="key">⚑ 首部城市民族志；实证调查与种族分析的结合；社区社会学先驱</div>
+    <div style="margin-top:5px"><span class="tag">种族社会学</span><span class="tag">城市民族志</span><span class="tag">先驱之作</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1900</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析齐美尔《货币哲学》这部经典社会学著作')">
+    <div class="card-top"><span class="author">格奥尔格·齐美尔 Georg Simmel</span></div>
+    <div class="title">《货币哲学》Philosophie des Geldes</div>
+    <div class="key">⚑ 货币作为现代性象征；价值的社会建构；疏离与客观文化的膨胀</div>
+    <div style="margin-top:5px"><span class="tag">形式社会学</span><span class="tag">现代性</span><span class="tag">货币与交换</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1903</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析杜波依斯《黑人的灵魂》这部经典著作')">
+    <div class="card-top"><span class="author">W.E.B. 杜波依斯 W.E.B. Du Bois</span></div>
+    <div class="title">《黑人的灵魂》The Souls of Black Folk</div>
+    <div class="key">⚑ "双重意识"理论；种族隔阂（the Veil）；身份政治与种族社会学奠基</div>
+    <div style="margin-top:5px"><span class="tag">双重意识</span><span class="tag">种族理论</span><span class="tag">身份政治</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1904</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析韦伯《新教伦理与资本主义精神》这部经典社会学著作')">
+    <div class="card-top"><span class="author">马克斯·韦伯 Max Weber</span></div>
+    <div class="title">《新教伦理与资本主义精神》Die protestantische Ethik（1904–05）</div>
+    <div class="key">⚑ 文化/宗教对经济的影响；"天职"观念；理性化；世界祛魅与铁笼</div>
+    <div style="margin-top:5px"><span class="tag">理解社会学</span><span class="tag">理性化</span><span class="tag">宗教社会学</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1908</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析齐美尔《社会学》这部经典著作')">
+    <div class="card-top"><span class="author">格奥尔格·齐美尔 Georg Simmel</span></div>
+    <div class="title">《社会学》Soziologie</div>
+    <div class="key">⚑ 形式社会学；社会互动的几何学；陌生人理论；二元关系/三元关系</div>
+    <div style="margin-top:5px"><span class="tag">形式社会学</span><span class="tag">互动论</span><span class="tag">陌生人</span></div>
+  </div>
+</div>
+
+<div class="item c1">
+  <div class="year">1912</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析涂尔干《宗教生活的基本形式》这部经典著作')">
+    <div class="card-top"><span class="author">埃米尔·涂尔干 Émile Durkheim</span></div>
+    <div class="title">《宗教生活的基本形式》Les formes élémentaires de la vie religieuse</div>
+    <div class="key">⚑ 图腾崇拜；神圣/世俗二分；宗教作为社会团结的象征体系；集体欢腾</div>
+    <div style="margin-top:5px"><span class="tag">宗教社会学</span><span class="tag">神圣与世俗</span><span class="tag">集体表象</span></div>
+  </div>
+</div>
+
+<div class="era-header era-chicago">
+  <div class="era-pill">芝加哥学派 Chicago School</div>
+  <div class="era-line"></div>
+  <div class="era-label">1918 — 1940</div>
+</div>
+
+<div class="item c2">
+  <div class="year">1918</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析托马斯与兹纳涅茨基《身处欧美的波兰农民》这部经典著作')">
+    <div class="card-top"><span class="author">托马斯 & 兹纳涅茨基 Thomas & Znaniecki</span></div>
+    <div class="title">《身处欧美的波兰农民》The Polish Peasant in Europe and America（1918–20）</div>
+    <div class="key">⚑ 生命史方法；移民与社会解体；个人文献在社会学中的使用；文化适应</div>
+    <div style="margin-top:5px"><span class="tag">生命史</span><span class="tag">移民研究</span><span class="tag">定性方法</span></div>
+  </div>
+</div>
+
+<div class="item c2">
+  <div class="year">1921</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析帕克与伯吉斯《社会学科学导论》这部经典著作')">
+    <div class="card-top"><span class="author">罗伯特·帕克 & 欧内斯特·伯吉斯</span></div>
+    <div class="title">《社会学科学导论》Introduction to the Science of Sociology</div>
+    <div class="key">⚑ 城市生态学；社会互动四过程；竞争/冲突/适应/同化；同心圆理论前身</div>
+    <div style="margin-top:5px"><span class="tag">城市社会学</span><span class="tag">人类生态学</span><span class="tag">芝加哥学派</span></div>
+  </div>
+</div>
+
+<div class="item c2">
+  <div class="year">1925</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析伯吉斯《城市的增长》同心圆理论这部经典著作')">
+    <div class="card-top"><span class="author">欧内斯特·伯吉斯 Ernest Burgess</span></div>
+    <div class="title">《城市的增长》The Growth of the City（同心圆模型）</div>
+    <div class="key">⚑ 城市扩张的同心圆模式；过渡区理论；犯罪与社会解组的空间分析</div>
+    <div style="margin-top:5px"><span class="tag">城市生态学</span><span class="tag">同心圆</span><span class="tag">社会解组</span></div>
+  </div>
+</div>
+
+<div class="era-header era-mid">
+  <div class="era-pill">中期经典 Mid-Century Classics</div>
+  <div class="era-line"></div>
+  <div class="era-label">1937 — 1966</div>
+</div>
+
+<div class="item c3">
+  <div class="year">1937</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析帕森斯《社会行动的结构》这部经典社会学著作')">
+    <div class="card-top"><span class="author">塔尔科特·帕森斯 Talcott Parsons</span></div>
+    <div class="title">《社会行动的结构》The Structure of Social Action</div>
+    <div class="key">⚑ 综合韦伯、涂尔干、帕累托；单位行动理论；规范性行动框架</div>
+    <div style="margin-top:5px"><span class="tag">结构功能主义</span><span class="tag">行动理论</span><span class="tag">综合理论</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1949</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析默顿《社会理论与社会结构》这部经典社会学著作')">
+    <div class="card-top"><span class="author">罗伯特·默顿 Robert K. Merton</span></div>
+    <div class="title">《社会理论与社会结构》Social Theory and Social Structure</div>
+    <div class="key">⚑ 中层理论；显功能/潜功能；参照群体；失范论（目标-手段张力）；自我实现预言</div>
+    <div style="margin-top:5px"><span class="tag">中层理论</span><span class="tag">功能分析</span><span class="tag">失范</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1951</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析帕森斯《社会系统》这部经典社会学著作')">
+    <div class="card-top"><span class="author">塔尔科特·帕森斯 Talcott Parsons</span></div>
+    <div class="title">《社会系统》The Social System</div>
+    <div class="key">⚑ AGIL功能模型；角色、制度、社会化；结构功能主义体系的完整建构</div>
+    <div style="margin-top:5px"><span class="tag">AGIL模型</span><span class="tag">系统论</span><span class="tag">结构功能主义</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1956</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析米尔斯《权力精英》这部经典社会学著作')">
+    <div class="card-top"><span class="author">C. 赖特·米尔斯 C. Wright Mills</span></div>
+    <div class="title">《权力精英》The Power Elite</div>
+    <div class="key">⚑ 军工复合体；美国精英的三角权力结构；政治社会学；精英循环</div>
+    <div style="margin-top:5px"><span class="tag">权力理论</span><span class="tag">精英社会学</span><span class="tag">政治批判</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1959</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析米尔斯《社会学的想象力》这部经典社会学著作')">
+    <div class="card-top"><span class="author">C. 赖特·米尔斯 C. Wright Mills</span></div>
+    <div class="title">《社会学的想象力》The Sociological Imagination</div>
+    <div class="key">⚑ 个人困扰 vs. 公共议题；历史、传记与社会结构的交汇；批判宏大理论</div>
+    <div style="margin-top:5px"><span class="tag">批判社会学</span><span class="tag">方法论</span><span class="tag">公共社会学</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1959</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析戈夫曼《日常生活中的自我呈现》这部经典社会学著作')">
+    <div class="card-top"><span class="author">欧文·戈夫曼 Erving Goffman</span></div>
+    <div class="title">《日常生活中的自我呈现》The Presentation of Self in Everyday Life</div>
+    <div class="key">⚑ 戏剧论；前台/后台；印象管理；面子工作；互动仪式链</div>
+    <div style="margin-top:5px"><span class="tag">符号互动论</span><span class="tag">戏剧论</span><span class="tag">微观社会学</span></div>
+  </div>
+</div>
+
+<div class="item c3">
+  <div class="year">1966</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析伯格与卢克曼《现实的社会建构》这部经典社会学著作')">
+    <div class="card-top"><span class="author">伯格 & 卢克曼 Berger & Luckmann</span></div>
+    <div class="title">《现实的社会建构》The Social Construction of Reality</div>
+    <div class="key">⚑ 知识社会学；客观化/内化/外化三辩证；日常生活的现象学；制度化</div>
+    <div style="margin-top:5px"><span class="tag">社会建构主义</span><span class="tag">知识社会学</span><span class="tag">现象学</span></div>
+  </div>
+</div>
+
+<div class="era-header era-late">
+  <div class="era-pill">批判与转型 Critical Turn</div>
+  <div class="era-line"></div>
+  <div class="era-label">1968 — 1984</div>
+</div>
+
+<div class="item c4">
+  <div class="year">1970</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析阿尔文·古尔德纳《西方社会学即将到来的危机》这部经典著作')">
+    <div class="card-top"><span class="author">阿尔文·古尔德纳 Alvin Gouldner</span></div>
+    <div class="title">《西方社会学即将到来的危机》The Coming Crisis of Western Sociology</div>
+    <div class="key">⚑ 对帕森斯功能主义的系统批判；社会学的反身性；背景假设与意识形态</div>
+    <div style="margin-top:5px"><span class="tag">反身性</span><span class="tag">范式批判</span><span class="tag">元社会学</span></div>
+  </div>
+</div>
+
+<div class="item c4">
+  <div class="year">1974</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析沃勒斯坦《现代世界体系》这部经典社会学著作')">
+    <div class="card-top"><span class="author">伊曼纽尔·沃勒斯坦 Immanuel Wallerstein</span></div>
+    <div class="title">《现代世界体系》The Modern World-System（第一卷）</div>
+    <div class="key">⚑ 核心-半边缘-边缘结构；世界体系分析；资本主义的历史扩张；全球不平等</div>
+    <div style="margin-top:5px"><span class="tag">世界体系</span><span class="tag">全球化</span><span class="tag">依附理论</span></div>
+  </div>
+</div>
+
+<div class="item c4">
+  <div class="year">1975</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析福柯《规训与惩罚》这部经典社会学著作')">
+    <div class="card-top"><span class="author">米歇尔·福柯 Michel Foucault</span></div>
+    <div class="title">《规训与惩罚》Surveiller et punir</div>
+    <div class="key">⚑ 权力/知识；全景监狱；规训技术；身体政治学；监控社会谱系学</div>
+    <div style="margin-top:5px"><span class="tag">权力/知识</span><span class="tag">监控</span><span class="tag">后结构主义</span></div>
+  </div>
+</div>
+
+<div class="item c4">
+  <div class="year">1979</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析布尔迪厄《区分：品味判断的社会批判》这部经典社会学著作')">
+    <div class="card-top"><span class="author">皮埃尔·布尔迪厄 Pierre Bourdieu</span></div>
+    <div class="title">《区分》La Distinction</div>
+    <div class="key">⚑ 文化资本/社会资本/经济资本；惯习（habitus）；场域理论；品味的阶级性</div>
+    <div style="margin-top:5px"><span class="tag">资本理论</span><span class="tag">惯习</span><span class="tag">场域</span></div>
+  </div>
+</div>
+
+<div class="item c4">
+  <div class="year">1981</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析哈贝马斯《交往行动理论》这部经典社会学著作')">
+    <div class="card-top"><span class="author">尤尔根·哈贝马斯 Jürgen Habermas</span></div>
+    <div class="title">《交往行动理论》Theorie des kommunikativen Handelns（两卷）</div>
+    <div class="key">⚑ 系统与生活世界；交往理性vs.工具理性；理想言说情境；公共领域</div>
+    <div style="margin-top:5px"><span class="tag">批判理论</span><span class="tag">交往理性</span><span class="tag">公共领域</span></div>
+  </div>
+</div>
+
+<div class="item c4">
+  <div class="year">1984</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析吉登斯《社会的构成》这部经典社会学著作')">
+    <div class="card-top"><span class="author">安东尼·吉登斯 Anthony Giddens</span></div>
+    <div class="title">《社会的构成》The Constitution of Society</div>
+    <div class="key">⚑ 结构化理论；结构的二重性；能动性与结构的统一；时空延伸</div>
+    <div style="margin-top:5px"><span class="tag">结构化理论</span><span class="tag">能动性</span><span class="tag">时空</span></div>
+  </div>
+</div>
+
+<div class="era-header era-contemp">
+  <div class="era-pill">当代社会学 Contemporary Sociology</div>
+  <div class="era-line"></div>
+  <div class="era-label">1989 — 今</div>
+</div>
+
+<div class="item c5">
+  <div class="year">1990</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析吉登斯《现代性的后果》这部经典著作')">
+    <div class="card-top"><span class="author">安东尼·吉登斯 Anthony Giddens</span></div>
+    <div class="title">《现代性的后果》The Consequences of Modernity</div>
+    <div class="key">⚑ 晚期现代性；风险社会；时空分离；脱嵌机制；本体性安全</div>
+    <div style="margin-top:5px"><span class="tag">风险社会</span><span class="tag">晚期现代性</span><span class="tag">全球化</span></div>
+  </div>
+</div>
+
+<div class="item c5">
+  <div class="year">1992</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析贝克《风险社会》这部经典社会学著作')">
+    <div class="card-top"><span class="author">乌尔里希·贝克 Ulrich Beck</span></div>
+    <div class="title">《风险社会》Risikogesellschaft（英译版）</div>
+    <div class="key">⚑ 工业社会的风险生产；反身性现代化；专家系统的不确定性；生态风险</div>
+    <div style="margin-top:5px"><span class="tag">风险社会</span><span class="tag">反身性现代化</span><span class="tag">生态</span></div>
+  </div>
+</div>
+
+<div class="item c5">
+  <div class="year">1996</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析曼纽尔·卡斯特《网络社会的崛起》这部经典著作')">
+    <div class="card-top"><span class="author">曼纽尔·卡斯特 Manuel Castells</span></div>
+    <div class="title">《网络社会的崛起》The Rise of the Network Society</div>
+    <div class="key">⚑ 信息主义；流动空间；网络社会结构；全球-地方辩证；身份认同政治</div>
+    <div style="margin-top:5px"><span class="tag">信息社会</span><span class="tag">网络</span><span class="tag">全球化</span></div>
+  </div>
+</div>
+
+<div class="item c5">
+  <div class="year">2000</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析鲍曼《流动的现代性》这部经典社会学著作')">
+    <div class="card-top"><span class="author">齐格蒙特·鲍曼 Zygmunt Bauman</span></div>
+    <div class="title">《流动的现代性》Liquid Modernity</div>
+    <div class="key">⚑ 固体→液体现代性；个体化；消费主义；身份的碎片化；短期主义</div>
+    <div style="margin-top:5px"><span class="tag">液体现代性</span><span class="tag">个体化</span><span class="tag">消费社会</span></div>
+  </div>
+</div>
+
+<div class="item c5">
+  <div class="year">2003</div>
+  <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+  <div class="card" onclick="sendPrompt('详细分析兰德尔·柯林斯《互动仪式链》这部经典著作')">
+    <div class="card-top"><span class="author">兰德尔·柯林斯 Randall Collins</span></div>
+    <div class="title">《互动仪式链》Interaction Ritual Chains</div>
+    <div class="key">⚑ 情感能量；互动仪式；社会情境的微观机制；道德情感与团结的生成</div>
+    <div style="margin-top:5px"><span class="tag">微观社会学</span><span class="tag">情感社会学</span><span class="tag">仪式</span></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:24px;font-size:12px;color:var(--color-text-secondary)">
+  点击任意著作卡片 → 获取该作品的详细科普分析
+</div>
+</div>

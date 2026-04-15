@@ -177,8 +177,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_10">三层存储架构</h3>
 <p>Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
 1. <strong>关系型数据层</strong>：利用 SQLite 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
-2. <strong>全文检索层</strong>：利用 <span style="color:#e74c3c" title="broken link">FTS5</span> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
-3. <strong>语义向量层</strong>：可选集成 <span style="color:#e74c3c" title="broken link">ChromaDB</span>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
+2. <strong>全文检索层</strong>：利用 <a href="../concepts/FTS5.html">FTS5</a> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
+3. <strong>语义向量层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
 <h3 id="_11">检索工作流</h3>
 <p>系统根据查询类型自动选择最优检索策略：
 - <strong>精确关键词检索</strong>：优先使用 FTS5 实现毫秒级响应
@@ -200,11 +200,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_14">相关</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">Claude Code</span></li>
-<li><span style="color:#e74c3c" title="broken link">LLM Statelessness</span></li>
-<li><span style="color:#e74c3c" title="broken link">Bun Runtime</span></li>
-<li><span style="color:#e74c3c" title="broken link">SQLite</span></li>
-<li><span style="color:#e74c3c" title="broken link">ChromaDB</span></li>
-<li><span style="color:#e74c3c" title="broken link">Alex Newman</span></li>
+<li><a href="../concepts/LLM-Statelessness.html">LLM-Statelessness</a></li>
+<li><a href="Bun-Runtime.html">Bun-Runtime</a></li>
+<li><a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a></li>
+<li><a href="../concepts/渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a></li>
+<li><a href="SQLite.html">SQLite</a></li>
+<li><a href="ChromaDB.html">ChromaDB</a></li>
+<li><a href="Alex-Newman.html">Alex-Newman</a></li>
 <li><span style="color:#e74c3c" title="broken link">Lifecycle Hooks</span></li>
 <li><span style="color:#e74c3c" title="broken link">Worker Service</span></li>
 <li><span style="color:#e74c3c" title="broken link">Smart Install</span></li>
@@ -213,12 +215,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><span style="color:#e74c3c" title="broken link">Save Hook</span></li>
 <li><span style="color:#e74c3c" title="broken link">Summary Hook</span></li>
 <li><span style="color:#e74c3c" title="broken link">Cleanup Hook</span></li>
-<li><span style="color:#e74c3c" title="broken link">FTS5</span></li>
+<li><a href="../concepts/FTS5.html">FTS5</a></li>
 <li><span style="color:#e74c3c" title="broken link">三层存储架构</span></li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Bun-Runtime.html">&larr; Bun-Runtime</a>
+    <a href="Claude-Code.html">&larr; Claude-Code</a>
     <a href="DeepAgents.html">DeepAgents &rarr;</a>
   </div>
 </div>

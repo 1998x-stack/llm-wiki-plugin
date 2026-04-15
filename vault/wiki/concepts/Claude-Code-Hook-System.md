@@ -1,21 +1,26 @@
 ---
 type: concept
-title: "Claude Code Hook System"
+title: Claude Code Hook System
 status: active
 confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: 2026-04-15
+last_accessed: '2026-04-15'
 source_count: 1
-tags: [AI, 工具，方法论]
-aliases: ["Claude Code Hooks", "Hook Lifecycle", "Claude Plugin Hooks"]
+tags:
+- AI
+- 工具，方法论
+aliases:
+- Claude Code Hooks
+- Hook Lifecycle
+- Claude Plugin Hooks
 relates_to:
-  - target: "[[Claude-Mem]]"
-    type: uses
-    confidence: 1.0
-  - target: "[[Claude Code]]"
-    type: part_of
-    confidence: 0.95
+- target: '[[Claude-Mem]]'
+  type: uses
+  confidence: 1.0
+- target: '[[Claude-Code]]'
+  type: part_of
+  confidence: 0.95
 supersedes: null
 ---
 
@@ -52,4 +57,4 @@ Claude Code 的钩子系统定义了五个关键阶段的触发点，每个阶�
 
 ## 相关
 - [[Claude-Mem]]
-- [[Claude Code]]
+- [[Claude-Code]]

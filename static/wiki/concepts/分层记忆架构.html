@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分层记忆架构 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 分层记忆架构</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">分层记忆架构</h1>
+<h2 id="_2">概述</h2>
+<p>分层记忆架构（Hierarchical Memory Architecture）是 <a href="Context-Engineering.html">Context-Engineering</a> 的核心实现模式。将 LLM 上下文从单一聊天历史升级为五个功能分层（L0–L4），每层承担不同的记忆职责和时效性，从而将"把整段历史一路往前拖"替换为"结构化状态检索与压缩"。灵感来源于 MemGPT 和 LongMem 将有限上下文与外部慢存储协同工作的思路。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">五层架构</h3>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>名称</th>
+<th>内容</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L0</strong></td>
+<td>Cached Prefix</td>
+<td>系统指令、output schema、few-shot、工具契约</td>
+<td>固定不变，天然适合前缀缓存</td>
+</tr>
+<tr>
+<td><strong>L1</strong></td>
+<td>Working Memory</td>
+<td>当前任务目标、约束、实体、术语表、未解决问题、当前计划</td>
+<td>最贵，只放"这轮必须记住"的内容</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Episodic Memory</td>
+<td>按阶段压缩的"回合摘要"：决策、证据、结论、pending items</td>
+<td>把"过去发生过什么"变成结构化 checkpoints</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>Semantic Memory</td>
+<td>向量检索 + 关键词检索 + 元数据过滤的长期知识层</td>
+<td>"需要时再拿"，不常驻</td>
+</tr>
+<tr>
+<td><strong>L4</strong></td>
+<td>Raw Archive</td>
+<td>原始会话、原始文档、原始工具输出</td>
+<td>只做审计和回源，不进 prompt</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">各层分工原则</h3>
+<ul>
+<li><strong>L0</strong>：稳定 + 高复用 → 最适合被 <span style="color:#e74c3c" title="broken link">Prompt缓存</span> 命中</li>
+<li><strong>L1</strong>：当前轮最关键信息 → token 成本最高，严格筛选</li>
+<li><strong>L2</strong>：过去的结构化 checkpoint → 压缩后仍可计算</li>
+<li><strong>L3</strong>：按需检索 → hybrid retrieve（dense + BM25 + graph）</li>
+<li><strong>L4</strong>：保留 source anchor，不直接注入 prompt</li>
+</ul>
+<h3 id="memory-object">Memory Object 结构</h3>
+<p>上下文管理的单元是 memory object，而非 message：</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;mem_xxx&quot;,
+  &quot;type&quot;: &quot;fact | decision | preference | plan | episode&quot;,
+  &quot;text&quot;: &quot;用户更关心 latency 而不是 peak accuracy&quot;,
+  &quot;source&quot;: &quot;chat:turn_18&quot;,
+  &quot;freshness&quot;: &quot;2026-04-14&quot;,
+  &quot;salience&quot;: 0.82,
+  &quot;reuse_count&quot;: 6,
+  &quot;confidence&quot;: 0.91,
+  &quot;anchors&quot;: [&quot;turn18&quot;, &quot;doc:spec#p4&quot;]
+}
+</code></pre>
+<p>关键设计：<strong>"说过一次的话"不应和"已确认的约束"拥有相同地位</strong>。</p>
+<h3 id="_6">层间晋升规则</h3>
+<ul>
+<li><strong>L4 → L3</strong>：多次检索命中的片段 → 晋升为语义记忆条目</li>
+<li><strong>L2 → L1</strong>：当前轮用到的 episode checkpoint → 临时注入工作记忆</li>
+<li><strong>L1 → L2</strong>：任务阶段切换时 → 压缩为 episode 条目</li>
+<li>压缩产出物：durable facts / decisions / open loops / source anchors</li>
+</ul>
+<h3 id="_7">压缩触发条件</h3>
+<ul>
+<li>任务阶段切换</li>
+<li>做出关键决策</li>
+<li>工具返回超长结果</li>
+<li>Token 预算逼近阈值</li>
+</ul>
+<p>⚠️ <strong>禁止压缩</strong>：数字/合同/代码逻辑（失真风险）、事实与推断混写（审计风险）。</p>
+<h3 id="memgpt">与 MemGPT 对比</h3>
+<p>MemGPT (2023) 将 LLM 上下文类比为操作系统的主存，外部存储类比为磁盘。本架构在此基础上增加了：
+- 明确的五层语义定义
+- memory object 结构化模型
+- 与 Prompt 缓存的协同（L0 exact-prefix match）
+- 与混合检索的协同（L3 hybrid retrieve）</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/context-engineer/context-design.md</span></li>
+<li>MemGPT: <a href="https://arxiv.org/abs/2310.08560">Towards LLMs as Operating Systems</a></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Context-Engineering.html">Context-Engineering</a></li>
+<li><a href="LLM-Statelessness.html">LLM-Statelessness</a></li>
+<li><span style="color:#e74c3c" title="broken link">Prompt缓存</span></li>
+<li><span style="color:#e74c3c" title="broken link">检索增强生成</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="冯·诺依曼稳定性分析.html">&larr; 冯·诺依曼稳定性分析</a>
+    <a href="切比雪夫不等式.html">切比雪夫不等式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

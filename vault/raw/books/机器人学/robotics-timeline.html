@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机器人学发展史：从自动机到具身智能</title>
+<style>
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #0a0e17;
+    color: #d0d6e0;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ===== Hero Section ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(ellipse at 50% 40%, rgba(56, 130, 246, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #8892a8;
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+  }
+  .hero .meta-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .meta-stats .stat {
+    text-align: center;
+  }
+  .meta-stats .stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #60a5fa;
+  }
+  .meta-stats .stat-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    animation: bounce 2s infinite;
+    color: #4b5563;
+    font-size: 0.85rem;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ===== Navigation ===== */
+  .era-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .era-nav a {
+    color: #8892a8;
+    text-decoration: none;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .era-nav a:hover {
+    background: rgba(96, 165, 250, 0.12);
+    color: #60a5fa;
+  }
+
+  /* ===== Main Container ===== */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ===== Era Section ===== */
+  .era {
+    padding: 5rem 0 3rem;
+  }
+  .era-header {
+    margin-bottom: 3rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid;
+  }
+  .era-header.era-color-1 { border-color: #6366f1; }
+  .era-header.era-color-2 { border-color: #3b82f6; }
+  .era-header.era-color-3 { border-color: #06b6d4; }
+  .era-header.era-color-4 { border-color: #10b981; }
+  .era-header.era-color-5 { border-color: #f59e0b; }
+  .era-header.era-color-6 { border-color: #ef4444; }
+  .era-header.era-color-7 { border-color: #ec4899; }
+  .era-header.era-color-8 { border-color: #8b5cf6; }
+  .era-header.era-color-9 { border-color: #14b8a6; }
+  .era-number {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+  .era-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 0.5rem;
+  }
+  .era-period {
+    font-size: 0.9rem;
+    color: #60a5fa;
+    margin-bottom: 0.75rem;
+  }
+  .era-desc {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    max-width: 700px;
+  }
+  .era-paradigm {
+    margin-top: 0.75rem;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .era-color-1 .era-paradigm { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .era-color-2 .era-paradigm { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .era-color-3 .era-paradigm { background: rgba(6,182,212,0.15); color: #22d3ee; }
+  .era-color-4 .era-paradigm { background: rgba(16,185,129,0.15); color: #34d399; }
+  .era-color-5 .era-paradigm { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .era-color-6 .era-paradigm { background: rgba(239,68,68,0.15); color: #f87171; }
+  .era-color-7 .era-paradigm { background: rgba(236,72,153,0.15); color: #f472b6; }
+  .era-color-8 .era-paradigm { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .era-color-9 .era-paradigm { background: rgba(20,184,166,0.15); color: #2dd4bf; }
+
+  /* ===== Timeline Entries ===== */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(96,165,250,0.3), rgba(96,165,250,0.05));
+  }
+  .entry {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+  .entry:hover {
+    background: rgba(255,255,255,0.045);
+    border-color: rgba(96,165,250,0.2);
+    transform: translateX(4px);
+  }
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -2.15rem;
+    top: 1.7rem;
+    width: 10px;
+    height: 10px;
+    background: #60a5fa;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(96,165,250,0.4);
+  }
+  .entry.milestone::before {
+    width: 14px;
+    height: 14px;
+    left: -2.3rem;
+    background: #f59e0b;
+    box-shadow: 0 0 12px rgba(245,158,11,0.5);
+  }
+  .entry-year {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .entry.milestone .entry-year {
+    color: #fbbf24;
+  }
+  .entry-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+  }
+  .entry-body {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-bottom: 0.75rem;
+  }
+  .entry-body strong {
+    color: #d1d5db;
+  }
+  .entry-impact {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(96,165,250,0.06);
+    border-left: 2px solid rgba(96,165,250,0.3);
+    border-radius: 0 6px 6px 0;
+    color: #93c5fd;
+  }
+  .entry-people {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+  .entry-people span {
+    color: #a78bfa;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-right: 0.35rem;
+    margin-top: 0.35rem;
+  }
+  .tag-theory { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .tag-hardware { background: rgba(16,185,129,0.15); color: #34d399; }
+  .tag-algorithm { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .tag-application { background: rgba(239,68,68,0.15); color: #f87171; }
+  .tag-software { background: rgba(6,182,212,0.15); color: #22d3ee; }
+  .tag-ai { background: rgba(236,72,153,0.15); color: #f472b6; }
+  .tag-paper { background: rgba(139,92,246,0.15); color: #a78bfa; }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    color: #4b5563;
+    font-size: 0.8rem;
+  }
+  footer a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 640px) {
+    .era-nav { gap: 0.15rem; }
+    .era-nav a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+    .timeline { padding-left: 1.8rem; }
+    .entry { padding: 1rem; }
+    .entry::before { left: -1.55rem; }
+    .entry.milestone::before { left: -1.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <h1>机器人学发展史</h1>
+  <p class="subtitle">从古希腊自动机到具身智能大模型 —— 一部跨越两千年的技术演化史，记录人类赋予机器运动、感知与智能的伟大历程。</p>
+  <div class="meta-stats">
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">发展阶段</div></div>
+    <div class="stat"><div class="stat-num">70+</div><div class="stat-label">关键事件</div></div>
+    <div class="stat"><div class="stat-num">2000+</div><div class="stat-label">年跨度</div></div>
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">经典论文</div></div>
+  </div>
+  <div class="scroll-hint">↓ 向下滚动开始探索</div>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="era-nav">
+  <a href="#era1">I. 自动机遗产</a>
+  <a href="#era2">II. 现代诞生</a>
+  <a href="#era3">III. 智能控制</a>
+  <a href="#era4">IV. 操作与构型</a>
+  <a href="#era5">V. 行为主义</a>
+  <a href="#era6">VI. 概率方法</a>
+  <a href="#era7">VII. 人形与交互</a>
+  <a href="#era8">VIII. 深度学习</a>
+  <a href="#era9">IX. 大模型时代</a>
+</nav>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!--                   ERA I: 自动机与机械遗产                      -->
+<!-- ============================================================ -->
+<section class="era" id="era1">
+  <div class="era-header era-color-1">
+    <div class="era-number">第一阶段</div>
+    <h2 class="era-title">自动机与机械遗产</h2>
+    <div class="era-period">公元前 400 年 — 1940 年代</div>
+    <p class="era-desc">从古希腊的阿尔库塔斯之鸽到工业革命的自动织布机，人类对"自主运动的机器"的追求延绵两千余年。这一时期奠定了机械设计、反馈控制和"自动化"概念的根基。</p>
+    <div class="era-paradigm">范式特征：机械自动化 + 反馈控制萌芽</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry">
+      <div class="entry-year">约公元前 400 年</div>
+      <div class="entry-title">阿尔库塔斯的飞鸽（Archytas' Pigeon）</div>
+      <div class="entry-body">古希腊数学家阿尔库塔斯（Archytas of Tarentum）据传制造了一只蒸汽驱动的木鸽，能够飞行约 200 米。这被认为是<strong>人类历史上第一个自主运动的机械装置</strong>的文献记载。</div>
+      <div class="entry-impact">意义：开启了人类对"自主运动机器"的想象，虽然真实性存疑，但作为概念原型影响深远。</div>
+      <span class="tag tag-hardware">机械装置</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">约公元前 270 年</div>
+      <div class="entry-title">克特西比乌斯的水钟（Ctesibius' Clepsydra）</div>
+      <div class="entry-body">亚历山大城的工程师克特西比乌斯发明了利用浮阀控制水位的<strong>反馈调节水钟</strong>，实现了稳定的计时功能。这是已知最早的<strong>闭环反馈控制系统</strong>。</div>
+      <div class="entry-impact">意义：反馈控制的思想在两千年后成为控制论和机器人控制的核心概念。</div>
+      <span class="tag tag-theory">反馈控制</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1206 年</div>
+      <div class="entry-title">加扎里的可编程自动机（Al-Jazari's Automata）</div>
+      <div class="entry-body">伊斯兰黄金时代的工程师加扎里（Al-Jazari）在《精巧机械装置知识之书》中描述了一系列自动机，包括一艘载有四个机器音乐家的<strong>可编程自动船</strong>，通过凸轮和传动杆实现不同的音乐序列。</div>
+      <div class="entry-impact">意义："可编程"的概念预示了后来的数控机床和工业机器人的程序化控制思想。</div>
+      <span class="tag tag-hardware">自动机</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1495 年</div>
+      <div class="entry-title">达芬奇的机器骑士（Leonardo's Robot Knight）</div>
+      <div class="entry-body">莱奥纳多·达芬奇设计了一个用滑轮和齿轮驱动的铠甲骑士，能够坐起、举臂、转头。虽然<strong>直到 2002 年才被 Mark Rosheim 根据手稿复原</strong>，但其设计体现了对人体运动学的深刻理解。</div>
+      <div class="entry-impact">意义：可能是人类历史上第一个"人形机器人"设计，预示了仿人运动学研究。</div>
+      <span class="tag tag-hardware">人形设计</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1738 年</div>
+      <div class="entry-title">沃康松的消化鸭（Vaucanson's Digesting Duck）</div>
+      <div class="entry-body">法国工程师雅克·德·沃康松（Jacques de Vaucanson）制造了一只含有 400 多个零件的机械鸭，能够扑翼、进食、"消化"和排泄。同年他还制作了能演奏 12 首曲子的机器笛手。</div>
+      <div class="entry-impact">意义：展示了精密机械模拟生物行为的可能性，影响了后来的仿生机器人研究方向。</div>
+      <span class="tag tag-hardware">仿生机械</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1801 年</div>
+      <div class="entry-title">雅卡尔提花织布机（Jacquard Loom）</div>
+      <div class="entry-body">约瑟夫·玛丽·雅卡尔（Joseph Marie Jacquard）发明了<strong>使用穿孔卡片编程的自动织布机</strong>，这是第一次将"编程"概念应用于机器控制。穿孔卡片后来成为计算机编程的先驱。</div>
+      <div class="entry-impact">意义：可编程控制思想的里程碑，直接影响了查尔斯·巴贝奇的分析机和后来的数控技术。</div>
+      <span class="tag tag-theory">可编程控制</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1868 年</div>
+      <div class="entry-title">James Clerk Maxwell — 离心调速器的数学分析</div>
+      <div class="entry-body">麦克斯韦发表《论调速器》（On Governors），首次用<strong>微分方程对反馈控制系统进行严格的数学分析</strong>，为此后的控制论奠定了理论基础。</div>
+      <div class="entry-impact">意义：标志着从经验型控制到数学化控制理论的跨越，是现代控制工程的数学起点。</div>
+      <span class="tag tag-theory">控制理论</span><span class="tag tag-paper">经典论文</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1920 年</div>
+      <div class="entry-title">"Robot"一词诞生 — 卡雷尔·恰佩克《R.U.R.》</div>
+      <div class="entry-body">捷克剧作家卡雷尔·恰佩克（Karel Čapek）在科幻戏剧《罗素姆万能机器人》（R.U.R.）中首次使用<strong>"Robot"</strong>一词，源自捷克语"robota"（苦工）。剧中描绘了人造工人反抗人类的故事。</div>
+      <div class="entry-impact">意义："机器人"概念正式进入人类文化，同时也开启了关于机器人伦理的早期讨论。</div>
+      <span class="tag tag-application">文化影响</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1942 年</div>
+      <div class="entry-title">阿西莫夫"机器人三定律"（Three Laws of Robotics）</div>
+      <div class="entry-body">科幻作家艾萨克·阿西莫夫在短篇小说《环舞》（Runaround）中正式提出<strong>机器人三定律</strong>：不得伤害人类、必须服从人类命令、在不违反前两条的前提下保护自身。</div>
+      <div class="entry-impact">意义：虽为文学创作，但深刻影响了机器人伦理讨论和安全约束设计的学术研究框架。</div>
+      <span class="tag tag-application">伦理框架</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1948 年</div>
+      <div class="entry-title">诺伯特·维纳《控制论》（Cybernetics）</div>
+      <div class="entry-body">MIT 数学家诺伯特·维纳出版《控制论：或关于在动物和机器中控制和通信的科学》，<strong>系统地建立了反馈、通信与控制的统一理论框架</strong>，将生物系统与工程系统类比。</div>
+      <div class="entry-impact">意义：控制论成为机器人学的理论基石之一。"机器人 = 感知 + 决策 + 执行"的基本框架可追溯至此。</div>
+      <span class="tag tag-theory">控制论</span><span class="tag tag-paper">经典著作</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1948 年</div>
+      <div class="entry-title">William Grey Walter 的"乌龟"（Tortoise Robots）</div>
+      <div class="entry-body">英国神经生理学家 Walter 制造了两个自主移动机器人 Elmer 和 Elsie，它们能根据光线和接触传感器展示<strong>趋光性</strong>等类似生物的行为，<strong>没有使用任何显式编程</strong>。</div>
+      <div class="entry-impact">意义：首次展示"简单规则产生复杂行为"的思想，预示了后来 Brooks 的行为主义机器人学。</div>
+      <span class="tag tag-hardware">自主移动</span><span class="tag tag-ai">行为涌现</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--                   ERA II: 现代机器人学的诞生                    -->
+<!-- ============================================================ -->
+<section class="era" id="era2">
+  <div class="era-header era-color-2">
+    <div class="era-number">第二阶段</div>
+    <h2 class="era-title">现代机器人学的诞生</h2>
+    <div class="era-period">1950 年代 — 1960 年代</div>
+    <p class="era-desc">晶体管计算机的出现让"可编程机器"成为现实。这一时期诞生了第一台工业机器人 Unimate、运动学奠基理论 DH 参数，以及将 AI 与机器人结合的先驱 Shakey。</p>
+    <div class="era-paradigm">范式特征：可编程自动化 + 运动学数学化</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry milestone">
+      <div class="entry-year">1954 年</div>
+      <div class="entry-title">George Devol 提交可编程机械臂专利</div>
+      <div class="entry-body">George C. Devol 提交了"Programmed Article Transfer"专利（1961 年授权，US Patent 2,988,237），描述了一种<strong>可重新编程的机械臂</strong>，能够按照预设的程序在不同位置间搬运物体。</div>
+      <div class="entry-impact">意义：这是现代工业机器人的直接技术源头，"可编程"是区别于传统自动机的关键特征。</div>
+      <span class="tag tag-hardware">工业机器人</span>
+      <div class="entry-people">关键人物：<span>George C. Devol</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1955 年</div>
+      <div class="entry-title">Denavit-Hartenberg 参数 — 机器人运动学的数学语言</div>
+      <div class="entry-body">Jacques Denavit 和 Richard Hartenberg 在 ASME Journal of Applied Mechanics 发表《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》，提出用<strong>四个参数（θ, d, a, α）和齐次变换矩阵</strong>描述相邻连杆间的运动关系。</div>
+      <div class="entry-impact">意义：DH 参数至今仍是机器人正向运动学的标准表示方法，几乎所有机器人学教材都以此为基础。</div>
+      <span class="tag tag-theory">运动学</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Jacques Denavit</span>、<span>Richard Hartenberg</span>（Northwestern University）</div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1960 年</div>
+      <div class="entry-title">Rudolf Kalman — 卡尔曼滤波器</div>
+      <div class="entry-body">R.E. Kalman 在 ASME Journal of Basic Engineering 发表《A New Approach to Linear Filtering and Prediction Problems》，提出了<strong>递归最优状态估计算法</strong>。该方法利用系统动态模型和噪声统计特性，从不完美的测量中估计系统状态。</div>
+      <div class="entry-impact">意义：卡尔曼滤波是机器人定位、导航、SLAM 的数学基石，也是阿波罗登月计划导航系统的核心算法。其影响远超机器人学，覆盖了从航天到金融的广泛领域。</div>
+      <span class="tag tag-theory">状态估计</span><span class="tag tag-algorithm">滤波算法</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Rudolf E. Kalman</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1961 年</div>
+      <div class="entry-title">Unimate — 世界第一台工业机器人投入使用</div>
+      <div class="entry-body">Devol 和 Joseph Engelberger 合作创立的 Unimation 公司将第一台 Unimate 机器人安装在通用汽车新泽西州 Ewing Township 工厂的<strong>压铸生产线</strong>上，用于从压铸机中取出炽热的金属件并放入冷却液。</div>
+      <div class="entry-impact">意义：标志着工业机器人时代的正式开启。Engelberger 因此被尊称为"机器人之父"。工业机器人从此开始改变制造业的面貌。</div>
+      <span class="tag tag-hardware">工业机器人</span><span class="tag tag-application">制造业</span>
+      <div class="entry-people">关键人物：<span>George Devol</span>、<span>Joseph Engelberger</span>（"机器人之父"）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1962 年</div>
+      <div class="entry-title">Heinrich Ernst — MH-1 手-眼协调系统</div>
+      <div class="entry-body">MIT 的 Heinrich Ernst 在其博士论文中开发了 MH-1（Mechanical Hand One），这是<strong>第一个实现触觉反馈和基础"手-眼协调"的机器人系统</strong>，能够根据触觉信息调整抓取动作。</div>
+      <div class="entry-impact">意义：开创了感知-执行闭环的机器人操作范式，预示了后来视觉伺服和触觉操作的研究方向。</div>
+      <span class="tag tag-hardware">操作系统</span><span class="tag tag-theory">感知-执行</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Heinrich Ernst</span>（MIT）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1966 年</div>
+      <div class="entry-title">Shakey 项目启动（SRI International）</div>
+      <div class="entry-body">在 ARPA（后来的 DARPA）资助下，SRI International 的 AI 中心启动了 Shakey 项目。Shakey 是<strong>第一个将 AI 推理、计算机视觉和机器人行动结合在一起的移动机器人</strong>。</div>
+      <div class="entry-impact">意义：Shakey 项目催生了 A* 搜索算法（Hart, Nilsson, Raphael, 1968）、STRIPS 规划器（Fikes & Nilsson, 1971）、Hough 变换等一系列开创性技术。</div>
+      <span class="tag tag-ai">人工智能</span><span class="tag tag-hardware">移动机器人</span>
+      <div class="entry-people">关键人物：<span>Charles Rosen</span>、<span>Nils Nilsson</span>、<span>Peter Hart</span>（SRI）</div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1968 年</div>
+      <div class="entry-title">A* 搜索算法</div>
+      <div class="entry-body">Peter Hart、Nils Nilsson 和 Bertram Raphael 在 IEEE Transactions on Systems Science and Cybernetics 发表《A Formal Basis for the Heuristic Determination of Minimum Cost Paths》，提出了<strong>A* 算法</strong>——一种利用启发式函数指导搜索的最优路径规划算法。</div>
+      <div class="entry-impact">意义：A* 至今仍是路径规划和图搜索的金标准算法，广泛应用于游戏 AI、导航系统和机器人规划中。</div>
+      <span class="tag tag-algorithm">搜索算法</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Peter Hart</span>、<span>Nils Nilsson</span>、<span>Bertram Raphael</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1969 年</div>
+      <div class="entry-title">Stanford Arm — 第一个全电动 6-DOF 机械臂</div>
+      <div class="entry-body">Victor Scheinman 在 Stanford AI Lab 设计了<strong>Stanford Arm</strong>，这是第一个关节全部由<strong>电动马达</strong>（而非液压）驱动的六自由度机械臂，更轻、更快、更精确。</div>
+      <div class="entry-impact">意义：电动驱动取代液压成为机械臂的主流方案，Stanford Arm 的设计直接影响了后来的 PUMA 工业机器人。</div>
+      <span class="tag tag-hardware">机械臂</span>
+      <div class="entry-people">关键人物：<span>Victor Scheinman</span>（Stanford）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--               ERA III: 智能控制与移动机器人                     -->
+<!-- ============================================================ -->
+<section class="era" id="era3">
+  <div class="era-header era-color-3">
+    <div class="era-number">第三阶段</div>
+    <h2 class="era-title">智能控制与移动机器人</h2>
+    <div class="era-period">1970 年代</div>
+    <p class="era-desc">工业机器人开始批量应用，同时 AI 规划和计算机视觉技术与机器人深度融合。STRIPS 规划器、SCARA 构型和力控制等关键技术在这一时期成形。</p>
+    <div class="era-paradigm">范式特征：感知-规划-执行（Sense-Plan-Act）</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry milestone">
+      <div class="entry-year">1971 年</div>
+      <div class="entry-title">STRIPS 规划器 — AI 自动规划的奠基</div>
+      <div class="entry-body">Richard Fikes 和 Nils Nilsson 发表 STRIPS（Stanford Research Institute Problem Solver），为 Shakey 开发的<strong>第一个通用自动规划系统</strong>。它用前置条件和后效描述动作，通过搜索找到达成目标的动作序列。</div>
+      <div class="entry-impact">意义：STRIPS 的状态-动作表示成为 AI 规划的标准语言（PDDL 的直接前身），影响了整个 AI 规划领域长达半个世纪。</div>
+      <span class="tag tag-ai">自动规划</span><span class="tag tag-algorithm">规划算法</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Richard Fikes</span>、<span>Nils Nilsson</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1972 年</div>
+      <div class="entry-title">Shakey 项目完成 — 第一个智能移动机器人</div>
+      <div class="entry-body">Shakey 项目在 SRI 完成，展示了机器人能够<strong>用自然语言接收高层命令，自主分解任务、感知环境、规划路径并执行动作</strong>。例如"推箱子下平台"的经典演示。</div>
+      <div class="entry-impact">意义：Shakey 的论文和技术被引用超过 2,115 项美国专利和近 5,000 篇研究论文，2004 年入选 CMU 机器人名人堂，2017 年获 IEEE 里程碑荣誉。</div>
+      <span class="tag tag-ai">AI 推理</span><span class="tag tag-hardware">移动机器人</span><span class="tag tag-paper">经典系统</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1973 年</div>
+      <div class="entry-title">KUKA FAMULUS — 第一台六轴工业机器人</div>
+      <div class="entry-body">德国 KUKA 公司推出 FAMULUS，这是<strong>世界上第一台拥有六个电动驱动轴的工业机器人</strong>。同年，ABB 也推出了全电动微处理器控制的工业机器人 IRB 6。</div>
+      <div class="entry-impact">意义：六轴构型成为工业机器人的标准设计，微处理器控制使得灵活编程成为可能。</div>
+      <span class="tag tag-hardware">工业机器人</span><span class="tag tag-application">制造业</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1974 年</div>
+      <div class="entry-title">FANUC 第一台电动伺服机器人</div>
+      <div class="entry-body">日本 FANUC 公司推出第一台电动伺服驱动机器人 FANUC Model 1，实现了更高精度和能效的机器人运动控制。</div>
+      <div class="entry-impact">意义：日本从此开始崛起为全球工业机器人领导者，伺服电机取代步进电机成为精密机器人的标配。</div>
+      <span class="tag tag-hardware">伺服控制</span><span class="tag tag-application">制造业</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1978 年</div>
+      <div class="entry-title">PUMA 机器人 — 可编程通用装配机械臂</div>
+      <div class="entry-body">Victor Scheinman 在 Unimation 公司设计了 PUMA（Programmable Universal Machine for Assembly）系列工业机器人，成为<strong>学术界和工业界最广泛使用的研究与生产平台</strong>之一。</div>
+      <div class="entry-impact">意义：PUMA 560 成为机器人学研究的"果蝇"，大量运动学、动力学和控制算法都在 PUMA 上得到验证。</div>
+      <span class="tag tag-hardware">机械臂</span><span class="tag tag-application">研究平台</span>
+      <div class="entry-people">关键人物：<span>Victor Scheinman</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1979 年</div>
+      <div class="entry-title">Stanford Cart — 自主导航的视觉引导车辆</div>
+      <div class="entry-body">Hans Moravec 在斯坦福开发的 Stanford Cart 使用<strong>立体视觉和滑动窗口图像匹配</strong>成功在有障碍物的房间中自主导航，尽管速度极慢（穿越 20 米的房间需要约 5 小时）。</div>
+      <div class="entry-impact">意义：展示了纯视觉自主导航的可行性，Moravec 后来因此总结出著名的"Moravec 悖论"——对机器人来说，高级推理容易，低级感知运动困难。</div>
+      <span class="tag tag-ai">计算机视觉</span><span class="tag tag-algorithm">自主导航</span>
+      <div class="entry-people">关键人物：<span>Hans Moravec</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--               ERA IV: 机器人操作与构型空间                      -->
+<!-- ============================================================ -->
+<section class="era" id="era4">
+  <div class="era-header era-color-4">
+    <div class="era-number">第四阶段</div>
+    <h2 class="era-title">机器人操作与构型空间</h2>
+    <div class="era-period">1980 年代前半</div>
+    <p class="era-desc">机器人学在这一时期获得了严格的数学框架。构型空间概念统一了运动规划问题，力控制和操作空间理论解决了机器人与环境交互的根本问题，SCARA 构型革新了装配自动化。</p>
+    <div class="era-paradigm">范式特征：数学形式化 + 操作理论统一</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry">
+      <div class="entry-year">1979–1981 年</div>
+      <div class="entry-title">SCARA 构型 — 装配机器人的革命</div>
+      <div class="entry-body">日本山梨大学的牧野洋（Hiroshi Makino）提出并开发了 SCARA（Selective Compliance Assembly Robot Arm）构型，<strong>在水平面内柔顺、在垂直方向刚性</strong>，完美适配电子元件装配任务。</div>
+      <div class="entry-impact">意义：SCARA 成为电子制造业装配线的标准机器人构型，至今仍被广泛使用。体现了"任务驱动设计"的工程理念。</div>
+      <span class="tag tag-hardware">机械设计</span><span class="tag tag-application">装配</span>
+      <div class="entry-people">关键人物：<span>牧野洋（Hiroshi Makino）</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1981 年</div>
+      <div class="entry-title">Richard Paul — 机器人操作的数学基础</div>
+      <div class="entry-body">Richard Paul 出版《Robot Manipulators: Mathematics, Programming, and Control》，<strong>系统地用齐次变换矩阵统一了机器人运动学、逆运动学和轨迹规划</strong>的数学框架。</div>
+      <div class="entry-impact">意义：这是第一本将 DH 参数、齐次变换和机器人控制统一论述的专著，奠定了机器人学作为独立学科的数学基础。</div>
+      <span class="tag tag-theory">运动学</span><span class="tag tag-paper">经典著作</span>
+      <div class="entry-people">关键人物：<span>Richard Paul</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1983 年</div>
+      <div class="entry-title">Lozano-Pérez — 构型空间方法</div>
+      <div class="entry-body">Tomás Lozano-Pérez 在 IEEE Transactions on Computers 发表《Spatial Planning: A Configuration Space Approach》，提出将机器人的<strong>位姿参数化为构型空间（C-space）中的点</strong>，障碍物映射为 C-space 中的禁区，从而将运动规划转化为空间中的路径搜索问题。</div>
+      <div class="entry-impact">意义：构型空间概念统一了不同维度、不同构型机器人的运动规划问题，成为此后所有运动规划算法（PRM、RRT 等）的理论基础。</div>
+      <span class="tag tag-theory">运动规划</span><span class="tag tag-algorithm">构型空间</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Tomás Lozano-Pérez</span>（MIT）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1983 年</div>
+      <div class="entry-title">FANUC 视觉引导机器人</div>
+      <div class="entry-body">FANUC 推出世界上<strong>第一台集成视觉系统的工业机器人</strong>，能够识别和分拣物体，标志着机器视觉开始进入工业应用。</div>
+      <div class="entry-impact">意义：视觉引导使工业机器人从"盲操作"进化到"看得见"，开启了视觉伺服的工业应用时代。</div>
+      <span class="tag tag-hardware">机器视觉</span><span class="tag tag-application">工业应用</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1985 年</div>
+      <div class="entry-title">PUMA 560 完成首例机器人辅助手术</div>
+      <div class="entry-body">一台 PUMA 560 机器人被用于<strong>辅助神经外科脑活检手术</strong>，以其精确定位能力引导手术针到达预定位置。这是机器人首次进入手术室。</div>
+      <div class="entry-impact">意义：开启了手术机器人领域，后来发展出达芬奇手术系统（da Vinci）等改变医学的技术。</div>
+      <span class="tag tag-application">医疗机器人</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--              ERA V: 行为主义与仿生革命                         -->
+<!-- ============================================================ -->
+<section class="era" id="era5">
+  <div class="era-header era-color-5">
+    <div class="era-number">第五阶段</div>
+    <h2 class="era-title">行为主义革命与仿生机器人</h2>
+    <div class="era-period">1986 年 — 1990 年代初</div>
+    <p class="era-desc">1986 年是机器人学的"奇迹年"。Brooks 的包容体系结构挑战了传统 AI 范式，Khatib 的人工势场法提供了实时避障的优雅方案，Raibert 的跳跃机器人展示了动态运动的可能。这三篇同年发表的经典论文从根本上改变了机器人学的面貌。</p>
+    <div class="era-paradigm">范式特征：反应式控制 + 仿生学 + 动态运动</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry milestone">
+      <div class="entry-year">1986 年</div>
+      <div class="entry-title">Rodney Brooks — 包容体系结构（Subsumption Architecture）</div>
+      <div class="entry-body">Brooks 在 IEEE Journal of Robotics and Automation 发表《A Robust Layered Control System for a Mobile Robot》，提出<strong>包容体系结构</strong>：放弃传统的"感知→建模→规划→执行"流水线，转而用<strong>层级化的行为模块</strong>直接将感知映射到行动，高层行为可以抑制低层行为的输出。</div>
+      <div class="entry-impact">意义：这是对传统"GOFAI"（Good Old-Fashioned AI）的根本性挑战。Brooks 证明了不需要复杂的世界模型就能产生智能行为。这一思想直接影响了 iRobot Roomba 的设计，截至 2006 年该论文在 Google Scholar 上已有 3,500 次引用。</div>
+      <span class="tag tag-ai">行为主义</span><span class="tag tag-algorithm">控制架构</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Rodney A. Brooks</span>（MIT）</div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1986 年</div>
+      <div class="entry-title">Oussama Khatib — 人工势场法</div>
+      <div class="entry-body">Khatib 在 IJRR 发表《Real-Time Obstacle Avoidance for Manipulators and Mobile Robots》，提出<strong>人工势场法（APF）</strong>：目标产生引力场，障碍物产生斥力场，机器人沿势能递减方向运动，实现实时避障。</div>
+      <div class="entry-impact">意义：APF 方法将碰撞避免从高层规划问题降维为实时控制问题，优雅而直观。同时 Khatib 提出的操作空间（Operational Space）控制框架统一了任务空间和关节空间控制。</div>
+      <span class="tag tag-algorithm">避障算法</span><span class="tag tag-theory">势场方法</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Oussama Khatib</span>（Stanford）</div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1986 年</div>
+      <div class="entry-title">Marc Raibert —《Legged Robots That Balance》</div>
+      <div class="entry-body">MIT 的 Marc Raibert 出版专著并发表系列论文，展示了<strong>单腿、双腿、四腿跳跃机器人</strong>的动态平衡控制。他的关键洞见是将步态控制分解为三个独立子问题：<strong>跳跃高度、前进速度、身体姿态</strong>。</div>
+      <div class="entry-impact">意义：证明了动态平衡比想象中简单得多。Raibert 后来创立了 Boston Dynamics，开发了 BigDog、Spot、Atlas 等改变世界认知的腿式机器人。</div>
+      <span class="tag tag-theory">动态运动</span><span class="tag tag-hardware">腿式机器人</span><span class="tag tag-paper">经典著作</span>
+      <div class="entry-people">关键人物：<span>Marc Raibert</span>（MIT → Boston Dynamics）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1988 年</div>
+      <div class="entry-title">Smith, Self & Cheeseman — 随机地图（SLAM 的理论先驱）</div>
+      <div class="entry-body">Smith、Self 和 Cheeseman 发表《Estimating Uncertain Spatial Relationships in Robotics》，首次<strong>系统地用概率方法处理机器人环境中的空间不确定性</strong>，提出了"随机地图"（Stochastic Map）概念。</div>
+      <div class="entry-impact">意义：这是 SLAM（同时定位与建图）问题的理论起源。此后的 EKF-SLAM、FastSLAM 等方法都建立在这一概率框架之上。</div>
+      <span class="tag tag-theory">SLAM</span><span class="tag tag-algorithm">概率方法</span><span class="tag tag-paper">经典论文</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1990 年</div>
+      <div class="entry-title">Maja Matarić — 多机器人协作的行为基础</div>
+      <div class="entry-body">Matarić 在 MIT 完成博士论文，研究多机器人系统如何通过<strong>简单的局部交互规则产生群体层面的协调行为</strong>，如编队、聚集和区域覆盖。</div>
+      <div class="entry-impact">意义：开创了多机器人系统研究的行为学方法，与生物群体智能（蚁群、鸟群）的研究交叉影响。</div>
+      <span class="tag tag-ai">多机器人</span><span class="tag tag-algorithm">群体智能</span>
+      <div class="entry-people">关键人物：<span>Maja Matarić</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1992 年</div>
+      <div class="entry-title">Shigeo Hirose — 仿生蛇形机器人</div>
+      <div class="entry-body">东京工业大学的广�的重夫（Shigeo Hirose）开发了多种仿生机器人，其中 ACM-III 蛇形机器人以正弦波动实现在复杂地形中的蜿蜒运动，体现了<strong>"形态计算"（morphological computation）</strong>思想。</div>
+      <div class="entry-impact">意义：仿生学方法为机器人提供了超越传统轮式/腿式运动的新可能，影响了后来的软体机器人和柔性机器人研究。</div>
+      <span class="tag tag-hardware">仿生机器人</span>
+      <div class="entry-people">关键人物：<span>Shigeo Hirose</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--             ERA VI: 概率方法与运动规划黄金时代                   -->
+<!-- ============================================================ -->
+<section class="era" id="era6">
+  <div class="era-header era-color-6">
+    <div class="era-number">第六阶段</div>
+    <h2 class="era-title">概率方法与运动规划黄金时代</h2>
+    <div class="era-period">1990 年代 — 2000 年代初</div>
+    <p class="era-desc">概率方法彻底改变了机器人学。PRM 和 RRT 解决了高维运动规划的计算困难，SLAM 让机器人能够在未知环境中自主导航。同时，Mars Pathfinder 将机器人送上了火星。</p>
+    <div class="era-paradigm">范式特征：概率完备性 + 采样规划 + 贝叶斯感知</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry milestone">
+      <div class="entry-year">1996 年</div>
+      <div class="entry-title">Kavraki et al. — 概率路线图（PRM）</div>
+      <div class="entry-body">Lydia Kavraki、Petr Švestka、Jean-Claude Latombe 和 Mark Overmars 在 IEEE Transactions on Robotics and Automation 发表《Probabilistic Roadmaps for Path Planning in High-Dimensional Configuration Spaces》。PRM 在<strong>学习阶段</strong>通过随机采样和局部规划器构建路线图，在<strong>查询阶段</strong>快速回答路径查询。</div>
+      <div class="entry-impact">意义：PRM 证明了采样方法可以有效解决高维（6-DOF 以上）构型空间中的运动规划问题，开启了概率运动规划的黄金时代。该方法具有概率完备性保证。</div>
+      <span class="tag tag-algorithm">运动规划</span><span class="tag tag-theory">概率方法</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Lydia Kavraki</span>、<span>Jean-Claude Latombe</span>、<span>Mark Overmars</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1997 年</div>
+      <div class="entry-title">Sojourner — 第一辆火星漫游车</div>
+      <div class="entry-body">NASA 的 Mars Pathfinder 任务成功将 Sojourner 漫游车送上火星表面。这个仅 10.6 公斤的小型机器人在火星上<strong>自主导航并分析岩石成分</strong>，运行了 83 个火星日。</div>
+      <div class="entry-impact">意义：首次在另一个行星上成功运行机器人，证明了机器人自主性在极端环境中的关键价值，激发了后续的 Spirit、Opportunity、Curiosity 和 Perseverance 项目。</div>
+      <span class="tag tag-hardware">星际机器人</span><span class="tag tag-application">太空探索</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">1998 年</div>
+      <div class="entry-title">Steven LaValle — 快速随机搜索树（RRT）</div>
+      <div class="entry-body">LaValle 提出 RRT（Rapidly-exploring Random Tree），通过<strong>增量式地生长空间填充树</strong>来探索高维构型空间。算法的关键特性是 Voronoi 偏差——树自然地倾向于向未探索区域扩展。</div>
+      <div class="entry-impact">意义：RRT 特别擅长处理非完整约束和动力学约束下的规划问题。它已被用于 DARPA Urban Challenge 自动驾驶车辆、无人机、人形机器人等系统，至今仍是最广泛使用的运动规划算法之一。</div>
+      <span class="tag tag-algorithm">运动规划</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Steven M. LaValle</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">1999 年</div>
+      <div class="entry-title">Sony AIBO — 消费级机器人宠物</div>
+      <div class="entry-body">索尼发布 AIBO 机器人狗，融合了<strong>计算机视觉、语音识别、步态控制和情感交互</strong>，是第一个成功的消费级娱乐机器人产品。</div>
+      <div class="entry-impact">意义：证明了机器人可以进入家庭消费市场。AIBO 还催生了 RoboCup 机器人足球赛的 Four-Legged League，成为 AI 和机器人研究的重要平台。</div>
+      <span class="tag tag-hardware">消费机器人</span><span class="tag tag-application">娱乐</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2000 年</div>
+      <div class="entry-title">ASIMO — 人形机器人的巅峰</div>
+      <div class="entry-body">本田公司推出 ASIMO（Advanced Step in Innovative Mobility），能够<strong>独立行走、奔跑、上下楼梯、识别面孔和手势、进行基本对话</strong>。身高 130 厘米，体重 54 公斤。</div>
+      <div class="entry-impact">意义：ASIMO 代表了人形机器人在 21 世纪初的最高水平，虽然商业化未成功，但推动了双足行走和人机交互技术的发展。</div>
+      <span class="tag tag-hardware">人形机器人</span><span class="tag tag-application">人机交互</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2001 年</div>
+      <div class="entry-title">Dissanayake et al. — EKF-SLAM 的完整理论</div>
+      <div class="entry-body">Dissanayake、Newman、Clark、Durrant-Whyte 和 Csorba 在 IEEE T-RA 发表了<strong>基于扩展卡尔曼滤波的 SLAM 问题的完整解决方案</strong>，证明了 SLAM 过程的收敛性。</div>
+      <div class="entry-impact">意义：第一次严格证明了 SLAM 的理论可行性，奠定了概率 SLAM 的经典框架。</div>
+      <span class="tag tag-theory">SLAM</span><span class="tag tag-algorithm">EKF</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Hugh Durrant-Whyte</span>等</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2002 年</div>
+      <div class="entry-title">iRobot Roomba — 机器人进入千家万户</div>
+      <div class="entry-body">iRobot（由 Rodney Brooks 联合创立）推出 Roomba 扫地机器人，采用<strong>包容体系结构</strong>的简单行为层实现自主清扫。首年销售超过百万台。</div>
+      <div class="entry-impact">意义：第一个大规模商业成功的消费级服务机器人，证明了 Brooks 的行为主义理论在商业产品中的可行性。</div>
+      <span class="tag tag-application">服务机器人</span><span class="tag tag-hardware">消费电子</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2003 年</div>
+      <div class="entry-title">Montemerlo & Thrun — FastSLAM</div>
+      <div class="entry-body">Michael Montemerlo 和 Sebastian Thrun 提出 FastSLAM，利用<strong>Rao-Blackwellised 粒子滤波</strong>将 SLAM 的计算复杂度从 O(n²) 降低到 O(n log n)，使大规模 SLAM 成为可能。</div>
+      <div class="entry-impact">意义：FastSLAM 使得 SLAM 技术走向实用化，是后来自动驾驶和大规模室内导航的技术基础。</div>
+      <span class="tag tag-algorithm">SLAM</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Sebastian Thrun</span>、<span>Michael Montemerlo</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2005 年</div>
+      <div class="entry-title">Thrun, Burgard & Fox —《Probabilistic Robotics》</div>
+      <div class="entry-body">Sebastian Thrun、Wolfram Burgard 和 Dieter Fox 出版《概率机器人学》，<strong>系统地用概率论统一了机器人感知、定位、建图和规划的理论框架</strong>。</div>
+      <div class="entry-impact">意义：这本教材将概率方法确立为机器人感知的标准范式，影响了整整一代机器人学研究者和工程师。</div>
+      <span class="tag tag-theory">概率方法</span><span class="tag tag-paper">经典著作</span>
+      <div class="entry-people">关键人物：<span>Sebastian Thrun</span>、<span>Wolfram Burgard</span>、<span>Dieter Fox</span></div>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2005 年</div>
+      <div class="entry-title">DARPA Grand Challenge — Stanley 赢得自动驾驶大赛</div>
+      <div class="entry-body">Sebastian Thrun 领导的斯坦福团队 Stanley 在 DARPA Grand Challenge 中<strong>完成 212 公里沙漠越野赛道</strong>，成为第一辆完赛的自动驾驶汽车。</div>
+      <div class="entry-impact">意义：直接引发了自动驾驶汽车的商业化浪潮。Thrun 后来领导 Google 自动驾驶项目（Waymo 的前身）。</div>
+      <span class="tag tag-application">自动驾驶</span><span class="tag tag-algorithm">自主导航</span>
+      <div class="entry-people">关键人物：<span>Sebastian Thrun</span>（Stanford → Google）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--             ERA VII: 人形机器人与人机交互                       -->
+<!-- ============================================================ -->
+<section class="era" id="era7">
+  <div class="era-header era-color-7">
+    <div class="era-number">第七阶段</div>
+    <h2 class="era-title">人形机器人与生态系统</h2>
+    <div class="era-period">2005 年 — 2012 年</div>
+    <p class="era-desc">ROS 的诞生重塑了机器人研究的生态系统，使得全球研究者可以复用软件模块。人形机器人走出实验室进入真实环境测试，社交机器人开始探索与人共存的可能性。</p>
+    <div class="era-paradigm">范式特征：开源生态 + 人机共存 + 全身运动控制</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry">
+      <div class="entry-year">2005 年</div>
+      <div class="entry-title">Boston Dynamics BigDog — 四足载重机器人</div>
+      <div class="entry-body">Raibert 创立的 Boston Dynamics 公司（DARPA 资助）展示了 BigDog，一个能够<strong>在冰面、泥地、岩石等复杂地形上负重行走</strong>的四足机器人。当被人踢时能保持平衡的视频震惊世界。</div>
+      <div class="entry-impact">意义：将 Raibert 的动态平衡理论推向极致，展示了腿式机器人在非结构化环境中的巨大潜力。</div>
+      <span class="tag tag-hardware">腿式机器人</span><span class="tag tag-application">军事</span>
+      <div class="entry-people">关键人物：<span>Marc Raibert</span>（Boston Dynamics）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2006 年</div>
+      <div class="entry-title">Durrant-Whyte & Bailey — SLAM 综述（经典二部曲）</div>
+      <div class="entry-body">Durrant-Whyte 和 Bailey 在 IEEE Robotics & Automation Magazine 发表 SLAM 教程二部曲，<strong>系统总结了 SLAM 的 20 年发展历程</strong>，涵盖 EKF-SLAM、粒子滤波 SLAM 和图优化 SLAM。</div>
+      <div class="entry-impact">意义：这两篇综述文章成为 SLAM 领域最重要的入门参考文献，正式宣告"SLAM 的基本问题已被解决"。</div>
+      <span class="tag tag-theory">SLAM</span><span class="tag tag-paper">综述论文</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2009 年</div>
+      <div class="entry-title">ROS 发布 — 机器人操作系统</div>
+      <div class="entry-body">Morgan Quigley 等人在 ICRA 开源软件 Workshop 发表《ROS: an open-source Robot Operating System》。ROS 提供了<strong>点对点通信、硬件抽象、设备驱动、工具库和可视化</strong>的统一框架。</div>
+      <div class="entry-impact">意义：ROS 彻底改变了机器人研究的方式——从"每个团队造轮子"到"站在巨人肩膀上"。截至 2025 年该论文被引用超过 14,500 次，ROS 成为学术界和工业界的事实标准。</div>
+      <span class="tag tag-software">开源生态</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Morgan Quigley</span>、<span>Brian Gerkey</span>、<span>Andrew Ng</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2010 年</div>
+      <div class="entry-title">Willow Garage PR2 — 研究级通用服务机器人</div>
+      <div class="entry-body">Willow Garage 向全球 11 所顶尖大学免费提供 PR2 机器人，配备两条七自由度手臂、激光雷达和立体相机，运行 ROS。它成为<strong>服务机器人和操作研究的标准平台</strong>。</div>
+      <div class="entry-impact">意义：PR2 + ROS 的组合极大地加速了机器人操作、抓取和家庭服务的研究进展。</div>
+      <span class="tag tag-hardware">研究平台</span><span class="tag tag-software">ROS</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2011 年</div>
+      <div class="entry-title">达芬奇手术系统 — 机器人手术成为主流</div>
+      <div class="entry-body">Intuitive Surgical 的达芬奇手术系统在全球安装超过 1,700 台，完成数十万例机器人辅助微创手术。系统具有<strong>3D 高清视觉、颤抖过滤、7-DOF 灵巧手腕</strong>。</div>
+      <div class="entry-impact">意义：手术机器人从实验室进入日常临床实践，泌尿科、妇科等领域的机器人手术占比迅速上升。</div>
+      <span class="tag tag-application">医疗机器人</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2011 年</div>
+      <div class="entry-title">Rethink Robotics Baxter — 协作机器人时代</div>
+      <div class="entry-body">Rodney Brooks 创立的 Rethink Robotics 推出 Baxter 协作机器人，具有<strong>柔顺控制、力/力矩感知和可编程的"面部"显示</strong>，可与人类工人安全地在同一空间工作。</div>
+      <div class="entry-impact">意义：开创了"协作机器人"（Cobot）概念的商业化，推动了安全人机共操作的工业应用。</div>
+      <span class="tag tag-hardware">协作机器人</span><span class="tag tag-application">工业</span>
+      <div class="entry-people">关键人物：<span>Rodney Brooks</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--           ERA VIII: 深度学习与机器人智能化                      -->
+<!-- ============================================================ -->
+<section class="era" id="era8">
+  <div class="era-header era-color-8">
+    <div class="era-number">第八阶段</div>
+    <h2 class="era-title">深度学习与机器人智能化</h2>
+    <div class="era-period">2013 年 — 2022 年</div>
+    <p class="era-desc">深度学习的突破让机器人的感知和决策能力实现了跨越式进步。端到端学习、Sim-to-Real 迁移、强化学习控制等方法使得机器人开始具备泛化能力和自主学习能力。</p>
+    <div class="era-paradigm">范式特征：数据驱动 + 端到端学习 + 仿真到现实迁移</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry">
+      <div class="entry-year">2012 年</div>
+      <div class="entry-title">AlexNet — 深度学习在视觉感知中的突破</div>
+      <div class="entry-body">Krizhevsky、Sutskever 和 Hinton 的 AlexNet 在 ImageNet 竞赛中以压倒性优势获胜，<strong>CNN 大幅超越传统特征工程</strong>。虽然这不是机器人论文，但它直接推动了机器人视觉感知的变革。</div>
+      <div class="entry-impact">意义：深度学习革命的起点。此后机器人的物体识别、场景理解、语义分割等视觉任务都转向了深度学习方法。</div>
+      <span class="tag tag-ai">深度学习</span><span class="tag tag-algorithm">CNN</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2013 年</div>
+      <div class="entry-title">Boston Dynamics Atlas — 全身动力学控制的人形机器人</div>
+      <div class="entry-body">Boston Dynamics 推出 Atlas 人形机器人（为 DARPA Robotics Challenge 开发），具有<strong>28 自由度、液压驱动、全身平衡控制</strong>，能在废墟般的复杂环境中导航和操作。</div>
+      <div class="entry-impact">意义：Atlas 成为人形机器人能力的标杆。后续版本展示了翻跟头、跑酷等令人惊叹的动态运动能力。</div>
+      <span class="tag tag-hardware">人形机器人</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2015 年</div>
+      <div class="entry-title">DQN — 深度强化学习的突破</div>
+      <div class="entry-body">DeepMind 在 Nature 发表 DQN（Deep Q-Network）论文，展示了深度神经网络可以<strong>直接从像素输入学习 Atari 游戏的控制策略</strong>。虽然不是机器人论文，但直接启发了深度 RL 在机器人控制中的应用。</div>
+      <div class="entry-impact">意义：证明了端到端的感知-决策学习是可行的，为机器人学习控制提供了新的方法论。</div>
+      <span class="tag tag-ai">深度强化学习</span><span class="tag tag-algorithm">DQN</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2016 年</div>
+      <div class="entry-title">Levine et al. — 端到端深度视觉运动策略</div>
+      <div class="entry-body">Sergey Levine、Chelsea Finn、Trevor Darrell 和 Pieter Abbeel 在 JMLR 发表《End-to-End Training of Deep Visuomotor Policies》，展示了<strong>深度神经网络可以从原始图像像素直接学习到机器人电机力矩的映射</strong>，结合引导策略搜索（GPS）和 CNN。</div>
+      <div class="entry-impact">意义：这是将深度学习与机器人控制端到端结合的里程碑论文。在 PR2 机器人上成功完成了拧瓶盖、插积木等精细操作任务，证明了视觉运动策略的可行性。</div>
+      <span class="tag tag-ai">深度学习</span><span class="tag tag-algorithm">端到端控制</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Sergey Levine</span>、<span>Chelsea Finn</span>、<span>Pieter Abbeel</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2017 年</div>
+      <div class="entry-title">Tobin et al. — 域随机化（Domain Randomization）</div>
+      <div class="entry-body">OpenAI 和 Josh Tobin 等人提出<strong>域随机化</strong>方法：在仿真中大规模随机化纹理、光照、物理参数等视觉和动力学属性，使得在仿真中训练的策略可以直接迁移到真实世界。</div>
+      <div class="entry-impact">意义：Sim-to-Real 迁移的关键突破。大幅降低了机器人学习对真实世界数据的依赖，使得在仿真中快速迭代成为可能。</div>
+      <span class="tag tag-algorithm">Sim-to-Real</span><span class="tag tag-ai">迁移学习</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2019 年</div>
+      <div class="entry-title">OpenAI — 机器人灵巧手解魔方</div>
+      <div class="entry-body">OpenAI 发表《Solving Rubik's Cube with a Robot Hand》（arXiv: 1910.07113），展示了<strong>24-DOF 仿人灵巧手 Dactyl</strong> 仅通过仿真训练就学会了单手解魔方。关键创新是<strong>自动域随机化（ADR）</strong>——当网络掌握当前难度后自动增加环境随机性。</div>
+      <div class="entry-impact">意义：展示了 Sim-to-Real 迁移的巨大潜力——等效 10,000 年的仿真训练可以迁移到真实世界。机器人甚至能应对被戴上橡胶手套、手指被捆绑等训练中从未见过的干扰。</div>
+      <span class="tag tag-ai">强化学习</span><span class="tag tag-algorithm">Sim-to-Real</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Ilge Akkaya</span>、<span>Marcin Andrychowicz</span> 等（OpenAI）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2019 年</div>
+      <div class="entry-title">Boston Dynamics Spot — 商业化四足机器人</div>
+      <div class="entry-body">Boston Dynamics 开始商业化销售 Spot 四足机器人，用于<strong>工业巡检、建筑测量、危险环境探测</strong>等场景。Spot 是第一个大规模商业部署的动态四足机器人。</div>
+      <div class="entry-impact">意义：Raibert 在 1986 年开始的腿式机器人研究，经过 33 年终于走向商业化，完成了从理论到产品的完整闭环。</div>
+      <span class="tag tag-hardware">四足机器人</span><span class="tag tag-application">商业化</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2020 年</div>
+      <div class="entry-title">ETH Zurich ANYmal — 学习四足运动控制</div>
+      <div class="entry-body">ETH 苏黎世的 Joonho Lee 等人使用<strong>大规模并行强化学习</strong>训练 ANYmal 四足机器人，使其学会了在楼梯、碎石、雪地等极端地形上自主行走，并<strong>成功在瑞士阿尔卑斯山完成了 120 分钟的远足</strong>。</div>
+      <div class="entry-impact">意义：证明了学习型控制器可以超越手工调参的传统控制器，在真实复杂环境中达到前所未有的鲁棒性。</div>
+      <span class="tag tag-ai">强化学习</span><span class="tag tag-hardware">四足机器人</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!--         ERA IX: 大模型时代与具身智能                            -->
+<!-- ============================================================ -->
+<section class="era" id="era9">
+  <div class="era-header era-color-9">
+    <div class="era-number">第九阶段</div>
+    <h2 class="era-title">大模型时代与具身智能</h2>
+    <div class="era-period">2022 年 — 至今</div>
+    <p class="era-desc">大型语言模型（LLM）和视觉-语言模型（VLM）正在与机器人深度融合。RT-2 等视觉-语言-动作模型（VLA）展示了从互联网知识到机器人控制的迁移，"具身智能"成为新的研究前沿。人形机器人也迎来了新一轮投资和技术浪潮。</p>
+    <div class="era-paradigm">范式特征：基础模型 + 具身智能 + 通用机器人</div>
+  </div>
+
+  <div class="timeline">
+    <div class="entry">
+      <div class="entry-year">2022 年</div>
+      <div class="entry-title">SayCan — 用 LLM 为机器人生成可执行计划</div>
+      <div class="entry-body">Google Research 发表 SayCan，将<strong>大型语言模型的语义知识与机器人的行为能力值函数结合</strong>：LLM 提供"应该做什么"的高层推理，价值函数过滤出"能够做什么"的可行动作。</div>
+      <div class="entry-impact">意义：开创了 LLM + Robot 的研究范式，证明了预训练语言模型中的世界知识可以被提取并用于机器人任务规划。</div>
+      <span class="tag tag-ai">LLM</span><span class="tag tag-algorithm">任务规划</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2022 年</div>
+      <div class="entry-title">RT-1 — Robotics Transformer</div>
+      <div class="entry-body">Google DeepMind 发表 RT-1，使用<strong>Transformer 架构将机器人的图像观测和自然语言指令映射到动作</strong>，在 13 个机器人上收集了 17 个月的演示数据进行训练。</div>
+      <div class="entry-impact">意义：将 Transformer（NLP 和 CV 领域的统治性架构）成功引入机器人控制，展示了大规模多任务机器人学习的可能性。</div>
+      <span class="tag tag-ai">Transformer</span><span class="tag tag-algorithm">机器人学习</span>
+    </div>
+
+    <div class="entry milestone">
+      <div class="entry-year">2023 年</div>
+      <div class="entry-title">RT-2 — 视觉-语言-动作模型（VLA）</div>
+      <div class="entry-body">Google DeepMind 的 Anthony Brohan 等 50+ 位作者发表《RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control》（CoRL 2023），将<strong>机器人动作表示为文本 token</strong>，与互联网规模的视觉-语言数据联合训练。基于 PaLI-X 和 PaLM-E 两个大型 VLM。</div>
+      <div class="entry-impact">意义：RT-2 展示了惊人的涌现能力——能理解从未训练过的指令，进行多步语义推理（如判断哪个物体可以当临时锤子）。这标志着"具身基础模型"范式的到来。</div>
+      <span class="tag tag-ai">VLA 模型</span><span class="tag tag-algorithm">具身智能</span><span class="tag tag-paper">经典论文</span>
+      <div class="entry-people">关键人物：<span>Anthony Brohan</span> 等（Google DeepMind）</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2023 年</div>
+      <div class="entry-title">Figure 01 / Tesla Optimus — 人形机器人新浪潮</div>
+      <div class="entry-body">Figure AI、Tesla（Optimus）、1X Technologies、Agility Robotics（Digit）等公司相继展示或量产人形机器人，<strong>大规模资本涌入人形机器人赛道</strong>。</div>
+      <div class="entry-impact">意义：时隔 ASIMO 二十余年后，人形机器人再次成为产业焦点。这一次的驱动力是 AI 的突破——尤其是大模型赋予的语言理解和任务推理能力。</div>
+      <span class="tag tag-hardware">人形机器人</span><span class="tag tag-application">产业化</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024 年</div>
+      <div class="entry-title">π₀ / Octo / OpenVLA — 开源机器人基础模型</div>
+      <div class="entry-body">Physical Intelligence (π) 发布了 π₀ 通用机器人策略，UC Berkeley 发布了 Octo（基于 Open X-Embodiment 数据集的开源机器人模型），以及 OpenVLA 等开源 VLA 模型。<strong>机器人基础模型开始走向开源和标准化</strong>。</div>
+      <div class="entry-impact">意义：类比 NLP 领域的 BERT/GPT 开源时刻，机器人基础模型的开源化将极大地加速整个领域的发展。</div>
+      <span class="tag tag-ai">基础模型</span><span class="tag tag-software">开源</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024–2025 年</div>
+      <div class="entry-title">具身智能的多模态融合</div>
+      <div class="entry-body">研究前沿正在探索将<strong>视觉、语言、触觉、力觉、本体感觉</strong>等多模态信息统一在一个基础模型中。World models（世界模型）、diffusion policies（扩散策略）和 embodied reasoning（具身推理）成为核心研究主题。</div>
+      <div class="entry-impact">意义：机器人学正在从"单一任务专用系统"向"通用具身智能"范式迈进。这可能是继工业机器人革命后，机器人学历史上最重要的范式转换。</div>
+      <span class="tag tag-ai">具身智能</span><span class="tag tag-theory">世界模型</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2025–未来</div>
+      <div class="entry-title">挑战与展望</div>
+      <div class="entry-body">机器人学面临的核心挑战包括：<strong>通用操作</strong>（在任意环境中操作任意物体）、<strong>长时间自主运行</strong>（能量、耐久性、故障恢复）、<strong>安全与伦理</strong>（人机共存、隐私、自主武器禁止）、<strong>社会融入</strong>（法律框架、就业影响、公众接受度）。</div>
+      <div class="entry-impact">意义：技术能力的提升正在倒逼社会制度的变革。机器人伦理和治理将成为与技术同等重要的议题。</div>
+      <span class="tag tag-application">伦理挑战</span><span class="tag tag-theory">社会影响</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- container end -->
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <p>机器人学发展史 &mdash; 从自动机到具身智能</p>
+  <p style="margin-top:0.5rem;">基于公开学术文献与历史资料整理 &middot; 2025 年编写</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; color:#374151;">覆盖 70+ 关键事件 &middot; 16 篇经典论文标注 &middot; 9 大发展阶段</p>
+</footer>
+
+</body>
+</html>

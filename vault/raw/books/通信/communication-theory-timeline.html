@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通信理论发展史时间线</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --card: #222639;
+    --border: #2e3348;
+    --accent: #6c8aff;
+    --accent2: #45e0a8;
+    --accent3: #ff7eb3;
+    --text: #e4e6f0;
+    --text-dim: #8b90a5;
+    --text-bright: #ffffff;
+    --era-math: #f0c040;
+    --era-seed: #e8943a;
+    --era-noise: #c06af0;
+    --era-info: #6c8aff;
+    --era-code: #45e0a8;
+    --era-detect: #40c8e8;
+    --era-modcode: #e86480;
+    --era-multi: #e8b840;
+    --era-turbo: #ff7eb3;
+    --era-mimo: #58d0a0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(180deg, #151830 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: 2.6em;
+    color: var(--text-bright);
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero .subtitle {
+    font-size: 1.15em;
+    color: var(--text-dim);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .nav-bar a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.82em;
+    padding: 4px 12px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-bar a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(108,138,255,0.08);
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Era Section */
+  .era {
+    padding: 56px 0 24px;
+  }
+  .era-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .era-num {
+    font-size: 1.8em;
+    font-weight: 800;
+    opacity: 0.3;
+    min-width: 48px;
+  }
+  .era-header h2 {
+    font-size: 1.5em;
+    color: var(--text-bright);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 6px;
+  }
+  .era-intro {
+    color: var(--text-dim);
+    font-size: 0.98em;
+    margin-bottom: 28px;
+    padding-left: 64px;
+    max-width: 780px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 64px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .t-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .t-dot {
+    position: absolute;
+    left: -49px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    z-index: 2;
+  }
+  .t-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .t-card:hover { border-color: var(--accent); }
+  .t-year {
+    display: inline-block;
+    font-size: 0.82em;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .t-title {
+    font-size: 1.12em;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 6px;
+  }
+  .t-author {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .t-body { font-size: 0.94em; color: var(--text); }
+  .t-body p { margin-bottom: 8px; }
+  .t-impact {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(108,138,255,0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88em;
+    color: var(--text-dim);
+  }
+  .t-impact strong { color: var(--accent2); }
+  .tag {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border: 1px solid;
+  }
+  .tag-theory { color: var(--accent); border-color: var(--accent); }
+  .tag-coding { color: var(--accent2); border-color: var(--accent2); }
+  .tag-detect { color: var(--era-detect); border-color: var(--era-detect); }
+  .tag-system { color: var(--era-modcode); border-color: var(--era-modcode); }
+  .tag-wireless { color: var(--era-turbo); border-color: var(--era-turbo); }
+  .tag-multi { color: var(--era-multi); border-color: var(--era-multi); }
+
+  /* Color variations per era */
+  .era-1 .t-dot { background: var(--era-math); }
+  .era-1 .t-year { background: var(--era-math); }
+  .era-2 .t-dot { background: var(--era-seed); }
+  .era-2 .t-year { background: var(--era-seed); }
+  .era-3 .t-dot { background: var(--era-noise); }
+  .era-3 .t-year { background: var(--era-noise); }
+  .era-4 .t-dot { background: var(--era-info); }
+  .era-4 .t-year { background: var(--era-info); }
+  .era-5 .t-dot { background: var(--era-code); }
+  .era-5 .t-year { background: var(--era-code); }
+  .era-6 .t-dot { background: var(--era-detect); }
+  .era-6 .t-year { background: var(--era-detect); }
+  .era-7 .t-dot { background: var(--era-modcode); }
+  .era-7 .t-year { background: var(--era-modcode); }
+  .era-8 .t-dot { background: var(--era-multi); }
+  .era-8 .t-year { background: var(--era-multi); }
+  .era-9 .t-dot { background: var(--era-turbo); }
+  .era-9 .t-year { background: var(--era-turbo); }
+  .era-10 .t-dot { background: var(--era-mimo); }
+  .era-10 .t-year { background: var(--era-mimo); }
+
+  .era-1 .era-header h2 { border-color: var(--era-math); }
+  .era-2 .era-header h2 { border-color: var(--era-seed); }
+  .era-3 .era-header h2 { border-color: var(--era-noise); }
+  .era-4 .era-header h2 { border-color: var(--era-info); }
+  .era-5 .era-header h2 { border-color: var(--era-code); }
+  .era-6 .era-header h2 { border-color: var(--era-detect); }
+  .era-7 .era-header h2 { border-color: var(--era-modcode); }
+  .era-8 .era-header h2 { border-color: var(--era-multi); }
+  .era-9 .era-header h2 { border-color: var(--era-turbo); }
+  .era-10 .era-header h2 { border-color: var(--era-mimo); }
+
+  .separator {
+    text-align: center;
+    padding: 24px 0;
+    color: var(--border);
+    font-size: 1.4em;
+    letter-spacing: 12px;
+  }
+  footer {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-dim);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .timeline { padding-left: 40px; }
+    .t-dot { left: -25px; width: 10px; height: 10px; }
+    .timeline::before { left: 10px; }
+    .era-intro { padding-left: 0; }
+    .era-num { display: none; }
+    .nav-bar a { font-size: 0.72em; padding: 3px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>通信理论<span>发展史</span>时间线</h1>
+  <p class="subtitle">从傅里叶的数学遗产到 Polar 码的容量达到——横跨两个世纪的理论探索之旅。本时间线聚焦于"理论问题如何被提出、如何被解决、如何塑造现代通信系统"。</p>
+</div>
+
+<nav class="nav-bar">
+  <a href="#era1">I 数学基础</a>
+  <a href="#era2">II 通信萌芽</a>
+  <a href="#era3">III 噪声与滤波</a>
+  <a href="#era4">IV 信息论创立</a>
+  <a href="#era5">V 编码理论</a>
+  <a href="#era6">VI 检测与译码</a>
+  <a href="#era7">VII 编码调制</a>
+  <a href="#era8">VIII 多用户与无线</a>
+  <a href="#era9">IX 现代编码突破</a>
+  <a href="#era10">X MIMO与现代融合</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== ERA 1 ==================== -->
+<section class="era era-1" id="era1">
+  <div class="era-header">
+    <span class="era-num">I</span>
+    <h2>数学与概率基础准备期（1807–1920s）</h2>
+  </div>
+  <p class="era-intro">通信理论并非凭空诞生。它的数学根基——傅里叶分析、概率论、随机过程——在 19 世纪至 20 世纪初逐步成熟，为后来的理论突破提供了不可或缺的工具。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1807–1822</span>
+      <div class="t-title">傅里叶（Fourier）提出傅里叶级数与傅里叶变换</div>
+      <div class="t-author">Jean-Baptiste Joseph Fourier</div>
+      <div class="t-body">
+        <p>傅里叶在研究热传导问题时证明：任何周期函数都可以分解为正弦和余弦函数之和。这一思想后被推广为傅里叶变换，成为信号在时域与频域之间转换的核心数学工具。</p>
+        <p><span class="tag tag-theory">数学基础</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>频域分析成为通信理论的基本语言。带宽、频谱效率、调制、滤波等核心概念均建立在此基础上。没有傅里叶分析，就没有现代通信理论。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1837</span>
+      <div class="t-title">莫尔斯（Morse）发明电报系统</div>
+      <div class="t-author">Samuel Morse</div>
+      <div class="t-body">
+        <p>莫尔斯电报是人类历史上第一个实用的电通信系统。莫尔斯码本身就是一种不等长编码，高频字母用短码、低频字母用长码——这一设计暗含了后来信息论中"变长编码"的基本思想。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>电报标志着远程通信从光学/机械时代进入电气时代，也第一次提出了"如何高效地编码消息"这一根本性问题。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1876</span>
+      <div class="t-title">贝尔（Bell）发明电话</div>
+      <div class="t-author">Alexander Graham Bell</div>
+      <div class="t-body">
+        <p>电话系统将通信从离散的电报信号扩展到连续的模拟语音信号传输。这引发了一系列新的理论问题：模拟信号在信道中如何失真？如何分析信号的带宽需求？如何在有限带宽内传输尽可能多的信息？</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>模拟语音通信催生了对信号频谱分析、带通滤波、复用技术的理论需求，直接推动了 Nyquist 和 Hartley 等人的研究。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1900–1910s</span>
+      <div class="t-title">概率论体系化与随机过程理论萌芽</div>
+      <div class="t-author">Kolmogorov, Markov, Bachelier 等</div>
+      <div class="t-body">
+        <p>Kolmogorov 在 1933 年以测度论为基础建立了概率论公理化体系。而在此之前，Markov 链（1906）、Bachelier 的随机过程分析（1900）等工作已为随机信号的数学描述做了铺垫。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>概率论和随机过程是通信理论的数学骨架。信道噪声建模、信号检测、信息熵的定义等都以此为根基。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 2 ==================== -->
+<section class="era era-2" id="era2">
+  <div class="era-header">
+    <span class="era-num">II</span>
+    <h2>通信思想萌芽期（1924–1940）</h2>
+  </div>
+  <p class="era-intro">贝尔实验室的工程师们开始用数学思维审视通信系统的根本极限："在有限带宽中到底能传多快？""信息到底是什么？"——这些问题的定量回答，为 Shannon 的革命铺平了道路。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1924</span>
+      <div class="t-title">Nyquist 发表《Certain Factors Affecting Telegraph Speed》</div>
+      <div class="t-author">Harry Nyquist, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>Nyquist 首次从理论上分析了电报系统中信号传输速率与带宽之间的关系。他指出，一个带宽为 W 的信道，每秒最多传送 2W 个独立脉冲（符号）。这一结论后来被称为 Nyquist 速率。</p>
+        <p><span class="tag tag-theory">信息传输极限</span><span class="tag tag-system">采样理论</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>这是人类第一次以数学形式回答"带宽与传输速率的关系"。它直接启发了采样定理的建立，也为 Shannon 后来推导信道容量公式打下了概念基础。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1928</span>
+      <div class="t-title">Nyquist 发表《Certain Topics in Telegraph Transmission Theory》</div>
+      <div class="t-author">Harry Nyquist, Transactions of the AIEE</div>
+      <div class="t-body">
+        <p>在这篇更成熟的论文中，Nyquist 精确阐述了无码间干扰（ISI）传输的条件——即 Nyquist 准则。他证明了在带限信道中，采用满足特定对称条件的脉冲形状，可以实现每秒 2W 个符号的无干扰传输。</p>
+        <p><span class="tag tag-theory">采样定理</span><span class="tag tag-system">脉冲成形</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Nyquist 准则成为数字通信系统设计的基石。所有现代数字通信系统（从 DSL 到 5G）的脉冲成形滤波器设计都遵循这一原则。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1928</span>
+      <div class="t-title">Hartley 发表《Transmission of Information》</div>
+      <div class="t-author">Ralph V. L. Hartley, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>Hartley 首次尝试定量定义"信息量"。他提出：从 M 个等概率消息中选择一个所传递的信息量为 log M。他还推导了在有限带宽和有限传输时间下，信息传输总量的上界，即 Hartley 定律：信息量正比于带宽和时间的乘积。</p>
+        <p><span class="tag tag-theory">信息度量</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Hartley 的对数度量直接启发了 Shannon 的信息熵定义。信息论的"bit"计量方式就是在此基础上发展而来。但 Hartley 的分析未考虑噪声，这一关键缺失正是 Shannon 后来的突破点。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1933</span>
+      <div class="t-title">Kolmogorov 概率论公理化</div>
+      <div class="t-author">Andrey Kolmogorov</div>
+      <div class="t-body">
+        <p>Kolmogorov 在《概率论基础》中用测度论语言建立了概率论的严格公理化体系。这为后来信息论中对随机变量、条件概率、互信息等概念的严格定义提供了数学框架。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Shannon 信息论中的熵、互信息、遍历性等概念的数学严格性，均建立在 Kolmogorov 的概率论公理之上。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1935–1939</span>
+      <div class="t-title">Armstrong 发明调频（FM）广播</div>
+      <div class="t-author">Edwin H. Armstrong</div>
+      <div class="t-body">
+        <p>Armstrong 发明的宽带 FM 系统展示了一个深刻的工程现象：用更大的带宽可以换取更好的信噪比。这一"带宽换信噪比"的思想在当时是反直觉的，但后来被 Shannon 的信道容量公式从理论上完美解释。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>FM 系统的"带宽-信噪比折衷"现象，成为信息论中信道容量概念的重要经验来源。Shannon 公式 C = W log₂(1 + SNR) 正式揭示了这一折衷关系。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 3 ==================== -->
+<section class="era era-3" id="era3">
+  <div class="era-header">
+    <span class="era-num">III</span>
+    <h2>噪声理论与统计方法建立期（1940–1948）</h2>
+  </div>
+  <p class="era-intro">第二次世界大战催化了通信与雷达技术的飞速发展。战争期间的保密研究成果——噪声统计分析、最优滤波、匹配滤波——构成了通信理论的另一半基石：如何在噪声中最优地提取信号。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1940–1944</span>
+      <div class="t-title">Wiener 完成《Extrapolation, Interpolation, and Smoothing of Stationary Time Series》</div>
+      <div class="t-author">Norbert Wiener（战时保密报告，1949 年正式出版）</div>
+      <div class="t-body">
+        <p>Wiener 从平稳随机过程的角度，提出了在最小均方误差（MMSE）准则下的最优线性滤波器设计理论。给定信号和噪声的统计特性（功率谱），Wiener 滤波器能从受噪声污染的观测中最优地估计或预测信号。</p>
+        <p><span class="tag tag-detect">统计信号处理</span><span class="tag tag-theory">最优滤波</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Wiener 滤波理论是统计信号处理的奠基之作。它开创了"通过统计方法在噪声中恢复信号"的范式，后来演化为 Kalman 滤波、自适应滤波等现代方法，是通信接收机设计的理论源头之一。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1943</span>
+      <div class="t-title">North 提出匹配滤波器（Matched Filter）</div>
+      <div class="t-author">D. O. North, RCA Laboratories（战时保密报告）</div>
+      <div class="t-body">
+        <p>North 证明：对于加性白高斯噪声（AWGN）信道中的已知波形检测问题，使输出信噪比最大化的最优线性滤波器，其冲激响应应是发送信号波形的时间反转与共轭。这就是匹配滤波器。</p>
+        <p><span class="tag tag-detect">最优检测</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>匹配滤波器成为通信接收机和雷达接收机设计的核心原理。所有现代数字通信接收机的前端本质上都实现了匹配滤波。Turin (1960) 后来将其扩展为更一般的"相关接收"理论。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1944–1945</span>
+      <div class="t-title">Rice 发表《Mathematical Analysis of Random Noise》</div>
+      <div class="t-author">Stephen O. Rice, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>Rice 发表了两篇长篇论文，系统建立了高斯噪声通过线性和非线性系统的数学分析方法。他推导了窄带高斯噪声的包络和相位的统计分布（Rice 分布/Rayleigh 分布），分析了噪声过零率、峰值分布等关键统计量。</p>
+        <p><span class="tag tag-theory">噪声理论</span><span class="tag tag-wireless">随机过程</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Rice 的噪声分析框架成为通信系统性能分析的标准工具。Rayleigh 衰落模型和 Rician 衰落模型——无线通信理论的基石——都直接来源于 Rice 的分析。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1946</span>
+      <div class="t-title">Gabor 提出通信的量子化思想</div>
+      <div class="t-author">Dennis Gabor</div>
+      <div class="t-body">
+        <p>Gabor 在《Theory of Communication》中提出信号可以用时间-频率平面上的基本"信息单元"来表示，每个单元占据的面积由不确定性原理决定。这是时频分析和小波理论的思想先驱。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Gabor 的时频分析思想后来发展为 Gabor 变换、短时傅里叶变换，并对 OFDM 系统的时频资源分配理论产生了深远影响。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1947</span>
+      <div class="t-title">Kotelnikov 提出最优信号检测理论</div>
+      <div class="t-author">V. A. Kotelnikov（苏联）</div>
+      <div class="t-body">
+        <p>Kotelnikov 在其博士论文中独立建立了在噪声中最优检测信号的理论框架，采用后验概率最大化准则（MAP）。他的工作与 North 的匹配滤波以及后来的 Neyman-Pearson 检测理论在思想上高度一致，但由于冷战背景长期不为西方学界所知。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Kotelnikov 的最优检测框架后来在苏联学派中发展出一套完整的通信统计理论。其思想与西方的检测与估计理论最终殊途同归。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 4 ==================== -->
+<section class="era era-4" id="era4">
+  <div class="era-header">
+    <span class="era-num">IV</span>
+    <h2>经典信息论创立期（1948–1960）</h2>
+  </div>
+  <p class="era-intro">1948 年，Claude Shannon 发表了一篇论文，一夜之间创造了一个全新的学科。信息论的诞生不仅定义了通信系统的理论极限，更根本性地改变了工程师思考通信问题的方式。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1948</span>
+      <div class="t-title">Shannon 发表《A Mathematical Theory of Communication》</div>
+      <div class="t-author">Claude E. Shannon, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>这是 20 世纪最重要的科学论文之一。Shannon 在这篇论文中完成了三件革命性的工作：</p>
+        <p><strong>（1）定义信息熵：</strong>H(X) = -Σ p(x) log p(x)，首次给"信息量"一个精确的数学度量。</p>
+        <p><strong>（2）信源编码定理：</strong>证明了数据压缩的理论极限——可以将信源压缩到接近其熵率，但不能更低。</p>
+        <p><strong>（3）信道编码定理（有噪信道编码定理）：</strong>证明了只要传输速率不超过信道容量 C，就存在编码方案使得误码率可以任意小。反之，超过 C 则必有不可忽略的错误。</p>
+        <p><span class="tag tag-theory">信息论</span><span class="tag tag-coding">编码理论</span><span class="tag tag-theory">信道容量</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Shannon 定理告诉全世界：<em>可靠通信是有理论极限的，但这个极限可以通过编码逼近</em>。这一洞见定义了此后 70 年通信工程的核心目标——寻找逼近 Shannon 极限的编码方案。信息论从此成为电子工程、计算机科学、统计学、物理学、生物学等众多领域的通用语言。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1949</span>
+      <div class="t-title">Shannon 发表《Communication in the Presence of Noise》</div>
+      <div class="t-author">Claude E. Shannon, Proceedings of the IRE</div>
+      <div class="t-body">
+        <p>本文是 1948 年论文的补充和扩展。Shannon 在此明确给出了加性高斯白噪声（AWGN）信道的容量公式：C = W log₂(1 + S/N)，其中 W 是带宽，S/N 是信噪比。他同时严格证明了采样定理：带宽为 W 的信号可以用每秒 2W 个采样值完全重建。</p>
+        <p><span class="tag tag-theory">Shannon 公式</span><span class="tag tag-theory">采样定理</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Shannon 容量公式 C = W log₂(1 + SNR) 成为通信工程中最重要的公式之一。它精确回答了"给定带宽和信噪比，通信速率的物理极限是什么"这一根本问题。采样定理则为模拟到数字的转换提供了理论基础。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1949</span>
+      <div class="t-title">Shannon 发表《Communication Theory of Secrecy Systems》</div>
+      <div class="t-author">Claude E. Shannon, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>Shannon 将信息论应用于密码学，用信息熵来定量分析密码系统的安全性。他证明了"一次性密码本"（one-time pad）是理论上不可破解的，同时定义了完善保密性（perfect secrecy）的数学条件。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>这篇论文开创了信息论安全（information-theoretic security）这一领域，成为现代密码学和安全通信理论的理论起点。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1951</span>
+      <div class="t-title">Shannon 发表《Prediction and Entropy of Printed English》</div>
+      <div class="t-author">Claude E. Shannon</div>
+      <div class="t-body">
+        <p>Shannon 估计了英文文本的信息熵约为每字母 1.0–1.5 比特（远低于 log₂26 ≈ 4.7 比特），证明自然语言具有极高的冗余度。这一工作验证了信息论概念在实际信源上的适用性。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>为自然语言处理、数据压缩算法提供了理论指导。"语言模型"的思想从此萌芽。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1953–1956</span>
+      <div class="t-title">Huffman 编码与信源编码理论发展</div>
+      <div class="t-author">David Huffman (1952), Fano, Elias 等</div>
+      <div class="t-body">
+        <p>Huffman 在 1952 年的课程作业中提出了最优前缀码构造算法（Huffman 编码），证明了在所有前缀码中平均码长最短。Elias 提出了算术编码的思想。这些工作将 Shannon 的信源编码定理从存在性证明推向了构造性实现。</p>
+        <p><span class="tag tag-coding">信源编码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Huffman 编码至今仍是 JPEG、ZIP、DEFLATE 等压缩标准的核心组件。算术编码思想后来在 JPEG 2000、H.265 等标准中被广泛使用。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 5 ==================== -->
+<section class="era era-5" id="era5">
+  <div class="era-header">
+    <span class="era-num">V</span>
+    <h2>编码理论快速发展期（1950–1970）</h2>
+  </div>
+  <p class="era-intro">Shannon 证明了好编码的存在，但没有告诉我们如何构造它。1950–1970 年代，数学家和工程师们展开了一场寻找"好码"的竞赛——代数编码理论由此蓬勃发展。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1950</span>
+      <div class="t-title">Hamming 发表《Error Detecting and Error Correcting Codes》</div>
+      <div class="t-author">Richard W. Hamming, Bell System Technical Journal</div>
+      <div class="t-body">
+        <p>Hamming 开创了代数编码理论。他定义了 Hamming 距离、Hamming 界，并构造了第一个实用的单纠错码——Hamming (7,4) 码。他的工作将纠错编码从 Shannon 的抽象存在性证明推向了可构造、可实现的方向。</p>
+        <p><span class="tag tag-coding">纠错编码</span><span class="tag tag-theory">代数编码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Hamming 码是第一个被广泛工程应用的纠错码（ECC 内存至今仍用）。更重要的是，Hamming 距离成为编码理论的核心度量，线性分组码理论由此建立。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1954</span>
+      <div class="t-title">Muller-Reed 码与代数编码结构</div>
+      <div class="t-author">David E. Muller, Irving S. Reed</div>
+      <div class="t-body">
+        <p>Reed-Muller 码是一类基于布尔多项式的编码方案，具有良好的代数结构。一阶 Reed-Muller 码后来被证明与 Hadamard 矩阵密切相关。这类码虽然不是最优的，但其代数结构启发了大量后续研究。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Reed-Muller 码被用于 Mariner 深空探测任务。值得注意的是，Arikan 的 Polar 码（2009）在其构造中与 Reed-Muller 码存在深刻的数学联系。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1955</span>
+      <div class="t-title">Elias 提出卷积码</div>
+      <div class="t-author">Peter Elias</div>
+      <div class="t-body">
+        <p>Elias 提出了卷积码（Convolutional Code），一种与分组码根本不同的编码范式。卷积码不将数据分成固定长度的块，而是对连续输入的数据流进行编码，编码器具有记忆性（用移位寄存器实现）。</p>
+        <p><span class="tag tag-coding">卷积码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>卷积码 + Viterbi 译码（1967）的组合成为此后 40 年通信系统的标准编码方案（GSM、CDMA、Wi-Fi 等）。卷积码也是 Turbo 码（1993）的核心构件。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1959–1960</span>
+      <div class="t-title">Bose-Chaudhuri-Hocquenghem (BCH) 码</div>
+      <div class="t-author">R. C. Bose, D. K. Ray-Chaudhuri (1960); A. Hocquenghem (1959)</div>
+      <div class="t-body">
+        <p>BCH 码是一类强大的循环纠错码，由有限域（Galois 域）上的代数方法构造。它们具有精确可控的最小距离和高效的代数译码算法。BCH 码理论是代数编码的高峰之一。</p>
+        <p><span class="tag tag-coding">代数编码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>BCH 码及其非二进制推广（Reed-Solomon 码）成为从深空通信到二维码的几乎所有数字存储和传输系统中的标准组件。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1960</span>
+      <div class="t-title">Reed 与 Solomon 发表《Polynomial Codes over Certain Finite Fields》</div>
+      <div class="t-author">Irving S. Reed, Gustave Solomon, Journal of SIAM</div>
+      <div class="t-body">
+        <p>Reed-Solomon (RS) 码是 BCH 码在非二进制有限域上的推广。RS 码在符号级别而非比特级别进行纠错，这使其特别擅长对抗突发错误（burst errors）。RS 码具有最大距离可分（MDS）特性——在给定冗余度下达到纠错能力的理论上界。</p>
+        <p><span class="tag tag-coding">RS 码</span><span class="tag tag-coding">MDS 码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>RS 码的应用范围令人惊叹：CD/DVD 光盘、QR 码、数字电视（DVB）、深空通信、RAID 存储、5G NR 控制信道。Berlekamp-Massey 算法（1968-1969）使其高效译码成为可能，RS 码至今仍是最广泛部署的纠错码。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1962</span>
+      <div class="t-title">Gallager 发表《Low-Density Parity-Check Codes》</div>
+      <div class="t-author">Robert G. Gallager, IRE Transactions on Information Theory</div>
+      <div class="t-body">
+        <p>Gallager 在其博士论文中提出了低密度奇偶校验（LDPC）码。这类码的校验矩阵是稀疏的，因此可以用迭代的消息传递（belief propagation）算法进行高效译码。Gallager 证明了 LDPC 码的性能可以逼近 Shannon 极限。</p>
+        <p><span class="tag tag-coding">LDPC</span><span class="tag tag-coding">迭代译码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>这篇论文超越了它的时代约 30 年。由于当时计算能力不足，LDPC 码被遗忘。直到 1996 年 MacKay 和 Neal 重新发现后，LDPC 码成为 Wi-Fi (802.11n/ac/ax)、5G NR 数据信道、DVB-S2 卫星通信等标准的核心编码方案。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1965</span>
+      <div class="t-title">Cooley-Tukey 快速傅里叶变换（FFT）算法</div>
+      <div class="t-author">James Cooley, John Tukey</div>
+      <div class="t-body">
+        <p>FFT 将 N 点 DFT 的计算复杂度从 O(N²) 降低到 O(N log N)，使傅里叶变换在工程中大规模应用成为可能。虽然高斯早在 1805 年就有类似思想，但 Cooley-Tukey 的论文使这一算法广为人知并被系统应用。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>FFT 是使 OFDM 系统（LTE、5G、Wi-Fi）得以实现的关键使能技术。没有 FFT，多载波通信系统的计算代价将无法承受。FFT 也是软件定义无线电（SDR）和现代数字信号处理的基石。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 6 ==================== -->
+<section class="era era-6" id="era6">
+  <div class="era-header">
+    <span class="era-num">VI</span>
+    <h2>检测、估计与最优接收理论成熟期（1960–1980）</h2>
+  </div>
+  <p class="era-intro">编码解决的是"发送端如何添加冗余"的问题，而接收端面对的是"如何在噪声中做出最优判决"。这一时期，检测理论、序列译码算法与最优接收机理论走向成熟。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1960–1968</span>
+      <div class="t-title">统计检测与估计理论体系建立</div>
+      <div class="t-author">Van Trees, Helstrom, Middleton 等</div>
+      <div class="t-body">
+        <p>Van Trees 的《Detection, Estimation, and Modulation Theory》系列专著（1968–1971）系统建立了通信中统计检测与估计的数学框架。核心包括：Neyman-Pearson 检测、贝叶斯检测、最大似然（ML）检测与估计、Cramér-Rao 下界等。</p>
+        <p><span class="tag tag-detect">检测理论</span><span class="tag tag-detect">估计理论</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>这些理论成果构成了数字通信接收机设计的理论基础。ML 检测、MAP 检测等准则至今仍是所有现代通信系统接收端的核心算法框架。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1966</span>
+      <div class="t-title">Forney 提出级联码（Concatenated Codes）</div>
+      <div class="t-author">G. David Forney Jr., MIT 博士论文</div>
+      <div class="t-body">
+        <p>Forney 提出了级联码的概念：用一个外码（如 RS 码）和一个内码（如卷积码）串联，分别处理不同类型的错误。他证明这种结构可以在多项式复杂度下逼近 Shannon 极限。</p>
+        <p><span class="tag tag-coding">级联码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>级联码结构成为深空通信（旅行者号、卡西尼号等探测器）的标准编码方案，也启发了 Turbo 码中"交织-级联"思想的形成。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1967</span>
+      <div class="t-title">Viterbi 发表《Error Bounds for Convolutional Codes and an Asymptotically Optimum Decoding Algorithm》</div>
+      <div class="t-author">Andrew J. Viterbi, IEEE Transactions on Information Theory</div>
+      <div class="t-body">
+        <p>Viterbi 提出了一种高效的卷积码最大似然（ML）序列译码算法——Viterbi 算法。该算法利用网格（trellis）结构上的动态规划，以线性复杂度（相对于序列长度）找到最可能的发送序列。</p>
+        <p><span class="tag tag-coding">Viterbi 算法</span><span class="tag tag-detect">ML 译码</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Viterbi 算法的影响远超通信编码领域。它成为 GSM、CDMA、深空通信的标准译码算法，也被广泛用于语音识别（HMM）、DNA 序列分析、自然语言处理等领域。Viterbi 本人后来创办了 Qualcomm 公司。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1972</span>
+      <div class="t-title">Forney 提出最大似然序列估计（MLSE）框架</div>
+      <div class="t-author">G. David Forney Jr.</div>
+      <div class="t-body">
+        <p>Forney 将 Viterbi 算法推广为处理码间干扰（ISI）信道的一般性最大似然序列估计框架。他证明了对于任何有限状态信道模型，都可以构造等效的网格结构，并用 Viterbi 算法找到 ML 序列估计。</p>
+        <p><span class="tag tag-detect">均衡</span><span class="tag tag-detect">MLSE</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>MLSE 均衡器成为处理频率选择性信道失真的理论最优方案。GSM 系统就采用了基于 Viterbi 算法的 MLSE 均衡器。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1974</span>
+      <div class="t-title">BCJR 算法：《Optimal Decoding of Linear Codes for Minimizing Symbol Error Rate》</div>
+      <div class="t-author">L. Bahl, J. Cocke, F. Jelinek, J. Raviv, IEEE Trans. IT</div>
+      <div class="t-body">
+        <p>BCJR 算法（也称 MAP 算法或前向-后向算法）计算网格结构上每个符号的后验概率（APP），从而实现符号级最优译码。与 Viterbi 算法最大化整个序列的似然不同，BCJR 最小化每个单独符号的错误概率。</p>
+        <p><span class="tag tag-coding">MAP 译码</span><span class="tag tag-detect">软输出</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>BCJR 算法在发表后近 20 年默默无闻。直到 Turbo 码（1993）被发明后，BCJR 算法作为 Turbo 迭代译码器中组件译码器的核心算法，获得了"重生"。软信息的传递思想从此成为现代迭代接收机设计的核心范式。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 7 ==================== -->
+<section class="era era-7" id="era7">
+  <div class="era-header">
+    <span class="era-num">VII</span>
+    <h2>调制编码联合设计与带宽效率理论（1975–1990）</h2>
+  </div>
+  <p class="era-intro">传统设计中，编码和调制是分开优化的。Ungerboeck 的突破表明：将编码和调制联合设计，可以在不增加带宽的条件下获得巨大的编码增益——这重新定义了"带宽效率"的理论边界。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1974–1976</span>
+      <div class="t-title">Massey 提出关于编码与调制分离/联合的理论思考</div>
+      <div class="t-author">James L. Massey 等</div>
+      <div class="t-body">
+        <p>在 Ungerboeck 之前，Massey 等人就开始思考编码和调制的联合优化问题。传统做法是先编码再调制，但这在带宽受限系统中效率低下——编码增加的冗余位需要更高阶调制或更大带宽来承载。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>这些思考为 Ungerboeck 的 TCM 突破铺平了理论道路。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1982</span>
+      <div class="t-title">Ungerboeck 发表《Channel Coding with Multilevel/Phase Signals》</div>
+      <div class="t-author">Gottfried Ungerboeck, IEEE Transactions on Information Theory</div>
+      <div class="t-body">
+        <p>Ungerboeck 提出了网格编码调制（TCM），将卷积编码与高阶调制（如 8-PSK 代替 QPSK）通过"集合划分"（set partitioning）原则进行联合设计。关键洞见是：扩大星座图、用编码约束选择信号点序列、最大化序列间欧氏距离——可以在不增加带宽的前提下获得 3-6 dB 的编码增益。</p>
+        <p><span class="tag tag-coding">TCM</span><span class="tag tag-system">调制编码联合</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>TCM 被直接采纳入 V.32、V.34 等调制解调器标准，使得电话线上的数据传输速率从 4.8 kbps 跃升到 33.6 kbps。TCM 也是卫星通信标准的关键技术。它开创了"编码调制联合设计"这一全新范式。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1983–1985</span>
+      <div class="t-title">信道容量的带宽效率视角与 Shannon 极限曲线</div>
+      <div class="t-author">Forney, Ungerboeck 等</div>
+      <div class="t-body">
+        <p>Forney 等人将 Shannon 的 AWGN 信道容量公式重新表达为频谱效率 η = R/W（bps/Hz）与 Eb/N0（每比特能量与噪声功率谱密度之比）的关系曲线。这条曲线成为衡量各种编码调制方案距离理论极限还有多远的标尺。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>频谱效率-能量效率折衷曲线成为通信系统设计的"圣杯图"。所有现代编码方案（Turbo、LDPC、Polar）的性能都用"距 Shannon 极限多少 dB"来衡量。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 8 ==================== -->
+<section class="era era-8" id="era8">
+  <div class="era-header">
+    <span class="era-num">VIII</span>
+    <h2>多用户与无线通信理论扩展期（1970–1995）</h2>
+  </div>
+  <p class="era-intro">Shannon 的经典理论主要处理点对点通信。现实世界中，多个用户共享信道、信号经历衰落——这些问题催生了多用户信息论、无线信道建模、扩频通信和多址接入理论。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1961</span>
+      <div class="t-title">Price & Green 提出 Rake 接收机</div>
+      <div class="t-author">R. Price, P. E. Green Jr.</div>
+      <div class="t-body">
+        <p>Rake 接收机利用多径信道中各路径的独立衰落特性，通过匹配接收每条路径的信号并进行合并，实现分集增益。这是将多径"干扰"转化为"资源"的思想先驱。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Rake 接收机成为 CDMA（IS-95、WCDMA）系统的核心接收架构，直接影响了 3G 移动通信的技术路线。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1968</span>
+      <div class="t-title">Gallager 提出多址信道容量区域的基本框架</div>
+      <div class="t-author">Robert G. Gallager</div>
+      <div class="t-body">
+        <p>Gallager 将信息论从点对点信道扩展到多用户场景，提出了多址接入信道（MAC）的容量区域概念。他证明了多个用户可以同时以各自接近单用户容量的速率进行通信，只要它们的总速率不超过信道容量。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>多址信道容量区域理论为 TDMA、FDMA、CDMA 等多址接入方案的性能比较提供了理论基准。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1971</span>
+      <div class="t-title">Weinstein & Ebert 提出用 DFT 实现多载波调制</div>
+      <div class="t-author">S. B. Weinstein, P. M. Ebert, IEEE Trans. Comm. Tech.</div>
+      <div class="t-body">
+        <p>Weinstein 和 Ebert 首次提出用离散傅里叶变换（DFT）来实现正交频分复用（OFDM）系统的调制和解调。这将 OFDM 从需要大量模拟振荡器的不切实际方案，变成了可以用数字信号处理实现的实用技术。</p>
+        <p><span class="tag tag-system">OFDM</span><span class="tag tag-system">多载波</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>DFT/FFT 实现 OFDM 是使多载波调制走向实用化的关键一步。结合 1985 年 Cimini 将 OFDM 引入移动无线信道的工作，OFDM 最终成为 LTE、5G NR、Wi-Fi 的核心调制技术。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1972</span>
+      <div class="t-title">Cover 发表广播信道容量理论</div>
+      <div class="t-author">Thomas M. Cover, IEEE Transactions on Information Theory</div>
+      <div class="t-body">
+        <p>Cover 提出了退化广播信道的容量区域，发明了叠加编码（superposition coding）技术。他证明了一个发送者可以同时向多个接收者传输不同的信息，并给出了最优策略。</p>
+        <p><span class="tag tag-theory">多用户信息论</span><span class="tag tag-multi">广播信道</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>广播信道理论是多用户信息论的支柱之一。叠加编码思想后来在 4G/5G 系统的非正交多址（NOMA）技术中得到工程应用。Cover 与 El Gamal 等人的系列工作建立了网络信息论的理论基础。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1974</span>
+      <div class="t-title">Jakes 出版《Microwave Mobile Communications》</div>
+      <div class="t-author">William C. Jakes (编), Bell Labs</div>
+      <div class="t-body">
+        <p>Jakes 的专著系统总结了移动通信中多径衰落信道的统计模型（Jakes 模型）。他给出了多普勒频谱、时间相关函数、空间相关函数等关键统计描述。</p>
+        <p><span class="tag tag-wireless">衰落信道</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Jakes 衰落模型成为几十年来移动通信系统仿真和理论分析的标准信道模型。所有蜂窝通信标准的性能评估都依赖于此类信道模型。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1978</span>
+      <div class="t-title">Wyner 提出蜂窝系统的信息论模型</div>
+      <div class="t-author">Aaron D. Wyner</div>
+      <div class="t-body">
+        <p>Wyner 首次用信息论的框架分析蜂窝通信系统的容量，提出了简化但深刻的 Wyner 蜂窝模型。他的分析揭示了小区间干扰对系统容量的根本限制。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Wyner 模型成为分析蜂窝网络容量的理论起点，启发了后来关于干扰管理、协作通信和 Massive MIMO 的大量研究。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1979–1985</span>
+      <div class="t-title">扩频与 CDMA 理论发展</div>
+      <div class="t-author">Viterbi, Pursley, Verdu 等</div>
+      <div class="t-body">
+        <p>扩频通信从军事保密技术发展为商用多址接入方案。Viterbi 等人分析了 CDMA 系统的容量，证明了在理想功率控制下 CDMA 可以逼近多址信道的容量边界。Verdu（1986）提出了多用户检测理论，证明了最优多用户检测器可以完全消除多址干扰（MAI）。</p>
+        <p><span class="tag tag-multi">CDMA</span><span class="tag tag-detect">多用户检测</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>CDMA 成为 IS-95 和 3G（WCDMA、CDMA2000）系统的核心技术。Verdu 的多用户检测理论则为 MIMO 检测、干扰消除等现代技术奠定了理论基础。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1985</span>
+      <div class="t-title">Cimini 将 OFDM 引入移动无线通信</div>
+      <div class="t-author">Leonard J. Cimini Jr., IEEE Trans. Comm.</div>
+      <div class="t-body">
+        <p>Cimini 首次系统分析了 OFDM 在移动衰落信道中的应用，提出了循环前缀（CP）的概念来消除码间干扰和载波间干扰。他展示了 OFDM 与信道均衡的天然契合性。</p>
+        <p><span class="tag tag-system">OFDM</span><span class="tag tag-wireless">移动通信</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Cimini 的工作使 OFDM 从有线（DSL）领域跨入无线领域。OFDM + CP 的方案最终成为 LTE、5G NR、Wi-Fi 等所有现代宽带无线系统的标准调制技术。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1986</span>
+      <div class="t-title">Verdu 发表多用户检测理论</div>
+      <div class="t-author">Sergio Verdu, IEEE Trans. IT</div>
+      <div class="t-body">
+        <p>Verdu 提出了最优多用户检测器的理论框架，证明了在多址信道中，通过联合检测所有用户的信号（而非单独检测每个用户），可以从根本上消除多址干扰（MAI）的影响。他给出了最优检测器的渐近多用户效率概念。</p>
+        <p><span class="tag tag-detect">多用户检测</span><span class="tag tag-multi">干扰消除</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>多用户检测理论揭示了传统"将干扰视为噪声"方法的根本局限性，并启发了迭代干扰消除（SIC/PIC）、球形译码等一系列实用检测算法的发展。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1991</span>
+      <div class="t-title">Ozarow, Shamai & Wyner 对衰落信道容量的系统分析</div>
+      <div class="t-author">L. Ozarow, S. Shamai, A. Wyner</div>
+      <div class="t-body">
+        <p>系统研究了各种衰落信道（快衰落/慢衰落、已知/未知 CSI）下的信道容量和中断容量，建立了无线通信中"遍历容量"和"中断概率"的理论框架。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>中断容量（outage capacity）概念成为衡量无线系统可靠性的核心指标，深刻影响了所有无线通信标准的设计。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 9 ==================== -->
+<section class="era era-9" id="era9">
+  <div class="era-header">
+    <span class="era-num">IX</span>
+    <h2>现代纠错编码突破期（1993–2009）</h2>
+  </div>
+  <p class="era-intro">自 Shannon 1948 年以来，通信学界一直在寻找能够逼近信道容量的编码方案。这一追求在 1993 年 Turbo 码的出现时迎来了历史性突破，此后 LDPC 码被重新发现，Polar 码则在 2009 年实现了理论上的终极目标。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1993</span>
+      <div class="t-title">Berrou, Glavieux & Thitimajshima 发表 Turbo 码</div>
+      <div class="t-author">C. Berrou, A. Glavieux, P. Thitimajshima, ICC 1993</div>
+      <div class="t-body">
+        <p>这是通信理论发展史上最具冲击力的论文之一。Berrou 等人提出了 Turbo 码——由两个递归系统卷积码（RSC）通过交织器并行级联构成——并展示了在 BER = 10⁻⁵ 时仅距 Shannon 极限 0.7 dB 的性能。</p>
+        <p>其关键创新在于迭代译码：两个 BCJR 组件译码器之间交替传递"外信息"（extrinsic information），每次迭代都使译码性能提升，最终收敛到接近最优的结果。</p>
+        <p><span class="tag tag-coding">Turbo 码</span><span class="tag tag-coding">迭代译码</span><span class="tag tag-coding">逼近 Shannon 极限</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Turbo 码的发表震惊了整个通信学界——人们第一次看到用可实现的复杂度逼近 Shannon 极限。Turbo 码被采纳入 3G（UMTS）、4G（LTE）和深空通信标准。更重要的是，它开创了"迭代处理"的范式——这一思想后来渗透到译码、检测、均衡、MIMO 接收等通信系统的各个环节。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1995</span>
+      <div class="t-title">Wiberg, Loeliger & Koetter 建立因子图与消息传递统一框架</div>
+      <div class="t-author">N. Wiberg 等; Kschischang, Frey & Loeliger (2001) 完善</div>
+      <div class="t-body">
+        <p>研究者们发现 Turbo 译码、LDPC 译码、BCJR 算法、Viterbi 算法、Kalman 滤波等看似不同的算法，都可以统一为因子图（factor graph）上的消息传递（message passing/belief propagation）算法。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>因子图与消息传递框架成为现代编码与通信理论的统一语言。它连接了编码理论、统计推断、机器学习，也为联合译码-检测-均衡的迭代接收机设计提供了理论基础。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1996</span>
+      <div class="t-title">MacKay & Neal 重新发现 LDPC 码</div>
+      <div class="t-author">David J. C. MacKay, Radford M. Neal</div>
+      <div class="t-body">
+        <p>MacKay 和 Neal 独立于 Gallager 的 1962 年工作，发现了稀疏图码可以通过 belief propagation 实现接近 Shannon 极限的性能。他们随后意识到这与 Gallager 的 LDPC 码是同一类码，从而使 LDPC 码在被遗忘 30 年后"复活"。</p>
+        <p><span class="tag tag-coding">LDPC 复兴</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>LDPC 码的复兴引发了大量后续研究，包括不规则 LDPC 码、密度进化分析方法等。最终 LDPC 码在 5G NR 数据信道、Wi-Fi 6/7、DVB-S2 等标准中全面取代 Turbo 码。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2001</span>
+      <div class="t-title">Richardson & Urbanke 的密度进化分析</div>
+      <div class="t-author">T. Richardson, R. Urbanke</div>
+      <div class="t-body">
+        <p>Richardson 和 Urbanke 提出了密度进化（density evolution）方法，可以精确追踪 LDPC 码迭代译码过程中消息概率分布的演化。这一工具使得 LDPC 码的优化设计从经验试探变成了有理论指导的系统方法。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>密度进化及其简化版本（EXIT 图等）成为现代编码设计的标准分析工具，直接推动了接近容量的不规则 LDPC 码的设计。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2009</span>
+      <div class="t-title">Arikan 发表《Channel Polarization: A Method for Constructing Capacity-Achieving Codes》</div>
+      <div class="t-author">Erdal Arikan, IEEE Transactions on Information Theory</div>
+      <div class="t-body">
+        <p>Arikan 发现了信道极化（channel polarization）现象：对 N 个独立信道副本进行特定的线性变换后，随着 N→∞，每个合成信道要么变成完全无噪声的（容量→1），要么变成完全无用的（容量→0）。Polar 码通过只在"好"的合成信道上传输数据，在"坏"的信道上发送已知信息，实现了渐近达到信道容量的编码。</p>
+        <p><span class="tag tag-coding">Polar 码</span><span class="tag tag-theory">信道极化</span><span class="tag tag-coding">容量达到</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Polar 码是信息论历史上第一个被严格证明可以达到对称信道容量的显式构造编码方案，具有低复杂度的编译码算法。Polar 码被 5G NR 控制信道标准采纳。Arikan 的工作从理论上终结了 Shannon 1948 年提出的"好码是否可以显式构造"这一开放问题。</div>
+    </div></div>
+
+  </div>
+</section>
+
+<div class="separator">- - -</div>
+
+<!-- ==================== ERA 10 ==================== -->
+<section class="era era-10" id="era10">
+  <div class="era-header">
+    <span class="era-num">X</span>
+    <h2>MIMO / OFDM 与现代通信理论融合期（1996–至今）</h2>
+  </div>
+  <p class="era-intro">进入 21 世纪，通信理论的重心从"点对点"转向"多天线、多载波、多用户的大规模系统"。MIMO 理论揭示了空间维度蕴含的巨大容量，而 OFDM 成为宽带无线通信的标准波形——两者的结合定义了现代通信系统的理论与工程框架。</p>
+  <div class="timeline">
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1996</span>
+      <div class="t-title">Foschini 提出 BLAST 架构与 MIMO 容量线性增长</div>
+      <div class="t-author">Gerard J. Foschini, Bell Labs Technical Journal</div>
+      <div class="t-body">
+        <p>Foschini 提出了 BLAST（Bell Laboratories Layered Space-Time）架构，并做出了一个惊人的理论发现：在丰富散射环境下，使用 M 根发送天线和 N 根接收天线的 MIMO 信道容量与 min(M,N) 成线性关系——即天线数翻倍，容量也翻倍，而无需增加带宽或功率。</p>
+        <p><span class="tag tag-wireless">MIMO</span><span class="tag tag-theory">空间复用</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>MIMO 容量的线性增长结论彻底改变了无线通信的技术路线。从此，增加天线数成为提升频谱效率的主要手段。这一发现是 4G/5G/Wi-Fi MIMO 技术的理论源头。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1998–1999</span>
+      <div class="t-title">Telatar 发表《Capacity of Multi-Antenna Gaussian Channels》</div>
+      <div class="t-author">I. Emre Telatar, European Transactions on Telecomm.</div>
+      <div class="t-body">
+        <p>Telatar 严格推导了 MIMO 高斯信道在各种 CSI 条件下的容量表达式。他证明了：当发送端已知 CSI 时，最优策略是注水（water-filling）功率分配；当发送端未知 CSI 时，等功率分配在天线间是最优的。他给出了容量随天线数增长的精确分析。</p>
+        <p><span class="tag tag-theory">MIMO 容量</span><span class="tag tag-theory">注水定理</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Telatar 的论文与 Foschini 的工作共同奠定了 MIMO 通信的理论基础。MIMO 容量公式成为此后所有多天线系统设计的理论基准。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1998</span>
+      <div class="t-title">Alamouti 提出空时分组码</div>
+      <div class="t-author">Siavash M. Alamouti, IEEE JSAC</div>
+      <div class="t-body">
+        <p>Alamouti 提出了一种极其简洁的 2×1 发射分集方案——Alamouti 码。它用最简单的正交设计实现了满发射分集增益，且接收端只需线性处理。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Alamouti 码因其简洁性被直接采入 3G（WCDMA）和 LTE 标准，成为发射分集的标准方案。它也是空时编码理论的开山之作。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">1999</span>
+      <div class="t-title">Tarokh, Seshadri & Calderbank 提出空时网格码</div>
+      <div class="t-author">V. Tarokh, N. Seshadri, A. R. Calderbank</div>
+      <div class="t-body">
+        <p>提出了空时网格码（STTC）和系统化的空时码设计准则（秩准则和行列式准则），为 MIMO 编码理论建立了数学框架。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>空时码设计准则成为 MIMO 编码理论的基础工具，影响了所有后续的 MIMO 编码方案设计。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2003</span>
+      <div class="t-title">Zheng & Tse 提出分集-复用折衷（DMT）</div>
+      <div class="t-author">Lizhong Zheng, David N. C. Tse</div>
+      <div class="t-body">
+        <p>Zheng 和 Tse 揭示了 MIMO 系统中分集增益（可靠性）和复用增益（速率）之间的根本折衷关系——分集-复用折衷曲线（DMT）。这一工作统一了之前关于空时编码和空间复用的看似矛盾的研究方向。</p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>DMT 成为评估 MIMO 编码方案性能的理论框架。它揭示了空时码设计必须在可靠性和速率之间做出根本性权衡。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2004–2010</span>
+      <div class="t-title">协作通信与中继信道理论</div>
+      <div class="t-author">Laneman, Tse, Wornell; Sendonaris; Cover & El Gamal 等</div>
+      <div class="t-body">
+        <p>协作通信理论研究用户之间如何通过中继协助来实现"虚拟 MIMO"效果。核心协议包括解码转发（DF）、放大转发（AF）和压缩转发（CF）。Cover 和 El Gamal 的中继信道容量理论为这些工作提供了信息论基础。</p>
+        <p><span class="tag tag-wireless">协作通信</span><span class="tag tag-theory">中继信道</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>协作通信理论是 LTE-Advanced 中继技术和异构网络的理论基础，也是 6G 中分布式 MIMO 和无蜂窝（cell-free）架构的思想源头。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2010</span>
+      <div class="t-title">Marzetta 提出 Massive MIMO 理论</div>
+      <div class="t-author">Thomas L. Marzetta, IEEE Trans. Wireless Comm.</div>
+      <div class="t-body">
+        <p>Marzetta 提出了大规模 MIMO（Massive MIMO）的概念：当基站天线数远大于用户数时，信道向量趋于正交，简单的线性预编码即可获得接近最优的性能。小区间干扰、快衰落、噪声都在大量天线的平均效应下被消除，唯一的限制是导频污染（pilot contamination）。</p>
+        <p><span class="tag tag-wireless">Massive MIMO</span><span class="tag tag-theory">大系统理论</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>Massive MIMO 成为 5G NR 最核心的物理层技术。Marzetta 的工作开创了"通过大量天线简化系统设计"的新范式，其理论思想正在向 6G 中的超大规模天线和分布式架构演进。</div>
+    </div></div>
+
+    <div class="t-item"><div class="t-dot"></div><div class="t-card">
+      <span class="t-year">2014–至今</span>
+      <div class="t-title">面向 5G/6G 的通信理论融合</div>
+      <div class="t-author">学术界与工业界</div>
+      <div class="t-body">
+        <p>现代通信理论正在多个方向融合：（1）超可靠低时延通信（URLLC）的有限块长编码理论（Polyanskiy-Poor-Verdu，2010）；（2）毫米波与太赫兹通信的信道建模与波束管理；（3）语义通信——超越 Shannon 的"比特正确传输"范式，追求意义级别的通信效率；（4）通信与感知一体化（ISAC）；（5）AI/深度学习与通信系统设计的融合。</p>
+        <p><span class="tag tag-theory">有限块长</span><span class="tag tag-wireless">毫米波</span><span class="tag tag-theory">语义通信</span></p>
+      </div>
+      <div class="t-impact"><strong>深远影响：</strong>通信理论正从"逼近 Shannon 极限"的经典目标，演进到"在更复杂场景和更高层语义下重新定义通信极限"的新阶段。Shannon 的框架不是被否定，而是在更广泛的维度上被拓展。</div>
+    </div></div>
+
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>通信理论发展史时间线 · 覆盖 1807 年至今 · 十大阶段 · 50+ 关键事件</p>
+  <p style="margin-top:8px;">从傅里叶的频域分析到 Polar 码的容量达到，从 Shannon 的存在性证明到 5G 的工程实现——通信理论的每一步进展，都是人类用数学理解和征服物理极限的证明。</p>
+</footer>
+
+</body>
+</html>

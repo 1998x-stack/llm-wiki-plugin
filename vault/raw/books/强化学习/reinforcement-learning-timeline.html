@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>强化学习发展史 — 从动态规划到大模型对齐 (1950-2024)</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232734;
+    --border: #2e3345;
+    --text: #e4e6ef;
+    --text-secondary: #9da3b7;
+    --accent: #6c8cff;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #f59e0b;
+    --accent5: #f472b6;
+    --accent6: #38bdf8;
+    --accent7: #fb923c;
+    --line: #3b4260;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: linear-gradient(180deg, #161926 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent5));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: 0 auto 28px;
+  }
+  .hero .meta {
+    font-size: 0.85rem;
+    color: #636b83;
+  }
+
+  /* Table of contents */
+  .toc-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .toc-bar::-webkit-scrollbar { display: none; }
+  .toc-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 8px 0;
+  }
+  .toc-link {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .toc-link:hover {
+    background: var(--surface2);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  /* Main */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* Era Section */
+  .era {
+    margin-top: 72px;
+  }
+  .era-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .era-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .era h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .era-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+    padding-left: 60px;
+  }
+
+  /* Timeline line */
+  .timeline {
+    position: relative;
+    padding-left: 60px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+
+  /* Event card */
+  .event {
+    position: relative;
+    margin-bottom: 36px;
+  }
+  .event-dot {
+    position: absolute;
+    left: -47px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 3px solid;
+    background: var(--bg);
+    z-index: 2;
+  }
+  .event-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .event-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .event-card.landmark {
+    border-left: 3px solid;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  }
+  .event-year {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .event-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .event-authors {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+  .event-body {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.75;
+  }
+  .event-body p { margin-bottom: 10px; }
+  .event-body p:last-child { margin-bottom: 0; }
+  .event-impact {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: rgba(108,140,255,0.06);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+  .event-impact strong { color: var(--accent); }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border: 1px solid;
+  }
+
+  /* Color Themes per Era */
+  .era-1 .era-badge { background: rgba(108,140,255,0.15); color: var(--accent); }
+  .era-1 .event-dot { border-color: var(--accent); }
+  .era-1 .event-year { color: var(--accent); }
+
+  .era-2 .era-badge { background: rgba(167,139,250,0.15); color: var(--accent2); }
+  .era-2 .event-dot { border-color: var(--accent2); }
+  .era-2 .event-year { color: var(--accent2); }
+
+  .era-3 .era-badge { background: rgba(52,211,153,0.15); color: var(--accent3); }
+  .era-3 .event-dot { border-color: var(--accent3); }
+  .era-3 .event-year { color: var(--accent3); }
+
+  .era-4 .era-badge { background: rgba(245,158,11,0.15); color: var(--accent4); }
+  .era-4 .event-dot { border-color: var(--accent4); }
+  .era-4 .event-year { color: var(--accent4); }
+
+  .era-5 .era-badge { background: rgba(244,114,182,0.15); color: var(--accent5); }
+  .era-5 .event-dot { border-color: var(--accent5); }
+  .era-5 .event-year { color: var(--accent5); }
+
+  .era-6 .era-badge { background: rgba(56,189,248,0.15); color: var(--accent6); }
+  .era-6 .event-dot { border-color: var(--accent6); }
+  .era-6 .event-year { color: var(--accent6); }
+
+  .era-7 .era-badge { background: rgba(251,146,60,0.15); color: var(--accent7); }
+  .era-7 .event-dot { border-color: var(--accent7); }
+  .era-7 .event-year { color: var(--accent7); }
+
+  /* landmark cards border colors */
+  .era-1 .event-card.landmark { border-left-color: var(--accent); }
+  .era-2 .event-card.landmark { border-left-color: var(--accent2); }
+  .era-3 .event-card.landmark { border-left-color: var(--accent3); }
+  .era-4 .event-card.landmark { border-left-color: var(--accent4); }
+  .era-5 .event-card.landmark { border-left-color: var(--accent5); }
+  .era-6 .event-card.landmark { border-left-color: var(--accent6); }
+  .era-7 .event-card.landmark { border-left-color: var(--accent7); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    color: #636b83;
+    font-size: 0.85rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.8rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .era-desc { padding-left: 0; }
+    .timeline { padding-left: 40px; }
+    .timeline::before { left: 11px; }
+    .event-dot { left: -36px; width: 12px; height: 12px; }
+    .event-card { padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <h1>强化学习发展史</h1>
+  <p class="subtitle">从动态规划到大模型对齐 — 一部跨越七十年的智能决策算法演化史<br>涵盖关键理论、核心算法、里程碑实验与范式变革</p>
+  <p class="meta">研究整理 | 2024 年 &middot; 涵盖 1950s &ndash; 2024 &middot; 7 个历史阶段 &middot; 40+ 关键节点</p>
+</header>
+
+<!-- ===================== TOC BAR ===================== -->
+<nav class="toc-bar">
+  <div class="toc-bar-inner">
+    <a class="toc-link" href="#era1">I. 思想萌芽 (1950s-60s)</a>
+    <a class="toc-link" href="#era2">II. 理论奠基 (1970s-80s)</a>
+    <a class="toc-link" href="#era3">III. 经典算法涌现 (1989-99)</a>
+    <a class="toc-link" href="#era4">IV. 理论深化 (2000-12)</a>
+    <a class="toc-link" href="#era5">V. 深度RL革命 (2013-16)</a>
+    <a class="toc-link" href="#era6">VI. 算法成熟 (2017-20)</a>
+    <a class="toc-link" href="#era7">VII. 大模型时代 (2021-今)</a>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- ========================================================= -->
+<!--                  ERA 1: 思想萌芽期                         -->
+<!-- ========================================================= -->
+<section class="era era-1" id="era1">
+  <div class="era-header">
+    <div class="era-badge">I</div>
+    <h2>思想萌芽期 (1950s &ndash; 1960s)</h2>
+  </div>
+  <p class="era-desc">强化学习的三条根源 — 最优控制与动态规划、试错学习的心理学传统、以及早期的自学习计算机程序 — 在这一时期各自独立萌发。</p>
+
+  <div class="timeline">
+    <!-- 1950 Turing -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1950</div>
+        <div class="event-title">图灵提出机器学习的愉悦-痛苦系统</div>
+        <div class="event-authors">Alan Turing</div>
+        <div class="event-body">
+          <p>在论文《Computing Machinery and Intelligence》中，图灵讨论了"奖励和惩罚"如何用于教导机器，提出了类似强化信号驱动学习的早期构想。这一思想与后来的强化学习核心理念——通过奖励信号引导行为——遥相呼应。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1953 Bellman DP -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1953 &ndash; 1957</div>
+        <div class="event-title">Richard Bellman 创立动态规划 (Dynamic Programming)</div>
+        <div class="event-authors">Richard E. Bellman &mdash; RAND Corporation</div>
+        <div class="event-body">
+          <p>Bellman 在 1950 年代初期于兰德公司开始研究多阶段决策过程，并于 1957 年出版专著《Dynamic Programming》。他提出了<strong>最优性原理 (Principle of Optimality)</strong>：一个最优策略的子策略也必须是最优的。由此推导出的<strong>贝尔曼方程 (Bellman Equation)</strong>成为强化学习最核心的数学工具。</p>
+          <p>Bellman 同时引入了"维度灾难 (curse of dimensionality)"概念，指出动态规划的计算复杂度随状态空间维数指数增长——这一困难驱动了此后几十年间函数逼近与近似方法的发展。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>贝尔曼方程是现代强化学习（Q-learning、TD 学习、DQN、PPO 等）的数学基石。所有价值函数方法的本质都是在求解或逼近贝尔曼方程。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1957 Bellman MDP -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1957</div>
+        <div class="event-title">马尔可夫决策过程 (MDP) 的正式化</div>
+        <div class="event-authors">Richard Bellman</div>
+        <div class="event-body">
+          <p>Bellman 引入了离散随机最优控制问题的数学框架——马尔可夫决策过程 (MDP)。MDP 由状态集合 S、动作集合 A、转移概率 P、奖励函数 R 和折扣因子 &gamma; 构成，它为强化学习提供了标准的问题形式化。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1959 Samuel -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1959</div>
+        <div class="event-title">Arthur Samuel 的跳棋自学习程序</div>
+        <div class="event-authors">Arthur L. Samuel &mdash; IBM</div>
+        <div class="event-body">
+          <p>Samuel 在 IBM 701 上开发了世界上最早的自学习程序之一。程序通过<strong>自我对弈 (self-play)</strong> 学习下棋，并使用<strong>时序差分思想</strong>的雏形来更新棋局评估函数——每一对时间上相继的棋局评估之间的差值被用来修正早先的评估。</p>
+          <p>Samuel 还首次在论文中使用了"machine learning (机器学习)"这一术语。程序在 1962 年击败了一位专家棋手，引起广泛关注。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Samuel 的工作是强化学习的第一次实践成功，其自我对弈思想后来在 TD-Gammon 和 AlphaGo 中被继承和发扬。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1960 Howard -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1960</div>
+        <div class="event-title">Howard 提出策略迭代 (Policy Iteration)</div>
+        <div class="event-authors">Ronald A. Howard</div>
+        <div class="event-body">
+          <p>Howard 在其博士论文中为 MDP 设计了<strong>策略迭代算法</strong>：交替进行策略评估与策略改进，直至收敛到最优策略。这一方法连同 Bellman 的价值迭代 (Value Iteration) 构成了动态规划求解 MDP 的两大经典算法。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--                  ERA 2: 理论奠基期                         -->
+<!-- ========================================================= -->
+<section class="era era-2" id="era2">
+  <div class="era-header">
+    <div class="era-badge">II</div>
+    <h2>理论奠基期 (1970s &ndash; 1980s)</h2>
+  </div>
+  <p class="era-desc">试错学习的思想在人工智能领域复兴，时序差分学习被正式理论化，Actor-Critic 架构初现，三条历史线索开始汇合。</p>
+
+  <div class="timeline">
+    <!-- 1972 Klopf -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1972</div>
+        <div class="event-title">Harry Klopf 复兴试错学习思想</div>
+        <div class="event-authors">A. Harry Klopf &mdash; Wright-Patterson Air Force Base</div>
+        <div class="event-body">
+          <p>Klopf 在论文《Brain Function and Adaptive Systems — A Heterostatic Theory》中重新引入了"享乐主义 (hedonic)"学习观：智能系统天然追求奖励、回避惩罚。他提出"广义强化 (generalized reinforcement)"概念，认为系统的每个子组件都以强化信号的方式看待输入。这一思想直接启发了 Sutton 和 Barto 的后续研究。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Klopf 被 Sutton & Barto 称为"在人工智能领域复兴试错学习线索的最重要人物"。Sutton & Barto 的教科书《Reinforcement Learning: An Introduction》即以纪念 Klopf 作为献辞。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1977 Witten TD(0) -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1977</div>
+        <div class="event-title">Ian Witten 提出最早的时序差分学习规则</div>
+        <div class="event-authors">Ian H. Witten</div>
+        <div class="event-body">
+          <p>Witten 发表了最早已知的时序差分学习规则，其方法即后来被称为表格型 TD(0) 的算法。他将其作为自适应控制器的一部分来求解 MDP，标志着 TD 学习从跳棋程序中的隐式技巧走向了独立的算法思想。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1983 Barto-Sutton AHC -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1983</div>
+        <div class="event-title">Barto, Sutton & Anderson 提出 Actor-Critic 架构 (ASE/ACE)</div>
+        <div class="event-authors">Andrew G. Barto, Richard S. Sutton, Charles W. Anderson</div>
+        <div class="event-body">
+          <p>在标志性论文《Neuronlike Adaptive Elements That Can Solve Difficult Learning Control Problems》中，三位作者提出了自适应搜索元素 (ASE) 和自适应评价元素 (ACE) 的组合——即<strong>第一个 Actor-Critic 算法</strong>。Actor 负责选择行为，Critic 负责评估行为的好坏。这一架构在倒立摆控制问题上取得了成功。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Actor-Critic 是强化学习中最持久的算法框架之一，从 1983 年延续至今的 A3C、PPO、SAC 等都是这一思想的后代。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1986 Holland -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1986</div>
+        <div class="event-title">Holland 的分类器系统 (Classifier Systems)</div>
+        <div class="event-authors">John H. Holland</div>
+        <div class="event-body">
+          <p>Holland 引入了分类器系统——真正的强化学习系统，包含关联 (association) 和价值函数 (value function) 两个核心组件。他的"桶链算法 (bucket-brigade algorithm)"是另一种形式的时序信用分配机制。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1988 Sutton TD(lambda) -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1988</div>
+        <div class="event-title">Sutton 正式提出时序差分学习 TD(&lambda;)</div>
+        <div class="event-authors">Richard S. Sutton</div>
+        <div class="event-body">
+          <p>在论文《Learning to Predict by the Methods of Temporal Differences》(Machine Learning, 1988) 中，Sutton 将时序差分学习从控制问题中分离出来，将其视为一种<strong>通用预测方法</strong>。论文提出了 TD(&lambda;) 算法族，参数 &lambda; 控制资格迹的衰减速率，从而在蒙特卡罗方法 (&lambda;=1) 和单步 TD (&lambda;=0) 之间建立了统一的理论谱系。</p>
+          <p>Sutton 在随机游走问题上证明了 TD 方法比传统监督学习方法收敛更快、预测更准确，同时所需的内存和计算量更少。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>"Temporal Difference"一词在此论文中正式命名。TD 学习成为强化学习三大核心方法之一（DP、MC、TD），并在神经科学中被发现与多巴胺神经元的信号模式惊人吻合。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--              ERA 3: 经典算法涌现期                         -->
+<!-- ========================================================= -->
+<section class="era era-3" id="era3">
+  <div class="era-header">
+    <div class="era-badge">III</div>
+    <h2>经典算法涌现期 (1989 &ndash; 1999)</h2>
+  </div>
+  <p class="era-desc">Q-Learning、REINFORCE、SARSA、TD-Gammon 等经典算法在这一时期密集涌现。理论收敛性被严格证明，神经网络函数逼近的早期成功令人瞩目，层次化强化学习框架诞生。</p>
+
+  <div class="timeline">
+    <!-- 1989 Watkins Q-learning -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1989</div>
+        <div class="event-title">Chris Watkins 提出 Q-Learning</div>
+        <div class="event-authors">Christopher J.C.H. Watkins &mdash; PhD Thesis, University of Cambridge</div>
+        <div class="event-body">
+          <p>在博士论文《Learning from Delayed Rewards》中，Watkins 提出了 <strong>Q-Learning 算法</strong>——一种无模型 (model-free)、离策略 (off-policy) 的强化学习算法。Q-Learning 通过迭代更新 Q(s,a) 值来直接学习最优策略，无需知道环境的转移概率或奖励模型。</p>
+          <p>核心更新规则：<br><code>Q(s,a) &larr; Q(s,a) + &alpha;[r + &gamma; max_a' Q(s',a') - Q(s,a)]</code></p>
+          <p>1992 年，Watkins 与 Dayan 联合发表了 Q-Learning 的严格收敛性证明：只要每个状态-动作对被无限次采样，且学习率满足适当条件，Q 值以概率 1 收敛到最优。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Q-Learning 是强化学习最著名、引用最广的算法之一。它证明了智能体可以仅通过与环境交互就学会最优行为，无需了解世界的内部机制。它是 DQN 等深度强化学习算法的直接前身。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1992 Williams REINFORCE -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1992</div>
+        <div class="event-title">Williams 提出 REINFORCE 策略梯度算法</div>
+        <div class="event-authors">Ronald J. Williams</div>
+        <div class="event-body">
+          <p>在论文《Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning》(Machine Learning, 1992) 中，Williams 提出了一类统计梯度跟随算法（REINFORCE = <em>REward Increment = Non-negative Factor &times; Offset Reinforcement &times; Characteristic Eligibility</em>），首次证明了<strong>直接对策略进行梯度优化</strong>的可行性。</p>
+          <p>与 Q-Learning 先学价值函数再导出策略不同，策略梯度方法直接参数化策略 &pi;(a|s;&theta;) 并沿期望回报的梯度方向更新参数。Williams 同时引入了<strong>基线 (baseline)</strong> 技术来降低梯度估计的方差。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>REINFORCE 开创了策略优化方法这一完整的研究路线，从 Actor-Critic 到 TRPO 再到 PPO，以及今天 RLHF 中使用的策略优化，都可以追溯到这篇论文。累计引用超过 10,000 次。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1994 SARSA -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1994</div>
+        <div class="event-title">SARSA: 在策略 (On-Policy) 的 TD 控制算法</div>
+        <div class="event-authors">G.A. Rummery & M. Niranjan (命名: Sutton, 1996)</div>
+        <div class="event-body">
+          <p>SARSA (State-Action-Reward-State-Action) 是 Q-Learning 的在策略 (on-policy) 变体。与 Q-Learning 使用 max 操作不同，SARSA 使用当前策略实际选择的下一个动作来更新 Q 值：<br><code>Q(s,a) &larr; Q(s,a) + &alpha;[r + &gamma; Q(s',a') - Q(s,a)]</code></p>
+          <p>这使得 SARSA 更加保守和安全——它会学会避免危险的状态，即使那些状态附近存在高回报。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1995 TD-Gammon -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1992 &ndash; 1995</div>
+        <div class="event-title">Gerald Tesauro 的 TD-Gammon</div>
+        <div class="event-authors">Gerald Tesauro &mdash; IBM T.J. Watson Research Center</div>
+        <div class="event-body">
+          <p>TD-Gammon 是一个使用 TD(&lambda;) 学习和三层神经网络进行自我对弈训练的西洋双陆棋程序。从<strong>随机初始权重开始</strong>（零知识起步），经过 150 万局自我对弈后，达到了接近世界顶尖人类玩家的水平。</p>
+          <p>网络使用 198 个输入单元编码棋盘特征，80 个隐藏单元，输出层预测获胜概率。程序发现的一些开局策略被人类专家接受并采纳，这是 AI 反向影响人类策略的早期案例。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>TD-Gammon 是 TD 学习 + 神经网络在复杂任务上的第一次重大成功，证明了神经网络作为函数逼近器在强化学习中的巨大潜力。它直接启发了 20 年后 DQN 和 AlphaGo 的研究者。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1997 Schultz dopamine -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1997</div>
+        <div class="event-title">多巴胺与 TD 误差的神经科学验证</div>
+        <div class="event-authors">Wolfram Schultz, Peter Dayan, P. Read Montague</div>
+        <div class="event-body">
+          <p>神经科学家发现中脑多巴胺神经元的发放模式与强化学习中的<strong>时序差分误差 (TD error)</strong> 惊人地一致：当实际奖励超出预期时多巴胺增加（正 TD 误差），当低于预期时减少（负 TD 误差），当完全符合预期时无变化。这一发现将计算强化学习与生物神经系统联系起来。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>TD 学习获得了生物学背书，强化学习从此在计算神经科学中占据核心地位。这也成为"RL 不只是工程方法，更可能反映生物智能的学习机制"的有力证据。
+        </div>
+      </div>
+    </div>
+
+    <!-- 1998 Sutton & Barto textbook -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">1998</div>
+        <div class="event-title">Sutton & Barto 出版《Reinforcement Learning: An Introduction》</div>
+        <div class="event-authors">Richard S. Sutton, Andrew G. Barto</div>
+        <div class="event-body">
+          <p>这部教科书系统性地整合了此前零散的强化学习理论与算法，建立了统一的知识体系。它涵盖了从动态规划到蒙特卡罗方法、从 TD 学习到策略梯度的完整谱系，成为该领域的"圣经"级参考书。2018 年出版了第二版。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1999 Options Framework -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">1999</div>
+        <div class="event-title">Options 框架: 层次化强化学习的经典理论</div>
+        <div class="event-authors">Richard S. Sutton, Doina Precup, Satinder Singh</div>
+        <div class="event-body">
+          <p>在论文《Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning》中，三位作者将 MDP 中的"动作"概念推广为<strong>"选项 (Options)"</strong>——跨越多个时间步的闭环策略。例如，"捡起物体"、"走到房间门口"都是选项。</p>
+          <p>Options 框架为强化学习提供了<strong>时间抽象 (temporal abstraction)</strong> 能力，使智能体能够在不同层次的时间粒度上学习、规划和表示知识。这是层次化强化学习 (Hierarchical RL) 领域最著名的理论框架。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Options 框架为处理长期信用分配、加速探索和迁移学习提供了理论基础，是后续层次化 RL、技能发现和子目标学习等研究的起点。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--               ERA 4: 理论深化与方法多元化                   -->
+<!-- ========================================================= -->
+<section class="era era-4" id="era4">
+  <div class="era-header">
+    <div class="era-badge">IV</div>
+    <h2>理论深化与方法多元化 (2000 &ndash; 2012)</h2>
+  </div>
+  <p class="era-desc">策略优化方法在理论上取得重大进展，逆强化学习、贝叶斯强化学习等新方向开辟，同时"维度灾难"问题驱动了函数逼近技术的持续演进。</p>
+
+  <div class="timeline">
+    <!-- 2000 Ng Inverse RL -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2000</div>
+        <div class="event-title">Ng & Russell 提出逆强化学习 (Inverse RL)</div>
+        <div class="event-authors">Andrew Y. Ng, Stuart Russell</div>
+        <div class="event-body">
+          <p>逆强化学习 (IRL) 提出了一个反向问题：给定专家的行为轨迹，能否推断出其背后的奖励函数？这为"从演示中学习 (Learning from Demonstrations)"提供了理论基础，使得不需要手动设计奖励函数，而是从人类行为中自动恢复。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2001 Kakade NPG -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2001</div>
+        <div class="event-title">Kakade 提出自然策略梯度 (Natural Policy Gradient)</div>
+        <div class="event-authors">Sham M. Kakade &mdash; NIPS 2001</div>
+        <div class="event-body">
+          <p>Kakade 将 Amari 的自然梯度思想引入强化学习，提出了<strong>自然策略梯度 (NPG)</strong>。核心思想是：标准梯度下降在参数空间中找最速下降方向，但策略参数的变化量与策略分布的变化量之间存在非线性关系。NPG 使用<strong>Fisher 信息矩阵</strong>对梯度进行预条件化，从而在策略分布空间中找到真正的最速下降方向。</p>
+          <p>实验显示，NPG 倾向于选择贪心最优动作——这与策略迭代的改进步骤惊人地一致。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>自然策略梯度直接催生了 TRPO 和 PPO 两大现代策略优化算法。Fisher 信息矩阵视角深刻揭示了策略空间的几何结构，为后续研究提供了理论工具。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2004 Sparse sampling -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2004</div>
+        <div class="event-title">策略梯度定理的进一步发展</div>
+        <div class="event-authors">Sutton, McAllester, Singh, Mansour (1999/2000) 及后续</div>
+        <div class="event-body">
+          <p>Sutton 等人严格证明了策略梯度定理，建立了策略梯度的理论基础。后续工作引入了兼容函数逼近 (compatible function approximation)、自然梯度等技术，推动了 Actor-Critic 方法从理论到实践的发展。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2005 LSPI -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2003 &ndash; 2005</div>
+        <div class="event-title">样本高效算法: LSPI 与收敛性分析</div>
+        <div class="event-authors">Lagoudakis & Parr 等</div>
+        <div class="event-body">
+          <p>最小二乘策略迭代 (LSPI) 等算法致力于提高样本效率。这一时期，研究者开始严格分析带函数逼近的 RL 算法的收敛性问题，深入理解"致命三角 (deadly triad)"——函数逼近 + 自举 (bootstrapping) + 离策略学习的组合可能导致发散。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2006 Monte Carlo Tree Search -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2006</div>
+        <div class="event-title">蒙特卡罗树搜索 (MCTS) 的提出</div>
+        <div class="event-authors">Rémi Coulom 等</div>
+        <div class="event-body">
+          <p>MCTS 通过蒙特卡罗模拟来估计搜索树中每个节点的价值，结合 UCB (Upper Confidence Bound) 选择策略平衡探索与利用。MCTS 在围棋程序中取得了显著进步，为后来 AlphaGo 将 MCTS 与深度学习结合奠定了算法基础。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2010 multi-agent RL -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2000s &ndash; 2012</div>
+        <div class="event-title">多智能体 RL 与博弈论的交叉</div>
+        <div class="event-authors">Busoniu, Bowling, Littman 等</div>
+        <div class="event-body">
+          <p>多智能体强化学习 (MARL) 从博弈论中汲取工具，研究多个学习智能体的交互、合作与竞争。Minimax-Q、Nash-Q 等算法将博弈论的均衡概念与 Q-learning 结合。这一时期还发展了独立学习者 (Independent Learners)、集中训练分散执行 (CTDE) 等范式。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--               ERA 5: 深度强化学习革命                       -->
+<!-- ========================================================= -->
+<section class="era era-5" id="era5">
+  <div class="era-header">
+    <div class="era-badge">V</div>
+    <h2>深度强化学习革命 (2013 &ndash; 2016)</h2>
+  </div>
+  <p class="era-desc">深度学习与强化学习的融合引发了革命性突破。DQN 在 Atari 游戏上超越人类，AlphaGo 在围棋上击败世界冠军，A3C 开创了并行训练范式。强化学习从学术课题走向全球焦点。</p>
+
+  <div class="timeline">
+    <!-- 2013 DQN Atari -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2013 (arXiv) / 2015 (Nature)</div>
+        <div class="event-title">DQN: 深度 Q 网络突破 Atari 游戏</div>
+        <div class="event-authors">Volodymyr Mnih, Koray Kavukcuoglu, David Silver 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>DeepMind 团队提出了<strong>深度 Q 网络 (Deep Q-Network, DQN)</strong>——首次成功地将深度卷积神经网络与 Q-Learning 结合。DQN 直接从原始像素输入学习控制策略，在 49 款 Atari 2600 游戏中，使用<strong>同一套算法、网络架构和超参数</strong>，达到或超越人类玩家水平。</p>
+          <p>两项关键技术创新：<br>1. <strong>经验回放 (Experience Replay)</strong>：打破样本间的时间相关性<br>2. <strong>目标网络 (Target Network)</strong>：稳定训练过程中的目标值</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>DQN 被视为深度强化学习的"开山之作"。它证明了深度神经网络可以作为强化学习中的通用函数逼近器，解决了 Watkins (1989) 指出的"非线性函数逼近 + Q-learning 不稳定"问题。这篇发表在 Nature 上的论文标志着深度强化学习时代的正式开启。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2015 TRPO -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2015</div>
+        <div class="event-title">TRPO: 信赖域策略优化</div>
+        <div class="event-authors">John Schulman, Sergey Levine, Philipp Moritz, Michael I. Jordan, Pieter Abbeel</div>
+        <div class="event-body">
+          <p>Trust Region Policy Optimization (TRPO) 在 Kakade 的自然策略梯度基础上，引入<strong>KL 散度约束</strong>来限制每次策略更新的幅度，确保单调改进。通过共轭梯度法高效求解约束优化问题，TRPO 在连续控制任务上取得了稳定的训练效果。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>TRPO 验证了"约束策略更新步长"的核心思想，直接催生了更加实用的 PPO 算法。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2015 DDPG -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2015</div>
+        <div class="event-title">DDPG: 连续控制的深度确定性策略梯度</div>
+        <div class="event-authors">Timothy P. Lillicrap 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>Deep Deterministic Policy Gradient (DDPG) 将 DQN 的思想扩展到连续动作空间，结合了确定性策略梯度 (DPG) 与深度神经网络。使用 Actor-Critic 架构、经验回放和目标网络，DDPG 能够解决机器人控制等连续控制问题。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2015 Double DQN / Dueling DQN -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2015 &ndash; 2016</div>
+        <div class="event-title">DQN 改进: Double DQN, Dueling DQN, Prioritized Replay</div>
+        <div class="event-authors">van Hasselt; Wang; Schaul 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>围绕 DQN 展开了一系列重要改进：<strong>Double DQN</strong> 解决 Q 值过高估计问题；<strong>Dueling DQN</strong> 将状态价值与动作优势解耦；<strong>优先经验回放 (PER)</strong> 按 TD 误差大小采样经验。这些技术后来被整合为 Rainbow DQN (2017)。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2016 AlphaGo -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2016 年 1 月（论文）/ 3 月（比赛）</div>
+        <div class="event-title">AlphaGo 击败围棋世界冠军</div>
+        <div class="event-authors">David Silver 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>AlphaGo 结合了<strong>深度神经网络</strong>和<strong>蒙特卡罗树搜索 (MCTS)</strong>，首次在完整棋盘围棋上击败人类职业棋手。系统包含四个核心组件：</p>
+          <p>1. <strong>SL 策略网络</strong>：从人类专家对局中监督学习<br>2. <strong>RL 策略网络</strong>：通过自我对弈的策略梯度学习进一步提升<br>3. <strong>价值网络</strong>：预测棋局的获胜概率<br>4. <strong>MCTS</strong>：结合策略网络与价值网络进行搜索</p>
+          <p>2016 年 3 月，AlphaGo 以 4:1 击败围棋世界冠军李世石。围棋拥有约 2.1&times;10<sup>170</sup> 种可能局面，远超宇宙中原子数量，这一胜利震惊了全世界。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>AlphaGo 是人工智能历史上的标志性事件之一，它彻底改变了公众对 AI 能力的认知，证明了深度强化学习在极端复杂决策问题上的有效性，并引发了全球范围的 AI 研究热潮。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2016 A3C -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2016</div>
+        <div class="event-title">A3C: 异步优势 Actor-Critic</div>
+        <div class="event-authors">Volodymyr Mnih 等 &mdash; DeepMind, ICML 2016</div>
+        <div class="event-body">
+          <p>论文《Asynchronous Methods for Deep Reinforcement Learning》提出了<strong>A3C (Asynchronous Advantage Actor-Critic)</strong> 框架：多个 Actor-Learner 在各自的环境副本中并行收集经验并异步更新共享的神经网络参数。</p>
+          <p>这种并行化方法带来了多重好处：不同 worker 的经验自然去相关（无需经验回放缓冲区）、训练速度快、仅需 CPU 即可高效训练。A3C 在 Atari 游戏和连续控制任务上都取得了最优结果。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>A3C 确立了异步并行训练的范式，同时复兴并强化了 Actor-Critic 架构在深度强化学习中的核心地位。其同步变体 A2C 至今仍被广泛使用。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--               ERA 6: 算法成熟与工程化                       -->
+<!-- ========================================================= -->
+<section class="era era-6" id="era6">
+  <div class="era-header">
+    <div class="era-badge">VI</div>
+    <h2>算法成熟与工程化 (2017 &ndash; 2020)</h2>
+  </div>
+  <p class="era-desc">PPO 成为事实上的标准算法，SAC 统治连续控制领域，AlphaZero 展示了从零自学的通用性，强化学习开始大规模应用于机器人、游戏 AI 和推荐系统。</p>
+
+  <div class="timeline">
+    <!-- 2017 PPO -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2017</div>
+        <div class="event-title">PPO: 近端策略优化</div>
+        <div class="event-authors">John Schulman, Filip Wolski 等 &mdash; OpenAI</div>
+        <div class="event-body">
+          <p>Proximal Policy Optimization (PPO) 继承了 TRPO "约束策略更新步长"的核心思想，但用极其简单的实现方式替代了复杂的二阶优化。PPO 提出了<strong>截断概率比 (clipped probability ratio)</strong> 目标函数：</p>
+          <p><code>L = min(r(&theta;)A, clip(r(&theta;), 1-&epsilon;, 1+&epsilon;)A)</code></p>
+          <p>其中 r(&theta;) 是新旧策略的概率比，A 是优势函数。这种"悲观估计"的方式自然限制了策略更新幅度，无需计算 KL 散度或 Fisher 信息矩阵。</p>
+          <p>PPO 实现简单、超参数鲁棒、性能优异，在连续控制和 Atari 游戏上都表现出色。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>PPO 是截至目前使用最广泛的强化学习算法。从 OpenAI Five (Dota 2) 到 ChatGPT 的 RLHF 训练，PPO 几乎无处不在。它的简单性和通用性使得强化学习真正具备了大规模工程化应用的能力。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2017 AlphaGo Zero & AlphaZero -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2017</div>
+        <div class="event-title">AlphaGo Zero & AlphaZero: 从零自学的通用博弈 AI</div>
+        <div class="event-authors">David Silver 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p><strong>AlphaGo Zero</strong>（2017 年 10 月）彻底抛弃了人类专家数据，仅通过自我对弈和强化学习从零开始训练，超越了此前所有版本的 AlphaGo。</p>
+          <p><strong>AlphaZero</strong>（2017 年 12 月）将 AlphaGo Zero 的方法推广到围棋、国际象棋和将棋三种棋类，使用<strong>同一套算法</strong>在 24 小时内从零训练到超越各游戏最强程序的水平。AlphaZero 每秒仅搜索 8 万个棋局（国际象棋中 Stockfish 搜索 7000 万个），但通过深度神经网络精准聚焦于最有价值的变化。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>AlphaZero 证明了一个通用的强化学习算法可以在多个领域从零掌握超人级能力，这是向通用人工智能迈进的重要一步。"tabula rasa"自学习范式成为后续研究的标杆。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2017 Rainbow DQN -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2017</div>
+        <div class="event-title">Rainbow DQN: 整合六大 DQN 改进</div>
+        <div class="event-authors">Matteo Hessel 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>Rainbow 将 Double DQN、Dueling、PER、多步回报、分布式 RL 和噪声网络六项独立的改进技术整合到一个统一的架构中，在 Atari 基准上大幅刷新了性能记录，成为价值函数方法的集大成之作。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2018 SAC -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2018</div>
+        <div class="event-title">SAC: 软 Actor-Critic 与最大熵框架</div>
+        <div class="event-authors">Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, Sergey Levine &mdash; UC Berkeley</div>
+        <div class="event-body">
+          <p>Soft Actor-Critic (SAC) 基于<strong>最大熵强化学习 (Maximum Entropy RL)</strong> 框架：智能体在最大化期望累积回报的同时，还最大化策略的熵（随机性）。这鼓励了充分探索，并带来对建模误差和环境扰动的鲁棒性。</p>
+          <p>SAC 结合了三大要素：Actor-Critic 架构、离策略学习（高数据效率）和熵正则化。它使用双 Q 网络来缓解过估计偏差，并支持自动调节温度参数 &alpha;。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>SAC 迅速成为连续控制任务（机器人行走、机械臂操作等）的首选算法。它在 2 小时内即可训练真实四足机器人学会行走，展示了强化学习在真实物理世界中的实用性。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2019 OpenAI Five -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2019</div>
+        <div class="event-title">OpenAI Five 击败 Dota 2 世界冠军队</div>
+        <div class="event-authors">OpenAI</div>
+        <div class="event-body">
+          <p>OpenAI Five 使用大规模分布式 PPO 训练五个协作的 AI 智能体，在极端复杂的实时策略游戏 Dota 2 中击败了 2018 年世界冠军队 OG。训练使用了相当于 45,000 年的自我对弈经验，展示了强化学习在超大规模部分可观察多智能体环境中的能力。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2019 MuZero -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2019 / 2020</div>
+        <div class="event-title">MuZero: 无需规则的通用规划算法</div>
+        <div class="event-authors">Julian Schrittwieser 等 &mdash; DeepMind</div>
+        <div class="event-body">
+          <p>MuZero 进一步推进了 AlphaZero 的思路：<strong>无需知道游戏规则</strong>，通过学习环境的动态模型来进行规划。它学习三个网络：表示函数（编码观察）、动态函数（预测下一状态）和预测函数（输出策略和价值），在围棋、国际象棋、将棋和 Atari 57 款游戏上都达到了最优水平。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>MuZero 统一了基于模型 (model-based) 和无模型 (model-free) 方法的边界，展示了学习世界模型用于规划的强大能力。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2019 Sim-to-Real -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2018 &ndash; 2020</div>
+        <div class="event-title">Sim-to-Real: 从仿真到真实世界的迁移</div>
+        <div class="event-authors">OpenAI (Rubik's Cube), 多个研究组</div>
+        <div class="event-body">
+          <p>这一时期，"在仿真中训练，向真实世界迁移"的范式取得了重要突破。OpenAI 的灵巧手在纯仿真中训练后成功解开了真实魔方。域随机化 (Domain Randomization)、系统识别 (System Identification) 等技术极大提高了 Sim-to-Real 的成功率。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!--               ERA 7: 大模型时代的 RL                       -->
+<!-- ========================================================= -->
+<section class="era era-7" id="era7">
+  <div class="era-header">
+    <div class="era-badge">VII</div>
+    <h2>大模型时代的强化学习 (2021 &ndash; 至今)</h2>
+  </div>
+  <p class="era-desc">RLHF 将强化学习推向大语言模型的核心训练环节，Decision Transformer 提出了全新范式，离线强化学习蓬勃发展，RL 与基础模型的深度融合正在重新定义智能的边界。</p>
+
+  <div class="timeline">
+    <!-- 2021 Decision Transformer -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2021</div>
+        <div class="event-title">Decision Transformer: 将 RL 重构为序列建模问题</div>
+        <div class="event-authors">Lili Chen 等 &mdash; UC Berkeley</div>
+        <div class="event-body">
+          <p>Decision Transformer 提出了一个激进的思路：不再使用贝尔曼方程或策略梯度，而是将强化学习问题转化为<strong>条件序列生成问题</strong>。通过将历史状态、动作和期望回报作为输入序列，使用 Transformer 架构直接预测下一步动作。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>Decision Transformer 开创了"RL as Sequence Modeling"的新范式，模糊了强化学习与序列建模之间的边界，为离线 RL 和大语言模型时代的 RL 研究提供了新视角。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2021 Offline RL -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2020 &ndash; 2022</div>
+        <div class="event-title">离线强化学习 (Offline RL) 的蓬勃发展</div>
+        <div class="event-authors">Sergey Levine, Aviral Kumar 等</div>
+        <div class="event-body">
+          <p>离线 RL（也称批量 RL）从预先收集的静态数据集中学习策略，无需与环境进行在线交互。CQL (Conservative Q-Learning)、IQL 等算法通过保守估计或隐式价值函数来解决分布偏移 (distribution shift) 问题。这使得 RL 能够安全地应用于医疗、金融等无法进行试错的领域。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 InstructGPT / RLHF -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card landmark">
+        <div class="event-year">2022</div>
+        <div class="event-title">InstructGPT & RLHF: 用人类反馈的强化学习对齐大语言模型</div>
+        <div class="event-authors">Long Ouyang 等 &mdash; OpenAI, NeurIPS 2022</div>
+        <div class="event-body">
+          <p>InstructGPT 论文展示了如何使用<strong>RLHF (Reinforcement Learning from Human Feedback)</strong> 来对齐大语言模型与人类意图。三阶段流程：</p>
+          <p>1. <strong>监督微调 (SFT)</strong>：在人类示范数据上微调 GPT-3<br>2. <strong>训练奖励模型 (RM)</strong>：让人类标注者对多个输出排序，训练出预测人类偏好的奖励模型<br>3. <strong>PPO 优化</strong>：使用奖励模型作为信号，通过 PPO 算法进一步优化语言模型</p>
+          <p>仅 13 亿参数的 InstructGPT 在人类评估中被偏好优于 1750 亿参数的 GPT-3（71% 的偏好率），证明"对齐 > 规模"。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>RLHF 将强化学习从游戏和机器人控制领域推向了 AI 最核心的赛道——大语言模型训练。InstructGPT 直接催生了 ChatGPT，开启了对话式 AI 的时代。PPO + 奖励模型的范式成为后续 Claude、Gemini 等模型训练的基础方法。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 ChatGPT -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2022 年 11 月</div>
+        <div class="event-title">ChatGPT 发布: RLHF 的全球级应用</div>
+        <div class="event-authors">OpenAI</div>
+        <div class="event-body">
+          <p>基于 InstructGPT 的 RLHF 方法训练的 ChatGPT 发布，两个月内用户突破一亿，成为人类历史上增长最快的消费级应用。强化学习（具体来说是 PPO + 人类偏好奖励模型）在语言模型的可用性和安全性中扮演了关键角色。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2023 DPO -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2023</div>
+        <div class="event-title">DPO: 直接偏好优化 — RLHF 的简化替代</div>
+        <div class="event-authors">Rafael Rafailov 等 &mdash; Stanford</div>
+        <div class="event-body">
+          <p>Direct Preference Optimization (DPO) 将 RLHF 中的奖励模型训练和 PPO 优化合并为单一的监督学习目标，消除了训练奖励模型和使用 RL 算法的复杂性。DPO 的效果与 RLHF 相当但实现更简单，引发了关于"对齐是否真的需要强化学习"的深入讨论。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2024 Multi-modal RL -->
+    <div class="event">
+      <div class="event-dot"></div>
+      <div class="event-card">
+        <div class="event-year">2023 &ndash; 2024</div>
+        <div class="event-title">RL + 基础模型: 机器人学习与具身智能的新范式</div>
+        <div class="event-authors">多个研究组</div>
+        <div class="event-body">
+          <p>大语言模型和视觉-语言模型开始作为强化学习的先验知识来源和高层规划器。RT-2、SayCan 等系统利用语言模型理解自然语言指令并分解为机器人可执行的子任务，RL 负责底层技能的学习和执行。</p>
+          <p>同时，DeepSeek-R1 等模型展示了强化学习在推理能力提升中的作用，进一步拓展了 RL 在 NLP 中的应用边界。</p>
+        </div>
+        <div class="event-impact">
+          <strong>历史影响：</strong>RL 与基础模型的融合正在重新定义人工智能的能力边界。从语言对齐到具身智能，强化学习作为"通过交互学习最优行为"的基本范式，持续证明其不可替代的核心价值。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <p>强化学习发展史时间线 &mdash; 涵盖 1950s 至 2024 年的关键理论、算法、实验与范式变革</p>
+  <p style="margin-top:8px;">参考文献：Sutton & Barto《Reinforcement Learning: An Introduction》(2018, 2nd ed.) 及各论文原始出处</p>
+</footer>
+
+</body>
+</html>
