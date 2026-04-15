@@ -1,0 +1,148 @@
+graph TD
+
+%% ─────────────────────────────────────────────
+%%  SUBGRAPHS
+%% ─────────────────────────────────────────────
+
+subgraph CMDS["Wiki Commands"]
+    direction TB
+    C_INGEST["wiki:ingest"]
+    C_LOOP["wiki:ingest-loop"]
+    C_QWEN["wiki:ingest-loop-qwen"]
+    C_QUERY["wiki:query"]
+    C_LINT["wiki:lint"]
+    C_GRAPH["wiki:graph"]
+    C_REINDEX["wiki:reindex"]
+    C_CONSOLIDATE["wiki:consolidate"]
+    C_CRYSTALLIZE["wiki:crystallize"]
+    C_JOURNAL["wiki:journal"]
+    C_REVIEW["wiki:review"]
+    C_QAIMPORT["wiki:qa-import"]
+    C_CONVERT["wiki:convert-to-markdown ★"]
+end
+
+subgraph PYSCRIPTS["Python Scripts"]
+    direction TB
+    PY_BM25["bm25_index.py"]
+    PY_GRAPH["build_graph.py"]
+    PY_STATS["build_statistics.py"]
+    PY_WIKI["build_wiki_pages.py"]
+    PY_SNAP["snapshot_index.py"]
+    PY_LINT["lint_wiki.py"]
+    PY_QWEN["qwen_ingest.py"]
+    PY_SEARCH["search_wiki.py ★"]
+end
+
+subgraph SHSCRIPTS["Shell Scripts"]
+    direction TB
+    SH_LOOP["setup-ingest-loop.sh"]
+    SH_QWEN["setup-ingest-loop-qwen.sh"]
+end
+
+subgraph HOOKS["Hooks (PostToolUse)"]
+    direction TB
+    H_LINT["hook_lint.sh"]
+    H_BM25["hook_bm25.sh"]
+    H_GRAPH["hook_graph.sh"]
+end
+
+subgraph DATA["Data Files"]
+    direction TB
+    D_INDEX["index.md"]
+    D_LOG["log.md"]
+    D_GRAPH["graph.json"]
+    D_MAPS["maps/*.md"]
+    D_BM25["index/BM25/*"]
+    D_STATIC["static/*"]
+end
+
+%% ─────────────────────────────────────────────
+%%  COMMAND → SCRIPT EDGES  (solid = calls)
+%% ─────────────────────────────────────────────
+
+C_INGEST --> PY_BM25
+C_INGEST --> PY_LINT
+
+C_LOOP --> SH_LOOP
+C_LOOP -.->|delegates| C_INGEST
+
+C_QWEN --> SH_QWEN
+C_QWEN --> PY_QWEN
+C_QWEN --> PY_BM25
+C_QWEN --> PY_LINT
+
+C_QUERY --> PY_BM25
+C_QUERY --> PY_SEARCH
+
+C_LINT --> PY_LINT
+C_LINT --> PY_BM25
+
+C_GRAPH --> PY_LINT
+C_GRAPH --> PY_GRAPH
+C_GRAPH --> PY_STATS
+C_GRAPH --> PY_WIKI
+
+C_REINDEX --> PY_SNAP
+
+C_JOURNAL --> PY_SEARCH
+
+C_REVIEW --> PY_SEARCH
+
+C_CONVERT -.->|pre-process for| C_INGEST
+
+%% ─────────────────────────────────────────────
+%%  HOOK → SCRIPT EDGES
+%% ─────────────────────────────────────────────
+
+H_LINT --> PY_LINT
+H_BM25 --> PY_BM25
+H_GRAPH --> PY_GRAPH
+
+%% ─────────────────────────────────────────────
+%%  SCRIPT → DATA WRITES  (solid = writes)
+%% ─────────────────────────────────────────────
+
+PY_BM25 --> D_BM25
+PY_GRAPH --> D_GRAPH
+PY_STATS --> D_STATIC
+PY_WIKI --> D_STATIC
+PY_SNAP --> D_INDEX
+
+%% ─────────────────────────────────────────────
+%%  SCRIPT → DATA READS  (dashed = reads)
+%% ─────────────────────────────────────────────
+
+PY_SEARCH -.->|reads| D_BM25
+PY_SEARCH -.->|reads| D_MAPS
+PY_SEARCH -.->|reads| D_GRAPH
+C_LINT -.->|reads| D_GRAPH
+
+%% ─────────────────────────────────────────────
+%%  COMMAND → DATA WRITES
+%% ─────────────────────────────────────────────
+
+C_INGEST --> D_INDEX
+C_INGEST --> D_LOG
+C_QAIMPORT --> D_INDEX
+C_QAIMPORT --> D_LOG
+C_REINDEX --> D_MAPS
+C_GRAPH --> D_STATIC
+
+%% ─────────────────────────────────────────────
+%%  STYLES
+%% ─────────────────────────────────────────────
+
+classDef command  fill:#4A90D9,stroke:#2C5F8A,color:#fff,rx:6
+classDef pyscript fill:#7EC8A4,stroke:#4A8A6A,color:#000,rx:4
+classDef shscript fill:#F5A623,stroke:#B87A1A,color:#000,rx:4
+classDef hook     fill:#E07070,stroke:#A03030,color:#fff,rx:4
+classDef data     fill:#D0C0F0,stroke:#7060A0,color:#000,rx:4
+classDef newitem  fill:#FFE066,stroke:#B89A00,color:#000,rx:6
+
+class C_INGEST,C_LOOP,C_QWEN,C_QUERY,C_LINT,C_GRAPH,C_REINDEX,C_CONSOLIDATE,C_CRYSTALLIZE,C_JOURNAL,C_REVIEW,C_QAIMPORT command
+class C_CONVERT newitem
+class PY_BM25,PY_GRAPH,PY_STATS,PY_WIKI,PY_SNAP,PY_LINT,PY_QWEN pyscript
+class PY_SEARCH newitem
+class SH_LOOP,SH_QWEN shscript
+class H_LINT,H_BM25,H_GRAPH hook
+class D_INDEX,D_LOG,D_GRAPH,D_MAPS,D_BM25,D_STATIC data
