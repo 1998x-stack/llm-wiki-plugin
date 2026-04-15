@@ -1,5 +1,22 @@
 # Changelog
 
+## [v3.1] - 2026-04-15
+
+### Refactored
+- **lint/check split**: new `wiki:check` (read-only diagnostics), `wiki:lint` now calls check first then repairs
+- **graph → build rename**: new `wiki:build` (builds all static assets), `wiki:graph` is now a thin alias
+- **ingest-loop merge**: `wiki:ingest-loop` now accepts `--engine=qwen` flag, `wiki:ingest-loop-qwen` is a thin alias
+- **index.md as computed artifact**: `wiki:ingest` now calls `snapshot_index.py --update` instead of manual append
+
+### Fixed
+- Memory/wiki boundary rule added to `_schema/CLAUDE.md`: semantic/ = single facts, syntheses/ = cross-topic analyses, no duplication
+- Hooks double-work accepted as-is (idempotent, revisit at 500+ pages)
+
+### Documentation
+- DAG.mmd + DAG.png rebuilt with new command structure (check, build, merged ingest-loop, graph alias)
+- CLAUDE.md (root + vault) updated with new command names
+- `docs/NEXT_STEPS.md`: brainstorming for future improvements with priority matrix
+
 ## [v3.0] - 2026-04-15
 
 ### Added

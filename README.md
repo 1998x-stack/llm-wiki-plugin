@@ -25,7 +25,7 @@ graph LR
 
     subgraph "Ingest Engine"
         B1[wiki:ingest]
-        B2[ingest-loop-qwen]
+        B2[ingest-loop --engine=qwen]
     end
 
     subgraph "Wiki Layer"
@@ -133,15 +133,15 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 |---------|-------|-------------|
 | `ingest` | `/wiki:ingest <path>` | 源材料 → wiki 页面，更新 index/log |
 | `query` | `/wiki:query <question>` | BM25 + maps + graph 统一搜索并综合回答 |
-| `lint` | `/wiki:lint` | 检查孤页、矛盾、过期、缺失链接 |
+| `check` | `/wiki:check` | 只读健康诊断（不修改文件） |
+| `lint` | `/wiki:lint` | 健康检查 + 自动修复（调用 check 后修复） |
 | `consolidate` | `/wiki:consolidate` | 记忆晋升 + 置信度衰减 |
 | `crystallize` | `/wiki:crystallize` | 会话探索 → 结构化摘要 |
 | `journal` | `/wiki:journal <type>` | 写日记（daily/reflection/judgment） |
 | `review` | `/wiki:review <scope>` | 分形回顾（weekly/monthly/quarterly） |
 | `qa-import` | `/wiki:qa-import <path>` | QA 数据批量导入 |
-| `ingest-loop` | `bash scripts/setup-ingest-loop.sh <dir>` | Ralph-loop 自动逐文件 ingest |
-| `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest（多页面模式） |
-| `graph` | `python3 scripts/build_graph.py --full` | 构建知识图谱 + 统计 + wiki HTML |
+| `ingest-loop` | `/wiki:ingest-loop <dir> [--engine=qwen]` | Ralph-loop 批量 ingest（默认 Claude，--engine=qwen 用 Qwen API） |
+| `graph / build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
 | `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
@@ -149,7 +149,7 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 
 ```
 vault/
-├── .claude/commands/wiki/   # 13 Claude Code commands
+├── .claude/commands/wiki/   # 15 Claude Code commands
 ├── .obsidian/               # Obsidian settings
 ├── _schema/                 # 系统规则 (CLAUDE.md + 类型定义)
 │   ├── CLAUDE.md            # Master schema

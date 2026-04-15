@@ -11,12 +11,12 @@
 2. [知识录入命令](#知识录入命令)
    - [wiki:ingest](#wikiingest)
    - [wiki:ingest-loop](#wikiingest-loop)
-   - [wiki:ingest-loop-qwen](#wikiingest-loop-qwen)
 3. [知识查询命令](#知识查询命令)
    - [wiki:query](#wikiquery)
 4. [知识维护命令](#知识维护命令)
+   - [wiki:check](#wikicheck)
    - [wiki:lint](#wikilint)
-   - [wiki:graph](#wikigraph)
+   - [wiki:build](#wikibuild)
    - [wiki:consolidate](#wikiconsolidate)
 5. [知识沉淀命令](#知识沉淀命令)
    - [wiki:crystallize](#wikicrystallize)
@@ -37,12 +37,13 @@
 
 | 命令 | 用途 | 输入 | 主要输出 |
 |------|------|------|----------|
-| `wiki:ingest` | 源材料 → wiki 页面 | 文件路径 / `all` | wiki 页面 + index.md + log.md |
-| `wiki:ingest-loop` | ralph-loop 批量 ingest | 文件夹路径 | 批量 wiki 页面 |
-| `wiki:ingest-loop-qwen` | ralph-loop + Qwen API 批量 | 文件夹路径 | 批量 wiki 页面 |
+| `wiki:ingest` | 源材料 → wiki 页面 | 文件路径 / `all` | wiki 页面 + log.md |
+| `wiki:ingest-loop` | ralph-loop 批量 ingest | `<path> [--engine=qwen]` | 批量 wiki 页面 |
 | `wiki:query` | 统一搜索 (BM25+maps+graph) + 回答 | 问题文本 | 回答 + 可选 synthesis 页面 |
-| `wiki:lint` | 健康检查 A-I 项 | 无 | lint 报告 + 自动修复 |
-| `wiki:graph` | lint + 构建知识图谱 | 无 | graph.json |
+| `wiki:check` | 只读健康诊断 (A-I 项) | 无 | 检查报告（不修改文件） |
+| `wiki:lint` | 健康检查 + 自动修复 | 无 | lint 报告 + 自动修复 |
+| `wiki:build` | 构建所有静态产出 | 无 | graph.json + statistics + wiki HTML |
+| `wiki:graph` | wiki:build 的别名 | 无 | 同 wiki:build |
 | `wiki:consolidate` | 记忆晋升 + 衰减 | `--deep`（可选） | 记忆层更新 |
 | `wiki:crystallize` | 会话 → 结构化摘要 | 主题描述（可选） | working memory + 可选 synthesis |
 | `wiki:journal` | 日记 / 反思 / 判断 | `daily` / `reflection` / `judgment` | journal 文件 |
@@ -179,77 +180,19 @@ State file: .claude/ingest-loop.local.md
 
 ---
 
-### wiki:ingest-loop-qwen
+### Qwen 引擎模式
 
-**用途**：与 `wiki:ingest-loop` 类似，但使用 Qwen3-Plus API（通过 DashScope）代替 Claude 进行知识提取。适用于大批量 ingest 以降低成本。
-
-**输入格式**：
+使用 `--engine=qwen` 切换到 Qwen API 引擎：
 
 ```
-/wiki:ingest-loop-qwen <文件夹路径>
+/wiki:ingest-loop raw/papers --engine=qwen
 ```
 
-**前置条件**：
+> `wiki:ingest-loop-qwen` 是 `wiki:ingest-loop --engine=qwen` 的别名，向后兼容。
 
-- 环境变量 `DASHSCOPE_API_KEY` 已设置
-- 已安装 `openai` Python 包（`pip install openai`）
-- 已安装 `pyyaml` 包
+**Qwen 模式前置条件**：环境变量 `DASHSCOPE_API_KEY` 已设置，已安装 `openai` + `pyyaml`。
 
-**执行流程**：
-
-1. **环境检查** — 验证 `DASHSCOPE_API_KEY` 已设置
-2. **初始化** — 运行 `scripts/setup-ingest-loop-qwen.sh <路径>`，创建状态文件 `.claude/ingest-loop-qwen.local.md`
-3. **循环执行** — 对每个文件调用 `scripts/qwen_ingest.py --raw <源文件> --wiki <目标文件>`：
-   - 读取源文件内容
-   - 调用 Qwen3-Plus API 提取实体/概念，生成结构化 wiki 页面
-   - 对 API 返回的页面执行内置 lint 检查
-   - lint 通过则写入 wiki 文件；存在严重错误则跳过并记录
-4. **完成承诺** — 输出 `<promise>ALL_FILES_INGESTED_QWEN</promise>`
-
-**Qwen API 调用细节**：
-
-- 模型：`qwen3-plus`
-- API 端点：`https://dashscope.aliyuncs.com/compatible-mode/v1`
-- 系统提示词内含完整的 frontmatter 规范和页面结构要求
-- 设置 `enable_thinking: False`
-
-**内置 lint 检查项**：
-
-- frontmatter 必须包含 `type`、`title`、`confidence` 等关键字段
-- `## 概述` 部分必须存在且长度 50-200 字
-- `## 关键内容` 部分必须存在且有实质内容
-- confidence 值必须在 0.0-1.0 范围内
-- 正文中应包含 `[[双链]]`
-
-**输出状态**：
-
-| 状态 | 含义 |
-|------|------|
-| `SUCCESS` | 页面通过所有检查，已写入 |
-| `LINT_WARNING` | 页面已写入，但存在非关键警告 |
-| `ERROR` | 存在严重错误，页面未写入 |
-
-**示例**：
-
-```
-/wiki:ingest-loop-qwen raw/papers
-```
-
-期望输出：
-
-```
-=== Ingest Loop Setup (Qwen API / qwen3-plus) ===
-Source: raw/papers
-Files to process: 5
-Model: qwen3-plus (via DashScope)
-
-[1/5] raw/papers/paper1.md → wiki/concepts/注意力机制.md ... SUCCESS
-[2/5] raw/papers/paper2.md → wiki/entities/Transformer.md ... LINT_WARNING (Overview short: 45 chars)
-[3/5] raw/papers/paper3.md → wiki/concepts/自监督学习.md ... SUCCESS
-...
-
-<promise>ALL_FILES_INGESTED_QWEN</promise>
-```
+**Qwen 模式差异**：使用 `qwen_ingest.py` 调用 Qwen3-Plus API 提取知识，不占用 Claude 上下文，适合大批量处理。
 
 ---
 
@@ -327,9 +270,23 @@ Model: qwen3-plus (via DashScope)
 
 ## 知识维护命令
 
+### wiki:check
+
+**用途**：对知识库进行只读健康诊断（不修改任何文件）。运行全部 A-I 检查项 + 语义检查，生成诊断报告。
+
+**输入格式**：
+
+```
+/wiki:check
+```
+
+无需参数。输出 ERROR / WARNING / INFO 分类报告，但不执行任何修复。适合 CI 或审查场景。
+
+---
+
 ### wiki:lint
 
-**用途**：对知识库进行全面健康检查，自动修复可修复的问题，生成诊断报告。
+**用途**：健康检查 + 自动修复。先调用 `wiki:check` 获取问题清单，然后对可修复项执行自动修复。
 
 **输入格式**：
 
@@ -399,21 +356,23 @@ Lint Report 2026-04-15
 
 ---
 
-### wiki:graph
+### wiki:build
 
-**用途**：先执行 lint 检查，然后构建完整的知识图谱 JSON 文件。输出包含节点、边、连通分量和孤页分析。
+**用途**：构建所有静态产出：graph.json、graph-statistics.json、static/wiki/ HTML 页面。
+
+> 别名：`wiki:graph`（向后兼容）
 
 **输入格式**：
 
 ```
-/wiki:graph
+/wiki:build
 ```
 
 无需参数。
 
 **执行流程**：
 
-1. 先执行 `wiki:lint` 确保数据健康
+1. 先执行 lint 预检查（只读）确保数据健康
 2. 调用 `scripts/build_graph.py` 构建图谱：
    - 第一遍扫描：从所有 wiki 页面的 frontmatter 构建节点（id、label、type、confidence、tags）
    - 第二遍扫描：从 frontmatter `relates_to` 提取带类型的边，从正文 `[[双链]]` 提取 wikilink 边

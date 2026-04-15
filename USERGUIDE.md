@@ -89,10 +89,10 @@ Claude Code 会自动读取 `vault/CLAUDE.md` 和 `vault/_schema/CLAUDE.md`，�
 
 ### Step 5: 验证命令可用
 
-在 Claude Code 中输入 `/wiki:` 然后按 Tab，应该看到所有 8 个命令：
+在 Claude Code 中输入 `/wiki:` 然后按 Tab，应该看到所有命令：
 
 ```
-ingest  query  lint  consolidate  crystallize  journal  review  qa-import
+ingest  query  check  lint  consolidate  crystallize  journal  review  qa-import  ingest-loop  build  reindex
 ```
 
 ### Step 6: （可选）配置 Qwen API
@@ -254,7 +254,7 @@ journal/
 
 | 文件 | 说明 |
 |------|------|
-| `index.md` | 全局内容目录，按类别列出所有 wiki 页面 |
+| `index.md` | 全局内容目录，按类别列出所有 wiki 页面（由 `snapshot_index.py` 自动维护的计算产出，勿手动编辑） |
 | `log.md` | 操作日志，记录每次 ingest/lint/consolidate 的结果 |
 | `log.hook.md` | Hook 执行日志 |
 | `graph.json` | 知识图谱的节点和边数据 |
@@ -311,9 +311,21 @@ Updated: index.md, log.md
 3. 综合多个来源给出结构化回答
 4. 附带引用来源列表
 
-### 4.3 `wiki:lint` — 知识库健康检查
+### 4.3 `wiki:check` — 只读诊断
 
-**功能：** 审计知识库，发现并修复质量问题。
+**功能：** 只读审计知识库，报告质量问题但不修改任何文件。
+
+**用法：**
+
+```
+/wiki:check
+```
+
+**检查项目：** 与 `wiki:lint` 相同，但只报告，不修复。适合快速了解当前知识库状态。
+
+### 4.4 `wiki:lint` — 知识库健康检查与修复
+
+**功能：** 调用 `wiki:check` 进行诊断，然后自动修复可修复的问题。
 
 **用法：**
 
@@ -343,7 +355,7 @@ Lint Results:
   Manual review needed: 1 issue
 ```
 
-### 4.4 `wiki:consolidate` — 记忆晋升
+### 4.5 `wiki:consolidate` — 记忆晋升
 
 **功能：** 执行四层记忆系统的晋升和衰减操作。
 
@@ -361,7 +373,7 @@ Lint Results:
 4. **置信度衰减：** 降低长期未引用页面的 confidence 值
 5. **Journal 模式扫描：** 分析日记中的反复主题
 
-### 4.5 `wiki:crystallize` — 会话结晶
+### 4.6 `wiki:crystallize` — 会话结晶
 
 **功能：** 将当前会话中的探索过程蒸馏为结构化摘要。
 
@@ -377,7 +389,7 @@ Lint Results:
 - 如果发现新知识，在 `wiki/syntheses/` 中创建综合页面
 - 更新相关页面的交叉引用
 
-### 4.6 `wiki:journal` — 日记辅助
+### 4.7 `wiki:journal` — 日记辅助
 
 **功能：** 辅助写日记、反思或判断，自动链接到相关知识页面。
 
@@ -395,7 +407,7 @@ Lint Results:
 - `reflection` → `journal/reflections/YYYY-MM-DD-reflection.md`
 - `judgment` → `journal/judgments/YYYY-MM-DD-judgment.md`
 
-### 4.7 `wiki:review` — 分形回顾
+### 4.8 `wiki:review` — 分形回顾
 
 **功能：** kepano 式分形回顾。扫描近期 journal 内容，辅助升维和建立连接。
 
@@ -414,7 +426,7 @@ Lint Results:
 3. 建议新的知识页面或跨领域连接
 4. 生成回顾摘要
 
-### 4.8 `wiki:qa-import` — QA 数据导入
+### 4.9 `wiki:qa-import` — QA 数据导入
 
 **功能：** 批量导入 QA 对话数据（jsonl 或 markdown 格式），提取洞见到 wiki。
 
@@ -433,14 +445,15 @@ Lint Results:
 4. 在 `wiki/qa-insights/` 中创建洞见页面
 5. 建立与已有 wiki 页面的双向链接
 
-### 4.9 `ingest-loop` — 自动循环 Ingest
+### 4.10 `wiki:ingest-loop` — 自动循环 Ingest
 
-**功能：** 基于 Ralph-loop 机制，自动逐文件 ingest 整个目录。
+**功能：** 基于 Ralph-loop 机制，自动逐文件 ingest 整个目录。支持 `--engine=qwen` 切换到 Qwen API。
 
 **用法：**
 
-```bash
-bash scripts/setup-ingest-loop.sh raw/articles/数值分析/
+```
+/wiki:ingest-loop raw/articles/数值分析/
+/wiki:ingest-loop raw/books/概率论/ --engine=qwen
 ```
 
 **工作原理：**
@@ -451,41 +464,34 @@ bash scripts/setup-ingest-loop.sh raw/articles/数值分析/
 4. 处理完成后自动标记，继续下一个
 5. 全部完成后停止
 
-### 4.10 `ingest-loop-qwen` — Qwen 批量 Ingest
+**引擎选项：**
 
-**功能：** 使用通义千问 API 代替 Claude 进行批量 ingest，节省 Claude 上下文。
+- 默认（无 flag）：使用 Claude Code 处理，质量最高，消耗 Claude 上下文
+- `--engine=qwen`：使用通义千问 API，快速，不消耗 Claude 上下文，适合大批量场景。需要设置 `DASHSCOPE_API_KEY`
 
-**前提：** 需要设置 `DASHSCOPE_API_KEY` 环境变量。
+> **注：** `wiki:ingest-loop-qwen` 是 `wiki:ingest-loop --engine=qwen` 的别名，两者等效。
+
+### 4.11 `wiki:build` — 构建所有静态产出
+
+**功能：** 扫描所有 wiki 页面，构建知识图谱、统计数据和静态 HTML wiki 查看器。这是 v3.1 的主命令，`wiki:graph` 是其别名。
 
 **用法：**
 
-```bash
-export DASHSCOPE_API_KEY="your-key"
-bash scripts/setup-ingest-loop-qwen.sh raw/books/概率论/
+```
+/wiki:build
 ```
 
-**特点：**
+等效别名：
 
-- 调用 Qwen API 生成 wiki 页面
-- 不消耗 Claude Code 的上下文窗口
-- 适合大批量 ingest 场景
-- 生成的页面格式与 Claude ingest 一致
-
-### 4.11 `graph` — 知识图谱构建
-
-**功能：** 扫描所有 wiki 页面，提取节点和边，生成 JSON 图谱数据。
-
-**用法：**
-
-```bash
-python3 scripts/build_graph.py
-python3 scripts/build_graph.py --output vault/graph.json
+```
+/wiki:graph   # wiki:graph 现为 wiki:build 的别名
 ```
 
 **输出：**
 
 - `graph.json`：节点（页面）和边（wikilink + frontmatter 关系）的 JSON 数据
-- 可配合 D3.js 模板生成交互式 HTML 图谱
+- `graph-statistics.json`：类型分布、置信度、标签频率等统计数据
+- `static/wiki/*.html`：静态 HTML wiki 查看器页面
 
 ---
 
@@ -515,8 +521,8 @@ python3 scripts/build_graph.py --output vault/graph.json
 ```
 每周日：
 1. /wiki:review weekly         — 回顾本周
-2. /wiki:lint                  — 健康检查
-3. python3 scripts/build_graph.py      — 更新图谱
+2. /wiki:lint                  — 健康检查 + 修复
+3. /wiki:build                 — 更新图谱和静态产出
 4. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
 
@@ -524,14 +530,18 @@ python3 scripts/build_graph.py --output vault/graph.json
 
 当需要导入大量源材料（例如一本书的所有章节）：
 
-```bash
+```
 # 方式 1：Claude 逐文件处理（高质量，消耗上下文）
-bash scripts/setup-ingest-loop.sh raw/books/矩阵分析/
+/wiki:ingest-loop raw/books/矩阵分析/
 
 # 方式 2：Qwen API 批量处理（快速，不消耗 Claude 上下文）
-export DASHSCOPE_API_KEY="your-key"
-bash scripts/setup-ingest-loop-qwen.sh raw/books/矩阵分析/
+# 需要先设置：export DASHSCOPE_API_KEY="your-key"
+/wiki:ingest-loop raw/books/矩阵分析/ --engine=qwen
+# 或使用别名：
+/wiki:ingest-loop-qwen raw/books/矩阵分析/
+```
 
+```bash
 # 处理完成后，重建索引和图谱
 python3 scripts/bm25_index.py build
 python3 scripts/build_graph.py
@@ -539,9 +549,9 @@ python3 scripts/build_graph.py
 
 ### 5.4 知识图谱探索
 
-```bash
-# 1. 构建图谱
-python3 scripts/build_graph.py --output vault/graph.json
+```
+# 1. 构建图谱（使用 wiki:build 主命令，或其别名 wiki:graph）
+/wiki:build
 
 # 2. 在浏览器中打开 graph.html 查看交互式图谱
 
@@ -996,14 +1006,18 @@ cd vault-cs && claude
 ### 常用命令
 
 ```
-/wiki:ingest <path>          导入源材料
-/wiki:query <question>       查询知识
-/wiki:lint                   健康检查
-/wiki:journal daily          创建日记
-/wiki:review weekly          每周回顾
-/wiki:consolidate            记忆整理
-/wiki:crystallize            会话结晶
-/wiki:qa-import <path>       导入 QA 数据
+/wiki:ingest <path>                      导入源材料
+/wiki:query <question>                   查询知识
+/wiki:check                              只读诊断（不修改文件）
+/wiki:lint                               健康检查 + 自动修复
+/wiki:journal daily                      创建日记
+/wiki:review weekly                      每周回顾
+/wiki:consolidate                        记忆整理
+/wiki:crystallize                        会话结晶
+/wiki:qa-import <path>                   导入 QA 数据
+/wiki:ingest-loop <dir>                  Ralph-loop 批量 ingest（Claude）
+/wiki:ingest-loop <dir> --engine=qwen   Ralph-loop 批量 ingest（Qwen）
+/wiki:build                              构建 graph + statistics + wiki HTML
 ```
 
 ### 常用脚本
@@ -1013,8 +1027,6 @@ python3 scripts/bm25_index.py build              重建搜索索引
 python3 scripts/bm25_index.py query "关键词"      搜索
 python3 scripts/build_graph.py                    构建知识图谱
 python3 scripts/lint_wiki.py                      运行 lint
-bash scripts/setup-ingest-loop.sh <dir>           启动自动 ingest
-bash scripts/setup-ingest-loop-qwen.sh <dir>      Qwen 批量 ingest
 bash scripts/watch-raw.sh                         文件监控
 bash scripts/cron-setup.sh                        安装定时任务
 ```
