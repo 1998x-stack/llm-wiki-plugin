@@ -9,7 +9,7 @@ argument-hint: "<folder_or_file_path>"
 
 ## 输入
 
-$ARGUMENTS — 文件夹路径或文件路径（相对于 vault/raw/）
+$ARGUMENTS — 文件夹路径或文件路径（相对于 raw/）
 
 ## 流程
 

@@ -9,7 +9,7 @@ $ARGUMENTS — 要回答的问题。
 ## 流程
 
 1. **BM25 搜索**
-   - 执行：`Bash: cd vault && python3 scripts/bm25_index.py query "$ARGUMENTS" -n 10`
+   - 执行：`Bash: python3 scripts/bm25_index.py query "$ARGUMENTS" -n 10`
    - 解析 JSON 结果，获取 top-10 相关页面路径和评分
 
 2. **扩展搜索**
@@ -34,7 +34,7 @@ $ARGUMENTS — 要回答的问题。
      - 追加 log.md
 
 6. **写入 QA 记录**
-   - 将问答写入 `vault/qa/YYYY-MM-DD.md`（使用 Write 工具）
+   - 将问答写入 `qa/YYYY-MM-DD.md`（使用 Write 工具）
    - 如果文件不存在，先创建文件头：
      ```markdown
      ---

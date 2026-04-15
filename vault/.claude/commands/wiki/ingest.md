@@ -4,7 +4,7 @@
 
 ## 输入
 
-$ARGUMENTS — 源文件路径（相对于 vault/raw/），或 "all" 处理所有未处理的文件。
+$ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未处理的文件。
 
 ## 流程
 

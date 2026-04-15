@@ -5,7 +5,7 @@
 ## 流程
 
 1. **运行脚本检查**
-   - 执行：`Bash: cd vault && python3 scripts/lint_wiki.py --json`
+   - 执行：`Bash: python3 scripts/lint_wiki.py --json`
    - 解析 JSON 报告获取所有脚本级别的问题
 
 2. **扫描所有 wiki/ 页面**

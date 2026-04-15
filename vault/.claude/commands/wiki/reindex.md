@@ -15,7 +15,7 @@ description: "重建知识库索引：验证完整性 + 按主题分类到 maps/
 ### 1. 完整性检查
 
 ```bash
-cd vault && python3 scripts/snapshot_index.py
+python3 scripts/snapshot_index.py
 ```
 
 解析 JSON 输出：

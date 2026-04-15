@@ -4,7 +4,7 @@
 
 ## 输入
 
-$ARGUMENTS — QA 文件路径（相对于 vault/raw/qa/），或 "all" 处理所有。
+$ARGUMENTS — QA 文件路径（相对于 raw/qa/），或 "all" 处理所有。
 
 ## 支持格式
 
