@@ -124,8 +124,14 @@ REQUIRED_FM_FIELDS = [
 CRITICAL_FM_FIELDS = ["type", "title", "confidence"]
 
 
+def strip_thinking_tags(text: str) -> str:
+    """Remove <think>...</think> blocks from Qwen3 responses."""
+    return re.sub(r"<think>.*?</think>\s*", "", text, flags=re.DOTALL).strip()
+
+
 def strip_code_block(text: str) -> str:
-    """Remove ```markdown ... ``` wrappers from API response."""
+    """Remove ```markdown ... ``` wrappers and <think> tags from API response."""
+    text = strip_thinking_tags(text)
     text = text.strip()
     pattern = r"^```(?:markdown|md|yaml)?\s*\n(.*?)```\s*$"
     m = re.match(pattern, text, re.DOTALL)
@@ -329,6 +335,9 @@ def main():
 
     # Call Qwen API
     response_text = call_qwen(raw_content, str(raw_path))
+
+    # Strip thinking tags from full response before splitting
+    response_text = strip_thinking_tags(response_text)
 
     # Split into pages
     pages_raw = split_pages(response_text)
