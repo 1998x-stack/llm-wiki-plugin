@@ -19,6 +19,11 @@ Ran via `bash scripts/test/run_all.sh` — tests underlying Python scripts direc
 |-----|------|-----|
 | F4 check matched h1 page titles as "empty sections" | `lint_wiki.py:116` | Skip h1, skip h2 parents with h3 children |
 | `--full` subprocess stdout mixed with main JSON | `build_graph.py:238` | `stdout=subprocess.DEVNULL` |
+| `load_index_links` doesn't handle aliased wikilinks | `lint_wiki.py:62` | Use pipe-aware regex |
+| No maps consistency check | `lint_wiki.py` | Added M1/M2 checks for maps/*.md |
+| `relates_to` can be string not dict | `build_graph.py:110` | Skip non-dict entries |
+| No math rendering in wiki HTML | `build_wiki_pages.py` | Added KaTeX CDN + auto-render |
+| No graph analytics beyond edge count | `build_statistics.py` | Added networkx: PageRank, betweenness, clustering, diameter |
 
 ---
 
