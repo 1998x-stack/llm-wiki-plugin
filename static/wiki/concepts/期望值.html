@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>期望值 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 期望值</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">期望值</h1>
+<h2 id="_2">概述</h2>
+<p>期望值（Expected Value，也称数学期望或expectation）是概率论中最基础的概念之一，用来衡量随机事件的"平均"或"典型"结果。虽然帕斯卡在1654年解决点数问题时隐含地使用了期望值的思想，但这个概念由惠更斯在1657年正式定义和命名。期望值已成为概率论、统计学、博弈论、金融学等领域的核心工具。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">基本定义</h3>
+<p>对于离散随机变量X，期望值定义为：
+$$E[X] = \sum_i x_i \cdot P(X = x_i)$$</p>
+<p>即：每个可能值乘以其发生的概率，然后求和。</p>
+<p>对于连续随机变量X，期望值为：
+$$E[X] = \int_{-\infty}^{+\infty} x \cdot f(x) dx$$</p>
+<p>其中f(x)是概率密度函数。</p>
+<h3 id="_5">直觉理解</h3>
+<p>假设你参加一个赌博游戏：
+- 如果掷出1到5，你获得对应的金额（1元到5元）
+- 如果掷出6，你失去6元
+- 每个结果的概率都是1/6</p>
+<p>那么你每局的期望收益是：
+$$E = 1 \cdot \frac{1}{6} + 2 \cdot \frac{1}{6} + 3 \cdot \frac{1}{6} + 4 \cdot \frac{1}{6} + 5 \cdot \frac{1}{6} - 6 \cdot \frac{1}{6} = \frac{9}{6} = 1.5 \text{元}$$</p>
+<p>这意味着长期看来，每局你平均赚1.5元。</p>
+<h3 id="_6">点数问题中的期望值</h3>
+<p>在点数问题中，帕斯卡的递推方法隐含了期望值的使用：</p>
+<p>设 f(a, b) 为A在"还差a局、B还差b局"时的期望收益（以全部赌注为单位）：
+$$f(a, b) = \frac{1}{2} \cdot f(a-1, b) + \frac{1}{2} \cdot f(a, b-1)$$</p>
+<p>这个公式说的是：下一局的结果有两种等可能的情况，A的期望收益是两种情况下收益的平均值。</p>
+<h3 id="_7">期望值的性质</h3>
+<ol>
+<li><strong>线性性</strong>：E[aX + b] = aE[X] + b</li>
+<li><strong>期望的期望</strong>：E[E[X|Y]] = E[X]（全期望公式）</li>
+<li><strong>独立变量的乘积</strong>：若X和Y独立，则E[XY] = E[X]E[Y]</li>
+<li><strong>方差和期望的关系</strong>：Var(X) = E[X²] - E[X]²</li>
+</ol>
+<h3 id="_8">在不同领域的应用</h3>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>保险</td>
+<td>期望亏损 = 赔付额 × 赔付概率，用于确定保费</td>
+</tr>
+<tr>
+<td>投资</td>
+<td>期望收益 = 各种情景的收益 × 其概率，用于评估投资</td>
+</tr>
+<tr>
+<td>博弈论</td>
+<td>期望收益决定最优策略</td>
+</tr>
+<tr>
+<td>医学</td>
+<td>期望寿命、期望生活质量</td>
+</tr>
+<tr>
+<td>机器学习</td>
+<td>损失函数的期望值指导模型训练</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1657">惠更斯的形式化定义（1657年）</h3>
+<p>惠更斯在《论赌博中的推理》中通过三条命题正式定义了期望，并对每条给出严格论证：</p>
+<table>
+<thead>
+<tr>
+<th>命题</th>
+<th>内容</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命题 I</td>
+<td>等可能获得 a 或 b</td>
+<td>E = (a + b) / 2</td>
+</tr>
+<tr>
+<td>命题 II</td>
+<td>等可能获得 a、b 或 c</td>
+<td>E = (a + b + c) / 3</td>
+</tr>
+<tr>
+<td>命题 III</td>
+<td>p 种机会得 a，q 种机会得 b</td>
+<td>E = (pa + qb) / (p + q)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>"公平交换"论证</strong>：如果玩家愿意用金额 E 交换参与权，则这个交换对所有方必须公平——没有任何一方能从交换中获得优势。由此推导出 E 的唯一值，即期望值。</p>
+<p>这种"无套利"的逻辑（任何一方无利可图时价格即公平价格）与现代金融数学的无套利定价原理在思想上一脉相承。</p>
+<h3 id="vs">期望值vs平均值</h3>
+<p>注意区别：
+- <strong>样本平均值</strong>：实际观察到的数据的平均数
+- <strong>期望值</strong>：理论上所有可能结果的加权平均</p>
+<p>例如，掷一颗骰子，期望值是3.5，但你永远掷不出3.5。期望值描述的是"长期平均"。</p>
+<h2 id="_9">意义</h2>
+<h3 id="_10">为什么期望值重要</h3>
+<ol>
+<li><strong>衡量风险</strong>：期望值告诉我们一个不确定的结果"平均"会怎样</li>
+<li><strong>做出决策</strong>：在多个不确定的选择中，选择期望值最高的</li>
+<li><strong>理解大数定律</strong>：样本平均趋向于期望值</li>
+<li><strong>金融应用</strong>：现代金融定价和风险管理的核心工具</li>
+</ol>
+<h3 id="_11">在概率论中的地位</h3>
+<ul>
+<li>帕斯卡的递推方法本质上是期望值计算的原型</li>
+<li>惠更斯正式定义期望值，使其成为独立的数学概念</li>
+<li>期望值是现代概率论和统计学的基石之一</li>
+</ul>
+<h2 id="_12">来源</h2>
+<ul>
+<li><a href="点数问题.html">点数问题</a></li>
+<li><a href="概率论.html">概率论</a></li>
+</ul>
+<h2 id="_13">相关</h2>
+<ul>
+<li><a href="../entities/克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a></li>
+<li><a href="大数定律.html">大数定律</a></li>
+<li><span style="color:#e74c3c" title="broken link">方差与标准差</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="有限元方法.html">&larr; 有限元方法</a>
+    <a href="条件数.html">条件数 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冯·诺依曼稳定性分析 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 冯·诺依曼稳定性分析</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">冯·诺依曼稳定性分析</h1>
+<h2 id="_2">概述</h2>
+<p>冯·诺依曼稳定性分析（von Neumann stability analysis）由<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>于 1940 年代在曼哈顿计划数值计算工作中发展。其核心思想是将有限差分格式的<strong>误差</strong>展开为傅里叶级数，分析每个傅里叶模式经一个时间步后的放大倍数（amplification factor）$g(\xi)$。稳定性等价于所有模式的放大因子满足 $|g(\xi)| \leq 1$。这一方法提供了比<a href="CFL条件.html">CFL条件</a>更精确的稳定性判据，将定性的收敛条件转化为可精确计算的不等式。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">方法框架</h3>
+<p>考虑线性有限差分格式，将误差 $\epsilon_j^n = u_j^n - u(x_j, t_n)$ 展开为傅里叶模式：</p>
+<p>$$\epsilon_j^n = \sum_\xi G^n(\xi) e^{i\xi j\Delta x}$$</p>
+<p>每个模式 $e^{i\xi j\Delta x}$ 经一步时间推进后变为 $g(\xi) \cdot e^{i\xi j\Delta x}$，其中 $g(\xi)$ 是<strong>放大因子</strong>（amplification factor）。</p>
+<p><strong>稳定性判据</strong>：格式稳定 ⟺ 对所有波数 $\xi$，$|g(\xi)| \leq 1$（Fourier 模式不被放大）。</p>
+<h3 id="_5">应用示例：一维波动方程显式格式</h3>
+<p>对格式 $u_j^{n+1} = u_j^n - \frac{c\Delta t}{2\Delta x}(u_{j+1}^n - u_{j-1}^n)$（一阶迎风格式），放大因子：</p>
+<p>$$g(\xi) = 1 - \frac{c\Delta t}{\Delta x}(e^{i\xi\Delta x} - e^{-i\xi\Delta x})/2 = 1 - ic\nu\sin(\xi\Delta x)$$</p>
+<p>$|g(\xi)|^2 = 1 + \nu^2\sin^2(\xi\Delta x)$，当 $\nu \neq 0$ 时恒 $&gt; 1$——<strong>无条件不稳定</strong>！</p>
+<p>对<strong>Lax-Friedrichs 格式</strong>（Lax 1954年修改为稳定格式），放大因子在 $\nu = c\Delta t/\Delta x \leq 1$ 时满足 $|g(\xi)| \leq 1$——这精确验证了<a href="CFL条件.html">CFL条件</a>。</p>
+<h3 id="cfl">与 CFL 条件的关系</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CFL 条件（1928）</th>
+<th>冯·诺依曼分析（1940s）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来源</td>
+<td>依赖域几何论证（物理直觉）</td>
+<td>傅里叶模式代数计算（定量工具）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>收敛必要条件</td>
+<td>精确稳定性充要条件（对线性格式）</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>显式格式，双曲方程</td>
+<td>线性格式，任意类型方程</td>
+</tr>
+<tr>
+<td>局限性</td>
+<td>必要非充分</td>
+<td>仅适用线性、常系数格式</td>
+</tr>
+</tbody>
+</table>
+<p>对许多格式，两者条件完全一致；冯·诺依曼分析提供了 CFL 条件的数学"证明"。</p>
+<h3 id="lax-1956">Lax 等价定理（1956）</h3>
+<p>Peter Lax 和 R. D. Richtmyer 将冯·诺依曼分析的稳定性概念与收敛性正式联系起来：</p>
+<p><strong>Lax 等价定理</strong>：对于适定的线性初值问题的一致差分格式，<strong>稳定性 ⟺ 收敛性</strong>。</p>
+<p>这将冯·诺依曼分析的稳定性判据升级为收敛性的充要工具。</p>
+<h3 id="ftcs">扩散方程 FTCS 格式示例</h3>
+<p>一维扩散方程 $u_t = \nu u_{xx}$，前向时间中心空间（FTCS）格式：</p>
+<p>$$g(\xi) = 1 - 4r\sin^2!\left(\frac{\xi\Delta x}{2}\right), \quad r = \frac{\nu\Delta t}{(\Delta x)^2}$$</p>
+<p>稳定条件 $|g(\xi)| \leq 1$ 要求 $r \leq 1/2$，即：</p>
+<p>$$\Delta t \leq \frac{(\Delta x)^2}{2\nu}$$</p>
+<p>这是经典的抛物型方程时间步长限制：空间步长减半则时间步长须减至四分之一（比波动方程的 CFL 更严格）。</p>
+<h3 id="1947">矩阵计算误差分析（1947 论文）</h3>
+<p>冯·诺依曼与戈尔茨坦（Herman Goldstine）的 1947 年矩阵求逆论文是另一重要贡献，奠定了数值线性代数误差分析基础：</p>
+<ul>
+<li><strong>矩阵条件数</strong>（condition number）概念首次系统提出：$\text{cond}(A) = |\lambda_{\max}|/|\lambda_{\min}|$（正规矩阵情形），衡量问题对输入扰动的敏感性</li>
+<li><strong>误差界定理</strong>：$t$ 位浮点精度下矩阵求逆的相对误差 $\sim \text{cond}(A) \cdot 2^{-t}$</li>
+<li><strong>统计误差模型</strong>：将舍入误差建模为随机变量，推导期望误差——此方法被后来的<a href="后向误差分析.html">后向误差分析</a>（Wilkinson, 1963）的确定性方法部分取代，但在现代概率数值分析中重新受到重视</li>
+</ul>
+<h3 id="_6">局限性</h3>
+<ul>
+<li><strong>仅适用线性格式</strong>：非线性方程（如 Navier-Stokes）需要线性化（"冻结系数"）或其他分析工具</li>
+<li><strong>常系数假设</strong>：变系数格式需要局部分析（冻结系数启发式方法）</li>
+<li><strong>不处理边界</strong>：傅里叶分析假设周期边界，实际边界条件的稳定性影响需要 GKS 理论（Gustafsson-Kreiss-Sundstrom）等更复杂工具</li>
+<li><strong>单步增长因子</strong>：不直接处理长时积分中相位误差的累积问题，需修正方程（modified equation）分析补充</li>
+<li><strong>矩阵误差</strong>：统计舍入误差假设比 Wilkinson 确定性后向误差分析更粗糙</li>
+</ul>
+<h3 id="_7">历史背景</h3>
+<p>冯·诺依曼的稳定性分析主要形成于 <strong>1944–1947 年洛斯阿拉莫斯国家实验室</strong>内部报告，源于曼哈顿计划中流体力学与辐射传输方程的数值模拟需求——差分格式不稳定时误差指数增长，结果完全无意义。该方法通过口头交流迅速传播，与<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>等人合作的冯·诺依曼1950年论文（Charney, Fjortoft, von Neumann）将其应用于首次成功的数值天气预报。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/11_cfl_condition.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/13_von_neumann_stability.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a></li>
+<li><a href="CFL条件.html">CFL条件</a></li>
+<li><a href="快速傅里叶变换.html">快速傅里叶变换</a></li>
+<li><a href="Richardson外推法.html">Richardson外推法</a></li>
+<li><a href="后向误差分析.html">后向误差分析</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="共轭梯度法.html">&larr; 共轭梯度法</a>
+    <a href="切比雪夫不等式.html">切比雪夫不等式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

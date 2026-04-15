@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>詹姆斯·约瑟夫·西尔维斯特 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 詹姆斯·约瑟夫·西尔维斯特</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">詹姆斯·约瑟夫·西尔维斯特</h1>
+<h2 id="_2">概述</h2>
+<p>英国数学家，1850年首次创造"矩阵"(matrix)一词，将矩形数表从行列式的附庸中解放出来，赋予其独立的数学身份。1852年证明惯性律，给出二次型在非退化线性替换下的完全分类不变量。与阿瑟·凯莱建立传奇合作关系，共同奠定线性代数学科基础。</p>
+<h2 id="_3">关键内容</h2>
+<ul>
+<li><strong>主要贡献</strong>：</li>
+<li>1850年创造"矩阵"术语，选择拉丁文matrix（意为"子宫"或"母体"）命名矩形数表，暗示矩阵是行列式的"孕育者"</li>
+<li>1852年证明Sylvester惯性律：实二次型在非退化线性替换下，正、负、零系数的个数保持不变</li>
+<li>创造大量线性代数术语：判别式(discriminant)、Hessian矩阵、Jacobian矩阵、余子式(minor)、零度(nullity)、标准形(canonical form)等</li>
+<li><strong>学术背景</strong>：与阿瑟·凯莱建立传奇合作关系，两人在伦敦律师界展开持续数十年的数学对话，形成独特的"平行创造"模式</li>
+<li><strong>时代背景</strong>：19世纪中叶英国代数学变革期，不变量理论成为研究前沿，Sylvester创造了invariant（不变量）、covariant（协变量）、contravariant（逆变量）等术语</li>
+<li><strong>教育经历</strong>：因犹太人身份无法在剑桥获得学位，后辗转于弗吉尼亚大学和保险精算行业</li>
+<li><strong>学术地位</strong>：英国皇家学会会士，曾任约翰霍普金斯大学首任数学系主任，创办《美国数学杂志》</li>
+</ul>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/矩阵分析/02_sylvester_matrix_terminology_law_of_inertia_1852.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
+<li><span style="color:#e74c3c" title="broken link">惯性律</span></li>
+<li><span style="color:#e74c3c" title="broken link">阿瑟·凯莱</span></li>
+<li><span style="color:#e74c3c" title="broken link">矩阵</span></li>
+<li><span style="color:#e74c3c" title="broken link">线性代数</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="詹姆斯·库利.html">&larr; 詹姆斯·库利</a>
+    <a href="赫尔曼·外尔.html">赫尔曼·外尔 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

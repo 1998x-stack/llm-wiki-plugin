@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>样本空间 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 样本空间</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">样本空间</h1>
+<h2 id="_2">概述</h2>
+<p>样本空间是概率论中的基本概念，指的是随机试验的所有可能结果的集合。在费马解决点数问题的组合枚举法中，他隐含地运用了样本空间的思想——将所有可能的未来情景列举出来，然后计算"有利情景"的比例。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">基本定义</h3>
+<p>样本空间（通常记为Ω）是随机试验所有可能结果的集合。</p>
+<h4 id="_5">例子</h4>
+<ol>
+<li><strong>掷一颗骰子</strong>：Ω = {1, 2, 3, 4, 5, 6}</li>
+<li><strong>掷两颗骰子</strong>：Ω = {(1,1), (1,2), ..., (6,6)}，共36种</li>
+<li><strong>抛硬币</strong>：Ω = {正面, 反面}</li>
+<li><strong>点数问题中的样本空间</strong>：当双方再进行a+b-1局时，Ω中包含所有可能的输赢序列，共2^(a+b-1)种</li>
+</ol>
+<h3 id="vs">样本点vs事件</h3>
+<ul>
+<li><strong>样本点</strong>：样本空间中的单个元素，即一个可能的结果</li>
+<li><strong>事件</strong>：样本空间的子集，即若干个可能结果的组合</li>
+</ul>
+<p>例如，在掷骰子的实验中：
+- 样本点：掷出1、掷出2、...、掷出6
+- 事件："掷出偶数" = {2, 4, 6}</p>
+<h3 id="_6">费马的样本空间思想</h3>
+<p>在点数问题中，费马的洞察是：</p>
+<ol>
+<li><strong>明确样本空间</strong>：不管实际赌局是否会提前结束，想象一个假设的实验：双方再掷a+b-1局</li>
+<li><strong>列举所有样本点</strong>：每局有"A赢"或"B赢"两种结果，所以共有2^(a+b-1)种等可能的序列</li>
+<li><strong>定义事件</strong>："A最终获胜" = 那些其中至少有a个回合A赢的所有序列</li>
+<li><strong>计算概率</strong>：P(A获胜) = |有利样本点数| / |总样本点数|</li>
+</ol>
+<p>这正是古典概率的基本思想：<strong>在等可能的情形下，概率 = 有利结果数 / 总结果数</strong>。</p>
+<h3 id="_7">样本空间的性质</h3>
+<ol>
+<li><strong>完备性</strong>：所有可能结果都被包含</li>
+<li><strong>互斥性</strong>：样本点之间相互排斥，不能同时发生</li>
+<li><strong>可数性</strong>：样本点可以逐一列举（离散的情况）或用连续分布描述（连续的情况）</li>
+</ol>
+<h3 id="_8">样本空间的类型</h3>
+<ul>
+<li><strong>离散样本空间</strong>：样本点数量有限或可数无限</li>
+<li>有限的：掷骰子、抽卡牌</li>
+<li>
+<p>无限的：计数到某个值出现为止</p>
+</li>
+<li>
+<p><strong>连续样本空间</strong>：样本点不可数</p>
+</li>
+<li>时间间隔[0, 10]内的某个时刻</li>
+<li>某个物体的精确位置</li>
+</ul>
+<h2 id="_9">意义</h2>
+<h3 id="_10">为什么样本空间重要</h3>
+<ol>
+<li><strong>概率的基础</strong>：样本空间是定义概率的前提——没有明确的样本空间，就无法计算概率</li>
+<li><strong>古典概率的基础</strong>：在等可能的样本空间中，概率计算简化为组合计数</li>
+<li><strong>现代概率的基础</strong>：Kolmogorov的公理化体系建立在样本空间和事件的基础上</li>
+</ol>
+<h3 id="_11">在概率论中的地位</h3>
+<ul>
+<li>费马在点数问题中隐含地引入了样本空间的思想</li>
+<li>这成为现代概率论最基础的概念之一</li>
+<li>Kolmogorov的公理化体系明确地以样本空间、σ-代数和概率测度为基础</li>
+</ul>
+<h2 id="_12">来源</h2>
+<ul>
+<li><a href="点数问题.html">点数问题</a></li>
+<li><a href="概率论.html">概率论</a></li>
+</ul>
+<h2 id="_13">相关</h2>
+<ul>
+<li><a href="组合枚举法.html">组合枚举法</a></li>
+<li><a href="古典概率定义.html">古典概率定义</a></li>
+<li><span style="color:#e74c3c" title="broken link">事件</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="极大极小定理.html">&larr; 极大极小定理</a>
+    <a href="样条方法.html">样条方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

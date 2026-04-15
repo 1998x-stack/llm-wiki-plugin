@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schur分解 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Schur分解</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="schur">Schur分解</h1>
+<h2 id="_1">概述</h2>
+<p>Schur分解（Schur Decomposition，或酉三角化定理）是<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>于1909年证明的矩阵分解定理：<strong>任意复方阵 $A \in \mathbb{C}^{n \times n}$ 均可酉相似于上三角矩阵</strong>，即存在酉矩阵 $Q$（$Q^<em>Q = I$）和上三角矩阵 $T$，使得 $A = QTQ^</em>$，且 $T$ 的对角元素恰为 $A$ 的全部特征值。该定理是现代矩阵分析与数值线性代数的基石，直接催生了<a href="QR算法.html">QR算法</a>并统一了<a href="正规矩阵.html">正规矩阵</a>谱理论。与 Jordan 标准形相比，Schur 分解在酉变换约束下牺牲了块对角结构，换取了卓越的数值稳定性。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">主定理</h3>
+<p><strong>Schur酉三角化定理（1909）</strong></p>
+<p>设 $A \in \mathbb{C}^{n \times n}$。则存在酉矩阵 $Q \in \mathbb{C}^{n \times n}$ 和上三角矩阵 $T$，使得</p>
+<p>$$A = QTQ^*, \quad t_{ii} = \lambda_i \; (i=1,\ldots,n)$$</p>
+<p>其中 $\lambda_1, \ldots, \lambda_n$ 是 $A$ 的全部特征值（计重数，可任意排序）。</p>
+<p><strong>等价表述</strong>：$\mathbb{C}^n$ 中存在标准正交基，使 $A$ 在此基下为上三角矩阵；等价地，存在 $A$-不变子空间构成的完全旗（complete flag）</p>
+<p>$${0} = V_0 \subset V_1 \subset \cdots \subset V_n = \mathbb{C}^n, \quad \dim V_k = k$$</p>
+<h3 id="_4">证明（归纳法）</h3>
+<p><strong>归纳步骤</strong>：由代数基本定理取特征值 $\lambda_1$ 及其单位特征向量 $v_1$，用 Gram-Schmidt 扩充为标准正交基构成酉矩阵 $U_1$，得</p>
+<p>$$U_1^<em> A U_1 = \begin{pmatrix} \lambda_1 &amp; b^</em> \ 0 &amp; A' \end{pmatrix}$$</p>
+<p>对 $(n-1)$ 阶矩阵 $A'$ 递归应用归纳假设，最终得到 Schur 形式。</p>
+<p>证明仅依赖<strong>代数基本定理</strong>（特征值存在）和 <strong>Gram-Schmidt 正交化</strong>，无需 Jordan 理论的根子空间分析。</p>
+<h3 id="schur_1">Schur不等式</h3>
+<p>$$\sum_{i=1}^{n} |\lambda_i|^2 \leq \sum_{i,j} |a_{ij}|^2 = |A|_F^2$$</p>
+<p><strong>证明</strong>：酉变换保 Frobenius 范数，故 $|A|<em>F = |T|_F = \sqrt{\sum_i |t</em>{ii}|^2 + \sum_{i&lt;j}|t_{ij}|^2} \geq \sqrt{\sum_i|\lambda_i|^2}$。</p>
+<p><strong>等号成立</strong> $\Longleftrightarrow$ $T$ 的严格上三角部分全为零 $\Longleftrightarrow$ $A$ 为<a href="正规矩阵.html">正规矩阵</a>。</p>
+<h3 id="_5">正规矩阵刻画</h3>
+<p>$$A \text{ 正规（}A^<em>A = AA^</em>\text{）} \iff A = QDQ^*, D \text{ 为对角矩阵}$$</p>
+<p><strong>推论</strong>：Hermite 矩阵（实特征值）、酉矩阵（模为1的特征值）、实对称矩阵（实特征值，正交对角化）均为正规矩阵的特例，它们的谱定理均是 Schur 定理的推论。</p>
+<h3 id="jordan">与 Jordan 标准形的对比</h3>
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>Jordan 标准形</th>
+<th>Schur 分解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变换类型</td>
+<td>一般相似变换</td>
+<td>酉（保范）相似</td>
+</tr>
+<tr>
+<td>标准形结构</td>
+<td>块对角（Jordan块）</td>
+<td>上三角</td>
+</tr>
+<tr>
+<td>数值稳定性</td>
+<td>差（条件数可任意大）</td>
+<td>好（酉矩阵条件数=1）</td>
+</tr>
+<tr>
+<td>唯一性</td>
+<td>唯一（块排列确定后）</td>
+<td>不唯一（特征值排列任意）</td>
+</tr>
+<tr>
+<td>精细程度</td>
+<td>最细（完整代数结构）</td>
+<td>较粗（丢失Jordan结构信息）</td>
+</tr>
+<tr>
+<td>域要求</td>
+<td>代数闭域</td>
+<td>复数域</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心权衡</strong>：Jordan 形最精细但数值不稳定；Schur 形数值稳定但信息略少。实际计算一律用 Schur 分解。</p>
+<h3 id="_6">关键应用</h3>
+<p><strong>QR算法</strong>（Francis &amp; Kublanovskaya, 1961）：反复执行 $A_k = Q_kR_k \to A_{k+1} = R_kQ_k$，序列 ${A_k}$ 在满足谱间隙条件时收敛到 Schur 形式。被列为"20世纪十大最有影响力算法"。</p>
+<p><strong>矩阵函数</strong>：若 $A = QTQ^<em>$，则 $f(A) = Qf(T)Q^</em>$，上三角矩阵的函数值由 Parlett 递推计算。矩阵指数 $e^A$、矩阵对数 $\ln A$、矩阵平方根 $A^{1/2}$ 等均通过此途径计算。</p>
+<p><strong>控制理论</strong>：线性系统稳定性（特征值实部符号）、Riccati 方程求解、$H_\infty$ 控制均依赖 Schur 形式。</p>
+<p><strong>特征值定位</strong>：Schur 不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 提供无需求解特征多项式的快速估计（特别是在 $n &gt; 4$ 时特征方程无根式解的情形）。</p>
+<h3 id="schur_2">Schur补</h3>
+<p>对分块矩阵 $M = \begin{pmatrix} A &amp; B \ C &amp; D \end{pmatrix}$（$D$ 可逆），Schur 补定义为</p>
+<p>$$M/D = A - BD^{-1}C$$</p>
+<p>由 Emilie Haynsworth（1968）以 Schur 名字命名，用于高斯消元、正定性判别、条件分布计算和 Kron 网络约化。</p>
+<h2 id="_7">局限性</h2>
+<ol>
+<li><strong>非唯一性</strong>：特征值排列顺序任意，存在重特征值时酉因子选择自由度更大</li>
+<li><strong>实数域</strong>：实矩阵只能得到"实 Schur 形"（准上三角，含 2×2 实块对应复特征值对）</li>
+<li><strong>Jordan结构信息丢失</strong>：严格上三角部分不是相似不变量</li>
+<li><strong>不变子空间问题</strong>：无穷维推广——一般可分 Hilbert 空间有界算子是否都有非平凡不变子空间——至今未解决</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a></li>
+<li><a href="正规矩阵.html">正规矩阵</a></li>
+<li><a href="QR算法.html">QR算法</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="谱半径.html">谱半径</a></li>
+<li><a href="Perron-Frobenius定理.html">Perron-Frobenius定理</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Romberg积分.html">&larr; Romberg积分</a>
+    <a href="Von Neumann迹不等式.html">Von Neumann迹不等式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

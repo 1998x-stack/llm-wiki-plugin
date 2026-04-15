@@ -41,6 +41,14 @@
     outline: none; transition: border-color 0.3s;
   }
   #search:focus { border-color: #4A90D9; }
+  #nav-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    color: var(--fg2); text-decoration: none; font-size: 14px;
+    padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+  }
+  .nav-links a:hover { background: var(--input-bg); }
+  .nav-links a.active { color: #4A90D9; font-weight: 600; }
   #theme-btn {
     padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px;
     background: var(--input-bg); color: var(--fg); cursor: pointer;
@@ -124,9 +132,16 @@
 <body>
 
 <div id="topbar">
-  <div id="search-row">
-    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off" />
-    <button id="theme-btn">Dark</button>
+  <div id="nav-row">
+    <div class="nav-links">
+      <a href="graph.html" class="active">Graph</a>
+      <a href="statistics.html">Statistics</a>
+      <a href="wiki/index.html">Wiki</a>
+    </div>
+    <div id="search-row">
+      <input id="search" type="text" placeholder="Search nodes..." autocomplete="off" />
+      <button id="theme-btn">Dark</button>
+    </div>
   </div>
   <div id="stats"></div>
 </div>
@@ -431,6 +446,20 @@
     });
 
     document.getElementById('file-path').textContent = d.id;
+
+    // View Page button
+    let viewBtn = document.getElementById('s-view-btn');
+    if (!viewBtn) {
+      viewBtn = document.createElement('a');
+      viewBtn.id = 's-view-btn';
+      viewBtn.target = '_blank';
+      viewBtn.style.cssText = 'display:inline-block;margin-top:12px;padding:8px 16px;background:#4A90D9;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;transition:background 0.2s;';
+      viewBtn.textContent = 'View Page';
+      viewBtn.addEventListener('mouseover', () => viewBtn.style.background = '#2a70b9');
+      viewBtn.addEventListener('mouseout', () => viewBtn.style.background = '#4A90D9');
+      document.getElementById('file-path').after(viewBtn);
+    }
+    viewBtn.href = 'wiki/' + d.id.replace('.md', '.html');
   }
 
   document.getElementById('sidebar-close').addEventListener('click', (e) => {

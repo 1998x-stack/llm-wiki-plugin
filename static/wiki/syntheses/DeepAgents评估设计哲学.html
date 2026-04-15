@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepAgents评估设计哲学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../syntheses/index.html">syntheses</a> / DeepAgents评估设计哲学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">评估</span><span class="tag">设计哲学</span><span class="tag">软件工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="deepagents">DeepAgents 评估设计哲学：三重分离原则</h1>
+<h2 id="_1">洞见</h2>
+<p>DeepAgents 的评估体系建立在<strong>三条核心分离线</strong>上，每条分离线都针对一个常见的"评估混淆陷阱"：</p>
+<hr />
+<h2 id="vs">第一分离：正确性 vs 效率</h2>
+<p><strong>混淆陷阱</strong>：将"多走了一步"等同于"做错了"，导致探索性行为被惩罚，Agent 趋向保守策略。</p>
+<p><strong>解法</strong>：两层断言模型
+- <strong>成功断言（SuccessAssertion）</strong> → 正确性，任一失败 = <code>pytest.fail</code>（测试红）
+- <strong>效率断言（EfficiencyAssertion）</strong> → 期望步数/工具调用形态，失败 = 仅写入 LangSmith，不报红</p>
+<p><strong>设计哲学</strong>：正确性是门槛，效率是优化方向。不混淆两者，才能既坚持质量底线，又容纳 Agent 在探索中学习的空间。</p>
+<hr />
+<h2 id="vs_1">第二分离：确定性 vs 语义</h2>
+<p><strong>混淆陷阱</strong>：用子串匹配衡量语义等价（漏报），或用 LLM Judge 评估固定格式（成本浪费）。</p>
+<p><strong>解法</strong>：双轨成功断言
+- <strong>确定性断言</strong>：<code>final_text_contains</code>、<code>file_equals</code> → 事实性短答案、精确文件内容，成本低、可复现
+- <strong>语义断言</strong>（LLM-as-Judge）：<code>llm_judge(*criteria)</code> → 语义正确性、风格、推理完整性，默认 <code>claude-sonnet-4-6</code> 评判</p>
+<p><strong>设计哲学</strong>：先问"规则能否表达"，再决定是否需要 LLM。Judge 是最后手段，不是默认选项。准则粒度要细——一条准则一个可判定问题，失败时 comment 才能定位。</p>
+<hr />
+<h2 id="vs_2">第三分离：能力 vs 基础设施</h2>
+<p><strong>混淆陷阱</strong>：沙箱 OOM / 超时导致的失败被统计为"模型能力退步"，污染横向对比数据。</p>
+<p><strong>解法</strong>：结构化失败分类（<code>FailureCategory</code>）
+- <code>CAPABILITY</code>：模型能力/策略问题（无基础设施信号）
+- <code>INFRA_OOM / INFRA_TIMEOUT / INFRA_SANDBOX</code>：基础设施问题
+- <code>is_infrastructure</code> 属性，在报表中单独分层统计</p>
+<p>辅助工具：
+- <strong>Wilson 置信区间</strong>：小样本下比正态近似更稳健
+- <strong>最小可检测效应（MDE）</strong>：防止在 90 题规模上对 1~2 题涨跌过度解读</p>
+<p><strong>设计哲学</strong>：评估的对象是模型能力，不是运行环境的稳定性。分层之后，才能让改进信号从噪声中浮现。</p>
+<hr />
+<h2 id="_2">整体观察</h2>
+<p>三重分离背后有一个共同的元原则：<strong>明确你在测什么，不要把不同维度混在一起</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>分离</th>
+<th>避免的混淆</th>
+<th>代价</th>
+<th>收益</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正确性 vs 效率</td>
+<td>把多步探索等同于失败</td>
+<td>需要维护两类断言</td>
+<td>Agent 有空间探索，能力评估不因效率偏差失真</td>
+</tr>
+<tr>
+<td>确定性 vs 语义</td>
+<td>过度依赖 LLM（贵）或过度依赖子串（漏）</td>
+<td>需要判断每个准则的表达方式</td>
+<td>成本与覆盖率的帕累托最优</td>
+</tr>
+<tr>
+<td>能力 vs 基础设施</td>
+<td>环境失败污染模型分数</td>
+<td>需要失败分类器 + 统计工具</td>
+<td>改进信号从噪声中浮现，横向对比有意义</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">延伸：这一哲学的普适性</h2>
+<p>三重分离不是 DeepAgents 独有的发明，而是<strong>好的软件测试哲学在 AI 评估领域的应用</strong>：
+- 正确性/效率分离 ≈ 功能测试 vs 性能测试的分层
+- 确定性/语义分离 ≈ 单元测试 vs 用户验收测试的粒度选择
+- 能力/环境分离 ≈ 应用 bug vs 基础设施 bug 的分类</p>
+<p>AI Agent 评估的特殊性在于：Agent 的"轨迹"天然是随机的、多步的，比传统软件的输入/输出更难断言——因此需要更精细的分离设计来抵御各种混淆来源。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="../concepts/DeepAgents评估体系.html">DeepAgents评估体系</a></li>
+<li><a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a></li>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

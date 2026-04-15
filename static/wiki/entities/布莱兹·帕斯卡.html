@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>布莱兹·帕斯卡 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 布莱兹·帕斯卡</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">布莱兹·帕斯卡</h1>
+<h2 id="_2">概述</h2>
+<p>布莱兹·帕斯卡（1623–1662）是法国数学家、物理学家和哲学家。他以帕斯卡三角形、流体静力学的帕斯卡定律，以及哲学著作《思想录》闻名。1654年，31岁的帕斯卡与费马通过书信交流，首次用系统的数学方法解决了赌博中的"点数问题"，从而开创了概率论这一独立的数学分支。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<ul>
+<li>生卒年：1623–1662（39岁）</li>
+<li>国籍：法国</li>
+<li>领域：数学、物理学、哲学</li>
+<li>代表作：《论算术三角形》（Traité du triangle arithmétique，1665年出版）</li>
+</ul>
+<h3 id="_5">主要贡献</h3>
+<ol>
+<li>
+<p><strong>帕斯卡三角形</strong>：虽然这个数学结构更早已被中国和波斯数学家发现，但帕斯卡系统地研究了它的性质，并应用于概率论。</p>
+</li>
+<li>
+<p><strong>流体力学</strong>：在流体静力学领域提出帕斯卡定律（Pascal's Law），即闭容器中流体压力处处相等。</p>
+</li>
+<li>
+<p><strong>概率论的诞生</strong>：1654年与费马的通信中，提出了解决"点数问题"的<strong>递推方法</strong>：</p>
+</li>
+<li>设 f(a, b) 为当A还差a局获胜、B还差b局获胜时，A应得的赌注份额</li>
+<li>递推关系：<strong>f(a, b) = [f(a-1, b) + f(a, b-1)] / 2</strong></li>
+<li>
+<p>这个方法本质上是期望值计算的原型</p>
+</li>
+<li>
+<p><strong>哲学</strong>：著有《思想录》（Pensées），是重要的哲学著作。</p>
+</li>
+</ol>
+<h3 id="_6">在概率论中的角色</h3>
+<p>帕斯卡的递推方法的核心洞察：
+- 不仅考虑已经发生的事（当前局数），还考虑所有可能的未来情景
+- 每个参与者应得的份额取决于其在未来所有等可能情景中获胜的概率
+- 这隐含了<strong>期望值</strong>的定义，尽管他没有明确使用这个术语</p>
+<p>与费马的关系：
+- 两人分别独立地用不同方法解决了点数问题
+- 帕斯卡用递推法，费马用组合枚举法
+- 两人的答案相同，相互验证了解答的正确性
+- 这是欧洲数学史上最重要的平等学术合作之一</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><a href="../concepts/点数问题.html">点数问题</a></li>
+<li><a href="../concepts/概率论.html">概率论</a></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="皮埃尔·德·费马.html">皮埃尔·德·费马</a></li>
+<li><a href="../concepts/帕斯卡三角形.html">帕斯卡三角形</a></li>
+<li><a href="../concepts/期望值.html">期望值</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="安德烈·马尔可夫.html">&larr; 安德烈·马尔可夫</a>
+    <a href="布鲁克·泰勒.html">布鲁克·泰勒 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

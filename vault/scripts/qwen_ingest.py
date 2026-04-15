@@ -93,8 +93,16 @@ supersedes: null
 
 # --- Frontmatter required fields ---
 REQUIRED_FM_FIELDS = [
-    "type", "title", "status", "confidence", "created",
-    "updated", "source_count", "tags", "aliases", "relates_to",
+    "type",
+    "title",
+    "status",
+    "confidence",
+    "created",
+    "updated",
+    "source_count",
+    "tags",
+    "aliases",
+    "relates_to",
 ]
 
 CRITICAL_FM_FIELDS = ["type", "title", "confidence"]
@@ -118,7 +126,7 @@ def parse_frontmatter(text: str) -> tuple[Optional[dict], str]:
     if end == -1:
         return None, text
     fm_raw = text[3:end].strip()
-    body = text[end + 3:].strip()
+    body = text[end + 3 :].strip()
     if yaml is None:
         # Fallback: simple key-value parse
         fm = {}
@@ -159,7 +167,13 @@ def lint_page(content: str) -> tuple[list[str], list[str]]:
                 warnings.append(f"Frontmatter field missing: {field}")
 
     # Check type value
-    if fm.get("type") and fm["type"] not in ("entity", "concept", "synthesis", "qa-insight", "source-summary"):
+    if fm.get("type") and fm["type"] not in (
+        "entity",
+        "concept",
+        "synthesis",
+        "qa-insight",
+        "source-summary",
+    ):
         warnings.append(f"Unexpected type value: {fm['type']}")
 
     # Check confidence range
@@ -215,18 +229,26 @@ def lint_page(content: str) -> tuple[list[str], list[str]]:
 def call_qwen(raw_content: str, raw_path: str) -> str:
     """Call Qwen3-Plus API to extract wiki page from raw content."""
     if OpenAI is None:
-        print(json.dumps({
-            "status": "ERROR",
-            "error": "openai package not installed. Run: pip install openai",
-        }))
+        print(
+            json.dumps(
+                {
+                    "status": "ERROR",
+                    "error": "openai package not installed. Run: pip install openai",
+                }
+            )
+        )
         sys.exit(1)
 
     api_key = os.environ.get("DASHSCOPE_API_KEY")
     if not api_key:
-        print(json.dumps({
-            "status": "ERROR",
-            "error": "DASHSCOPE_API_KEY environment variable not set",
-        }))
+        print(
+            json.dumps(
+                {
+                    "status": "ERROR",
+                    "error": "DASHSCOPE_API_KEY environment variable not set",
+                }
+            )
+        )
         sys.exit(1)
 
     client = OpenAI(
@@ -237,7 +259,7 @@ def call_qwen(raw_content: str, raw_path: str) -> str:
     user_message = f"源文件路径：{raw_path}\n\n---\n\n{raw_content}"
 
     response = client.chat.completions.create(
-        model="qwen3-plus",
+        model="qwen3.5-plus",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_message},
@@ -252,12 +274,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Qwen API-powered wiki page extraction"
     )
-    parser.add_argument(
-        "--raw", required=True, help="Path to raw source file"
-    )
-    parser.add_argument(
-        "--wiki", required=True, help="Path to output wiki file"
-    )
+    parser.add_argument("--raw", required=True, help="Path to raw source file")
+    parser.add_argument("--wiki", required=True, help="Path to output wiki file")
     args = parser.parse_args()
 
     raw_path = Path(args.raw)
@@ -265,19 +283,27 @@ def main():
 
     # Validate raw file exists
     if not raw_path.exists():
-        print(json.dumps({
-            "status": "ERROR",
-            "error": f"Raw file not found: {raw_path}",
-        }))
+        print(
+            json.dumps(
+                {
+                    "status": "ERROR",
+                    "error": f"Raw file not found: {raw_path}",
+                }
+            )
+        )
         sys.exit(1)
 
     # Read raw content
     raw_content = raw_path.read_text(encoding="utf-8")
     if not raw_content.strip():
-        print(json.dumps({
-            "status": "ERROR",
-            "error": f"Raw file is empty: {raw_path}",
-        }))
+        print(
+            json.dumps(
+                {
+                    "status": "ERROR",
+                    "error": f"Raw file is empty: {raw_path}",
+                }
+            )
+        )
         sys.exit(1)
 
     # Call Qwen API
@@ -291,13 +317,18 @@ def main():
 
     # Critical errors: don't write
     if critical_errors:
-        print(json.dumps({
-            "status": "ERROR",
-            "error": "Lint critical errors — page not written",
-            "critical": critical_errors,
-            "warnings": warnings,
-            "raw_response_preview": content[:500],
-        }, ensure_ascii=False))
+        print(
+            json.dumps(
+                {
+                    "status": "ERROR",
+                    "error": "Lint critical errors — page not written",
+                    "critical": critical_errors,
+                    "warnings": warnings,
+                    "raw_response_preview": content[:500],
+                },
+                ensure_ascii=False,
+            )
+        )
         sys.exit(1)
 
     # Write the wiki page
@@ -306,16 +337,26 @@ def main():
 
     # Warnings: write but report
     if warnings:
-        print(json.dumps({
-            "status": "LINT_WARNING",
-            "wiki_path": str(wiki_path),
-            "warnings": warnings,
-        }, ensure_ascii=False))
+        print(
+            json.dumps(
+                {
+                    "status": "LINT_WARNING",
+                    "wiki_path": str(wiki_path),
+                    "warnings": warnings,
+                },
+                ensure_ascii=False,
+            )
+        )
     else:
-        print(json.dumps({
-            "status": "SUCCESS",
-            "wiki_path": str(wiki_path),
-        }, ensure_ascii=False))
+        print(
+            json.dumps(
+                {
+                    "status": "SUCCESS",
+                    "wiki_path": str(wiki_path),
+                },
+                ensure_ascii=False,
+            )
+        )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅各布·伯努利 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 雅各布·伯努利</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">雅各布·伯努利</h1>
+<h2 id="_2">概述</h2>
+<p>雅各布·伯努利（Jacob Bernoulli，1655–1705）是瑞士巴塞尔大学数学教授，著名的伯努利数学家族中最年长的一代。他耗费约二十年撰写的《猜度术》（<em>Ars Conjectandi</em>，1713年遗著出版）是<strong>概率论第一部全面的理论著作</strong>，其中证明了概率论的第一个深刻定理——<a href="../concepts/大数定律.html">大数定律</a>——并首次提出概率论应超越赌博，成为一般性推断科学的工具。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<ul>
+<li>生卒年：1655–1705（50岁）</li>
+<li>国籍：瑞士</li>
+<li>机构：巴塞尔大学（任职1687年至去世）</li>
+<li>领域：概率论、无穷级数、变分法</li>
+</ul>
+<h3 id="_5">伯努利家族</h3>
+<p>伯努利数学家族是数学史上绝无仅有的现象：</p>
+<table>
+<thead>
+<tr>
+<th>成员</th>
+<th>关系</th>
+<th>主要贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>雅各布·伯努利</strong>（1655–1705）</td>
+<td>本人</td>
+<td>大数定律、《猜度术》</td>
+</tr>
+<tr>
+<td><strong>约翰·伯努利</strong>（1667–1748）</td>
+<td>弟弟</td>
+<td>微积分、与雅各布有著名学术竞争</td>
+</tr>
+<tr>
+<td><strong>尼古拉斯·伯努利</strong>（1687–1759）</td>
+<td>侄子</td>
+<td>整理出版《猜度术》</td>
+</tr>
+<tr>
+<td><strong>丹尼尔·伯努利</strong>（1700–1782）</td>
+<td>侄孙</td>
+<td>伯努利原理（流体力学）、效用理论</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1713">主要著作：《猜度术》（1713）</h3>
+<p>书稿完成于1689–1705年间，雅各布去世时尚未最终完成。侄子<strong>尼古拉斯·伯努利</strong>整理并于1713年（去世后8年）出版。全书以拉丁文撰写，分四部分：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>内容</th>
+<th>地位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一部分</td>
+<td>对<a href="克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a>《论赌博中的推理》的评注与扩展，给出更一般的证明，解决部分练习题</td>
+<td>历史价值</td>
+</tr>
+<tr>
+<td>第二部分</td>
+<td>排列组合理论系统阐述，证明二项式定理，推导幂和公式（伯努利数来源）</td>
+<td>组合数学工具</td>
+</tr>
+<tr>
+<td>第三部分</td>
+<td>概率论在赌博中的24个应用问题</td>
+<td>应用示范</td>
+</tr>
+<tr>
+<td><strong>第四部分</strong></td>
+<td><strong>大数定律证明</strong>，提出概率论用于民事、道德和经济事务推断的设想</td>
+<td><strong>核心创新</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">大数定律（核心贡献）</h3>
+<p><strong>定理</strong>：设 p 为事件 A 在一次试验中发生的概率，n 次独立重复试验中 A 发生 k 次。则对任意 ε &gt; 0 和精度要求 c &gt; 0，存在 n₀ 使得当 n ≥ n₀ 时：</p>
+<p>$$P!\left(\left|\frac{k}{n} - p\right| &lt; \varepsilon\right) &gt; \frac{c}{c+1}$$</p>
+<p><strong>证明方法</strong>：直接分析二项系数的求和，估计偏离真实概率超过 ε 的概率上界。这在当时是极为艰巨的计算工作。</p>
+<p><strong>历史数值例子</strong>：若 p = 3/5，要使频率落在 (29/50, 31/50) 内的概率超过 1000/1001，需要 <strong>n ≥ 25550</strong> 次试验。伯努利对这个数值不满意（认为实际需求应少得多），后来 De Moivre 的正态近似大大改善了这个估计。</p>
+<h3 id="p-p">哲学洞见：从已知 p 到未知 p</h3>
+<p>伯努利认识到了一个根本性的认识论问题：</p>
+<ul>
+<li><strong>赌博场景</strong>：p 已知（骰子对称性给出 p = 1/6），频率用于验证 p</li>
+<li><strong>现实世界</strong>：p 未知（疾病发生率、案件判决准确率），必须通过频率来<strong>估计</strong> p</li>
+</ul>
+<p>大数定律保证了：只要观察足够多，这种估计就可以任意精确。这一思想后来成为频率学派统计推断的哲学基础，并影响了拉普拉斯的贝叶斯推断体系。</p>
+<h3 id="_7">伯努利数</h3>
+<p>《猜度术》第二部分研究幂和公式时，引入了一类重要的有理数——<strong>伯努利数（Bernoulli numbers）</strong>。这些数在级数展开、数论（黎曼 zeta 函数）和数值计算中有广泛应用，是伯努利在组合数学领域的重要遗产。</p>
+<h3 id="_8">局限性</h3>
+<ol>
+<li>仅考虑独立同分布的最简单情形，更一般的情形待 Chebyshev 和 Markov</li>
+<li>证明的是弱大数定律（依概率收敛），非强大数定律（几乎必然收敛）</li>
+<li>书稿未完全完成，第四部分某些论证尚待完善</li>
+<li>仍在"等可能"框架内工作，未能发展更一般的概率定义</li>
+</ol>
+<h3 id="_9">对后续的影响</h3>
+<ul>
+<li><strong><a href="亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>（1733）</strong>：用正态近似大大改善了数值估计，导向中心极限定理</li>
+<li><strong>切比雪夫（1867）</strong>：用不等式方法给出大数定律的简洁证明</li>
+<li><strong>Borel（1909）</strong>：证明强大数定律（几乎必然收敛）</li>
+<li><strong>Kolmogorov（1930）</strong>：给出强大数定律成立的充要条件</li>
+<li><strong><a href="皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1812）</strong>：完成伯努利关于概率论作为推断工具的设想</li>
+</ul>
+<h2 id="_10">来源</h2>
+<ul>
+<li><a href="../concepts/概率论.html">概率论</a></li>
+<li><a href="../concepts/大数定律.html">大数定律</a></li>
+<li>raw/books/概率论/03_bernoulli_ars_conjectandi.md</li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a></li>
+<li><a href="亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a></li>
+<li><a href="皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a></li>
+<li><a href="../concepts/大数定律.html">大数定律</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="阿德里安-马里·勒让德.html">&larr; 阿德里安-马里·勒让德</a>
+    <a href="马格努斯·赫斯坦尼斯.html">马格努斯·赫斯坦尼斯 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

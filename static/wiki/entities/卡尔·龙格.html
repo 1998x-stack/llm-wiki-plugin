@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卡尔·龙格 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 卡尔·龙格</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">卡尔·龙格</h1>
+<h2 id="_2">概述</h2>
+<p>德国应用数学家（1856–1927），生于不来梅，师从魏尔斯特拉斯（Karl Weierstrass）和克罗内克（Leopold Kronecker），1880 年于柏林大学获博士学位。1904 年受聘哥廷根大学，担任德国最早的应用数学教授职位之一，与希尔伯特（Hilbert）、克莱因（Felix Klein）共事。龙格的研究跨越纯数学与应用数学，最终成为计算科学的重要开拓者。以两大贡献闻名：<a href="../concepts/龙格现象.html">龙格现象</a>（1901）和<span style="color:#e74c3c" title="broken link">龙格-库塔方法</span>（与 Kutta 合作）。</p>
+<h2 id="_3">关键内容</h2>
+<ul>
+<li><strong>学术风格</strong>：深信数学应服务于自然科学与工程；许多工作源于光谱学中的数据拟合实际需求</li>
+<li><strong>龙格现象</strong>（1901）：论文《Über empirische Funktionen und die Interpolation zwischen äquidistanten Ordinaten》（<em>Zeitschrift für Mathematik und Physik</em>, 46），以函数 $1/(1+25x^2)$ 为反例，证明等距节点高次多项式插值在端点附近发散</li>
+<li><strong>龙格-库塔方法</strong>：与 Martin Wilhelm Kutta 合作发展常微分方程数值积分的 Runge-Kutta 方法，至今是 ODE 数值解的标准工具</li>
+<li><strong>复极点视角</strong>：龙格函数的"病态"根源是复平面极点 $x = \pm i/5$ 距实轴仅 $0.2$，严重限制多项式逼近的收敛半径——这是他论文中深刻的洞见</li>
+<li><strong>对数学教育的影响</strong>：龙格现象成为数值分析中"反例教学"的典范，几乎出现在每一本数值分析教科书中</li>
+</ul>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/09_runge_phenomenon.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../concepts/龙格现象.html">龙格现象</a></li>
+<li><span style="color:#e74c3c" title="broken link">龙格-库塔方法</span></li>
+<li><a href="../concepts/切比雪夫逼近理论.html">切比雪夫逼近理论</a></li>
+<li><a href="帕夫努季·利沃维奇·切比雪夫.html">帕夫努季·利沃维奇·切比雪夫</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="卡尔·弗里德里希·高斯.html">&larr; 卡尔·弗里德里希·高斯</a>
+    <a href="卢卡·帕西奥利.html">卢卡·帕西奥利 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>切比雪夫逼近理论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 切比雪夫逼近理论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">切比雪夫逼近理论</h1>
+<h2 id="_2">概述</h2>
+<p>切比雪夫逼近理论研究在一致范数（$L^\infty$）意义下的最优函数逼近问题：在所有 $n$ 次多项式中找到使最大偏差最小的那一个。核心成果是<strong>等振荡定理</strong>（Equioscillation Theorem）——最佳逼近的误差恰好在 $\geq n+2$ 个点上交替达到正负极大值。该理论由<a href="../entities/帕夫努季·利沃维奇·切比雪夫.html">帕夫努季·利沃维奇·切比雪夫</a>于 1854–1857 年从机械连杆设计问题中发展而来，是逼近论（Approximation Theory）的理论基石。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="minimax">Minimax 逼近问题</h3>
+<p><strong>问题</strong>：$f \in C[a,b]$，在所有次数 $\leq n$ 的多项式 $\mathcal{P}_n$ 中求：</p>
+<p>$$E_n(f) = \min_{p_n \in \mathcal{P}<em>n} |f - p_n|</em>\infty = \min_{p_n \in \mathcal{P}<em>n} \max</em>{x \in [a,b]} |f(x)-p_n(x)|$$</p>
+<p>$p_n^<em>$ 称为</em><em>最佳一致逼近多项式</em>*（best uniform approximation）。</p>
+<h3 id="_4">等振荡定理</h3>
+<p><strong>Chebyshev 等振荡定理</strong>：$p_n^<em>$ 是 $f$ 的最佳一致逼近多项式，当且仅当误差 $e(x) = f(x)-p_n^</em>(x)$ 在 $[a,b]$ 上至少存在 $n+2$ 个点 $x_0 &lt; x_1 &lt; \cdots &lt; x_{n+1}$，满足：</p>
+<p>$$e(x_i) = (-1)^i \lambda \cdot |e|_\infty, \quad \lambda = \pm 1$$</p>
+<p>即误差在至少 $n+2$ 个点上<strong>交替取到正负最大值</strong>，称为等振荡（equioscillation）。</p>
+<p><strong>唯一性</strong>：最佳一致逼近多项式唯一。</p>
+<p><strong>直觉</strong>：如果某段区间的误差比全局最大值小很多，意味着那里"精度过剩"。可以牺牲那里的精度来改善其他区域，降低全局最大误差。只有当误差无处可以"牺牲"——即处处都等振荡到极值——才达到了真正的最优。</p>
+<p><strong>历史备注</strong>：切比雪夫在 1854 年给出了"最佳逼近$\Rightarrow$等振荡"的必要性论证；"等振荡$\Rightarrow$最佳逼近"的充分性由 Borel（1905）或 Kirchberger（1902）严格证明。</p>
+<h3 id="_5">切比雪夫节点——最优插值节点</h3>
+<p>用 $n+1$ 个点插值时，误差为：</p>
+<p>$$f(x) - p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^n (x-x_i)$$</p>
+<p>要最小化 $\max|\prod(x-x_i)|$，最优节点是 $T_{n+1}(x)$ 的零点（<strong>切比雪夫节点</strong>）：</p>
+<p>$$x_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right), \quad k=1,\ldots,n+1$$</p>
+<p>此时 $\max|\omega_{n+1}(x)| = 1/2^n$，是所有节点选择中的最小值。切比雪夫节点在端点附近更密集，从而克服<a href="龙格现象.html">龙格现象</a>。</p>
+<h3 id="_6">切比雪夫级数展开</h3>
+<p>光滑函数的切比雪夫展开：</p>
+<p>$$f(x) = \sum_{k=0}^{\infty} c_k T_k(x), \quad c_k = \frac{2}{\pi}\int_{-1}^1 \frac{f(x)T_k(x)}{\sqrt{1-x^2}}dx$$</p>
+<p>截断 $\sum_{k=0}^N c_k T_k(x)$ 接近最佳一致逼近（差距 $\leq O(\log n)$ 倍），且因 $c_k$ 可由计算 DCT（离散余弦变换）高效得到，这是实用中最常用的形式。</p>
+<h3 id="l2">与 L² 逼近的比较</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>切比雪夫（$L^\infty$）</th>
+<th>傅里叶/最小二乘（$L^2$）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优化目标</td>
+<td>最坏情况误差</td>
+<td>平均误差（均方）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>工程公差、函数求值精度</td>
+<td>信号能量、统计估计</td>
+</tr>
+<tr>
+<td>最优性刻画</td>
+<td>等振荡定理</td>
+<td>Bessel 不等式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">主要应用</h3>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数学函数库</td>
+<td>Intel MKL、GLIBC 中三角/指数函数实现广泛使用切比雪夫或有理逼近</td>
+</tr>
+<tr>
+<td><a href="谱方法.html">谱方法</a></td>
+<td>切比雪夫多项式作为全局基函数，指数级收敛速度</td>
+</tr>
+<tr>
+<td>Clenshaw-Curtis 求积</td>
+<td>1960年，使用切比雪夫极值点为节点，可借助 FFT 计算权重</td>
+</tr>
+<tr>
+<td>Remez 算法</td>
+<td>1934年，计算最佳一致逼近的迭代算法，数字滤波器设计（Parks-McClellan）基础</td>
+</tr>
+<tr>
+<td>有理逼近</td>
+<td>Pade 逼近和最佳有理逼近的理论框架</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">局限性</h3>
+<ul>
+<li><strong>一元适用最佳</strong>：多元等振荡定理复杂，节点选择困难</li>
+<li><strong>依赖光滑性</strong>：不光滑函数收敛退化，可能出现吉布斯（Gibbs）现象</li>
+<li><strong>计算最佳逼近较难</strong>：Remez 算法在高次时数值困难；截断切比雪夫级数≠最佳一致逼近（但实系差别很小）</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/07_chebyshev_approximation.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/帕夫努季·利沃维奇·切比雪夫.html">帕夫努季·利沃维奇·切比雪夫</a></li>
+<li><a href="切比雪夫多项式.html">切比雪夫多项式</a></li>
+<li><a href="龙格现象.html">龙格现象</a></li>
+<li><a href="高斯求积公式.html">高斯求积公式</a></li>
+<li><a href="谱方法.html">谱方法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="切比雪夫多项式.html">&larr; 切比雪夫多项式</a>
+    <a href="勒贝格常数.html">勒贝格常数 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

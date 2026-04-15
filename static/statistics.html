@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics — LLM Wiki</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+  --card-bg: rgba(255,255,255,0.7);
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+  --card-bg: rgba(30,30,50,0.7);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.6; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Layout */
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+h1 { font-size: 26px; margin-bottom: 4px; }
+.subtitle { font-size: 13px; color: var(--fg2); margin-bottom: 24px; }
+
+/* Summary cards */
+.summary-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  margin-bottom: 28px;
+}
+.summary-card {
+  background: var(--card-bg); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px 20px; text-align: center; transition: transform 0.2s;
+}
+.summary-card:hover { transform: translateY(-2px); }
+.summary-card .num { font-size: 36px; font-weight: 700; color: var(--link); }
+.summary-card .label { font-size: 12px; color: var(--fg2); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Chart grid */
+.chart-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  margin-bottom: 28px;
+}
+.chart-card {
+  background: var(--card-bg); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px;
+}
+.chart-card h3 { font-size: 15px; margin-bottom: 12px; color: var(--fg); }
+.chart-card canvas { width: 100% !important; max-height: 300px; }
+.chart-card.wide { grid-column: 1 / -1; }
+
+/* Top connected table */
+.table-card {
+  background: var(--card-bg); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px; margin-bottom: 28px;
+}
+.table-card h3 { font-size: 15px; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px 12px; font-size: 13px; border-bottom: 1px solid var(--border); }
+th { color: var(--fg2); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+.bar-cell { width: 40%; }
+.bar-bg { background: var(--input-bg); border-radius: 4px; height: 8px; position: relative; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+.badge {
+  display: inline-block; padding: 1px 8px; border-radius: 10px;
+  font-size: 10px; color: #fff; font-weight: 600;
+}
+.rank { font-weight: 700; color: var(--fg2); width: 30px; }
+
+/* Components */
+.comp-list { list-style: none; }
+.comp-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+}
+.comp-bar { flex: 1; height: 6px; background: var(--input-bg); border-radius: 3px; }
+.comp-fill { height: 100%; border-radius: 3px; background: var(--link); }
+.comp-size { font-size: 12px; color: var(--fg2); min-width: 40px; text-align: right; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .summary-row { grid-template-columns: repeat(2, 1fr); }
+  .chart-grid { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+@media (max-width: 480px) {
+  .summary-row { grid-template-columns: 1fr; }
+}
+
+/* Loading */
+.loading { text-align: center; padding: 60px; color: var(--fg2); font-size: 14px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="graph.html">Graph</a>
+    <a href="statistics.html" class="active">Statistics</a>
+    <a href="wiki/index.html">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="toggleTheme()">Dark</button>
+</nav>
+<div class="container">
+  <h1>Knowledge Graph Statistics</h1>
+  <div class="subtitle" id="generated"></div>
+
+  <!-- Summary cards -->
+  <div class="summary-row">
+    <div class="summary-card"><div class="num" id="s-nodes">—</div><div class="label">Nodes</div></div>
+    <div class="summary-card"><div class="num" id="s-edges">—</div><div class="label">Edges</div></div>
+    <div class="summary-card"><div class="num" id="s-orphans">—</div><div class="label">Orphans</div></div>
+    <div class="summary-card"><div class="num" id="s-components">—</div><div class="label">Components</div></div>
+  </div>
+
+  <!-- Charts -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Type Distribution</h3>
+      <canvas id="chart-type"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Confidence Distribution</h3>
+      <canvas id="chart-conf"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Top Tags</h3>
+      <canvas id="chart-tags"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Relationship Types</h3>
+      <canvas id="chart-rels"></canvas>
+    </div>
+    <div class="chart-card wide">
+      <h3>Growth Timeline</h3>
+      <canvas id="chart-growth"></canvas>
+    </div>
+  </div>
+
+  <!-- Top connected -->
+  <div class="table-card">
+    <h3>Top 20 Connected Nodes</h3>
+    <table>
+      <thead><tr><th>#</th><th>Node</th><th>Type</th><th class="bar-cell">Connections</th><th></th></tr></thead>
+      <tbody id="top-table"></tbody>
+    </table>
+  </div>
+
+  <!-- Components -->
+  <div class="table-card">
+    <h3>Components</h3>
+    <ul class="comp-list" id="comp-list"></ul>
+  </div>
+</div>
+
+<script>
+const TYPE_COLORS = {
+  entity: '#4A90D9', concept: '#50C878', synthesis: '#9B59B6',
+  'qa-insight': '#E67E22', unknown: '#95a5a6'
+};
+const CONF_COLORS = ['#e74c3c','#E67E22','#f1c40f','#50C878','#4A90D9'];
+
+let charts = [];
+
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const btn = document.getElementById('theme-btn');
+  btn.textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
+  // Update chart colors
+  charts.forEach(c => {
+    const fg2 = getComputedStyle(document.body).getPropertyValue('--fg2').trim();
+    const border = getComputedStyle(document.body).getPropertyValue('--border').trim();
+    c.options.scales && Object.values(c.options.scales).forEach(s => {
+      if (s.ticks) s.ticks.color = fg2;
+      if (s.grid) s.grid.color = border;
+    });
+    if (c.options.plugins?.legend?.labels) c.options.plugins.legend.labels.color = fg2;
+    c.update();
+  });
+}
+
+function chartDefaults() {
+  const fg2 = getComputedStyle(document.body).getPropertyValue('--fg2').trim() || '#555';
+  const border = getComputedStyle(document.body).getPropertyValue('--border').trim() || '#e0e0e0';
+  return { fg2, border };
+}
+
+async function init() {
+  let data;
+  try {
+    const res = await fetch('graph-statistics.json');
+    data = await res.json();
+  } catch(e) {
+    document.querySelector('.container').innerHTML = '<div class="loading">Failed to load graph-statistics.json</div>';
+    return;
+  }
+
+  const { fg2, border } = chartDefaults();
+
+  // Generated timestamp
+  document.getElementById('generated').textContent = 'Generated: ' + data.generated;
+
+  // Summary
+  const s = data.summary;
+  document.getElementById('s-nodes').textContent = s.total_nodes;
+  document.getElementById('s-edges').textContent = s.total_edges;
+  document.getElementById('s-orphans').textContent = s.orphan_count;
+  document.getElementById('s-components').textContent = s.component_count;
+
+  // Type distribution doughnut
+  const typeLabels = Object.keys(data.type_distribution);
+  const typeData = Object.values(data.type_distribution);
+  const typeColors = typeLabels.map(t => TYPE_COLORS[t] || '#95a5a6');
+  charts.push(new Chart(document.getElementById('chart-type'), {
+    type: 'doughnut',
+    data: { labels: typeLabels, datasets: [{ data: typeData, backgroundColor: typeColors, borderWidth: 0 }] },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: fg2, padding: 12, font: { size: 12 } } }
+      }
+    }
+  }));
+
+  // Confidence bar
+  const confLabels = Object.keys(data.confidence_distribution);
+  const confData = Object.values(data.confidence_distribution);
+  charts.push(new Chart(document.getElementById('chart-conf'), {
+    type: 'bar',
+    data: { labels: confLabels, datasets: [{ data: confData, backgroundColor: CONF_COLORS, borderRadius: 4, borderSkipped: false }] },
+    options: {
+      indexAxis: 'y', responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: fg2 }, grid: { color: border } },
+        y: { ticks: { color: fg2 }, grid: { display: false } }
+      }
+    }
+  }));
+
+  // Tag frequency
+  const tagLabels = Object.keys(data.tag_frequency).slice(0, 15);
+  const tagData = tagLabels.map(t => data.tag_frequency[t]);
+  charts.push(new Chart(document.getElementById('chart-tags'), {
+    type: 'bar',
+    data: { labels: tagLabels, datasets: [{ data: tagData, backgroundColor: '#4A90D9aa', borderColor: '#4A90D9', borderWidth: 1, borderRadius: 4 }] },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: fg2, maxRotation: 45 }, grid: { display: false } },
+        y: { ticks: { color: fg2 }, grid: { color: border } }
+      }
+    }
+  }));
+
+  // Relationship types
+  const relLabels = Object.keys(data.relationship_types);
+  const relData = Object.values(data.relationship_types);
+  const relColors = relLabels.map((_, i) => {
+    const palette = ['#4A90D9','#50C878','#9B59B6','#E67E22','#e74c3c','#1abc9c','#f1c40f','#95a5a6'];
+    return palette[i % palette.length];
+  });
+  charts.push(new Chart(document.getElementById('chart-rels'), {
+    type: 'bar',
+    data: { labels: relLabels, datasets: [{ data: relData, backgroundColor: relColors, borderRadius: 4, borderSkipped: false }] },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: fg2, maxRotation: 45 }, grid: { display: false } },
+        y: { ticks: { color: fg2 }, grid: { color: border } }
+      }
+    }
+  }));
+
+  // Growth timeline
+  const growthLabels = Object.keys(data.growth_timeline);
+  const growthData = Object.values(data.growth_timeline);
+  if (growthLabels.length > 0) {
+    charts.push(new Chart(document.getElementById('chart-growth'), {
+      type: 'line',
+      data: {
+        labels: growthLabels,
+        datasets: [{
+          data: growthData, fill: true,
+          borderColor: '#4A90D9', backgroundColor: '#4A90D920',
+          pointRadius: 3, pointBackgroundColor: '#4A90D9',
+          tension: 0.3, borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: fg2, maxTicksLimit: 12 }, grid: { color: border } },
+          y: { ticks: { color: fg2 }, grid: { color: border }, beginAtZero: true }
+        }
+      }
+    }));
+  } else {
+    document.getElementById('chart-growth').parentElement.innerHTML = '<h3>Growth Timeline</h3><p style="color:var(--fg2);font-size:13px">No growth data available (pages missing "created" field)</p>';
+  }
+
+  // Top connected table
+  const maxEdge = data.top_connected.length > 0 ? data.top_connected[0].edge_count : 1;
+  const tbody = document.getElementById('top-table');
+  data.top_connected.forEach((n, i) => {
+    const color = TYPE_COLORS[n.type] || '#95a5a6';
+    const pct = (n.edge_count / maxEdge * 100).toFixed(0);
+    tbody.innerHTML += `<tr>
+      <td class="rank">${i+1}</td>
+      <td>${n.label}</td>
+      <td><span class="badge" style="background:${color}">${n.type}</span></td>
+      <td class="bar-cell"><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div></td>
+      <td style="font-size:12px;color:var(--fg2)">${n.edge_count}</td>
+    </tr>`;
+  });
+
+  // Components
+  const compList = document.getElementById('comp-list');
+  const maxComp = data.components.length > 0 ? Math.max(...data.components.map(c => c.size)) : 1;
+  data.components.forEach(c => {
+    const pct = (c.size / maxComp * 100).toFixed(0);
+    compList.innerHTML += `<li>
+      <span style="min-width:60px;font-weight:600">#${c.id}</span>
+      <div class="comp-bar"><div class="comp-fill" style="width:${pct}%"></div></div>
+      <span class="comp-size">${c.size} nodes</span>
+    </li>`;
+  });
+}
+
+init();
+</script>
+</body>
+</html>

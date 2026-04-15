@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richardson外推法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Richardson外推法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="richardson">Richardson 外推法</h1>
+<h2 id="_1">概述</h2>
+<p>Richardson 外推法（Richardson Extrapolation）由<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>于 1911 年发表（1927 年系统阐述为"延迟趋近极限法"）。其核心思想是：数值方法的误差通常具有渐近展开式 $A(h) = A^<em> + a_1 h^p + O(h^{p+1})$，通过组合两个不同步长下的计算结果，可以</em><em>代数消去主导误差项 $a_1 h^p$</em>*，将精度从 $O(h^p)$ 提升到 $O(h^{p+1})$，同时无偿获得误差估计。外推法是数值分析中最通用的"元方法"——可叠加在几乎任何具有渐近误差展开的数值方法之上。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心公式</h3>
+<p><strong>假设</strong>：误差渐近展开 $A(h) = A^* + a_1 h^p + O(h^{p+1})$（$p$ 是方法阶数，$a_1$ 与 $h$ 无关）</p>
+<p><strong>步长加倍外推</strong>（$r=2$，最常用）：</p>
+<p>$$A_{\text{improved}} = \frac{2^p \cdot A(h/2) - A(h)}{2^p - 1}$$</p>
+<p>误差从 $O(h^p)$ 提升到 $O(h^{p+1})$——精度提高一阶。</p>
+<p><strong>一般步长比 $r$</strong>：</p>
+<p>$$A_{\text{improved}} = \frac{r^p \cdot A(h/r) - A(h)}{r^p - 1}$$</p>
+<p><strong>代数本质</strong>：类比方程组消元法——$A(h)$ 和 $A(h/2)$ 是两个含 $A^<em>$ 和 $a_1$ 的"方程"，通过适当线性组合消去 $a_1$（无需知道其数值），直接得到对 $A^</em>$ 的更优估计。</p>
+<h3 id="_4">递归外推表</h3>
+<p>外推可以递归应用：先消去 $O(h^p)$ 项，再消去 $O(h^{p+1})$ 项……每层提高一阶精度。</p>
+<p>设 $T_0^{(k)} = A(h/2^k)$，递推：</p>
+<p>$$T_j^{(k)} = T_{j-1}^{(k+1)} + \frac{T_{j-1}^{(k+1)} - T_{j-1}^{(k)}}{2^{jp} - 1}$$</p>
+<table>
+<thead>
+<tr>
+<th>$T_0^{(0)}$</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$T_0^{(1)}$</td>
+<td>$T_1^{(0)}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_0^{(2)}$</td>
+<td>$T_1^{(1)}$</td>
+<td>$T_2^{(0)}$</td>
+</tr>
+</tbody>
+</table>
+<p>对角线方向精度依次提升一阶。这就是 <a href="Romberg积分.html">Romberg积分</a>的核心结构。</p>
+<h3 id="_5">误差估计：免费副产品</h3>
+<p>$$A(h) - A^* \approx \frac{A(h/2) - A(h)}{2^p - 1} \cdot 2^p$$</p>
+<p>这给出了对主导误差的量化估计，是现代自适应数值方法中最常用的误差指示器之一。</p>
+<h3 id="int_01-ex-dx-e-1p2">数字示例（梯形法则积分 $\int_0^1 e^x dx = e-1$，$p=2$）</h3>
+<table>
+<thead>
+<tr>
+<th>步长 $h$</th>
+<th>梯形法则误差</th>
+<th>外推后误差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0 → 0.5</td>
+<td>$0.141$ → $0.036$</td>
+<td>$0.00059$（降低约 60 倍）</td>
+</tr>
+<tr>
+<td>0.5 → 0.25</td>
+<td>$0.036$ → $0.0089$</td>
+<td>$0.000034$</td>
+</tr>
+</tbody>
+</table>
+<p>一次外推将误差阶从 $O(h^2)$ 提升至 $O(h^4)$。</p>
+<h3 id="_6">适用条件与局限性</h3>
+<p><strong>需要误差渐近展开成立</strong>：当 $h$ 太大（高阶项不可忽略）或解有奇异性时，标准展开可能不成立。</p>
+<p><strong>舍入误差限制</strong>：两结果相减可能发生数值抵消（cancellation），实际精度通常不超过机器精度的平方根。</p>
+<p><strong>计算成本</strong>：需要多个步长下的计算；高维 PDE 问题步长减半则计算量 $\sim 2^d$ 增长，需权衡收益。</p>
+<p><strong>不稳定格式无效</strong>：无论多好的误差分析都无法挽救数值不稳定的格式（理查森自己的天气预报失败正是这一教训）。</p>
+<h3 id="_7">主要后续发展</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>年份</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Romberg积分.html">Romberg积分</a></td>
+<td>1955</td>
+<td>递归外推应用于梯形法则，利用欧拉-麦克劳林展开只有偶数次幂的特殊性</td>
+</tr>
+<tr>
+<td>Bulirsch-Stoer 方法</td>
+<td>1966</td>
+<td>外推法用于 ODE 初值问题，天体力学精度首选</td>
+</tr>
+<tr>
+<td>嵌入式 Runge-Kutta</td>
+<td>1960s+</td>
+<td>步长控制基于本质上等同于 Richardson 误差估计的嵌入式对</td>
+</tr>
+<tr>
+<td>CFD 网格收敛指数（GCI）</td>
+<td>1994</td>
+<td>外推法的标准化 CFD 验证工具（Roache 1994/1998）</td>
+</tr>
+<tr>
+<td>自适应网格加密（AMR）</td>
+<td>1980s+</td>
+<td>基于 Richardson 误差估计驱动的自适应网格精化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/10_richardson_extrapolation.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a></li>
+<li><a href="Romberg积分.html">Romberg积分</a></li>
+<li><a href="高斯求积公式.html">高斯求积公式</a></li>
+<li><a href="欧拉方法.html">欧拉方法</a></li>
+<li><a href="Jacobi迭代法.html">Jacobi迭代法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Rayleigh商.html">&larr; Rayleigh商</a>
+    <a href="Romberg积分.html">Romberg积分 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

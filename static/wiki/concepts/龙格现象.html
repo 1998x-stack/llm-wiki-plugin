@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>龙格现象 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 龙格现象</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">龙格现象</h1>
+<h2 id="_2">概述</h2>
+<p>龙格现象（Runge's phenomenon）由德国数学家卡尔·龙格（Carl Runge）于 1901 年发现：以<strong>等距节点</strong>对连续函数进行多项式插值时，随节点数增加，插值多项式在区间端点附近的误差不仅不收敛，反而急剧发散。这一反直觉的发现动摇了"节点越多插值越好"的朴素认知，成为揭示<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>必要性的经典反例。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">龙格函数</h3>
+<p><strong>标准反例</strong>（龙格函数）：$f(x) = \dfrac{1}{1+25x^2}$，$x\in[-1,1]$</p>
+<p>对该函数使用等距节点作 $n$ 次多项式插值，随着 $n$ 增大，端点附近 $|x|\approx 1$ 处的误差不减反增，当 $n\to\infty$ 时发散。</p>
+<h3 id="_5">数学根源</h3>
+<p>多项式插值误差为：</p>
+<p>$$f(x) - p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,\omega_{n+1}(x), \quad \omega_{n+1}(x) = \prod_{i=0}^n(x-x_i)$$</p>
+<p><strong>等距节点的问题</strong>：$\omega_{n+1}(x)$ 在端点 $x = \pm 1$ 附近极大——等距节点在端点稀疏，导致端点处的"提振因子" $\omega_{n+1}$ 随 $n$ 指数增长，即便 $f^{(n+1)}/( n+1)!$ 因高阶导数衰减，净效果仍是发散。</p>
+<p><strong>直觉</strong>：等距节点在区间中间密集、端点稀疏，导致端点附近的信息严重不足。多项式为了"穿过"所有节点被迫在端点剧烈振荡。</p>
+<h3 id="_6">解决方案</h3>
+<p><strong>切比雪夫节点</strong>：使用 $T_{n+1}(x)$ 的零点：</p>
+<p>$$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right), \quad k=1,\ldots,n+1$$</p>
+<p>这些节点在端点附近更密集，使 $\max|\omega_{n+1}(x)| = 1/2^n$（理论最小值），从根本上避免了龙格现象。</p>
+<p>其他缓解手段（效果有限）：
+- 样条插值（分段低次多项式）
+- 增加正则化约束
+- 有理逼近（Padé）</p>
+<h3 id="_7">勒贝格常数：发散的深层机制</h3>
+<p>定义<a href="勒贝格常数.html">勒贝格常数</a> $\Lambda_n = \max_{x\in[-1,1]} \sum_k |L_k(x)|$（插值"放大因子"），则：</p>
+<p>$$|f - P_n|_\infty \leq (1+\Lambda_n)\cdot E_n(f)$$</p>
+<ul>
+<li><strong>等距节点</strong>：$\Lambda_n \sim 2^{n+1}/(e\cdot n\ln n)$（<strong>指数增长</strong>）→ 即使最佳逼近 $E_n(f)$ 收敛，放大因子足以导致总体发散</li>
+<li><strong>切比雪夫节点</strong>：$\Lambda_n \sim \frac{2}{\pi}\ln(n+1)+C$（<strong>对数增长</strong>，几乎最优）→ 不发散</li>
+</ul>
+<h3 id="_8">复平面视角：为什么龙格函数特别"刁钻"</h3>
+<p>$f(x) = 1/(1+25x^2)$ 在复平面有极点 $z = \pm i/5$，距实轴仅 $0.2$。伯恩斯坦定理：解析域越窄，多项式逼近收敛越慢。等距节点的指数级 $\Lambda_n$ 超过函数本身的衰减速度，净结果发散。将 $25$ 换为 $1$ 时龙格现象仍存在，但需更高次数才显现——$25$ 是"让效果在计算上立即可见"的参数选择。</p>
+<h3 id="_9">数值量化</h3>
+<table>
+<thead>
+<tr>
+<th>$n$</th>
+<th>等距节点最大误差（端点附近）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>约 1（与 $f$ 同量级）</td>
+</tr>
+<tr>
+<td>20</td>
+<td>约 60</td>
+</tr>
+<tr>
+<td>40</td>
+<td>约 $10^{15}$（远超 $f$ 的真实值 $\approx 0.038$）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">三大教训</h3>
+<ol>
+<li><strong>连续性不等于可插值性</strong>：光滑函数不保证等距插值良好逼近</li>
+<li><strong>更多数据点不等于更好结果</strong>：增加等距节点可能使逼近恶化</li>
+<li><strong>局部约束产生全局后果</strong>：多项式全局耦合，改善一处可能破坏另一处</li>
+</ol>
+<p>这些教训与机器学习中的<strong>过拟合</strong>（overfitting）有深刻对应：强制通过所有数据点（零训练误差）可能导致测试误差急剧上升。</p>
+<h3 id="_11">两条解决路线</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>思路</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>切比雪夫节点</strong></td>
+<td>优化全局多项式节点，端点加密</td>
+<td>谱方法、Chebfun</td>
+</tr>
+<tr>
+<td><strong>样条方法</strong></td>
+<td>分段低次多项式，分而治之</td>
+<td>三次样条、B 样条、CAD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">历史意义</h3>
+<p>龙格现象（1901年）和<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>（1854年）相互印证：切比雪夫早于龙格约半个世纪预见了等距节点的理论缺陷，并给出了最优解。龙格的反例以具体数值证明了切比雪夫理论的必要性，使节点选择问题在数值分析教育中具有不可消除的地位。</p>
+<p>在龙格之前，法国数学家梅赫勒（Méray, 1884）和博雷尔（Borel, 1897/1905）已有相关理论探讨，但缺乏龙格那样简洁有力的具体反例。</p>
+<h2 id="_13">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/07_chebyshev_approximation.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/09_runge_phenomenon.md</span></li>
+</ul>
+<h2 id="_14">相关</h2>
+<ul>
+<li><a href="../entities/卡尔·龙格.html">卡尔·龙格</a></li>
+<li><a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a></li>
+<li><a href="切比雪夫多项式.html">切比雪夫多项式</a></li>
+<li><a href="勒贝格常数.html">勒贝格常数</a></li>
+<li><a href="样条方法.html">样条方法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="高斯求积公式.html">&larr; 高斯求积公式</a>
+    
+  </div>
+</div>
+</body>
+</html>

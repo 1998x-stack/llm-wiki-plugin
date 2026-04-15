@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>样条方法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 样条方法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">样条方法</h1>
+<h2 id="_2">概述</h2>
+<p>样条方法（Spline methods）用<strong>分段低次多项式</strong>逐段拼接来逼近函数，是对<a href="龙格现象.html">龙格现象</a>的直接回应。与整体高次多项式不同，每段只需低次多项式（通常三次），在拼接点保持连续性和光滑性（$C^2$ 连续），从而规避了全局多项式在端点附近振荡失控的问题。样条方法由 Isaac Schoenberg 在 1946 年系统发展，是 20 世纪数值分析最重要的发展之一，也是计算机辅助设计（CAD）和计算机图形学的基础。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心思想：分段代替整体</h3>
+<p><strong>整体高次多项式</strong>（龙格的问题）：$n+1$ 个节点 → $n$ 次全局多项式 → 端点振荡失控。</p>
+<p><strong>样条</strong>：将区间 $[a,b]$ 划分为子区间，在每段用低次多项式，在分割点（节点）处施加光滑性约束。</p>
+<h3 id="cubic-spline">三次样条（Cubic Spline）</h3>
+<p>最常用形式。在每个子区间 $[x_i, x_{i+1}]$ 上用三次多项式，整体满足 $C^2$ 连续（函数值、一阶导、二阶导处处连续）。</p>
+<p>自由度计算：$n$ 段，每段 4 个系数 = $4n$ 个自由度；$C^2$ 连续条件 = $3(n-1)$ 个约束；插值条件 = $n+1$ 个；还需 2 个边界条件（自然样条：端点二阶导为零；夹紧样条：端点一阶导给定）。</p>
+<p><strong>数值稳定性</strong>：三次样条系数由三对角线性方程组确定，条件数良好，远优于高次全局插值。</p>
+<h3 id="b-b-spline">B 样条（B-Spline）</h3>
+<p>B 样条（Basis Spline）是样条的更灵活表示，以"基函数 + 控制点"形式表达。</p>
+<ul>
+<li>局部支撑性（Local support）：每个基函数只影响有限个子区间，改变一个控制点只影响局部形状</li>
+<li>数值稳定性极好（非负基函数，单位分解）</li>
+<li>推广至 NURBS（非均匀有理 B 样条），是 CAD/CAM/CAE 的标准曲线/曲面表示</li>
+</ul>
+<h3 id="vs">样条 vs 切比雪夫节点：两条解决路线</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>核心思想</th>
+<th>优势</th>
+<th>局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>切比雪夫节点</td>
+<td>优化全局多项式的节点分布</td>
+<td>高阶精度，近似最优</td>
+<td>要求光滑函数，端点固定</td>
+</tr>
+<tr>
+<td>样条方法</td>
+<td>分段低次，分而治之</td>
+<td>不要求高光滑性，局部修改</td>
+<td>精度受限于分段次数</td>
+</tr>
+</tbody>
+</table>
+<p>两者在现代实践中各有用途：谱方法用切比雪夫，CAD/工程插值用样条。</p>
+<h3 id="_5">历史发展</h3>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1946</td>
+<td>Isaac Schoenberg 系统建立样条函数理论（受龙格现象启发）</td>
+</tr>
+<tr>
+<td>1962</td>
+<td>J. C. Ferguson 将三次样条用于 Boeing 飞机曲面设计</td>
+</tr>
+<tr>
+<td>1972</td>
+<td>Gordon &amp; Riesenfeld 将 B 样条推广为 B 样条曲面</td>
+</tr>
+<tr>
+<td>1975</td>
+<td>Versprille 博士论文提出 NURBS，CAD 工业标准基础</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">应用</h3>
+<ul>
+<li><strong>CAD/CAM</strong>：NURBS 是曲线/曲面的工业标准</li>
+<li><strong>计算机图形学</strong>：贝塞尔曲线（Bézier curve）是 B 样条的特例</li>
+<li><strong><a href="有限元方法.html">有限元方法</a></strong>：等几何分析（IGA）将 B 样条/NURBS 作为有限元形函数</li>
+<li><strong>数据拟合</strong>：避免龙格现象的鲁棒插值工具</li>
+<li><strong>图像处理</strong>：双三次样条插值（双线性插值的光滑升级）</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/09_runge_phenomenon.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="龙格现象.html">龙格现象</a></li>
+<li><a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a></li>
+<li><a href="有限元方法.html">有限元方法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="样本空间.html">&larr; 样本空间</a>
+    <a href="概率公理体系.html">概率公理体系 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

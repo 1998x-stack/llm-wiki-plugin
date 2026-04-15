@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romberg积分 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Romberg积分</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="romberg">Romberg 积分</h1>
+<h2 id="_1">概述</h2>
+<p>Romberg 积分由 Werner Romberg 于 1955 年提出，是<a href="Richardson外推法.html">Richardson外推法</a>在数值积分中最优雅的应用。它将梯形法则（Trapezoidal rule）与 Richardson 递归外推相结合，充分利用<strong>欧拉-麦克劳林（Euler-Maclaurin）求和公式</strong>给出的梯形误差展开只含 $h$ 的<strong>偶数次幂</strong>这一特殊结构，每次外推消去一个误差项，从而以较少的函数求值达到极高的积分精度。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="-">数学基础：欧拉-麦克劳林展开</h3>
+<p>梯形法则的误差展开（欧拉-麦克劳林公式）：</p>
+<p>$$T(h) = I + c_1 h^2 + c_2 h^4 + c_3 h^6 + \cdots$$</p>
+<p>只含 $h$ 的<strong>偶数次幂</strong>（无奇数次幂项）。这意味着：
+- 每次 Richardson 外推消去两阶误差（而非通常的一阶）
+- 精度提升效率翻倍：从 $O(h^2)$ → $O(h^4)$ → $O(h^6)$ → …</p>
+<h3 id="_3">外推表构造</h3>
+<p>从最粗的梯形法则开始，逐步加密步长并外推：</p>
+<p>设 $T(h_k) = T(h/2^k)$，初始列 $R_{k,0} = T(h/2^k)$（梯形法则直接值），外推列：</p>
+<p>$$R_{k,j} = \frac{4^j R_{k,j-1} - R_{k-1,j-1}}{4^j - 1} \quad (j \geq 1)$$</p>
+<p><strong>Romberg 外推表</strong>（$n$ 行 $n$ 列，对角线精度最高）：</p>
+<table>
+<thead>
+<tr>
+<th>步长 $h$</th>
+<th>$O(h^2)$</th>
+<th>$O(h^4)$</th>
+<th>$O(h^6)$</th>
+<th>$O(h^8)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$h$</td>
+<td>$R_{0,0}$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$h/2$</td>
+<td>$R_{1,0}$</td>
+<td>$R_{1,1}$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$h/4$</td>
+<td>$R_{2,0}$</td>
+<td>$R_{2,1}$</td>
+<td>$R_{2,2}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$h/8$</td>
+<td>$R_{3,0}$</td>
+<td>$R_{3,1}$</td>
+<td>$R_{3,2}$</td>
+<td>$R_{3,3}$</td>
+</tr>
+</tbody>
+</table>
+<p>对角线 $R_{k,k}$ 具有精度 $O(h^{2k+2})$。</p>
+<h3 id="_4">关键优势：节点嵌套</h3>
+<p>梯形法则有一个实用特性：步长减半时，细网格的节点<strong>包含</strong>粗网格的所有节点。因此：</p>
+<p>$$T(h/2) = \frac{T(h)}{2} + \frac{h}{2}\sum_{\text{新节点}} f(x_i)$$</p>
+<p>从 $n$ 点梯形法则到 $2n+1$ 点只需计算 $n$ 个<strong>新</strong>函数值，旧值可完全重用。</p>
+<p>这使得 Romberg 积分的总函数求值次数为 $2^n + 1$（到第 $n$ 层），每一层只额外支付新节点的代价，而精度从 $O(h^{2n})$ 到 $O(h^{2n+2})$。</p>
+<h3 id="_5">与高斯求积的比较</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Romberg积分</th>
+<th><a href="高斯求积公式.html">高斯求积公式</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>节点嵌套</td>
+<td>是（可重用旧节点）</td>
+<td>否（每次 $n$ 点公式节点全换）</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>$O(h^{2n})$（$n$ 次外推后）</td>
+<td>$O(h^{2n})$（$n$ 点精确至 $2n-1$ 次多项式）</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>一维，光滑函数</td>
+<td>一维，光滑函数</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>简单（梯形法则 + 递推）</td>
+<td>需预计算高斯节点和权重</td>
+</tr>
+<tr>
+<td>自适应扩展</td>
+<td>容易（逐步加密）</td>
+<td>需 Gauss-Kronrod 等专门设计</td>
+</tr>
+</tbody>
+</table>
+<p>实践中两者精度相当，Romberg 因其实现简单和节点嵌套特性而常被用于自适应积分。</p>
+<h3 id="_6">局限性</h3>
+<ul>
+<li><strong>仅适用光滑函数</strong>：函数有奇异性时，欧拉-麦克劳林展开中出现非整数次幂，外推失效</li>
+<li><strong>一维限制</strong>：推广到高维需要张量积（维度灾难）或稀疏网格</li>
+<li><strong>舍入误差</strong>：外推层数过多时，舍入误差开始主导（精度不超过机器精度的平方根）</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/10_richardson_extrapolation.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Richardson外推法.html">Richardson外推法</a></li>
+<li><a href="高斯求积公式.html">高斯求积公式</a></li>
+<li><a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Richardson外推法.html">&larr; Richardson外推法</a>
+    <a href="Schur分解.html">Schur分解 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

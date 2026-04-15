@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepAgents评估体系 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / DeepAgents评估体系</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">评估</span><span class="tag">LangSmith</span><span class="tag">测试</span></div>
+</div>
+  <div class="content">
+    <h1 id="deepagents">DeepAgents 评估体系</h1>
+<h2 id="_1">概述</h2>
+<p>DeepAgents 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">两层断言模型（核心设计）</h3>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>类型</th>
+<th>语义</th>
+<th>失败行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成功断言（Success Assertions）</td>
+<td><code>SuccessAssertion</code></td>
+<td>正确性检查</td>
+<td><code>pytest.fail</code> 测试红</td>
+</tr>
+<tr>
+<td>效率断言（Efficiency Assertions）</td>
+<td><code>EfficiencyAssertion</code></td>
+<td>步数/工具调用形态期望</td>
+<td>LangSmith <code>log_feedback</code> 记录，测试不红</td>
+</tr>
+</tbody>
+</table>
+<p><strong>设计意图</strong>：防止 Agent 因探索性多走一步就整例标红，同时仍能在报表中观察效率偏差。</p>
+<h3 id="utilspy">核心类型（<code>utils.py</code>）</h3>
+<p><strong><code>AgentStep</code></strong>：<code>index</code>（从1起）、<code>action</code>（<code>AIMessage</code>）、<code>observations</code>（<code>list[ToolMessage]</code>）——一个决策回合。</p>
+<p><strong><code>AgentTrajectory</code></strong>：<code>steps</code> + <code>files</code>（路径→内容映射），<code>answer</code> 属性取最后一步文本，<code>pretty()</code> 生成人类可读摘要（供 LLM Judge 消费）。</p>
+<p><strong><code>TrajectoryScorer</code></strong>（不可变建造者）：</p>
+<pre><code class="language-python">scorer = (
+    TrajectoryScorer()
+    .expect(agent_steps=2, tool_call_requests=1)   # 效率断言（仅记录）
+    .success(final_text_contains(&quot;three&quot;))          # 成功断言（硬失败）
+)
+</code></pre>
+<h3 id="_4">内置成功断言工厂</h3>
+<ul>
+<li><code>final_text_contains(substring, case_insensitive=False)</code> — 最终回复包含子串</li>
+<li><code>file_equals(path, content)</code> — 文件内容等于预期</li>
+<li><code>llm_judge(*criteria, judge_model=..., include_tool_calls=False)</code> — <a href="LLM-as-Judge.html">LLM-as-Judge</a> 语义评分</li>
+</ul>
+<h3 id="run_agent">入口函数 <code>run_agent</code></h3>
+<ol>
+<li>组装 <code>query</code> + <code>initial_files</code> → <code>agent.invoke</code></li>
+<li>用 <code>thread_id</code> 生成轨迹（<code>AgentTrajectory</code>）</li>
+<li>LangSmith 记录规范化 inputs/outputs</li>
+<li>执行 <code>_assert_expectations</code>：先记录效率 feedback，再逐项运行成功断言</li>
+</ol>
+<h3 id="categoriesjson">评估分类（<code>categories.json</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_operations</code></td>
+<td>文件读写操作能力</td>
+</tr>
+<tr>
+<td><code>retrieval</code></td>
+<td>信息检索能力</td>
+</tr>
+<tr>
+<td><code>tool_use</code></td>
+<td>工具选择与使用</td>
+</tr>
+<tr>
+<td><code>memory</code></td>
+<td>记忆调用与持久化</td>
+</tr>
+<tr>
+<td><code>conversation</code></td>
+<td>对话理解能力</td>
+</tr>
+<tr>
+<td><code>summarization</code></td>
+<td>上下文压缩能力</td>
+</tr>
+<tr>
+<td><code>unit_test</code></td>
+<td>SDK 单元行为（不含在雷达图中）</td>
+</tr>
+</tbody>
+</table>
+<p>雷达图（Radar）使用前 6 个分类（排除 <code>unit_test</code>），避免 SDK 行为与"模型能力"维度混淆。</p>
+<h3 id="pytest-conftestpy">pytest 配置（<code>conftest.py</code>）</h3>
+<ul>
+<li><strong>LangSmith 追踪门禁</strong>：<code>LANGSMITH_TRACING</code> 环境变量必须为 <code>"true"</code>，否则整个会话退出码 1</li>
+<li>CLI 参数：<code>--model</code>（被测模型）、<code>--eval-category</code>（筛选分类）、<code>--openrouter-provider</code></li>
+<li>所有 eval 用例使用 <code>@pytest.mark.langsmith</code></li>
+</ul>
+<h3 id="_5">外部基准集成</h3>
+<ul>
+<li><strong>FRAMES</strong>：事实性多跳问答</li>
+<li><strong>Nexus</strong>：多工具调用场景</li>
+<li><strong>BFCL v3</strong>：函数调用基准</li>
+<li><strong>tau2-bench</strong>：客服/零售场景长对话</li>
+</ul>
+<h3 id="harbor-libsevals-harbor">Harbor 框架（<code>libs/evals/</code> Harbor 集成）</h3>
+<p><code>DeepAgentsWrapper</code> 将 Deep Agent 包装为 Harbor 基准的统一接口；<code>HarborSandbox</code> 提供沙箱后端。失败分类工具自动标注错误类型（工具调用错误、规划失败、上下文溢出等），LangSmith 脚本聚合统计。</p>
+<h3 id="terminal-bench-20">Terminal Bench 2.0</h3>
+<p>90+ 真实终端任务基准，使用 LangSmith 工作流管理运行；含失败分类器与统计工具，可与雷达图联动分析。</p>
+<h3 id="harbor-libsevalsscripts-deepagents_harbor">Harbor 分析工具链（<code>libs/evals/scripts/</code> + <code>deepagents_harbor/</code>）</h3>
+<p><strong>评测后数据闭环</strong>：Harbor job 落盘 → <code>analyze.py</code> 本地汇总 → <code>add-feedback</code> 关联 LangSmith → 报表与文档再生。</p>
+<p><strong><code>scripts/analyze.py</code>（CLI 分析器）</strong>：
+- 扫描 <code>jobs/</code> trial 目录树，解析 <code>trajectory.json</code>（ATIF）、<code>result.json</code>、<code>exception.txt</code>
+- 调用 <code>failure.py</code> 做失败归因，调用 <code>stats.py</code> 输出置信区间与 MDE
+- 设计决策：退出码优先从 ATIF 结构化提取，避免对整段轨迹盲目正则导致误报</p>
+<p><strong><code>failure.py</code>——失败分类（<code>FailureCategory</code> 枚举）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CAPABILITY</code></td>
+<td>模型能力/策略问题（无基础设施信号）</td>
+</tr>
+<tr>
+<td><code>INFRA_OOM</code></td>
+<td>exit 137 / OOM</td>
+</tr>
+<tr>
+<td><code>INFRA_TIMEOUT</code></td>
+<td>exit 124 / 超时</td>
+</tr>
+<tr>
+<td><code>INFRA_SANDBOX</code></td>
+<td>沙箱崩溃、网络不可达、exec failed</td>
+</tr>
+<tr>
+<td><code>UNKNOWN</code></td>
+<td>有异常文本但无法归类</td>
+</tr>
+</tbody>
+</table>
+<p><code>is_infrastructure</code> 属性可在报表中剥离环境噪声，单独统计基础设施失败，避免污染模型能力评估。</p>
+<p><strong><code>stats.py</code>——统计严谨性</strong>：
+- <strong><code>wilson_ci(successes, total, z=1.96)</code></strong>：Wilson 置信区间，小样本或比例接近 0/1 时比正态近似更稳健（与 Anthropic 基础设施噪声研究建议一致）
+- <strong><code>min_detectable_effect(total, z=1.96, p=0.5)</code></strong>：估计最小可检测效应（MDE）——若两次成功率差距 &lt; MDE，可能无法与噪声区分。默认 <code>p=0.5</code> 取最保守基准，防止在 90 题级别上对 1~2 题的涨跌过度解读</p>
+<p><strong><code>harbor_langsmith.py</code>——LangSmith 对齐子命令</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>子命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>create-dataset</code></td>
+<td>从 Harbor 拉取任务，在 LangSmith 创建数据集和 examples</td>
+</tr>
+<tr>
+<td><code>ensure-dataset</code></td>
+<td>若不存在则创建，否则打印已存在</td>
+</tr>
+<tr>
+<td><code>create-experiment</code></td>
+<td>创建绑定数据集的实验会话，stdout 输出名称与 URL</td>
+</tr>
+<tr>
+<td><code>add-feedback</code></td>
+<td>遍历 trial，按 <code>trial_name</code> 元数据找根 run，写入 <code>harbor_reward</code>（0.0~1.0），并去重</td>
+</tr>
+</tbody>
+</table>
+<p><code>add-feedback</code> 要求恰好一条根 run 匹配（多条或无匹配均记错误），防止分数打到错误 trace。</p>
+<p><strong>生成类脚本</strong>：
+- <code>generate_radar.py</code>：从 <code>evals_summary.json</code> 生成雷达图 PNG（<code>--toy</code> 支持离线预览）
+- <code>generate_eval_catalog.py</code>：重写 <code>EVAL_CATALOG.md</code>，<code>--check</code> 用于 CI 防漂移
+- <code>generate_model_groups.py</code>：从 <code>.github/scripts/models.py</code> 注册表生成 <code>MODEL_GROUPS.md</code></p>
+<p><strong>工程化建议</strong>：先确保轨迹与 <code>result.json</code> 完整再跑分析；解读分数时同时看 <code>format_ci</code> 与 MDE，并将 <code>is_infrastructure=True</code> 的 trial 单独分层统计。</p>
+<h3 id="_6">编写评估用例（五步流程）</h3>
+<ol>
+<li>定义任务描述（query）与初始文件状态</li>
+<li>选择成功断言（子串 / 文件 / LLM Judge）</li>
+<li>可选添加效率期望</li>
+<li>标注 <code>eval_category</code> 标记</li>
+<li>考虑"漂移测试"（对比新旧模型版本行为差异）</li>
+</ol>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/17-评估体系架构总览.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/18-评估报告与指标系统.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/19-内置评估用例详解.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/20-外部基准测试集成.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/21-LLM-as-Judge评估模式.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/22-Harbor框架集成.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/23-Terminal-Bench-2.0评估.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/24-Harbor分析与统计工具.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/30-编写评估用例指南.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a></li>
+<li><a href="LLM-as-Judge.html">LLM-as-Judge</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents后端协议.html">&larr; DeepAgents后端协议</a>
+    <a href="Gauss-Seidel方法.html">Gauss-Seidel方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepAgents后端协议 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / DeepAgents后端协议</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">协议</span><span class="tag">沙箱</span></div>
+</div>
+  <div class="content">
+    <h1 id="deepagents">DeepAgents 后端协议</h1>
+<h2 id="_1">概述</h2>
+<p>DeepAgents 的存储与执行抽象层（<code>libs/deepagents/deepagents/backends/</code>）。<code>BackendProtocol</code> 定义统一的文件类 API，<code>SandboxBackendProtocol</code> 在其上扩展 shell 执行能力。上层中间件和工具只依赖协议接口，不感知底层是内存状态、本地磁盘还是远程沙箱——实现 <a href="Agent Harness模式.html">Agent Harness模式</a> 中"后端换皮、工具不变"的设计原则。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="backendprotocol-api">BackendProtocol（文件类 API）</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls(path)</code></td>
+<td>列目录，返回 <code>LsResult</code></td>
+</tr>
+<tr>
+<td><code>read(path, offset=0, limit=2000)</code></td>
+<td>分页读取，返回 <code>ReadResult</code></td>
+</tr>
+<tr>
+<td><code>write(path, content)</code></td>
+<td>新建文件（已存在则失败），返回 <code>WriteResult</code></td>
+</tr>
+<tr>
+<td><code>edit(path, old, new, replace_all=False)</code></td>
+<td>精确字符串替换，返回 <code>EditResult</code></td>
+</tr>
+<tr>
+<td><code>grep(pattern, path=None, glob=None)</code></td>
+<td>字面量子串搜索（非正则），返回 <code>GrepResult</code></td>
+</tr>
+<tr>
+<td><code>glob(pattern, path="/")</code></td>
+<td>路径 glob，返回 <code>GlobResult</code></td>
+</tr>
+<tr>
+<td><code>upload_files(files)</code></td>
+<td>批量上传，支持部分成功</td>
+</tr>
+<tr>
+<td><code>download_files(paths)</code></td>
+<td>批量下载，支持部分成功</td>
+</tr>
+</tbody>
+</table>
+<p>每个同步方法均有 <code>a*</code> 异步变体（默认 <code>asyncio.to_thread</code> 包装，子类可覆盖）。</p>
+<h3 id="sandboxbackendprotocol">SandboxBackendProtocol（执行扩展）</h3>
+<pre><code class="language-python">class SandboxBackendProtocol(BackendProtocol):
+    @property
+    def id(self) -&gt; str: ...          # 实例稳定标识
+    def execute(command, timeout=None) -&gt; ExecuteResponse: ...
+    async def aexecute(...): ...
+</code></pre>
+<p>仅当 backend 实现此协议，<code>execute</code> 工具才对 Agent 可见（FilesystemMiddleware 在运行时动态检查）。<code>ExecuteResponse</code> 含 <code>output</code>（stdout+stderr 合并）、<code>exit_code</code>、<code>truncated</code>。</p>
+<h3 id="_3">内置后端实现</h3>
+<table>
+<thead>
+<tr>
+<th>实现</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>StateBackend</strong></td>
+<td>文件内容存于 LangGraph 状态通道（ephemeral，线程内持久，无磁盘暴露）。<code>create_deep_agent</code> 的默认后端</td>
+</tr>
+<tr>
+<td><strong>FilesystemBackend</strong></td>
+<td>读写真实文件系统，支持 <code>virtual_mode</code> 等安全语义</td>
+</tr>
+<tr>
+<td><strong>CompositeBackend</strong></td>
+<td>按路径前缀路由到不同后端（如 <code>/memories/</code> → 持久存储后端）</td>
+</tr>
+<tr>
+<td><strong>BaseSandbox</strong></td>
+<td>实现 <code>SandboxBackendProtocol</code>，接入具体沙箱；合作方包（libs/partners）在此扩展</td>
+</tr>
+<tr>
+<td><strong>LangSmithSandbox</strong></td>
+<td>专用于 LangSmith 评估环境</td>
+</tr>
+</tbody>
+</table>
+<h3 id="libspartners">合作方沙箱（libs/partners/）</h3>
+<p>各自独立发版：<code>Daytona</code>、<code>Modal</code>、<code>QuickJS</code>、<code>Runloop</code>，均通过替换 Backend 层扩展执行环境，不改变上层工具语义。</p>
+<h3 id="_4">关键数据类型</h3>
+<ul>
+<li><strong><code>FileData</code>（TypedDict）</strong>：<code>content: str</code>（UTF-8 或 base64）、<code>encoding</code>、<code>created_at</code>/<code>modified_at</code></li>
+<li><strong><code>FileFormat</code></strong>：<code>"v1"</code>（旧，content 为 <code>list[str]</code> 按行分割）、<code>"v2"</code>（当前，content 为单 str + encoding）</li>
+<li><strong><code>FileOperationError</code></strong>：规范化错误码 <code>file_not_found</code>/<code>permission_denied</code>/<code>is_directory</code>/<code>invalid_path</code>，便于 LLM 理解并重试</li>
+<li><strong><code>BackendFactory</code></strong>：<code>Callable[[ToolRuntime], BackendProtocol]</code>，支持惰性构造后端</li>
+</ul>
+<h3 id="_5">设计决策</h3>
+<ol>
+<li><strong>统一表面、多样实现</strong>：中间件不感知磁盘与远程差异</li>
+<li><strong>同步优先 + 默认线程卸载</strong>：降低实现门槛</li>
+<li><strong>批量与部分成功</strong>：上传/下载返回列表，逐项含 <code>error</code> 字段</li>
+<li><strong>执行能力分层</strong>：文件协议与 shell 协议分离，非沙箱环境不误暴露执行面</li>
+<li><strong>版本化文件载荷</strong>：<code>FileFormat</code> v1/v2 明确，降低状态迁移成本</li>
+</ol>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/04-后端协议-BackendProtocol.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/05-后端实现详解.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/27-合作伙伴沙箱集成.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a></li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a></li>
+<li><a href="DeepAgents中间件体系.html">DeepAgents中间件体系</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents中间件体系.html">&larr; DeepAgents中间件体系</a>
+    <a href="DeepAgents评估体系.html">DeepAgents评估体系 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

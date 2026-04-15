@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lax-Richtmyer等价定理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lax-Richtmyer等价定理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="lax-richtmyer">Lax-Richtmyer 等价定理</h1>
+<h2 id="_1">概述</h2>
+<p>Lax-Richtmyer 等价定理（1956）由<a href="../entities/彼得·拉克斯.html">彼得·拉克斯</a>与 Robert Richtmyer 发表，被誉为<strong>"数值分析的基本定理"</strong>。定理断言：对于适定线性初值问题的相容差分格式，<strong>稳定性是收敛性的充分必要条件</strong>。即 <strong>相容 + 稳定 ⟺ 收敛</strong>。它将"难以直接验证的收敛性"等价转化为"容易验证的稳定性"，提供了分析差分格式的统一理论框架，彻底改变了数值 PDE 的研究范式。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">三个核心概念</h3>
+<p><strong>适定性（Well-posedness）</strong>：原始 PDE 初值问题 $\partial_t u = Lu$，$u(0) = u_0$ 存在唯一解且连续依赖初始条件。</p>
+<p><strong>相容性（Consistency）</strong>：差分算子 $C(k,h)$ 的局部截断误差在 $h,k \to 0$ 时趋于零——差分方程在局部上是对微分方程的好近似。（通常由 Taylor 展开验证）</p>
+<p><strong>稳定性（Stability）</strong>：差分算子的幂次一致有界——存在 $K, \omega$ 使得 $|C(k,h)^n| \leq K e^{\omega nk}$（$nk \leq T$）。误差不在时间推进中灾难性增长。（可由冯·诺依曼分析等工具验证）</p>
+<p><strong>收敛性（Convergence）</strong>：网格细化时差分解趋向 PDE 精确解。</p>
+<h3 id="_4">定理陈述</h3>
+<p>$$\boxed{\text{适定性} + \text{相容性} + \text{稳定性} \iff \text{收敛性}}$$</p>
+<p>更精确地：</p>
+<blockquote>
+<p><strong>定理</strong>：设给定适定线性初值问题及与之相容的有限差分格式，则差分格式<strong>收敛</strong>当且仅当它<strong>稳定</strong>。</p>
+</blockquote>
+<p>两个方向：
+- <strong>充分性</strong>（稳定 → 收敛）：误差传播公式 $e^n = \sum_{j=0}^{n-1} C^{n-1-j}\tau^j$；稳定性保证 $|C^m|$ 有界，相容性保证 $|\tau^j| \to 0$，故 $|e^n| \to 0$
+- <strong>必要性</strong>（收敛 → 稳定）：依赖 Banach 空间中的<strong>一致有界原理</strong>（Banach-Steinhaus 定理）</p>
+<h3 id="_5">为什么重要</h3>
+<p><strong>实用价值</strong>：收敛性很难直接验证（需要知道真解），而稳定性是格式本身的性质，可独立验证。等价定理将"难问题"分解为两个"易问题"。</p>
+<p><strong>设计指南</strong>：差分格式设计的两步策略：
+1. 保证相容性（Taylor 展开，通常容易）
+2. 保证稳定性（冯·诺依曼分析、能量方法等）
+→ 收敛性自动保证</p>
+<p><strong>与 CFL 条件的关系</strong>：<a href="CFL条件.html">CFL条件</a>是双曲方程显式格式稳定性的<strong>必要条件</strong>，等价定理指出违反 CFL（不稳定）的格式也不收敛——两者完美衔接，共同构成数值 PDE 的稳定性-收敛性理论基础。</p>
+<h3 id="_6">局限性</h3>
+<table>
+<thead>
+<tr>
+<th>局限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>仅限线性</strong></td>
+<td>非线性 PDE（Navier-Stokes, 守恒律）不直接适用，需额外工具（TVD、熵条件）</td>
+</tr>
+<tr>
+<td><strong>适定性假设</strong></td>
+<td>病态问题不适用</td>
+</tr>
+<tr>
+<td><strong>稳定性本身可能难验证</strong></td>
+<td>变系数、复杂边界、多维问题的稳定性分析仍可能困难</td>
+</tr>
+<tr>
+<td><strong>渐近结果</strong></td>
+<td>告诉我们 $h\to 0$ 时的行为，不直接给出有限步长下的误差量</td>
+</tr>
+<tr>
+<td><strong>范数依赖</strong></td>
+<td>$L^2$ 稳定 ≠ $L^\infty$ 稳定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">后续影响</h3>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>代表成果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳定性分析工具</td>
+<td>GKS 理论（Gustafsson-Kreiss-Sundstrom，处理边界条件）</td>
+</tr>
+<tr>
+<td>有限元理论推广</td>
+<td>Cea 引理、Strang 第一/第二引理（"相容+稳定=收敛"的 FEM 版本）</td>
+</tr>
+<tr>
+<td>双曲守恒律</td>
+<td>Lax-Wendroff 定理（1960）：收敛的格式收敛到弱解</td>
+</tr>
+<tr>
+<td>设计哲学</td>
+<td>现代谱方法、有限体积、DG 方法均遵循"近似精度+稳定性=收敛性"范式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/17_lax_equivalence_theorem.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/彼得·拉克斯.html">彼得·拉克斯</a></li>
+<li><a href="CFL条件.html">CFL条件</a></li>
+<li><a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a></li>
+<li><a href="有限元方法.html">有限元方法</a></li>
+<li><a href="Richardson外推法.html">Richardson外推法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Laplace变换.html">&larr; Laplace变换</a>
+    <a href="Perron-Frobenius定理.html">Perron-Frobenius定理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

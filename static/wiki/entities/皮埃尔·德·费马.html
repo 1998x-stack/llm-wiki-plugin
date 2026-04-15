@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皮埃尔·德·费马 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 皮埃尔·德·费马</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">皮埃尔·德·费马</h1>
+<h2 id="_2">概述</h2>
+<p>皮埃尔·德·费马（1601–1665）是法国图卢兹的律师兼业余数学家，被誉为"业余数学家之王"。他在数论（费马小定理、费马大定理）、解析几何和光学中都有奠基性贡献。1654年，53岁的费马与帕斯卡通过书信交流，用组合枚举法独立地解决了"点数问题"，共同开创了概率论。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<ul>
+<li>生卒年：1601–1665（64岁）</li>
+<li>国籍：法国</li>
+<li>职业：图卢兹议会律师（数学为业余爱好）</li>
+<li>领域：数论、解析几何、概率论</li>
+</ul>
+<h3 id="_5">主要贡献</h3>
+<ol>
+<li><strong>数论</strong>：</li>
+<li>费马小定理：若p是质数，a不被p整除，则 a^(p-1) ≡ 1 (mod p)</li>
+<li>
+<p>费马大定理：方程 x^n + y^n = z^n 当n &gt; 2时无正整数解（陈述于1637年，直到1995年才被证明）</p>
+</li>
+<li>
+<p><strong>解析几何</strong>：与笛卡尔独立地发现了解析几何的基本思想。</p>
+</li>
+<li>
+<p><strong>概率论的诞生</strong>：1654年与帕斯卡的通信中，提出了解决"点数问题"的<strong>组合枚举法</strong>：</p>
+</li>
+<li>关键洞察：不管赌局是否会提前结束，想象双方总共再进行 (a+b-1) 局（足以决出胜负）</li>
+<li>这(a+b-1)局共有 2^(a+b-1) 种等可能的结果序列</li>
+<li>A获胜的序列是那些其中至少有a个回合A赢的序列</li>
+<li>概率 = 有利序列数 / 总序列数</li>
+</ol>
+<h3 id="_6">在概率论中的角色</h3>
+<p>费马的组合枚举方法的核心洞察：
+- 将所有可能的未来结果列举出来
+- 计算"有利结果"的比例
+- 这个比例就是"公平价值"（即概率）</p>
+<p>与帕斯卡的关系：
+- 两人独立地用不同方法解决了同一个问题
+- 帕斯卡用递推（backward induction），费马用枚举（样本空间）
+- 两人的答案完全相同，相互印证
+- 费马的方法虽然在概念上更直观，但对于较大数字会很繁琐
+- 帕斯卡的递推方法更优雅高效</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><a href="../concepts/点数问题.html">点数问题</a></li>
+<li><a href="../concepts/概率论.html">概率论</a></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="布莱兹·帕斯卡.html">布莱兹·帕斯卡</a></li>
+<li><a href="../concepts/组合枚举法.html">组合枚举法</a></li>
+<li><a href="../concepts/样本空间.html">样本空间</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="皮埃尔-西蒙·拉普拉斯.html">&larr; 皮埃尔-西蒙·拉普拉斯</a>
+    <a href="约翰·冯·诺依曼.html">约翰·冯·诺依曼 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

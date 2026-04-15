@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiki Index — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg); line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+}
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; }
+h1 { font-size: 28px; margin-bottom: 20px; }
+h2 { font-size: 20px; margin: 24px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.page-list { list-style: none; }
+.page-list li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+.page-list a { color: var(--link); text-decoration: none; font-size: 14px; }
+.page-list a:hover { text-decoration: underline; }
+.page-type {
+  display: inline-block; font-size: 10px; padding: 1px 6px;
+  border-radius: 8px; color: #fff; margin-left: 6px; vertical-align: middle;
+}
+.page-conf { font-size: 12px; color: var(--fg2); margin-left: 8px; }
+.search-box {
+  width: 100%; padding: 10px 14px; font-size: 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--input-bg); color: var(--fg); margin-bottom: 20px;
+}
+.search-box:focus { outline: none; border-color: var(--link); }
+@media (max-width: 640px) {
+  .container { padding: 16px 12px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <h1>Wiki Index</h1>
+  <input class="search-box" type="text" placeholder="Search pages..." id="search" autocomplete="off" />
+  <h2>实体 (48)</h2>
+<ul class="page-list">
+<li><a href="entities/DeepAgents.html">DeepAgents</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/伊赛·舒尔.html">伊赛·舒尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/加藤敏夫.html">加藤敏夫</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/卡尔·龙格.html">卡尔·龙格</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/卢卡·帕西奥利.html">卢卡·帕西奥利</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/吉恩·戈卢布.html">吉恩·戈卢布</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/埃米尔·博雷尔.html">埃米尔·博雷尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.88)</span></li>
+<li><a href="entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/威廉·卡汉.html">威廉·卡汉</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/安德烈·柯尔莫哥洛夫.html">安德烈·柯尔莫哥洛夫</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/安德烈·马尔可夫.html">安德烈·马尔可夫</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/布莱兹·帕斯卡.html">布莱兹·帕斯卡</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/布鲁克·泰勒.html">布鲁克·泰勒</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/帕夫努季·利沃维奇·切比雪夫.html">帕夫努季·利沃维奇·切比雪夫</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/康尼利厄斯·朗佐斯.html">康尼利厄斯·朗佐斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/彼得·拉克斯.html">彼得·拉克斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/梅雷骑士.html">梅雷骑士</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.80)</span></li>
+<li><a href="entities/樊畿.html">樊畿</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/爱德华·施蒂费尔.html">爱德华·施蒂费尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/理查德·柯朗.html">理查德·柯朗</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/瑞利勋爵.html">瑞利勋爵</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+<li><a href="entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/皮埃尔·德·费马.html">皮埃尔·德·费马</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/约翰·图基.html">约翰·图基</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/艾萨克·牛顿.html">艾萨克·牛顿</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/莱昂哈德·欧拉.html">莱昂哈德·欧拉</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/菲利普·路德维希·冯·赛德尔.html">菲利普·路德维希·冯·赛德尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.80)</span></li>
+<li><a href="entities/西梅翁·泊松.html">西梅翁·泊松</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.87)</span></li>
+<li><a href="entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/詹姆斯·库利.html">詹姆斯·库利</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/詹姆斯·约瑟夫·西尔维斯特.html">詹姆斯·约瑟夫·西尔维斯特</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/赫尔曼·外尔.html">赫尔曼·外尔</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.92)</span></li>
+<li><a href="entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/辛克维奇.html">辛克维奇</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/阿兰·图灵.html">阿兰·图灵</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/阿德里安-马里·勒让德.html">阿德里安-马里·勒让德</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.90)</span></li>
+<li><a href="entities/雅各布·伯努利.html">雅各布·伯努利</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.95)</span></li>
+<li><a href="entities/马格努斯·赫斯坦尼斯.html">马格努斯·赫斯坦尼斯</a><span class="page-type" style="background:#4A90D9">entity</span><span class="page-conf">(0.85)</span></li>
+</ul>
+<h2>概念 (71)</h2>
+<ul class="page-list">
+<li><a href="concepts/ACP协议.html">ACP协议</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.85)</span></li>
+<li><a href="concepts/Agent Harness模式.html">Agent Harness模式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/CFL条件.html">CFL条件</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/DeepAgents中间件体系.html">DeepAgents中间件体系</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/DeepAgents后端协议.html">DeepAgents后端协议</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/DeepAgents评估体系.html">DeepAgents评估体系</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Gauss-Seidel方法.html">Gauss-Seidel方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.85)</span></li>
+<li><a href="concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Householder变换.html">Householder变换</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Jacobi迭代法.html">Jacobi迭代法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Kato-Rellich定理.html">Kato-Rellich定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Krylov子空间方法.html">Krylov子空间方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Ky Fan不等式.html">Ky Fan不等式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/LLM-as-Judge.html">LLM-as-Judge</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Laplace变换.html">Laplace变换</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Lax-Richtmyer等价定理.html">Lax-Richtmyer等价定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/QR算法.html">QR算法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Rayleigh商.html">Rayleigh商</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Richardson外推法.html">Richardson外推法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Romberg积分.html">Romberg积分</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/Schur分解.html">Schur分解</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/Weyl特征值不等式.html">Weyl特征值不等式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/bun-vs-uv.html">bun-vs-uv</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/claude-cli-tools.html">claude-cli-tools</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/modern-cli-tools.html">modern-cli-tools</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(1.00)</span></li>
+<li><a href="concepts/不可约矩阵.html">不可约矩阵</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/中心极限定理.html">中心极限定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/优化控制序.html">优化控制序</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/共轭梯度法.html">共轭梯度法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/切比雪夫不等式.html">切比雪夫不等式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.92)</span></li>
+<li><a href="concepts/切比雪夫多项式.html">切比雪夫多项式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/切比雪夫逼近理论.html">切比雪夫逼近理论</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/勒贝格常数.html">勒贝格常数</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.88)</span></li>
+<li><a href="concepts/古典概率定义.html">古典概率定义</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/后向误差分析.html">后向误差分析</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/大数定律.html">大数定律</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/奇异值分解.html">奇异值分解</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/帕斯卡三角形.html">帕斯卡三角形</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/快速傅里叶变换.html">快速傅里叶变换</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/最大似然原理.html">最大似然原理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/有限元方法.html">有限元方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/期望值.html">期望值</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/条件数.html">条件数</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/极大极小定理.html">极大极小定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/样本空间.html">样本空间</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/样条方法.html">样条方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.88)</span></li>
+<li><a href="concepts/概率公理体系.html">概率公理体系</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/概率论.html">概率论</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/欧拉方法.html">欧拉方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/正态分布.html">正态分布</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/正规矩阵.html">正规矩阵</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/泊松分布.html">泊松分布</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/点数问题.html">点数问题</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/牛顿法.html">牛顿法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/生成函数.html">生成函数</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.85)</span></li>
+<li><a href="concepts/矩阵扰动理论.html">矩阵扰动理论</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/矩阵理论.html">矩阵理论</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/组合枚举法.html">组合枚举法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/谱半径.html">谱半径</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/谱方法.html">谱方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.88)</span></li>
+<li><a href="concepts/贝叶斯定理.html">贝叶斯定理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/贝叶斯推理.html">贝叶斯推理</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/赌徒破产问题.html">赌徒破产问题</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.80)</span></li>
+<li><a href="concepts/递推方法.html">递推方法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+<li><a href="concepts/马尔可夫链.html">马尔可夫链</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.93)</span></li>
+<li><a href="concepts/高斯最小二乘法.html">高斯最小二乘法</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/高斯求积公式.html">高斯求积公式</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.95)</span></li>
+<li><a href="concepts/龙格现象.html">龙格现象</a><span class="page-type" style="background:#50C878">concept</span><span class="page-conf">(0.90)</span></li>
+</ul>
+<h2>综合分析 (2)</h2>
+<ul class="page-list">
+<li><a href="syntheses/DeepAgents评估设计哲学.html">DeepAgents评估设计哲学</a><span class="page-type" style="background:#9B59B6">synthesis</span><span class="page-conf">(0.90)</span></li>
+<li><a href="syntheses/矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事</a><span class="page-type" style="background:#9B59B6">synthesis</span><span class="page-conf">(0.92)</span></li>
+</ul>
+
+</div>
+<script>
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.page-list li').forEach(li => {
+    li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

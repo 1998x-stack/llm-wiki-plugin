@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极大极小定理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 极大极小定理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">极大极小定理</h1>
+<h2 id="_2">概述</h2>
+<p>Fischer 极大极小定理（Fischer Minimax Theorem，又称 Courant-Fischer 定理）是矩阵分析中最重要的单一定理之一，由<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>于1905年证明：<strong>实对称矩阵的第 k 个特征值，等于 <a href="Rayleigh商.html">Rayleigh商</a> 在所有 k 维子空间上的最小值再取最大值</strong>（max-min）。该定理将特征值从行列式的根（代数对象）彻底转化为变分优化问题（几何对象），绕开特征多项式，天然适用于无穷维推广，成为谱理论、数值线性代数、机器学习和量子力学的共同理论基础。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定理精确陈述</h3>
+<p>设 A 为 n×n 实对称矩阵，特征值降序排列为 λ₁ ≥ λ₂ ≥ … ≥ λₙ。则对每个 k = 1, 2, …, n：</p>
+<p><strong>Max-min 形式</strong>：
+$$\lambda_k = \max_{\dim V = k} \;\min_{x \in V,\, x \neq 0} \frac{x^T A x}{x^T x}$$</p>
+<p><strong>Min-max 形式</strong>（等价）：
+$$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{x^T x}$$</p>
+<p>两种形式等价，文献中因特征值排序方向不同而选用不同形式。</p>
+<h3 id="rayleigh">特殊情形与 Rayleigh 的结果</h3>
+<ul>
+<li>k = 1：λ₁ = max_{x≠0} R(x)（最大特征值 = Rayleigh商最大值）</li>
+<li>k = n：λₙ = min_{x≠0} R(x)（最小特征值 = Rayleigh商最小值）</li>
+</ul>
+<p>这两个特殊情形正是<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年的结果。Fischer 的贡献在于将其推广到<strong>所有中间特征值</strong>。</p>
+<h3 id="_5">证明的核心思想：维数论证</h3>
+<p>证明的关键步骤依赖一个简洁的线性代数事实：</p>
+<blockquote>
+<p><strong>若子空间 V（维数 k）与子空间 W（维数 n-k+1）的维数之和超过全空间维数 n，则 V∩W 必有非平凡交集。</strong></p>
+</blockquote>
+<p>具体地：
+1. <strong>谱分解</strong>：A = QΛQᵀ，Rayleigh商化为特征值的加权平均
+2. <strong>上界论证</strong>：任意 k 维子空间 V 与 span{v_k,…,v_n}（维数 n-k+1）必相交，交点处的 R(x) ≤ λ_k
+3. <strong>下界论证</strong>：取最优子空间 V* = span{v₁,…,v_k}，在此子空间上 min R(x) = λ_k</p>
+<p>综合得等号。</p>
+<h3 id="cauchy">与 Cauchy 交错定理的关系</h3>
+<p>Cauchy 交错定理（A 的特征值与其主子矩阵特征值交错分布）是 Fischer 定理的<strong>直接推论</strong>：将主子矩阵的 Rayleigh商视为 A 在某个 (n-1) 维子空间上的限制，即得交错不等式，且此推导远比 Cauchy 原始的行列式证明优雅。</p>
+<h3 id="weyl">Weyl 扰动不等式（应用）</h3>
+<p>Hermann Weyl（1912）利用 Fischer 定理的维数论证，证明了特征值扰动不等式：若 C = A + B，则</p>
+<p>$$|\gamma_k - \alpha_k| \leq |B|$$</p>
+<p>即特征值关于矩阵扰动是 Lipschitz 连续的。这一不等式是数值线性代数的基石。</p>
+<h3 id="courant-fischer">Courant-Fischer 定理（无穷维推广）</h3>
+<p>Richard Courant（1920）将定理推广到无穷维 Hilbert 空间中的紧自伴算子，特别是椭圆 PDE 的特征值：</p>
+<p>$$\lambda_k = \min_{\dim V = k} \max_{u \in V,\, u \neq 0} \frac{\int_\Omega |\nabla u|^2 dx}{\int_\Omega u^2 dx}$$</p>
+<p>这是研究 Laplacian 特征值渐近分布（Weyl 定律）和有限元方法收敛性的基础。</p>
+<h3 id="_6">鞍点视角（博弈论）</h3>
+<p>从优化/博弈论角度：一方（最大化者）选择子空间 V，另一方（最小化者）在 V 内选向量 x。特征值 λ_k 是这个二人零和博弈的<strong>鞍点值</strong>（saddle-point value）。这与冯·诺依曼极大极小定理在精神上一脉相承。</p>
+<h2 id="_7">意义</h2>
+<h3 id="_8">解决的三大瓶颈</h3>
+<table>
+<thead>
+<tr>
+<th>瓶颈</th>
+<th>行列式方法</th>
+<th>Fischer 变分方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算</td>
+<td>行列式展开复杂，数值不稳定</td>
+<td>Rayleigh商计算简单，可做近似</td>
+</tr>
+<tr>
+<td>理论</td>
+<td>难以推广到无穷维算子</td>
+<td>维数论证不依赖有限维性</td>
+</tr>
+<tr>
+<td>估计</td>
+<td>估计一个特征值需知其他特征值</td>
+<td>每个特征值独立变分刻画</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">现代应用</h3>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主成分分析（PCA）</td>
+<td>最优 k 维投影子空间 = max-min 最优解</td>
+</tr>
+<tr>
+<td>Lanczos 算法</td>
+<td>在 Krylov 子空间上计算 Rayleigh商极值</td>
+</tr>
+<tr>
+<td>量子化学</td>
+<td>基态能量的变分上界（Hylleraas-Undheim-MacDonald 定理）</td>
+</tr>
+<tr>
+<td>图谱理论</td>
+<td>Fiedler 值（代数连通度）的极大极小刻画 → 谱聚类</td>
+</tr>
+<tr>
+<td>有限元</td>
+<td>近似固有频率是真实频率的上界</td>
+</tr>
+<tr>
+<td>信号处理</td>
+<td>MIMO 信道容量与奇异值的变分刻画</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">局限性</h2>
+<ol>
+<li><strong>仅限对称/自伴情形</strong>：非对称矩阵特征值为复数，Rayleigh商不再实值，极大极小刻画失效</li>
+<li><strong>无穷维技术困难</strong>：无界算子（如 Schrödinger 算子）需精细处理本质谱</li>
+<li><strong>优化问题非凸</strong>：虽转化为优化问题，但在 Grassmann 流形上是非凸的，大规模求解仍是挑战</li>
+</ol>
+<h2 id="_11">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/06_fischer_minimax_theorem_1905.md</li>
+</ul>
+<h2 id="_12">相关</h2>
+<ul>
+<li><a href="Rayleigh商.html">Rayleigh商</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a></li>
+<li><a href="../entities/瑞利勋爵.html">瑞利勋爵</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="条件数.html">&larr; 条件数</a>
+    <a href="样本空间.html">样本空间 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

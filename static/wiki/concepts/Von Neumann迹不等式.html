@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Von Neumann迹不等式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Von Neumann迹不等式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="von-neumann">Von Neumann迹不等式</h1>
+<h2 id="_1">概述</h2>
+<p>Von Neumann迹不等式（1937）由<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>发表于 <em>Tomsk University Review</em>，建立了两个复矩阵迹内积绝对值的最优上界：<strong>对任意 $n \times n$ 复矩阵 $A$ 和 $B$，有 $|\operatorname{tr}(A^*B)| \leq \sum_{i=1}^n \sigma_i(A)\sigma_i(B)$</strong>，其中 $\sigma_i$ 为降序奇异值。等号成立当且仅当 $A$ 与 $B$ 的<a href="奇异值分解.html">奇异值分解</a>共享同一对酉矩阵（主轴完全对齐）。该定理揭示了矩阵迹内积完全被各自奇异值所控制，奠定了酉不变范数理论基础，催生了核范数在矩阵补全和低秩优化中的应用。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">主定理</h3>
+<p>设 $A, B \in \mathbb{C}^{n \times n}$，奇异值降序排列为 $\sigma_1(A) \geq \cdots \geq \sigma_n(A) \geq 0$（$B$ 类似），则：</p>
+<p>$$|\operatorname{tr}(A^*B)| \leq \sum_{i=1}^n \sigma_i(A)\,\sigma_i(B)$$</p>
+<p><strong>等价极值形式</strong>：对固定的 $A, B$，</p>
+<p>$$\max_{U,V \text{ 为酉矩阵}} \operatorname{Re}\,\operatorname{tr}(U A V B) = \sum_{i=1}^n \sigma_i(A)\,\sigma_i(B)$$</p>
+<p><strong>等号成立条件</strong>：存在酉矩阵 $U, V$ 使 $A = U\Sigma_A V^<em>$ 且 $B = U\Sigma_B V^</em>$，即 $A$ 与 $B$ 共享奇异向量对。</p>
+<h3 id="_4">证明思路</h3>
+<ol>
+<li><strong>SVD 标准化</strong>：$A = U_A\Sigma_A V_A^<em>$，$B = U_B\Sigma_B V_B^</em>$，代入后迹变为 $\operatorname{tr}(\Sigma_A W \Sigma_B)$，其中 $W = V_A^* U_B$ 为酉矩阵</li>
+<li><strong>双随机矩阵</strong>：酉矩阵 $W$ 的元素模方构成双随机矩阵 $M_{ij} = |W_{ij}|^2$（行列和均为1）</li>
+<li><strong>Birkhoff定理</strong>：双随机矩阵是置换矩阵的凸组合</li>
+<li><strong>排序不等式</strong>：凸组合中以恒等排列取得最大值（大配大、小配小），得到 $\sum_i\sigma_i(A)\sigma_i(B)$</li>
+</ol>
+<p>Mirsky（1975）给出了只有4页的自足简化证明，成为现代教科书标准。</p>
+<h3 id="_5">奇异值解释</h3>
+<p>迹不等式的直觉：$\operatorname{tr}(A^<em>B)$ 是矩阵 $A$ 和 $B$ 之间的"广义内积"，度量其相似程度。奇异值 $\sigma_i$ 刻画矩阵沿各主轴的"伸缩强度"。不等式的含义：</em><em>不论两矩阵的主轴方向如何，它们的内积不超过各方向伸缩强度的最优有序匹配</em>*——"大配大、小配小"永远是上界。</p>
+<h3 id="_6">酉不变范数与对称规范函数</h3>
+<p>von Neumann 在同论文中建立了：</p>
+<blockquote>
+<p>矩阵范数 $||\cdot||$ 酉不变（$|UAV| = |A|$ 对所有酉矩阵 $U,V$）$\iff$ $\exists$ 向量空间 $\mathbb{R}^n$ 上的<strong>对称规范函数</strong> $g$，使 $|A| = g(\sigma_1(A),\ldots,\sigma_n(A))$</p>
+</blockquote>
+<p>由此生成的范数族（Schatten 范数）：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>定义</th>
+<th>别名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核范数（Schatten 1-范数）</td>
+<td>$\sum_i \sigma_i(A)$</td>
+<td>迹范数（trace norm）</td>
+</tr>
+<tr>
+<td>Frobenius 范数（Schatten 2-范数）</td>
+<td>$\sqrt{\sum_i \sigma_i(A)^2}$</td>
+<td>Hilbert-Schmidt 范数</td>
+</tr>
+<tr>
+<td>谱范数（Schatten $\infty$-范数）</td>
+<td>$\sigma_1(A)$（最大奇异值）</td>
+<td>算子范数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">主要推广</h3>
+<p><strong>Ky Fan 矩阵不等式（1949–1951）</strong>：<a href="../entities/樊畿.html">樊畿</a>在普林斯顿与 von Neumann 的交流启发下，建立了特征值部分和的极值原理和 Fan $k$-范数（$\sum_{i=1}^k\sigma_i(A)$），并证明所有 Ky Fan $k$-范数被控制 $\Leftrightarrow$ 所有酉不变范数被控制（Fan 控制定理）。这是 von Neumann 迹不等式思想在范数理论中的系统延伸。详见 <a href="Ky Fan不等式.html">Ky Fan不等式</a>。</p>
+<p><strong>Mirsky 1960</strong>：Eckart-Young 低秩逼近最优性从 Frobenius/谱范数推广到所有酉不变范数——截断 SVD 在任意酉不变范数下均给出最优低秩逼近。</p>
+<p><strong>Kristof 1969</strong>：推广到多矩阵乘积 $\operatorname{tr}(Z_1A_1Z_2A_2\cdots)$ 的极值问题。</p>
+<p><strong>Schatten类（1960）</strong>：将有限维理论推广到无穷维 Hilbert 空间上的紧算子，核范数推广为 Schatten 1-范数。</p>
+<h2 id="_8">现代应用</h2>
+<p><strong>矩阵补全（推荐系统）</strong>：核范数作为矩阵秩的凸松弛，用于从部分观测恢复低秩矩阵。Netflix Prize 问题的核心。Candes &amp; Recht（2009）在不相干条件下证明核范数最小化精确恢复低秩矩阵。</p>
+<p><strong>低秩矩阵逼近（数据压缩）</strong>：截断 SVD 在迹内积意义下保留最大"信息量"——von Neumann 迹不等式是其最优性证明的核心。图像压缩、信号降噪、基因组降维均依赖此框架。</p>
+<p><strong>主成分分析（PCA）</strong>：截断 SVD 给出的子空间在迹内积意义下是最优投影。</p>
+<p><strong>量子信息</strong>：密度矩阵的迹范数（Schatten 1-范数）是量子态可区分度的基本度量，量子信道容量的核心工具。</p>
+<p><strong>核范数正则化</strong>：类比 L1 范数产生稀疏解，核范数正则化产生低秩解，广泛用于多任务学习、鲁棒 PCA、矩阵分类。</p>
+<h2 id="_9">局限性</h2>
+<ol>
+<li><strong>有限维</strong>：推广到无穷维 Hilbert 空间需要 Schatten 类条件</li>
+<li><strong>等号难验证</strong>：要求共享奇异向量，数值计算中近乎不可达</li>
+<li><strong>仅给上界</strong>：不提供下界（Ruhe 1970 年补充正定矩阵下界）</li>
+<li><strong>非交换结构</strong>：推广到半单 Lie 群需全新工具（Tam 等，2015）</li>
+</ol>
+<h2 id="_10">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/11_von_neumann_trace_inequality_1937.md</li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a></li>
+<li><a href="奇异值分解.html">奇异值分解</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="Weyl特征值不等式.html">Weyl特征值不等式</a></li>
+<li><a href="Schur分解.html">Schur分解</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Schur分解.html">&larr; Schur分解</a>
+    <a href="Weyl特征值不等式.html">Weyl特征值不等式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

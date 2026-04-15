@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正态分布 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 正态分布</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">正态分布</h1>
+<h2 id="_2">概述</h2>
+<p>正态分布（Normal Distribution），又称高斯分布或钟形曲线，是概率论和统计学中最重要的概率分布。其密度函数呈对称的钟形，均值处最高，向两侧单调递减。由<a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>于1733年首次推导，用于近似计算二项分布；后经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>和卡尔·弗里德里希·高斯系统化，成为统计学的核心工具。<a href="中心极限定理.html">中心极限定理</a>解释了为何正态分布在自然界和社会现象中普遍出现。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">数学定义</h3>
+<p>参数为均值 μ 和标准差 σ 的正态分布，其概率密度函数为：</p>
+<p>$$f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
+<p><strong>标准正态分布</strong>（μ = 0，σ = 1）：</p>
+<p>$$\phi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$$</p>
+<p>记为 X ~ N(μ, σ²)。</p>
+<h3 id="68-95-997">68-95-99.7 法则</h3>
+<p>正态分布有一个非常实用的经验规则：</p>
+<table>
+<thead>
+<tr>
+<th>区间</th>
+<th>覆盖概率</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[μ - σ, μ + σ]</td>
+<td>约 68.3%</td>
+<td>1个标准差以内</td>
+</tr>
+<tr>
+<td>[μ - 2σ, μ + 2σ]</td>
+<td>约 95.4%</td>
+<td>2个标准差以内</td>
+</tr>
+<tr>
+<td>[μ - 3σ, μ + 3σ]</td>
+<td>约 99.7%</td>
+<td>3个标准差以内</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">历史发现：不是高斯首先发现的</h3>
+<p>正态分布通常被称为"高斯分布"，但历史事实是：</p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>人物</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1733</strong></td>
+<td><strong><a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a></strong></td>
+<td><strong>首次推导正态密度函数</strong>，作为二项分布的近似</td>
+</tr>
+<tr>
+<td>1809</td>
+<td>卡尔·弗里德里希·高斯</td>
+<td>将正态分布用于误差理论和天文观测，系统化处理</td>
+</tr>
+<tr>
+<td>1812</td>
+<td><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a></td>
+<td>推广 De Moivre 的结果，建立中心极限定理</td>
+</tr>
+</tbody>
+</table>
+<p>Stigler 在其著名的"Stigler 命名定律"（没有科学发现是以其真正发现者命名的）中，特别以正态分布被称为"高斯分布"为例。</p>
+<h3 id="de-moivre">De Moivre 的推导思路</h3>
+<p>De Moivre 从 Stirling 近似 n! ≈ √(2πn)·(n/e)ⁿ 出发，估计 C(n, k) 在 k 接近 n/2 时的值，通过代换和简化，得到正态密度函数。他最初只处理了 p = 1/2（对称二项分布）的情形。</p>
+<h3 id="_6">为什么正态分布无处不在</h3>
+<p>正态分布的普遍性由<a href="中心极限定理.html">中心极限定理</a>解释：<strong>任何由大量微小独立随机因素叠加而成的量，其分布趋近正态分布</strong>，与各个因素本身的分布无关（只要满足有限方差等基本条件）。</p>
+<p>现实中的例子：
+- 人类身高（受遗传、营养等众多因素影响）
+- 测量误差（由大量微小随机误差叠加）
+- 考试成绩（受大量独立知识点掌握程度影响）
+- 金融日收益率（近似正态，但尾部更厚）</p>
+<h3 id="_7">主要性质</h3>
+<ol>
+<li><strong>对称性</strong>：关于均值对称，均值 = 中位数 = 众数</li>
+<li><strong>线性变换封闭</strong>：若 X ~ N(μ, σ²)，则 aX + b ~ N(aμ+b, a²σ²)</li>
+<li><strong>独立之和</strong>：若 X ~ N(μ₁, σ₁²)，Y ~ N(μ₂, σ₂²) 独立，则 X+Y ~ N(μ₁+μ₂, σ₁²+σ₂²)</li>
+<li><strong>标准化</strong>：(X - μ)/σ ~ N(0, 1)</li>
+</ol>
+<h3 id="_8">在统计学中的核心地位</h3>
+<p>正态分布是现代统计学的基础：
+- t 检验、F 检验、ANOVA 均基于正态假设
+- 置信区间依赖正态近似
+- 线性回归的残差假设正态分布
+- 贝叶斯统计中常用正态先验</p>
+<h2 id="_9">意义</h2>
+<h3 id="_10">历史意义</h3>
+<p>正态分布的发现是概率论从<strong>组合阶段进入分析阶段</strong>的转折点。De Moivre 将分析工具（Stirling 近似、积分近似）引入概率计算，使得 n 很大时的精确计算成为可能，解决了伯努利大数定律中数值估计过于粗糙的问题。</p>
+<h3 id="_11">深层意义：离散→连续</h3>
+<p>二项分布（离散）在大尺度下趋近正态分布（连续），体现了一个深刻主题：<strong>离散结构在大尺度下表现出连续特征</strong>。这一思想在随机过程（随机游走趋向布朗运动）、统计力学等领域反复出现。</p>
+<h2 id="_12">来源</h2>
+<ul>
+<li>raw/books/概率论/04_de_moivre_doctrine_of_chances.md</li>
+</ul>
+<h2 id="_13">相关</h2>
+<ul>
+<li><a href="中心极限定理.html">中心极限定理</a></li>
+<li><a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a></li>
+<li><a href="大数定律.html">大数定律</a></li>
+<li><a href="古典概率定义.html">古典概率定义</a></li>
+<li><a href="期望值.html">期望值</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="欧拉方法.html">&larr; 欧拉方法</a>
+    <a href="正规矩阵.html">正规矩阵 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

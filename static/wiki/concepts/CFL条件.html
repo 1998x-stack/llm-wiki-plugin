@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFL条件 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / CFL条件</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="cfl">CFL 条件</h1>
+<h2 id="_1">概述</h2>
+<p>CFL 条件（Courant-Friedrichs-Lewy Condition）由<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>、Kurt Friedrichs 和 Hans Lewy 于 1928 年发表。其核心陈述是：求解双曲型偏微分方程的<strong>显式有限差分格式</strong>要收敛，必须满足"数值信息传播速度不慢于物理信息传播速度"的约束，量化为 CFL 数 $\nu = c\Delta t / \Delta x \leq 1$。这一条件原本是出于纯数学目的（PDE 存在性证明）被发现的，却成为所有显式时间步进数值方法必须遵守的基本约束，是计算科学中最重要的稳定性判据之一。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">数学表述</h3>
+<p><strong>一维波动方程</strong>：$u_{tt} = c^2 u_{xx}$，显式中心差分格式</p>
+<p>$$\frac{u_j^{n+1} - 2u_j^n + u_j^{n-1}}{(\Delta t)^2} = c^2 \frac{u_{j+1}^n - 2u_j^n + u_{j-1}^n}{(\Delta x)^2}$$</p>
+<p><strong>CFL 条件</strong>（一维，差分格式收敛的必要条件）：</p>
+<p>$$\nu = \frac{c\Delta t}{\Delta x} \leq 1$$</p>
+<p><strong>二维推广</strong>（$\Delta x = \Delta y$ 时）：$c\Delta t/\Delta x \leq 1/\sqrt{2}$（更严格）</p>
+<p><strong>一般形式（依赖域论证）</strong>：</p>
+<blockquote>
+<p>差分格式的<strong>数值依赖域</strong>（numerical domain of dependence）必须包含微分方程的<strong>物理依赖域</strong>（physical domain of dependence）。</p>
+</blockquote>
+<h3 id="_4">依赖域论证</h3>
+<p><strong>物理依赖域</strong>：波动方程中，$(x_0, t_0)$ 处的解只依赖于特征线 $x = x_0 \pm c(t_0-t)$ 界定的初始区间 $[x_0-ct_0,\; x_0+ct_0]$。</p>
+<p><strong>数值依赖域</strong>：显式格式中，$u_j^n$ 只依赖于初始时刻 $[x_j - n\Delta x,\; x_j + n\Delta x]$ 内的值（"信息锥"）。</p>
+<p>若 $c\Delta t/\Delta x &gt; 1$，特征线斜率大于信息锥边界斜率——特征线"穿出"信息锥，格式看不到沿这些特征线传播的初始数据，必然不能收敛到正确解。</p>
+<h3 id="cfl_1">CFL 条件与稳定性</h3>
+<p>CFL 条件是<strong>必要条件</strong>，不是充分条件：满足 CFL 条件的格式还可能因截断误差、耗散误差等原因不稳定。</p>
+<p>但对许多常用格式，CFL 条件恰好同时是稳定性的充要条件（如上述显式中心差分格式）。<a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>提供了精确验证：当 $\nu &gt; 1$ 时，至少一个傅里叶模式的放大因子 $&gt; 1$，误差指数增长。</p>
+<p><strong>Lax 等价定理</strong>（Peter Lax，1956）：对一致性差分格式，稳定性 ⟺ 收敛性。CFL 条件所代表的稳定性要求因此是收敛性的充要条件（在一致性保证的前提下）。</p>
+<h3 id="_5">热传导方程的类比</h3>
+<p>对显式差分格式的<strong>抛物型方程</strong>（热传导 $u_t = \alpha u_{xx}$），类似稳定性条件为：</p>
+<p>$$\frac{\alpha \Delta t}{(\Delta x)^2} \leq \frac{1}{2}$$</p>
+<p>物理解释：扩散速度而非波速；约束更严格（$\Delta t \sim (\Delta x)^2$，空间步长减半时间步长须减四分之一）。</p>
+<h3 id="_6">历史意义：超前计算机时代的理论</h3>
+<p>CFL 论文发表于 1928 年——第一台电子计算机出现之前约 20 年。三位作者的初衷是<strong>纯数学</strong>：用差分方程作为工具证明 PDE 解的存在性，而非设计实际的计算算法。CFL 条件是证明过程中的"副产品"。</p>
+<p>这是科学史上"基础研究意想不到的实用价值"的经典案例。当<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>1922 年的数值天气预报产生荒谬结果时（预测气压变化 145 百帕 vs. 实际 &lt;1 百帕），原因之一正是他使用的时间步长违反了 CFL 条件——而此时 CFL 条件尚未被发现（1928 年）。</p>
+<h3 id="vs">显式 vs 隐式方法的核心权衡</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>显式方法</th>
+<th>隐式方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CFL 限制</td>
+<td>有（$\nu \leq 1$）</td>
+<td>无条件稳定（或宽松得多）</td>
+</tr>
+<tr>
+<td>每步计算</td>
+<td>简单，天然并行</td>
+<td>需解线性方程组</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>非刚性问题，波动方程，GPU 并行</td>
+<td>刚性问题，扩散为主</td>
+</tr>
+<tr>
+<td>代表格式</td>
+<td>Lax-Friedrichs，Lax-Wendroff，显式 RK</td>
+<td>Crank-Nicolson，ADI，BDF</td>
+</tr>
+</tbody>
+</table>
+<p>CFL 条件的严格性是选择隐式方法的重要动机。</p>
+<h3 id="cfl_2">实际应用中的 CFL 数</h3>
+<p>工程实践中，用户根据当前流场状态自适应调整时间步长：</p>
+<p>$$\Delta t = \text{CFL}<em>{\max} \cdot \frac{\Delta x</em>{\min}}{c_{\max}}$$</p>
+<p>常取 $\text{CFL}_{\max} \approx 0.5 \sim 0.9$（安全余量）。</p>
+<table>
+<thead>
+<tr>
+<th>应用领域</th>
+<th>波速 $c$</th>
+<th>典型约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CFD（可压缩流）</td>
+<td>声速（$\sim 340$ m/s 大气）</td>
+<td>典型 CFL 数 0.5–0.8</td>
+</tr>
+<tr>
+<td>全球天气模型（10 km 网格）</td>
+<td>大气波速</td>
+<td>时间步长 $\sim 30$ 秒</td>
+</tr>
+<tr>
+<td>FDTD 电磁模拟</td>
+<td>光速 $c = 1/\sqrt{\mu\epsilon}$</td>
+<td>Yee 网格（1966）自然满足</td>
+</tr>
+<tr>
+<td>地震波模拟</td>
+<td>地震波速</td>
+<td>空间分辨率决定 $\Delta t$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/11_cfl_condition.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/理查德·柯朗.html">理查德·柯朗</a></li>
+<li><a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a></li>
+<li><a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a></li>
+<li><a href="有限元方法.html">有限元方法</a></li>
+<li><a href="谱方法.html">谱方法</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent Harness模式.html">&larr; Agent Harness模式</a>
+    <a href="DeepAgents中间件体系.html">DeepAgents中间件体系 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

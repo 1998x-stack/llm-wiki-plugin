@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皮埃尔-西蒙·拉普拉斯 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 皮埃尔-西蒙·拉普拉斯</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="-">皮埃尔-西蒙·拉普拉斯</h1>
+<h2 id="_1">概述</h2>
+<p>皮埃尔-西蒙·拉普拉斯（1749–1827）是法国数学家和物理学家。1812年出版的《分析概率论》（Théorie Analytique des Probabilités）是概率论的经典著作，他在其中将"等可能结果的比例"正式确立为概率的定义，这被称为<strong>古典概率定义</strong>，直至今日仍是概率论的基础之一。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">生平</h3>
+<ul>
+<li>生卒年：1749–1827（78岁）</li>
+<li>国籍：法国</li>
+<li>领域：概率论、微分方程、天体力学</li>
+</ul>
+<h3 id="_4">主要贡献</h3>
+<ol>
+<li><strong>《分析概率论》（1812年）</strong>：</li>
+<li>系统而严密的概率论专著</li>
+<li>总结了帕斯卡、费马、惠更斯、伯努利、德莫弗等人的工作</li>
+<li>
+<p>将概率论提升到更高的理论阶段</p>
+</li>
+<li>
+<p><strong>古典概率定义</strong>：</p>
+</li>
+<li>正式定义：概率 = 有利结果数 / 总可能结果数（等可能情形下）</li>
+<li>这个定义直接源自费马的"枚举等可能结果"思想</li>
+<li>使概率从直觉数学上升为严格的数学定义</li>
+<li>
+<p>成为古典概率论的基石</p>
+</li>
+<li>
+<p><strong>逆概率方法的独立发展（1774年）</strong>：</p>
+</li>
+<li>独立于贝叶斯（1763年遗作），拉普拉斯于1774年独立提出逆概率方法</li>
+<li>更加一般化，并应用于天文学（彗星轨道）和人口统计学</li>
+<li>
+<p>贝叶斯思想在历史上的实际传播主要通过拉普拉斯的工作实现</p>
+</li>
+<li>
+<p><strong>概率论的总结</strong>：</p>
+</li>
+<li>将概率论应用于观测数据分析</li>
+<li>奠定了现代统计学的理论基础</li>
+<li>1812年《分析概率论》综合了帕斯卡至德莫弗的所有成果</li>
+</ol>
+<h3 id="_5">在概率论史中的地位</h3>
+<ul>
+<li>位于整个概率论历史的总结点</li>
+<li>帕斯卡–费马开创，惠更斯–伯努利–德莫弗发展，拉普拉斯总结</li>
+<li>他的古典概率定义成为 Kolmogorov 公理化体系之前的概率论基础</li>
+<li>从这个意义上，他完成了从"实际赌博问题"到"严格数学理论"的全部旅程</li>
+</ul>
+<h2 id="_6">来源</h2>
+<ul>
+<li><a href="../concepts/概率论.html">概率论</a></li>
+<li><a href="../concepts/古典概率定义.html">古典概率定义</a></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a></li>
+<li><a href="雅各布·伯努利.html">雅各布·伯努利</a></li>
+<li><a href="../concepts/贝叶斯定理.html">贝叶斯定理</a></li>
+<li><a href="../concepts/贝叶斯推理.html">贝叶斯推理</a></li>
+<li><a href="托马斯·贝叶斯.html">托马斯·贝叶斯</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="瑞利勋爵.html">&larr; 瑞利勋爵</a>
+    <a href="皮埃尔·德·费马.html">皮埃尔·德·费马 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

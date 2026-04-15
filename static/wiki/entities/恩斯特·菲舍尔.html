@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恩斯特·菲舍尔 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 恩斯特·菲舍尔</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">恩斯特·菲舍尔</h1>
+<h2 id="_2">概述</h2>
+<p>恩斯特·西吉斯蒙德·菲舍尔（Ernst Sigismund Fischer，1875–1954）是20世纪初奥地利-德国数学家，以两项永久性贡献为后人铭记：其一是1905年提出的<a href="../concepts/极大极小定理.html">极大极小定理</a>，为对称矩阵所有特征值给出统一的变分刻画；其二是1907年与 Frigyes Riesz 各自独立证明的 <strong>Riesz-Fischer 定理</strong>，建立了 L² 空间的完备性，奠定了现代泛函分析的基石。Fischer 的学术生涯横跨代数、分析与几何，对二次形式理论尤有深刻洞察。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<ul>
+<li>生卒年：1875年7月12日（维也纳）— 1954年11月14日（科隆）</li>
+<li>国籍：奥地利/德国</li>
+<li>任职：维也纳大学 → 布吕恩（今布尔诺）德意志技术大学 → 埃尔朗根大学</li>
+<li>领域：代数、分析（二次形式理论、积分方程、实分析）</li>
+</ul>
+<h3 id="_5">两项永久性贡献</h3>
+<p><strong>1. 极大极小定理（1905）</strong></p>
+<p>发表于 <em>Monatshefte für Mathematik und Physik</em>，论文题为 "Über quadratische Formen mit reellen Koeffizienten"。</p>
+<p>Fischer 的核心洞察：不仅最大/最小特征值，<strong>每一个</strong>特征值都可以用 <a href="../concepts/Rayleigh商.html">Rayleigh商</a> 在子空间约束下的双重极值精确表达：</p>
+<p>$$\lambda_k = \max_{\dim V = k} \min_{x \in V,\, x \neq 0} \frac{x^T A x}{x^T x}$$</p>
+<p>这将特征值从代数方程的根（行列式方法）彻底转化为变分优化问题，绕开了特征多项式的计算。</p>
+<p><strong>2. Riesz-Fischer 定理（1907）</strong></p>
+<p>Fischer 与 Frigyes Riesz 各自独立证明：L² 空间是完备的（即 Cauchy 列收敛于 L² 中的元素）。该定理是现代泛函分析和无穷维谱理论的基础——也正是它使得 Fischer 极大极小定理向无穷维算子的推广（Courant-Fischer 定理）成为可能。</p>
+<h3 id="_6">极大极小定理的历史地位</h3>
+<p>Fischer 定理是特征值理论从<strong>"特征方程求根"范式</strong>向<strong>"优化问题求解"范式</strong>转变的里程碑。直接启发了：</p>
+<ul>
+<li><strong>Hermann Weyl（1912）</strong>：Weyl 特征值扰动不等式</li>
+<li><strong>Richard Courant（1920）</strong>：无穷维推广（Courant-Fischer 定理）用于 PDE 特征值</li>
+<li><strong>现代数值方法</strong>：Lanczos 算法、Rayleigh-Ritz 方法</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/06_fischer_minimax_theorem_1905.md</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../concepts/极大极小定理.html">极大极小定理</a></li>
+<li><a href="../concepts/Rayleigh商.html">Rayleigh商</a></li>
+<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="彼得·拉克斯.html">&larr; 彼得·拉克斯</a>
+    <a href="托马斯·贝叶斯.html">托马斯·贝叶斯 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

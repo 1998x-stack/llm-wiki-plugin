@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rayleigh商 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Rayleigh商</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="rayleigh">Rayleigh商</h1>
+<h2 id="_1">概述</h2>
+<p>Rayleigh商（Rayleigh Quotient）是实对称矩阵 A 关于非零向量 x 定义的标量函数：R(x) = xᵀAx / xᵀx。其值域恰好是 A 的特征值区间 [λ_min, λ_max]，在特征向量处取得相应特征值。由<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年在声学和振动分析中引入，用于将最小特征值（基频）表达为变分极小值；后被<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>扩展为<a href="极大极小定理.html">极大极小定理</a>的核心工具，将所有特征值统一纳入变分框架。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">定义</h3>
+<p>对于 n×n 实对称矩阵 A，Rayleigh商为：</p>
+<p>$$R(x) = \frac{x^T A x}{x^T x}, \quad x \in \mathbb{R}^n \setminus {0}$$</p>
+<p>等价地，对 Hermite 矩阵：</p>
+<p>$$R(x) = \frac{x^<em> A x}{x^</em> x}, \quad x \in \mathbb{C}^n \setminus {0}$$</p>
+<p>注：R(x) 对标量缩放不变（R(αx) = R(x)），可以等价地限制在单位球面上。</p>
+<h3 id="_4">基本性质</h3>
+<p>设 A 的特征值降序为 λ₁ ≥ λ₂ ≥ … ≥ λₙ，对应正交特征向量 v₁,…,vₙ：</p>
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值域</td>
+<td>λₙ ≤ R(x) ≤ λ₁</td>
+</tr>
+<tr>
+<td>最大值</td>
+<td>max R(x) = λ₁，在 v₁ 处取得</td>
+</tr>
+<tr>
+<td>最小值</td>
+<td>min R(x) = λₙ，在 vₙ 处取得</td>
+</tr>
+<tr>
+<td>特征向量处</td>
+<td>R(vᵢ) = λᵢ</td>
+</tr>
+<tr>
+<td>加权平均</td>
+<td>R(x) = Σλᵢyᵢ²/Σyᵢ²，其中 y = Qᵀx</td>
+</tr>
+</tbody>
+</table>
+<p>最后一式将 R(x) 表达为特征值的凸组合，权重由 x 在特征向量基下的坐标决定。</p>
+<h3 id="rayleigh_1">Rayleigh 的物理起源</h3>
+<p>在弹性/声学系统中（刚度矩阵 K，质量矩阵 M），广义 Rayleigh商为：</p>
+<p>$$R(x) = \frac{x^T K x}{x^T M x}$$</p>
+<p>物理意义：<strong>弹性势能与动能的比</strong>。基频的平方等于此商的最小值。这一物理直觉（系统的"最经济"振动模式最先被激发）使 Rayleigh 在1877年引入了这个商。</p>
+<h3 id="fischer">在 Fischer 极大极小定理中的角色</h3>
+<p>Fischer 定理的核心是在<strong>子空间约束</strong>下对 Rayleigh商施加双重极值：</p>
+<p>$$\lambda_k = \max_{\dim V = k} \min_{x \in V,\, x \neq 0} R(x)$$</p>
+<p>Rayleigh商的凸组合表达（加权平均形式）是证明两个步骤（上界和下界论证）的关键工具。</p>
+<h3 id="_5">梯度与临界点</h3>
+<p>Rayleigh商关于 x 的梯度为：</p>
+<p>$$\nabla R(x) = \frac{2}{x^T x}\left(Ax - R(x) \cdot x\right)$$</p>
+<p>临界点（∇R = 0）恰好是特征向量，临界值恰好是特征值。因此，<strong>求 Rayleigh商的驻点等价于求特征向量</strong>。</p>
+<h3 id="rayleigh-ritz">实际计算：Rayleigh-Ritz 方法</h3>
+<p>在数值计算中，Rayleigh 商用于<strong>特征值的迭代估计</strong>：</p>
+<ol>
+<li>选取初始猜测向量 x₀</li>
+<li>计算 R(xₖ)（作为特征值近似）</li>
+<li>更新 x：如 Rayleigh 商迭代（Rq = Axₖ - R(xₖ)xₖ 的法方程）</li>
+<li>收敛速度：Rayleigh商迭代对单纯特征值<strong>三次收敛</strong></li>
+</ol>
+<p><strong>Lanczos 算法</strong>正是在 Krylov 子空间上对 Rayleigh商做约束极值，快速计算大稀疏矩阵的极端特征值。</p>
+<h3 id="rayleigh_2">广义 Rayleigh商与主成分分析</h3>
+<p>在主成分分析（PCA）中，协方差矩阵 C 的 Rayleigh商 R(x) = xᵀCx / xᵀx 的最大值方向给出第一主成分。Fischer 定理保证了最优 k 维投影子空间恰好是前 k 个特征向量张成的子空间，这是 PCA 最优性的数学根据。</p>
+<h2 id="_6">意义</h2>
+<p>Rayleigh商是将<strong>"代数的"特征值</strong>与<strong>"几何的"子空间方向</strong>联系起来的核心桥梁。它使得：</p>
+<ul>
+<li>特征值可以通过优化（而非求多项式的根）来计算和估计</li>
+<li>近似特征向量能给出特征值的近似（且误差阶高两级：方向误差 ε → 特征值误差 ε²）</li>
+<li>有限维结果可以自然地推广到无穷维函数空间</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/06_fischer_minimax_theorem_1905.md</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="极大极小定理.html">极大极小定理</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a></li>
+<li><a href="../entities/瑞利勋爵.html">瑞利勋爵</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="QR算法.html">&larr; QR算法</a>
+    <a href="Richardson外推法.html">Richardson外推法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

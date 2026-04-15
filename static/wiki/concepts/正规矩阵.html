@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正规矩阵 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 正规矩阵</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">正规矩阵</h1>
+<h2 id="_2">概述</h2>
+<p>矩阵 $A \in \mathbb{C}^{n \times n}$ 称为<strong>正规矩阵</strong>（normal matrix），若其与自身共轭转置对易：$A^<em>A = AA^</em>$。正规矩阵是可酉对角化矩阵的精确刻画：由<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 1909年的<a href="Schur分解.html">Schur分解</a>理论，$A$ 正规当且仅当存在酉矩阵 $Q$ 使 $A = QDQ^*$，其中 $D$ 为对角矩阵。Hermite 矩阵、酉矩阵、实对称矩阵、实正交矩阵均为正规矩阵的特例，它们各自的谱定理均是此一般定理的推论。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定义与等价条件</h3>
+<p><strong>定义</strong>：$A$ 正规 $\iff$ $A^<em>A = AA^</em>$</p>
+<p><strong>等价条件（均由 Schur 分解给出）</strong>：
+- $\exists$ 酉矩阵 $Q$ 使 $A = QDQ^<em>$，$D$ 对角
+- $A$ 的 Schur 三角形式 $T$ 为对角矩阵
+- Schur 不等式取等：$\sum|\lambda_i|^2 = |A|_F^2$
+- $A$ 的特征向量构成 $\mathbb{C}^n$ 的标准正交基
+- $A$ 和 $A^</em>$ 有相同的特征向量</p>
+<h3 id="_5">正规矩阵的重要子类</h3>
+<table>
+<thead>
+<tr>
+<th>子类</th>
+<th>条件</th>
+<th>特征值性质</th>
+<th>典型例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hermite 矩阵</td>
+<td>$A^* = A$</td>
+<td>全为实数</td>
+<td>协方差矩阵、Laplacian</td>
+</tr>
+<tr>
+<td>反 Hermite 矩阵</td>
+<td>$A^* = -A$</td>
+<td>全为纯虚数</td>
+<td>$iH$（$H$ Hermite）</td>
+</tr>
+<tr>
+<td>酉矩阵</td>
+<td>$A^*A = I$</td>
+<td>模全为1</td>
+<td>旋转矩阵、DFT 矩阵</td>
+</tr>
+<tr>
+<td>实对称矩阵</td>
+<td>$A^T = A$，$A \in \mathbb{R}^{n \times n}$</td>
+<td>全为实数</td>
+<td>刚度矩阵、相关矩阵</td>
+</tr>
+<tr>
+<td>实正交矩阵</td>
+<td>$A^T A = I$，$A \in \mathbb{R}^{n \times n}$</td>
+<td>模全为1</td>
+<td>旋转/反射变换</td>
+</tr>
+</tbody>
+</table>
+<p>所有上述子类均满足 $A^<em>A = AA^</em>$，是正规矩阵的特例。</p>
+<h3 id="_6">谱定理（正规矩阵版）</h3>
+<p><strong>定理</strong>：$A \in \mathbb{C}^{n \times n}$ 正规，则</p>
+<p>$$A = \sum_{i=1}^{n} \lambda_i q_i q_i^*$$</p>
+<p>其中 $\lambda_1, \ldots, \lambda_n$ 为 $A$ 的特征值，$q_1, \ldots, q_n$ 为对应的标准正交特征向量。这是<a href="极大极小定理.html">极大极小定理</a>对一般正规矩阵的推广（不再要求对称性）。</p>
+<h3 id="schur">与 Schur 不等式的关系</h3>
+<p>Schur不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 的等号条件：</p>
+<p>$$\sum_{i=1}^{n}|\lambda_i|^2 = |A|_F^2 \iff A \text{ 正规}$$</p>
+<p>这给出了判断正规性的计算友好准则：只需计算特征值和 Frobenius 范数（两者都是 $O(n^3)$ 操作），无需验证 $n^2$ 个矩阵元素的等式 $A^<em>A = AA^</em>$。</p>
+<h3 id="_7">非正规矩阵</h3>
+<p>非正规矩阵（$A^<em>A \neq AA^</em>$）具有"缺陷"（defective）特征结构：
+- Schur 不等式严格成立（严格上三角部分非零）
+- Jordan 块结构不可对角化
+- 幂次行为可能复杂（即使谱半径 $&lt;1$ 也可能先增大后衰减）</p>
+<p><strong>Pseudospectrum</strong>（伪谱）是分析非正规矩阵的现代工具，Trefethen 专著 <em>Spectra and Pseudospectra</em> 系统阐述了这一方向。</p>
+<h2 id="_8">应用</h2>
+<ul>
+<li><strong>量子力学</strong>：可观测量（Hermite 算子）和演化算子（酉算子）均为正规算子，谱定理保证了本征态的存在性和正交性</li>
+<li><strong>PCA（主成分分析）</strong>：协方差矩阵（实对称正规矩阵）的谱分解提取主成分方向</li>
+<li><strong>图谱理论</strong>：无向图的邻接矩阵和 Laplacian 均为实对称正规矩阵</li>
+<li><strong>数值稳定性分析</strong>：正规矩阵的扰动行为最优（特征值 Lipschitz 连续），非正规矩阵可能对扰动极敏感</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="Schur分解.html">Schur分解</a></li>
+<li><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="极大极小定理.html">极大极小定理</a></li>
+<li><a href="谱半径.html">谱半径</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="正态分布.html">&larr; 正态分布</a>
+    <a href="泊松分布.html">泊松分布 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

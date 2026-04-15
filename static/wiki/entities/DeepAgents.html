@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepAgents — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / DeepAgents</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Agent</span><span class="tag">LangChain</span><span class="tag">开源</span><span class="tag">Python</span></div>
+</div>
+  <div class="content">
+    <h1 id="deepagents">DeepAgents</h1>
+<h2 id="_1">概述</h2>
+<p>LangChain 官方开源的 <strong>生产级 Agent Harness</strong>（<code>langchain-ai/deepagents</code>），基于 <span style="color:#e74c3c" title="broken link">LangGraph</span> 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的中间件、后端协议和默认系统提示，快速得到"像 Claude Code 一样能干活"的智能体，再按需裁剪扩展。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="monorepo">仓库结构（Monorepo）</h3>
+<table>
+<thead>
+<tr>
+<th>子包</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>libs/deepagents/</code></td>
+<td>核心 SDK：<code>create_deep_agent</code>、中间件、后端协议</td>
+</tr>
+<tr>
+<td><code>libs/cli/</code></td>
+<td>基于 Textual 的终端 TUI，延迟加载重型依赖</td>
+</tr>
+<tr>
+<td><code>libs/acp/</code></td>
+<td>Agent Client Protocol 服务端集成</td>
+</tr>
+<tr>
+<td><code>libs/evals/</code></td>
+<td>评估套件，含 Harbor、Terminal Bench 集成</td>
+</tr>
+<tr>
+<td><code>libs/repl/</code></td>
+<td>REPL 中间件（<code>langchain-repl</code>）</td>
+</tr>
+<tr>
+<td><code>libs/partners/</code></td>
+<td>合作方沙箱：Daytona、Modal、QuickJS、Runloop</td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>示例项目（各自独立 pyproject.toml）</td>
+</tr>
+</tbody>
+</table>
+<p>各包<strong>独立版本、独立锁文件</strong>，无根级 uv workspace。工具链：uv（包管理）、make（任务聚合）、ruff（lint/format）、ty（类型检查）、pytest（测试）。</p>
+<h3 id="api">核心 API</h3>
+<p><strong><code>create_deep_agent()</code></strong>（<code>libs/deepagents/deepagents/graph.py</code>）：唯一公共装配入口，声明式配置返回 <code>CompiledStateGraph</code>。关键参数：
+- <code>model</code>：默认 <code>claude-sonnet-4-6</code>（需 <code>ANTHROPIC_API_KEY</code>）
+- <code>tools</code>、<code>middleware</code>、<code>backend</code>、<code>subagents</code>、<code>skills</code>、<code>memory</code>、<code>interrupt_on</code>
+- <code>recursion_limit=9999</code>（避免复杂任务被 LangGraph 截断）
+- <code>BASE_AGENT_PROMPT</code> 始终附加在系统提示末尾（不可省略的行为基线）</p>
+<h3 id="_3">默认工具集</h3>
+<p><code>write_todos</code>、<code>ls</code>、<code>read_file</code>、<code>write_file</code>、<code>edit_file</code>、<code>glob</code>、<code>grep</code>、<code>execute</code>（需沙箱 backend）、<code>task</code>（子代理分发）。</p>
+<h3 id="_4">子代理分发</h3>
+<p>三种子代理规格：同步 <code>SubAgent</code>（内联执行）、<code>CompiledSubAgent</code>（已编译图）、<code>AsyncSubAgent</code>（异步/远程，含 <code>graph_id</code>）。默认自动插入 <code>general-purpose</code> 子代理，保证 <code>task</code> 工具始终可用。</p>
+<h3 id="cli">CLI 特点</h3>
+<ul>
+<li>启动链延迟导入 LangChain/LangGraph（轻量命令如 <code>-v</code> 毫秒级）</li>
+<li>SDK 版本精确 pin，与 CI 联动</li>
+<li>Python 版本：<code>acp</code> 包用 3.14，其余用 3.12</li>
+</ul>
+<h3 id="_5">示例项目</h3>
+<p><code>deep_research</code>（多步检索+反思）、<code>content-builder-agent</code>（记忆+skills）、<code>text-to-sql-agent</code>、<code>ralph_mode</code>（循环自治）、<code>downloading_agents</code>（智能体即文件夹）、<code>async-subagent-server</code>。</p>
+<h3 id="cicd">CI/CD</h3>
+<ul>
+<li>GitHub Actions + release-please 自动版本化</li>
+<li>pre-commit：格式化、换行检查，evals 数据目录受保护（字节级一致）</li>
+<li>提交规范：Conventional Commits（feat/fix/refactor/docs/test/chore）</li>
+</ul>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/03-入口函数-create_deep_agent.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/13-模型解析与Provider支持.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/14-CLI架构与入口.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/28-CI-CD与发布流程.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/29-代码规范与质量保障.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/31-示例项目解析.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a></li>
+<li><a href="../concepts/DeepAgents中间件体系.html">DeepAgents中间件体系</a></li>
+<li><a href="../concepts/DeepAgents后端协议.html">DeepAgents后端协议</a></li>
+<li><a href="../concepts/DeepAgents评估体系.html">DeepAgents评估体系</a></li>
+<li><a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a></li>
+<li><a href="../concepts/ACP协议.html">ACP协议</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

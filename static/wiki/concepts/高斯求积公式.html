@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高斯求积公式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 高斯求积公式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数值分析</span><span class="tag">数学</span><span class="tag">科学计算</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">高斯求积公式</h1>
+<h2 id="_2">概述</h2>
+<p>1814年高斯发表的数值积分方法，通过同时优化积分<strong>节点位置</strong>和<strong>权重</strong>，使 $n$ 个节点的求积公式达到 $2n-1$ 次多项式的精确度——是理论上限，比同等节点数的 <span style="color:#e74c3c" title="broken link">Newton-Cotes公式</span>（固定等距节点，精度 $n-1$）高出近一倍。节点恰好是<span style="color:#e74c3c" title="broken link">勒让德多项式</span>的零点，所有权重均为正数。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心定理</h3>
+<p><strong>精度最优定理</strong>：$n$ 点高斯求积公式对所有次数 $\leq 2n-1$ 的多项式精确成立，且 $2n-1$ 是不可超越的上界。</p>
+<p>求积公式形式：</p>
+<p>$$\int_{-1}^{1} f(x) \, dx \approx \sum_{i=1}^{n} w_i f(x_i)$$</p>
+<ul>
+<li><strong>节点</strong> $x_i$：$n$ 次勒让德多项式 $P_n(x)$ 的 $n$ 个零点（全在 $(-1,1)$ 内）</li>
+<li><strong>权重</strong> $w_i = \dfrac{2}{(1-x_i^2)[P_n'(x_i)]^2}$，均为正数</li>
+</ul>
+<h3 id="newton-cotes">为何优于 Newton-Cotes</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Newton-Cotes</th>
+<th>高斯求积</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>节点</td>
+<td>预先固定（等距）</td>
+<td>同时优化</td>
+</tr>
+<tr>
+<td>自由参数</td>
+<td>$n$ 个权重</td>
+<td>$n$ 节点 + $n$ 权重 = $2n$</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>$n-1$（或 $n$）</td>
+<td>$2n-1$</td>
+</tr>
+<tr>
+<td>权重正性</td>
+<td>高阶时出现负权重</td>
+<td>始终为正</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">低阶具体公式</h3>
+<table>
+<thead>
+<tr>
+<th>$n$</th>
+<th>节点</th>
+<th>权重</th>
+<th>精确至</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$0$</td>
+<td>$2$</td>
+<td>1次多项式（中点法则）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$\pm 1/\sqrt{3}$</td>
+<td>$1,1$</td>
+<td>3次多项式</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$0,\,\pm\sqrt{3/5}$</td>
+<td>$8/9,\,5/9,\,5/9$</td>
+<td>5次多项式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">与正交多项式的联系</h3>
+<p>不同权函数对应不同正交多项式族，衍生出各类高斯求积变体：
+- <strong>Gauss-Legendre</strong>：$w(x)=1$，$[-1,1]$，使用勒让德多项式（最常用）
+- <strong>Gauss-Chebyshev</strong>：$w(x)=1/\sqrt{1-x^2}$，使用切比雪夫多项式
+- <strong>Gauss-Laguerre</strong>：$w(x)=e^{-x}$，$[0,\infty)$，使用拉盖尔多项式
+- <strong>Gauss-Hermite</strong>：$w(x)=e^{-x^2}$，$(-\infty,\infty)$，使用埃尔米特多项式
+- <strong>Gauss-Jacobi</strong>：$w(x)=(1-x)^\alpha(1+x)^\beta$，使用雅可比多项式</p>
+<h3 id="_7">误差估计</h3>
+<p>$$E_n[f] = \frac{2^{2n+1}(n!)^4}{(2n+1)[(2n)!]^3} f^{(2n)}(\xi), \quad \xi \in (-1,1)$$</p>
+<p>精度依赖被积函数的第 $2n$ 阶导数——函数越光滑，精度越高。</p>
+<h3 id="_8">核心直觉：充分利用自由度</h3>
+<p>Newton-Cotes 预先固定节点，浪费了 $n$ 个自由参数。高斯让节点也参与优化，用全部 $2n$ 个自由度满足 $2n$ 个精度条件，精度因此翻倍。正交性将表观上的 $2n-1$ 次问题"降维"为 $n-1$ 次问题，使这一最优解切实可构造。</p>
+<h3 id="_9">实践应用</h3>
+<ul>
+<li><strong>有限元方法</strong>：刚度矩阵和质量矩阵积分的标准工具</li>
+<li><strong>谱方法</strong>：在高斯节点上离散化函数</li>
+<li><strong>自适应积分</strong>：Gauss-Kronrod 公式（Kronrod, 1964）在 $n$ 点基础上加 $n+1$ 个新节点，用误差估计驱动自适应步长（被 QUADPACK、GSL 等采用）</li>
+<li><strong>节点计算</strong>：Golub-Welsch 算法（1969）将节点计算转化为对称三对角矩阵特征值问题</li>
+</ul>
+<h3 id="_10">局限性</h3>
+<ul>
+<li><strong>维度灾难</strong>：$d$ 维张量积需 $n^d$ 个求值点；稀疏网格（Smolyak, 1963）部分缓解</li>
+<li><strong>光滑性依赖</strong>：不光滑函数（间断、奇异）收敛退化</li>
+<li><strong>非嵌套</strong>：$n+1$ 点公式的节点与 $n$ 点完全不同，无法重用旧求值</li>
+</ul>
+<h3 id="_11">理论完善历程</h3>
+<p>高斯（1814）给出结果但证明不完全严格；完整框架由 Jacobi（1826）、Christoffel（1858）、Stieltjes（1884）逐步建立。</p>
+<h2 id="_12">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/05_gauss_quadrature.md</span></li>
+</ul>
+<h2 id="_13">相关</h2>
+<ul>
+<li><a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a></li>
+<li><a href="../entities/阿德里安-马里·勒让德.html">阿德里安-马里·勒让德</a></li>
+<li><a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a></li>
+<li><a href="有限元方法.html">有限元方法</a></li>
+<li><a href="../entities/帕夫努季·利沃维奇·切比雪夫.html">帕夫努季·利沃维奇·切比雪夫</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="高斯最小二乘法.html">&larr; 高斯最小二乘法</a>
+    <a href="龙格现象.html">龙格现象 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

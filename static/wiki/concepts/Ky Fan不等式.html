@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ky Fan不等式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Ky Fan不等式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="ky-fan">Ky Fan不等式</h1>
+<h2 id="_1">概述</h2>
+<p>Ky Fan不等式（1949–1951）由<a href="../entities/樊畿.html">樊畿</a>在三篇 PNAS 论文中建立，将<a href="Weyl特征值不等式.html">Weyl特征值不等式</a>从单个特征值的逐项控制提升为<strong>特征值部分和的整体控制</strong>。核心内容：(1) <strong>Fan极值原理</strong>——前 $k$ 个最大特征值之和等于 Hermitian 矩阵在所有 $k$ 维子空间上"限制迹"的最大值；(2) <strong>Fan部分和不等式</strong>——$\sum_{i=1}^k\lambda_i(A+B) \leq \sum_{i=1}^k\lambda_i(A)+\sum_{i=1}^k\lambda_i(B)$；(3) <strong>Fan控制定理</strong>——所有 Ky Fan $k$-范数的控制等价于所有酉不变范数的控制。这套理论统一了特征值不等式与酉不变范数，是<a href="优化控制序.html">优化控制序</a> (Majorization) 理论的核心组成，并直接催生了 Horn 猜想的提出。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="ky-fan_1">定理一：Ky Fan 极值原理</h3>
+<p>设 $A$ 为 $n \times n$ Hermitian 矩阵，特征值降序排列 $\lambda_1 \geq \cdots \geq \lambda_n$。则：</p>
+<p>$$\sum_{i=1}^{k} \lambda_i(A) = \max_{\dim V = k} \operatorname{tr}(P_V A P_V) = \max_{\substack{v_1,\ldots,v_k \ \text{标准正交}}} \sum_{j=1}^k \langle Av_j, v_j\rangle$$</p>
+<p>其中 $P_V$ 是到 $k$ 维子空间 $V$ 的正交投影。</p>
+<p><strong>与 Courant-Fischer 比较</strong>：
+- Courant-Fischer：$\lambda_k = \max_{\dim V=k} \min_{x\in V, |x|=1} \langle Ax,x\rangle$（极大<strong>极小</strong>）
+- Fan极值原理：$\sum_{i=1}^k\lambda_i = \max_{\dim V=k} \operatorname{tr}(P_VAP_V)$（纯粹<strong>极大</strong>）</p>
+<p>Fan 的形式更简洁：把内层的"在 $V$ 中取极小"替换为"对 $V$ 求迹"，同时刻画了前 $k$ 个特征值的<strong>和</strong>而非单个特征值。</p>
+<h3 id="ky-fan_2">定理二：Ky Fan 部分和不等式</h3>
+<p>设 $A, B$ 为 $n \times n$ Hermitian 矩阵，对任意 $1 \leq k \leq n$：</p>
+<p>$$\sum_{i=1}^{k} \lambda_i(A+B) \leq \sum_{i=1}^{k} \lambda_i(A) + \sum_{i=1}^{k} \lambda_i(B)$$</p>
+<p><strong>与 Weyl 不等式的关系</strong>：
+- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（Weyl 特例）
+- $k=n$：两端均为 $\operatorname{tr}(A+B) = \operatorname{tr}(A)+\operatorname{tr}(B)$（等式）
+- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 Weyl（$k=1$）与迹等式（$k=n$）的一族不等式</p>
+<p><strong>证明</strong>（极值原理的直接推论）：由极值原理，存在最优子空间 $V^*$ 使左端取最大值；在该子空间上，两项分别 $\leq$ 对应的部分和上界，相加即得。</p>
+<p><strong>Majorization 表述</strong>：Fan 不等式等价于弱优化控制序 $\lambda(A+B) \prec_w \lambda(A)+\lambda(B)$（详见<a href="优化控制序.html">优化控制序</a>）。</p>
+<h3 id="ky-fan-k-">定理三：Ky Fan $k$-范数与控制定理</h3>
+<p><strong>定义</strong>（Fan $k$-范数）：对任意 $n \times n$ 矩阵 $X$：
+$$|X|<em>{(k)} = \sum</em>{i=1}^{k} \sigma_i(X), \quad 1 \leq k \leq n$$</p>
+<p>其中 $\sigma_1 \geq \cdots \geq \sigma_n \geq 0$ 为奇异值（<a href="奇异值分解.html">奇异值分解</a>）。</p>
+<table>
+<thead>
+<tr>
+<th>$k$</th>
+<th>Fan $k$-范数</th>
+<th>别名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1$</td>
+<td>$\sigma_1(X)$</td>
+<td>谱范数（算子范数、$\ell^\infty$ Schatten）</td>
+</tr>
+<tr>
+<td>$2,\ldots,n-1$</td>
+<td>$\sum_{i=1}^k\sigma_i$</td>
+<td>中间 Fan 范数</td>
+</tr>
+<tr>
+<td>$n$</td>
+<td>$\sum_{i=1}^n\sigma_i$</td>
+<td>核范数（迹范数，Schatten 1-范数）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fan 控制定理</strong>：对 $n \times n$ 矩阵 $A, B$，以下等价：</p>
+<p>$$|A|<em>{(k)} \leq |B|</em>{(k)}, \; \forall k = 1,\ldots,n \quad \Longleftrightarrow \quad ||A|| \leq ||B||, \; \forall \text{ 酉不变范数 } ||\cdot||$$</p>
+<p><strong>意义</strong>：有限个 Fan $k$-范数的比较完全决定了无限多个酉不变范数的比较。Fan 范数是酉不变范数锥的"极端射线"——它们是"最尖锐"的酉不变范数。</p>
+<h3 id="_3">证明方法</h3>
+<p>三种核心技术的有机结合：</p>
+<ol>
+<li><strong>变分方法</strong>：将特征值部分和化为 Grassmann 流形上的优化问题</li>
+<li><strong>维数论证</strong>：若 $\dim V + \dim W &gt; n$，则 $V \cap W \neq {0}$；用于在子空间交点处建立约束</li>
+<li><strong>Courant-Fischer 推广</strong>：将单向量 Rayleigh 商替换为 $k$ 维子空间上的限制迹</li>
+</ol>
+<h3 id="_4">后续影响</h3>
+<p><strong>Horn 猜想（1962→1999）</strong>：Alfred Horn 受 Fan 不等式启发，提出 Hermitian 矩阵特征值和的完整充要约束（递归不等式系统）。Fan 不等式对应于最简单的情形（连续前 $k$ 项）。Klyachko（1998）和 Knutson-Tao（1999）通过 Schubert 演算、蜂巢模型最终解决。</p>
+<p><strong>Lidskii-Mirsky-Wielandt 定理（1950）</strong>：$\lambda(A)-\lambda(B) \prec \lambda(A-B)$，用 majorization 统一了扰动不等式。</p>
+<p><strong>Thompson-Freede 定理（1971）</strong>：将 Fan 类型不等式推广到非连续指标集，预示了 Horn 猜想的完整形式。</p>
+<h2 id="_5">应用</h2>
+<p><strong>量子信息</strong>：密度矩阵特征值的 majorization 关系是量子纠缠转换可行性的充要条件（Nielsen 1999）；von Neumann 熵次可加性依赖 Fan 型特征值控制。</p>
+<p><strong>主成分分析</strong>：PCA 寻求最大化数据协方差矩阵在 $k$ 维子空间上的限制迹——这正是 Fan 极值原理。</p>
+<p><strong>核范数正则化</strong>（推荐系统/矩阵补全）：核范数（Fan $n$-范数）作为秩的凸松弛，其理论基础在 Fan 控制定理中。</p>
+<p><strong>MIMO 通信</strong>：信道矩阵奇异值决定子信道容量，Fan 范数为容量部分和提供框架。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/12_ky_fan_matrix_inequalities_1951.md</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/樊畿.html">樊畿</a></li>
+<li><a href="Weyl特征值不等式.html">Weyl特征值不等式</a></li>
+<li><a href="优化控制序.html">优化控制序</a></li>
+<li><a href="Von Neumann迹不等式.html">Von Neumann迹不等式</a></li>
+<li><a href="极大极小定理.html">极大极小定理</a></li>
+<li><a href="奇异值分解.html">奇异值分解</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Krylov子空间方法.html">&larr; Krylov子空间方法</a>
+    <a href="LLM-as-Judge.html">LLM-as-Judge &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

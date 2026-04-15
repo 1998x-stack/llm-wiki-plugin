@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速傅里叶变换 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 快速傅里叶变换</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">快速傅里叶变换</h1>
+<h2 id="_2">概述</h2>
+<p>基于分治策略（divide and conquer）的算法，将离散傅里叶变换（DFT）的计算复杂度从O(n²)降低到O(n log n)，使大规模频谱分析从理论上可行变为实践中可行，从根本上改变了信号处理、通信、图像处理等领域的计算面貌。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="radix-2-cooley-tukey">核心算法（Radix-2 Cooley-Tukey）</h3>
+<p><strong>DFT 定义</strong>：$X_k = \sum_{j=0}^{n-1} x_j \omega_n^{jk}$，$\omega_n = e^{-2\pi i/n}$，直接计算 $O(n^2)$</p>
+<p><strong>分治分解</strong>（$n = 2M$，按奇偶拆分）：</p>
+<p>$$X_k = \underbrace{\sum_{j=0}^{M-1} x_{2j}\omega_M^{jk}}<em>{A_k} + \omega_n^k \underbrace{\sum</em>{j=0}^{M-1} x_{2j+1}\omega_M^{jk}}_{B_k}$$</p>
+<p><strong>蝴蝶运算</strong>（butterfly operation）：利用周期性 $A_{k+M}=A_k$，$\omega_n^{k+M}=-\omega_n^k$：</p>
+<p>$$X_k = A_k + \omega_n^k B_k, \quad X_{k+M} = A_k - \omega_n^k B_k$$</p>
+<p>一次乘法（$\omega_n^k B_k$）同时产生两个输出——算法名称"蝴蝶"来自数据流图的形状。</p>
+<h3 id="_4">复杂度</h3>
+<p>递推：$T(n) = 2T(n/2) + O(n)$ → <strong>$T(n) = O(n\log n)$</strong></p>
+<table>
+<thead>
+<tr>
+<th>$n$</th>
+<th>直接 DFT（$n^2$）</th>
+<th>FFT（$\frac{n}{2}\log_2 n$）</th>
+<th>加速比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1024</td>
+<td>1,048,576</td>
+<td>5,120</td>
+<td><strong>205×</strong></td>
+</tr>
+<tr>
+<td>65536</td>
+<td>$4\times 10^9$</td>
+<td>524,288</td>
+<td><strong>4096×</strong></td>
+</tr>
+<tr>
+<td>$10^6$</td>
+<td>$10^{12}$</td>
+<td>$10^7$</td>
+<td><strong>$\approx$50000×</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">算法要素</h3>
+<ul>
+<li><strong>位反转排列</strong>（bit-reversal permutation）：就地（in-place）实现的输入重排，将 $j$ 替换为其二进制反转</li>
+<li><strong>旋转因子</strong>（twiddle factor）：$\omega_n^k$ 预计算存于查找表，避免重复计算三角函数</li>
+<li><strong>递归结构</strong>：$n = 2^m$ 时共 $m = \log_2 n$ 层，每层 $n/2$ 个蝴蝶，总 $O(n\log n)$</li>
+</ul>
+<h3 id="_6">历史背景</h3>
+<p><strong>冷战动因</strong>：1963年《部分禁止核试验条约》签署后，监测地下核试验需实时频谱分析全球地震数据。Richard Garwin（IBM物理学家，美国总统科学顾问委员会成员）促成了 Tukey-Cooley 合作。FFT 的诞生有深刻的地缘政治背景。</p>
+<p><strong>高斯先驱</strong>（鲜为人知）：<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 早在 <strong>1805 年</strong>计算小行星轨道时就在手稿中描述了类似的快速分解方法，但直到 1866 年才以拉丁文遗著发表，未被传播——FFT 的核心思想被独立重发现了。</p>
+<p><strong>Danielson-Lanczos 引理</strong>（1942）：<a href="../entities/康尼利厄斯·朗佐斯.html">康尼利厄斯·朗佐斯</a>与 Danielson 已将 DFT 分解表示为两个半长 DFT 的组合，但未递归到 $O(n\log n)$。</p>
+<h3 id="_7">主要应用领域</h3>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信</td>
+<td>OFDM（WiFi/4G/5G）、信道估计、GPS信号</td>
+</tr>
+<tr>
+<td>图像处理</td>
+<td>JPEG压缩（DCT）、CT图像重建、MRI的k空间重建</td>
+</tr>
+<tr>
+<td>音频</td>
+<td>MP3/AAC编码（MDCT）、音乐识别（Shazam频谱指纹）、语音识别</td>
+</tr>
+<tr>
+<td>科学计算</td>
+<td>谱方法求解PDE、分子动力学（Ewald PME）、天体物理</td>
+</tr>
+<tr>
+<td>算法</td>
+<td>快速多项式乘法 $O(n\log n)$、大整数乘法（Schönhage-Strassen）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">变体与改进</h3>
+<ul>
+<li><strong>Radix-4 / Split-Radix FFT</strong>：进一步减少乘法次数</li>
+<li><strong>Bluestein 算法</strong>：处理任意长度（含素数长度）的 DFT</li>
+<li><strong>实数 FFT</strong>：利用实数信号对称性节省一半计算量</li>
+<li><strong>FFTW</strong>（Fastest Fourier Transform in the West，MIT）：自适应选择最优实现的开源库</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/21_cooley_tukey_fft.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/詹姆斯·库利.html">詹姆斯·库利</a></li>
+<li><a href="../entities/约翰·图基.html">约翰·图基</a></li>
+<li><a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a></li>
+<li><a href="谱方法.html">谱方法</a></li>
+<li><a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="帕斯卡三角形.html">&larr; 帕斯卡三角形</a>
+    <a href="最大似然原理.html">最大似然原理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

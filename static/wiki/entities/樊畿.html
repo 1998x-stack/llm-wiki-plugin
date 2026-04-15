@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>樊畿 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 樊畿</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">樊畿</h1>
+<h2 id="_2">概述</h2>
+<p>樊畿（Ky Fan，1914–2010）是美籍华裔数学家，20世纪最具影响力的分析学家之一。1914年生于杭州，北京大学数学系本科，1941年在巴黎大学师从泛函分析先驱 Maurice Fréchet 获博士学位。1945–1947年任普林斯顿高等研究院成员，与<a href="约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>和<a href="赫尔曼·外尔.html">赫尔曼·外尔</a>建立学术联系，由此开启矩阵不等式研究。在圣母大学（1947–1965）和加州大学圣塔芭芭拉分校（1965–1985）任职期间，发表了奠定矩阵特征值部分和理论的三篇 PNAS 论文（1949–1951）。研究横跨泛函分析、凸分析、不动点理论、矩阵理论、线性规划等领域，一生发表126篇论文，指导23名研究生。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1914年9月19日</td>
+<td>生于杭州</td>
+</tr>
+<tr>
+<td>1932年</td>
+<td>入北京大学数学系（舅父冯祖荀为系主任）</td>
+</tr>
+<tr>
+<td>1936年</td>
+<td>北大学士，翻译并出版《解析几何与代数》（大二暑期完成）</td>
+</tr>
+<tr>
+<td>1939年</td>
+<td>赴法国巴黎，师从 Maurice Fréchet</td>
+</tr>
+<tr>
+<td>1941年</td>
+<td>巴黎大学博士</td>
+</tr>
+<tr>
+<td>1945–1947年</td>
+<td>普林斯顿高等研究院成员，与 von Neumann、Weyl 密切交流</td>
+</tr>
+<tr>
+<td>1947–1965年</td>
+<td>圣母大学（University of Notre Dame）教授</td>
+</tr>
+<tr>
+<td>1949–1951年</td>
+<td>发表矩阵不等式三篇 PNAS 论文</td>
+</tr>
+<tr>
+<td>1964年</td>
+<td>当选台湾中央研究院院士</td>
+</tr>
+<tr>
+<td>1965–1985年</td>
+<td>加州大学圣塔芭芭拉分校（UCSB）教授</td>
+</tr>
+<tr>
+<td>1978–1984年</td>
+<td>兼任台湾中央研究院数学研究所所长</td>
+</tr>
+<tr>
+<td>2010年</td>
+<td>逝世</td>
+</tr>
+</tbody>
+</table>
+<h3 id="19491951">矩阵不等式三篇论文（1949–1951）</h3>
+<p>发表于美国国家科学院院刊（PNAS），获美国海军研究办公室资助：</p>
+<ol>
+<li>"On a Theorem of Weyl Concerning Eigenvalues of Linear Transformations I"（1949）——引入<a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a>，建立特征值部分和的变分刻画</li>
+<li>"On a Theorem of Weyl Concerning Eigenvalues of Linear Transformations II"（1950）——深化和推广</li>
+<li>"Maximum Properties and Inequalities for the Eigenvalues of Completely Continuous Operators"（1951）——引入 Ky Fan $k$-范数和 Fan 控制定理，推广至 Hilbert 空间上的紧算子</li>
+</ol>
+<p><strong>核心定理</strong>（见 <a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a>）：
+- <strong>Ky Fan 极值原理</strong>：$\sum_{i=1}^k \lambda_i(A) = \max_{\dim V=k} \operatorname{tr}(P_V A P_V)$
+- <strong>Ky Fan 部分和不等式</strong>：$\sum_{i=1}^k \lambda_i(A+B) \leq \sum_{i=1}^k\lambda_i(A) + \sum_{i=1}^k\lambda_i(B)$
+- <strong>Ky Fan 控制定理</strong>：所有 Ky Fan $k$-范数均被控制 $\Leftrightarrow$ 所有酉不变范数均被控制</p>
+<h3 id="_5">思想源泉</h3>
+<p>普林斯顿高等研究院期间（1945–1947）与两位顶级数学家的密切联系奠定了其后续研究方向：
+- <strong>von Neumann 1937年迹不等式</strong> — 奇异值控制迹内积，直接启发 Fan 范数理论
+- <strong>Weyl 1912年特征值不等式</strong> — 逐项控制，Fan 将其推升为部分和控制（Fan 第一篇论文标题直接致敬 Weyl）</p>
+<h3 id="_6">其他主要贡献</h3>
+<ul>
+<li><strong>Ky Fan 不动点定理</strong>：闭凸集上的集值映射不动点定理，是博弈论中 Nash 均衡存在性的关键工具</li>
+<li><strong>Fan-Glicksberg 定理</strong>：无穷维凸集的不动点定理</li>
+<li><strong>KKM 映射</strong>：组合拓扑与凸分析交叉，用于极小极大定理的证明</li>
+<li><strong>凸规划</strong>：对线性和非线性规划的系统贡献</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/12_ky_fan_matrix_inequalities_1951.md</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a></li>
+<li><a href="../concepts/优化控制序.html">优化控制序</a></li>
+<li><a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a></li>
+<li><a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a></li>
+<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="梅雷骑士.html">&larr; 梅雷骑士</a>
+    <a href="爱德华·施蒂费尔.html">爱德华·施蒂费尔 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

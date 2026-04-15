@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weyl特征值不等式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Weyl特征值不等式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="weyl">Weyl特征值不等式</h1>
+<h2 id="_1">概述</h2>
+<p>Weyl特征值不等式（1912）是<a href="矩阵扰动理论.html">矩阵扰动理论</a>的奠基性定理，由<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>在证明偏微分方程特征值渐近律的过程中作为技术工具发展而来。<strong>核心结论：Hermitian 矩阵 $A$ 和 $B$ 之和 $A+B$ 的每个特征值，受 $A$ 和 $B$ 各自特征值的精确线性控制；扰动矩阵将特征值偏移量限制在谱范数量级内。</strong> 该定理将 Hermitian 特征值揭示为矩阵空间上 Lipschitz 连续的函数，是数值线性代数所有对称特征值算法正确性分析的数学基础。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">主定理（加法不等式）</h3>
+<p>设 $A, B$ 为 $n \times n$ Hermitian 矩阵，特征值非递减排列：$\lambda_1 \leq \lambda_2 \leq \cdots \leq \lambda_n$。则对满足 $i+j-1 \leq n$ 的指标：</p>
+<p>$$\lambda_{i+j-1}(A+B) \leq \lambda_i(A) + \lambda_j(B)$$</p>
+<p>对应的下界（$i+j-n \geq 1$ 时）：</p>
+<p>$$\lambda_{i+j-n}(A+B) \geq \lambda_i(A) + \lambda_j(B)$$</p>
+<p><strong>最常用特例</strong>（取 $j=1$ 或 $j=n$）：</p>
+<p>$$\lambda_i(A) + \lambda_1(B) \leq \lambda_i(A+B) \leq \lambda_i(A) + \lambda_n(B)$$</p>
+<p>即每个特征值 $\lambda_i(A+B)$ 被夹在 $\lambda_i(A)$ 加上 $B$ 最小/最大特征值之间。</p>
+<h3 id="lipschitz">特征值扰动界（Lipschitz连续性）</h3>
+<p>设 $A$ 为 Hermitian，$E$ 为 Hermitian 扰动，则：</p>
+<p>$$\max_{1 \leq i \leq n} |\lambda_i(A+E) - \lambda_i(A)| \leq |E|_2$$</p>
+<p><strong>解读</strong>：扰动矩阵 $E$ 使每个特征值偏移至多 $|E|_2$（谱范数 = $E$ 的最大特征值绝对值）。这是全局结论，同时控制所有 $n$ 个特征值。</p>
+<p><strong>Lipschitz 表述</strong>：映射 $A \mapsto \lambda(A)$（有序特征值向量）满足</p>
+<p>$$|\lambda(A) - \lambda(B)|_\infty \leq |A - B|_2$$</p>
+<p>Lipschitz 常数恰为1，且该界是紧的（可以等号成立）。</p>
+<h3 id="_4">证明思路</h3>
+<p>证明完全依赖<a href="极大极小定理.html">极大极小定理</a>的<strong>子空间维数论证</strong>：</p>
+<ol>
+<li>由 Fischer 极大极小，$\lambda_k(A+B) = \min_{\dim V=k} \max_{x \in V, |x|=1} x^*(A+B)x$</li>
+<li>取 $k = i+j-1$，构造子空间 $V_0 = U^\perp \cap W^\perp$（$U$ = $A$ 前 $i$ 个特征向量，$W$ = $B$ 前 $j$ 个特征向量），维数论证保证 $\dim(V_0^\perp) \leq i+j$</li>
+<li>在适当选取的 $(i+j-1)$ 维子空间上，Rayleigh 商分解为 $x^<em>Ax + x^</em>Bx \leq \lambda_i(A) + \lambda_j(B)$</li>
+</ol>
+<p><strong>精髓</strong>：将特征值代数问题化为子空间几何问题，通过维数计数（组合论证）连接不同矩阵的谱。</p>
+<h3 id="hermitian">Hermitian 限制的必要性</h3>
+<p>对于<strong>非正规矩阵</strong>，Weyl 不等式不成立。考虑 $n$ 阶 Jordan 块 $J_n$（特征值全为0），扰动 $J_n + \varepsilon e_n e_1^T$ 的特征值为 $\varepsilon^{1/n} e^{2\pi ik/n}$——对极小 $\varepsilon$，特征值偏移量仍为 $\varepsilon^{1/n} \gg \varepsilon$。Hermitian 性（自伴性）是特征值稳定性的结构保证。</p>
+<h3 id="_5">推广与加强</h3>
+<table>
+<thead>
+<tr>
+<th>结果</th>
+<th>作者</th>
+<th>年份</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ky Fan 部分和不等式</td>
+<td><a href="../entities/樊畿.html">樊畿</a></td>
+<td>1949</td>
+<td>$\sum_{i=1}^k\lambda_i(A+B)\leq\sum_{i=1}^k\lambda_i(A)+\sum_{i=1}^k\lambda_i(B)$，将Weyl的逐项控制提升为部分和控制</td>
+</tr>
+<tr>
+<td>Hoffman-Wielandt不等式</td>
+<td>Hoffman &amp; Wielandt</td>
+<td>1953</td>
+<td>$\sum_i</td>
+</tr>
+<tr>
+<td>Lidskii不等式</td>
+<td>Lidskii</td>
+<td>1950</td>
+<td>特征值部分和的约束，$\lambda(A)-\lambda(B)\prec\lambda(A-B)$</td>
+</tr>
+<tr>
+<td>Davis-Kahan定理</td>
+<td>Davis &amp; Kahan</td>
+<td>1970</td>
+<td>特征子空间扰动的 $\sin\Theta$ 界</td>
+</tr>
+<tr>
+<td>Kato算子扰动论</td>
+<td>Kato</td>
+<td>1966</td>
+<td>无穷维自伴算子推广</td>
+</tr>
+<tr>
+<td>Horn猜想（已解决）</td>
+<td>Klyachko; Knutson-Tao</td>
+<td>1998–1999</td>
+<td>特征值完整约束的充要条件，涉及 Schubert 演算</td>
+</tr>
+</tbody>
+</table>
+<h3 id="horn19621999">Horn猜想（1962–1999）</h3>
+<p>Alfred Horn 在1962年提出：Weyl-Lidskii 型不等式是否给出了 $A+B$ 特征值的<strong>完整</strong>约束？即给定三组实数 $\alpha, \beta, \gamma$，何时存在 Hermitian 矩阵 $A, B$ 使 $\lambda(A)=\alpha, \lambda(B)=\beta, \lambda(A+B)=\gamma$？</p>
+<p>1999–2000年，Knutson-Tao 通过<strong>蜂巢模型</strong>（honeycomb model）结合 Schubert 演算给出完整解答，将矩阵分析与代数几何、组合学深度连接。这是21世纪初数学的重大成就。</p>
+<h2 id="_6">现代应用</h2>
+<table>
+<thead>
+<tr>
+<th>应用场景</th>
+<th>Weyl不等式的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数值特征值算法（QR、分治、MRRR）</td>
+<td>后向稳定性分析：舍入误差 $\leq |E|_2$ 界定计算精度</td>
+</tr>
+<tr>
+<td>PCA的统计一致性</td>
+<td>样本协方差与总体协方差的特征值偏差界</td>
+</tr>
+<tr>
+<td>谱聚类稳定性</td>
+<td>噪声扰动下 Laplacian 特征值的稳定性保证</td>
+</tr>
+<tr>
+<td>量子力学微扰论</td>
+<td>能级移动的严格误差控制</td>
+</tr>
+<tr>
+<td>随机矩阵理论</td>
+<td>Wigner 半圆律、Tracy-Widom 分布的证明工具</td>
+</tr>
+<tr>
+<td>图论与网络科学</td>
+<td>边扰动下 Fiedler 值（代数连通度）的稳定性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">局限性</h2>
+<ol>
+<li><strong>仅限 Hermitian 矩阵</strong>：对非正规矩阵不成立，需要伪谱（pseudospectra）理论替代</li>
+<li><strong>只给界不给等号</strong>：不等式是紧的但不精确，$A+B$ 的特征值在允许范围内可任意取值</li>
+<li><strong>无穷维推广复杂</strong>：对无界算子需要 Kato 的精细理论框架</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/09_weyl_eigenvalue_inequalities_1912.md</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a></li>
+<li><a href="极大极小定理.html">极大极小定理</a></li>
+<li><a href="矩阵扰动理论.html">矩阵扰动理论</a></li>
+<li><a href="正规矩阵.html">正规矩阵</a></li>
+<li><a href="Schur分解.html">Schur分解</a></li>
+<li><a href="谱半径.html">谱半径</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Von Neumann迹不等式.html">&larr; Von Neumann迹不等式</a>
+    <a href="bun-vs-uv.html">bun-vs-uv &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

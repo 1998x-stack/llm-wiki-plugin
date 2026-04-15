@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赫尔曼·外尔 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 赫尔曼·外尔</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">赫尔曼·外尔</h1>
+<h2 id="_2">概述</h2>
+<p>赫尔曼·外尔（Hermann Weyl，1885–1955）是德国数学家与理论物理学家，被誉为"最后一位数学全才"。生于埃姆斯霍恩，1904年入哥廷根大学师从希尔伯特，1908年以积分方程与奇异微分方程获博士学位。研究横跨分析学、代数学、几何学、拓扑学、数论与理论物理，在李群表示论、规范场论、微分几何与数学基础均有开创性贡献。1930年接替希尔伯特任哥廷根教席，1933年因纳粹政权迫害移居美国，成为普林斯顿高等研究院首批成员，直至1951年退休。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1885年11月9日</td>
+<td>生于德国埃姆斯霍恩（Elmshorn）</td>
+</tr>
+<tr>
+<td>1904年</td>
+<td>入哥廷根大学，师从 David Hilbert</td>
+</tr>
+<tr>
+<td>1908年</td>
+<td>博士学位，论题：奇异微分算子的谱理论</td>
+</tr>
+<tr>
+<td>1913–1930年</td>
+<td>苏黎世联邦理工学院（ETH Zurich）教授</td>
+</tr>
+<tr>
+<td>1912年</td>
+<td>发表特征值不等式与Weyl渐近律</td>
+</tr>
+<tr>
+<td>1930年</td>
+<td>接替 Hilbert 任哥廷根大学教授</td>
+</tr>
+<tr>
+<td>1933年</td>
+<td>纳粹上台后移居美国，加入普林斯顿高等研究院</td>
+</tr>
+<tr>
+<td>1951年</td>
+<td>从普林斯顿退休，返回苏黎世</td>
+</tr>
+<tr>
+<td>1955年12月8日</td>
+<td>卒于苏黎世，享年70岁</td>
+</tr>
+</tbody>
+</table>
+<h3 id="weyl1912">Weyl特征值不等式与渐近律（1912）</h3>
+<p>外尔在ETH任职初期，将希尔伯特的无穷维谱理论与偏微分方程中的薄膜振动问题结合，证明了两项核心成果：</p>
+<p><strong>Weyl渐近律</strong>：区域 $\Omega \subset \mathbb{R}^d$ 上 Laplacian 算子 Dirichlet 特征值的计数函数渐近行为仅由区域体积决定：
+$$N(\lambda) \sim \frac{\omega_d}{(2\pi)^d} \operatorname{Vol}(\Omega) \cdot \lambda^{d/2}$$
+这开创了<strong>谱几何</strong>学科，回答了 Lorentz 1910年的猜想。</p>
+<p><strong>Weyl特征值不等式</strong>（矩阵版本）：作为证明渐近律的技术工具，外尔建立了 Hermitian 矩阵之和的特征值不等式。详见<a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a>。</p>
+<h3 id="_5">其他主要贡献</h3>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>李群表示论</td>
+<td>Weyl特征标公式，刻画紧李群的全部不可约表示</td>
+</tr>
+<tr>
+<td>规范场论</td>
+<td>1918–1929年间提出"规范不变性"思想，成为现代物理标准模型的基础语言</td>
+</tr>
+<tr>
+<td>微分几何</td>
+<td>Weyl曲率张量、黎曼曲面的一致化定理</td>
+</tr>
+<tr>
+<td>数论</td>
+<td>Weyl和、等分布定理（Weyl准则）</td>
+</tr>
+<tr>
+<td>数学基础</td>
+<td>《连续统》（<em>Das Kontinuum</em>，1918），直谓主义的重要著作</td>
+</tr>
+<tr>
+<td>量子力学</td>
+<td>《群论与量子力学》（1928），将群表示论引入量子物理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">学术谱系</h3>
+<p>外尔的导师是大卫·希尔伯特，他将希尔伯特的无穷维谱分析纲领推进到偏微分方程领域。外尔本人的工作深刻影响了加藤敬治（Kato，算子扰动理论）、von Neumann（Hilbert 空间公理化）和后来的弦论与规范场理论。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/09_weyl_eigenvalue_inequalities_1912.md</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a></li>
+<li><a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a></li>
+<li><a href="../concepts/极大极小定理.html">极大极小定理</a></li>
+<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
+<li><a href="../concepts/正规矩阵.html">正规矩阵</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="詹姆斯·约瑟夫·西尔维斯特.html">&larr; 詹姆斯·约瑟夫·西尔维斯特</a>
+    <a href="赫尔穆特·维兰特.html">赫尔穆特·维兰特 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

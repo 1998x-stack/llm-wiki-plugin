@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共轭梯度法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 共轭梯度法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">共轭梯度法</h1>
+<h2 id="_2">概述</h2>
+<p>共轭梯度法（Conjugate Gradient Method, CG）由赫斯坦尼斯（Hestenes）和施蒂费尔（Stiefel）于 1952 年提出，是求解对称正定（SPD）线性方程组 $Ax=b$ 的迭代方法。核心思想是构造一组关于矩阵 $A$ 共轭（A-conjugate）的搜索方向，在 <a href="Krylov子空间方法.html">Krylov子空间方法</a>中寻找 $A$-范数最优近似解。CG 每步只需一次矩阵-向量乘法，存储仅需 4 个向量，收敛率依赖条件数的<strong>平方根</strong>（远优于经典迭代法依赖条件数本身）。配合预处理（PCG）是现代大规模科学计算的核心算法。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">算法</h3>
+<p><strong>输入</strong>：SPD 矩阵 $A$，向量 $b$，初始猜测 $x_0$</p>
+<pre><code>r_0 = b - Ax_0,  p_0 = r_0
+for k = 0, 1, 2, ...:
+    α_k = (r_kᵀr_k) / (p_kᵀAp_k)          # 步长
+    x_{k+1} = x_k + α_k p_k                  # 更新解
+    r_{k+1} = r_k - α_k A p_k                # 更新残差
+    if ‖r_{k+1}‖ &lt; ε: break
+    β_k = (r_{k+1}ᵀr_{k+1}) / (r_kᵀr_k)    # 共轭系数
+    p_{k+1} = r_{k+1} + β_k p_k              # 更新搜索方向
+</code></pre>
+<p><strong>每步成本</strong>：1 次矩阵-向量乘法，2 次内积，4 个向量的存储</p>
+<h3 id="_5">三个核心性质</h3>
+<p><strong>A-共轭性</strong>：搜索方向满足 $p_i^T A p_j = 0$（$i \neq j$）——沿一个方向的最优化不破坏其他方向的进展</p>
+<p><strong>残差正交性</strong>：$r_i^T r_j = 0$（$i \neq j$）——连续迭代步的残差互相正交</p>
+<p><strong>Krylov最优性</strong>：第 $k$ 步的 $x_k$ 是所有 $K_k(A,r_0) = \text{span}{r_0, Ar_0, \ldots, A^{k-1}r_0}$ 中元素的 $A$-范数最优近似</p>
+<h3 id="_6">收敛性</h3>
+<p><strong>有限终止性</strong>（精确算术）：至多 $n$ 步内给出精确解（$n$ 个 A-共轭方向构成 $\mathbb{R}^n$ 的基）</p>
+<p><strong>迭代收敛界</strong>：
+$$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^k, \quad \kappa = \kappa(A) = \lambda</em>{\max}/\lambda_{\min}$$</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>收敛速率</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jacobi / Gauss-Seidel</td>
+<td>$\rho \approx 1 - O(h^2) \sim 1 - O(1/\kappa)$</td>
+<td>对角占优</td>
+</tr>
+<tr>
+<td>SOR（最优松弛）</td>
+<td>$\rho \approx 1 - O(h) \sim 1 - O(1/\sqrt{\kappa})$</td>
+<td>SPD，需知谱半径</td>
+</tr>
+<tr>
+<td><strong>CG</strong></td>
+<td>$\approx 1 - 2/\sqrt{\kappa}$（无需任何参数）</td>
+<td>SPD</td>
+</tr>
+</tbody>
+</table>
+<p>CG 比 SOR 在不需要提前知道谱信息的前提下，达到<strong>同等量级</strong>的收敛率。</p>
+<p><strong>特征值聚集加速</strong>：若矩阵特征值形成 $m \ll n$ 个聚集组，约 $m$ 步即可高精度收敛——远优于理论上限 $n$ 步。</p>
+<h3 id="_7">历史曲折：从被忽视到复兴</h3>
+<p>1952 年发表后，CG 一度因<strong>有限精度下 A-共轭性会被舍入误差破坏</strong>（有限终止性失效）而被视为"有缺陷的直接方法"冷落约 20 年。</p>
+<p><strong>1970 年代复兴</strong>（三个关键认识转变）：
+1. 问题规模急剧增长，直接方法不可行
+2. CG 应被视为<strong>迭代方法</strong>（近似求解），而非直接方法（精确 $n$ 步求解）
+3. 预处理技术发展大幅提升实际收敛速度</p>
+<p>Reid（1971）综述和 Golub &amp; O'Leary（1989）历史回顾是复兴的重要推动。</p>
+<h3 id="pcg">预处理共轭梯度法（PCG）</h3>
+<p>将方程 $Ax=b$ 变换为 $M^{-1}Ax = M^{-1}b$，使 $\kappa(M^{-1}A) \ll \kappa(A)$：</p>
+<table>
+<thead>
+<tr>
+<th>预处理器</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不完全 Cholesky（IC/ICC）</td>
+<td>SPD 稀疏矩阵</td>
+</tr>
+<tr>
+<td>代数多重网格（AMG）</td>
+<td>PDE 离散化矩阵</td>
+</tr>
+<tr>
+<td>不完全 LU（ILU）</td>
+<td>一般稀疏矩阵</td>
+</tr>
+<tr>
+<td>域分解</td>
+<td>并行计算</td>
+</tr>
+</tbody>
+</table>
+<p>PCG 是现代大规模 FEM/FDM/FVM 计算的<strong>事实标准</strong>求解器。</p>
+<h3 id="_8">后续发展</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>年份</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非线性 CG（Fletcher-Reeves）</td>
+<td>1964</td>
+<td>无约束优化</td>
+</tr>
+<tr>
+<td>MINRES</td>
+<td>1975</td>
+<td>对称不定系统</td>
+</tr>
+<tr>
+<td>BiCG</td>
+<td>1976</td>
+<td>非对称系统</td>
+</tr>
+<tr>
+<td>GMRES（Saad-Schultz）</td>
+<td>1986</td>
+<td>非对称系统，最小残差</td>
+</tr>
+<tr>
+<td>BiCGSTAB（van der Vorst）</td>
+<td>1992</td>
+<td>非对称，更稳定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">局限性</h2>
+<ul>
+<li>仅适用 <strong>SPD 矩阵</strong>（非对称或不定矩阵需 GMRES/BiCGSTAB 等）</li>
+<li>有限精度下 A-共轭性和残差正交性会逐渐丧失</li>
+<li>对条件数大的矩阵收敛缓慢（需预处理）</li>
+<li>预处理策略选择无通用最优解</li>
+</ul>
+<h2 id="_10">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/15_conjugate_gradient.md</span></li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="Krylov子空间方法.html">Krylov子空间方法</a></li>
+<li><a href="条件数.html">条件数</a></li>
+<li><a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a></li>
+<li><a href="有限元方法.html">有限元方法</a></li>
+<li><a href="Jacobi迭代法.html">Jacobi迭代法</a></li>
+<li><a href="谱半径.html">谱半径</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="优化控制序.html">&larr; 优化控制序</a>
+    <a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

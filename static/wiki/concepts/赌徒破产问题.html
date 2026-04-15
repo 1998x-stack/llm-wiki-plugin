@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赌徒破产问题 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 赌徒破产问题</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">赌徒破产问题</h1>
+<h2 id="_2">概述</h2>
+<p>赌徒破产问题（Gambler's Ruin Problem）是概率论的经典问题：一个拥有有限资金的赌徒在公平博弈中，最终会以多大概率输光所有资金？结论出人意料——即使在"公平"的游戏中，与资金更雄厚的对手博弈，赌徒破产是大概率甚至必然事件。</p>
+<p>这个问题的变体首次出现在<a href="../entities/克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a>1657年《论赌博中的推理》的14道练习题中，是概率论早期的重要研究问题之一。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">基本问题</h3>
+<p><strong>设定</strong>：赌徒有 k 元，对手有 N-k 元（或无限资金）。每局赌注1元，双方各有1/2概率赢。问：赌徒输光（破产）的概率是多少？</p>
+<p><strong>结果</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>赌徒破产概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对手资金无限</td>
+<td>1（必然破产）</td>
+</tr>
+<tr>
+<td>双方资金有限（赌徒 k 元，对手 N-k 元）</td>
+<td>(N-k) / N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>直觉</strong>：资金更多的一方有压倒性优势。即便每局"公平"，资金劣势会随时间累积直至破产。</p>
+<h3 id="_5">数学推导</h3>
+<p>设 P(k) 为赌徒有 k 元时最终破产的概率：</p>
+<p>$$P(k) = \frac{1}{2} P(k+1) + \frac{1}{2} P(k-1)$$</p>
+<p>边界条件：P(0) = 1（已破产），P(N) = 0（对手破产）</p>
+<p>解此差分方程得：<strong>P(k) = 1 - k/N</strong></p>
+<h3 id="_6">惠更斯的版本</h3>
+<p>惠更斯在《论赌博中的推理》中包含了赌徒破产问题的变体，作为14道练习题之一，分析在特定条件下继续博弈的<a href="期望值.html">期望值</a>收益。这些问题在当时未被完全解决，后来由<a href="../entities/雅各布·伯努利.html">雅各布·伯努利</a>和其他人进一步研究。</p>
+<h3 id="_7">推广</h3>
+<ul>
+<li><strong>不公平博弈</strong>：每局赢概率 p ≠ 1/2 时，破产概率为 ((q/p)^k - (q/p)^N) / (1 - (q/p)^N)，其中 q = 1-p</li>
+<li><strong>连续时间版</strong>：布朗运动是赌徒破产问题的连续时间类比</li>
+<li><strong>多维情形</strong>：可推广到二维随机游走（平面上的随机行走）</li>
+</ul>
+<h2 id="_8">意义</h2>
+<ol>
+<li><strong>反直觉示例</strong>：展示"公平"博弈不意味着"持平"——资金优势的重要性</li>
+<li><strong>金融风险</strong>：机构投资者的"破产风险"和最优仓位管理（Kelly公式）源于此问题</li>
+<li><strong>排队论</strong>：等待队列中系统空闲的概率与赌徒破产同构</li>
+<li><strong>随机游走</strong>：构成随机游走理论的核心案例</li>
+</ol>
+<h2 id="_9">来源</h2>
+<ul>
+<li>raw/books/概率论/02_huygens_de_ratiociniis.md</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="期望值.html">期望值</a></li>
+<li><a href="概率论.html">概率论</a></li>
+<li><a href="../entities/克里斯蒂安·惠更斯.html">克里斯蒂安·惠更斯</a></li>
+<li><a href="大数定律.html">大数定律</a></li>
+<li><a href="古典概率定义.html">古典概率定义</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="贝叶斯推理.html">&larr; 贝叶斯推理</a>
+    <a href="递推方法.html">递推方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

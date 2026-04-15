@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后向误差分析 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 后向误差分析</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">后向误差分析</h1>
+<h2 id="_2">概述</h2>
+<p>后向误差分析（Backward Error Analysis）是由<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>在1950–1960年代系统建立的数值分析方法论，是现代数值线性代数的核心范式。<strong>核心思想</strong>：不问"计算结果与精确解差多远"（正向误差），而问"计算结果精确地解了哪个问题"（后向误差）——即找到一个扰动输入 $A+\delta A$，使算法的浮点输出恰好是该扰动问题的精确解，然后评估扰动量 $|\delta A|/|A|$ 的大小。若后向误差与输入数据的固有不确定性相当，算法就是<strong>后向稳定</strong>的，计算结果的精度完全由问题的<strong>条件数</strong>决定，而非算法实现。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="vs">正向 vs. 后向误差</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>正向误差分析</th>
+<th>后向误差分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>问题</strong></td>
+<td>计算结果离精确解多远？</td>
+<td>计算结果精确解了哪个问题？</td>
+</tr>
+<tr>
+<td><strong>度量</strong></td>
+<td>$|\hat x - x|$</td>
+<td>$|\delta A|/|A|$，使 $\hat x$ 为 $(A+\delta A)$ 的精确解</td>
+</tr>
+<tr>
+<td><strong>可操作性</strong></td>
+<td>困难：误差传播追踪复杂</td>
+<td>容易：每步浮点误差直接归入扰动</td>
+</tr>
+<tr>
+<td><strong>实用性</strong></td>
+<td>常产生过于悲观的界</td>
+<td>接近实际误差，给出可靠保证</td>
+</tr>
+</tbody>
+</table>
+<p><strong>方法论洞见</strong>：威尔金森在 Pilot ACE 上计算多项式零点时发现：计算得到的零点虽非原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点。这一观察催生了后向误差分析的思想。</p>
+<h3 id="_4">后向稳定性定义</h3>
+<p>算法 $\mathcal{A}$ 是<strong>后向稳定</strong>的（backward stable），若对输入 $A$ 的计算输出 $\hat x$，存在扰动矩阵 $\delta A$ 使得：</p>
+<ol>
+<li>$\hat x$ 是扰动问题 $(A + \delta A)x = b$ 的<strong>精确解</strong></li>
+<li>后向误差满足：$\dfrac{|\delta A|}{|A|} \leq f(n)\,\varepsilon_{\text{mach}}$</li>
+</ol>
+<p>其中 $\varepsilon_{\text{mach}}$ 是机器精度（machine epsilon，如双精度 $\approx 2.2\times 10^{-16}$），$f(n)$ 是维数 $n$ 的温和（低阶多项式）增长函数。</p>
+<h3 id="_5">条件数：分离算法与问题</h3>
+<p>后向误差分析的关键贡献是<strong>清晰分离算法稳定性与问题条件性</strong>：</p>
+<p><strong>前向误差界</strong>（由后向误差推导）：
+$$\frac{|\hat x - x|}{|x|} \lesssim \kappa(A) \cdot \frac{|\delta A|}{|A|} \lesssim \kappa(A) \cdot f(n)\,\varepsilon_{\text{mach}}$$</p>
+<p><strong>矩阵条件数</strong>（线性方程组）：$\kappa(A) = |A|\cdot|A^{-1}|$</p>
+<p><strong>特征值条件数</strong>：对 $A = V\Lambda V^{-1}$，第 $i$ 个特征值的条件数为 $1/|y_i^H x_i|$（$x_i, y_i$ 为右/左特征向量）；对<strong>Hermitian 矩阵</strong>，条件数恒为1（特征值最"稳定"）。</p>
+<p><strong>含义</strong>：
+- 后向稳定算法 → 后向误差 $\sim \varepsilon_{\text{mach}}$（与机器精度同阶）
+- 计算结果误差 $\sim \kappa(A) \cdot \varepsilon_{\text{mach}}$
+- 若误差过大，是问题"病态"（large $\kappa$），非算法"不稳定"</p>
+<h3 id="_6">标志性应用</h3>
+<p><strong>Gauss 消去法（带部分主元）</strong>：后向误差界：
+$$\frac{|\delta A|}{|A|} \leq 8n^3 \rho_n \varepsilon_{\text{mach}}$$
+$\rho_n$ 为增长因子（growth factor）。最坏情形 $\rho_n$ 可达 $2^{n-1}$，但实际几乎总是适度大小——彻底推翻了 Hotelling（1943）关于 Gauss 消去法误差指数增长的悲观判断。</p>
+<p><strong>QR算法（<a href="QR算法.html">QR算法</a>的计算）</strong>：通过 Householder 反射和 Givens 旋转等<strong>酉变换</strong>（保 2-范数，不放大误差）构造，具有后向稳定性——计算得到的 Schur 形式是原矩阵加小扰动的精确 Schur 形式。</p>
+<p><strong>带 Wilkinson 位移的对称 QR</strong>：全局收敛，三次方渐近收敛率，是计算对称特征值的黄金标准算法。</p>
+<h3 id="_7">正交变换的优越性</h3>
+<p>后向误差分析揭示了为何<strong>酉/正交变换</strong>（Householder 反射、Givens 旋转）是数值稳定算法的首选构件：</p>
+<p>$$|Qx|_2 = |x|_2 \quad \Rightarrow \quad \text{变换不放大误差}$$</p>
+<p>条件数 $\kappa_2(Q) = 1$（最优），而一般相似变换的条件数可以任意大。这直接解释了<a href="QR算法.html">QR算法</a>（基于酉变换）优于 LR 算法（基于 LU 分解）的本质原因。</p>
+<h3 id="wilkinson">Wilkinson 多项式（条件性反例）</h3>
+<p>威尔金森给出了著名的病态反例：20次多项式
+$$w(x) = \prod_{i=1}^{20}(x-i) = (x-1)(x-2)\cdots(x-20)$$</p>
+<p>仅将 $x^{19}$ 系数（$-210$）扰动 $2^{-23}$，某些根就发生数量级的偏移（如根 $15,16,\ldots,20$ 变为复数对）。这不是算法问题，而是多项式求根问题的<strong>内在条件性</strong>极差——后向误差分析清晰地将责任归于问题而非算法。</p>
+<h2 id="_8">历史谱系</h2>
+<p><strong>图灵（1948）→ 冯·诺依曼/Goldstine（1947）→ 威尔金森（1963/1965）</strong></p>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>1948年论文含后向误差的思想萌芽：他指出高斯消元的浮点输出可以被理解为某个"邻近方程组"的精确解，并引入<a href="条件数.html">条件数</a>概念（N(A) = ‖A‖·‖A⁻¹‖），清晰区分了"问题固有困难"与"算法引入误差"。威尔金森在 NPL 与图灵共事期间受其深刻影响，后来将这些萌芽系统化为完整的后向误差分析框架（1963年《Rounding Errors in Algebraic Processes》，1965年《The Algebraic Eigenvalue Problem》）。</p>
+<h2 id="_9">历史地位</h2>
+<p><strong>彻底改变了数值分析的思维范式</strong>：在威尔金森之前，人们直觉地害怕大规模浮点计算；在威尔金森之后，人们学会了区分"算法不稳定"与"问题病态"，科学计算因此获得了严格的理论基础。</p>
+<p><strong>软件链条</strong>：理论（1965 Wilkinson书）→ 算法实现（1971 Wilkinson-Reinsch手册）→ EISPACK/LINPACK（1970s）→ LAPACK（1992至今）→ MATLAB/NumPy 的矩阵计算内核。</p>
+<p><strong>图灵奖引文（1970）</strong>：以一己之力"创造了我们目前关于线性代数计算机解法的全部科学知识"。</p>
+<h2 id="_10">局限性</h2>
+<ol>
+<li><strong>仅适用于后向稳定算法</strong>：并非所有算法都具有后向稳定性（如朴素 Gram-Schmidt 正交化）</li>
+<li><strong>不涉及算法效率</strong>：后向误差分析只告诉我们精度，不涉及计算复杂度</li>
+<li><strong>稀疏矩阵与迭代方法</strong>：主要针对稠密矩阵；迭代方法（Krylov 子空间法）的误差分析需要不同框架</li>
+<li><strong>非精确算术的新挑战</strong>：低精度计算（bfloat16、INT8）中，后向误差分析仍有效但需要更精细处理</li>
+</ol>
+<h2 id="_11">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/14_wilkinson_algebraic_eigenvalue_problem_1965.md</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/14_turing_rounding_errors.md</span></li>
+</ul>
+<h2 id="_12">相关</h2>
+<ul>
+<li><a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a></li>
+<li><a href="../entities/阿兰·图灵.html">阿兰·图灵</a></li>
+<li><a href="条件数.html">条件数</a></li>
+<li><a href="矩阵扰动理论.html">矩阵扰动理论</a></li>
+<li><a href="QR算法.html">QR算法</a></li>
+<li><a href="Schur分解.html">Schur分解</a></li>
+<li><a href="正规矩阵.html">正规矩阵</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="古典概率定义.html">&larr; 古典概率定义</a>
+    <a href="大数定律.html">大数定律 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

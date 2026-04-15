@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krylov子空间方法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Krylov子空间方法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="krylov">Krylov 子空间方法</h1>
+<h2 id="_1">概述</h2>
+<p>Krylov 子空间方法（Krylov Subspace Methods）是现代大规模线性代数计算的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步矩阵-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$ 中寻找最优近似解，每步只需一次矩阵-向量乘法，能高效利用矩阵稀疏性。<a href="共轭梯度法.html">共轭梯度法</a>（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学计算不可或缺的工具集。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="krylov_1">Krylov 子空间</h3>
+<p>$$K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$$</p>
+<p><strong>关键性质</strong>：
+- 仅通过矩阵-向量乘法生成，无需显式存储矩阵（对稀疏矩阵尤为有利）
+- 维数最多为 $n$，$k=n$ 时涵盖整个解空间
+- 与矩阵的<strong>谱结构</strong>深刻关联：特征值聚集 → 更快收敛</p>
+<h3 id="_3">方法家族</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>年份</th>
+<th>目标方程</th>
+<th>最优准则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lanczos</strong></td>
+<td>1950</td>
+<td>对称矩阵特征值</td>
+<td>三对角化</td>
+</tr>
+<tr>
+<td><strong>CG</strong></td>
+<td>1952</td>
+<td>SPD 线性方程组</td>
+<td>$A$-范数最小残差</td>
+</tr>
+<tr>
+<td><strong>MINRES</strong></td>
+<td>1975</td>
+<td>对称不定方程组</td>
+<td>$\ell^2$ 残差最小</td>
+</tr>
+<tr>
+<td><strong>Arnoldi</strong></td>
+<td>1951/1975</td>
+<td>非对称矩阵特征值</td>
+<td>Hessenberg化</td>
+</tr>
+<tr>
+<td><strong>BiCG</strong></td>
+<td>1976</td>
+<td>非对称方程组</td>
+<td>双正交化</td>
+</tr>
+<tr>
+<td><strong>GMRES</strong></td>
+<td>1986</td>
+<td>非对称方程组</td>
+<td>$\ell^2$ 残差最小</td>
+</tr>
+<tr>
+<td><strong>BiCGSTAB</strong></td>
+<td>1992</td>
+<td>非对称方程组</td>
+<td>稳定BiCG</td>
+</tr>
+<tr>
+<td><strong>QMR</strong></td>
+<td>1991</td>
+<td>非对称方程组</td>
+<td>准极小残差</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">与经典迭代法的根本区别</h3>
+<p><strong>经典定点迭代</strong>（Jacobi/Gauss-Seidel）：$x^{(k+1)} = g(x^{(k)})$，每步从上一步单一迭代点出发，收敛率固定为谱半径 $\rho(B) &lt; 1$。</p>
+<p><strong>Krylov 方法</strong>：$x_k \in x_0 + K_k(A, r_0)$，在递增子空间中寻找最优解，利用全部历史信息，收敛率随步数动态改善。</p>
+<p><strong>核心优势</strong>：
+- 利用<strong>所有</strong>前 $k$ 步矩阵-向量乘法的信息（而非仅用最新一步）
+- 收敛率由条件数<strong>平方根</strong>决定（CG），优于经典方法的条件数本身
+- 对稀疏矩阵高效：每步 $O(\text{nnz})$ 次运算（nnz = 非零元素数）</p>
+<h3 id="cg-lanczos">CG-Lanczos 深层联系</h3>
+<p><a href="共轭梯度法.html">共轭梯度法</a>中产生的三项递推关系与 Lanczos 算法产生的三对角矩阵之间存在精确对应：</p>
+<p>$$\text{Lanczos 三对角化} \iff \text{CG 递推关系}$$</p>
+<p>两者都在同一个 Krylov 子空间中工作，数学核心相同，只是"输出目标"不同（特征值 vs 线性方程组解）。这一深层联系在 1970 年代被完全阐明。</p>
+<h3 id="_5">预处理</h3>
+<p>所有 Krylov 方法都可以配合预处理器（preconditioner）$M \approx A$：</p>
+<p>$$M^{-1}A x = M^{-1}b \quad \Rightarrow \quad \kappa(M^{-1}A) \ll \kappa(A)$$</p>
+<p>预处理是让 Krylov 方法实用的关键技术，也是当代数值线性代数最活跃的研究方向之一。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/15_conjugate_gradient.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="共轭梯度法.html">共轭梯度法</a></li>
+<li><a href="条件数.html">条件数</a></li>
+<li><a href="Jacobi迭代法.html">Jacobi迭代法</a></li>
+<li><a href="快速傅里叶变换.html">快速傅里叶变换</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Kato-Rellich定理.html">&larr; Kato-Rellich定理</a>
+    <a href="Ky Fan不等式.html">Ky Fan不等式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

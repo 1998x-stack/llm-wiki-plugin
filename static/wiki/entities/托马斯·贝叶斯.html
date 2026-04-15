@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>托马斯·贝叶斯 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 托马斯·贝叶斯</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">托马斯·贝叶斯</h1>
+<h2 id="_2">概述</h2>
+<p>托马斯·贝叶斯（Thomas Bayes，约1701–1761）是英国长老会牧师和业余数学家，<a href="../concepts/贝叶斯定理.html">贝叶斯定理</a>和<a href="../concepts/贝叶斯推理.html">贝叶斯推理</a>的创立者。他提出并解决了"逆概率问题"：已知试验结果，如何推断导致这些结果的未知参数的概率？这一框架在250年后成为统计学和机器学习的核心范式之一。贝叶斯的论文在其去世后由朋友 Richard Price 整理，于1763年发表在《伦敦皇家学会哲学汇刊》。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<ul>
+<li>生卒年：约1701–1761</li>
+<li>国籍：英国</li>
+<li>职业：非国教派（Nonconformist）牧师，任职于英格兰肯特郡 Tunbridge Wells</li>
+<li>英国皇家学会会员（1742年）</li>
+<li>生前未以真名发表数学著作；唯一已知著作为身后出版的概率论论文</li>
+</ul>
+<h3 id="_5">论文的发表经过</h3>
+<p>贝叶斯去世后，其友人 <strong>Richard Price</strong>（1723–1791，威尔士道德哲学家）整理了他的手稿，撰写了重要导言和附录，于<strong>1763年</strong>将论文提交皇家学会，发表于 <em>Philosophical Transactions of the Royal Society of London</em>（Vol. 53, pp. 370–418）。</p>
+<p>Price 的贡献不可忽视：他给出了贝叶斯积分的数值近似方法，并将结果应用于"日出问题"等具体场景，对贝叶斯思想的传播起了关键作用。</p>
+<h3 id="_6">核心贡献：逆概率问题</h3>
+<p>在贝叶斯之前，概率论只解决<strong>正向问题</strong>（已知 p，计算结果概率）。贝叶斯首次系统解决了<strong>逆向问题</strong>：</p>
+<blockquote>
+<p>进行 n 次独立试验，观察到 k 次成功，未知概率 p 落在 [a, b] 内的概率是多少？</p>
+</blockquote>
+<p><strong>台球桌思想实验</strong>：先随机滚一颗白球（位置均匀分布），再滚 n 颗红球，以白球左边/右边判断失败/成功。给定 k 次成功，推断白球位置（即 p）的分布。这一构造确保未知参数具有均匀先验分布，使推导自然合理。</p>
+<p><strong>关键结果</strong>：在均匀先验下，观测到 k 次成功后，p 的后验分布为 Beta(k+1, n-k+1)：</p>
+<p>$$P(p \in [a,b] \mid k\text{ 次成功}) = \frac{\int_a^b p^k(1-p)^{n-k}\,dp}{\int_0^1 p^k(1-p)^{n-k}\,dp}$$</p>
+<h3 id="_7">局限性</h3>
+<ol>
+<li>均匀先验假设（无差别原则）引发大量哲学争议</li>
+<li>仅处理单参数二项问题，未推广为一般理论</li>
+<li>贝叶斯积分计算困难，限制了实际应用</li>
+<li>未完成推广——这一工作由<a href="皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1774年独立发展逆概率方法）完成</li>
+</ol>
+<h3 id="_8">在概率论史中的地位</h3>
+<p>贝叶斯开创的方向与帕斯卡–费马–惠更斯–伯努利的主线不同——他不是发展计算技术，而是提出了一个<strong>全新的认识论框架</strong>：将未知参数视为随机变量，通过数据不断更新信念。这一框架经拉普拉斯系统化、20世纪贝叶斯学派发展，至今是统计学和机器学习的核心范式之一。</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li>raw/books/概率论/05_bayes_essay_inverse_probability.md</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../concepts/贝叶斯定理.html">贝叶斯定理</a></li>
+<li><a href="../concepts/贝叶斯推理.html">贝叶斯推理</a></li>
+<li><a href="皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a></li>
+<li><a href="../concepts/概率论.html">概率论</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="恩斯特·菲舍尔.html">&larr; 恩斯特·菲舍尔</a>
+    <a href="格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

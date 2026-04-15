@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赫尔穆特·维兰特 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 赫尔穆特·维兰特</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">赫尔穆特·维兰特</h1>
+<h2 id="_2">概述</h2>
+<p>赫尔穆特·维兰特（Helmut Wielandt，1910–2001）是德国数学家，在矩阵分析与群论两大领域均有奠基性贡献。1935年在柏林大学获博士学位（Schur 学术圈），战后先后任职于美因茨大学和图宾根大学。他以两项重大贡献载入史册：1950年给出<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>的简洁新证明（引入 Collatz-Wielandt 变分公式），以及1953年与 Alan J. Hoffman 合作证明正规矩阵的<a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>（Frobenius 范数下特征值的最优整体扰动界）。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">生平</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1910年</td>
+<td>生于德国</td>
+</tr>
+<tr>
+<td>1935年</td>
+<td>柏林大学博士，Schur 学术圈</td>
+</tr>
+<tr>
+<td>战时</td>
+<td>从事气象学、密码学、空气动力学数值研究，接触特征值计算</td>
+</tr>
+<tr>
+<td>战后</td>
+<td>美因茨大学，后转图宾根大学</td>
+</tr>
+<tr>
+<td>1950年</td>
+<td>发表"Unzerlegbare, nicht negative Matrizen"，给出 Perron-Frobenius 定理新证</td>
+</tr>
+<tr>
+<td>1953年</td>
+<td>与 Hoffman 合作发表"The variation of the spectrum of a normal matrix"</td>
+</tr>
+<tr>
+<td>2001年</td>
+<td>逝世</td>
+</tr>
+</tbody>
+</table>
+<h3 id="perron-frobenius-1950">对 Perron-Frobenius 定理的贡献（1950）</h3>
+<p>发表于 <em>Mathematische Zeitschrift</em> 第52卷，题为 <em>"Unzerlegbare, nicht negative Matrizen"</em>（不可分解的非负矩阵），给出了<a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a>至今最简洁、最优雅的证明之一。</p>
+<p><strong>Collatz-Wielandt 变分公式</strong>：将 Perron 根刻画为极大极小问题：
+$$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$</p>
+<p>这一变分刻画同时简化了定理的证明并为计算 Perron 根提供了实用算法。Wielandt 还证明了本原矩阵（primitive matrix）的指数上界：使 $A^m$ 全正的最小 $m \leq n^2 - 2n + 2$。</p>
+<p>该论文成为教科书中 Perron-Frobenius 定理的标准证明。</p>
+<h3 id="hoffman-wielandt-1953">Hoffman-Wielandt 定理（1953）</h3>
+<p>与 Alan J. Hoffman 合作，发表于 <em>Duke Mathematical Journal</em>（第20卷，37–39页），全文仅三页。</p>
+<p><strong>核心结果</strong>：对两个 $n \times n$ 正规矩阵 $A, B$，存在特征值的最优排列 $\pi$ 使得：
+$$\min_{\pi \in S_n} \sum_{i=1}^n |\lambda_i(A) - \mu_{\pi(i)}(B)|^2 \leq |A - B|_F^2$$</p>
+<p>等号成立当且仅当 $A$ 与 $B$ 可被同一酉矩阵同时对角化（即 $AB = BA$）。</p>
+<p>详见 <a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a>。</p>
+<h3 id="alan-j-hoffman19242021">Alan J. Hoffman（合著者，1924–2021）</h3>
+<p>美国数学家，哥伦比亚大学博士（1950，Birkhoff 指导），曾任职于普林斯顿高等研究院、美国国家标准局、IBM Watson 研究中心，是 <em>Linear Algebra and its Applications</em> 期刊的创刊主编。其在 Birkhoff-von Neumann 定理（双随机矩阵）方面的积累为 Hoffman-Wielandt 定理的证明提供了关键灵感。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/10_frobenius_nonnegative_matrices_1912.md（Wielandt 1950年Perron-Frobenius证明）</li>
+<li>raw/books/矩阵分析/13_hoffman_wielandt_theorem_1953.md（Hoffman-Wielandt 1953年定理）</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a></li>
+<li><a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a></li>
+<li><a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a></li>
+<li><a href="格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a></li>
+<li><a href="../concepts/不可约矩阵.html">不可约矩阵</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="赫尔曼·外尔.html">&larr; 赫尔曼·外尔</a>
+    <a href="辛克维奇.html">辛克维奇 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

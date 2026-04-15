@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR算法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / QR算法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="qr">QR算法</h1>
+<h2 id="_1">概述</h2>
+<p>QR算法（QR Algorithm）是计算矩阵全部特征值（即<a href="Schur分解.html">Schur分解</a>）的最重要迭代算法，由英国工程师 John G. F. Francis 和苏联数学家 Vera N. Kublanovskaya 于1961年独立发明，被列为"20世纪十大最有影响力的算法"之一。核心思想：对矩阵反复执行 QR 分解（$A_k = Q_kR_k$），然后颠倒乘法顺序（$A_{k+1} = R_kQ_k = Q_k^*A_kQ_k$），在满足谱间隙条件时，序列 ${A_k}$ 收敛到上三角形式——即 $A$ 的 Schur 形式。LAPACK、MATLAB 和 NumPy/SciPy 的特征值求解器均以此为核心引擎。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">基本迭代</h3>
+<p><strong>输入</strong>：$n \times n$ 复方阵 $A_0 = A$</p>
+<p><strong>迭代</strong>：对 $k = 0, 1, 2, \ldots$：
+1. QR分解：$A_k = Q_k R_k$（$Q_k$ 酉，$R_k$ 上三角）
+2. 重组：$A_{k+1} = R_k Q_k = Q_k^* A_k Q_k$</p>
+<p><strong>关键性质</strong>：每一步 $A_{k+1}$ 与 $A$ 酉相似，故特征值不变。在适当条件下，$A_k$ 趋向上三角矩阵（Schur形式），对角元素收敛到特征值。</p>
+<h3 id="_4">收敛条件与速率</h3>
+<p><strong>收敛条件</strong>：若 $A$ 的特征值满足 $|\lambda_1| &gt; |\lambda_2| &gt; \cdots &gt; |\lambda_n|$（严格分离），则 QR 迭代收敛。</p>
+<p><strong>收敛速率</strong>：第 $(i,i+1)$ 次对角收敛速率约为 $O(|\lambda_{i+1}/\lambda_i|^k)$，与幂法的谱间隙控制相同。</p>
+<p><strong>退化情形</strong>：特征值等模时需要特殊处理（位移策略、双重位移等）。</p>
+<h3 id="_5">实用改进</h3>
+<p><strong>带位移的QR算法</strong>（Francis 1961）：在 QR 分解前减去位移 $\mu_k$：
+$$A_k - \mu_k I = Q_k R_k, \quad A_{k+1} = R_k Q_k + \mu_k I$$
+Rayleigh 商位移使收敛从线性加速到三次方，极大提升效率。</p>
+<p><strong>Hessenberg化预处理</strong>：先将 $A$ 化为上 Hessenberg 形（上双对角和对角线以下全零），使每步 QR 分解代价从 $O(n^3)$ 降至 $O(n^2)$。</p>
+<p><strong>隐式 QR（Francis 双重位移）</strong>：使用复共轭位移对处理实矩阵的复特征值，保持全程在实数算术中进行。</p>
+<p><strong>Wilkinson 位移（1965）</strong>：<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>为对称三对角矩阵提出的位移策略——选取末部 $2\times 2$ 子矩阵中更接近 $a_{nn}$ 的特征值作为位移，实现<strong>全局收敛性</strong>和<strong>三次方渐近收敛速率</strong>；实际计算中每个特征值通常只需1–2次迭代即可隔离。是对称特征值计算的黄金标准。</p>
+<h3 id="_6">历史背景</h3>
+<p><strong>Francis（1961）</strong>：发表于 <em>The Computer Journal</em>，论文明确指出目标是计算 Schur 标准形，使用"QR变换"术语，引入带位移和双步迭代。</p>
+<p><strong>Kublanovskaya（1961）</strong>：发表于 <em>USSR Computational Mathematics</em>，从 LQ 分解角度独立构造相同算法。</p>
+<p>两人都看到了<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 1909年定理的计算潜力——将一个存在性结果（Schur分解存在）转化为构造性算法（迭代计算 Schur 形式）。从 Schur 1909年到 Francis/Kublanovskaya 1961年，历经半个世纪。</p>
+<p><strong>"20世纪十大算法"</strong>：该名单由 Dongarra 和 Sullivan（2000）在 <em>Computing in Science &amp; Engineering</em> 评选，QR 算法与 Monte Carlo 方法、快速傅里叶变换、单纯形法等并列其中。</p>
+<h3 id="_7">现代实现</h3>
+<table>
+<thead>
+<tr>
+<th>软件/库</th>
+<th>接口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAPACK</td>
+<td><code>xGEES</code>, <code>xGEEV</code></td>
+<td>计算 Schur 形或特征值/向量</td>
+</tr>
+<tr>
+<td>MATLAB</td>
+<td><code>schur(A)</code>, <code>eig(A)</code></td>
+<td>直接调用 LAPACK</td>
+</tr>
+<tr>
+<td>NumPy/SciPy</td>
+<td><code>scipy.linalg.schur(A)</code></td>
+<td>实/复 Schur 形</td>
+</tr>
+<tr>
+<td>Julia</td>
+<td><code>schur(A)</code></td>
+<td>调用 LAPACK</td>
+</tr>
+</tbody>
+</table>
+<p><strong>大规模稀疏矩阵</strong>：Krylov 子空间方法（如 Arnoldi 算法、ARPACK 库）本质上是在低维投影空间中计算"部分 Schur 分解"，只提取少数主要特征值。</p>
+<h2 id="_8">与其他算法的关系</h2>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幂法（Power Method）</td>
+<td>QR算法的推广——幂法每次只提取一个特征向量，QR算法同时提取全部</td>
+</tr>
+<tr>
+<td>LR算法（Rutishauser 1958）</td>
+<td>QR算法的前身，用 LR 分解（LU分解）代替 QR；数值不稳定</td>
+</tr>
+<tr>
+<td>Lanczos算法</td>
+<td>用于大规模对称矩阵，在 Krylov 子空间中隐式执行部分 QR</td>
+</tr>
+<tr>
+<td>Arnoldi算法</td>
+<td>非对称大规模矩阵的 Krylov 方法，计算部分 Schur 分解</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">来源</h2>
+<ul>
+<li>raw/books/矩阵分析/08_schur_unitary_triangularization_1909.md</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="Schur分解.html">Schur分解</a></li>
+<li><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a></li>
+<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="谱半径.html">谱半径</a></li>
+<li><a href="快速傅里叶变换.html">快速傅里叶变换</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Perron-Frobenius定理.html">&larr; Perron-Frobenius定理</a>
+    <a href="Rayleigh商.html">Rayleigh商 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

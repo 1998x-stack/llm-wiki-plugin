@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>条件数 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 条件数</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">条件数</h1>
+<h2 id="_2">概述</h2>
+<p>条件数（condition number）$\kappa(A) = |A| \cdot |A^{-1}|$ 是衡量线性方程组 $Ax = b$ 对输入扰动的<strong>固有敏感程度</strong>的核心量。由<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>于 1948 年系统引入（记作 $N(A)$），<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>与 Goldstine 于 1947 年独立提出类似概念。条件数大（病态问题）意味着输入的微小扰动会被极度放大到输出，与算法选择无关；条件数小（良态问题）则意味着结果对误差不敏感。结合<a href="后向误差分析.html">后向误差分析</a>，条件数提供了数值计算可靠性的完整理论框架。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定义</h3>
+<p>$$\kappa(A) = |A| \cdot |A^{-1}|$$</p>
+<p>其中 $|\cdot|$ 是任意相容矩阵范数（常用 2-范数：$\kappa_2(A) = \sigma_{\max}/\sigma_{\min}$，即最大与最小奇异值之比）。</p>
+<p>对正规矩阵（含对称正定矩阵）：</p>
+<p>$$\kappa_2(A) = |\lambda_{\max}| / |\lambda_{\min}|$$</p>
+<h3 id="_5">物理意义</h3>
+<p><strong>条件数是问题对输入扰动的"放大倍数"上界</strong>：</p>
+<p>$$\frac{|\delta x|}{|x|} \leq \kappa(A) \cdot \frac{|\delta b|}{|b|}$$</p>
+<ul>
+<li>输入 $b$ 有相对误差 $\epsilon$，则解 $x$ 的相对误差最大为 $\kappa(A) \cdot \epsilon$</li>
+<li>若计算精度为 $t$ 位有效数字，则结果约有 $t - \log_{10}\kappa(A)$ 位正确有效数字</li>
+</ul>
+<h3 id="_6">病态与良态</h3>
+<table>
+<thead>
+<tr>
+<th>条件数</th>
+<th>分类</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\kappa(A) \approx 1$</td>
+<td>极良态</td>
+<td>误差几乎不被放大</td>
+</tr>
+<tr>
+<td>$\kappa(A) \sim 10^3$</td>
+<td>适中</td>
+<td>单精度计算仍可靠</td>
+</tr>
+<tr>
+<td>$\kappa(A) \sim 10^8$</td>
+<td>病态</td>
+<td>双精度（16位）只剩约 8 位有效数字</td>
+</tr>
+<tr>
+<td>$\kappa(A) \gtrsim 10^{16}$</td>
+<td>极病态</td>
+<td>双精度结果几乎全是噪声</td>
+</tr>
+</tbody>
+</table>
+<p>图灵引入"病态"（ill-conditioned）和"良态"（well-conditioned）这对术语，至今是数值分析最常用的专业词汇。</p>
+<h3 id="_7">条件数与后向误差分析的结合</h3>
+<p><a href="后向误差分析.html">后向误差分析</a>（Wilkinson 1963–1965）将算法误差分解为：</p>
+<p>$$\underbrace{\text{前向误差}}<em>{\text{结果精度}} \approx \underbrace{\kappa(A)}</em>{\text{问题固有难度}} \times \underbrace{\epsilon_{\text{backward}}}_{\text{算法稳定性}}$$</p>
+<ul>
+<li><strong>后向误差小</strong> → 算法是后向稳定的（好算法）</li>
+<li><strong>条件数小</strong> → 问题是良态的（好问题）</li>
+<li><strong>两者都小</strong> → 数值结果可靠</li>
+</ul>
+<p>这一分解澄清了"结果不准"究竟是算法问题还是问题本身的问题——是图灵最重要的概念贡献之一。</p>
+<h3 id="vs">图灵 vs 冯·诺依曼的定义对比</h3>
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>图灵（1948）</th>
+<th>冯·诺依曼-Goldstine（1947）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义形式</td>
+<td>$N(A) = |A|\cdot|A^{-1}|$（矩阵范数乘积）</td>
+<td>$\lambda_{\max}/\lambda_{\min}$（特征值比）</td>
+</tr>
+<tr>
+<td>误差模型</td>
+<td>确定性最坏情况分析</td>
+<td>统计模型（随机舍入假设）</td>
+</tr>
+<tr>
+<td>主要对象</td>
+<td>高斯消元法</td>
+<td>矩阵求逆</td>
+</tr>
+<tr>
+<td>现代标准</td>
+<td>更接近（便于推广）</td>
+<td>仅适用正规矩阵</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">条件数的推广</h3>
+<p>条件数概念已推广到几乎所有数值计算领域：</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>条件数形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特征值问题</td>
+<td>$1/</td>
+</tr>
+<tr>
+<td>非线性方程 $f(x)=0$</td>
+<td>$</td>
+</tr>
+<tr>
+<td>优化问题</td>
+<td>Hessian 矩阵的谱条件数</td>
+</tr>
+<tr>
+<td>神经网络训练</td>
+<td>梯度条件数（影响训练稳定性和速度）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">历史意义</h3>
+<p>图灵1948年论文否定了 Hotelling（1943）关于高斯消元法误差以 $4^n$ 指数增长的悲观预测：使用<strong>列主元选取</strong>（partial pivoting）后，误差界大致为 $\kappa(A) \cdot 2^{-t}$，不随 $n$ 指数增长。这对计算科学界是一个重要解脱，为使用大规模高斯消元法奠定了理论依据。</p>
+<h2 id="_10">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/14_turing_rounding_errors.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/13_von_neumann_stability.md</span></li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="../entities/阿兰·图灵.html">阿兰·图灵</a></li>
+<li><a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a></li>
+<li><a href="后向误差分析.html">后向误差分析</a></li>
+<li><a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a></li>
+<li><a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="期望值.html">&larr; 期望值</a>
+    <a href="极大极小定理.html">极大极小定理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
