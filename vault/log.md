@@ -915,3 +915,68 @@ python3 scripts/build_graph.py
 - 更新 index.md：添加 7 个新页面条目，统计从 121→128（实体 48→50，概念 71→76）
 - 矛盾检查：未发现矛盾信息（已有马尔可夫链等页面内容相互补充）
 - BM25 索引：7 个新页面全部索引成功
+
+## [2026-04-15 15:15] graph
+- 构建知识图谱: 128 节点, 828 边, 3 孤页, 5 连通分量
+
+## [2026-04-15] consolidate | 日常整合（第三场 2026-04-15-03）
+
+### Step 1: Working → Episodic 压缩
+- 处理工作记忆：`2026-04-15-03`（status: processed，待合并 O15-O19）
+- 合并到 `_memory/episodic/2026-04-15.md`（source_sessions → [01, 02, 03], access_count 2→3）
+- 新增观察 5 条（O15-O19）：
+  - O15｜Wiener 测度：无穷维路径空间概率测度首次严格化（1923）
+  - O16｜巴舍利耶反例：应用动机出发需先经纯粹理论"认证"才获接受
+  - O17｜随机积分三层发展链：随机游走→Wiener积分→Itô积分（技术障碍逐层突破）
+  - O18｜Itô公式：经典链式法则 + 一阶二次变差修正（跨域复现结构）
+  - O19｜概率论知识域纵向完整性达成，规模 121→128
+
+### Step 2: Episodic → Semantic 晋升
+- **未执行**：仅有 1 个 episodic 文件（2026-04-15），需 3+ 天才可晋升
+
+### Step 3: 置信度衰减
+- 语义记忆条目数：0——跳过
+
+### Step 4: Journal 模式扫描
+- 无 `journal/daily/` 文件——跳过
+
+### Step 5: 深度整合（--deep 未触发）
+- 跳过
+
+### 统计
+- 处理 working：1 个（2026-04-15-03）
+- 晋升 semantic：0 个
+- 衰减：0 个
+
+## [2026-04-15] qa-import | qa/2026-04-15.md → 1 个洞见
+
+- 源文件：qa/2026-04-15.md（1 个 QA 对，L10–L65）
+- 主题：数值PDE、CFL条件、冯·诺依曼稳定性分析、Lax-Richtmyer等价定理
+- 创建洞见页面：1 个
+  - [[数值PDE稳定收敛三角]]（confidence: 0.95）—— CFL+冯·诺依曼+Lax-Richtmyer 三者构成稳定-收敛完整闭环
+- 双向链接：[[CFL条件]]、[[冯·诺依曼稳定性分析]]、[[Lax-Richtmyer等价定理]] 均已在 relates_to 中引用
+- 更新 index.md：QA 洞见分类下添加新条目
+
+## [2026-04-15] crystallize | Wiki系统V2.1-V2.3开发测试
+
+- 会话：2026-04-15-04（工作记忆 `_memory/working/2026-04-15-04.md`）
+- 主题：V2.1-V2.3 代码审查、测试基础设施、集成测试、Bug 修复
+- 关键洞见（6条）：
+  1. wiki:graph lint 步骤读写分离——graph=build-only，lint=fix-allowed
+  2. 脚本级测试 vs Claude SDK 集成测试的互补价值
+  3. lint regex 须显式编码 schema 结构允许列表（不依赖隐含常规假设）
+  4. pipe-unaware wikilink regex 是系统性陷阱（所有 wikilink 解析须测试别名格式）
+  5. Python falsy 0.0 bug — 数值字段用 `is not None` 而非 truthy check
+  6. claude -p 集成测试适合 milestone 验收，脚本测试适合日常 CI
+- 产出：scripts/test/ 测试套件、TEST_REPORT.md、gotchas #10-12、5 个 bug 修复
+- 无新 synthesis（工程系统洞见，非跨域知识综合）
+
+## [2026-04-15] review | weekly
+
+- 范围：2026-W16（2026-04-15，知识库创建周）
+- 输入：log.md 全文 + _memory/episodic/2026-04-15.md（O1-O19）+ dashboard.md
+- 输出：`journal/daily/2026-W16.md`
+- 本周指标：128 页面（初始化→结束），50+ 文件 ingest，3 个 synthesis
+- 升维建议：4 个高频认知模式待创建 wiki 页面（工具分离思维、知识谱系优先、纯粹理论意外应用模式、经典+一阶修正）
+- 链接补全：daily note 中全部 4 个链接均已有对应页面，无需补充
+- 下周 P1：继续矩阵分析 ingest；P2：认知模式概念页落地；P3：孤页 + 断链修复

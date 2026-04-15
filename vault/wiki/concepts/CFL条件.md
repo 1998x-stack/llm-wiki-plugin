@@ -41,6 +41,10 @@ relates_to:
   type: related_to
   confidence: 0.9
   note: CFL是稳定性的必要条件；等价定理指出违反CFL（不稳定）的格式也不收敛——二者完美衔接
+- target: '[[数值PDE稳定收敛三角]]'
+  type: related_to
+  confidence: 0.9
+  note: QA洞见：CFL+冯·诺依曼+Lax-Richtmyer三者构成稳定-收敛完整闭环
 supersedes: null
 ---
 

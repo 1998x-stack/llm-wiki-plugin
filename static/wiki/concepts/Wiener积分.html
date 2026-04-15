@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>詹姆斯·约瑟夫·西尔维斯特 — LLM Wiki</title>
+<title>Wiener积分 — LLM Wiki</title>
 <style>
 :root {
   --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
@@ -120,45 +120,47 @@ nav a.active { color: var(--link); font-weight: 600; }
   <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
 </nav>
 <div class="container">
-  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 詹姆斯·约瑟夫·西尔维斯特</div>
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Wiener积分</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">历史</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
 </div>
   <div class="content">
-    <h1 id="_1">詹姆斯·约瑟夫·西尔维斯特</h1>
-<h2 id="_2">概述</h2>
-<p>英国数学家，1850年首次创造"矩阵"(matrix)一词，将矩形数表从行列式的附庸中解放出来，赋予其独立的数学身份。1852年证明惯性律，给出二次型在非退化线性替换下的完全分类不变量。与阿瑟·凯莱建立传奇合作关系，共同奠定线性代数学科基础。</p>
-<h2 id="_3">关键内容</h2>
+    <h1 id="wiener">Wiener 积分</h1>
+<h2 id="_1">概述</h2>
+<p>Wiener 积分是<a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a>在路径空间上定义的对<strong>确定性函数</strong>的积分 $\int_0^1 f(t)\,dB(t)$，是随机积分最早的严格形式，后被<a href="Itô随机积分.html">Itô随机积分</a>推广。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>定义</strong>：对 $L^2[0,1]$ 中的确定性函数 $f$，Wiener 积分定义为 Riemann-Stieltjes 型极限：$$\int_0^1 f(t)\,dB(t) = \lim_{n\to\infty} \sum_{k=1}^n f(t_{k-1})\bigl(B(t_k) - B(t_{k-1})\bigr)$$均方极限在 $L^2$ 中存在且唯一。</p>
+</li>
+<li>
+<p><strong>统计性质</strong>：结果是均值为0的高斯随机变量，方差为 $\int_0^1 f(t)^2\,dt$（Wiener 等距）——被积函数的 $L^2$ 范数完全决定了积分的分布。</p>
+</li>
+<li>
+<p><strong>关键约束：确定性被积函数</strong>：被积函数 $f(t)$ 不能依赖于 $B$ 本身。这一约束来自<a href="Wiener过程.html">Wiener过程</a>路径的无界变差（处处不可微），导致依赖路径的 Riemann 和不收敛。突破这一约束需要<a href="Itô随机积分.html">Itô随机积分</a>的新框架。</p>
+</li>
+<li>
+<p><strong>与 Feynman 路径积分的联系</strong>：Feynman 量子力学路径积分的灵感部分来源于 Wiener 积分，两者通过 Wick 旋转 $t \to it$ 相联系。Wiener 积分是目前最接近严格化的"路径积分"版本。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
 <ul>
-<li><strong>主要贡献</strong>：</li>
-<li>1850年创造"矩阵"术语，选择拉丁文matrix（意为"子宫"或"母体"）命名矩形数表，暗示矩阵是行列式的"孕育者"</li>
-<li>1852年证明Sylvester惯性律：实二次型在非退化线性替换下，正、负、零系数的个数保持不变</li>
-<li>创造大量线性代数术语：判别式(discriminant)、Hessian矩阵、Jacobian矩阵、余子式(minor)、零度(nullity)、标准形(canonical form)等</li>
-<li><strong>学术背景</strong>：与阿瑟·凯莱建立传奇合作关系，两人在伦敦律师界展开持续数十年的数学对话，形成独特的"平行创造"模式</li>
-<li><strong>时代背景</strong>：19世纪中叶英国代数学变革期，不变量理论成为研究前沿，Sylvester创造了invariant（不变量）、covariant（协变量）、contravariant（逆变量）等术语</li>
-<li><strong>教育经历</strong>：因犹太人身份无法在剑桥获得学位，后辗转于弗吉尼亚大学和保险精算行业</li>
-<li><strong>学术地位</strong>：英国皇家学会会士，曾任约翰霍普金斯大学首任数学系主任，创办《美国数学杂志》</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/概率论/13_wiener_brownian_motion</span> — §主要结论：Wiener 积分；§突破了什么瓶颈：路径积分的数学基础</li>
 </ul>
-<h2 id="_4">来源</h2>
+<h2 id="_4">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/books/矩阵分析/02_sylvester_matrix_terminology_law_of_inertia_1852.md</span></li>
-</ul>
-<h2 id="_5">相关</h2>
-<ul>
-<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
-<li><span style="color:#e74c3c" title="broken link">惯性律</span></li>
-<li><span style="color:#e74c3c" title="broken link">阿瑟·凯莱</span></li>
-<li><span style="color:#e74c3c" title="broken link">矩阵</span></li>
-<li><span style="color:#e74c3c" title="broken link">线性代数</span></li>
+<li><a href="Wiener过程.html">Wiener过程</a> — depends_on（需要布朗运动路径作为积分器）</li>
+<li><a href="Itô随机积分.html">Itô随机积分</a> — extends（Itô 积分将 Wiener 积分推广至随机被积函数）</li>
+<li><a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a> — depends_on（由维纳定义）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="詹姆斯·库利.html">&larr; 詹姆斯·库利</a>
-    <a href="诺伯特·维纳.html">诺伯特·维纳 &rarr;</a>
+    <a href="Wiener测度.html">&larr; Wiener测度</a>
+    <a href="Wiener过程.html">Wiener过程 &rarr;</a>
   </div>
 </div>
 </body>

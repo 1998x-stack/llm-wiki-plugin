@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated": "2026-04-15T06:58:11.269893+00:00",
-    "total_nodes": 121,
-    "total_edges": 783,
+    "generated": "2026-04-15T07:15:19.304038+00:00",
+    "total_nodes": 128,
+    "total_edges": 828,
     "orphan_count": 3,
     "component_count": 5
   },
@@ -125,6 +125,17 @@
         "矩阵理论"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/concepts/Itô随机积分.md",
+      "label": "Itô随机积分",
+      "type": "concept",
+      "confidence": 0.92,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/Jacobi迭代法.md",
@@ -310,6 +321,39 @@
       "edge_count": 31
     },
     {
+      "id": "wiki/concepts/Wiener测度.md",
+      "label": "Wiener测度",
+      "type": "concept",
+      "confidence": 0.93,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/Wiener积分.md",
+      "label": "Wiener积分",
+      "type": "concept",
+      "confidence": 0.88,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/concepts/Wiener过程.md",
+      "label": "Wiener过程",
+      "type": "concept",
+      "confidence": 0.97,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 21
+    },
+    {
       "id": "wiki/concepts/bun-vs-uv.md",
       "label": "bun-vs-uv",
       "type": "concept",
@@ -370,7 +414,7 @@
         "技术",
         "概率论"
       ],
-      "edge_count": 16
+      "edge_count": 20
     },
     {
       "id": "wiki/concepts/优化控制序.md",
@@ -628,7 +672,7 @@
         "技术",
         "概率论"
       ],
-      "edge_count": 8
+      "edge_count": 11
     },
     {
       "id": "wiki/concepts/概率论.md",
@@ -665,7 +709,7 @@
         "概率论",
         "统计学"
       ],
-      "edge_count": 15
+      "edge_count": 21
     },
     {
       "id": "wiki/concepts/正规矩阵.md",
@@ -836,6 +880,17 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/concepts/随机游走.md",
+      "label": "随机游走",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/concepts/马尔可夫链.md",
       "label": "马尔可夫链",
       "type": "concept",
@@ -845,7 +900,7 @@
         "技术",
         "概率论"
       ],
-      "edge_count": 11
+      "edge_count": 17
     },
     {
       "id": "wiki/concepts/高斯最小二乘法.md",
@@ -1405,6 +1460,17 @@
       "edge_count": 3
     },
     {
+      "id": "wiki/entities/诺伯特·维纳.md",
+      "label": "诺伯特·维纳",
+      "type": "entity",
+      "confidence": 0.95,
+      "tags": [
+        "研究",
+        "技术"
+      ],
+      "edge_count": 13
+    },
+    {
       "id": "wiki/entities/赫尔曼·外尔.md",
       "label": "赫尔曼·外尔",
       "type": "entity",
@@ -1429,6 +1495,16 @@
         "历史"
       ],
       "edge_count": 11
+    },
+    {
+      "id": "wiki/entities/路易·巴舍利耶.md",
+      "label": "路易·巴舍利耶",
+      "type": "entity",
+      "confidence": 0.88,
+      "tags": [
+        "研究"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/entities/辛克维奇.md",
@@ -1911,6 +1987,42 @@
     {
       "source": "wiki/concepts/Householder变换.md",
       "target": "wiki/concepts/条件数.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/Wiener积分.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/马尔可夫链.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/Wiener积分.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Itô随机积分.md",
+      "target": "wiki/concepts/马尔可夫链.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -2715,6 +2827,144 @@
     {
       "source": "wiki/concepts/Weyl特征值不等式.md",
       "target": "wiki/concepts/谱半径.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/concepts/概率公理体系.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener测度.md",
+      "target": "wiki/concepts/概率公理体系.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener积分.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener积分.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener积分.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener积分.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/Wiener测度.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/随机游走.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/Itô随机积分.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/马尔可夫链.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/正态分布.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/中心极限定理.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "depends_on",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/马尔可夫链.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/随机游走.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/entities/路易·巴舍利耶.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/正态分布.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Wiener过程.md",
+      "target": "wiki/concepts/中心极限定理.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -4639,6 +4889,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/马尔可夫链.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/中心极限定理.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/正态分布.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/中心极限定理.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/马尔可夫链.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/随机游走.md",
+      "target": "wiki/concepts/正态分布.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/马尔可夫链.md",
       "target": "wiki/entities/安德烈·马尔可夫.md",
       "relation": "caused",
@@ -5869,6 +6155,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/concepts/Wiener测度.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/concepts/Wiener积分.md",
+      "relation": "caused",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/concepts/概率公理体系.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/concepts/Itô随机积分.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/诺伯特·维纳.md",
+      "target": "wiki/entities/路易·巴舍利耶.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/赫尔曼·外尔.md",
       "target": "wiki/concepts/Weyl特征值不等式.md",
       "relation": "caused",
@@ -5955,6 +6277,30 @@
     {
       "source": "wiki/entities/赫尔穆特·维兰特.md",
       "target": "wiki/concepts/不可约矩阵.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/路易·巴舍利耶.md",
+      "target": "wiki/concepts/Wiener过程.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/路易·巴舍利耶.md",
+      "target": "wiki/entities/诺伯特·维纳.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/路易·巴舍利耶.md",
+      "target": "wiki/concepts/正态分布.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/路易·巴舍利耶.md",
+      "target": "wiki/concepts/正态分布.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -6243,12 +6589,13 @@
   "components": [
     {
       "id": 0,
-      "size": 110,
+      "size": 117,
       "nodes": [
         "wiki/concepts/CFL条件.md",
         "wiki/concepts/Gauss-Seidel方法.md",
         "wiki/concepts/Hoffman-Wielandt定理.md",
         "wiki/concepts/Householder变换.md",
+        "wiki/concepts/Itô随机积分.md",
         "wiki/concepts/Jacobi迭代法.md",
         "wiki/concepts/Kato-Rellich定理.md",
         "wiki/concepts/Krylov子空间方法.md",
@@ -6263,6 +6610,9 @@
         "wiki/concepts/Schur分解.md",
         "wiki/concepts/Von Neumann迹不等式.md",
         "wiki/concepts/Weyl特征值不等式.md",
+        "wiki/concepts/Wiener测度.md",
+        "wiki/concepts/Wiener积分.md",
+        "wiki/concepts/Wiener过程.md",
         "wiki/concepts/不可约矩阵.md",
         "wiki/concepts/中心极限定理.md",
         "wiki/concepts/优化控制序.md",
@@ -6303,6 +6653,7 @@
         "wiki/concepts/贝叶斯推理.md",
         "wiki/concepts/赌徒破产问题.md",
         "wiki/concepts/递推方法.md",
+        "wiki/concepts/随机游走.md",
         "wiki/concepts/马尔可夫链.md",
         "wiki/concepts/高斯最小二乘法.md",
         "wiki/concepts/高斯求积公式.md",
@@ -6346,8 +6697,10 @@
         "wiki/entities/詹姆斯·威尔金森.md",
         "wiki/entities/詹姆斯·库利.md",
         "wiki/entities/詹姆斯·约瑟夫·西尔维斯特.md",
+        "wiki/entities/诺伯特·维纳.md",
         "wiki/entities/赫尔曼·外尔.md",
         "wiki/entities/赫尔穆特·维兰特.md",
+        "wiki/entities/路易·巴舍利耶.md",
         "wiki/entities/辛克维奇.md",
         "wiki/entities/阿兰·图灵.md",
         "wiki/entities/阿尔斯顿·豪斯霍尔德.md",

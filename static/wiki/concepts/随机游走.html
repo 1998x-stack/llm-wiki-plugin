@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>詹姆斯·约瑟夫·西尔维斯特 — LLM Wiki</title>
+<title>随机游走 — LLM Wiki</title>
 <style>
 :root {
   --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
@@ -120,45 +120,59 @@ nav a.active { color: var(--link); font-weight: 600; }
   <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
 </nav>
 <div class="container">
-  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 詹姆斯·约瑟夫·西尔维斯特</div>
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 随机游走</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">历史</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
 </div>
   <div class="content">
-    <h1 id="_1">詹姆斯·约瑟夫·西尔维斯特</h1>
+    <h1 id="_1">随机游走</h1>
 <h2 id="_2">概述</h2>
-<p>英国数学家，1850年首次创造"矩阵"(matrix)一词，将矩形数表从行列式的附庸中解放出来，赋予其独立的数学身份。1852年证明惯性律，给出二次型在非退化线性替换下的完全分类不变量。与阿瑟·凯莱建立传奇合作关系，共同奠定线性代数学科基础。</p>
+<p>随机游走是最简单的离散时间随机过程：每步以等概率 $\pm 1$ 移动，均方位移与步数成正比（$\mathbb{E}[S_n^2] = n$），是<a href="Wiener过程.html">Wiener过程</a>（布朗运动）的离散前身。</p>
 <h2 id="_3">关键内容</h2>
-<ul>
-<li><strong>主要贡献</strong>：</li>
-<li>1850年创造"矩阵"术语，选择拉丁文matrix（意为"子宫"或"母体"）命名矩形数表，暗示矩阵是行列式的"孕育者"</li>
-<li>1852年证明Sylvester惯性律：实二次型在非退化线性替换下，正、负、零系数的个数保持不变</li>
-<li>创造大量线性代数术语：判别式(discriminant)、Hessian矩阵、Jacobian矩阵、余子式(minor)、零度(nullity)、标准形(canonical form)等</li>
-<li><strong>学术背景</strong>：与阿瑟·凯莱建立传奇合作关系，两人在伦敦律师界展开持续数十年的数学对话，形成独特的"平行创造"模式</li>
-<li><strong>时代背景</strong>：19世纪中叶英国代数学变革期，不变量理论成为研究前沿，Sylvester创造了invariant（不变量）、covariant（协变量）、contravariant（逆变量）等术语</li>
-<li><strong>教育经历</strong>：因犹太人身份无法在剑桥获得学位，后辗转于弗吉尼亚大学和保险精算行业</li>
-<li><strong>学术地位</strong>：英国皇家学会会士，曾任约翰霍普金斯大学首任数学系主任，创办《美国数学杂志》</li>
-</ul>
+<ol>
+<li>
+<p><strong>定义</strong>：令 $X_1, X_2, \ldots$ 为独立同分布的随机变量，$P(X_k = +1) = P(X_k = -1) = 1/2$。对称随机游走定义为 $S_n = X_1 + X_2 + \cdots + X_n$，$S_0 = 0$。</p>
+</li>
+<li>
+<p><strong>基本统计性质</strong>：</p>
+</li>
+<li>均值：$\mathbb{E}[S_n] = 0$（无漂移）</li>
+<li>均方位移：$\mathbb{E}[S_n^2] = n$（与步数成正比）</li>
+<li>
+<p>标准差：$\text{SD}(S_n) = \sqrt{n}$</p>
+</li>
+<li>
+<p><strong>连续极限——布朗运动</strong>：令时间步长 $\Delta t = T/n$，空间步长为 $\sqrt{\Delta t}$。令 $B^{(n)}(t) = \frac{1}{\sqrt{n}} S_{\lfloor nt/T \rfloor}$，则当 $n \to \infty$ 时，$B^{(n)}(t)$ 在分布意义下收敛到<a href="Wiener过程.html">Wiener过程</a> $B(t)$。这一收敛由<a href="中心极限定理.html">中心极限定理</a>保证。关键等式：$\Delta B \propto \sqrt{\Delta t}$，而非 $\Delta t$——这正是布朗运动处处不可微的根源。</p>
+</li>
+<li>
+<p><strong>马尔可夫性</strong>：随机游走是<a href="马尔可夫链.html">马尔可夫链</a>的典型例子：$S_{n+1}$ 的分布只依赖于 $S_n$，不依赖于历史。</p>
+</li>
+<li>
+<p><strong>常返性（Pólya 定理）</strong>：一维和二维对称随机游走是常返的（以概率1无限次回到原点）；三维及以上是暂态的（以正概率永远离开原点）。这一性质与<a href="Wiener过程.html">Wiener过程</a>的常返性完全对应。</p>
+</li>
+<li>
+<p><strong>应用</strong>：随机游走是扩散过程的离散模型，也是 Monte Carlo 方法、MCMC 采样、强化学习（Q-learning 等）、社交网络图分析（PageRank）的基础模型之一。</p>
+</li>
+</ol>
 <h2 id="_4">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/books/矩阵分析/02_sylvester_matrix_terminology_law_of_inertia_1852.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/概率论/13_wiener_brownian_motion</span> — §直觉解释：无穷次掷硬币；§阅读建议</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
-<li><span style="color:#e74c3c" title="broken link">惯性律</span></li>
-<li><span style="color:#e74c3c" title="broken link">阿瑟·凯莱</span></li>
-<li><span style="color:#e74c3c" title="broken link">矩阵</span></li>
-<li><span style="color:#e74c3c" title="broken link">线性代数</span></li>
+<li><a href="Wiener过程.html">Wiener过程</a> — extends（对称随机游走在时空缩放下的连续极限）</li>
+<li><a href="马尔可夫链.html">马尔可夫链</a> — implements（随机游走是马尔可夫链的典型例子）</li>
+<li><a href="中心极限定理.html">中心极限定理</a> — uses（极限定理保证收敛到正态/布朗运动）</li>
+<li><a href="正态分布.html">正态分布</a> — extends（随机游走的缩放极限服从正态分布）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="詹姆斯·库利.html">&larr; 詹姆斯·库利</a>
-    <a href="诺伯特·维纳.html">诺伯特·维纳 &rarr;</a>
+    <a href="递推方法.html">&larr; 递推方法</a>
+    <a href="马尔可夫链.html">马尔可夫链 &rarr;</a>
   </div>
 </div>
 </body>

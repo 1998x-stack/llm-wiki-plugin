@@ -36,6 +36,10 @@ relates_to:
   type: related_to
   confidence: 0.5
   note: 两者均是从有限差分法数值误差分析角度提升数值解可靠性的理论工具
+- target: '[[数值PDE稳定收敛三角]]'
+  type: related_to
+  confidence: 0.9
+  note: QA洞见：Lax-Richtmyer是三角闭环的终点，将稳定性等价于收敛性，完成CFL→冯·诺依曼→收敛的推导链
 supersedes: null
 ---
 

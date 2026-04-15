@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>詹姆斯·约瑟夫·西尔维斯特 — LLM Wiki</title>
+<title>Wiener测度 — LLM Wiki</title>
 <style>
 :root {
   --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
@@ -120,45 +120,55 @@ nav a.active { color: var(--link); font-weight: 600; }
   <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
 </nav>
 <div class="container">
-  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 詹姆斯·约瑟夫·西尔维斯特</div>
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Wiener测度</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.93</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">历史</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">技术</span></div>
 </div>
   <div class="content">
-    <h1 id="_1">詹姆斯·约瑟夫·西尔维斯特</h1>
-<h2 id="_2">概述</h2>
-<p>英国数学家，1850年首次创造"矩阵"(matrix)一词，将矩形数表从行列式的附庸中解放出来，赋予其独立的数学身份。1852年证明惯性律，给出二次型在非退化线性替换下的完全分类不变量。与阿瑟·凯莱建立传奇合作关系，共同奠定线性代数学科基础。</p>
-<h2 id="_3">关键内容</h2>
+    <h1 id="wiener">Wiener 测度</h1>
+<h2 id="_1">概述</h2>
+<p>Wiener 测度是<a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a>于1923年在连续函数空间 $C_0[0,1]$ 上构造的概率测度，是无穷维空间上第一个严格的概率测度，奠定了<a href="Wiener过程.html">Wiener过程</a>（布朗运动）的数学存在性。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>构造问题</strong>：有限维欧氏空间上的概率测度可通过密度函数定义，但连续函数空间是无穷维的——没有 Lebesgue 测度的类比，密度函数方法失效。Wiener 测度的构造是第一次克服这一障碍。</p>
+</li>
+<li>
+<p><strong>三步构造</strong>：</p>
+</li>
+<li><strong>有限维分布</strong>：对任意时刻 $0 &lt; t_1 &lt; \cdots &lt; t_n \leq 1$，指定联合密度 $p(x_1,\ldots,x_n) = \prod_k \frac{1}{\sqrt{2\pi(t_k - t_{k-1})}} \exp!\left(-\frac{(x_k-x_{k-1})^2}{2(t_k-t_{k-1})}\right)$，其中 $t_0=x_0=0$。</li>
+<li><strong>Kolmogorov 相容性</strong>：验证这些有限维分布满足边际化一致性，从而（由 Kolmogorov 扩展定理）可以定义乘积空间上的测度。</li>
+<li>
+<p><strong>路径连续性</strong>：利用 Borel-Cantelli 引理控制细网格上的增量，证明该测度集中在连续函数子集上——这是关键也是最困难的一步。</p>
+</li>
+<li>
+<p><strong>与 Kolmogorov 扩展定理的关系</strong>：Wiener 的方法后来被理解为<a href="概率公理体系.html">概率公理体系</a>的应用范式——先给出满足相容性条件的有限维族，再取极限。维纳的工作（1923）比柯尔莫哥洛夫建立公理体系（1933）早十年。</p>
+</li>
+<li>
+<p><strong>无穷维概率论的先驱</strong>：Wiener 测度开创了无穷维空间上概率论的研究，影响了高斯过程理论、抽象 Wiener 空间（Gross, 1965）和 Malliavin 微积分（1976）。</p>
+</li>
+<li>
+<p><strong>物理意义</strong>：Wiener 测度赋予"连续函数"一个自然的概率权重——越"不规则"（振荡越大）的路径被赋予越小的权重，但测度集中于处处不可微的路径。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
 <ul>
-<li><strong>主要贡献</strong>：</li>
-<li>1850年创造"矩阵"术语，选择拉丁文matrix（意为"子宫"或"母体"）命名矩形数表，暗示矩阵是行列式的"孕育者"</li>
-<li>1852年证明Sylvester惯性律：实二次型在非退化线性替换下，正、负、零系数的个数保持不变</li>
-<li>创造大量线性代数术语：判别式(discriminant)、Hessian矩阵、Jacobian矩阵、余子式(minor)、零度(nullity)、标准形(canonical form)等</li>
-<li><strong>学术背景</strong>：与阿瑟·凯莱建立传奇合作关系，两人在伦敦律师界展开持续数十年的数学对话，形成独特的"平行创造"模式</li>
-<li><strong>时代背景</strong>：19世纪中叶英国代数学变革期，不变量理论成为研究前沿，Sylvester创造了invariant（不变量）、covariant（协变量）、contravariant（逆变量）等术语</li>
-<li><strong>教育经历</strong>：因犹太人身份无法在剑桥获得学位，后辗转于弗吉尼亚大学和保险精算行业</li>
-<li><strong>学术地位</strong>：英国皇家学会会士，曾任约翰霍普金斯大学首任数学系主任，创办《美国数学杂志》</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/概率论/13_wiener_brownian_motion</span> — §主要结论：Wiener 测度的构造；§突破了什么瓶颈：无穷维测度构造</li>
 </ul>
-<h2 id="_4">来源</h2>
+<h2 id="_4">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/books/矩阵分析/02_sylvester_matrix_terminology_law_of_inertia_1852.md</span></li>
-</ul>
-<h2 id="_5">相关</h2>
-<ul>
-<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
-<li><span style="color:#e74c3c" title="broken link">惯性律</span></li>
-<li><span style="color:#e74c3c" title="broken link">阿瑟·凯莱</span></li>
-<li><span style="color:#e74c3c" title="broken link">矩阵</span></li>
-<li><span style="color:#e74c3c" title="broken link">线性代数</span></li>
+<li><a href="Wiener过程.html">Wiener过程</a> — caused（Wiener 测度的存在保证了布朗运动的数学存在性）</li>
+<li><a href="概率公理体系.html">概率公理体系</a> — extends（与 Kolmogorov 公理化体系同时代，相互促进）</li>
+<li><a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a> — depends_on（由维纳首次构造）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="詹姆斯·库利.html">&larr; 詹姆斯·库利</a>
-    <a href="诺伯特·维纳.html">诺伯特·维纳 &rarr;</a>
+    <a href="Weyl特征值不等式.html">&larr; Weyl特征值不等式</a>
+    <a href="Wiener积分.html">Wiener积分 &rarr;</a>
   </div>
 </div>
 </body>
