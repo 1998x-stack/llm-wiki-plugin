@@ -1,7 +1,7 @@
 # Wiki 系统命令参考手册
 
 > 本文档完整描述 Obsidian Brain 知识系统的所有命令、钩子、自动化脚本和 Python 工具。
-> 所有命令通过 `/project:wiki/<命令名>` 调用。
+> 所有命令通过 `/wiki:<命令名>` 调用（在 vault/ 目录下运行 Claude Code）。
 
 ---
 
@@ -61,7 +61,7 @@
 **输入格式**：
 
 ```
-/project:wiki/ingest <文件路径>
+/wiki:ingest <文件路径>
 ```
 
 - `<文件路径>`：相对于 `vault/raw/` 的路径，例如 `textbooks/chapter1.md`
@@ -83,7 +83,7 @@
 **示例**：
 
 ```
-/project:wiki/ingest textbooks/数值分析/第三章.md
+/wiki:ingest textbooks/数值分析/第三章.md
 ```
 
 期望输出：
@@ -96,7 +96,7 @@
 ```
 
 ```
-/project:wiki/ingest all
+/wiki:ingest all
 ```
 
 期望输出：
@@ -120,7 +120,7 @@
 **输入格式**：
 
 ```
-/project:wiki/ingest-loop <文件夹路径>
+/wiki:ingest-loop <文件夹路径>
 ```
 
 - `<文件夹路径>`：相对于 vault 的路径，例如 `raw/textbooks/数值分析`
@@ -156,7 +156,7 @@ completion_promise: "ALL_FILES_INGESTED"
 **示例**：
 
 ```
-/project:wiki/ingest-loop raw/textbooks/数值分析
+/wiki:ingest-loop raw/textbooks/数值分析
 ```
 
 期望输出：
@@ -186,7 +186,7 @@ State file: .claude/ingest-loop.local.md
 **输入格式**：
 
 ```
-/project:wiki/ingest-loop-qwen <文件夹路径>
+/wiki:ingest-loop-qwen <文件夹路径>
 ```
 
 **前置条件**：
@@ -232,7 +232,7 @@ State file: .claude/ingest-loop.local.md
 **示例**：
 
 ```
-/project:wiki/ingest-loop-qwen raw/papers
+/wiki:ingest-loop-qwen raw/papers
 ```
 
 期望输出：
@@ -262,7 +262,7 @@ Model: qwen3-plus (via DashScope)
 **输入格式**：
 
 ```
-/project:wiki/query <问题>
+/wiki:query <问题>
 ```
 
 - `<问题>`：自然语言问题
@@ -288,7 +288,7 @@ Model: qwen3-plus (via DashScope)
 **示例**：
 
 ```
-/project:wiki/query 龙格现象和切比雪夫逼近之间有什么联系？
+/wiki:query 龙格现象和切比雪夫逼近之间有什么联系？
 ```
 
 期望输出：
@@ -308,7 +308,7 @@ Model: qwen3-plus (via DashScope)
 ```
 
 ```
-/project:wiki/query 这个知识库里有哪些数值线性代数的人物？
+/wiki:query 这个知识库里有哪些数值线性代数的人物？
 ```
 
 期望输出：
@@ -334,7 +334,7 @@ Model: qwen3-plus (via DashScope)
 **输入格式**：
 
 ```
-/project:wiki/lint
+/wiki:lint
 ```
 
 无需参数。
@@ -374,7 +374,7 @@ Model: qwen3-plus (via DashScope)
 **示例**：
 
 ```
-/project:wiki/lint
+/wiki:lint
 ```
 
 期望输出：
@@ -406,7 +406,7 @@ Lint Report 2026-04-15
 **输入格式**：
 
 ```
-/project:wiki/graph
+/wiki:graph
 ```
 
 无需参数。
@@ -461,7 +461,7 @@ Lint Report 2026-04-15
 **示例**：
 
 ```
-/project:wiki/graph
+/wiki:graph
 ```
 
 期望输出：
@@ -487,7 +487,7 @@ Output: vault/graph.json
 **输入格式**：
 
 ```
-/project:wiki/consolidate [--deep]
+/wiki:consolidate [--deep]
 ```
 
 - 无参数：执行日常整合（Working→Episodic、Episodic→Semantic、置信度衰减）
@@ -535,7 +535,7 @@ Output: vault/graph.json
 **示例**：
 
 ```
-/project:wiki/consolidate
+/wiki:consolidate
 ```
 
 期望输出：
@@ -549,7 +549,7 @@ Consolidate 完成（2026-04-15）：
 ```
 
 ```
-/project:wiki/consolidate --deep
+/wiki:consolidate --deep
 ```
 
 期望输出：
@@ -575,7 +575,7 @@ Deep Consolidate 完成（2026-04-15）：
 **输入格式**：
 
 ```
-/project:wiki/crystallize [主题描述]
+/wiki:crystallize [主题描述]
 ```
 
 - `主题描述`：可选。不提供时自动从当前对话上下文推断。
@@ -603,7 +603,7 @@ observations: 5
 **示例**：
 
 ```
-/project:wiki/crystallize 数值稳定性与条件数的关系探索
+/wiki:crystallize 数值稳定性与条件数的关系探索
 ```
 
 期望输出：
@@ -638,7 +638,7 @@ Working Memory：
 **输入格式**：
 
 ```
-/project:wiki/journal <类型> [主题]
+/wiki:journal <类型> [主题]
 ```
 
 三种类型：
@@ -672,7 +672,7 @@ Working Memory：
 **示例**：
 
 ```
-/project:wiki/journal daily
+/wiki:journal daily
 ```
 
 期望输出：
@@ -687,7 +687,7 @@ Working Memory：
 ```
 
 ```
-/project:wiki/journal reflection 为什么我总是低估数学基础的重要性
+/wiki:journal reflection 为什么我总是低估数学基础的重要性
 ```
 
 期望输出：
@@ -702,7 +702,7 @@ Working Memory：
 ```
 
 ```
-/project:wiki/journal judgment 选择 Jacobi 迭代还是 Gauss-Seidel
+/wiki:journal judgment 选择 Jacobi 迭代还是 Gauss-Seidel
 ```
 
 期望输出：
@@ -725,7 +725,7 @@ Working Memory：
 **输入格式**：
 
 ```
-/project:wiki/review [weekly|monthly|quarterly]
+/wiki:review [weekly|monthly|quarterly]
 ```
 
 - 默认 `weekly`
@@ -755,7 +755,7 @@ Working Memory：
 **示例**：
 
 ```
-/project:wiki/review weekly
+/wiki:review weekly
 ```
 
 期望输出：
@@ -782,7 +782,7 @@ Weekly Review 2026-W16 (04-09 ~ 04-15)
 ```
 
 ```
-/project:wiki/review quarterly
+/wiki:review quarterly
 ```
 
 期望输出：
@@ -811,7 +811,7 @@ Quarterly Review 2026-Q1 (01-01 ~ 03-31)
 **输入格式**：
 
 ```
-/project:wiki/qa-import <文件路径>
+/wiki:qa-import <文件路径>
 ```
 
 - `<文件路径>`：相对于 `vault/raw/qa/` 的路径
@@ -856,7 +856,7 @@ relates_to:
 **示例**：
 
 ```
-/project:wiki/qa-import chatgpt-export.jsonl
+/wiki:qa-import chatgpt-export.jsonl
 ```
 
 期望输出：
@@ -885,7 +885,7 @@ QA Import 完成：chatgpt-export.jsonl
 **输入格式**：
 
 ```
-/project:wiki/convert-to-markdown [子目录路径]
+/wiki:convert-to-markdown [子目录路径]
 ```
 
 - `子目录路径`：相对于 `vault/raw/` 的子目录，例如 `papers`。不提供则处理 `raw/` 下所有支持格式的文件。
@@ -901,7 +901,7 @@ QA Import 完成：chatgpt-export.jsonl
 **示例**：
 
 ```
-/project:wiki/convert-to-markdown papers
+/wiki:convert-to-markdown papers
 ```
 
 期望输出：
@@ -997,9 +997,9 @@ bash scripts/cron-setup.sh
 
 | 时间 | cron 表达式 | 命令 | 说明 |
 |------|------------|------|------|
-| 每日 02:07 | `7 2 * * *` | `/project:wiki/consolidate` | 日常记忆整合：Working→Episodic→Semantic 晋升 + 置信度衰减 |
-| 每周日 20:13 | `13 20 * * 0` | `/project:wiki/lint` + `/project:wiki/review weekly` | 周末维护：lint 健康检查 + 周回顾 |
-| 每月 1 号 03:17 | `17 3 1 * *` | `/project:wiki/consolidate --deep` | 月度深度整合：含 Semantic→Procedural 晋升和月度报告 |
+| 每日 02:07 | `7 2 * * *` | `/wiki:consolidate` | 日常记忆整合：Working→Episodic→Semantic 晋升 + 置信度衰减 |
+| 每周日 20:13 | `13 20 * * 0` | `/wiki:lint` + `/wiki:review weekly` | 周末维护：lint 健康检查 + 周回顾 |
+| 每月 1 号 03:17 | `17 3 1 * *` | `/wiki:consolidate --deep` | 月度深度整合：含 Semantic→Procedural 晋升和月度报告 |
 
 ### 管理
 
@@ -1037,7 +1037,7 @@ bash scripts/watch-raw.sh
 
 1. 使用 `fswatch` 监听 `raw/` 目录的 `Created` 事件
 2. 忽略隐藏文件（以 `.` 开头的文件名）
-3. 新文件出现时，计算相对路径并调用 `claude -p "/project:wiki/ingest <相对路径>"`
+3. 新文件出现时，计算相对路径并调用 `claude -p "/wiki:ingest <相对路径>"`
 4. 输出最近 5 行处理结果
 
 **输出示例**：

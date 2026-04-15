@@ -89,7 +89,7 @@ Claude Code 会自动读取 `vault/CLAUDE.md` 和 `vault/_schema/CLAUDE.md`，�
 
 ### Step 5: 验证命令可用
 
-在 Claude Code 中输入 `/project:wiki/` 然后按 Tab，应该看到所有 8 个命令：
+在 Claude Code 中输入 `/wiki:` 然后按 Tab，应该看到所有 8 个命令：
 
 ```
 ingest  query  lint  consolidate  crystallize  journal  review  qa-import
@@ -271,7 +271,7 @@ journal/
 **用法：**
 
 ```
-/project:wiki/ingest raw/articles/your-article.md
+/wiki:ingest raw/articles/your-article.md
 ```
 
 **处理流程：**
@@ -301,7 +301,7 @@ Updated: index.md, log.md
 **用法：**
 
 ```
-/project:wiki/query 切比雪夫多项式和勒贝格常数的关系是什么？
+/wiki:query 切比雪夫多项式和勒贝格常数的关系是什么？
 ```
 
 **处理流程：**
@@ -318,7 +318,7 @@ Updated: index.md, log.md
 **用法：**
 
 ```
-/project:wiki/lint
+/wiki:lint
 ```
 
 **检查项目：**
@@ -350,7 +350,7 @@ Lint Results:
 **用法：**
 
 ```
-/project:wiki/consolidate
+/wiki:consolidate
 ```
 
 **操作内容：**
@@ -368,7 +368,7 @@ Lint Results:
 **用法：**
 
 ```
-/project:wiki/crystallize
+/wiki:crystallize
 ```
 
 **输出：**
@@ -384,9 +384,9 @@ Lint Results:
 **用法：**
 
 ```
-/project:wiki/journal daily          # 创建今天的每日笔记
-/project:wiki/journal reflection     # 创建反思记录
-/project:wiki/journal judgment       # 创建判断记录
+/wiki:journal daily          # 创建今天的每日笔记
+/wiki:journal reflection     # 创建反思记录
+/wiki:journal judgment       # 创建判断记录
 ```
 
 **输出文件位置：**
@@ -402,9 +402,9 @@ Lint Results:
 **用法：**
 
 ```
-/project:wiki/review weekly          # 每周回顾
-/project:wiki/review monthly         # 每月回顾
-/project:wiki/review quarterly       # 每季回顾
+/wiki:review weekly          # 每周回顾
+/wiki:review monthly         # 每月回顾
+/wiki:review quarterly       # 每季回顾
 ```
 
 **处理流程：**
@@ -421,8 +421,8 @@ Lint Results:
 **用法：**
 
 ```
-/project:wiki/qa-import raw/qa/conversations.jsonl
-/project:wiki/qa-import raw/qa/session-notes.md
+/wiki:qa-import raw/qa/conversations.jsonl
+/wiki:qa-import raw/qa/session-notes.md
 ```
 
 **处理流程：**
@@ -497,25 +497,25 @@ python3 scripts/build_graph.py --output vault/graph.json
 
 ```
 早上：
-1. /project:wiki/journal daily        — 创建今日笔记
+1. /wiki:journal daily        — 创建今日笔记
 2. 浏览 dashboard.md                   — 了解系统状态
 
 工作中：
 3. 将新源材料放入 raw/articles/        — 收集
-4. /project:wiki/ingest <path>         — 导入新知识
-5. /project:wiki/query <question>      — 查询已有知识
+4. /wiki:ingest <path>         — 导入新知识
+5. /wiki:query <question>      — 查询已有知识
 
 结束时：
-6. /project:wiki/crystallize           — 结晶今日探索
-7. /project:wiki/consolidate           — 记忆整理
+6. /wiki:crystallize           — 结晶今日探索
+7. /wiki:consolidate           — 记忆整理
 ```
 
 ### 5.2 每周回顾
 
 ```
 每周日：
-1. /project:wiki/review weekly         — 回顾本周
-2. /project:wiki/lint                  — 健康检查
+1. /wiki:review weekly         — 回顾本周
+2. /wiki:lint                  — 健康检查
 3. python3 scripts/build_graph.py      — 更新图谱
 4. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
@@ -818,14 +818,14 @@ sudo apt-get install fswatch
 1. 确保源文件内容完整、结构清晰
 2. 检查 _schema/CLAUDE.md 中的 ingest 规则是否完善
 3. 对重要源文件使用 Claude ingest（而非 Qwen），质量更高
-4. ingest 后运行 /project:wiki/lint 检查并修复问题
+4. ingest 后运行 /wiki:lint 检查并修复问题
 ```
 
 **问题：** 页面之间链接混乱
 
 ```bash
 # 运行 lint 检查和修复
-/project:wiki/lint
+/wiki:lint
 
 # 手动检查
 python3 scripts/lint_wiki.py
@@ -996,14 +996,14 @@ cd vault-cs && claude
 ### 常用命令
 
 ```
-/project:wiki/ingest <path>          导入源材料
-/project:wiki/query <question>       查询知识
-/project:wiki/lint                   健康检查
-/project:wiki/journal daily          创建日记
-/project:wiki/review weekly          每周回顾
-/project:wiki/consolidate            记忆整理
-/project:wiki/crystallize            会话结晶
-/project:wiki/qa-import <path>       导入 QA 数据
+/wiki:ingest <path>          导入源材料
+/wiki:query <question>       查询知识
+/wiki:lint                   健康检查
+/wiki:journal daily          创建日记
+/wiki:review weekly          每周回顾
+/wiki:consolidate            记忆整理
+/wiki:crystallize            会话结晶
+/wiki:qa-import <path>       导入 QA 数据
 ```
 
 ### 常用脚本

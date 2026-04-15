@@ -1,5 +1,32 @@
 # Changelog
 
+## [v3.0] - 2026-04-15
+
+### Added
+- `search_wiki.py`: unified search module combining BM25 + maps/ topic expansion + graph.json traversal with Reciprocal Rank Fusion (RRF)
+- `wiki:convert-to-markdown` command: batch convert PDF/DOCX/PPTX/XLSX/HTML/EPUB/CSV in raw/ to markdown using markitdown, delete originals on success
+- `static/asset/DAG.mmd` + `DAG.png`: full command/script/hook dependency DAG (13 commands, 8 Python scripts, 3 hooks, 6 data file groups)
+- `markitdown>=0.1` added to `requirements.txt`
+
+### Changed
+- `wiki:query`: replaced manual BM25+index.md+grep search with `search_wiki.py` unified search; removed auto qa-import side effect (query is now pure read)
+- `wiki:journal`: uses `search_wiki.py` for finding related pages (was: reads index.md)
+- `wiki:review`: uses `search_wiki.py` for knowledge connections in weekly review
+- `wiki:lint` step H: reads existing `graph.json` instead of rebuilding via `build_graph.py` (fixes circular dependency with `wiki:graph`)
+- `wiki:crystallize`: removed direct semantic memory update (step 4); clarified boundary with `wiki:consolidate` — crystallize only captures, consolidate handles promotion/decay
+- Command prefix: all docs updated from `/project:wiki/` to `/wiki:` (commands run from vault/ directory)
+
+### Fixed
+- Lint-graph circular dependency: `wiki:lint` no longer calls `build_graph.py`, reads existing graph.json instead
+- index.md vs maps/ confusion: roles now specialized — index.md for registry/existence checks, maps/ for topic-aware search and navigation
+
+### Documentation
+- `docs/wiki.md`: regenerated with all v3 changes, added search_wiki.py and convert-to-markdown
+- `README.md`: updated commands table (13 commands), features table (unified search, format conversion), architecture diagram reference
+- `CLAUDE.md` (root + vault): added search_wiki.py and convert-to-markdown entries
+- `USERGUIDE.md`: command prefix fix
+- Brainstorming analysis: lint/check split, graph→build rename, ingest-loop merge, vector search, MCP server, fswatch pipeline
+
 ## [v2.3] - 2026-04-15
 
 ### Enhanced

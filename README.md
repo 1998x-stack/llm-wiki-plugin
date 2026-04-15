@@ -114,7 +114,7 @@ cd vault
 claude
 
 # 5. Ingest your first source file
-/project:wiki/ingest raw/articles/your-file.md
+/wiki:ingest raw/articles/your-file.md
 
 # 6. (Optional) Start auto-ingest loop
 bash scripts/setup-ingest-loop.sh raw/articles/
@@ -125,23 +125,25 @@ python3 scripts/build_graph.py
 
 ## Commands
 
-All commands are invoked via Claude Code's `/project:wiki/` prefix.
+All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
+
+<p align="center"><img src="static/asset/DAG.png" alt="Wiki command dependencies" width="800"></p>
 
 | Command | Usage | Description |
 |---------|-------|-------------|
-| `ingest` | `/project:wiki/ingest <path>` | 源材料 → wiki 页面，更新 index/log |
-| `query` | `/project:wiki/query <question>` | BM25 + maps + graph 统一搜索并综合回答 |
-| `lint` | `/project:wiki/lint` | 检查孤页、矛盾、过期、缺失链接 |
-| `consolidate` | `/project:wiki/consolidate` | 记忆晋升 + 置信度衰减 |
-| `crystallize` | `/project:wiki/crystallize` | 会话探索 → 结构化摘要 |
-| `journal` | `/project:wiki/journal <type>` | 写日记（daily/reflection/judgment） |
-| `review` | `/project:wiki/review <scope>` | 分形回顾（weekly/monthly/quarterly） |
-| `qa-import` | `/project:wiki/qa-import <path>` | QA 数据批量导入 |
+| `ingest` | `/wiki:ingest <path>` | 源材料 → wiki 页面，更新 index/log |
+| `query` | `/wiki:query <question>` | BM25 + maps + graph 统一搜索并综合回答 |
+| `lint` | `/wiki:lint` | 检查孤页、矛盾、过期、缺失链接 |
+| `consolidate` | `/wiki:consolidate` | 记忆晋升 + 置信度衰减 |
+| `crystallize` | `/wiki:crystallize` | 会话探索 → 结构化摘要 |
+| `journal` | `/wiki:journal <type>` | 写日记（daily/reflection/judgment） |
+| `review` | `/wiki:review <scope>` | 分形回顾（weekly/monthly/quarterly） |
+| `qa-import` | `/wiki:qa-import <path>` | QA 数据批量导入 |
 | `ingest-loop` | `bash scripts/setup-ingest-loop.sh <dir>` | Ralph-loop 自动逐文件 ingest |
 | `ingest-loop-qwen` | `bash scripts/setup-ingest-loop-qwen.sh <dir>` | Qwen API 批量 ingest（多页面模式） |
 | `graph` | `python3 scripts/build_graph.py --full` | 构建知识图谱 + 统计 + wiki HTML |
-| `reindex` | `/project:wiki/reindex` | 验证 index 完整性 + 生成主题 maps |
-| `convert-to-markdown` | `/project:wiki/convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
+| `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
+| `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure
 

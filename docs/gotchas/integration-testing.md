@@ -42,7 +42,7 @@
 
 ```bash
 # 写入命令需要显式授权：
-claude -p "/project:wiki/<cmd>" --allowedTools 'Read,Write,Edit,Bash,Glob,Grep' --max-turns 40
+claude -p "/wiki:<cmd>" --allowedTools 'Read,Write,Edit,Bash,Glob,Grep' --max-turns 40
 ```
 
 ---

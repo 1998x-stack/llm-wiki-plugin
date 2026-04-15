@@ -14,13 +14,13 @@ echo "Vault directory: $VAULT_DIR"
 
 CRON_ENTRIES="
 # Obsidian Brain — 每日凌晨 2:07 consolidate
-7 2 * * * cd $VAULT_DIR && claude -p '/project:wiki/consolidate' >> $VAULT_DIR/data/cron.log 2>&1
+7 2 * * * cd $VAULT_DIR && claude -p '/wiki:consolidate' >> $VAULT_DIR/data/cron.log 2>&1
 
 # Obsidian Brain — 每周日晚 20:13 lint + review
-13 20 * * 0 cd $VAULT_DIR && claude -p '/project:wiki/lint' >> $VAULT_DIR/data/cron.log 2>&1 && claude -p '/project:wiki/review weekly' >> $VAULT_DIR/data/cron.log 2>&1
+13 20 * * 0 cd $VAULT_DIR && claude -p '/wiki:lint' >> $VAULT_DIR/data/cron.log 2>&1 && claude -p '/wiki:review weekly' >> $VAULT_DIR/data/cron.log 2>&1
 
 # Obsidian Brain — 每月 1 号凌晨 3:17 深度 consolidate
-17 3 1 * * cd $VAULT_DIR && claude -p '/project:wiki/consolidate --deep' >> $VAULT_DIR/data/cron.log 2>&1
+17 3 1 * * cd $VAULT_DIR && claude -p '/wiki:consolidate --deep' >> $VAULT_DIR/data/cron.log 2>&1
 "
 
 if crontab -l 2>/dev/null | grep -q "Obsidian Brain"; then

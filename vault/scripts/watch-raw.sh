@@ -23,7 +23,7 @@ fswatch -0 --event Created "$VAULT_DIR/raw/" | while IFS= read -r -d '' file; do
   rel_path="${file#$VAULT_DIR/raw/}"
 
   echo "Triggering ingest for: $rel_path"
-  cd "$VAULT_DIR" && claude -p "/project:wiki/ingest $rel_path" 2>&1 | tail -5
+  cd "$VAULT_DIR" && claude -p "/wiki:ingest $rel_path" 2>&1 | tail -5
 
   echo "---"
 done

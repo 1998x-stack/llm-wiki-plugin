@@ -29,7 +29,7 @@ Ran via `bash scripts/test/run_all.sh` — tests underlying Python scripts direc
 
 ## 2. Claude SDK Integration Tests (`claude -p`)
 
-Tests use `claude -p "/project:wiki/<cmd>" --output-format json --max-turns N` to invoke actual wiki commands end-to-end.
+Tests use `claude -p "/wiki:<cmd>" --output-format json --max-turns N` to invoke actual wiki commands end-to-end.
 
 ### Results
 
@@ -121,10 +121,10 @@ PASS. Generated `journal/daily/2026-W16.md` weekly review. Identified 4 cross-cu
 
 ```bash
 # Read-only commands (lint, graph, query):
-claude -p "/project:wiki/<cmd>" --output-format json --max-turns 20
+claude -p "/wiki:<cmd>" --output-format json --max-turns 20
 
 # Write commands (ingest, consolidate, crystallize, journal, review, qa-import, reindex):
-claude -p "/project:wiki/<cmd> <args>" --output-format json --max-turns 40 \
+claude -p "/wiki:<cmd> <args>" --output-format json --max-turns 40 \
   --allowedTools 'Read,Write,Edit,Bash,Glob,Grep'
 ```
 
