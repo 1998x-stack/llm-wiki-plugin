@@ -11,20 +11,19 @@ tags:
   - 方法论
   - 研究
   - AI
-- 方法论，研究，AI
 aliases:
-- Progressive Disclosure
-- Gradual Information Release
+  - Progressive Disclosure
+  - Gradual Information Release
 relates_to:
-- target: '[[Context-Engineering]]'
-  type: implements
-  confidence: 0.95
-- target: '[[Claude-Mem 三层渐进式检索架构]]'
-  type: implements
-  confidence: 1.0
-- target: '[[提示词工程即架构 (Prompt Engineering as Architecture)]]'
-  type: implements
-  confidence: 0.9
+  - target: '[[Context-Engineering]]'
+    type: implements
+    confidence: 0.95
+  - target: '[[Claude-Mem 三层渐进式检索架构]]'
+    type: implements
+    confidence: 1.0
+  - target: '[[提示词工程即架构 (Prompt Engineering as Architecture)]]'
+    type: implements
+    confidence: 0.9
 supersedes: null
 ---
 

@@ -11,19 +11,17 @@ tags:
   - AI
   - 概率论
   - 研究
-- AI
-- 概率论，研究
 aliases:
-- LLM 无状态性
-- Stateless LLM
-- Session Amnesia
+  - LLM 无状态性
+  - Stateless LLM
+  - Session Amnesia
 relates_to:
-- target: '[[Claude-Mem]]'
-  type: contradicts
-  confidence: 0.95
-- target: '[[Context Window]]'
-  type: depends_on
-  confidence: 0.8
+  - target: '[[Claude-Mem]]'
+    type: contradicts
+    confidence: 0.95
+  - target: '[[Context Window]]'
+    type: depends_on
+    confidence: 0.8
 supersedes: null
 ---
 

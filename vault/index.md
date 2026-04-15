@@ -165,9 +165,6 @@ updated: 2026-04-15
 - [[Wiener积分]] — 路径空间上对确定性函数的积分，随机积分的早期严格形式，Itô随机积分的前身 (confidence: 0.88)
 - [[Itô随机积分]] — 伊藤清（1944）将Wiener积分推广至随机被积函数，Itô公式含额外二阶项，随机微分方程和数学金融的核心工具 (confidence: 0.92)
 - [[随机游走]] — 每步等概率±1移动的离散随机过程，均方位移∝步数，是Wiener过程（布朗运动）的离散前身 (confidence: 0.9)
-- [[Claude-Code-Hook-System]] — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事... (confidence: 0.9)
-- [[LLM-Statelessness]] — LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从... (confidence: 0.95)
-- [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过... (confidence: 0.9)
 - [[FTS5]] — FTS5（Full-Text Search version 5）是 SQLite 的内置全文搜索扩展模块，提供高效的文本索引和检索能力。在 Claude-Mem... (confidence: 0.85)
 - [[惯性律]] — 西尔维斯特惯性律（Sylvester's Law of Inertia，1852）是线性代数中关于实对称双线性型的基本定理：对于任意实对称矩阵 $A$，无论选择... (confidence: 0.85)
 - [[数值分析]] — 数值分析（Numerical Analysis）是数学的一个分支，研究用有限步骤的算法近似求解数学问题的方法，并分析其误差、收敛性与稳定性。其核心目标是将连续的... (confidence: 0.9)
@@ -197,6 +194,9 @@ updated: 2026-04-15
 - [[萨伊定律]] — 萨伊定律（Say's Law），又称“市场定律”，是古典经济学的核心信条之一，由法国经济学家让 - 巴蒂斯特·萨伊（Jean-Baptiste Say）在 19... (confidence: 0.95)
 - [[边际消费倾向]] — 边际消费倾向（Marginal Propensity to Consume, 简称 MPC）是凯恩斯消费理论中的核心参数，定义为每增加一单位可支配收入中用于消费... (confidence: 0.95)
 - [[黄金律资本水平]] — 黄金律资本水平（Golden Rule Level of Capital）是索洛增长模型中的一个规范性概念，由埃德蒙·费尔普斯（Edmund Phelps）于 ... (confidence: 0.9)
+- [[Claude-Code-Hook-System]] — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事... (confidence: 0.9)
+- [[LLM-Statelessness]] — LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从... (confidence: 0.95)
+- [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 

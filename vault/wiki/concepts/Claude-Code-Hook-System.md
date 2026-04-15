@@ -11,19 +11,17 @@ tags:
   - AI
   - 工具
   - 方法论
-- AI
-- 工具，方法论
 aliases:
-- Claude Code Hooks
-- Hook Lifecycle
-- Claude Plugin Hooks
+  - Claude Code Hooks
+  - Hook Lifecycle
+  - Claude Plugin Hooks
 relates_to:
-- target: '[[Claude-Mem]]'
-  type: uses
-  confidence: 1.0
-- target: '[[Claude-Code]]'
-  type: part_of
-  confidence: 0.95
+  - target: '[[Claude-Mem]]'
+    type: uses
+    confidence: 1.0
+  - target: '[[Claude-Code]]'
+    type: part_of
+    confidence: 0.95
 supersedes: null
 ---
 

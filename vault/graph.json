@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated": "2026-04-15T11:07:26.565735+00:00",
+    "generated": "2026-04-15T11:34:27.076569+00:00",
     "total_nodes": 188,
-    "total_edges": 1160,
+    "total_edges": 1164,
     "orphan_count": 0,
     "component_count": 7
   },
@@ -50,10 +50,14 @@
     {
       "id": "wiki/concepts/Claude-Code-Hook-System.md",
       "label": "Claude-Code-Hook-System",
-      "type": "unknown",
-      "confidence": null,
-      "tags": [],
-      "edge_count": 5
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI",
+        "工具",
+        "方法论"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/concepts/Context-Engineering.md",
@@ -65,7 +69,7 @@
         "方法论",
         "AI"
       ],
-      "edge_count": 9
+      "edge_count": 10
     },
     {
       "id": "wiki/concepts/DeepAgents中间件体系.md",
@@ -259,10 +263,14 @@
     {
       "id": "wiki/concepts/LLM-Statelessness.md",
       "label": "LLM-Statelessness",
-      "type": "unknown",
-      "confidence": null,
-      "tags": [],
-      "edge_count": 8
+      "type": "concept",
+      "confidence": 0.95,
+      "tags": [
+        "AI",
+        "概率论",
+        "研究"
+      ],
+      "edge_count": 9
     },
     {
       "id": "wiki/concepts/LLM-as-Judge.md",
@@ -979,10 +987,14 @@
     {
       "id": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
       "label": "渐进式披露-Progressive-Disclosure",
-      "type": "unknown",
-      "confidence": null,
-      "tags": [],
-      "edge_count": 4
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "方法论",
+        "研究",
+        "AI"
+      ],
+      "edge_count": 5
     },
     {
       "id": "wiki/concepts/点数问题.md",
@@ -1420,7 +1432,7 @@
         "工具",
         "方法论"
       ],
-      "edge_count": 10
+      "edge_count": 11
     },
     {
       "id": "wiki/entities/Claude-Mem.md",
@@ -1433,7 +1445,7 @@
         "方法论",
         "研究"
       ],
-      "edge_count": 20
+      "edge_count": 22
     },
     {
       "id": "wiki/entities/DeepAgents.md",
@@ -2515,6 +2527,18 @@
     {
       "source": "wiki/concepts/Claude-Code-Hook-System.md",
       "target": "wiki/entities/Claude-Mem.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude-Code-Hook-System.md",
+      "target": "wiki/entities/Claude-Code.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude-Code-Hook-System.md",
+      "target": "wiki/entities/Claude-Mem.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -3212,6 +3236,12 @@
       "source": "wiki/concepts/Ky Fan不等式.md",
       "target": "wiki/concepts/极大极小定理.md",
       "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/LLM-Statelessness.md",
+      "target": "wiki/entities/Claude-Mem.md",
+      "relation": "contradicts",
       "bidirectional": false
     },
     {
@@ -5804,6 +5834,12 @@
       "source": "wiki/concepts/流动性陷阱.md",
       "target": "wiki/entities/就业、利息和货币通论.md",
       "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
+      "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "implements",
       "bidirectional": false
     },
     {

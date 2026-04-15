@@ -4,6 +4,20 @@ type: log
 
 # 操作日志
 
+## [2026-04-15 19:50] maintain
+- Reindex: OK (185 pages, 13 topic clusters, 3 orphaned entries removed)
+- Check: 0 errors, 245 warnings (140 broken links, 101 overview length, 3 index, 1 map)
+- Lint: 3 YAML frontmatter errors fixed (duplicate tags + wrong indent), 3 index entries restored
+- Build: 188 nodes, 1164 edges, 0 orphans, 7 components → static/ synced (189 HTML pages)
+
+## [2026-04-15 19:45] v3.3 release
+- Created scripts/wiki_utils.py (shared module)
+- Refactored 8 Python scripts to use wiki_utils
+- Fixed: XSS, edge directionality, overview threshold, double reads, graph debounce
+- qwen_ingest.py: save-always, dedup, --context-pages, --model, retry, truncation
+- wiki:query → raw/qa/, wiki:qa-import + qa.snapshot.md
+- docs/gotchas/v3.3-refactor.md: 10 new gotchas (#18-27)
+
 ## [2026-04-15 18:42] crystallize | Wiki 系统工程：maintain 命令 + hooks 修复
 - Working Memory: _memory/working/2026-04-15-05.md (5 条观察)
   - O1: Claude Code hooks 协议误解 → 沉默失败模式
@@ -1110,3 +1124,10 @@ python3 scripts/build_graph.py
 - Tags 修复: 32 个页面（中文逗号修正 21 个，宏观经济学补标 26 个）
 - 主题分类: 9 个 → 数值分析(59), 矩阵理论(31), 概率论(41), 宏观经济学(23), AI(15), 组合数学(5), 工具(5), 数学(3), 机器人学(3)
 - 快照保存: .claude/reindex.snapshot.json
+
+## [2026-04-15 18:50] wiki:ingest-loop-qwen | raw/books/机器人学
+- 引擎: Qwen 3-plus (via DashScope)
+- 文件: 16/16 完成
+- 页面: 约 70+ 实体与概念页面
+- 状态: 成功
+- 备注: 批量处理机器人学经典文献，涵盖运动学、规划、控制、学习等核心领域

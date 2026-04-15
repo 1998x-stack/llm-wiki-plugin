@@ -1,8 +1,8 @@
 {
-  "generated": "2026-04-15T10:12:11+00:00",
+  "generated": "2026-04-15T11:34:27+00:00",
   "summary": {
     "total_nodes": 188,
-    "total_edges": 1105,
+    "total_edges": 1164,
     "orphan_count": 0,
     "component_count": 7,
     "avg_degree": 5.83,
@@ -26,17 +26,22 @@
   },
   "top_connected": [
     {
+      "label": "概率论",
+      "type": "concept",
+      "edge_count": 52
+    },
+    {
       "label": "矩阵理论",
       "type": "concept",
       "edge_count": 52
     },
     {
-      "label": "概率论",
+      "label": "奇异值分解",
       "type": "concept",
-      "edge_count": 51
+      "edge_count": 34
     },
     {
-      "label": "奇异值分解",
+      "label": "谱半径",
       "type": "concept",
       "edge_count": 32
     },
@@ -46,9 +51,14 @@
       "edge_count": 31
     },
     {
-      "label": "谱半径",
+      "label": "点数问题",
       "type": "concept",
       "edge_count": 31
+    },
+    {
+      "label": "Schur分解",
+      "type": "concept",
+      "edge_count": 30
     },
     {
       "label": "数值分析",
@@ -56,49 +66,54 @@
       "edge_count": 30
     },
     {
-      "label": "Schur分解",
-      "type": "concept",
-      "edge_count": 29
-    },
-    {
       "label": "大数定律",
-      "type": "concept",
-      "edge_count": 29
-    },
-    {
-      "label": "点数问题",
       "type": "concept",
       "edge_count": 29
     },
     {
       "label": "极大极小定理",
       "type": "concept",
+      "edge_count": 29
+    },
+    {
+      "label": "Perron-Frobenius定理",
+      "type": "concept",
       "edge_count": 28
     },
     {
       "label": "矩阵扰动理论",
       "type": "concept",
-      "edge_count": 27
-    },
-    {
-      "label": "Perron-Frobenius定理",
-      "type": "concept",
-      "edge_count": 26
+      "edge_count": 28
     },
     {
       "label": "后向误差分析",
       "type": "concept",
-      "edge_count": 25
+      "edge_count": 26
     },
     {
       "label": "切比雪夫逼近理论",
       "type": "concept",
-      "edge_count": 24
+      "edge_count": 25
     },
     {
       "label": "期望值",
       "type": "concept",
-      "edge_count": 24
+      "edge_count": 25
+    },
+    {
+      "label": "帕夫努季·利沃维奇·切比雪夫",
+      "type": "entity",
+      "edge_count": 25
+    },
+    {
+      "label": "皮埃尔-西蒙·拉普拉斯",
+      "type": "entity",
+      "edge_count": 25
+    },
+    {
+      "label": "正规矩阵",
+      "type": "concept",
+      "edge_count": 23
     },
     {
       "label": "高斯求积公式",
@@ -107,21 +122,6 @@
     },
     {
       "label": "QR算法",
-      "type": "concept",
-      "edge_count": 22
-    },
-    {
-      "label": "Von Neumann迹不等式",
-      "type": "concept",
-      "edge_count": 22
-    },
-    {
-      "label": "有限元方法",
-      "type": "concept",
-      "edge_count": 22
-    },
-    {
-      "label": "正规矩阵",
       "type": "concept",
       "edge_count": 22
     }
@@ -361,18 +361,18 @@
     "马尔可夫"
   ],
   "tag_frequency": {
-    "研究": 135,
+    "研究": 156,
     "技术": 120,
-    "数学": 78,
-    "数值分析": 58,
+    "数学": 72,
+    "数值分析": 59,
     "历史": 53,
-    "概率论": 40,
+    "概率论": 42,
+    "方法论": 40,
     "矩阵理论": 33,
-    "方法论": 22,
-    "AI": 17,
-    "工具": 8,
+    "宏观经济学": 26,
+    "AI": 18,
+    "工具": 14,
     "Agent": 7,
-    "研究，方法论": 6,
     "组合数学": 5,
     "机器人学": 4,
     "统计学": 4,
@@ -381,16 +381,16 @@
     "LLM": 3,
     "评估": 3,
     "数据库": 3,
-    "数学，方法论，研究": 3,
     "线性代数": 3,
     "数值方法": 3,
     "协议": 2,
     "测试": 2,
     "机器学习": 2,
-    "数学，研究": 2,
-    "工具，方法论，研究": 2,
     "网络": 1,
-    "设计模式": 1
+    "设计模式": 1,
+    "中间件": 1,
+    "沙箱": 1,
+    "LangSmith": 1
   },
   "growth_timeline": {
     "2026-04-15": 188
@@ -398,14 +398,14 @@
   "relationship_types": {
     "wikilink": 535,
     "related_to": 125,
-    "extends": 100,
-    "caused": 93,
-    "implements": 69,
+    "caused": 121,
+    "extends": 112,
+    "implements": 80,
     "uses": 59,
-    "depends_on": 47,
+    "depends_on": 51,
     "part_of": 42,
+    "contradicts": 11,
     "synthesizes": 11,
-    "contradicts": 7,
     "influenced": 5,
     "caused_by": 3,
     "originated_from": 3,
