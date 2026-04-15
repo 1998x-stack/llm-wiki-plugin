@@ -1,34 +1,36 @@
 ---
-description: "重建知识库索引，按主题分类到 maps/ 目录"
+description: "重建知识库索引：验证完整性 + 按主题分类到 maps/"
 ---
 
 # wiki:reindex
 
-将 index.md 拆分为按主题分类的索引文件，存储在 maps/ 目录下。
+验证 index.md 完整性，按主题分类生成 maps/*.md 索引文件。
 
 ## 流程
 
-1. **执行重建脚本**
-   - 执行：`Bash: cd vault && python3 scripts/build_reindex.py`
-   - 解析 JSON 输出获取分类信息
+### 1. 完整性检查
 
-2. **报告分类结果**
-   - 读取每个 maps/*.md 文件
-   - 报告：
-     - 主题名称和页面数量
-     - 总页面数
-     - 与上一次快照的差异（如有）
+- 执行：`python3 scripts/snapshot_index.py`
+- 如有 missing → `python3 scripts/snapshot_index.py --update`
+- 如有 orphaned → 从 index.md 移除
+- 确保 `ok: true`
 
-3. **完整性验证**
-   - 读取 `maps/tmp.snapshot.json`
-   - 对比 wiki/ 目录下实际文件
-   - 检查是否有遗漏或多余的页面
-   - 如有问题 → 报告并建议修复
+### 2. 保存快照
 
-4. **更新 log.md**
-   - 追加条目：
-     ```
-     ## [YYYY-MM-DD HH:MM] reindex
-     - 重建索引: N 个页面, M 个主题分类
-     - 分类: 数值分析(15), 概率论(12), ...
-     ```
+- 执行：`python3 scripts/snapshot_index.py --snapshot`
+
+### 3. 构建主题分类
+
+- 扫描 wiki/**/*.md 的 tags 字段
+- 按 tag 频率分组，< 3 页合并到"其他"
+- 写入 `.claude/reindex.tmp.json`
+
+### 4. 生成 maps/*.md
+
+对每个 cluster 生成 `maps/{topic}.md`（frontmatter type: map）。
+清理旧 maps/*.md，写入新文件。
+
+### 5. 清理 + 日志
+
+- 删除 `.claude/reindex.tmp.json`
+- 更新 log.md

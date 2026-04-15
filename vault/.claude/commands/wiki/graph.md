@@ -16,8 +16,9 @@ description: "构建知识图谱 graph.json"
      - 近似名称的断链 → 自动修正
      - 缺失的 index.md 条目 → 自动添加
 
-2. **构建图谱**
-   - 执行：`Bash: cd vault && python3 scripts/build_graph.py`
+2. **构建图谱 + 静态站点**
+   - 执行：`Bash: cd vault && python3 scripts/build_graph.py --full`
+   - 这会同时构建 graph.json、graph-statistics.json、static/wiki/ HTML 页面
    - 解析输出 JSON 获取统计信息
 
 3. **读取并报告统计**

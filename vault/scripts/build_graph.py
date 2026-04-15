@@ -191,6 +191,11 @@ def main():
         default=str(WIKI_DIR.parent / "graph.json"),
         help="Output path for graph.json (default: vault/graph.json)",
     )
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Also build statistics JSON and wiki HTML pages",
+    )
     args = parser.parse_args()
 
     if not WIKI_DIR.is_dir():
@@ -211,6 +216,33 @@ def main():
         "components": graph["metadata"]["component_count"],
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+    if args.full:
+        import subprocess
+        script_dir = Path(__file__).resolve().parent
+        vault_dir = script_dir.parent
+        static_dir = vault_dir.parent / "static"
+
+        # Copy graph.json to static/
+        static_graph = static_dir / "graph.json"
+        static_graph.parent.mkdir(parents=True, exist_ok=True)
+        static_graph.write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        # Build statistics
+        print("--- Building statistics ---")
+        subprocess.run(
+            [sys.executable, str(script_dir / "build_statistics.py"),
+             "--output", str(static_dir / "graph-statistics.json")],
+            cwd=str(vault_dir), check=True,
+        )
+
+        # Build wiki HTML pages
+        print("--- Building wiki pages ---")
+        subprocess.run(
+            [sys.executable, str(script_dir / "build_wiki_pages.py"),
+             "--output", str(static_dir / "wiki")],
+            cwd=str(vault_dir), check=True,
+        )
 
 
 if __name__ == "__main__":

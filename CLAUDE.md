@@ -45,7 +45,10 @@ Three-layer pattern:
 |--------|---------|-------------|
 | `bm25_index.py` | BM25 search index (build/update/query) | jieba, rank_bm25 |
 | `qwen_ingest.py` | Qwen API wiki extraction | openai, pyyaml |
-| `build_graph.py` | Knowledge graph JSON builder | pyyaml |
+| `build_graph.py` | Knowledge graph JSON builder (`--full` also builds statistics + wiki HTML) | pyyaml |
+| `build_statistics.py` | Statistics JSON from graph + frontmatter | pyyaml |
+| `build_wiki_pages.py` | Wiki markdown → static HTML | pyyaml, markdown |
+| `snapshot_index.py` | Index integrity checker (check/update/snapshot) | pyyaml |
 | `lint_wiki.py` | Standalone lint checker | pyyaml |
 | `hook_lint.sh` | PostToolUse hook: lint | — |
 | `hook_bm25.sh` | PostToolUse hook: BM25 update | — |

@@ -38,21 +38,9 @@ jobs:
         run: python3 scripts/lint_wiki.py --json
         continue-on-error: false
 
-      - name: Build knowledge graph
+      - name: Build graph + statistics + wiki pages
         working-directory: vault
-        run: python3 scripts/build_graph.py --output ../static/graph.json
-
-      - name: Build wiki HTML pages
-        working-directory: vault
-        run: python3 scripts/build_wiki_pages.py --output ../static/wiki/
-
-      - name: Build statistics
-        working-directory: vault
-        run: python3 scripts/build_statistics.py --output ../static/graph-statistics.json
-
-      - name: Build topic index
-        working-directory: vault
-        run: python3 scripts/build_reindex.py
+        run: python3 scripts/build_graph.py --output ../static/graph.json --full
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

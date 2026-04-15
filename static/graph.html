@@ -459,7 +459,7 @@
       viewBtn.addEventListener('mouseout', () => viewBtn.style.background = '#4A90D9');
       document.getElementById('file-path').after(viewBtn);
     }
-    viewBtn.href = 'wiki/' + d.id.replace('.md', '.html');
+    viewBtn.href = d.id.replace('.md', '.html');
   }
 
   document.getElementById('sidebar-close').addEventListener('click', (e) => {
