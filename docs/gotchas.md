@@ -228,10 +228,41 @@ pip install jieba rank-bm25 pyyaml
 
 | 优先级 | 任务 |
 |--------|------|
-| 🔴 高 | 完成 ingest files 13-16（布朗运动/鞅理论/Ito积分）|
-| 🔴 高 | 重建 BM25 索引：`python3 scripts/bm25_index.py build` |
+| 🔴 高 | ~~完成 ingest files 13-16~~ file 13 已完成（Wiener/布朗运动），剩余 14-16 |
+| ~~🔴 高~~ | ~~重建 BM25 索引~~ — wiki:lint 已自动修复 10 个缺失条目 |
 | 🟡 中 | 修复断链 `[[马尔可夫]]` → `[[安德烈·马尔可夫]]` |
 | 🟡 中 | 修复断链 `[[切比雪夫不等式]]` → 已创建的同名页面 |
-| 🟡 中 | 重建 graph.json：`/wiki:graph` |
+| ~~🟡 中~~ | ~~重建 graph.json~~ — build_graph.py --full 已完成 |
 | 🟢 低 | 创建 `[[离散傅里叶变换]]` concept 页面 |
 | 🟢 低 | 标准化来源节格式（bare string → `[[raw/...]]`）|
+
+---
+
+## 11. wiki:graph 非交互模式 max_turns（已记录）
+
+> 2026-04-15 claude -p integration test
+
+**问题**：`wiki:graph` 在 `claude -p` 非交互模式下触达 `max_turns`（30），无法完成。
+
+**根因**：`wiki:graph` 命令的 lint 步骤尝试自动修复断链（Edit wiki 页面），但非交互模式下 Edit 权限被拒，agent 反复重试消耗 turns。
+
+**影响**：graph 构建本身（`build_graph.py --full`）作为脚本运行正常，只是 Claude 命令的 lint+fix 工作流在 CI/非交互环境不可用。
+
+**建议修复**：
+- 方案 A：`wiki:graph` 的 lint 步骤改为只读（报告问题但不自动修复）
+- 方案 B：在 `claude -p` 调用时增大 `--max-turns 60`
+- 方案 C：将 lint 和 graph 分为两个独立步骤
+
+---
+
+## 12. lint_wiki.py F4 误报（已修复）
+
+> 2026-04-15 script-level test
+
+**问题**：lint 的 F4（empty section）检查产生 225 个假阳性，将 400 warnings 降至 175 后修复。
+
+**根因**：
+1. `#{1,3}` regex 匹配 h1 页面标题（如 `# 牛顿法`），标记 title → 概述 之间为"空"
+2. h2 父节（如 `## 关键内容`）有 h3 子节（如 `### 数学表述`）但之间无文本，被标记为"空"
+
+**修复**：`lint_wiki.py:116` — regex 改为 `#{2,3}`（跳过 h1），h2 有 h3 子节时跳过检查。
