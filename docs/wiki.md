@@ -25,6 +25,7 @@
    - [wiki:review](#wikireview)
 7. [数据导入命令](#数据导入命令)
    - [wiki:qa-import](#wikiqa-import)
+   - [wiki:convert-to-markdown](#wikiconvert-to-markdown)
 8. [PostToolUse 钩子](#posttooluse-钩子)
 9. [Cron 自动化](#cron-自动化)
 10. [文件监控](#文件监控)
@@ -39,7 +40,7 @@
 | `wiki:ingest` | 源材料 → wiki 页面 | 文件路径 / `all` | wiki 页面 + index.md + log.md |
 | `wiki:ingest-loop` | ralph-loop 批量 ingest | 文件夹路径 | 批量 wiki 页面 |
 | `wiki:ingest-loop-qwen` | ralph-loop + Qwen API 批量 | 文件夹路径 | 批量 wiki 页面 |
-| `wiki:query` | BM25 + 图搜索 + QA | 问题文本 | 回答 + 可选 synthesis 页面 |
+| `wiki:query` | 统一搜索 (BM25+maps+graph) + 回答 | 问题文本 | 回答 + 可选 synthesis 页面 |
 | `wiki:lint` | 健康检查 A-I 项 | 无 | lint 报告 + 自动修复 |
 | `wiki:graph` | lint + 构建知识图谱 | 无 | graph.json |
 | `wiki:consolidate` | 记忆晋升 + 衰减 | `--deep`（可选） | 记忆层更新 |
@@ -47,6 +48,7 @@
 | `wiki:journal` | 日记 / 反思 / 判断 | `daily` / `reflection` / `judgment` | journal 文件 |
 | `wiki:review` | 分形回顾 | `weekly` / `monthly` / `quarterly` | 回顾报告 |
 | `wiki:qa-import` | QA 数据 → 洞见 | QA 文件路径 / `all` | qa-insight 页面 |
+| `wiki:convert-to-markdown` | markitdown 批量转换 | 子目录路径/无 | 转换后的 .md 文件 |
 
 ---
 
@@ -255,7 +257,7 @@ Model: qwen3-plus (via DashScope)
 
 ### wiki:query
 
-**用途**：基于知识库回答问题。综合使用 BM25 索引搜索、知识图谱关系遍历和页面内容读取。如果回答形成了新洞见，自动结晶为 synthesis 页面。
+**用途**：基于知识库回答问题。通过 `search_wiki.py` 统一搜索（BM25 + maps/ 主题扩展 + graph.json 遍历 + RRF 融合），综合读取相关页面内容。如果回答形成了新洞见，自动结晶为 synthesis 页面。
 
 **输入格式**：
 
@@ -268,10 +270,12 @@ Model: qwen3-plus (via DashScope)
 **执行流程**：
 
 1. **搜索相关页面**
-   - 读取 `index.md` 定位可能相关的页面
-   - 读取页面 frontmatter，沿 `relates_to` 扩展搜索范围
-   - 相关页面不够时，用 BM25 索引（`scripts/bm25_index.py query`）搜索关键词
-   - 参考 `graph.json` 中的边关系进一步扩展
+   - 调用 `scripts/search_wiki.py "<问题>" --top 15` 执行统一搜索：
+     - BM25 全文检索
+     - maps/ 主题地图扩展
+     - graph.json 图关系遍历
+     - RRF（Reciprocal Rank Fusion）融合排序
+   - 取返回的 top-N 页面作为候选
 
 2. **读取相关页面** — 读取所有找到的页面完整内容，注意 confidence 值——低置信度信息标注"（置信度较低）"
 
@@ -362,7 +366,7 @@ Model: qwen3-plus (via DashScope)
 **执行流程**：
 
 1. 扫描所有 `wiki/` 页面，解析 frontmatter
-2. 逐项执行 A-I 检查
+2. 逐项执行 A-I 检查（H / I2 孤页检查读取现有 `graph.json`，不重建图谱）
 3. 自动修复可修复的问题
 4. 生成 lint 报告追加到 `log.md`
 5. 更新 `dashboard.md` 的"最近 lint"日期
@@ -874,6 +878,45 @@ QA Import 完成：chatgpt-export.jsonl
 
 ---
 
+### wiki:convert-to-markdown
+
+**用途**：使用 markitdown 将 `raw/` 中的 PDF、DOCX 等非 Markdown 文件批量转换为 `.md` 文件，供后续 `wiki:ingest` 使用。
+
+**输入格式**：
+
+```
+/project:wiki/convert-to-markdown [子目录路径]
+```
+
+- `子目录路径`：相对于 `vault/raw/` 的子目录，例如 `papers`。不提供则处理 `raw/` 下所有支持格式的文件。
+
+**支持的格式**：`.pdf`、`.docx`、`.pptx`、`.xlsx`、`.html` 等 markitdown 支持的格式。
+
+**执行流程**：
+
+1. 扫描目标目录，找出所有非 `.md` 的可转换文件
+2. 对每个文件调用 `markitdown <文件>` 输出同名 `.md` 文件（覆盖已有文件时给出提示）
+3. 输出转换摘要
+
+**示例**：
+
+```
+/project:wiki/convert-to-markdown papers
+```
+
+期望输出：
+
+```
+Convert to Markdown: raw/papers
+转换完成：3 个文件
+  - raw/papers/论文A.pdf → raw/papers/论文A.md
+  - raw/papers/报告B.docx → raw/papers/报告B.md
+  - raw/papers/slides.pptx → raw/papers/slides.md
+跳过：0 个（已是 .md）
+```
+
+---
+
 ## PostToolUse 钩子
 
 钩子定义在 `.claude/settings.local.json` 的 `hooks.PostToolUse` 中。每当 Claude 执行 `Write` 或 `Edit` 操作且文件路径包含 `wiki/` 时，三个钩子依次触发。
@@ -1032,11 +1075,14 @@ pip install -r requirements.txt
 | `rank_bm25` | >= 0.2.2 | BM25 算法实现 |
 | `pyyaml` | >= 6.0 | YAML frontmatter 解析 |
 | `openai` | >= 1.0.0 | Qwen API 调用（兼容 OpenAI 接口） |
+| `markitdown` | >= 0.1 | PDF/DOCX 等文件转换为 Markdown |
 
 ### 脚本速查表
 
 | 脚本 | 用途 | 命令行用法 |
 |------|------|-----------|
+| `search_wiki.py` | 统一搜索 (BM25+maps+graph+RRF) | 见下文 |
+| `search_wiki.py` | 统一搜索 (BM25+maps+graph+RRF) | `python3 scripts/search_wiki.py "<查询>" --top 15 --json` |
 | `bm25_index.py` | BM25 全文搜索索引 | 见下文 |
 | `build_graph.py` | 知识图谱 JSON 构建 | 见下文 |
 | `lint_wiki.py` | Wiki 页面质量检查 | 见下文 |

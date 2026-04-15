@@ -30,7 +30,7 @@ Three-layer pattern:
 | `wiki:ingest` | Process raw source → wiki pages |
 | `wiki:ingest-loop` | Batch ingest with ralph-loop (Claude-powered) |
 | `wiki:ingest-loop-qwen` | Batch ingest with Qwen API |
-| `wiki:query` | Answer questions with BM25 + graph search |
+| `wiki:query` | Answer questions with unified search (BM25 + maps + graph) |
 | `wiki:lint` | Health check + auto-repair |
 | `wiki:graph` | Build knowledge graph + statistics + wiki HTML (runs from vault/) |
 | `wiki:reindex` | Validate index integrity + generate topic maps |
@@ -39,11 +39,13 @@ Three-layer pattern:
 | `wiki:journal` | Journal assistance |
 | `wiki:review` | Fractal review (weekly/monthly/quarterly) |
 | `wiki:qa-import` | Import QA data → wiki insights |
+| `wiki:convert-to-markdown` | markitdown 批量转换非 markdown 文件 |
 
 ## Scripts
 
 | Script | Purpose | Dependencies |
 |--------|---------|-------------|
+| `search_wiki.py` | Unified search (BM25 + maps + graph + RRF) | jieba, rank_bm25, pyyaml |
 | `bm25_index.py` | BM25 search index (build/update/query) | jieba, rank_bm25 |
 | `qwen_ingest.py` | Qwen API wiki extraction (multi-page: `--raw` only; legacy: `--raw --wiki`) | openai, pyyaml |
 | `build_graph.py` | Knowledge graph JSON builder (outputs `graph.json`) | pyyaml |
@@ -70,7 +72,7 @@ Hook logs: `vault/log.hook.md`
 
 ## Dependencies
 
-Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`, `markdown`, `networkx`
+Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`, `markdown`, `networkx`, `markitdown`
 
 Install: `pip install -r requirements.txt`
 
