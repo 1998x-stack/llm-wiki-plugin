@@ -217,6 +217,7 @@ async function init() {
   let data;
   try {
     const res = await fetch('graph-statistics.json');
+    if (!res.ok) throw new Error(res.status);
     data = await res.json();
   } catch(e) {
     document.querySelector('.container').innerHTML = '<div class="loading">Failed to load graph-statistics.json</div>';

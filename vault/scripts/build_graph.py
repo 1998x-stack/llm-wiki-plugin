@@ -222,14 +222,19 @@ def main():
         script_dir = Path(__file__).resolve().parent
         vault_dir = script_dir.parent
         static_dir = vault_dir.parent / "static"
+        graph_text = json.dumps(graph, ensure_ascii=False, indent=2)
+
+        # Ensure vault/graph.json is up-to-date (build_statistics.py reads it)
+        vault_graph = vault_dir / "graph.json"
+        vault_graph.write_text(graph_text, encoding="utf-8")
 
         # Copy graph.json to static/
         static_graph = static_dir / "graph.json"
         static_graph.parent.mkdir(parents=True, exist_ok=True)
-        static_graph.write_text(json.dumps(graph, ensure_ascii=False, indent=2), encoding="utf-8")
+        static_graph.write_text(graph_text, encoding="utf-8")
 
         # Build statistics
-        print("--- Building statistics ---")
+        print("--- Building statistics ---", file=sys.stderr)
         subprocess.run(
             [sys.executable, str(script_dir / "build_statistics.py"),
              "--output", str(static_dir / "graph-statistics.json")],
@@ -237,7 +242,7 @@ def main():
         )
 
         # Build wiki HTML pages
-        print("--- Building wiki pages ---")
+        print("--- Building wiki pages ---", file=sys.stderr)
         subprocess.run(
             [sys.executable, str(script_dir / "build_wiki_pages.py"),
              "--output", str(static_dir / "wiki")],

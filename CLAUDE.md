@@ -54,6 +54,10 @@ Three-layer pattern:
 | `hook_lint.sh` | PostToolUse hook: lint | — |
 | `hook_bm25.sh` | PostToolUse hook: BM25 update | — |
 | `hook_graph.sh` | PostToolUse hook: graph rebuild | — |
+| `setup-ingest-loop.sh` | Setup ralph-loop for Claude ingest | — |
+| `setup-ingest-loop-qwen.sh` | Setup ralph-loop for Qwen ingest | — |
+| `watch-raw.sh` | fswatch monitor for auto-ingest | — |
+| `cron-setup.sh` | Install cron jobs for consolidate/lint/review | — |
 
 ## Hooks
 

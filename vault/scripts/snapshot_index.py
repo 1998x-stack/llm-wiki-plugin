@@ -85,7 +85,7 @@ def parse_index():
     if not INDEX_PATH.exists():
         return set()
     text = INDEX_PATH.read_text(encoding="utf-8")
-    return set(re.findall(r"\[\[(.+?)\]\]", text)) - {"\u9875\u9762\u540d"}
+    return set(re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", text)) - {"\u9875\u9762\u540d"}
 
 
 def check(pages, indexed):
@@ -104,6 +104,10 @@ def check(pages, indexed):
 
 def update_index(pages, indexed):
     """Add missing entries to index.md in the correct sections."""
+    if not INDEX_PATH.exists():
+        print(json.dumps({"status": "error", "message": "index.md not found"}))
+        return
+
     missing = set(pages.keys()) - indexed
     if not missing:
         print(json.dumps({"status": "ok", "message": "index.md is up to date"}))
@@ -165,7 +169,7 @@ def update_index(pages, indexed):
             lines[i] = f"- \u5b9e\u4f53\uff1a{entity_count}"
         elif line.startswith("- \u6982\u5ff5\uff1a"):
             lines[i] = f"- \u6982\u5ff5\uff1a{concept_count}"
-        elif "\u7efc\u5408\u5206\u6790" in line and line.startswith("- "):
+        elif line.startswith("- \u7efc\u5408\u5206\u6790\uff1a"):
             lines[i] = f"- \u7efc\u5408\u5206\u6790\uff1a{synthesis_count}"
         elif line.startswith("- \u6700\u540e\u66f4\u65b0\uff1a"):
             lines[i] = f"- \u6700\u540e\u66f4\u65b0\uff1a{today}"

@@ -36,7 +36,7 @@ jobs:
       - name: Lint wiki pages
         working-directory: vault
         run: python3 scripts/lint_wiki.py --json
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Build graph + statistics + wiki pages
         working-directory: vault

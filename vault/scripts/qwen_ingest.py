@@ -270,16 +270,19 @@ def call_qwen(raw_content: str, raw_path: str) -> str:
 
     user_message = f"源文件路径：{raw_path}\n\n---\n\n{raw_content}"
 
-    response = client.chat.completions.create(
-        model="qwen3.5-plus",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message},
-        ],
-        extra_body={"enable_thinking": False},
-    )
-
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="qwen3.5-plus",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_message},
+            ],
+            extra_body={"enable_thinking": False},
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(json.dumps({"status": "ERROR", "error": f"API call failed: {e}"}))
+        sys.exit(1)
 
 
 def split_pages(text: str) -> list[str]:

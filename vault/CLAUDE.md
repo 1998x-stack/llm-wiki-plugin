@@ -5,9 +5,9 @@ This is an Obsidian Brain vault — a personal knowledge operating system.
 ## Quick Reference
 
 - Schema: `_schema/CLAUDE.md` (read this first for full operational instructions)
-- Commands: `.claude/commands/wiki/` (ingest, ingest-loop, ingest-loop-qwen, query, lint, graph, consolidate, crystallize, journal, review, qa-import)
+- Commands: `.claude/commands/wiki/` (ingest, ingest-loop, ingest-loop-qwen, query, lint, graph, reindex, consolidate, crystallize, journal, review, qa-import)
 - Templates: `templates/` (daily, wiki-page, reflection, judgment, weekly-review)
-- Scripts: `scripts/` (bm25_index.py, qwen_ingest.py, build_graph.py, lint_wiki.py, hooks)
+- Scripts: `scripts/` (bm25_index.py, qwen_ingest.py, build_graph.py, build_statistics.py, build_wiki_pages.py, snapshot_index.py, lint_wiki.py, hooks)
 
 ## Key Rules
 
@@ -33,8 +33,9 @@ Three PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
 2. `hook_bm25.sh` — updates BM25 index for modified page
 3. `hook_graph.sh` — rebuilds graph.json
 
-## New Commands
+## Key Commands
 
+- `wiki:graph` — lint + build graph.json + statistics + wiki HTML (`--full`)
+- `wiki:reindex` — validate index.md integrity + generate topic maps
 - `wiki:ingest-loop <folder>` — batch ingest using ralph-loop, one file per iteration
-- `wiki:ingest-loop-qwen <folder>` — batch ingest using Qwen 3-plus API
-- `wiki:graph` — lint + build graph.json with stats report
+- `wiki:ingest-loop-qwen <folder>` — batch ingest using Qwen API (multi-page mode)
