@@ -357,7 +357,6 @@ def main():
             html_body = md_converter.convert(p["body"])
 
             # Convert wikilinks in the HTML output
-            subdir_path = str(p["path"].parent) if p["path"].parent != Path(".") else ""
             html_body = convert_wikilinks(html_body, str(p["path"]), page_map)
 
             # Breadcrumb
