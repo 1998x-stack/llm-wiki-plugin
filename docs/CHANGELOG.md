@@ -1,5 +1,10 @@
 # Changelog
 
+## [v3.1.1] - 2026-04-15
+
+### Fixed
+- `qwen_ingest.py`: strip `<think>...</think>` tags from Qwen3 API responses — was causing "YAML frontmatter missing" errors and `wiki_name: "untitled"` for all pages
+
 ## [v3.1] - 2026-04-15
 
 ### Refactored
