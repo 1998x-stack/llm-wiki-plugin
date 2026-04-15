@@ -28,7 +28,7 @@ supersedes: null
 
 ## 概述
 
-**Agent Harness**（"马具"）是一种 AI Agent 工程架构模式：**不**从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 `create_agent`）之上，通过**中间件**、**后端协议**和**默认系统提示**，以可组合的方式叠加"规划、文件系统、子代理、上下文压缩"等通用能力，让用户开箱即用。代表实现：[[DeepAgents]]。
+**Agent Harness**（"马具"）是一种 AI Agent 工程架构模式：**不**从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 `create_agent`）之上，通过**[[ROS (Robot Operating System)|中间件]]**、**后端协议**和**默认系统提示**，以可组合的方式叠加"规划、文件系统、子代理、上下文压缩"等通用能力，让用户开箱即用。代表实现：[[DeepAgents]]。
 
 ## 关键内容
 
@@ -73,7 +73,7 @@ supersedes: null
 10. MemoryMiddleware（`memory=` 参数有值时）
 11. HumanInTheLoopMiddleware（`interrupt_on=` 参数有值时）
 
-**顺序设计决策**：缓存中间件（9）在记忆中间件（10）之前，避免记忆更新破坏 Anthropic prompt cache 前缀稳定性。
+**顺序设计决策**：缓存[[ROS (Robot Operating System)|中间件]]（9）在记忆[[ROS (Robot Operating System)|中间件]]（10）之前，避免记忆更新破坏 Anthropic prompt cache 前缀稳定性。
 
 ### Harness 模式的工程收益
 
@@ -84,18 +84,18 @@ supersedes: null
 
 ### Pi Agent：极简 Harness 的反面验证
 
-[[Pi-Agent]] 代表了 Harness 设计谱系的另一端——**极简主义**。相比 [[DeepAgents]] 的 batteries-included 方式（11 个中间件、多后端协议），Pi 只有 4 个工具、< 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。
+[[Pi-Agent]] 代表了 Harness 设计谱系的另一端——**极简主义**。相比 [[DeepAgents]] 的 batteries-included 方式（11 个[[ROS (Robot Operating System)|中间件]]、多后端协议），[[Pi-Agent|Pi]] 只有 4 个工具、< 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。
 
 这证明了 Harness 模式的关键变体：
-- **DeepAgents 路线**：组合丰富的中间件栈 → 适合企业级多场景
-- **Pi 路线**：极简工具 + 精确上下文控制 → 适合高级用户精确编程
+- **[[DeepAgents]] 路线**：组合丰富的[[ROS (Robot Operating System)|中间件]]栈 → 适合企业级多场景
+- **[[Pi-Agent|Pi]] 路线**：极简工具 + 精确上下文控制 → 适合高级用户精确编程
 
 两者的共同点：都将 Model 与 Harness 清晰分离，都强调 [[Context-Engineering]] 的重要性。
 
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]
 - [[raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md]]
-- [[raw/articles/pi-agent/01-overview-philosophy.md]]
+- [[raw/articles/ai-tools/pi-agent/01-overview-philosophy.md]]
 
 ## 相关
 - [[DeepAgents]] — batteries-included 代表

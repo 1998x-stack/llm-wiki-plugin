@@ -164,7 +164,7 @@ $$
 
 ## 来源
 
-- [[raw/articles/context-engineer/context-design.md]]
+- [[raw/articles/ai-engineering/prompt-context/context-design.md]]
 - Anthropic: [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 - Liu et al. (2023): *Lost in the Middle: How Language Models Use Long Contexts*
 - MemGPT: [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)

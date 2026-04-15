@@ -4,6 +4,24 @@ type: log
 
 # 操作日志
 
+## [2026-04-15] ingest | raw/books/计算机科学/01-turing-on-computable-numbers.md
+
+- 创建：`wiki/concepts/图灵机.md` — 定义、通用图灵机、不可计算数、影响
+- 创建：`wiki/concepts/停机问题.md` — 对角化证明、归约技术、软件工程影响
+- 创建：`wiki/concepts/Church-Turing 论题.md` — 多模型等价、三个版本、对AI的启示
+- 更新：`wiki/entities/阿兰·图灵.md` — 新增可计算性理论段落，source_count 2→3
+
+## [2026-04-15] ingest | raw/books/机器人学/ (16 files)
+
+已覆盖（01-11, 13）：来自前一会话，跳过。
+新增页面：
+- 创建：`wiki/concepts/SLAM.md` — EKF-SLAM / FastSLAM / GraphSLAM 三范式
+- 创建：`wiki/concepts/蒙特卡罗定位.md` — MCL / 粒子滤波 / amcl
+- 创建：`wiki/entities/Sergey-Levine.md` — 端到端机器人学习奠基人
+- 创建：`wiki/concepts/端到端视觉运动学习.md` — GPS + Spatial Softmax
+- 创建：`wiki/concepts/域随机化.md` — Domain Randomization + ADR（解魔方）
+- 创建：`wiki/concepts/视觉-语言-动作模型.md` — VLA 范式 / RT-2
+
 ## [2026-04-15] maintain
 - Reindex: OK (245 页面, index 同步)
 - Check: 0 errors, 352 warnings (B1=206 断链, F3=140 概述过长, O1=3 孤页, B2=2, M2=1)

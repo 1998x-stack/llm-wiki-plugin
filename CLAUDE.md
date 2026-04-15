@@ -34,7 +34,9 @@ Three-layer pattern:
 | `wiki:lint` | Health check + auto-repair (calls check first) |
 | `wiki:build` | Build all static assets: graph + statistics + wiki HTML |
 | `wiki:reindex` | Validate index integrity + generate topic maps |
-| `wiki:maintain` | Full pipeline: reindex → check → lint → build |
+| `wiki:relink` | Auto-link unlinked term mentions across wiki (longest-match-first) |
+| `wiki:reorganize-raw` | Reclassify raw/articles/ into nested categories + update wiki refs |
+| `wiki:maintain` | Full pipeline: reorganize-raw → relink → reindex → check → lint → build |
 | `wiki:consolidate` | Memory layer promotion + decay |
 | `wiki:crystallize` | Session → structured summary |
 | `wiki:journal` | Journal assistance |
@@ -62,6 +64,9 @@ bash scripts/wiki.sh <script_name> [args...]           # from vault/
 | `build_statistics.py` | Statistics JSON from graph + frontmatter | wiki_utils, networkx |
 | `build_wiki_pages.py` | Wiki markdown → static HTML | wiki_utils, markdown |
 | `snapshot_index.py` | Index integrity checker (check/update/snapshot) | wiki_utils |
+| `build_raw_wiki_map.py` | Build raw → wiki page mapping (outputs `raw/raw-wiki-map.json`) | — |
+| `relink.py` | Auto-link unlinked wiki term mentions (longest-match-first) | wiki_utils |
+| `reclassify_raw.py` | Execute raw/ reclassification: reads `raw/re-map.json` → move → update wiki | — |
 | `lint_wiki.py` | Standalone lint checker | wiki_utils |
 | `hook_lint.sh` | PostToolUse hook: lint | — |
 | `hook_bm25.sh` | PostToolUse hook: BM25 update | — |

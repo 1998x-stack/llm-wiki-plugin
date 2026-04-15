@@ -109,7 +109,7 @@ await restored.prompt('继续之前未完成的重构工作');
 
 ## 来源
 
-- [[raw/articles/pi-agent/03-pi-agent-core.md]]
+- [[raw/articles/ai-tools/pi-agent/03-pi-agent-core.md]]
 
 ## 相关
 

@@ -26,7 +26,7 @@ supersedes: null
 
 ## 概述
 
-DeepAgents 的存储与执行抽象层（`libs/deepagents/deepagents/backends/`）。`BackendProtocol` 定义统一的文件类 API，`SandboxBackendProtocol` 在其上扩展 shell 执行能力。上层中间件和工具只依赖协议接口，不感知底层是内存状态、本地磁盘还是远程沙箱——实现 [[Agent Harness模式]] 中"后端换皮、工具不变"的设计原则。
+[[DeepAgents]] 的存储与执行抽象层（`libs/deepagents/deepagents/backends/`）。`BackendProtocol` 定义统一的文件类 API，`SandboxBackendProtocol` 在其上扩展 shell 执行能力。上层[[ROS (Robot Operating System)|中间件]]和工具只依赖协议接口，不感知底层是内存状态、本地磁盘还是远程沙箱——实现 [[Agent Harness模式]] 中"后端换皮、工具不变"的设计原则。
 
 ## 关键内容
 

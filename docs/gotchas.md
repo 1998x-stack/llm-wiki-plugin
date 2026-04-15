@@ -16,13 +16,14 @@ Issues are split into topical files under `docs/gotchas/`.
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
 | [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math | #15-17 |
 | [v3.3-refactor.md](gotchas/v3.3-refactor.md) | wiki_utils, dedup, QA pipeline, XSS, debounce | #18-27 |
+| [v3.4-relink-reorganize.md](gotchas/v3.4-relink-reorganize.md) | relink substring matching, bold markers, hooks, macOS case, re-map.json, lint removal | #28-34 |
 
 ## Quick Status
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| Fixed | 17 | Code bugs, script issues, XSS, edge directionality |
-| Documented | 6 | yaml fallback, pickle, debounce, qa/ deprecation, raw/qa exception, jieba stderr |
+| Fixed | 18 | Code bugs, script issues, XSS, edge directionality, macOS case-insensitive |
+| Documented | 12 | yaml fallback, pickle, debounce, qa/ deprecation, relink substring, bold markers, hooks, re-map.json, 来源 boundary, lint removal |
 | Open | 4 | Remaining ingest files, broken links, source format, dedup semantic matching |
 
 ## Fix Checklist (remaining)

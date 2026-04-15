@@ -51,7 +51,7 @@ supersedes: null
 
 ## 概述
 
-本文档深度对比了现代软件生态中两个革命性的工具链：**Bun**（JavaScript/TypeScript 生态）与 **uv**（Python 生态）。两者虽服务于不同语言，但共享同一时代精神：利用 **Rust** 和 **Zig** 等系统级语言重写核心工具链，以“极速”颠覆旧有生态。Bun 旨在成为 JS 领域的"All-in-One"运行时与包管理器，而 uv 则致力于成为 Python 界的"Cargo"，统一包管理、环境管理及版本控制。本文从性能基准、功能矩阵、架构哲学及选型策略四个维度，详细阐述了两者的技术特征与应用场景，为开发者在 2026 年的技术选型提供决策依据。
+本文档深度对比了现代软件生态中两个革命性的工具链：**Bun**（JavaScript/TypeScript 生态）与 **uv**（Python 生态）。两者虽服务于不同语言，但共享同一时代精神：利用 **Rust** 和 **Zig** 等系统级语言重写核心工具链，以“极速”颠覆旧有生态。Bun 旨在成为 JS 领域的"All-in-One"运行时与包管理器，而 uv 则致力于成为 Python 界的"Cargo"，统一包管理、环境管理及版本控制。本文从性能基准、功能[[矩阵]]、架构哲学及选型策略四个维度，详细阐述了两者的技术特征与应用场景，为开发者在 2026 年的技术选型提供决策依据。
 
 ## 关键内容
 
@@ -81,7 +81,7 @@ supersedes: null
 当前趋势显示，软件基础设施正经历一场由 Rust/Zig 驱动的“速度革命”。JS 生态正从 `npm` 向 `pnpm` 再向 `Bun` 演进；Python 生态则在快速向 `uv` 收敛。两者都成为了 **AI Agent**（如 Claude Code）自动化操作的首选基础设施，因为它们提供了单一二进制文件、零配置和极高的可靠性，完美契合自动化运维的需求。
 
 ## 来源
-- [[raw/articles/CLI-tools/bun-vs-uv.md]]
+- [[raw/articles/programming/cli-tools/bun-vs-uv.md]]
 
 ## 相关
 - [[Bun-Runtime]]

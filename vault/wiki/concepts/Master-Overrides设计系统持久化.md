@@ -107,7 +107,7 @@ design-system/
 
 ## 来源
 
-- [[raw/articles/UI-skill/blog-07-persistence.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-07-persistence.md]]
 
 ## 相关
 

@@ -78,7 +78,7 @@ supersedes: null
 这套工具链具有极强的跨平台兼容性，可通过 `Homebrew` (macOS), `apt` (Linux), `cargo` (Rust 包管理器) 或 `npm` 轻松安装。最佳实践是通过 Shell 别名（Aliases）无缝替换传统命令（如 `alias ls='eza'`），并在配置文件（`.zshrc` 或 `.bashrc`）中集成 `fzf`（模糊搜索）和 `zoxide`（智能目录跳转），从而构建一个高效、美观且安全的现代化终端工作环境。此外，`hyperfine` 可用于基准测试，量化验证工具升级带来的性能收益。
 
 ## 来源
-- [[raw/articles/CLI-tools/modern-cli-tools.md]]
+- [[raw/articles/programming/cli-tools/modern-cli-tools.md]]
 
 ## 相关
 - [[ripgrep]]

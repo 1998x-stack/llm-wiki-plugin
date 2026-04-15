@@ -5,9 +5,9 @@ This is an Obsidian Brain vault — a personal knowledge operating system.
 ## Quick Reference
 
 - Schema: `_schema/CLAUDE.md` (read this first for full operational instructions)
-- Commands: `.claude/commands/wiki/` (ingest, ingest-loop, query, check, lint, build, reindex, maintain, consolidate, crystallize, journal, review, qa-import, convert-to-markdown)
+- Commands: `.claude/commands/wiki/` (ingest, ingest-loop, query, check, lint, build, reindex, relink, reorganize-raw, maintain, consolidate, crystallize, journal, review, qa-import, convert-to-markdown)
 - Templates: `templates/` (daily, wiki-page, reflection, judgment, weekly-review)
-- Scripts: `scripts/` (search_wiki.py, bm25_index.py, qwen_ingest.py, build_graph.py, build_statistics.py, build_wiki_pages.py, snapshot_index.py, lint_wiki.py, hooks)
+- Scripts: `scripts/` (search_wiki.py, bm25_index.py, qwen_ingest.py, build_graph.py, build_statistics.py, build_wiki_pages.py, snapshot_index.py, lint_wiki.py, build_raw_wiki_map.py, reclassify_raw.py, hooks)
 
 ## Key Rules
 
@@ -24,6 +24,8 @@ This is an Obsidian Brain vault — a personal knowledge operating system.
 | `raw/qa/` | QA source files — wiki:query writes here, wiki:qa-import reads here |
 | `raw/qa/qa.snapshot.md` | QA import checklist — tracks processed/unprocessed files |
 | `index/BM25/` | BM25 search index files (corpus.pkl, index.pkl, docmap.json) |
+| `raw/raw-wiki-map.json` | Raw file → wiki page mapping (built by reorganize-raw) |
+| `raw/re-map.json` | Old → new raw file path mapping (built by reorganize-raw) |
 | `graph.json` | Knowledge graph data for D3.js visualization |
 | `log.hook.md` | Hook execution log (lint, BM25, graph hook results) |
 
@@ -39,6 +41,8 @@ Three PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
 - `wiki:check` — read-only diagnostics (不修改文件)
 - `wiki:build` — build all static assets: graph + statistics + wiki HTML
 - `wiki:reindex` — validate index.md integrity + generate topic maps
-- `wiki:maintain` — 一键维护: reindex → check → lint → build 全流水线
+- `wiki:relink` — auto-link unlinked term mentions across wiki pages (longest-match-first)
+- `wiki:reorganize-raw` — reclassify raw/articles/ into nested categories + update wiki refs
+- `wiki:maintain` — 一键维护: reorganize-raw → relink → reindex → check → lint → build 全流水线
 - `wiki:ingest-loop <folder> [--engine=qwen]` — batch ingest, default Claude engine, --engine=qwen for Qwen API
 - `wiki:convert-to-markdown` — markitdown 批量转换 raw/ 中的 PDF/DOCX 等文件

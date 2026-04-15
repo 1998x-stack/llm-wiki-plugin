@@ -75,14 +75,14 @@ Claude-Mem 是一个专为 **Claude Code** 设计的开源持久化记忆插件�
 Claude-Mem 的核心命题是赋予 AI 编程助手真实的项目记忆。在传统模式下，LLM 每次新建会话都会丢失之前的上下文，导致开发者需要反复解释项目背景、调试历史及配置细节。Claude-Mem 通过以下四个步骤解决这一问题：
 1. **自动捕获**：利用 Claude Code 的钩子系统（Hook System）实时监听所有工具调用（如文件读写、命令执行）。
 2. **AI 压缩**：调用 Claude Agent SDK 将原始的工具日志提炼为结构化的「观察记录」（Observations），去除冗余信息。
-3. **持久存储**：将压缩后的记忆存入本地的 SQLite 数据库，并可选地使用 ChromaDB 进行向量嵌入。
+3. **持久存储**：将压缩后的记忆存入本地的 [[SQLite]] 数据库，并可选地使用 [[ChromaDB]] 进行向量嵌入。
 4. **智能注入**：在新会话启动时，自动检索相关历史上下文并注入到初始提示词中，实现记忆的无缝延续。
 
 ### 系统架构
 系统采用“两进程 + 一数据库”模型：
 - **主进程（Claude Code）**：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - **后台服务（Worker Service）**：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- **数据层**：使用 SQLite 配合 FTS5 进行全文检索，结合 ChromaDB 进行语义向量检索，形成混合检索能力。
+- **数据层**：使用 [[SQLite]] 配合 [[FTS5]] 进行全文检索，结合 [[ChromaDB]] 进行语义向量检索，形成混合检索能力。
 
 ### Hook 架构细节
 Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 **Lifecycle Hooks** 机制，在特定时间节点介入工作流：
@@ -98,14 +98,14 @@ Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提�
 
 ### 技术选型优势
 - **Bun 运行时**：替代了早期的 PM2+Node.js 方案，利用 `bun:sqlite` 获得更高的性能和更低的冷启动时间，且无需额外依赖。
-- **零基础设施依赖**：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 SQLite，极大降低了部署门槛。
+- **零基础设施依赖**：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 [[SQLite]]，极大降低了部署门槛。
 - **即发即忘（Fire-and-Forgert）通信**：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。
 
 ### 隐私与安全
 系统引入了 `<private>` 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 `<claude-mem-context>` 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。
 
 ### 项目现状
-由 Alex Newman (@thedotmack) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。
+由 Alex Newman ([[Alex-Newman|@thedotmack]]) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。
 
 ### 数据库架构演进
 系统经历了从 v3 到 v4 的重大重构：
@@ -114,26 +114,26 @@ Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提�
 
 ### 三层存储架构
 Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
-1. **关系型数据层**：利用 SQLite 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
+1. **关系型数据层**：利用 [[SQLite]] 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
 2. **全文检索层**：利用 [[FTS5]] 的 BM25 算法，在 10 万条记录下实现<10ms 的查询速度，远优于传统 LIKE 查询。
 3. **语义向量层**：可选集成 [[ChromaDB]]，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。
 
 ### 检索工作流
 系统根据查询类型自动选择最优检索策略：
-- **精确关键词检索**：优先使用 FTS5 实现毫秒级响应
-- **语义相似度检索**：当 FTS5 召回不足时，启用 ChromaDB 进行模糊匹配
+- **精确关键词检索**：优先使用 [[FTS5]] 实现毫秒级响应
+- **语义相似度检索**：当 [[FTS5]] 召回不足时，启用 [[ChromaDB]] 进行模糊匹配
 - **混合检索**：复杂查询可能组合多种检索方式，通过重排序确保最相关结果优先
 
 ### 工程特性
 - **解耦设计**：内部使用 `sdk_session_id`，外部兼容 `claude_session_id`，便于未来扩展支持其他 AI 工具（如 Cursor）。
-- **自动化同步**：通过 9 个 SQLite 触发器（Insert/Update/Delete）自动维护 FTS5 索引，对应用层完全透明。
-- **安全性**：内置严格的 FTS5 查询转义机制，并通过 332 个测试用例防止 SQL 注入。
+- **自动化同步**：通过 9 个 [[SQLite]] 触发器（Insert/Update/Delete）自动维护 [[FTS5]] 索引，对应用层完全透明。
+- **安全性**：内置严格的 [[FTS5]] 查询转义机制，并通过 332 个测试用例防止 SQL 注入。
 - **迁移系统**：拥有完善的 10 步迁移历史，确保版本升级时的数据完整性和向后兼容性。
 
 ## 来源
-- [[raw/articles/claude-mem/blog_01_overview.md]]
-- [[raw/articles/claude-mem/blog_02_hooks.md]]
-- [[raw/articles/claude-mem/blog_04_database.md]]
+- [[raw/articles/ai-tools/claude-mem/blog_01_overview.md]]
+- [[raw/articles/ai-tools/claude-mem/blog_02_hooks.md]]
+- [[raw/articles/ai-tools/claude-mem/blog_04_database.md]]
 
 ## 相关
 - [[Claude-Code]]

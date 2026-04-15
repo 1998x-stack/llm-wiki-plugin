@@ -1,12 +1,12 @@
 ---
-description: "一键维护：reindex → check → lint → build 全流水线"
+description: "一键维护：reorganize-raw → relink → reindex → check → lint → build 全流水线"
 ---
 
 # wiki:maintain
 
-一键执行完整知识库维护流水线：reindex → check → lint → build。
+一键执行完整知识库维护流水线：reorganize-raw → relink → reindex → check → lint → build。
 
-> 等价于依次运行 `wiki:reindex`、`wiki:check`、`wiki:lint`、`wiki:build`，但在关键步骤失败时提前终止。
+> 等价于依次运行 `wiki:reorganize-raw`、`wiki:relink`、`wiki:reindex`、`wiki:check`、`wiki:lint`、`wiki:build`，但在关键步骤失败时提前终止。
 
 ## 输入
 
@@ -14,7 +14,36 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 ## 流程
 
-### 1. Reindex — 索引完整性 + 主题分类
+### 1. Reorganize-raw — 分类整理 raw 文件
+
+执行 `wiki:reorganize-raw` 的完整流程（步骤 1-8）：
+
+- 构建 `raw/raw-wiki-map.json`（来源映射）
+- 快照 pre-count 作为完整性基线
+- 执行 `bash scripts/wiki.sh reclassify_raw`（移动文件 + 更新 wiki 引用）
+- 快照 post-count 验证文件完整性：`pre_count == post_count`
+- 更新 `raw/raw-wiki-map.json` 和 `raw/re-map.json`
+
+**终止条件**：
+- `status: "error"` 或 `pre_count != post_count` → **立即终止**，报告丢失文件
+- `status: "noop"` → 无需整理，继续下一步
+
+### 2. Relink — 自动链接术语提及
+
+执行 `wiki:relink` 的完整流程：
+
+```bash
+bash scripts/wiki.sh relink
+```
+
+- 构建术语词典（标题 + 别名）
+- 按长度降序扫描，最长匹配优先
+- 在 wiki 页面正文中插入 `[[wikilinks]]`
+- 跳过 frontmatter、代码块、标题、已有链接、来源/相关段落
+
+记录添加的链接数，继续下一步。
+
+### 3. Reindex — 索引完整性 + 主题分类
 
 执行 `wiki:reindex` 的完整流程（步骤 1-6）：
 
@@ -27,7 +56,7 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 **终止条件**：snapshot_index.py 执行出错（脚本异常，非数据问题）→ 报告错误并停止。
 
-### 2. Check — 只读诊断
+### 4. Check — 只读诊断
 
 执行 `wiki:check` 的完整流程（步骤 1-5）：
 
@@ -38,16 +67,15 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 
 记录 ERROR / WARNING / INFO 数量，继续下一步。
 
-### 3. Lint — 自动修复
+### 5. Lint — 自动修复
 
-基于步骤 2 的诊断结果，执行 `wiki:lint` 的修复流程（步骤 2-4）：
+基于步骤 4 的诊断结果，执行 `wiki:lint` 的修复流程：
 
 - 自动修复可修复的问题（frontmatter、断链、index.md、BM25）
 - 跳过需人工处理的问题（矛盾、模板、图谱）
-- 生成 lint 报告追加到 `log.md`
-- 更新 `dashboard.md`
+- 生成 lint 报告
 
-### 4. Build — 构建所有静态产出
+### 6. Build — 构建所有静态产出
 
 执行 `wiki:build` 的完整流程（步骤 1-6）：
 
@@ -58,48 +86,58 @@ description: "一键维护：reindex → check → lint → build 全流水线"
 - 验证所有产出
 - 更新 `log.md`
 
-### 5. 汇总报告
+### 7. 汇总报告
 
 输出完整维护摘要：
 
 ```
 === wiki:maintain 完成 ===
 
-[1/4] Reindex
+[1/6] Reorganize-raw
+  - 文件完整性: N → N ✓
+  - 移动: M 个文件, C 个冲突解决, D 个空目录清理
+  - Wiki 同步: F 个文件, R 条引用
+
+[2/6] Relink
+  - 术语: T 个, 扫描: S 页, 新链接: L 条
+
+[3/6] Reindex
   - 完整性: OK (N 页面)
   - 主题分类: K 个 cluster
   - Tags 修复: M 个页面
 
-[2/4] Check
+[4/6] Check
   - ERROR: A 个 | WARNING: B 个 | INFO: C 个
 
-[3/4] Lint
+[5/6] Lint
   - 自动修复: X 个
   - 需人工处理: Y 个
 
-[4/4] Build
+[6/6] Build
   - 知识图谱: N 节点, M 边, K 孤页, C 连通分量
   - 静态产出: graph.json + statistics + wiki HTML (P 页)
 ```
 
-### 6. 更新 log.md
+### 8. 更新 log.md
 
 在 `log.md` 的 frontmatter 之后、第一个 `##` 之前插入：
 
 ```
 ## [YYYY-MM-DD HH:MM] maintain
+- Reorganize-raw: N → N ✓ (M moved, F wiki files updated)
+- Relink: T terms, L new links across P pages
 - Reindex: OK (N 页面, K clusters)
 - Check: A errors, B warnings, C info
 - Lint: X 修复, Y 待处理
 - Build: N 节点, M 边 → static/ 已同步
 ```
 
-### 7. Git commit
+### 9. Git commit
 
 将所有变更提交：
 
 ```bash
-git add -A && git commit -m "chore: wiki:maintain — reindex + lint + build (YYYY-MM-DD)"
+git add -A && git commit -m "chore: wiki:maintain — reorganize + relink + reindex + check + lint + build (YYYY-MM-DD)"
 ```
 
 提交信息包含本次 maintain 的关键数据（节点数、边数等）。

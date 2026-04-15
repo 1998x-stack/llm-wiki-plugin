@@ -42,7 +42,7 @@ supersedes: null
 
 - **能用确定性断言处不用 Judge**（节省成本和方差）
 - 每条准则应**单条可判定**、无歧义，不在一条内堆砌多个要求
-- 准则涉及工具调用行为（如"必须调用 `edit_file`"）时，需将完整轨迹送入评判上下文（DeepAgents 中用 `include_tool_calls=True`）
+- 准则涉及工具调用行为（如"必须调用 `edit_file`"）时，需将完整轨迹送入评判上下文（[[DeepAgents]] 中用 `include_tool_calls=True`）
 - 固定 `judge_model` 版本，保证跨次运行可横向对比
 
 ### DeepAgents 实现（`LLMJudge`）

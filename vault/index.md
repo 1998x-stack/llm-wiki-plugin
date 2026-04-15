@@ -70,6 +70,15 @@ updated: 2026-04-15
 - [[Boston Dynamics]] — Boston Dynamics 是一家世界领先的机器人工程公司，成立于 1992 年，由著名机器人学家 Marc H. Raibert 从麻省理工学院（MIT）... (confidence: 1.0)
 - [[Marc H. Raibert]] — Marc H. Raibert 是美国著名的计算机科学家和机器人学家，被誉为现代动态腿式机器人之父。他于 1977 年在麻省理工学院（MIT）获得博士学位，随后... (confidence: 1.0)
 - [[UI-UX-Pro-Max]] — UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Wind... (confidence: 0.9)
+- [[Brian Gerkey]] — Brian Gerkey 是著名的机器人学家和开源软件倡导者，**ROS **(Robot Operating System) 的关键架构师之一，也是 **Pl... (confidence: 0.95)
+- [[Dieter Fox]] — Dieter Fox 是美国华盛顿大学（University of Washington）教授，著名的机器人学和人工智能专家。他是概率机器人学领域的先驱之一，以... (confidence: 0.95)
+- [[Morgan Quigley]] — Morgan Quigley 是美国计算机科学家和机器人学家，**ROS **(Robot Operating System) 的主要创始人之一。他在斯坦福大学... (confidence: 0.95)
+- [[PR2 机器人]] — **PR2 **(Personal Robot 2) 是由 **Willow Garage** 开发的一款全尺寸移动操作机器人平台，被视为 ROS (Robot... (confidence: 0.95)
+- [[Rudolf]] — Rudolf E. Kalman（鲁道夫·卡尔曼）是匈牙利裔美国数学家和电气工程师，现代控制理论的奠基人之一。他最著名的成就是于 1960 年发表了论文《A N... (confidence: 1.0)
+- [[Sebastian Thrun]] — Sebastian Thrun 是斯坦福大学人工智能实验室前主任，著名计算机科学家，概率机器人学领域的奠基人之一。他与 Wolfram Burgard 和 Di... (confidence: 1.0)
+- [[Sergey-Levine]] — Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习领域最具影响力的研究者之一（Google Scholar 引用超 23 ... (confidence: 0.95)
+- [[Willow Garage]] — Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由硅谷企业家 Scott Hassan 创立。该机构致力于个人机器人技术的研发，其... (confidence: 1.0)
+- [[Wolfram Burgard]] — Wolfram Burgard 是德国弗莱堡大学（University of Freiburg）教授，国际知名的机器人学专家，尤其在移动机器人导航、机器学习和同... (confidence: 0.95)
 
 <!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
@@ -252,6 +261,16 @@ updated: 2026-04-15
 - [[结构化UI风格知识库]] — 结构化 UI 风格知识库是将每种 UI 视觉风格编码为**可机器检索和直接输出的结构化记录**的设计模式：除风格描述外，每条记录携带 AI Prompt 关键词... (confidence: 0.88)
 - [[行业色彩情绪映射]] — 行业色彩情绪映射是一种将产品类型与色彩方案通过**情绪关键词**对应起来的设计知识编码方式：颜色选择的依据不是「好看」，而是**行业惯例形成的用户信任联觉 + ... (confidence: 0.88)
 - [[行业设计反模式系统]] — 行业设计反模式系统是一种**以负样本为核心**的设计知识编码方式：为每种产品类型预定义「绝对不能做什么」，使 AI 生成 UI 时能自动规避行业隐性禁忌。核心洞... (confidence: 0.9)
+- [[Probabilistic Robotics]] — 《Probabilistic Robotics》是由 Sebastian Thrun、Wolfram Burgard 和 Dieter Fox 于 2005 年... (confidence: 1.0)
+- [[ROS (Robot Operating System)]] — ROS（Robot Operating System）是一个开源的、模块化的机器人软件框架和元操作系统（meta-operating system），由 Mor... (confidence: 1.0)
+- [[SLAM]] — SLAM（Simultaneous Localization and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，... (confidence: 0.97)
+- [[域随机化]] — 域随机化（Domain Randomization）是解决仿真到真实迁移（sim-to-real gap）的核心技术：在仿真训练中随机化大量环境参数（物理属性、... (confidence: 0.92)
+- [[端到端视觉运动学习]] — 端到端视觉运动学习是让机器人直接从原始摄像头像素映射到关节力矩的深度学习范式，绕过传统的感知-状态估计-规划-控制模块化流水线，用统一的神经网络联合优化感知与控... (confidence: 0.92)
+- [[蒙特卡罗定位]] — 蒙特卡罗定位（Monte Carlo Localization, MCL）是 Thrun、Fox、Burgard 于 1999 年提出的机器人全局定位算法：用一... (confidence: 0.95)
+- [[视觉-语言-动作模型]] — 视觉-语言-动作模型（VLA）是将预训练视觉-语言模型（VLM）直接微调为机器人控制策略的范式：通过将机器人动作离散化为文本 token，使模型能利用互联网规模... (confidence: 0.93)
+- [[Church-Turing 论题]] — Church-Turing 论题断言：任何直觉上"可计算"的函数都是图灵可计算的（即可被图灵机计算）。这不是数学定理，而是一个关于"计算"这一概念在自然界中本质... (confidence: 0.95)
+- [[停机问题]] — 停机问题（Halting Problem）是 [[阿兰·图灵]] 于 1936 年证明的第一个不可判定问题：**不存在**一个通用算法，能判定任意给定程序在任意... (confidence: 0.98)
+- [[图灵机]] — 图灵机是由 [[阿兰·图灵]] 于 1936 年定义的抽象计算模型，通过模拟人类计算员的最简行为（读符号、写符号、移动、改变状态）来精确刻画"计算"的数学本质，... (confidence: 0.98)
 
 ## 综合分析 (wiki/syntheses/)
 
@@ -267,9 +286,9 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：245
-- 实体：97
-- 概念：141
+- 总页面数：264
+- 实体：106
+- 概念：151
 - 综合分析：5
 - QA 洞见：1
 - 最后更新：2026-04-15

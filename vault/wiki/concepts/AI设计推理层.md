@@ -71,7 +71,7 @@ AI 按规范生成 UI 代码
 
 ## 来源
 
-- [[raw/articles/UI-skill/blog-01-overview.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-01-overview.md]]
 
 ## 相关
 

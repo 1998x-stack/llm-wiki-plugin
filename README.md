@@ -143,14 +143,16 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 | `ingest-loop` | `/wiki:ingest-loop <dir> [--engine=qwen]` | Ralph-loop 批量 ingest（默认 Claude，--engine=qwen 用 Qwen API） |
 | `build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
 | `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
-| `maintain` | `/wiki:maintain` | 一键维护: reindex → check → lint → build |
+| `relink` | `/wiki:relink` | 自动链接 wiki 中未链接的术语提及（最长匹配优先） |
+| `reorganize-raw` | `/wiki:reorganize-raw` | 重分类 raw/ 到嵌套目录 + 更新 wiki 引用 |
+| `maintain` | `/wiki:maintain` | 一键维护: reorganize-raw → relink → reindex → check → lint → build |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure
 
 ```
 vault/
-├── .claude/commands/wiki/   # 14 Claude Code commands
+├── .claude/commands/wiki/   # 15 Claude Code commands
 ├── .obsidian/               # Obsidian settings
 ├── _schema/                 # 系统规则 (CLAUDE.md + 类型定义)
 │   ├── CLAUDE.md            # Master schema
@@ -163,9 +165,12 @@ vault/
 │   ├── semantic/            # 跨会话事实
 │   └── procedural/          # 工作流与模式
 ├── raw/                     # 不可变源材料 (LLM read-only)
-│   ├── articles/            # 文章、论文、分析
+│   ├── articles/            # 文章、论文、分析（嵌套主题分类）
 │   ├── books/               # 书籍章节
-│   └── qa/                  # QA 对话数据
+│   ├── assets/              # 代码资产、技能文件
+│   ├── qa/                  # QA 对话数据
+│   ├── re-map.json          # 文件夹重分类映射
+│   └── raw-wiki-map.json    # raw → wiki 页面映射
 ├── wiki/                    # LLM 生成的知识页面
 │   ├── entities/            # 人物、工具、项目
 │   ├── concepts/            # 概念、理论、方法

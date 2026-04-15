@@ -487,7 +487,7 @@ Lint Results:
 
 ### 4.12 `wiki:maintain` — 一键维护
 
-**功能：** 一键执行完整维护流水线：reindex → check → lint → build。等价于依次运行四个命令，但在关键步骤失败时提前终止。
+**功能：** 一键执行完整维护流水线：reorganize-raw → reindex → check → build。等价于依次运行四个命令，但在关键步骤失败时提前终止。
 
 **用法：**
 
@@ -532,7 +532,7 @@ Lint Results:
 ```
 每周日：
 1. /wiki:review weekly         — 回顾本周
-2. /wiki:maintain              — 一键维护（reindex→check→lint→build）
+2. /wiki:maintain              — 一键维护（reorganize-raw→relink→reindex→check→lint→build）
 3. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
 
@@ -1025,7 +1025,9 @@ cd vault-cs && claude
 /wiki:qa-import <path>                   导入 QA 数据
 /wiki:ingest-loop <dir> [--engine=qwen]  Ralph-loop 批量 ingest
 /wiki:build                              构建 graph + statistics + wiki HTML
-/wiki:maintain                           一键维护: reindex→check→lint→build
+/wiki:relink                             自动链接未链接术语（最长匹配优先）
+/wiki:reorganize-raw                     重分类 raw/ 到嵌套目录 + 更新 wiki 引用
+/wiki:maintain                           一键维护: reorganize-raw→relink→reindex→check→lint→build
 ```
 
 ### 常用脚本

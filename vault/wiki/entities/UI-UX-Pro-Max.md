@@ -49,7 +49,7 @@ supersedes: null
 
 ## 概述
 
-UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Windsurf 等 AI 编程助手设计，作为「设计推理层」让 AI 在生成 UI 代码前先完成专业设计决策。
+UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Windsurf 等 AI 编程助手设计，作为「[[AI设计推理层|设计推理层]]」让 AI 在生成 UI 代码前先完成专业设计决策。
 
 ## 关键内容
 
@@ -112,13 +112,13 @@ uipro init --ai claude --global   # 安装到 ~/.claude/skills/
 
 ## 来源
 
-- [[raw/articles/UI-skill/blog-01-overview.md]]
-- [[raw/articles/UI-skill/blog-02-styles.md]]
-- [[raw/articles/UI-skill/blog-03-design-system-generator.md]]
-- [[raw/articles/UI-skill/blog-04-colors-typography.md]]
-- [[raw/articles/UI-skill/blog-05-ux-charts.md]]
-- [[raw/articles/UI-skill/blog-06-stacks-search.md]]
-- [[raw/articles/UI-skill/blog-07-persistence.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-01-overview.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-02-styles.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-03-design-system-generator.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-04-colors-typography.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-05-ux-charts.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-06-stacks-search.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-07-persistence.md]]
 
 ## 相关
 

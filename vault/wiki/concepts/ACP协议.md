@@ -19,7 +19,7 @@ supersedes: null
 
 ## 概述
 
-**Agent Client Protocol（ACP）** 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和消息流交互。DeepAgents 通过独立子包 `deepagents-acp`（`libs/acp/`）提供 ACP 服务端集成，将 Deep Agent 能力暴露给遵循 ACP 的客户端。
+**Agent Client Protocol（ACP）** 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和消息流交互。[[DeepAgents]] 通过独立子包 `deepagents-acp`（`libs/acp/`）提供 ACP 服务端集成，将 Deep Agent 能力暴露给遵循 ACP 的客户端。
 
 ## 关键内容
 

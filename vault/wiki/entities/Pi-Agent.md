@@ -101,9 +101,9 @@ Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，�
 
 ## 来源
 
-- [[raw/articles/pi-agent/01-overview-philosophy.md]]
-- [[raw/articles/pi-agent/02-pi-ai.md]]
-- [[raw/articles/pi-agent/03-pi-agent-core.md]]
+- [[raw/articles/ai-tools/pi-agent/01-overview-philosophy.md]]
+- [[raw/articles/ai-tools/pi-agent/02-pi-ai.md]]
+- [[raw/articles/ai-tools/pi-agent/03-pi-agent-core.md]]
 
 ## 相关
 

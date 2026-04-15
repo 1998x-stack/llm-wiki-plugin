@@ -26,7 +26,7 @@ supersedes: null
 
 ## 概述
 
-DeepAgents 中间件（`libs/deepagents/deepagents/middleware/`）是 [[Agent Harness模式]] 的核心扩展点：每个中间件继承 `AgentMiddleware`，重写 `wrap_model_call()` 在**每次 LLM 调用前**拦截请求，改写系统提示、工具列表或消息，实现横切能力（规划、文件系统、子代理、上下文压缩、记忆、人机协同等）。
+[[DeepAgents]] [[ROS (Robot Operating System)|中间件]]（`libs/deepagents/deepagents/middleware/`）是 [[Agent Harness模式]] 的核心扩展点：每个[[ROS (Robot Operating System)|中间件]]继承 `AgentMiddleware`，重写 `wrap_model_call()` 在**每次 LLM 调用前**拦截请求，改写系统提示、工具列表或消息，实现横切能力（规划、文件系统、子代理、上下文压缩、记忆、人机协同等）。
 
 ## 关键内容
 
@@ -35,7 +35,7 @@ DeepAgents 中间件（`libs/deepagents/deepagents/middleware/`）是 [[Agent Ha
 - 通过 `wrap_model_call(handler, request)` 拦截每次发往 LLM 的 `ModelRequest`
 - 可修改：系统消息、工具列表、消息序列
 - 可维护跨轮状态（配合 LangGraph state schema 的 reducer）
-- **与普通工具的本质区别**：普通工具只在模型选中后执行；中间件在每次 LLM 调用前统一预处理
+- **与普通工具的本质区别**：普通工具只在模型选中后执行；[[ROS (Robot Operating System)|中间件]]在每次 LLM 调用前统一预处理
 
 ### 各中间件详解
 
@@ -60,7 +60,7 @@ DeepAgents 中间件（`libs/deepagents/deepagents/middleware/`）是 [[Agent Ha
 大型工具输出落盘（写入 backend 文件），减少上下文占用。
 
 #### MemoryMiddleware
-在 `memory=` 参数有值时启用。将指定记忆文件（如 `AGENTS.md`）内容注入系统提示，使 Agent 持有持久化指令/偏好知识。**放在中间件栈尾部**（缓存之后），避免记忆更新破坏 Anthropic prompt cache 前缀。
+在 `memory=` 参数有值时启用。将指定记忆文件（如 `AGENTS.md`）内容注入系统提示，使 Agent 持有持久化指令/偏好知识。**放在[[ROS (Robot Operating System)|中间件]]栈尾部**（缓存之后），避免记忆更新破坏 Anthropic prompt cache 前缀。
 
 #### SkillsMiddleware
 在 `skills=` 参数有值时启用。从 backend 路径加载技能描述，注入系统提示，实现技能的**渐进式披露**（按需暴露，控制上下文长度）。

@@ -23,7 +23,7 @@ supersedes: null
 
 ## 概述
 
-DeepAgents 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
+[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
 
 ## 关键内容
 
@@ -40,7 +40,7 @@ DeepAgents 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 
 
 **`AgentStep`**：`index`（从1起）、`action`（`AIMessage`）、`observations`（`list[ToolMessage]`）——一个决策回合。
 
-**`AgentTrajectory`**：`steps` + `files`（路径→内容映射），`answer` 属性取最后一步文本，`pretty()` 生成人类可读摘要（供 LLM Judge 消费）。
+**`AgentTrajectory`**：`steps` + `files`（路径→内容映射），`answer` 属性取最后一步文本，`pretty()` 生成人类可读摘要（供 [[LLM-as-Judge|LLM Judge]] 消费）。
 
 **`TrajectoryScorer`**（不可变建造者）：
 ```python
@@ -62,7 +62,7 @@ scorer = (
 1. 组装 `query` + `initial_files` → `agent.invoke`
 2. 用 `thread_id` 生成轨迹（`AgentTrajectory`）
 3. LangSmith 记录规范化 inputs/outputs
-4. 执行 `_assert_expectations`：先记录效率 feedback，再逐项运行成功断言
+4. 执行 `_assert_[[期望值|expectation]]s`：先记录效率 feedback，再逐项运行成功断言
 
 ### 评估分类（`categories.json`）
 
@@ -93,7 +93,7 @@ scorer = (
 
 ### Harbor 框架（`libs/evals/` Harbor 集成）
 
-`DeepAgentsWrapper` 将 Deep Agent 包装为 Harbor 基准的统一接口；`HarborSandbox` 提供沙箱后端。失败分类工具自动标注错误类型（工具调用错误、规划失败、上下文溢出等），LangSmith 脚本聚合统计。
+`[[DeepAgents]]Wrapper` 将 Deep Agent 包装为 Harbor 基准的统一接口；`HarborSandbox` 提供沙箱后端。失败分类工具自动标注错误类型（工具调用错误、规划失败、上下文溢出等），LangSmith 脚本聚合统计。
 
 ### Terminal Bench 2.0
 

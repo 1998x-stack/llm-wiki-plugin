@@ -83,3 +83,39 @@
 [2026-04-15 20:38] GRAPH skip — rebuilt 28s ago
 [2026-04-15 20:38] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UI-UX-Pro-Max.md — OK
 [2026-04-15 20:38] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UI-UX-Pro-Max.md — indexed
+[2026-04-15 21:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SLAM.md — OK
+[2026-04-15 21:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SLAM.md — indexed
+[2026-04-15 21:07] GRAPH rebuild — OK
+[2026-04-15 21:08] GRAPH skip — rebuilt 27s ago
+[2026-04-15 21:08] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/蒙特卡罗定位.md — OK
+[2026-04-15 21:08] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/蒙特卡罗定位.md — indexed
+[2026-04-15 21:08] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Sergey-Levine.md — OK
+[2026-04-15 21:08] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Sergey-Levine.md — indexed
+[2026-04-15 21:08] GRAPH rebuild — OK
+[2026-04-15 21:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/端到端视觉运动学习.md — OK
+[2026-04-15 21:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/端到端视觉运动学习.md — indexed
+[2026-04-15 21:09] GRAPH rebuild — OK
+[2026-04-15 21:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/域随机化.md — OK
+[2026-04-15 21:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/域随机化.md — indexed
+[2026-04-15 21:09] GRAPH rebuild — OK
+[2026-04-15 21:10] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/视觉-语言-动作模型.md — OK
+[2026-04-15 21:10] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/视觉-语言-动作模型.md — indexed
+[2026-04-15 21:10] GRAPH rebuild — OK
+[2026-04-15 21:33] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — OK
+[2026-04-15 21:33] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — indexed
+[2026-04-15 21:33] GRAPH rebuild — OK
+[2026-04-15 21:33] GRAPH skip — rebuilt 7s ago
+[2026-04-15 21:33] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — OK
+[2026-04-15 21:33] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — indexed
+[2026-04-15 21:33] GRAPH skip — rebuilt 27s ago
+[2026-04-15 21:33] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — OK
+[2026-04-15 21:33] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — indexed
+[2026-04-15 21:34] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/图灵机.md — OK
+[2026-04-15 21:34] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/图灵机.md — indexed
+[2026-04-15 21:34] GRAPH rebuild — OK
+[2026-04-15 21:35] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/停机问题.md — OK
+[2026-04-15 21:35] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/停机问题.md — indexed
+[2026-04-15 21:35] GRAPH rebuild — OK
+[2026-04-15 21:35] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Church-Turing 论题.md — OK
+[2026-04-15 21:35] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Church-Turing 论题.md — indexed
+[2026-04-15 21:35] GRAPH rebuild — OK

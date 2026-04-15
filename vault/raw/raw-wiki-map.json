@@ -1,0 +1,434 @@
+{
+  "raw/articles/ai-engineering/prompt-context/context-design.md": [
+    "wiki/concepts/Context-Engineering.md",
+    "wiki/concepts/分层记忆架构.md"
+  ],
+  "raw/articles/ai-tools/claude-mem/blog_01_overview.md": [
+    "wiki/concepts/Claude-Code-Hook-System.md",
+    "wiki/concepts/LLM-Statelessness.md",
+    "wiki/entities/Alex-Newman.md",
+    "wiki/entities/Bun-Runtime.md",
+    "wiki/entities/Claude-Mem.md"
+  ],
+  "raw/articles/ai-tools/claude-mem/blog_02_hooks.md": [
+    "wiki/entities/Claude-Mem.md"
+  ],
+  "raw/articles/ai-tools/claude-mem/blog_04_database.md": [
+    "wiki/entities/Claude-Mem.md"
+  ],
+  "raw/articles/ai-tools/claude-mem/blog_05_search.md": [
+    "wiki/concepts/渐进式披露-Progressive-Disclosure.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-01-overview.md": [
+    "wiki/concepts/AI设计推理层.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-02-styles.md": [
+    "wiki/concepts/结构化UI风格知识库.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-03-design-system-generator.md": [
+    "wiki/concepts/行业设计反模式系统.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-04-colors-typography.md": [
+    "wiki/concepts/行业色彩情绪映射.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-05-ux-charts.md": [
+    "wiki/concepts/工程化UX规则体系.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-06-stacks-search.md": [
+    "wiki/concepts/技术栈感知设计规则.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/claude-skills/blog-07-persistence.md": [
+    "wiki/concepts/Master-Overrides设计系统持久化.md",
+    "wiki/entities/UI-UX-Pro-Max.md"
+  ],
+  "raw/articles/ai-tools/pi-agent/01-overview-philosophy.md": [
+    "wiki/concepts/Agent Harness模式.md",
+    "wiki/entities/Mario-Zechner.md",
+    "wiki/entities/OpenClaw.md",
+    "wiki/entities/Pi-Agent.md"
+  ],
+  "raw/articles/ai-tools/pi-agent/02-pi-ai.md": [
+    "wiki/concepts/LLM-Wire-Protocol统一模式.md",
+    "wiki/concepts/跨Provider上下文迁移.md",
+    "wiki/entities/Pi-Agent.md"
+  ],
+  "raw/articles/ai-tools/pi-agent/03-pi-agent-core.md": [
+    "wiki/concepts/Agent循环.md",
+    "wiki/concepts/事件驱动Agent架构.md",
+    "wiki/entities/Pi-Agent.md"
+  ],
+  "raw/articles/programming/cli-tools/bun-vs-uv.md": [
+    "wiki/concepts/bun-vs-uv.md"
+  ],
+  "raw/articles/programming/cli-tools/claude-cli-tools.md": [
+    "wiki/concepts/claude-cli-tools.md"
+  ],
+  "raw/articles/programming/cli-tools/modern-cli-tools.md": [
+    "wiki/concepts/modern-cli-tools.md"
+  ],
+  "raw/books/deepagents-book-main/01-项目概览与仓库结构.md": [
+    "wiki/concepts/Agent Harness模式.md",
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md": [
+    "wiki/concepts/Agent Harness模式.md",
+    "wiki/concepts/DeepAgents中间件体系.md",
+    "wiki/concepts/DeepAgents后端协议.md",
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/03-入口函数-create_deep_agent.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/04-后端协议-BackendProtocol.md": [
+    "wiki/concepts/DeepAgents后端协议.md"
+  ],
+  "raw/books/deepagents-book-main/05-后端实现详解.md": [
+    "wiki/concepts/DeepAgents后端协议.md"
+  ],
+  "raw/books/deepagents-book-main/06-中间件体系总论.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/07-FilesystemMiddleware-文件系统中间件.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/08-SubAgentMiddleware-子代理中间件.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/09-AsyncSubAgentMiddleware-异步子代理.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/10-SummarizationMiddleware-上下文压缩.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/11-MemoryMiddleware与SkillsMiddleware.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/12-PatchToolCallsMiddleware与工具修复.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/13-模型解析与Provider支持.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/14-CLI架构与入口.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/17-评估体系架构总览.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/18-评估报告与指标系统.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/19-内置评估用例详解.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/20-外部基准测试集成.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/21-LLM-as-Judge评估模式.md": [
+    "wiki/concepts/DeepAgents评估体系.md",
+    "wiki/concepts/LLM-as-Judge.md"
+  ],
+  "raw/books/deepagents-book-main/22-Harbor框架集成.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/23-Terminal-Bench-2.0评估.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/24-Harbor分析与统计工具.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/25-ACP-Agent-Client-Protocol.md": [
+    "wiki/concepts/ACP协议.md"
+  ],
+  "raw/books/deepagents-book-main/26-REPL中间件.md": [
+    "wiki/concepts/DeepAgents中间件体系.md"
+  ],
+  "raw/books/deepagents-book-main/27-合作伙伴沙箱集成.md": [
+    "wiki/concepts/DeepAgents后端协议.md"
+  ],
+  "raw/books/deepagents-book-main/28-CI-CD与发布流程.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/29-代码规范与质量保障.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/deepagents-book-main/30-编写评估用例指南.md": [
+    "wiki/concepts/DeepAgents评估体系.md"
+  ],
+  "raw/books/deepagents-book-main/31-示例项目解析.md": [
+    "wiki/entities/DeepAgents.md"
+  ],
+  "raw/books/宏观经济学/01-keynes-general-theory-1936.md": [
+    "wiki/concepts/乘数效应.md",
+    "wiki/concepts/动物精神.md",
+    "wiki/concepts/有效需求.md",
+    "wiki/concepts/流动性偏好理论.md",
+    "wiki/concepts/流动性陷阱.md",
+    "wiki/concepts/萨伊定律.md",
+    "wiki/concepts/边际消费倾向.md",
+    "wiki/entities/就业、利息和货币通论.md",
+    "wiki/entities/约翰·梅纳德·凯恩斯.md"
+  ],
+  "raw/books/宏观经济学/02-hicks-is-lm-1937.md": [
+    "wiki/concepts/IS-LM 模型.md",
+    "wiki/concepts/凯恩斯革命.md",
+    "wiki/entities/约翰·理查德·希克斯.md"
+  ],
+  "raw/books/宏观经济学/03-solow-growth-model-1956.md": [
+    "wiki/concepts/Harrod-Domar 模型.md",
+    "wiki/concepts/内生增长理论.md",
+    "wiki/concepts/收敛假说.md",
+    "wiki/concepts/新古典生产函数.md",
+    "wiki/concepts/索洛增长模型.md",
+    "wiki/concepts/索洛残差.md",
+    "wiki/concepts/黄金律资本水平.md",
+    "wiki/entities/罗伯特·默顿·索洛.md"
+  ],
+  "raw/books/宏观经济学/04-phillips-curve-1958.md": [
+    "wiki/concepts/菲利普斯曲线.md",
+    "wiki/entities/A.W. 菲利普斯.md",
+    "wiki/entities/MONIAC.md"
+  ],
+  "raw/books/宏观经济学/05-muth-rational-expectations-1961.md": [
+    "wiki/concepts/理性预期假说.md"
+  ],
+  "raw/books/宏观经济学/06-friedman-schwartz-monetary-history-1963.md": [
+    "wiki/entities/美国货币史，1867-1960.md"
+  ],
+  "raw/books/宏观经济学/07-friedman-role-monetary-policy-1968.md": [
+    "wiki/entities/米尔顿·弗里德曼.md"
+  ],
+  "raw/books/数值分析/01_newton_method.md": [
+    "wiki/concepts/牛顿法.md",
+    "wiki/entities/艾萨克·牛顿.md"
+  ],
+  "raw/books/数值分析/02_euler_method_ode.md": [
+    "wiki/concepts/欧拉方法.md",
+    "wiki/entities/布鲁克·泰勒.md",
+    "wiki/entities/莱昂哈德·欧拉.md"
+  ],
+  "raw/books/数值分析/03_gauss_least_squares.md": [
+    "wiki/concepts/高斯最小二乘法.md",
+    "wiki/entities/卡尔·弗里德里希·高斯.md",
+    "wiki/entities/阿德里安-马里·勒让德.md"
+  ],
+  "raw/books/数值分析/05_gauss_quadrature.md": [
+    "wiki/concepts/高斯求积公式.md",
+    "wiki/entities/卡尔·古斯塔夫·雅各布·雅可比.md",
+    "wiki/entities/卡尔·弗里德里希·高斯.md",
+    "wiki/entities/阿德里安-马里·勒让德.md"
+  ],
+  "raw/books/数值分析/06_jacobi_iteration.md": [
+    "wiki/concepts/Gauss-Seidel方法.md",
+    "wiki/concepts/Jacobi迭代法.md",
+    "wiki/entities/卡尔·古斯塔夫·雅各布·雅可比.md",
+    "wiki/entities/菲利普·路德维希·冯·赛德尔.md"
+  ],
+  "raw/books/数值分析/07_chebyshev_approximation.md": [
+    "wiki/concepts/切比雪夫多项式.md",
+    "wiki/concepts/切比雪夫逼近理论.md",
+    "wiki/concepts/谱方法.md",
+    "wiki/concepts/龙格现象.md",
+    "wiki/entities/帕夫努季·利沃维奇·切比雪夫.md"
+  ],
+  "raw/books/数值分析/09_runge_phenomenon.md": [
+    "wiki/concepts/勒贝格常数.md",
+    "wiki/concepts/样条方法.md",
+    "wiki/concepts/龙格现象.md",
+    "wiki/entities/卡尔·龙格.md"
+  ],
+  "raw/books/数值分析/10_richardson_extrapolation.md": [
+    "wiki/concepts/Richardson外推法.md",
+    "wiki/concepts/Romberg积分.md",
+    "wiki/entities/刘易斯·弗赖·理查森.md"
+  ],
+  "raw/books/数值分析/11_cfl_condition.md": [
+    "wiki/concepts/CFL条件.md",
+    "wiki/concepts/冯·诺依曼稳定性分析.md",
+    "wiki/entities/理查德·柯朗.md"
+  ],
+  "raw/books/数值分析/13_von_neumann_stability.md": [
+    "wiki/concepts/冯·诺依曼稳定性分析.md",
+    "wiki/concepts/条件数.md"
+  ],
+  "raw/books/数值分析/14_turing_rounding_errors.md": [
+    "wiki/concepts/后向误差分析.md",
+    "wiki/concepts/条件数.md",
+    "wiki/entities/阿兰·图灵.md"
+  ],
+  "raw/books/数值分析/15_conjugate_gradient.md": [
+    "wiki/concepts/Krylov子空间方法.md",
+    "wiki/concepts/共轭梯度法.md",
+    "wiki/entities/康尼利厄斯·朗佐斯.md",
+    "wiki/entities/爱德华·施蒂费尔.md",
+    "wiki/entities/马格努斯·赫斯坦尼斯.md"
+  ],
+  "raw/books/数值分析/17_lax_equivalence_theorem.md": [
+    "wiki/concepts/Lax-Richtmyer等价定理.md",
+    "wiki/entities/彼得·拉克斯.md"
+  ],
+  "raw/books/数值分析/18_householder_transformations.md": [
+    "wiki/concepts/Householder变换.md",
+    "wiki/entities/阿尔斯顿·豪斯霍尔德.md"
+  ],
+  "raw/books/数值分析/21_cooley_tukey_fft.md": [
+    "wiki/concepts/快速傅里叶变换.md",
+    "wiki/entities/约翰·图基.md",
+    "wiki/entities/詹姆斯·库利.md"
+  ],
+  "raw/books/数值分析/22_golub_kahan_svd.md": [
+    "wiki/concepts/奇异值分解.md",
+    "wiki/entities/吉恩·戈卢布.md",
+    "wiki/entities/威廉·卡汉.md"
+  ],
+  "raw/books/数值分析/24_zienkiewicz_fem.md": [
+    "wiki/concepts/有限元方法.md",
+    "wiki/entities/辛克维奇.md"
+  ],
+  "raw/books/机器人学/01-denavit-hartenberg-kinematic-notation.md": [
+    "wiki/entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.md",
+    "wiki/entities/Jacques Denavit.md",
+    "wiki/entities/Richard S. Hartenberg.md"
+  ],
+  "raw/books/机器人学/02-kalman-filter-linear-filtering.md": [
+    "wiki/concepts/卡尔曼滤波.md",
+    "wiki/entities/Rudolf.md"
+  ],
+  "raw/books/机器人学/03-ernst-mh1-hand-eye-coordination.md": [
+    "wiki/concepts/手眼协调.md",
+    "wiki/entities/Heinrich A. Ernst.md",
+    "wiki/entities/MH-1 机械手.md",
+    "wiki/entities/TX-0 计算机.md",
+    "wiki/entities/Unimate.md"
+  ],
+  "raw/books/机器人学/04-fikes-nilsson-strips-planner.md": [
+    "wiki/concepts/PDDL.md",
+    "wiki/concepts/STRIPS 规划器.md",
+    "wiki/entities/Nils J. Nilsson.md",
+    "wiki/entities/Richard E. Fikes.md",
+    "wiki/entities/Shakey 机器人.md"
+  ],
+  "raw/books/机器人学/05-paul-robot-manipulators-mathematics.md": [
+    "wiki/concepts/Denavit-Hartenberg 参数.md",
+    "wiki/concepts/齐次变换矩阵.md",
+    "wiki/entities/PUMA 机器人.md",
+    "wiki/entities/Richard P. Paul.md",
+    "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md"
+  ],
+  "raw/books/机器人学/06-lozano-perez-configuration-space.md": [
+    "wiki/concepts/构型空间方法.md",
+    "wiki/concepts/运动规划.md",
+    "wiki/entities/Tomas Lozano-Perez.md"
+  ],
+  "raw/books/机器人学/07-khatib-artificial-potential-field.md": [
+    "wiki/concepts/人工势场法.md",
+    "wiki/concepts/操作空间控制.md",
+    "wiki/entities/Oussama Khatib.md"
+  ],
+  "raw/books/机器人学/08-brooks-subsumption-architecture.md": [
+    "wiki/concepts/包容体系结构.md",
+    "wiki/concepts/行为机器人学.md",
+    "wiki/entities/Rodney Brooks.md"
+  ],
+  "raw/books/机器人学/09-raibert-legged-robots-balance.md": [
+    "wiki/concepts/Legged Robots That Balance.md",
+    "wiki/concepts/三分解控制框架.md",
+    "wiki/concepts/动态平衡.md",
+    "wiki/concepts/弹簧 - 质量模型.md",
+    "wiki/entities/Boston Dynamics.md",
+    "wiki/entities/Marc H. Raibert.md"
+  ],
+  "raw/books/机器人学/10-kavraki-probabilistic-roadmaps.md": [
+    "wiki/concepts/概率路线图 (PRM).md",
+    "wiki/entities/Jean-Claude Latombe.md",
+    "wiki/entities/Lydia Kavraki.md",
+    "wiki/entities/Mark Overmars.md",
+    "wiki/entities/Petr Švestka.md"
+  ],
+  "raw/books/机器人学/11-lavalle-rapidly-exploring-random-trees.md": [
+    "wiki/concepts/Kinodynamic Planning.md",
+    "wiki/concepts/RRT-Connect.md",
+    "wiki/concepts/Voronoi 偏置.md",
+    "wiki/concepts/快速扩展随机树 (RRT).md",
+    "wiki/entities/Steven M. LaValle.md"
+  ],
+  "raw/books/机器人学/12-thrun-probabilistic-robotics.md": [
+    "wiki/concepts/Probabilistic Robotics.md",
+    "wiki/concepts/SLAM.md",
+    "wiki/concepts/蒙特卡罗定位.md",
+    "wiki/entities/Dieter Fox.md",
+    "wiki/entities/Sebastian Thrun.md",
+    "wiki/entities/Wolfram Burgard.md"
+  ],
+  "raw/books/机器人学/13-quigley-ros-robot-operating-system.md": [
+    "wiki/concepts/ROS (Robot Operating System).md",
+    "wiki/entities/Brian Gerkey.md",
+    "wiki/entities/Morgan Quigley.md",
+    "wiki/entities/PR2 机器人.md",
+    "wiki/entities/Willow Garage.md"
+  ],
+  "raw/books/机器人学/14-levine-deep-visuomotor-policies.md": [
+    "wiki/concepts/端到端视觉运动学习.md",
+    "wiki/entities/Sergey-Levine.md"
+  ],
+  "raw/books/机器人学/15-openai-solving-rubiks-cube.md": [
+    "wiki/concepts/域随机化.md"
+  ],
+  "raw/books/机器人学/16-brohan-rt2-vision-language-action.md": [
+    "wiki/concepts/视觉-语言-动作模型.md",
+    "wiki/entities/Sergey-Levine.md"
+  ],
+  "raw/books/概率论/06_laplace_theorie_analytique.md": [
+    "wiki/concepts/Laplace变换.md"
+  ],
+  "raw/books/概率论/07_gauss_error_theory.md": [
+    "wiki/concepts/最大似然原理.md"
+  ],
+  "raw/books/概率论/08_poisson_law_of_large_numbers.md": [
+    "wiki/concepts/泊松分布.md",
+    "wiki/entities/西梅翁·泊松.md"
+  ],
+  "raw/books/概率论/09_chebyshev_inequality_method_of_moments.md": [
+    "wiki/concepts/切比雪夫不等式.md"
+  ],
+  "raw/books/概率论/10_markov_chains.md": [
+    "wiki/concepts/马尔可夫链.md",
+    "wiki/entities/安德烈·马尔可夫.md"
+  ],
+  "raw/books/概率论/11_borel_countable_probability.md": [
+    "wiki/concepts/概率公理体系.md",
+    "wiki/entities/埃米尔·博雷尔.md"
+  ],
+  "raw/books/概率论/12_kolmogorov_foundations_probability.md": [
+    "wiki/concepts/概率公理体系.md",
+    "wiki/entities/安德烈·柯尔莫哥洛夫.md"
+  ],
+  "raw/books/概率论/13_wiener_brownian_motion.md": [
+    "wiki/concepts/Itô随机积分.md",
+    "wiki/concepts/Wiener测度.md",
+    "wiki/concepts/Wiener积分.md",
+    "wiki/concepts/Wiener过程.md",
+    "wiki/concepts/随机游走.md",
+    "wiki/entities/诺伯特·维纳.md",
+    "wiki/entities/路易·巴舍利耶.md"
+  ],
+  "raw/books/概率论/14_kolmogorov_analytical_methods.md": [
+    "wiki/entities/安德烈·柯尔莫哥洛夫.md"
+  ],
+  "raw/books/矩阵分析/02_sylvester_matrix_terminology_law_of_inertia_1852.md": [
+    "wiki/concepts/矩阵理论.md",
+    "wiki/entities/詹姆斯·约瑟夫·西尔维斯特.md"
+  ],
+  "raw/qa/qa-20260407-175851.md": [
+    "wiki/qa-insights/Cargo-for-X全能工具链模式.md"
+  ],
+  "raw/qa/qa.snapshot.md": [
+    "wiki/syntheses/知识系统的六个工程反模式.md"
+  ]
+}

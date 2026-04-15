@@ -56,7 +56,7 @@ pi-ai 的 Model 对象包含 `api` 字段决定路由到哪个适配器，与 `p
 
 ## 来源
 
-- [[raw/articles/pi-agent/02-pi-ai.md]]
+- [[raw/articles/ai-tools/pi-agent/02-pi-ai.md]]
 
 ## 相关
 

@@ -13,7 +13,9 @@ subgraph CMDS["Wiki Commands"]
     C_LINT["wiki:lint"]
     C_BUILD["wiki:build"]
     C_REINDEX["wiki:reindex"]
-    C_MAINTAIN["wiki:maintain<br/><small>reindex→check→lint→build</small>"]
+    C_RELINK["wiki:relink"]
+    C_REORGANIZE["wiki:reorganize-raw"]
+    C_MAINTAIN["wiki:maintain<br/><small>reorganize-raw→relink→reindex→check→lint→build</small>"]
     C_CONSOLIDATE["wiki:consolidate"]
     C_CRYSTALLIZE["wiki:crystallize"]
     C_JOURNAL["wiki:journal"]
@@ -32,6 +34,9 @@ subgraph PYSCRIPTS["Python Scripts"]
     PY_LINT["lint_wiki.py"]
     PY_QWEN["qwen_ingest.py"]
     PY_SEARCH["search_wiki.py"]
+    PY_RELINK["relink.py"]
+    PY_RAWMAP["build_raw_wiki_map.py"]
+    PY_RECLASSIFY["reclassify_raw.py"]
 end
 
 subgraph SHSCRIPTS["Shell Scripts"]
@@ -55,6 +60,8 @@ subgraph DATA["Data Files"]
     D_MAPS["maps/*.md"]
     D_BM25["index/BM25/*"]
     D_STATIC["static/*"]
+    D_REMAP["raw/re-map.json"]
+    D_RAWWIKI["raw/raw-wiki-map.json"]
 end
 
 %% ─────────────────────────────────────────────
@@ -85,10 +92,17 @@ C_BUILD --> PY_WIKI
 
 C_REINDEX --> PY_SNAP
 
-C_MAINTAIN -.->|"1. calls"| C_REINDEX
-C_MAINTAIN -.->|"2. calls"| C_CHECK
-C_MAINTAIN -.->|"3. calls"| C_LINT
-C_MAINTAIN -.->|"4. calls"| C_BUILD
+C_RELINK --> PY_RELINK
+
+C_REORGANIZE --> PY_RAWMAP
+C_REORGANIZE --> PY_RECLASSIFY
+
+C_MAINTAIN -.->|"1. calls"| C_REORGANIZE
+C_MAINTAIN -.->|"2. calls"| C_RELINK
+C_MAINTAIN -.->|"3. calls"| C_REINDEX
+C_MAINTAIN -.->|"4. calls"| C_CHECK
+C_MAINTAIN -.->|"5. calls"| C_LINT
+C_MAINTAIN -.->|"6. calls"| C_BUILD
 
 C_JOURNAL -->|"related"| PY_SEARCH
 C_REVIEW -->|"connections"| PY_SEARCH
@@ -112,6 +126,9 @@ PY_GRAPH --> D_GRAPH
 PY_STATS --> D_STATIC
 PY_WIKI --> D_STATIC
 PY_SNAP --> D_INDEX
+PY_RAWMAP --> D_RAWWIKI
+PY_RECLASSIFY --> D_REMAP
+PY_RECLASSIFY --> D_RAWWIKI
 
 %% ─────────────────────────────────────────────
 %%  SCRIPT → DATA READS
@@ -121,6 +138,7 @@ PY_SEARCH -.->|"reads"| D_BM25
 PY_SEARCH -.->|"reads"| D_MAPS
 PY_SEARCH -.->|"reads"| D_GRAPH
 C_CHECK -.->|"reads"| D_GRAPH
+PY_RECLASSIFY -.->|"reads"| D_REMAP
 
 %% ─────────────────────────────────────────────
 %%  COMMAND → DATA WRITES
@@ -131,6 +149,7 @@ C_QAIMPORT --> D_INDEX
 C_QAIMPORT --> D_LOG
 C_REINDEX --> D_MAPS
 C_BUILD --> D_STATIC
+C_REORGANIZE --> D_LOG
 C_MAINTAIN --> D_LOG
 
 %% ─────────────────────────────────────────────
@@ -144,9 +163,9 @@ classDef hook     fill:#E07070,stroke:#A03030,color:#fff,rx:4
 classDef data     fill:#D0C0F0,stroke:#7060A0,color:#000,rx:4
 classDef pipeline fill:#9B59B6,stroke:#6C3483,color:#fff,rx:6
 
-class C_INGEST,C_LOOP,C_QUERY,C_CHECK,C_LINT,C_BUILD,C_REINDEX,C_CONSOLIDATE,C_CRYSTALLIZE,C_JOURNAL,C_REVIEW,C_QAIMPORT,C_CONVERT command
+class C_INGEST,C_LOOP,C_QUERY,C_CHECK,C_LINT,C_BUILD,C_REINDEX,C_RELINK,C_REORGANIZE,C_CONSOLIDATE,C_CRYSTALLIZE,C_JOURNAL,C_REVIEW,C_QAIMPORT,C_CONVERT command
 class C_MAINTAIN pipeline
-class PY_BM25,PY_GRAPH,PY_STATS,PY_WIKI,PY_SNAP,PY_LINT,PY_QWEN,PY_SEARCH pyscript
+class PY_BM25,PY_GRAPH,PY_STATS,PY_WIKI,PY_SNAP,PY_LINT,PY_QWEN,PY_SEARCH,PY_RELINK,PY_RAWMAP,PY_RECLASSIFY pyscript
 class SH_LOOP,SH_QWEN shscript
 class H_LINT,H_BM25,H_GRAPH hook
-class D_INDEX,D_LOG,D_GRAPH,D_MAPS,D_BM25,D_STATIC data
+class D_INDEX,D_LOG,D_GRAPH,D_MAPS,D_BM25,D_STATIC,D_REMAP,D_RAWWIKI data

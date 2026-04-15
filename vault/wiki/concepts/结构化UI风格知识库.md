@@ -82,7 +82,7 @@ design_system_variables     ← CSS 自定义属性模板
 
 ## 来源
 
-- [[raw/articles/UI-skill/blog-02-styles.md]]
+- [[raw/articles/ai-tools/claude-skills/blog-02-styles.md]]
 
 ## 相关
 

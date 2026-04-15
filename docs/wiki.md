@@ -44,7 +44,9 @@
 | `wiki:check` | 只读健康诊断 (A-I 项) | 无 | 检查报告（不修改文件） |
 | `wiki:lint` | 健康检查 + 自动修复 | 无 | lint 报告 + 自动修复 |
 | `wiki:build` | 构建所有静态产出 | 无 | graph.json + statistics + wiki HTML |
-| `wiki:maintain` | 一键维护 (reindex→check→lint→build) | 无 | 索引 + 诊断 + 修复 + 静态产出 |
+| `wiki:relink` | 自动链接未链接的术语提及（最长匹配优先） | 无 | 修改后的 wiki 页面 |
+| `wiki:reorganize-raw` | 重分类 raw/ 到嵌套目录 + 更新 wiki 引用 | 无 | re-map.json + raw-wiki-map.json |
+| `wiki:maintain` | 一键维护 (reorganize-raw→relink→reindex→check→lint→build) | 无 | 索引 + 诊断 + 静态产出 |
 | `wiki:consolidate` | 记忆晋升 + 衰减 | `--deep`（可选） | 记忆层更新 |
 | `wiki:crystallize` | 会话 → 结构化摘要 | 主题描述（可选） | working memory + 可选 synthesis |
 | `wiki:journal` | 日记 / 反思 / 判断 | `daily` / `reflection` / `judgment` | journal 文件 |
@@ -438,7 +440,7 @@ Output: vault/graph.json
 
 ### wiki:maintain
 
-**用途**：一键执行完整知识库维护流水线：reindex → check → lint → build。等价于依次运行四个子命令，但在关键步骤失败时提前终止。
+**用途**：一键执行完整知识库维护流水线：reorganize-raw → reindex → check → build。等价于依次运行四个子命令，但在关键步骤失败时提前终止。
 
 **输入格式**：
 

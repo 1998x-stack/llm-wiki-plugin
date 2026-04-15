@@ -54,7 +54,7 @@ Claude Code 的钩子系统定义了五个关键阶段的触发点，每个阶�
 该系统的灵活性使得 Claude Code 不仅仅是一个聊天机器人，而是一个可编程的、具备扩展性的开发平台。
 
 ## 来源
-- [[raw/articles/claude-mem/blog_01_overview.md]]
+- [[raw/articles/ai-tools/claude-mem/blog_01_overview.md]]
 
 ## 相关
 - [[Claude-Mem]]
