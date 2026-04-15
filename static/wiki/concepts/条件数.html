@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">条件数</h1>
 <h2 id="_2">概述</h2>
-<p>条件数（condition number）$\kappa(A) = |A| \cdot |A^{-1}|$ 是衡量线性方程组 $Ax = b$ 对输入扰动的<strong>固有敏感程度</strong>的核心量。由<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>于 1948 年系统引入（记作 $N(A)$），<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>与 Goldstine 于 1947 年独立提出类似概念。条件数大（病态问题）意味着输入的微小扰动会被极度放大到输出，与算法选择无关；条件数小（良态问题）则意味着结果对误差不敏感。结合<a href="后向误差分析.html">后向误差分析</a>，条件数提供了数值计算可靠性的完整理论框架。</p>
+<p>条件数（condition number）$\kappa(A) = |A| \cdot |A^{-1}|$ 是衡量线性方程组 $Ax = b$ 对输入扰动的<strong>固有敏感程度</strong>的核心量。由<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>于 1948 年系统引入（记作 $N(A)$），<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>与 Goldstine 于 1947 年独立提出类似概念。条件数大（病态问题）意味着输入的微小扰动会被极度放大到输出，与算法选择无关；条件数小（良态问题）则意味着结果对误差不敏感。结合<a href="后向误差分析.html">后向误差分析</a>，条件数提供了<a href="数值分析.html">数值分析</a>可靠性的完整理论框架。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>$$\kappa(A) = |A| \cdot |A^{-1}|$$</p>
-<p>其中 $|\cdot|$ 是任意相容矩阵范数（常用 2-范数：$\kappa_2(A) = \sigma_{\max}/\sigma_{\min}$，即最大与最小奇异值之比）。</p>
-<p>对正规矩阵（含对称正定矩阵）：</p>
+<p>其中 $|\cdot|$ 是任意相容<a href="矩阵.html">矩阵</a>范数（常用 2-范数：$\kappa_2(A) = \sigma_{\max}/\sigma_{\min}$，即最大与最小<a href="奇异值分解.html">奇异值分解</a>之比）。</p>
+<p>对<a href="正规矩阵.html">正规矩阵</a>（含对称正定<a href="矩阵.html">矩阵</a>）：</p>
 <p>$$\kappa_2(A) = |\lambda_{\max}| / |\lambda_{\min}|$$</p>
 <h3 id="_5">物理意义</h3>
 <p><strong>条件数是问题对输入扰动的"放大倍数"上界</strong>：</p>
@@ -181,50 +181,25 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>图灵引入"病态"（ill-conditioned）和"良态"（well-conditioned）这对术语，至今是数值分析最常用的专业词汇。</p>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>引入"病态"（ill-conditioned）和"良态"（well-conditioned）这对术语，至今是<a href="数值分析.html">数值分析</a>最常用的专业词汇。</p>
 <h3 id="_7">条件数与后向误差分析的结合</h3>
-<p><a href="后向误差分析.html">后向误差分析</a>（Wilkinson 1963–1965）将算法误差分解为：</p>
+<p><a href="后向误差分析.html">后向误差分析</a>（<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a> 1963–1965）将算法误差分解为：</p>
 <p>$$\underbrace{\text{前向误差}}<em>{\text{结果精度}} \approx \underbrace{\kappa(A)}</em>{\text{问题固有难度}} \times \underbrace{\epsilon_{\text{backward}}}_{\text{算法稳定性}}$$</p>
 <ul>
-<li><strong>后向误差小</strong> → 算法是后向稳定的（好算法）</li>
+<li><strong><a href="后向误差分析.html">后向误差分析</a>小</strong> → 算法是后向稳定的（好算法）</li>
 <li><strong>条件数小</strong> → 问题是良态的（好问题）</li>
 <li><strong>两者都小</strong> → 数值结果可靠</li>
 </ul>
-<p>这一分解澄清了"结果不准"究竟是算法问题还是问题本身的问题——是图灵最重要的概念贡献之一。</p>
+<p>这一分解澄清了"结果不准"究竟是算法问题还是问题本身的问题——是<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>最重要的概念贡献之一。</p>
 <h3 id="vs">图灵 vs 冯·诺依曼的定义对比</h3>
-<table>
-<thead>
-<tr>
-<th>方面</th>
-<th>图灵（1948）</th>
-<th>冯·诺依曼-Goldstine（1947）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>定义形式</td>
-<td>$N(A) = |A|\cdot|A^{-1}|$（矩阵范数乘积）</td>
-<td>$\lambda_{\max}/\lambda_{\min}$（特征值比）</td>
-</tr>
-<tr>
-<td>误差模型</td>
-<td>确定性最坏情况分析</td>
-<td>统计模型（随机舍入假设）</td>
-</tr>
-<tr>
-<td>主要对象</td>
-<td>高斯消元法</td>
-<td>矩阵求逆</td>
-</tr>
-<tr>
-<td>现代标准</td>
-<td>更接近（便于推广）</td>
-<td>仅适用正规矩阵</td>
-</tr>
-</tbody>
-</table>
+<p>| 方面 | <a href="../entities/阿兰·图灵.html">阿兰·图灵</a>（1948） | 冯·诺依曼-Goldstine（1947） |
+|------|------------|--------------------------|
+| 定义形式 | $N(A) = |A|\cdot|A^{-1}|$（<a href="矩阵.html">矩阵</a>范数乘积）| $\lambda_{\max}/\lambda_{\min}$（特征值比）|
+| 误差模型 | 确定性最坏情况分析 | 统计模型（随机舍入假设）|
+| 主要对象 | 高斯消元法 | <a href="矩阵.html">矩阵</a>求逆 |
+| 现代标准 | 更接近（便于推广）| 仅适用<a href="正规矩阵.html">正规矩阵</a> |</p>
 <h3 id="_8">条件数的推广</h3>
-<p>条件数概念已推广到几乎所有数值计算领域：</p>
+<p>条件数概念已推广到几乎所有<a href="数值分析.html">数值分析</a>领域：</p>
 <table>
 <thead>
 <tr>
@@ -243,7 +218,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>优化问题</td>
-<td>Hessian 矩阵的谱条件数</td>
+<td>Hessian <a href="矩阵.html">矩阵</a>的谱条件数</td>
 </tr>
 <tr>
 <td>神经网络训练</td>
@@ -252,7 +227,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_9">历史意义</h3>
-<p>图灵1948年论文否定了 Hotelling（1943）关于高斯消元法误差以 $4^n$ 指数增长的悲观预测：使用<strong>列主元选取</strong>（partial pivoting）后，误差界大致为 $\kappa(A) \cdot 2^{-t}$，不随 $n$ 指数增长。这对计算科学界是一个重要解脱，为使用大规模高斯消元法奠定了理论依据。</p>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>1948年论文否定了 Hotelling（1943）关于高斯消元法误差以 $4^n$ 指数增长的悲观预测：使用<strong>列主元选取</strong>（partial pivoting）后，误差界大致为 $\kappa(A) \cdot 2^{-t}$，不随 $n$ 指数增长。这对计算科学界是一个重要解脱，为使用大规模高斯消元法奠定了理论依据。</p>
 <h2 id="_10">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/14_turing_rounding_errors.md</span></li>

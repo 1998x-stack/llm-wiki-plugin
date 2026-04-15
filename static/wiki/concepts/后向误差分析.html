@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">后向误差分析</h1>
 <h2 id="_2">概述</h2>
-<p>后向误差分析（Backward Error Analysis）是由<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>在1950–1960年代系统建立的数值分析方法论，是现代数值线性代数的核心范式。<strong>核心思想</strong>：不问"计算结果与精确解差多远"（正向误差），而问"计算结果精确地解了哪个问题"（后向误差）——即找到一个扰动输入 $A+\delta A$，使算法的浮点输出恰好是该扰动问题的精确解，然后评估扰动量 $|\delta A|/|A|$ 的大小。若后向误差与输入数据的固有不确定性相当，算法就是<strong>后向稳定</strong>的，计算结果的精度完全由问题的<strong>条件数</strong>决定，而非算法实现。</p>
+<p>后向误差分析（Backward Error Analysis）是由<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>在1950–1960年代系统建立的<a href="数值分析.html">数值分析</a>方法论，是现代数值<a href="线性代数.html">线性代数</a>的核心范式。<strong>核心思想</strong>：不问"计算结果与精确解差多远"（正向误差），而问"计算结果精确地解了哪个问题"（后向误差）——即找到一个扰动输入 $A+\delta A$，使算法的浮点输出恰好是该扰动问题的精确解，然后评估扰动量 $|\delta A|/|A|$ 的大小。若后向误差与输入数据的固有不确定性相当，算法就是<strong>后向稳定</strong>的，计算结果的精度完全由问题的<strong><a href="条件数.html">条件数</a></strong>决定，而非算法实现。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="vs">正向 vs. 后向误差</h3>
 <table>
@@ -169,9 +169,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><strong>方法论洞见</strong>：威尔金森在 Pilot ACE 上计算多项式零点时发现：计算得到的零点虽非原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点。这一观察催生了后向误差分析的思想。</p>
+<p><strong>方法论洞见</strong>：<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>在 <a href="../entities/Pi-Agent.html">Pi-Agent</a>lot ACE 上计算多项式零点时发现：计算得到的零点虽非原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点。这一观察催生了后向误差分析的思想。</p>
 <h3 id="_4">后向稳定性定义</h3>
-<p>算法 $\mathcal{A}$ 是<strong>后向稳定</strong>的（backward stable），若对输入 $A$ 的计算输出 $\hat x$，存在扰动矩阵 $\delta A$ 使得：</p>
+<p>算法 $\mathcal{A}$ 是<strong>后向稳定</strong>的（backward stable），若对输入 $A$ 的计算输出 $\hat x$，存在扰动<a href="矩阵.html">矩阵</a> $\delta A$ 使得：</p>
 <ol>
 <li>$\hat x$ 是扰动问题 $(A + \delta A)x = b$ 的<strong>精确解</strong></li>
 <li>后向误差满足：$\dfrac{|\delta A|}{|A|} \leq f(n)\,\varepsilon_{\text{mach}}$</li>
@@ -181,8 +181,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>后向误差分析的关键贡献是<strong>清晰分离算法稳定性与问题条件性</strong>：</p>
 <p><strong>前向误差界</strong>（由后向误差推导）：
 $$\frac{|\hat x - x|}{|x|} \lesssim \kappa(A) \cdot \frac{|\delta A|}{|A|} \lesssim \kappa(A) \cdot f(n)\,\varepsilon_{\text{mach}}$$</p>
-<p><strong>矩阵条件数</strong>（线性方程组）：$\kappa(A) = |A|\cdot|A^{-1}|$</p>
-<p><strong>特征值条件数</strong>：对 $A = V\Lambda V^{-1}$，第 $i$ 个特征值的条件数为 $1/|y_i^H x_i|$（$x_i, y_i$ 为右/左特征向量）；对<strong>Hermitian 矩阵</strong>，条件数恒为1（特征值最"稳定"）。</p>
+<p><strong><a href="条件数.html">条件数</a>数</strong>（线性方程组）：$\kappa(A) = |A|\cdot|A^{-1}|$</p>
+<p><strong>特征值<a href="条件数.html">条件数</a></strong>：对 $A = V\Lambda V^{-1}$，第 $i$ 个特征值的<a href="条件数.html">条件数</a>为 $1/|y_i^H x_i|$（$x_i, y_i$ 为右/左特征向量）；对<strong>Hermitian <a href="矩阵.html">矩阵</a></strong>，<a href="条件数.html">条件数</a>恒为1（特征值最"稳定"）。</p>
 <p><strong>含义</strong>：
 - 后向稳定算法 → 后向误差 $\sim \varepsilon_{\text{mach}}$（与机器精度同阶）
 - 计算结果误差 $\sim \kappa(A) \cdot \varepsilon_{\text{mach}}$
@@ -191,28 +191,28 @@ $$\frac{|\hat x - x|}{|x|} \lesssim \kappa(A) \cdot \frac{|\delta A|}{|A|} \less
 <p><strong>Gauss 消去法（带部分主元）</strong>：后向误差界：
 $$\frac{|\delta A|}{|A|} \leq 8n^3 \rho_n \varepsilon_{\text{mach}}$$
 $\rho_n$ 为增长因子（growth factor）。最坏情形 $\rho_n$ 可达 $2^{n-1}$，但实际几乎总是适度大小——彻底推翻了 Hotelling（1943）关于 Gauss 消去法误差指数增长的悲观判断。</p>
-<p><strong>QR算法（<a href="QR算法.html">QR算法</a>的计算）</strong>：通过 Householder 反射和 Givens 旋转等<strong>酉变换</strong>（保 2-范数，不放大误差）构造，具有后向稳定性——计算得到的 Schur 形式是原矩阵加小扰动的精确 Schur 形式。</p>
-<p><strong>带 Wilkinson 位移的对称 QR</strong>：全局收敛，三次方渐近收敛率，是计算对称特征值的黄金标准算法。</p>
+<p><strong><a href="QR算法.html">QR算法</a>（<a href="QR算法.html">QR算法</a>的计算）</strong>：通过 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 反射和 Givens 旋转等<strong>酉变换</strong>（保 2-范数，不放大误差）构造，具有后向稳定性——计算得到的 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 形式是原<a href="矩阵.html">矩阵</a>加小扰动的精确 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 形式。</p>
+<p><strong>带 <a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a> 位移的对称 QR</strong>：全局收敛，三次方渐近收敛率，是计算对称特征值的黄金标准算法。</p>
 <h3 id="_7">正交变换的优越性</h3>
-<p>后向误差分析揭示了为何<strong>酉/正交变换</strong>（Householder 反射、Givens 旋转）是数值稳定算法的首选构件：</p>
+<p>后向误差分析揭示了为何<strong>酉/正交变换</strong>（<a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 反射、Givens 旋转）是数值稳定算法的首选构件：</p>
 <p>$$|Qx|_2 = |x|_2 \quad \Rightarrow \quad \text{变换不放大误差}$$</p>
-<p>条件数 $\kappa_2(Q) = 1$（最优），而一般相似变换的条件数可以任意大。这直接解释了<a href="QR算法.html">QR算法</a>（基于酉变换）优于 LR 算法（基于 LU 分解）的本质原因。</p>
+<p><a href="条件数.html">条件数</a> $\kappa_2(Q) = 1$（最优），而一般相似变换的<a href="条件数.html">条件数</a>可以任意大。这直接解释了<a href="QR算法.html">QR算法</a>（基于酉变换）优于 LR 算法（基于 LU 分解）的本质原因。</p>
 <h3 id="wilkinson">Wilkinson 多项式（条件性反例）</h3>
-<p>威尔金森给出了著名的病态反例：20次多项式
+<p><a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>给出了著名的病态反例：20次多项式
 $$w(x) = \prod_{i=1}^{20}(x-i) = (x-1)(x-2)\cdots(x-20)$$</p>
 <p>仅将 $x^{19}$ 系数（$-210$）扰动 $2^{-23}$，某些根就发生数量级的偏移（如根 $15,16,\ldots,20$ 变为复数对）。这不是算法问题，而是多项式求根问题的<strong>内在条件性</strong>极差——后向误差分析清晰地将责任归于问题而非算法。</p>
 <h2 id="_8">历史谱系</h2>
-<p><strong>图灵（1948）→ 冯·诺依曼/Goldstine（1947）→ 威尔金森（1963/1965）</strong></p>
-<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>1948年论文含后向误差的思想萌芽：他指出高斯消元的浮点输出可以被理解为某个"邻近方程组"的精确解，并引入<a href="条件数.html">条件数</a>概念（N(A) = ‖A‖·‖A⁻¹‖），清晰区分了"问题固有困难"与"算法引入误差"。威尔金森在 NPL 与图灵共事期间受其深刻影响，后来将这些萌芽系统化为完整的后向误差分析框架（1963年《Rounding Errors in Algebraic Processes》，1965年《The Algebraic Eigenvalue Problem》）。</p>
+<p><strong><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>（1948）→ 冯·诺依曼/Goldstine（1947）→ <a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>（1963/1965）</strong></p>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>1948年论文含后向误差的思想萌芽：他指出高斯消元的浮点输出可以被理解为某个"邻近方程组"的精确解，并引入<a href="条件数.html">条件数</a>概念（<a href="条件数.html">条件数</a> = ‖A‖·‖A⁻¹‖），清晰区分了"问题固有困难"与"算法引入误差"。<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>在 NPL 与<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>共事期间受其深刻影响，后来将这些萌芽系统化为完整的后向误差分析框架（1963年《Rounding Errors in Algebraic Processes》，1965年《The Algebraic Eigenvalue Problem》）。</p>
 <h2 id="_9">历史地位</h2>
-<p><strong>彻底改变了数值分析的思维范式</strong>：在威尔金森之前，人们直觉地害怕大规模浮点计算；在威尔金森之后，人们学会了区分"算法不稳定"与"问题病态"，科学计算因此获得了严格的理论基础。</p>
-<p><strong>软件链条</strong>：理论（1965 Wilkinson书）→ 算法实现（1971 Wilkinson-Reinsch手册）→ EISPACK/LINPACK（1970s）→ LAPACK（1992至今）→ MATLAB/NumPy 的矩阵计算内核。</p>
-<p><strong>图灵奖引文（1970）</strong>：以一己之力"创造了我们目前关于线性代数计算机解法的全部科学知识"。</p>
+<p><strong>彻底改变了<a href="数值分析.html">数值分析</a>的思维范式</strong>：在<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>之前，人们直觉地害怕大规模浮点计算；在<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>之后，人们学会了区分"算法不稳定"与"问题病态"，科学计算因此获得了严格的理论基础。</p>
+<p><strong>软件链条</strong>：理论（1965 <a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>书）→ 算法实现（1971 <a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>-Reinsch手册）→ EISPACK/LINPACK（1970s）→ LAPACK（1992至今）→ MATLAB/NumPy 的<a href="矩阵.html">矩阵</a>计算内核。</p>
+<p><strong><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>奖引文（1970）</strong>：以一己之力"创造了我们目前关于<a href="线性代数.html">线性代数</a>计算机解法的全部科学知识"。</p>
 <h2 id="_10">局限性</h2>
 <ol>
 <li><strong>仅适用于后向稳定算法</strong>：并非所有算法都具有后向稳定性（如朴素 Gram-Schmidt 正交化）</li>
 <li><strong>不涉及算法效率</strong>：后向误差分析只告诉我们精度，不涉及计算复杂度</li>
-<li><strong>稀疏矩阵与迭代方法</strong>：主要针对稠密矩阵；迭代方法（Krylov 子空间法）的误差分析需要不同框架</li>
+<li><strong>稀疏<a href="矩阵.html">矩阵</a>与迭代方法</strong>：主要针对稠密<a href="矩阵.html">矩阵</a>；迭代方法（Krylov 子空间法）的误差分析需要不同框架</li>
 <li><strong>非精确算术的新挑战</strong>：低精度计算（bfloat16、INT8）中，后向误差分析仍有效但需要更精细处理</li>
 </ol>
 <h2 id="_11">来源</h2>
@@ -233,7 +233,7 @@ $$w(x) = \prod_{i=1}^{20}(x-i) = (x-1)(x-2)\cdots(x-20)$$</p>
   </div>
   <div class="page-nav">
     <a href="古典概率定义.html">&larr; 古典概率定义</a>
-    <a href="大数定律.html">大数定律 &rarr;</a>
+    <a href="图灵机.html">图灵机 &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">奇异值分解</h1>
 <h2 id="_2">概述</h2>
-<p>奇异值分解（Singular Value Decomposition，SVD）是线性代数中最重要的矩阵分解之一：<strong>任意 $m \times n$ 复矩阵 $A$ 均可分解为 $A = U\Sigma V^*$</strong>，其中 $U$（$m \times m$）和 $V$（$n \times n$）为酉矩阵，$\Sigma$（$m \times n$）为非负对角矩阵，对角元素 $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ 称为<strong>奇异值</strong>。SVD 适用于任意（非方形、非对称）矩阵，揭示了矩阵作为线性映射的本质几何结构，是<a href="正规矩阵.html">正规矩阵</a>谱定理对一般矩阵的自然推广。其应用覆盖数值计算、数据科学、量子信息等核心领域。</p>
+<p>奇异值分解（Singular Value Decomposition，SVD）是<a href="线性代数.html">线性代数</a>中最重要的<a href="矩阵.html">矩阵</a>分解之一：<strong>任意 $m \times n$ 复<a href="矩阵.html">矩阵</a> $A$ 均可分解为 $A = U\Sigma V^*$</strong>，其中 $U$（$m \times m$）和 $V$（$n \times n$）为酉<a href="矩阵.html">矩阵</a>，$\Sigma$（$m \times n$）为非负对角<a href="矩阵.html">矩阵</a>，对角元素 $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ 称为<strong>奇异值</strong>。SVD 适用于任意（非方形、非对称）<a href="矩阵.html">矩阵</a>，揭示了<a href="矩阵.html">矩阵</a>作为线性映射的本质几何结构，是<a href="正规矩阵.html">正规矩阵</a>谱定理对一般<a href="矩阵.html">矩阵</a>的自然推广。其应用覆盖<a href="数值分析.html">数值分析</a>、数据科学、量子信息等核心领域。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
-<p>对任意 $A \in \mathbb{C}^{m \times n}$（$m \geq n$），存在酉矩阵 $U \in \mathbb{C}^{m \times m}$，$V \in \mathbb{C}^{n \times n}$ 和非负对角矩阵</p>
+<p>对任意 $A \in \mathbb{C}^{m \times n}$（$m \geq n$），存在酉<a href="矩阵.html">矩阵</a> $U \in \mathbb{C}^{m \times m}$，$V \in \mathbb{C}^{n \times n}$ 和非负对角<a href="矩阵.html">矩阵</a></p>
 <p>$$\Sigma = \operatorname{diag}(\sigma_1, \ldots, \sigma_n), \quad \sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_n \geq 0$$</p>
 <p>使得 $A = U\Sigma V^<em>$。列 $u_i$ 称为</em><em>左奇异向量</em><em>，列 $v_j$ 称为</em><em>右奇异向量</em>*，满足 $Av_i = \sigma_i u_i$。</p>
 <p><strong>奇异值的另一刻画</strong>：$\sigma_i(A) = \sqrt{\lambda_i(A^<em>A)} = \sqrt{\lambda_i(AA^</em>)}$（$A^*A$ 的特征值正平方根）。</p>
@@ -180,19 +180,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>1937</td>
 <td>von Neumann</td>
-<td>奇异值控制迹内积（迹不等式）</td>
-</tr>
-<tr>
-<td>1965</td>
-<td>Golub &amp; Kahan</td>
-<td>高效计算算法（Golub-Kahan双对角化）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_6">几何意义</h3>
-<p>SVD 揭示了线性映射 $A: \mathbb{C}^n \to \mathbb{C}^m$ 的本质几何：</p>
-<p>$$A = U\Sigma V^<em> = \sum_{i=1}^n \sigma_i u_i v_i^</em>$$</p>
-<p><strong>含义</strong>：$A$ 等于 $n$ 个秩1矩阵的加权叠加，权重即奇异值。作用于输入空间的标准正交基 ${v_1,\ldots,v_n}$，输出得到沿 ${u_1,\ldots,u_n}$ 方向、放缩因子为 ${\sigma_1,\ldots,\sigma_n}$ 的向量。</p>
+<td>奇异值控制迹内积（<span style="color:#e74c3c" title="broken link">Von Neumann迹不等式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1965&lt;/td&gt;
+&lt;td&gt;Golub &amp;amp; Kahan&lt;/td&gt;
+&lt;td&gt;高效计算算法（Golub-Kahan双对角化）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_6&quot;&gt;几何意义&lt;/h3&gt;
+&lt;p&gt;SVD 揭示了线性映射 $A: \mathbb{C}^n \to \mathbb{C}^m$ 的本质几何：&lt;/p&gt;
+&lt;p&gt;$$A = U\Sigma V^&lt;em&gt; = \sum_{i=1}^n \sigma_i u_i v_i^&lt;/em&gt;$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：$A$ 等于 $n$ 个秩1[[矩阵</span>的加权叠加，权重即奇异值。作用于输入空间的标准正交基 ${v_1,\ldots,v_n}$，输出得到沿 ${u_1,\ldots,u_n}$ 方向、放缩因子为 ${\sigma_1,\ldots,\sigma_n}$ 的向量。</p>
 <h3 id="_7">关键性质</h3>
 <ul>
 <li><strong>唯一性</strong>：奇异值唯一；当奇异值不等时，奇异向量唯一（到相位因子）</li>
@@ -201,22 +201,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>秩</strong>：$\operatorname{rank}(A)$ = 非零奇异值个数</li>
 </ul>
 <h3 id="eckart-young">Eckart-Young 定理（最优低秩逼近）</h3>
-<p><strong>定理</strong>（Eckart-Young 1936 / Schmidt 1907）：在秩不超过 $k$ 的矩阵中，$A$ 的最佳逼近为截断 SVD $A_k = \sum_{i=1}^k \sigma_i u_i v_i^*$，在 Frobenius 范数和谱范数下均成立：</p>
+<p><strong>定理</strong>（Eckart-Young 1936 / Schmidt 1907）：在秩不超过 $k$ 的<a href="矩阵.html">矩阵</a>中，$A$ 的最佳逼近为截断 SVD $A_k = \sum_{i=1}^k \sigma_i u_i v_i^*$，在 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数和谱范数下均成立：</p>
 <p>$$|A - A_k|<em>F = \sqrt{\sum</em>{i=k+1}^n \sigma_i^2}, \quad |A - A_k|<em>2 = \sigma</em>{k+1}$$</p>
 <p><strong>推广</strong>（Mirsky 1960）：上述最优性对所有酉不变范数均成立（依赖<a href="Von Neumann迹不等式.html">Von Neumann迹不等式</a>）。</p>
-<p>这是信息压缩、降维、去噪的理论基础——保留最大的 $k$ 个奇异值等于保留矩阵中"最重要"的 $k$ 个成分。</p>
+<p>这是信息压缩、降维、去噪的理论基础——保留最大的 $k$ 个奇异值等于保留<a href="矩阵.html">矩阵</a>中"最重要"的 $k$ 个成分。</p>
 <h3 id="schur">与 Schur 分解的关系</h3>
-<p>对正规矩阵 $A$（$A^<em>A = AA^</em>$），SVD 退化为谱定理：奇异值 = |特征值|，$U = V$（同一组酉矩阵）。</p>
-<p>对一般矩阵，SVD 是<a href="Schur分解.html">Schur分解</a>的扩展：
-- Schur：$A = QTQ^<em>$（方形矩阵，上三角 $T$，单个酉矩阵 $Q$）
-- SVD：$A = U\Sigma V^</em>$（任意矩形矩阵，对角 $\Sigma$，两个酉矩阵）</p>
+<p>对<a href="正规矩阵.html">正规矩阵</a> $A$（$A^<em>A = AA^</em>$），SVD 退化为谱定理：奇异值 = |特征值|，$U = V$（同一组酉<a href="矩阵.html">矩阵</a>）。</p>
+<p>对一般<a href="矩阵.html">矩阵</a>，SVD 是<a href="Schur分解.html">Schur分解</a>的扩展：
+- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>：$A = QTQ^<em>$（方形<a href="矩阵.html">矩阵</a>，上三角 $T$，单个酉<a href="矩阵.html">矩阵</a> $Q$）
+- SVD：$A = U\Sigma V^</em>$（任意矩形<a href="矩阵.html">矩阵</a>，对角 $\Sigma$，两个酉<a href="矩阵.html">矩阵</a>）</p>
 <h3 id="_8">奇异值与特征值的关系</h3>
-<p>对 $A \in \mathbb{C}^{n \times n}$，奇异值与特征值的关系由 <strong>Weyl 不等式</strong>（1949）刻画：</p>
+<p>对 $A \in \mathbb{C}^{n \times n}$，奇异值与特征值的关系由 <strong><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 不等式</strong>（1949）刻画：</p>
 <p>$$|\lambda_1(A)| \geq |\lambda_2(A)| \geq \cdots, \quad \prod_{i=1}^k |\lambda_i(A)| \leq \prod_{i=1}^k \sigma_i(A)$$</p>
-<p>等号 $\Leftrightarrow$ $A$ 为正规矩阵时，$|\lambda_i| = \sigma_i$。</p>
+<p>等号 $\Leftrightarrow$ $A$ 为<a href="正规矩阵.html">正规矩阵</a>时，$|\lambda_i| = \sigma_i$。</p>
 <h3 id="_9">计算算法</h3>
-<p><strong>Golub-Kahan 算法（1965）</strong>：先将 $A$ 化为双对角形式（bidiagonal form），然后应用<a href="QR算法.html">QR算法</a>到双对角矩阵。这是 LAPACK <code>xGESVD</code> 的核心流程，时间复杂度 $O(\min(m,n) \cdot mn)$。</p>
-<p><strong>随机化 SVD</strong>（Halko, Martinsson, Tropp, 2011）：对大规模矩阵（如 $10^6 \times 10^6$），用随机投影快速计算近似低秩 SVD，复杂度 $O(mn\log k)$（$k$ 为目标秩）。</p>
+<p><strong>Golub-Kahan 算法（1965）</strong>：先将 $A$ 化为双对角形式（bidiagonal form），然后应用<a href="QR算法.html">QR算法</a>到双对角<a href="矩阵.html">矩阵</a>。这是 LAPACK <code>xGESVD</code> 的核心流程，时间复杂度 $O(\min(m,n) \cdot mn)$。</p>
+<p><strong>随机化 SVD</strong>（Halko, Martinsson, Tropp, 2011）：对大规模<a href="矩阵.html">矩阵</a>（如 $10^6 \times 10^6$），用随机投影快速计算近似低秩 SVD，复杂度 $O(mn\log k)$（$k$ 为目标秩）。</p>
 <h2 id="_10">现代应用</h2>
 <table>
 <thead>
@@ -232,31 +232,31 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>推荐系统</td>
-<td>协同过滤的低秩矩阵分解</td>
+<td>协同过滤的低秩<a href="矩阵.html">矩阵</a>分解</td>
 </tr>
 <tr>
 <td>PCA</td>
-<td>协方差矩阵 SVD 提取主成分</td>
+<td>协方差<a href="矩阵.html">矩阵</a> SVD 提取主成分</td>
 </tr>
 <tr>
 <td>LSA（潜在语义分析）</td>
-<td>文档-词矩阵 SVD 提取语义</td>
+<td>文档-词<a href="矩阵.html">矩阵</a> SVD 提取语义</td>
 </tr>
 <tr>
-<td>矩阵补全</td>
-<td>核范数最小化恢复低秩矩阵</td>
+<td><a href="矩阵.html">矩阵</a>补全</td>
+<td>核范数最小化恢复低秩<a href="矩阵.html">矩阵</a></td>
 </tr>
 <tr>
 <td>信号处理</td>
-<td>子空间方法（MUSIC，ESPRIT）去噪</td>
-</tr>
-<tr>
-<td>量子信息</td>
-<td>Schmidt 分解（量子纠缠度量）</td>
-</tr>
-<tr>
-<td>数值线性代数</td>
-<td>伪逆计算、最小二乘解、条件数估计</td>
+<td>子空间方法（MUSIC，ES<span style="color:#e74c3c" title="broken link">Probabilistic Robotics&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;量子信息&lt;/td&gt;
+&lt;td&gt;Schmidt 分解（量子纠缠度量）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;数值[[线性代数</span></td>
+<td>伪逆计算、最小二乘解、<a href="条件数.html">条件数</a>估计</td>
 </tr>
 </tbody>
 </table>

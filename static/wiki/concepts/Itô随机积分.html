@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ito">Itô 随机积分</h1>
 <h2 id="_1">概述</h2>
-<p>Itô 随机积分由伊藤清（Kiyoshi Itô）于1944年提出，将<a href="Wiener积分.html">Wiener积分</a>推广至被积函数可依赖布朗运动本身的情形，是随机微分方程和数学金融的核心工具，以违反直觉的 Itô 公式（含额外二阶项）为标志。</p>
+<p>Itô 随机积分由伊藤清（Kiyoshi Itô）于1944年提出，将<a href="Wiener积分.html">Wiener积分</a>推广至被积函数可依赖<a href="Wiener过程.html">Wiener过程</a>本身的情形，是随机微分方程和数学金融的核心工具，以违反直觉的 Itô 公式（含额外二阶项）为标志。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>动机与局限的超越</strong>：<a href="Wiener积分.html">Wiener积分</a> $\int_0^T f(t) \, dB(t)$ 只能对不依赖于 $B$ 的确定性函数 $f$ 积分。Itô 积分则允许 $f(t, \omega) = f(t, B(t))$——被积函数依赖于布朗运动的路径，这对于描述随机微分方程（SDE）不可缺少。</p>
+<p><strong>动机与局限的超越</strong>：<a href="Wiener积分.html">Wiener积分</a> $\int_0^T f(t) \, dB(t)$ 只能对不依赖于 $B$ 的确定性函数 $f$ 积分。Itô 积分则允许 $f(t, \omega) = f(t, B(t))$——被积函数依赖于<a href="Wiener过程.html">Wiener过程</a>的路径，这对于描述随机微分方程（SDE）不可缺少。</p>
 </li>
 <li>
 <p><strong>定义（Itô 等距）</strong>：对适应过程（adapted process）$f(t, \omega)$，通过简单过程逼近定义 $\int_0^T f \, dB$，并使用 Itô 等距保证极限存在：$$\mathbb{E}!\left[\left(\int_0^T f \, dB\right)^2\right] = \mathbb{E}!\left[\int_0^T f^2 \, dt\right]$$</p>
 </li>
 <li>
-<p><strong>Itô 公式（随机链式法则）</strong>：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通链式法则多出 $\frac{1}{2}F'' dt$ 项——来源于布朗运动的二次变差 $d[B,B]_t = dt$。这是<a href="Wiener过程.html">Wiener过程</a>路径不可微性在微积分中的体现。</p>
+<p><strong>Itô 公式（随机链式法则）</strong>：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通链式法则多出 $\frac{1}{2}F'' dt$ 项——来源于<a href="Wiener过程.html">Wiener过程</a>的二次变差 $d[B,B]_t = dt$。这是<a href="Wiener过程.html">Wiener过程</a>路径不可微性在微积分中的体现。</p>
 </li>
 <li>
-<p><strong>鞅性质</strong>：若 $\mathbb{E}\int_0^T f^2 \, dt &lt; \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与概率论中的鞅理论深度融合。</p>
+<p><strong>鞅性质</strong>：若 $\mathbb{E}\int_0^T f^2 \, dt &lt; \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与<a href="概率论.html">概率论</a>中的鞅理论深度融合。</p>
 </li>
 <li>
 <p><strong>为何需要新积分</strong>：<a href="Wiener过程.html">Wiener过程</a>路径处处不可微，故 Riemann-Stieltjes 积分 $\int g \, dB$ 无法直接定义（被积量无界变差）。Itô 积分通过左端点 Riemann 和（非中点）绕过这一困难——不同端点选取给出不同积分（Stratonovich 积分），这是随机积分的独特之处。</p>
 </li>
 <li>
-<p><strong>应用</strong>：SDE $dS = \mu S \, dt + \sigma S \, dB$（几何布朗运动，Black-Scholes 模型）；Feynman-Kac 公式（PDE 与 SDE 对应）；随机控制（HJB 方程）；深度学习中 SGD 的 SDE 近似。</p>
+<p><strong>应用</strong>：SDE $dS = \mu S \, dt + \sigma S \, dB$（几何<a href="Wiener过程.html">Wiener过程</a>，Black-Scholes 模型）；Feynman-Kac 公式（PDE 与 SDE 对应）；随机控制（HJB 方程）；深度学习中 SGD 的 SDE 近似。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

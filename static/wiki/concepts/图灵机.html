@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图灵机 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 图灵机</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.98</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算理论</span><span class="tag">计算机科学</span><span class="tag">数理逻辑</span><span class="tag">算法</span><span class="tag">基础理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">图灵机</h1>
+<h2 id="_2">概述</h2>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机是由 <a href="../entities/阿兰·图灵.html">阿兰·图灵</a> 于 1936 年定义的抽象计算模型，通过模拟人类计算员的最简行为（读符号、写符号、移动、改变状态）来精确刻画"计算"的数学本质，是计算机科学的理论基石。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定义</h3>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机由四个部件组成：</p>
+<table>
+<thead>
+<tr>
+<th>部件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>纸带（Tape）</strong></td>
+<td>无限长的格子纸，每格写一个符号或为空白</td>
+</tr>
+<tr>
+<td><strong>读写头（Head）</strong></td>
+<td>指向当前格，可读/写符号</td>
+</tr>
+<tr>
+<td><strong>状态控制器</strong></td>
+<td>处于有限种状态之一（起始态 + 可能的停机态）</td>
+</tr>
+<tr>
+<td><strong>转移函数</strong></td>
+<td>δ: Q × Γ → Q × Γ × {L, R}，决定"给定状态和符号，写什么、往哪走、转哪个状态"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>极简性的意义</strong>：这是迄今为止对"机械计算"最简单的形式化。正是因为极简，才能用来证明"不可能"——如果连这么简单的机器都无法完成某件事，任何更复杂的机器也无法完成。</p>
+<h3 id="_5">从人类计算员到抽象机器</h3>
+<p>Turing 的核心论证路径：
+1. 分析人类计算员的实际行为（任意时刻只看有限符号、记忆有限、每步只做有限操作、完全确定性）
+2. 将这些限制抽象为最小模型（纸带 + 读写头 + 有限状态 + 转移表）
+3. 论证：任何"按固定规则进行的机械计算"都能被这台机器模拟</p>
+<p><strong>说服力来源</strong>：定义不是凭空构造，而是来自对计算行为的忠实分析——接受这个定义的代价等于接受"按规则做计算"就是这么一回事。</p>
+<h3 id="utm">通用图灵机（UTM）</h3>
+<p>论文最具预见性的构造：存在一台特殊<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机 U，能<strong>模拟任意<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机</strong>：</p>
+<pre><code>纸带格式: [图灵机M的描述编码] [M的输入数据]
+行为: U 读取M的描述，逐步&quot;解释执行&quot;M
+</code></pre>
+<p><strong>历史意义</strong>：通用<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机在1936年就在纸面上描述了"可编程计算机"——固定硬件 + 可变程序。比 ENIAC（1946年）早10年，比 von Neumann 存储程序架构（1945年）早9年。今天你手机里安装 App 的行为，就是在给一台通用<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机加载"纸带描述"。</p>
+<h3 id="_6">可计算数与不可计算数</h3>
+<p>Turing 证明了：
+- <strong>可计算数</strong>（存在<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机能逐位输出其小数展开）是<strong>可数</strong>的（<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机描述可枚举）
+- <strong>实数</strong>是<strong>不可数</strong>的（Cantor 对角线）
+- ∴ <strong>绝大多数实数是不可计算的</strong>——日常遇到的 π、e、√2 全是可计算的，但在"数学意义上"它们只占实数的极微小比例</p>
+<h3 id="_7">停机问题与计算边界</h3>
+<p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机使得精确讨论"某问题能否被算法解决"成为可能。<a href="停机问题.html">停机问题</a>证明了<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机有根本性的能力边界（见该页面）。</p>
+<h2 id="_8">影响</h2>
+<ul>
+<li><strong>计算复杂度理论</strong>：P、NP、PSPACE 等复杂度类均以<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机为标准参考模型</li>
+<li><strong>现代计算机</strong>：von Neumann 架构（存储程序计算机）是通用<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>机的工程实现</li>
+<li><strong>软件工程</strong>：<a href="停机问题.html">停机问题</a>→不存在完美的程序验证器、完美的恶意软件检测器</li>
+<li><strong>AI 研究</strong>：<a href="Church-Turing 论题.html">Church-Turing 论题</a>划定了"算法能做什么"的边界</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/01-turing-on-computable-numbers.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="停机问题.html">停机问题</a> — 图灵机的根本能力边界</li>
+<li><a href="Church-Turing 论题.html">Church-Turing 论题</a> — 多种计算模型的等价性</li>
+<li><a href="../entities/阿兰·图灵.html">阿兰·图灵</a> — 定义者</li>
+<li><a href="../entities/大卫·希尔伯特.html">大卫·希尔伯特</a> — 图灵机诞生的问题背景（判定问题）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="后向误差分析.html">&larr; 后向误差分析</a>
+    <a href="域随机化.html">域随机化 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

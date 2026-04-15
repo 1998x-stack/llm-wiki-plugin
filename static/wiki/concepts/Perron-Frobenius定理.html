@@ -135,56 +135,56 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="perron-frobenius">Perron-Frobenius定理</h1>
 <h2 id="_1">概述</h2>
-<p>Perron-Frobenius定理是非负矩阵谱理论的核心定理，由<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>（1907）和<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908–1912）先后建立。<strong>对于元素全正的方阵，存在唯一的最大正实特征值（Perron根），其对应特征向量分量全正，其余特征值绝对值严格更小。</strong> Frobenius随后将结论推广到不可约非负矩阵，并揭示了周期性谱结构。该定理是Markov链、PageRank、Leontief经济模型等现代应用的数学基础，也是概率论"长期行为必趋稳定"直觉的精确表述。</p>
+<p><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>定理是非负<a href="矩阵.html">矩阵</a>谱理论的核心定理，由<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>（1907）和<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908–1912）先后建立。<strong>对于元素全正的方阵，存在唯一的最大正实特征值（<a href="谱半径.html">谱半径</a>），其对应特征向量分量全正，其余特征值绝对值严格更小。</strong> <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>随后将结论推广到<a href="不可约矩阵.html">不可约矩阵</a>，并揭示了周期性谱结构。该定理是Markov链、PageRank、Leontief经济模型等现代应用的数学基础，也是<a href="概率论.html">概率论</a>"长期行为必趋稳定"直觉的精确表述。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="perron1907">Perron定理（1907）：正矩阵版本</h3>
 <p><strong>设</strong> $A$ 为 $n \times n$ 实方阵，所有元素满足 $a_{ij} &gt; 0$。则：</p>
 <ol>
-<li><strong>存在性</strong>：$A$ 有唯一最大正实特征值 $r &gt; 0$（称为<strong>Perron根</strong>，Perron root）</li>
+<li><strong>存在性</strong>：$A$ 有唯一最大正实特征值 $r &gt; 0$（称为<strong><a href="谱半径.html">谱半径</a></strong>，<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a> root）</li>
 <li><strong>主导性</strong>：任意其他特征值 $\lambda$ 满足 $|\lambda| &lt; r$，即 $r = \rho(A)$（<a href="谱半径.html">谱半径</a>）</li>
 <li><strong>单纯性</strong>：$r$ 是特征多项式的单根（代数重数 = 几何重数 = 1）</li>
 <li><strong>正特征向量</strong>：$r$ 对应的特征向量可取为所有分量为正（$v_i &gt; 0$），且在正常数倍意义下唯一</li>
 </ol>
-<p>用一句话：<strong>正矩阵的谱半径是单纯正实特征值，其特征向量严格正。</strong></p>
+<p>用一句话：<strong>正<a href="矩阵.html">矩阵</a>的<a href="谱半径.html">谱半径</a>是单纯正实特征值，其特征向量严格正。</strong></p>
 <h3 id="frobenius19081912">Frobenius推广（1908–1912）：非负矩阵版本</h3>
 <p><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>引入关键概念：</p>
 <ul>
-<li><strong>不可约</strong>（irreducible）：矩阵关联有向图强连通。不可约非负矩阵保留Perron根的存在性和正特征向量。</li>
-<li><strong>本原</strong>（primitive）：不可约且周期 $h=1$，此时 Perron根严格大于所有其他特征值的模。</li>
-<li><strong>周期性结构</strong>：若不可约非负矩阵周期为 $h$，则在圆周 $|\lambda|=r$ 上恰有 $h$ 个特征值，均匀分布为 $re^{2\pi ik/h}$（$k=0,\ldots,h-1$）。</li>
+<li><strong>不可约</strong>（irreducible）：<a href="矩阵.html">矩阵</a>关联有向图强连通。<a href="不可约矩阵.html">不可约矩阵</a>保留<a href="谱半径.html">谱半径</a>的存在性和正特征向量。</li>
+<li><strong>本原</strong>（primitive）：不可约且周期 $h=1$，此时 <a href="谱半径.html">谱半径</a>严格大于所有其他特征值的模。</li>
+<li><strong>周期性结构</strong>：若<a href="不可约矩阵.html">不可约矩阵</a>周期为 $h$，则在圆周 $|\lambda|=r$ 上恰有 $h$ 个特征值，均匀分布为 $re^{2\pi ik/h}$（$k=0,\ldots,h-1$）。</li>
 </ul>
-<p>| 矩阵类型 | Perron根 $r$ | $|\lambda_2|$ | 正特征向量 |
+<p>| <a href="矩阵.html">矩阵</a>类型 | <a href="谱半径.html">谱半径</a> $r$ | $|\lambda_2|$ | 正特征向量 |
 |---------|------------|-------------|---------|
-| 正矩阵 | 存在，正实，单纯 | $&lt; r$ | 存在且唯一 |
+| 正<a href="矩阵.html">矩阵</a> | 存在，正实，单纯 | $&lt; r$ | 存在且唯一 |
 | 不可约非负 | 存在，正实，单纯 | $\leq r$，但模 $=r$ 时仅周期性特征值 | 存在，非负 |
 | 可约非负 | 无保证 | — | — |</p>
 <h3 id="_3">证明思路（主要流派）</h3>
-<p><strong>Perron原始证明</strong>（1907）：分析预解式 $R(\lambda) = (\lambda I - A)^{-1}$ 在正实轴上的奇异行为，利用Neumann级数的正性。</p>
-<p><strong>Frobenius极大极小证明</strong>（1908）：利用<a href="极大极小定理.html">极大极小定理</a>的精神，证明 $r = \max_{x&gt;0}\min_i (Ax)_i/x_i$。</p>
-<p><strong>Wielandt证明（1950）与Collatz-Wielandt公式</strong>：最简洁的现代版本。Wielandt给出了Perron根的变分刻画：
+<p><strong><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>原始证明</strong>（1907）：分析预解式 $R(\lambda) = (\lambda I - A)^{-1}$ 在正实轴上的奇异行为，利用Neumann级数的正性。</p>
+<p><strong><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>极大极小证明</strong>（1908）：利用<a href="极大极小定理.html">极大极小定理</a>的精神，证明 $r = \max_{x&gt;0}\min_i (Ax)_i/x_i$。</p>
+<p><strong><a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>证明（1950）与Collatz-<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>公式</strong>：最简洁的现代版本。<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>给出了<a href="谱半径.html">谱半径</a>的变分刻画：
 $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$
-这一极大极小公式将Perron根化为一个优化问题，既简化了证明，也为数值计算提供了实用算法。</p>
-<p><strong>Brouwer不动点证明</strong>：正矩阵作用于单纯形（simplex），不动点存在性直接给出Perron向量。</p>
+这一极大极小公式将<a href="谱半径.html">谱半径</a>化为一个优化问题，既简化了证明，也为<a href="数值分析.html">数值分析</a>提供了实用算法。</p>
+<p><strong>Brouwer不动点证明</strong>：正<a href="矩阵.html">矩阵</a>作用于单纯形（simplex），不动点存在性直接给出<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>向量。</p>
 <h3 id="_4">核心应用</h3>
-<p><strong>Markov链（1908–）</strong>：不可约非周期随机矩阵的Perron根 $=1$，对应左特征向量（归一化）即唯一平稳分布 $\pi$；谱间隙 $1 - |\lambda_2|$ 控制收敛速率。</p>
-<p><strong>Google PageRank（1998）</strong>：将互联网链接结构建模为Google矩阵（$= \alpha P + (1-\alpha)\mathbf{1}\mathbf{v}^T/n$，$\alpha=0.85$），阻尼因子确保矩阵全正满足Perron条件，Perron特征向量的各分量即为网页排名。约50次幂迭代即可收敛。</p>
-<p><strong>Leontief投入产出模型（经济学）</strong>：$n$ 部门消耗矩阵 $A$ 可逆且 $(I-A)^{-1} \geq 0$ 的充要条件是 $\rho(A) &lt; 1$（Hawkins-Simon条件），即Perron根严格小于1。</p>
-<p><strong>Leslie矩阵（种群生态学）</strong>：种群年龄结构矩阵的Perron根给出长期增长率（$r&gt;1$扩张，$r&lt;1$衰退），Perron向量给出稳定年龄分布。</p>
-<p><strong>幂法（数值线性代数）</strong>：从任意正初始向量出发，迭代 $v_{k+1} = Av_k / |Av_k|$ 以比值 $|\lambda_2|/r$ 的速率收敛到Perron向量。谱间隙 $r - |\lambda_2| &gt; 0$ 是收敛的保证。</p>
-<p><strong>Krein-Rutman定理（1948）</strong>：Perron定理的无穷维推广：Banach空间中的紧正算子，若谱半径为正，则其为特征值且对应特征向量在正锥中。用于椭圆PDE主特征值理论。</p>
+<p><strong>Markov链（1908–）</strong>：不可约非周期随机<a href="矩阵.html">矩阵</a>的<a href="谱半径.html">谱半径</a> $=1$，对应左特征向量（归一化）即唯一平稳分布 $\pi$；谱间隙 $1 - |\lambda_2|$ 控制收敛速率。</p>
+<p><strong>Google PageRank（1998）</strong>：将互联网链接结构建模为Google<a href="矩阵.html">矩阵</a>（$= \alpha P + (1-\alpha)\mathbf{1}\mathbf{v}^T/n$，$\alpha=0.85$），阻尼因子确保<a href="矩阵.html">矩阵</a>全正满足<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>条件，<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>特征向量的各分量即为网页排名。约50次幂迭代即可收敛。</p>
+<p><strong>Leontief投入产出模型（经济学）</strong>：$n$ 部门消耗<a href="矩阵.html">矩阵</a> $A$ 可逆且 $(I-A)^{-1} \geq 0$ 的充要条件是 $\rho(A) &lt; 1$（Hawkins-Simon条件），即<a href="谱半径.html">谱半径</a>严格小于1。</p>
+<p><strong>Leslie<a href="矩阵.html">矩阵</a>（种群生态学）</strong>：种群年龄结构<a href="矩阵.html">矩阵</a>的<a href="谱半径.html">谱半径</a>给出长期增长率（$r&gt;1$扩张，$r&lt;1$衰退），<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>向量给出稳定年龄分布。</p>
+<p><strong>幂法（数值<a href="线性代数.html">线性代数</a>）</strong>：从任意正初始向量出发，迭代 $v_{k+1} = Av_k / |Av_k|$ 以比值 $|\lambda_2|/r$ 的速率收敛到<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>向量。谱间隙 $r - |\lambda_2| &gt; 0$ 是收敛的保证。</p>
+<p><strong>Krein-Rutman定理（1948）</strong>：<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>定理的无穷维推广：Banach空间中的紧正算子，若<a href="谱半径.html">谱半径</a>为正，则其为特征值且对应特征向量在正锥中。用于椭圆PDE<a href="谱半径.html">谱半径</a>理论。</p>
 <h3 id="_5">数学意义</h3>
-<p>Perron-Frobenius定理建立了"矩阵元素的正性"（经济/概率/生态中的自然条件）与谱的定性结构（主特征值存在、唯一、正实）之间的精确联系，使得矩阵理论能够系统应用于以正量为基本变量的科学领域。这一"正性方法"深刻影响了20世纪泛函分析中正算子理论的发展。</p>
+<p><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>定理建立了"<a href="矩阵.html">矩阵</a>元素的正性"（经济/概率/生态中的自然条件）与谱的定性结构（<a href="谱半径.html">谱半径</a>存在、唯一、正实）之间的精确联系，使得<a href="矩阵理论.html">矩阵理论</a>能够系统应用于以正量为基本变量的科学领域。这一"正性方法"深刻影响了20世纪泛函分析中正算子理论的发展。</p>
 <h3 id="_6">更多应用</h3>
-<p><strong>统计力学</strong>：转移矩阵方法求解一维晶格模型配分函数，Perron根对应系统自由能密度。</p>
-<p><strong>符号动力学</strong>：有限型子移位的拓扑熵 $= \log r$（$r$ 为转移矩阵Perron根）；非素矩阵对应周期子移位。</p>
+<p><strong>统计力学</strong>：转移<a href="矩阵.html">矩阵</a>方法求解一维晶格模型配分函数，<a href="谱半径.html">谱半径</a>对应系统自由能密度。</p>
+<p><strong>符号动力学</strong>：有限型子移位的拓扑熵 $= \log r$（$r$ 为转移<a href="矩阵.html">矩阵</a><a href="谱半径.html">谱半径</a>）；非素<a href="矩阵.html">矩阵</a>对应周期子移位。</p>
 <p><strong>正系统（控制理论）</strong>：状态变量恒非负的离散线性系统稳定当且仅当 $\rho(A) &lt; 1$。</p>
-<p><strong>特征向量中心性（网络科学）</strong>：节点重要性 $\propto$ 邻居重要性加权和，递归定义的唯一一致解正是Perron特征向量。</p>
+<p><strong>特征向量中心性（网络科学）</strong>：节点重要性 $\propto$ 邻居重要性加权和，递归定义的唯一一致解正是<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>特征向量。</p>
 <h2 id="_7">局限性</h2>
 <ol>
-<li><strong>需要不可约性</strong>：可约非负矩阵谱结构复杂，定理结论不完整成立</li>
+<li><strong>需要不可约性</strong>：可约非负<a href="矩阵.html">矩阵</a>谱结构复杂，定理结论不完整成立</li>
 <li><strong>定性而非定量</strong>：谱间隙 $r - |\lambda_2|$ 的大小不给出，定量估计（如Cheeger不等式）是独立研究方向</li>
-<li><strong>非线性推广困难</strong>：张量特征值（超高阶Perron-Frobenius）和非交换情形仍是活跃前沿</li>
-<li><strong>逆特征值问题（NIEP）</strong>：给定一组复数，判断其能否成为某非负矩阵特征值的完整充要条件，对 $n \geq 5$ 仍是开放问题</li>
+<li><strong>非线性推广困难</strong>：张量特征值（超高阶<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>）和非交换情形仍是活跃前沿</li>
+<li><strong>逆特征值问题（NIEP）</strong>：给定一组复数，判断其能否成为某非负<a href="矩阵.html">矩阵</a>特征值的完整充要条件，对 $n \geq 5$ 仍是开放问题</li>
 </ol>
 <h2 id="_8">来源</h2>
 <ul>
@@ -204,7 +204,7 @@ $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$
   </div>
   <div class="page-nav">
     <a href="PDDL.html">&larr; PDDL</a>
-    <a href="QR算法.html">QR算法 &rarr;</a>
+    <a href="Probabilistic Robotics.html">Probabilistic Robotics &rarr;</a>
   </div>
 </div>
 </body>

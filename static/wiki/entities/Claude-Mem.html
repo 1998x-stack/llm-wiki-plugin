@@ -141,13 +141,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Claude-Mem 的核心命题是赋予 AI 编程助手真实的项目记忆。在传统模式下，LLM 每次新建会话都会丢失之前的上下文，导致开发者需要反复解释项目背景、调试历史及配置细节。Claude-Mem 通过以下四个步骤解决这一问题：
 1. <strong>自动捕获</strong>：利用 Claude Code 的钩子系统（Hook System）实时监听所有工具调用（如文件读写、命令执行）。
 2. <strong>AI 压缩</strong>：调用 Claude Agent SDK 将原始的工具日志提炼为结构化的「观察记录」（Observations），去除冗余信息。
-3. <strong>持久存储</strong>：将压缩后的记忆存入本地的 SQLite 数据库，并可选地使用 ChromaDB 进行向量嵌入。
+3. <strong>持久存储</strong>：将压缩后的记忆存入本地的 <a href="SQLite.html">SQLite</a> 数据库，并可选地使用 <a href="ChromaDB.html">ChromaDB</a> 进行向量嵌入。
 4. <strong>智能注入</strong>：在新会话启动时，自动检索相关历史上下文并注入到初始提示词中，实现记忆的无缝延续。</p>
 <h3 id="_4">系统架构</h3>
 <p>系统采用“两进程 + 一数据库”模型：
 - <strong>主进程（Claude Code）</strong>：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - <strong>后台服务（Worker Service）</strong>：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- <strong>数据层</strong>：使用 SQLite 配合 FTS5 进行全文检索，结合 ChromaDB 进行语义向量检索，形成混合检索能力。</p>
+- <strong>数据层</strong>：使用 <a href="SQLite.html">SQLite</a> 配合 <a href="../concepts/FTS5.html">FTS5</a> 进行全文检索，结合 <a href="ChromaDB.html">ChromaDB</a> 进行语义向量检索，形成混合检索能力。</p>
 <h3 id="hook">Hook 架构细节</h3>
 <p>Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 <strong>Lifecycle Hooks</strong> 机制，在特定时间节点介入工作流：
 - <strong>Hook 层</strong>：运行在 Claude Code 进程中的 6 个脚本（<code>smart-install.js</code>, <code>context-hook.js</code>, <code>new-hook.js</code>, <code>save-hook.js</code>, <code>summary-hook.js</code>, <code>cleanup-hook.js</code>），负责数据采集、预处理和指令下发。
@@ -163,39 +163,39 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">技术选型优势</h3>
 <ul>
 <li><strong>Bun 运行时</strong>：替代了早期的 PM2+Node.js 方案，利用 <code>bun:sqlite</code> 获得更高的性能和更低的冷启动时间，且无需额外依赖。</li>
-<li><strong>零基础设施依赖</strong>：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 SQLite，极大降低了部署门槛。</li>
+<li><strong>零基础设施依赖</strong>：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 <a href="SQLite.html">SQLite</a>，极大降低了部署门槛。</li>
 <li><strong>即发即忘（Fire-and-Forgert）通信</strong>：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。</li>
 </ul>
 <h3 id="_7">隐私与安全</h3>
 <p>系统引入了 <code>&lt;private&gt;</code> 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 <code>&lt;claude-mem-context&gt;</code> 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。</p>
 <h3 id="_8">项目现状</h3>
-<p>由 Alex Newman (@thedotmack) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
+<p>由 Alex Newman (<a href="Alex-Newman.html">Alex-Newman</a>) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
 <h3 id="_9">数据库架构演进</h3>
 <p>系统经历了从 v3 到 v4 的重大重构：
 - <strong>v3 时代</strong>：采用粗粒度的 <code>sessions</code> -&gt; <code>memories</code> -&gt; <code>overviews</code> 模型，缺乏高效的全文检索能力，仅支持低效的 LIKE 查询。
 - <strong>v4 时代（当前）</strong>：引入了细粒度的 <code>observations</code>（观察记录）作为记忆原子单元，每条工具调用（如 Read/Bash/Write）都被独立记录并结构化。新增了 <code>session_summaries</code>（会话摘要）提供宏观叙事，以及 <code>user_prompts</code> 存档用户原始指令。这种分层模型支持更精准的上下文注入策略：先呈现宏观摘要，再补充微观细节。</p>
 <h3 id="_10">三层存储架构</h3>
 <p>Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
-1. <strong>关系型数据层</strong>：利用 SQLite 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
+1. <strong>关系型数据层</strong>：利用 <a href="SQLite.html">SQLite</a> 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
 2. <strong>全文检索层</strong>：利用 <a href="../concepts/FTS5.html">FTS5</a> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
 3. <strong>语义向量层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
 <h3 id="_11">检索工作流</h3>
 <p>系统根据查询类型自动选择最优检索策略：
-- <strong>精确关键词检索</strong>：优先使用 FTS5 实现毫秒级响应
-- <strong>语义相似度检索</strong>：当 FTS5 召回不足时，启用 ChromaDB 进行模糊匹配
+- <strong>精确关键词检索</strong>：优先使用 <a href="../concepts/FTS5.html">FTS5</a> 实现毫秒级响应
+- <strong>语义相似度检索</strong>：当 <a href="../concepts/FTS5.html">FTS5</a> 召回不足时，启用 <a href="ChromaDB.html">ChromaDB</a> 进行模糊匹配
 - <strong>混合检索</strong>：复杂查询可能组合多种检索方式，通过重排序确保最相关结果优先</p>
 <h3 id="_12">工程特性</h3>
 <ul>
 <li><strong>解耦设计</strong>：内部使用 <code>sdk_session_id</code>，外部兼容 <code>claude_session_id</code>，便于未来扩展支持其他 AI 工具（如 Cursor）。</li>
-<li><strong>自动化同步</strong>：通过 9 个 SQLite 触发器（Insert/Update/Delete）自动维护 FTS5 索引，对应用层完全透明。</li>
-<li><strong>安全性</strong>：内置严格的 FTS5 查询转义机制，并通过 332 个测试用例防止 SQL 注入。</li>
+<li><strong>自动化同步</strong>：通过 9 个 <a href="SQLite.html">SQLite</a> 触发器（Insert/Update/Delete）自动维护 <a href="../concepts/FTS5.html">FTS5</a> 索引，对应用层完全透明。</li>
+<li><strong>安全性</strong>：内置严格的 <a href="../concepts/FTS5.html">FTS5</a> 查询转义机制，并通过 332 个测试用例防止 SQL 注入。</li>
 <li><strong>迁移系统</strong>：拥有完善的 10 步迁移历史，确保版本升级时的数据完整性和向后兼容性。</li>
 </ul>
 <h2 id="_13">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_01_overview.md</span></li>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_02_hooks.md</span></li>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_04_database.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_01_overview.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_02_hooks.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_04_database.md</span></li>
 </ul>
 <h2 id="_14">相关</h2>
 <ul>

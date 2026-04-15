@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepagents">DeepAgents 评估体系</h1>
 <h2 id="_1">概述</h2>
-<p>DeepAgents 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
+<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">两层断言模型（核心设计）</h3>
 <table>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计意图</strong>：防止 Agent 因探索性多走一步就整例标红，同时仍能在报表中观察效率偏差。</p>
 <h3 id="utilspy">核心类型（<code>utils.py</code>）</h3>
 <p><strong><code>AgentStep</code></strong>：<code>index</code>（从1起）、<code>action</code>（<code>AIMessage</code>）、<code>observations</code>（<code>list[ToolMessage]</code>）——一个决策回合。</p>
-<p><strong><code>AgentTrajectory</code></strong>：<code>steps</code> + <code>files</code>（路径→内容映射），<code>answer</code> 属性取最后一步文本，<code>pretty()</code> 生成人类可读摘要（供 LLM Judge 消费）。</p>
+<p><strong><code>AgentTrajectory</code></strong>：<code>steps</code> + <code>files</code>（路径→内容映射），<code>answer</code> 属性取最后一步文本，<code>pretty()</code> 生成人类可读摘要（供 <a href="LLM-as-Judge.html">LLM-as-Judge</a> 消费）。</p>
 <p><strong><code>TrajectoryScorer</code></strong>（不可变建造者）：</p>
 <pre><code class="language-python">scorer = (
     TrajectoryScorer()
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>组装 <code>query</code> + <code>initial_files</code> → <code>agent.invoke</code></li>
 <li>用 <code>thread_id</code> 生成轨迹（<code>AgentTrajectory</code>）</li>
 <li>LangSmith 记录规范化 inputs/outputs</li>
-<li>执行 <code>_assert_expectations</code>：先记录效率 feedback，再逐项运行成功断言</li>
+<li>执行 <code>_assert_<a href="期望值.html">期望值</a>s</code>：先记录效率 feedback，再逐项运行成功断言</li>
 </ol>
 <h3 id="categoriesjson">评估分类（<code>categories.json</code>）</h3>
 <table>
@@ -240,7 +240,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>tau2-bench</strong>：客服/零售场景长对话</li>
 </ul>
 <h3 id="harbor-libsevals-harbor">Harbor 框架（<code>libs/evals/</code> Harbor 集成）</h3>
-<p><code>DeepAgentsWrapper</code> 将 Deep Agent 包装为 Harbor 基准的统一接口；<code>HarborSandbox</code> 提供沙箱后端。失败分类工具自动标注错误类型（工具调用错误、规划失败、上下文溢出等），LangSmith 脚本聚合统计。</p>
+<p><code><a href="../entities/DeepAgents.html">DeepAgents</a>Wrapper</code> 将 Deep Agent 包装为 Harbor 基准的统一接口；<code>HarborSandbox</code> 提供沙箱后端。失败分类工具自动标注错误类型（工具调用错误、规划失败、上下文溢出等），LangSmith 脚本聚合统计。</p>
 <h3 id="terminal-bench-20">Terminal Bench 2.0</h3>
 <p>90+ 真实终端任务基准，使用 LangSmith 工作流管理运行；含失败分类器与统计工具，可与雷达图联动分析。</p>
 <h3 id="harbor-libsevalsscripts-deepagents_harbor">Harbor 分析工具链（<code>libs/evals/scripts/</code> + <code>deepagents_harbor/</code>）</h3>

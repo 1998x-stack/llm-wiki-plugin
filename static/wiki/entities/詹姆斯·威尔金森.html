@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">詹姆斯·威尔金森</h1>
 <h2 id="_2">概述</h2>
-<p>詹姆斯·哈迪·威尔金森（James Hardy Wilkinson，1919–1986）是英国数学家，现代数值线性代数的奠基人。1970年 ACM 图灵奖得主，1969年当选英国皇家学会院士（FRS）。剑桥大学三一学院毕业（师从 Hardy、Littlewood），二战期间从事弹道计算，1946年加入英国国家物理实验室（NPL），与<a href="阿兰·图灵.html">阿兰·图灵</a>共同参与 ACE 计算机设计，并亲手设计了 Pilot ACE 的乘法运算单元。在 NPL 与早期计算机十余年的实际计算经验，使他从计算实践中提炼出<strong>后向误差分析</strong>（backward error analysis）这一革命性方法论，系统建立了数值线性代数的理论基础。其1965年专著《代数特征值问题》被公认为数值线性代数的奠基之作。</p>
+<p>詹姆斯·哈迪·威尔金森（James Hardy Wilkinson，1919–1986）是英国数学家，现代数值<a href="../concepts/线性代数.html">线性代数</a>的奠基人。1970年 ACM <a href="阿兰·图灵.html">阿兰·图灵</a>奖得主，1969年当选英国皇家学会院士（FRS）。剑桥大学三一学院毕业（师从 Hardy、Littlewood），二战期间从事弹道计算，1946年加入英国国家物理实验室（NPL），与<a href="阿兰·图灵.html">阿兰·图灵</a>共同参与 ACE 计算机设计，并亲手设计了 <a href="Pi-Agent.html">Pi-Agent</a>lot ACE 的乘法运算单元。在 NPL 与早期计算机十余年的实际计算经验，使他从计算实践中提炼出<strong><a href="../concepts/后向误差分析.html">后向误差分析</a></strong>（<a href="../concepts/后向误差分析.html">后向误差分析</a>）这一革命性方法论，系统建立了数值<a href="../concepts/线性代数.html">线性代数</a>的理论基础。其1965年专著《代数特征值问题》被公认为数值<a href="../concepts/线性代数.html">线性代数</a>的奠基之作。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">生平</h3>
 <table>
@@ -164,27 +164,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>1946年</td>
-<td>与图灵共同参与 ACE 计算机设计，设计 Pilot ACE 乘法单元</td>
-</tr>
-<tr>
-<td>1963年</td>
-<td>出版《代数过程中的舍入误差》（<em>Rounding Errors in Algebraic Processes</em>）</td>
-</tr>
-<tr>
-<td>1965年</td>
-<td>出版《代数特征值问题》（<em>The Algebraic Eigenvalue Problem</em>）</td>
-</tr>
-<tr>
-<td>1969年</td>
-<td>当选英国皇家学会院士（FRS）</td>
-</tr>
-<tr>
-<td>1970年</td>
-<td>荣获 ACM 图灵奖，首位数值分析领域得奖者</td>
-</tr>
-<tr>
-<td>1971年</td>
-<td>与 Reinsch 合编《自动计算手册·线性代数卷》（EISPACK 前身）</td>
+<td>与<span style="color:#e74c3c" title="broken link">阿兰·图灵&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1963年&lt;/td&gt;
+&lt;td&gt;出版《代数过程中的舍入误差》（&lt;em&gt;Rounding Errors in Algebraic Processes&lt;/em&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1965年&lt;/td&gt;
+&lt;td&gt;出版《代数特征值问题》（&lt;em&gt;The Algebraic Eigenvalue Problem&lt;/em&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1969年&lt;/td&gt;
+&lt;td&gt;当选英国皇家学会院士（FRS）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1970年&lt;/td&gt;
+&lt;td&gt;荣获 ACM [[阿兰·图灵&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1971年&lt;/td&gt;
+&lt;td&gt;与 Reinsch 合编《自动计算手册·[[线性代数</span>卷》（EISPACK 前身）</td>
 </tr>
 <tr>
 <td>1986年10月5日</td>
@@ -193,28 +193,28 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">后向误差分析（最重要贡献）</h3>
-<p>威尔金森的核心思想转变：将"计算结果距真实值多远"（正向误差）改为问"计算结果精确地解了哪个问题"（后向误差）。</p>
-<p><strong>关键洞见</strong>：在 Pilot ACE 上计算多项式零点时，他发现计算得到的零点虽然不是原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点——后向误差分析由此萌生。</p>
+<p>威尔金森的核心思想转变：将"计算结果距真实值多远"（正向误差）改为问"计算结果精确地解了哪个问题"（<a href="../concepts/后向误差分析.html">后向误差分析</a>）。</p>
+<p><strong>关键洞见</strong>：在 <a href="Pi-Agent.html">Pi-Agent</a>lot ACE 上计算多项式零点时，他发现计算得到的零点虽然不是原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点——<a href="../concepts/后向误差分析.html">后向误差分析</a>由此萌生。</p>
 <p><strong>方法论意义</strong>：
-- 将算法稳定性（backward error $|\delta A|/|A|$）与问题条件性（条件数 $\kappa(A)$）<strong>清晰分离</strong>
+- 将算法稳定性（<a href="../concepts/后向误差分析.html">后向误差分析</a> $|\delta A|/|A|$）与问题条件性（<a href="../concepts/条件数.html">条件数</a> $\kappa(A)$）<strong>清晰分离</strong>
 - "后向稳定的算法"有了客观判定标准
 - 彻底推翻了 Hotelling（1943）关于 Gauss 消去法误差指数增长的悲观预言</p>
 <p>详见 <a href="../concepts/后向误差分析.html">后向误差分析</a>。</p>
 <h3 id="qr-wilkinson">QR 算法的 Wilkinson 位移</h3>
-<p>对<a href="../concepts/QR算法.html">QR算法</a>的重要改进：对称三对角矩阵的末部 $2\times 2$ 子矩阵：
+<p>对<a href="../concepts/QR算法.html">QR算法</a>的重要改进：对称三对角<a href="../concepts/矩阵.html">矩阵</a>的末部 $2\times 2$ 子<a href="../concepts/矩阵.html">矩阵</a>：
 $$\mu_k = a_{nn} - \frac{\operatorname{sign}(\delta)\cdot b_{n-1}^2}{|\delta| + \sqrt{\delta^2 + b_{n-1}^2}}, \quad \delta = \frac{a_{n-1,n-1} - a_{nn}}{2}$$</p>
 <p>选取更接近末元素 $a_{nn}$ 的特征值作为位移，保证<strong>全局收敛性</strong>和<strong>三次方渐近收敛速度</strong>，在实际计算中每个特征值通常只需1–2次迭代即可隔离。</p>
 <h3 id="1965">《代数特征值问题》（1965）</h3>
-<p>牛津大学出版社，662页，数值线性代数领域引用率最高的专著之一，至今未绝版。LAPACK 用户指南扉页写道："本工作献给 Jim Wilkinson，他的思想与精神在项目的每一个环节都给予我们启迪和影响。"</p>
+<p>牛津大学出版社，662页，数值<a href="../concepts/线性代数.html">线性代数</a>领域引用率最高的专著之一，至今未绝版。LAPACK 用户指南扉页写道："本工作献给 Jim Wilkinson，他的思想与精神在项目的每一个环节都给予我们启迪和影响。"</p>
 <p><strong>主要内容</strong>：
-- 后向误差分析框架（全书灵魂）
-- 特征值条件数理论（$\kappa(\lambda_i) = 1/|y_i^H x_i|$）
-- QR算法收敛性分析与 Wilkinson 位移
-- Gauss 消去法的后向稳定性（彻底解决 Hotelling 问题）
-- 正交变换（Givens旋转、Householder反射）的数值优越性</p>
+- <a href="../concepts/后向误差分析.html">后向误差分析</a>框架（全书灵魂）
+- 特征值<a href="../concepts/条件数.html">条件数</a>理论（$\kappa(\lambda_i) = 1/|y_i^H x_i|$）
+- <a href="../concepts/QR算法.html">QR算法</a>收敛性分析与 Wilkinson 位移
+- Gauss 消去法的<a href="../concepts/后向误差分析.html">后向误差分析</a>（彻底解决 Hotelling 问题）
+- 正交变换（Givens旋转、<a href="../concepts/Householder变换.html">Householder变换</a>）的数值优越性</p>
 <h3 id="_6">软件遗产</h3>
 <p>EISPACK（1970s）→ LINPACK（1970s）→ <strong>LAPACK</strong>（1992至今）→ MATLAB、NumPy/SciPy 的核心计算引擎，均以威尔金森的理论框架和算法为基础。</p>
-<p>SIAM 设立了两项以其名字命名的奖项（1982年"数值分析与科学计算奖"，1991年"数值软件奖"），是数值计算领域最高荣誉之一。</p>
+<p>SIAM 设立了两项以其名字命名的奖项（1982年"<a href="../concepts/数值分析.html">数值分析</a>与科学计算奖"，1991年"数值软件奖"），是<a href="../concepts/数值分析.html">数值分析</a>领域最高荣誉之一。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li>raw/books/矩阵分析/14_wilkinson_algebraic_eigenvalue_problem_1965.md</li>

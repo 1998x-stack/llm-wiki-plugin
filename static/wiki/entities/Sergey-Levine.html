@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergey-Levine — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Sergey-Levine</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">人物</span><span class="tag">机器人学</span><span class="tag">深度学习</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="sergey-levine">Sergey Levine</h1>
+<h2 id="_1">概述</h2>
+<p>Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习领域最具影响力的研究者之一（Google Scholar 引用超 23 万次）。他与 Chelsea Finn 等人于 2016 年首次实现了从像素到力矩的端到端<a href="../concepts/端到端视觉运动学习.html">端到端视觉运动学习</a>学习，此后在 Google Brain/DeepMind 推动了大规模机器人学习从单任务到 RT-2 的演进。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心贡献</h3>
+<p><strong>端到端<a href="../concepts/端到端视觉运动学习.html">端到端视觉运动学习</a>（2016）</strong>：与 Chelsea Finn、Trevor Darrell、<a href="Pi-Agent.html">Pi-Agent</a>eter Abbeel 合作，首次在真实 <a href="PR2 机器人.html">PR2 机器人</a>上实现从原始摄像头像素到关节力矩的端到端深度学习控制，提出引导策略搜索（GPS）框架解决样本效率问题，提出空间软注意力层（Spatial Softmax）解决视觉空间推理问题。</p>
+<p><strong>元学习（MAML）</strong>：与 Chelsea Finn 合作（2017），提出 Model-Agnostic Meta-Learning，用极少量数据快速适应新任务，对机器人学习和通用人工智能均有深远影响。</p>
+<p><strong>大规模机器人学习</strong>：在 Google Brain（2015–2016）和 Google DeepMind 工作期间推动"机器人农场"并行数据收集，研究从 RT-1（13 万条演示，700+ 任务）到 RT-2（<a href="../concepts/视觉-语言-动作模型.html">视觉-语言-动作模型</a> 模型，互联网知识迁移）的技术路线。</p>
+<h3 id="_4">学术轨迹</h3>
+<ul>
+<li>UC Berkeley EECS 博士后 → Google Brain（2015–2016）→ UC Berkeley 助理教授（2016–）</li>
+<li>Google DeepMind 兼职研究员</li>
+</ul>
+<h3 id="chelsea-finn">与 Chelsea Finn 的合作</h3>
+<p>Chelsea Finn 是 Levine 指导的博士生，两人在端到端机器人学习和元学习上长期合作。Finn 后来成为斯坦福大学教授，其 MAML 工作和机器人基础模型研究直接继承了这一合作的技术基因。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/14-levine-deep-visuomotor-policies.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/16-brohan-rt2-vision-language-action.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../concepts/端到端视觉运动学习.html">端到端视觉运动学习</a> — 开创性工作</li>
+<li><a href="../concepts/视觉-语言-动作模型.html">视觉-语言-动作模型</a> — RT-2 的核心参与者</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Sebastian Thrun.html">&larr; Sebastian Thrun</a>
+    <a href="Shakey 机器人.html">Shakey 机器人 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

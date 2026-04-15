@@ -140,11 +140,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_3">迭代格式</h3>
 <p>$$x_i^{(k+1)} = \frac{1}{a_{ii}}!\left(b_i - \sum_{j<i} a_{ij}x_j^{(k+1)} - \sum_{j>i} a_{ij}x_j^{(k)}\right)$$</p>
 <p>与 Jacobi 方法的区别：$j&lt;i$ 的分量使用已更新的 $x_j^{(k+1)}$，而非旧值 $x_j^{(k)}$。</p>
-<p>矩阵形式：$x^{(k+1)} = -(D+L)^{-1}Ux^{(k)} + (D+L)^{-1}b$，迭代矩阵 $B_{GS} = -(D+L)^{-1}U$。</p>
+<p><a href="矩阵.html">矩阵</a>形式：$x^{(k+1)} = -(D+L)^{-1}Ux^{(k)} + (D+L)^{-1}b$，迭代<a href="矩阵.html">矩阵</a> $B_{GS} = -(D+L)^{-1}U$。</p>
 <h3 id="_4">收敛性质</h3>
 <p><strong>充要条件</strong>：<a href="谱半径.html">谱半径</a> $\rho(B_{GS}) &lt; 1$。</p>
 <p><strong>充分条件</strong>（与 Jacobi 相同）：严格对角占优或对称正定。</p>
-<p>对于来自偏微分方程离散化（如离散 Laplacian）的矩阵，Gauss-Seidel 的谱半径平方近似等于 Jacobi 的谱半径，即 $\rho(B_{GS}) \approx \rho(B_J)^2$，理论上每步迭代效果翻倍。</p>
+<p>对于来自偏微分方程离散化（如离散 Laplacian）的<a href="矩阵.html">矩阵</a>，Gauss-Seidel 的<a href="谱半径.html">谱半径</a>平方近似等于 Jacobi 的<a href="谱半径.html">谱半径</a>，即 $\rho(B_{GS}) \approx \rho(B_J)^2$，理论上每步迭代效果翻倍。</p>
 <h3 id="jacobi">与 Jacobi 方法对比</h3>
 <table>
 <thead>
@@ -183,11 +183,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">命名中的历史争议</h3>
-<p>方法以"高斯-赛德尔"命名，但<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a>是否明确使用过这种迭代法存在学术争议。一些历史学家认为高斯在私人计算中可能使用过类似方法（因用途与他广泛使用的最小二乘法相关），但没有明确文献记录；赛德尔 1874 年的论文才是可考的正式发表。</p>
+<p>方法以"高斯-赛德尔"命名，但<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a>是否明确使用过这种迭代法存在学术争议。一些历史学家认为高斯在私人计算中可能使用过类似方法（因用途与他广泛使用的<a href="高斯最小二乘法.html">高斯最小二乘法</a>相关），但没有明确文献记录；赛德尔 1874 年的论文才是可考的正式发表。</p>
 <h3 id="_6">后续发展</h3>
 <p>Gauss-Seidel 方法是 <strong>SOR 方法</strong>（Successive Over-Relaxation）的直接前身。引入松弛参数 $\omega$：</p>
 <p>$$x_i^{(k+1)} = (1-\omega)x_i^{(k)} + \omega \cdot \text{(Gauss-Seidel更新值)}$$</p>
-<p>David M. Young（1950年博士论文）证明对特定结构矩阵存在最优 $\omega_{\text{opt}}$，使谱半径最小化，大幅优于基础 Gauss-Seidel。</p>
+<p>David M. Young（1950年博士论文）证明对特定结构<a href="矩阵.html">矩阵</a>存在最优 $\omega_{\text{opt}}$，使<a href="谱半径.html">谱半径</a>最小化，大幅优于基础 Gauss-Seidel。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/06_jacobi_iteration.md</span></li>

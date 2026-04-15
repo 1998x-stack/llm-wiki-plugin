@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>能用确定性断言处不用 Judge</strong>（节省成本和方差）</li>
 <li>每条准则应<strong>单条可判定</strong>、无歧义，不在一条内堆砌多个要求</li>
-<li>准则涉及工具调用行为（如"必须调用 <code>edit_file</code>"）时，需将完整轨迹送入评判上下文（DeepAgents 中用 <code>include_tool_calls=True</code>）</li>
+<li>准则涉及工具调用行为（如"必须调用 <code>edit_file</code>"）时，需将完整轨迹送入评判上下文（<a href="../entities/DeepAgents.html">DeepAgents</a> 中用 <code>include_tool_calls=True</code>）</li>
 <li>固定 <code>judge_model</code> 版本，保证跨次运行可横向对比</li>
 </ul>
 <h3 id="deepagents-llmjudge">DeepAgents 实现（<code>LLMJudge</code>）</h3>

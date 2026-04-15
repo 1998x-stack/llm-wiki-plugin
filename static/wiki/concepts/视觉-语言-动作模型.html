@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视觉-语言-动作模型 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 视觉-语言-动作模型</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.93</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">大模型</span><span class="tag">VLA</span><span class="tag">具身智能</span><span class="tag">视觉语言模型</span></div>
+</div>
+  <div class="content">
+    <h1 id="-">视觉-语言-动作模型</h1>
+<h2 id="_1">概述</h2>
+<p>视觉-语言-动作模型（VLA）是将预训练视觉-语言模型（VLM）直接微调为机器人控制策略的范式：通过将机器人动作离散化为文本 token，使模型能利用互联网规模的视觉-语言知识指导物理操作，实现"理解世界"与"操控世界"的端到端统一。由 RT-2（Google DeepMind, 2023）正式提出。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="action-as-tokens">核心思想：动作即语言（Action as Tokens）</h3>
+<pre><code>传统方法：VLM &quot;看&quot;场景 → 分离的控制模块执行动作
+
+VLA 方法：将动作离散化为 token（如 &quot;1 128 91 241 5 101 127 0&quot;）
+         → 映射到语言模型词表中的 token
+         → VLM 自回归生成&quot;动作文本&quot;
+         → 与生成普通文字的计算完全相同
+</code></pre>
+<p><strong>关键洞察</strong>：动作与语言共享同一 Transformer 架构，无需修改模型结构，无需添加解码头——只是将动作编码为文字。</p>
+<h3 id="rt-2vla-2023">RT-2：VLA 的参考实现（2023）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>细节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>骨干模型</td>
+<td>PaLI-X（55B）或 PaLM-E（12B）</td>
+</tr>
+<tr>
+<td>动作离散化</td>
+<td>每维度 256 个 bin → 整数序列</td>
+</tr>
+<tr>
+<td>训练策略</td>
+<td>协同微调：50% 机器人数据 + 50% 网络视觉语言数据</td>
+</tr>
+<tr>
+<td>机器人数据</td>
+<td>~13 万条真实演示轨迹（RT-1 数据集）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>协同微调</strong>（Co-fine-tuning）防止灾难性遗忘：同时使用机器人数据和网络视觉语言数据，确保模型在学习动作的同时保留语义理解能力。</p>
+<h3 id="_3">涌现能力：互联网知识→物理操作</h3>
+<p>VLA 最引人注目的发现：在网络视觉语言数据上预训练的知识可以<strong>直接</strong>迁移到物理操作：</p>
+<table>
+<thead>
+<tr>
+<th>能力类型</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>符号理解</strong></td>
+<td>"把物体放到数字 3 上"（训练数据中从未出现的符号）</td>
+</tr>
+<tr>
+<td><strong>语义推理</strong></td>
+<td>"选出不是食物的物体"、"把最大的物体移到右边"</td>
+</tr>
+<tr>
+<td><strong>语言泛化</strong></td>
+<td>理解训练中未见过的新指令和新概念组合</td>
+</tr>
+</tbody>
+</table>
+<p>这验证了"具身认知"假说：理解一个概念的语义（知道苹果是什么）与知道如何物理操作它（抓苹果），可能共享同一种能力。</p>
+<h3 id="chain-of-thought">链式推理（Chain-of-Thought）</h3>
+<p>RT-2 的 CoT 变体：先输出自然语言计划，再输出动作 token：</p>
+<pre><code>输入: &quot;拿起可以用来敲钉子的东西&quot;
+输出: &quot;Plan: I need to pick up a rock because it can be used as a hammer&quot;
+     → [动作 token 序列]
+</code></pre>
+<p>提供可解释性，并支持多步语义推理任务。</p>
+<h3 id="_4">历史位置</h3>
+<p>VLA 是端到端机器人学习演进的第三阶段：</p>
+<pre><code>GPS/Visuomotor (2016)  →  RT-1 (2022)         →  RT-2/VLA (2023)
+专用小网络 (92K参数)     Transformer, 3500万参数    基础模型, 55B参数
+单任务, 仿真数据         700+任务, 真实数据         互联网知识迁移
+</code></pre>
+<p>VLA 后续影响：OpenVLA、π0（Physical Intelligence）、Open X-Embodiment 等跨机器人平台的通用机器人大脑。</p>
+<h3 id="sim-to-real">与 sim-to-real 的关系</h3>
+<p>VLA 代表了解决"机器人数据稀缺"问题的另一条路径：
+- <a href="域随机化.html">域随机化</a>路线：仿真中生成大量数据
+- <strong>VLA 路线</strong>：用互联网数据补充机器人数据，减少对机器人专属数据的依赖</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/16-brohan-rt2-vision-language-action.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="端到端视觉运动学习.html">端到端视觉运动学习</a> — VLA 的前驱范式（Levine 2016）</li>
+<li><a href="域随机化.html">域随机化</a> — 解决机器人数据稀缺的另一路径</li>
+<li><a href="../entities/Sergey-Levine.html">Sergey-Levine</a> — RT-2 核心贡献者之一</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="行为机器人学.html">&larr; 行为机器人学</a>
+    <a href="谱半径.html">谱半径 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

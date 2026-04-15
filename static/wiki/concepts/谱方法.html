@@ -169,14 +169,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">两类基函数</h3>
-<p><strong>傅里叶谱方法</strong>：适用于<strong>周期边界</strong>（流体周期通道流、信号处理），基函数 $e^{ikx}$；系数由 FFT 计算。</p>
-<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lobatto nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/FFT 计算。</p>
+<p><strong>傅里叶谱方法</strong>：适用于<strong>周期边界</strong>（流体周期通道流、信号处理），基函数 $e^{ikx}$；系数由 <a href="快速傅里叶变换.html">快速傅里叶变换</a> 计算。</p>
+<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lobatto nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/<a href="快速傅里叶变换.html">快速傅里叶变换</a> 计算。</p>
 <h3 id="clenshaw-curtis">Clenshaw-Curtis 求积</h3>
 <p>以切比雪夫极值点 $x_k = \cos(k\pi/n)$ 为节点，权重通过对切比雪夫展开积分得到：</p>
 <p>$$\int_{-1}^1 f(x)dx \approx \sum_{k=0}^n w_k f(x_k)$$</p>
-<p>优势：节点嵌套（加倍节点数时旧节点保留），权重可用 FFT 以 $O(n\log n)$ 计算，实践精度可与<a href="高斯求积公式.html">高斯求积公式</a>媲美（Trefethen, 2008）。</p>
+<p>优势：节点嵌套（加倍节点数时旧节点保留），权重可用 <a href="快速傅里叶变换.html">快速傅里叶变换</a> 以 $O(n\log n)$ 计算，实践精度可与<a href="高斯求积公式.html">高斯求积公式</a>媲美（Trefethen, 2008）。</p>
 <h3 id="galerkin">配点法与 Galerkin 法</h3>
-<p><strong>配点法</strong>（Pseudospectral）：要求方程在 $N+1$ 个配点处精确满足，等价于在物理空间操作，可直接利用 FFT/DCT。</p>
+<p><strong>配点法</strong>（Pseudospectral）：要求方程在 $N+1$ 个配点处精确满足，等价于在物理空间操作，可直接利用 <a href="快速傅里叶变换.html">快速傅里叶变换</a>/DCT。</p>
 <p><strong>Galerkin 谱方法</strong>：要求残差与每个基函数正交，在频率空间操作，便于误差分析。</p>
 <h3 id="_6">代表性应用与软件</h3>
 <table>
@@ -197,7 +197,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>Chebfun</td>
-<td>2004年牛津大学，用切比雪夫多项式表示和操作连续函数，"函数的 MATLAB"</td>
+<td>2004年牛津大学，用<a href="切比雪夫多项式.html">切比雪夫多项式</a>表示和操作连续函数，"函数的 MATLAB"</td>
 </tr>
 <tr>
 <td>应用</td>
@@ -209,7 +209,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>几何限制</strong>：全局基函数只适合规则域（矩形、球壳）；复杂几何需谱元法（Spectral Element Method）+ 有限元思想结合</li>
 <li><strong>不适合非光滑问题</strong>：间断解出现吉布斯（Gibbs）现象，收敛速度退化为代数阶</li>
-<li><strong>稠密离散矩阵</strong>：全局基函数产生稠密（非稀疏）矩阵，时间步积分的稳定性条件苛刻</li>
+<li><strong>稠密离散<a href="矩阵.html">矩阵</a></strong>：全局基函数产生稠密（非稀疏）<a href="矩阵.html">矩阵</a>，时间步积分的稳定性条件苛刻</li>
 </ul>
 <h2 id="_8">来源</h2>
 <ul>

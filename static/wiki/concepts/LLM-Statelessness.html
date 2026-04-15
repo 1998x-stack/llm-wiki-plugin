@@ -149,13 +149,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 3. <strong>传统 RAG（检索增强生成）</strong>：通常需要预先构建静态知识库，无法实时捕捉对话过程中产生的动态洞察和临时决策。</p>
 <h3 id="_5">突破方向：动态记忆系统</h3>
 <p>为了克服无状态性，新一代系统（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）采用了“外部化记忆”策略：
-- <strong>持久化存储</strong>：将会话中的关键信息提取并存储到外部数据库（如 SQLite、Vector DB）。
+- <strong>持久化存储</strong>：将会话中的关键信息提取并存储到外部数据库（如 <a href="../entities/SQLite.html">SQLite</a>、Vector DB）。
 - <strong>智能压缩</strong>：利用 AI 自身能力将冗长的操作日志压缩为高密度的“观察记录”。
 - <strong>按需注入</strong>：在新会话开始时，根据当前任务动态检索并注入相关历史片段，模拟出“有状态”的连续体验。</p>
 <p>这种范式转变使得 LLM 应用能够从单次交互工具进化为具备长期记忆的智能代理，是构建自主 Agent 系统的关键基石。</p>
 <h2 id="_6">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_01_overview.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_01_overview.md</span></li>
 </ul>
 <h2 id="_7">相关</h2>
 <ul>

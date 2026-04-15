@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepagents">DeepAgents 评估设计哲学：三重分离原则</h1>
 <h2 id="_1">洞见</h2>
-<p>DeepAgents 的评估体系建立在<strong>三条核心分离线</strong>上，每条分离线都针对一个常见的"评估混淆陷阱"：</p>
+<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估体系建立在<strong>三条核心分离线</strong>上，每条分离线都针对一个常见的"评估混淆陷阱"：</p>
 <hr />
 <h2 id="vs">第一分离：正确性 vs 效率</h2>
 <p><strong>混淆陷阱</strong>：将"多走了一步"等同于"做错了"，导致探索性行为被惩罚，Agent 趋向保守策略。</p>
@@ -145,10 +145,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计哲学</strong>：正确性是门槛，效率是优化方向。不混淆两者，才能既坚持质量底线，又容纳 Agent 在探索中学习的空间。</p>
 <hr />
 <h2 id="vs_1">第二分离：确定性 vs 语义</h2>
-<p><strong>混淆陷阱</strong>：用子串匹配衡量语义等价（漏报），或用 LLM Judge 评估固定格式（成本浪费）。</p>
+<p><strong>混淆陷阱</strong>：用子串匹配衡量语义等价（漏报），或用 <a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a> 评估固定格式（成本浪费）。</p>
 <p><strong>解法</strong>：双轨成功断言
 - <strong>确定性断言</strong>：<code>final_text_contains</code>、<code>file_equals</code> → 事实性短答案、精确文件内容，成本低、可复现
-- <strong>语义断言</strong>（LLM-as-Judge）：<code>llm_judge(*criteria)</code> → 语义正确性、风格、推理完整性，默认 <code>claude-sonnet-4-6</code> 评判</p>
+- <strong>语义断言</strong>（<a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a>）：<code>llm_judge(*criteria)</code> → 语义正确性、风格、推理完整性，默认 <code>claude-sonnet-4-6</code> 评判</p>
 <p><strong>设计哲学</strong>：先问"规则能否表达"，再决定是否需要 LLM。Judge 是最后手段，不是默认选项。准则粒度要细——一条准则一个可判定问题，失败时 comment 才能定位。</p>
 <hr />
 <h2 id="vs_2">第三分离：能力 vs 基础设施</h2>
@@ -196,7 +196,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <hr />
 <h2 id="_3">延伸：这一哲学的普适性</h2>
-<p>三重分离不是 DeepAgents 独有的发明，而是<strong>好的软件测试哲学在 AI 评估领域的应用</strong>：
+<p>三重分离不是 <a href="../entities/DeepAgents.html">DeepAgents</a> 独有的发明，而是<strong>好的软件测试哲学在 AI 评估领域的应用</strong>：
 - 正确性/效率分离 ≈ 功能测试 vs 性能测试的分层
 - 确定性/语义分离 ≈ 单元测试 vs 用户验收测试的粒度选择
 - 能力/环境分离 ≈ 应用 bug vs 基础设施 bug 的分类</p>

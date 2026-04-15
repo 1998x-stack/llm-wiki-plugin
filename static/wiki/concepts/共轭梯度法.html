@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">共轭梯度法</h1>
 <h2 id="_2">概述</h2>
-<p>共轭梯度法（Conjugate Gradient Method, CG）由赫斯坦尼斯（Hestenes）和施蒂费尔（Stiefel）于 1952 年提出，是求解对称正定（SPD）线性方程组 $Ax=b$ 的迭代方法。核心思想是构造一组关于矩阵 $A$ 共轭（A-conjugate）的搜索方向，在 <a href="Krylov子空间方法.html">Krylov子空间方法</a>中寻找 $A$-范数最优近似解。CG 每步只需一次矩阵-向量乘法，存储仅需 4 个向量，收敛率依赖条件数的<strong>平方根</strong>（远优于经典迭代法依赖条件数本身）。配合预处理（PCG）是现代大规模科学计算的核心算法。</p>
+<p>共轭梯度法（Conjugate Gradient Method, CG）由赫斯坦尼斯（Hestenes）和施蒂费尔（Stiefel）于 1952 年提出，是求解对称正定（SPD）线性方程组 $Ax=b$ 的迭代方法。核心思想是构造一组关于<a href="矩阵.html">矩阵</a> $A$ 共轭（A-conjugate）的搜索方向，在 <a href="Krylov子空间方法.html">Krylov子空间方法</a>中寻找 $A$-范数最优近似解。CG 每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，存储仅需 4 个向量，收敛率依赖<a href="条件数.html">条件数</a>的<strong>平方根</strong>（远优于经典迭代法依赖<a href="条件数.html">条件数</a>本身）。配合预处理（PCG）是现代大规模科学计算的核心算法。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">算法</h3>
-<p><strong>输入</strong>：SPD 矩阵 $A$，向量 $b$，初始猜测 $x_0$</p>
+<p><strong>输入</strong>：SPD <a href="矩阵.html">矩阵</a> $A$，向量 $b$，初始猜测 $x_0$</p>
 <pre><code>r_0 = b - Ax_0,  p_0 = r_0
 for k = 0, 1, 2, ...:
     α_k = (r_kᵀr_k) / (p_kᵀAp_k)          # 步长
@@ -148,7 +148,7 @@ for k = 0, 1, 2, ...:
     β_k = (r_{k+1}ᵀr_{k+1}) / (r_kᵀr_k)    # 共轭系数
     p_{k+1} = r_{k+1} + β_k p_k              # 更新搜索方向
 </code></pre>
-<p><strong>每步成本</strong>：1 次矩阵-向量乘法，2 次内积，4 个向量的存储</p>
+<p><strong>每步成本</strong>：1 次<a href="矩阵.html">矩阵</a>-向量乘法，2 次内积，4 个向量的存储</p>
 <h3 id="_5">三个核心性质</h3>
 <p><strong>A-共轭性</strong>：搜索方向满足 $p_i^T A p_j = 0$（$i \neq j$）——沿一个方向的最优化不破坏其他方向的进展</p>
 <p><strong>残差正交性</strong>：$r_i^T r_j = 0$（$i \neq j$）——连续迭代步的残差互相正交</p>
@@ -174,7 +174,7 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 <tr>
 <td>SOR（最优松弛）</td>
 <td>$\rho \approx 1 - O(h) \sim 1 - O(1/\sqrt{\kappa})$</td>
-<td>SPD，需知谱半径</td>
+<td>SPD，需知<a href="谱半径.html">谱半径</a></td>
 </tr>
 <tr>
 <td><strong>CG</strong></td>
@@ -184,7 +184,7 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 </tbody>
 </table>
 <p>CG 比 SOR 在不需要提前知道谱信息的前提下，达到<strong>同等量级</strong>的收敛率。</p>
-<p><strong>特征值聚集加速</strong>：若矩阵特征值形成 $m \ll n$ 个聚集组，约 $m$ 步即可高精度收敛——远优于理论上限 $n$ 步。</p>
+<p><strong>特征值聚集加速</strong>：若<a href="矩阵.html">矩阵</a>特征值形成 $m \ll n$ 个聚集组，约 $m$ 步即可高精度收敛——远优于理论上限 $n$ 步。</p>
 <h3 id="_7">历史曲折：从被忽视到复兴</h3>
 <p>1952 年发表后，CG 一度因<strong>有限精度下 A-共轭性会被舍入误差破坏</strong>（有限终止性失效）而被视为"有缺陷的直接方法"冷落约 20 年。</p>
 <p><strong>1970 年代复兴</strong>（三个关键认识转变）：
@@ -204,15 +204,15 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 <tbody>
 <tr>
 <td>不完全 Cholesky（IC/ICC）</td>
-<td>SPD 稀疏矩阵</td>
+<td>SPD 稀疏<a href="矩阵.html">矩阵</a></td>
 </tr>
 <tr>
 <td>代数多重网格（AMG）</td>
-<td>PDE 离散化矩阵</td>
+<td>PDE 离散化<a href="矩阵.html">矩阵</a></td>
 </tr>
 <tr>
 <td>不完全 LU（ILU）</td>
-<td>一般稀疏矩阵</td>
+<td>一般稀疏<a href="矩阵.html">矩阵</a></td>
 </tr>
 <tr>
 <td>域分解</td>
@@ -220,7 +220,7 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 </tr>
 </tbody>
 </table>
-<p>PCG 是现代大规模 FEM/FDM/FVM 计算的<strong>事实标准</strong>求解器。</p>
+<p>PCG 是现代大规模 <a href="有限元方法.html">有限元方法</a>/FDM/FVM 计算的<strong>事实标准</strong>求解器。</p>
 <h3 id="_8">后续发展</h3>
 <table>
 <thead>
@@ -260,9 +260,9 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 </table>
 <h2 id="_9">局限性</h2>
 <ul>
-<li>仅适用 <strong>SPD 矩阵</strong>（非对称或不定矩阵需 GMRES/BiCGSTAB 等）</li>
+<li>仅适用 <strong>SPD <a href="矩阵.html">矩阵</a></strong>（非对称或不定<a href="矩阵.html">矩阵</a>需 GMRES/BiCGSTAB 等）</li>
 <li>有限精度下 A-共轭性和残差正交性会逐渐丧失</li>
-<li>对条件数大的矩阵收敛缓慢（需预处理）</li>
+<li>对<a href="条件数.html">条件数</a>大的<a href="矩阵.html">矩阵</a>收敛缓慢（需预处理）</li>
 <li>预处理策略选择无通用最优解</li>
 </ul>
 <h2 id="_10">来源</h2>
@@ -280,7 +280,7 @@ $$\frac{|x_k - x^<em>|_A}{|x_0 - x^</em>|<em>A} \leq 2\left(\frac{\sqrt{\kappa}-
 </ul>
   </div>
   <div class="page-nav">
-    <a href="优化控制序.html">&larr; 优化控制序</a>
+    <a href="停机问题.html">&larr; 停机问题</a>
     <a href="内生增长理论.html">内生增长理论 &rarr;</a>
   </div>
 </div>

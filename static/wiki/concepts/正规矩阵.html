@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">正规矩阵</h1>
 <h2 id="_2">概述</h2>
-<p>矩阵 $A \in \mathbb{C}^{n \times n}$ 称为<strong>正规矩阵</strong>（normal matrix），若其与自身共轭转置对易：$A^<em>A = AA^</em>$。正规矩阵是可酉对角化矩阵的精确刻画：由<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 1909年的<a href="Schur分解.html">Schur分解</a>理论，$A$ 正规当且仅当存在酉矩阵 $Q$ 使 $A = QDQ^*$，其中 $D$ 为对角矩阵。Hermite 矩阵、酉矩阵、实对称矩阵、实正交矩阵均为正规矩阵的特例，它们各自的谱定理均是此一般定理的推论。</p>
+<p><a href="矩阵.html">矩阵</a> $A \in \mathbb{C}^{n \times n}$ 称为<strong>正规<a href="矩阵.html">矩阵</a></strong>（normal matrix），若其与自身共轭转置对易：$A^<em>A = AA^</em>$。正规<a href="矩阵.html">矩阵</a>是可酉对角化<a href="矩阵.html">矩阵</a>的精确刻画：由<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 1909年的<a href="Schur分解.html">Schur分解</a>理论，$A$ 正规当且仅当存在酉<a href="矩阵.html">矩阵</a> $Q$ 使 $A = QDQ^*$，其中 $D$ 为对角<a href="矩阵.html">矩阵</a>。Hermite <a href="矩阵.html">矩阵</a>、酉<a href="矩阵.html">矩阵</a>、实对称<a href="矩阵.html">矩阵</a>、实正交<a href="矩阵.html">矩阵</a>均为正规<a href="矩阵.html">矩阵</a>的特例，它们各自的谱定理均是此一般定理的推论。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义与等价条件</h3>
 <p><strong>定义</strong>：$A$ 正规 $\iff$ $A^<em>A = AA^</em>$</p>
-<p><strong>等价条件（均由 Schur 分解给出）</strong>：
-- $\exists$ 酉矩阵 $Q$ 使 $A = QDQ^<em>$，$D$ 对角
-- $A$ 的 Schur 三角形式 $T$ 为对角矩阵
-- Schur 不等式取等：$\sum|\lambda_i|^2 = |A|_F^2$
+<p><strong>等价条件（均由 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 分解给出）</strong>：
+- $\exists$ 酉<a href="矩阵.html">矩阵</a> $Q$ 使 $A = QDQ^<em>$，$D$ 对角
+- $A$ 的 <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 三角形式 $T$ 为对角<a href="矩阵.html">矩阵</a>
+- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 不等式取等：$\sum|\lambda_i|^2 = |A|_F^2$
 - $A$ 的特征向量构成 $\mathbb{C}^n$ 的标准正交基
 - $A$ 和 $A^</em>$ 有相同的特征向量</p>
 <h3 id="_5">正规矩阵的重要子类</h3>
@@ -157,58 +157,58 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td>Hermite 矩阵</td>
+<td>Hermite <a href="矩阵.html">矩阵</a></td>
 <td>$A^* = A$</td>
 <td>全为实数</td>
-<td>协方差矩阵、Laplacian</td>
+<td>协方差<a href="矩阵.html">矩阵</a>、Laplacian</td>
 </tr>
 <tr>
-<td>反 Hermite 矩阵</td>
+<td>反 Hermite <a href="矩阵.html">矩阵</a></td>
 <td>$A^* = -A$</td>
 <td>全为纯虚数</td>
 <td>$iH$（$H$ Hermite）</td>
 </tr>
 <tr>
-<td>酉矩阵</td>
+<td>酉<a href="矩阵.html">矩阵</a></td>
 <td>$A^*A = I$</td>
 <td>模全为1</td>
-<td>旋转矩阵、DFT 矩阵</td>
-</tr>
-<tr>
-<td>实对称矩阵</td>
+<td>旋转<a href="矩阵.html">矩阵</a>、<span style="color:#e74c3c" title="broken link">离散傅里叶变换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实对称[[矩阵</span></td>
 <td>$A^T = A$，$A \in \mathbb{R}^{n \times n}$</td>
 <td>全为实数</td>
-<td>刚度矩阵、相关矩阵</td>
+<td>刚度<a href="矩阵.html">矩阵</a>、相关<a href="矩阵.html">矩阵</a></td>
 </tr>
 <tr>
-<td>实正交矩阵</td>
+<td>实正交<a href="矩阵.html">矩阵</a></td>
 <td>$A^T A = I$，$A \in \mathbb{R}^{n \times n}$</td>
 <td>模全为1</td>
 <td>旋转/反射变换</td>
 </tr>
 </tbody>
 </table>
-<p>所有上述子类均满足 $A^<em>A = AA^</em>$，是正规矩阵的特例。</p>
+<p>所有上述子类均满足 $A^<em>A = AA^</em>$，是正规<a href="矩阵.html">矩阵</a>的特例。</p>
 <h3 id="_6">谱定理（正规矩阵版）</h3>
 <p><strong>定理</strong>：$A \in \mathbb{C}^{n \times n}$ 正规，则</p>
 <p>$$A = \sum_{i=1}^{n} \lambda_i q_i q_i^*$$</p>
-<p>其中 $\lambda_1, \ldots, \lambda_n$ 为 $A$ 的特征值，$q_1, \ldots, q_n$ 为对应的标准正交特征向量。这是<a href="极大极小定理.html">极大极小定理</a>对一般正规矩阵的推广（不再要求对称性）。</p>
+<p>其中 $\lambda_1, \ldots, \lambda_n$ 为 $A$ 的特征值，$q_1, \ldots, q_n$ 为对应的标准正交特征向量。这是<a href="极大极小定理.html">极大极小定理</a>对一般正规<a href="矩阵.html">矩阵</a>的推广（不再要求对称性）。</p>
 <h3 id="schur">与 Schur 不等式的关系</h3>
-<p>Schur不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 的等号条件：</p>
+<p><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 的等号条件：</p>
 <p>$$\sum_{i=1}^{n}|\lambda_i|^2 = |A|_F^2 \iff A \text{ 正规}$$</p>
-<p>这给出了判断正规性的计算友好准则：只需计算特征值和 Frobenius 范数（两者都是 $O(n^3)$ 操作），无需验证 $n^2$ 个矩阵元素的等式 $A^<em>A = AA^</em>$。</p>
+<p>这给出了判断正规性的计算友好准则：只需计算特征值和 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> 范数（两者都是 $O(n^3)$ 操作），无需验证 $n^2$ 个<a href="矩阵.html">矩阵</a>元素的等式 $A^<em>A = AA^</em>$。</p>
 <h3 id="_7">非正规矩阵</h3>
-<p>非正规矩阵（$A^<em>A \neq AA^</em>$）具有"缺陷"（defective）特征结构：
-- Schur 不等式严格成立（严格上三角部分非零）
+<p>非正规<a href="矩阵.html">矩阵</a>（$A^<em>A \neq AA^</em>$）具有"缺陷"（defective）特征结构：
+- <a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> 不等式严格成立（严格上三角部分非零）
 - Jordan 块结构不可对角化
-- 幂次行为可能复杂（即使谱半径 $&lt;1$ 也可能先增大后衰减）</p>
-<p><strong>Pseudospectrum</strong>（伪谱）是分析非正规矩阵的现代工具，Trefethen 专著 <em>Spectra and Pseudospectra</em> 系统阐述了这一方向。</p>
+- 幂次行为可能复杂（即使<a href="谱半径.html">谱半径</a> $&lt;1$ 也可能先增大后衰减）</p>
+<p><strong>Pseudospectrum</strong>（伪谱）是分析非正规<a href="矩阵.html">矩阵</a>的现代工具，Trefethen 专著 <em>Spectra and Pseudospectra</em> 系统阐述了这一方向。</p>
 <h2 id="_8">应用</h2>
 <ul>
 <li><strong>量子力学</strong>：可观测量（Hermite 算子）和演化算子（酉算子）均为正规算子，谱定理保证了本征态的存在性和正交性</li>
-<li><strong>PCA（主成分分析）</strong>：协方差矩阵（实对称正规矩阵）的谱分解提取主成分方向</li>
-<li><strong>图谱理论</strong>：无向图的邻接矩阵和 Laplacian 均为实对称正规矩阵</li>
-<li><strong>数值稳定性分析</strong>：正规矩阵的扰动行为最优（特征值 Lipschitz 连续），非正规矩阵可能对扰动极敏感</li>
+<li><strong>PCA（主成分分析）</strong>：协方差<a href="矩阵.html">矩阵</a>（实对称正规<a href="矩阵.html">矩阵</a>）的谱分解提取主成分方向</li>
+<li><strong>图谱理论</strong>：无向图的邻接<a href="矩阵.html">矩阵</a>和 Laplacian 均为实对称正规<a href="矩阵.html">矩阵</a></li>
+<li><strong>数值稳定性分析</strong>：正规<a href="矩阵.html">矩阵</a>的扰动行为最优（特征值 Lipschitz 连续），非正规<a href="矩阵.html">矩阵</a>可能对扰动极敏感</li>
 </ul>
 <h2 id="_9">来源</h2>
 <ul>

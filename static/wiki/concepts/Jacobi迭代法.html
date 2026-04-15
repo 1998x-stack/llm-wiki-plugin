@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="jacobi">Jacobi 迭代法</h1>
 <h2 id="_1">概述</h2>
-<p>Jacobi 迭代法是求解线性方程组 $Ax=b$ 的经典迭代方法，由<a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a>约于 1845 年提出。核心思想是将系数矩阵分裂为对角部分与非对角部分（$A=D+L+U$），利用旧值同步更新所有分量，在对角占优等条件下保证收敛。其"同时更新"特性使它天然适合并行计算，并开创了迭代求解线性方程组的整个范式。</p>
+<p>Jacobi 迭代法是求解线性方程组 $Ax=b$ 的经典迭代方法，由<a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a>约于 1845 年提出。核心思想是将系数<a href="矩阵.html">矩阵</a>分裂为对角部分与非对角部分（$A=D+L+U$），利用旧值同步更新所有分量，在对角占优等条件下保证收敛。其"同时更新"特性使它天然适合并行计算，并开创了迭代求解线性方程组的整个范式。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">矩阵分裂与迭代格式</h3>
 <p>将 $A=D+L+U$（$D$ 对角，$L$ 严格下三角，$U$ 严格上三角），方程组改写为：</p>
@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$x_i^{(k+1)} = \frac{1}{a_{ii}}!\left(b_i - \sum_{j \neq i} a_{ij} x_j^{(k)}\right), \quad i=1,\ldots,n$$</p>
 <p><strong>关键特征</strong>：计算 $x^{(k+1)}$ 时全部使用上一步旧值 $x^{(k)}$，所有分量<strong>同时更新</strong>（simultaneous displacements）。</p>
 <h3 id="_4">收敛理论</h3>
-<p><strong>充要条件</strong>：Jacobi 迭代收敛当且仅当迭代矩阵 $B_J = -D^{-1}(L+U)$ 的<a href="谱半径.html">谱半径</a> $\rho(B_J) &lt; 1$。</p>
+<p><strong>充要条件</strong>：Jacobi 迭代收敛当且仅当迭代<a href="矩阵.html">矩阵</a> $B_J = -D^{-1}(L+U)$ 的<a href="谱半径.html">谱半径</a> $\rho(B_J) &lt; 1$。</p>
 <p><strong>充分条件——严格对角占优</strong>：若 $|a_{ii}| &gt; \sum_{j\neq i}|a_{ij}|$ 对所有 $i$ 成立，则对任意初始值收敛。直觉：对角元素主导每个方程，各未知数近乎独立可解。</p>
 <p><strong>充分条件——对称正定</strong>：若 $A$ 对称正定且 $2D-A$ 也正定，则收敛。</p>
 <p><strong>收敛速率</strong>：$R = -\log_{10}\rho(B_J)$，每步误差缩小为原来的 $\rho(B_J)$ 倍；误差界 $|x^{(k)}-x^<em>| \leq \rho(B_J)^k|x^{(0)}-x^</em>|$。</p>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>收敛条件</td>
 <td>需要 $\rho(B_J)&lt;1$</td>
-<td>不同迭代矩阵，条件略有差异</td>
+<td>不同迭代<a href="矩阵.html">矩阵</a>，条件略有差异</td>
 </tr>
 <tr>
 <td>内存</td>
@@ -202,38 +202,38 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>SOR 方法</td>
-<td>David M. Young（1950），对特定结构矩阵存在最优 $\omega_{\text{opt}}$，大幅加速</td>
+<td>David M. Young（1950），对特定结构<a href="矩阵.html">矩阵</a>存在最优 $\omega_{\text{opt}}$，大幅加速</td>
 </tr>
 <tr>
-<td>矩阵分裂理论</td>
-<td>Richard Varga《Matrix Iterative Analysis》（1962），系统化 $A=M-N$ 框架</td>
-</tr>
-<tr>
-<td>块 Jacobi / 区域分解</td>
-<td>标量分量推广为向量块，现代并行有限元核心</td>
-</tr>
-<tr>
-<td>Krylov 预条件</td>
-<td>Jacobi 预条件（$M=D$）是最简且效果常出人意料的预条件器</td>
-</tr>
-<tr>
-<td>多重网格光滑子</td>
-<td>Jacobi 迭代消除高频误差，与粗网格校正配合实现 $O(n)$ 最优复杂度</td>
-</tr>
-<tr>
-<td>异步迭代</td>
-<td>Chazan &amp; Miranker（1969），分布式计算中允许使用"过时"数据仍收敛</td>
-</tr>
-<tr>
-<td>GPU 计算</td>
-<td>同时更新天然映射到 GPU 大规模并行核心</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_7">局限性</h3>
-<ul>
-<li><strong>收敛慢</strong>：对 PDE 离散化（如 Laplacian），$\rho(B_J) = \cos(\pi/n) \approx 1 - \pi^2/(2n^2)$，误差减小一个数量级需 $O(n^2)$ 次迭代；SOR/CG/多重网格显著更快</li>
-<li><strong>不通用</strong>：对非对角占优矩阵可能发散</li>
+<td><a href="矩阵.html">矩阵</a>分裂理论</td>
+<td>Richard Varga《<span style="color:#e74c3c" title="broken link">矩阵&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;块 Jacobi / 区域分解&lt;/td&gt;
+&lt;td&gt;标量分量推广为向量块，现代并行有限元核心&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Krylov 预条件&lt;/td&gt;
+&lt;td&gt;Jacobi 预条件（$M=D$）是最简且效果常出人意料的预条件器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;多重网格光滑子&lt;/td&gt;
+&lt;td&gt;Jacobi 迭代消除高频误差，与粗网格校正配合实现 $O(n)$ 最优复杂度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;异步迭代&lt;/td&gt;
+&lt;td&gt;Chazan &amp;amp; Miranker（1969），分布式计算中允许使用&quot;过时&quot;数据仍收敛&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GPU 计算&lt;/td&gt;
+&lt;td&gt;同时更新天然映射到 GPU 大规模并行核心&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_7&quot;&gt;局限性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;收敛慢&lt;/strong&gt;：对 PDE 离散化（如 Laplacian），$\rho(B_J) = \cos(\pi/n) \approx 1 - \pi^2/(2n^2)$，误差减小一个数量级需 $O(n^2)$ 次迭代；SOR/CG/多重网格显著更快&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不通用&lt;/strong&gt;：对非对角占优[[矩阵</span>可能发散</li>
 <li><strong>不利用最新值</strong>：串行环境下每步信息"过时"，是相较 Gauss-Seidel 的主要缺点</li>
 </ul>
 <h2 id="_8">来源</h2>

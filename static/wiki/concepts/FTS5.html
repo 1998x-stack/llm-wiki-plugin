@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="fts5">FTS5</h1>
 <h2 id="_1">概述</h2>
-<p>FTS5（Full-Text Search version 5）是 SQLite 的内置全文搜索扩展模块，提供高效的文本索引和检索能力。在 Claude-Mem 中，FTS5 被用于对存储的记忆观察记录进行快速关键词搜索，支持 BM25 相关度排序、前缀匹配和短语查询。FTS5 在 Claude-Mem 中有 332 个测试用例保证 SQL 注入安全，是其搜索层的核心组件。</p>
+<p>FTS5（Full-Text Search version 5）是 <a href="../entities/SQLite.html">SQLite</a> 的内置全文搜索扩展模块，提供高效的文本索引和检索能力。在 <a href="../entities/Claude-Mem.html">Claude-Mem</a> 中，FTS5 被用于对存储的记忆观察记录进行快速关键词搜索，支持 BM25 相关度排序、前缀匹配和短语查询。FTS5 在 <a href="../entities/Claude-Mem.html">Claude-Mem</a> 中有 332 个测试用例保证 SQL 注入安全，是其搜索层的核心组件。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>工作原理</strong>：对文本字段建立倒排索引，查询时快速定位包含关键词的行</li>
 <li><strong>支持功能</strong>：布尔查询（AND/OR/NOT）、短语搜索（引号）、前缀通配符（<code>term*</code>）、BM25 相关度评分</li>
-<li><strong>与 SQLite 集成</strong>：作为虚拟表（Virtual Table）接入，语法兼容普通 SQL 查询</li>
-<li><strong>局限</strong>：不支持语义搜索（需向量数据库如 ChromaDB 补充）；对中文等无空格语言需配合分词器</li>
+<li><strong>与 <a href="../entities/SQLite.html">SQLite</a> 集成</strong>：作为虚拟表（Virtual Table）接入，语法兼容普通 SQL 查询</li>
+<li><strong>局限</strong>：不支持语义搜索（需向量数据库如 <a href="../entities/ChromaDB.html">ChromaDB</a> 补充）；对中文等无空格语言需配合分词器</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>

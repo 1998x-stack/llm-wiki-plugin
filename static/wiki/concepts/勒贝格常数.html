@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">勒贝格常数</h1>
 <h2 id="_2">概述</h2>
-<p>勒贝格常数（Lebesgue constant）$\Lambda_n$ 是衡量多项式插值算子"误差放大能力"的核心量，定义为拉格朗日基函数绝对值之和的最大值。它将插值误差与最佳逼近误差联系起来：$|f - P_n|_\infty \leq (1+\Lambda_n)E_n(f)$，其中 $E_n(f)$ 是 $n$ 次最佳一致逼近误差。勒贝格常数的增长速度直接决定了插值方案的稳定性：等距节点的 $\Lambda_n$ 指数增长导致<a href="龙格现象.html">龙格现象</a>，而<a href="切比雪夫多项式.html">切比雪夫多项式</a>零点的 $\Lambda_n$ 仅对数增长。</p>
+<p>勒贝格常数（Lebesgue constant）$\Lambda_n$ 是衡量多项式插值算子"误差放大能力"的核心量，定义为拉格朗日基函数绝对值之和的最大值。它将插值误差与最佳逼近误差联系起来：$|f - P_n|_\infty \leq (1+\Lambda_n)E_n(f)$，其中 $E_n(f)$ 是 $n$ 次<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>误差。勒贝格常数的增长速度直接决定了插值方案的稳定性：等距节点的 $\Lambda_n$ 指数增长导致<a href="龙格现象.html">龙格现象</a>，而<a href="切比雪夫多项式.html">切比雪夫多项式</a>零点的 $\Lambda_n$ 仅对数增长。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>$$\Lambda_n = \max_{x \in [-1,1]} \sum_{k=0}^{n} |L_k(x)|$$</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>切比雪夫-高斯-洛巴托节点</td>
 <td>$\sim \dfrac{2}{\pi}\ln(n) + C$</td>
-<td>包含端点，谱方法标准配置</td>
+<td>包含端点，<a href="谱方法.html">谱方法</a>标准配置</td>
 </tr>
 <tr>
 <td>最优节点（理论下界）</td>

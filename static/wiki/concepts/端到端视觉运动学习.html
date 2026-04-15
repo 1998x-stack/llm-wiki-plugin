@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>端到端视觉运动学习 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 端到端视觉运动学习</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器人学</span><span class="tag">深度学习</span><span class="tag">视觉控制</span><span class="tag">端到端学习</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">端到端视觉运动学习</h1>
+<h2 id="_2">概述</h2>
+<p>端到端视觉运动学习是让机器人直接从原始摄像头像素映射到关节力矩的深度学习范式，绕过传统的感知-状态估计-规划-控制模块化流水线，用统一的神经网络联合优化感知与控制。由 <a href="../entities/Sergey-Levine.html">Sergey-Levine</a> 等人于 2016 年首次在真实机器人上实现。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="-">核心创新：打破感知-控制边界</h3>
+<p>传统机器人操作流水线：</p>
+<pre><code>图像 → 特征提取 → 位姿估计 → 运动规划 → 控制器 → 力矩
+（每步手工设计、分别优化、接口人为定义）
+</code></pre>
+<p>端到端方法：</p>
+<pre><code>图像 + 关节状态 → 深度神经网络 → 关节力矩
+（统一优化，自动发现最优中间表示）
+</code></pre>
+<p><strong>关键价值</strong>：网络自动学习"什么视觉信息对控制最有用"，而非使用预定义的位姿参数。实验发现，网络自动关注任务相关的特征点（瓶盖边缘、插孔角点）而非人类预设的参数。</p>
+<h3 id="guided-policy-search-gps">引导策略搜索（Guided Policy Search, GPS）</h3>
+<p>端到端学习的核心挑战：真实机器人数据极昂贵，不能像 DQN 那样用百万次探索。GPS 的解决方案——"分而治之"：</p>
+<ol>
+<li><strong>轨迹优化阶段</strong>（小样本、高效）：在低维状态空间（关节角度）用 iLQG 生成高质量轨迹。不用视觉，只用精确传感器。</li>
+<li><strong>策略优化阶段</strong>（监督学习）：以轨迹优化结果为监督标签，训练从图像→力矩的深度网络（行为克隆）。</li>
+<li><strong>两阶段交替</strong>：轨迹优化约束不偏离当前策略（KL 散度约束），策略逐步接管视觉决策。</li>
+</ol>
+<p><strong>效率对比</strong>：DQN 需数百万次交互；GPS 每任务仅需约 20-30 分钟真实机器人交互。</p>
+<h3 id="spatial-softmax">空间软注意力层（Spatial Softmax）</h3>
+<p>关键架构创新，解决卷积特征图到控制的空间推理问题：</p>
+<pre><code>传统 CNN 池化：丢失空间位置信息（&quot;有没有物体&quot;≠&quot;物体在哪里&quot;）
+
+Spatial Softmax：对每个特征图施加 softmax，计算期望坐标 (x̄, ȳ)
+→ 可微分的软 argmax
+→ 保留每个特征的最强响应位置
+→ 侧向抑制噪声（只保留强激活）
+</code></pre>
+<p>效果：将高维像素特征图压缩为语义坐标，减少过拟合，提升对视觉干扰的鲁棒性。被后续大量视觉运动学习工作采用为标准组件。</p>
+<h3 id="_4">历史意义</h3>
+<ul>
+<li>2016 年与 AlphaGo 同年：标志深度学习从"识别模式"进入"物理世界决策"</li>
+<li>直接催生 Google 机器人农场 → RT-1 → RT-2 技术路线</li>
+<li>触发 <a href="域随机化.html">域随机化</a> 研究热潮（深度学习下真实数据不足的回应）</li>
+<li>Chelsea Finn 的元学习（MAML）直接从此出发</li>
+</ul>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/14-levine-deep-visuomotor-policies.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="视觉-语言-动作模型.html">视觉-语言-动作模型</a> — 端到端视觉运动学习的大规模演进形态</li>
+<li><a href="域随机化.html">域随机化</a> — 解决端到端学习的仿真数据不足问题</li>
+<li><a href="../entities/Sergey-Levine.html">Sergey-Levine</a> — 主要提出者</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="离散傅里叶变换.html">&larr; 离散傅里叶变换</a>
+    <a href="索洛增长模型.html">索洛增长模型 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

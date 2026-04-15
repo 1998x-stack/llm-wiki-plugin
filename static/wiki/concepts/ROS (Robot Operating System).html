@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROS (Robot Operating System) — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / ROS (Robot Operating System)</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，方法论，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="ros-robot-operating-system">ROS (Robot Operating System)</h1>
+<h2 id="_1">概述</h2>
+<p>ROS（Robot Operating System）是一个开源的、模块化的机器人软件框架和元操作系统（meta-operating system），由 <a href="../entities/Morgan Quigley.html">Morgan Quigley</a> 等人于 2009 年提出。它并非传统意义上的操作系统内核，而是提供硬件抽象、底层设备控制、常用功能实现、进程间消息传递和包管理等功能的基础设施层。ROS 通过节点（Nodes）、话题（Topics）、服务（Services）和消息（Messages）构成的计算图模型，实现了不同编程语言编写的模块之间的松耦合通信，从根本上改变了机器人软件的开发范式，被誉为机器人领域的"Android 时刻"。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心架构：计算图模型</h3>
+<p>ROS 的核心抽象是<strong>计算图</strong>（Computation Graph），这是一个由节点、话题和服务构成的对等网络（Peer-to-Peer）。
+*   <strong>节点</strong>（Node）：基本的计算单元，每个节点是一个独立的操作系统进程，执行特定功能（如传感器驱动、路径规划、电机控制）。节点间的故障隔离机制确保单一模块崩溃不会导致系统瘫痪。
+*   <strong>话题</strong>（Topic）：基于发布 - 订阅（Publish-Subscribe）模式的异步通信管道。发布者向特定话题发送数据流，任意数量的订阅者可接收数据，双方完全解耦，无需知晓彼此存在。这种机制非常适合处理连续的传感器数据流。
+*   <strong>服务</strong>（Service）：基于请求 - 响应（Request-Response）模式的同步通信机制，适用于需要即时反馈的任务（如逆运动学求解）。
+*   <strong>消息</strong>（Message）：定义数据传输格式的语言无关接口描述语言（IDL）。ROS 提供了丰富的标准消息库（如 <code>std_msgs</code>, <code>sensor_msgs</code>, <code>geometry_msgs</code>），定义了向量、四元数、激光扫描、图像等通用数据结构，确保了跨团队、跨语言的互操作性。</p>
+<h3 id="_4">关键设计特性</h3>
+<ol>
+<li><strong>分布式与点对点通信</strong>：ROS Master 仅作为命名服务负责节点注册和查找，实际数据传输在节点间直接进行（TCP/UDP），避免了中心服务器成为带宽瓶颈，支持跨机器部署。</li>
+<li><strong>语言无关性</strong>：通过语言无关的消息序列化和多语言客户端库（roscpp, rospy 等），C++ 编写的高性能模块可与 Python 编写的快速原型模块无缝协作。</li>
+<li><strong>工具链生态</strong>：ROS 包含一套完整的开发工具，如 <strong>rviz</strong>（3D 可视化）、<strong>rosbag</strong>（数据录制与回放，支持离线算法调试）、<strong>roslaunch</strong>（多节点启动管理）以及 <strong>TF</strong>（坐标变换库，统一管理多传感器坐标系）。</li>
+<li><strong>包管理系统</strong>：借鉴 Linux 发行版理念，采用包（Package）和堆栈（Stack）组织代码，配合 rosdep 和 catkin 构建系统，实现了依赖自动解析和代码共享。</li>
+</ol>
+<h3 id="_5">历史演变与局限</h3>
+<p>ROS 1 起源于斯坦福大学 STAIR 项目中的 Switchyard 框架，后由 <a href="../entities/Willow Garage.html">Willow Garage</a> 公司工程化并推广。尽管 ROS 1 极大地促进了学术界和初创企业的创新，但其存在显著局限：<strong>缺乏实时性保证</strong>（基于非实时 TCP/IP）、<strong>安全性缺失</strong>（无认证加密）、<strong>单点故障风险</strong>（ROS Master 崩溃影响重配置）以及<strong>平台兼容性差</strong>（主要依赖 Ubuntu）。
+为解决这些问题，社区推出了 <strong>ROS 2</strong>，采用工业级 DDS（Data Distribution Service）作为通信中间件，实现了去中心化架构、确定性延迟和内置安全机制，使其能够进入工业自动化和自动驾驶等对可靠性要求极高的领域。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/13-quigley-ros-robot-operating-system.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/Willow Garage.html">Willow Garage</a></li>
+<li><a href="../entities/Morgan Quigley.html">Morgan Quigley</a></li>
+<li><a href="../entities/Brian Gerkey.html">Brian Gerkey</a></li>
+<li><span style="color:#e74c3c" title="broken link">Andrew Y. Ng</span></li>
+<li><a href="../entities/PR2 机器人.html">PR2 机器人</a></li>
+<li><span style="color:#e74c3c" title="broken link">ROS 2</span></li>
+<li><span style="color:#e74c3c" title="broken link">Switchyard</span></li>
+<li><span style="color:#e74c3c" title="broken link">Player/Stage</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="QR算法.html">&larr; QR算法</a>
+    <a href="RRT-Connect.html">RRT-Connect &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

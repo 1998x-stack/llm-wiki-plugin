@@ -4,6 +4,14 @@ type: log
 
 # 操作日志
 
+## [2026-04-15 21:46] maintain
+- Reorganize-raw: 980 → 980 ✓ (0 moved, noop)
+- Relink: 1018 terms, 32 new links across 4 pages
+- Reindex: OK (264 页面, 6 clusters)
+- Check: 0 errors, 428 warnings, 0 info
+- Lint: 2 修复 (B2×2 BM25), 426 待处理
+- Build: 264 节点, 1957 边, 0 孤页, 1 连通分量 → static/ 已同步
+
 ## [2026-04-15] ingest | raw/books/计算机科学/01-turing-on-computable-numbers.md
 
 - 创建：`wiki/concepts/图灵机.md` — 定义、通用图灵机、不可计算数、影响

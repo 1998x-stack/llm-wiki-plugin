@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="householder">Householder 变换</h1>
 <h2 id="_1">概述</h2>
-<p>Householder 变换（Householder Reflection）由<a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a>于 1958 年提出。定义为 $H = I - 2vv^T/v^Tv$——关于与法向量 $v$ 正交的超平面的镜像反射。核心性质：<strong>正交矩阵</strong>（$H^T H = I$）、<strong>对合</strong>（$H^2 = I$）、<strong>条件数 = 1</strong>（不放大误差）。通过恰当选择 $v$，可以将任意向量 $x$ 一次反射到坐标轴方向（消去多个分量），这使其成为比 Givens 旋转（每次消去一个元素）更高效的 QR 分解工具，计算量从 $O(n^4)$ 降至 $O(n^3)$。</p>
+<p><a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换（<a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> Reflection）由<a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a>于 1958 年提出。定义为 $H = I - 2vv^T/v^Tv$——关于与法向量 $v$ 正交的超平面的镜像反射。核心性质：<strong>正交<a href="矩阵.html">矩阵</a></strong>（$H^T H = I$）、<strong>对合</strong>（$H^2 = I$）、<strong><a href="条件数.html">条件数</a> = 1</strong>（不放大误差）。通过恰当选择 $v$，可以将任意向量 $x$ 一次反射到坐标轴方向（消去多个分量），这使其成为比 Givens 旋转（每次消去一个元素）更高效的 QR 分解工具，计算量从 $O(n^4)$ 降至 $O(n^3)$。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定义与性质</h3>
 <p>$$H = I - \frac{2vv^T}{v^Tv}, \quad v \in \mathbb{R}^n \setminus {0}$$</p>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>$\det(H) = -1$</td>
 </tr>
 <tr>
-<td><strong>条件数</strong></td>
+<td><strong><a href="条件数.html">条件数</a></strong></td>
 <td>$\kappa_2(H) = 1$（最优！不放大舍入误差）</td>
 </tr>
 <tr>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>给定向量 $x$，选取 $v = x + \text{sign}(x_1)|x|_2 e_1$，则：</p>
 <p>$$Hx = -\text{sign}(x_1)|x|_2 e_1$$</p>
 <p>一次反射消去了 $x$ 的 $n-1$ 个分量（$x_2, \ldots, x_n$ 全变为零）。符号选取 $+\text{sign}(x_1)$ 是为了避免<strong>灾难性对消</strong>（catastrophic cancellation）。</p>
-<p>相比 <strong>Givens 旋转</strong>（每次只能消去一个元素），Householder 变换是<strong>批量消去</strong>：</p>
+<p>相比 <strong>Givens 旋转</strong>（每次只能消去一个元素），<a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换是<strong>批量消去</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -195,29 +195,29 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>$O(n^4)$</td>
 </tr>
 <tr>
-<td><strong>Householder 变换</strong></td>
+<td>**<span style="color:#e74c3c" title="broken link">阿尔斯顿·豪斯霍尔德&lt;/td&gt;
+&lt;td&gt;Householder</span> 变换**</td>
 <td><strong>整列元素</strong></td>
 <td><strong>$n-1$ 次变换</strong></td>
-<td><strong>$O(n^3)$</strong></td>
 </tr>
 </tbody>
 </table>
 <h3 id="qr">QR 分解</h3>
-<p>对 $m \times n$ 矩阵 $A$（$m \geq n$），依次应用 $n$ 次 Householder 变换：</p>
+<p>对 $m \times n$ <a href="矩阵.html">矩阵</a> $A$（$m \geq n$），依次应用 $n$ 次 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换：</p>
 <p>$$H_n \cdots H_2 H_1 A = R \quad \Rightarrow \quad A = QR$$</p>
-<p>其中 $Q = H_1 H_2 \cdots H_n$（正交），$R$ 为上三角矩阵。</p>
-<p><strong>计算量</strong>：$\frac{2}{3}n^3$（方阵）或 $2mn^2 - \frac{2}{3}n^3$（$m \times n$ 矩阵）</p>
-<p><strong>隐式表示</strong>（重要！）：$H$ 无需显式存储为 $n\times n$ 矩阵，只存储 $v$（$n$ 个数），矩阵-向量乘积：</p>
+<p>其中 $Q = H_1 H_2 \cdots H_n$（正交），$R$ 为上三角<a href="矩阵.html">矩阵</a>。</p>
+<p><strong>计算量</strong>：$\frac{2}{3}n^3$（方阵）或 $2mn^2 - \frac{2}{3}n^3$（$m \times n$ <a href="矩阵.html">矩阵</a>）</p>
+<p><strong>隐式表示</strong>（重要！）：$H$ 无需显式存储为 $n\times n$ <a href="矩阵.html">矩阵</a>，只存储 $v$（$n$ 个数），<a href="矩阵.html">矩阵</a>-向量乘积：</p>
 <p>$$Hx = x - 2\frac{v^Tx}{v^Tv}v \quad [O(n) \text{ 计算，} O(n) \text{ 存储}]$$</p>
 <h3 id="hessenberg">Hessenberg 化简（特征值预处理）</h3>
-<p>对一般 $n\times n$ 矩阵，通过两侧 Householder 变换（$n-2$ 步）化为<strong>上 Hessenberg 形式</strong>（$h_{ij}=0$ 当 $i&gt;j+1$）：</p>
+<p>对一般 $n\times n$ <a href="矩阵.html">矩阵</a>，通过两侧 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换（$n-2$ 步）化为<strong>上 Hessenberg 形式</strong>（$h_{ij}=0$ 当 $i&gt;j+1$）：</p>
 <p>$$Q^T A Q = H_{\text{Hessenberg}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$</p>
-<p>对<strong>对称矩阵</strong>化为<strong>三对角形式</strong>：$\frac{4}{3}n^3$ 次运算</p>
-<p><strong>意义</strong>：对 Hessenberg 矩阵的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使<a href="QR算法.html">QR算法</a>实际可行。</p>
+<p>对<strong>对称<a href="矩阵.html">矩阵</a></strong>化为<strong>三对角形式</strong>：$\frac{4}{3}n^3$ 次运算</p>
+<p><strong>意义</strong>：对 Hessenberg <a href="矩阵.html">矩阵</a>的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使<a href="QR算法.html">QR算法</a>实际可行。</p>
 <h3 id="gauss">数值稳定性：为何优于 Gauss 消元</h3>
-<p>Householder 变换（正交变换）的条件数 $\kappa_2(H) = 1$——<strong>不放大误差</strong>。</p>
-<p>相比之下，Gauss 消元的增长因子可达 $2^{n-1}$（最坏情况），即使带列主元选取，在某些矩阵上仍不够稳定。</p>
-<p>这一优势是<a href="后向误差分析.html">后向误差分析</a>（Wilkinson）所指出的"酉变换的根本优越性"的直接体现：$\kappa(Q) = 1$，正交变换引入的后向误差 $|\delta A|/|A| \approx \varepsilon_\text{mach}$。</p>
+<p><a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换（正交变换）的<a href="条件数.html">条件数</a> $\kappa_2(H) = 1$——<strong>不放大误差</strong>。</p>
+<p>相比之下，Gauss 消元的增长因子可达 $2^{n-1}$（最坏情况），即使带列主元选取，在某些<a href="矩阵.html">矩阵</a>上仍不够稳定。</p>
+<p>这一优势是<a href="后向误差分析.html">后向误差分析</a>（<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>）所指出的"酉变换的根本优越性"的直接体现：$\kappa(Q) = 1$，正交变换引入的<a href="后向误差分析.html">后向误差分析</a> $|\delta A|/|A| \approx \varepsilon_\text{mach}$。</p>
 <h3 id="_5">主要应用</h3>
 <table>
 <thead>
@@ -229,7 +229,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>QR 分解</td>
-<td>最稳定的稠密矩阵 QR 分解方法（LAPACK DGEQRF）</td>
+<td>最稳定的稠密<a href="矩阵.html">矩阵</a> QR 分解方法（LAPACK DGEQRF）</td>
 </tr>
 <tr>
 <td>Hessenberg 化简</td>
@@ -240,24 +240,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>对称特征值计算预处理（LAPACK DSYTRD）</td>
 </tr>
 <tr>
-<td>SVD 计算</td>
-<td>Golub-Kahan 双对角化（LAPACK DBDSDC）</td>
+<td><span style="color:#e74c3c" title="broken link">奇异值分解&lt;/td&gt;
+&lt;td&gt;SVD</span> 计算</td>
 </tr>
 <tr>
 <td>最小二乘</td>
 <td>$\min|Ax-b|_2$：$A=QR$，解 $Rx=Q^Tb$（比法方程更稳定）</td>
 </tr>
 <tr>
-<td>块 Householder（WY 表示）</td>
-<td>现代并行计算中将多个变换合并为 BLAS-3 矩阵-矩阵乘</td>
+<td>块 <span style="color:#e74c3c" title="broken link">阿尔斯顿·豪斯霍尔德&lt;/td&gt;
+&lt;td&gt;Householder</span>（WY 表示）</td>
 </tr>
 </tbody>
 </table>
 <h3 id="_6">局限性</h3>
 <ul>
-<li><strong>破坏稀疏性</strong>：稀疏矩阵经 Householder 变换后一般变为稠密（大规模稀疏特征值问题应用 Lanczos/Arnoldi）</li>
+<li><strong>破坏稀疏性</strong>：稀疏<a href="矩阵.html">矩阵</a>经 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">阿尔斯顿·豪斯霍尔德</a> 变换后一般变为稠密（大规模稀疏特征值问题应用 Lanczos/Arnoldi）</li>
 <li><strong>顺序依赖</strong>：第 $k$ 步依赖前 $k-1$ 步结果，并行化受限（通信回避算法 TSQR/CAQR 是现代改进方向）</li>
-<li><strong>与 Givens 互补</strong>：带状矩阵、增量更新 QR 等场景 Givens 旋转更合适</li>
+<li><strong>与 Givens 互补</strong>：带状<a href="矩阵.html">矩阵</a>、增量更新 QR 等场景 Givens 旋转更合适</li>
 </ul>
 <h2 id="_7">来源</h2>
 <ul>

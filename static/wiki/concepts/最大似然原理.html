@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">最大似然原理</h1>
 <h2 id="_2">概述</h2>
-<p>最大似然原理（Maximum Likelihood Principle）是统计学中最重要的参数估计方法之一：给定观测数据 $x_1, \ldots, x_n$，选择使似然函数 $L(\theta) = \prod f(x_i|\theta)$ 最大的参数 $\hat\theta$（最大似然估计，MLE）。该思想萌芽于<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 1809 年对测量误差的分析——他从"使观测到当前数据的概率最大"的直觉出发，推导出误差的正态分布，并证明在此假设下最小二乘估计恰好是最大似然估计。最大似然估计由 R. A. Fisher 在 1912–1922 年系统化和命名。</p>
+<p>最大似然原理（Maximum Likelihood Principle）是统计学中最重要的参数估计方法之一：给定观测数据 $x_1, \ldots, x_n$，选择使似然函数 $L(\theta) = \prod f(x_i|\theta)$ 最大的参数 $\hat\theta$（最大似然估计，MLE）。该思想萌芽于<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 1809 年对测量误差的分析——他从"使观测到当前数据的概率最大"的直觉出发，推导出误差的<a href="正态分布.html">正态分布</a>，并证明在此假设下最小二乘估计恰好是最大似然估计。最大似然估计由 R. A. Fisher 在 1912–1922 年系统化和命名。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>基本思想</strong>：在所有参数值中，选择"最可能产生已观测数据"的那个参数值</li>
 <li><strong>定义</strong>：$\hat\theta_{\text{MLE}} = \arg\max_\theta L(\theta) = \arg\max_\theta \prod_{i=1}^n f(x_i|\theta)$</li>
-<li><strong>Gauss 的贡献</strong>（1809）：从最大似然逆推误差分布 → 正态分布是唯一与最小二乘相容的误差分布；若误差正态分布，则 MLE = 最小二乘估计</li>
+<li><strong>Gauss 的贡献</strong>（1809）：从最大似然逆推误差分布 → <a href="正态分布.html">正态分布</a>是唯一与最小二乘相容的误差分布；若误差<a href="正态分布.html">正态分布</a>，则 MLE = 最小二乘估计</li>
 <li><strong>Fisher 的系统化</strong>（1922）：命名、相合性（consistency）、有效性（efficiency, 达到 Cramér-Rao 下界）、渐近正态性的严格理论</li>
-<li><strong>与贝叶斯的关系</strong>：MLE = MAP（最大后验）在均匀先验下的特例；在大样本极限下两者趋于一致</li>
+<li><strong>与<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>的关系</strong>：MLE = MAP（最大后验）在均匀先验下的特例；在大样本极限下两者趋于一致</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

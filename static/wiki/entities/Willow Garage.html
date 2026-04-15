@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Willow Garage — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Willow Garage</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="willow-garage">Willow Garage</h1>
+<h2 id="_1">概述</h2>
+<p>Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由硅谷企业家 Scott Hassan 创立。该机构致力于个人机器人技术的研发，其最著名的成就是开发了 <strong>ROS </strong>(<a href="../concepts/ROS (Robot Operating System).html">ROS (Robot Operating System)</a>) 开源软件框架和 <strong><a href="PR2 机器人.html">PR2 机器人</a></strong> 个人机器人平台。Willow Garage 以坚定的开源承诺著称，不仅将所有软件代码开源，还曾免费向全球顶尖研究机构赠送多台昂贵的 <a href="PR2 机器人.html">PR2 机器人</a>，以此培育社区生态。虽然公司于 2014 年关闭，但其遗产通过 Open Source Robotics Foundation (OSRF) 得以延续，深刻塑造了现代机器人学的软件格局。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">成立背景与愿景</h3>
+<p>Willow Garage 的诞生源于创始人 Scott Hassan（Google 搜索引擎原型技术的共同开发者）对"机器人界 Linux"的愿景。2000 年代中期，机器人软件开发处于碎片化状态，各实验室重复造轮子。Hassan 受到斯坦福大学博士生 Eric Berger 和 Keenan Wyrobek 关于理想机器人软件框架设计的启发，结合 <a href="Morgan Quigley.html">Morgan Quigley</a> 在 STAIR 项目中开发的 Switchyard 框架经验，决定成立一家专门机构来解决这一痛点。其目标是打造一个开源的、社区驱动的软件平台，使机器人开发像 Web 开发一样高效协作。</p>
+<h3 id="ros-pr2">核心贡献：ROS 与 PR2</h3>
+<p>Willow Garage 的核心产出是 <strong>ROS</strong> 和 <strong><a href="PR2 机器人.html">PR2 机器人</a></strong>。
+*   <strong>ROS 的工程化</strong>：虽然 ROS 的概念源自学术界，但 Willow Garage 投入了大量工程资源将其从一个研究原型转化为稳健的工业级框架。公司雇佣了包括 Ken Conley, Josh Faust, Tully Foote 等在内的核心工程师团队，开发了 rviz, rosbag, TF 等关键工具链，并建立了 Wiki 文档和 ROS Answers 社区平台。
+*   <strong><a href="PR2 机器人.html">PR2 机器人</a> Beta Program</strong>：2010 年，Willow Garage 启动了 <a href="PR2 机器人.html">PR2 机器人</a> Beta Program，将价值数十万美元的 11 台 <a href="PR2 机器人.html">PR2 机器人</a>免费赠送给 MIT、UC Berkeley、斯坦福等全球顶尖高校。这一策略极具远见，迅速在全球范围内培养了一批精通 ROS 的"种子用户"，形成了强大的网络效应，使 ROS 迅速成为事实标准。</p>
+<h3 id="_4">开源哲学与商业模式</h3>
+<p>在当时以专有软件为主导的机器人行业，Willow Garage 采取了激进的开源策略。它选择 BSD 许可证以降低商业使用门槛，鼓励企业基于 ROS 开发产品。这种"先投入、后收获"的模式虽然在短期内难以看到直接商业回报，但成功构建了庞大的生态系统。众多机器人创业公司（如 Fetch Robotics, Locus Robotics）和工业巨头（如 ABB, Kuka）随后基于 ROS 构建了自己的产品栈。</p>
+<h3 id="_5">遗产与转型</h3>
+<p>2014 年，Willow Garage 正式关闭，但这并未终结其项目。其维护的开源项目（ROS, Gazebo 等）移交给了非营利组织 <strong>Open Source Robotics Foundation </strong>(OSRF)。OSRF 后来成立了营利性子公司 OSRC，并于 2022 年被 Alphabet 旗下的 Intrinsic 收购，原核心团队加入 Intrinsic 继续推动 ROS 2 的发展。Willow Garage 的故事展示了开源模式在硬科技领域的可持续性路径：通过建立公共基础设施（Commons），推动整个行业的进步，最终通过生态系统的繁荣反哺核心技术团队。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/13-quigley-ros-robot-operating-system.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/ROS (Robot Operating System).html">ROS (Robot Operating System)</a></li>
+<li><a href="PR2 机器人.html">PR2 机器人</a></li>
+<li><span style="color:#e74c3c" title="broken link">Open Source Robotics Foundation</span></li>
+<li><span style="color:#e74c3c" title="broken link">Scott Hassan</span></li>
+<li><a href="Brian Gerkey.html">Brian Gerkey</a></li>
+<li><a href="Morgan Quigley.html">Morgan Quigley</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Unimate.html">&larr; Unimate</a>
+    <a href="Wolfram Burgard.html">Wolfram Burgard &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

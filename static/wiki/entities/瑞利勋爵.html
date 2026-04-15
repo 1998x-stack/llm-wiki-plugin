@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">瑞利勋爵</h1>
 <h2 id="_2">概述</h2>
-<p>瑞利勋爵（Lord Rayleigh，John William Strutt，1842–1919）是英国物理学家，诺贝尔物理学奖得主（1904年，因发现氩）。在数学物理方面，他1877年的经典著作《声音的理论》（<em>The Theory of Sound</em>）中引入了以他命名的<a href="../concepts/Rayleigh商.html">Rayleigh商</a>，通过变分原理将弹性体和声学系统的基频（最低振动频率）表达为 Rayleigh 商的最小值。这一洞察成为<a href="../concepts/极大极小定理.html">极大极小定理</a>的直接先驱，将物理直觉带入矩阵特征值的变分刻画。</p>
+<p>瑞利勋爵（Lord Rayleigh，John William Strutt，1842–1919）是英国物理学家，诺贝尔物理学奖得主（1904年，因发现氩）。在数学物理方面，他1877年的经典著作《声音的理论》（<em>The Theory of Sound</em>）中引入了以他命名的<a href="../concepts/Rayleigh商.html">Rayleigh商</a>，通过变分原理将弹性体和声学系统的基频（最低振动频率）表达为 Rayleigh 商的最小值。这一洞察成为<a href="../concepts/极大极小定理.html">极大极小定理</a>的直接先驱，将物理直觉带入<a href="../concepts/矩阵.html">矩阵</a>特征值的变分刻画。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">生平</h3>
 <ul>
@@ -147,12 +147,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="rayleigh">核心贡献：Rayleigh 商与变分原理</h3>
 <p>Rayleigh 在1877年 <em>The Theory of Sound</em> 中发现：弹性体或声学系统的<strong>基频</strong>（最低振动频率）的平方，等于下列 <a href="../concepts/Rayleigh商.html">Rayleigh商</a> 在所有非零位移向量上的最小值：</p>
 <p>$$R(x) = \frac{x^T K x}{x^T M x}$$</p>
-<p>其中 K 为刚度矩阵，M 为质量矩阵。对于标准特征值问题（M = I），最小特征值满足：</p>
+<p>其中 K 为刚度<a href="../concepts/矩阵.html">矩阵</a>，M 为质量<a href="../concepts/矩阵.html">矩阵</a>。对于标准特征值问题（M = I），最小特征值满足：</p>
 <p>$$\lambda_n = \min_{x \neq 0} \frac{x^T A x}{x^T x}$$</p>
 <p><strong>物理含义</strong>：系统的振动频率等于"在所有可能的变形模式中，弹性势能与动能之比的最小值"。</p>
 <h3 id="rayleigh-fischer">Rayleigh 方法的局限与 Fischer 的突破</h3>
-<p>Rayleigh 的变分方法只能直接刻画<strong>极端特征值</strong>（最大或最小）。对于中间特征值，他提出了"逐次正交化"方法，但这需要<strong>已知</strong>前面的特征向量——不具有 Fischer 定理的自含性。</p>
-<p>Fischer 在1905年通过引入子空间约束下的双重极值操作，将 Rayleigh 的单层极值推广为两层嵌套极值，从而在<strong>不需要任何已知特征向量</strong>的前提下刻画每一个特征值。</p>
+<p>Rayleigh 的变分方法只能直接刻画<strong>极端特征值</strong>（最大或最小）。对于中间特征值，他提出了"逐次正交化"方法，但这需要<strong>已知</strong>前面的特征向量——不具有 <a href="恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理的自含性。</p>
+<p><a href="恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 在1905年通过引入子空间约束下的双重极值操作，将 Rayleigh 的单层极值推广为两层嵌套极值，从而在<strong>不需要任何已知特征向量</strong>的前提下刻画每一个特征值。</p>
 <h3 id="_5">在工程中的应用</h3>
 <p>Rayleigh 将变分原理大量应用于工程振动分析：通过假设合理的试函数，可以在不求解特征方程的前提下估计结构的固有频率。这一方法（"Rayleigh 方法"）至今仍是结构工程中的标准估算工具，误差通常在几个百分点以内。</p>
 <h2 id="_6">来源</h2>

@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="krylov">Krylov 子空间方法</h1>
 <h2 id="_1">概述</h2>
-<p>Krylov 子空间方法（Krylov Subspace Methods）是现代大规模线性代数计算的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步矩阵-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$ 中寻找最优近似解，每步只需一次矩阵-向量乘法，能高效利用矩阵稀疏性。<a href="共轭梯度法.html">共轭梯度法</a>（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学计算不可或缺的工具集。</p>
+<p>Krylov 子空间方法（Krylov Subspace Methods）是现代大规模<a href="线性代数.html">线性代数</a>计算的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步<a href="矩阵.html">矩阵</a>-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$ 中寻找最优近似解，每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，能高效利用<a href="矩阵.html">矩阵</a>稀疏性。<a href="共轭梯度法.html">共轭梯度法</a>（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学计算不可或缺的工具集。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="krylov_1">Krylov 子空间</h3>
 <p>$$K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$$</p>
 <p><strong>关键性质</strong>：
-- 仅通过矩阵-向量乘法生成，无需显式存储矩阵（对稀疏矩阵尤为有利）
+- 仅通过<a href="矩阵.html">矩阵</a>-向量乘法生成，无需显式存储<a href="矩阵.html">矩阵</a>（对稀疏<a href="矩阵.html">矩阵</a>尤为有利）
 - 维数最多为 $n$，$k=n$ 时涵盖整个解空间
-- 与矩阵的<strong>谱结构</strong>深刻关联：特征值聚集 → 更快收敛</p>
+- 与<a href="矩阵.html">矩阵</a>的<strong>谱结构</strong>深刻关联：特征值聚集 → 更快收敛</p>
 <h3 id="_3">方法家族</h3>
 <table>
 <thead>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>Lanczos</strong></td>
 <td>1950</td>
-<td>对称矩阵特征值</td>
+<td>对称<a href="矩阵.html">矩阵</a>特征值</td>
 <td>三对角化</td>
 </tr>
 <tr>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>Arnoldi</strong></td>
 <td>1951/1975</td>
-<td>非对称矩阵特征值</td>
+<td>非对称<a href="矩阵.html">矩阵</a>特征值</td>
 <td>Hessenberg化</td>
 </tr>
 <tr>
@@ -205,20 +205,20 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_4">与经典迭代法的根本区别</h3>
-<p><strong>经典定点迭代</strong>（Jacobi/Gauss-Seidel）：$x^{(k+1)} = g(x^{(k)})$，每步从上一步单一迭代点出发，收敛率固定为谱半径 $\rho(B) &lt; 1$。</p>
+<p><strong>经典定点迭代</strong>（Jacobi/Gauss-Seidel）：$x^{(k+1)} = g(x^{(k)})$，每步从上一步单一迭代点出发，收敛率固定为<a href="谱半径.html">谱半径</a> $\rho(B) &lt; 1$。</p>
 <p><strong>Krylov 方法</strong>：$x_k \in x_0 + K_k(A, r_0)$，在递增子空间中寻找最优解，利用全部历史信息，收敛率随步数动态改善。</p>
 <p><strong>核心优势</strong>：
-- 利用<strong>所有</strong>前 $k$ 步矩阵-向量乘法的信息（而非仅用最新一步）
-- 收敛率由条件数<strong>平方根</strong>决定（CG），优于经典方法的条件数本身
-- 对稀疏矩阵高效：每步 $O(\text{nnz})$ 次运算（nnz = 非零元素数）</p>
+- 利用<strong>所有</strong>前 $k$ 步<a href="矩阵.html">矩阵</a>-向量乘法的信息（而非仅用最新一步）
+- 收敛率由<a href="条件数.html">条件数</a><strong>平方根</strong>决定（CG），优于经典方法的<a href="条件数.html">条件数</a>本身
+- 对稀疏<a href="矩阵.html">矩阵</a>高效：每步 $O(\text{nnz})$ 次运算（nnz = 非零元素数）</p>
 <h3 id="cg-lanczos">CG-Lanczos 深层联系</h3>
-<p><a href="共轭梯度法.html">共轭梯度法</a>中产生的三项递推关系与 Lanczos 算法产生的三对角矩阵之间存在精确对应：</p>
+<p><a href="共轭梯度法.html">共轭梯度法</a>中产生的三项递推关系与 Lanczos 算法产生的三对角<a href="矩阵.html">矩阵</a>之间存在精确对应：</p>
 <p>$$\text{Lanczos 三对角化} \iff \text{CG 递推关系}$$</p>
 <p>两者都在同一个 Krylov 子空间中工作，数学核心相同，只是"输出目标"不同（特征值 vs 线性方程组解）。这一深层联系在 1970 年代被完全阐明。</p>
 <h3 id="_5">预处理</h3>
 <p>所有 Krylov 方法都可以配合预处理器（preconditioner）$M \approx A$：</p>
 <p>$$M^{-1}A x = M^{-1}b \quad \Rightarrow \quad \kappa(M^{-1}A) \ll \kappa(A)$$</p>
-<p>预处理是让 Krylov 方法实用的关键技术，也是当代数值线性代数最活跃的研究方向之一。</p>
+<p>预处理是让 Krylov 方法实用的关键技术，也是当代数值<a href="线性代数.html">线性代数</a>最活跃的研究方向之一。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/15_conjugate_gradient.md</span></li>

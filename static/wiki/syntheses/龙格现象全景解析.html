@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">龙格现象全景解析</h1>
 <h2 id="_2">概述</h2>
-<p>澄清常见混淆：<strong>龙格现象</strong>（插值发散）与<strong>龙格-库塔方法</strong>（ODE求解器）均以卡尔·龙格命名，但研究完全不同的问题。本页专注龙格现象：等距多项式插值在端点附近的灾难性发散，及其两条解决路线。</p>
+<p>澄清常见混淆：<strong><a href="../concepts/龙格现象.html">龙格现象</a></strong>（插值发散）与<strong><a href="../concepts/龙格-库塔方法.html">龙格-库塔方法</a></strong>（ODE求解器）均以<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>命名，但研究完全不同的问题。本页专注<a href="../concepts/龙格现象.html">龙格现象</a>：等距多项式插值在端点附近的灾难性发散，及其两条解决路线。</p>
 <h2 id="_3">现象</h2>
 <p>标准反例：$f(x) = 1/(1+25x^2)$，$n=40$ 等距节点插值，端点误差达 $10^{15}$（函数真值 $\approx 0.038$）。</p>
 <h2 id="_4">数学根源（三层）</h2>
 <p><strong>第一层——误差公式</strong>：
 $$f(x)-p_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^n(x-x_i)$$
 等距节点下，$\prod(x-x_i)$ 在端点指数增长，超过分子的衰减。</p>
-<p><strong>第二层——勒贝格常数</strong>：
+<p><strong>第二层——<a href="../concepts/勒贝格常数.html">勒贝格常数</a></strong>：
 $$|f-P_n|_\infty \leq (1+\Lambda_n)\cdot E_n(f)$$
 等距节点：$\Lambda_n \sim 2^{n+1}/(e\cdot n\ln n)$（指数爆炸）
 切比雪夫节点：$\Lambda_n \sim \frac{2}{\pi}\ln(n+1)+C$（对数，几乎最优）</p>
@@ -151,7 +151,7 @@ $$|f-P_n|_\infty \leq (1+\Lambda_n)\cdot E_n(f)$$
 <table>
 <thead>
 <tr>
-<th>数值分析</th>
+<th><a href="../concepts/数值分析.html">数值分析</a></th>
 <th>机器学习</th>
 </tr>
 </thead>
@@ -171,8 +171,8 @@ $$|f-P_n|_\infty \leq (1+\Lambda_n)\cdot E_n(f)$$
 </tbody>
 </table>
 <h2 id="_5">两条解决路线</h2>
-<p><strong>切比雪夫节点</strong>：$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right)$，端点加密，$\max|\omega_{n+1}|=1/2^n$（最小），$\Lambda_n$ 对数增长。适用：谱方法、高精度函数逼近。</p>
-<p><strong>样条方法</strong>：分段三次多项式，$C^2$ 连续，系数由三对角方程组确定。适用：CAD/工程插值，函数不要求光滑。</p>
+<p><strong>切比雪夫节点</strong>：$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right)$，端点加密，$\max|\omega_{n+1}|=1/2^n$（最小），$\Lambda_n$ 对数增长。适用：<a href="../concepts/谱方法.html">谱方法</a>、高精度函数逼近。</p>
+<p><strong><a href="../concepts/样条方法.html">样条方法</a></strong>：分段三次多项式，$C^2$ 连续，系数由三对角方程组确定。适用：CAD/工程插值，函数不要求光滑。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><a href="../concepts/龙格现象.html">龙格现象</a></li>

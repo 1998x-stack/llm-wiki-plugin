@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">中心极限定理</h1>
 <h2 id="_2">概述</h2>
-<p>中心极限定理（Central Limit Theorem，CLT）是概率论中最深刻、应用最广泛的定理之一：<strong>大量独立同分布的随机变量之和（或均值），无论原始分布形状如何，其分布都趋向<a href="正态分布.html">正态分布</a></strong>。这解释了为何正态分布在自然界和社会现象中无处不在。最早的版本由<a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>于1733年在二项分布特殊情形中推导，后经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>推广，再经切比雪夫、Lindeberg、Feller 等人逐步一般化。</p>
+<p>中心极限定理（Central Limit Theorem，CLT）是<a href="概率论.html">概率论</a>中最深刻、应用最广泛的定理之一：<strong>大量独立同分布的随机变量之和（或均值），无论原始分布形状如何，其分布都趋向<a href="正态分布.html">正态分布</a></strong>。这解释了为何<a href="正态分布.html">正态分布</a>在自然界和社会现象中无处不在。最早的版本由<a href="../entities/亚伯拉罕·德莫弗.html">亚伯拉罕·德莫弗</a>于1733年在二项分布特殊情形中推导，后经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>推广，再经切比雪夫、Lindeberg、Feller 等人逐步一般化。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定理陈述（现代形式）</h3>
 <p>设 X₁, X₂, ..., Xₙ 为独立同分布随机变量，均值为 μ，方差为 σ²（有限）。令：</p>
 <p>$$Z_n = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}$$</p>
-<p>则当 n → ∞ 时，Zₙ 的分布趋近标准正态分布 N(0,1)：</p>
+<p>则当 n → ∞ 时，Zₙ 的分布趋近标准<a href="正态分布.html">正态分布</a> N(0,1)：</p>
 <p>$$P(a \le Z_n \le b) \to \frac{1}{\sqrt{2\pi}} \int_a^b e^{-x^2/2} dx$$</p>
-<p><strong>关键</strong>：不要求 Xᵢ 本身服从正态分布，只需独立同分布且有有限方差。</p>
+<p><strong>关键</strong>：不要求 Xᵢ 本身服从<a href="正态分布.html">正态分布</a>，只需独立同分布且有有限方差。</p>
 <h3 id="_5">历史发展：从特殊到一般</h3>
 <table>
 <thead>
@@ -174,31 +174,31 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>1901</td>
-<td>Lyapunov</td>
-<td>Lyapunov 条件</td>
-<td>非同分布，Lyapunov 条件</td>
-</tr>
-<tr>
-<td>1922</td>
-<td>Lindeberg</td>
-<td>Lindeberg 条件</td>
-<td>非同分布，最弱充分条件</td>
-</tr>
-<tr>
-<td>1935</td>
-<td>Feller</td>
-<td>Lindeberg-Feller 定理</td>
-<td>充要条件</td>
-</tr>
-</tbody>
-</table>
-<h3 id="de-moivrelaplace">De Moivre–Laplace 定理（最早形式）</h3>
-<p>De Moivre 的原始结果（二项分布特殊情形）：</p>
-<p>设 Sₙ 为 n 次独立伯努利试验（成功概率 p）中成功次数，则：</p>
+<td><span style="color:#e74c3c" title="broken link">李雅普诺夫&lt;/td&gt;
+&lt;td&gt;Lyapunov</span></td>
+<td><span style="color:#e74c3c" title="broken link">李雅普诺夫&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1922&lt;/td&gt;
+&lt;td&gt;Lindeberg&lt;/td&gt;
+&lt;td&gt;Lindeberg 条件&lt;/td&gt;
+&lt;td&gt;非同分布，最弱充分条件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1935&lt;/td&gt;
+&lt;td&gt;Feller&lt;/td&gt;
+&lt;td&gt;Lindeberg-Feller 定理&lt;/td&gt;
+&lt;td&gt;充要条件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;de-moivrelaplace&quot;&gt;De Moivre–Laplace 定理（最早形式）&lt;/h3&gt;
+&lt;p&gt;De Moivre 的原始结果（二项分布特殊情形）：&lt;/p&gt;
+&lt;p&gt;设 Sₙ 为 n 次独立[[雅各布·伯努利</span>试验（成功概率 p）中成功次数，则：</p>
 <p>$$P!\left(a \le \frac{S_n - np}{\sqrt{np(1-p)}} \le b\right) \to \frac{1}{\sqrt{2\pi}} \int_a^b e^{-x^2/2} dx$$</p>
-<p>De Moivre 只证明了 p = 1/2 的情形；拉普拉斯推广到任意 p。</p>
+<p>De Moivre 只证明了 p = 1/2 的情形；<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>推广到任意 p。</p>
 <h3 id="_6">直觉理解：为何正态分布普遍存在</h3>
-<p>投掷 n 个骰子，求总点数的分布。每个骰子的点数分布是均匀分布（1到6各1/6），但当 n 增大时，总点数的分布趋近钟形曲线。</p>
+<p>投掷 n 个骰子，求总点数的分布。每个骰子的点数分布是均匀分布（1到6各1/6），但当 n 增大时，总点数的分布趋近<a href="正态分布.html">正态分布</a>。</p>
 <p>这是 CLT 的核心直觉：<strong>任何量，只要是由大量独立的微小随机扰动叠加而成，其分布就趋近正态</strong>。身高（基因×环境×营养×……）、测量误差（仪器误差×操作误差×……）都满足这个条件。</p>
 <h3 id="_7">与大数定律的关系</h3>
 <p><a href="大数定律.html">大数定律</a>和 CLT 回答了两个层次的问题：</p>
@@ -230,9 +230,9 @@ $$P!\left(\mu \in \left[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\ \bar{X} 
 <p><strong>民意调查误差</strong>：n=1000 人样本，误差棒 ≈ ±1/√1000 ≈ ±3.2%（正是常见的"±3%误差"的来源）</p>
 <h2 id="_9">意义</h2>
 <ol>
-<li><strong>解释了正态分布的普遍性</strong>：不需要假设世界是"正态的"，CLT 说明只要有大量独立因素叠加，正态就自然出现</li>
+<li><strong>解释了<a href="正态分布.html">正态分布</a>的普遍性</strong>：不需要假设世界是"正态的"，CLT 说明只要有大量独立因素叠加，正态就自然出现</li>
 <li><strong>统计推断的数学基础</strong>：置信区间、假设检验等核心统计方法依赖 CLT</li>
-<li><strong>概率论从组合到分析</strong>：CLT 的证明将分析工具（积分、级数）引入概率论</li>
+<li><strong><a href="概率论.html">概率论</a>从组合到分析</strong>：CLT 的证明将分析工具（积分、级数）引入<a href="概率论.html">概率论</a></li>
 <li><strong>方差的重要性</strong>：CLT 需要有限方差，这使方差成为衡量随机性的核心参数</li>
 </ol>
 <h2 id="_10">来源</h2>

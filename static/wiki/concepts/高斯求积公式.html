@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">与正交多项式的联系</h3>
 <p>不同权函数对应不同正交多项式族，衍生出各类高斯求积变体：
 - <strong>Gauss-Legendre</strong>：$w(x)=1$，$[-1,1]$，使用勒让德多项式（最常用）
-- <strong>Gauss-Chebyshev</strong>：$w(x)=1/\sqrt{1-x^2}$，使用切比雪夫多项式
+- <strong>Gauss-Chebyshev</strong>：$w(x)=1/\sqrt{1-x^2}$，使用<a href="切比雪夫多项式.html">切比雪夫多项式</a>
 - <strong>Gauss-Laguerre</strong>：$w(x)=e^{-x}$，$[0,\infty)$，使用拉盖尔多项式
 - <strong>Gauss-Hermite</strong>：$w(x)=e^{-x^2}$，$(-\infty,\infty)$，使用埃尔米特多项式
 - <strong>Gauss-Jacobi</strong>：$w(x)=(1-x)^\alpha(1+x)^\beta$，使用雅可比多项式</p>
@@ -222,10 +222,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Newton-Cotes 预先固定节点，浪费了 $n$ 个自由参数。高斯让节点也参与优化，用全部 $2n$ 个自由度满足 $2n$ 个精度条件，精度因此翻倍。正交性将表观上的 $2n-1$ 次问题"降维"为 $n-1$ 次问题，使这一最优解切实可构造。</p>
 <h3 id="_9">实践应用</h3>
 <ul>
-<li><strong>有限元方法</strong>：刚度矩阵和质量矩阵积分的标准工具</li>
-<li><strong>谱方法</strong>：在高斯节点上离散化函数</li>
+<li><strong><a href="有限元方法.html">有限元方法</a></strong>：刚度<a href="矩阵.html">矩阵</a>和质量<a href="矩阵.html">矩阵</a>积分的标准工具</li>
+<li><strong><a href="谱方法.html">谱方法</a></strong>：在高斯节点上离散化函数</li>
 <li><strong>自适应积分</strong>：Gauss-Kronrod 公式（Kronrod, 1964）在 $n$ 点基础上加 $n+1$ 个新节点，用误差估计驱动自适应步长（被 QUADPACK、GSL 等采用）</li>
-<li><strong>节点计算</strong>：Golub-Welsch 算法（1969）将节点计算转化为对称三对角矩阵特征值问题</li>
+<li><strong>节点计算</strong>：Golub-Welsch 算法（1969）将节点计算转化为对称三对角<a href="矩阵.html">矩阵</a>特征值问题</li>
 </ul>
 <h3 id="_10">局限性</h3>
 <ul>

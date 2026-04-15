@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dieter Fox — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Dieter Fox</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，人物</span></div>
+</div>
+  <div class="content">
+    <h1 id="dieter-fox">Dieter Fox</h1>
+<h2 id="_1">概述</h2>
+<p>Dieter Fox 是美国华盛顿大学（University of Washington）教授，著名的机器人学和人工智能专家。他是<a href="../concepts/Probabilistic Robotics.html">Probabilistic Robotics</a>领域的先驱之一，以在<strong><a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a>（<a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a>）</strong>和粒子滤波方法上的开创性贡献而闻名。作为《<a href="../concepts/Probabilistic Robotics.html">Probabilistic Robotics</a>》的三位合著者之一，Fox 与 <a href="Sebastian Thrun.html">Sebastian Thrun</a> 和 <a href="Wolfram Burgard.html">Wolfram Burgard</a> 共同构建了该领域的理论大厦。他的研究工作集中在如何利用概率方法处理机器人感知中的不确定性，特别是在非线性、非<a href="../concepts/正态分布.html">正态分布</a>环境下的状态估计问题，其成果对现代移动机器人和智能家居系统产生了深远影响。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心学术贡献</h3>
+<p>Dieter Fox 最显著的成就之一是参与提出了<strong><a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a>（<a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a>）</strong>算法。在 1999 年，他与 <a href="Sebastian Thrun.html">Sebastian Thrun</a> 和 <a href="Wolfram Burgard.html">Wolfram Burgard</a> 合作，首次将粒子滤波系统地应用于机器人全局定位问题。<a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a> 算法通过维护一组加权样本（粒子）来表示机器人的信念分布，成功解决了传统<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>无法处理的多模态分布问题（即机器人可能同时位于多个位置的情况）。这一方法后来成为机器人操作系统（ROS）中标准定位模块 <a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a> 的基础。</p>
+<h3 id="_4">在概率机器人学中的角色</h3>
+<p>在《<a href="../concepts/Probabilistic Robotics.html">Probabilistic Robotics</a>》的撰写过程中，Fox 带来了他在统计推断和信号处理方面的深厚背景。他对粒子滤波理论的深入理解帮助团队厘清了不同滤波方法（如 E<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>、U<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>、Particle Filter）之间的关系，并将其统一在<a href="托马斯·贝叶斯.html">托马斯·贝叶斯</a>滤波框架下。Fox 的工作特别强调算法在实际应用中的可行性和效率，推动了概率方法从理论研究向工程实践的转化。</p>
+<h3 id="_5">教育与社区影响</h3>
+<p>作为华盛顿大学的教授，Fox 培养了大量优秀的机器人学人才。他与 <a href="Sebastian Thrun.html">Sebastian Thrun</a>、<a href="Wolfram Burgard.html">Wolfram Burgard</a> 合著的教科书已成为全球机器人学教育的标准参考书，塑造了整整一代研究者的思维方式。通过这本书以及相关的学术会议和组织，Fox 积极推广概率思维在机器人学中的应用，使得处理不确定性成为现代机器人系统设计的基本准则。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/12-thrun-probabilistic-robotics.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../concepts/Probabilistic Robotics.html">Probabilistic Robotics</a></li>
+<li><a href="../concepts/蒙特卡罗定位.html">蒙特卡罗定位</a></li>
+<li><a href="Sebastian Thrun.html">Sebastian Thrun</a></li>
+<li><a href="Wolfram Burgard.html">Wolfram Burgard</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="DeepAgents.html">&larr; DeepAgents</a>
+    <a href="Heinrich A. Ernst.html">Heinrich A. Ernst &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

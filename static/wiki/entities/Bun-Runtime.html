@@ -135,24 +135,24 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bun-runtime">Bun Runtime</h1>
 <h2 id="_1">概述</h2>
-<p>Bun 是一个现代化的 JavaScript 运行时（Runtime），旨在提供比 Node.js 更快的启动速度和执行性能。它内置了打包器、测试运行器以及高性能的 SQLite 驱动。在 <a href="Claude-Mem.html">Claude-Mem</a> 项目中，Bun 被选为核心进程管理器和执行环境，替代了传统的"Node.js + PM2"组合，显著简化了部署架构并提升了数据库交互效率。</p>
+<p>Bun 是一个现代化的 JavaScript 运行时（Runtime），旨在提供比 Node.js 更快的启动速度和执行性能。它内置了打包器、测试运行器以及高性能的 <a href="SQLite.html">SQLite</a> 驱动。在 <a href="Claude-Mem.html">Claude-Mem</a> 项目中，Bun 被选为核心进程管理器和执行环境，替代了传统的"Node.js + PM2"组合，显著简化了部署架构并提升了数据库交互效率。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心特性</h3>
 <ul>
 <li><strong>极速启动</strong>：Bun 的冷启动时间极短，非常适合作为按需启动或频繁调用的后台服务进程。</li>
-<li><strong>内置 SQLite 支持</strong>：通过 <code>bun:sqlite</code> 模块，Bun 提供了原生且高性能的 SQLite 接口。相比 Node.js 生态中常用的 <code>better-sqlite3</code>，<code>bun:sqlite</code> 在某些场景下性能更优，且天然支持 WAL（Write-Ahead Logging）模式，适合高并发写入。</li>
+<li><strong>内置 <a href="SQLite.html">SQLite</a> 支持</strong>：通过 <code>bun:sqlite</code> 模块，Bun 提供了原生且高性能的 <a href="SQLite.html">SQLite</a> 接口。相比 Node.js 生态中常用的 <code>better-sqlite3</code>，<code>bun:sqlite</code> 在某些场景下性能更优，且天然支持 WAL（Write-Ahead Logging）模式，适合高并发写入。</li>
 <li><strong>一体化进程管理</strong>：Bun 内置了进程管理能力，使得开发者无需额外安装和配置 PM2 等外部守护进程工具，减少了依赖项和运维复杂度。</li>
 </ul>
 <h3 id="claude-mem">在 Claude-Mem 中的应用</h3>
-<p>在 Claude-Mem 的架构演进中（从早期版本到 v4+），团队决定从 Node.js 迁移至 Bun，主要基于以下考量：
+<p>在 <a href="Claude-Mem.html">Claude-Mem</a> 的架构演进中（从早期版本到 v4+），团队决定从 Node.js 迁移至 Bun，主要基于以下考量：
 1. <strong>简化依赖</strong>：移除了对全局 PM2 的依赖，用户只需安装 Bun 即可运行整个 Worker Service，符合“零基础设施依赖”的设计目标。
 2. <strong>数据库性能</strong>：利用 <code>bun:sqlite</code> 优化了记忆存储层的写入性能，特别是在处理大量高频工具调用日志压缩入库时，表现出更低的延迟。
 3. <strong>资源效率</strong>：Bun 更小的内存占用和更快的响应速度，使其作为本地常驻后台服务（Listener on port 37777）更加轻量，不会过多占用开发者的系统资源。</p>
 <h3 id="_4">技术对比</h3>
-<p>与 Node.js 相比，Bun 在处理 I/O 密集型和本地数据库交互任务上展现了明显优势。虽然 Node.js 拥有更庞大的生态系统，但对于像 Claude-Mem 这样注重本地性能、低延迟和简化的部署流程的项目，Bun 提供了更优的“开箱即用”体验。其内置的工具链也加速了开发迭代过程。</p>
+<p>与 Node.js 相比，Bun 在处理 I/O 密集型和本地数据库交互任务上展现了明显优势。虽然 Node.js 拥有更庞大的生态系统，但对于像 <a href="Claude-Mem.html">Claude-Mem</a> 这样注重本地性能、低延迟和简化的部署流程的项目，Bun 提供了更优的“开箱即用”体验。其内置的工具链也加速了开发迭代过程。</p>
 <h2 id="_5">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/claude-mem/blog_01_overview.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_01_overview.md</span></li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Boston Dynamics.html">&larr; Boston Dynamics</a>
+    <a href="Brian Gerkey.html">&larr; Brian Gerkey</a>
     <a href="ChromaDB.html">ChromaDB &rarr;</a>
   </div>
 </div>

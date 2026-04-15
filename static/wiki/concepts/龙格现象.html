@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">龙格现象</h1>
 <h2 id="_2">概述</h2>
-<p>龙格现象（Runge's phenomenon）由德国数学家卡尔·龙格（Carl Runge）于 1901 年发现：以<strong>等距节点</strong>对连续函数进行多项式插值时，随节点数增加，插值多项式在区间端点附近的误差不仅不收敛，反而急剧发散。这一反直觉的发现动摇了"节点越多插值越好"的朴素认知，成为揭示<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>必要性的经典反例。</p>
+<p>龙格现象（Runge's phenomenon）由德国数学家<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>（<a href="../entities/卡尔·龙格.html">卡尔·龙格</a>）于 1901 年发现：以<strong>等距节点</strong>对连续函数进行多项式插值时，随节点数增加，插值多项式在区间端点附近的误差不仅不收敛，反而急剧发散。这一反直觉的发现动摇了"节点越多插值越好"的朴素认知，成为揭示<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>必要性的经典反例。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">龙格函数</h3>
 <p><strong>标准反例</strong>（龙格函数）：$f(x) = \dfrac{1}{1+25x^2}$，$x\in[-1,1]$</p>
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right), \quad k=1,\ldots,n+1$$</p>
 <p>这些节点在端点附近更密集，使 $\max|\omega_{n+1}(x)| = 1/2^n$（理论最小值），从根本上避免了龙格现象。</p>
 <p>其他缓解手段（效果有限）：
-- 样条插值（分段低次多项式）
+- <a href="样条方法.html">样条方法</a>（分段低次多项式）
 - 增加正则化约束
 - 有理逼近（Padé）</p>
 <h3 id="_7">勒贝格常数：发散的深层机制</h3>
@@ -205,17 +205,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>切比雪夫节点</strong></td>
 <td>优化全局多项式节点，端点加密</td>
-<td>谱方法、Chebfun</td>
+<td><a href="谱方法.html">谱方法</a>、Chebfun</td>
 </tr>
 <tr>
-<td><strong>样条方法</strong></td>
+<td><strong><a href="样条方法.html">样条方法</a></strong></td>
 <td>分段低次多项式，分而治之</td>
-<td>三次样条、B 样条、CAD</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_12">历史意义</h3>
-<p>龙格现象（1901年）和<a href="切比雪夫逼近理论.html">切比雪夫逼近理论</a>（1854年）相互印证：切比雪夫早于龙格约半个世纪预见了等距节点的理论缺陷，并给出了最优解。龙格的反例以具体数值证明了切比雪夫理论的必要性，使节点选择问题在数值分析教育中具有不可消除的地位。</p>
+<td><span style="color:#e74c3c" title="broken link">样条方法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_12&quot;&gt;历史意义&lt;/h3&gt;
+&lt;p&gt;龙格现象（1901年）和[[切比雪夫逼近理论</span>（1854年）相互印证：切比雪夫早于龙格约半个世纪预见了等距节点的理论缺陷，并给出了最优解。龙格的反例以具体数值证明了切比雪夫理论的必要性，使节点选择问题在<a href="数值分析.html">数值分析</a>教育中具有不可消除的地位。</p>
 <p>在龙格之前，法国数学家梅赫勒（Méray, 1884）和博雷尔（Borel, 1897/1905）已有相关理论探讨，但缺乏龙格那样简洁有力的具体反例。</p>
 <h2 id="_13">来源</h2>
 <ul>

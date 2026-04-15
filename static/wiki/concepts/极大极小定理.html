@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">极大极小定理</h1>
 <h2 id="_2">概述</h2>
-<p>Fischer 极大极小定理（Fischer Minimax Theorem，又称 Courant-Fischer 定理）是矩阵分析中最重要的单一定理之一，由<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>于1905年证明：<strong>实对称矩阵的第 k 个特征值，等于 <a href="Rayleigh商.html">Rayleigh商</a> 在所有 k 维子空间上的最小值再取最大值</strong>（max-min）。该定理将特征值从行列式的根（代数对象）彻底转化为变分优化问题（几何对象），绕开特征多项式，天然适用于无穷维推广，成为谱理论、数值线性代数、机器学习和量子力学的共同理论基础。</p>
+<p><a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 极大极小定理（<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> Minimax Theorem，又称 Courant-<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理）是<a href="矩阵.html">矩阵</a>分析中最重要的单一定理之一，由<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a>于1905年证明：<strong>实对称<a href="矩阵.html">矩阵</a>的第 k 个特征值，等于 <a href="Rayleigh商.html">Rayleigh商</a> 在所有 k 维子空间上的最小值再取最大值</strong>（max-min）。该定理将特征值从行列式的根（代数对象）彻底转化为变分优化问题（几何对象），绕开特征多项式，天然适用于无穷维推广，成为谱理论、数值<a href="线性代数.html">线性代数</a>、机器学习和量子力学的共同理论基础。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定理精确陈述</h3>
-<p>设 A 为 n×n 实对称矩阵，特征值降序排列为 λ₁ ≥ λ₂ ≥ … ≥ λₙ。则对每个 k = 1, 2, …, n：</p>
+<p>设 A 为 n×n 实对称<a href="矩阵.html">矩阵</a>，特征值降序排列为 λ₁ ≥ λ₂ ≥ … ≥ λₙ。则对每个 k = 1, 2, …, n：</p>
 <p><strong>Max-min 形式</strong>：
 $$\lambda_k = \max_{\dim V = k} \;\min_{x \in V,\, x \neq 0} \frac{x^T A x}{x^T x}$$</p>
 <p><strong>Min-max 形式</strong>（等价）：
@@ -146,60 +146,39 @@ $$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{
 <p>两种形式等价，文献中因特征值排序方向不同而选用不同形式。</p>
 <h3 id="rayleigh">特殊情形与 Rayleigh 的结果</h3>
 <ul>
-<li>k = 1：λ₁ = max_{x≠0} R(x)（最大特征值 = Rayleigh商最大值）</li>
-<li>k = n：λₙ = min_{x≠0} R(x)（最小特征值 = Rayleigh商最小值）</li>
+<li>k = 1：λ₁ = max_{x≠0} R(x)（最大特征值 = <a href="Rayleigh商.html">Rayleigh商</a>最大值）</li>
+<li>k = n：λₙ = min_{x≠0} R(x)（最小特征值 = <a href="Rayleigh商.html">Rayleigh商</a>最小值）</li>
 </ul>
-<p>这两个特殊情形正是<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年的结果。Fischer 的贡献在于将其推广到<strong>所有中间特征值</strong>。</p>
+<p>这两个特殊情形正是<a href="../entities/瑞利勋爵.html">瑞利勋爵</a>1877年的结果。<a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 的贡献在于将其推广到<strong>所有中间特征值</strong>。</p>
 <h3 id="_5">证明的核心思想：维数论证</h3>
-<p>证明的关键步骤依赖一个简洁的线性代数事实：</p>
+<p>证明的关键步骤依赖一个简洁的<a href="线性代数.html">线性代数</a>事实：</p>
 <blockquote>
 <p><strong>若子空间 V（维数 k）与子空间 W（维数 n-k+1）的维数之和超过全空间维数 n，则 V∩W 必有非平凡交集。</strong></p>
 </blockquote>
 <p>具体地：
-1. <strong>谱分解</strong>：A = QΛQᵀ，Rayleigh商化为特征值的加权平均
+1. <strong>谱分解</strong>：A = QΛQᵀ，<a href="Rayleigh商.html">Rayleigh商</a>化为特征值的加权平均
 2. <strong>上界论证</strong>：任意 k 维子空间 V 与 span{v_k,…,v_n}（维数 n-k+1）必相交，交点处的 R(x) ≤ λ_k
 3. <strong>下界论证</strong>：取最优子空间 V* = span{v₁,…,v_k}，在此子空间上 min R(x) = λ_k</p>
 <p>综合得等号。</p>
 <h3 id="cauchy">与 Cauchy 交错定理的关系</h3>
-<p>Cauchy 交错定理（A 的特征值与其主子矩阵特征值交错分布）是 Fischer 定理的<strong>直接推论</strong>：将主子矩阵的 Rayleigh商视为 A 在某个 (n-1) 维子空间上的限制，即得交错不等式，且此推导远比 Cauchy 原始的行列式证明优雅。</p>
+<p>Cauchy 交错定理（A 的特征值与其主子<a href="矩阵.html">矩阵</a>特征值交错分布）是 <a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理的<strong>直接推论</strong>：将主子<a href="矩阵.html">矩阵</a>的 <a href="Rayleigh商.html">Rayleigh商</a>视为 A 在某个 (n-1) 维子空间上的限制，即得交错不等式，且此推导远比 Cauchy 原始的行列式证明优雅。</p>
 <h3 id="weyl">Weyl 扰动不等式（应用）</h3>
-<p>Hermann Weyl（1912）利用 Fischer 定理的维数论证，证明了特征值扰动不等式：若 C = A + B，则</p>
+<p><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>（1912）利用 <a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 定理的维数论证，证明了<a href="矩阵扰动理论.html">矩阵扰动理论</a>不等式：若 C = A + B，则</p>
 <p>$$|\gamma_k - \alpha_k| \leq |B|$$</p>
-<p>即特征值关于矩阵扰动是 Lipschitz 连续的。这一不等式是数值线性代数的基石。</p>
+<p>即特征值关于<a href="矩阵.html">矩阵</a>扰动是 Lipschitz 连续的。这一不等式是数值<a href="线性代数.html">线性代数</a>的基石。</p>
 <h3 id="courant-fischer">Courant-Fischer 定理（无穷维推广）</h3>
-<p>Richard Courant（1920）将定理推广到无穷维 Hilbert 空间中的紧自伴算子，特别是椭圆 PDE 的特征值：</p>
+<p><a href="../entities/理查德·柯朗.html">理查德·柯朗</a>（1920）将定理推广到无穷维 Hilbert 空间中的紧自伴算子，特别是椭圆 PDE 的特征值：</p>
 <p>$$\lambda_k = \min_{\dim V = k} \max_{u \in V,\, u \neq 0} \frac{\int_\Omega |\nabla u|^2 dx}{\int_\Omega u^2 dx}$$</p>
-<p>这是研究 Laplacian 特征值渐近分布（Weyl 定律）和有限元方法收敛性的基础。</p>
+<p>这是研究 Laplacian 特征值渐近分布（<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> 定律）和<a href="有限元方法.html">有限元方法</a>收敛性的基础。</p>
 <h3 id="_6">鞍点视角（博弈论）</h3>
 <p>从优化/博弈论角度：一方（最大化者）选择子空间 V，另一方（最小化者）在 V 内选向量 x。特征值 λ_k 是这个二人零和博弈的<strong>鞍点值</strong>（saddle-point value）。这与冯·诺依曼极大极小定理在精神上一脉相承。</p>
 <h2 id="_7">意义</h2>
 <h3 id="_8">解决的三大瓶颈</h3>
-<table>
-<thead>
-<tr>
-<th>瓶颈</th>
-<th>行列式方法</th>
-<th>Fischer 变分方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>计算</td>
-<td>行列式展开复杂，数值不稳定</td>
-<td>Rayleigh商计算简单，可做近似</td>
-</tr>
-<tr>
-<td>理论</td>
-<td>难以推广到无穷维算子</td>
-<td>维数论证不依赖有限维性</td>
-</tr>
-<tr>
-<td>估计</td>
-<td>估计一个特征值需知其他特征值</td>
-<td>每个特征值独立变分刻画</td>
-</tr>
-</tbody>
-</table>
+<p>| 瓶颈 | 行列式方法 | <a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> 变分方法 |
+|------|---------|--------------|
+| 计算 | 行列式展开复杂，数值不稳定 | <a href="Rayleigh商.html">Rayleigh商</a>计算简单，可做近似 |
+| 理论 | 难以推广到无穷维算子 | 维数论证不依赖有限维性 |
+| 估计 | 估计一个特征值需知其他特征值 | 每个特征值独立变分刻画 |</p>
 <h3 id="_9">现代应用</h3>
 <table>
 <thead>
@@ -215,7 +194,7 @@ $$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{
 </tr>
 <tr>
 <td>Lanczos 算法</td>
-<td>在 Krylov 子空间上计算 Rayleigh商极值</td>
+<td>在 Krylov 子空间上计算 <a href="Rayleigh商.html">Rayleigh商</a>极值</td>
 </tr>
 <tr>
 <td>量子化学</td>
@@ -231,13 +210,13 @@ $$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{
 </tr>
 <tr>
 <td>信号处理</td>
-<td>MIMO 信道容量与奇异值的变分刻画</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_10">局限性</h2>
-<ol>
-<li><strong>仅限对称/自伴情形</strong>：非对称矩阵特征值为复数，Rayleigh商不再实值，极大极小刻画失效</li>
+<td>MIMO 信道容量与<span style="color:#e74c3c" title="broken link">奇异值分解&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;_10&quot;&gt;局限性&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;仅限对称/自伴情形&lt;/strong&gt;：非对称[[矩阵</span>特征值为复数，<a href="Rayleigh商.html">Rayleigh商</a>不再实值，极大极小刻画失效</li>
 <li><strong>无穷维技术困难</strong>：无界算子（如 Schrödinger 算子）需精细处理本质谱</li>
 <li><strong>优化问题非凸</strong>：虽转化为优化问题，但在 Grassmann 流形上是非凸的，大规模求解仍是挑战</li>
 </ol>

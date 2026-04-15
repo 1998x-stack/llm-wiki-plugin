@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepagents">DeepAgents 后端协议</h1>
 <h2 id="_1">概述</h2>
-<p>DeepAgents 的存储与执行抽象层（<code>libs/deepagents/deepagents/backends/</code>）。<code>BackendProtocol</code> 定义统一的文件类 API，<code>SandboxBackendProtocol</code> 在其上扩展 shell 执行能力。上层中间件和工具只依赖协议接口，不感知底层是内存状态、本地磁盘还是远程沙箱——实现 <a href="Agent Harness模式.html">Agent Harness模式</a> 中"后端换皮、工具不变"的设计原则。</p>
+<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的存储与执行抽象层（<code>libs/deepagents/deepagents/backends/</code>）。<code>BackendProtocol</code> 定义统一的文件类 API，<code>SandboxBackendProtocol</code> 在其上扩展 shell 执行能力。上层<a href="ROS (Robot Operating System).html">ROS (Robot Operating System)</a>和工具只依赖协议接口，不感知底层是内存状态、本地磁盘还是远程沙箱——实现 <a href="Agent Harness模式.html">Agent Harness模式</a> 中"后端换皮、工具不变"的设计原则。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="backendprotocol-api">BackendProtocol（文件类 API）</h3>
 <table>
