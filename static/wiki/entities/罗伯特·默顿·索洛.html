@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗伯特·默顿·索洛 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 罗伯特·默顿·索洛</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">罗伯特·默顿·索洛</h1>
+<h2 id="_2">概述</h2>
+<p>罗伯特·默顿·索洛（Robert M. Solow，1924 年生）是美国著名经济学家，新古典增长理论的奠基人。他因对经济增长理论的贡献荣获 1987 年诺贝尔经济学奖。索洛最著名的成就是提出了<strong>索洛增长模型</strong>，该模型彻底改变了经济学界对长期经济增长驱动力的理解，证明了技术进步而非资本积累是长期人均收入增长的关键。此外，他提出的“增长核算”方法量化了全要素生产率（TFP）对增长的贡献，揭示了大部分经济增长源于我们尚未完全理解的“索洛残差”。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="1">1. 学术生涯与主要贡献</h3>
+<p>索洛在麻省理工学院（MIT）度过了大部分学术生涯。1956 年，他在论文《对经济增长理论的贡献》（<em>A Contribution to the Theory of Economic Growth</em>）中提出了著名的索洛模型。在此之前，经济增长理论受困于 Harrod-Domar 模型的不稳定性。索洛通过引入新古典生产函数，展示了市场经济具有向稳态自动收敛的内在机制。这一工作不仅解决了当时的理论困境，还确立了现代宏观经济学的标准分析框架。</p>
+<h3 id="2">2. 索洛残差与增长核算</h3>
+<p>1957 年，索洛发表了另一篇里程碑式的论文《技术变化与总生产函数》，提出了增长核算方法。他将产出增长分解为资本投入、劳动投入和技术进步的贡献。通过对美国 1909-1949 年数据的实证分析，他得出了惊人的结论：美国人均产出增长的约 87.5% 归因于技术进步（即全要素生产率 TFP 的增长），而仅有 12.5% 归因于资本深化。这一未被要素投入解释的剩余部分被称为“索洛残差”（Solow Residual）。索洛谦逊地将其称为“我们无知的度量”，但这一定量发现极大地推动了后续对技术创新、教育和制度的研究。</p>
+<h3 id="3">3. 政策影响与学术态度</h3>
+<p>索洛的研究深刻影响了发展经济学和政策制定。他的模型表明，单纯依靠提高储蓄率和资本积累（如大规模外援）无法实现长期的可持续增长，政策重点应转向促进技术进步、人力资本积累和改善制度环境。尽管他的模型成为了教科书的标准内容，索洛本人始终保持务实和谦逊的态度。他认为经济增长理论不是解释一切的终极真理，而是一种“思考问题的方式”，旨在帮助人们聚焦于长期中真正重要的因素。这种开放的态度鼓励了后来者在其框架基础上不断修正和拓展，如内生增长理论和新制度经济学的兴起。</p>
+<h3 id="4">4. 荣誉与遗产</h3>
+<p>除了 1987 年的诺贝尔奖，索洛还获得了美国国家科学奖章等众多荣誉。他的理论遗产不仅在于具体的模型结论，更在于他建立的分析语言：稳态分析、收敛概念和增长核算已成为经济学家讨论全球不平等和发展问题的通用工具。直到今天，关于“中等收入陷阱”、TFP 增长放缓以及人工智能对生产函数影响的讨论，依然是在与索洛模型的对话中展开的。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/03-solow-growth-model-1956.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../concepts/索洛增长模型.html">索洛增长模型</a></li>
+<li><span style="color:#e74c3c" title="broken link">增长核算</span></li>
+<li><span style="color:#e74c3c" title="broken link">诺贝尔经济学奖</span></li>
+<li><span style="color:#e74c3c" title="broken link">全要素生产率</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="约翰·理查德·希克斯.html">&larr; 约翰·理查德·希克斯</a>
+    <a href="艾萨克·牛顿.html">艾萨克·牛顿 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

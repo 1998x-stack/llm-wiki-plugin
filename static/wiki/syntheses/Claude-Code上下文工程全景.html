@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude-Code上下文工程全景 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../syntheses/index.html">syntheses</a> / Claude-Code上下文工程全景</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="claude-code">Claude Code 上下文工程全景</h1>
+<h2 id="_1">综合洞见</h2>
+<p>Claude Code 的上下文工程本质是：<strong>在 LLM 无状态性约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。</strong> 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。</p>
+<h2 id="llm">问题层：LLM 无状态性</h2>
+<p>LLM 的每次调用都从零状态开始。Claude Code 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。</p>
+<p>根本问题：<strong>"说过一次的话"和"已确认的约束"在系统里拥有相同地位</strong>——都在下一次会话后消失。</p>
+<h2 id="l0l4">架构层：L0–L4 五层记忆</h2>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>Claude Code 中的内容</th>
+<th>对应 Hook</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0 Cached Prefix</td>
+<td>CLAUDE.md、工具 schema</td>
+<td>— (静态)</td>
+</tr>
+<tr>
+<td>L1 Working Memory</td>
+<td>当前任务、约束、打开的文件</td>
+<td>Context Hook 注入</td>
+</tr>
+<tr>
+<td>L2 Episodic Memory</td>
+<td>决策+结论+pending items</td>
+<td>Summary Hook 压缩</td>
+</tr>
+<tr>
+<td>L3 Semantic Memory</td>
+<td>项目知识、架构惯例</td>
+<td>Cleanup Hook 晋升</td>
+</tr>
+<tr>
+<td>L4 Raw Archive</td>
+<td>原始 transcript、工具输出</td>
+<td>Save Hook 捕获</td>
+</tr>
+</tbody>
+</table>
+<p>Hook 采用即发即忘模式（Fire-and-Forget）避免阻塞主进程。</p>
+<h2 id="_2">检索层：渐进式披露（三层展开）</h2>
+<p>不一次性灌入所有检索结果，而是：
+1. <strong>索引层</strong> — 只注入元数据，让模型先筛选
+2. <strong>上下文层</strong> — 注入局部关联（前后事件），提供叙事性
+3. <strong>详情层</strong> — 仅对高置信度目标展开完整内容</p>
+<p>实测约 10 倍 Token 节省。</p>
+<h2 id="prompt">编排层：Prompt 位置效应</h2>
+<p>关键信息不能埋在中段（Lost in the Middle 效应）：</p>
+<pre><code>[L0] CLAUDE.md / schema  ← 最前，吃 prefix cache
+[L1] 当前任务
+[检索] 最关键证据         ← 靠前
+[L2] 历史 checkpoints
+[反证] counter-evidence  ← 关键约束靠尾
+[用户问题] + [输出要求]
+</code></pre>
+<p>对不能丢的约束：允许重复一次 &gt; 埋在中间。</p>
+<h2 id="token-coding-agent">预算层：Token 分配（Coding Agent）</h2>
+<table>
+<thead>
+<tr>
+<th>槽</th>
+<th>比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0 Cached Prefix</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>L1 Working Memory + Tool Delta</td>
+<td>35%</td>
+</tr>
+<tr>
+<td>Recent Turns</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Retrieved Evidence</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>L2 Episodic Summaries</td>
+<td>15%</td>
+</tr>
+</tbody>
+</table>
+<p>选片段用 knapsack（按 token budget 最优化），而非 top-k 截断。</p>
+<h2 id="_3">压缩层：产出可复用状态</h2>
+<p>触发时机：任务阶段切换 / 关键决策 / 工具超长输出 / 预算逼近阈值。</p>
+<p>产出四类对象（而非自由文本摘要）：
+- <strong>durable facts</strong> — 项目约定
+- <strong>decisions</strong> — 选择+理由
+- <strong>open loops</strong> — 未完成事项
+- <strong>source anchors</strong> — 行号锚点</p>
+<p>⚠️ 禁止压缩数字/合同/代码逻辑。</p>
+<h2 id="_4">关键结论</h2>
+<blockquote>
+<p><strong>不要让 Claude Code 会话变成"一次性消耗品"。</strong> 通过 Hook + 分层记忆 + 渐进检索，可以让每次会话的产出（决策、约定、洞见）晋升为下一次会话的 L3 背景知识，实现知识的滚雪球式积累。</p>
+</blockquote>
+<h2 id="_5">来源</h2>
+<ul>
+<li><a href="../concepts/Context-Engineering.html">Context-Engineering</a></li>
+<li><a href="../concepts/分层记忆架构.html">分层记忆架构</a></li>
+<li><a href="../concepts/渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a></li>
+<li><a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a></li>
+<li><a href="../concepts/LLM-Statelessness.html">LLM-Statelessness</a></li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../entities/Claude-Mem.html">Claude-Mem</a></li>
+<li><a href="DeepAgents评估设计哲学.html">DeepAgents评估设计哲学</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="DeepAgents评估设计哲学.html">DeepAgents评估设计哲学 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

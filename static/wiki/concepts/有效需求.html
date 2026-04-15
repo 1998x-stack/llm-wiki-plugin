@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有效需求 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 有效需求</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学</span><span class="tag">方法论</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">有效需求</h1>
+<h2 id="_2">概述</h2>
+<p>有效需求（Effective Demand）是凯恩斯主义经济学的核心概念，指经济社会在某一特定价格水平下，消费者、企业和政府愿意且能够购买的商品和服务的总量。与传统古典经济学认为“供给创造需求”不同，凯恩斯提出，决定就业水平和产出的关键因素是有效需求。当有效需求不足时，即使有生产能力，企业也会减少生产并解雇工人，导致非自愿失业。这一概念构成了现代宏观经济学需求管理政策的理论基础。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">理论起源与定义</h3>
+<p>在《就业、利息和货币通论》中，凯恩斯正式提出了有效需求原理，以此反驳统治经济学界百年的萨伊定律。萨伊定律认为生产过程中支付的收入（工资、利润等）最终都会转化为对产品的购买，因此不会出现普遍的生产过剩。凯恩斯则指出，在货币经济中，收入持有者不一定将所有收入用于消费或投资，他们可能出于交易、预防或投机动机而“囤积”货币。这种储蓄与投资的脱节导致总支出（即有效需求）低于总产出能力。</p>
+<h3 id="_5">有效需求的构成</h3>
+<p>有效需求由四个主要部分组成：
+1. <strong>消费需求 (C)</strong>：取决于当前的可支配收入，受边际消费倾向制约。随着收入增加，消费增加的幅度小于收入增加的幅度。
+2. <strong>投资需求 (I)</strong>：受资本边际效率和利率的影响，且具有极大的不稳定性，常受“动物精神”驱动。
+3. <strong>政府支出 (G)</strong>：作为外生变量，是弥补私人部门需求不足的关键工具。
+4. <strong>净出口 (NX)</strong>：受汇率和国外收入水平影响。
+公式表达为：$AD = C + I + G + NX$。当 $AD &lt; Y_{full_employment}$ 时，经济将出现衰退和失业。</p>
+<h3 id="_6">与经济均衡的关系</h3>
+<p>凯恩斯认为，经济均衡点并不必然位于充分就业水平。如果有效需求不足，经济会在低于充分就业的水平上达到均衡（即“失业均衡”）。在这种情况下，降低工资并不能解决问题，因为降薪会进一步减少工人的收入和消费，加剧有效需求的萎缩，形成恶性循环。因此，解决失业问题的唯一途径是直接提升有效需求，通常需要通过政府增加公共支出或利用乘数效应来实现。</p>
+<h3 id="_7">政策意义</h3>
+<p>有效需求理论为政府干预经济提供了坚实的逻辑支撑。它表明市场机制本身无法保证资源充分利用，特别是在大萧条这样的极端情况下。基于此，政府应采取扩张性财政政策（增加 G 或减少税收）和货币政策（降低利率以刺激 I）来提升有效需求，从而拉动产出和就业。这一思想成为了二战后各国制定反周期经济政策的基石。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/01-keynes-general-theory-1936.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a></li>
+<li><a href="萨伊定律.html">萨伊定律</a></li>
+<li><a href="乘数效应.html">乘数效应</a></li>
+<li><span style="color:#e74c3c" title="broken link">凯恩斯主义</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="最大似然原理.html">&larr; 最大似然原理</a>
+    <a href="有限元方法.html">有限元方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

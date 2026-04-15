@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>凯恩斯革命 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 凯恩斯革命</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究，方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">凯恩斯革命</h1>
+<h2 id="_2">概述</h2>
+<p>凯恩斯革命（Keynesian Revolution）是指 20 世纪 30 年代由约翰·梅纳德·凯恩斯发起的经济学范式转变，其标志是 1936 年《就业、利息与货币通论》的出版。这场革命从根本上推翻了古典经济学关于市场自动出清和充分就业的假设，确立了有效需求原理在宏观经济分析中的核心地位。凯恩斯革命不仅改变了经济学理论的发展方向，还深刻影响了二战后全球各国的经济政策制定，促成了政府积极干预经济的“凯恩斯主义共识”。然而，这场革命的理论内核在后来的形式化过程中（如 IS-LM 模型的建立）经历了复杂的演变和争议，形成了“凯恩斯经济学”与“凯恩斯的经济学”之间的微妙分野。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="1">1. 理论核心的颠覆</h3>
+<p>凯恩斯革命的核心在于否定了萨伊定律（Say's Law），即“供给创造其自身的需求”。古典学派认为，价格机制（包括工资和利率）的灵活调整能保证所有市场同时出清，因此非自愿失业只是暂时现象。凯恩斯则论证，由于价格和工资存在刚性，加之投资决策受“动物精神”驱动具有高度不确定性，经济完全可能在低于充分就业的水平上达到均衡。他提出，总需求（消费 + 投资 + 政府支出）才是决定产出和就业水平的关键变量。</p>
+<h3 id="2">2. 形式化与“新古典综合”</h3>
+<p>凯恩斯的原著论述复杂且难以直接用于政策量化。1937 年，约翰·希克斯通过构建 IS-LM 模型，将凯恩斯的思想纳入了一般均衡框架。这一工作虽然极大地促进了凯恩斯理论的传播和教学，但也引发了“综合的悖论”：通过将凯恩斯理论处理为古典理论的一个特例（取决于参数取值），希克斯无意中削弱了凯恩斯关于资本主义内在不稳定性和根本不确定性的激进主张。这种融合被称为“新古典综合”，它主导了战后几十年的主流宏观经济学，但也遭到了后凯恩斯主义者的激烈批评，认为这背叛了凯恩斯革命的初衷。</p>
+<h3 id="3">3. 历史影响与现代回响</h3>
+<p>凯恩斯革命直接导致了宏观调控时代的到来。在 1945 年至 1970 年间，西方国家普遍利用财政政策和货币政策来管理总需求，实现了长期的繁荣与低失业率。尽管 70 年代的滞胀危机引发了对凯恩斯主义的质疑，以及随后理性预期学派的兴起，但凯恩斯革命的基本洞察——即市场机制在某些情况下会失效，需要政府干预——从未被完全抛弃。特别是在 2008 年全球金融危机期间，面对“流动性陷阱”和零利率下限，凯恩斯式的财政刺激再次成为全球政策制定者的首选工具，证明了这场革命持久的生命力。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/02-hicks-is-lm-1937.md</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/约翰·梅纳德·凯恩斯.html">约翰·梅纳德·凯恩斯</a></li>
+<li><a href="萨伊定律.html">萨伊定律</a></li>
+<li><a href="IS-LM 模型.html">IS-LM 模型</a></li>
+<li><span style="color:#e74c3c" title="broken link">新古典综合</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="冯·诺依曼稳定性分析.html">&larr; 冯·诺依曼稳定性分析</a>
+    <a href="分层记忆架构.html">分层记忆架构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

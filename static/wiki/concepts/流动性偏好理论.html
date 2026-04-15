@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>流动性偏好理论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 流动性偏好理论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学</span><span class="tag">概率论</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">流动性偏好理论</h1>
+<h2 id="_2">概述</h2>
+<p>流动性偏好理论（Liquidity Preference Theory）是凯恩斯在《就业、利息和货币通论》中提出的关于货币需求和利率决定的核心理论。该理论认为，利率并非由储蓄和投资的实物因素决定，而是由货币市场的供求关系决定。人们之所以愿意持有不生息的货币，是因为货币具有最高的流动性，能满足特定的心理和交易需求。凯恩斯将持有货币的动机归纳为三类：交易动机、预防动机和投机动机。这一理论彻底革新了人们对货币功能和利率本质的理解。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">三大持有动机</h3>
+<p>凯恩斯详细分析了人们持有货币的三个主要动机：
+1. <strong>交易动机（Transaction Motive）</strong>：为了应付日常的商品和服务交易需要。这部分货币需求主要取决于收入水平，与收入成正比，对利率不敏感。
+2. <strong>预防动机（Precautionary Motive）</strong>：为了应对未来不可预见的紧急支出或机会。这部分需求同样主要受收入水平影响，同时也受不确定性程度的影响。
+3. <strong>投机动机（Speculative Motive）</strong>：这是凯恩斯的创新之处。人们持有货币是为了在未来的利率变动中获利。债券价格与利率呈反向变动。当人们预期当前利率过低（未来会上升，债券价格会下跌）时，他们会抛售债券持有货币，以避免资本损失；反之则买入债券。因此，投机性货币需求与利率呈负相关。</p>
+<h3 id="_5">利率的决定机制</h3>
+<p>在古典经济学中，利率是调节储蓄和投资平衡的价格。凯恩斯则指出，利率是放弃流动性的报酬。货币供给由中央银行控制（外生变量），而货币需求由上述三种动机决定。利率会在货币供给等于货币需求时达到均衡。如果货币供给增加，在货币需求不变的情况下，利率必须下降才能诱导人们持有更多的货币（特别是通过降低持有货币的机会成本来刺激投机性需求）。</p>
+<h3 id="_6">流动性陷阱</h3>
+<p>流动性偏好理论推导出了一个极端情况：流动性陷阱（Liquidity Trap）。当利率已经降到极低水平时，所有人都预期利率只会上升（债券价格只会下跌），因此无论中央银行投放多少货币，人们都愿意将其作为现金持有，而不愿购买债券或进行投资。此时，货币需求的利率弹性变得无限大，货币政策完全失效，无法进一步降低利率以刺激经济。在这种情境下，凯恩斯认为只有财政政策（直接增加政府支出）才能挽救经济。</p>
+<h3 id="_7">理论贡献与局限</h3>
+<p>流动性偏好理论首次将货币领域与实体经济领域通过利率紧密联系起来，打破了古典二分法。它为中央银行通过公开市场操作调控利率提供了理论依据。然而，该理论也受到了后续学派的批评，例如弗里德曼的现代货币数量论认为货币需求函数比凯恩斯描述的更稳定，且忽视了资产组合的多样性。尽管如此，其对投机动机的分析和流动性陷阱的预言，在解释零利率下限环境下的经济困境时依然具有强大的生命力。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/01-keynes-general-theory-1936.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a></li>
+<li><a href="流动性陷阱.html">流动性陷阱</a></li>
+<li><span style="color:#e74c3c" title="broken link">利率</span></li>
+<li><span style="color:#e74c3c" title="broken link">货币政策</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="泰勒级数.html">&larr; 泰勒级数</a>
+    <a href="流动性陷阱.html">流动性陷阱 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

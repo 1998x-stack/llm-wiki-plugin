@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乘数效应 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 乘数效应</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学</span><span class="tag">方法论</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">乘数效应</h1>
+<h2 id="_2">概述</h2>
+<p>乘数效应（Multiplier Effect）是宏观经济学中的一个关键概念，由凯恩斯在《就业、利息和货币通论》中系统化阐述。它描述了初始的支出增加（如政府投资、出口增长或自主消费增加）如何通过经济体系内的连锁反应，导致最终总产出和总收入以倍数幅度增长的现象。乘数效应的存在证明了政府干预经济的有效性：少量的财政注入可以撬动巨大的经济增长，是凯恩斯主义需求管理政策的数学基石。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">运作机制</h3>
+<p>乘数效应的核心逻辑在于“一个人的支出是另一个人的收入”。当政府增加 1 单位的支出（例如修建道路支付给建筑工人工资），这笔钱变成了工人的收入。工人不会把全部收入存起来，而是会根据其边际消费倾向（MPC）花费其中的一部分购买消费品。这部分消费又变成了商店店主和工厂工人的收入，他们再次消费其中的一部分……如此循环往复。每一轮的支出虽然逐渐减少，但累加起来，最终的总需求增量将远远超过最初的 1 单位投入。</p>
+<h3 id="_5">数学表达</h3>
+<p>乘数的大小取决于边际消费倾向（b 或 MPC），即每增加 1 单位收入中用于消费的比例。简单的支出乘数公式为：
+$$ k = \frac{1}{1 - b} $$
+其中，$b$ 是边际消费倾向（$0 &lt; b &lt; 1$）。
+- 如果 $b = 0.8$（人们每赚 10 元花掉 8 元），则乘数 $k = 1 / (1 - 0.8) = 5$。这意味着政府增加 100 亿支出，最终能带来 500 亿的总需求增长。
+- 如果 $b$ 越小（人们越爱储蓄），乘数效应越弱；反之则越强。
+在更复杂的模型中，还需考虑税率、进口漏出等因素，这会减小实际乘数的数值。</p>
+<h3 id="_6">政策应用</h3>
+<p>乘数效应是凯恩斯主张“赤字财政”的理论依据。在大萧条时期，私人投资枯竭，凯恩斯建议政府即便借债也要增加公共支出。因为通过乘数效应，政府支出的不仅能直接创造就业，还能间接激活消费市场，打破“收入下降 - 消费减少 - 产出收缩”的恶性循环，启动“收入增加 - 消费增加 - 产出扩张”的良性循环。这一理论直接指导了罗斯福新政及二战后的全球重建计划。</p>
+<h3 id="_7">局限性与争议</h3>
+<p>虽然乘数效应在理论上很完美，但在实际操作中其大小存在争议。
+1. <strong>挤出效应</strong>：如果政府通过借债融资，可能会推高利率，从而抑制私人投资，部分抵消乘数作用。
+2. <strong>时滞</strong>：政策从实施到产生效果需要时间，可能错过最佳时机。
+3. <strong>开放经济</strong>：部分新增需求可能流向进口商品，导致需求漏出到国外，降低本国乘数。
+尽管如此，在经济严重衰退、资源大量闲置且利率接近零（流动性陷阱）的环境下，乘数效应通常被认为是最显著的，此时财政政策的效果远优于货币政策。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/宏观经济学/01-keynes-general-theory-1936.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a></li>
+<li><a href="边际消费倾向.html">边际消费倾向</a></li>
+<li><a href="有效需求.html">有效需求</a></li>
+<li><span style="color:#e74c3c" title="broken link">财政政策</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="中心极限定理.html">&larr; 中心极限定理</a>
+    <a href="优化控制序.html">优化控制序 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

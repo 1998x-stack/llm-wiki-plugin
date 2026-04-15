@@ -35,7 +35,7 @@ Three PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
 
 ## Key Commands
 
-- `wiki:graph` — lint + build graph.json + statistics + wiki HTML (`--full`)
+- `wiki:graph` — lint + build graph.json + sync to ../static/ + statistics + wiki HTML
 - `wiki:reindex` — validate index.md integrity + generate topic maps
 - `wiki:ingest-loop <folder>` — batch ingest using ralph-loop, one file per iteration
 - `wiki:ingest-loop-qwen <folder>` — batch ingest using Qwen API (multi-page mode)
