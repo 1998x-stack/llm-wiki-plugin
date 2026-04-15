@@ -23,6 +23,9 @@ updated: 2026-04-15
 - [[西梅翁·泊松]] — 法国数学家和物理学家（1781–1840），Laplace 和 Lagrange 的学生，巴黎综合理工学院和巴黎大学教授。1837 年出版《关于审判概率的研究》... (confidence: 0.87)
 - [[阿尔斯顿·豪斯霍尔德]] — 美国数学家和计算科学先驱（1904–1993）。学术生涯始于数学神经科学，二战后加入**橡树岭国家实验室**（Oak Ridge National Labora... (confidence: 0.9)
 - [[马格努斯·赫斯坦尼斯]] — 美国数学家（1906–1991），加州大学洛杉矶分校（UCLA）教授。研究兴趣横跨变分法、最优控制和数值分析。1950 年代初在美国国家标准局（NBS，现 NI... (confidence: 0.85)
+- [[Alex-Newman]] — Alex Newman（社交媒体账号 @thedotmack）是一位开源软件开发者，以其在 AI 编程辅助工具领域的创新工作而闻名。他是 **Claude-Me... (confidence: 0.9)
+- [[Bun-Runtime]] — Bun 是一个现代化的 JavaScript 运行时（Runtime），旨在提供比 Node.js 更快的启动速度和执行性能。它内置了打包器、测试运行器以及高性... (confidence: 0.85)
+- [[Claude-Mem]] — Claude-Mem 是一个专为 **Claude Code** 设计的开源持久化记忆插件，旨在解决大型语言模型（LLM）固有的“无状态”缺陷。通过自动捕获会话... (confidence: 1.0)
 
 <!-- 格式：- [[页面名]] — 一行摘要 (confidence: X.X) -->
 
@@ -140,6 +143,9 @@ updated: 2026-04-15
 - [[Wiener积分]] — 路径空间上对确定性函数的积分，随机积分的早期严格形式，Itô随机积分的前身 (confidence: 0.88)
 - [[Itô随机积分]] — 伊藤清（1944）将Wiener积分推广至随机被积函数，Itô公式含额外二阶项，随机微分方程和数学金融的核心工具 (confidence: 0.92)
 - [[随机游走]] — 每步等概率±1移动的离散随机过程，均方位移∝步数，是Wiener过程（布朗运动）的离散前身 (confidence: 0.9)
+- [[Claude-Code-Hook-System]] — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事... (confidence: 0.9)
+- [[LLM-Statelessness]] — LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从... (confidence: 0.95)
+- [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
@@ -152,9 +158,9 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：129
-- 实体：50
-- 概念：76
+- 总页面数：135
+- 实体：53
+- 概念：79
 - 综合分析：2
 - QA 洞见：1
 - 最后更新：2026-04-15

@@ -137,10 +137,14 @@ def update_index(pages, indexed):
 
         # Find last entry in section (last line starting with "- [[")
         insert_idx = section_idx + 1
+        found_entry = False
         for i in range(section_idx + 1, len(lines)):
             if lines[i].startswith("- [["):
                 insert_idx = i + 1
-            elif lines[i].startswith("##") or (lines[i].strip() == "" and i > insert_idx):
+                found_entry = True
+            elif lines[i].startswith("##"):
+                break
+            elif lines[i].strip() == "" and found_entry:
                 break
 
         # Insert new entries

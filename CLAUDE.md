@@ -70,7 +70,7 @@ Hook logs: `vault/log.hook.md`
 
 ## Dependencies
 
-Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`, `markdown`
+Python 3.10+ packages: `jieba`, `rank_bm25`, `pyyaml`, `openai`, `markdown`, `networkx`
 
 Install: `pip install -r requirements.txt`
 

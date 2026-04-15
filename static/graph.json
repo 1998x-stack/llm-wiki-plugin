@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-04-15T07:44:27.112697+00:00",
-    "total_nodes": 134,
+    "generated": "2026-04-15T08:08:43.554601+00:00",
+    "total_nodes": 135,
     "total_edges": 844,
-    "orphan_count": 3,
-    "component_count": 6
+    "orphan_count": 4,
+    "component_count": 7
   },
   "nodes": [
     {
@@ -756,6 +756,16 @@
         "概率论"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/渐进式披露-Progressive-Disclosure.md",
+      "label": "渐进式披露-Progressive-Disclosure",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "方法论，研究，AI"
+      ],
+      "edge_count": 0
     },
     {
       "id": "wiki/concepts/点数问题.md",
@@ -6745,7 +6755,8 @@
   "orphans": [
     "wiki/concepts/bun-vs-uv.md",
     "wiki/concepts/claude-cli-tools.md",
-    "wiki/concepts/modern-cli-tools.md"
+    "wiki/concepts/modern-cli-tools.md",
+    "wiki/concepts/渐进式披露-Progressive-Disclosure.md"
   ],
   "components": [
     {
@@ -6916,6 +6927,13 @@
       "size": 1,
       "nodes": [
         "wiki/concepts/modern-cli-tools.md"
+      ]
+    },
+    {
+      "id": 6,
+      "size": 1,
+      "nodes": [
+        "wiki/concepts/渐进式披露-Progressive-Disclosure.md"
       ]
     }
   ]

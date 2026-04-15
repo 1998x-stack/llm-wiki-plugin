@@ -61,7 +61,8 @@ cat > "$STATE_FILE" << STATEEOF
 active: true
 source_path: "$INPUT_PATH"
 files:
-$(echo -e "$FILES_YAML")current_index: 0
+$(echo -e "$FILES_YAML")
+current_index: 0
 total: $TOTAL
 completed: []
 failed: []
