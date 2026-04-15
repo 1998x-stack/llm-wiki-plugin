@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>结构化笔记法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 结构化笔记法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">结构化笔记法</h1>
+<h2 id="_2">概述</h2>
+<p>结构化笔记法（Structured Note-taking）是 Agent 长时任务中的持久记忆技术：Agent 将关键信息<strong>定期写入上下文窗口之外的持久存储</strong>（文件、记忆工具），在后续轮次中按需读回，从而在不撑满上下文窗口的前提下维持多轮/多小时任务的连贯性。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心机制</h3>
+<pre><code>Agent 工作 → 产生关键状态（目标进度、决策、依赖）
+                ↓
+        写入外部笔记（NOTES.md / 记忆工具）
+                ↓
+    [上下文压缩/重置/会话重启]
+                ↓
+   Agent 重新启动 → 读取笔记 → 恢复状态 → 继续工作
+</code></pre>
+<p>笔记的本质：<strong>将上下文窗口的"短期记忆"外置为"长期记忆"</strong>，解决 <a href="LLM-Statelessness.html">LLM 天然无状态</a>的问题。</p>
+<h3 id="_5">典型实现</h3>
+<p><strong>Claude Code 的 Todo 列表</strong>：Claude Code 自动创建待办清单文件，跟踪复杂任务的进度、依赖和未完成事项，在压缩或重启后通过读取 Todo 恢复任务状态。</p>
+<p><strong>Claude 玩 Pokémon</strong>（Anthropic 演示）：Claude 无需任何关于记忆结构的额外提示，自发：
+- 维护精确的训练步数记录（"过去 1,234 步在路线 1 训练，皮卡丘升了 8 级，目标 10 级"）
+- 建立探索地图
+- 记录已解锁的关键成就
+- 维护战斗策略笔记（记录不同对手的有效技能）
+<a href="上下文重置.html">上下文重置</a>后读取自己的笔记，继续多小时的训练序列或地城探索，展现了长时任务连贯性。</p>
+<p><strong>自定义 Agent 的 NOTES.md</strong>：通用模式——Agent 维护一个 NOTES.md 文件，跟踪整个复杂任务中的进度、关键约束和跨工具调用的依赖关系。</p>
+<h3 id="anthropic-beta">Anthropic 记忆工具（Beta）</h3>
+<p>随 Claude Sonnet 4.5 发布，Anthropic 在 Claude Developer Platform 上线了公开 Beta 版记忆工具，提供：
+- 基于文件系统的上下文外信息存储
+- 跨会话的项目状态维护
+- 无需将历史全放入上下文即可引用历史工作</p>
+<h3 id="compaction">与 Compaction 的协同</h3>
+<p>结构化笔记法和压缩（Compaction）是互补而非竞争的策略：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>结构化笔记法</th>
+<th>Compaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本质</td>
+<td>外置持久存储</td>
+<td>内置压缩摘要</td>
+</tr>
+<tr>
+<td>状态粒度</td>
+<td>精确（Agent 选择写什么）</td>
+<td>自动（摘要模型决定）</td>
+</tr>
+<tr>
+<td>跨会话</td>
+<td>天然支持</td>
+<td>需额外机制</td>
+</tr>
+<tr>
+<td>适合任务</td>
+<td>有明确里程碑的迭代开发</td>
+<td>需要流式回话的复杂推理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">三种长时任务技术的选择指南</h3>
+<p>（来自 Anthropic 工程实践）</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>最适合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compaction</strong></td>
+<td>需要频繁往返交互的任务，保持对话流畅</td>
+</tr>
+<tr>
+<td><strong>结构化笔记法</strong></td>
+<td>有清晰里程碑的迭代开发任务</td>
+</tr>
+<tr>
+<td><strong>多 Agent 架构</strong></td>
+<td>需要并行探索的复杂研究和分析任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（结构化笔记法是长时任务上下文管理的三大技术之一）</li>
+<li><a href="分层记忆架构.html">分层记忆架构</a> — implements（笔记对应 L2/L3 层的外部存储机制）</li>
+<li><a href="上下文重置.html">上下文重置</a> — related_to（两者都解决长时任务连贯性问题，技术路径不同）</li>
+<li><a href="LLM-Statelessness.html">LLM-Statelessness</a> — related_to（笔记法是应对 LLM 无状态的实用手段）</li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — implemented_by（Claude Code 的 Todo 列表是典型实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="结构化UI风格知识库.html">&larr; 结构化UI风格知识库</a>
+    <a href="菲利普斯曲线.html">菲利普斯曲线 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

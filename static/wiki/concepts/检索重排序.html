@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>检索重排序 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 检索重排序</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">检索重排序</h1>
+<h2 id="_2">概述</h2>
+<p>检索重排序（Retrieval Reranking）是 <a href="检索增强生成.html">RAG</a> 流水线中的精排步骤：在初始召回（粗排）获得大量候选 Chunk 后，用专门的<strong>重排序模型</strong>对每个 Chunk 结合查询重新评分，筛选出最相关的 Top-K 个注入模型。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">动机：粗排的局限</h3>
+<p>初始召回（嵌入相似度 + BM25）速度快但精度有限，大知识库中常返回数百个相关性参差不齐的 Chunk。不加筛选地将大量 Chunk 注入模型会：
+- <strong>消耗<a href="注意力预算.html">注意力预算</a></strong>（见 <a href="注意力预算.html">注意力预算</a>），分散模型注意力
+- 引入噪声，降低回答质量
+- 增加 token 成本和延迟</p>
+<p>重排序解决"多中取精"的问题。</p>
+<h3 id="_5">工作流程</h3>
+<pre><code>初始检索（粗排）→ Top-150 候选 Chunk
+       ↓
+重排序模型（query + chunk × 150 → relevance score）
+       ↓
+取 Top-20 高分 Chunk
+       ↓
+注入模型生成最终回答
+</code></pre>
+<h3 id="anthropic">性能数据（Anthropic 实验）</h3>
+<p>单独使用 Cohere Reranker，在 <a href="情境化检索.html">情境化检索</a>（情境化嵌入 + 情境化 BM25）基础上继续改善：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>Top-20 失败率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>情境化嵌入 + 情境化 BM25</td>
+<td>2.9%</td>
+</tr>
+<tr>
+<td>+ Reranking（Cohere）</td>
+<td><strong>1.9%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>与无任何增强的基准（5.7%）相比，<strong>联合方案将失败率降低 67%</strong>。</p>
+<h3 id="_6">实现权衡</h3>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>延迟</strong></td>
+<td>重排序是额外的运行时步骤，即使并行评分也增加延迟</td>
+</tr>
+<tr>
+<td><strong>成本</strong></td>
+<td>重排粒度越细（候选越多）成本越高</td>
+</tr>
+<tr>
+<td><strong>粗排规模</strong></td>
+<td>候选 Chunk 越多（如 150 vs 50），精排潜力越大，但计算开销增加</td>
+</tr>
+<tr>
+<td><strong>Top-K 选择</strong></td>
+<td>最终注入的 Chunk 数（20 vs 10）需平衡检索覆盖与<a href="注意力预算.html">注意力预算</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>最佳实践</strong>：在具体用例上实验不同的粗排数量（100~200）和精排 Top-K（10~20），找到延迟/成本/质量的最优平衡点。</p>
+<h3 id="_7">主流重排序模型</h3>
+<ul>
+<li><strong>Cohere Reranker</strong>：Anthropic 实验中使用，效果验证充分</li>
+<li><strong>Voyage Reranker</strong>：Voyage AI 提供，未在本次实验中测试</li>
+<li>其他：Jina AI、BGE Reranker 等开源选项</li>
+</ul>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Contextual Retrieval in AI Systems.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="情境化检索.html">情境化检索</a> — related_to（两者联合实现 67% 失败率降低）</li>
+<li><a href="检索增强生成.html">检索增强生成</a> — part_of（重排序是 RAG 流水线的可选精排步骤）</li>
+<li><a href="注意力预算.html">注意力预算</a> — related_to（重排序通过减少注入 Chunk 数量保护注意力预算）</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（精排是上下文信息质量控制的关键手段）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="检索增强生成.html">&larr; 检索增强生成</a>
+    <a href="概率公理体系.html">概率公理体系 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

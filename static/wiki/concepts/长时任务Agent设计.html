@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长时任务Agent设计 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 长时任务Agent设计</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">长时任务 Agent 设计</h1>
+<h2 id="_1">概述</h2>
+<p>针对跨多个上下文窗口的长时自主任务（数小时至数日）的 <a href="Agent Harness模式.html">Agent Harness</a> 设计模式：<strong>初始化 Agent</strong>（建立环境和功能列表）+ <strong>编码 Agent</strong>（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心问题：无记忆的交接</h3>
+<p>长时任务必须在多个 Context Window 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（Compaction）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。</p>
+<h3 id="_4">两阶段解决方案</h3>
+<p><strong>第一阶段：初始化 Agent</strong></p>
+<p>首次会话使用专门提示，负责搭建环境：
+1. 创建 <code>init.sh</code> 脚本（启动开发服务器）
+2. 创建 <code>claude-progress.txt</code>（会话间状态传递文件）
+3. 基于用户提示生成<strong>完整功能需求列表</strong>（JSON 格式，每条功能含步骤和 <code>passes: false</code> 状态）
+4. 初始 git commit，展示已添加的文件</p>
+<p>功能列表示例（200+ 条，全部初始标记为 failing）：</p>
+<pre><code class="language-json">{
+  &quot;category&quot;: &quot;functional&quot;,
+  &quot;description&quot;: &quot;New chat button creates a fresh conversation&quot;,
+  &quot;steps&quot;: [&quot;Navigate to main interface&quot;, &quot;Click 'New Chat' button&quot;, ...],
+  &quot;passes&quot;: false
+}
+</code></pre>
+<p><strong>第二阶段：编码 Agent（每次会话）</strong></p>
+<p>每次会话的标准化启动序列：
+1. <code>pwd</code> 确认工作目录
+2. 读取 git 日志和进度文件了解最近工作
+3. 读取功能列表，选择下一个高优先级未完成功能
+4. 运行 <code>init.sh</code>，启动开发服务器
+5. 执行基础端到端测试确认应用未被破坏
+6. <strong>仅处理一个功能</strong>（增量进度的核心）
+7. 用浏览器自动化工具（Puppeteer MCP）端到端验证功能
+8. 更新 <code>passes</code> 字段（仅改此字段，禁止删除/编辑测试条目）
+9. git commit + 更新进度日志</p>
+<h3 id="_5">四大失败模式及解决</h3>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>初始化 Agent 应对</th>
+<th>编码 Agent 应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过早宣告项目完成</td>
+<td>创建功能列表（所有条目初始为 failing）</td>
+<td>每次读取功能列表，选择单一功能</td>
+</tr>
+<tr>
+<td>留下有 Bug 的环境</td>
+<td>创建初始 git 仓库和进度文件</td>
+<td>读取进度文件和 git 日志；运行基础测试；结束时写 commit + 更新进度</td>
+</tr>
+<tr>
+<td>过早标记功能完成</td>
+<td>创建功能列表</td>
+<td>仔细自我验证，通过测试后才标记 passing</td>
+</tr>
+<tr>
+<td>浪费时间弄清如何运行应用</td>
+<td>编写 <code>init.sh</code></td>
+<td>首先读取 <code>init.sh</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">关键实现细节</h3>
+<p><strong>为什么用 JSON 而非 Markdown</strong>：实验发现模型更不容易擅自修改或覆盖 JSON 文件，而对 Markdown 文件有更强的"重写"冲动。</p>
+<p><strong>"不可接受移除测试"</strong>：需强措辞："移除或编辑测试是不可接受的行为，这会导致缺失或有 Bug 的功能。"</p>
+<p><strong>浏览器自动化测试的必要性</strong>：代码层面测试（单元测试、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。</p>
+<p><strong>视觉局限</strong>：Claude 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。</p>
+<h3 id="agent_1">与多 Agent 架构的关系</h3>
+<p>两阶段设计是 Anthropic 早期长时 Harness 的探索。后续研究（见<a href="生成器-评估器架构.html">生成器-评估器架构</a>）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + Generator + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective harnesses for long-running agents.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — part_of（两阶段 Harness 是长时任务场景的具体实现）</li>
+<li><a href="上下文焦虑.html">上下文焦虑</a> — related_to（上下文焦虑是驱动此设计的失败模式之一）</li>
+<li><a href="结构化笔记法.html">结构化笔记法</a> — uses（进度文件是结构化笔记法的具体应用）</li>
+<li><a href="生成器-评估器架构.html">生成器-评估器架构</a> — related_to（三 Agent 系统是此方案的进一步演化）</li>
+<li><a href="Sprint合约制.html">Sprint合约制</a> — related_to（Sprint 前合约谈判是此架构的一个增强机制）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="递推方法.html">&larr; 递推方法</a>
+    <a href="随机游走.html">随机游走 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

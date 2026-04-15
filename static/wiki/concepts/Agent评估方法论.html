@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent评估方法论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Agent评估方法论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">Agent 评估方法论</h1>
+<h2 id="_1">概述</h2>
+<p>Anthropic 从内部实践和客户协作中提炼的 Agent 系统评估（Eval）系统方法论：词汇体系、评分器类型、能力评估与回归评估、pass@k vs pass^k 非确定性指标、以及从零构建评估体系的路线图。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心词汇体系</h3>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>任务（Task）</strong></td>
+<td>单个测试，含明确输入和成功标准</td>
+</tr>
+<tr>
+<td><strong>试次（Trial）</strong></td>
+<td>对任务的一次尝试；模型输出随机性需多次试次</td>
+</tr>
+<tr>
+<td><strong>评分器（Grader）</strong></td>
+<td>评分某方面性能的逻辑；一个任务可含多个评分器</td>
+</tr>
+<tr>
+<td><strong>记录（Transcript / Trace）</strong></td>
+<td>试次完整记录：输出、工具调用、推理、中间结果</td>
+</tr>
+<tr>
+<td><strong>结果（Outcome）</strong></td>
+<td>试次结束时环境的最终状态（与 Transcript 区别：agent 说"已预订"≠数据库中有预订记录）</td>
+</tr>
+<tr>
+<td><strong>评估 Harness</strong></td>
+<td>端到端运行 eval 的基础设施</td>
+</tr>
+<tr>
+<td>**<span style="color:#e74c3c" title="broken link">Agent Harness模式&lt;/td&gt;
+&lt;td&gt;Agent Harness</span>（Scaffold）**</td>
+</tr>
+<tr>
+<td><strong>评估套件（Eval Suite）</strong></td>
+<td>测试特定能力或行为的任务集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">三类评分器</h3>
+<p><strong>代码评分器（Code-based）</strong>：
+- 字符串匹配、正则、二值测试（fail-to-pass）
+- 静态分析（lint、类型、安全）、结果验证、工具调用验证
+- 优势：快速、客观、可复现、易调试
+- 劣势：对有效变体脆弱，缺乏细微判断</p>
+<p><strong>模型评分器（Model-based / <a href="LLM-as-Judge.html">LLM-as-Judge</a>）</strong>：
+- 基于 Rubric 评分、自然语言断言、成对比较、多评判员共识
+- 优势：灵活、可扩展、捕捉细微差别
+- 劣势：不确定性、成本较高、需用人类标注校准
+- 建议：为每个维度单独调用 LLM judge；给 LLM 提供"Unknown"逃生路线防止幻觉</p>
+<p><strong>人类评分器（Human）</strong>：
+- 领域专家审查、众包判断、A/B 测试
+- 优势：黄金标准质量，用于校准模型评分器
+- 劣势：昂贵、慢、难以大规模</p>
+<h3 id="vs">能力评估 vs. 回归评估</h3>
+<p><strong>能力评估（Capability Evals）</strong>：
+- 问"这个 Agent 能做什么？"
+- 从低通过率开始，目标是有努力攀登的"山丘"
+- 当 Agent 饱和（100% 通过）后，转化为回归套件</p>
+<p><strong>回归评估（Regression Evals）</strong>：
+- 问"Agent 还能处理它过去处理的所有任务吗？"
+- 应接近 100% 通过率，下降信号有问题
+- <strong>eval 饱和（Eval Saturation）</strong>：通过率接近 100%，不再提供改进信号；需要更难的评估</p>
+<h3 id="passk-vs-passk">pass@k vs pass^k 指标</h3>
+<p>应对 Agent 行为非确定性的两个互补指标：</p>
+<p><strong>pass@k</strong>：k 次尝试中至少一次正确的概率
+- k 增大 → pass@k 升高
+- 适合"一次成功就行"的工具场景（代码生成）</p>
+<p><strong>pass^k</strong>：k 次尝试全部正确的概率
+- k 增大 → pass^k 下降
+- 适合"需要每次可靠"的面向用户场景（客服 Agent）</p>
+<p>两者在 k=1 时相同；随 k 增大急剧分化——pass@k 趋向 100%，pass^k 趋向 0%。</p>
+<h3 id="8">从零到可信评估体系：8步路线图</h3>
+<p><strong>数据集构建阶段：</strong>
+1. <strong>尽早开始</strong>：20-50 个从真实失败中提取的任务即可启动，无需等待大规模套件
+2. <strong>从手动测试中转化</strong>：将已有的手动检查、bug 报告、用户反馈转化为测试用例
+3. <strong>编写无歧义任务与参考解答</strong>：两名领域专家能独立达成相同 pass/fail 判断；创建已知可通过的参考解答验证评分器
+4. <strong>构建平衡问题集</strong>：同时测试"应该触发"和"不应该触发"的情况，避免单侧优化</p>
+<p><strong>Harness 和评分器设计：</strong>
+5. <strong>构建稳健的评估 Harness</strong>：每次试次从干净环境出发；防止跨试次共享状态
+6. <strong>评分器设计</strong>：优先使用确定性评分器；LLM judge 在必要时使用并用人类校准；支持部分分数；<strong>评估轨迹而非具体路径</strong>（Agent 可能发现有效的非预期解法）</p>
+<p><strong>长期维护：</strong>
+7. <strong>阅读 Transcript</strong>：分辨是真正的错误还是评分器拒绝了有效解法；验证评估确实在测量重要指标
+8. <strong>监控饱和并持续贡献</strong>：eval 套件是活的工件，需明确所有权和持续维护</p>
+<h3 id="agent_1">不同 Agent 类型的评估策略</h3>
+<p><strong>编码 Agent</strong>：确定性评分器（单元测试 pass/fail）是自然选择；可加 LLM Rubric 评估代码质量和交互方式</p>
+<p><strong>对话 Agent</strong>：多维成功（状态检查 + Transcript 约束 + LLM Rubric）；常需第二个 LLM 模拟用户</p>
+<p><strong>研究 Agent</strong>：接地性检查 + 覆盖度检查 + 来源质量检查；LLM judge 需频繁用专家人类判断校准</p>
+<p><strong>计算机使用 Agent</strong>：需要在真实或沙箱环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）</p>
+<h3 id="_5">评估与其他方法的关系（多层防御）</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>主要优势</th>
+<th>局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动化 Evals</td>
+<td>快速迭代，可在 CI 中运行</td>
+<td>需要维护，可能与真实使用模式脱节</td>
+</tr>
+<tr>
+<td>生产监控</td>
+<td>揭示真实用户行为</td>
+<td>反应性，问题先到达用户</td>
+</tr>
+<tr>
+<td>A/B 测试</td>
+<td>测量真实用户结果</td>
+<td>慢，需要足够流量</td>
+</tr>
+<tr>
+<td>用户反馈</td>
+<td>发现未预料的问题</td>
+<td>稀疏，偏向严重问题</td>
+</tr>
+<tr>
+<td>手动 Transcript 审查</td>
+<td>发现细微问题，建立直觉</td>
+<td>不可扩展</td>
+</tr>
+<tr>
+<td>系统性人类研究</td>
+<td>黄金标准</td>
+<td>昂贵、慢</td>
+</tr>
+</tbody>
+</table>
+<p>类似安全工程中的"瑞士奶酪模型"：没有单一评估层能捕捉所有问题，多层组合使失误无处遁形。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Demystifying evals for AI agents.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Quantifying infrastructure noise in agentic coding evals.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="LLM-as-Judge.html">LLM-as-Judge</a> — uses（模型评分器是三类评分器之一）</li>
+<li><a href="生成器-评估器架构.html">生成器-评估器架构</a> — related_to（评估者-优化者是 Agent 内嵌的在线评估机制）</li>
+<li><a href="Agent工作流模式.html">Agent工作流模式</a> — related_to（不同工作流类型需要不同评估策略）</li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — related_to（评估 Harness 是独立基础设施）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent计算机接口.html">&larr; Agent计算机接口</a>
+    <a href="CFL条件.html">CFL条件 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

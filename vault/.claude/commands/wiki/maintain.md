@@ -53,6 +53,7 @@ bash scripts/wiki.sh relink
 - 按 tags 构建主题分类
 - 审查 tags 质量
 - 生成 `maps/*.md`
+- 同步 `_schema/CLAUDE.md` 当前 Topics 列表（topics 集合有变化时）
 
 **终止条件**：snapshot_index.py 执行出错（脚本异常，非数据问题）→ 报告错误并停止。
 
@@ -106,6 +107,7 @@ bash scripts/wiki.sh relink
   - 完整性: OK (N 页面)
   - 主题分类: K 个 cluster
   - Tags 修复: M 个页面
+  - Schema 同步: _schema/CLAUDE.md Topics 已更新 / 无变化
 
 [4/6] Check
   - ERROR: A 个 | WARNING: B 个 | INFO: C 个
@@ -128,7 +130,7 @@ bash scripts/wiki.sh relink
 ## [YYYY-MM-DD HH:MM] maintain
 - Reorganize-raw: N → N ✓ (M moved, F wiki files updated)
 - Relink: T terms, L new links across P pages
-- Reindex: OK (N 页面, K clusters)
+- Reindex: OK (N 页面, K clusters) | Schema 同步: 已更新/无变化
 - Check: A errors, B warnings, C info (G new gotchas → ../docs/gotchas/[file].md)
 - Lint: X 修复, Y 待处理
 - Build: N 节点, M 边 → static/ 已同步

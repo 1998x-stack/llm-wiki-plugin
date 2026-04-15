@@ -28,7 +28,7 @@ ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 
 - **核心功能**：存储文档及其向量嵌入；支持近似最近邻（ANN）相似度搜索；支持元数据过滤
 - **部署模式**：本地内存模式（测试）、持久化磁盘模式（生产）、HTTP 客户端/服务端模式
 - **与传统数据库对比**：[[SQLite]]/[[FTS5]] 适合精确关键词匹配；ChromaDB 适合语义相似度检索（"找意思相近的记忆"）
-- **生态**：与 LangChain、LlamaIndex 等 RAG 框架深度集成
+- **生态**：与 LangChain、LlamaIndex 等 [[检索增强生成|RAG]] 框架深度集成
 
 ## 来源
 - 综合自 wiki 内部引用（Claude-Mem 等页面）

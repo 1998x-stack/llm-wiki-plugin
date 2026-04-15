@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>系统根据查询类型自动选择最优检索策略：
 - <strong>精确关键词检索</strong>：优先使用 <a href="../concepts/FTS5.html">FTS5</a> 实现毫秒级响应
 - <strong>语义相似度检索</strong>：当 <a href="../concepts/FTS5.html">FTS5</a> 召回不足时，启用 <a href="ChromaDB.html">ChromaDB</a> 进行模糊匹配
-- <strong>混合检索</strong>：复杂查询可能组合多种检索方式，通过重排序确保最相关结果优先</p>
+- <strong>混合检索</strong>：复杂查询可能组合多种检索方式，通过<a href="../concepts/检索重排序.html">重排序</a>确保最相关结果优先</p>
 <h3 id="_12">工程特性</h3>
 <ul>
 <li><strong>解耦设计</strong>：内部使用 <code>sdk_session_id</code>，外部兼容 <code>claude_session_id</code>，便于未来扩展支持其他 AI 工具（如 Cursor）。</li>

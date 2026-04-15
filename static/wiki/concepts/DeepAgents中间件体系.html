@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <code>SubAgent</code>（声明式，内联执行）
 - <code>CompiledSubAgent</code>（已编译的 LangGraph 图）
 - <code>AsyncSubAgent</code>（带 <code>graph_id</code> 的异步远程任务）</p>
-<p>自动为子代理注入与主代理对齐的能力（Todo + Filesystem + Summarization + Patch + 可选 Skills + 缓存），保证子调用"能力模型对齐"。</p>
+<p>自动为子代理注入与主代理对齐的能力（Todo + Filesystem + Summarization + Patch + 可选 <a href="Agent Skills.html">Skills</a> + 缓存），保证子调用"能力模型对齐"。</p>
 <h4 id="asyncsubagentmiddleware">AsyncSubAgentMiddleware</h4>
 <p>处理异步/远程子代理（<code>AsyncSubAgent</code> 含 <code>graph_id</code>），提供生命周期工具：启动任务、查询状态、等待完成。仅在存在异步子代理时启用。</p>
 <h4 id="summarizationmiddleware">SummarizationMiddleware（工厂模式）</h4>

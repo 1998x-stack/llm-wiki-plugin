@@ -4,6 +4,64 @@ type: log
 
 # 操作日志
 
+## [2026-04-16] maintain
+- Reorganize-raw: 1003 → 1003 ✓ (0 moved, noop)
+- Relink: 1018 terms, 1 new link (SQLite entity)
+- Reindex: OK (291 页面, 7 clusters) | Schema 同步: 已更新（新增 `方法论` cluster）
+- Check: 0 errors, 440 warnings, 0 info
+- Lint: 0 自动修复, 440 待处理
+- Build: 291 节点, 2144 边, 0 孤页, 1 连通分量 → static/ 已同步
+
+## [2026-04-16] ingest | raw/articles/ai-engineering/anthropic-engineering/Context Rot_ How Increasing Input Tokens Impacts LLM Performance.md
+
+- 更新：`wiki/concepts/上下文腐烂.md` — 从 Chroma 原始报告大幅扩充。新增：四大实验（针问相似度/干扰项影响/针草相似度/干草堆结构）、LongMemEval 聚焦vs全量对比、重复单词任务、模型差异（Claude 弃权率 vs GPT 幻觉率）、核心结论"信息如何呈现比是否存在更重要"；source_count 1→2
+
+## [2026-04-15] ingest-loop | raw/articles/ai-engineering/anthropic-engineering/ (22 文件)
+
+### 已处理（3 篇先前 ingest 跳过）
+- Contextual Retrieval, Effective context engineering, Harness design → 已建立页面
+
+### 新建 7 个概念页面
+- `wiki/concepts/Agent工作流模式.md` — Anthropic 五种核心工作流（提示链/路由/并行化/编排者-工人/评估者-优化者）+ 工作流 vs Agent 区别 + ACI 概念
+- `wiki/concepts/Agent评估方法论.md` — 完整 Eval 词汇体系（task/trial/transcript/outcome）、三类评分器、能力 vs 回归评估、pass@k vs pass^k、8步路线图
+- `wiki/concepts/多Agent架构.md` — Token 使用解释 80% 性能方差、编排者-工人模式、子 Agent 作为压缩器、90.2% 提升数据
+- `wiki/concepts/Think工具.md` — 无副作用思考工具，vs 扩展思考的区别，τ-Bench 54% 提升，最佳使用场景
+- `wiki/concepts/Agent Skills.md` — SKILL.md 渐进式披露机制（三层），开放标准，与 MCP 互补
+- `wiki/concepts/长时任务Agent设计.md` — 初始化 Agent + 编码 Agent 两阶段，功能列表 JSON，四大失败模式
+- `wiki/concepts/Agent计算机接口.md` — ACI vs HCI，工具设计五原则，评估驱动循环，Tool Use Examples
+
+### 19 篇文章已读取分析，主要新知识点：
+- Building Effective AI Agents, Demystifying Evals, Multi-agent Research → 核心概念提取完成
+- Claude Code Auto Mode → 两级分类器 + 威胁模型（未建独立页面，可后续补充）
+- Scaling Managed Agents → Brain/Hands/Session 解耦（未建页面）
+- Code execution with MCP / Advanced Tool Use → 编程式工具调用（未建页面）
+- Sandboxing, Desktop Extensions, SWE-bench → 技术细节页面（未建）
+
+## [2026-04-15] ingest | raw/articles/ai-engineering/anthropic-engineering/Contextual Retrieval in AI Systems.md
+
+- 创建：`wiki/concepts/检索增强生成.md` — RAG 标准流水线（切块→嵌入→向量DB→召回→注入），BM25 混合检索，与 JIT 的对比，适用边界（<20万token 直接全文更优）
+- 创建：`wiki/concepts/情境化检索.md` — Anthropic 提出的 RAG 增强方案；LLM 自动为 Chunk 生成 50-100token 情境说明并前置；Contextual Embeddings(-35%) + Contextual BM25(-49%) + Reranking(-67%); $1.02/百万文档token
+- 创建：`wiki/concepts/检索重排序.md` — 粗排后用重排序模型精排，Top-150→Top-20，Cohere 实验数据，延迟/成本权衡
+- 更新：`wiki/concepts/Context-Engineering.md` — 相关链接追加 RAG 和情境化检索
+
+## [2026-04-15] ingest | raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md
+
+- 创建：`wiki/concepts/上下文腐烂.md` — Context Rot：token 增加时 LLM 召回精度下降的现象（Chroma Research 命名），n² 注意力成因，工程含义
+- 创建：`wiki/concepts/注意力预算.md` — Transformer n² 注意力机制导致的有限注意力资源，系统提示"合适高度"（Right Altitude）的两极失败模式
+- 创建：`wiki/concepts/即时上下文检索.md` — Agent 运行时按需动态加载数据，对比预推理检索，Claude Code 混合实现，元数据作为隐式信号
+- 创建：`wiki/concepts/结构化笔记法.md` — Agent 外置持久记忆（NOTES.md/记忆工具），三种长时任务技术对比（Compaction/笔记法/多Agent）
+- 更新：`wiki/concepts/Context-Engineering.md` — 新增 Anthropic 工程视角段落（context rot、attention budget、三大技术、JIT），source_count 1→2
+- 更新：`wiki/entities/Prithvi-Rajasekaran.md` — 新增合著文章，source_count 1→2
+
+## [2026-04-15] ingest | raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md
+
+- 创建：`wiki/entities/Prithvi-Rajasekaran.md` — Anthropic Labs 成员，生成器-评估器架构提出者
+- 创建：`wiki/concepts/生成器-评估器架构.md` — GAN 启发的多 Agent 生成/评估分离模式，含前端四维评分准则和三 Agent 系统完整描述
+- 创建：`wiki/concepts/上下文焦虑.md` — LLM 接近上下文窗口限制时过早包装任务的失败模式
+- 创建：`wiki/concepts/上下文重置.md` — 彻底清空会话启动新 Agent + 结构化交接工件，对比 Compaction 的设计权衡
+- 创建：`wiki/concepts/Sprint合约制.md` — 生成器和评估器在 Sprint 开始前谈判"完成"标准的机制
+- 更新：`wiki/concepts/Agent Harness模式.md` — 新增 Anthropic 三 Agent Harness 段落，source_count 3→4
+
 ## [2026-04-15 21:46] maintain
 - Reorganize-raw: 980 → 980 ✓ (0 moved, noop)
 - Relink: 1018 terms, 32 new links across 4 pages

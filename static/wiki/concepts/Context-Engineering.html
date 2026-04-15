@@ -289,9 +289,19 @@ $$</p>
 <p>大模型上下文管理不要围绕"聊天历史"设计，而要围绕"<strong>价值密度</strong>"设计；不要把上下文当日志，而要当<strong>缓存、工作集、可审计记忆</strong>。</p>
 </blockquote>
 <p>设计公式：<strong>分层记忆（hot/warm/cold） + 按需检索 + 混合检索与重排 + 结构化压缩 + 位置编排 + 工具状态外置 + 预算与评估闭环。</strong></p>
+<h3 id="anthropic-2026">Anthropic 工程视角的补充（2026）</h3>
+<p>Anthropic Applied AI 团队对上下文工程的核心定位：<strong>在任意时刻找到最小化的高信噪比 token 集合，最大化目标行为的概率。</strong></p>
+<p><strong><a href="上下文腐烂.html">上下文腐烂</a>（<a href="上下文腐烂.html">Context Rot</a>）</strong>：<a href="../entities/ChromaDB.html">Chroma</a> Research 基准研究发现，随上下文 token 增加，模型从上下文中准确召回信息的能力持续下降。这不是硬性崖式截止，而是性能梯度——是上下文工程存在的核心动机。</p>
+<p><strong><a href="注意力预算.html">注意力预算</a>（<a href="注意力预算.html">Attention Budget</a>）</strong>：Transformer n² 注意力机制导致每个新 token 都消耗有限的<a href="注意力预算.html">注意力资源</a>，上下文增长时每对 token 关系可获得的参数容量被稀释。</p>
+<p><strong>长时任务的三种技术</strong>（Anthropic 实践）：
+1. <strong>Compaction</strong>：对话历史摘要压缩 → 适合需要流式回话的复杂推理
+2. <strong><a href="结构化笔记法.html">结构化笔记法</a></strong>（<a href="结构化笔记法.html">Agentic Memory</a>）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
+3. <strong>多 Agent 架构</strong>：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究</p>
+<p><strong><a href="即时上下文检索.html">即时上下文检索</a>（<a href="即时上下文检索.html">Just-in-Time Context</a>）</strong>：Agent 不预加载所有数据，而是持有轻量标识符（文件路径、URL、查询），运行时工具按需动态加载。Claude Code 的 glob/grep/Bash 模式是典型实现。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md</span></li>
 <li>Anthropic: <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a></li>
 <li>Liu et al. (2023): <em>Lost in the Middle: How Language Models Use Long Contexts</em></li>
 <li>MemGPT: <a href="https://arxiv.org/abs/2310.08560">Towards LLMs as Operating Systems</a></li>
@@ -300,10 +310,16 @@ $$</p>
 <ul>
 <li><a href="分层记忆架构.html">分层记忆架构</a></li>
 <li><a href="LLM-Statelessness.html">LLM-Statelessness</a></li>
-<li><span style="color:#e74c3c" title="broken link">检索增强生成</span></li>
+<li><a href="检索增强生成.html">检索增强生成</a></li>
 <li><span style="color:#e74c3c" title="broken link">Prompt缓存</span></li>
 <li><a href="Agent Harness模式.html">Agent Harness模式</a></li>
 <li><a href="../syntheses/Claude-Code上下文工程全景.html">Claude-Code上下文工程全景</a></li>
+<li><a href="上下文腐烂.html">上下文腐烂</a> — 上下文工程的核心动机</li>
+<li><a href="注意力预算.html">注意力预算</a> — 核心约束条件</li>
+<li><a href="即时上下文检索.html">即时上下文检索</a> — 按需加载策略</li>
+<li><a href="结构化笔记法.html">结构化笔记法</a> — 长时任务持久记忆技术</li>
+<li><a href="检索增强生成.html">检索增强生成</a> — 外部知识注入的主要技术路径</li>
+<li><a href="情境化检索.html">情境化检索</a> — 解决 RAG 上下文破坏的增强方案</li>
 </ul>
   </div>
   <div class="page-nav">

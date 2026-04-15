@@ -63,6 +63,77 @@ relates_to:
 
 不要创建新标签，除非现有标签确实无法覆盖。
 
+## Maps 系统
+
+### 是什么
+
+`maps/` 目录存放**按主题自动分类的知识地图文件**，每个文件是一个 topic cluster，汇集归属该主题的所有 wiki 页面。Maps 是计算产物，由 `wiki:reindex` 自动生成，**不要手动编辑**。
+
+### 文件格式
+
+```markdown
+---
+type: map
+topic: "AI"
+page_count: 62
+updated: 2026-04-15
+---
+
+# AI
+
+## 概念
+
+- [[生成器-评估器架构]] — GAN 启发的多 Agent 生成/评估分离模式 (confidence: 0.95)
+- [[上下文腐烂]] — 随 token 增加 LLM 召回精度下降的现象 (confidence: 0.95)
+
+## 实体
+
+- [[ChromaDB]] — 开源向量数据库，上下文腐烂研究来源机构 (confidence: 0.85)
+
+## 综合分析
+
+- [[矩阵谱理论的统一叙事]] — 三种证明范式的知识谱系 (confidence: 0.92)
+```
+
+**Frontmatter 字段：**
+- `type: map` — 固定值，区别于 concept/entity/synthesis
+- `topic` — cluster 的主题名称
+- `page_count` — 该 cluster 包含的页面数
+- `updated` — 最近生成日期
+
+### 生成规则
+
+1. 扫描所有 wiki 页面的 frontmatter `tags`
+2. 按 tag 出现频率，将每个页面归入其**最高频 tag** 对应的 cluster
+3. cluster 页面数 < 3 → 合并入"其他"
+4. 每个 cluster 生成 `maps/{topic}.md`，sections 内按字母序排列
+
+### 当前 Topics
+
+实际 cluster 数量随内容动态变化，当前存在的 topics（从 `maps/` 目录读取）：
+- `其他` — 小型 cluster 合并（143 页）
+- `AI` — AI 工程、Agent、LLM 工具（72 页）
+- `方法论` — 方法论、流程设计（41 页）
+- `技术` — 通用技术、工程模式（13 页）
+- `研究` — 数学、概率论、数值分析等研究型内容（10 页）
+- `数学` — 纯数学概念（7 页）
+- `机器人学` — 机器人学、运动规划、控制（5 页）
+
+### 使用场景
+
+- **`wiki:query`**：搜索时通过 maps 做主题扩展，找到相关 cluster 下的所有页面
+- **Obsidian 导航**：用户可在 maps/ 下按主题浏览知识库
+- **`wiki:reindex`**：完整性验证 + 重新生成全部 maps
+
+### 与 index.md 的区别
+
+| | `index.md` | `maps/{topic}.md` |
+|--|--|--|
+| 内容 | 所有页面的平铺列表 | 按主题分类的子集 |
+| 组织方式 | 按 type（实体/概念/综合） | 按 tag cluster |
+| 维护方式 | `snapshot_index --update` | `wiki:reindex` Step 5 |
+| 用途 | ingest 时查重、完整性审计 | query 时主题扩展、用户浏览 |
+
 ## 操作手册
 
 ### Ingest

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent工作流模式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Agent工作流模式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">Agent 工作流模式</h1>
+<h2 id="_1">概述</h2>
+<p>Anthropic 从与数十个客户团队协作中提炼的 LLM 系统架构分类：<strong>工作流</strong>（LLM 和工具经由预定义代码路径编排）与<strong>Agent</strong>（LLM 动态决定自身流程和工具使用）的根本区别，以及五种核心工作流构建块。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="vs-agent">工作流 vs. Agent 的根本区别</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>工作流（Workflow）</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制权</td>
+<td>代码路径预定义，程序员掌控</td>
+<td>LLM 动态决定</td>
+</tr>
+<tr>
+<td>预测性</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>任务结构清晰，步骤可预知</td>
+<td>开放性问题，步骤数量无法提前确定</td>
+</tr>
+<tr>
+<td>代价</td>
+<td>灵活性有限</td>
+<td>延迟高、成本高、错误可累积</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心原则</strong>："Find the simplest solution possible, and only increase complexity when needed."——许多应用优化单个 LLM 调用 + 检索 + in-context 示例即可，不需要多步 Agent 系统。</p>
+<h3 id="_3">五种核心工作流模式</h3>
+<h4 id="1-prompt-chaining">1. 提示链（Prompt Chaining）</h4>
+<p>将任务分解为顺序步骤，每次 LLM 调用处理前一次的输出，可加入程序化检查门（Gate）。</p>
+<p><strong>适用</strong>：任务可清晰分解为固定子任务，以延迟换精度。
+<strong>例</strong>：生成营销文案 → 翻译为另一种语言；写大纲 → 检查标准 → 基于大纲写文档。</p>
+<h4 id="2-routing">2. 路由（Routing）</h4>
+<p>对输入分类，导向专门的后续处理路径，实现关注点分离和专业化提示。</p>
+<p><strong>适用</strong>：有多个明确类别需分别处理，且分类本身可以准确执行。
+<strong>例</strong>：客服查询分流（退款 / 技术支持 / 一般问题）；简单问题路由到 Haiku 4.5，复杂问题路由到 Sonnet 4.5。</p>
+<h4 id="3-parallelization">3. 并行化（Parallelization）</h4>
+<p>LLM 同时处理任务，结果聚合。两个变体：
+- <strong>Sectioning</strong>：将任务拆分为独立子任务并行执行
+- <strong>Voting</strong>：多次执行相同任务获得多样输出，取多数或最佳</p>
+<p><strong>适用</strong>：子任务可并行（速度），或需要多视角/多次尝试（置信度）。
+<strong>例</strong>：一个实例处理用户查询，另一个同步筛查不当内容；多个提示分别审查代码漏洞。</p>
+<h4 id="4-orchestrator-workers">4. 编排者-工人（Orchestrator-Workers）</h4>
+<p>中心 LLM 动态分解任务，将子任务委派给工人 LLM，综合结果。</p>
+<p><strong>与并行化的关键区别</strong>：子任务由编排者基于输入动态决定，而非预先硬编码。
+<strong>适用</strong>：无法预知子任务数量和性质的复杂任务（如代码修改涉及哪些文件）。</p>
+<h4 id="5-evaluator-optimizer">5. 评估者-优化者（Evaluator-Optimizer）</h4>
+<p>一个 LLM 生成响应，另一个在循环中提供评估和反馈。</p>
+<p><strong>与<a href="生成器-评估器架构.html">生成器-评估器架构</a>的关系</strong>：这是同一架构模式的通用描述，Anthropic 的三 Agent 系统是具体实现。
+<strong>适用标准</strong>：① LLM 响应在人类反馈下可显著改善；② LLM 能够提供此类反馈。
+<strong>例</strong>：文学翻译（译者 + 评审）；复杂信息搜集任务（评估者决定是否需要进一步搜索）。</p>
+<h3 id="agent-agent">Agent（自主 Agent）</h3>
+<p>真正的 Agent 是 LLM 基于环境反馈在循环中使用工具。关键特征：
+- 任务明确后<strong>独立计划执行</strong>，必要时回来寻求帮助
+- 每步从环境获取"ground truth"（工具调用结果、代码执行结果）
+- 支持停止条件（最大迭代数），必要时暂停等待人类反馈</p>
+<p><strong>适用</strong>：开放性问题，无法提前预知步骤数；需要扩展性自主任务。</p>
+<h3 id="agent-aci">Agent 计算机接口（ACI）</h3>
+<p>类比人机接口（HCI），为 Agent 设计工具接口需要同等投入：
+- 工具描述应像给初级开发者写文档
+- 参数明确、无歧义（<code>user_id</code> 优于 <code>user</code>）
+- 让 Agent 使用工具，观察错误，迭代改进描述
+- Poka-yoke（防呆设计）：让错误难以发生（如强制使用绝对路径）</p>
+<h3 id="_4">设计原则摘要</h3>
+<ol>
+<li><strong>保持 Agent 设计的简洁性</strong></li>
+<li><strong>透明性</strong>：明确展示 Agent 的规划步骤</li>
+<li><strong>工具文档和测试</strong>：与 <a href="Agent计算机接口.html">ACI</a> 设计同等重要</li>
+</ol>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Building Effective AI Agents.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Claude SWE-Bench Performance.md</span></li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — extends（五种模式是具体 Harness 实现的基础架构选择）</li>
+<li><a href="生成器-评估器架构.html">生成器-评估器架构</a> — related_to（评估者-优化者工作流的具体实现案例）</li>
+<li><a href="Agent循环.html">Agent循环</a> — part_of（五种工作流都基于 Agent 循环）</li>
+<li><a href="多Agent架构.html">多Agent架构</a> — related_to（编排者-工人是多 Agent 系统的核心模式）</li>
+<li><a href="LLM-as-Judge.html">LLM-as-Judge</a> — related_to（评估者-优化者工作流的评估机制）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent Skills.html">&larr; Agent Skills</a>
+    <a href="Agent循环.html">Agent循环 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

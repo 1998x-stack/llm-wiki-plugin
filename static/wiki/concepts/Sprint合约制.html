@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint合约制 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Sprint合约制</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="sprint">Sprint 合约制</h1>
+<h2 id="_1">概述</h2>
+<p>Sprint 合约制是<a href="生成器-评估器架构.html">生成器-评估器架构</a>三 Agent 系统中的一个机制：在每个 Sprint 开始前，<strong>生成器（Generator）和评估器（Evaluator）先行谈判并达成合约</strong>，明确约定"完成"的具体标准和可验证行为，再开始编码实现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">设计动机</h3>
+<p>产品规格（Planner 输出）是高层次的用户故事集合，刻意避免过度规定实现细节，以防止早期的错误规格向下游传播。但这带来了一个问题：<strong>生成器在缺乏具体可测试目标时，容易构建表面正确但缺乏深度的实现</strong>。</p>
+<p>Sprint 合约制作为"规格与代码之间的桥梁"，将高层用户故事转化为具体的、可测试的实现约定。</p>
+<h3 id="_4">工作流程</h3>
+<pre><code>Planner 输出规格（高层）
+      ↓
+Generator 提案：我将构建 X，用 Y 方式验证成功
+      ↓
+Evaluator 审查提案（是否构建了正确的东西？）
+      ↓
+双方迭代直至达成合约
+      ↓
+Generator 依据合约构建
+      ↓
+Evaluator 对照合约执行 QA（Playwright MCP）
+</code></pre>
+<h3 id="_5">合约的粒度</h3>
+<p>合约非常细粒度，以确保 QA 可以精确验证。以全栈游戏制作工具为例，一个 Sprint（第 3 关卡编辑器）包含 <strong>27 个独立测试条件</strong>，例如：</p>
+<ul>
+<li>"矩形填充工具允许点击拖拽填充矩形区域"</li>
+<li>"用户可以选中并删除已放置的实体生成点"</li>
+<li>"用户可通过 API 重新排列动画帧顺序"</li>
+</ul>
+<p>这种粒度使评估器的发现足够具体，可以直接触发修复，无需额外调查。</p>
+<h3 id="_6">文件通信协议</h3>
+<p>合约通过文件传递实现：
+- 生成器写入提案文件
+- 评估器读取并在同一文件（或新文件）中回应
+- 前一 Agent 再读取响应继续迭代</p>
+<p>这种文件驱动的通信方式保持了 Agent 间的松耦合，同时保留了完整的协商记录。</p>
+<h3 id="_7">局限与演化</h3>
+<p>Sprint 合约制是 Sprint 分解结构的组成部分。当 Anthropic 在 Opus 4.6 上移除 Sprint 分解（模型能力提升，不再需要分块）时，Sprint 合约制也随之移除，评估器改为在完整构建结束后进行一次性 QA。</p>
+<p>这再次印证了 Harness 组件随模型能力演化而调整的原则。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="生成器-评估器架构.html">生成器-评估器架构</a> — part_of（Sprint 合约制是三 Agent 架构中特定阶段的机制）</li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — part_of（具体 Harness 设计决策）</li>
+<li><a href="LLM-as-Judge.html">LLM-as-Judge</a> — related_to（评估器在合约谈判中充当初步 Judge 角色）</li>
+<li><a href="../entities/Prithvi-Rajasekaran.html">Prithvi-Rajasekaran</a> — 设计者</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Schur分解.html">&larr; Schur分解</a>
+    <a href="Think工具.html">Think工具 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

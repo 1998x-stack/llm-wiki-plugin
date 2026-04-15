@@ -5,7 +5,7 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
-source_count: 3
+source_count: 4
 tags: [AI, Agent, 架构, 设计模式, LLM]
 aliases: [Harness模式, Agent Harness, batteries-included agent harness]
 relates_to:
@@ -21,6 +21,12 @@ relates_to:
   - target: "[[Pi-Agent]]"
     type: implemented_by
     confidence: 0.9
+  - target: "[[生成器-评估器架构]]"
+    type: related_to
+    confidence: 0.92
+  - target: "[[上下文焦虑]]"
+    type: related_to
+    confidence: 0.85
 supersedes: null
 ---
 
@@ -92,14 +98,38 @@ supersedes: null
 
 两者的共同点：都将 Model 与 Harness 清晰分离，都强调 [[Context-Engineering]] 的重要性。
 
+### Anthropic 长时自主编码 Harness（三 Agent 系统）
+
+[[Prithvi-Rajasekaran]] 在 Anthropic 构建的长时自主编码 Harness 代表了另一类 Harness 设计哲学——**面向任务能力边界的动态调整**：
+
+```
+Planner（1-4句 prompt → 完整产品规格 + 设计语言）
+   ↓
+Generator（按规格逐 Sprint 构建，Sprint 前先谈合约）← [[Sprint合约制]]
+   ↓
+Evaluator（Playwright MCP，点击测试运行中的应用 + 对照准则打分）
+   ↓
+Generator（修复 + 迭代，循环直到所有准则通过）
+```
+
+核心设计原则：**每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。** Opus 4.5 需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。
+
+这与 [[DeepAgents]] 的"batteries-included"路线形成对比：
+- **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
+- **Anthropic 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
+
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]
 - [[raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md]]
 - [[raw/articles/ai-tools/pi-agent/01-overview-philosophy.md]]
+- [[raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md]]
 
 ## 相关
 - [[DeepAgents]] — batteries-included 代表
 - [[Pi-Agent]] — 极简代表
+- [[生成器-评估器架构]] — 三 Agent Harness 的核心架构模式
+- [[Sprint合约制]] — 三 Agent Harness 的 Sprint 前谈判机制
+- [[上下文焦虑]] — 驱动 Harness 中上下文重置设计的现象
 - [[DeepAgents中间件体系]]
 - [[DeepAgents后端协议]]
 - [[Context-Engineering]]

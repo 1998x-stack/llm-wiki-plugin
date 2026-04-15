@@ -6,7 +6,7 @@ confidence: 0.92
 created: 2026-04-15
 updated: 2026-04-15
 last_accessed: '2026-04-15'
-source_count: 1
+source_count: 2
 tags:
 - 技术
 - 方法论
@@ -28,6 +28,12 @@ relates_to:
 - target: '[[Prompt缓存]]'
   type: uses
   confidence: 0.85
+- target: '[[上下文腐烂]]'
+  type: related_to
+  confidence: 0.95
+- target: '[[即时上下文检索]]'
+  type: related_to
+  confidence: 0.9
 supersedes: null
 ---
 
@@ -162,9 +168,25 @@ $$
 
 设计公式：**分层记忆（hot/warm/cold） + 按需检索 + 混合检索与重排 + 结构化压缩 + 位置编排 + 工具状态外置 + 预算与评估闭环。**
 
+### Anthropic 工程视角的补充（2026）
+
+Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻找到最小化的高信噪比 token 集合，最大化目标行为的概率。**
+
+**[[上下文腐烂]]（[[上下文腐烂|Context Rot]]）**：[[ChromaDB|Chroma]] Research 基准研究发现，随上下文 token 增加，模型从上下文中准确召回信息的能力持续下降。这不是硬性崖式截止，而是性能梯度——是上下文工程存在的核心动机。
+
+**[[注意力预算]]（[[注意力预算|Attention Budget]]）**：Transformer n² 注意力机制导致每个新 token 都消耗有限的[[注意力预算|注意力资源]]，上下文增长时每对 token 关系可获得的参数容量被稀释。
+
+**长时任务的三种技术**（Anthropic 实践）：
+1. **Compaction**：对话历史摘要压缩 → 适合需要流式回话的复杂推理
+2. **[[结构化笔记法]]**（[[结构化笔记法|Agentic Memory]]）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
+3. **多 Agent 架构**：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究
+
+**[[即时上下文检索]]（[[即时上下文检索|Just-in-Time Context]]）**：Agent 不预加载所有数据，而是持有轻量标识符（文件路径、URL、查询），运行时工具按需动态加载。Claude Code 的 glob/grep/Bash 模式是典型实现。
+
 ## 来源
 
 - [[raw/articles/ai-engineering/prompt-context/context-design.md]]
+- [[raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md]]
 - Anthropic: [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 - Liu et al. (2023): *Lost in the Middle: How Language Models Use Long Contexts*
 - MemGPT: [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)
@@ -177,3 +199,9 @@ $$
 - [[Prompt缓存]]
 - [[Agent Harness模式]]
 - [[Claude-Code上下文工程全景]]
+- [[上下文腐烂]] — 上下文工程的核心动机
+- [[注意力预算]] — 核心约束条件
+- [[即时上下文检索]] — 按需加载策略
+- [[结构化笔记法]] — 长时任务持久记忆技术
+- [[检索增强生成]] — 外部知识注入的主要技术路径
+- [[情境化检索]] — 解决 RAG 上下文破坏的增强方案

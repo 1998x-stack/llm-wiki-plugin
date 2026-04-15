@@ -43,7 +43,7 @@ supersedes: null
 ### Composer（输入框）
 
 - 支持图片拖入（design spec、截图）
-- `@` 引用 Skills、MCP 工具、代码片段
+- `@` 引用 [[Agent Skills|Skills]]、MCP 工具、代码片段
 - Draft 历史：`Up/Down` 恢复之前草稿（含图片附件）
 - `Ctrl+L` 清屏不清上下文（≠ `/clear` 会开新 session）
 

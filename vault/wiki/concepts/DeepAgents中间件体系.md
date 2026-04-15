@@ -48,7 +48,7 @@ supersedes: null
 - `CompiledSubAgent`（已编译的 LangGraph 图）
 - `AsyncSubAgent`（带 `graph_id` 的异步远程任务）
 
-自动为子代理注入与主代理对齐的能力（Todo + Filesystem + Summarization + Patch + 可选 Skills + 缓存），保证子调用"能力模型对齐"。
+自动为子代理注入与主代理对齐的能力（Todo + Filesystem + Summarization + Patch + 可选 [[Agent Skills|Skills]] + 缓存），保证子调用"能力模型对齐"。
 
 #### AsyncSubAgentMiddleware
 处理异步/远程子代理（`AsyncSubAgent` 含 `graph_id`），提供生命周期工具：启动任务、查询状态、等待完成。仅在存在异步子代理时启用。

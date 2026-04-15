@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>情境化检索 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 情境化检索</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">情境化检索</h1>
+<h2 id="_2">概述</h2>
+<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 <a href="检索增强生成.html">RAG</a> 增强方案：在将文档 Chunk 建立嵌入向量和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心问题：切块破坏上下文</h3>
+<p>传统 <a href="检索增强生成.html">RAG</a> 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
+<pre><code>问题：What was ACME Corp's revenue growth in Q2 2023?
+原始 Chunk：&quot;The company's revenue grew by 3% over the previous quarter.&quot;
+缺失：哪家公司？哪个季度？→ 检索系统无法判断相关性
+</code></pre>
+<h3 id="_5">解决方案：情境化前置</h3>
+<p>用 Claude 为每个 Chunk 生成简洁的情境说明，然后前置到 Chunk 开头：</p>
+<pre><code>原始 Chunk：
+&quot;The company's revenue grew by 3% over the previous quarter.&quot;
+
+情境化 Chunk：
+&quot;This chunk is from an SEC filing on ACME corp's performance in Q2 2023;
+ the previous quarter's revenue was $314 million.
+ The company's revenue grew by 3% over the previous quarter.&quot;
+</code></pre>
+<p>生成情境的 Claude Prompt（用 Claude 3 Haiku 生成）：</p>
+<pre><code class="language-xml">&lt;document&gt;{{WHOLE_DOCUMENT}}&lt;/document&gt;
+Here is the chunk we want to situate within the whole document
+&lt;chunk&gt;{{CHUNK_CONTENT}}&lt;/chunk&gt;
+Please give a short succinct context to situate this chunk within the overall
+document for the purposes of improving search retrieval of the chunk.
+Answer only with the succinct context and nothing else.
+</code></pre>
+<h3 id="_6">两个子技术</h3>
+<p><strong>Contextual Embeddings（情境化嵌入）</strong>：
+- 对情境化后的 Chunk 生成语义嵌入向量
+- 单独效果：检索 Top-20 失败率 <strong>-35%</strong>（5.7% → 3.7%）</p>
+<p><strong>Contextual BM25（情境化 BM25）</strong>：
+- 对情境化后的 Chunk 建立 BM25 词汇索引
+- 与 Contextual Embeddings 联合：失败率 <strong>-49%</strong>（5.7% → 2.9%）</p>
+<h3 id="_7">与重排序的组合（最强方案）</h3>
+<p>在情境化检索后加入 <a href="检索重排序.html">Reranking</a> 步骤：
+- 先召回 Top-150 Chunk
+- 用<a href="检索重排序.html">重排序</a>模型（如 Cohere Reranker）对照查询重新评分
+- 取 Top-20 注入模型
+- 联合效果：失败率 <strong>-67%</strong>（5.7% → 1.9%）</p>
+<h3 id="_8">成本与实现</h3>
+<p><strong>为什么成本可控</strong>：配合 Anthropic 的 Prompt Caching 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
+<p><strong>实现注意事项</strong>：
+1. <strong>Chunk 边界</strong>：切块大小、边界策略和重叠影响检索效果，需实验调优
+2. <strong>嵌入模型选择</strong>：实验中 Gemini Text 004 和 Voyage 表现最佳
+3. <strong>情境化 Prompt 定制</strong>：可针对特定领域定制（如加入领域词汇表），比通用 Prompt 效果更好
+4. <strong>Chunk 数量</strong>：Top-20 优于 Top-10 和 Top-5，但存在上限——注意 <a href="注意力预算.html">注意力预算</a> 的影响</p>
+<h3 id="_9">实验范围</h3>
+<p>跨代码库、小说、ArXiv 论文、科学论文四类知识域，多种嵌入模型（Gemini、Voyage、OpenAI 等），多种检索策略的系统性评测，情境化在所有配置下均改善检索性能。</p>
+<h3 id="_10">效果堆叠总结</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>Top-20 失败率</th>
+<th>改善</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仅嵌入（基准）</td>
+<td>5.7%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>嵌入 + BM25（标准 <span style="color:#e74c3c" title="broken link">检索增强生成&lt;/td&gt;
+&lt;td&gt;RAG</span>）</td>
+<td>约 4.5%</td>
+</tr>
+<tr>
+<td>情境化嵌入</td>
+<td>3.7%</td>
+<td>-35%</td>
+</tr>
+<tr>
+<td>情境化嵌入 + 情境化 BM25</td>
+<td>2.9%</td>
+<td><strong>-49%</strong></td>
+</tr>
+<tr>
+<td>+ <span style="color:#e74c3c" title="broken link">检索重排序&lt;/td&gt;
+&lt;td&gt;Reranking</span></td>
+<td>1.9%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Contextual Retrieval in AI Systems.md</span></li>
+</ul>
+<h2 id="_12">相关</h2>
+<ul>
+<li><a href="检索增强生成.html">检索增强生成</a> — extends（情境化检索是传统 RAG 的增强版，解决上下文破坏问题）</li>
+<li><a href="检索重排序.html">检索重排序</a> — related_to（两者叠加可将失败率降低 67%）</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（检索质量是上下文工程的核心子问题）</li>
+<li><a href="注意力预算.html">注意力预算</a> — related_to（Chunk 数量受注意力预算限制）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="快速扩展随机树 (RRT).html">&larr; 快速扩展随机树 (RRT)</a>
+    <a href="惯性律.html">惯性律 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -80,7 +80,7 @@ scorer = (
 
 ### pytest 配置（`conftest.py`）
 
-- **LangSmith 追踪门禁**：`LANGSMITH_TRACING` 环境变量必须为 `"true"`，否则整个会话退出码 1
+- **LangSmith 追踪门禁**：`LANGSMITH_TR[[Agent计算机接口|ACI]]NG` 环境变量必须为 `"true"`，否则整个会话退出码 1
 - CLI 参数：`--model`（被测模型）、`--eval-category`（筛选分类）、`--openrouter-provider`
 - 所有 eval 用例使用 `@pytest.mark.langsmith`
 

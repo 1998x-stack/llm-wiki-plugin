@@ -228,7 +228,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>雷达图（Radar）使用前 6 个分类（排除 <code>unit_test</code>），避免 SDK 行为与"模型能力"维度混淆。</p>
 <h3 id="pytest-conftestpy">pytest 配置（<code>conftest.py</code>）</h3>
 <ul>
-<li><strong>LangSmith 追踪门禁</strong>：<code>LANGSMITH_TRACING</code> 环境变量必须为 <code>"true"</code>，否则整个会话退出码 1</li>
+<li><strong>LangSmith 追踪门禁</strong>：<code>LANGSMITH_TR<a href="Agent计算机接口.html">ACI</a>NG</code> 环境变量必须为 <code>"true"</code>，否则整个会话退出码 1</li>
 <li>CLI 参数：<code>--model</code>（被测模型）、<code>--eval-category</code>（筛选分类）、<code>--openrouter-provider</code></li>
 <li>所有 eval 用例使用 <code>@pytest.mark.langsmith</code></li>
 </ul>

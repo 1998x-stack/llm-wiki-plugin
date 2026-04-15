@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="progressive-disclosure">渐进式披露 (Progressive Disclosure)</h1>
 <h2 id="_1">概述</h2>
-<p>渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过载和资源浪费。在 AI 系统设计中，该原则表现为优先提供高层摘要或元数据，仅在用户明确表达进一步兴趣时，才提供详细的底层数据。在 <a href="../entities/Claude-Mem.html">Claude-Mem</a> 系统中，这一原则被具体化为“三层检索工作流”，有效解决了大语言模型上下文窗口有限和注意力稀释的核心痛点。</p>
+<p>渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过载和资源浪费。在 AI 系统设计中，该原则表现为优先提供高层摘要或元数据，仅在用户明确表达进一步兴趣时，才提供详细的底层数据。在 <a href="../entities/Claude-Mem.html">Claude-Mem</a> 系统中，这一原则被具体化为“三层检索工作流”，有效解决了大语言模型上下文窗口有限和<a href="注意力预算.html">注意力稀释</a>的核心痛点。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">理论基础与起源</h3>
 <p>渐进式披露最初源于人机交互（HCI）领域，用于简化复杂软件的界面，避免新手用户被过多的选项和功能吓退。其核心思想是：<strong>默认只显示最常用、最核心的信息，将高级或详细信息隐藏在次级界面中，待用户需要时再展开。</strong>
 在 LLM 时代，这一概念被赋予了新的内涵。由于 Token 成本高昂且上下文窗口有限，“用户”不仅是人类，更是消耗资源的 AI 模型。此时的渐进式披露不仅是为了易用性，更是为了<strong>经济性</strong>和<strong>推理质量</strong>。</p>
 <h3 id="ai">在 AI 检索系统中的实施</h3>
-<p>在传统的 RAG（检索增强生成）系统中，系统往往会一次性将所有检索到的文档片段全部填入 Context，这是一种“全量披露”的反面教材。相比之下，基于渐进式披露的架构（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）采用以下策略：</p>
+<p>在传统的 <a href="检索增强生成.html">RAG</a>（<a href="检索增强生成.html">检索增强生成</a>）系统中，系统往往会一次性将所有检索到的文档片段全部填入 Context，这是一种“全量披露”的反面教材。相比之下，基于渐进式披露的架构（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）采用以下策略：</p>
 <h4 id="1">1. 分层信息结构</h4>
 <ul>
 <li><strong>第一层（索引层）</strong>：仅披露元数据（标题、时间、类型、简短摘要）。这一层的信息密度极高，Token 消耗极低，足以让模型进行相关性判断和筛选。</li>
@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">核心价值</h3>
 <ul>
 <li><strong>Token 经济性</strong>：通过避免加载大量无关的详细信息，显著降低了 API 调用成本。在 <a href="../entities/Claude-Mem.html">Claude-Mem</a> 的案例中，实现了约 10 倍的 Token 节省。</li>
-<li><strong>注意力聚焦</strong>：减少了上下文中的噪声，防止模型因信息过载而产生幻觉或忽略关键细节（注意力稀释效应）。</li>
+<li><strong>注意力聚焦</strong>：减少了上下文中的噪声，防止模型因信息过载而产生幻觉或忽略关键细节（<a href="注意力预算.html">注意力稀释</a>效应）。</li>
 <li><strong>推理深度</strong>：模型可以将有限的上下文窗口容量集中在最相关的问题上，从而进行更深度的分析和推理，而不是浅尝辄止地处理大量碎片信息。</li>
 <li><strong>可控性</strong>：开发者可以通过控制披露的粒度和顺序，精确引导模型的思考路径，使系统行为更加可控和可预测。</li>
 </ul>

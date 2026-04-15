@@ -80,6 +80,8 @@ updated: 2026-04-15
 - [[Willow Garage]] — Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由硅谷企业家 Scott Hassan 创立。该机构致力于个人机器人技术的研发，其... (confidence: 1.0)
 - [[Wolfram Burgard]] — Wolfram Burgard 是德国弗莱堡大学（University of Freiburg）教授，国际知名的机器人学专家，尤其在移动机器人导航、机器学习和同... (confidence: 0.95)
 - [[Codex CLI]] — OpenAI 以 Rust 重写并开源的**本地编码 Agent**。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终... (confidence: 0.9)
+- [[Prithvi-Rajasekaran]] — Anthropic Labs 团队成员，AI 工程实践研究者，专注于长时自主编码 Agent 的 Harness 设计与前端设计质量提升，提出了 [[生成器-评... (confidence: 0.88)
+- [[艾萨克·牛顿]] — 英国数学家、物理学家、天文学家，微积分奠基人之一。在[[数值分析]]领域，牛顿于17世纪60年代首次描述了通过逐次逼近求解多项式方程根的代数方法，该方法后来发展... (confidence: 0.95)
 
 <!-- 格式：- `页面名` — 一行摘要 (confidence: X.X) -->
 
@@ -279,6 +281,24 @@ updated: 2026-04-15
 - [[Codex配置系统]] — [[Codex CLI]] 的"神经系统"，控制每一个可调行为。不是简单的配置文件，而是一个**多层继承、可版本化、环境感知**的配置管理体系。 (confidence: 0.9)
 - [[ExecPolicy]] — [[Codex CLI]] 的命令审批引擎，位于 [[Codex沙箱系统]] 之前。将"哪些命令允许、哪些需要审批、哪些禁止"从硬编码逻辑中解放出来，变成**可... (confidence: 0.9)
 - [[MCP协议层]] — [[Codex CLI]] 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent... (confidence: 0.9)
+- [[Sprint合约制]] — Sprint 合约制是[[生成器-评估器架构]]三 Agent 系统中的一个机制：在每个 Sprint 开始前，**生成器（Generator）和评估器（Eva... (confidence: 0.88)
+- [[上下文焦虑]] — 上下文焦虑（Context Anxiety）是 LLM 在长时任务中的一种失败模式：模型感知到自身接近上下文窗口限制时，会**过早包装工作、草率结束任务**，而... (confidence: 0.9)
+- [[上下文重置]] — 上下文重置（Context Reset）是长时 Agent 任务中的一种会话管理策略：**彻底清空上下文窗口，启动全新 Agent**，通过精心设计的**结构化... (confidence: 0.9)
+- [[生成器-评估器架构]] — 受 GAN（生成对抗网络）启发的多 Agent 设计模式：**生成器（Generator）**负责产出，**评估器（Evaluator）**负责评判并给出详细批... (confidence: 0.95)
+- [[上下文腐烂]] — 上下文腐烂（Context Rot）是指随着 LLM 上下文窗口中 token 数量增加，模型从上下文中**准确召回信息的能力逐渐下降**的现象。由 Chrom... (confidence: 0.9)
+- [[即时上下文检索]] — 即时上下文检索（Just-in-Time Context Retrieval）是一种 Agent 信息管理策略：Agent **不在运行前预加载所有可能相关的数... (confidence: 0.9)
+- [[注意力预算]] — 注意力预算（Attention Budget）是对 Transformer 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算... (confidence: 0.9)
+- [[结构化笔记法]] — 结构化笔记法（Structured Note-taking）是 Agent 长时任务中的持久记忆技术：Agent 将关键信息**定期写入上下文窗口之外的持久存储... (confidence: 0.88)
+- [[情境化检索]] — 情境化检索（Contextual Retrieval）是 Anthropic 提出的 RAG 增强方案：在将文档 Chunk 建立嵌入向量和 BM25 索引**... (confidence: 0.95)
+- [[检索增强生成]] — 检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知... (confidence: 0.95)
+- [[检索重排序]] — 检索重排序（Retrieval Reranking）是 RAG 流水线中的精排步骤：在初始召回（粗排）获得大量候选 Chunk 后，用专门的**重排序模型**对... (confidence: 0.9)
+- [[Agent Skills]] — Agent Skills（代理技能）是 Anthropic 提出的开放标准：**一个含 SKILL.md 文件的目录**，通过渐进式披露机制为 Agent 提供... (confidence: 0.92)
+- [[Agent工作流模式]] — Anthropic 从与数十个客户团队协作中提炼的 LLM 系统架构分类：**工作流**（LLM 和工具经由预定义代码路径编排）与**Agent**（LLM 动... (confidence: 0.95)
+- [[Agent计算机接口]] — Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 LLM Agent 设计工具接口需要与 ... (confidence: 0.88)
+- [[Agent评估方法论]] — Anthropic 从内部实践和客户协作中提炼的 Agent 系统评估（Eval）系统方法论：词汇体系、评分器类型、能力评估与回归评估、pass@k vs pa... (confidence: 0.95)
+- [[Think工具]] — Think 工具是一个无副作用的特殊工具：模型调用它时，输入文本被追加到日志中作为"思考"，不获取新信息，不修改任何状态。它为模型在复杂工具链中提供一个**结构... (confidence: 0.9)
+- [[多Agent架构]] — 多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：**子 Agent 通过各自独立上下文窗口进行并行探索，再将... (confidence: 0.92)
+- [[长时任务Agent设计]] — 针对跨多个上下文窗口的长时自主任务（数小时至数日）的 Agent Harness 设计模式：**初始化 Agent**（建立环境和功能列表）+ **编码 Age... (confidence: 0.9)
 
 ## 综合分析 (wiki/syntheses/)
 
@@ -294,9 +314,9 @@ updated: 2026-04-15
 
 ## 统计
 
-- 总页面数：272
-- 实体：107
-- 概念：158
+- 总页面数：291
+- 实体：108
+- 概念：176
 - 综合分析：5
 - QA 洞见：1
 - 最后更新：2026-04-15

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多Agent架构 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 多Agent架构</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">多 Agent 架构</h1>
+<h2 id="_1">概述</h2>
+<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong>子 Agent 通过各自独立上下文窗口进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="agent_1">多 Agent 系统的适用条件</h3>
+<p>Anthropic 研究表明，多 Agent 架构在以下场景最有价值：
+- <strong>重度并行化</strong>的任务（如广度优先研究：同时探索多个独立方向）
+- <strong>信息量超过单个上下文窗口</strong>的任务
+- <strong>连接大量复杂工具</strong>的任务
+- 任务价值足以支付 <strong>~15× 于聊天的 token 成本</strong></p>
+<p><strong>不适合</strong>：大多数编码任务（真正可并行的子任务较少）、Agent 间需要实时协调的场景。</p>
+<h3 id="token">Token 消耗与性能的关系</h3>
+<p>Anthropic 在 BrowseComp 基准测试上的分析显示，<strong>三个因素解释了 95% 的性能方差</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>性能方差解释比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token 使用量</td>
+<td><strong>80%</strong></td>
+</tr>
+<tr>
+<td>工具调用次数</td>
+<td>~10%</td>
+</tr>
+<tr>
+<td>模型选择</td>
+<td>~5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键结论</strong>：多 Agent 架构的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。多 Agent 系统 vs 单 Agent Claude Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
+<h3 id="-">编排者-工人模式（研究系统实现）</h3>
+<p>Anthropic Research 系统的具体架构：</p>
+<pre><code>用户查询
+   ↓
+LeadResearcher（编排者）
+  - 分析查询，制定策略
+  - 写研究计划保存到 Memory（防 Context 截断）
+  - 同时派遣 3-5 个并行 Subagent
+       ↓
+Subagent 1, 2, 3... （并行探索）
+  - 各自独立上下文，执行深度搜索
+  - 使用 Interleaved Thinking 评估结果，精炼查询
+  - 返回精简摘要（1000-2000 token）而非原始数据
+       ↓
+LeadResearcher 综合结果
+  - 判断是否需要更多研究
+  - 传递给 CitationAgent 处理引用
+</code></pre>
+<h3 id="agent_2">子 Agent 作为"压缩器"</h3>
+<p>子 Agent 的核心贡献不只是并行，而是<strong>上下文压缩</strong>：
+- 每个子 Agent 可能消耗数万 token 探索信息
+- 但只返回 1000-2000 token 的精简摘要给主 Agent
+- 实现关注点分离：主 Agent 专注综合，子 Agent 专注深度探索</p>
+<h3 id="_3">提示工程的特殊挑战</h3>
+<p>多 Agent 系统的提示涉及协调，不只是行为控制：</p>
+<ol>
+<li><strong>教导编排者如何委派</strong>：明确目标、输出格式、工具使用指导、任务边界——否则子 Agent 重复工作或留下空白</li>
+<li><strong>按查询复杂度缩放努力</strong>：嵌入明确的规模规则（简单事实查询：1 个 Agent + 3-10 次工具调用；复杂研究：10+ 子 Agent）</li>
+<li><strong>从宽到窄的搜索策略</strong>：先用短宽泛查询探索，再逐步聚焦</li>
+<li><strong>引导思考过程</strong>：让主 Agent 用 Extended Thinking 规划方法，子 Agent 用 Interleaved Thinking 评估每次工具结果</li>
+</ol>
+<h3 id="_4">工程可靠性挑战</h3>
+<p><strong>错误传播与状态</strong>：Agent 运行时间长，错误可传播。建议：
+- 结合 AI 的适应性（让 Agent 知道工具失败，自行适应）与确定性保障（重试逻辑、定期检查点）</p>
+<p><strong>调试</strong>：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。</p>
+<p><strong>部署</strong>：使用彩虹部署（Rainbow Deployment）避免更新中断运行中的 Agent。</p>
+<p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待子 Agent 完成，创建信息流瓶颈。异步执行是下一步。</p>
+<h3 id="_5">并行工具调用</h3>
+<p>多 Agent 并行外，单个 Agent 内的并行工具调用也至关重要：
+- 子 Agent 并行调用 3+ 个工具，而非顺序调用
+- 研究系统中此优化将复杂查询研究时间缩短 <strong>90%</strong></p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/How we built our multi-agent research system.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Building a C compiler with a team of parallel Claudes.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Agent工作流模式.html">Agent工作流模式</a> — extends（多 Agent 是编排者-工人工作流的规模化实现）</li>
+<li><a href="生成器-评估器架构.html">生成器-评估器架构</a> — related_to（生成器-评估器是二元多 Agent 的特例）</li>
+<li><a href="即时上下文检索.html">即时上下文检索</a> — related_to（子 Agent 用 JIT 策略独立检索信息）</li>
+<li><a href="结构化笔记法.html">结构化笔记法</a> — uses（跨会话的信息传递机制）</li>
+<li><a href="上下文腐烂.html">上下文腐烂</a> — related_to（多 Agent 是绕过单 Agent 上下文限制的架构方案）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="域随机化.html">&larr; 域随机化</a>
+    <a href="大数定律.html">大数定律 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

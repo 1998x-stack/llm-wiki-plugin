@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注意力预算 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 注意力预算</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">注意力预算</h1>
+<h2 id="_2">概述</h2>
+<p>注意力预算（Attention Budget）是对 Transformer 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类工作记忆的有限容量。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="n2">架构根因：n² 注意力计算</h3>
+<p>Transformer 架构的自注意力机制要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力计算，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
+<pre><code>n=1000  →  1,000,000 对位关系
+n=10000 →  100,000,000 对位关系
+n=100k  →  10^10 对位关系（理论极值）
+</code></pre>
+<p>计算量虽可通过 Flash Attention 等技术优化，但模型<strong>理解</strong>这些关系的能力随 n 增大而被稀释——每一对关系分配到的"有效参数容量"减少。</p>
+<h3 id="_4">与人类工作记忆的类比</h3>
+<p>人类的工作记忆容量有限（Miller's Law：约 7±2 个独立 chunk），超出容量时信息处理质量下降。LLM 的注意力预算扮演相同角色：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>人类</th>
+<th>LLM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有限资源</td>
+<td>工作记忆 chunk 数</td>
+<td>注意力预算（context tokens）</td>
+</tr>
+<tr>
+<td>退化现象</td>
+<td>认知过载、遗忘</td>
+<td><a href="上下文腐烂.html">上下文腐烂</a>、长距推理弱化</td>
+</tr>
+<tr>
+<td>优化策略</td>
+<td>外部笔记、分阶段处理</td>
+<td><a href="结构化笔记法.html">结构化笔记法</a>、上下文压缩</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">工程含义</h3>
+<p>注意力预算有限直接推出<a href="Context-Engineering.html">上下文工程</a>的核心指导原则：</p>
+<blockquote>
+<p><strong>找到最小化的高信噪比 token 集合，最大化目标行为的概率。</strong></p>
+</blockquote>
+<p>具体工程手段：
+- <strong>系统提示精简</strong>：找到"合适高度"（right altitude）——不过于细碎、不过于抽象
+- <strong>工具集精简</strong>：最小可行工具集，避免决策点模糊
+- <strong><a href="即时上下文检索.html">即时上下文检索</a></strong>：用轻量标识符替代全量数据，<a href="即时上下文检索.html">按需加载</a>
+- <strong>压缩（Compaction）</strong>：对话历史定期压缩，清除冗余工具输出
+- <strong><a href="结构化笔记法.html">结构化笔记法</a></strong>：关键信息外置到持久记忆，按需调入</p>
+<h3 id="right-altitude">系统提示的"合适高度"（Right Altitude）</h3>
+<p>Anthropic 工程实践中，系统提示存在两个常见失败极端：</p>
+<table>
+<thead>
+<tr>
+<th>失败模式</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>过于细碎</strong>（硬编码 if-else）</td>
+<td>脆弱、维护成本高、浪费上下文</td>
+</tr>
+<tr>
+<td><strong>过于抽象</strong>（高层泛泛指引）</td>
+<td>缺乏具体信号，假设共享上下文</td>
+</tr>
+</tbody>
+</table>
+<p>最优"合适高度"：具体到能有效引导行为，灵活到给模型足够的启发式空间。最小化但不一定简短——前提是给出充分行为约束所必要的信息。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md</span></li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="上下文腐烂.html">上下文腐烂</a> — related_to（注意力预算有限导致上下文腐烂现象）</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（注意力预算是上下文工程的核心约束）</li>
+<li><a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — related_to（渐进式披露是保护注意力预算的策略）</li>
+<li><a href="即时上下文检索.html">即时上下文检索</a> — related_to（按需加载是节约注意力预算的主要手段）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="泊松分布.html">&larr; 泊松分布</a>
+    <a href="泰勒级数.html">泰勒级数 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
