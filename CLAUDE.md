@@ -31,8 +31,10 @@ Three-layer pattern:
 | `wiki:ingest-loop` | Batch ingest with ralph-loop (Claude-powered) |
 | `wiki:ingest-loop-qwen` | Batch ingest with Qwen API |
 | `wiki:query` | Answer questions with unified search (BM25 + maps + graph) |
-| `wiki:lint` | Health check + auto-repair |
-| `wiki:graph` | Build knowledge graph + statistics + wiki HTML (runs from vault/) |
+| `wiki:check` | Read-only diagnostics (no auto-repair) |
+| `wiki:lint` | Health check + auto-repair (calls check first) |
+| `wiki:build` | Build all static assets: graph + statistics + wiki HTML |
+| `wiki:graph` | Alias for wiki:build |
 | `wiki:reindex` | Validate index integrity + generate topic maps |
 | `wiki:consolidate` | Memory layer promotion + decay |
 | `wiki:crystallize` | Session → structured summary |

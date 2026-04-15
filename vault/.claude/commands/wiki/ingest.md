@@ -43,10 +43,10 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
      - 新页面的 relates_to 加 `type: contradicts`
      - 如果新信息更可靠（更新、更多来源），用 supersedes 标记旧声明
 
-7. **更新 index.md**
-   - 在对应分类下添加新页面条目
-   - 格式：`- [[页面名]] — 一行摘要 (confidence: X.X)`
-   - 更新统计数字
+7. **同步 index.md**
+   - 执行：`Bash: python3 scripts/snapshot_index.py --update`
+   - 脚本自动检测新增/删除的页面并同步 index.md
+   - 注意：index.md 是计算产物（由 snapshot_index.py 维护），不要手动编辑
 
 8. **更新 log.md**
    - 追加条目：`## [YYYY-MM-DD HH:MM] ingest | 源文件名`

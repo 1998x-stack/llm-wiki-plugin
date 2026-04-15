@@ -73,7 +73,7 @@ relates_to:
    - 如果 wiki/ 中已有对应页面 → 更新该页面，追加新信息
    - 如果没有 → 创建新页面，使用 templates/wiki-page.md 模板
 4. 检查新信息是否与已有页面矛盾 → 如有，用 supersedes 机制处理
-5. 更新 index.md：添加新页面条目
+5. 同步 index.md：执行 `python3 scripts/snapshot_index.py --update`（index.md 是计算产物）
 6. 追加 log.md：记录本次 ingest 的操作
 
 ### Query
@@ -106,6 +106,21 @@ wiki 页面必须满足：
 ## 记忆系统
 
 见 `_memory/` 目录。四层：Working → Episodic → Semantic → Procedural。
+
+### 记忆 vs Wiki 边界规则
+
+`_memory/semantic/` 和 `wiki/syntheses/` 服务不同目的，**严禁重复**：
+
+| 层 | 存放位置 | 内容类型 | 示例 |
+|----|---------|---------|------|
+| **Semantic Memory** | `_memory/semantic/` | 单一事实性声明（不跨主题） | "Python 3.10+ 支持 match 语句" |
+| **Syntheses** | `wiki/syntheses/` | 跨主题综合分析（连接 3+ 个概念） | "矩阵谱理论的统一叙事" |
+
+- `wiki:crystallize` 只写入 `_memory/working/` 和可选的 `wiki/syntheses/`
+- `wiki:consolidate` 负责 working → episodic → semantic 的晋升和衰减
+- 如果一个洞见跨越 3+ 个已有概念 → 放 syntheses/
+- 如果一个洞见是单一事实确认 → 放 semantic/
+- **决不**将同一信息同时放入两个位置
 
 晋升规则：
 - Working → Episodic：会话结束时自动压缩
