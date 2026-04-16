@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">评估</span><span class="tag">LangSmith</span><span class="tag">测试</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">评估</span><span class="tag">LangSmith</span><span class="tag">测试</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="deepagents">DeepAgents 评估体系</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
+<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（F<a href="../entities/rust-analyzer.html">RA</a>MES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">两层断言模型（核心设计）</h3>
 <table>
@@ -263,15 +263,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>模型能力/策略问题（无基础设施信号）</td>
 </tr>
 <tr>
-<td><code>INFRA_OOM</code></td>
+<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_OOM</code></td>
 <td>exit 137 / OOM</td>
 </tr>
 <tr>
-<td><code>INFRA_TIMEOUT</code></td>
+<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_TIMEOUT</code></td>
 <td>exit 124 / 超时</td>
 </tr>
 <tr>
-<td><code>INFRA_SANDBOX</code></td>
+<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_SANDBOX</code></td>
 <td>沙箱崩溃、网络不可达、exec failed</td>
 </tr>
 <tr>
@@ -346,7 +346,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="DeepAgents后端协议.html">&larr; DeepAgents后端协议</a>
-    <a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数 &rarr;</a>
+    <a href="Delta-time运动模式.html">Delta-time运动模式 &rarr;</a>
   </div>
 </div>
 </body>

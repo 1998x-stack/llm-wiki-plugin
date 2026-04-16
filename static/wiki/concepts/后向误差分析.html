@@ -186,7 +186,7 @@ $$\frac{|\hat x - x|}{|x|} \lesssim \kappa(A) \cdot \frac{|\delta A|}{|A|} \less
 <p><strong>含义</strong>：
 - 后向稳定算法 → 后向误差 $\sim \varepsilon_{\text{mach}}$（与机器精度同阶）
 - 计算结果误差 $\sim \kappa(A) \cdot \varepsilon_{\text{mach}}$
-- 若误差过大，是问题"病态"（large $\kappa$），非算法"不稳定"</p>
+- 若误差过大，是问题"病态"（la<a href="../entities/ripgrep.html">rg</a>e $\kappa$），非算法"不稳定"</p>
 <h3 id="_6">标志性应用</h3>
 <p><strong>Gauss 消去法（带部分主元）</strong>：后向误差界：
 $$\frac{|\delta A|}{|A|} \leq 8n^3 \rho_n \varepsilon_{\text{mach}}$$
@@ -206,7 +206,7 @@ $$w(x) = \prod_{i=1}^{20}(x-i) = (x-1)(x-2)\cdots(x-20)$$</p>
 <p><a href="../entities/阿兰·图灵.html">阿兰·图灵</a>1948年论文含后向误差的思想萌芽：他指出高斯消元的浮点输出可以被理解为某个"邻近方程组"的精确解，并引入<a href="条件数.html">条件数</a>概念（<a href="条件数.html">N(A)</a> = ‖A‖·‖A⁻¹‖），清晰区分了"问题固有困难"与"算法引入误差"。<a href="../entities/詹姆斯·威尔金森.html">威尔金森</a>在 NPL 与<a href="../entities/阿兰·图灵.html">图灵</a>共事期间受其深刻影响，后来将这些萌芽系统化为完整的后向误差分析框架（1963年《Rounding Errors in Algebraic Processes》，1965年《The Algebraic Eigenvalue Problem》）。</p>
 <h2 id="_9">历史地位</h2>
 <p><strong>彻底改变了<a href="../maps/数值分析.html">数值分析</a>的思维范式</strong>：在<a href="../entities/詹姆斯·威尔金森.html">威尔金森</a>之前，人们直觉地害怕大规模浮点计算；在<a href="../entities/詹姆斯·威尔金森.html">威尔金森</a>之后，人们学会了区分"算法不稳定"与"问题病态"，科学计算因此获得了严格的理论基础。</p>
-<p><strong>软件链条</strong>：理论（1965 <a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>书）→ 算法实现（1971 <a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>-Reinsch手册）→ EISPACK/LINPACK（1970s）→ LAPACK（1992至今）→ MATLAB/NumPy 的<a href="矩阵.html">矩阵</a>计算内核。</p>
+<p><strong>软件链条</strong>：理论（1965 <a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>书）→ 算法实现（1971 <a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>-Reinsch手册）→ E<a href="重要性采样.html">IS</a>PACK/LINPACK（1970s）→ LAPACK（1992至今）→ MATLAB/NumPy 的<a href="矩阵.html">矩阵</a>计算内核。</p>
 <p><strong><a href="../entities/阿兰·图灵.html">图灵</a>奖引文（1970）</strong>：以一己之力"创造了我们目前关于<a href="线性代数.html">线性代数</a>计算机解法的全部科学知识"。</p>
 <h2 id="_10">局限性</h2>
 <ol>
@@ -232,8 +232,8 @@ $$w(x) = \prod_{i=1}^{20}(x-i) = (x-1)(x-2)\cdots(x-20)$$</p>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="古典概率定义.html">&larr; 古典概率定义</a>
-    <a href="因果推断.html">因果推断 &rarr;</a>
+    <a href="可行系统模型（VSM）.html">&larr; 可行系统模型（VSM）</a>
+    <a href="后图书时代.html">后图书时代 &rarr;</a>
   </div>
 </div>
 </body>

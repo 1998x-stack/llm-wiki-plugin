@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Agent-Coordination-Patterns — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Multi-Agent-Coordination-Patterns</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">架构</span></div>
+</div>
+  <div class="content">
+    <h1 id="multi-agent-coordination-patterns">Multi-Agent Coordination Patterns</h1>
+<h2 id="_1">概述</h2>
+<p>多智能体协调模式是构建多智能体系统时的五种核心架构模式。每种模式适用于不同的场景，具有各自的优劣。选择合适模式应基于问题的结构性特征，而非追求复杂性。建议从最简单的可行模式开始，观察其短板，再逐步演进。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">五种协调模式</h3>
+<h4 id="1-generator-verifier">模式 1：生成器 - 验证器（Generator-Verifier）</h4>
+<p><strong>工作原理</strong>：
+- 生成器接收任务并生成初始输出
+- 验证器检查输出是否符合标准
+- 若未通过，反馈回传给生成器进行修改
+- 循环持续直到验证通过或达到最大迭代次数</p>
+<p><strong>适用场景</strong>：
+- 输出质量至关重要且评估标准可以明确制定
+- 代码生成（一个智能体写代码，另一个写测试并运行）
+- 事实核查、基于评分标准的评分、合规性验证</p>
+<p><strong>优势</strong>：
+- 最简单的多智能体模式，应用最广泛
+- 提供质量控制循环</p>
+<p><strong>局限性</strong>：
+- 验证器的好坏取决于其标准（无明确标准的验证器会全盘认可）
+- 假设生成与验证是可分离的技能
+- 迭代循环可能停滞（无法收敛时无限循环）</p>
+<p><strong>设计建议</strong>：
+- 明确定义验证标准
+- 设置最大迭代次数和后备策略（升级至人工、返回最佳尝试）</p>
+<h4 id="2-orchestrator-subagent">模式 2：协调器 - 子智能体（Orchestrator-Subagent）</h4>
+<p><strong>工作原理</strong>：
+- 主智能体接收任务并确定处理方式
+- 可直接处理部分子任务，同时分发其他子任务给<a href="Subagents-in-Claude-Code.html">子智能体</a>
+- <a href="Subagents-in-Claude-Code.html">子智能体</a>完成工作并返回结果
+- 协调者将结果整合为最终输出</p>
+<p><strong>适用场景</strong>：
+- 任务分解清晰且子任务间相互依赖度极低
+- 自动化<a href="Code-Review-for-Claude-Code.html">代码审查</a>（安全检查/测试覆盖率/代码风格/架构一致性）
+- <a href="../entities/Claude-Code.html">Claude-Code</a> 采用此模式</p>
+<p><strong>优势</strong>：
+- 层级结构清晰，协调者maintains 整体目标的连贯视图
+- <a href="Subagents-in-Claude-Code.html">子智能体</a>专注于具体职责</p>
+<p><strong>局限性</strong>：
+- 协调者成为信息瓶颈（信息需经协调者传递）
+- 顺序执行限制吞吐量（除非显式并行化）
+- 关键细节在多次传递中可能丢失</p>
+<h4 id="3agent-teams">模式 3：智能体团队（Agent Teams）</h4>
+<p><strong>工作原理</strong>：
+- 协调器生成多个工作智能体作为独立进程
+- 团队成员从共享队列中认领任务，自主完成
+- 团队成员持续运行，积累上下文和领域专业知识
+- 协调器分配工作并收集结果，但不会在不同任务之间重置工作代理</p>
+<p><strong>与协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a>的区别</strong>：
+- 子代理：为单个有限子任务生成，完成后终止
+- 团队成员：在多次任务分配中持续运行，积累上下文</p>
+<p><strong>适用场景</strong>：
+- 子任务相互独立且适合进行持续的多步骤工作
+- 代码库迁移（每个服务独立迁移）
+- 需要长期运行的并行子任务</p>
+<p><strong>优势</strong>：
+- 每位团队成员积累领域相关知识
+- 并行执行提升吞吐量</p>
+<p><strong>局限性</strong>：
+- 独立性是关键要求（团队成员难以共享中间发现）
+- 完成检测更具难度（工作时长不一致）
+- 共享资源会加剧问题（可能编辑同一文件或做出不兼容修改）</p>
+<h4 id="4message-bus">模式 4：消息总线（Message Bus）</h4>
+<p><strong>工作原理</strong>：
+- 智能体通过发布和订阅两种原语进行交互
+- 智能体订阅其关注的主题，路由器传递匹配的消息
+- 新智能体可以开始接收相关任务，无需重新配置现有连接</p>
+<p><strong>适用场景</strong>：
+- 事件驱动型管道
+- 工作流由事件而非预设序列生成
+- 智能体生态系统可能会不断扩展
+- 安全运营自动化系统（警报→分类→调查→响应）</p>
+<p><strong>优势</strong>：
+- 支持复杂的多智能体协调
+- 新智能体可轻松加入生态系统
+- 团队可独立开发和部署智能体</p>
+<p><strong>局限性</strong>：
+- 问题追踪更困难（级联事件需要细致的日志记录）
+- 调试比顺序式决策更难
+- 路由准确性至关重要（错误分类或丢弃会导致系统无声失效）</p>
+<h4 id="5shared-state">模式 5：共享状态（Shared State）</h4>
+<p><strong>工作原理</strong>：
+- 智能体自主运行，可读写共享数据库、文件系统或文档
+- 不存在中央协调者
+- 智能体检索存储库中的相关信息，基于获取的内容执行操作
+- 工作始于初始化步骤，终于终止条件（时间限制/收敛阈值/足够答案）</p>
+<p><strong>适用场景</strong>：
+- 智能体的工作具有协作性且研究结果需要实时流转
+- 研究综合系统（学术文献/行业报告/专利申请/新闻报道）
+- 需要消除单点故障</p>
+<p><strong>优势</strong>：
+- 智能体直接共享发现，无需等待协调者传递信息
+- 共享存储库成为不断演进的知识库
+- 消除协调器作为单一故障点</p>
+<p><strong>局限性</strong>：
+- 可能重复工作或采用相互矛盾的方法
+- 结果更难预测（系统行为而非自上而下设计）
+- 反应式循环（智能体相互触发无限循环）
+- 需要专门的终止条件（时间预算/收敛阈值/指定判断智能体）</p>
+<h3 id="_4">模式选择指南</h3>
+<h4 id="-vs">协调器 - 子智能体 vs 智能体团队</h4>
+<ul>
+<li><strong>选择协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a></strong>：子任务简短、目标明确且能输出清晰结果</li>
+<li><strong>选择智能体团队</strong>：子任务需要持续的多步骤工作，积累上下文提升性能</li>
+</ul>
+<h4 id="-vs_1">协调器 - 子智能体 vs 消息总线</h4>
+<ul>
+<li><strong>选择协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a></strong>：步骤顺序已知，遵循固定流程</li>
+<li><strong>选择消息总线</strong>：工作流由事件触发且可能变化，需要适应新型警报</li>
+</ul>
+<h4 id="vs">智能体团队 vs 共享状态</h4>
+<ul>
+<li><strong>选择智能体团队</strong>：智能体处理互不交互的独立分区</li>
+<li><strong>选择共享状态</strong>：智能体需要彼此沟通，而不仅仅是分享最终结果</li>
+</ul>
+<h4 id="vs_1">消息总线 vs 共享状态</h4>
+<ul>
+<li><strong>选择消息总线</strong>：智能体对管道中的事件做出反应，分阶段处理</li>
+<li><strong>选择共享状态</strong>：智能体基于长期积累的研究成果开展工作</li>
+</ul>
+<h3 id="_5">模式对比表</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对质量要求高的输出，有明确的评估标准</td>
+<td>生成器 - 验证器</td>
+</tr>
+<tr>
+<td>清晰的任务分解、有边界的子任务</td>
+<td>协调器 - <span style="color:#e74c3c" title="broken link">子智能体</span>
+- 能以最低的协调开销处理最广泛的问题
+- 先观察它在哪些场景下存在不足
+- 待具体需求明确后，再逐步向其他模式演进</p>
+<p><strong>混合模式</strong>：生产系统通常会组合多种模式
+- 协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a>处理整体工作流 + 共享状态处理协作密集型子任务
+- 消息总线进行事件路由 + 智能体团队风格的工作节点处理各类事件</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Multi-agent coordination patterns_ Five approaches and when to use them.md</span> — <a href="../entities/Cara-Phillips.html">Cara-Phillips</a> 撰写</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Generator-Verifier-Pattern.html">Generator-Verifier-Pattern</a> — 模式 1（part_of）</li>
+<li><a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> — 模式 2（part_of）</li>
+<li><a href="Agent-Teams-Pattern.html">Agent-Teams-Pattern</a> — 模式 3（part_of）</li>
+<li><a href="Message-Bus-Pattern.html">Message-Bus-Pattern</a> — 模式 4（part_of）</li>
+<li><a href="Shared-State-Pattern.html">Shared-State-Pattern</a> — 模式 5（part_of）</li>
+<li><a href="Subagents-in-Claude-Code.html">Subagents-in-Claude-Code</a> — 实现技术（implements）</li>
+<li><a href="Code-Review-for-Claude-Code.html">Code-Review-for-Claude-Code</a> — 应用场景（uses）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="MoonSharp与NLua.html">&larr; MoonSharp与NLua</a>
+    <a href="N-BEATS.html">N-BEATS &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

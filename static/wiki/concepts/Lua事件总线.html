@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua事件总线 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua事件总线</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">设计模式</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 事件总线</h1>
+<h2 id="_1">概述</h2>
+<p>Lua 事件总线（EventBus）是发布-订阅模式的实现，允许模块间解耦通信；订阅者注册回调，发布者 emit 事件名触发所有监听器。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">基础实现</h3>
+<pre><code class="language-lua">local EventBus = {}
+local listeners = {}  -- {eventName: [fn, ...]}
+
+function EventBus.on(event, fn)
+    listeners[event] = listeners[event] or {}
+    table.insert(listeners[event], fn)
+end
+
+function EventBus.off(event, fn)
+    local list = listeners[event]
+    if not list then return end
+    for i = #list, 1, -1 do
+        if list[i] == fn then table.remove(list, i) end
+    end
+end
+
+function EventBus.emit(event, ...)
+    local list = listeners[event]
+    if not list then return end
+    for _, fn in ipairs(list) do
+        local ok, err = pcall(fn, ...)
+        if not ok then
+            -- 错误隔离：单个回调崩溃不影响其他监听器
+            print(&quot;[EventBus] error in &quot; .. event .. &quot;: &quot; .. tostring(err))
+        end
+    end
+end
+
+return EventBus
+</code></pre>
+<h3 id="_4">设计要点</h3>
+<ol>
+<li><strong>可失效</strong>：对象销毁时必须调用 <code>EventBus.off()</code>，否则持有过期闭包引用是高频 bug</li>
+<li><strong>可追踪</strong>：跨帧回调中旧闭包捕获过期 upvalue 难以发现，建议在回调第一行检查 owner 是否存活</li>
+<li><strong>可清理</strong>：场景切换时可直接重置整个 <code>listeners</code> 表，或用命名空间前缀区分场景事件</li>
+<li><strong>错误隔离</strong>：每个回调独立 <code>pcall</code>，一个失败不影响其他订阅者</li>
+</ol>
+<h3 id="_5">与协程集成</h3>
+<pre><code class="language-lua">-- yield_wait_event 实现：协程等待特定事件后恢复
+function Scheduler.wait_event(event)
+    local co = coroutine.running()
+    local function handler(...)
+        EventBus.off(event, handler)
+        coroutine.resume(co, ...)
+    end
+    EventBus.on(event, handler)
+    coroutine.yield()
+end
+</code></pre>
+<h3 id="_6">引用存储规则</h3>
+<p>引擎保存 Lua function 引用时，必须存入注册表（<code>lua_ref</code>），不能保存栈上临时值。存注册表的引用在 GC 标记为存活，栈临时值随函数返回即可能被回收。</p>
+<h3 id="_7">命名空间约定</h3>
+<p>大型项目建议给事件名加前缀区分系统：<code>"ui:button_click"</code>, <code>"com<a href="../entities/bat.html">bat</a>:boss_dead"</code>, <code>"net:data_recv"</code>，避免全局命名冲突。</p>
+<h2 id="_8">常见陷阱</h2>
+<ul>
+<li><strong>忘记 off</strong>：订阅者对象已销毁但仍在 listeners 中，emit 时访问已释放数据</li>
+<li><strong>回调中 emit 同一事件</strong>：可能导致递归或无限循环，需加重入保护标志</li>
+<li><strong>table.remove 遍历中</strong>：在 emit 遍历 listeners 时 off 同一事件的监听器会跳过元素，应先浅拷贝再遍历</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/programming/lua/lua-skill/SKILL.md</span> — Lua 专家技能文档，scripts/event_bus.lua 模板及引擎事件回调桥设计要点</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — 事件桥是第4层"调度与事件层"的核心组件</li>
+<li><a href="Lua协程调度器.html">Lua协程调度器</a> — 协程可订阅事件实现 yield_wait_event</li>
+<li><a href="Lua模块系统.html">Lua模块系统</a> — EventBus 作为模块导出使用</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Luau.html">&larr; Luau</a>
+    <a href="Lua作用域与local.html">Lua作用域与local &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

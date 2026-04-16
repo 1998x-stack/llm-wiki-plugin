@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua性能优化 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua性能优化</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.87</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">性能优化</span><span class="tag">游戏开发</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 性能优化</h1>
+<h2 id="_1">概述</h2>
+<p>Lua 性能优化的核心原则：先测量再优化。最大收益点来自局部化全局访问、避免热路径分配、GC 调优和对象池复用。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">性能分析原则</h3>
+<ol>
+<li>用 <code>os.clock()</code> 或外部 profiler 测量，锁定真实瓶颈再优化</li>
+<li>性能优先级（<a href="LuaJIT.html">LuaJIT</a> 场景）：FFI 调用 &gt; C 函数 &gt; 纯 Lua（JIT 后）&gt; 纯 Lua（解释）</li>
+<li>优化前记录基准数值，避免感觉驱动的过早优化</li>
+</ol>
+<h3 id="gc">GC 调优</h3>
+<p>Lua 5.1–5.3 增量 GC，5.4 引入分代 GC：</p>
+<pre><code class="language-lua">-- 增量 GC 参数（5.1-5.3）
+collectgarbage(&quot;setpause&quot;, 150)    -- 内存增长比例触发阈值（默认200）
+collectgarbage(&quot;setstepmul&quot;, 300)  -- 单步处理量激进度（调大加快回收）
+
+-- 5.4 分代 GC（短命对象多时更高效）
+collectgarbage(&quot;generational&quot;, 20, 200)
+
+-- 帧预算式 GC（游戏推荐方案）
+local GC_BUDGET_MS = 0.5
+local function gc_update()
+    local t = os.clock()
+    while (os.clock() - t) * 1000 &lt; GC_BUDGET_MS do
+        if collectgarbage(&quot;step&quot;, 50) then break end
+    end
+end
+</code></pre>
+<p>手动控制：<code>collectgarbage("stop")</code> 停止自动 GC，<code>collectgarbage("step", N)</code> 分帧步进，避免在帧内调用 <code>collectgarbage("collect")</code>（全量停顿）。</p>
+<h3 id="_4">热路径优化清单</h3>
+<pre><code class="language-lua">-- 1. 局部化频繁使用的全局/标准库函数
+local sin, cos, sqrt = math.sin, math.cos, math.sqrt
+local insert = table.insert
+local format = string.format
+
+-- 2. 预计算循环不变量（避免每次迭代查 #t）
+local n = #entities
+for i = 1, n do update(entities[i]) end
+
+-- 3. 数值 for 比 ipairs 快约 20%（LuaJIT 可 JIT 编译）
+for i = 1, n do local v = t[i] end
+
+-- 4. 避免热路径创建临时 table（复用静态表）
+local _bounds = {}
+function get_bounds(obj)
+    _bounds.x = obj.x - obj.w/2
+    _bounds.y = obj.y - obj.h/2
+    _bounds.w, _bounds.h = obj.w, obj.h
+    return _bounds
+end
+
+-- 5. 字符串拼接用 table.concat（避免 O(n²) 中间字符串）
+local parts = {}
+for i = 1, 1000 do parts[i] = items[i] end
+local s = table.concat(parts)
+
+-- 6. 缓存 method 查找（极高频调用时）
+local entity_update = Entity.update
+for _, e in ipairs(entities) do entity_update(e, dt) end
+
+-- 7. LuaJIT：偏好纯 float 运算（可向量化）
+</code></pre>
+<h3 id="luajit-ffi">LuaJIT FFI 高性能缓冲区</h3>
+<p>LuaJIT FFI 分配的 C 数组无 GC 压力，适合顶点缓冲等高频写入场景：</p>
+<pre><code class="language-lua">local ffi = require(&quot;ffi&quot;)
+ffi.cdef<span style="color:#e74c3c" title="broken link">
+    typedef struct { float x, y; uint16_t u, v; uint32_t color; } Vertex;
+    void render_batch(const Vertex *verts, int count);
+</span>
+local MAX_VERTS = 4096
+local vbuf = ffi.new(&quot;Vertex[?]&quot;, MAX_VERTS)  -- C 内存，无 GC
+local vert_count = 0
+</code></pre>
+<p>FFI 调用比通过 Lua 栈的 C API 快 5–10×，见 <a href="LuaJIT.html">LuaJIT</a>。</p>
+<h3 id="_5">基准测试工具</h3>
+<pre><code class="language-lua">local Bench = {}
+function Bench.run(name, iterations, fn, ...)
+    for i = 1, math.min(100, iterations / 10) do fn(...) end  -- 预热
+    collectgarbage(&quot;collect&quot;); collectgarbage(&quot;stop&quot;)
+    local mem0, t0 = collectgarbage(&quot;count&quot;), os.clock()
+    for i = 1, iterations do fn(...) end
+    local elapsed = os.clock() - t0
+    local dmem = collectgarbage(&quot;count&quot;) - mem0
+    collectgarbage(&quot;restart&quot;)
+    print(string.format(&quot;[Bench] %-30s %7d iter %8.3f ms %6.1f ns/op mem:%+.1f KB&quot;,
+        name, iterations, elapsed*1000, elapsed/iterations*1e9, dmem))
+end
+</code></pre>
+<p>GC 停止后测量可隔离计算成本，<code>mem</code> 差值反映分配压力。</p>
+<h2 id="_6">常见陷阱</h2>
+<ul>
+<li><strong>过早优化</strong>：未 profile 就重写，收益不及预期</li>
+<li><strong>全量 GC 在帧内</strong>：<code>collectgarbage("collect")</code> 会造成明显帧率毛刺</li>
+<li><strong>停止 GC 后忘记重启</strong>：<code>collectgarbage("stop")</code> 后必须 <code>restart</code>，否则内存泄漏</li>
+<li><strong>table.concat 空 parts</strong>：忘记初始化 <code>parts</code> 导致 nil 拼接错误</li>
+</ul>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/programming/lua/lua-skill/references/performance.md</span> — Lua 性能优化参考：GC 调优、热路径清单、FFI 缓冲、基准测试工具</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="LuaJIT.html">LuaJIT</a> — JIT 编译与 FFI 高性能 C 调用，性能层级最高的优化手段</li>
+<li><a href="Lua对象池.html">Lua对象池</a> — 热路径分配优化的专项模式，配合 GC 调优使用</li>
+<li><a href="Luau.html">Luau</a> — Roblox 定制 Lua，有自己的性能特性（Native codegen）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua对象池.html">&larr; Lua对象池</a>
+    <a href="Lua战斗配置目录结构.html">Lua战斗配置目录结构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

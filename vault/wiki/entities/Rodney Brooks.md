@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 机器人学，研究，工具]
+tags: [AI, 机器人学，研究，工具, 机器人学]
 aliases: ["Rodney A. Brooks", "罗德尼·布鲁克斯"]
 relates_to:
   - target: "[[包容体系结构]]"

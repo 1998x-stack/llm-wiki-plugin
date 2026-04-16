@@ -26,7 +26,7 @@ supersedes: null
 
 1. **核心思想**：传统[[矩阵分解]]在观测到的评分上最小化均方误差，等价于在 [[MCAR]] 假设下的经验风险最小化（ERM）。[[矩阵分解|MF]]-[[逆倾向评分|IPS]] 用 [[逆倾向评分|IPS]] 估计器替代朴素的均方误差，从而在 [[MNAR]] 数据上实现近似无偏的 ERM。
 
-2. **优化目标**：$\hat{Y}^* = \arg\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{[[逆倾向评分|IPS]]}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是[[矩阵分解]]模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。
+2. **优化目标**：$\hat{Y}^* = \a[[ripgrep|rg]]\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{[[逆倾向评分|IPS]]}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是[[矩阵分解]]模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。
 
 3. **理论保证**：[[Tobias Schnabel]] 等人推导了泛化误差界（generalization error bound），证明了 [[逆倾向评分|IPS]]-ERM 框架的统计学习理论保证。
 

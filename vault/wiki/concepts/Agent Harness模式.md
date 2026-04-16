@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 5
-tags: [AI, Agent, 架构, 设计模式, LLM]
+tags: [AI, Agent, 架构, 设计模式, LLM, Agent系统]
 aliases: [Harness模式, Agent Harness, batteries-included agent harness]
 relates_to:
   - target: "[[DeepAgents]]"
@@ -120,7 +120,7 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 
 核心设计原则：**每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。** Opus 4.5 需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。
 
-这与 [[DeepAgents]] 的"batteries-included"路线形成对比：
+这与 [[DeepAgents]] 的"[[bat]]teries-included"路线形成对比：
 - **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
 - **Anthropic 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
 

@@ -59,7 +59,7 @@ Lax-Richtmyer 等价定理（1956）由[[彼得·拉克斯]]与 Robert Richtmyer
 
 **稳定性（Stability）**：差分算子的幂次一致有界——存在 $K, \omega$ 使得 $\|C(k,h)^n\| \leq K e^{\omega nk}$（$nk \leq T$）。误差不在时间推进中灾难性增长。（可由[[冯·诺依曼稳定性分析|冯·诺依曼分析]]等工具验证）
 
-**收敛性（Convergence）**：网格细化时差分解趋向 PDE 精确解。
+**收敛性（Conve[[ripgrep|rg]]ence）**：网格细化时差分解趋向 PDE 精确解。
 
 ### 定理陈述
 

@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [深度学习, Transformer, 注意力机制, NLP]
+tags: [深度学习, Transformer, 注意力机制, NLP, LLM能力]
 aliases: ["Self-Attention", "自注意力", "自注意力机制", "Scaled Dot-Product Attention"]
 relates_to:
   - target: "[[多头注意力]]"

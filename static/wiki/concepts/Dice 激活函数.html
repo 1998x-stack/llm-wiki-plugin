@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>平滑过渡</strong> — 用 Sigmoid 函数替代 ReLU 的阶跃函数，在分界点附近实现平滑过渡，避免梯度突变。</li>
 <li><strong><a href="Batch Normalization.html">BN</a> 的隐式作用</strong> — 公式中的标准化项 $(s - E(s)) / \sqrt{\text{Var}(s) + \epsilon}$ 本质上就是 <a href="Batch Normalization.html">Batch Normalization</a> 操作，使 Dice 天然具有缓解 Internal Covariate Shift 的能力。</li>
 <li><strong>与 <a href="Probabilistic Robotics.html">PR</a>eLU 的退化关系</strong> — 当 $E(s) = 0$ 且 $\text{Var}(s) = 0$ 时，Dice 退化为 <a href="Probabilistic Robotics.html">PR</a>eLU，因此 Dice 是 <a href="Probabilistic Robotics.html">PR</a>eLU 的泛化形式。</li>
-<li><strong>训练与推理</strong> — 训练阶段使用当前 mini-batch 的统计量计算 $E(s)$ 和 $\text{Var}(s)$；推理阶段使用训练过程中的指数移动平均值，与 <a href="Batch Normalization.html">BN</a> 的处理方式一致。</li>
+<li><strong>训练与推理</strong> — 训练阶段使用当前 mini-<a href="../entities/bat.html">bat</a>ch 的统计量计算 $E(s)$ 和 $\text{Var}(s)$；推理阶段使用训练过程中的指数移动平均值，与 <a href="Batch Normalization.html">BN</a> 的处理方式一致。</li>
 <li><strong>实验效果</strong> — 在阿里巴巴工业数据集上，Dice 相比 <a href="Probabilistic Robotics.html">PR</a>eLU 带来 +0.0015 的绝对 <a href="AUC.html">AUC</a> 提升。</li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Denavit-Hartenberg 参数.html">&larr; Denavit-Hartenberg 参数</a>
-    <a href="Embedding.html">Embedding &rarr;</a>
+    <a href="Double DQN.html">Double DQN &rarr;</a>
   </div>
 </div>
 </body>

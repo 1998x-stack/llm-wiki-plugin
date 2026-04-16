@@ -41,7 +41,7 @@ Joseph Konstan 是 [[GroupLens|GroupLens 研究组]]创始人之一，ACM Fellow
 
 3. **[[MovieLens|MovieLens 数据集]]文档**：2015 年与 F. Maxwell Harper 联合撰写了 "The [[MovieLens|MovieLens Dataset]]s: History and Context"（*ACM Transactions on Interactive Intelligent Systems*, 5(4), Article 19），这是推荐系统领域最广泛引用的数据集文档之一。
 
-4. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：作为共同作者参与 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），与 [[Badrul Sarwar]]、George Karypis、[[John Riedl]] 共同完成了推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），该论文首次系统性分析和评估了[[基于物品的协同过滤]]方法。
+4. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：作为共同作者参与 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），与 [[Badrul Sarwar]]、Geo[[ripgrep|rg]]e Karypis、[[John Riedl]] 共同完成了推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），该论文首次系统性分析和评估了[[基于物品的协同过滤]]方法。
 
 5. **学术地位**：Konstan 后来成为 ACM Fellow，是推荐系统领域最具影响力的学者之一，其工作覆盖了从 [[GroupLens]] 的早期部署到 [[MovieLens|MovieLens 数据集]]的长期维护，再到 [[基于物品的协同过滤|Item-Based CF]] 的开创性研究。
 

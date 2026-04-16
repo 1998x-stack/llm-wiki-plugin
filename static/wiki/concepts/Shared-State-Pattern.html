@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared-State-Pattern — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Shared-State-Pattern</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">架构</span></div>
+</div>
+  <div class="content">
+    <h1 id="shared-state-pattern">Shared State Pattern</h1>
+<h2 id="_1">概述</h2>
+<p>共享状态（Shared State）是通过让智能体通过一个所有智能体都可直接读写的持久存储进行协调，从而消除中间环节的多智能体模式。智能体自主运行，可读写共享数据库、文件系统或文档，不存在中央协调者。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">工作原理</h3>
+<ol>
+<li><strong>自主运行</strong> → 智能体读写共享存储</li>
+<li><strong>无中央协调者</strong> → 智能体直接协调</li>
+<li><strong>检索相关信息</strong> → 检查存储库中的相关内容</li>
+<li><strong>执行操作</strong> → 基于获取的内容执行</li>
+<li><strong>写回结果</strong> → 将发现写回存储库</li>
+<li><strong>终止条件</strong> → 时间限制/收敛阈值/足够答案</li>
+</ol>
+<h3 id="_4">适用场景</h3>
+<p><strong>协作式研究</strong>：
+- 智能体的工作具有协作性
+- 研究结果需要在它们之间实时流转
+- 共享存储库成为不断演进的知识库</p>
+<p><strong>具体应用</strong>：
+- 研究综合系统（学术文献/行业报告/专利申请/新闻报道）
+- 协作知识构建
+- 需要消除单点故障的系统</p>
+<h3 id="_5">实际案例</h3>
+<p><strong>研究综合系统</strong>：
+- <strong>场景</strong>：多个智能体针对一个复杂问题的不同方面展开调查
+- <strong>智能体</strong>：
+  - 学术文献智能体：探究学术文献
+  - 行业报告智能体：分析行业报告
+  - 专利申请智能体：研究专利申请
+  - 新闻报道智能体：监控新闻报道
+- <strong>协作</strong>：
+  - 学术智能体发现关键研究者
+  - 行业智能体立即查看该发现，对该研究者所在公司进行更深入研究
+  - 智能体之间相互借鉴成果
+- <strong>优势</strong>：
+  - 无需等待协调者传递信息
+  - 共享存储库成为不断演进的知识库</p>
+<h3 id="_6">优势</h3>
+<ul>
+<li>智能体直接共享发现，无需等待协调者传递信息</li>
+<li>共享存储库成为不断演进的知识库</li>
+<li>消除协调器作为单一故障点</li>
+<li>若任意一个代理停止运行，其他代理仍可继续读写</li>
+</ul>
+<h3 id="_7">局限性</h3>
+<p><strong>缺乏明确协调</strong>：
+- 智能体可能会重复工作或采用相互矛盾的方法
+- 两个智能体可能会各自独立调查同一线索
+- 结果更难预测（系统行为而非自上而下设计）</p>
+<p><strong>反应式循环</strong>：
+- 更严重的故障模式
+- 示例：A 写出发现→B 读取后撰写后续→A 看到后再回应→无限循环
+- 系统持续消耗令牌用于无法收敛的工作</p>
+<p><strong>工程解决方案</strong>：
+- 重复工作和并发写入已有成熟的工程解决方案（锁定、版本控制、分区）
+- 反应式循环是行为层面的问题，需要设置专门的终止条件</p>
+<h3 id="_8">终止条件设计</h3>
+<p><strong>时间预算</strong>：
+- 设置最大运行时间
+- 超时后强制停止</p>
+<p><strong>收敛阈值</strong>：
+- 连续 N 个周期无新发现
+- 判定为收敛</p>
+<p><strong>指定判断智能体</strong>：
+- 专门的智能体判断知识库中是否已包含足够的答案
+- 做出停止决策</p>
+<h3 id="agent-teams">与 Agent Teams 的对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Agent Teams</th>
+<th>Shared State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>协调方式</strong></td>
+<td>协调者分配任务</td>
+<td>无中央协调者</td>
+</tr>
+<tr>
+<td><strong>信息共享</strong></td>
+<td>难以共享中间发现</td>
+<td>实时共享发现</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>独立分区工作</td>
+<td>协作式研究</td>
+</tr>
+<tr>
+<td><strong>单点故障</strong></td>
+<td>协调者是单点故障</td>
+<td>无单点故障</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">设计建议</h3>
+<p><strong>终止条件</strong>：
+- 时间预算
+- 收敛阈值（连续 N 个周期无新发现）
+- 指定判断智能体</p>
+<p><strong>避免重复工作</strong>：
+- 锁定机制
+- 版本控制
+- 任务分区</p>
+<p><strong>监控</strong>：
+- 跟踪智能体活动
+- 检测反应式循环
+- 设置告警机制</p>
+<h2 id="_10">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Multi-agent coordination patterns_ Five approaches and when to use them.md</span> — Cara Phillips 撰写</li>
+</ul>
+<h2 id="_11">相关</h2>
+<ul>
+<li><a href="Multi-Agent-Coordination-Patterns.html">Multi-Agent-Coordination-Patterns</a> — 五种模式之一（part_of）</li>
+<li><a href="Agent-Teams-Pattern.html">Agent-Teams-Pattern</a> — 对比模式（compares_to）</li>
+<li><a href="Message-Bus-Pattern.html">Message-Bus-Pattern</a> — 对比模式（compares_to）</li>
+<li><a href="Wide-Research.html">Wide-Research</a> — 应用场景（uses）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Shannon-Hartley公式.html">&larr; Shannon-Hartley公式</a>
+    <a href="Solomonoff先验.html">Solomonoff先验 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

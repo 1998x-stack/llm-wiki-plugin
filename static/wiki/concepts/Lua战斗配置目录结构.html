@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua战斗配置目录结构 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua战斗配置目录结构</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.87</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">战斗系统</span><span class="tag">架构</span><span class="tag">配置</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 战斗配置目录结构</h1>
+<h2 id="_1">概述</h2>
+<p>手游战斗系统 Lua 配置的六层目录模板：cfg/<a href="../entities/bat.html">bat</a>tle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">六层目录职责</h3>
+<pre><code>battle_config/
+├── cfg/      -- 全局静态常量、枚举、公式映射、标签（被所有层引用）
+├── battle/   -- 单场战斗/关卡实例（出生点、阵型、胜负条件、波次）
+├── unit/     -- 单位模板（属性、技能挂载、AI类型、阵营标签）
+├── skill/    -- 技能定义（技能壳 + effect/ 可复用效果片段）
+├── buff/     -- 持续性状态（层数、触发时机、覆盖/叠加/互斥/驱散规则）
+└── event/    -- 战斗事件（trigger/ 触发器 + condition/ 条件判断）
+</code></pre>
+<p><strong>cfg 层特点</strong>：稳定、抽象、低频修改，被其他所有目录 require。</p>
+<h3 id="_4">推荐依赖方向（避免循环依赖）</h3>
+<pre><code>cfg    -&gt; 被所有层依赖（基础）
+unit   -&gt; 依赖 cfg / skill
+skill  -&gt; 依赖 cfg / buff / event(effect hook)
+buff   -&gt; 依赖 cfg / event(optional)
+battle -&gt; 依赖 unit / event / cfg
+event  -&gt; 依赖 cfg，以 id 引用 unit / buff / skill
+</code></pre>
+<p><strong>核心原则</strong>：各层以 <strong>id 引用</strong> 为主，不互相直接嵌套整表，避免 unit require battle、buff require skill 等反向依赖。</p>
+<h3 id="_5">典型配置骨架</h3>
+<p><strong>battle 层</strong>（关卡实例）：</p>
+<pre><code class="language-lua">return {
+    battle_id = 1001,
+    win_condition = &quot;kill_all&quot;,
+    max_round = 30,
+    player_team = { {pos=1, unit_id=3001, level=10} },
+    enemy_waves = { {wave_index=1, units={{pos=1, unit_id=2001, level=8}}} },
+    events = {1001, 1002},
+}
+</code></pre>
+<p><strong>unit 层</strong>（单位模板）：</p>
+<pre><code class="language-lua">return {
+    unit_id = 3001,
+    camp = &quot;player&quot;,
+    tags = {&quot;hero&quot;, &quot;front&quot;, &quot;fire&quot;},
+    attr = {hp=1200, atk=180, def=80, speed=110},
+    normal_skill = 1001,
+    active_skill = 2001,
+    passive_skills = {3001, 3002},
+    ai = &quot;melee_basic&quot;,
+}
+</code></pre>
+<p><strong>skill 层</strong>（技能壳 + effect 片段）：</p>
+<pre><code class="language-lua">-- skill/skill_2001.lua
+return {
+    skill_id = 2001, skill_type = &quot;active&quot;, cost_mp = 100,
+    target = {type=&quot;enemy&quot;, select=&quot;front_row&quot;, count=1},
+    phases = {{time=0, effects={{effect=5001, value=180}}}},
+    cd = 2,
+}
+-- skill/effect/effect_5001.lua（可复用效果）
+return {effect_id=5001, type=&quot;damage&quot;, formula=&quot;ATK_COEF&quot;, damage_type=&quot;fire&quot;}
+</code></pre>
+<p><strong>buff 层</strong>（持续状态）：</p>
+<pre><code class="language-lua">return {
+    buff_id = 4001, name = &quot;灼烧&quot;, buff_type = &quot;dot&quot;,
+    duration = 2, max_stack = 3,
+    triggers = {{timing=&quot;on_round_end&quot;,
+        effects={{type=&quot;damage&quot;, formula=&quot;BUFF_SRC_ATK_COEF&quot;, value=40}}}},
+    dispel = {positive=false, can_be_dispelled=true},
+}
+</code></pre>
+<p><strong>event 层</strong>（战斗触发器）：</p>
+<pre><code class="language-lua">return {
+    event_id = 1001, trigger = &quot;on_round_start&quot;,
+    condition = {round = 3},
+    actions = {
+        {type=&quot;spawn_unit&quot;, unit_id=2003, pos=5, camp=&quot;enemy&quot;},
+        {type=&quot;play_timeline&quot;, timeline=&quot;boss_entry&quot;},
+    }
+}
+</code></pre>
+<h3 id="initlua">统一入口 init.lua</h3>
+<pre><code class="language-lua">local M = {}
+M.cfg   = {const=require(&quot;battle_config.cfg.battle_const&quot;), enum=require(&quot;...&quot;), formula=require(&quot;...&quot;)}
+M.battle = {}  M.unit = {}  M.skill = {}  M.buff = {}  M.event = {}
+return M
+</code></pre>
+<p>导表工具自动生成场景可改为：</p>
+<pre><code class="language-lua">return {
+    battle=require(&quot;gen.battle_index&quot;), unit=require(&quot;gen.unit_index&quot;),
+    skill=require(&quot;gen.skill_index&quot;),   buff=require(&quot;gen.buff_index&quot;),
+    event=require(&quot;gen.event_index&quot;),
+}
+</code></pre>
+<h3 id="_6">命名规范</h3>
+<p>文件命名统一 <code>{类型}_{数字id}.lua</code>（<code><a href="../entities/bat.html">bat</a>tle_1001.lua</code>、<code>unit_3001.lua</code>）。枚举字段优先字符串常量（<code>skill_type="active"</code>、<code>damage_type="fire"</code>），禁用魔法数字，导表时可转数字。</p>
+<h3 id="_7">策划协作版扩展目录</h3>
+<p>适合中后期项目，对 <a href="../entities/bat.html">bat</a>tle 按玩法分目录（mainline/tower/arena/boss），buff 按性质分（positive/negative/control/dot），event 按层级分（<a href="../entities/bat.html">bat</a>tle_rule/wave_event/stage_mechanism/common_trigger）。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/programming/lua/战斗系统Lua目录模板.md</span> — ChatGPT 对话：战斗系统 Lua table 配置六层目录结构模板 (https://chatgpt.com/c/69d65fae-bdcc-8324-91a2-68485c137f90)</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Lua-table-游戏战斗架构.html">Lua-table-游戏战斗架构</a> — 战斗运行时 table 结构（Battle/Unit 骨架）</li>
+<li><a href="Lua数据驱动设计.html">Lua数据驱动设计</a> — 配置表模式与工厂函数，该目录结构的数据层实现</li>
+<li><a href="Lua事件总线.html">Lua事件总线</a> — event 层的触发/条件机制与事件总线的关系</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua性能优化.html">&larr; Lua性能优化</a>
+    <a href="Lua控制流.html">Lua控制流 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

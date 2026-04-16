@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心思想</strong>：传统<a href="矩阵分解.html">矩阵分解</a>在观测到的评分上最小化均方误差，等价于在 <a href="MCAR.html">MCAR</a> 假设下的经验风险最小化（ERM）。<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 用 <a href="逆倾向评分.html">IPS</a> 估计器替代朴素的均方误差，从而在 <a href="MNAR.html">MNAR</a> 数据上实现近似无偏的 ERM。</p>
 </li>
 <li>
-<p><strong>优化目标</strong>：$\hat{Y}^* = \arg\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{<a href="逆倾向评分.html">IPS</a>}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是<a href="矩阵分解.html">矩阵分解</a>模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。</p>
+<p><strong>优化目标</strong>：$\hat{Y}^* = \a<a href="../entities/ripgrep.html">rg</a>\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{<a href="逆倾向评分.html">IPS</a>}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是<a href="矩阵分解.html">矩阵分解</a>模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。</p>
 </li>
 <li>
 <p><strong>理论保证</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人推导了泛化误差界（generalization error bound），证明了 <a href="逆倾向评分.html">IPS</a>-ERM 框架的统计学习理论保证。</p>

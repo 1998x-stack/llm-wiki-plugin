@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWE-agent — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / SWE-agent</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="swe-agent">SWE-agent</h1>
+<h2 id="_1">概述</h2>
+<p>SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 GitHub 仓库中的真实 issue 和 bug。通过专门设计的 Agent 计算机接口（<a href="../concepts/Agent计算机接口.html">ACI</a>）和 <a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a>，在 <a href="../concepts/SWE-bench.html">SWE-bench</a> 上取得显著优于直接输出 patch 的效果。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心架构</h3>
+<ol>
+<li><strong><a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a></strong>：每一步生成 thought（思考）和 action（命令），再接收 observation（环境反馈），形成"想一点、做一点、看反馈、再想一点"的交互循环。</li>
+<li><strong>Agent 计算机接口（<a href="../concepts/Agent计算机接口.html">ACI</a>）</strong>：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。</li>
+<li><strong>Trajectory 落盘</strong>：每次运行产生 <code>.traj</code> 文件，记录完整的 thought/action/observation 序列，支持事后分析和调试。</li>
+</ol>
+<h3 id="swe-bench">SWE-bench 表现</h3>
+<ul>
+<li><a href="../concepts/SWE-bench.html">SWE-bench</a> Full：<strong>12.47%</strong> resolved（GPT-4 Turbo）</li>
+<li><a href="../concepts/SWE-bench.html">SWE-bench</a> Lite：<strong>18.00%</strong> resolved（GPT-4 Turbo）</li>
+<li>pass@k 曲线：k=6 时解决率升至 30%+</li>
+</ul>
+<h3 id="trajectory">Trajectory 格式</h3>
+<p>SWE-agent 的 <code>.traj</code> 文件是 JSON 格式，核心结构包含：
+- 顶层：<code>environment</code>、<code>trajectory</code> 数组
+- 每步：<code>response</code>（模型原文）、<code>thought</code>（解析后的思考）、<code>action</code>（执行的命令）、<code>observation</code>（环境反馈）、<code>state</code>（环境状态）、<code>query</code>（发送给模型的输入）
+- 版本差异：1.1.0 之前用 <code>message</code> 字段表示输入，1.1.0 起改为 <code>query</code> 表示精确输入</p>
+<h3 id="edit">Edit 后验证</h3>
+<p>SWE-agent 在每次 edit 后立即运行轻量级校验：
+- <code>USE_LINTER</code> 开关控制是否启用 linter
+- 默认使用 <code>flake8 --select=F821,F822,F831,E111,E112,E113,E999,E902</code> 对 .py 文件做单文件检查
+- 引入语法错误的编辑会被拒绝（"Your changes have NOT been applied"）
+- 做了 <strong>previous errors filtering</strong>：更新旧错误行号，过滤编辑窗口外的旧问题，只保留本次 edit 新引入的错误
+- 官方主线没有内建完整 LSP 验证，更偏向"快速、局部、可恢复"的 lint/syntax 检查</p>
+<h3 id="_4">工程化建议</h3>
+<p>自定义实现时建议顶层补充：<code>instance_id</code>、<code>schema_version</code>、<code>run_id</code>、<code>agent_version</code>、<code>model_name</code>、<code>config_ref</code>、<code>info</code>。
+Step 级建议补充：<code>step_id</code>、<code>timestamp_start</code>、<code>timestamp_end</code>、<code>parse_error</code>、<code>exit_code</code>、<code>tool_name</code>、<code>tool_args</code>、<code>observation_type</code>、<code>cost</code>、<code>tokens_prompt</code>、<code>tokens_completion</code>。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/08-trajectory常见字段 schema包含哪些，分别什么意思，分别如何构造.md</span> — SWE-agent trajectory schema 详解</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/10-swe-agent 每次 edit后，如何设计lintlsp 等validate？.md</span> — Edit 后 validate 设计详解</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../concepts/SWE-bench.html">SWE-bench</a> — uses（基准测试平台）</li>
+<li><a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a> — implements（运行框架）</li>
+<li><a href="../concepts/Agent计算机接口.html">Agent计算机接口</a> — uses（专门设计的工具接口）</li>
+<li><a href="../concepts/Agent 轨迹分析.html">Agent 轨迹分析</a> — caused（产生可分析的轨迹数据）</li>
+<li><a href="../concepts/Trajectory Schema.html">Trajectory Schema</a> — implements（定义了 trajectory 的数据结构）</li>
+<li><a href="../concepts/Edit 后验证.html">Edit 后验证</a> — uses（每次 edit 后运行 lint/syntax 检查）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="SVD++.html">&larr; SVD++</a>
+    <a href="Santiago Ramón y Cajal.html">Santiago Ramón y Cajal &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

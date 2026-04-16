@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 研究，方法论]
+tags: [AI, 研究，方法论, 机器人学]
 aliases: ["Kinodynamic Motion Planning", "动力学运动规划"]
 relates_to:
   - target: "[[快速扩展随机树 (RRT)]]"

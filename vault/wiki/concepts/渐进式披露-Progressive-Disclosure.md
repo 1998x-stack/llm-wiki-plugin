@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-  - 方法论
-  - 研究
-  - AI
+tags: [方法论, 研究, AI, 计算理论]
 aliases:
   - Progressive Disclosure
   - Gradual Information Release
@@ -30,7 +27,7 @@ supersedes: null
 # 渐进式披露 (Progressive Disclosure)
 
 ## 概述
-渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过载和资源浪费。在 AI 系统设计中，该原则表现为优先提供高层摘要或元数据，仅在用户明确表达进一步兴趣时，才提供详细的底层数据。在 [[Claude-Mem]] 系统中，这一原则被具体化为“三层检索工作流”，有效解决了大语言模型[[上下文窗口]]有限和[[注意力预算|注意力稀释]]的核心痛点。
+[[渐进式披露（Progressive Disclosure）]]是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过载和资源浪费。在 AI 系统设计中，该原则表现为优先提供高层摘要或元数据，仅在用户明确表达进一步兴趣时，才提供详细的底层数据。在 [[Claude-Mem]] 系统中，这一原则被具体化为“三层检索工作流”，有效解决了大语言模型[[上下文窗口]]有限和[[注意力预算|注意力稀释]]的核心痛点。
 
 ## 关键内容
 
@@ -64,12 +61,52 @@ supersedes: null
 -   **代码库导航**：先展示文件结构和函数签名，再读取具体实现代码。
 -   **多轮对话管理**：根据对话进展，动态注入相关的背景知识，而非一开始就灌输所有设定。
 
+### Claude Code 中的演进应用
+
+**搜索能力演进**：
+
+1. **[[检索增强生成|RAG]] 阶段（早期）**
+   - 向量数据库预索引整个代码库
+   - 每次响应前检索相关片段并交给 Claude
+   - 缺陷：Claude *被给予* 上下文，而非自行查找
+
+2. **Grep 工具阶段**
+   - 给 Claude 一个 Grep 工具
+   - Claude 可以自行搜索文件并构建上下文
+   - 进步：从"被动接受"到"主动查找"
+
+3. **[[Agent Skills]] 阶段（当前）**
+   - Claude 可以读取 Skill 文件
+   - Skill 文件可引用其他文件，支持递归读取
+   - 一年演进：从"几乎无法自建上下文"到"跨多层嵌套搜索"
+
+**Claude Code Guide 智能体案例**：
+
+问题：用户对 Claude Code 本身提问（如"如何添加 MCP"）时，Claude 无法回答。
+
+- **尝试 1**：放入系统提示词 → 导致[[上下文腐烂]]，干扰主要工作
+- **尝试 2**：提供文档链接 → Claude 拉取大量文档，效率低
+- **尝试 3（成功）**：创建[[Subagents-in-Claude-Code|子智能体]]，在自身上下文中搜索文档，只返回答案
+
+关键优势：无需新增工具，为 Claude 的行动空间添加能力，保持主上下文清洁。
+
+### 在工具设计中的应用
+
+渐进式披露是 Claude Code 添加新功能而不新增工具的常用技巧。核心是在需要时才加载详细信息，避免给模型增加额外的选项负担。
+
 ## 来源
-- [[raw/articles/ai-tools/claude-mem/blog_05_search.md]]
+
+- [[raw/articles/ai-tools/claude-mem/blog_05_search.md]] — Claude-Mem 三层检索架构
+- [[raw/articles/ai-engineering/claude-blog/Seeing like an agent_ how we design tools in Claude Code.md]] — Claude Code Guide 案例、搜索能力演进
 
 ## 相关
-- [[Context-Engineering]]
-- [[Claude-Mem 三层渐进式检索架构]]
-- [[提示词工程即架构 (Prompt Engineering as Architecture)]]
-- [[RAG (Retrieval-Augmented Generation)]]
-- [[Token 优化策略]]
+
+- [[Context-Engineering]] — 核心支柱（implements）
+- [[Claude-Mem 三层渐进式检索架构]] — 具体实现（implements）
+- [[提示词工程即架构 (Prompt Engineering as Architecture)]] — 技术手段（implements）
+- [[RAG (Retrieval-Augmented Generation)]] — 对比技术（compares_to）
+- [[Agent-Skills]] — 核心机制（part_of）
+- [[Claude-Code]] — 主要应用场景
+- [[即时上下文检索]] — 相关技术（compares_to）
+- [[上下文腐烂]] — 解决的问题（caused）
+- [[注意力预算]] — 解决的问题（caused）

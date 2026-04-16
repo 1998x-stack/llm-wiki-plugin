@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">归一化</span><span class="tag">CNN</span><span class="tag">训练稳定性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">归一化</span><span class="tag">CNN</span><span class="tag">训练稳定性</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="batch-normalization">Batch Normalization</h1>
 <h2 id="_1">概述</h2>
-<p>在一个 batch 上对某一特征维度统计均值和方差并做归一化。在 CNN 中广泛使用，但不适合 <a href="Transformer架构.html">Transformer</a> 的序列建模场景。</p>
+<p>在一个 <a href="../entities/bat.html">bat</a>ch 上对某一特征维度统计均值和方差并做归一化。在 CNN 中广泛使用，但不适合 <a href="Transformer架构.html">Transformer</a> 的序列建模场景。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>计算方式</strong>：跨 batch 中所有样本，对同一特征位置统计均值和方差，再做标准化。训练时使用 batch 内统计量，推理时使用历史移动平均统计量，两者行为不一致</p>
+<p><strong>计算方式</strong>：跨 <a href="../entities/bat.html">bat</a>ch 中所有样本，对同一特征位置统计均值和方差，再做标准化。训练时使用 <a href="../entities/bat.html">bat</a>ch 内统计量，推理时使用历史移动平均统计量，两者行为不一致</p>
 </li>
 <li>
-<p><strong>适用场景</strong>：在 batch size 较大、输入尺寸固定的 CNN 图像任务中效果好，能有效稳定激活值分布，加速收敛</p>
+<p><strong>适用场景</strong>：在 <a href="../entities/bat.html">bat</a>ch size 较大、输入尺寸固定的 CNN 图像任务中效果好，能有效稳定激活值分布，加速收敛</p>
 </li>
 <li>
-<p><strong>不适合 <a href="Transformer架构.html">Transformer</a> 的原因</strong>：序列长度可变导致 batch 统计不稳定；长序列致 batch size 小，统计噪声大；不同位置 token 语义差异大不宜混合统计；训练/推理行为不一致；自回归生成场景单样本推理时无法正常工作</p>
+<p><strong>不适合 <a href="Transformer架构.html">Transformer</a> 的原因</strong>：序列长度可变导致 <a href="../entities/bat.html">bat</a>ch 统计不稳定；长序列致 <a href="../entities/bat.html">bat</a>ch size 小，统计噪声大；不同位置 token 语义差异大不宜混合统计；训练/推理行为不一致；<a href="AR 模型（自回归模型）.html">自回归</a>生成场景单样本推理时无法正常工作</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

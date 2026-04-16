@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，研究]
+tags: [AI, 工具，研究, 机器人学]
 aliases: ["WG", "Willow Garage Inc."]
 relates_to:
   - target: "[[ROS (Robot Operating System)]]"
@@ -36,7 +36,7 @@ Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由
 ## 关键内容
 
 ### 成立背景与愿景
-Willow Garage 的诞生源于创始人 Scott Hassan（[[Google]] 搜索引擎原型技术的共同开发者）对"机器人界 Linux"的愿景。2000 年代中期，机器人软件开发处于碎片化状态，各实验室重复造轮子。Hassan 受到斯坦福大学博士生 Eric Berger 和 Keenan Wyrobek 关于理想机器人软件框架设计的启发，结合 [[Morgan Quigley]] 在 STAIR 项目中开发的 Switchyard 框架经验，决定成立一家专门机构来解决这一痛点。其目标是打造一个开源的、社区驱动的软件平台，使机器人开发像 Web 开发一样高效协作。
+Willow Garage 的诞生源于创始人 Scott Hassan（[[Google]] 搜索引擎原型技术的共同开发者）对"机器人界 Linux"的愿景。2000 年代中期，机器人软件开发处于碎片化状态，各实验室重复造轮子。Hassan 受到斯坦福大学博士生 Eric Be[[ripgrep|rg]]er 和 Keenan Wyrobek 关于理想机器人软件框架设计的启发，结合 [[Morgan Quigley]] 在 STAIR 项目中开发的 Switchyard 框架经验，决定成立一家专门机构来解决这一痛点。其目标是打造一个开源的、社区驱动的软件平台，使机器人开发像 Web 开发一样高效协作。
 
 ### 核心贡献：ROS 与 PR2
 Willow Garage 的核心产出是 **ROS** 和 **[[PR2 机器人]]**。

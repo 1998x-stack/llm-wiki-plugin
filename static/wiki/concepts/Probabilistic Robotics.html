@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究，工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究，工具</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="probabilistic-robotics">Probabilistic Robotics</h1>
 <h2 id="_1">概述</h2>
-<p>《Probabilistic Robotics》是由 <a href="../entities/Sebastian Thrun.html">Sebastian Thrun</a>、<a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> 和 <a href="../entities/Dieter Fox.html">Dieter Fox</a> 于 2005 年出版的学术专著，被公认为概率机器人学领域的奠基之作。本书系统性地将<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>概率框架应用于机器人学的核心问题，包括定位（Localization）、建图（Mapping）和<a href="SLAM.html">同时定位与建图</a>（<a href="SLAM.html">SLAM</a>）。它提出将不确定性视为需要管理的信息而非单纯噪声，统一了<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波等多种算法，并介绍了 <a href="蒙特卡罗定位.html">MCL</a>、Fast<a href="SLAM.html">SLAM</a> 和 Graph<a href="SLAM.html">SLAM</a> 等开创性方法。该书不仅是全球数百所大学的标准教材，其算法实现（如 ROS 中的 <a href="蒙特卡罗定位.html">amcl</a>）也广泛应用于工业界和自动驾驶领域。</p>
+<p>《Probabilistic Robotics》是由 <a href="../entities/Sebastian Thrun.html">Sebastian Thrun</a>、<a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> 和 <a href="../entities/Dieter Fox.html">Dieter Fox</a> 于 2005 年出版的学术专著，被公认为概率机器人学领域的奠基之作。本书系统性地将<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>概率框架应用于机器人学的核心问题，包括定位（<a href="Localization.html">Localization</a>）、建图（Mapping）和<a href="SLAM.html">同时定位与建图</a>（<a href="SLAM.html">SLAM</a>）。它提出将不确定性视为需要管理的信息而非单纯噪声，统一了<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波等多种算法，并介绍了 <a href="蒙特卡罗定位.html">MCL</a>、Fast<a href="SLAM.html">SLAM</a> 和 Graph<a href="SLAM.html">SLAM</a> 等开创性方法。该书不仅是全球数百所大学的标准教材，其算法实现（如 ROS 中的 <a href="蒙特卡罗定位.html">amcl</a>）也广泛应用于工业界和自动驾驶领域。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">理论框架与核心哲学</h3>
 <p>本书的核心贡献在于建立了一个统一的<strong><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>滤波</strong>理论框架，用于处理机器人感知和行动中的不确定性。传统方法往往试图消除传感器噪声或依赖硬性规则，而本书主张通过概率分布来量化和管理不确定性。其基本递归公式为：$\text{bel}(x_t) = \eta \cdot P(z_t | x_t) \cdot \int P(x_t | u_t, x_{t-1}) \cdot \text{bel}(x_{t-1}) \, dx_{t-1}$。这一框架将看似不同的算法（如<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波、信息滤波）统一为同一方程在不同假设下的实例化，极大地简化了算法的选择和理解。</p>
 <h3 id="_4">三大核心问题的系统化</h3>
 <p>本书详细定义了机器人学的三个子问题：
-1.  <strong>定位（Localization）</strong>：在已知地图下估计机器人状态的后验分布。书中重点介绍了<strong><a href="蒙特卡罗定位.html">蒙特卡罗定位</a>（<a href="蒙特卡罗定位.html">MCL</a>）</strong>，利用粒子滤波解决全局定位和“绑架机器人”问题，成为行业标准。
+1.  <strong>定位（<a href="Localization.html">Localization</a>）</strong>：在已知地图下估计机器人状态的后验分布。书中重点介绍了<strong><a href="蒙特卡罗定位.html">蒙特卡罗定位</a>（<a href="蒙特卡罗定位.html">MCL</a>）</strong>，利用粒子滤波解决全局定位和“绑架机器人”问题，成为行业标准。
 2.  <strong>建图（Mapping）</strong>：在已知轨迹下构建环境模型，涵盖了占据栅格地图、特征地图和拓扑地图等多种表示方法。
 3.  <strong><a href="SLAM.html">SLAM</a>（<a href="SLAM.html">Simultaneous Localization and Mapping</a>）</strong>：解决定位与建图的循环依赖问题。书中提出了<strong>Fast<a href="SLAM.html">SLAM</a></strong>（利用 Rao-Blackwellized 粒子滤波将复杂度降至 $O(n \log n)$）和<strong>Graph<a href="SLAM.html">SLAM</a></strong>（将 <a href="SLAM.html">SLAM</a> 转化为图优化问题），突破了传统 E<a href="卡尔曼滤波.html">KF</a>-<a href="SLAM.html">SLAM</a> 的规模限制。</p>
 <h3 id="_5">决策与规划</h3>
-<p>除了状态估计，本书还将讨论延伸至不确定性条件下的决策，引入了<strong>部分可观测<a href="../entities/马尔可夫.html">马尔可夫</a>决策过程（POMDP）</strong>框架。该框架将机器人的任务建模为信念空间中的策略搜索，统一了“探索”与“利用”的权衡，为主动感知和鲁棒规划提供了理论基础。</p>
+<p>除了状态估计，本书还将讨论延伸至不确定性条件下的决策，引入了<strong>部分可观测<a href="../entities/马尔可夫.html">马尔可夫</a>决策过程（PO<a href="马尔可夫决策过程.html">MDP</a>）</strong>框架。该框架将机器人的任务建模为信念空间中的策略搜索，统一了“探索”与“利用”的权衡，为主动感知和鲁棒规划提供了理论基础。</p>
 <h3 id="_6">实践验证与影响</h3>
 <p>书中的理论经过了严格的现实世界验证，包括史密森尼博物馆的 Minerva 导游机器人和赢得 2005 年 DARPA Grand Challenge 的 Stanley 自动驾驶汽车。这些案例证明了概率方法在动态、非结构化环境中的鲁棒性。此外，本书深刻影响了 ROS（<a href="ROS (Robot Operating System).html">Robot Operating System</a>）生态系统的设计，其算法构成了现代移动机器人导航栈的核心。</p>
 <h2 id="_7">来源</h2>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Pointwise 学习.html">&larr; Pointwise 学习</a>
-    <a href="QR算法.html">QR算法 &rarr;</a>
+    <a href="Programmatic-Tool-Calling-PTC.html">Programmatic-Tool-Calling-PTC &rarr;</a>
   </div>
 </div>
 </body>

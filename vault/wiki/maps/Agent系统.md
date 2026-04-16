@@ -1,8 +1,15 @@
 ---
-type: map
-topic: "Agent系统"
-page_count: 23
+type: concept
+status: active
+confidence: 0.7
+created: 2026-04-16
 updated: 2026-04-16
+last_accessed: 2026-04-16
+source_count: 1
+tags: []
+aliases: []
+relates_to: []
+supersedes: null
 ---
 
 # Agent系统

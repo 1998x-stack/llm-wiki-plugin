@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [UI, UX, 设计, AI, 规则系统, 可访问性]
+tags: [UI, UX, 设计, AI, 规则系统, 可访问性, AI设计]
 aliases:
   - 可机器执行的UX规则
   - UX规则工程化

@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [深度学习, NLP, 大模型, 序列建模]
+tags: [深度学习, NLP, 大模型, 序列建模, LLM能力]
 aliases: ["Transformer", "变换器架构", "Transformer model"]
 relates_to:
   - target: "[[Self-Attention机制]]"

@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">Transformer</span><span class="tag">归一化</span><span class="tag">训练稳定性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">Transformer</span><span class="tag">归一化</span><span class="tag">训练稳定性</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="layer-normalization">Layer Normalization</h1>
 <h2 id="_1">概述</h2>
-<p>对单个样本内部的特征维度做标准化，稳定网络中的数值分布，使训练更稳定。是 <a href="Transformer架构.html">Transformer</a> 的基础组件，不依赖 batch 统计量。</p>
+<p>对单个样本内部的特征维度做标准化，稳定网络中的数值分布，使训练更稳定。是 <a href="Transformer架构.html">Transformer</a> 的基础组件，不依赖 <a href="../entities/bat.html">bat</a>ch 统计量。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>两种放置方式</strong>：Post-LN（原始 <a href="Transformer架构.html">Transformer</a>）将 LayerNorm 放在子层输出之后：$\text{LN}(x + \text{Sublayer}(x))$；Pre-LN（现代大模型更常用）放在子层输入之前：$x + \text{Sublayer}(\text{LN}(x))$，深层网络训练更稳定</p>
 </li>
 <li>
-<p><strong>核心优势</strong>：不依赖 batch size，训练与推理行为一致，适合可变长度序列，适合自回归生成（每次只处理一个样本/位置）；相比 <a href="Batch Normalization.html">Batch Normalization</a> 不会混合不同样本的统计量</p>
+<p><strong>核心优势</strong>：不依赖 <a href="../entities/bat.html">bat</a>ch size，训练与推理行为一致，适合可变长度序列，适合<a href="AR 模型（自回归模型）.html">自回归</a>生成（每次只处理一个样本/位置）；相比 <a href="Batch Normalization.html">Batch Normalization</a> 不会混合不同样本的统计量</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

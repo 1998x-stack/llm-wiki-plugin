@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 分层验证 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Claude Code 分层验证</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="claude-code">Claude Code 分层验证</h1>
+<h2 id="_1">概述</h2>
+<p>Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个层面（tool description、CLAUDE.md、hooks/settings.json、LSP）的架构设计，确保验证既"会被正确调用"又"必定会执行"。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">为什么不能只靠单一层面</h3>
+<p><strong>只靠 CLAUDE.md 的三个问题：</strong>
+1. Claude 可能在复杂任务中"知道但漏做"
+2. 做法不一致（有时跑全量、有时跑单文件）
+3. 失败时拿不到结构化、自动回灌的反馈</p>
+<p><strong>只靠 tool description 的问题：</strong>
+- 决定的是"会不会正确调用"，不是"是不是必定会发生"
+- 在 agentic loop 里，Claude 会根据任务自己选择工具
+- 可能忘记调用、调错粒度、多文件任务只检查一个文件</p>
+<h3 id="_4">四层分工架构</h3>
+<h4 id="1-tool-description-examples">第 1 层：Tool Description / Examples — 负责"会用"</h4>
+<p><strong>放什么：</strong>
+- <code>run_lint(file_paths, scope)</code> 的参数语义
+- <code>scope=changed</code> 和 <code>scope=workspace</code> 的区别
+- 什么时候先用 LSP，什么时候再用 Bash lint
+- 失败输出如何阅读</p>
+<p><strong>特点：</strong> 不是硬约束，而是 Anthropic 强调的 <strong>usage patterns from <a href="../entities/eza.html">exa</a>mples</strong>。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。</p>
+<h4 id="2-claudemd">第 2 层：CLAUDE.md — 负责"想这么做"</h4>
+<p><strong>放什么：</strong>
+- 项目验证策略
+- 最小检查原则
+- 提交前门槛
+- 特定目录/语言的额外规则</p>
+<p><strong>示例规则：</strong>
+- 修改 Python 文件后优先看 LSP 诊断
+- 只跑最小相关测试，不要先跑全量
+- formatter 可以自动修，但 typecheck 不通过不能提交
+- 前端改动先跑 eslint + ta<a href="../entities/ripgrep.html">rg</a>eted test
+- migration / schema 变更时要补相应检查</p>
+<p><strong>特点：</strong> CLAUDE.md 是"每个会话都会加载的指令层"，适合放长期稳定的项目规则，让 Claude 有稳定偏好。但它本身不会自动在写文件后触发命令。</p>
+<h4 id="3-hooks-settingsjson">第 3 层：Hooks / settings.json — 负责"真的会做"</h4>
+<p><strong>放什么：</strong>
+- <code>PostToolUse</code> on Edit / Write
+- 跑 eslint, ruff, mypy, pytest -k ...
+- 返回 <code>additionalContext</code>
+- 必要时 <code>decision: "block"</code> 阻断继续推进</p>
+<p><strong>为什么这是主战场：</strong>
+- <code>PostToolUse</code> 就是为"工具成功执行后立刻跑额外逻辑"设计的
+- 可以把 <code>additionalContext</code> 或 <code>decision: "block"</code> 返回给 Claude
+- <code>PostToolUseFailure</code> 能在工具失败时提供纠偏信息
+- 官方 hook lifecycle 把 PreToolUse / PostToolUse 放在每次 agentic loop 的工具调用里</p>
+<p><strong>这是执行与 enforcement 层。</strong></p>
+<h4 id="4-lsp">第 4 层：LSP — 负责"最快的即时反馈"</h4>
+<p><strong>放什么：</strong>
+- 每次 edit 后自动出现的 type errors / warnings
+- 直接导航到定义、引用、实现</p>
+<p><strong>特点：</strong> 官方 Tools reference 明确写了：LSP 工具提供 code intelligence；<strong>after each file edit, it automatically reports type errors and warnings</strong>。它天然适合作为第一道快速反馈，和 edit 紧耦合，不用额外教 Claude"写完后先去哪里看诊断"。</p>
+<h3 id="_5">一句话总结</h3>
+<blockquote>
+<p>CLAUDE.md 负责"理念"，tool description 负责"会用"，hooks 负责"执行"，LSP 负责"即时反馈"。edit 后 validate / linting 的主战场应该是 hooks，不该只靠 CLAUDE.md。</p>
+</blockquote>
+<h3 id="_6">常见误区</h3>
+<p>很多人把所有规则都写进 CLAUDE.md，期待 Claude 记住"写完就 lint → lint 失败就修 → 再跑 test → 再检查 changed files"。这在简单项目里可行，但一旦任务变长，就容易退化成"知道规则，但执行不稳定"。</p>
+<p>Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：<strong>重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。</strong></p>
+<h3 id="_7">落地四步</h3>
+<ol>
+<li><strong>先写 CLAUDE.md</strong>：定义"先 LSP、后 ta<a href="../entities/ripgrep.html">rg</a>eted lint、提交前再 widened checks"的策略</li>
+<li><strong>再配 PostToolUse 钩子</strong>：匹配 Edit 或 Write，自动跑最轻量的 lint/check，并把结果回灌给 Claude</li>
+<li><strong>自定义 MCP validate 工具</strong>：把"正确用法 + 示例"写进 tool description，而不是只写参数 schema</li>
+<li><strong>LSP 作为默认第一道反馈</strong>：不要自己重造"每次 edit 后先跑重型检查"的流程</li>
+</ol>
+<h3 id="swe-agent">与 SWE-agent 的对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><a href="../entities/SWE-agent.html">SWE-agent</a></th>
+<th>Claude Code 分层验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验证位置</td>
+<td>编辑器内部（USE_LINTER + flake8）</td>
+<td>四层分散（LSP + hooks + CLAUDE.md + tool description）</td>
+</tr>
+<tr>
+<td>执行机制</td>
+<td>内置于 edit function</td>
+<td>通过 PostToolUse 钩子自动化</td>
+</tr>
+<tr>
+<td>反馈方式</td>
+<td>返回错误文本 + 代码片段</td>
+<td>additionalContext + decision:block + LSP 自动诊断</td>
+</tr>
+<tr>
+<td>策略控制</td>
+<td>硬编码</td>
+<td>CLAUDE.md 定义策略偏好</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/12-claude code中，edit后做 validate  linting，需要在tool des.md</span> — Claude Code edit 后 validate 分层设计</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Edit 后验证.html">Edit 后验证</a> — extends（将 SWE-agent 的 edit 后验证理念扩展到 Claude Code 分层架构）</li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — depends_on（基于 Claude Code 的平台能力）</li>
+<li><a href="Claude-Code-Hook-System.html">Claude Code Hook System</a> — uses（利用 PostToolUse 钩子实现自动化执行）</li>
+<li><a href="Guardrails.html">Guardrails</a> — implements（分层验证是 Guardrails 理念在 Claude Code 中的具体实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Church-Turing 论题.html">&larr; Church-Turing 论题</a>
+    <a href="Claude Code 插件系统.html">Claude Code 插件系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -8,9 +8,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 2
-tags:
-- AI
-- 工具
+tags: [AI, 工具, LLM能力]
 aliases:
 - claude-mythos-preview
 - Claude Mythos

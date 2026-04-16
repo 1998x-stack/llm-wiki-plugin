@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ iostream — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / C++ iostream</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">C++</span><span class="tag">标准库</span><span class="tag">输入输出</span><span class="tag">流</span><span class="tag">C++编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="c-iostream">C++ iostream</h1>
+<h2 id="_1">概述</h2>
+<p><a href="C++.html">C++</a> 标准库中用于输入输出的流系统，提供类型安全、可扩展、可格式化的 IO 抽象，核心由流对象、运算符重载和状态格式控制三部分构成。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>四个核心流对象</strong>：<code>std::cin</code>（标准输入）、<code>std::cout</code>（标准输出）、<code>std::cerr</code>（错误输出，无缓冲/及时）、<code>std::clog</code>（日志输出，有缓冲）；在 shell 重定向时 <code>cerr</code> 仍输出到终端而 <code>cout</code> 进文件。</p>
+</li>
+<li>
+<p><strong>类层次体系</strong>：<code>ios_base</code> → <code>basic_ios&lt;charT&gt;</code> → <code>basic_istream</code> / <code>basic_ostream</code> / <code>basic_iostream</code>，<code>istream</code>/<code>ostream</code>/<code>iostream</code> 是 <code>char</code> 版本别名；<code>fstream</code>（文件流）和 <code>sstream</code>（字符串流）同属此体系，用法与控制台流一致。</p>
+</li>
+<li>
+<p><strong>性能调优</strong>：<code>std::ios::sync_with_stdio(false)</code> 关闭与 C stdio 的同步；<code>std::cin.tie(nullptr)</code> 解除 cin/cout 的自动刷新绑定；关闭后禁止与 <code>scanf</code>/<code>printf</code> 混用，否则输出顺序异常。</p>
+</li>
+<li>
+<p><strong>cin 读取规则与陷阱</strong>：<code>&gt;&gt;</code> 跳过前导空白并以空白截断，读完整行须用 <code>getline</code>；混用时需 <code>cin.ignore()</code> 丢弃残留换行；输入失败后流进入 <code>fail()</code> 状态，后续读取持续失败，需 <code>cin.clear()</code> + <code>cin.ignore(...)</code> 恢复。</p>
+</li>
+<li>
+<p><strong>格式控制（<code>&lt;iomanip&gt;</code>）</strong>：<code>setw</code>（宽度）、<code>setfill</code>（填充字符）、<code>setprecision</code>（精度）、<code>fixed</code>/<code>scientific</code>（浮点格式）、<code>hex</code>/<code>oct</code>/<code>dec</code>（进制）、<code>boolalpha</code>（布尔显示）。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">C++ iostream详解</span> — ChatGPT 对话，iostream 系统展开讲解，含缓冲区原理与格式化输出</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/C++流缓冲区机制.html">C++流缓冲区机制</a> — iostream 的缓冲与刷新原理</li>
+<li><a href="../concepts/C++运算符重载与流.html">C++运算符重载与流</a> — <code>&lt;&lt;</code> / <code>&gt;&gt;</code> 运算符重载实现与链式调用</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="C++.html">&larr; C++</a>
+    <a href="Cara-Phillips.html">Cara-Phillips &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

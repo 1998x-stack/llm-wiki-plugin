@@ -7,9 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- 技术
-- AI
+tags: [技术, AI, 文档处理]
 aliases:
 - Nougat
 relates_to:
@@ -26,7 +24,7 @@ supersedes: null
 
 ## 概述
 
-Nougat 是 Meta AI 开源的端到端 PDF 文档解析模型，基于视觉 [[Transformer架构|Transformer]] 将 PDF 页面图像直接转换为 Markdown，速度较慢且不支持中文。
+Nougat 是 [[Meta]] AI 开源的端到端 PDF 文档解析模型，基于视觉 [[Transformer架构|Transformer]] 将 PDF 页面图像直接转换为 Markdown，速度较慢且不支持中文。
 
 ## 关键内容
 

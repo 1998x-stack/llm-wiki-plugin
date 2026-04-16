@@ -1,5 +1,22 @@
 # Changelog
 
+## [v3.9] - 2026-04-16
+
+### Fixed
+- **`ingest-loop.md`**: removed hardcoded `/Users/mx/` path in subagent prompt template (#38)
+- **`setup-ingest-loop.sh`**: added missing newline before `current_index` in YAML state file output — was producing invalid YAML (#39)
+- **`setup-ingest-loop.sh`**: replaced unsafe `python3 -c '...$file...'` string interpolation with `sys.argv` argument passing (#40)
+- **`split_chat_json.py`**: source JSON no longer deleted before verifying all output files exist and are non-empty (#41)
+- **`build_maps.py`**: replaced hardcoded `["concepts", "entities", "syntheses", "qa-insights"]` with `WIKI_SUBDIRS` from `wiki_utils` (#42)
+- **All hooks** (`hook_bm25.sh`, `hook_lint.sh`, `hook_graph.sh`): JSON parse errors now logged to `log.hook.md` instead of silently swallowed via `2>/dev/null` (#43)
+
+### Changed
+- **`wiki:maintain`**: docs updated to reflect current pipeline (relink → check → lint → build, no reindex)
+
+### Documentation
+- New gotchas file: `docs/gotchas/v3.9-script-review.md` (#38-43)
+- Updated: `gotchas.md` index, `USERGUIDE.md`, `README.md`, `CHANGELOG.md`
+
 ## [v3.8] - 2026-04-16
 
 ### Added
@@ -14,7 +31,7 @@
 - **`wiki:ingest` step 3**: reads slim `index.md` name list for quick dedup + `maps/*.md` for topic context (was reading full 626-line index)
 - **`wiki:ingest-loop` step 3**: passes `--topic` to `build_ingest_context` for per-topic context reduction
 - **`wiki:query` step 2**: reads `maps/{topic}.md` for topic overview and page list
-- **`wiki:maintain`**: reindex step includes `build_maps` + `snapshot_index --slim`; step count refs fixed (reindex 1-8, build 1-7, check 1-6)
+- **`wiki:maintain`**: removed reindex step from pipeline (now relink → check → lint → build); reindex is a separate on-demand command
 
 ### Removed
 - **`guidelines/` directory**: merged into `maps/` — single directory now serves both script consumers and LLM prompt consumption

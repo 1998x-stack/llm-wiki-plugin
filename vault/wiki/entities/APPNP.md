@@ -7,7 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [图神经网络, Personalized PageRank, ICLR 2019, 节点分类]
+tags: [图神经网络, Personalized PageRank, ICLR 2019, 节点分类, 推荐系统]
 aliases: [APPNP, Approximate Personalized Propagation of Neural Predictions]
 relates_to:
   - {target: LightGCN, type: compares_to}

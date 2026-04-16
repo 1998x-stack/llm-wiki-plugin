@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="hstu">HSTU</h1>
 <h2 id="_1">概述</h2>
-<p>HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表的万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>架构，针对推荐场景改造 <a href="../concepts/Transformer架构.html">Transformer</a>，首次在工业级推荐系统中验证 Scaling Laws，在线 A/B 测试提升 12.4%。</p>
+<p>HSTU（Hierarchical Sequential Transduction Unit），<a href="Meta.html">Meta</a> 在 ICML 2024 发表的万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>架构，针对推荐场景改造 <a href="../concepts/Transformer架构.html">Transformer</a>，首次在工业级推荐系统中验证 Scaling Laws，在线 A/B 测试提升 12.4%。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：<em><a href="Actions Speak Louder than Words 论文.html">Actions Speak Louder than Words</a>: <a href="Actions Speak Louder than Words 论文.html">Trillion-Parameter Sequential Transducers for Generative Recommendations</a></em>，作者 Jiaqi Zhai 等（Meta MRS/PyTorch/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: <a href="https://arxiv.org/abs/2402.17152">2402.17152</a>，代码开源: <a href="https://github.com/meta-recsys/generative-recommenders">github.com/meta-recsys/generative-recommenders</a>。</p>
+<p><strong>论文信息</strong>：<em><a href="Actions Speak Louder than Words 论文.html">Actions Speak Louder than Words</a>: <a href="Actions Speak Louder than Words 论文.html">Trillion-Parameter Sequential Transducers for Generative Recommendations</a></em>，作者 Jiaqi Zhai 等（<a href="Meta.html">Meta</a> MRS/PyTorch/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: <a href="https://arxiv.o<a href="ripgrep.html">rg</a>/abs/2402.17152">2402.17152</a>，代码开源: <a href="https://github.com/meta-recsys/generative-recommenders">github.com/meta-recsys/generative-recommenders</a>。</p>
 </li>
 <li>
 <p><strong>核心方法</strong>：将<a href="../concepts/序列推荐.html">序列推荐</a>从判别式模型转向生成式模型。用户行为序列被表示为时间序列 ${(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)}$，其中 $c_i$ 为内容 token，$a_i$ 为动作 token（点击、停留、购买等）。<strong>召回</strong>建模为预测下一个内容 token $c_{t+1}$，<strong>排序</strong>建模为预测下一个动作 token $a_{t+1}$，两者统一到单一模型中。</p>
@@ -152,13 +152,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>门控机制（U <a href="../concepts/矩阵.html">矩阵</a>）</strong>：在 QKV 之外引入 U <a href="../concepts/矩阵.html">矩阵</a>作为门控信号，通过 Hadamard 乘积控制<a href="../concepts/特征交叉.html">特征交互</a>贡献，类似 LSTM 门控。</li>
 <li><strong>精简架构</strong>：注意力外线性层从 6 个减少到 2 个，激进融合计算操作，降低激活内存。</li>
 <li>
-<p><strong><a href="../concepts/因果掩码.html">因果掩码</a></strong>：单向注意力，确保自回归生成合法性。</p>
+<p><strong><a href="../concepts/因果掩码.html">因果掩码</a></strong>：单向注意力，确保<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>生成合法性。</p>
 </li>
 <li>
-<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：HSTU 的自回归生成式思路可以追溯到 <a href="SASRec.html">SASRec</a> 建立的<a href="../concepts/因果掩码.html">因果掩码</a> + <a href="../concepts/Self-Attention机制.html">自注意力</a>框架。<a href="SASRec.html">SASRec</a> 为今天的<a href="../concepts/生成式推荐.html">生成式推荐</a>奠定了概念基础。</p>
+<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：HSTU 的<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>生成式思路可以追溯到 <a href="SASRec.html">SASRec</a> 建立的<a href="../concepts/因果掩码.html">因果掩码</a> + <a href="../concepts/Self-Attention机制.html">自注意力</a>框架。<a href="SASRec.html">SASRec</a> 为今天的<a href="../concepts/生成式推荐.html">生成式推荐</a>奠定了概念基础。</p>
 </li>
 <li>
-<p><strong>部署规模</strong>：1.5 万亿参数，1000 亿训练样本，256 块 H100 GPU 训练，部署于 Meta 数十亿用户平台，日均处理数百亿次用户交互。</p>
+<p><strong>部署规模</strong>：1.5 万亿参数，1000 亿训练样本，256 块 H100 GPU 训练，部署于 <a href="Meta.html">Meta</a> 数十亿用户平台，日均处理数百亿次用户交互。</p>
 </li>
 <li>
 <p><strong>实验结果</strong>：</p>

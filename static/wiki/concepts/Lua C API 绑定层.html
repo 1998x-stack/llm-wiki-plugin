@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua C API 绑定层 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua C API 绑定层</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">编程语言</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua-c-api">Lua C API 绑定层</h1>
+<h2 id="_1">概述</h2>
+<p>Lua C API 是宿主程序与 Lua VM 通信的栈机器接口，是游戏引擎 Lua 接入的最底层基础，承担函数桥、对象桥、事件桥、生命周期桥四大职责。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="c-api">C API 核心设计：栈机器</h3>
+<p>Lua 宿主接口围绕栈设计：宿主向栈压入参数，调用函数，再从栈取回返回值。每次跨边界调用都有固定开销（参数压栈、类型检查、结果回收）；绑定层必须显式管理 number、string、table、function、userdata 等类型转换规则。</p>
+<h3 id="_3">函数连接</h3>
+<p>最基本的一层：把引擎函数（如 <code>SpawnEnemy</code>、<code>PlaySound</code>、<code>LoadScene</code>）注册给 Lua 全局表或模块表。三个质量关键点：
+- <strong>参数编解码</strong>：跨边界类型宽松转换易导致精度丢失、枚举误传、nil/false 语义混淆
+- <strong>错误传播</strong>：脚本报错需包裹在保护调用（<code>lua_pcall</code>）中，错误转为日志/堆栈输出，避免崩<a href="游戏主循环模式.html">主循环</a>
+- <strong>边界粒度</strong>：高频逻辑应批量提交，避免每帧跨边界数千次读 getter/setter</p>
+<h3 id="registry">注册表（Registry）</h3>
+<p>Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 <a href="../entities/C++.html">C++</a> 对象每次暴露给 Lua 应使用唯一包装缓存（避免 <code>a ~= b</code> 但两者指向同一原生对象）。</p>
+<h3 id="vs">自动绑定 vs 手写绑定</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>代表工具</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手写绑定</td>
+<td>—</td>
+<td>性能可控，API 颗粒度精细</td>
+<td>人工成本高，易漏导出</td>
+</tr>
+<tr>
+<td>代码生成</td>
+<td><span style="color:#e74c3c" title="broken link">Lua脚本宿主模式&lt;/td&gt;
+&lt;td&gt;tolua</span>#、<span style="color:#e74c3c" title="broken link">Lua脚本宿主模式&lt;/td&gt;
+&lt;td&gt;tolua</span>++</td>
+</tr>
+<tr>
+<td>模板库</td>
+<td>sol2</td>
+<td>接口现代，比手工 C API 易维护</td>
+<td>编译复杂度增加，不如自研极致</td>
+</tr>
+</tbody>
+</table>
+<p>成熟引擎通常混用：核心热路径手写，大量普通接口自动导出。</p>
+<h3 id="_4">高频坑</h3>
+<ol>
+<li><strong>对象失效</strong>：Lua 还握着对象，<a href="../entities/C++.html">C++</a> 早删了，导致随机崩溃或场景切换后回调报错</li>
+<li><strong>内存泄漏</strong>：缓存表/事件表/闭包形成强引用链，GC 无法回收；弱表是缓解手段</li>
+<li><strong>边界调用太碎</strong>：每帧跨边界数千次，性能在桥上被磨光</li>
+<li><strong>热更新打穿类型系统</strong>：脚本重载后老闭包仍活着、metatable 更新不完整、旧 userdata 绑旧方法表</li>
+<li><strong>错误处理不完整</strong>：一次 Lua 报错导致 scheduler 没恢复、事件没解绑、逻辑状态机半执行</li>
+</ol>
+<h3 id="c">协程与 C 的交互</h3>
+<p><code>lua_newthread(L)</code> 创建新协程（共享主 lua_State 的全局表），<code>lua_xmove</code> 在主栈与协程栈之间移动值。<code>lua_resume(co, L, nargs, &amp;nresults)</code> 启动或恢复协程，返回 <code>LUA_YIELD</code> 表示协程挂起，返回 <code>LUA_OK</code> 表示完成。C 侧可轮询每帧调用 <code>lua_resume</code> 驱动协程继续执行，实现游戏逻辑的非阻塞异步时序。</p>
+<h3 id="cfunction">调用约定（CFunction 规范）</h3>
+<pre><code class="language-c">typedef int (*lua_CFunction)(lua_State *L);
+// 1. 从栈读参数：参数1 = idx 1，参数2 = idx 2，...
+// 2. 压栈返回值（任意个）
+// 3. return 返回值数量
+</code></pre>
+<p>批量注册推荐模式：</p>
+<pre><code class="language-c">static const luaL_Reg my_lib[] = {
+    {&quot;create&quot;,  my_create},
+    {&quot;destroy&quot;, my_destroy},
+    {NULL, NULL}   // 哨兵终止
+};
+luaL_newlib(L, my_lib);   // 创建表并注册（Lua 5.2+）
+lua_setglobal(L, &quot;MyLib&quot;);
+</code></pre>
+<h3 id="lua">注册表引用模式（持久持有 Lua 值）</h3>
+<pre><code class="language-c">// 存入注册表，获得整数 key
+lua_pushvalue(L, -1);
+int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+
+// 读取
+lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
+
+// 释放
+luaL_unref(L, LUA_REGISTRYINDEX, ref);
+</code></pre>
+<p>注册表伪索引 <code>LUA_REG<a href="重要性采样.html">IS</a>TRYINDEX</code> 在任何地方可访问，是 C 侧持久存储 Lua 回调、对象缓存的标准方式。</p>
+<h3 id="lual_">luaL_* 辅助库</h3>
+<p>参数检查系列（类型错误自动抛出含位置信息的 Lua 错误）：
+- <code>luaL_checkinteger(L, na<a href="../entities/ripgrep.html">rg</a>)</code> / <code>luaL_optinteger(L, na<a href="../entities/ripgrep.html">rg</a>, def)</code>
+- <code>luaL_checkstring(L, na<a href="../entities/ripgrep.html">rg</a>)</code> / <code>luaL_optstring(L, na<a href="../entities/ripgrep.html">rg</a>, def)</code>
+- <code>luaL_checkudata(L, na<a href="../entities/ripgrep.html">rg</a>, tname)</code> — 带类型名的 userdata 安全检查</p>
+<p>字符串缓冲区（高效构建字符串，避免中间分配）：</p>
+<pre><code class="language-c">luaL_Buffer b;
+luaL_buffinit(L, &amp;b);
+luaL_addstring(&amp;b, &quot;prefix_&quot;);
+luaL_addvalue(&amp;b);      // 弹出栈顶加入
+luaL_pushresult(&amp;b);    // 最终字符串压栈
+</code></pre>
+<h3 id="_5">错误处理标准码</h3>
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LUA_OK</td>
+<td>0</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>LUA_YIELD</td>
+<td>1</td>
+<td>协程挂起（非错误）</td>
+</tr>
+<tr>
+<td>LUA_ERRRUN</td>
+<td>2</td>
+<td>运行时错误</td>
+</tr>
+<tr>
+<td>LUA_ERRSYNTAX</td>
+<td>3</td>
+<td>语法错误</td>
+</tr>
+<tr>
+<td>LUA_ERRMEM</td>
+<td>4</td>
+<td>内存分配失败</td>
+</tr>
+<tr>
+<td>LUA_ERRERR</td>
+<td>5</td>
+<td>错误处理函数本身出错</td>
+</tr>
+</tbody>
+</table>
+<p>推荐错误处理模式：先压入 traceback handler，再 <code>lua_pcall(L, na<a href="../entities/ripgrep.html">rg</a>s, nresults, handler_idx)</code>。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua 游戏引擎连接机制</span> — ChatGPT 对话，系统介绍 Lua 与游戏引擎 C/C++/C# 层的连接/绑定机制</li>
+<li><span style="color:#e74c3c" title="broken link">lua-gameengine-deep-research</span> — 深度研究报告，第2-3节详细分析 C API 栈机器接口、双向调用、错误处理与协程交互</li>
+<li><span style="color:#e74c3c" title="broken link">lua-c-api</span> — Lua C API 完整参考文档，涵盖初始化、栈操作、类型系统、表操作、函数注册、userdata、错误处理、协程、注册表与辅助库</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Lua userdata.html">Lua userdata</a> — 原生对象在 Lua 中的安全载体</li>
+<li><a href="Lua 栈操作模型.html">Lua 栈操作模型</a> — C API 底层栈机器详细模型</li>
+<li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — 绑定层所在的五层宿主架构</li>
+<li><a href="Lua-metatable.html">Lua-metatable</a> — 绑定层中实现 OOP 风格访问的核心机制</li>
+<li><a href="游戏引擎架构.html">游戏引擎架构</a> — Scripting 层在引擎整体架构中的位置</li>
+<li><a href="Lua模块系统.html">Lua模块系统</a> — Lua VM 层的模块组织机制</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Localization.html">&larr; Localization</a>
+    <a href="Lua userdata.html">Lua userdata &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

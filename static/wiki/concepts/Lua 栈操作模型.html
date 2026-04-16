@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua 栈操作模型 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua 栈操作模型</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">编程语言</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 栈操作模型</h1>
+<h2 id="_1">概述</h2>
+<p><a href="Lua C API 绑定层.html">Lua C API</a> 围绕虚拟栈通信：宿主压入参数，调用函数，读取返回值；所有跨边界数据交换都经由栈完成。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">栈索引系统</h3>
+<pre><code>正索引: 1（栈底/最先压入）→ lua_gettop(L)（栈顶/最后压入）
+负索引: -1（栈顶）→ -lua_gettop(L)（栈底）
+伪索引: LUA_REGISTRYINDEX（注册表，任意位置可访问）
+        lua_upvalueindex(n)  （第 n 个 upvalue，1 起始）
+</code></pre>
+<p>正负索引等价：<code>idx &gt; 0</code> 时从栈底数，<code>idx &lt; 0</code> 时从栈顶数（-1 = 栈顶）。伪索引不占栈空间，用于访问特殊表。</p>
+<h3 id="api">核心栈管理 API</h3>
+<pre><code class="language-c">int  lua_gettop(L)              // 栈上元素数量（= 最大正索引）
+void lua_settop(L, int n)       // 设置栈顶：n &lt; 当前 → 弹出；n &gt; 当前 → 补 nil
+void lua_pop(L, int n)          // 弹出 n 个（= lua_settop(L, -n-1)）
+void lua_remove(L, int idx)     // 移除 idx 处元素，上方元素下移
+void lua_insert(L, int idx)     // 将栈顶移入 idx，原 idx 上方元素上移
+void lua_replace(L, int idx)    // 栈顶值替换 idx 处，弹出栈顶
+void lua_copy(L, int from, int to)  // 复制 from 到 to（Lua 5.2+）
+void lua_rotate(L, int idx, int n)  // 旋转 [idx..top] 片段（5.3+）
+int  lua_checkstack(L, int n)   // 确保有 n 个额外空间，失败返回 0
+</code></pre>
+<p><strong>重要</strong>：调用 <code>lua_tostring(L, idx)</code> 可能修改栈（将数字转为字符串驻留），不要在 key 迭代中对 key 位置调用。</p>
+<h3 id="apipush">压栈 API（Push）</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>压入值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lua_pushnil(L)</code></td>
+<td>nil</td>
+</tr>
+<tr>
+<td><code>lua_pushboolean(L, b)</code></td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>lua_pushnumber(L, n)</code></td>
+<td>number (double)</td>
+</tr>
+<tr>
+<td><code>lua_pushinteger(L, i)</code></td>
+<td>integer (Lua 5.3+)</td>
+</tr>
+<tr>
+<td><code>lua_pushstring(L, s)</code></td>
+<td>string（内部复制）</td>
+</tr>
+<tr>
+<td><code>lua_pus<a href="../entities/hls（Haskell Language Server）.html">hls</a>tring(L, s, len)</code></td>
+<td>带长度字符串（可含 \0）</td>
+</tr>
+<tr>
+<td><code>lua_pushfstring(L, fmt, ...)</code></td>
+<td>格式化字符串</td>
+</tr>
+<tr>
+<td><code>lua_pushcfunction(L, fn)</code></td>
+<td>C 函数</td>
+</tr>
+<tr>
+<td><code>lua_pushcclosure(L, fn, n)</code></td>
+<td>C 闭包（n 个 upvalue）</td>
+</tr>
+<tr>
+<td><code>lua_pushvalue(L, idx)</code></td>
+<td>复制栈上元素</td>
+</tr>
+<tr>
+<td><code>lua_pushlightuserdata(L, p)</code></td>
+<td>轻量 userdata（裸指针）</td>
+</tr>
+<tr>
+<td><code>lua_pushthread(L)</code></td>
+<td>当前线程（lua_State*）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api_1">读取 API（不弹出）</h3>
+<pre><code class="language-c">lua_toboolean(L, idx)           // → int (0/1)
+lua_tonumber(L, idx)            // → lua_Number
+lua_tonumberx(L, idx, &amp;isnum)  // 带成功标志 (5.3+)
+lua_tointeger(L, idx)           // → lua_Integer
+lua_tostring(L, idx)            // → const char*（警告：可能修改栈）
+lua_tolstring(L, idx, &amp;len)     // → const char* + 长度
+lua_touserdata(L, idx)          // → void*
+lua_tothread(L, idx)            // → lua_State*
+lua_topointer(L, idx)           // → const void*（唯一标识，调试用）
+</code></pre>
+<h3 id="_4">类型系统</h3>
+<pre><code class="language-c">// 类型常量
+LUA_TNIL        // 0
+LUA_TBOOLEAN    // 1
+LUA_TLIGHTUSERDATA // 2
+LUA_TNUMBER     // 3
+LUA_TSTRING     // 4
+LUA_TTABLE      // 5
+LUA_TFUNCTION   // 6
+LUA_TUSERDATA   // 7
+LUA_TTHREAD     // 8
+LUA_TNONE       // -1（无效索引）
+
+int  lua_type(L, idx)           // 返回类型常量
+const char *lua_typename(L, tp) // 类型名称字符串
+lua_isinteger(L, idx)           // 区分整数/浮点 (5.3+)
+lua_isnumber(L, idx)            // 包括可转换为数字的字符串！
+lua_isstring(L, idx)            // 包括数字（可转换为字符串）
+</code></pre>
+<p><strong>陷阱</strong>：<code>lua_isnumber</code> / <code>lua_isstring</code> 是宽松检查，会对可互转的类型返回 true，需要严格类型时用 <code>lua_type()</code> 比较常量。</p>
+<h3 id="_5">跨线程移动</h3>
+<pre><code class="language-c">void lua_xmove(lua_State *from, lua_State *to, int n);
+// 从 from 栈顶移动 n 个元素到 to 栈顶
+// 两个 lua_State 必须属于同一 VM（共享主 lua_State）
+</code></pre>
+<p>用于协程间传递值，或主线程与协程之间的参数传递。</p>
+<h3 id="_6">典型栈帧序列</h3>
+<p>调用 Lua 函数的标准模式：</p>
+<pre><code class="language-c">lua_getglobal(L, &quot;func&quot;);    // [func]
+lua_pushnumber(L, 1.0);      // [func, 1.0]
+lua_pushstring(L, &quot;hello&quot;);  // [func, 1.0, &quot;hello&quot;]
+int rc = lua_pcall(L, 2, 1, 0);  // 2参数, 1返回值 → [result]
+if (rc == LUA_OK) {
+    double result = lua_tonumber(L, -1);
+    lua_pop(L, 1);           // []
+}
+</code></pre>
+<p>表迭代标准模式：</p>
+<pre><code class="language-c">lua_pushnil(L);              // 初始 key = nil
+while (lua_next(L, tbl_idx) != 0) {
+    // 栈: ... | key(-2) | value(-1)
+    // 处理 key 和 value
+    // 注意：不要对 key 调用 lua_tostring，会破坏 lua_next 状态
+    lua_pop(L, 1);           // 弹出 value，保留 key 供下次迭代
+}
+</code></pre>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">lua-c-api</span> — Lua C API 完整参考文档，Section 2（栈操作）、Section 3（类型系统）</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — 栈模型是 C API 绑定的底层机制</li>
+<li><a href="Lua userdata.html">Lua userdata</a> — 通过栈操作创建和访问的原生对象类型</li>
+<li><a href="Lua-metatable.html">Lua-metatable</a> — 元表操作也经由栈完成</li>
+<li><a href="Lua基础语法.html">Lua基础语法</a> — Lua 语言层（栈对脚本透明）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua userdata.html">&larr; Lua userdata</a>
+    <a href="Lua-OOP.html">Lua-OOP &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

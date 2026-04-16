@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-16
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, Agent系统]
 aliases: ["Multi-Agent Architecture", "多智能体架构", "多Agent系统", "Orchestrator-Worker"]
 relates_to:
   - target: "[[Agent工作流模式]]"
@@ -98,7 +98,7 @@ LeadResearcher 综合结果
 
 **调试**：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。
 
-**部署**：使用彩虹部署（Rainbow Deployment）避免更新中断运行中的 Agent。
+**部署**：使用彩虹部署（[[Rainbow]] Deployment）避免更新中断运行中的 Agent。
 
 **当前局限**：大多数实现中主 Agent 同步等待子 Agent 完成，创建信息流瓶颈。异步执行是下一步。
 

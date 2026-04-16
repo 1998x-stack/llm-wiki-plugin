@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="claude-code">Claude Code</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（<a href="../concepts/MCP协议层.html">Model Context Protocol</a>）协议。通过 Hook 系统支持第三方插件扩展（如 <a href="Claude-Mem.html">Claude-Mem</a>），是当代 AI 辅助软件工程（AISE）的核心工具。</p>
+<p>Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（<a href="../concepts/MCP协议层.html">Model Context Protocol</a>）协议。通过 Hook 系统支持第三方插件扩展（如 <a href="Claude-Mem.html">Claude-Mem</a>），是当代 AI 辅助软件工程（A<a href="../concepts/重要性采样.html">IS</a>E）的核心工具。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心特性</h3>
 <ul>
@@ -147,16 +147,48 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="_4">子代理架构</h3>
 <p>Claude Code 支持并行 Agent 模式：主代理可将复杂任务分解为子任务，调度多个子代理并行处理，类似 MapReduce。</p>
-<h2 id="_5">来源</h2>
+<h3 id="_5">工具设计哲学</h3>
+<p><strong>"像智能体一样观察"（See like an agent）</strong>：
+- 工具设计需要契合模型自身能力，而非人类直觉
+- 需要站在模型角度思考：需要什么样的工具？
+- 实验频繁、阅读输出、尝试新方法
+- 随着模型能力提升，工具也必须演进</p>
+<p><strong>核心工具演进</strong>：
+- <strong>AskUserQuestion Tool</strong>：三阶段演进（修改 <a href="../concepts/ExitPlanTool.html">ExitPlanTool</a> → 更改输出格式 → 独立工具）
+- <strong>TodoWrite → Task Tool</strong>：从"保持模型轨道"到"Agent 间协调"
+- <strong><a href="../concepts/检索增强生成.html">RAG</a> → Grep → <a href="../concepts/Agent Skills.html">Agent Skills</a></strong>：从"被动接受上下文"到"主动嵌套搜索"</p>
+<p><strong>渐进式披露</strong>：
+- Claude Code 添加新功能而不新增工具的常用技巧
+- Claude Code Guide 智能体：子代理在自身上下文中搜索文档，只返回答案
+- 保持主上下文清洁，避免<a href="../concepts/上下文腐烂.html">上下文腐烂</a></p>
+<p><strong>工具数量控制</strong>：
+- Claude Code 目前拥有约 20 个工具
+- 新增工具门槛高（每增加一个工具就增加一个选项）
+- 坚持使用少数能力特征相似的模型，降低工具设计复杂度</p>
+<h3 id="edit">Edit 后验证分层</h3>
+<p>Claude Code 的 edit 后验证采用四层架构：
+- <strong>LSP</strong>：每次 edit 后自动报告 type errors 和 warnings，作为第一道即时反馈
+- <strong>Hooks（settings.json）</strong>：通过 <code>PostToolUse</code> 钩子在 Edit/Write 后自动触发 lint/test，支持 <code>additionalContext</code> 回灌和 <code>decision: "block"</code> 阻断
+- <strong>CLAUDE.md</strong>：定义项目级验证策略（最小检查原则、提交前门槛等），每个会话自动加载
+- <strong>Tool Description</strong>：定义自定义 validate 工具的用法和示例，教会 Claude 正确调用</p>
+<h2 id="_6">来源</h2>
 <ul>
 <li>综合自内部引用：<a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a>、<a href="../concepts/claude-cli-tools.html">claude-cli-tools</a> 等</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/12-claude code中，edit后做 validate  linting，需要在tool des.md</span> — Claude Code 分层验证设计</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_7">相关</h2>
 <ul>
 <li><a href="Claude-Mem.html">Claude-Mem</a></li>
 <li><a href="../concepts/Claude-Code-Hook-System.html">Claude Code Hook System</a></li>
 <li><a href="../concepts/claude-cli-tools.html">Claude CLI 工具生态</a></li>
 <li><a href="../concepts/LLM-Statelessness.html">LLM 无状态性</a></li>
+<li><a href="../concepts/Claude Code 分层验证.html">Claude Code 分层验证</a> — caused（平台能力催生了分层验证架构）</li>
+<li><span style="color:#e74c3c" title="broken link">渐进式披露 -Progressive-Disclosure</span> — uses（核心设计方法论）</li>
+<li><a href="../concepts/AskUserQuestion-Tool.html">AskUserQuestion-Tool</a> — implements（内置提问工具）</li>
+<li><a href="../concepts/Task-Tool.html">Task-Tool</a> — implements（任务协调工具）</li>
+<li><a href="../concepts/ExitPlanTool.html">ExitPlanTool</a> — implements（计划生成工具）</li>
+<li><a href="../concepts/TodoWrite-Tool.html">TodoWrite-Tool</a> — implemented_by（已废弃）</li>
+<li><a href="Thariq-Shihipar.html">Thariq-Shihipar</a> — 工具设计哲学提出者</li>
 </ul>
   </div>
   <div class="page-nav">

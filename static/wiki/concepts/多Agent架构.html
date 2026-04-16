@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="agent">多 Agent 架构</h1>
@@ -204,7 +204,7 @@ LeadResearcher 综合结果
 <p><strong>错误传播与状态</strong>：Agent 运行时间长，错误可传播。建议：
 - 结合 AI 的适应性（让 Agent 知道工具失败，自行适应）与确定性保障（重试逻辑、定期检查点）</p>
 <p><strong>调试</strong>：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。</p>
-<p><strong>部署</strong>：使用彩虹部署（Rainbow Deployment）避免更新中断运行中的 Agent。</p>
+<p><strong>部署</strong>：使用彩虹部署（<a href="Rainbow.html">Rainbow</a> Deployment）避免更新中断运行中的 Agent。</p>
 <p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待子 Agent 完成，创建信息流瓶颈。异步执行是下一步。</p>
 <h3 id="_5">并行工具调用</h3>
 <p>多 Agent 并行外，单个 Agent 内的并行工具调用也至关重要：

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuaJIT — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / LuaJIT</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">性能优化</span><span class="tag">游戏开发</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="luajit">LuaJIT</h1>
+<h2 id="_1">概述</h2>
+<p>LuaJIT 是 Lua 5.1 的即时编译实现，通过追踪 JIT 将热路径编译为原生机器码，并提供 FFI 库直接调用 C 函数（声明即用，无需手写绑定），性能可接近原生 C。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">架构</h3>
+<p>LuaJIT 包含两个执行层：
+- <strong>字节码解释器</strong>：处理冷路径代码，与标准 Lua 兼容
+- <strong>Tracing JIT</strong>：识别热路径（循环等），记录执行踪迹并编译为 x86/x64 原生机器码</p>
+<h3 id="ffi">FFI 库（外部函数接口）</h3>
+<p>LuaJIT 的杀手级特性。用 <code>ffi.cdef<span style="color:#e74c3c" title="broken link">...</span></code> 声明 C 结构体和函数签名，直接调用原生 C 函数，无需 <code>lua_pushXXX</code> / <code>lua_toXXX</code> 的手工绑定代码：
+- <code>ffi.new("Vec3", {...})</code> — 创建栈上 C 值类型（无 GC 压力）
+- <code>ffi.C.function_name(...)</code> — 调用已声明的 C 函数
+- <code>ffi.new("Type[N]")</code> — 分配 C 数组，直接内存操作</p>
+<p>FFI 调用速度接近 C 直接调用，远快于通过 Lua 栈的标准 C API 绑定。</p>
+<h3 id="_4">性能最佳实践</h3>
+<ul>
+<li><strong>局部化全局访问</strong>：<code>local math_sin = math.sin</code>，避免每次访问全局表</li>
+<li><strong>预分配表</strong>：<code>for i=1,N do t[i]=0 end</code> 避免动态扩展哈希</li>
+<li><strong>避免热路径闭包</strong>：排序比较函数应定义为模块级 local 函数，不要每次调用时创建匿名函数</li>
+<li><strong>字符串拼接用 table.concat</strong>：避免大量 <code>..</code> 操作产生中间字符串</li>
+<li><strong>整数运算优先</strong>：LuaJIT 整数比浮点快，位操作用 <code>bit</code> 库</li>
+</ul>
+<h3 id="lua">与标准 Lua 的差异</h3>
+<p>LuaJIT 基于 Lua <strong>5.1</strong> 标准（不是 5.4），不支持 5.2+ 的 <code>_ENV</code>、5.4 的整数类型和分代 GC 等特性。使用 LuaJIT 需注意 API 兼容性。</p>
+<h3 id="_5">应用场景</h3>
+<p>适合性能敏感的大型游戏引擎（需要高频 Lua-C 交互）和需要零成本 C 库访问的场景；在 iOS 等禁止 JIT 的平台需回退到解释模式。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">lua-gameengine-deep-research</span> — 深度研究报告，第6节 LuaJIT 架构、FFI 示例与性能最佳实践</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — LuaJIT FFI 是传统 C API 绑定层的高性能替代方案</li>
+<li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — LuaJIT 作为 VM 层选型，影响整个绑定层策略</li>
+<li><a href="Luau.html">Luau</a> — Roblox 定制 Lua 方言，有类似的 Native codegen 方向</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua-游戏配置文件模板.html">&larr; Lua-游戏配置文件模板</a>
+    <a href="Luau.html">Luau &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

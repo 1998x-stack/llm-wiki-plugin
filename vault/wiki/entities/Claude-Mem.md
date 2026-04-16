@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 3
-tags:
-  - AI
-  - 工具
-  - 方法论
-  - 研究
+tags: [AI, 工具, 方法论, 研究, Agent系统]
 aliases: ["Claude Memory Plugin", "Claude Code Memory", "Claude Memory"]
 relates_to:
   - target: "[[Claude-Code]]"
@@ -99,7 +95,7 @@ Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提�
 ### 技术选型优势
 - **Bun 运行时**：替代了早期的 PM2+Node.js 方案，利用 `bun:sqlite` 获得更高的性能和更低的冷启动时间，且无需额外依赖。
 - **零基础设施依赖**：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 [[SQLite]]，极大降低了部署门槛。
-- **即发即忘（Fire-and-Forgert）通信**：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。
+- **即发即忘（Fire-and-Fo[[ripgrep|rg]]ert）通信**：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。
 
 ### 隐私与安全
 系统引入了 `<private>` 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 `<claude-mem-context>` 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。

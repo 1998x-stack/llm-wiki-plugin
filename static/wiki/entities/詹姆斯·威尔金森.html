@@ -184,16 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;1971年&lt;/td&gt;
-&lt;td&gt;与 Reinsch 合编《自动计算手册·[[线性代数</span>卷》（EISPACK 前身）</td>
-</tr>
-<tr>
-<td>1986年10月5日</td>
-<td>于英国逝世</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_5">后向误差分析（最重要贡献）</h3>
-<p>威尔金森的核心思想转变：将"计算结果距真实值多远"（正向误差）改为问"计算结果精确地解了哪个问题"（<a href="../concepts/后向误差分析.html">后向误差</a>）。</p>
+&lt;td&gt;与 Reinsch 合编《自动计算手册·[[线性代数</span>卷》（E<span style="color:#e74c3c" title="broken link">后向误差</span>）。</p>
 <p><strong>关键洞见</strong>：在 <a href="Pi-Agent.html">Pi</a>lot ACE 上计算多项式零点时，他发现计算得到的零点虽然不是原多项式的精确零点，但是某个系数微小扰动后多项式的精确零点——<a href="../concepts/后向误差分析.html">后向误差分析</a>由此萌生。</p>
 <p><strong>方法论意义</strong>：
 - 将算法稳定性（<a href="../concepts/后向误差分析.html">backward error</a> $|\delta A|/|A|$）与问题条件性（<a href="../concepts/条件数.html">条件数</a> $\kappa(A)$）<strong>清晰分离</strong>
@@ -213,7 +204,7 @@ $$\mu_k = a_{nn} - \frac{\operatorname{sign}(\delta)\cdot b_{n-1}^2}{|\delta| + 
 - Gauss 消去法的<a href="../concepts/后向误差分析.html">后向稳定性</a>（彻底解决 Hotelling 问题）
 - 正交变换（Givens旋转、<a href="../concepts/Householder变换.html">Householder反射</a>）的数值优越性</p>
 <h3 id="_6">软件遗产</h3>
-<p>EISPACK（1970s）→ LINPACK（1970s）→ <strong>LAPACK</strong>（1992至今）→ MATLAB、NumPy/SciPy 的核心计算引擎，均以威尔金森的理论框架和算法为基础。</p>
+<p>E<a href="../concepts/重要性采样.html">IS</a>PACK（1970s）→ LINPACK（1970s）→ <strong>LAPACK</strong>（1992至今）→ MATLAB、NumPy/SciPy 的核心计算引擎，均以威尔金森的理论框架和算法为基础。</p>
 <p>SIAM 设立了两项以其名字命名的奖项（1982年"<a href="../maps/数值分析.html">数值分析</a>与科学计算奖"，1991年"数值软件奖"），是<a href="../maps/数值分析.html">数值计算</a>领域最高荣誉之一。</p>
 <h2 id="_7">来源</h2>
 <ul>

@@ -1,0 +1,1500 @@
+# UrhoX Lua Examples Configuration
+# 描述 ai-dev-kit/examples/ 中示例的元信息，用于生成文档索引和引用
+# 所有路径均相对于 ai-dev-kit/ 根目录
+
+version: "1.0"
+
+# 配置说明
+# source: 引擎源码中的原始路径（仅用于构建同步脚本，部署环境中不使用）
+# target: 示例文件路径（相对于 ai-dev-kit/examples/）
+# metadata: 示例的元信息
+#   - title: 示例标题（中英文）
+#   - category: 分类
+#   - difficulty: 难度级别（beginner, intermediate, advanced）
+#   - description: 简短描述
+#   - features: 主要展示的功能列表
+#   - apis: 使用到的主要 API
+#   - concepts: 涉及的核心概念
+#   - tags: 标签（用于分类和搜索）
+#   - line_count: 大致行数（可选）
+#   - dependencies: 依赖的 ai-dev-kit 内其他文件（可选，路径相对于 ai-dev-kit/）
+#   - engine_deps: 引擎运行时提供的依赖（非 ai-dev-kit 内文件，仅供参考）
+
+examples:
+  # ============================================================================
+  # NanoVG 矢量图形示例
+  # ============================================================================
+  
+  - source: "55_NanoVG_Standalone.lua"
+    target: "01-nanovg-standalone.lua"
+    metadata:
+      title:
+        en: "NanoVG Standalone Graphics"
+        zh: "NanoVG独立绘图"
+      category: "advanced"
+      difficulty: "intermediate"
+      description: "使用NanoVG原生API绘制矢量图形"
+      features:
+        - "创建NanoVG上下文"
+        - "绘制基本形状（矩形、圆形、圆角矩形）"
+        - "使用渐变和颜色"
+        - "渲染自定义字体文本"
+        - "直接使用原生NanoVG C API"
+      apis:
+        - "nvgCreate"
+        - "nvgDelete"
+        - "nvgBeginFrame"
+        - "nvgEndFrame"
+        - "nvgCreateFont"
+        - "nvgRect"
+        - "nvgCircle"
+        - "nvgFill"
+        - "nvgLinearGradient"
+      concepts:
+        - "矢量图形"
+        - "NanoVG绘图API"
+        - "抗锯齿渲染"
+        - "自定义字体"
+      tags:
+        - "graphics"
+        - "nanovg"
+        - "vector"
+        - "drawing"
+        - "intermediate"
+      line_count: 170
+
+  - source: "56_NanoVG_UIComponent.lua"
+    target: "02-nanovg-ui-component.lua"
+    metadata:
+      title:
+        en: "NanoVG UI Component"
+        zh: "NanoVG UI组件"
+      category: "advanced"
+      difficulty: "advanced"
+      description: "将NanoVG渲染到纹理作为UI组件使用"
+      features:
+        - "创建渲染目标纹理"
+        - "将NanoVG渲染到纹理"
+        - "在UI系统中使用NanoVG纹理"
+        - "结合UI布局和矢量绘图"
+      apis:
+        - "nvgCreate"
+        - "nvgSetRenderTarget"
+        - "Texture2D"
+        - "RenderSurface"
+        - "BorderImage"
+        - "UIElement"
+      concepts:
+        - "离屏渲染"
+        - "渲染目标纹理"
+        - "UI与矢量图形结合"
+        - "材质系统"
+      tags:
+        - "graphics"
+        - "nanovg"
+        - "ui"
+        - "render-target"
+        - "advanced"
+      line_count: 210
+
+  - source: "Hand-picked/FlappyBird.lua"
+    target: "03-flappy-bird-game.lua"
+    metadata:
+      title:
+        en: "Flappy Bird Game"
+        zh: "Flappy Bird 游戏"
+      category: "2d-graphics"
+      difficulty: "advanced"
+      description: "使用NanoVG实现完整的Flappy Bird游戏"
+      features:
+        - "完整游戏循环（菜单、游戏、结束）"
+        - "物理和碰撞检测"
+        - "管道生成和滚动"
+        - "粒子特效"
+        - "分数系统和最高分"
+        - "平滑动画和渐变"
+      apis:
+        - "nvgCreate"
+        - "nvgBeginFrame"
+        - "nvgEndFrame"
+        - "nvgLinearGradient"
+        - "nvgRadialGradient"
+        - "Input"
+        - "SubscribeToEvent"
+      concepts:
+        - "游戏状态机"
+        - "碰撞检测"
+        - "物理模拟"
+        - "粒子系统"
+        - "游戏循环"
+        - "矢量游戏图形"
+      tags:
+        - "2d"
+        - "game"
+        - "nanovg"
+        - "physics"
+        - "complete-game"
+        - "advanced"
+      line_count: 605
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+
+  # ============================================================================
+  # Box2D 物理示例（最佳实践）
+  # ============================================================================
+
+  - source: "Hand-picked/Box2DPlatformer.lua"
+    target: "04-box2d-platformer.lua"
+    metadata:
+      title:
+        en: "Box2D Platformer Best Practices"
+        zh: "Box2D 平台跳跃最佳实践"
+      category: "physics-2d"
+      difficulty: "intermediate"
+      description: "展示如何正确使用 Box2D 物理系统实现 2D 平台跳跃游戏，避免常见碰撞检测 BUG"
+      features:
+        - "Box2D 物理系统正确配置"
+        - "脚底传感器地面检测（使用 center 偏移）"
+        - "Contact 监听器碰撞回调"
+        - "圆形碰撞体 + 零摩擦 + 固定旋转"
+        - "速度控制而非力控制"
+        - "碰撞分组过滤（categoryBits/maskBits）"
+        - "NanoVG 渲染 + 物理调试显示"
+      apis:
+        - "Scene"
+        - "PhysicsWorld2D"
+        - "RigidBody2D"
+        - "CollisionCircle2D"
+        - "PhysicsBeginContact2D"
+        - "PhysicsEndContact2D"
+        - "nvgCreate"
+        - "nvgCircle"
+        - "Input"
+      concepts:
+        - "Box2D 物理引擎"
+        - "碰撞体 center 属性"
+        - "传感器（trigger）"
+        - "碰撞分组和过滤"
+        - "地面检测最佳实践"
+        - "速度控制 vs 力控制"
+        - "PostUpdate 事件时机"
+      tags:
+        - "2d"
+        - "physics"
+        - "box2d"
+        - "platformer"
+        - "collision"
+        - "best-practices"
+        - "intermediate"
+      line_count: 574
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "重点展示如何避免 AI 手写碰撞检测时的常见 BUG"
+        - "包含详细的中文注释和最佳实践说明"
+        - "适合作为 2D 平台游戏的参考模板"
+
+  # ============================================================================
+  # 完整游戏示例
+  # ============================================================================
+
+  - source: "Hand-picked/SuperMario.lua"
+    target: "05-super-mario-game.lua"
+    metadata:
+      title:
+        en: "Super Mario Bros Clone"
+        zh: "超级马里奥兄弟完整实现"
+      category: "2d-graphics"
+      difficulty: "advanced"
+      description: "使用 NanoVG 和瓦片地图碰撞实现的完整超级马里奥游戏"
+      features:
+        - "完整的游戏循环（菜单、游戏中、游戏结束、胜利）"
+        - "瓦片地图系统和关卡设计"
+        - "手动 AABB 碰撞检测（基于网格）"
+        - "敌人 AI 和交互（Goomba、Koopa）"
+        - "道具系统（蘑菇、金币、问号方块）"
+        - "二段跳跃机制"
+        - "像素风格精灵绘制"
+        - "相机跟随和视差云层"
+        - "计时器、分数、生命系统"
+      apis:
+        - "nvgCreate"
+        - "nvgBeginFrame"
+        - "nvgEndFrame"
+        - "nvgRect"
+        - "nvgCircle"
+        - "nvgLinearGradient"
+        - "nvgRadialGradient"
+        - "nvgText"
+        - "Scene"
+        - "Camera"
+        - "Input"
+      concepts:
+        - "瓦片地图碰撞检测"
+        - "AABB 碰撞和分离轴"
+        - "Lua 数组 1-based 索引"
+        - "像素坐标与瓦片坐标转换"
+        - "游戏状态机"
+        - "实体管理"
+        - "粒子系统"
+        - "像素艺术绘制"
+      tags:
+        - "2d"
+        - "game"
+        - "platformer"
+        - "tilemap"
+        - "collision"
+        - "complete-game"
+        - "pixel-art"
+        - "advanced"
+      line_count: 2272
+      dependencies: []
+      notes:
+        - "完整的超级马里奥克隆版实现"
+        - "展示瓦片地图碰撞而非 Box2D 物理"
+        - "包含详细的架构说明和 Lua 索引陷阱标注"
+        - "适合作为复杂 2D 平台游戏的参考"
+        - "不依赖 Sample.lua，完全独立实现"
+
+  # ============================================================================
+  # UI 系统示例
+  # ============================================================================
+
+  # ============================================================================
+  # 3D 体素游戏示例
+  # ============================================================================
+
+  - source: "Hand-picked/Minecraft/scripts"
+    target: "07-minecraft-voxel-world"
+    metadata:
+      title:
+        en: "Minecraft Voxel World (Modular)"
+        zh: "我的世界体素世界（模块化架构）"
+      category: "voxel"
+      difficulty: "advanced"
+      description: "使用多文件模块化架构实现的 Minecraft 风格体素世界，展示大型项目的最佳实践"
+      features:
+        - "多文件模块化架构（config/data/world/player/rendering/ui）"
+        - "程序化 Perlin 噪声地形生成"
+        - "分块（Chunk）渲染系统"
+        - "多方块类型（草、土、石、木、叶、沙、水）"
+        - "程序化纹理图集生成"
+        - "CustomGeometry 批量网格合并"
+        - "第一人称摄像机控制"
+        - "方块放置和破坏"
+        - "方块破坏粒子特效"
+        - "AABB 碰撞检测（玩家与方块）"
+        - "重力和跳跃物理"
+        - "快捷栏物品选择系统"
+        - "水面材质（SingleLayerWater）"
+        - "树木生成算法"
+        - "生物群系（Biome）系统"
+        - "事件系统解耦"
+      apis:
+        - "Scene"
+        - "CustomGeometry"
+        - "Texture2D"
+        - "Image"
+        - "Material"
+        - "Camera"
+        - "Light"
+        - "Zone"
+        - "Input"
+        - "SubscribeToEvent"
+        - "require"
+      concepts:
+        - "模块化架构设计"
+        - "Lua require 模块系统"
+        - "体素渲染"
+        - "程序化地形生成"
+        - "Perlin 噪声 / fBm"
+        - "纹理图集（Texture Atlas）"
+        - "CustomGeometry 批量绘制"
+        - "分块加载和渲染"
+        - "第一人称控制器"
+        - "射线检测方块交互"
+        - "AABB 碰撞检测"
+        - "粒子系统"
+        - "事件驱动设计"
+      tags:
+        - "3d"
+        - "voxel"
+        - "procedural"
+        - "minecraft"
+        - "terrain"
+        - "customgeometry"
+        - "complete-game"
+        - "modular"
+        - "best-practices"
+        - "advanced"
+      is_directory: true
+      entry_file: "main.lua"
+      structure:
+        - "main.lua - 入口文件"
+        - "config/GameConfig.lua - 游戏配置常量"
+        - "config/GameEvents.lua - 事件名称定义"
+        - "data/BlockRegistry.lua - 方块类型注册表"
+        - "world/World.lua - 世界管理"
+        - "world/WorldGenerator.lua - 世界生成器"
+        - "world/ChunkMeshBuilder.lua - 区块网格构建"
+        - "terrain/NoiseGenerator.lua - 噪声生成器"
+        - "terrain/BiomeGenerator.lua - 生物群系"
+        - "terrain/TreeDecorator.lua - 树木装饰器"
+        - "player/Player.lua - 玩家状态"
+        - "player/PlayerController.lua - 玩家控制"
+        - "player/BlockInteraction.lua - 方块交互"
+        - "rendering/TextureAtlas.lua - 纹理图集"
+        - "rendering/ParticleSystem.lua - 粒子系统"
+        - "ui/UIManager.lua - UI 管理器"
+        - "ui/Hotbar.lua - 快捷栏UI"
+        - "ui/DebugOverlay.lua - 调试信息"
+      dependencies:
+        - "urhox-libs/UI/GameHUD.lua"
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示大规模 3D 体素游戏的模块化架构"
+        - "多文件项目组织的最佳实践示例"
+        - "使用 Lua require 实现模块化（无前缀直接引用）"
+        - "使用 CustomGeometry 优化渲染性能"
+        - "程序化生成纹理图集，无需外部图片资源"
+        - "包含完整的游戏循环：移动、跳跃、建造、破坏"
+        - "适合作为大型 3D 项目的架构参考"
+        - "用户可直接复制 scripts/ 到自己项目使用"
+
+  # ============================================================================
+  # 3D 休闲游戏示例
+  # ============================================================================
+
+  - source: "Hand-picked/FruitNinja3D.lua"
+    target: "12-fruit-ninja-3d-game.lua"
+    metadata:
+      title:
+        en: "3D Fruit Ninja Game"
+        zh: "3D 水果忍者游戏"
+      category: "3d-graphics"
+      difficulty: "advanced"
+      description: "使用 PBR 材质实现的完整 3D 水果忍者游戏（HUD 使用 NanoVG，新项目推荐用 UI 组件）"
+      features:
+        - "完整游戏循环（菜单、游戏、结束）"
+        - "PBR 材质系统（PBRNoTexture.xml）"
+        - "物理系统（抛物线运动、重力）"
+        - "切割检测（屏幕坐标到 3D 世界）"
+        - "CustomGeometry 半球切割效果"
+        - "NanoVG HUD 渲染（分数、生命、轨迹）— 新项目推荐 UI 组件"
+        - "连击系统和分数弹出动画"
+        - "多种水果类型（不同大小、颜色、材质）"
+        - "炸弹和发光效果（MatEmissiveColor）"
+        - "触摸/鼠标滑动控制"
+        - "加权随机水果生成"
+      apis:
+        - "Scene"
+        - "PhysicsWorld"
+        - "RigidBody"
+        - "CollisionShape"
+        - "StaticModel"
+        - "Material"
+        - "SetTechnique"
+        - "SetShaderParameter"
+        - "CustomGeometry"
+        - "Camera"
+        - "WorldToScreenPoint"
+        - "nvgCreate"
+        - "nvgBeginPath"
+        - "nvgStroke"
+        - "nvgText"
+        - "Input"
+      concepts:
+        - "PBR 材质系统（PBRNoTexture）"
+        - "3D 物理模拟"
+        - "屏幕坐标转 3D 世界坐标"
+        - "CustomGeometry 程序化网格"
+        - "碰撞检测（线段与圆）"
+        - "游戏状态机"
+        - "NanoVG 矢量 UI"
+        - "加权随机选择算法"
+      tags:
+        - "3d"
+        - "game"
+        - "physics"
+        - "pbr"
+        - "nanovg"
+        - "customgeometry"
+        - "complete-game"
+        - "advanced"
+      line_count: 1296
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示 3D 休闲游戏的完整实现"
+        - "使用 PBRNoTexture 材质，适合 AI 生成的模型"
+        - "包含 CustomGeometry 创建半球切割效果"
+        - "NanoVG 绘制切割轨迹光晕和 UI"
+        - "适合作为 3D 休闲游戏的参考模板"
+
+  # ============================================================================
+  # UI 应用示例
+  # ============================================================================
+
+  - source: "Hand-picked/Windows10.lua"
+    target: "08-windows10-simulator.lua"
+    metadata:
+      title:
+        en: "Windows 10 Desktop Simulator"
+        zh: "Windows 10 桌面模拟器"
+      category: "ui"
+      difficulty: "advanced"
+      description: "使用 UrhoX UI 系统实现的完整 Windows 10 桌面环境模拟"
+      features:
+        - "Windows 10 Fluent Design 风格界面"
+        - "完整的窗口管理系统（拖拽、最大化、最小化、关闭）"
+        - "开始菜单和磁贴系统"
+        - "任务栏和系统托盘"
+        - "多应用实现：记事本、计算器、文件资源管理器、浏览器、设置"
+        - "计算器完整逻辑（四则运算、百分比、平方根等）"
+        - "UI Layout 布局系统最佳实践"
+        - "窗口层级管理（BringToFront）"
+        - "实时时钟显示"
+        - "桌面图标和快捷方式"
+        - "渐变背景和 Windows Logo"
+        - "Hover 交互效果"
+      apis:
+        - "UIElement"
+        - "Window"
+        - "Button"
+        - "Text"
+        - "BorderImage"
+        - "SetLayout"
+        - "SetMinSize"
+        - "SetFixedHeight"
+        - "SetLayoutFlexScale"
+        - "SubscribeToEvent"
+        - "Input"
+      concepts:
+        - "UI 布局系统（LM_VERTICAL、LM_HORIZONTAL）"
+        - "SetMinSize 防止布局收缩"
+        - "固定尺寸 vs 弹性尺寸"
+        - "窗口类封装（OOP 风格）"
+        - "事件驱动 UI"
+        - "窗口拖拽实现"
+        - "Z-Order 层级管理"
+        - "状态管理（计算器逻辑）"
+      tags:
+        - "ui"
+        - "desktop"
+        - "windows"
+        - "fluent-design"
+        - "layout"
+        - "window-manager"
+        - "complete-app"
+        - "advanced"
+      line_count: 1926
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+        - "Fonts/MiSans-Regular.ttf"
+      notes:
+        - "展示复杂 UI 应用的完整实现"
+        - "UI Layout 系统最佳实践示例"
+        - "包含多个完整功能的子应用"
+        - "适合学习 UrhoX UI 系统和布局管理"
+        - "演示如何实现类桌面操作系统界面"
+
+  # ============================================================================
+  # UI 适配组件示例
+  # ============================================================================
+
+  - source: "99_UIScalerDemo.lua"
+    target: "09-ui-scaler-component.lua"
+    metadata:
+      title:
+        en: "UIScaler Component"
+        zh: "UIScaler 缩放适配组件"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "基于设计分辨率的 UI 适配组件，采用 SHOW_ALL 策略"
+      features:
+        - "设计分辨率适配（SHOW_ALL 策略）"
+        - "自动缩放 UI 系统"
+        - "designContainer 设计区域容器"
+        - "NVG 绘制与设计坐标系集成"
+        - "ScriptObject 独立事件订阅"
+        - "ScreenMode 事件自动响应"
+        - "设计区域边界可视化"
+      apis:
+        - "ScriptObject"
+        - "UIElement"
+        - "ui:SetScale"
+        - "SubscribeToEvent"
+        - "nvgCreate"
+        - "nvgBeginFrame"
+        - "nvgTranslate"
+        - "Graphics:GetWidth"
+        - "Graphics:GetHeight"
+      concepts:
+        - "设计分辨率适配"
+        - "SHOW_ALL 缩放策略"
+        - "虚拟分辨率"
+        - "ScriptObject 组件模式"
+        - "UI 坐标系统"
+        - "NVG 与 UI 混合渲染"
+      tags:
+        - "ui"
+        - "resolution"
+        - "scaling"
+        - "nanovg"
+        - "component"
+        - "intermediate"
+      line_count: 353
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+        - "LuaScripts/Utilities/UIScaler.lua"
+      notes:
+        - "展示 UIScaler 组件的完整用法"
+        - "包含设计坐标系 UI 和屏幕坐标系 UI 的对比"
+        - "NVG 绘制使用 designOriginX/Y 偏移"
+        - "适合作为 UI 适配的参考模板"
+
+  # ============================================================================
+  # NanoVG Bloom/Glow 特效示例
+  # ============================================================================
+
+  # ============================================================================
+  # 云变量/排行榜示例
+  # ============================================================================
+
+  - source: "98_ClientScoreAPIExample.lua"
+    target: "11-client-cloud-score-leaderboard-api.lua"
+    metadata:
+      title:
+        en: "Cloud Score & Leaderboard API"
+        zh: "云变量积分与排行榜 API"
+      category: "cloud"
+      difficulty: "intermediate"
+      description: "clientCloud API 完整用法示例，展示云变量存储和排行榜功能"
+      features:
+        - "属性访问（userId、mapName）"
+        - "单个读取（Get）"
+        - "单个写入任意类型（Set）"
+        - "单个写入整数（SetInt）"
+        - "单个整数增量（Add）"
+        - "批量读取（BatchGet 链式调用）"
+        - "批量写入（BatchSet 链式调用）"
+        - "排行榜查询（GetRankList）"
+        - "用户排名查询（GetUserRank）"
+        - "排行榜总人数（GetRankTotal）"
+        - "异步回调模式（ok/error/timeout）"
+      apis:
+        - "clientCloud.userId"
+        - "clientCloud.mapName"
+        - "clientCloud:Get"
+        - "clientCloud:Set"
+        - "clientCloud:SetInt"
+        - "clientCloud:Add"
+        - "clientCloud:BatchGet"
+        - "clientCloud:BatchSet"
+        - "clientCloud:GetRankList"
+        - "clientCloud:GetUserRank"
+        - "clientCloud:GetRankTotal"
+      concepts:
+        - "云变量存储"
+        - "排行榜系统"
+        - "面向对象 API"
+        - "链式调用模式"
+        - "异步回调"
+        - "批量操作优化"
+      tags:
+        - "cloud"
+        - "leaderboard"
+        - "score"
+        - "async"
+        - "intermediate"
+      line_count: 220
+      notes:
+        - "展示 clientCloud API 的完整用法"
+        - "使用面向对象风格，AI 友好命名"
+        - "Get/Set/SetInt/Add 和 BatchGet/BatchSet 对称设计"
+        - "Set 写任意类型到 values，SetInt/Add 写整数到 iscores"
+        - "包含 4 个实际使用场景示例"
+        - "参考文档：engine-docs/recipes/client-cloud-score.md（客户端专用，服务端暂不支持云变量）"
+
+  - source: "59_NanoVG_Bloom.lua"
+    target: "10-nanovg-bloom.lua"
+    metadata:
+      title:
+        en: "NanoVG Bloom/Glow Effect"
+        zh: "NanoVG Bloom发光特效"
+      category: "2d-graphics"
+      difficulty: "intermediate"
+      description: "使用NanoVG渐变模拟HDR Bloom/Glow发光效果"
+      features:
+        - "圆形Bloom效果（RadialGradient）"
+        - "矩形Bloom效果（BoxGradient）"
+        - "HDR颜色阈值控制"
+        - "可调节的Bloom参数"
+        - "动态亮度动画演示"
+      apis:
+        - "nvgCreate"
+        - "nvgRadialGradient"
+        - "nvgBoxGradient"
+        - "nvgRGBAf"
+        - "nvgFillPaint"
+        - "nvgBeginPath"
+        - "nvgCircle"
+        - "nvgRect"
+        - "nvgRoundedRect"
+      concepts:
+        - "HDR颜色模拟"
+        - "Bloom发光效果"
+        - "渐变衰减"
+        - "亮度阈值"
+      tags:
+        - "2d"
+        - "nanovg"
+        - "bloom"
+        - "glow"
+        - "hdr"
+        - "effects"
+        - "intermediate"
+      line_count: 152
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示如何用NanoVG渐变模拟Bloom效果"
+        - "圆形用nvgRadialGradient，矩形用nvgBoxGradient"
+        - "任意形状不支持（需要引擎级Blur Shader）"
+        - "对应文档：engine-docs/recipes/nanovg_bloom_glow_guide.md"
+
+  # ============================================================================
+  # Yoga UI 组件库示例
+  # ============================================================================
+
+  - source: "Hand-picked/UIWidgetsGallery.lua"
+    target: "14-ui-widgets-gallery.lua"
+    metadata:
+      title:
+        en: "UI Widgets Gallery"
+        zh: "UI 组件库展示"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "展示 UrhoX UI 库全部 41 个组件的综合画廊"
+      features:
+        - "41 个 UI 组件完整展示"
+        - "Yoga Flexbox 布局系统"
+        - "NanoVG 矢量渲染"
+        - "暗色主题配置"
+        - "自动事件订阅"
+        - "触摸和鼠标支持"
+        - "设计分辨率适配（1080p）"
+      apis:
+        - "UI.Init"
+        - "UI.Shutdown"
+        - "urhox-libs/UI"
+        - "Yoga"
+        - "NanoVG"
+      concepts:
+        - "UI 组件库"
+        - "Flexbox 布局"
+        - "矢量 UI 渲染"
+        - "主题系统"
+        - "响应式设计"
+      tags:
+        - "ui"
+        - "widgets"
+        - "yoga"
+        - "nanovg"
+        - "flexbox"
+        - "gallery"
+        - "intermediate"
+      line_count: 38
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+        - "urhox-libs/UI/Examples/WidgetsGallery.lua"
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示 urhox-libs/UI 库的所有可用组件"
+        - "使用 Yoga 实现 Flexbox 布局"
+        - "适合作为 UI 组件参考和快速预览"
+
+  - source: "Hand-picked/YogaLayoutNanoVGRender.lua"
+    target: "13-yoga-layout-nanovg-render.lua"
+    metadata:
+      title:
+        en: "Yoga Flexbox Layout + NanoVG Rendering"
+        zh: "Yoga Flexbox 布局 + NanoVG 渲染"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "使用 Yoga 实现 Flexbox 布局，NanoVG 渲染 UI，支持 Hover 和点击交互"
+      features:
+        - "Yoga Flexbox 布局系统"
+        - "NanoVG 矢量 UI 渲染"
+        - "Hover 效果检测"
+        - "按钮点击交互"
+        - "递归节点渲染"
+        - "完整 Yoga API 参考注释"
+      apis:
+        - "YGNodeNew"
+        - "YGNodeStyleSetFlexDirection"
+        - "YGNodeStyleSetJustifyContent"
+        - "YGNodeStyleSetAlignItems"
+        - "YGNodeStyleSetFlexGrow"
+        - "YGNodeStyleSetGap"
+        - "YGNodeCalculateLayout"
+        - "YGNodeLayoutGetLeft"
+        - "YGNodeLayoutGetTop"
+        - "nvgCreate"
+        - "nvgBeginFrame"
+        - "nvgRoundedRect"
+        - "nvgText"
+      concepts:
+        - "Yoga Flexbox 布局"
+        - "NanoVG 渲染"
+        - "鼠标交互检测"
+        - "递归 UI 树渲染"
+        - "按钮状态管理"
+      tags:
+        - "ui"
+        - "yoga"
+        - "flexbox"
+        - "nanovg"
+        - "layout"
+        - "interactive"
+        - "intermediate"
+      line_count: 383
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示 Yoga + NanoVG 的基础用法"
+        - "包含完整的 Yoga API 快速参考注释"
+        - "适合作为 Flexbox UI 开发的起点模板"
+
+  # ============================================================================
+  # RPG 背包/装备系统示例
+  # ============================================================================
+
+  - source: "InventoryExample.lua"
+    target: "15-inventory-drag-drop.lua"
+    metadata:
+      title:
+        en: "RPG Inventory & Equipment System"
+        zh: "RPG 背包装备系统"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "展示 RPG 游戏中完整的背包和装备系统，支持拖拽操作"
+      features:
+        - "从背包拖拽物品到装备栏"
+        - "物品类型检查（头盔→头盔槽）"
+        - "目标槽位已有物品时自动交换"
+        - "拖拽图标跟随鼠标（最高层级）"
+        - "数据/视图分离（InventoryManager）"
+        - "物品稀有度显示（common/rare/epic/legendary）"
+      apis:
+        - "UI.Panel"
+        - "UI.Label"
+        - "UI.ItemSlot"
+        - "UI.DragDropContext"
+        - "UI.InventoryManager"
+        - "UI.Init"
+        - "UI.SetRoot"
+      concepts:
+        - "拖拽系统设计"
+        - "槽位类型约束"
+        - "数据/视图分离架构"
+        - "物品交换逻辑"
+        - "Flexbox 网格布局"
+      tags:
+        - "ui"
+        - "inventory"
+        - "drag-drop"
+        - "rpg"
+        - "equipment"
+        - "yoga"
+        - "intermediate"
+      line_count: 421
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+      notes:
+        - "展示完整的 RPG 背包系统实现"
+        - "DragDropContext 处理拖拽逻辑"
+        - "InventoryManager 管理数据状态"
+        - "ItemSlot 支持类型约束和视觉反馈"
+
+  # ============================================================================
+  # 虚拟列表示例
+  # ============================================================================
+
+  - source: "VirtualListExample.lua"
+    target: "16-virtual-list-10k-items.lua"
+    metadata:
+      title:
+        en: "Virtual List with 10K Items"
+        zh: "万级数据虚拟列表"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "展示 VirtualList 组件渲染 10000 个物品，使用对象池和视图回收"
+      features:
+        - "渲染 10000 个物品"
+        - "对象池复用（Object Pooling）"
+        - "视图回收（View Recycling）"
+        - "实时倒计时更新（tickItem）"
+        - "滚动时动态绑定数据"
+        - "稀有度颜色和边框"
+        - "池状态实时显示"
+      apis:
+        - "UI.VirtualList"
+        - "UI.Panel"
+        - "UI.Label"
+        - "UI.Init"
+        - "UI.SetRoot"
+        - "VirtualList:GetPoolStats"
+        - "VirtualList:GetVisibleRange"
+      concepts:
+        - "虚拟滚动列表"
+        - "对象池模式"
+        - "createItem/bindItem/tickItem 回调"
+        - "性能优化策略"
+        - "大数据量渲染"
+      tags:
+        - "ui"
+        - "virtual-list"
+        - "performance"
+        - "object-pool"
+        - "yoga"
+        - "intermediate"
+      line_count: 348
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+      notes:
+        - "展示大数据量 UI 的最佳实践"
+        - "createItem 创建可复用的 widget"
+        - "bindItem 绑定静态数据（名称、图标）"
+        - "tickItem 更新动态数据（倒计时）"
+
+  # ============================================================================
+  # MMO 聊天窗口示例
+  # ============================================================================
+
+  - source: "ChatWindowExample.lua"
+    target: "17-chat-window-rich-text.lua"
+    metadata:
+      title:
+        en: "MMO Chat Window with Rich Text"
+        zh: "MMO 聊天窗口富文本"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "展示 MMO 风格的聊天窗口，支持自定义标签和图文混排"
+      features:
+        - "自定义标签解析（<item id=X>、<link>、<emoji>）"
+        - "内联图片和表情（图文混排）"
+        - "自动高度消息气泡"
+        - "物品点击提示"
+        - "可滚动消息列表"
+        - "快捷消息按钮"
+        - "输入框和发送功能"
+      apis:
+        - "UI.ChatWindow"
+        - "UI.Panel"
+        - "UI.Label"
+        - "UI.TextField"
+        - "UI.Button"
+        - "UI.Init"
+        - "UI.SetRoot"
+        - "ChatWindow:AddMessage"
+      concepts:
+        - "富文本解析"
+        - "自定义标签系统"
+        - "物品数据库查询"
+        - "消息气泡布局"
+        - "事件回调（onItemClick、onLinkClick）"
+      tags:
+        - "ui"
+        - "chat"
+        - "rich-text"
+        - "mmo"
+        - "yoga"
+        - "intermediate"
+      line_count: 326
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+      notes:
+        - "展示 MMO 聊天系统的完整实现"
+        - "itemResolver 回调解析物品 ID"
+        - "支持 <item>、<link>、<emoji> 三种标签"
+        - "适合作为游戏内聊天系统的参考"
+
+  # ============================================================================
+  # 3D 物理碰撞示例
+  # ============================================================================
+
+  - source: "Hand-picked/PhysicsCollision3D.lua"
+    target: "18-physics-collision-3d.lua"
+    metadata:
+      title:
+        en: "3D Physics Collision Best Practices"
+        zh: "3D 物理碰撞最佳实践"
+      category: "physics"
+      difficulty: "intermediate"
+      description: "展示如何正确使用 3D 物理碰撞事件，包括地面检测、触发器、收集物品和伤害区域"
+      features:
+        - "NodeCollision/NodeCollisionStart/NodeCollisionEnd 节点级事件"
+        - "PhysicsCollisionStart 全局碰撞事件"
+        - "地面检测（contactNormal.y > 0.75）"
+        - "触发器区域（trigger = true）"
+        - "收集物品（碰撞后移除）"
+        - "伤害区域检测"
+        - "碰撞层和掩码过滤"
+        - "contacts buffer 正确读取方式"
+        - "程序化材质创建（无外部依赖）"
+      apis:
+        - "Scene"
+        - "PhysicsWorld"
+        - "RigidBody"
+        - "CollisionShape"
+        - "NodeCollision"
+        - "NodeCollisionStart"
+        - "NodeCollisionEnd"
+        - "PhysicsCollisionStart"
+        - "StaticModel"
+        - "Material"
+        - "SetTechnique"
+        - "SetShaderParameter"
+        - "Camera"
+        - "Light"
+        - "Zone"
+        - "Input"
+      concepts:
+        - "3D 物理碰撞事件"
+        - "节点级 vs 全局碰撞订阅"
+        - "contacts buffer 格式（position, normal, distance, impulse）"
+        - "地面检测最佳实践（法线 Y 分量判断）"
+        - "触发器（非物理碰撞检测）"
+        - "碰撞层和掩码（collisionLayer/collisionMask）"
+        - "collisionEventMode 设置"
+        - "程序化材质（PBRNoTexture、NoTextureUnlit）"
+      tags:
+        - "3d"
+        - "physics"
+        - "collision"
+        - "best-practices"
+        - "ground-detection"
+        - "trigger"
+        - "intermediate"
+      line_count: 450
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示 3D 物理碰撞处理的完整最佳实践"
+        - "对比节点级事件（NodeCollision*）和全局事件（PhysicsCollisionStart）"
+        - "重点说明 contacts buffer 的正确读取方式"
+        - "包含 4 个典型碰撞场景：地面、触发器、收集物、伤害区"
+        - "适合作为 3D 物理游戏的碰撞处理参考模板"
+
+  # ============================================================================
+  # 视频播放示例
+  # ============================================================================
+
+  - source: "VideoPlayerUI.lua"
+    target: "19-video-player-ui.lua"
+    metadata:
+      title:
+        en: "WASM Video Player"
+        zh: "WASM 视频播放器"
+      category: "ui"
+      difficulty: "intermediate"
+      description: "展示 WASM 平台视频播放功能，支持 UI 叠加在视频上方"
+      features:
+        - "HTML5 Video + WebGL 纹理更新"
+        - "VideoPlayer Widget（播放/暂停/停止/跳转）"
+        - "进度条和音量控制"
+        - "UI 叠加在视频上方（标题栏、中央播放按钮、信息面板）"
+        - "objectFit 模式（contain/cover/fill）"
+        - "播放事件回调（onPlay/onPause/onEnded/onTimeUpdate）"
+        - "NanoVG 渲染视频纹理"
+      apis:
+        - "Video.VideoPlayer"
+        - "Video.isSupported"
+        - "UI.Panel"
+        - "UI.Label"
+        - "UI.Button"
+        - "UI.Slider"
+        - "UI.Row"
+        - "UI.Init"
+        - "UI.SetRoot"
+        - "nvgCreateVideo"
+        - "nvgImagePattern"
+      concepts:
+        - "WASM 视频播放"
+        - "HTML5 Video 元素"
+        - "WebGL 纹理更新（texImage2D）"
+        - "视频纹理渲染"
+        - "UI 叠加层"
+        - "Flexbox 布局"
+        - "事件回调模式"
+      tags:
+        - "video"
+        - "wasm"
+        - "ui"
+        - "nanovg"
+        - "yoga"
+        - "intermediate"
+      line_count: 377
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+        - "urhox-libs/Video/init.lua"
+        - "urhox-libs/Video/VideoPlayer.lua"
+      notes:
+        - "仅在 WASM 平台支持视频播放"
+        - "使用 HTML5 Video 解码，WebGL texImage2D 更新纹理"
+        - "展示 UI 叠加在视频上方的实现方式"
+        - "包含完整的播放控制：播放/暂停/停止/跳转/音量"
+        - "适合作为 WASM 视频播放功能的参考"
+
+  - source: "VideoPlayerNanoVG.lua"
+    target: "20-video-player-nanovg.lua"
+    metadata:
+      title:
+        en: "Video Player with NanoVG"
+        zh: "NanoVG 视频播放器"
+      category: "2d-graphics"
+      difficulty: "intermediate"
+      description: "使用 VideoPlayer + NanoVG 直接渲染视频，不依赖 UI 库"
+      features:
+        - "VideoPlayer C++ API 直接使用"
+        - "nvgCreateVideo 创建视频纹理句柄"
+        - "nvgImagePattern 渲染视频帧"
+        - "NanoVG 绘制控制条和进度条"
+        - "键盘控制（播放/暂停/跳转）"
+        - "Aspect-fit 视频缩放"
+      apis:
+        - "VideoPlayer"
+        - "VideoPlayer:Load"
+        - "VideoPlayer:Play"
+        - "VideoPlayer:Pause"
+        - "VideoPlayer:Seek"
+        - "VideoPlayer:Update"
+        - "VideoPlayer:GetTexture"
+        - "nvgCreate"
+        - "nvgCreateVideo"
+        - "nvgImagePattern"
+        - "nvgBeginFrame"
+        - "nvgEndFrame"
+        - "nvgRoundedRect"
+        - "nvgText"
+      concepts:
+        - "WASM 视频播放"
+        - "NanoVG 纹理渲染"
+        - "视频帧更新"
+        - "Aspect-fit 计算"
+        - "键盘输入处理"
+      tags:
+        - "video"
+        - "nanovg"
+        - "wasm"
+        - "graphics"
+        - "intermediate"
+      line_count: 230
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "不依赖 UI 库，直接使用 NanoVG 渲染"
+        - "展示 VideoPlayer C++ API 的最简用法"
+        - "适合需要自定义视频渲染的场景"
+
+  - source: "VideoScreen3DExample.lua"
+    target: "21-video-screen-3d.lua"
+    metadata:
+      title:
+        en: "3D Video Screen (IMAX)"
+        zh: "3D 视频屏幕（IMAX）"
+      category: "3d-graphics"
+      difficulty: "intermediate"
+      description: "在 3D 场景中创建 IMAX 风格视频屏幕，使用 VideoScreen3D 高层组件"
+      features:
+        - "VideoScreen3D 高层组件（开箱即用）"
+        - "⚠️ 必须指定 videoWidth/videoHeight（不支持自动检测）"
+        - "正确的 UV 映射（无颠倒/镜像）"
+        - "无光照材质（DiffUnlit，视频颜色不变暗）"
+        - "CustomGeometry 程序化网格"
+        - "可选边框装饰"
+        - "双面渲染支持"
+        - "播放控制（播放/暂停/跳转/静音）"
+        - "LookAt 屏幕朝向"
+        - "第一人称相机控制"
+      apis:
+        - "VideoScreen3D.Create"
+        - "VideoScreen3D:Update"
+        - "VideoScreen3D:Play"
+        - "VideoScreen3D:Pause"
+        - "VideoScreen3D:Seek"
+        - "VideoScreen3D:SetMuted"
+        - "VideoScreen3D:LookAt"
+        - "VideoScreen3D:IsPlaying"
+        - "CustomGeometry"
+        - "Material"
+        - "SetTechnique"
+        - "SetShaderParameter"
+        - "Camera"
+        - "Scene"
+        - "Zone"
+        - "Light"
+      concepts:
+        - "3D 视频屏幕"
+        - "UV 映射和翻转"
+        - "无光照材质（Unlit）"
+        - "CustomGeometry 程序化网格"
+        - "视频纹理渲染"
+        - "双面渲染（CullMode）"
+        - "第一人称相机控制"
+      tags:
+        - "3d"
+        - "video"
+        - "wasm"
+        - "customgeometry"
+        - "material"
+        - "intermediate"
+      line_count: 291
+      dependencies:
+        - "urhox-libs/Video/VideoScreen3D.lua"
+        - "urhox-libs/Engine/InputExtensions.lua"
+      notes:
+        - "展示 VideoScreen3D 组件的完整用法"
+        - "解决 6 个常见视频屏幕问题（可见性、亮度、UV、镜像等）"
+        - "使用 CustomGeometry 替代内置模型，获得精确 UV 控制"
+        - "双面渲染适合悬浮屏幕场景"
+        - "对应文档：engine-docs/recipes/video-screen-3d.md"
+
+  # ============================================================================
+  # 第三人称射击游戏示例
+  # ============================================================================
+
+  - source: "Hand-picked/ThirdPersonShooter/scripts"
+    target: "22-third-person-shooter"
+    metadata:
+      title:
+        en: "Third Person Shooter (Modular)"
+        zh: "第三人称射击游戏（模块化架构）"
+      category: "3d-graphics"
+      difficulty: "advanced"
+      description: "使用多文件模块化架构实现的第三人称射击游戏，展示动画状态机、角色控制器、多人网络架构"
+      features:
+        - "多文件模块化架构（config/game/network）"
+        - "三种运行模式（Standalone/Client/Server）"
+        - "第三人称角色控制器（KinematicCharacterController + CharacterComponent）"
+        - "动画状态机系统（AnimationStateMachine）"
+        - "三种武器状态（Normal/Rifle/Pistol）"
+        - "AimOffset 上半身瞄准偏移"
+        - "第三人称相机系统（普通/持枪/瞄准模式）"
+        - "相机墙壁碰撞检测"
+        - "蹲伏系统"
+        - "表情动作（舞蹈/悲伤/死亡）"
+        - "NanoVG 准心渲染"
+        - "触摸控制支持（GameHUD）"
+        - "Prefab 角色预制体加载"
+        - "BlendSpace 极坐标动画混合"
+      apis:
+        - "Scene"
+        - "PhysicsWorld"
+        - "RigidBody"
+        - "CollisionShape"
+        - "KinematicCharacterController"
+        - "CharacterComponent"
+        - "AnimationStateMachine"
+        - "AnimationController"
+        - "AimOffset"
+        - "Camera"
+        - "StaticModel"
+        - "XMLFile"
+        - "JSONFile"
+        - "nvgCreate"
+        - "nvgBeginFrame"
+        - "nvgEndFrame"
+        - "Input"
+        - "SubscribeToEvent"
+        - "require"
+      concepts:
+        - "模块化架构设计"
+        - "Lua require 模块系统"
+        - "动画状态机（FSM）"
+        - "BlendSpace 极坐标混合"
+        - "角色控制器（Kinematic）"
+        - "AimOffset 瞄准偏移"
+        - "第三人称相机"
+        - "相机碰撞检测"
+        - "Prefab 预制体"
+        - "多人游戏架构（C/S分离）"
+        - "网络同步准备"
+        - "触摸控制"
+        - "NanoVG 2D UI"
+      tags:
+        - "3d"
+        - "shooter"
+        - "tps"
+        - "animation"
+        - "fsm"
+        - "character-controller"
+        - "camera"
+        - "modular"
+        - "network-ready"
+        - "complete-game"
+        - "advanced"
+      is_directory: true
+      entry_file: "main.lua"
+      structure:
+        - "main.lua - 入口文件（模式选择）"
+        - "config/Settings.lua - 游戏配置常量"
+        - "game/Character.lua - 角色创建和管理"
+        - "game/StateMachine.lua - 动画状态机管理"
+        - "network/Standalone.lua - 单机模式"
+        - "network/Client.lua - 客户端模式"
+        - "network/Server.lua - 服务端模式"
+        - "network/Shared.lua - 共享代码"
+      dependencies:
+        - "urhox-libs/UI/GameHUD.lua"
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+        - "LuaScripts/Utilities/Touch.lua"
+      notes:
+        - "展示第三人称射击游戏的完整架构"
+        - "使用 AnimationStateMachine 实现复杂动画逻辑"
+        - "使用 BlendSpace 实现极坐标方向混合"
+        - "使用 AimOffset 实现上半身瞄准"
+        - "网络架构已准备好，支持多人扩展"
+        - "包含触摸控制和游戏 HUD"
+        - "适合作为 TPS 游戏的架构参考"
+
+  # ============================================================================
+  # 服务端云变量示例
+  # ============================================================================
+
+  - source: "Hand-picked/ServerScoreDemo/scripts"
+    target: "23-server-cloud-score-leaderboard-api"
+    metadata:
+      title:
+        en: "Server Cloud Score API Demo"
+        zh: "服务端云变量 API 示例"
+      category: "cloud"
+      difficulty: "advanced"
+      description: "服务端 serverCloud API 完整用法示例，包含 Score CRUD、批量操作、排行榜、事务、子对象（Money/List/Message/Quota），客户端展示测试结果和排行榜 UI"
+      features:
+        - "serverCloud Score CRUD（Set/Get/SetInt/Add/Delete）"
+        - "批量读取（BatchGet 单人/多人）"
+        - "批量写入（BatchSet 链式调用）"
+        - "排行榜（GetUserRank/GetRankTotal）"
+        - "事务操作（BatchCommit：Score+Money+List+Quota 原子提交）"
+        - "货币子对象（money:Get）"
+        - "列表子对象（list:Get/GetById + Commit ListModify/ListDelete）"
+        - "消息子对象（message:Send/Get/MarkRead/Delete）"
+        - "配额子对象（quota:Get/Add/Reset）"
+        - "多人批量查询（BatchGet:Player）"
+        - "IsOldPlayer 查询"
+        - "服务端自动化测试（启动即运行）"
+        - "客户端 urhox-libs/UI 展示测试结果和排行榜"
+        - "远程事件通信（Client ↔ Server）"
+      apis:
+        - "serverCloud:Get"
+        - "serverCloud:Set"
+        - "serverCloud:SetInt"
+        - "serverCloud:Add"
+        - "serverCloud:Delete"
+        - "serverCloud:BatchGet"
+        - "serverCloud:BatchSet"
+        - "serverCloud:BatchCommit"
+        - "serverCloud:GetUserRank"
+        - "serverCloud:GetRankTotal"
+        - "serverCloud:IsOldPlayer"
+        - "serverCloud.money:Get"
+        - "serverCloud.list:Get"
+        - "serverCloud.list:GetById"
+        - "serverCloud.message:Send"
+        - "serverCloud.message:Get"
+        - "serverCloud.message:MarkRead"
+        - "serverCloud.message:Delete"
+        - "serverCloud.quota:Get"
+        - "GetUserNickname"
+        - "UI.Init"
+        - "UI.Panel"
+        - "UI.Label"
+        - "UI.Button"
+        - "UI.ScrollView"
+        - "SendRemoteEvent"
+        - "network:RegisterRemoteEvent"
+      concepts:
+        - "服务端云变量系统"
+        - "跨域原子事务（BatchCommit）"
+        - "子对象 API 模式（money/list/message/quota）"
+        - "链式调用（BatchGet/BatchSet）"
+        - "异步回调模式（ok/error）"
+        - "联网游戏 C/S 架构"
+        - "远程事件通信"
+        - "服务端 API 自动化测试"
+        - "urhox-libs/UI 动态界面"
+      tags:
+        - "cloud"
+        - "server"
+        - "leaderboard"
+        - "score"
+        - "transaction"
+        - "network"
+        - "async"
+        - "testing"
+        - "ui"
+        - "advanced"
+      is_directory: true
+      entry_file: "main.lua"
+      structure:
+        - "main.lua - 入口文件（Server/Client 模式选择）"
+        - "config/Settings.lua - 配置常量（ScoreKeys、Events、TestKeys）"
+        - "network/Server.lua - 服务端逻辑 + API 自动化测试"
+        - "network/Client.lua - 客户端 UI（积分面板 + 排行榜 + 测试结果）"
+        - "network/Shared.lua - 共享代码（事件注册）"
+      dependencies:
+        - "urhox-libs/UI/init.lua"
+      engine_deps:
+        - "LuaScripts/Utilities/Sample.lua"
+      notes:
+        - "展示 serverCloud 全部 API 的完整用法"
+        - "服务端启动后自动运行 10 组 API 测试（无需客户端）"
+        - "客户端提供 UI 面板展示积分、排行榜和测试结果"
+        - "测试覆盖：CoreCRUD、BatchOps、Ranking、Commit、Money、List、Message、Quota、MultiGet"
+        - "参考文档：engine-docs/recipes/server-cloud-score.md"
+        - "需要联网模式运行（UrhoXServer + UrhoXRuntime）"
+
+  # ============================================================================
+  # 其他示例（暂时注释）
+  # 包含25个其他示例：Hello World, 3D/2D场景, 物理, UI, 音频, 网络, 动画等
+  # 如需启用，取消注释相应示例配置
+  # ============================================================================
+
+# ============================================================================
+# 分类索引（用于自动生成文档）
+# ============================================================================
+
+categories:
+  - id: "3d-graphics"
+    name:
+      en: "3D Graphics"
+      zh: "3D图形"
+    description: "3D场景、模型、渲染相关示例"
+    icon: "🎮"
+
+  - id: "2d-graphics"
+    name:
+      en: "2D Graphics"
+      zh: "2D图形"
+    description: "2D场景、精灵、瓦片地图相关示例"
+    icon: "🎨"
+
+  - id: "physics"
+    name:
+      en: "3D Physics"
+      zh: "3D物理"
+    description: "3D物理模拟、刚体、碰撞"
+    icon: "⚛️"
+
+  - id: "physics-2d"
+    name:
+      en: "2D Physics"
+      zh: "2D物理"
+    description: "2D物理模拟、Box2D"
+    icon: "🔵"
+
+  - id: "ui"
+    name:
+      en: "User Interface"
+      zh: "用户界面"
+    description: "UI系统、窗口、按钮、文本"
+    icon: "🖥️"
+
+  - id: "audio"
+    name:
+      en: "Audio"
+      zh: "音频"
+    description: "音效、音乐、3D音频"
+    icon: "🔊"
+
+  - id: "network"
+    name:
+      en: "Networking"
+      zh: "网络"
+    description: "多人游戏、网络同步"
+    icon: "🌐"
+
+  - id: "animation"
+    name:
+      en: "Animation"
+      zh: "动画"
+    description: "骨骼动画、IK、程序动画"
+    icon: "🎭"
+
+  - id: "navigation"
+    name:
+      en: "Navigation & AI"
+      zh: "导航与AI"
+    description: "寻路、导航网格、AI"
+    icon: "🧭"
+
+  - id: "voxel"
+    name:
+      en: "Voxel & Procedural"
+      zh: "体素与程序化"
+    description: "体素游戏、程序化生成、CustomGeometry"
+    icon: "🧱"
+
+  - id: "advanced"
+    name:
+      en: "Advanced"
+      zh: "高级特性"
+    description: "高级渲染、特效、复杂系统"
+    icon: "⚡"
+
+  - id: "cloud"
+    name:
+      en: "Cloud Services"
+      zh: "云服务"
+    description: "云变量存储、排行榜、玩家数据同步"
+    icon: "☁️"
+
+  - id: "video"
+    name:
+      en: "Video Playback"
+      zh: "视频播放"
+    description: "视频播放、视频纹理、3D视频屏幕"
+    icon: "🎬"
+
+# ============================================================================
+# 难度级别定义
+# ============================================================================
+
+difficulty_levels:
+  - id: "beginner"
+    name:
+      en: "Beginner"
+      zh: "初级"
+    description: "适合新手，展示基础概念"
+    color: "#4CAF50"
+    icon: "🌱"
+
+  - id: "intermediate"
+    name:
+      en: "Intermediate"
+      zh: "中级"
+    description: "需要一定基础，展示常用功能"
+    color: "#FF9800"
+    icon: "🌿"
+
+  - id: "advanced"
+    name:
+      en: "Advanced"
+      zh: "高级"
+    description: "复杂示例，展示高级特性"
+    color: "#F44336"
+    icon: "🌳"
+
+# ============================================================================
+# API索引（用于反向查找）
+# ============================================================================
+# 此部分可以由脚本自动生成，列出每个API在哪些示例中使用
+
+api_index:
+  # 将在脚本中自动生成
+  # 格式: "API名称": ["示例1", "示例2", ...]

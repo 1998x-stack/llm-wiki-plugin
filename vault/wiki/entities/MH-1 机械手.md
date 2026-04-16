@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，研究，方法论]
+tags: [AI, 工具，研究，方法论, 机器人学]
 aliases: ["MH-1", "Computer-Operated Mechanical Hand"]
 relates_to:
   - target: "[[Heinrich A. Ernst]]"

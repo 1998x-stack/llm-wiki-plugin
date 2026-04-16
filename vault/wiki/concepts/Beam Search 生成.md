@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [推荐系统, LLM, 推理, 解码]
+tags: [推荐系统, LLM, 推理, 解码, LLM能力]
 aliases: [Beam Search Generation, Beam Search 解码]
 relates_to:
   - {target: P5 论文, type: uses}
@@ -19,7 +19,7 @@ supersedes: null
 # Beam Search 生成
 
 ## 概述
-[[P5 论文]]使用的推理方法，通过 beam size=20 的束搜索自回归生成物品 ID 或文本，是 LLM 推荐的核心推理范式。
+[[P5 论文]]使用的推理方法，通过 beam size=20 的束搜索[[AR 模型（自回归模型）|自回归]]生成物品 ID 或文本，是 LLM 推荐的核心推理范式。
 
 ## 关键内容
 
@@ -27,7 +27,7 @@ supersedes: null
 
 2. **工作原理**：Beam Search 维护 beam_size 个候选序列，每一步扩展所有候选序列并保留概率最高的 beam_size 个，平衡了贪婪搜索的短视和穷举搜索的计算复杂度。
 
-3. **与传统推荐的对比**：传统推荐模型的推理是向量内积计算（O(1) 或 O(log N) 通过 [[近似最近邻检索]]），而 Beam Search 生成需要自回归解码（O(L) 步，L 为生成序列长度），推理延迟远高于传统方法。
+3. **与传统推荐的对比**：传统推荐模型的推理是向量内积计算（O(1) 或 O(log N) 通过 [[近似最近邻检索]]），而 Beam Search 生成需要[[AR 模型（自回归模型）|自回归]]解码（O(L) 步，L 为生成序列长度），推理延迟远高于传统方法。
 
 4. **与[[采样 Softmax]]的关系**：[[采样 Softmax]] 是[[两阶段推荐架构]][[候选生成]]阶段的加速技术，用于在大规模物品空间中高效采样。Beam Search 生成是 LLM 推荐的推理方式，两者服务于不同的推荐范式。
 

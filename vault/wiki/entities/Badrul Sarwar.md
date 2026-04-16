@@ -20,7 +20,7 @@ entity_type: person
 # Badrul Sarwar
 
 ## 概述
-明尼苏达大学研究员，[[GroupLens|GroupLens 研究组]]成员，[[基于物品的协同过滤|Item-Based CF]] 论文的第一作者，与 George Karypis、[[Joseph Konstan]]、[[John Riedl]] 共同完成了推荐系统领域最具影响力的论文之一。
+明尼苏达大学研究员，[[GroupLens|GroupLens 研究组]]成员，[[基于物品的协同过滤|Item-Based CF]] 论文的第一作者，与 Geo[[ripgrep|rg]]e Karypis、[[Joseph Konstan]]、[[John Riedl]] 共同完成了推荐系统领域最具影响力的论文之一。
 
 ## 关键内容
 
@@ -30,7 +30,7 @@ entity_type: person
 
 3. **论文影响**：该论文是推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），与 Koren 等人 2009 年关于[[矩阵分解]]的工作、[[Paul Resnick|Resnick]] 等人 1994 年的 [[GroupLens]] 原始论文共同构成了[[协同过滤]]领域的"三座高峰"。
 
-4. **合作者**：与 George Karypis、[[Joseph Konstan]]（[[GroupLens]] 创始人）、[[John Riedl]]（[[GroupLens]] 创始人）共同完成该论文。
+4. **合作者**：与 Geo[[ripgrep|rg]]e Karypis、[[Joseph Konstan]]（[[GroupLens]] 创始人）、[[John Riedl]]（[[GroupLens]] 创始人）共同完成该论文。
 
 ## 来源
 - [[Item-Based Collaborative Filtering Recommendation Algorithms]] — 第 1 节

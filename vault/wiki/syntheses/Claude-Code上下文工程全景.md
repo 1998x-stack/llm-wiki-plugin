@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 6
-tags: [AI, 方法论, 技术]
+tags: [AI, 方法论, 技术, AI工程]
 synthesizes:
   - "[[Context-Engineering]]"
   - "[[分层记忆架构]]"
@@ -56,7 +56,7 @@ LLM 的每次调用都从零状态开始。Claude Code 中这表现为：跨会�
 | L3 Semantic Memory | 项目知识、架构惯例 | Cleanup Hook 晋升 |
 | L4 Raw Archive | 原始 transcript、工具输出 | Save Hook 捕获 |
 
-Hook 采用即发即忘模式（Fire-and-Forget）避免阻塞主进程。
+Hook 采用即发即忘模式（Fire-and-Fo[[ripgrep|rg]]et）避免阻塞主进程。
 
 ## 检索层：渐进式披露（三层展开）
 

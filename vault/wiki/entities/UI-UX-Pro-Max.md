@@ -7,12 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 7
-tags:
-  - 工具
-  - AI
-  - 设计
-  - UI
-  - Skill
+tags: [工具, AI, 设计, UI, Skill, AI设计]
 aliases:
   - UUPM
   - ui-ux-pro-max-skill

@@ -86,3 +86,23 @@ topic_tags = [t for t in tags if t not in META_TAGS]
 | 矩阵/谱理论 | `矩阵理论` |
 | CLI/工具 | `工具` |
 | 方法论/设计 | `方法论`（+`AI` 如涉及 LLM） |
+
+## #36 — snapshot_index --update: relink hook cascade injects wikilinks into index.md overview
+
+**Status**: Mitigated (2026-04-16)
+
+relink modifies wiki pages → PostToolUse hooks fire → `snapshot_index --update` adds new entries to index.md with overview text that contains `[[wikilinks]]` from the page body (e.g. `已被 [[Clau...`). This corrupts `parse_index()` regex matching, producing orphaned entries.
+
+**When it bites**: Running `wiki:relink` on pages that mention other page names in their `## 概述` section, when index.md is in full-format mode.
+
+**Workaround/Fix**: Mitigated by slim index (`snapshot_index --slim`) which replaces all entries with a clean stats table. Not a problem as long as reindex always runs `--slim` after `--update`.
+
+## #37 — extract_overview: map topic stub pages get `## 概念` as overview
+
+**Status**: Mitigated (2026-04-16)
+
+`snapshot_index.py`'s `extract_overview()` skips `# Title` lines but not `## Section` headers. For wiki pages whose body starts with `## 概念` (like topic stub pages `AI工程.md`, `推荐系统.md`), the function returns `## 概念` as the overview text.
+
+**When it bites**: `snapshot_index --update` creates index entries like `- [[AI工程]] — ## 概念`.
+
+**Workaround/Fix**: Mitigated by slim index (doesn't include per-page overviews). For a proper fix, `extract_overview()` should skip lines starting with `##`.

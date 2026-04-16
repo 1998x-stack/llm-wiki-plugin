@@ -8,9 +8,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- AI
-- 工具
+tags: [AI, 工具, LLM能力]
 aliases:
 - claude-sonnet-4-5
 - Claude Sonnet 4.5

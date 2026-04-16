@@ -122,7 +122,7 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
      你是一个 wiki 知识提取器。处理一个源文件，将知识编译为 wiki 页面。
 
      ## 工作目录
-     /Users/mx/Desktop/series/核心项目系列/llm-wiki/vault
+     {VAULT_DIR 的绝对路径，即当前工作目录}
 
      ## 源文件
      使用 Read 工具读取: {当前文件路径}

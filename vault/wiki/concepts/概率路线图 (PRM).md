@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - AI
-  - 方法论
-  - 数值分析
-  - 工具
+tags: [AI, 方法论, 数值分析, 工具, 机器人学]
 aliases:
   - Probabilistic Roadmap
   - PRM

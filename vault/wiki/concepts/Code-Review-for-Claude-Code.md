@@ -1,0 +1,128 @@
+---
+type: concept
+status: active
+confidence: 0.95
+created: 2026-04-16
+updated: 2026-04-16
+last_accessed: 2026-04-16
+source_count: 1
+tags:
+  - AI
+  - 工具
+  - 方法论
+aliases:
+  - "Code Review"
+  - "Claude Code Code Review"
+  - "代码审查"
+  - "Claude Code 代码审查功能"
+relates_to: []
+supersedes: null
+---
+
+# Code Review for Claude Code
+
+## 概述
+
+Code Review 是 Claude Code 推出的多智能体代码审查系统，为每个 [[Probabilistic Robotics|PR]] 派遣一组智能体进行深度审查，捕捉人类审核者容易遗漏的漏洞。目前面向 Team 和 Enterprise 计划提供研究预览版。这是 Anthropic 内部几乎每个 [[Probabilistic Robotics|PR]] 都采用的系统，审查深度优先于速度。
+
+## 关键内容
+
+### 设计动机
+
+**解决代码审查瓶颈**：
+- Anthropic 工程师的代码输出量在过去一年增长了 200%
+- 代码审查成为瓶颈，开发人员人手紧张
+- 许多 [[Probabilistic Robotics|PR]] 只被快速浏览，而非深入审阅
+- 需要值得信赖的审查者，对每个 [[Probabilistic Robotics|PR]] 进行深度审查
+
+### 工作原理
+
+**多智能体并行审查**：
+1. **智能体派遣**：当 [[Probabilistic Robotics|PR]] 创建时，系统派遣一组智能体
+2. **并行查找**：智能体并行查找漏洞
+3. **验证过滤**：验证漏洞以过滤误报
+4. **严重性排序**：按严重程度对漏洞进行排序
+5. **结果呈现**：
+   - 单条高价值总览评论
+   - 针对特定漏洞的行内评论
+
+**动态扩展**：
+- 审查规模随 [[Probabilistic Robotics|PR]] 规模扩展
+- 大型或复杂变更：更多智能体，更深入审查
+- 琐碎变更：轻量级快速通过
+- 平均审查时间：约 20 分钟
+
+### 实际效果
+
+**Anthropic 内部数据**：
+- **之前**：16% 的 [[Probabilistic Robotics|PR]] 收到实质性审查意见
+- **现在**：54% 的 [[Probabilistic Robotics|PR]] 收到实质性审查意见
+- **不会自动批准**：仍需要人工判断，但缩小了审查范围
+
+**审查发现率**：
+- **大型 [[Probabilistic Robotics|PR]]（>1000 行）**：84% 发现问题，平均 7.5 个问题
+- **小型 [[Probabilistic Robotics|PR]]（<50 行）**：31% 发现问题，平均 0.5 个问题
+- **工程师认可度**：超过 99% 的发现被标记为正确（不到 1% 被标记为错误）
+
+### 实际案例
+
+**案例 1：一行代码的关键漏洞**
+- 场景：生产服务的一行代码修改看似常规
+- Code Review 标记为关键问题
+- 问题：修改会破坏服务的身份验证功能
+- 结果：在合并前修复，工程师表示自己也发现不了
+
+**案例 2：TrueNAS ZFS 加密重构**
+- 项目：TrueNAS 开源[[ROS (Robot Operating System)|中间件]]的 ZFS 加密重构
+- 发现：相邻代码中早已存在的漏洞
+- 问题：类型不匹配，每次同步时静默清除加密密钥缓存
+- 价值：人工审查者浏览代码变更时不会立即查找这类问题
+
+### 成本与管控
+
+**定价**：
+- 按令牌使用量计费
+- 平均费用：$15-25/次审查
+- 随 [[Probabilistic Robotics|PR]] 规模和复杂度浮动
+- 比 Claude Code GitHub Action 更昂贵（但更全面）
+
+**管理员控制**：
+1. **每月组织上限**：定义所有审查的总月度支出
+2. **仓库级控制**：仅在选择的仓库上启用审查
+3. **分析仪表板**：跟踪已审查的 [[Probabilistic Robotics|PR]]、接受率、总审查成本
+
+### 与 GitHub Action 的对比
+
+| 维度 | Code Review | GitHub Action |
+|------|------------|--------------|
+| **深度** | 深度多智能体审查 | 轻量级审查 |
+| **成本** | $15-25/次 | 更便宜 |
+| **速度** | 平均 20 分钟 | 更快 |
+| **适用场景** | 关键 [[Probabilistic Robotics|PR]]、大变更 | 日常小变更 |
+| **开源** | ❌ | ✅ |
+
+### 使用场景
+
+**适合使用 Code Review 的场景**：
+- 大型 [[Probabilistic Robotics|PR]]（>500 行变更）
+- 关键功能或安全相关变更
+- 复杂重构
+- 需要深度审查的生产代码
+
+**适合使用 GitHub Action 的场景**：
+- 小型日常变更
+- 文档更新
+- 配置调整
+- 快速迭代开发
+
+## 来源
+
+- [[raw/articles/ai-engineering/claude-blog/Code Review for Claude Code.md]] — Anthropic 官方发布
+
+## 相关
+
+- [[Claude-Code]] — 所属项目（part_of）
+- [[Subagents-in-Claude-Code]] — 使用的技术（uses）
+- [[Multi-Agent-Coordination-Patterns]] — 相关模式（implements）
+- [[Generator-Verifier-Pattern]] — 审查模式（uses）
+- [[Advisor Tool（顾问工具）]] — compares_to（多模型协作 vs 多智能体协作）

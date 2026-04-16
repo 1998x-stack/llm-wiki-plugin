@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，研究]
+tags: [AI, 工具，研究, 机器人学]
 aliases: ["Unimate Robot", "Unimation"]
 relates_to:
   - target: "[[MH-1 机械手]]"
@@ -22,7 +22,7 @@ supersedes: null
 # Unimate
 
 ## 概述
-Unimate 是世界上第一台投入实际应用的工业机器人，由 George Devol 发明并由 Joseph Engelberger 推广，于 1961 年首次在通用汽车（General Motors）的新泽西工厂投入使用。作为一种液压驱动的编程机械臂，Unimate 主要用于执行压铸件的取出、焊接和搬运等危险或重复性工作。与同时期 MIT 研发的 [[MH-1 机械手]]不同，Unimate 采用开环控制策略，完全依赖预编程的运动轨迹，不具备任何环境感知能力。Unimate 的成功标志着工业自动化时代的开启，确立了“精确重复”的机器人发展路线，与学术界追求的“智能适应”路线形成了长期的对照与互补。
+Unimate 是世界上第一台投入实际应用的工业机器人，由 Geo[[ripgrep|rg]]e Devol 发明并由 Joseph Engelbe[[ripgrep|rg]]er 推广，于 1961 年首次在通用汽车（General Motors）的新泽西工厂投入使用。作为一种液压驱动的编程机械臂，Unimate 主要用于执行压铸件的取出、焊接和搬运等危险或重复性工作。与同时期 MIT 研发的 [[MH-1 机械手]]不同，Unimate 采用开环控制策略，完全依赖预编程的运动轨迹，不具备任何环境感知能力。Unimate 的成功标志着工业自动化时代的开启，确立了“精确重复”的机器人发展路线，与学术界追求的“智能适应”路线形成了长期的对照与互补。
 
 ## 关键内容
 ### 技术原理与工作模式

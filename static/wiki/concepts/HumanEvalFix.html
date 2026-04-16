@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="humanevalfix">HumanEvalFix</h1>
@@ -146,7 +146,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="_4">代表性结果</h3>
 <ul>
-<li><strong>SWE-agent</strong>：pass@1 达到 <strong>87.7%</strong>，显著高于当时的非交互式基线</li>
+<li><strong><a href="../entities/SWE-agent.html">SWE-agent</a></strong>（GPT-4 Turbo）：</li>
+<li>Python：<strong>87.7%</strong> pass@1</li>
+<li>JavaScript：<strong>89.7%</strong> pass@1</li>
+<li>Java：<strong>87.9%</strong> pass@1</li>
 <li>与 <a href="SWE-bench.html">SWE-bench</a> 上的 12.5% 形成对比——在简单函数级修复上表现优秀，但在真实仓库级 issue 修复上仍有很大提升空间</li>
 </ul>
 <h3 id="swe-bench">与 SWE-bench 的对比</h3>
@@ -170,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>高（需跨文件导航）</td>
 </tr>
 <tr>
-<td>SWE-agent pass@1</td>
+<td><a href="../entities/SWE-agent.html">SWE-agent</a> pass@1</td>
 <td>87.7%</td>
 <td>12.5%</td>
 </tr>
@@ -181,10 +184,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>这一差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度提升时，好的交互界面带来的优势更加显著。</p>
+<p>这一差距说明：<a href="Agent计算机接口.html">ACI</a> 设计在复杂任务上的价值远大于简单任务——当任务复杂度提升时，好的交互界面带来的优势更加显著。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版&quot;.md</span> — ChatGPT 对话总结</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 24 个核心概念词条分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>

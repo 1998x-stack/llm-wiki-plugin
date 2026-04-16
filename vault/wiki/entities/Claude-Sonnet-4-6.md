@@ -7,10 +7,8 @@ confidence: 0.9
 created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 2
-tags:
-- AI
-- 工具
+source_count: 3
+tags: [AI, 工具, LLM能力]
 aliases:
 - claude-sonnet-4-6
 - Claude Sonnet 4.6
@@ -30,6 +28,9 @@ relates_to:
 - target: '[[交错式思考]]'
   type: implements
   confidence: 0.9
+- target: '[[Programmatic-Tool-Calling-PTC]]'
+  type: implements
+  confidence: 0.95
 supersedes: null
 ---
 
@@ -69,6 +70,7 @@ supersedes: null
 
 - [[raw/articles/ai-engineering/anthropic-developer/Compaction.md]] — Anthropic 官方文档
 - [[raw/articles/ai-engineering/anthropic-developer/Context windows.md]] — 上下文窗口文档
+- [[raw/articles/ai-engineering/claude-blog/Give Claude a computerGive Claude a computer 给 Claude 一台电脑.md]] — Programmatic Tool Calling 能力
 
 ## 相关
 
@@ -76,5 +78,7 @@ supersedes: null
 - [[上下文窗口]] — implements（1M tokens 上下文窗口）
 - [[上下文感知]] — implements（支持上下文感知）
 - [[交错式思考]] — implements（支持交错式思考）
+- [[Programmatic-Tool-Calling-PTC]] — implements（支持程序化工具调用）
 - [[Claude-Opus-4-6]] — compares_to（同代模型，性能更高）
 - [[Claude-Mythos-Preview]] — compares_to（同代支持压缩的模型）
+- [[Lance-Martin]] — 技术分析者（related_to）

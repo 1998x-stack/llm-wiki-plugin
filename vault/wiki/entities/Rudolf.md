@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 数学
-  - 控制理论
-  - 研究
-  - 人物
+tags: [数学, 控制理论, 研究, 人物, 机器人学]
 aliases:
   - 鲁道夫·卡尔曼
   - R. E. Kalman

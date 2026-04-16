@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">设计模式</span><span class="tag">LLM</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">设计模式</span><span class="tag">LLM</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="agent-harness">Agent Harness 模式</h1>
@@ -218,7 +218,7 @@ Evaluator（Playwright MCP，点击测试运行中的应用 + 对照准则打分
 Generator（修复 + 迭代，循环直到所有准则通过）
 </code></pre>
 <p>核心设计原则：<strong>每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。</strong> Opus 4.5 需要 Sprint 分解 + <a href="上下文重置.html">上下文重置</a> 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。</p>
-<p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"batteries-included"路线形成对比：
+<p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"<a href="../entities/bat.html">bat</a>teries-included"路线形成对比：
 - <strong><a href="../entities/DeepAgents.html">DeepAgents</a> 路线</strong>：预设丰富<a href="ROS (Robot Operating System).html">中间件</a>，适合企业多场景
 - <strong>Anthropic 任务 Harness 路线</strong>：从最小 Harness 出发，随模型能力迭代减复杂度</p>
 <h3 id="harness_1">Harness 假设的过时风险</h3>
@@ -258,7 +258,7 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Adjusted Cosine Similarity.html">&larr; Adjusted Cosine Similarity</a>
+    <a href="Advisor Tool（顾问工具）.html">&larr; Advisor Tool（顾问工具）</a>
     <a href="Agent Skills.html">Agent Skills &rarr;</a>
   </div>
 </div>

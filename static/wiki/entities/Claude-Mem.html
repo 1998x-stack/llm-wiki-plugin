@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">研究</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="claude-mem">Claude-Mem</h1>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>Bun 运行时</strong>：替代了早期的 PM2+Node.js 方案，利用 <code>bun:sqlite</code> 获得更高的性能和更低的冷启动时间，且无需额外依赖。</li>
 <li><strong>零基础设施依赖</strong>：摒弃 Redis 或 PostgreSQL，仅依赖单机即可运行的 <a href="SQLite.html">SQLite</a>，极大降低了部署门槛。</li>
-<li><strong>即发即忘（Fire-and-Forgert）通信</strong>：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。</li>
+<li><strong>即发即忘（Fire-and-Fo<a href="ripgrep.html">rg</a>ert）通信</strong>：Hook 脚本向 Worker 发送 HTTP 请求后立即返回，避免阻塞用户的编码流程，解决了 AI 处理耗时与 Hook 超时限制之间的矛盾。</li>
 </ul>
 <h3 id="_7">隐私与安全</h3>
 <p>系统引入了 <code>&lt;private&gt;</code> 标签机制。用户在提示词中包裹在此标签内的内容（如 API Key）会在进入 Worker 前的边缘层被自动剥离，确保敏感信息永不落盘。同时，系统使用 <code>&lt;claude-mem-context&gt;</code> 标签标记注入的历史上下文，防止其被二次压缩存储，避免了“记忆污染”的递归问题。</p>

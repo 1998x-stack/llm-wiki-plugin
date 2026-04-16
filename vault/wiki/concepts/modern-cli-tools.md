@@ -4,14 +4,10 @@ title: "现代 CLI 工具全景"
 status: active
 confidence: 1.0
 created: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-16
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 技术
-  - 工具
-  - 方法论
-  - 工作
+tags: [技术, 工具, 方法论, 工作, 工具与框架]
 aliases:
   - Modern Unix Tools
   - Rust CLI Tools
@@ -62,8 +58,8 @@ supersedes: null
 该全景图涵盖了文件系统操作、文本搜索、内容查看及任务自动化等多个维度：
 
 *   **安全删除 (`rm` → `trash`)**：传统的 `rm` 命令一旦执行即永久删除，风险极高。`trash` 将文件移至系统回收站，支持恢复，为 AI Agent 执行批量清理任务提供了重要的安全网，防止因逻辑错误导致源码丢失。
-*   **极速搜索 (`grep` → `rg`, `find` → `fd`)**：`ripgrep` (rg) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（`-A/-B`）和 JSON 输出，便于管道处理。`fd` 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。
-*   **增强查看 (`cat` → `bat`, `ls` → `eza`)**：`bat` 集成了语法高亮、Git 变更标注（显示哪些行被修改过）和自动分页功能，使代码审查更清晰。`eza` 作为 `ls` 的现代继承者，支持图标显示、树状视图（替代 `tree`）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。
+*   **极速搜索 (`grep` → `rg`, `find` → `fd`)**：`ripgrep` ([[ripgrep|rg]]) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（`-A/-B`）和 JSON 输出，便于管道处理。`fd` 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。
+*   **增强查看 (`cat` → `bat`, `ls` → `eza`)**：`bat` 集成了语法高亮、Git 变更标注（显示哪些行被修改过）和自动分页功能，使[[Code-Review-for-Claude-Code|代码审查]]更清晰。`eza` 作为 `ls` 的现代继承者，支持图标显示、树状视图（替代 `tree`）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。
 *   **现代化编辑与构建 (`sed` → `sd`, `make` → `just`)**：`sd` 简化了流编辑器的正则捕获组语法，减少转义错误。`just` 作为任务运行器，解决了 `make` 依赖文件时间戳的局限，支持参数传递和更清晰的语法，成为管理开发任务（如测试、构建、部署）的首选。
 *   **可视化与分析 (`du` → `dust`, `df` → `duf`)**：`dust` 以交互式树形图展示磁盘占用，直观定位大文件；`duf` 则以彩色分组形式呈现磁盘使用情况，区分本地、网络和特殊挂载点。
 
@@ -81,11 +77,12 @@ supersedes: null
 - [[raw/articles/programming/cli-tools/modern-cli-tools.md]]
 
 ## 相关
-- [[ripgrep]]
-- [[fd]]
-- [[bat]]
-- [[eza]]
-- [[just]]
+- [[ripgrep]] — part_of（内容搜索）
+- [[fd]] — part_of（文件定位）
+- [[bat]] — part_of（文件查看）
+- [[eza]] — part_of（目录列表）
+- [[just]] — part_of（任务运行）
+- [[jq]] — part_of（JSON 处理）
 - [[trash-cli]]
 - [[AI Agent]]
 - [[Rust 编程语言]]

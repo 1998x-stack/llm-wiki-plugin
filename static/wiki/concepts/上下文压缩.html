@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="compaction">上下文压缩（Compaction）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文压缩是 Anthropic 官方推出的服务端上下文管理策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始历史记录，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（Compaction / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
+<p>上下文压缩是 Anthropic 官方推出的服务端上下文管理策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始历史记录，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（<a href="上下文压缩（Context Compaction）.html">Compact</a>ion / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心机制</h3>
 <p>启用压缩后，Claude 自动执行四步流程：
@@ -239,9 +239,9 @@ solving the task in a future context...
 </thead>
 <tbody>
 <tr>
-<td><strong>Compaction</strong></td>
+<td>**<span style="color:#e74c3c" title="broken link">上下文压缩（Context Compaction）&lt;/td&gt;
+&lt;td&gt;Compact</span>ion**</td>
 <td>需要流式回话的复杂推理</td>
-<td>服务端自动，集成量最小</td>
 </tr>
 <tr>
 <td><a href="结构化笔记法.html">结构化笔记法</a></td>
@@ -255,7 +255,7 @@ solving the task in a future context...
 </tr>
 </tbody>
 </table>
-<p>Compaction 是最"开箱即用"的方案，但牺牲了对压缩内容的精细控制。<a href="结构化笔记法.html">结构化笔记法</a> 和 <a href="分层记忆架构.html">分层记忆架构</a> 提供更多控制权，但需要更多集成工作。</p>
+<p><a href="上下文压缩（Context Compaction）.html">Compact</a>ion 是最"开箱即用"的方案，但牺牲了对压缩内容的精细控制。<a href="结构化笔记法.html">结构化笔记法</a> 和 <a href="分层记忆架构.html">分层记忆架构</a> 提供更多控制权，但需要更多集成工作。</p>
 <h2 id="_12">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic 官方文档</li>
@@ -272,7 +272,7 @@ solving the task in a future context...
   </div>
   <div class="page-nav">
     <a href="三分解控制框架.html">&larr; 三分解控制框架</a>
-    <a href="上下文感知.html">上下文感知 &rarr;</a>
+    <a href="上下文压缩（Context Compaction）.html">上下文压缩（Context Compaction） &rarr;</a>
   </div>
 </div>
 </body>

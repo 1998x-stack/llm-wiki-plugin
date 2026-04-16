@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具</span><span class="tag">技术</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具</span><span class="tag">技术</span><span class="tag">方法论</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="cargo-for-x">Cargo-for-X 全能工具链模式</h1>
 <h2 id="_1">概述</h2>
-<p>Bun（JavaScript）和 uv（Python）代表了一种跨语言的工具链设计模式："Cargo for X"——用单一二进制文件统一运行时、包管理、构建和测试，以系统编程语言（Zig/Rust）重写实现数量级性能提升。这一模式的核心洞见是：语言生态的碎片化痛点可以通过"全能单体"工具一次性解决。</p>
+<p>Bun（JavaScript）和 <a href="../entities/uv.html">uv</a>（Python）代表了一种跨语言的工具链设计模式："Ca<a href="../entities/ripgrep.html">rg</a>o for X"——用单一二进制文件统一运行时、包管理、构建和测试，以系统编程语言（Zig/Rust）重写实现数量级性能提升。这一模式的核心洞见是：语言生态的碎片化痛点可以通过"全能单体"工具一次性解决。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">模式定义</h3>
-<p>"Cargo for X" 是指借鉴 Rust 的 Cargo 工具链设计理念——一个工具覆盖依赖管理、构建、测试、发布——移植到其他语言生态的工具设计模式。</p>
+<p>"Ca<a href="../entities/ripgrep.html">rg</a>o for X" 是指借鉴 Rust 的 Ca<a href="../entities/ripgrep.html">rg</a>o 工具链设计理念——一个工具覆盖依赖管理、构建、测试、发布——移植到其他语言生态的工具设计模式。</p>
 <h3 id="_4">共同特征</h3>
 <table>
 <thead>
 <tr>
 <th>特征</th>
 <th>Bun (JS)</th>
-<th>uv (Python)</th>
+<th><a href="../entities/uv.html">uv</a> (Python)</th>
 </tr>
 </thead>
 <tbody>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">关键洞见</h3>
 <ol>
 <li>
-<p><strong>碎片化是痛点而非特性</strong>：npm/pip 生态中需要 4-5 个独立工具协作的模式，不是"Unix 哲学"的体现，而是历史包袱。Cargo 证明了统一工具链可以更好。</p>
+<p><strong>碎片化是痛点而非特性</strong>：npm/pip 生态中需要 4-5 个独立工具协作的模式，不是"Unix 哲学"的体现，而是历史包袱。Ca<a href="../entities/ripgrep.html">rg</a>o 证明了统一工具链可以更好。</p>
 </li>
 <li>
 <p><strong>系统语言重写是性能杠杆</strong>：用 Zig/Rust 重写 JS/Python 工具链，获得的不是 20% 提升而是 10-100x 提升。这不是优化，是范式转换。</p>

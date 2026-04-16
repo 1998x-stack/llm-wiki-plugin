@@ -7,9 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 研究
-  - 数学
+tags: [研究, 数学, 机器人学]
 aliases:
   - Mark H. Overmars
 relates_to:

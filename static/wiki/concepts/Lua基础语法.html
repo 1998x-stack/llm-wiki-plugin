@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua基础语法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua基础语法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">编程语言</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 基础语法</h1>
+<h2 id="_1">概述</h2>
+<p>Lua 是动态类型脚本语言，有 8 种基本类型，变量无需声明类型，推荐使用 local 局部变量避免全局污染。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">数据类型</h3>
+<p>Lua 有 8 种基本类型：<code>nil</code>、<code>boolean</code>、<code>number</code>、<code>string</code>、<code>table</code>、<code>function</code>、<code>thread</code>（协程）、<code>userdata</code>。</p>
+<pre><code class="language-lua">local a = nil          -- nil（空值）
+local b = true         -- boolean
+local c = 42           -- number（整数与浮点统一为 number）
+local d = 3.14         -- number
+local e = &quot;hello&quot;      -- string
+local f = {}           -- table
+local g = print        -- function
+print(type(c))         -- &quot;number&quot;
+</code></pre>
+<h3 id="_4">变量</h3>
+<p>Lua 变量不需要声明类型，直接赋值即可。支持多重赋值：</p>
+<pre><code class="language-lua">a, b, c = 1, 2, 3      -- 同时赋三个值
+a, b = b, a            -- 交换两个变量（原生支持）
+</code></pre>
+<p>未赋值的变量值为 <code>nil</code>。全局变量自动进入 <code>_G</code> 表。</p>
+<h3 id="_5">字符串</h3>
+<pre><code class="language-lua">local s1 = &quot;hello&quot;
+local s2 = 'world'
+local s3 = <span style="color:#e74c3c" title="broken link">
+多行字符串，
+可以跨行。
+</span>
+-- 拼接用 ..，不是 +
+print(&quot;Hello, &quot; .. &quot;Lua&quot;)  -- Hello, Lua
+-- 长度用 #
+print(#&quot;abc&quot;)   -- 3
+</code></pre>
+<h3 id="_6">运算符</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算术</td>
+<td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> <code>^</code> <code>//</code>（整除，Lua 5.3+）</td>
+</tr>
+<tr>
+<td>比较</td>
+<td><code>==</code> <code>~=</code>（不等于）<code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></td>
+</tr>
+<tr>
+<td>逻辑</td>
+<td><code>and</code> <code>or</code> <code>not</code></td>
+</tr>
+<tr>
+<td>字符串</td>
+<td><code>..</code>（拼接）<code>#</code>（长度）</td>
+</tr>
+</tbody>
+</table>
+<p>注意：Lua 不等于是 <code>~=</code>，不是 <code>!=</code>。</p>
+<h3 id="_7">逻辑运算短路</h3>
+<p><code>and</code> 和 <code>or</code> 返回操作数本身，不一定是布尔值：</p>
+<pre><code class="language-lua">print(1 and 2)    -- 2（and：左真则返回右）
+print(nil and 2)  -- nil（and：左假则返回左）
+print(1 or 2)     -- 1（or：左真则返回左）
+print(nil or 2)   -- 2（or：左假则返回右）
+-- 惯用法：默认值
+local x = input or &quot;default&quot;
+</code></pre>
+<h3 id="_8">注释</h3>
+<pre><code class="language-lua">-- 单行注释
+
+--<span style="color:#e74c3c" title="broken link">
+多行注释
+可以跨越多行
+</span>
+</code></pre>
+<h3 id="_9">常用类型转换</h3>
+<pre><code class="language-lua">tonumber(&quot;123&quot;)     -- 123（字符串转数字，失败返回 nil）
+tostring(42)        -- &quot;42&quot;（数字转字符串）
+</code></pre>
+<h2 id="_10">与其他语言的差异</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Lua</th>
+<th>其他语言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组起始索引</td>
+<td>1</td>
+<td>0（C/Java/Python）</td>
+</tr>
+<tr>
+<td>不等于符号</td>
+<td><code>~=</code></td>
+<td><code>!=</code></td>
+</tr>
+<tr>
+<td>字符串拼接</td>
+<td><code>..</code></td>
+<td><code>+</code>（Python/JS）</td>
+</tr>
+<tr>
+<td>逻辑 AND/OR</td>
+<td><code>and</code> <code>or</code></td>
+<td><code>&amp;&amp;</code> <code>\|\|</code></td>
+</tr>
+<tr>
+<td>无三元运算符</td>
+<td>用 <code>a and b or c</code> 模拟</td>
+<td><code>a ? b : c</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua 语法教程</span> — ChatGPT 对话，Lua 初级语法教程，涵盖变量、类型、运算符与字符串 (https://chatgpt.com/c/69d65bb9-90a8-8321-bc95-04e5a304d9b7)</li>
+</ul>
+<h2 id="_12">相关</h2>
+<ul>
+<li><a href="Lua作用域与local.html">Lua作用域与local</a> — 变量的作用域规则与 local 关键字</li>
+<li><a href="Lua函数与多返回值.html">Lua函数与多返回值</a> — 函数是 Lua 的一等公民</li>
+<li><a href="Lua-table.html">Lua-table</a> — Lua 唯一复合数据结构，承载数组、字典、对象等所有复合语义</li>
+<li><a href="Lua控制流.html">Lua控制流</a> — 基于基础语法的条件与循环结构</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua协程调度器.html">&larr; Lua协程调度器</a>
+    <a href="Lua对象池.html">Lua对象池 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

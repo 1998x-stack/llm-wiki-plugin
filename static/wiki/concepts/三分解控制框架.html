@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，研究</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="_1">三分解控制框架</h1>
@@ -152,7 +152,7 @@ $$\tau_{\text{hip}} = k_p(\theta_{\text{desired}} - \theta) + k_d(0 - \dot{\thet
 <h3 id="_6">从单腿到多腿的扩展</h3>
 <p>三分解框架的另一个强大之处在于其可扩展性。对于多腿机器人，<a href="../entities/Marc H. Raibert.html">Raibert</a> 引入了"虚拟腿"（virtual leg）的概念。在双足奔跑中，两条腿交替充当单腿；在四足小跑（trot）中，对角线的两条腿同步运动形成一条虚拟腿。通过这种方式，多腿运动被还原为单腿控制策略的时序编排。这意味着同一套三分解控制器只需稍作修改（主要是步态相位调度），即可应用于从单腿到四足甚至六足的各类机器人，极大地简化了系统设计。</p>
 <h3 id="_7">与现代控制方法的对比</h3>
-<p>尽管现代控制理论引入了模型预测控制（<a href="边际消费倾向.html">MPC</a>）和全身优化（WBC）等更精确的方法，但三分解框架因其简洁性和物理直觉依然具有重要价值。<a href="边际消费倾向.html">MPC</a> 等方法往往计算量大且依赖精确模型，而三分解框架在计算资源受限或对模型不确定性较高的场景下表现出更强的鲁棒性。许多现代控制器实际上是将三分解思想作为启发式规则嵌入到更复杂的优化框架中，或者将其作为强化学习奖励函数的设计基础。</p>
+<p>尽管现代控制理论引入了模型预测控制（<a href="边际消费倾向.html">MPC</a>）和全身优化（WBC）等更精确的方法，但三分解框架因其简洁性和物理直觉依然具有重要价值。<a href="边际消费倾向.html">MPC</a> 等方法往往计算量大且依赖精确模型，而三分解框架在计算资源受限或对模型不确定性较高的场景下表现出更强的鲁棒性。许多现代控制器实际上是将三分解思想作为启发式规则嵌入到更复杂的优化框架中，或者将其作为<a href="强化学习.html">强化学习</a>奖励函数的设计基础。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/09-raibert-legged-robots-balance.md</span></li>
@@ -167,7 +167,7 @@ $$\tau_{\text{hip}} = k_p(\theta_{\text{desired}} - \theta) + k_d(0 - \dot{\thet
 </ul>
   </div>
   <div class="page-nav">
-    <a href="offline-online gap.html">&larr; offline-online gap</a>
+    <a href="一般系统论.html">&larr; 一般系统论</a>
     <a href="上下文压缩.html">上下文压缩 &rarr;</a>
   </div>
 </div>

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，矩阵理论，工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，矩阵理论，工具</span><span class="tag">矩阵理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">齐次变换矩阵</h1>
@@ -151,7 +151,7 @@ $$
 <h3 id="dh">与 DH 参数的结合</h3>
 <p>齐次变换<a href="矩阵.html">矩阵</a>是 <a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> 方法的载体。在机器人建模中，每个关节 - 连杆对由四个 DH 参数（$a, \alpha, d, \theta$）描述，这些参数直接用于构造相邻连杆间的齐次变换<a href="矩阵.html">矩阵</a> $A_i$。整个机器人的正向运动学方程即表现为一系列 $A_i$ <a href="矩阵.html">矩阵</a>的连乘：$T_{0n} = A_1(\theta_1) A_2(\theta_2) \cdots A_n(\theta_n)$。这种程序化的建模方法不仅降低了工程师的工作量，还为后来的计算机辅助建模工具（如 MATLAB Robotics Toolbox, ROS URDF）提供了理论基础。</p>
 <h3 id="_6">历史地位与现代演变</h3>
-<p>虽然齐次变换<a href="矩阵.html">矩阵</a>在 1981 年之前已被部分研究者使用，但正是通过 Paul 的著作，它才真正成为机器人学的“宪法级”标准。直至今日，尽管旋量理论（Screw Theory）和积指数公式（PoE）提供了另一种优雅的数学框架，齐次变换<a href="矩阵.html">矩阵</a>因其直观性和与现有工业标准（如 DH 参数）的完美契合，仍然是工业机器人编程、标定和控制中最常用的数学工具。在现代软件框架如 MoveIt! 和 OpenRAVE 中，其底层运动学引擎依然依赖于这一经典表示法。</p>
+<p>虽然齐次变换<a href="矩阵.html">矩阵</a>在 1981 年之前已被部分研究者使用，但正是通过 Paul 的著作，它才真正成为机器人学的“宪法级”标准。直至今日，尽管旋量理论（Screw Theory）和积指数公式（PoE）提供了另一种优雅的数学框架，齐次变换<a href="矩阵.html">矩阵</a>因其直观性和与现有工业标准（如 DH 参数）的完美契合，仍然是工业机器人编程、标定和控制中最常用的数学工具。在现代软件框架如 MoveIt! 和 Open<a href="../entities/rust-analyzer.html">RA</a>VE 中，其底层运动学引擎依然依赖于这一经典表示法。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/05-paul-robot-manipulators-mathematics.md</span></li>

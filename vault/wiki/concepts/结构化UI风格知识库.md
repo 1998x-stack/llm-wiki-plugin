@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [UI, 设计, AI, 知识库, 设计系统]
+tags: [UI, 设计, AI, 知识库, 设计系统, AI设计]
 aliases:
   - UI风格体系
   - 可机器处理的风格知识

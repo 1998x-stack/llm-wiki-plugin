@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua函数式编程 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua函数式编程</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">编程语言</span><span class="tag">方法论</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 函数式编程</h1>
+<h2 id="_1">概述</h2>
+<p>Lua 一等公民函数支持完整函数式编程范式：map/filter/reduce、函数组合（compose/pipe）、柯里化（curry）、记忆化（memoize）均可用闭包实现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心高阶函数</h3>
+<pre><code class="language-lua">local F = {}
+
+-- map: 对每个元素应用变换
+function F.map(t, fn)
+    local result = {}
+    for i, v in ipairs(t) do result[i] = fn(v, i) end
+    return result
+end
+
+-- filter: 保留满足谓词的元素
+function F.filter(t, pred)
+    local result = {}
+    for _, v in ipairs(t) do
+        if pred(v) then result[#result+1] = v end
+    end
+    return result
+end
+
+-- reduce: 折叠为单值
+function F.reduce(t, fn, init)
+    local acc = init
+    for _, v in ipairs(t) do acc = fn(acc, v) end
+    return acc
+end
+</code></pre>
+<h3 id="_4">函数组合与管道</h3>
+<pre><code class="language-lua">-- compose: 右到左，数学风格 f(g(h(x)))
+function F.compose(...)
+    local fns = {...}
+    return function(x)
+        local result = x
+        for i = #fns, 1, -1 do result = fns[i](result) end
+        return result
+    end
+end
+
+-- pipe: 左到右，数据流风格
+function F.pipe(...)
+    local fns = {...}
+    return function(x)
+        local result = x
+        for _, fn in ipairs(fns) do result = fn(result) end
+        return result
+    end
+end
+
+-- 实用示例：过滤偶数并取平方
+local even_squares = F.pipe(
+    function(t) return F.filter(t, function(x) return x % 2 == 0 end) end,
+    function(t) return F.map(t, function(x) return x * x end) end
+)({1,2,3,4,5,6,7,8,9,10})
+-- 结果: {4, 16, 36, 64, 100}
+</code></pre>
+<h3 id="_5">柯里化</h3>
+<pre><code class="language-lua">-- curry: 将多参函数变为可逐步应用的单参函数链
+function F.curry(fn, arity)
+    arity = arity or debug.getinfo(fn, &quot;u&quot;).nparams
+    local function curried(args)
+        if #args &gt;= arity then return fn(table.unpack(args)) end
+        return function(...)
+            local new_args = {table.unpack(args)}
+            for _, v in ipairs({...}) do new_args[#new_args+1] = v end
+            return curried(new_args)
+        end
+    end
+    return curried({})
+end
+
+-- 使用：add(1)(2)(3) 或 add(1, 2)(3) 均可
+local add = F.curry(function(a, b, c) return a + b + c end)
+print(add(1)(2)(3))  -- 6
+</code></pre>
+<h3 id="_6">记忆化</h3>
+<pre><code class="language-lua">-- memoize: 缓存计算结果，适合纯函数重复调用
+function F.memoize(fn)
+    local cache = {}
+    return function(...)
+        local key = table.concat({...}, &quot;,&quot;)
+        if cache[key] == nil then
+            cache[key] = fn(...)
+        end
+        return cache[key]
+    end
+end
+
+-- 经典用例：斐波那契数列（注意需先声明 local）
+local fib
+fib = F.memoize(function(n)
+    if n &lt;= 1 then return n end
+    return fib(n-1) + fib(n-2)
+end)
+</code></pre>
+<h3 id="_7">设计原则</h3>
+<ol>
+<li><strong>纯函数优先</strong>：无副作用，相同输入永远相同输出，便于测试和组合</li>
+<li><strong>惰性管道</strong>：pipe/compose 延迟执行，只在传入数据时触发</li>
+<li><strong>记忆化适用范围</strong>：仅适用于纯函数；若 key 包含 table 引用，需自定义序列化</li>
+<li><strong>柯里化 arity</strong>：Lua 不支持函数签名反射时手动指定 <code>arity</code> 参数</li>
+</ol>
+<h2 id="_8">常见陷阱</h2>
+<ul>
+<li><strong>memoize key 冲突</strong>：<code>table.concat({1,2}, ",")</code> 与 <code>table.concat({12}, ",")</code> 相同，需更健壮的 key 生成</li>
+<li><strong>curry + vararg</strong>：Lua 的 <code>...</code> 在闭包中传递需用 <code>{...}</code> 打包，不能直接捕获</li>
+<li><strong>compose 顺序</strong>：compose 是右到左（数学），pipe 是左到右（数据流），混淆是高频错误</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/programming/lua/lua-skill/references/patterns.md</span> — Lua 高级模式参考，函数式编程模式章节</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="Lua-OOP.html">Lua-OOP</a> — 面向对象与函数式可以混用，函数作为一等公民是两者共同基础</li>
+<li><a href="Lua模块系统.html">Lua模块系统</a> — 函数式工具库通常以模块形式组织和导出</li>
+<li><a href="Lua-table.html">Lua-table</a> — map/filter/reduce 操作的基础数据结构</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua函数与多返回值.html">&larr; Lua函数与多返回值</a>
+    <a href="Lua协程调度器.html">Lua协程调度器 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

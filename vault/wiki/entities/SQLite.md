@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [工具, 数据库, 技术]
+tags: [工具, 数据库, 技术, 工具与框架]
 aliases: ["sqlite", "SQLite3"]
 relates_to:
   - target: "[[Claude-Mem]]"

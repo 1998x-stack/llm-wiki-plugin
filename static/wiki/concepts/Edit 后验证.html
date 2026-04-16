@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit 后验证 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Edit 后验证</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="edit">Edit 后验证</h1>
+<h2 id="_1">概述</h2>
+<p>Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码编辑完成后立即运行语法检查、lint 或 LSP 诊断，确保新编辑未引入错误，并在发现问题时快速反馈给 agent 进行修正。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="swe-agent">SWE-agent 的实现方式</h3>
+<p><strong>论文版核心思路：编辑护栏（Edit <a href="Guardrails.html">Guardrails</a>）</strong>
+- edit 完以后立刻做检查
+- 如果新编辑引入语法错误，就不应用这次编辑
+- 把错误信息、原代码片段、应用后会长什么样，都反馈给 agent
+- 让 agent 重新 edit，而不是把坏状态写进仓库继续往下走</p>
+<p><strong>当前仓库实现（str_replace_editor）：</strong>
+- <code>USE_LINTER</code> 开关：是否启用 linter
+- <code>flake8(file_path)</code>：对文件运行 flake8，仅对 .py 文件生效
+- 默认 <code>LINT_COMMAND</code>：<code>flake8 --isolated --select=F821,F822,F831,E111,E112,E113,E999,E902 {file_path}</code></p>
+<p><strong>选中的错误码含义：</strong></p>
+<table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>类别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F821/F822</td>
+<td>未定义名</td>
+<td>变量/函数未声明</td>
+</tr>
+<tr>
+<td>F831</td>
+<td>重复参数</td>
+<td>函数参数名重复</td>
+</tr>
+<tr>
+<td>E111/E112/E113</td>
+<td>缩进</td>
+<td>缩进不一致或缺失</td>
+</tr>
+<tr>
+<td>E999</td>
+<td>语法错误</td>
+<td>Python 语法解析失败</td>
+</tr>
+<tr>
+<td>E902</td>
+<td>文件 IO</td>
+<td>文件无法读取</td>
+</tr>
+</tbody>
+</table>
+<p><strong>两种模式：</strong>
+1. <strong>Reject 模式</strong>（主线）：编辑未通过 lint → 不应用，告诉 agent "Your changes have NOT been applied"
+2. <strong>Warning 模式</strong>：编辑已应用，但 linter 发现 syntax errors → 发告警但不回滚</p>
+<h3 id="_3">增量诊断设计</h3>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 的 linter 不是简单地跑完就返回全部问题，而是做了 <strong>previous errors filtering</strong>：
+- 更新旧错误的行号（因为编辑可能改变了行号）
+- 过滤掉编辑窗口之外的旧 flake8 问题
+- 尽量只保留和本次 edit 真正相关的新错误</p>
+<p>这非常像 IDE 的"增量诊断"而非"全仓静态审判"。</p>
+<h3 id="lsp">为什么不做完整 LSP/全量检查</h3>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 当时没把 validate 做成完整 LSP/全量检查的原因：</p>
+<ol>
+<li><strong>轨迹可持续优先</strong>：目标是让 agent 在长轨迹里少走弯路，不是每步做最强静态分析</li>
+<li><strong>全量检查对 agent 不友好</strong>：</li>
+<li>慢：每次 edit 后跑全仓太耗时</li>
+<li>噪声大：容易把 agent 淹没</li>
+<li>历史问题混入：很难区分"这次 edit 导致的新问题"和"仓库本来就有的问题"</li>
+<li><strong>Python-first 导向</strong>：核心 validate 抽象更偏 Python，linter 路径明确只对 .py 生效</li>
+<li><strong>复杂度收缩</strong>：官方已将 <a href="../entities/SWE-agent.html">SWE-agent</a> 转向 maintenance-only，建议用 mini-<a href="../entities/SWE-agent.html">SWE-agent</a></li>
+</ol>
+<h3 id="validate">三层 Validate 设计建议</h3>
+<p>如果要做一个更强的 SWE agent，建议分三档：</p>
+<p><strong>档 1：必跑（毫秒到秒级）</strong>
+- parser / syntax 检查
+- indentation 检查
+- import resolution basics
+- 单文件 LSP diagnostics
+- 只返回新引入问题</p>
+<p><strong>档 2：条件触发</strong>
+- 当 edit 涉及 public API / types / build files 时
+- 跑 changed-files typecheck / LSP workspace slice
+- 跑相关单测或 reproduction script</p>
+<p><strong>档 3：提交前</strong>
+- 最小测试集
+- changed-files lint/typecheck
+- 必要时 repo smoke test</p>
+<h3 id="lsp_1">LSP 触发策略</h3>
+<p>不要每次 edit 后全量 workspace，建议：</p>
+<table>
+<thead>
+<tr>
+<th>触发时机</th>
+<th>范围</th>
+<th>目标延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>on_edit(file)</code></td>
+<td>单文件增量诊断</td>
+<td>0.2–2 秒</td>
+</tr>
+<tr>
+<td><code>on_cross_file_signal</code></td>
+<td>相关依赖图扩展</td>
+<td>2–10 秒</td>
+</tr>
+<tr>
+<td><code>on_submit</code></td>
+<td>changed-files / ta<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
+&lt;td&gt;rg</span>eted workspace diagnostics</td>
+</tr>
+</tbody>
+</table>
+<h3 id="observation">Observation 返回格式</h3>
+<p>不要直接把 LSP 原始 JSON 全塞给模型，应压成 agent-friendly 格式：
+- <code>file</code>：文件名
+- <code>range</code>：行号范围
+- <code>severity</code>：严重程度
+- <code>message</code>：错误信息
+- <code>是否新引入</code>：标记是否本次 edit 导致
+- <code>是否阻断提交</code>：是否阻止继续</p>
+<p>这符合 <a href="../entities/SWE-agent.html">SWE-agent</a> 强调的 <strong>specific + concise</strong> 设计逻辑。</p>
+<h3 id="ablation-study">Ablation Study 证据</h3>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 论文 Table 3 专门对 editor interface 做了 ablation，验证了 edit 后 validate 的有效性：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th><a href="SWE-bench.html">SWE-bench</a> Lite Resolved Rate</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>w/ linting</strong></td>
+<td><strong>18.0%</strong></td>
+<td>带 linting 的 edit（最佳）</td>
+</tr>
+<tr>
+<td><strong>edit action</strong></td>
+<td><strong>15.0%</strong></td>
+<td>有专门 edit 动作但不带 linting</td>
+</tr>
+<tr>
+<td><strong>No edit</strong></td>
+<td><strong>10.3%</strong></td>
+<td>没有专门 edit 工具，靠 shell 方式改文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>两层结论：</strong>
+1. <strong>有专门 edit 工具本身就重要</strong>：从 No edit (10.3) 到 edit action (15.0)，把编辑变成紧凑、受约束的专门动作，本身就能显著提升效果（+4.7 点）。
+2. <strong>edit 后做 validate / linting 进一步显著有益</strong>：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少错误传播。</p>
+<p><strong>准确表述</strong>：论文这里验证的主要是 linting / syntax-level guardrail，不是完整的 LSP/全仓语义检查。它证明的是"edit 后做轻量、即时的有效性校验有帮助"，而非"必须上完整 LSP 才有效"。</p>
+<h3 id="claude-code">Claude Code 分层验证方案</h3>
+<p>在 Claude Code 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>职责</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tool Description</strong></td>
+<td>"会用"：教会 Claude 如何正确调用 validate 工具</td>
+<td>参数语义 + 使用示例</td>
+</tr>
+<tr>
+<td><strong>CLAUDE.md</strong></td>
+<td>"想这么做"：定义项目验证策略和偏好</td>
+<td>每个会话加载的持久指令</td>
+</tr>
+<tr>
+<td><strong>Hooks / settings.json</strong></td>
+<td>"真的会做"：PostToolUse 自动触发 lint/test</td>
+<td>additionalContext + decision:block</td>
+</tr>
+<tr>
+<td><strong>LSP</strong></td>
+<td>"即时反馈"：edit 后自动报告 type errors/warnings</td>
+<td>内建 code intelligence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心原则</strong>：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + <a href="../entities/eza.html">exa</a>mples，快速语义反馈交给 LSP。</p>
+<h3 id="vs">单文件 vs 多文件编辑</h3>
+<ul>
+<li><strong>单次工具调用</strong>：针对一个 path，作用对象是一个文件</li>
+<li><strong>整个 agent run</strong>：可以连续修改多个文件、创建新文件、回退编辑</li>
+<li>当前编辑器支持 <code>view/create/str_replace/insert/undo_edit</code></li>
+<li>多文件修改通过多次工具调用实现，不是原子性的 <a href="../entities/bat.html">bat</a>ch multi-file edit</li>
+</ul>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/10-swe-agent 每次 edit后，如何设计lintlsp 等validate？.md</span> — SWE-agent edit 后 validate 设计详解</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/11-SWE-agent 是否对 edit 是否 validate 做了 ablation study？有.md</span> — Edit validate ablation study 结果（Table 3）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/12-claude code中，edit后做 validate  linting，需要在tool des.md</span> — Claude Code 分层验证设计</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="Guardrails.html">Guardrails</a> — implements（Edit 后验证是 Guardrails 的具体实现之一）</li>
+<li><a href="恢复机制.html">恢复机制</a> — uses（验证失败后触发恢复流程）</li>
+<li><a href="../entities/SWE-agent.html">SWE-agent</a> — depends_on（基于 SWE-agent 的编辑系统设计）</li>
+<li><a href="环境反馈设计.html">环境反馈设计</a> — extends（验证结果作为环境反馈的一种形式）</li>
+<li><a href="Claude Code 分层验证.html">Claude Code 分层验证</a> — caused（Edit 后验证理念在 Claude Code 中的分层实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="ECS架构.html">&larr; ECS架构</a>
+    <a href="Embedding.html">Embedding &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

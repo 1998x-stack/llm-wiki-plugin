@@ -7,10 +7,8 @@ confidence: 0.9
 created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 2
-tags:
-- AI
-- 工具
+source_count: 3
+tags: [AI, 工具, LLM能力]
 aliases:
 - claude-opus-4-6
 - Claude Opus 4.6
@@ -27,6 +25,9 @@ relates_to:
 - target: '[[交错式思考]]'
   type: implements
   confidence: 0.9
+- target: '[[Programmatic-Tool-Calling-PTC]]'
+  type: implements
+  confidence: 0.95
 supersedes: null
 ---
 
@@ -51,6 +52,7 @@ Claude Opus 4.6 是 Anthropic 发布的 Claude Opus 系列模型，是 Anthropic
 - [[上下文压缩]]（[[上下文压缩|Server-side Compaction]]，beta 阶段）
 - [[上下文感知]]（[[上下文感知|Context Awareness]]）
 - [[交错式思考]]（[[交错式思考|Interleaved Thinking]]）
+- [[Programmatic-Tool-Calling-PTC|程序化工具调用 (PTC)]] — 动态构造工具调用
 - 符合 [[零数据保留]] ([[零数据保留|ZDR]]) 条件
 - [[提示词缓存]]（[[提示词缓存|Prompt Caching]]）
 
@@ -78,7 +80,10 @@ Claude Opus 4.6 是 Anthropic 发布的 Claude Opus 系列模型，是 Anthropic
 - [[上下文压缩]] — implements（支持压缩功能）
 - [[上下文窗口]] — implements（1M tokens 上下文窗口）
 - [[交错式思考]] — implements（支持交错式思考）
+- [[Programmatic-Tool-Calling-PTC]] — implements（支持程序化工具调用）
 - [[Context-Engineering]] — related_to（模型能力影响上下文管理策略）
-- [[Agent Harness模式]] — related_to（模型能力提升驱动 Harness 简化）
+- [[Agent Harness 模式]] — related_to（模型能力提升驱动 Harness 简化）
 - [[Claude-Sonnet-4-6]] — compares_to（同代模型）
 - [[Claude-Mythos-Preview]] — compares_to（同代支持压缩的模型）
+- [[Lance-Martin]] — 技术分析者（related_to）
+- [[Lance-Martin]] — 技术分析者（related_to）

@@ -104,10 +104,13 @@ def split_chat(json_path: str, outdir: Optional[str] = None) -> List[str]:
         created.append(filepath)
         i += 2  # Move to next pair
 
-    # Remove source JSON after successful split
-    os.remove(json_path)
-
-    print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON removed)")
+    # Verify all writes succeeded before removing source
+    all_ok = all(os.path.isfile(p) and os.path.getsize(p) > 0 for p in created)
+    if all_ok and created:
+        os.remove(json_path)
+        print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON removed)")
+    else:
+        print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON kept — verify writes)")
     for p in created:
         print(f"  {os.path.basename(p)}")
 

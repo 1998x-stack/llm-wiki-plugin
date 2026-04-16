@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent-Teams-Pattern — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Agent-Teams-Pattern</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">架构</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent-teams-pattern">Agent Teams Pattern</h1>
+<h2 id="_1">概述</h2>
+<p>智能体团队（Agent Teams）是当工作被分解为可长期独立执行的并行子任务时采用的多智能体模式。与协调器 - 子代理模式不同，团队成员在多次任务分配中持续运行，积累上下文和领域专业知识，从而随着时间推移提升自身性能。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">工作原理</h3>
+<ol>
+<li><strong>协调器生成</strong> → 多个工作智能体作为独立进程</li>
+<li><strong>任务认领</strong> → 团队成员从共享队列中认领任务</li>
+<li><strong>自主执行</strong> → 在多个步骤中自主完成任务</li>
+<li><strong>完成信号</strong> → 发出完成信号</li>
+<li><strong>持续运行</strong> → 不重置，积累上下文和领域知识</li>
+</ol>
+<h3 id="orchestrator-subagent">与 Orchestrator-Subagent 的区别</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Orchestrator-Subagent</th>
+<th>Agent Teams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>持久性</strong></td>
+<td>子代理完成后终止</td>
+<td>团队成员持续运行</td>
+</tr>
+<tr>
+<td><strong>上下文</strong></td>
+<td>每次从零开始</td>
+<td>积累领域专业知识</td>
+</tr>
+<tr>
+<td><strong>任务分配</strong></td>
+<td>单次有界子任务</td>
+<td>多次任务分配</td>
+</tr>
+<tr>
+<td><strong>性能提升</strong></td>
+<td>无</td>
+<td>随时间推移提升</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">适用场景</h3>
+<p><strong>独立并行子任务</strong>：
+- 子任务相互独立且适合进行持续的多步骤工作
+- 每位团队成员积累其负责领域的相关背景知识
+- 而非每次分配新任务时都从零开始</p>
+<p><strong>具体应用</strong>：
+- 代码库迁移（每个服务独立迁移）
+- 大规模数据迁移
+- 多语言本地化
+- 并行测试套件执行</p>
+<h3 id="_5">实际案例</h3>
+<p><strong>代码库框架迁移</strong>：
+- <strong>场景</strong>：将大型代码库从一个框架迁移到另一个框架
+- <strong>协调器</strong>：为每位团队成员分配对应的服务
+- <strong>团队成员</strong>：
+  - 自主完成迁移工作：依赖项更新、代码修改、测试修复和验证
+  - 每个服务有自己的依赖项、测试套件和部署配置
+  - 积累该服务的领域知识（依赖关系图、测试模式、部署配置）
+- <strong>协调器</strong>：收集已完成的迁移任务，在整个系统中运行集成测试</p>
+<h3 id="_6">优势</h3>
+<ul>
+<li>每位团队成员积累领域相关知识</li>
+<li>并行执行提升吞吐量</li>
+<li>持续运行避免重复加载上下文</li>
+<li>领域专业知识提升性能</li>
+</ul>
+<h3 id="_7">局限性</h3>
+<p><strong>独立性要求</strong>：
+- 与协调器 - 子代理不同，团队成员难以共享中间发现
+- 若一名团队成员的工作对另一成员产生影响，双方均无法察觉
+- 输出结果可能产生冲突</p>
+<p><strong>完成检测</strong>：
+- 队友自主工作不同时长
+- 协调者必须处理部分完成的情况
+- 一名队友两分钟完成，另一名则需要二十分钟</p>
+<p><strong>共享资源问题</strong>：
+- 多名团队成员操作同一个代码库/数据库/文件系统
+- 可能出现两名成员编辑同一文件或做出不兼容修改
+- 需要合理的任务拆分和冲突解决机制</p>
+<h3 id="_8">设计建议</h3>
+<p><strong>任务分区</strong>：
+- 确保子任务间相互独立
+- 仔细划分任务边界
+- 避免共享资源冲突</p>
+<p><strong>冲突解决</strong>：
+- 建立冲突检测和解决机制
+- 使用文件级锁定或版本控制
+- 协调者监控潜在冲突</p>
+<p><strong>完成检测</strong>：
+- 处理可变时长的工作
+- 设置超时和重试机制
+- 协调者收集已完成的结果</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Multi-agent coordination patterns_ Five approaches and when to use them.md</span> — Cara Phillips 撰写</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="Multi-Agent-Coordination-Patterns.html">Multi-Agent-Coordination-Patterns</a> — 五种模式之一（part_of）</li>
+<li><a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> — 对比模式（compares_to）</li>
+<li><a href="Shared-State-Pattern.html">Shared-State-Pattern</a> — 替代模式（compares_to）</li>
+<li><a href="Subagents-in-Claude-Code.html">Subagents-in-Claude-Code</a> — 相关技术（related_to）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent 轨迹分析.html">&larr; Agent 轨迹分析</a>
+    <a href="Agent工作流模式.html">Agent工作流模式 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

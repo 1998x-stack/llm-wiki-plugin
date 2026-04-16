@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subagents-in-Claude-Code — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Subagents-in-Claude-Code</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="subagents-in-claude-code">Subagents in Claude Code</h1>
+<h2 id="_1">概述</h2>
+<p>Subagents（子智能体）是 Claude Code 中的独立代理实例，拥有自己的<a href="上下文窗口.html">上下文窗口</a>。主代理可以派遣子智能体处理独立任务，子智能体完成后仅返回相关结果。子智能体如同 Claude Code 会话中的浏览器标签页，允许探索旁支思路而不中断主线。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">什么是子智能体</h3>
+<p><strong>核心特性</strong>：
+- <strong>独立性</strong>：每个子智能体是独立的 Claude 实例，有自己的<a href="上下文窗口.html">上下文窗口</a>
+- <strong>隔离性</strong>：不受对话历史或已调用技能的影响
+- <strong>并行性</strong>：多个子智能体可并行运行
+- <strong>权限控制</strong>：每个子智能体可有不同的权限（只读/完全编辑）</p>
+<p><strong>内置子智能体类型</strong>：
+1. <strong>通用型智能体</strong>：适用于复杂的多步骤任务
+2. <strong>规划智能体</strong>：先研究代码库，再提出实施策略
+3. <strong>探索型智能体</strong>：专为快速的只读代码搜索而优化</p>
+<h3 id="_4">使用子智能体的场景</h3>
+<p><strong>1. 研究类任务</strong>
+- <strong>信号</strong>：收集背景信息需要阅读数十个文件
+- <strong>好处</strong>：核心对话保持简洁，呈现整合后的结论而非原始内容
+- <strong>示例</strong>：探索代码库中的身份验证工作原理</p>
+<p><strong>2. 多个独立任务</strong>
+- <strong>信号</strong>：子任务之间没有依赖关系
+- <strong>好处</strong>：三个子智能体同时工作通常能在更短的时间内完成任务
+- <strong>示例</strong>：并行修复多个包中的 TypeScript 错误</p>
+<p><strong>3. 需要全新视角</strong>
+- <strong>信号</strong>：需要在不将对话历史纳入分析的情况下进行验证
+- <strong>好处</strong>：更清晰、更客观的反馈
+- <strong>示例</strong>：对实现进行客观评估，不受实施过程影响</p>
+<p><strong>4. 提交前验证</strong>
+- <strong>信号</strong>：提交代码前需要征求第二种意见
+- <strong>好处</strong>：能发现因对代码过于熟悉而可能被忽略的问题
+- <strong>示例</strong>：验证实现不会过度拟合测试用例或遗漏边界情况</p>
+<p><strong>5. 流水线工作流</strong>
+- <strong>信号</strong>：存在具有明确交接的连续阶段
+- <strong>好处</strong>：每个子智能体专注于自身阶段，不会因其他阶段的上下文产生干扰
+- <strong>示例</strong>：设计→实施→测试的三阶段流水线</p>
+<p><strong>专业提示</strong>：当任务需要浏览 10+ 文件，或涉及 3+ 独立工作内容时，是引导 Claude 使用子智能体的强烈信号。</p>
+<h3 id="_5">调用子智能体的方法</h3>
+<p><strong>1. 对话式调用（最灵活）</strong>
+- 适用于所有 Claude Code 界面（终端/VS Code/JetBrains/网页/桌面）
+- 自然语言模式示例：
+  - "使用子代理探索此代码库中的身份验证工作原理"
+  - "让一个独立的智能体检查这段代码是否存在安全问题"
+  - "同步开展这项研究。同时检查 API 路由、数据库模型和前端组件"</p>
+<p><strong>高效提示词结构</strong>：</p>
+<pre><code class="language-markdown">使用子代理并行探索此代码库：
+
+1. 查找所有 API 端点并总结其用途
+2. 识别数据库模式和关系
+3. 映射身份验证流程
+
+返回每项的摘要，而非完整文件内容。
+</code></pre>
+<p><strong>2. 自定义子代理</strong>
+- <strong>定义位置</strong>：
+  - 项目级：<code>.claude/agents/</code>（与团队共享）
+  - 用户级：<code>~/.claude/agents/</code>（所有项目可用）
+- <strong>配置内容</strong>：系统提示词、工具权限、可选专属模型
+- <strong>自动委派</strong>：当任务与描述匹配时，Claude 自动委派
+- <strong>创建方式</strong>：<code>/agents</code> 命令交互式创建，或手动编写</p>
+<p><strong>示例</strong>：安全审查子代理</p>
+<pre><code class="language-markdown">---
+name: security-reviewer
+description: 在提交前审查代码中的安全问题。
+  在涉及身份验证、支付或用户数据的提交前主动使用。
+tools: Read, Grep, Glob
+model: sonnet
+---
+
+你是专注于安全的代码审查员。分析提供的更改：
+- SQL 注入、XSS 和命令注入风险
+- 身份验证和授权漏洞
+- 日志、错误或响应中的敏感数据
+- 不安全的依赖项或配置
+
+返回按优先级排序的问题列表，包含文件：行引用和推荐修复方案。
+</code></pre>
+<p><strong>3. CLAUDE.md 指令</strong>
+- <strong>适用场景</strong>：
+  - 代码审查应始终使用只读子代理
+  - 项目有特定的研究模式需要 Claude 遵循
+  - 团队成员和会话之间需要保持一致的行为
+- <strong>优势</strong>：Claude 在每次对话开始时读取，行为保持一致</p>
+<p><strong>4. 技能（Skills）</strong>
+- <strong>适用场景</strong>：
+  - 某些操作会被定期执行
+  - 不同团队成员需要访问同一个复杂操作
+  - 在团队中统一部分任务的执行方式至关重要
+- <strong>与 CLAUDE.md 的区别</strong>：技能按需加载，CLAUDE.md 始终加载</p>
+<p><strong>5. 钩子（Hooks）</strong>
+- <strong>适用场景</strong>：
+  - 每次提交都应在创建前自动进行审核
+  - 安全检查应在无人提醒的情况下自动执行
+  - 类 CI 的质量门禁应纳入本地开发流程
+- <strong>最自动化</strong>：基于事件自动触发子智能体工作流</p>
+<h3 id="_6">实用模式</h3>
+<p><strong>模式 1：实施前调研</strong></p>
+<pre><code class="language-markdown">在实施用户通知功能之前，使用子代理调研：
+- 当前代码库中如何发送电子邮件？
+- 已存在哪些通知模式？
+- 根据当前架构，新的通知逻辑应该放在哪里？
+
+总结发现，然后我们一起规划实施。
+</code></pre>
+<p><strong>模式 2：并行修改</strong></p>
+<pre><code class="language-markdown">使用并行子代理更新以下文件中的错误处理：
+- src/api/users.ts
+- src/api/orders.ts
+- src/api/products.ts
+
+每个都应遵循 src/api/auth.ts 中建立的模式。
+同时处理所有三个文件。
+</code></pre>
+<p><strong>模式 3：独立审查</strong></p>
+<pre><code class="language-markdown">使用一个具有只读权限的全新子代理审查我的支付流程实现。
+它不应看到我们之前的讨论。我想要一个客观的审查。
+
+检查：安全漏洞、未处理的边界情况、错误处理漏洞。严格审查。
+</code></pre>
+<p><strong>模式 4：流水线工作流</strong></p>
+<pre><code class="language-markdown">让我们以流水线方式构建此功能：
+
+1. 第一个子代理：设计 API 合约并写入 docs/api-spec.md
+2. 第二个子代理：根据该规范实施后端端点
+3. 第三个子代理：为实施编写集成测试
+
+每个阶段应在下一个阶段开始之前完成。
+使用输出文件作为阶段之间的交接机制。
+</code></pre>
+<h3 id="_7">何时不应使用子智能体</h3>
+<p><strong>1. 顺序化的依赖型工作</strong>
+- 当第二步需要第一步的完整输出，第三步需要前两者的结果时
+- 单个会话处理整个流程通常更简洁</p>
+<p><strong>2. 同文件编辑</strong>
+- 两个子代理并行编辑同一个文件极易引发冲突
+- 需将紧密耦合的修改放在同一个上下文窗口中</p>
+<p><strong>3. 小任务</strong>
+- 快速解决问题或解答某个具体问题
+- 委托的额外成本会超过其带来的好处</p>
+<p><strong>4. 专业智能体过多</strong>
+- 为所有事物都定义自定义子智能体会降低自动委托的可靠性
+- 大多数团队最终选择少数几个范围明确的智能体</p>
+<p><strong>5. 需要智能体相互协作的工作</strong>
+- 子智能体向主对话汇报，但彼此之间无法交流
+- 应使用 <span style="color:#e74c3c" title="broken link">Agent-Teams</span>（智能体团队），子智能体在不同会话间协调</p>
+<h3 id="_8">最佳实践</h3>
+<p><strong>对话式调用技巧</strong>：
+- <strong>明确任务范围</strong>："探索支付系统的运作方式"比"探索所有事物"更好
+- <strong>显式请求并行化</strong>："这些可以并行运行"或"同时处理全部三个"
+- <strong>指定输出格式</strong>：摘要、具体发现或建议
+- <strong>获取新的上下文</strong>：在需要客观分析时使用</p>
+<p><strong>专业提示</strong>：
+- 当子代理需要较长时间时，按 <code>Ctrl+B</code> 可将其转入后台运行
+- <code>/tasks</code> 命令可查看所有后台运行的任务
+- 从对话式调用开始，随着模式清晰再构建自动化</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/How and when to use subagents in Claude Code.md</span> — Anthropic 官方指南</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — 所属项目（part_of）</li>
+<li><a href="Code-Review-for-Claude-Code.html">Code-Review-for-Claude-Code</a> — 应用场景（uses）</li>
+<li><a href="Multi-Agent-Coordination-Patterns.html">Multi-Agent-Coordination-Patterns</a> — 协调模式（implements）</li>
+<li><a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> — 协调器 - 子智能体模式（implements）</li>
+<li><a href="Agent-Teams-Pattern.html">Agent-Teams-Pattern</a> — 智能体团队模式（implements）</li>
+<li><span style="color:#e74c3c" title="broken link">Prompt-Caching</span> — 缓存优化（related_to）</li>
+<li><a href="../entities/Chris-Olah.html">Chris-Olah</a> — related_to（"培育"vs"构建"AI 系统的观点影响智能体架构设计）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Sprint合约制.html">&larr; Sprint合约制</a>
+    <a href="TD3.html">TD3 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

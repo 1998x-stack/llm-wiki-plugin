@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 9
-tags: [AI, Agent, 中间件, LangChain, 架构]
+tags: [AI, Agent, 中间件, LangChain, 架构, Agent系统]
 aliases: [AgentMiddleware, DeepAgents middleware]
 relates_to:
   - target: "[[DeepAgents]]"

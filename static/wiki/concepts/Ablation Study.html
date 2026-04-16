@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ablation Study — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Ablation Study</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="ablation-study">Ablation Study</h1>
+<h2 id="_1">概述</h2>
+<p>Ablation Study（消融实验）是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 <a href="Agent计算机接口.html">ACI</a> 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">为什么重要</h3>
+<blockquote>
+<p>"没有 ablation，这篇论文就更像一个系统报告；有了 ablation，它才真正证明性能增益来自哪些界面设计选择。"</p>
+</blockquote>
+<h3 id="_4">实验设计方法</h3>
+<p>论文以当前最佳的 <a href="../entities/SWE-agent.html">SWE-agent</a> 配置为基准，每次只替换一个 <a href="Agent计算机接口.html">ACI</a> 组件，看性能变化。实验在 <strong><a href="SWE-bench.html">SWE-bench</a> Lite（300 个样本）</strong> 上进行，针对 <a href="../entities/SWE-agent.html">SWE-agent</a> with GPT-4 Turbo 的 <a href="Agent计算机接口.html">ACI</a> 做消融。</p>
+<p>论文想回答的核心问题：
+- 搜索工具应该怎么呈现给 agent？
+- 编辑能力应该是 shell 原生，还是专门设计动作？
+- agent 看文件时，窗口越大越好吗？
+- 历史越完整越好吗？
+- demo 到底有没有帮助？</p>
+<h3 id="table-3">关键发现（Table 3）</h3>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>对比</th>
+<th>结果</th>
+<th>降幅</th>
+<th>支撑的原则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Editor</strong></td>
+<td>edit w/ linting vs edit w/o linting vs no edit</td>
+<td>有 linting 最优（18.0），无 linting 次之（15.0），无 edit 最差（10.3）</td>
+<td>-3.0 / -7.7</td>
+<td><a href="Guardrails.html">Guardrails</a> 减少错误传播</td>
+</tr>
+<tr>
+<td><strong>Search</strong></td>
+<td>summarized vs iterative vs no search</td>
+<td>总结式最优（18.0），迭代式最差（12.0），无搜索居中（15.7）</td>
+<td>-6.0 / -2.3</td>
+<td>反馈简洁、信息密度高</td>
+</tr>
+<tr>
+<td><strong>File Viewer</strong></td>
+<td>100 lines vs 30 lines vs full file</td>
+<td>100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7）</td>
+<td>-3.7 / -5.3</td>
+<td>适中窗口利于局部推理</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>last 5 obs vs full history vs w/o demo</td>
+<td>最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3）</td>
+<td>-3.0 / -1.7</td>
+<td>简洁反馈、工作记忆有限</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3 的核心论点</strong>：<a href="../entities/SWE-agent.html">SWE-agent</a> 的提升不是"碰巧系统堆起来更强"，而是 <a href="Agent计算机接口.html">ACI</a> 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。</p>
+<h3 id="_5">各组件详细分析</h3>
+<h4 id="editor-ablation">Editor Ablation</h4>
+<ul>
+<li><strong>w/ linting（18.0）</strong>：专门的 edit 动作 + lint/syntax checking。编辑后做语法检查，无效编辑被丢弃，agent 被要求重试。</li>
+<li><strong>edit action（15.0）</strong>：有专门 edit 动作但不带 linting。比最佳低 3.0 个点，证明 guardrail 是实打实有收益的。</li>
+<li><strong>No edit（10.3）</strong>：没有专门 edit 接口，只能依赖 shell 方式（整文件重写或 sed）。比最佳低 7.7 个点，是 Table 3 里降幅最大的模块之一。</li>
+</ul>
+<p><strong>证明</strong>：编辑接口本身极其关键。软件工程 agent 的瓶颈不只是"会不会想对"，而是"能不能稳定执行修改"。</p>
+<h4 id="search-ablation">Search Ablation</h4>
+<ul>
+<li><strong>Summarized（18.0）</strong>：一次给出完整结果摘要，query 过泛时提示 refine。</li>
+<li><strong>Iterative（12.0）</strong>：模仿传统人类界面，一次显示一个搜索结果，agent 用 next/prev 翻看。比最佳低 6.0 个点，甚至比 No search（15.7）还差。</li>
+<li><strong>No search（15.7）</strong>：只用 shell-only 风格基本命令。</li>
+</ul>
+<p><strong>最有启发的发现</strong>：Iterative search 比 No search 还差。因为当匹配结果很多时，agent 会机械地把每个 match 都翻一遍，耗尽 cost budget 或 context window。这说明<strong>对人类自然的 UI，不一定对 LM 自然</strong>。</p>
+<h4 id="file-viewer-ablation">File Viewer Ablation</h4>
+<ul>
+<li><strong>100 lines（18.0）</strong>：最佳平衡。</li>
+<li><strong>30 lines（14.3）</strong>：局部上下文较少，可能不够支撑局部推理。</li>
+<li><strong>Full file（12.7）</strong>：整文件反而最差。LM 不像人类那样能轻松忽略不重要内容，多余信息会占 token、扰乱注意力。</li>
+</ul>
+<p><strong>证明</strong>：对 agent 来说，信息总量和信息可用性不是一回事。整文件虽然信息最全，但不是最可用。</p>
+<h4 id="context-ablation">Context Ablation</h4>
+<ul>
+<li><strong>Last 5 Obs.（18.0）</strong>：早于最近 5 条的 observation 被压缩成单行，malformed generation 相关历史被去噪。</li>
+<li><strong>Full history（15.0）</strong>：保留完整历史会把过时、低相关、重复性 observation 带入 prompt，增加噪声和 token 占用。</li>
+<li><strong>w/o demo.（16.3）</strong>：去掉 demonstration 后下降 1.7 个点，说明有帮助但不是决定性来源，更多是帮助 agent 学会正确使用命令和格式。</li>
+</ul>
+<p><strong>证明</strong>：context management 是 <a href="Agent计算机接口.html">ACI</a> 的一部分，而不是简单把所有历史都喂回去。最好的 agent 不是"记住一切"，而是"只保留还有决策价值的最近状态"。</p>
+<h3 id="_6">四类消融共同证明的观点</h3>
+<ol>
+<li><strong>性能提升来自 <a href="Agent计算机接口.html">ACI</a> 设计，而不只是模型本身</strong>：同一个 GPT-4 Turbo，只是换 interface design choice，解题率就能从 10.3/12.0/12.7/15.0 提升到 18.0。</li>
+<li><strong>对人类友好的界面，不一定对 LM 友好</strong>：最典型是 Iterative search，借鉴人类熟悉的 next/prev 体验，但对 agent 反而更差。</li>
+<li><strong>高性能 agent 依赖"简单动作 + 紧凑反馈 + 护栏 + 受控上下文"</strong>：四类消融分别对应论文第 2 节的四条设计原则。</li>
+<li><strong>软件工程 agent 的问题是系统设计问题，不只是推理问题</strong>：SWE agent 的成败不只取决于"模型会不会想到正确 patch"，也取决于能不能高效找到地方、能不能稳定改进去、能不能看到正确反馈、能不能不被历史噪声淹没。</li>
+</ol>
+<h3 id="figure-5-6">可视化支撑（Figure 5-6）</h3>
+<ul>
+<li><strong>Figure 5</strong>：三种 Search Interface 对比，展示总结式搜索比迭代式搜索更适合 LM agent</li>
+<li><strong>Figure 6</strong>：三种 Edit Interface 对比，展示 linting guardrail 阻断坏编辑的重要性</li>
+</ul>
+<h3 id="_7">方法论价值</h3>
+<p>这组消融的价值在于，它把 agent 设计从"玄学调 prompt"变成了<strong>可以分部件优化的 interface engineering</strong>。每个组件都可以独立优化和验证，而非整体调参。</p>
+<h3 id="agent">与 Agent 评估的关系</h3>
+<p>消融实验是 <a href="Agent评估方法论.html">Agent评估方法论</a> 的重要组成部分，它回答了"哪个设计选择真正贡献了性能增益"这一因果问题。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/06-SWE论文做了比较细的 ablation，把 ACI 拆成搜索、编辑、viewer、context.md</span> — SWE-agent 消融实验详细分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/11-SWE-agent 是否对 edit 是否 validate 做了 ablation study？有.md</span> — Edit validate ablation 结果确认</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="ACI 设计原则.html">ACI 设计原则</a> — uses（消融实验验证了各设计原则的有效性）</li>
+<li><a href="Agent评估方法论.html">Agent评估方法论</a> — implements（消融实验是评估方法论的组成部分）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> — uses（消融实验在 SWE-bench Lite 上进行）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="AUC.html">&larr; AUC</a>
+    <a href="Actor-Critic方法.html">Actor-Critic方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

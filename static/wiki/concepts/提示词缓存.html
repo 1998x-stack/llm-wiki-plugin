@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">工具</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="prompt-caching">提示词缓存（Prompt Caching）</h1>
@@ -169,22 +169,66 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 缓存断点之前的内容发生变化
 - 会话结束（ephemeral 缓存清除）
 - 模型版本切换</p>
+<h3 id="manus">生产环境最佳实践（来自 Manus）</h3>
+<p><a href="../entities/Manus.html">Manus</a> 团队总结了提高 KV 缓存命中率的三大实践：</p>
+<ol>
+<li><strong>保持提示前缀稳定</strong>：避免在系统提示开头包含时间戳（尤其是精确到秒的），单个 token 差异会使之后所有缓存失效</li>
+<li><strong>使上下文只追加</strong>：避免修改之前的动作或观察，确保序列化确定性（JSON 键顺序不稳定会悄无声息破坏缓存）</li>
+<li><strong>明确标记缓存断点</strong>：在需要时手动插入缓存断点，至少确保包含系统提示的结尾</li>
+</ol>
+<p><strong>Agent 特殊考量</strong>：Agent 的输入/输出 token 比约 100:1，高度倾斜于预填充阶段，KV 缓存优化比聊天机器人更重要。工具定义的变更会使后续所有动作和观察的缓存失效——这是"遮蔽而非移除"工具策略的动机之一。</p>
 <h3 id="_7">计费影响</h3>
 <ul>
 <li>缓存命中：按降低费率计费（通常约为正常价格的 25%）</li>
 <li>缓存写入：按正常费率计费一次</li>
 <li>缓存读取：按折扣费率计费</li>
 </ul>
+<h3 id="claude-code">Claude Code 的提示词缓存优化经验</h3>
+<p><a href="../entities/Claude-Code.html">Claude-Code</a> 团队从大规模优化提示词缓存中总结了 5 条核心经验：</p>
+<p><strong>1. 提示缓存采用前缀匹配机制</strong>
+- 前缀中任意位置的更改都会使其后的所有内容失效
+- 围绕这一约束设计整个系统
+- 排序合理时，大部分缓存功能都能自动实现
+- Claude Code 的提示布局：
+  1. 静态系统提示和工具（全局缓存）
+  2. CLAUDE.md（项目内缓存）
+  3. 会话上下文（会话内缓存）
+  4. 对话消息</p>
+<p><strong>2. 使用消息而非修改系统提示</strong>
+- 当提示中的信息过时时（如时间变化、用户修改文件）
+- 不要更新提示（会导致缓存未命中且成本高昂）
+- 在下一轮消息中传递更新信息
+- Claude Code 在下一条用户消息或工具结果中添加 <code>&lt;system-reminder&gt;</code> 标签</p>
+<p><strong>3. 不要在对话中途更换模型</strong>
+- 提示缓存是模型特定的
+- 在 Opus 对话 100k tokens 后切换到 Haiku 实际上更昂贵（需要为 Haiku 重建缓存）
+- 如需切换模型，最佳方式是使用子智能体（Opus 准备"交接"消息给另一个模型）</p>
+<p><strong>4. 不要在对话中途添加或移除工具</strong>
+- 工具是缓存前缀的一部分
+- 添加或移除工具会使整个对话的缓存失效
+- <strong>规划模式案例</strong>：不切换工具集，而是使用 EnterPlanMode 和 ExitPlanMode 作为工具本身
+- <strong>工具搜索</strong>：使用 <code>defer_loading: true</code> 发送轻量级存根，模型需要时通过 ToolSearch 发现</p>
+<p><strong>5. 像监控正常运行时间一样监控缓存命中率</strong>
+- 缓存中断时发出警报，并将其视为故障事件
+- 缓存未命中率仅几个百分点的变化，就可能对成本和延迟产生显著影响</p>
+<p><strong>Fork 操作需要共享父进程的前缀</strong>：
+- 压缩操作需要使用与父对话完全相同的系统提示、用户上下文、系统上下文和工具定义
+- 从 API 的角度看，请求与父进程的上一次请求几乎完全相同
+- 唯一新增的标记就是压缩提示本身</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic 官方文档（压缩与缓存协同部分）</li>
 <li><a href="Context-Engineering.html">Context-Engineering</a> — 上下文工程中的缓存策略</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/AI代理的上下文工程：构建Manus的经验教训.md</span> — Manus 生产环境 KV 缓存最佳实践</li>
 </ul>
 <h2 id="_9">相关</h2>
 <ul>
 <li><a href="Context-Engineering.html">Context-Engineering</a> — uses（缓存是上下文工程的核心手段）</li>
 <li><a href="上下文压缩.html">上下文压缩</a> — related_to（压缩与缓存协同工作）</li>
 <li><a href="注意力预算.html">注意力预算</a> — related_to（缓存优化注意力资源分配效率）</li>
+<li><a href="KV 缓存命中率.html">KV 缓存命中率</a> — implements（提示词缓存的底层推理优化机制）</li>
+<li><a href="../entities/Manus.html">Manus</a> — related_to（Manus 是 KV 缓存优化的典型生产实践者）</li>
+<li><a href="令牌计数（Token Counting）.html">令牌计数（Token Counting）</a> — related_to（缓存命中率直接影响 token 成本）</li>
 </ul>
   </div>
   <div class="page-nav">

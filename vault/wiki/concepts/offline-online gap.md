@@ -33,7 +33,7 @@ supersedes: null
 
 3. **[[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 的发现**：[[Deep Neural Networks for YouTube Recommendations]] 坦诚地指出了离线指标与在线效果之间的差距。论文特别提到：用"预测未来的一次观看"替代传统的"随机 holdout"来构造训练标签，虽然在离线指标上差异不大，但在线上 A/B 测试中表现显著更好。
 
-4. **论文金句**："The choice of label and input context to the model is challenging to evaluate offline but has a large impact on live performance."——这句话道出了推荐系统研究中一个最令人沮丧又最重要的事实。
+4. **论文金句**："The choice of label and input context to the model is challenging to evaluate offline but has a la[[ripgrep|rg]]e impact on live performance."——这句话道出了推荐系统研究中一个最令人沮丧又最重要的事实。
 
 5. **应对策略**：
    - 尽可能使用线上 A/B 测试验证关键决策

@@ -19,15 +19,15 @@ supersedes: null
 # Navin Chandak
 
 ## 概述
-机器学习研究员，ICML 2016 论文《[[Recommendations as Treatments]]》合作者，研究方向包括强化学习与[[因果推断]]。
+机器学习研究员，ICML 2016 论文《[[Recommendations as Treatments]]》合作者，研究方向包括[[强化学习]]与[[因果推断]]。
 
 ## 关键内容
 
 1. **核心贡献**：作为合作作者参与 [[Recommendations as Treatments]]（ICML 2016），推动[[因果推断]]方法在推荐系统中的应用。
 
-2. **研究背景**：在 [[Cornell University]] 与 [[Tobias Schnabel]]、[[Thorsten Joachims]] 等人合作。后续研究方向包括强化学习、[[离线策略评估]]、[[因果推断]]。
+2. **研究背景**：在 [[Cornell University]] 与 [[Tobias Schnabel]]、[[Thorsten Joachims]] 等人合作。后续研究方向包括[[强化学习]]、[[离线策略评估]]、[[因果推断]]。
 
-3. **研究方向**：Chandak 在强化学习（Reinforcement Learning）和[[离线策略评估]]（[[离线策略评估|Off-Policy Evaluation]]）方向有深入研究，与[[因果推断]]在推荐系统中的应用方向高度相关。
+3. **研究方向**：Chandak 在[[强化学习]]（[[强化学习|Reinforcement Learning]]）和[[离线策略评估]]（[[离线策略评估|Off-Policy Evaluation]]）方向有深入研究，与[[因果推断]]在推荐系统中的应用方向高度相关。
 
 ## 来源
 - [Recommendations as Treatments (Schnabel et al., ICML 2016)](https://arxiv.org/abs/1602.05352)

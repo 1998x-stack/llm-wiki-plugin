@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [深度学习, 架构模式, 推荐系统, 大语言模型]
+tags: [深度学习, 架构模式, 推荐系统, 大语言模型, LLM能力]
 aliases: [MoE, 混合专家模型, Mixture of Experts]
 relates_to: [MMoE, 多任务学习, 大语言模型]
 supersedes: null

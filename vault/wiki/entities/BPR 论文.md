@@ -36,7 +36,7 @@ Rendle 等人 2009 年发表于 UAI 的里程碑论文，提出[[BPR|贝叶斯�
 
 4. **实验验证**：在 Rossmann（在线购物，~10K 用户，~4K 物品，426K 交互）和 [[Netflix]]（DVD 租赁，~10K 用户，~5K 物品，565K 交互）两个真实数据集上验证，[[BPR]]-[[矩阵分解|MF]] 显著优于 [[奇异值分解|SVD]]-[[矩阵分解|MF]] 和 WR-[[矩阵分解|MF]]。
 
-5. **金句**："The prediction quality does not only depend on the model but also largely on the optimization criterion."（预测质量不仅取决于模型本身，也在很大程度上取决于优化准则。）
+5. **金句**："The prediction quality does not only depend on the model but also la[[ripgrep|rg]]ely on the optimization criterion."（预测质量不仅取决于模型本身，也在很大程度上取决于优化准则。）
 
 6. **影响力**：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了[[隐式反馈]]推荐的标准范式，[[BPR]] Loss 成为事实标准。
 

@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>显著降低方差</strong>：通过归一化避免极端权重（如 $1/0.001 = 1000$）的影响</li>
 <li><strong>牺牲极小偏差</strong>：SN<a href="逆倾向评分.html">IPS</a> 不再是严格无偏的，但引入的偏差通常可忽略</li>
-<li><strong>保持最优解不变</strong>：用于学习时，SN<a href="逆倾向评分.html">IPS</a> 不改变 argmax，最优模型参数不受归一化影响</li>
+<li><strong>保持最优解不变</strong>：用于学习时，SN<a href="逆倾向评分.html">IPS</a> 不改变 a<a href="../entities/ripgrep.html">rg</a>max，最优模型参数不受归一化影响</li>
 <li>
 <p><strong>无需额外调参</strong>：不像倾向性裁剪（propensity clipping）需人工设定截断阈值</p>
 </li>

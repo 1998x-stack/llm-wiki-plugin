@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KV 缓存命中率 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / KV 缓存命中率</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">工具</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="kv">KV 缓存命中率</h1>
+<h2 id="_1">概述</h2>
+<p>KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理请求中多少输入 token 可以利用已缓存的 Key-Value 对，直接影响延迟（T<a href="../entities/TensorFlow.html">TF</a>T）和成本——缓存命中与未命中的成本差异可达 10 倍。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="agent">为什么对 Agent 特别重要</h3>
+<p>典型 Agent 的运行模式导致<strong>输入/输出 token 比例高度倾斜</strong>：
+- Agent 通过工具使用链完成任务，每步的动作和观察结果追加到上下文
+- 输出通常是结构化的函数调用，保持相对简短
+- 以 <a href="../entities/Manus.html">Manus</a> 为例：平均输入与输出 token 比例约 <strong>100:1</strong>
+- 这使得 Agent 相比聊天机器人更依赖预填充阶段的优化</p>
+<h3 id="_3">成本影响</h3>
+<p>以 Claude Sonnet 为例：
+- 缓存输入 token：<strong>$0.30/百万 token</strong>
+- 未缓存输入 token：<strong>$3.00/百万 token</strong>
+- <strong>相差 10 倍</strong></p>
+<h3 id="kv_1">提高 KV 缓存命中率的三大实践</h3>
+<h4 id="1">1. 保持提示前缀稳定</h4>
+<p>由于 LLM 的<strong><a href="AR 模型（自回归模型）.html">自回归</a></strong>特性，即使是单个 token 的差异也会使该标记之后的缓存失效。</p>
+<p><strong>常见错误</strong>：在系统提示开头包含时间戳（尤其是精确到秒的）——虽然让模型知道当前时间，但会降低缓存命中率。</p>
+<h4 id="2">2. 使上下文只追加</h4>
+<ul>
+<li>避免修改之前的动作或观察</li>
+<li>确保序列化是确定性的</li>
+<li><strong>注意</strong>：许多编程语言和库在序列化 JSON 对象时不保证键顺序的稳定性，会悄无声息地破坏缓存</li>
+</ul>
+<h4 id="3">3. 明确标记缓存断点</h4>
+<ul>
+<li>某些模型提供商或推理框架不支持自动增量前缀缓存</li>
+<li>需要在上下文中手动插入缓存断点</li>
+<li>分配断点时要考虑潜在的缓存过期问题</li>
+<li>至少确保断点包含系统提示的结尾</li>
+</ul>
+<h3 id="_4">自托管模型的额外优化</h3>
+<p>如果使用 vLLM 等框架自托管模型：
+- 确保启用了<strong>前缀/提示缓存</strong>
+- 使用会话 ID 等技术在分布式工作节点之间一致地路由请求</p>
+<h3 id="_5">与工具动态变化的冲突</h3>
+<p>在 Agent 系统中，工具定义通常位于上下文前部（系统提示之前或之后）。<strong>任何工具定义的更改都会使后续所有动作和观察的 KV 缓存失效</strong>。</p>
+<p>这是 <a href="../entities/Manus.html">Manus</a> 选择"遮蔽而非移除"工具策略的重要原因之一——通过 logits 掩码约束动作选择，而非动态增删工具定义，从而保持缓存稳定。</p>
+<h3 id="_6">与提示词缓存的关系</h3>
+<p><a href="提示词缓存.html">提示词缓存</a>（Prompt Caching）是 Anthropic API 层面的缓存机制，通过 <code>cache_control</code> 断点实现。KV 缓存是更底层的推理引擎优化。两者协同工作：
+- KV 缓存优化相同前缀的复用
+- <a href="提示词缓存.html">提示词缓存</a>标记哪些部分应该被缓存
+- 在系统提示末尾添加 <code>cache_control</code> 断点，将系统提示与对话内容分开缓存</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/AI代理的上下文工程：构建Manus的经验教训.md</span> — Manus 上下文工程实践</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="提示词缓存.html">提示词缓存</a> — implements（KV 缓存是提示词缓存的底层机制）</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（KV 缓存优化是上下文工程的核心技术手段）</li>
+<li><a href="注意力预算.html">注意力预算</a> — related_to（缓存优化间接扩展了有效注意力预算）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="KL散度.html">&larr; KL散度</a>
+    <a href="Kato-Rellich定理.html">Kato-Rellich定理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

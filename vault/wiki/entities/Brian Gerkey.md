@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，研究]
+tags: [AI, 工具，研究, 机器人学]
 aliases: ["B. Gerkey"]
 relates_to:
   - target: "[[ROS (Robot Operating System)]]"

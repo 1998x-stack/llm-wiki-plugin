@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, AI工程]
 aliases: ["Agent工作流", "LLM工作流", "Agentic Systems Patterns", "五种工作流模式", "workflow patterns"]
 relates_to:
   - target: "[[Agent Harness模式]]"

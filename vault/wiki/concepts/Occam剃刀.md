@@ -6,11 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- 技术
-- 研究
-- 方法论
-- 数学
+tags: [技术, 研究, 方法论, 数学, 信息论]
 aliases:
 - Occam's Razor
 - 奥卡姆剃刀

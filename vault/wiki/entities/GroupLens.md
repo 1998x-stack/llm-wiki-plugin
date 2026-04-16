@@ -42,7 +42,7 @@ GroupLens 是历史上第一个自动化[[协同过滤]]系统，由 MIT 的 [[P
 
 ## 关键内容
 
-1. **论文信息**：[[Paul Resnick|Resnick]], P., Iacovou, N., Suchak, M., Bergstrom, P., & Riedl, J. (1994). "GroupLens: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。
+1. **论文信息**：[[Paul Resnick|Resnick]], P., Iacovou, N., Suchak, M., Be[[ripgrep|rg]]strom, P., & Riedl, J. (1994). "GroupLens: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。
 
 2. **时代背景**：1994 年 Usenet 新闻组每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。[[Tapestry 系统]] 虽首创"[[协同过滤]]"概念，但需手动指定信任对象，无法扩展。
 

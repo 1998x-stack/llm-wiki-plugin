@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [统计学, 因果推断, 缺失数据]
+tags: [统计学, 因果推断, 缺失数据, 推荐系统]
 aliases: [Missing Completely At Random, MCAR]
 relates_to:
   - {target: MNAR, type: compares_to}

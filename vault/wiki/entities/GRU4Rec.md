@@ -36,13 +36,13 @@ supersedes: null
 
 ## 关键内容
 
-1. **论文信息**：标题 "[[会话推荐|Session-based Recommendations]] with Recurrent Neural Networks"，作者 [[Balazs Hidasi]], Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&D（匈牙利）/ Telefonica Research（西班牙），发表于 [[ICLR 2016]]，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。
+1. **论文信息**：标题 "[[会话推荐|Session-based Recommendations]] with Recurrent Neural Networks"，作者 [[Balazs Hidasi]], Al[[eza|exa]]ndros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&D（匈牙利）/ Telefonica Research（西班牙），发表于 [[ICLR 2016]]，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。
 
 2. **核心问题**：给定匿名用户在当前会话中的点击序列 $[x_1, x_2, ..., x_t]$，预测下一次最可能点击的物品 $x_{t+1}$。不使用任何跨会话的用户信息，不依赖显式用户画像，本质上是一个序列到一的预测问题。
 
 3. **架构设计**：输入层（1-of-N 编码）→ [[生成式推荐|GR]]U 层（单层，100 隐藏单元）→ 输出层（全连接 + 排序损失）。实验发现 [[生成式推荐|GR]]U > LSTM > 标准 RNN，单层即可取得最佳效果。
 
-4. **[[Session-Parallel Mini-Batch]] 训练策略**：将多个会话并排放置，每步取各会话的当前事件作为输入、下一事件作为目标；会话结束时替换为新会话并重置对应隐藏状态。充分利用 GPU 并行能力，mini-batch 内其他会话的目标物品天然作为负样本。
+4. **[[Session-Parallel Mini-Batch]] 训练策略**：将多个会话并排放置，每步取各会话的当前事件作为输入、下一事件作为目标；会话结束时替换为新会话并重置对应隐藏状态。充分利用 GPU 并行能力，mini-[[bat]]ch 内其他会话的目标物品天然作为负样本。
 
 5. **排序损失函数**：提出 [[BPR Loss]] 和 [[TOP1 Loss]] 两种 pairwise 排序损失，显著优于[[交叉熵]]（[[交叉熵]]在100次随机实验中仅10次收敛）。[[TOP1 Loss|TOP1]] 内置正则化项使其在更大隐藏层尺寸下表现更稳定。
 

@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">离线策略评估</h1>
 <h2 id="_2">概述</h2>
-<p>离线策略评估（OPE）利用历史日志数据评估新策略的性能，而无需在线部署，是强化学习和推荐系统中的关键评估范式。</p>
+<p>离线策略评估（OPE）利用历史日志数据评估新策略的性能，而无需在线部署，是<a href="强化学习.html">强化学习</a>和推荐系统中的关键评估范式。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心问题</strong>：给定一个由旧策略（logging policy）产生的历史数据集，如何无偏地估计新策略（target policy）的性能？这在在线实验成本高或风险大的场景中尤为重要。</p>
+<p><strong>核心问题</strong>：给定一个由旧策略（logging policy）产生的历史数据集，如何无偏地估计新策略（ta<a href="../entities/ripgrep.html">rg</a>et policy）的性能？这在在线实验成本高或风险大的场景中尤为重要。</p>
 </li>
 <li>
 <p><strong>主要方法</strong>：</p>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>挑战</strong>：</p>
 </li>
-<li>覆盖度（coverage）：新策略可能推荐旧策略从未推荐的物品，导致重要性权重无限大</li>
+<li>覆盖度（coverage）：新策略可能推荐旧策略从未推荐的物品，导致<a href="重要性采样.html">重要性权重</a>无限大</li>
 <li>方差：<a href="逆倾向评分.html">IPS</a> 类方法在策略差异大时方差极高</li>
 <li>
 <p>倾向性估计：旧策略的<a href="倾向性评分.html">倾向性评分</a>通常未知，需要从数据中估计</p>

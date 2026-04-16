@@ -29,7 +29,7 @@ supersedes: null
 # Jacques Denavit
 
 ## 概述
-Jacques Denavit 是一位在机构学和机器人学领域具有开创性贡献的学者。他最著名的成就是与 [[Richard S. Hartenberg]] 合作，于 1955 年发表了里程碑式的论文《[[A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices]]》。在这项工作中，他们共同提出了后来被称为"Denavit-Hartenberg (DH) 参数”的运动学描述方法。这一方法彻底改变了多连杆机构和机器人机械臂的建模方式，将复杂的几何关系转化为系统的[[矩阵]]运算，成为现代机器人学事实上的标准语言。
+Jacques Denavit 是一位在机构学和机器人学领域具有开创性贡献的学者。他最著名的成就是与 [[Richard S. Hartenberg]] 合作，于 1955 年发表了里程碑式的论文《[[A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices]]》。在这项工作中，他们共同提出了后来被称为"Denavit-Hartenbe[[ripgrep|rg]] (DH) 参数”的运动学描述方法。这一方法彻底改变了多连杆机构和机器人机械臂的建模方式，将复杂的几何关系转化为系统的[[矩阵]]运算，成为现代机器人学事实上的标准语言。
 
 ## 关键内容
 
@@ -37,7 +37,7 @@ Jacques Denavit 是一位在机构学和机器人学领域具有开创性贡献�
 1955 年，Jacques Denavit 任职于美国**Northwestern University**（西北大学）。当时，机构学领域缺乏统一的运动学描述符号，不同的研究者使用各异的坐标约定，导致成果难以比较和复用。Denavit 敏锐地捕捉到了[[矩阵]]代数在工程计算中的潜力，并与同事 [[Richard S. Hartenberg]] 展开了深入合作。
 
 ### 2. 核心贡献：DH 参数的提出
-Denavit 与 Hartenberg 的核心洞见在于证明了**四个参数足以完整描述任意两个相邻连杆间的空间关系**。他们不仅定义了这四个参数（$\theta, d, a, \alpha$），还制定了一套严格的坐标系建立规则（$z$ 轴沿关节轴，$x$ 轴沿公垂线）。
+Denavit 与 Hartenbe[[ripgrep|rg]] 的核心洞见在于证明了**四个参数足以完整描述任意两个相邻连杆间的空间关系**。他们不仅定义了这四个参数（$\theta, d, a, \alpha$），还制定了一套严格的坐标系建立规则（$z$ 轴沿关节轴，$x$ 轴沿公垂线）。
 这项工作解决了当时空间机构分析的几个关键痛点：
 *   **最小化参数**：确定了描述相邻连杆关系的最少变量数。
 *   **系统化表示**：消除了人为定义坐标系时的随意性和歧义。

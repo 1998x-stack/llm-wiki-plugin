@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>预测层</strong>：序列最后位置输出与候选物品嵌入做点积，嵌入<a href="../concepts/矩阵.html">矩阵</a>与输入层共享</p>
 </li>
 <li>
-<p><strong><a href="../concepts/因果掩码.html">因果掩码</a>（<a href="../concepts/因果掩码.html">Causal Masking</a>）</strong>：SASRec 与标准 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 的关键区别。施加下三角掩码<a href="../concepts/矩阵.html">矩阵</a>，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 <a href="../concepts/Transformer架构.html">Transformer</a> Decoder（自回归模式），而非 Encoder 的双向模式。</p>
+<p><strong><a href="../concepts/因果掩码.html">因果掩码</a>（<a href="../concepts/因果掩码.html">Causal Masking</a>）</strong>：SASRec 与标准 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 的关键区别。施加下三角掩码<a href="../concepts/矩阵.html">矩阵</a>，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 <a href="../concepts/Transformer架构.html">Transformer</a> Decoder（<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>模式），而非 Encoder 的双向模式。</p>
 </li>
 <li>
 <p><strong>自适应依赖距离</strong>：最优雅的特性——在稀疏数据集（如 <a href="Amazon.html">Amazon</a> Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶<a href="../concepts/马尔可夫链.html">马尔可夫链</a>）；在密集数据集（如 <a href="MovieLens.html">MovieLens</a>-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。</p>

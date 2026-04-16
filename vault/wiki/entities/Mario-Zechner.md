@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 技术
-  - 工具
-  - 研究
+tags: [技术, 工具, 研究, 工具与框架]
 aliases:
   - Mario Zechner
   - badlogicgames

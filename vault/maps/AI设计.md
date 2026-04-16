@@ -1,7 +1,7 @@
 ---
 type: map
 topic: "AI设计"
-page_count: 8
+page_count: 7
 updated: 2026-04-16
 ---
 
@@ -17,10 +17,6 @@ AI设计 相关概念与实体的集群。核心主题：AI设计推理层、Mas
 - [[Master-Overrides设计系统持久化]] — Master + Overrides 是一种解决 AI 无状态（Stateless）导致"设计失忆症"的文件架构模式：将设计决策写入项目文件系统，AI 通过读文 (confidence: 0.9)
 - [[工程化UX规则体系]] — 工程化 UX 规则体系是将隐性设计经验编码为**带优先级标签、唯一 ID、可机器检索和自动验证的结构化规则**的方法：使 AI 能直接执行 UX 规则检查而不只 (confidence: 0.9)
 - [[技术栈感知设计规则]] — 技术栈感知设计规则是一种将**同一设计决策**按不同技术栈细化为具体实现模式的知识编码方式：相同的「圆角卡片 hover 效果」在 React、SwiftUI、 (confidence: 0.87)
-- [[渐进式披露-Progressive-Disclosure]] — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过 (confidence: 0.9)
+- [[结构化UI风格知识库]] — 结构化 UI 风格知识库是将每种 UI 视觉风格编码为**可机器检索和直接输出的结构化记录**的设计模式：除风格描述外，每条记录携带 AI Prompt 关键词 (confidence: 0.88)
 - [[行业色彩情绪映射]] — 行业色彩情绪映射是一种将产品类型与色彩方案通过**情绪关键词**对应起来的设计知识编码方式：颜色选择的依据不是「好看」，而是**行业惯例形成的用户信任联觉 +  (confidence: 0.88)
 - [[行业设计反模式系统]] — 行业设计反模式系统是一种**以负样本为核心**的设计知识编码方式：为每种产品类型预定义「绝对不能做什么」，使 AI 生成 UI 时能自动规避行业隐性禁忌。核心洞 (confidence: 0.9)
-
-## 实体
-
-- [[UI-UX-Pro-Max]] — UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 Claude Code、Cursor、Wind (confidence: 0.9)

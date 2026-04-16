@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，方法论，研究]
+tags: [AI, 工具，方法论，研究, 机器人学]
 aliases: ["Robot Operating System", "元操作系统", "中间件"]
 relates_to:
   - target: "[[Willow Garage]]"
@@ -53,7 +53,7 @@ ROS 的核心抽象是**计算图**（Computation Graph），这是一个由节�
 
 ### 关键设计特性
 1.  **分布式与点对点通信**：ROS Master 仅作为命名服务负责节点注册和查找，实际数据传输在节点间直接进行（TCP/UDP），避免了中心服务器成为带宽瓶颈，支持跨机器部署。
-2.  **语言无关性**：通过语言无关的消息序列化和多语言客户端库（roscpp, rospy 等），C++ 编写的高性能模块可与 Python 编写的快速原型模块无缝协作。
+2.  **语言无关性**：通过语言无关的消息序列化和多语言客户端库（roscpp, rospy 等），[[C++]] 编写的高性能模块可与 Python 编写的快速原型模块无缝协作。
 3.  **工具链生态**：ROS 包含一套完整的开发工具，如 **rviz**（3D 可视化）、**rosbag**（数据录制与回放，支持离线算法调试）、**roslaunch**（多节点启动管理）以及 **[[TensorFlow|TF]]**（坐标变换库，统一管理多传感器坐标系）。
 4.  **包管理系统**：借鉴 Linux 发行版理念，采用包（Package）和堆栈（Stack）组织代码，配合 rosdep 和 catkin 构建系统，实现了依赖自动解析和代码共享。
 

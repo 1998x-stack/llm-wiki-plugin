@@ -94,7 +94,7 @@ $$\lambda(\kappa) = \lambda_0 + \kappa\lambda_1 + \kappa^2\lambda_2 + \cdots$$
 
 ### 本质谱的稳定性（Weyl-von Neumann-Kato）
 
-**[[赫尔曼·外尔|Weyl]]-von Neumann 定理的[[加藤敏夫|加藤]]版**：本质谱 $\sigma_{\text{ess}}(T)$ 在**相对紧扰动**（relatively compact perturbation）下保持不变：
+**[[赫尔曼·外尔|Weyl]]-von Neumann 定理的[[加藤敏夫|加藤]]版**：本质谱 $\sigma_{\text{ess}}(T)$ 在**相对紧扰动**（relatively compact pertur[[bat]]ion）下保持不变：
 
 $$\sigma_{\text{ess}}(T + K) = \sigma_{\text{ess}}(T)$$
 

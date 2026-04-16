@@ -298,7 +298,35 @@ $$</p>
 2. <strong><a href="结构化笔记法.html">结构化笔记法</a></strong>（<a href="结构化笔记法.html">Agentic Memory</a>）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
 3. <strong>多 Agent 架构</strong>：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究</p>
 <p><strong><a href="即时上下文检索.html">即时上下文检索</a>（<a href="即时上下文检索.html">Just-in-Time Context</a>）</strong>：Agent 不预加载所有数据，而是持有轻量标识符（文件路径、URL、查询），运行时工具按需动态加载。Claude Code 的 glob/grep/Bash 模式是典型实现。</p>
-<h2 id="_7">来源</h2>
+<p><strong>系统 Prompt 的"高度"（Altitude）校准</strong>：Anthropic 提出系统 prompt 应处于 Goldilocks zone——在两个常见失败模式之间找到平衡：
+- <strong>过低（过度具体）</strong>：硬编码复杂的 if-else 逻辑，试图精确控制 agent 行为 → 导致脆弱性和维护成本递增
+- <strong>过高（过度抽象）</strong>：提供模糊的高层指导，无法给 LLM 具体信号或错误假设共享上下文 → 导致行为不可预测
+- <strong>最佳高度</strong>：足够具体以有效引导行为，又足够灵活以给模型提供强启发式指导</p>
+<p>推荐用 XML 标签或 Markdown header 将 prompt 分成独立段落（<code>&lt;background_information&gt;</code>、<code>&lt;instructions&gt;</code>、<code>## Tool guidance</code> 等），但随模型能力提升，精确格式的重要性在下降。</p>
+<p><strong>工具设计的上下文工程含义</strong>：
+- 工具集应是最小可行集（minimal viable set），功能重叠会导致 agent 在工具选择上产生歧义
+- 如果人类工程师都无法确定某场景该用哪个工具，就不能指望 agent 做得更好
+- 工具返回的信息必须 token-efficient，避免把 agent 的有限注意力预算浪费在冗余数据上
+- Few-shot examples 应精选 diverse、canonical 的样例，而非往 prompt 里塞一长串 edge case</p>
+<p><strong>混合检索策略（Hybrid Strategy）</strong>：
+- 部分数据预加载（速度优先）+ 部分运行时自主探索（灵活性优先）
+- Claude Code 是典型混合实现：<code>CLAUDE.md</code> 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
+- 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
+- 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少</p>
+<h3 id="_7">来源作者</h3>
+<p>本文由 Anthropic Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
+<h3 id="manus-2025">Manus 的上下文工程六原则（2025）</h3>
+<p><a href="../entities/Manus.html">Manus</a> 团队通过四次框架重建总结出六条核心原则，是上下文工程在生产环境的重要实践补充：</p>
+<ol>
+<li><strong>围绕 <a href="KV 缓存命中率.html">KV 缓存命中率</a> 进行设计</strong>：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍</li>
+<li><strong>遮蔽，而非移除</strong>：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效</li>
+<li><strong>使用文件系统作为上下文</strong>：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的</li>
+<li><strong>通过复述操控注意力</strong>：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"</li>
+<li><strong>保留错误的内容</strong>：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率</li>
+<li><strong>不要被少样本示例所困</strong>：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏</li>
+</ol>
+<p><strong>核心哲学</strong>：上下文工程仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。</p>
+<h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md</span></li>
@@ -307,7 +335,7 @@ $$</p>
 <li><a href="https://arxiv.org/abs/2310.08560">Towards LLMs as Operating Systems</a> — MemGPT</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic Compaction API 文档</li>
 </ul>
-<h2 id="_8">相关</h2>
+<h2 id="_9">相关</h2>
 <ul>
 <li><a href="分层记忆架构.html">分层记忆架构</a></li>
 <li><a href="LLM-Statelessness.html">LLM-Statelessness</a></li>
@@ -326,8 +354,8 @@ $$</p>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Codex配置系统.html">&larr; Codex配置系统</a>
-    <a href="DIEN.html">DIEN &rarr;</a>
+    <a href="Context Management.html">&larr; Context Management</a>
+    <a href="CryEngine实体脚本系统.html">CryEngine实体脚本系统 &rarr;</a>
   </div>
 </div>
 </body>

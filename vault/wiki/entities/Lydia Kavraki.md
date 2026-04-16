@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - AI
-  - 研究
-  - 工具
+tags: [AI, 研究, 工具, 机器人学]
 aliases:
   - Lydia E. Kavraki
 relates_to:
@@ -32,7 +29,7 @@ supersedes: null
 # Lydia Kavraki
 
 ## 概述
-Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 [[Jean-Claude Latombe]] 等人共同提出了**概率路线图（[[概率路线图 (PRM)|PRM]]）**算法，该工作开创了采样规划（Sampling-based Planning）这一主导现代[[运动规划]]的方法论范式。Kavraki 的研究跨越了机器人[[运动规划]]、计算几何和计算生物学，她将 [[概率路线图 (PRM)|PRM]] 的思想成功应用于蛋白质折叠和药物设计等高维构型空间问题。因其开创性工作，她当选为 ACM Fellow 和 IEEE Fellow，并获得 IEEE RAS 先驱奖等多项荣誉。
+Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 [[Jean-Claude Latombe]] 等人共同提出了**概率路线图（[[概率路线图 (PRM)|PRM]]）**算法，该工作开创了采样规划（Sampling-based Planning）这一主导现代[[运动规划]]的方法论范式。Kavraki 的研究跨越了机器人[[运动规划]]、计算几何和计算生物学，她将 [[概率路线图 (PRM)|PRM]] 的思想成功应用于蛋白质折叠和药物设计等高维构型空间问题。因其开创性工作，她当选为 ACM Fellow 和 IEEE Fellow，并获得 IEEE [[rust-analyzer|RA]]S 先驱奖等多项荣誉。
 
 ## 关键内容
 
@@ -48,7 +45,7 @@ Kavraki 并未将 [[概率路线图 (PRM)|PRM]] 局限于传统机器人领域�
 ### 荣誉与遗产
 鉴于其在算法创新和跨学科应用上的卓越贡献，Kavraki 获得了学术界的高度认可：
 *   **ACM Fellow (2010)** 与 **IEEE Fellow (2010)**：表彰其在计算几何和机器人学领域的杰出贡献。
-*   **IEEE RAS 先驱奖**：肯定其作为采样规划领域开创者的地位。
+*   **IEEE [[rust-analyzer|RA]]S 先驱奖**：肯定其作为采样规划领域开创者的地位。
 *   **OMPL 与 MoveIt!**：她创立并领导的 Rice University Kavraki Lab 维护着 Open [[运动规划|Motion Planning]] Library (OMPL)，该库被集成在 ROS 的 MoveIt! 框架中，成为全球机器人开发者最常用的[[运动规划]]工具包。
 
 ## 来源

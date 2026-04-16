@@ -7,10 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- 技术
-- AI
-- 工具
+tags: [技术, AI, 工具, 文档处理]
 aliases:
 - PaddleOCR
 - 百度PaddleOCR

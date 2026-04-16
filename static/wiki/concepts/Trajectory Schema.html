@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trajectory Schema — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Trajectory Schema</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="trajectory-schema">Trajectory Schema</h1>
+<h2 id="_1">概述</h2>
+<p>Trajectory Schema 是 <a href="../entities/SWE-agent.html">SWE-agent</a> 定义的 Agent 运行轨迹数据结构（<code>.traj</code> 文件），记录每轮 thought/action/observation 的完整交互序列，用于事后分析、调试和复现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">顶层字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>构造方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>environment</code></td>
+<td>运行环境标识（如 "swe_main"）</td>
+<td>初始化时从运行配置写入，run-level metadata</td>
+</tr>
+<tr>
+<td><code>trajectory</code></td>
+<td>核心数组，存储每步交互记录</td>
+<td>每完成一轮交互 append 一条记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>建议补充的顶层工程化字段</strong>：<code>instance_id</code>、<code>schema_version</code>、<code>run_id</code>、<code>agent_version</code>、<code>model_name</code>、<code>config_ref</code>、<code>info</code>。</p>
+<h3 id="step-trajectory">Step 级字段（trajectory[] 中每条记录）</h3>
+<h4 id="_4">核心字段（官方支持）</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>构造方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>response</code></td>
+<td>模型原始输出（LM output）</td>
+<td>模型返回后原样保存，包含自然语言推理和动作文本</td>
+</tr>
+<tr>
+<td><code>thought</code></td>
+<td>从 response 解析出的"思考部分"</td>
+<td>用 action parser 按约定模板从 response 中抽取（如 ReAct 中 <code>Thought:</code> 后的文本）</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>从 response 解析出的"动作部分"，实际执行的命令</td>
+<td>由 parser 从 response 中抽取，标准化后传给环境执行器</td>
+</tr>
+<tr>
+<td><code>observation</code></td>
+<td>动作执行后的环境反馈</td>
+<td>执行 action 后，把 stdout/stderr/工具返回值合成为字符串</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>动作执行后从环境抽取的状态</td>
+<td>每轮完成后从环境对象读取关键状态（如 <code>open_file</code>、<code>working_dir</code>），序列化为 JSON</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>当前 step 精确送给模型的输入消息列表</td>
+<td>发模型请求前，把完整 messages 数组保存下来</td>
+</tr>
+</tbody>
+</table>
+<h4 id="message-vs-query">版本差异：message vs query</h4>
+<ul>
+<li><strong>1.1.0 之前</strong>：使用 <code>message</code> 字段，近似表示下一步输入</li>
+<li><strong>1.1.0 起</strong>：改为 <code>query</code> 字段，表示当前 step 的精确输入</li>
+<li><strong>建议</strong>：新写入只用 <code>query</code>，读取时同时兼容 <code>query</code> 和 <code>message</code></li>
+</ul>
+<h4 id="6">构造流水线（6 步）</h4>
+<ol>
+<li><strong>构造 query</strong>：收集本轮发给模型的完整 messages</li>
+<li><strong>拿到 response</strong>：保存模型输出原文</li>
+<li><strong>解析 thought 和 action</strong>：按 action parser 规则拆分，失败时保留 response 并记录 parse_error</li>
+<li><strong>执行动作，写入 observation</strong>：交给环境执行器，反馈应 agent-friendly</li>
+<li><strong>抽取环境状态，写入 state</strong>：从环境对象拿关键状态</li>
+<li><strong>append 到 trajectory</strong>：落盘形成可复盘的轨迹</li>
+</ol>
+<h3 id="_5">分析友好增强字段</h3>
+<p><strong>Step 级建议补充</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>step_id</code></td>
+<td>步骤编号，便于定位</td>
+</tr>
+<tr>
+<td><code>timestamp_start</code> / <code>timestamp_end</code></td>
+<td>时间分析</td>
+</tr>
+<tr>
+<td><code>parse_error</code></td>
+<td>解析失败诊断</td>
+</tr>
+<tr>
+<td><code>exit_code</code></td>
+<td>命令执行状态</td>
+</tr>
+<tr>
+<td><code>tool_name</code> / <code>tool_args</code></td>
+<td>工具调用追踪</td>
+</tr>
+<tr>
+<td><code>observation_type</code></td>
+<td>反馈分类（shell_output / format_error / lint_error 等）</td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td>成本统计</td>
+</tr>
+<tr>
+<td><code>tokens_prompt</code> / <code>tokens_completion</code></td>
+<td>Token 用量分析</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema">实用 Schema 模板</h3>
+<pre><code class="language-json">{
+  &quot;environment&quot;: &quot;swe_main&quot;,
+  &quot;trajectory&quot;: [
+    {
+      &quot;response&quot;: &quot;Let's inspect the repository structure first...\nls -F&quot;,
+      &quot;thought&quot;: &quot;Let's inspect the repository structure first...&quot;,
+      &quot;action&quot;: &quot;ls -F\n&quot;,
+      &quot;observation&quot;: &quot;AUTHORS.rst\nCHANGELOG.rst\nsrc/\ntests/\n&quot;,
+      &quot;state&quot;: &quot;{\&quot;open_file\&quot;: \&quot;n/a\&quot;, \&quot;working_dir\&quot;: \&quot;/repo\&quot;}&quot;,
+      &quot;query&quot;: [
+        {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful assistant ...&quot;},
+        {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Fix issue ...&quot;}
+      ]
+    }
+  ]
+}
+</code></pre>
+<h3 id="_6">设计建议</h3>
+<ol>
+<li><strong>response 不要只存解析后的 thought/action</strong>：response 对调 parser 错误、复盘格式错误、行为分析都非常重要。</li>
+<li><strong>action 分两份存</strong>：<code>action_raw</code>（模型原始给出的动作）和 <code>action</code>（经 parser/normalizer 后真正执行的动作）。</li>
+<li><strong>observation 可拆细</strong>：<code>observation_text</code>、<code>exit_code</code>、<code>observation_type</code>，更利于分析。</li>
+<li><strong>state 推荐存对象而非 JSON 字符串</strong>：解析更简单。</li>
+<li><strong>query 是调试关键</strong>：能回答"模型为什么会在这一步做出这个 response？"，没有它只能看结果无法复原输入条件。</li>
+</ol>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/08-trajectory常见字段 schema包含哪些，分别什么意思，分别如何构造.md</span> — SWE-agent trajectory schema 详解</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/SWE-agent.html">SWE-agent</a> — implements（定义此 schema 的 Agent 系统）</li>
+<li><a href="Agent 轨迹分析.html">Agent 轨迹分析</a> — uses（基于此 schema 进行轨迹分析）</li>
+<li><a href="ReAct 风格循环.html">ReAct 风格循环</a> — depends_on（schema 结构反映 ReAct 循环的 thought/action/observation 模式）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="TodoWrite-Tool.html">&larr; TodoWrite-Tool</a>
+    <a href="Transformer架构.html">Transformer架构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

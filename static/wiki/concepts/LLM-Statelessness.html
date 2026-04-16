@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">概率论</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">概率论</span><span class="tag">研究</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="llm-statelessness">LLM Statelessness</h1>
 <h2 id="_1">概述</h2>
-<p>LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备跨会话记忆能力的固有特性。每一次 API 调用或新会话的开启，模型都从“零状态”开始，无法自动保留前一次交互中的上下文、推理过程或用户偏好。这一特性在短期问答场景中影响甚微，但在长周期的软件开发、复杂问题解决等场景中，导致了严重的“失忆困境”，迫使人类用户承担高昂的重复解释成本。</p>
+<p>LLM Statelessness（大型语言模型无状态性）是指主流大语言模型在设计上不具备<a href="Claude Code 记忆系统.html">跨会话记忆</a>能力的固有特性。每一次 API 调用或新会话的开启，模型都从“零状态”开始，无法自动保留前一次交互中的上下文、推理过程或用户偏好。这一特性在短期问答场景中影响甚微，但在长周期的软件开发、复杂问题解决等场景中，导致了严重的“失忆困境”，迫使人类用户承担高昂的重复解释成本。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">失忆困境的本质</h3>
 <p>大型语言模型本质上是基于概率预测的统计模型，其“记忆”完全依赖于输入<a href="上下文窗口.html">上下文窗口</a>（<a href="上下文窗口.html">Context Window</a>）内的 Token 序列。一旦会话结束，该窗口即被销毁。

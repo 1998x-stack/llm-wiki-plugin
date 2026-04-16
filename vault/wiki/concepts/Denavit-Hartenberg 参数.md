@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [数学，工具，方法论]
+tags: [数学，工具，方法论, 机器人学]
 aliases: ["DH Parameters", "D-H Convention", "DH 约定"]
 relates_to:
   - target: "[[Jacques Denavit]]"
@@ -28,7 +28,7 @@ supersedes: null
 # Denavit-Hartenberg 参数
 
 ## 概述
-Denavit-Hartenberg（DH）参数是一种用于描述串联机器人连杆和关节几何关系的标准化方法，由 [[Jacques Denavit]] 和 [[Richard S. Hartenberg]] 于 1955 年提出。该方法通过四个参数（连杆长度 $a$、连杆扭转角 $\alpha$、连杆偏距 $d$ 和关节角 $\theta$）唯一确定相邻两个连杆坐标系之间的相对位姿。虽然最初是为传统机构学设计的，但在 [[Richard P. Paul]] 1981 年的专著中被系统化地应用于机器人建模，从此成为全球工业机器人技术文档和机器人学教育的通用标准，被誉为机器人运动学的“字母表”。
+Denavit-Hartenbe[[ripgrep|rg]]（DH）参数是一种用于描述串联机器人连杆和关节几何关系的标准化方法，由 [[Jacques Denavit]] 和 [[Richard S. Hartenberg]] 于 1955 年提出。该方法通过四个参数（连杆长度 $a$、连杆扭转角 $\alpha$、连杆偏距 $d$ 和关节角 $\theta$）唯一确定相邻两个连杆坐标系之间的相对位姿。虽然最初是为传统机构学设计的，但在 [[Richard P. Paul]] 1981 年的专著中被系统化地应用于机器人建模，从此成为全球工业机器人技术文档和机器人学教育的通用标准，被誉为机器人运动学的“字母表”。
 
 ## 关键内容
 ### 四个核心参数

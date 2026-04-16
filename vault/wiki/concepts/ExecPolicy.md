@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 工具]
+tags: [技术, 工具, Agent系统]
 aliases: [Codex ExecPolicy, 策略即代码, Policy as Code]
 relates_to:
   - target: "[[Codex CLI]]"
@@ -46,7 +46,7 @@ supersedes: null
 | `prompt` | 暂停，在 [[Codex TUI]] 显示 Approval Gate，等人类决策 |
 | `forbidden` | 直接拒绝，并将 `justification`（含替代方案）返回给 LLM |
 
-**`forbidden` 的工程价值**：LLM 收到 justification 后可自动纠错（如用 `--force-with-lease` 替代 `--force`），形成**自动纠错循环**。
+**`forbidden` 的工程价值**：LLM 收到 [[just]]ification 后可自动纠错（如用 `--force-with-lease` 替代 `--force`），形成**自动纠错循环**。
 
 ## 规则评估机制
 

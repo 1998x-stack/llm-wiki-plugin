@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-16
 source_count: 1
-tags: [AI, Agent, 架构, 设计模式, LLM]
+tags: [AI, Agent, 架构, 设计模式, LLM, Agent系统]
 aliases:
   - Agent Loop
   - Agent心跳

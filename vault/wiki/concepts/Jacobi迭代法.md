@@ -94,7 +94,7 @@ $\omega=1$ 退化为原始方法；适当选取 $\omega$ 可加速收敛，这�
 | 方向 | 代表成果 |
 |------|---------|
 | SOR 方法 | David M. Young（1950），对特定结构[[矩阵]]存在最优 $\omega_{\text{opt}}$，大幅加速 |
-| [[矩阵]]分裂理论 | Richard Varga《[[矩阵|Matrix]] Iterative Analysis》（1962），系统化 $A=M-N$ 框架 |
+| [[矩阵]]分裂理论 | Richard Va[[ripgrep|rg]]a《[[矩阵|Matrix]] Iterative Analysis》（1962），系统化 $A=M-N$ 框架 |
 | 块 Jacobi / 区域分解 | 标量分量推广为向量块，现代并行有限元核心 |
 | Krylov 预条件 | Jacobi 预条件（$M=D$）是最简且效果常出人意料的预条件器 |
 | 多重网格光滑子 | Jacobi 迭代消除高频误差，与粗网格校正配合实现 $O(n)$ 最优复杂度 |

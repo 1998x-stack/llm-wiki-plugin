@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 工具]
+tags: [技术, 工具, Agent系统]
 aliases: [Codex Multi-Agent, Codex多智能体, Codex Subagent]
 relates_to:
   - target: "[[Codex CLI]]"

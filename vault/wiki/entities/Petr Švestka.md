@@ -7,8 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 研究
+tags: [研究, 机器人学]
 aliases:
   - Petr Svestka
 relates_to:

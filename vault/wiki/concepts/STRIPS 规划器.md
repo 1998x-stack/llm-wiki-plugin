@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 方法论，研究]
+tags: [AI, 方法论，研究, 机器人学]
 aliases: ["STanford Research Institute Problem Solver", "STRIPS"]
 relates_to:
   - target: "[[Shakey 机器人]]"

@@ -489,7 +489,7 @@ Lint Results:
 
 ### 4.12 `wiki:maintain` — 一键维护
 
-**功能：** 一键执行完整维护流水线：relink → reindex → check → lint → build。等价于依次运行五个命令，但在关键步骤失败时提前终止。
+**功能：** 一键执行完整维护流水线：relink → check → lint → build。等价于依次运行四个命令，但在关键步骤失败时提前终止。
 
 **用法：**
 
@@ -500,10 +500,9 @@ Lint Results:
 **处理流程：**
 
 1. **Relink** — 自动链接 wiki 中未链接的术语提及（最长匹配优先）
-2. **Reindex** — 验证 index.md 完整性，生成主题分类 maps（含概述），精简 index.md
-3. **Check** — 只读诊断，生成问题报告
-4. **Lint** — 基于诊断结果自动修复可修复的问题
-5. **Build** — 构建 graph.json + statistics + wiki HTML
+2. **Check** — 只读诊断，生成问题报告
+3. **Lint** — 基于诊断结果自动修复可修复的问题
+4. **Build** — 构建 graph.json + statistics + wiki HTML
 
 **适用场景：** 批量 ingest 后的全面维护、每周例行维护、发布前检查。
 
@@ -535,7 +534,7 @@ Lint Results:
 ```
 每周日：
 1. /wiki:review weekly         — 回顾本周
-2. /wiki:maintain              — 一键维护（relink→reindex→check→lint→build）
+2. /wiki:maintain              — 一键维护（relink→check→lint→build）
 3. 在 Obsidian 图谱视图中浏览连接       — 发现模式
 ```
 
@@ -1029,7 +1028,7 @@ cd vault-cs && claude
 /wiki:ingest-loop <dir> [--engine=qwen]  Ralph-loop 批量 ingest
 /wiki:build                              构建 graph + statistics + wiki HTML
 /wiki:relink                             自动链接未链接术语（最长匹配优先）
-/wiki:maintain                           一键维护: relink→reindex→check→lint→build
+/wiki:maintain                           一键维护: relink→check→lint→build
 ```
 
 ### 常用脚本

@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, AI工程]
 aliases: ["Agent Evaluation", "Agent Evals", "Agent评估", "eval方法论", "LLM评估"]
 relates_to:
   - target: "[[生成器-评估器架构]]"
@@ -111,7 +111,7 @@ Anthropic 从内部实践和客户协作中提炼的 Agent 系统评估（Eval�
 
 **研究 Agent**：接地性检查 + 覆盖度检查 + 来源质量检查；LLM judge 需频繁用专家人类判断校准
 
-**计算机使用 Agent**：需要在真实或沙箱环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）
+**计算机使用 Agent**：需要在真实或沙箱环境运行；U[[强化学习|RL]]/页面状态检查 + 后端状态验证（确认行动已实际发生）
 
 ### 评估与其他方法的关系（多层防御）
 

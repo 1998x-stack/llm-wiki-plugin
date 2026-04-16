@@ -17,7 +17,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from wiki_utils import VAULT_DIR, WIKI_DIR, MAPS_DIR, parse_frontmatter
+from wiki_utils import VAULT_DIR, WIKI_DIR, WIKI_SUBDIRS, MAPS_DIR, parse_frontmatter
 
 TOPIC_MAP_PATH = VAULT_DIR / ".claude" / "topic-to-wiki.json"
 
@@ -32,7 +32,7 @@ def load_topic_mapping() -> dict[str, list[str]]:
 
 def read_page_info(name: str) -> dict | None:
     """Read frontmatter + overview for a wiki page by stem name."""
-    for subdir in ["concepts", "entities", "syntheses", "qa-insights"]:
+    for subdir in WIKI_SUBDIRS:
         fp = WIKI_DIR / subdir / f"{name}.md"
         if fp.exists():
             text = fp.read_text(encoding="utf-8")

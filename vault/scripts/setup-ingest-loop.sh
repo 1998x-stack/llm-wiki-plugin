@@ -31,7 +31,7 @@ fi
 
 FILES=()
 while IFS= read -r -d '' file; do
-    rel=$(python3 -c "import os; print(os.path.relpath('$file', '$VAULT_DIR'))")
+    rel=$(python3 -c "import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))" "$file" "$VAULT_DIR")
     FILES+=("$rel")
 done < <(find "$FULL_PATH" -type f \( -name "*.md" -o -name "*.jsonl" \) -print0 | sort -z)
 
@@ -55,7 +55,8 @@ cat > "$STATE_FILE" << STATEEOF
 active: true
 source_path: "$INPUT_PATH"
 files:
-$(echo -e "$FILES_YAML")current_index: 0
+$(echo -e "$FILES_YAML")
+current_index: 0
 total: $TOTAL
 completed: []
 failed: []

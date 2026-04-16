@@ -25,7 +25,7 @@ supersedes: null
 
 1. **核心贡献**：作为合作作者参与 [[Recommendations as Treatments]]（ICML 2016），将[[因果推断]]的[[逆倾向评分]]方法引入推荐系统。
 
-2. **研究背景**：在 [[Cornell University]] 与 [[Tobias Schnabel]]、[[Thorsten Joachims]] 等人合作，研究方向包括[[反事实学习]]、[[离线策略评估]]、强化学习。
+2. **研究背景**：在 [[Cornell University]] 与 [[Tobias Schnabel]]、[[Thorsten Joachims]] 等人合作，研究方向包括[[反事实学习]]、[[离线策略评估]]、[[强化学习]]。
 
 3. **后续影响**：Swaminathan 在[[反事实学习]]（[[反事实学习|Counterfactual Learning]]）和[[离线策略评估]]（[[离线策略评估|Off-Policy Evaluation]]）方向持续产出重要工作，是[[因果推断]]应用于决策系统的核心研究者之一。
 

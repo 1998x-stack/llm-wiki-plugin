@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 工具，方法论，研究]
+tags: [AI, 工具，方法论，研究, 机器人学]
 aliases: ["Raibert", "马克·雷伯特"]
 relates_to:
   - target: "[[Legged Robots That Balance]]"

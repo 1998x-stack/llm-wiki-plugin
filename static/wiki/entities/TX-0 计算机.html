@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具，研究，AI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具，研究，AI</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="tx-0">TX-0 计算机</h1>
@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>TX-0（Transistorized Experimental computer zero）是由麻省理工学院（MIT）林肯实验室在 1950 年代中期开发的一台实验性晶体管计算机，是计算机历史上从真空管向晶体管过渡的重要里程碑。作为当时最先进的实验用计算机之一，TX-0 拥有 18 位字长、直接寻址能力和阴极射线管（CRT）显示器，常被用于实时控制和交互式计算研究。在机器人学领域，TX-0 因作为 <a href="Heinrich A. Ernst.html">Heinrich A. Ernst</a> 开发的 <a href="MH-1 机械手.html">MH-1 机械手</a>的控制核心而闻名，它是历史上第一台用于实时控制物理机械手并处理传感器反馈的数字计算机，见证了机器人“感知 - 行动”闭环控制的首次实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">技术规格与历史地位</h3>
-<p>TX-0 诞生于 1956 年，是世界上最早 fully transistorized（全晶体管化）的计算机之一，标志着计算技术从笨重、高耗能的真空管时代迈向小型化、高可靠性的晶体管时代。其内存容量约为 64K 字（18 位/字），主频仅为数百千赫兹，按现代标准看算力极其有限，但在当时已能支持复杂的实时数据处理任务。TX-0 的设计强调交互性，配备了 CRT 显示器和光笔输入设备，这使其成为人机交互（HCI）研究的早期平台。许多后来的计算机先驱，包括 LISP 语言的发明者 John McCarthy 和黑客文化的奠基人，都曾在 TX-0 上进行过开创性工作。</p>
+<p>TX-0 诞生于 1956 年，是世界上最早 fully transistorized（全晶体管化）的计算机之一，标志着计算技术从笨重、高耗能的真空管时代迈向小型化、高可靠性的晶体管时代。其内存容量约为 64K 字（18 位/字），主频仅为数百千赫兹，按现代标准看算力极其有限，但在当时已能支持复杂的实时数据处理任务。TX-0 的设计强调交互性，配备了 CRT 显示器和光笔输入设备，这使其成为人机交互（HCI）研究的早期平台。许多后来的计算机先驱，包括 L<a href="../concepts/重要性采样.html">IS</a>P 语言的发明者 John McCarthy 和黑客文化的奠基人，都曾在 TX-0 上进行过开创性工作。</p>
 <h3 id="mh-1">在 MH-1 项目中的角色</h3>
 <p>在 1962 年的 <a href="MH-1 机械手.html">MH-1 机械手</a>项目中，TX-0 扮演了“大脑”的关键角色。<a href="Heinrich A. Ernst.html">Heinrich A. Ernst</a> 利用 TX-0 编写了一套控制程序，实现了从触觉传感器读取模拟信号（经 ADC 转换）、解析接触状态、决策下一步动作以及输出控制命令（经 DAC 转换驱动液压阀）的全过程。由于 TX-0 的处理速度限制，控制回路的更新频率较低，这迫使 Ernst 设计了高效的任务分解算法和状态机逻辑，以在有限的计算资源下实现稳定的闭环控制。TX-0 的直接寻址能力和相对快速的 I/O 响应（相对于同期其他大型机）是其能被选用于实时机器人控制的重要原因。</p>
 <h3 id="_4">对实时控制研究的贡献</h3>

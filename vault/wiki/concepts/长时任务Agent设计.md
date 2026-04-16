@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, AI工程]
 aliases: ["Long-running Agent Harness", "长时自主Agent", "多上下文窗口工作流", "初始化Agent"]
 relates_to:
   - target: "[[Agent Harness模式]]"

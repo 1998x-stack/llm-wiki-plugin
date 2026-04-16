@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>Wide 部分（记忆）</strong>：广义线性模型 $y = \mathbf{w}^T \mathbf{x} + b$，核心创新为<a href="../concepts/交叉积变换.html">交叉积变换</a>（<a href="../concepts/交叉积变换.html">Cross-product Transformation</a>），通过 AND 逻辑构造用户已安装应用与候选应用的交叉特征（如 <code>AND(user_installed_app=Netflix, impression_app=Hulu)</code>），精确记忆历史共现模式。</li>
 <li><strong>Deep 部分（泛化）</strong>：前馈神经网络，将高维稀疏分类特征映射为 32 维<a href="../concepts/嵌入表示.html">嵌入表示</a>向量，拼接后经 3 层全连接层（ReLU 激活）学习高阶<a href="../concepts/特征交叉.html">特征交互</a>，通过嵌入空间传递性泛化到未见过的特征组合。</li>
-<li><strong><a href="../concepts/联合训练.html">联合训练</a>机制</strong>：数学表达为 $P(Y=1|\mathbf{x}) = \sigma(\mathbf{w}<em>{wide}^T [\mathbf{x}, \phi(\mathbf{x})] + \mathbf{w}</em>{deep}^T a^{(l_f)} + b)$，Wide 用 FTRL+L1 优化器（稀疏解），Deep 用 AdaGrad（自适应学习率），梯度从输出层同时反向传播到两组件。</li>
+<li><strong><a href="../concepts/联合训练.html">联合训练</a>机制</strong>：数学表达为 $P(Y=1|\mathbf{x}) = \sigma(\mathbf{w}<em>{wide}^T [\mathbf{x}, \phi(\mathbf{x})] + \mathbf{w}</em>{deep}^T a^{(l_f)} + b)$，Wide 用 FT<a href="../concepts/强化学习.html">RL</a>+L1 优化器（稀疏解），Deep 用 AdaGrad（自适应学习率），梯度从输出层同时反向传播到两组件。</li>
 <li><strong><a href="../concepts/联合训练.html">联合训练</a> vs <a href="../concepts/模型融合.html">集成学习</a></strong>：<a href="../concepts/模型融合.html">集成学习</a>中各子模型独立训练、推理时组合预测；<a href="../concepts/联合训练.html">联合训练</a>中两组件共享损失函数、同时优化，Wide 只需少量交叉特征补足 Deep 的记忆短板，实现模型紧凑和端到端优化。</li>
 <li><strong>工业级工程实践</strong>：训练数据超 5000 亿条样本，服务 10 亿+活跃用户和 100 万+应用；热启动机制用上一版模型权重初始化新模型，缩短更新延迟；推理时先检索筛选数百候选，Wide &amp; Deep 在 10ms 内完成打分排序。</li>
 <li><strong>实验效果</strong>：离线 <a href="../concepts/AUC.html">AUC</a> 比 Wide 高 0.002、比 Deep 高 0.006；在线 A/B 测试下载率提升 3.9%（Deep 为 2.9%），在线提升远大于离线，因系统能通过<a href="../concepts/记忆与泛化.html">记忆与泛化</a>融合生成探索性推荐。</li>

@@ -146,7 +146,7 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 | `build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
 | `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps + 精简 index |
 | `relink` | `/wiki:relink` | 自动链接 wiki 中未链接的术语提及（最长匹配优先） |
-| `maintain` | `/wiki:maintain` | 一键维护: relink → reindex → check → lint → build |
+| `maintain` | `/wiki:maintain` | 一键维护: relink → check → lint → build |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure

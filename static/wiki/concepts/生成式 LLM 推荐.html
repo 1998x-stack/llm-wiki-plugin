@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm">生成式 LLM 推荐</h1>
 <h2 id="_1">概述</h2>
-<p>使用大语言模型进行<a href="生成式推荐.html">生成式推荐</a>的范式，通过 LLM 自回归生成推荐结果，是 <a href="../entities/P5 论文.html">P5</a> 范式的 LLM 时代延续。</p>
+<p>使用大语言模型进行<a href="生成式推荐.html">生成式推荐</a>的范式，通过 LLM <a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果，是 <a href="../entities/P5 论文.html">P5</a> 范式的 LLM 时代延续。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>范式定义</strong>：生成式 LLM 推荐（GLLM4Rec）使用大语言模型（LLaMA、Mistral、Qwen 等 7B-70B 参数）作为骨干，通过自回归生成推荐结果——物品 ID、推荐列表或推荐理由文本。</p>
+<p><strong>范式定义</strong>：生成式 LLM 推荐（GLLM4Rec）使用大语言模型（LLaMA、Mistral、Qwen 等 7B-70B 参数）作为骨干，通过<a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果——物品 ID、推荐列表或推荐理由文本。</p>
 </li>
 <li>
 <p><strong>与<a href="判别式 LLM 推荐.html">判别式 LLM 推荐</a>的对比</strong>：Wu 等人的综述将 LLM 推荐方法分为判别式（<a href="判别式 LLM 推荐.html">DLLM4Rec</a>）和生成式（GLLM4Rec）两大范式。生成式侧重灵活性和可解释性，判别式侧重预测准确性。</p>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>骨干模型：LLaMA/Mistral/Qwen（7B-70B）</li>
 <li>ID 表示：<a href="语义 ID.html">语义 ID</a> / 自然语言描述 / 多模态特征</li>
-<li>训练策略：LoRA/QLoRA 等参数高效微调</li>
+<li>训练策略：Lo<a href="../entities/rust-analyzer.html">RA</a>/QLo<a href="../entities/rust-analyzer.html">RA</a> 等参数高效微调</li>
 <li>任务统一：<a href="指令调优.html">指令调优</a>替代 Prompt 模板</li>
 <li>
 <p>推理范式：多阶段检索+生成</p>

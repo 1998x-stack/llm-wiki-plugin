@@ -7,12 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 8
-tags:
-- AI
-- 工具设计
-- ACI
-- 上下文工程
-- Agent架构
+tags: [AI, 工具设计, ACI, 上下文工程, Agent架构, AI工程]
 relates_to:
 - target: '[[Claude-Code]]'
   type: analyzes

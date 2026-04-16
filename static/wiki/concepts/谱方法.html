@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_5">两类基函数</h3>
 <p><strong>傅里叶谱方法</strong>：适用于<strong>周期边界</strong>（流体周期通道流、信号处理），基函数 $e^{ikx}$；系数由 <a href="快速傅里叶变换.html">FFT</a> 计算。</p>
-<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lobatto nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/<a href="快速傅里叶变换.html">FFT</a> 计算。</p>
+<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lo<a href="../entities/bat.html">bat</a>to nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/<a href="快速傅里叶变换.html">FFT</a> 计算。</p>
 <h3 id="clenshaw-curtis">Clenshaw-Curtis 求积</h3>
 <p>以切比雪夫极值点 $x_k = \cos(k\pi/n)$ 为节点，权重通过对切比雪夫展开积分得到：</p>
 <p>$$\int_{-1}^1 f(x)dx \approx \sum_{k=0}^n w_k f(x_k)$$</p>

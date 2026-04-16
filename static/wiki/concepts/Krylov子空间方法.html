@@ -176,36 +176,36 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td><strong>Arnoldi</strong></td>
 <td>1951/1975</td>
 <td>非对称<a href="矩阵.html">矩阵</a>特征值</td>
-<td>Hessenberg化</td>
-</tr>
-<tr>
-<td><strong>BiCG</strong></td>
-<td>1976</td>
-<td>非对称方程组</td>
-<td>双正交化</td>
-</tr>
-<tr>
-<td><strong>GMRES</strong></td>
-<td>1986</td>
-<td>非对称方程组</td>
-<td>$\ell^2$ 残差最小</td>
-</tr>
-<tr>
-<td><strong>BiCGSTAB</strong></td>
-<td>1992</td>
-<td>非对称方程组</td>
-<td>稳定BiCG</td>
-</tr>
-<tr>
-<td><strong>QMR</strong></td>
-<td>1991</td>
-<td>非对称方程组</td>
-<td>准极小残差</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">与经典迭代法的根本区别</h3>
-<p><strong>经典定点迭代</strong>（Jacobi/Gauss-Seidel）：$x^{(k+1)} = g(x^{(k)})$，每步从上一步单一迭代点出发，收敛率固定为<a href="谱半径.html">谱半径</a> $\rho(B) &lt; 1$。</p>
+<td>Hessenbe<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;BiCG&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1976&lt;/td&gt;
+&lt;td&gt;非对称方程组&lt;/td&gt;
+&lt;td&gt;双正交化&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;GMRES&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1986&lt;/td&gt;
+&lt;td&gt;非对称方程组&lt;/td&gt;
+&lt;td&gt;$\ell^2$ 残差最小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;BiCGSTAB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1992&lt;/td&gt;
+&lt;td&gt;非对称方程组&lt;/td&gt;
+&lt;td&gt;稳定BiCG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;QMR&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1991&lt;/td&gt;
+&lt;td&gt;非对称方程组&lt;/td&gt;
+&lt;td&gt;准极小残差&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_4&quot;&gt;与经典迭代法的根本区别&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;经典定点迭代&lt;/strong&gt;（Jacobi/Gauss-Seidel）：$x^{(k+1)} = g(x^{(k)})$，每步从上一步单一迭代点出发，收敛率固定为[[谱半径</span> $\rho(B) &lt; 1$。</p>
 <p><strong>Krylov 方法</strong>：$x_k \in x_0 + K_k(A, r_0)$，在递增子空间中寻找最优解，利用全部历史信息，收敛率随步数动态改善。</p>
 <p><strong>核心优势</strong>：
 - 利用<strong>所有</strong>前 $k$ 步<a href="矩阵.html">矩阵</a>-向量乘法的信息（而非仅用最新一步）

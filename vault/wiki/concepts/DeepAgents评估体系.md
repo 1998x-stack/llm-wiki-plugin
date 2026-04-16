@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 9
-tags: [AI, Agent, 评估, LangSmith, 测试]
+tags: [AI, Agent, 评估, LangSmith, 测试, Agent系统]
 aliases: [deepagents evals, Agent评估框架, TrajectoryScorer]
 relates_to:
   - target: "[[DeepAgents]]"
@@ -23,7 +23,7 @@ supersedes: null
 
 ## 概述
 
-[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
+[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（F[[rust-analyzer|RA]]MES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
 
 ## 关键内容
 
@@ -113,9 +113,9 @@ scorer = (
 | 类别 | 含义 |
 |------|------|
 | `CAPABILITY` | 模型能力/策略问题（无基础设施信号） |
-| `INFRA_OOM` | exit 137 / OOM |
-| `INFRA_TIMEOUT` | exit 124 / 超时 |
-| `INFRA_SANDBOX` | 沙箱崩溃、网络不可达、exec failed |
+| `INF[[rust-analyzer|RA]]_OOM` | exit 137 / OOM |
+| `INF[[rust-analyzer|RA]]_TIMEOUT` | exit 124 / 超时 |
+| `INF[[rust-analyzer|RA]]_SANDBOX` | 沙箱崩溃、网络不可达、exec failed |
 | `UNKNOWN` | 有异常文本但无法归类 |
 
 `is_infrastructure` 属性可在报表中剥离环境噪声，单独统计基础设施失败，避免污染模型能力评估。

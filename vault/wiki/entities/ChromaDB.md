@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [工具, 数据库, AI, 向量搜索]
+tags: [工具, 数据库, AI, 向量搜索, 推荐系统]
 aliases: ["Chroma", "chroma-db"]
 relates_to:
   - target: "[[Claude-Mem]]"

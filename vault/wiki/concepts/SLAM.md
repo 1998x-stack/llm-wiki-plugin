@@ -32,7 +32,7 @@ supersedes: null
 
 ## 概述
 
-SLAM（Simultaneous Localization and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，机器人如何边走边建图、边建图边定位——打破"需要地图才能定位、需要定位才能建图"的循环依赖。
+SLAM（Simultaneous [[Localization]] and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，机器人如何边走边建图、边建图边定位——打破"需要地图才能定位、需要定位才能建图"的循环依赖。
 
 ## 关键内容
 

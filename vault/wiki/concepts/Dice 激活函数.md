@@ -27,7 +27,7 @@ supersedes: null
 3. **平滑过渡** — 用 Sigmoid 函数替代 ReLU 的阶跃函数，在分界点附近实现平滑过渡，避免梯度突变。
 4. **[[Batch Normalization|BN]] 的隐式作用** — 公式中的标准化项 $(s - E(s)) / \sqrt{\text{Var}(s) + \epsilon}$ 本质上就是 [[Batch Normalization]] 操作，使 Dice 天然具有缓解 Internal Covariate Shift 的能力。
 5. **与 [[Probabilistic Robotics|PR]]eLU 的退化关系** — 当 $E(s) = 0$ 且 $\text{Var}(s) = 0$ 时，Dice 退化为 [[Probabilistic Robotics|PR]]eLU，因此 Dice 是 [[Probabilistic Robotics|PR]]eLU 的泛化形式。
-6. **训练与推理** — 训练阶段使用当前 mini-batch 的统计量计算 $E(s)$ 和 $\text{Var}(s)$；推理阶段使用训练过程中的指数移动平均值，与 [[Batch Normalization|BN]] 的处理方式一致。
+6. **训练与推理** — 训练阶段使用当前 mini-[[bat]]ch 的统计量计算 $E(s)$ 和 $\text{Var}(s)$；推理阶段使用训练过程中的指数移动平均值，与 [[Batch Normalization|BN]] 的处理方式一致。
 7. **实验效果** — 在阿里巴巴工业数据集上，Dice 相比 [[Probabilistic Robotics|PR]]eLU 带来 +0.0015 的绝对 [[AUC]] 提升。
 
 ## 来源

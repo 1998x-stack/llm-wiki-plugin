@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoonSharp与NLua — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / MoonSharp与NLua</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="moonsharp-nlua">MoonSharp 与 NLua</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/MoonSharp.html">MoonSharp</a> 和 NLua 是两种在 Unity（及任意 .NET 项目）中嵌入 Lua 脚本的主流桥接库，前者为纯 C# 实现，后者基于原生 Lua C 库，两者均提供 C# 对象注入、函数互调和返回值获取机制。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="moonsharp-c-lua">MoonSharp：纯 C# Lua 解释器</h3>
+<p><a href="../entities/MoonSharp.html">MoonSharp</a> 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2<a href="../entities/C++.html">CPP</a>/AOT 平台（iOS 等）。</p>
+<p><strong>对象注册流程</strong>：
+1. 在 C# 类上标注 <code>[MoonSharpUserData]</code>，通过 <code>UserData.RegisterAssembly()</code> 批量注册
+2. <code>script.Globals["key"] = obj</code> 将 C# 对象注入 Lua 全局变量
+3. 静态类通过 <code>UserData.Create(typeof(SomeClass))</code> 包装后注入</p>
+<p><strong>调用机制</strong>：
+- <code>script.DoString(code)</code> / <code>script.DoFile(path)</code> 执行 Lua 代码
+- <code>DynValue fn = script.Globals.Get("update"); script.Call(fn, arg)</code> 调用 Lua 函数
+- <code>DynValue result = script.DoString("return 1+2"); float val = (float)result.Number</code> 获取返回值</p>
+<p><strong>类型系统</strong>：DynValue 是 <a href="../entities/MoonSharp.html">MoonSharp</a> 的通用值容器，通过 <code>.Number</code>、<code>.String</code>、<code>.Table</code>、<code>.Function</code> 等属性读取具体类型。</p>
+<h3 id="nlua-lua-c">NLua：原生 Lua C 库绑定</h3>
+<p>NLua 基于 KeraLua 封装原生 Lua 5.4（通过 P/Invoke），性能接近原生但需平台原生 DLL。</p>
+<pre><code class="language-csharp">var lua = new Lua();
+lua[&quot;myObj&quot;] = new MyClass();                            // 注入对象
+lua.RegisterFunction(&quot;log&quot;, typeof(Debug).GetMethod(&quot;Log&quot;, ...));  // 注册函数
+lua.DoString(&quot;myObj:Method()&quot;);                          // 执行
+var result = lua[&quot;my_variable&quot;];                         // 读取全局变量
+var table = lua.GetTable(&quot;my_table&quot;);                    // 读取表
+</code></pre>
+<h3 id="_3">方案对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><a href="../entities/MoonSharp.html">MoonSharp</a></th>
+<th>NLua</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实现方式</td>
+<td>纯 C# Lua 解释器</td>
+<td>原生 Lua C 库 P/Invoke</td>
+</tr>
+<tr>
+<td>AOT/IL2<span style="color:#e74c3c" title="broken link">C++&lt;/td&gt;
+&lt;td&gt;CPP</span> 兼容</td>
+<td>好（无原生依赖）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>略低于原生</td>
+<td>接近原生 Lua</td>
+</tr>
+<tr>
+<td>API 风格</td>
+<td>DynValue 类型系统，强类型感</td>
+<td>动态类型，接近原始 <span style="color:#e74c3c" title="broken link">Lua C API 绑定层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;适用场景&lt;/td&gt;
+&lt;td&gt;Unity iOS/IL2[[C++&lt;/td&gt;
+&lt;td&gt;CPP</span>、跨平台 .NET</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xluatolua">与 xLua/tolua 的区别</h3>
+<p><a href="../entities/MoonSharp.html">MoonSharp</a>/NLua 是<strong>通用 .NET Lua 桥</strong>，适合任意 .NET 项目。<a href="Lua脚本宿主模式.html">xLua</a>/<a href="Lua脚本宿主模式.html">tolua</a># 是<strong>Unity 专用桥</strong>，深度集成 Unity 组件生命周期、MonoBehaviour 和 IL2<a href="../entities/C++.html">CPP</a> 热补丁机制，工程化程度更高。</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">engine-integration</span> — 游戏引擎集成参考文档，Unity MoonSharp/NLua 集成示例代码段</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — NLua 通过 KeraLua 封装 C API；MoonSharp 则完全绕过 C API</li>
+<li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — MoonSharp/NLua 是 .NET 宿主环境下的 Lua 嵌入方案</li>
+<li><a href="游戏引擎架构.html">游戏引擎架构</a> — Unity + Lua 脚本通过此类桥实现 Scripting 层</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Mixture-of-Experts.html">&larr; Mixture-of-Experts</a>
+    <a href="Multi-Agent-Coordination-Patterns.html">Multi-Agent-Coordination-Patterns &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

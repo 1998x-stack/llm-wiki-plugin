@@ -52,7 +52,7 @@ supersedes: null
    - **逐点前馈网络**：两层 FFN，权重在所有位置间共享（类似 1x1 卷积）
    - **预测层**：序列最后位置输出与候选物品嵌入做点积，嵌入[[矩阵]]与输入层共享
 
-4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（自回归模式），而非 Encoder 的双向模式。
+4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（[[AR 模型（自回归模型）|自回归]]模式），而非 Encoder 的双向模式。
 
 5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
 

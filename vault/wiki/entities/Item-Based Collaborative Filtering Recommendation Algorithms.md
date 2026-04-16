@@ -28,7 +28,7 @@ entity_type: paper
 
 ## 关键内容
 
-1. **基本信息**：由明尼苏达大学 [[GroupLens|GroupLens 研究组]]的 [[Badrul Sarwar]]、George Karypis、[[Joseph Konstan]]、[[John Riedl]] 于 2001 年发表在 WWW '01 会议（第 10 届国际万维网大会，香港）。DOI: 10.1145/371920.372071。
+1. **基本信息**：由明尼苏达大学 [[GroupLens|GroupLens 研究组]]的 [[Badrul Sarwar]]、Geo[[ripgrep|rg]]e Karypis、[[Joseph Konstan]]、[[John Riedl]] 于 2001 年发表在 WWW '01 会议（第 10 届国际万维网大会，香港）。DOI: 10.1145/371920.372071。
 
 2. **核心贡献**：提出将相似度计算从用户维度转换到物品维度，通过离线预计算物品相似度表，将推荐系统的在线计算复杂度从 O(M)（用户总数）降低到 O(K)（邻居数量），实现数量级的性能提升。
 
@@ -38,7 +38,7 @@ entity_type: paper
 
 5. **与 [[Amazon]] 的关系**：[[Amazon]] 在 1998 年已独立开发了类似的 Item-to-Item [[协同过滤]]算法并申请专利（US Patent 6,266,649），但直到 2003 年才发表学术论文。本文是学术界首次系统性分析，两项工作被频繁共同引用。
 
-6. **历史影响**：开创了 [[基于物品的协同过滤|Item-Based CF]] 研究方向，后续衍生出 Slope One（2005）、[[SVD++]]（2008）、FISM（2013）等重要工作。2017 年 IEEE Internet Computing 将 [[Amazon]] 相关论文评为最经受住"时间考验"的论文。
+6. **历史影响**：开创了 [[基于物品的协同过滤|Item-Based CF]] 研究方向，后续衍生出 Slope One（2005）、[[SVD++]]（2008）、F[[重要性采样|IS]]M（2013）等重要工作。2017 年 IEEE Internet Computing 将 [[Amazon]] 相关论文评为最经受住"时间考验"的论文。
 
 ## 来源
 - [论文原文](https://doi.org/10.1145/371920.372071)
