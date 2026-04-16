@@ -37,7 +37,7 @@ supersedes: null
 *   **计算平台**：板载多台高性能计算机，运行 Ubuntu Linux 和 ROS 系统，处理海量的传感器数据和复杂的规划算法。
 
 ### 与 ROS 的共生关系
-[[Probabilistic Robotics|PR]]2 与 ROS 是相辅相成的关系。[[Probabilistic Robotics|PR]]2 的所有软件栈——从底层电机驱动、传感器融合到高层的任务规划、人机交互——完全构建在 ROS 之上。[[Willow Garage]] 利用 [[Probabilistic Robotics|PR]]2 完成了一系列里程碑式的演示，如自主导航、开门、叠毛巾、从冰箱取啤酒等，这些演示有力地证明了 ROS 支撑复杂多模态系统的能力。反过来，[[Probabilistic Robotics|PR]]2 的复杂性也推动了 ROS 工具链（如 TF 坐标变换、MoveIt! [[运动规划]]）的成熟和完善。
+[[Probabilistic Robotics|PR]]2 与 ROS 是相辅相成的关系。[[Probabilistic Robotics|PR]]2 的所有软件栈——从底层电机驱动、传感器融合到高层的任务规划、人机交互——完全构建在 ROS 之上。[[Willow Garage]] 利用 [[Probabilistic Robotics|PR]]2 完成了一系列里程碑式的演示，如自主导航、开门、叠毛巾、从冰箱取啤酒等，这些演示有力地证明了 ROS 支撑复杂多模态系统的能力。反过来，[[Probabilistic Robotics|PR]]2 的复杂性也推动了 ROS 工具链（如 [[TensorFlow|TF]] 坐标变换、MoveIt! [[运动规划]]）的成熟和完善。
 
 ### PR2 Beta Program 的历史意义
 2010 年，[[Willow Garage]] 实施了著名的 **[[Probabilistic Robotics|PR]]2 Beta Program**，将 11 台 [[Probabilistic Robotics|PR]]2 机器人免费赠送给 MIT、UC Berkeley、斯坦福、佐治亚理工、弗莱堡大学等机构。这一举措在机器人学界引起了轰动。获得 [[Probabilistic Robotics|PR]]2 的实验室迅速成为了 ROS 创新的中心，产出了大量高影响力的研究成果，并反向为 ROS 贡献了数千个功能包。这种"种子投放"策略成功地在全球范围内建立了一个紧密协作的研究者网络，确立了 ROS 作为机器人软件事实标准的地位。尽管 [[Probabilistic Robotics|PR]]2 本身因成本过高未能量产商业化，但它作为研究平台的价值不可估量，被誉为机器人学界的"Model T"。

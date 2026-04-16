@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生成式推荐 (LLM) — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 生成式推荐 (LLM)</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">LLM</span><span class="tag">生成模型</span><span class="tag">范式</span><span class="tag">P5</span></div>
+</div>
+  <div class="content">
+    <h1 id="llm">生成式推荐 (LLM)</h1>
+<h2 id="_1">概述</h2>
+<p>将推荐任务重构为文本生成问题的 LLM 范式，通过语言模型自回归生成推荐结果，由 <a href="../entities/P5 论文.html">P5 论文</a>首次系统性提出。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>范式定义</strong>：将推荐系统的所有任务——评分预测、<a href="序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——统一为"输入一段文本，输出一段文本"的语言生成问题，不再需要专门的<a href="协同过滤.html">协同过滤</a>层、评分预测头或排序损失函数。</p>
+</li>
+<li>
+<p><strong>开创性工作</strong>：<a href="../entities/P5 论文.html">P5 论文</a>（<a href="../entities/RecSys 2022.html">RecSys 2022</a>）首次系统性地论证了"将推荐系统完全重构为语言处理任务"的可行性，使用 <a href="../entities/T5.html">T5</a> 作为骨干模型，将五大推荐任务完整统一到一个语言模型框架中。</p>
+</li>
+<li>
+<p><strong>与 Meta <a href="生成式推荐.html">生成式推荐</a>的区别</strong>：Meta 的<a href="生成式推荐.html">生成式推荐</a>（<a href="../entities/HSTU.html">HSTU</a>）将推荐重新定义为端到端序列生成任务，预测用户下一个交互 token（内容+动作），侧重工业级大规模部署。本概念特指基于 LLM 的<a href="生成式推荐.html">生成式推荐</a>，用自然语言 Prompt 驱动推荐，侧重多任务统一和可解释性。</p>
+</li>
+<li>
+<p><strong>核心能力</strong>：</p>
+</li>
+<li><strong>多任务统一</strong>：从数值回归（评分预测）到二分类（是否推荐）到序列排序再到开放式文本生成</li>
+<li><strong><a href="Zero-shot 推荐.html">Zero-shot 推荐</a></strong>：面对未见过的 Prompt 格式仍能给出合理推荐</li>
+<li><strong>可解释性融合</strong>：推荐和解释在同一模型中共享知识</li>
+<li>
+<p><strong>跨域迁移</strong>：一个领域预训练的模型可迁移到其他领域</p>
+</li>
+<li>
+<p><strong>技术挑战</strong>：推理效率（自回归解码延迟远高于向量内积）；物品词汇表可扩展性（百万/亿级 ID 空间）；ID 语义鸿沟（数字 ID 与语言模型语义空间脱节）。</p>
+</li>
+<li>
+<p><strong>后续演进</strong>：从 <a href="../entities/P5 论文.html">P5</a>（2022，<a href="../entities/T5.html">T5</a>-small/base 60M-223M）到现代方案（2024-2025，LLaMA/Mistral/Qwen 7B-70B），从 Prompt 模板到<a href="指令调优.html">指令调优</a>，从数字 ID 到<a href="语义 ID.html">语义 ID</a>，从全参数微调到 LoRA/QLoRA 参数高效微调。</p>
+</li>
+<li>
+<p><strong>学术共识</strong>：<a href="../entities/P5 论文.html">P5</a> 帮助社区形成了"语言是连接不同推荐任务的天然桥梁"的重要共识，使"LLM for Recommendation"从小众方向迅速成长为推荐系统领域最热门的研究主题。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li>Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)</li>
+<li>Wu et al. — A Survey on Large Language Models for Recommendation, ACM TOIS 2024</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/P5 论文.html">P5 论文</a> — LLM 生成式推荐的开创性工作</li>
+<li><a href="生成式推荐.html">生成式推荐</a> — Meta HSTU 的序列生成范式（不同概念）</li>
+<li><a href="推荐系统基础模型.html">推荐系统基础模型</a> — LLM 生成式推荐的终极愿景</li>
+<li><a href="协同过滤.html">协同过滤</a> — 传统推荐范式</li>
+<li><a href="矩阵分解.html">矩阵分解</a> — 传统推荐范式</li>
+<li><a href="序列推荐.html">序列推荐</a> — LLM 生成式推荐统一的任务之一</li>
+<li><a href="../entities/T5.html">T5</a> — P5 使用的骨干模型</li>
+<li><a href="判别式 LLM 推荐.html">判别式 LLM 推荐</a> — LLM 推荐的另一范式</li>
+<li><a href="生成式 LLM 推荐.html">生成式 LLM 推荐</a> — LLM 生成式推荐的现代延续</li>
+<li><a href="Zero-shot 推荐.html">Zero-shot 推荐</a> — LLM 生成式推荐的独特能力</li>
+<li><a href="指令调优.html">指令调优</a> — 现代 LLM 生成式推荐的训练策略</li>
+<li><a href="语义 ID.html">语义 ID</a> — 解决 LLM 生成式推荐的 ID 表示问题</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="生成式推荐.html">&larr; 生成式推荐</a>
+    <a href="相对位置编码.html">相对位置编码 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

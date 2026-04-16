@@ -147,10 +147,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 5. 向量数据库按语义相似度召回 Top-K 个 Chunk
 6. 将 Top-K Chunk 追加到提示中，模型生成回答</p>
 <h3 id="bm25">BM25 混合检索</h3>
-<p>纯语义嵌入擅长捕捉语义关系，但会遗漏精确词汇匹配。BM25（Best Matching 25）作为补充，通过词频-逆文档频率（TF-IDF）进行词汇精确匹配，对含有专有标识符或技术术语的查询尤为有效。</p>
+<p>纯语义嵌入擅长捕捉语义关系，但会遗漏精确词汇匹配。BM25（Best Matching 25）作为补充，通过词频-逆文档频率（<a href="../entities/TensorFlow.html">TF</a>-IDF）进行词汇精确匹配，对含有专有标识符或技术术语的查询尤为有效。</p>
 <p><strong>示例</strong>：查询 "Error code TS-999"——嵌入模型可能检索到关于错误码的泛化内容，而 BM25 能精确定位包含 "TS-999" 的文档。</p>
 <p>标准混合 RAG 流程：
-1. 切 Chunk → 生成 TF-IDF 编码 + 语义嵌入
+1. 切 Chunk → 生成 <a href="../entities/TensorFlow.html">TF</a>-IDF 编码 + 语义嵌入
 2. BM25 找到词汇精确匹配的 Top Chunks
 3. 嵌入找到语义相似的 Top Chunks
 4. <strong>Rank Fusion</strong>（倒数排名融合等方式）合并去重

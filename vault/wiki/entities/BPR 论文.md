@@ -40,7 +40,7 @@ Rendle 等人 2009 年发表于 UAI 的里程碑论文，提出[[BPR|贝叶斯�
 
 6. **影响力**：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了[[隐式反馈]]推荐的标准范式，[[BPR]] Loss 成为事实标准。
 
-7. **后续影响**：直接催生[[负采样]]策略研究（DNS、IRGAN、ANCE）、Listwise 排序学习、深度推荐模型（Neu[[矩阵分解|MF]]、[[DeepFM]]）、图神经网络推荐（LightGCN）、视觉增强推荐（V[[BPR]]）等研究方向。
+7. **后续影响**：直接催生[[负采样]]策略研究（DNS、IRGAN、ANCE）、Listwise 排序学习、深度推荐模型（Neu[[矩阵分解|MF]]、[[DeepFM]]）、图神经网络推荐（[[LightGCN]]）、视觉增强推荐（V[[BPR]]）等研究方向。
 
 ## 来源
 - [BPR: Bayesian Personalized Ranking (Rendle et al. 2009)](https://arxiv.org/abs/1205.2618)

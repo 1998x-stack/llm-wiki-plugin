@@ -26,7 +26,7 @@ Koren、Bell、Volinsky 2009 年发表于 IEEE Computer 的综述论文，系统
 
 ## 关键内容
 
-1. **论文信息**：发表于 IEEE Computer, Volume 42, Issue 8, pp. 30-37，DOI: 10.1109/MC.2009.263。截至 2026 年，Google Scholar 引用 15,000+，ACM Digital Library 引用 4,100+。
+1. **论文信息**：发表于 IEEE Computer, Volume 42, Issue 8, pp. 30-37，DOI: 10.1109/MC.2009.263。截至 2026 年，[[Google]] Scholar 引用 15,000+，ACM Digital Library 引用 4,100+。
 2. **核心贡献**：提出了由简到繁、层层递进的[[矩阵分解]]建模框架：
    - 基本 [[矩阵分解|MF]] 模型：$R \approx P \times Q^T$，用内积预测评分
    - [[Bias 建模]]：$\hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u$，分离系统性偏差

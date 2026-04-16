@@ -43,7 +43,7 @@ John Riedl 是明尼苏达大学计算机科学系教授，[[GroupLens|GroupLens
    - 参与创立 [[Net Perceptions]] 公司（1996 年）——第一家专注于推荐引擎的商业公司
    - 培养了推荐系统领域的一代领军人物，包括 [[Joseph Konstan]]（后来成为 ACM Fellow）、Jonathan Herlocker（[[基于物品的协同过滤|Item-Based CF]] 工作推动了 [[Amazon]] 推荐系统的架构变革）、Loren Terveen（将[[协同过滤]]思想扩展到社交计算领域）
 
-5. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：作为共同作者参与 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），与 [[Badrul Sarwar]]、George Karypis、[[Joseph Konstan]] 共同完成了推荐系统领域引用量最高的论文之一（Google Scholar 超 10,000 次引用），该论文首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构范式。
+5. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：作为共同作者参与 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），与 [[Badrul Sarwar]]、George Karypis、[[Joseph Konstan]] 共同完成了推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），该论文首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构范式。
 
 6. **历史地位**：John Riedl 在 2013 年不幸去世前，一直是推荐系统社区最具影响力的学者之一。[[GroupLens|GroupLens 研究组]]在他的领导下，不仅定义了推荐系统的技术基础，还构建了从学术研究到产业转化的完整生态。
 

@@ -138,7 +138,7 @@ scorer = (
 **生成类脚本**：
 - `generate_radar.py`：从 `evals_summary.json` 生成雷达图 PNG（`--toy` 支持离线预览）
 - `generate_eval_catalog.py`：重写 `EVAL_CATALOG.md`，`--check` 用于 CI 防漂移
-- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_GROUPS.md`
+- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_[[生成式推荐|GR]]OUPS.md`
 
 **工程化建议**：先确保轨迹与 `result.json` 完整再跑分析；解读分数时同时看 `format_ci` 与 MDE，并将 `is_infrastructure=True` 的 trial 单独分层统计。
 

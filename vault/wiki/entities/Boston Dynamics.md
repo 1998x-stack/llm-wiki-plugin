@@ -48,7 +48,7 @@ Boston Dynamics 机器人的核心竞争力在于其先进的[[动态平衡]]控
 Boston Dynamics 的出现彻底改变了公众和业界对机器人运动能力的认知。其展示的视频在全球范围内 viral 传播，激发了人们对腿式机器人的巨大兴趣和投资热情。公司的成功证明了[[动态平衡]]理论不仅具有学术价值，更能创造巨大的商业和社会价值。随着人工智能和深度强化学习技术的融入，Boston Dynamics 正在进一步提升机器人的自主决策能力和环境适应性，推动腿式机器人在更多复杂场景中的应用。
 
 ### 所有权变迁
-自成立以来，Boston Dynamics 经历了多次所有权变更，先后隶属于 Alphabet (Google)、SoftBank 集团，并于 2020 年被现代汽车集团（Hyundai Motor Group）收购。尽管所有者更迭，但公司始终坚持其核心技术路线和工程愿景，持续推出创新的机器人产品。
+自成立以来，Boston Dynamics 经历了多次所有权变更，先后隶属于 Alphabet ([[Google]])、SoftBank 集团，并于 2020 年被现代汽车集团（Hyundai Motor Group）收购。尽管所有者更迭，但公司始终坚持其核心技术路线和工程愿景，持续推出创新的机器人产品。
 
 ## 来源
 - [[raw/books/机器人学/09-raibert-legged-robots-balance.md]]

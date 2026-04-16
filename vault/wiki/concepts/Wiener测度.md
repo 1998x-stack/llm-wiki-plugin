@@ -10,6 +10,7 @@ tags:
 - 研究
 - 技术
 - 概率论
+- 数学
 aliases:
 - Wiener measure
 - 维纳测度

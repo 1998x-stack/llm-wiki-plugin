@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightGCN — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / LightGCN</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">图神经网络</span><span class="tag">协同过滤</span><span class="tag">SIGIR 2020</span><span class="tag">LightGCN</span></div>
+</div>
+  <div class="content">
+    <h1 id="lightgcn">LightGCN</h1>
+<h2 id="_1">概述</h2>
+<p><a href="何向南.html">何向南</a>团队于 SIGIR 2020 发表的图<a href="../concepts/协同过滤.html">协同过滤</a>经典论文，通过移除 GCN 中的特征变换和非线性激活，仅保留邻域聚合与层组合，实现"Less is More"，相比 <a href="NGCF.html">NGCF</a> 平均提升约 16%。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心洞察</strong>：在<a href="../concepts/协同过滤.html">协同过滤</a>中，用户和物品节点仅由 ID <a href="../concepts/嵌入表示.html">嵌入表示</a>，不含丰富语义。对 ID 嵌入做特征变换和非线性激活不仅无益，反而增加训练难度。论文通过消融实验证明：移除两者后（<a href="NGCF.html">NGCF</a>-fn 变体），效果反而超越原始 <a href="NGCF.html">NGCF</a>。</p>
+</li>
+<li>
+<p><strong>轻量级图卷积 (LGC)</strong>：每层仅做对称归一化邻域聚合，无权重<a href="../concepts/矩阵.html">矩阵</a> W、无激活函数、无自连接。公式：<code>e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</code>。<a href="../concepts/矩阵.html">矩阵</a>形式：<code>E^(k+1) = D^(-1/2) A D^(-1/2) E^(k)</code>。</p>
+</li>
+<li>
+<p><strong>层组合策略</strong>：将所有层（第0层到第K层）的嵌入加权求和得到最终表示：<code>e_u = Σ_{k=0}^{K} α_k · e_u^(k)</code>。实验发现均匀权重 <code>α_k = 1/(K+1)</code> 已足够好。层组合保留初始信息、捕获多尺度特征、缓解过平滑、隐式实现自连接。</p>
+</li>
+<li>
+<p><strong>训练方式</strong>：使用 <a href="../concepts/BPR.html">BPR</a> 损失，正则化仅施加在第0层嵌入 E^(0) 上（因为高层嵌入完全由第0层通过图传播得到）。预测分数为用户和物品最终嵌入的内积。</p>
+</li>
+<li>
+<p><strong>理论分析</strong>：从谱图理论视角，LightGCN、<a href="SGC.html">SGC</a>、<a href="APPNP.html">APPNP</a> 都可统一理解为多项式图滤波器。LightGCN 对应均匀加权多项式 <code>P(A) = (1/(K+1)) Σ_{k=0}^{K} A^k</code>，本质是对邻接<a href="../concepts/矩阵.html">矩阵</a>谱分解施加低通滤波器。</p>
+</li>
+<li>
+<p><strong>实验结果</strong>：在 Gowalla、Yelp2018、<a href="Amazon.html">Amazon</a>-Book 三个数据集上全面超越 <a href="../concepts/矩阵分解.html">MF</a>、<a href="NGCF.html">NGCF</a>、Mult-VAE、<a href="../concepts/生成式推荐.html">GR</a><a href="../concepts/矩阵分解.html">MF</a> 等基线。K=3 层在大多数情况下即可达到满意效果，从 K=0（纯 <a href="../concepts/矩阵分解.html">MF</a>）到 K=1 的提升最大。</p>
+</li>
+<li>
+<p><strong>训练动态分析</strong>：LightGCN 在整个训练过程中始终保持更低的训练损失，且成功转化为更高的测试准确率。<a href="NGCF.html">NGCF</a> 的问题在于训练困难而非过拟合——多余组件使优化景观变崎岖。</p>
+</li>
+<li>
+<p><strong>嵌入平滑直觉</strong>：经过 2 层 LightGCN 传播后，品味相似的用户的嵌入会自然变得更接近。这种基于协同信号的嵌入平滑被认为是有效性的核心原因。</p>
+</li>
+<li>
+<p><strong>局限性</strong>：不包含辅助信息（Side Information）；超大规模图上的计算挑战；均匀层组合权重可能非最优；无法处理<a href="../concepts/冷启动问题.html">冷启动问题</a>。2024 年 FourierKAN-G<a href="../concepts/协同过滤.html">CF</a> 对其消融实验提出细粒度质疑。</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：截至 2025 年引用约 3,900+ 次，是图推荐领域引用最高的论文之一。取代 <a href="NGCF.html">NGCF</a> 成为图推荐方法的"标尺"基线。启发了 <a href="UltraGCN.html">UltraGCN</a>、<span style="color:#e74c3c" title="broken link">SimpleX</span>、<a href="LightGCN++.html">LightGCN++</a>、SocialLGN 等后续工作。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">15-lightgcn.md</span> — LightGCN 论文深度解读（SIGIR 2020）</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="何向南.html">何向南</a> — 第一作者</li>
+<li><a href="NGCF.html">NGCF</a> — LightGCN 的前作，被 LightGCN 超越</li>
+<li><a href="../concepts/BPR.html">BPR</a> — LightGCN 使用的损失函数</li>
+<li><a href="SGC.html">SGC</a> — 与 LightGCN 共享简化 GCN 思路，但面向节点分类</li>
+<li><a href="APPNP.html">APPNP</a> — 与 LightGCN 共享抗过平滑机制</li>
+<li><a href="UltraGCN.html">UltraGCN</a> — 进一步简化的后续工作</li>
+<li><a href="LightGCN++.html">LightGCN++</a> — 在 LightGCN 基础上引入灵活范数缩放</li>
+<li><span style="color:#e74c3c" title="broken link">SimpleX</span> — 受 LightGCN 启发的简单损失函数设计</li>
+<li><a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> — 何向南团队的早期工作，LightGCN 的学术前身</li>
+<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — LightGCN 在 K=0 时退化为 MF</li>
+<li><a href="../concepts/协同过滤.html">协同过滤</a> — LightGCN 解决的核心任务</li>
+<li><a href="../concepts/Embedding.html">Embedding</a> — LightGCN 的核心表示方式</li>
+<li><a href="../concepts/NDCG.html">NDCG</a> — LightGCN 评估指标之一</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="LayoutLMv3.html">&larr; LayoutLMv3</a>
+    <a href="LightGCN++.html">LightGCN++ &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

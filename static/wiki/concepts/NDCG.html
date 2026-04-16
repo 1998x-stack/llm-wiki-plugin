@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 <a href="AUC.html">AUC</a> 的区别</strong>：<a href="AUC.html">AUC</a> 对所有位置一视同仁，只关注全局排序质量；NDCG 对 Top 位置赋予更高权重，更贴近实际推荐场景中用户主要关注前列推荐的行为。</p>
 </li>
 <li>
-<p><strong>在 <a href="BPR.html">BPR</a> 上下文中的意义</strong>：<a href="../entities/BPR 论文.html">BPR 论文</a>以 <a href="AUC.html">AUC</a> 为主要评价指标，但后续研究指出 <a href="BPR.html">BPR</a> 在 NDCG、MRR 等 Top 权重指标上的表现同样重要。Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）在 NDCG 上提供比 <a href="BPR.html">BPR</a> 更紧的下界。</p>
+<p><strong>在 <a href="BPR.html">BPR</a> 上下文中的意义</strong>：<a href="../entities/BPR 论文.html">BPR 论文</a>以 <a href="AUC.html">AUC</a> 为主要评价指标，但后续研究指出 <a href="BPR.html">BPR</a> 在 NDCG、<a href="MRR.html">MRR</a> 等 Top 权重指标上的表现同样重要。Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）在 NDCG 上提供比 <a href="BPR.html">BPR</a> 更紧的下界。</p>
 </li>
 <li>
 <p><strong>适用场景</strong>：电商推荐、搜索引擎结果排序、信息流推荐等场景中，用户注意力集中在前几条结果，NDCG 比 <a href="AUC.html">AUC</a> 更能反映实际用户体验。</p>
@@ -165,8 +165,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Master-Overrides设计系统持久化.html">&larr; Master-Overrides设计系统持久化</a>
-    <a href="Occam剃刀.html">Occam剃刀 &rarr;</a>
+    <a href="Mixture-of-Experts.html">&larr; Mixture-of-Experts</a>
+    <a href="NeuMF.html">NeuMF &rarr;</a>
   </div>
 </div>
 </body>

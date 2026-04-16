@@ -6,7 +6,7 @@ confidence: 0.7
 created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
-source_count: 2
+source_count: 3
 tags: [推荐系统, 矩阵分解, 隐式反馈]
 aliases: [SVD++, Factorization Meets the Neighborhood]
 relates_to:

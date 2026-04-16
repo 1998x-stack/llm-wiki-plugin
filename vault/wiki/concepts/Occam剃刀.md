@@ -10,6 +10,7 @@ tags:
 - 技术
 - 研究
 - 方法论
+- 数学
 aliases:
 - Occam's Razor
 - 奥卡姆剃刀

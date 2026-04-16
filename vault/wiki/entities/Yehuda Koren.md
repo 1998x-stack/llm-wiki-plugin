@@ -26,7 +26,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **学术身份**：2009 年任职于 [[Yahoo Research]]，与 [[Robert Bell]]、[[Chris Volinsky]] 共同发表 *[[Matrix Factorization Techniques for Recommender Systems]]*（IEEE Computer, 2009），该论文成为推荐系统领域引用最多的文献之一（Google Scholar 15,000+）。
+1. **学术身份**：2009 年任职于 [[Yahoo Research]]，与 [[Robert Bell]]、[[Chris Volinsky]] 共同发表 *[[Matrix Factorization Techniques for Recommender Systems]]*（IEEE Computer, 2009），该论文成为推荐系统领域引用最多的文献之一（[[Google]] Scholar 15,000+）。
 2. **[[Netflix Prize]] 贡献**：作为 [[BellKor]] 团队核心成员参与 [[Netflix Prize]] 竞赛，该团队最终于 2009 年 9 月以 [[RMSE]] 0.8567（10.06% 提升）赢得 100 万美元大奖。其[[矩阵分解]]方法是竞赛方案中的绝对主力。
 3. **技术贡献**：提出了由简到繁的[[矩阵分解]]建模框架，包括基本 [[矩阵分解|MF]] 模型、Bias 项引入、[[SVD++]]（融合[[隐式反馈]]）、[[timeSVD++]]（时间动态建模）等层层递进的模型变体，构建了推荐系统领域长达十余年的技术基石。
 4. **核心洞察**：提出"正确处理时间动态对精度的影响，大于设计更复杂的推荐架构"这一实践智慧，强调对数据特性的尊重优于模型复杂度。

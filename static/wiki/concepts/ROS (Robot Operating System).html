@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>分布式与点对点通信</strong>：ROS Master 仅作为命名服务负责节点注册和查找，实际数据传输在节点间直接进行（TCP/UDP），避免了中心服务器成为带宽瓶颈，支持跨机器部署。</li>
 <li><strong>语言无关性</strong>：通过语言无关的消息序列化和多语言客户端库（roscpp, rospy 等），C++ 编写的高性能模块可与 Python 编写的快速原型模块无缝协作。</li>
-<li><strong>工具链生态</strong>：ROS 包含一套完整的开发工具，如 <strong>rviz</strong>（3D 可视化）、<strong>rosbag</strong>（数据录制与回放，支持离线算法调试）、<strong>roslaunch</strong>（多节点启动管理）以及 <strong>TF</strong>（坐标变换库，统一管理多传感器坐标系）。</li>
+<li><strong>工具链生态</strong>：ROS 包含一套完整的开发工具，如 <strong>rviz</strong>（3D 可视化）、<strong>rosbag</strong>（数据录制与回放，支持离线算法调试）、<strong>roslaunch</strong>（多节点启动管理）以及 <strong><a href="../entities/TensorFlow.html">TF</a></strong>（坐标变换库，统一管理多传感器坐标系）。</li>
 <li><strong>包管理系统</strong>：借鉴 Linux 发行版理念，采用包（Package）和堆栈（Stack）组织代码，配合 rosdep 和 catkin 构建系统，实现了依赖自动解析和代码共享。</li>
 </ol>
 <h3 id="_5">历史演变与局限</h3>

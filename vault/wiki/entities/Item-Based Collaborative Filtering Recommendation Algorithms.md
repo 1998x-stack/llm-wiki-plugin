@@ -24,7 +24,7 @@ entity_type: paper
 # Item-Based Collaborative Filtering Recommendation Algorithms
 
 ## 概述
-推荐系统领域引用量最高的论文之一（Google Scholar 超 10,000 次），首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构范式。
+推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次），首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构范式。
 
 ## 关键内容
 

@@ -10,6 +10,7 @@ tags:
 - 技术
 - 研究
 - 数学
+- 信息论
 aliases:
 - Kraft Inequality
 - Kraft-McMillan 不等式

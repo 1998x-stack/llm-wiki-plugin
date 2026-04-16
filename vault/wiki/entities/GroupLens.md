@@ -90,7 +90,7 @@ GroupLens 是历史上第一个自动化[[协同过滤]]系统，由 MIT 的 [[P
 
 12. **社会影响预见**：论文提出"全球村是否会碎裂成一个个部落？"这一问题，直接预见了后来被广泛讨论的 [[信息茧房]]（filter bubble）和"回声室"（echo chamber）现象——比 Eli Pariser 在 2011 年正式提出"[[信息茧房|过滤气泡]]"概念早了整整 17 年。
 
-13. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：GroupLens 研究组的 Sarwar、Karypis、Konstan、Riedl 共同发表了 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），首次系统性分析和评估了[[基于物品的协同过滤]]方法，成为推荐系统领域引用量最高的论文之一（Google Scholar 超 10,000 次引用），与 1994 年的 GroupLens 原始论文、Koren 等人 2009 年关于[[矩阵分解]]的工作共同构成了[[协同过滤]]领域的"三座高峰"。
+13. **[[基于物品的协同过滤|Item-Based CF]] 论文（2001）**：GroupLens 研究组的 Sarwar、Karypis、Konstan、Riedl 共同发表了 [[Item-Based Collaborative Filtering Recommendation Algorithms]]（WWW '01），首次系统性分析和评估了[[基于物品的协同过滤]]方法，成为推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），与 1994 年的 GroupLens 原始论文、Koren 等人 2009 年关于[[矩阵分解]]的工作共同构成了[[协同过滤]]领域的"三座高峰"。
 
 ## 来源
 - [[raw/books/推荐系统/02-grouplens-collaborative-filtering.md]] — 全文解读

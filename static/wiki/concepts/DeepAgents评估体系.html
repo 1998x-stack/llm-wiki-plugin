@@ -315,7 +315,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>生成类脚本</strong>：
 - <code>generate_radar.py</code>：从 <code>evals_summary.json</code> 生成雷达图 PNG（<code>--toy</code> 支持离线预览）
 - <code>generate_eval_catalog.py</code>：重写 <code>EVAL_CATALOG.md</code>，<code>--check</code> 用于 CI 防漂移
-- <code>generate_model_groups.py</code>：从 <code>.github/scripts/models.py</code> 注册表生成 <code>MODEL_GROUPS.md</code></p>
+- <code>generate_model_groups.py</code>：从 <code>.github/scripts/models.py</code> 注册表生成 <code>MODEL_<a href="生成式推荐.html">GR</a>OUPS.md</code></p>
 <p><strong>工程化建议</strong>：先确保轨迹与 <code>result.json</code> 完整再跑分析；解读分数时同时看 <code>format_ci</code> 与 MDE，并将 <code>is_infrastructure=True</code> 的 trial 单独分层统计。</p>
 <h3 id="_6">编写评估用例（五步流程）</h3>
 <ol>

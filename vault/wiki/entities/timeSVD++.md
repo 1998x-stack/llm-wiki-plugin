@@ -30,7 +30,7 @@ supersedes: null
 2. **静态假设**：物品的隐因子 $q_i$ 不随时间变化，因为物品本身是静态的。
 3. **效果**：一个仅 10 维的 time[[SVD++]] 模型，精度就超过了 200 维的标准 [[奇异值分解|SVD]] 模型。Koren 总结："正确处理时间动态对精度的影响，大于设计更复杂的推荐架构。"
 4. **公式**：$\hat{r}_{ui}(t) = \mu + b_i(t) + b_u(t) + q_i^T \cdot (p_u(t) + |R(u)|^{-1/2} \sum_{j \in R(u)} y_j)$
-5. **后续影响**：为序列推荐、会话推荐等研究方向埋下了种子。
+5. **后续影响**：为[[序列推荐]]、[[会话推荐]]等研究方向埋下了种子。
 
 ## 来源
 - [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems

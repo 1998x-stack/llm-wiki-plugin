@@ -82,7 +82,7 @@ Claude-Mem 的核心命题是赋予 AI 编程助手真实的项目记忆。在�
 系统采用“两进程 + 一数据库”模型：
 - **主进程（Claude Code）**：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - **后台服务（Worker Service）**：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- **数据层**：使用 [[SQLite]] 配合 [[FTS5]] 进行全文检索，结合 [[ChromaDB]] 进行语义向量检索，形成混合检索能力。
+- **数据层**：使用 [[SQLite]] 配合 [[FTS5]] 进行全文检索，结合 [[ChromaDB]] 进行语义[[近似最近邻检索|向量检索]]，形成混合检索能力。
 
 ### Hook 架构细节
 Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 **Lifecycle Hooks** 机制，在特定时间节点介入工作流：

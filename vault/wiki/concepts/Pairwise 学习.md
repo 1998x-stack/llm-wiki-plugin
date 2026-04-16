@@ -30,7 +30,7 @@ supersedes: null
 
 4. **[[BPR]] 中的实现**：[[BPR]]-Opt = Σ_(u,i,j) ln σ(x̂_ui - x̂_ui) - λ‖Θ‖²，通过 logistic sigmoid 函数建模偏好概率，是 [[AUC]] 的可微光滑近似。
 
-5. **与 Listwise 的比较**：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax [[交叉熵]]）考虑整个物品列表，在 [[NDCG]]、MRR 等指标上提供更紧的下界，但计算复杂度更高。
+5. **与 Listwise 的比较**：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax [[交叉熵]]）考虑整个物品列表，在 [[NDCG]]、[[MRR]] 等指标上提供更紧的下界，但计算复杂度更高。
 
 6. **在信息检索中的先例**：Pairwise 排序学习在信息检索领域（Learning to Rank）已有先例，如 RankNet、LambdaRank，[[BPR]] 是第一个将其系统化应用于推荐系统[[隐式反馈]]场景的工作。
 

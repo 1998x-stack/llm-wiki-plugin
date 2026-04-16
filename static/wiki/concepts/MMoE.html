@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MMoE — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / MMoE</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">多任务学习</span><span class="tag">深度学习</span><span class="tag">架构模式</span></div>
+</div>
+  <div class="content">
+    <h1 id="mmoe">MMoE</h1>
+<h2 id="_1">概述</h2>
+<p>M<a href="Multi-gate <a href="Mixture-of-Experts.html">Mixture-of-Experts</a>">[Mixture-of-Experts|MoE]</a>是一种<a href="多任务学习.html">多任务学习</a>架构，通过为每个任务配备独立门控网络，让任务自适应地选择和组合共享专家子网络，有效缓解<a href="负迁移.html">负迁移</a>问题。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心架构</h3>
+<ul>
+<li><strong>Expert 层</strong>：多个共享的专家网络(通常为 MLP)，各自独立处理输入特征</li>
+<li><strong>Multi-gate 层</strong>：每个任务拥有专属门控网络，通过 softmax 产生专家权重分配</li>
+<li><strong>Tower 层</strong>：任务特定的塔网络，接收加权融合后的专家输出产生最终预测</li>
+<li>前向传播：<code>f^k(x) = Σ g^k(x)_i * f_i(x)</code>，其中 <code>g^k(x) = softmax(W_gk * x)</code></li>
+</ul>
+<h3 id="_4">与相关架构的对比</h3>
+<ul>
+<li><strong>vs <span style="color:#e74c3c" title="broken link">Shared-Bottom</span></strong>：Shared-Bottom 强制所有任务共享同一底层表示，M<a href="Mixture-of-Experts.html">MoE</a> 允许任务自主选择专家组合，在任务相关性低时优势显著</li>
+<li><strong>vs O<a href="Mixture-of-Experts.html">MoE</a></strong>：O<a href="Mixture-of-Experts.html">MoE</a> 所有任务共享同一门控，M<a href="Mixture-of-Experts.html">MoE</a> 为每任务配备独立门控，实现任务特定的专家选择</li>
+<li>M<a href="Mixture-of-Experts.html">MoE</a> 可视为 Shared-Bottom 与完全独立模型之间的连续体，根据数据自动找到最优共享程度</li>
+</ul>
+<h3 id="_5">关键优势</h3>
+<ul>
+<li><strong><a href="负迁移.html">负迁移</a>抵抗</strong>：通过梯度隔离和专家特化机制，当任务信号冲突时可调低相关专家权重</li>
+<li><strong>训练稳定性</strong>：相比 Shared-Bottom 和 O<a href="Mixture-of-Experts.html">MoE</a> 具有更小的性能方差，对初始化更鲁棒</li>
+<li><strong>计算效率</strong>：门控网络极轻量，几乎不增加推理开销，适合工业级部署</li>
+<li><strong>可解释性</strong>：门控权重可可视化，揭示不同任务如何利用不同专家</li>
+</ul>
+<h3 id="_6">局限性</h3>
+<ul>
+<li><strong>Expert 数量选择困难</strong>：缺乏系统选择准则，依赖经验和网格搜索</li>
+<li><strong>Expert Collapse</strong>：可能出现所有门控收敛到同一专家的现象，退化为 Shared-Bottom</li>
+<li><strong>跷跷板现象</strong>：优化一任务时另一任务性能仍可能下降(后续 <span style="color:#e74c3c" title="broken link">PLE</span> 解决)</li>
+<li><strong>缺乏显式任务交互</strong>：任务间信息流仅通过共享专家间接传递(后续 <span style="color:#e74c3c" title="broken link">ESMM</span> 补充)</li>
+</ul>
+<h3 id="_7">工业应用</h3>
+<ul>
+<li><a href="../entities/Google.html">Google</a> 推荐系统(Youtube、<a href="../entities/Google.html">Google</a> Play 等)大规模采用</li>
+<li>2018-2020 年间成为工业级推荐系统<a href="多任务学习.html">多任务学习</a>的事实标准</li>
+<li>国内互联网公司(腾讯、阿里巴巴、字节跳动、快手)广泛部署</li>
+</ul>
+<h3 id="_8">历史影响</h3>
+<ul>
+<li>发表於 KDD 2018，至今被引用数千次</li>
+<li>开创"Expert + Gate"范式，催生 PLE、DB<a href="多任务学习.html">MTL</a>、AC-M<a href="Mixture-of-Experts.html">MoE</a>、BEnet 等后续工作</li>
+<li><a href="Mixture-of-Experts.html">MoE</a> 思想在大模型时代复兴(Mixtral、DeepSeek、Qwen3 等)</li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><a href="../entities/MMoE 论文.html">MMoE 论文</a> — Ma et al., KDD 2018, "Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts"</li>
+<li>raw/books/推荐系统/14-mmoe.md — 深度解读文章</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="多任务学习.html">多任务学习</a> — MMoE 的应用领域</li>
+<li><a href="负迁移.html">负迁移</a> — MMoE 旨在缓解的核心问题</li>
+<li><a href="Mixture-of-Experts.html">Mixture-of-Experts</a> — MMoE 的思想源头</li>
+<li><span style="color:#e74c3c" title="broken link">PLE</span> — MMoE 的重要继承者，显式分离共享专家和任务特定专家</li>
+<li><span style="color:#e74c3c" title="broken link">ESMM</span> — 利用用户行为序列关系建模任务因果依赖的后续工作</li>
+<li><a href="../entities/YouTube.html">YouTube</a> — MMoE 大规模工业验证的平台</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="MF-IPS.html">&larr; MF-IPS</a>
+    <a href="MNAR.html">MNAR &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

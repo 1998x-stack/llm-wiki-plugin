@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心公式</h3>
 <p>$$\text{MultiHead}(Q,K,V)=\text{Concat}(head_1,\dots,head_h)W_O$$</p>
-<p>每个 head 独立执行缩放点积注意力：</p>
+<p>每个 head 独立执行<a href="缩放点积注意力.html">缩放点积注意力</a>：</p>
 <p>$$head_i = \text{Attention}(QW_Q^i, KW_K^i, VW_V^i)$$</p>
 <p>每个 head 的投影维度通常为 $d_k = d_{model}/h$，保持总计算量与单头相当。</p>
 <h3 id="_5">为什么需要多头</h3>
@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="多Agent架构.html">&larr; 多Agent架构</a>
+    <a href="多任务学习.html">&larr; 多任务学习</a>
     <a href="大数定律.html">大数定律 &rarr;</a>
   </div>
 </div>

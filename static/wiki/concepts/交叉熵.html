@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">信息论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">交叉熵</h1>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">直觉</h3>
 <p>如果真实数据来自分布 P，但你以为它来自分布 Q，交叉熵衡量你在这种"错误信念"下编码数据所需的平均比特数。它总是大于等于真实熵 H(P)，多出的部分就是 KL 散度。</p>
 <h3 id="_6">在机器学习中的核心地位</h3>
-<p>深度学习分类任务的标准损失函数就是交叉熵损失。当模型输出概率分布 Q，真实标签是 one-hot 分布 P 时，最小化交叉熵就是让模型分布 Q 逼近真实分布 P。</p>
+<p>深度学习分类任务的标准损失函数就是<a href="二元交叉熵.html">交叉熵损失</a>。当模型输出概率分布 Q，真实标签是 one-hot 分布 P 时，最小化交叉熵就是让模型分布 Q 逼近真实分布 P。</p>
 <p>大语言模型的训练目标——最小化下一个 token 的交叉熵——本质上就是在让模型的预测分布逼近人类语言的真实条件分布。</p>
 <h2 id="_7">来源</h2>
 <ul>

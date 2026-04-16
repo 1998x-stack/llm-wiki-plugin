@@ -36,11 +36,11 @@ Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由
 ## 关键内容
 
 ### 成立背景与愿景
-Willow Garage 的诞生源于创始人 Scott Hassan（Google 搜索引擎原型技术的共同开发者）对"机器人界 Linux"的愿景。2000 年代中期，机器人软件开发处于碎片化状态，各实验室重复造轮子。Hassan 受到斯坦福大学博士生 Eric Berger 和 Keenan Wyrobek 关于理想机器人软件框架设计的启发，结合 [[Morgan Quigley]] 在 STAIR 项目中开发的 Switchyard 框架经验，决定成立一家专门机构来解决这一痛点。其目标是打造一个开源的、社区驱动的软件平台，使机器人开发像 Web 开发一样高效协作。
+Willow Garage 的诞生源于创始人 Scott Hassan（[[Google]] 搜索引擎原型技术的共同开发者）对"机器人界 Linux"的愿景。2000 年代中期，机器人软件开发处于碎片化状态，各实验室重复造轮子。Hassan 受到斯坦福大学博士生 Eric Berger 和 Keenan Wyrobek 关于理想机器人软件框架设计的启发，结合 [[Morgan Quigley]] 在 STAIR 项目中开发的 Switchyard 框架经验，决定成立一家专门机构来解决这一痛点。其目标是打造一个开源的、社区驱动的软件平台，使机器人开发像 Web 开发一样高效协作。
 
 ### 核心贡献：ROS 与 PR2
 Willow Garage 的核心产出是 **ROS** 和 **[[PR2 机器人]]**。
-*   **ROS 的工程化**：虽然 ROS 的概念源自学术界，但 Willow Garage 投入了大量工程资源将其从一个研究原型转化为稳健的工业级框架。公司雇佣了包括 Ken Conley, Josh Faust, Tully Foote 等在内的核心工程师团队，开发了 rviz, rosbag, TF 等关键工具链，并建立了 Wiki 文档和 ROS Answers 社区平台。
+*   **ROS 的工程化**：虽然 ROS 的概念源自学术界，但 Willow Garage 投入了大量工程资源将其从一个研究原型转化为稳健的工业级框架。公司雇佣了包括 Ken Conley, Josh Faust, Tully Foote 等在内的核心工程师团队，开发了 rviz, rosbag, [[TensorFlow|TF]] 等关键工具链，并建立了 Wiki 文档和 ROS Answers 社区平台。
 *   **[[PR2 机器人|PR2]] Beta Program**：2010 年，Willow Garage 启动了 [[PR2 机器人|PR2]] Beta Program，将价值数十万美元的 11 台 [[PR2 机器人]]免费赠送给 MIT、UC Berkeley、斯坦福等全球顶尖高校。这一策略极具远见，迅速在全球范围内培养了一批精通 ROS 的"种子用户"，形成了强大的网络效应，使 ROS 迅速成为事实标准。
 
 ### 开源哲学与商业模式

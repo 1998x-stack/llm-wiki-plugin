@@ -35,7 +35,7 @@ OpenClaw 是一个多渠道 AI 助手，以 [[Pi-Agent]] 为核心引擎，支�
 
 OpenClaw 将 [[Pi-Agent|Pi]] Agent 内嵌为核心 Agent 引擎，在其上构建了多平台通道适配层，支持的渠道包括：
 - WhatsApp、Telegram、Discord、Slack、Signal
-- iMessage、Google Chat、Microsoft Teams
+- iMessage、[[Google]] Chat、Microsoft Teams
 
 关键特性：各渠道**共享内存和持久化会话**——在任一平台发起的对话可在另一平台无缝继续。这依赖于 [[Pi-Agent|Pi]] 的 JSONL 会话格式和跨 Provider 迁移能力。
 

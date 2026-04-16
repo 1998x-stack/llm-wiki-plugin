@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推荐系统基础模型 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 推荐系统基础模型</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">LLM</span><span class="tag">基础模型</span><span class="tag">预训练</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">推荐系统基础模型</h1>
+<h2 id="_2">概述</h2>
+<p>类比 BERT 之于 NLP、ViT 之于 CV 的推荐系统愿景——通过大规模预训练获得通用推荐理解能力，通过 Prompt/指令适配具体场景。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>概念提出</strong>：<a href="../entities/P5 论文.html">P5 论文</a>（<a href="../entities/RecSys 2022.html">RecSys 2022</a>）明确提出了"推荐系统基础模型"的愿景，类比 BERT 之于 NLP、ViT 之于计算机视觉，希望成为推荐系统领域的基础模型——通过大规模预训练获得通用的推荐理解能力，然后通过 Prompt 来适配具体的推荐场景。</p>
+</li>
+<li>
+<p><strong>核心特征</strong>：</p>
+</li>
+<li><strong>大规模预训练</strong>：在海量推荐数据上预训练，获得通用的用户-物品交互理解能力</li>
+<li><strong>任务无关性</strong>：同一模型可适配评分预测、<a href="序列推荐.html">序列推荐</a>、解释生成等多种任务</li>
+<li><strong>Prompt/指令驱动</strong>：通过自然语言 Prompt 或<a href="指令调优.html">指令调优</a>适配下游场景</li>
+<li>
+<p><strong>迁移能力</strong>：支持跨域推荐、zero-shot/few-shot 泛化</p>
+</li>
+<li>
+<p><strong>从浅层到深度到大模型</strong>：<a href="../entities/P5 论文.html">P5 论文</a>描述了推荐系统的演进路径——从浅层模型（<a href="矩阵分解.html">矩阵分解</a>、<a href="协同过滤.html">协同过滤</a>）到深度模型（<a href="NeuMF.html">NeuMF</a>、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>）再到大模型（基于 LLM 的统一推荐），这一预见在后续几年中确实成为了现实。</p>
+</li>
+<li>
+<p><strong>技术路线</strong>：</p>
+</li>
+<li><strong><a href="../entities/P5 论文.html">P5</a> 路线</strong>（2022）：基于 <a href="../entities/T5.html">T5</a>-small/base（60M-223M），Prompt 模板，全参数微调</li>
+<li>
+<p><strong>现代方案</strong>（2024-2025）：基于 LLaMA/Mistral/Qwen（7B-70B），<a href="指令调优.html">指令调优</a>，LoRA/QLoRA 参数高效微调</p>
+</li>
+<li>
+<p><strong>挑战</strong>：推理效率（自回归解码延迟）；物品词汇表可扩展性；ID 语义鸿沟；工业落地兼容性。工业界对完全替代传统推荐模型持谨慎态度，更多将 LLM 作为辅助组件（特征增强、冷启动解决、用户意图理解）。</p>
+</li>
+<li>
+<p><strong>后续工作</strong>：<a href="../entities/OpenP5.html">OpenP5</a> 标准化基准平台、<a href="../entities/VIP5.html">VIP5</a> 多模态扩展、<a href="../entities/InstructRec.html">InstructRec</a> <a href="指令调优.html">指令调优</a>、<a href="../entities/TALLRec.html">TALLRec</a> LLaMA 微调、<a href="../entities/LC-Rec.html">LC-Rec</a> <a href="语义 ID.html">语义 ID</a>、<a href="../entities/LLMRec.html">LLMRec</a> 双表示、<a href="../entities/DEALRec.html">DEALRec</a> 数据剪枝。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li>Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)</li>
+<li>Wu et al. — A Survey on Large Language Models for Recommendation, ACM TOIS 2024</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/P5 论文.html">P5 论文</a> — 首次提出推荐系统基础模型愿景</li>
+<li><a href="生成式推荐.html">生成式推荐</a> — 基础模型的核心范式</li>
+<li><a href="../entities/T5.html">T5</a> — P5 使用的基础模型骨干</li>
+<li><a href="多任务学习.html">多任务学习</a> — 基础模型的训练策略</li>
+<li><a href="../entities/OpenP5.html">OpenP5</a> — 基础模型的标准化基准平台</li>
+<li><a href="指令调优.html">指令调优</a> — 现代基础模型的适配方式</li>
+<li><a href="矩阵分解.html">矩阵分解</a> — 推荐系统"浅层模型"时代</li>
+<li><a href="NeuMF.html">NeuMF</a> — 推荐系统"深度模型"时代</li>
+<li><span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> — 推荐系统"深度模型"时代</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="推荐系统 Scaling Laws.html">&larr; 推荐系统 Scaling Laws</a>
+    <a href="操作空间控制.html">操作空间控制 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

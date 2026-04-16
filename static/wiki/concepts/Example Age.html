@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>效果验证</strong>：加入 Example Age 特征后，模型预测的视频观看概率分布与实际分布的拟合度有了显著提升。这是 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中最被人津津乐道的工程技巧之一。</p>
 </li>
 <li>
-<p><strong>深远影响</strong>：Example Age 的思想——"在训练中暴露偏差，在推理中消除偏差"——可以被看作是推荐系统中 <span style="color:#e74c3c" title="broken link">因果推断</span>（Causal Inference）和去偏（Debiasing）研究的先驱。后续的 IPW（Inverse Propensity Weighting）、因果 embedding、反事实学习等方法，都是这一思路的更加理论化和系统化的延伸。</p>
+<p><strong>深远影响</strong>：Example Age 的思想——"在训练中暴露偏差，在推理中消除偏差"——可以被看作是推荐系统中 <a href="因果推断.html">因果推断</a>（<a href="因果推断.html">Causal Inference</a>）和去偏（Debiasing）研究的先驱。后续的 IPW（Inverse Propensity Weighting）、因果 embedding、<a href="反事实学习.html">反事实学习</a>等方法，都是这一思路的更加理论化和系统化的延伸。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：虽然 Example Age 在一定程度上缓解了新视频推荐不足的问题，但对冷启动视频（刚上传、几乎没有交互数据的视频）的处理并不充分。新视频的 embedding 在训练初期不稳定，在模型更新频率有限的情况下，很多新视频可能在获得足够曝光之前就已经"过时"。</p>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 提出该技术的论文</li>
 <li><a href="冷启动问题.html">冷启动问题</a> — Example Age 部分缓解但未完全解决的问题</li>
-<li><span style="color:#e74c3c" title="broken link">因果推断</span> — Example Age 思想的理论化延伸方向</li>
+<li><a href="因果推断.html">因果推断</a> — Example Age 思想的理论化延伸方向</li>
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — Example Age 在其中的应用位置</li>
 </ul>
   </div>

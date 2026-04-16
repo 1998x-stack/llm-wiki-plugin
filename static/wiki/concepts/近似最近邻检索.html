@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">近似最近邻检索</h1>
 <h2 id="_2">概述</h2>
-<p>在大规模向量空间中快速找到与查询向量最相似的 Top-N 个向量的技术，是推荐系统候选生成阶段的核心检索方式。</p>
+<p>在大规模向量空间中快速找到与查询向量最相似的 Top-N 个向量的技术，是推荐系统<a href="候选生成.html">候选生成</a>阶段的核心检索方式。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>问题定义</strong>：给定一个查询向量 u（用户 embedding）和一个包含数十亿向量的集合 V（视频 embedding 空间），快速找到与 u 内积（或余弦相似度）最大的 Top-N 个向量。精确最近邻搜索需要遍历所有向量，复杂度 O(V)，在超大规模场景下不可行。</p>
 </li>
 <li>
-<p><strong>在 YouTube DNN 中的应用</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中，训练完成后每个视频对应一个 embedding 向量 v_i（softmax 层权重），每个用户请求时通过神经网络前向计算得到 embedding 向量 u。推荐问题转化为：在视频 embedding 空间中找到与用户 embedding u 最近的 Top-N 个视频——这是一个经典的近似最近邻（ANN）检索问题。</p>
+<p><strong>在 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中的应用</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中，训练完成后每个视频对应一个 embedding 向量 v_i（softmax 层权重），每个用户请求时通过神经网络前向计算得到 embedding 向量 u。推荐问题转化为：在视频 embedding 空间中找到与用户 embedding u 最近的 Top-N 个视频——这是一个经典的近似最近邻（ANN）检索问题。</p>
 </li>
 <li>
 <p><strong>训练-服务不对称</strong>：训练时用 softmax 分类 + <a href="采样 Softmax.html">采样 Softmax</a>，服务时用 ANN 检索。这种"训练时用分类，服务时用检索"的不对称设计是整篇论文最精髓的工程思想之一。</p>
@@ -150,15 +150,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>主流 ANN 算法</strong>：</p>
 </li>
-<li><strong>基于树的方法</strong>：KD-Tree、Ball Tree、Annoy（Spotify 开发）</li>
+<li><strong>基于树的方法</strong>：KD-Tree、Ball Tree、Annoy（<a href="../entities/Spotify.html">Spotify</a> 开发）</li>
 <li><strong>基于哈希的方法</strong>：LSH（Locality Sensitive Hashing）</li>
 <li><strong>基于图的方法</strong>：HNSW（Hierarchical Navigable Small World）——当前最主流的方案</li>
 <li><strong>基于量化的方法</strong>：IVF-PQ（Inverted File with Product Quantization）</li>
 <li>
-<p><strong>Google ScaNN</strong>：专为大规模推荐系统优化的 ANN 库</p>
+<p><strong><a href="../entities/Google.html">Google</a> <a href="../entities/ScaNN.html">ScaNN</a></strong>：专为大规模推荐系统优化的 ANN 库</p>
 </li>
 <li>
-<p><strong>向量检索生态</strong>：YouTube DNN 中"训练时用 softmax，服务时用 ANN 检索"的思路，直接推动了向量检索技术在推荐系统中的广泛应用。<span style="color:#e74c3c" title="broken link">Faiss</span>（Facebook）、<span style="color:#e74c3c" title="broken link">ScaNN</span>（Google）、Milvus、Pinecone 等向量数据库和检索库的兴起，都与这一范式的流行密切相关。</p>
+<p><strong>向量检索生态</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中"训练时用 softmax，服务时用 ANN 检索"的思路，直接推动了向量检索技术在推荐系统中的广泛应用。<a href="../entities/Faiss.html">Faiss</a>（Facebook）、<a href="../entities/ScaNN.html">ScaNN</a>（<a href="../entities/Google.html">Google</a>）、Milvus、<a href="../entities/Pi-Agent.html">Pi</a>necone 等向量数据库和检索库的兴起，都与这一范式的流行密切相关。</p>
 </li>
 <li>
 <p><strong>性能指标</strong>：ANN 检索的核心权衡是速度 vs. 精度。好的 ANN 算法能在亚线性时间（通常 O(log V) 或 O(1)）内完成检索，同时保持较高的召回率（通常 95%+ 的精确最近邻召回率）。</p>
@@ -174,13 +174,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="双塔模型.html">双塔模型</a> — 产生 embedding 的模型架构</li>
 <li><a href="候选生成.html">候选生成</a> — ANN 的应用场景</li>
 <li><a href="Embedding.html">Embedding</a> — ANN 检索的输入</li>
-<li><span style="color:#e74c3c" title="broken link">Faiss</span> — Facebook 的 ANN 检索库</li>
-<li><span style="color:#e74c3c" title="broken link">ScaNN</span> — Google 的 ANN 检索库</li>
+<li><a href="../entities/Faiss.html">Faiss</a> — Facebook 的 ANN 检索库</li>
+<li><a href="../entities/ScaNN.html">ScaNN</a> — Google 的 ANN 检索库</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="运动规划.html">&larr; 运动规划</a>
-    <a href="递推方法.html">递推方法 &rarr;</a>
+    <a href="逆倾向评分.html">逆倾向评分 &rarr;</a>
   </div>
 </div>
 </body>

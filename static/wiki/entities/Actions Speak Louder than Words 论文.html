@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actions Speak Louder than Words 论文 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Actions Speak Louder than Words 论文</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">生成式推荐</span><span class="tag">Meta</span><span class="tag">ICML 2024</span><span class="tag">Scaling Laws</span></div>
+</div>
+  <div class="content">
+    <h1 id="actions-speak-louder-than-words">Actions Speak Louder than Words 论文</h1>
+<h2 id="_1">概述</h2>
+<p>ICML 2024 论文，Meta 团队提出 1.5 万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>模型 <a href="HSTU.html">HSTU</a>，首次在工业级推荐系统中验证 Scaling Laws，在线 A/B 测试提升 12.4%，部署于数十亿用户平台。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>论文信息</strong>：<em>Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations</em>，作者 Jiaqi Zhai, Lucy Liao, Xing Liu, Yueming Wang, Rui Li, Xuan Cao, Leon Gao, Zhaojie Gong, Fangda Gu, Michael He, Yinghai Lu, Yu Shi。机构：Meta（横跨 MRS、PyTorch、AI Infra、Discovery、Instagram 团队）。发表于 ICML 2024（PMLR 235:58484-58509）。</p>
+</li>
+<li>
+<p><strong>标题含义</strong>："Actions Speak Louder than Words"有双重含义——用户行为（actions）比文本描述（words）更能反映真实偏好；模型应直接从行为学习而非依赖物品描述。消融实验验证：仅用内容特征下降 25.3%，仅用行为特征仅下降 2.6%。</p>
+</li>
+<li>
+<p><strong>核心贡献</strong>：</p>
+</li>
+<li>提出 <a href="HSTU.html">HSTU</a> 架构，针对推荐场景改造 <a href="../concepts/Transformer架构.html">Transformer</a>（SiLU 注意力、相对偏置、U <a href="../concepts/矩阵.html">矩阵</a>门控）。</li>
+<li>提出 <a href="../concepts/生成式推荐.html">生成式推荐</a> 范式，将召回和排序统一为"预测下一个 token"的序列生成任务。</li>
+<li>提出 <a href="M-FALCON.html">M-FALCON</a> 高效推理算法，使 285 倍复杂度模型在相同推理预算下运行。</li>
+<li>
+<p>首次验证 <a href="../concepts/推荐系统 Scaling Laws.html">推荐系统 Scaling Laws</a>，模型质量随计算量呈幂律增长，跨越三个数量级。</p>
+</li>
+<li>
+<p><strong>部署规模</strong>：1.5 万亿参数，1000 亿训练样本，256 块 H100 GPU 训练，Meta 旗下多产品线部署，日均数百亿次交互。</p>
+</li>
+<li>
+<p><strong>实验结果</strong>：离线 <a href="../concepts/NDCG.html">NDCG</a> 提升 65.8%；在线 A/B 测试主要指标提升 12.4%（工业级极为罕见）；HR@100 从 29.0% 到 36.9%。</p>
+</li>
+<li>
+<p><strong>历史影响</strong>：被广泛认为是推荐系统的"GPT 时刻"，推动 <a href="Google.html">Google</a>、快手、美团、阿里、<a href="Netflix.html">Netflix</a>、字节等向<a href="../concepts/生成式推荐.html">生成式推荐</a>迁移。Meta 开源完整代码，NVIDIA 提供工业级实现。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2402.17152">论文原文 (ArXiv)</a></li>
+<li><a href="https://proceedings.mlr.press/v235/zhai24a.html">ICML 2024 Proceedings</a></li>
+<li><a href="https://github.com/meta-recsys/generative-recommenders">官方开源代码 (GitHub)</a></li>
+<li><a href="https://www.shaped.ai/blog/is-this-the-chatgpt-moment-for-recommendation-systems">Is this the ChatGPT moment for recommendation systems? (Shaped.ai)</a></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="HSTU.html">HSTU</a> — 论文提出的核心架构</li>
+<li><a href="../concepts/生成式推荐.html">生成式推荐</a> — 论文提出的推荐范式</li>
+<li><a href="M-FALCON.html">M-FALCON</a> — 论文提出的高效推理算法</li>
+<li><a href="../concepts/推荐系统 Scaling Laws.html">推荐系统 Scaling Laws</a> — 论文首次验证的核心发现</li>
+<li><a href="SASRec.html">SASRec</a> — HSTU 的概念先驱</li>
+<li>Meta — 论文所属机构</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="AT&T Labs--Research.html">&larr; AT&T Labs--Research</a>
+    <a href="Adith Swaminathan.html">Adith Swaminathan &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

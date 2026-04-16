@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习领域最具影响力的研究者之一（Google Scholar 引用超 23 万次）。他与 Chelsea Finn 等人于 2016 年首次实现了从像素到力矩的端到端[[端到端视觉运动学习|视觉运动策略]]学习，此后在 Google Brain/DeepMind 推动了大规模机器人学习从单任务到 RT-2 的演进。
+Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习领域最具影响力的研究者之一（[[Google]] Scholar 引用超 23 万次）。他与 Chelsea Finn 等人于 2016 年首次实现了从像素到力矩的端到端[[端到端视觉运动学习|视觉运动策略]]学习，此后在 [[Google]] Brain/DeepMind 推动了大规模机器人学习从单任务到 RT-2 的演进。
 
 ## 关键内容
 
@@ -35,12 +35,12 @@ Sergey Levine 是 UC Berkeley 计算机科学系教授，深度机器人学习�
 
 **元学习（MAML）**：与 Chelsea Finn 合作（2017），提出 Model-Agnostic Meta-Learning，用极少量数据快速适应新任务，对机器人学习和通用人工智能均有深远影响。
 
-**大规模机器人学习**：在 Google Brain（2015–2016）和 Google DeepMind 工作期间推动"机器人农场"并行数据收集，研究从 RT-1（13 万条演示，700+ 任务）到 RT-2（[[视觉-语言-动作模型|VLA]] 模型，互联网知识迁移）的技术路线。
+**大规模机器人学习**：在 [[Google]] Brain（2015–2016）和 [[Google]] DeepMind 工作期间推动"机器人农场"并行数据收集，研究从 RT-1（13 万条演示，700+ 任务）到 RT-2（[[视觉-语言-动作模型|VLA]] 模型，互联网知识迁移）的技术路线。
 
 ### 学术轨迹
 
-- UC Berkeley EECS 博士后 → Google Brain（2015–2016）→ UC Berkeley 助理教授（2016–）
-- Google DeepMind 兼职研究员
+- UC Berkeley EECS 博士后 → [[Google]] Brain（2015–2016）→ UC Berkeley 助理教授（2016–）
+- [[Google]] DeepMind 兼职研究员
 
 ### 与 Chelsea Finn 的合作
 

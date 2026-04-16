@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-[[Mario-Zechner]] 在构建 [[Pi-Agent]] 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire Protocol（OpenAI Completions、OpenAI Responses、Anthropic Messages、Google Gen AI）。只需四个适配器即可统一覆盖所有 Provider。
+[[Mario-Zechner]] 在构建 [[Pi-Agent]] 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire Protocol（OpenAI Completions、OpenAI Responses、Anthropic Messages、[[Google]] Gen AI）。只需四个适配器即可统一覆盖所有 Provider。
 
 ## 关键内容
 
@@ -40,7 +40,7 @@ supersedes: null
 | OpenAI Completions API | OpenAI、Groq、Mistral、Cerebras、xAI、Ollama、vLLM、LM Studio、llama.cpp |
 | OpenAI Responses API | OpenAI（新版） |
 | Anthropic Messages API | Anthropic、AWS Bedrock |
-| Google Generative AI | Google Gemini 全系列 |
+| [[Google]] Generative AI | [[Google]] Gemini 全系列 |
 
 ### 2. Provider 差异的实际痛点
 

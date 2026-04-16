@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="BPR.html">BPR</a> 中的实现</strong>：<a href="BPR.html">BPR</a>-Opt = Σ_(u,i,j) ln σ(x̂_ui - x̂_ui) - λ‖Θ‖²，通过 logistic sigmoid 函数建模偏好概率，是 <a href="AUC.html">AUC</a> 的可微光滑近似。</p>
 </li>
 <li>
-<p><strong>与 Listwise 的比较</strong>：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）考虑整个物品列表，在 <a href="NDCG.html">NDCG</a>、MRR 等指标上提供更紧的下界，但计算复杂度更高。</p>
+<p><strong>与 Listwise 的比较</strong>：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）考虑整个物品列表，在 <a href="NDCG.html">NDCG</a>、<a href="MRR.html">MRR</a> 等指标上提供更紧的下界，但计算复杂度更高。</p>
 </li>
 <li>
 <p><strong>在信息检索中的先例</strong>：Pairwise 排序学习在信息检索领域（Learning to Rank）已有先例，如 RankNet、LambdaRank，<a href="BPR.html">BPR</a> 是第一个将其系统化应用于推荐系统<a href="隐式反馈.html">隐式反馈</a>场景的工作。</p>

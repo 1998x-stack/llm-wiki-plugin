@@ -135,16 +135,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">记忆与泛化</h1>
 <h2 id="_2">概述</h2>
-<p>推荐系统设计的核心概念框架，由 Wide &amp; Deep 论文（2016）提出，将推荐挑战抽象为"记忆已知模式"与"泛化未知组合"的统一问题，影响后续所有主流推荐模型设计。</p>
+<p>推荐系统设计的核心概念框架，由 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 论文（2016）提出，将推荐挑战抽象为"记忆已知模式"与"泛化未知组合"的统一问题，影响后续所有主流推荐模型设计。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>Memorization（记忆）定义</strong>：学习训练数据中频繁共现的特征或物品之间的相关性，并利用历史关联进行推荐。本质是"利用已知"，通过<a href="特征交叉.html">特征交叉</a>（如交叉积变换）精确捕捉历史验证有效的模式。例如"安装微信的用户大概率也下载QQ"，模型通过交叉特征记住这一规律。</li>
+<li><strong>Memorization（记忆）定义</strong>：学习训练数据中频繁共现的特征或物品之间的相关性，并利用历史关联进行推荐。本质是"利用已知"，通过<a href="特征交叉.html">特征交叉</a>（如<a href="交叉积变换.html">交叉积变换</a>）精确捕捉历史验证有效的模式。例如"安装微信的用户大概率也下载QQ"，模型通过交叉特征记住这一规律。</li>
 <li><strong>Generalization（泛化）定义</strong>：基于特征之间的传递性和相关性，探索训练数据中很少出现或从未出现的新特征组合。本质是"推断未知"，通过<a href="嵌入表示.html">嵌入表示</a>将高维稀疏特征映射为低维稠密向量，在嵌入空间中通过相似性推断潜在关联。</li>
-<li><strong>记忆的优势与局限</strong>：优势在于对已知模式的高精度复现；局限在于无法泛化到未见过的特征组合——交叉积变换对训练数据中未出现的特征对恒为 0，完全无法提供信息。</li>
-<li><strong>泛化的优势与局限</strong>：优势在于处理新情况和长尾物品；局限在于当用户-物品交互矩阵非常稀疏且高秩时，可能"过度泛化"（over-generalize），推荐出相关性不高的物品。</li>
+<li><strong>记忆的优势与局限</strong>：优势在于对已知模式的高精度复现；局限在于无法泛化到未见过的特征组合——<a href="交叉积变换.html">交叉积变换</a>对训练数据中未出现的特征对恒为 0，完全无法提供信息。</li>
+<li><strong>泛化的优势与局限</strong>：优势在于处理新情况和长尾物品；局限在于当用户-物品交互<a href="矩阵.html">矩阵</a>非常稀疏且高秩时，可能"过度泛化"（over-generalize），推荐出相关性不高的物品。</li>
 <li><strong>记忆与泛化的互补性</strong>：理想的推荐系统应同时具备两种能力，像"既有丰富经验、又有灵活思维"的推荐专家。记忆确保已知模式的精确性，泛化确保新情况的适应性。</li>
-<li><strong>在 Wide &amp; Deep 中的实现</strong>：Wide 组件（线性模型 + 交叉特征）负责记忆，Deep 组件（DNN + 嵌入）负责泛化，通过<a href="联合训练.html">联合训练</a>在统一框架中实现互补。</li>
-<li><strong>超越 Wide &amp; Deep 的持久性</strong>：即使具体实现被更先进方法取代，这一概念框架依然适用。后续模型（DeepFM、DCN、xDeepFM 等）都在不同方式下解决"如何更好地平衡记忆与泛化"这一核心问题。</li>
+<li><strong>在 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 中的实现</strong>：Wide 组件（线性模型 + 交叉特征）负责记忆，Deep 组件（DNN + 嵌入）负责泛化，通过<a href="联合训练.html">联合训练</a>在统一框架中实现互补。</li>
+<li><strong>超越 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的持久性</strong>：即使具体实现被更先进方法取代，这一概念框架依然适用。后续模型（<a href="../entities/DeepFM.html">DeepFM</a>、<a href="../entities/DCN.html">DCN</a>、<a href="../entities/xDeepFM.html">xDeepFM</a> 等）都在不同方式下解决"如何更好地平衡记忆与泛化"这一核心问题。</li>
 <li><strong>通俗类比</strong>：记忆如同"老中医"——凭借多年经验精准识别常见病症组合；泛化如同"AI 医生"——通过海量数据推理处理罕见病例。两者联合会诊，各取所长、互补短板。</li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="视觉-语言-动作模型.html">&larr; 视觉-语言-动作模型</a>
-    <a href="谱半径.html">谱半径 &rarr;</a>
+    <a href="语义 ID.html">语义 ID &rarr;</a>
   </div>
 </div>
 </body>

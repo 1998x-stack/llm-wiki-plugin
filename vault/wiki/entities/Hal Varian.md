@@ -27,7 +27,7 @@ Hal Varian 是著名经济学家和计算机科学家，与 [[Paul Resnick]] 共
 
 2. **论文**：[[Paul Resnick|Resnick]], P. & Varian, H.R. (1997). "Recommender Systems." *Communications of the ACM*, 40(3), 56-58.
 
-3. **背景**：Varian 是加州大学伯克利分校的信息经济学教授，后成为 Google 首席经济学家。他在信息经济学和推荐系统方面都有重要贡献。
+3. **背景**：Varian 是加州大学伯克利分校的信息经济学教授，后成为 [[Google]] 首席经济学家。他在信息经济学和推荐系统方面都有重要贡献。
 
 ## 来源
 - [[raw/books/推荐系统/01-tapestry-collaborative-filtering.md]] — 全文解读

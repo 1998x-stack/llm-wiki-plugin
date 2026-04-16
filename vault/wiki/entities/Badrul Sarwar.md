@@ -28,7 +28,7 @@ entity_type: person
 
 2. **核心贡献**：作为 [[基于物品的协同过滤|Item-Based CF]] 论文的第一作者，主导了基于物品[[协同过滤]]算法的系统性分析和实验验证工作，证明了该方法在推荐质量和性能上均优于传统的 [[基于用户的协同过滤|User-Based CF]]。
 
-3. **论文影响**：该论文是推荐系统领域引用量最高的论文之一（Google Scholar 超 10,000 次引用），与 Koren 等人 2009 年关于[[矩阵分解]]的工作、[[Paul Resnick|Resnick]] 等人 1994 年的 [[GroupLens]] 原始论文共同构成了[[协同过滤]]领域的"三座高峰"。
+3. **论文影响**：该论文是推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次引用），与 Koren 等人 2009 年关于[[矩阵分解]]的工作、[[Paul Resnick|Resnick]] 等人 1994 年的 [[GroupLens]] 原始论文共同构成了[[协同过滤]]领域的"三座高峰"。
 
 4. **合作者**：与 George Karypis、[[Joseph Konstan]]（[[GroupLens]] 创始人）、[[John Riedl]]（[[GroupLens]] 创始人）共同完成该论文。
 

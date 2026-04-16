@@ -30,7 +30,7 @@ supersedes: null
 
 4. **效果验证**：加入 Example Age 特征后，模型预测的视频观看概率分布与实际分布的拟合度有了显著提升。这是 [[Deep Neural Networks for YouTube Recommendations]] 中最被人津津乐道的工程技巧之一。
 
-5. **深远影响**：Example Age 的思想——"在训练中暴露偏差，在推理中消除偏差"——可以被看作是推荐系统中 [[因果推断]]（Causal Inference）和去偏（Debiasing）研究的先驱。后续的 IPW（Inverse Propensity Weighting）、因果 embedding、反事实学习等方法，都是这一思路的更加理论化和系统化的延伸。
+5. **深远影响**：Example Age 的思想——"在训练中暴露偏差，在推理中消除偏差"——可以被看作是推荐系统中 [[因果推断]]（[[因果推断|Causal Inference]]）和去偏（Debiasing）研究的先驱。后续的 IPW（Inverse Propensity Weighting）、因果 embedding、[[反事实学习]]等方法，都是这一思路的更加理论化和系统化的延伸。
 
 6. **局限性**：虽然 Example Age 在一定程度上缓解了新视频推荐不足的问题，但对冷启动视频（刚上传、几乎没有交互数据的视频）的处理并不充分。新视频的 embedding 在训练初期不稳定，在模型更新频率有限的情况下，很多新视频可能在获得足够曝光之前就已经"过时"。
 

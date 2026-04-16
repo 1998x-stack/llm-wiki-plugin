@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recommendations as Treatments — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Recommendations as Treatments</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">因果推断</span><span class="tag">ICML</span><span class="tag">去偏</span></div>
+</div>
+  <div class="content">
+    <h1 id="recommendations-as-treatments-debiasing-learning-and-evaluation">Recommendations as Treatments: Debiasing Learning and Evaluation</h1>
+<h2 id="_1">概述</h2>
+<p>ICML 2016 奠基性论文，首次将<a href="../concepts/因果推断.html">因果推断</a>的<a href="../concepts/逆倾向评分.html">逆倾向评分</a>（<a href="../concepts/逆倾向评分.html">IPS</a>）方法系统引入推荐系统，将"推荐"类比为"处方"，统一解决了训练和评估中的<a href="../concepts/选择偏差.html">选择偏差</a>问题。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心类比</strong>：将推荐系统中的"向用户曝光一个物品"类比为医学中的"给患者施加一种治疗"。推荐不是预测，推荐是干预（intervention）。这一视角转换使<a href="../concepts/因果推断.html">因果推断</a>的整套方法论可以自然迁移到推荐系统领域。</p>
+</li>
+<li>
+<p><strong>问题定义</strong>：论文将核心问题拆分为两个统一子问题——(a) <strong>无偏评估</strong>：如何从有偏观测数据中无偏估计推荐系统性能；(b) <strong>无偏学习</strong>：如何在有偏数据上训练推荐模型。两者在数学形式上统一为风险函数的无偏估计与最小化。</p>
+</li>
+<li>
+<p><strong>关键方法</strong>：</p>
+</li>
+<li><strong><a href="../concepts/逆倾向评分.html">IPS</a></strong>：逆倾向加权估计器，当<a href="../concepts/倾向性评分.html">倾向性评分</a>已知时是真实风险的无偏估计</li>
+<li><strong><a href="../concepts/SNIPS.html">SNIPS</a></strong>：自归一化 <a href="../concepts/逆倾向评分.html">IPS</a>，显著降低方差，保持最优解不变</li>
+<li>
+<p><strong><a href="../concepts/MF-IPS.html">MF-IPS</a></strong>：基于 <a href="../concepts/逆倾向评分.html">IPS</a> 的<a href="../concepts/矩阵分解.html">矩阵分解</a>训练，在 <a href="../concepts/MNAR.html">MNAR</a> 数据上实现近似无偏的 ERM</p>
+</li>
+<li>
+<p><strong>倾向性估计</strong>：提出朴素<a href="托马斯·贝叶斯.html">贝叶斯</a>（无特征时）和逻辑回归（有特征时）两种<a href="../concepts/倾向性评分.html">倾向性评分</a>估计方法。实验证明即使倾向性估计存在噪声，<a href="../concepts/逆倾向评分.html">IPS</a>/<a href="../concepts/SNIPS.html">SNIPS</a> 仍显著优于朴素方法。</p>
+</li>
+<li>
+<p><strong>实验验证</strong>：在 ML100K（半合成）、<a href="Yahoo! R3.html">Yahoo! R3</a>（Yahoo Music 随机曝光数据）、Coat Shopping（作者自建数据集）上验证。<a href="../concepts/MF-IPS.html">MF-IPS</a> 在两个真实数据集上显著优于所有基线（p &lt; 0.001），甚至超过计算复杂度远高于它的联合似然方法。</p>
+</li>
+<li>
+<p><strong>理论贡献</strong>：证明 <a href="../concepts/逆倾向评分.html">IPS</a> 估计器的无偏性和有限样本尾部概率界；推导 <a href="../concepts/逆倾向评分.html">IPS</a>-ERM 的泛化误差界；证明传统<a href="../concepts/矩阵分解.html">矩阵分解</a>是 <a href="../concepts/MF-IPS.html">MF-IPS</a> 在 <a href="../concepts/MCAR.html">MCAR</a> 假设下的特例。</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：被广泛视为"因果推荐"（Causal Recommendation）方向的奠基性工作之一，引用量 1000+（截至 2025 年）。推动了偏差和公平性成为推荐系统研究的主流方向。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1602.05352">论文原文 (arXiv)</a></li>
+<li><a href="https://www.cs.cornell.edu/~tj/publications/schnabel_etal_16b.pdf">论文PDF (Cornell)</a></li>
+<li><a href="https://proceedings.mlr.press/v48/schnabel16.html">PMLR官方页面</a></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Tobias Schnabel.html">Tobias Schnabel</a> — 第一作者</li>
+<li><a href="Thorsten Joachims.html">Thorsten Joachims</a> — 通讯作者</li>
+<li><a href="Adith Swaminathan.html">Adith Swaminathan</a> — 作者</li>
+<li><a href="Ashudeep Singh.html">Ashudeep Singh</a> — 作者</li>
+<li><a href="Navin Chandak.html">Navin Chandak</a> — 作者</li>
+<li><a href="Cornell University.html">Cornell University</a> — 作者机构</li>
+<li><a href="../concepts/逆倾向评分.html">逆倾向评分</a> — 论文核心方法</li>
+<li><a href="../concepts/SNIPS.html">SNIPS</a> — 论文提出的低方差变体</li>
+<li><a href="../concepts/MF-IPS.html">MF-IPS</a> — 论文提出的训练方法</li>
+<li><a href="../concepts/因果推断.html">因果推断</a> — 论文的理论来源</li>
+<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — 论文应用的基础模型</li>
+<li><a href="SVD++.html">SVD++</a> — 论文比较的基线方法</li>
+<li><a href="Yahoo! R3.html">Yahoo! R3</a> — 论文使用的验证数据集</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="RecSys 2022.html">&larr; RecSys 2022</a>
+    <a href="Richard E. Fikes.html">Richard E. Fikes &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

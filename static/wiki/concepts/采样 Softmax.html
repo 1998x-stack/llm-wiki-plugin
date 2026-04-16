@@ -145,16 +145,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心思想</strong>：每次训练时只采样数千个负样本（negative samples），加上真实正样本，在这个缩小后的集合上计算 softmax。这样计算复杂度从 O(V) 降低到 O(k)，其中 k 是采样数量（通常数千）。</p>
 </li>
 <li>
-<p><strong>在 YouTube DNN 中的应用</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 的候选生成模型将推荐建模为超大规模多分类问题，使用采样 Softmax 技术大幅降低训练开销。公式 P(w_t = i | U, C) = e^{v_i · u} / Σ_{j ∈ V} e^{v_j · u} 中的分母通过采样近似。</p>
+<p><strong>在 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中的应用</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 的<a href="候选生成.html">候选生成</a>模型将推荐建模为超大规模多分类问题，使用采样 Softmax 技术大幅降低训练开销。公式 P(w_t = i | U, C) = e^{v_i · u} / Σ_{j ∈ V} e^{v_j · u} 中的分母通过采样近似。</p>
 </li>
 <li>
-<p><strong>与负采样的关系</strong>：采样 Softmax 本质上是一种结构化的 <a href="负采样.html">负采样</a> 策略。它不仅随机采样负样本，还会根据频率等因素调整采样分布，确保训练的稳定性和效率。</p>
+<p><strong>与<a href="负采样.html">负采样</a>的关系</strong>：采样 Softmax 本质上是一种结构化的 <a href="负采样.html">负采样</a> 策略。它不仅随机采样负样本，还会根据频率等因素调整采样分布，确保训练的稳定性和效率。</p>
 </li>
 <li>
-<p><strong>Embedding 学习的副产品</strong>：论文发现"softmax 输出层的权重就是每个视频的良好表示（embeddings）"。这意味着训练分类器的过程同时也是学习高质量 embedding 的过程。这种"分类即表示学习"的思想后来在 <a href="对比学习.html">对比学习</a>（如 <a href="InfoNCE.html">InfoNCE</a>）等领域得到了更加系统的发展。</p>
+<p><strong><a href="Embedding.html">Embedding</a> 学习的副产品</strong>：论文发现"softmax 输出层的权重就是每个视频的良好表示（embeddings）"。这意味着训练分类器的过程同时也是学习高质量 embedding 的过程。这种"分类即表示学习"的思想后来在 <a href="对比学习.html">对比学习</a>（如 <a href="InfoNCE.html">InfoNCE</a>）等领域得到了更加系统的发展。</p>
 </li>
 <li>
-<p><strong>现代替代方案</strong>：随着 <a href="对比学习.html">对比学习</a> 的发展，InfoNCE 等损失函数在某些场景下替代了采样 Softmax，但核心思想——通过负样本来近似全量计算——一脉相承。</p>
+<p><strong>现代替代方案</strong>：随着 <a href="对比学习.html">对比学习</a> 的发展，<a href="InfoNCE.html">InfoNCE</a> 等损失函数在某些场景下替代了采样 Softmax，但核心思想——通过负样本来近似全量计算——一脉相承。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

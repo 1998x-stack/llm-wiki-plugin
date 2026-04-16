@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNIPS — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / SNIPS</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">因果推断</span><span class="tag">去偏</span><span class="tag">评估方法</span></div>
+</div>
+  <div class="content">
+    <h1 id="snips">自归一化逆倾向评分 (SNIPS)</h1>
+<h2 id="_1">概述</h2>
+<p>SN<a href="逆倾向评分.html">IPS</a> 是 <a href="逆倾向评分.html">IPS</a> 的自归一化变体，通过用逆倾向权重总和进行归一化，显著降低估计方差，同时保持最优解不变，是因果推荐中的标准估计器。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心公式</strong>：$\hat{R}<em>{SN<a href="逆倾向评分.html">IPS</a>}(\hat{Y}) = \frac{\sum</em>{(u,i): O_{u,i}=1} \frac{\delta(\hat{y}<em>{u,i}, y</em>{u,i})}{P_{u,i}}}{\sum_{(u,i): O_{u,i}=1} \frac{1}{P_{u,i}}}$。分母为所有逆倾向权重之和，使归一化后权重总和为 1。</p>
+</li>
+<li>
+<p><strong>来源</strong>：源自<a href="因果推断.html">因果推断</a>文献中的 Hajek 估计器，由 <a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人在 <a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a> 中引入推荐系统领域。</p>
+</li>
+<li>
+<p><strong>优势</strong>：</p>
+</li>
+<li><strong>显著降低方差</strong>：通过归一化避免极端权重（如 $1/0.001 = 1000$）的影响</li>
+<li><strong>牺牲极小偏差</strong>：SN<a href="逆倾向评分.html">IPS</a> 不再是严格无偏的，但引入的偏差通常可忽略</li>
+<li><strong>保持最优解不变</strong>：用于学习时，SN<a href="逆倾向评分.html">IPS</a> 不改变 argmax，最优模型参数不受归一化影响</li>
+<li>
+<p><strong>无需额外调参</strong>：不像倾向性裁剪（propensity clipping）需人工设定截断阈值</p>
+</li>
+<li>
+<p><strong>与 <a href="逆倾向评分.html">IPS</a> 的权衡</strong>：<a href="逆倾向评分.html">IPS</a> 严格无偏但方差高，SN<a href="逆倾向评分.html">IPS</a> 有微小偏差但方差显著更低。在实际推荐场景中，SN<a href="逆倾向评分.html">IPS</a> 通常表现更稳定，尤其在各种偏差程度下都维持良好精度。</p>
+</li>
+<li>
+<p><strong>药物临床类比</strong>：如果某类患者服药概率极低（0.001），一旦观察到这样的患者，其 <a href="逆倾向评分.html">IPS</a> 权重高达 1000 倍，一个人的数据可能主导整个估计。SN<a href="逆倾向评分.html">IPS</a> 通过归一化避免"一个极端样本搅动全局"的问题。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1602.05352">Recommendations as Treatments (Schnabel et al., ICML 2016)</a></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="逆倾向评分.html">逆倾向评分</a> — SNIPS 的基础方法</li>
+<li><a href="倾向性评分.html">倾向性评分</a> — 权重计算的核心输入</li>
+<li><a href="选择偏差.html">选择偏差</a> — SNIPS 旨在校正的问题</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="SLAM.html">&larr; SLAM</a>
+    <a href="STRIPS 规划器.html">STRIPS 规划器 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

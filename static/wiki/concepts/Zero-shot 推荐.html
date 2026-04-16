@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero-shot 推荐 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Zero-shot 推荐</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">LLM</span><span class="tag">泛化能力</span><span class="tag">Prompt</span></div>
+</div>
+  <div class="content">
+    <h1 id="zero-shot">Zero-shot 推荐</h1>
+<h2 id="_1">概述</h2>
+<p>模型在面对从未见过的 Prompt 格式或推荐场景时仍能给出合理推荐的能力，由 <a href="../entities/P5 论文.html">P5 论文</a>首次在推荐系统中系统展示。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>概念定义</strong>：Zero-shot 推荐指模型在训练阶段未见过特定 Prompt 模板或任务格式的情况下，仅凭对语言的理解自行组织合适的对话来完成推荐任务的能力。这是传统推荐模型完全不具备的。</p>
+</li>
+<li>
+<p><strong><a href="../entities/P5 论文.html">P5</a> 中的验证</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 设计了 47 个<a href="个性化 Prompt.html">个性化 Prompt</a> 模板覆盖五类任务家族，采用部分采样训练策略——对每条原始数据只采样部分 Prompt 模板进行训练，保留一些模板作为 zero-shot 评估使用。实验证明，无论使用训练中见过的还是未见过的 Prompt 模板，<a href="../entities/P5 论文.html">P5</a> 都能取得相近的性能。</p>
+</li>
+<li>
+<p><strong>与传统<a href="冷启动问题.html">冷启动问题</a>的区别</strong>：<a href="冷启动问题.html">冷启动问题</a>关注新用户/新物品缺乏交互历史时的推荐，而 zero-shot 推荐关注模型对新任务格式/新 Prompt 的泛化能力，两者解决的是不同层面的泛化问题。</p>
+</li>
+<li>
+<p><strong>实现机制</strong>：通过多样化措辞的 Prompt 模板训练增强模型鲁棒性；语言作为统一媒介使模型能够理解未见过的任务描述；预训练语言模型本身的 zero-shot 能力迁移到推荐场景。</p>
+</li>
+<li>
+<p><strong>意义</strong>：暗示了一种更灵活、更可扩展的推荐交互方式的可能性——用户可以用自然语言描述新的推荐需求，模型无需重新训练即可适配。</p>
+</li>
+<li>
+<p><strong>后续发展</strong>：现代 LLM 推荐方案（如 <a href="../entities/TALLRec.html">TALLRec</a>、<a href="../entities/InstructRec.html">InstructRec</a>）通过<a href="指令调优.html">指令调优</a>进一步增强了 zero-shot 能力，使模型能够遵循更复杂的指令完成推荐任务。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li>Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/P5 论文.html">P5 论文</a> — 首次系统展示 zero-shot 推荐能力</li>
+<li><a href="生成式推荐.html">生成式推荐</a> — zero-shot 推荐的范式基础</li>
+<li><a href="个性化 Prompt.html">个性化 Prompt</a> — zero-shot 推荐的技术手段</li>
+<li><a href="冷启动问题.html">冷启动问题</a> — 不同层面的泛化问题</li>
+<li><a href="指令调优.html">指令调优</a> — 进一步增强 zero-shot 能力的方法</li>
+<li><a href="../entities/TALLRec.html">TALLRec</a> — 展示 zero-shot 能力的 LLM 推荐工作</li>
+<li><a href="../entities/InstructRec.html">InstructRec</a> — 通过指令调优增强 zero-shot 能力</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Wiener过程.html">&larr; Wiener过程</a>
+    <a href="bun-vs-uv.html">bun-vs-uv &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

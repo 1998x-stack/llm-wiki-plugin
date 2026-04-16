@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>深度学习时代的延伸</strong>：现代推荐系统中，嵌入层（<a href="Embedding.html">Embedding</a> Layer）是几乎所有深度模型的标准组件，这正是 <a href="../entities/Factorization Machines.html">FM</a> 首先系统化提出的。每个类别型特征（用户 ID、物品 ID、广告类别等）都对应一个可学习的嵌入表，查询时通过索引获取对应的<a href="Embedding.html">嵌入向量</a>。</li>
 <li><strong>嵌入维度选择</strong>：嵌入维度 $k$ 的选择是偏差-方差权衡的体现。$k$ 太小会欠拟合（表达能力不足），$k$ 太大会在稀疏数据上过拟合。实践中 <a href="../entities/Factorization Machines.html">FM</a> 通常选择 $k = 8, 16, 32$，深度模型的嵌入维度可达 64-256。</li>
 <li><strong>与<a href="Self-Attention机制.html">自注意力</a>的结构相似性</strong>：<a href="../entities/Factorization Machines.html">FM</a> 的交叉项 $\sum_i \sum_j \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$ 与 <a href="Transformer架构.html">Transformer</a> 的<a href="自注意力机制.html">自注意力机制</a> $\text{softmax}(QK^T/\sqrt{d})V$ 存在结构相似性——两者都通过"向量内积"衡量元素之间的交互强度。<a href="../entities/Factorization Machines.html">FM</a> 可看作是一种没有 softmax 归一化、没有 Value 投影的"原始注意力"。</li>
-<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 中的共享嵌入</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 中 <a href="../entities/Factorization Machines.html">FM</a> 组件和 DNN 组件共享同一组<a href="Embedding.html">嵌入向量</a>，避免了分别学习导致的参数冗余，是嵌入表示在深度模型中的典型应用模式。</li>
+<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 中的<a href="共享嵌入.html">共享嵌入</a></strong>：<a href="../entities/DeepFM.html">DeepFM</a> 中 <a href="../entities/Factorization Machines.html">FM</a> 组件和 DNN 组件共享同一组<a href="Embedding.html">嵌入向量</a>，避免了分别学习导致的参数冗余，是嵌入表示在深度模型中的典型应用模式。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -162,7 +162,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="对比学习.html">&larr; 对比学习</a>
+    <a href="局部激活单元.html">&larr; 局部激活单元</a>
     <a href="工程化UX规则体系.html">工程化UX规则体系 &rarr;</a>
   </div>
 </div>

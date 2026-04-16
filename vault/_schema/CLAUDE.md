@@ -103,21 +103,34 @@ updated: 2026-04-15
 
 ### 生成规则
 
-1. 扫描所有 wiki 页面的 frontmatter `tags`
-2. 按 tag 出现频率，将每个页面归入其**最高频 tag** 对应的 cluster
-3. cluster 页面数 < 3 → 合并入"其他"
-4. 每个 cluster 生成 `maps/{topic}.md`，sections 内按字母序排列
+Maps 由 `wiki:reindex` 步骤 3-5 生成，核心数据源是 **`.claude/topic-to-wiki.json`**：
+
+1. **构建清单**：扫描所有 wiki 页面，生成紧凑清单（`type/name | tags | 概述首句`）
+2. **语义聚类（Haiku subagent）**：将清单发给 Haiku 子代理，由 LLM 基于内容语义将每个页面分配到一个主题 topic（可新建 topic，topic 名 2-4 汉字，页面数 < 3 的合并为"其他"）
+3. **保存权威映射**：结果写入 `.claude/topic-to-wiki.json`（`{"topics": {"推荐系统": ["矩阵分解", ...], ...}}`），这是唯一权威的 topic→pages 映射
+4. **生成 maps**：从 `topic-to-wiki.json` 读取，每个 topic 生成 `maps/{topic}.md`，sections 内按字母序排列
+5. **补全 tags**：对于被分配到 topic 但 tags 中缺少该 topic 的页面，追加该 topic 到 tags
+
+> **关键变化**：不再用 tag 频率推导 cluster，而是用 LLM 理解页面内容后语义分配。这使得 maps 能跨越 tag 边界，更准确反映知识结构。
 
 ### 当前 Topics
 
 实际 cluster 数量随内容动态变化，当前存在的 topics（从 `maps/` 目录读取）：
-- `其他` — 小型 cluster 合并（143 页）
-- `AI` — AI 工程、Agent、LLM 工具（72 页）
-- `方法论` — 方法论、流程设计（41 页）
-- `技术` — 通用技术、工程模式（13 页）
-- `研究` — 数学、概率论、数值分析等研究型内容（10 页）
-- `数学` — 纯数学概念（7 页）
-- `机器人学` — 机器人学、运动规划、控制（5 页）
+- `推荐系统` — 协同过滤、矩阵分解、深度学习推荐、CTR 预估（212 页）
+- `数值分析` — 数值方法、ODE 求解、插值与积分（59 页）
+- `工具与框架` — 开发工具、运行时、CLI 框架（52 页）
+- `信息论` — Shannon 信息论、编码理论、压缩理论（48 页）
+- `概率论` — 概率公理、随机过程、统计推断（38 页）
+- `矩阵理论` — 线性代数、特征值理论、数值线性代数（36 页）
+- `经济学` — 宏观经济学、凯恩斯主义、增长理论（26 页）
+- `AI工程` — LLM 上下文工程、RAG、Agent 基础设施（24 页）
+- `Agent系统` — AI Agent 架构、工作流、评估方法论（23 页）
+- `机器人学` — 运动规划、机器人控制、感知定位（20 页）
+- `深度学习` — Transformer、注意力机制、归一化技术（17 页）
+- `文档处理` — PDF 解析、OCR、文档结构提取（13 页）
+- `数学` — 纯数学：组合、分析、计算理论（11 页）
+- `AI设计` — AI 辅助 UI/UX 设计、设计规则系统（8 页）
+- `其他` — 小型 cluster 合并（6 页）
 
 ### 使用场景
 
@@ -131,8 +144,9 @@ updated: 2026-04-15
 |--|--|--|
 | 内容 | 所有页面的平铺列表 | 按主题分类的子集 |
 | 组织方式 | 按 type（实体/概念/综合） | 按 tag cluster |
-| 维护方式 | `snapshot_index --update` | `wiki:reindex` Step 5 |
-| 用途 | ingest 时查重、完整性审计 | query 时主题扩展、用户浏览 |
+| 维护方式 | `snapshot_index --update` | `wiki:reindex` Step 3-5（需 subagent） |
+| 权威数据源 | — | `.claude/topic-to-wiki.json` |
+| 用途 | ingest 时查重、完整性审计 | **query 主题扩展**（首要）、用户浏览、tags 补全 |
 
 ## 操作手册
 

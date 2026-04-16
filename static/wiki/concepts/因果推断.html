@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>因果推断 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 因果推断</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">因果推断</span><span class="tag">推荐系统</span><span class="tag">因果图</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">因果推断</h1>
+<h2 id="_2">概述</h2>
+<p>因果推断是从观测数据中识别和估计因果效应的统计学方法，为推荐系统中的偏差校正提供了理论框架。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心问题</strong>：区分相关性与因果性。在推荐系统中，用户点击某物品是因为物品本身好（因果效应），还是因为物品排在前面（<a href="位置偏差.html">位置偏差</a>）？因果推断提供了解答这一问题的工具。</p>
+</li>
+<li>
+<p><strong>两大框架</strong>：</p>
+</li>
+<li><strong><a href="潜在结果框架.html">潜在结果框架</a>（<a href="潜在结果框架.html">Potential Outcomes Framework</a>）</strong>：以 Rubin 因果模型为代表，通过<a href="倾向性评分.html">倾向性评分</a>调整样本权重。<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人的工作属于此框架。</li>
+<li>
+<p><strong><a href="结构因果模型.html">结构因果模型</a>框架（<a href="结构因果模型.html">Structural Causal Model</a> Framework）</strong>：通过因果图（<a href="结构因果模型.html">DAG</a>）显式建模因果关系，利用 do-calculus 进行因果效应的识别和估计。</p>
+</li>
+<li>
+<p><strong>在推荐系统中的核心概念映射</strong>：</p>
+</li>
+<li>患者 → 用户</li>
+<li>治疗方案 → 推荐的物品</li>
+<li>治疗效果 → 用户评分/反馈</li>
+<li>是否接受治疗 → 物品是否被观测/评分</li>
+<li>随机对照试验（RCT） → 随机曝光实验</li>
+<li>
+<p>观察性研究 → 普通的日志数据</p>
+</li>
+<li>
+<p><strong>关键工具</strong>：</p>
+</li>
+<li><a href="逆倾向评分.html">IPS</a>：逆倾向加权校正<a href="选择偏差.html">选择偏差</a></li>
+<li><a href="倾向性评分.html">倾向性评分</a>：量化观测概率</li>
+<li><a href="双重鲁棒估计器.html">DR</a>：结合 <a href="逆倾向评分.html">IPS</a> 和直接方法</li>
+<li>
+<p><a href="反事实学习.html">反事实学习</a>：利用历史日志优化新策略</p>
+</li>
+<li>
+<p><strong>在推荐系统中的影响</strong>：因果推断为推荐系统领域打开了整套方法论的大门。2016 年之后，基于因果推断的推荐系统研究呈现爆发式增长，成为 RecSys、KDD、WWW、ICML、Neur<a href="逆倾向评分.html">IPS</a> 等顶级会议上最活跃的方向之一。</p>
+</li>
+<li>
+<p><strong>假设</strong>：因果推断方法依赖"无未观测混杂因子"（no unobserved confounders）假设——所有影响物品是否被观测到的因素都被纳入了倾向性模型。现实中这一假设可能不成立。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1602.05352">Recommendations as Treatments (Schnabel et al., ICML 2016)</a></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="逆倾向评分.html">逆倾向评分</a> — 因果推断的核心工具</li>
+<li><a href="倾向性评分.html">倾向性评分</a> — 因果推断的关键概念</li>
+<li><a href="MNAR.html">MNAR</a> — 因果推断处理的缺失机制</li>
+<li><a href="双重鲁棒估计器.html">双重鲁棒估计器</a> — 因果推断的增强方法</li>
+<li><a href="反事实学习.html">反事实学习</a> — 因果推断在推荐中的应用</li>
+<li><a href="离线策略评估.html">离线策略评估</a> — 因果推断的评估范式</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="后向误差分析.html">&larr; 后向误差分析</a>
+    <a href="因果掩码.html">因果掩码 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

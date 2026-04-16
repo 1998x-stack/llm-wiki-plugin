@@ -127,33 +127,44 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / YouTube</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">视频平台</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">视频平台</span><span class="tag">深度学习</span></div>
 </div>
   <div class="content">
     <h1 id="youtube">YouTube</h1>
 <h2 id="_1">概述</h2>
-<p>全球最大视频平台，工业界采用<a href="../concepts/矩阵分解.html">矩阵分解</a>方法作为推荐系统候选生成策略的代表性公司之一。</p>
+<p>全球最大视频平台，工业界推荐系统的引领者。从<a href="../concepts/矩阵分解.html">矩阵分解</a>到深度神经推荐系统，确立了"<a href="../concepts/候选生成.html">候选生成</a> + 排序"的两阶段架构范式。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong><a href="../concepts/矩阵分解.html">矩阵分解</a>的工业采用</strong>：Koren 等人 2009 年论文中描述的<a href="../concepts/矩阵分解.html">矩阵分解</a>方法被 YouTube 等大量工业推荐系统采用或作为重要的候选生成策略之一。</li>
+<li><strong><a href="../concepts/矩阵分解.html">矩阵分解</a>的工业采用</strong>：Koren 等人 2009 年论文中描述的<a href="../concepts/矩阵分解.html">矩阵分解</a>方法被 YouTube 等大量工业推荐系统采用或作为重要的<a href="../concepts/候选生成.html">候选生成</a>策略之一。</li>
 <li><strong>推荐场景</strong>：YouTube 的推荐场景包括视频推荐、首页信息流、侧边栏推荐等，<a href="../concepts/矩阵分解.html">矩阵分解</a>为其提供了大规模用户-视频匹配的基础能力。</li>
+<li><strong>深度神经推荐系统</strong>：2016年，<a href="Paul Covington.html">Paul Covington</a>、<a href="Jay Adams.html">Jay Adams</a>、<a href="Emre Sargin.html">Emre Sargin</a> 在 RecSys 发表 <a href="Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>，将深度神经网络引入推荐系统，提出"<a href="../concepts/候选生成.html">候选生成</a> + 排序"两阶段架构，将推荐建模为超大规模多分类问题。该论文确立了工业推荐系统的标准架构范式，影响了全球几乎所有大型推荐系统。</li>
+<li><strong>规模与挑战</strong>：2016年的 YouTube 已有超过十亿活跃用户，每分钟数百小时视频上传，推荐系统面临数十亿视频语料库、毫秒级响应要求、内容多样性等前所未有的挑战。</li>
+<li><strong>技术基础设施</strong>：使用 <a href="TensorFlow.html">TensorFlow</a> 作为大规模深度学习训练的基础设施，推动了 <a href="../concepts/Embedding.html">Embedding</a> + <a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> 检索生态的发展。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">04-matrix-factorization-for-recsys.md</span> — 深度解读 Matrix Factorization Techniques for Recommender Systems</li>
+<li><span style="color:#e74c3c" title="broken link">07-youtube-dnn.md</span> — Deep Neural Networks for YouTube Recommendations 深度解读</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — 采用的推荐技术</li>
+<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — 早期采用的推荐技术</li>
+<li><a href="Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 确立两阶段架构的里程碑论文</li>
+<li><a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a> — YouTube 确立的推荐系统标准范式</li>
+<li><a href="../concepts/双塔模型.html">双塔模型</a> — YouTube DNN 提出的模型原型</li>
 <li><a href="Spotify.html">Spotify</a> — 同样采用 MF 的工业平台</li>
 <li><a href="Amazon.html">Amazon</a> — 同样采用 MF 的工业平台</li>
+<li><a href="TensorFlow.html">TensorFlow</a> — 使用的训练基础设施</li>
+<li><a href="Paul Covington.html">Paul Covington</a> — YouTube DNN 论文第一作者</li>
+<li><a href="Jay Adams.html">Jay Adams</a> — YouTube DNN 论文第二作者</li>
+<li><a href="Emre Sargin.html">Emre Sargin</a> — YouTube DNN 论文第三作者</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Yehuda Koren.html">&larr; Yehuda Koren</a>
+    <a href="Yongfeng Zhang.html">&larr; Yongfeng Zhang</a>
     <a href="Yunming Ye.html">Yunming Ye &rarr;</a>
   </div>
 </div>

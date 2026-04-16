@@ -4,6 +4,46 @@ type: log
 
 # 操作日志
 
+## [2026-04-16 15:30] maintain
+- Relink: 1921 terms, 1699 new links across 211 pages
+- Reindex: OK (593 页面, 15 clusters) | Schema 同步: 已更新
+- Check: 0 errors, 577 warnings, 0 info (0 new gotchas)
+- Lint: 0 修复, 577 待处理 (350 broken links, 171 overview too long, 45 map refs, 10 orphans, 1 M2)
+- Build: 594 节点, 5032 边, 0 孤页, 1 连通分量 → static/ 已同步
+
+## [2026-04-16] ingest-loop | raw/books/推荐系统 (批量)
+- 源文件夹: raw/books/推荐系统
+- 处理文件: 18 个 markdown 文件
+- 跳过: 1 个非 markdown 文件 (recommender-systems-timeline.html)
+- 总计创建约 200+ 页面，更新约 20+ 页面
+- 涵盖: 协同过滤起源 → 矩阵分解 → BPR → FM → 深度学习推荐 → 序列推荐 → 图神经网络 → 因果推荐 → LLM 推荐
+- 引擎: claude (子代理并行，每批 3 个)
+
+## [2026-04-16] ingest | raw/books/推荐系统/17-p5.md
+- 源文件: P5 论文解读 — "Recommendation as Language Processing (RLP): A Unified Pretrain, Personalized Prompt & Predict Paradigm"
+- 创建 26 页:
+  - 实体(16): P5 论文, Shijie Geng, Yongfeng Zhang, T5, OpenP5, InstructRec, TALLRec, LC-Rec, LLMRec, DEALRec, VIP5, GLoSS, RecSys 2022, Rutgers University, Amazon US Reviews, Yelp Review
+  - 概念(10): Whole-word Embedding, 生成式推荐 (LLM), 推荐系统基础模型, Zero-shot 推荐, 个性化 Prompt, 语义 ID, 指令调优, Beam Search 生成, 判别式 LLM 推荐, 生成式 LLM 推荐
+- 去重: 已有"生成式推荐"页面(HSTU 范式)，新建"生成式推荐 (LLM)"区分 P5/LLM 范式
+- BM25: 26 页全部更新
+- Snapshot: +13 entries added
+
+## [2026-04-16] reindex
+- 完整性: OK (539 页面, +12 missing added, 1 orphan 修复 — index.md 截断行导致跨行 regex 捕获)
+- 主题分类 (Haiku subagent): 15 个 topics → 推荐系统(142), 数学(70), 信息论(37), 机器人学(31), 数值分析(26), AI工程(22), 矩阵理论(20), 经济学(18), Agent系统(17), 概率论(15), 深度学习(13), AI设计(8), 文档处理(7), 工具与框架(4), 其他(3) → .claude/topic-to-wiki.json
+- Tags 修复: 58 个页面补充了缺失的 topic tag
+- Schema 同步: _schema/CLAUDE.md Topics 已更新（新 topics 集合：15 个）
+
+## [2026-04-16] ingest | raw/books/推荐系统/10-ncf.md
+- 更新：`wiki/entities/Neural Collaborative Filtering.md` — 大幅扩充（confidence 0.5→0.85, source_count 1→4）。新增：NCF 四层架构、GMF/MLP/NeuMF 三个模型详解、预训练策略、二元交叉熵损失函数、实验结论（MovieLens 1M + Pinterest）、后续争议（Ferrari Dacrema 2019、Rendle 2020）、历史影响（NGCF、LightGCN、双塔架构、可复现性运动）
+- 更新：`wiki/entities/何向南.md` — 大幅扩充（confidence 0.5→0.8, source_count 1→2）。新增：NCF 详细贡献、NeuMF 融合设计、后续工作（NGCF、LightGCN）、学术争议
+- 创建：`wiki/entities/Tat-Seng Chua.md` — NUS 教授，NCF 通讯作者
+- 创建：`wiki/concepts/GMF.md` — 广义矩阵分解，NCF 的第一个实例化
+- 创建：`wiki/concepts/NeuMF.md` — 神经矩阵分解，NCF 的最终融合模型
+- 创建：`wiki/concepts/二元交叉熵.md` — 隐式反馈场景下的损失函数，替代 MSE
+- BM25：6 页全部更新
+- Snapshot index：+4 新条目
+
 ## [2026-04-16] maintain
 - Relink: 1587 terms, 1585 new links across 189 pages
 - Reindex: OK (454 → 456 页面, +2 missing entries) | Schema 同步: 无变化

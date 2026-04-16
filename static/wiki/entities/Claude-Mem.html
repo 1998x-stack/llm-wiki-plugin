@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>系统采用“两进程 + 一数据库”模型：
 - <strong>主进程（Claude Code）</strong>：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - <strong>后台服务（Worker Service）</strong>：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- <strong>数据层</strong>：使用 <a href="SQLite.html">SQLite</a> 配合 <a href="../concepts/FTS5.html">FTS5</a> 进行全文检索，结合 <a href="ChromaDB.html">ChromaDB</a> 进行语义向量检索，形成混合检索能力。</p>
+- <strong>数据层</strong>：使用 <a href="SQLite.html">SQLite</a> 配合 <a href="../concepts/FTS5.html">FTS5</a> 进行全文检索，结合 <a href="ChromaDB.html">ChromaDB</a> 进行语义<a href="../concepts/近似最近邻检索.html">向量检索</a>，形成混合检索能力。</p>
 <h3 id="hook">Hook 架构细节</h3>
 <p>Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 <strong>Lifecycle Hooks</strong> 机制，在特定时间节点介入工作流：
 - <strong>Hook 层</strong>：运行在 Claude Code 进程中的 6 个脚本（<code>smart-install.js</code>, <code>context-hook.js</code>, <code>new-hook.js</code>, <code>save-hook.js</code>, <code>summary-hook.js</code>, <code>cleanup-hook.js</code>），负责数据采集、预处理和指令下发。

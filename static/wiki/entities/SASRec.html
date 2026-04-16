@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SASRec — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / SASRec</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">序列推荐</span><span class="tag">Transformer</span><span class="tag">Self-Attention</span><span class="tag">ICDM</span></div>
+</div>
+  <div class="content">
+    <h1 id="sasrec">SASRec</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p><a href="Wang-Cheng Kang.html">Wang-Cheng Kang</a> 与 <a href="Julian McAuley.html">Julian McAuley</a> 于 ICDM 2018 发表的里程碑论文，首次将 <a href="../concepts/Self-Attention机制.html">Self-Attention</a> 机制引入<a href="../concepts/序列推荐.html">序列推荐</a>，构建统一框架兼具<a href="../concepts/马尔可夫链.html">马尔可夫链</a>的稀疏聚焦与 RNN 的长程语义捕获能力。</p>
+<h2 id="300">关键内容 (≥300字符，分条目，用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li>
+<p><strong>论文信息</strong>：标题 "Self-Attentive <a href="../concepts/序列推荐.html">Sequential Recommendation</a>"，作者 <a href="Wang-Cheng Kang.html">Wang-Cheng Kang</a> 与 <a href="Julian McAuley.html">Julian McAuley</a>，机构 UCSD，发表于 IEEE ICDM 2018（Pages 197-206），arXiv: 1808.09781，累计引用 3000+（截至2026年），是<a href="../concepts/序列推荐.html">序列推荐</a>领域引用量最高的论文之一。开源代码: https://github.com/kang205/SASRec。</p>
+</li>
+<li>
+<p><strong>核心问题</strong>：给定用户历史行为序列 $S^u = (s_1^u, s_2^u, ..., s_{|S^u|}^u)$，设计基于 <a href="../concepts/Self-Attention机制.html">Self-Attention</a> 的模型，自适应捕获不同时间跨度的依赖关系（短期局部模式 + 长期全局偏好），准确预测下一个交互物品。</p>
+</li>
+<li>
+<p><strong>架构设计</strong>（四组件）：</p>
+</li>
+<li><strong><a href="../concepts/嵌入表示.html">嵌入层</a></strong>：物品 ID 通过嵌入<a href="../concepts/矩阵.html">矩阵</a>映射为 d 维稠密向量 + <span style="color:#e74c3c" title="broken link">Learnable Positional Embedding</span>（不同于 <a href="../concepts/Transformer架构.html">Transformer</a> 的正弦/余弦固定编码）</li>
+<li><strong><a href="../concepts/Self-Attention机制.html">自注意力</a>块</strong>：核心计算模块，通过 Q/K/V 三<a href="../concepts/矩阵.html">矩阵</a>进行 <a href="../concepts/缩放点积注意力.html">缩放点积注意力</a>，默认堆叠 2 层</li>
+<li><strong>逐点前馈网络</strong>：两层 FFN，权重在所有位置间共享（类似 1x1 卷积）</li>
+<li>
+<p><strong>预测层</strong>：序列最后位置输出与候选物品嵌入做点积，嵌入<a href="../concepts/矩阵.html">矩阵</a>与输入层共享</p>
+</li>
+<li>
+<p><strong><a href="../concepts/因果掩码.html">因果掩码</a>（<a href="../concepts/因果掩码.html">Causal Masking</a>）</strong>：SASRec 与标准 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 的关键区别。施加下三角掩码<a href="../concepts/矩阵.html">矩阵</a>，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 <a href="../concepts/Transformer架构.html">Transformer</a> Decoder（自回归模式），而非 Encoder 的双向模式。</p>
+</li>
+<li>
+<p><strong>自适应依赖距离</strong>：最优雅的特性——在稀疏数据集（如 <a href="Amazon.html">Amazon</a> Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶<a href="../concepts/马尔可夫链.html">马尔可夫链</a>）；在密集数据集（如 <a href="MovieLens.html">MovieLens</a>-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。</p>
+</li>
+<li>
+<p><strong>正则化</strong>：<a href="../concepts/残差连接.html">残差连接</a> + <a href="../concepts/Layer Normalization.html">层归一化</a>（Post-norm）+ Dropout（密集数据集 0.2，稀疏数据集 0.5）。</p>
+</li>
+<li>
+<p><strong>训练目标</strong>：<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。</p>
+</li>
+<li>
+<p><strong>实验结果</strong>：在四个数据集（<a href="Amazon.html">Amazon</a> Beauty/Games, Steam, <a href="MovieLens.html">MovieLens</a>-1M）上均取得最优表现，Hit Rate 提升 6.9%，<a href="../concepts/NDCG.html">NDCG</a> 提升 9.6%（相对最强基线）。训练速度比 <a href="Caser.html">Caser</a> 快约 11 倍，比 <a href="GRU4Rec.html">GRU4Rec</a>+ 快约 17 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒收敛）。</p>
+</li>
+<li>
+<p><strong>理论退化分析</strong>：当<a href="../concepts/Self-Attention机制.html">自注意力</a>块退化为恒等映射、使用非共享物品嵌入、移除<a href="../concepts/位置编码.html">位置编码</a>时，SASRec 退化为 <a href="FPMC.html">分解马尔可夫链</a>，证明 SASRec 是经典<a href="../concepts/协同过滤.html">协同过滤</a>模型的广义化。</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：<a href="../concepts/Transformer架构.html">Transformer</a> 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 <a href="../concepts/Transformer架构.html">Transformer</a> 时代。催生了 <a href="BERT4Rec.html">BERT4Rec</a>（2019）、<a href="TiSASRec.html">TiSASRec</a>（2020）、<a href="SSE-PT.html">SSE-PT</a>（2020）、<a href="BST.html">BST</a>（2019）、<a href="S3-Rec.html">S3-Rec</a>（2020）、<a href="LightSANs.html">LightSANs</a>（2021）、<a href="DuoRec.html">DuoRec</a>（2022）、<a href="SASRec+.html">SASRec+</a>（2023）等一系列后续工作。阿里巴巴的 <a href="BST.html">BST</a> 直接受其启发应用于淘宝<a href="../concepts/CTR 预估.html">点击率预估</a>系统。</p>
+</li>
+<li>
+<p><strong>局限性</strong>：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 <a href="BERT4Rec.html">BERT4Rec</a> 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 <a href="TiSASRec.html">TiSASRec</a> 弥补）；"一正一负"训练目标非最优（后续 <a href="SASRec+.html">SASRec+</a> 证明替换为全物品 softmax 可显著提升）。</p>
+</li>
+</ol>
+<h2 id="_1">来源</h2>
+<ul>
+<li><a href="https://ieeexplore.ieee.org/document/8594844">SASRec 原始论文 (ICDM 2018)</a></li>
+<li><a href="https://arxiv.org/abs/1808.09781">arXiv: 1808.09781</a></li>
+<li><a href="https://github.com/kang205/SASRec">官方代码 (GitHub)</a></li>
+</ul>
+<h2 id="_2">相关</h2>
+<ul>
+<li><a href="Wang-Cheng Kang.html">Wang-Cheng Kang</a> — 第一作者</li>
+<li><a href="Julian McAuley.html">Julian McAuley</a> — 通讯作者</li>
+<li><a href="../concepts/序列推荐.html">序列推荐</a> — SASRec 解决的核心场景</li>
+<li><a href="GRU4Rec.html">GRU4Rec</a> — SASRec 超越的 RNN 基线</li>
+<li><a href="Caser.html">Caser</a> — SASRec 超越的 CNN 基线</li>
+<li><a href="FPMC.html">FPMC</a> — SASRec 超越的 MC 基线，SASRec 可退化为其特例</li>
+<li><a href="BERT4Rec.html">BERT4Rec</a> — 双向 Transformer 后续工作，与 SASRec 持续竞争</li>
+<li><a href="../concepts/自注意力机制.html">自注意力机制</a> — SASRec 的核心计算机制</li>
+<li><a href="../concepts/位置编码.html">位置编码</a> — SASRec 使用可学习位置嵌入</li>
+<li><a href="../concepts/因果掩码.html">因果掩码</a> — SASRec 的关键设计，实现自回归预测</li>
+<li><a href="../concepts/缩放点积注意力.html">缩放点积注意力</a> — SASRec 的注意力计算方式</li>
+<li><a href="../concepts/二元交叉熵.html">二元交叉熵</a> — SASRec 的训练损失函数</li>
+<li><a href="../concepts/马尔可夫链.html">马尔可夫链</a> — SASRec 在稀疏数据上退化的行为模式</li>
+<li><a href="TiSASRec.html">TiSASRec</a> — 引入时间间隔感知的 SASRec 后续</li>
+<li><a href="BST.html">BST</a> — 阿里巴巴受 SASRec 启发的工业级 CTR 模型</li>
+<li><a href="S3-Rec.html">S3-Rec</a> — 引入自监督预训练的 SASRec 后续</li>
+<li><a href="SSE-PT.html">SSE-PT</a> — 加入个性化嵌入的 SASRec 后续</li>
+<li><a href="LightSANs.html">LightSANs</a> — 轻量级自注意力网络的 SASRec 后续</li>
+<li><a href="DuoRec.html">DuoRec</a> — 对比学习增强的 SASRec 后续</li>
+<li><a href="SASRec+.html">SASRec+</a> — 优化损失函数后反超 BERT4Rec 的 SASRec 后续</li>
+<li><a href="HSTU.html">HSTU</a> — Meta 的生成式推荐工作，概念上追溯到 SASRec 的自回归框架</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="S3-Rec.html">&larr; S3-Rec</a>
+    <a href="SASRec+.html">SASRec+ &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

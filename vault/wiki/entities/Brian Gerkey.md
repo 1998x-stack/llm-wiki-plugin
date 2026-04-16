@@ -42,7 +42,7 @@ Brian Gerkey 是著名的机器人学家和开源软件倡导者，**ROS **([[RO
 加入 [[Willow Garage]] 后，Gerkey 将 Player/Stage 的设计经验注入 ROS 架构中。他不仅参与了核心技术决策，更在社区建设上发挥了关键作用。他推动了 BSD 许可证的选择，降低了商业应用门槛；建立了 ROS Wiki 和 ROS Answers，促进了知识共享；并主导了 [[PR2 机器人|PR2]] Beta Program，通过向全球顶尖高校赠送机器人，成功构建了 ROS 的早期用户网络。Gerkey 深知，一个成功的开源项目不仅需要优秀的技术，更需要活跃的社区和可持续的治理结构。
 
 ### 领导 OSRF 与 ROS 2 时代
-[[Willow Garage]] 关闭后，Gerkey 联合创立了非营利组织 **Open Source Robotics Foundation **(OSRF)，确保了 ROS 项目的独立性和连续性。在他的领导下，OSRF 启动了 **ROS 2** 的开发，引入 DDS [[ROS (Robot Operating System)|中间件]]以解决实时性、安全性和去中心化问题，使 ROS 能够进入工业和自动驾驶领域。2022 年，Alphabet 旗下的 Intrinsic 收购了 OSRF 的营利性部门，Gerkey 及其团队加入 Google 母公司，获得了更稳定的资源支持，继续推动开源机器人软件在工业场景的落地。他的职业生涯贯穿了机器人软件从学术原型到工业标准的整个过程。
+[[Willow Garage]] 关闭后，Gerkey 联合创立了非营利组织 **Open Source Robotics Foundation **(OSRF)，确保了 ROS 项目的独立性和连续性。在他的领导下，OSRF 启动了 **ROS 2** 的开发，引入 DDS [[ROS (Robot Operating System)|中间件]]以解决实时性、安全性和去中心化问题，使 ROS 能够进入工业和自动驾驶领域。2022 年，Alphabet 旗下的 Intrinsic 收购了 OSRF 的营利性部门，Gerkey 及其团队加入 [[Google]] 母公司，获得了更稳定的资源支持，继续推动开源机器人软件在工业场景的落地。他的职业生涯贯穿了机器人软件从学术原型到工业标准的整个过程。
 
 ## 来源
 - [[raw/books/机器人学/13-quigley-ros-robot-operating-system.md]]

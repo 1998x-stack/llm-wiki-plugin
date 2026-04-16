@@ -141,6 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心作用</strong>：将位置向量叠加到词向量上（$x_i' = x_i + p_i$），使模型同时感知内容与位置信息，区分"狗咬人"与"人咬狗"等顺序不同的语义。</li>
 <li><strong>两大流派</strong>：<a href="绝对位置编码.html">绝对位置编码</a>编码 token 的绝对位置编号（"我在第几位"）；<a href="相对位置编码.html">相对位置编码</a>编码 token 间相对距离（"我离你多远"），直接注入注意力分数计算。</li>
 <li><strong>选型原则</strong>：中短文本、标准预训练场景用<a href="绝对位置编码.html">绝对位置编码</a>已够用；长序列建模、外推能力要求高或关注结构关系时，<a href="相对位置编码.html">相对位置编码</a>更有优势。</li>
+<li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a> 使用可学习的位置嵌入（Learnable Positional <a href="Embedding.html">Embedding</a>）而非 <a href="Transformer架构.html">Transformer</a> 的正弦/余弦固定编码，实验证明这对推荐任务更为有效。位置编码与 <a href="因果掩码.html">因果掩码</a> 配合，使模型能够在保持时序因果性的同时捕获序列中的位置信息。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -152,11 +153,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="相对位置编码.html">相对位置编码</a> — extends</li>
 <li><a href="自注意力机制.html">自注意力机制</a> — relates_to</li>
 <li><a href="注意力预算.html">注意力预算</a> — relates_to</li>
+<li><a href="../entities/SASRec.html">SASRec</a> — 使用可学习位置嵌入的序列推荐模型</li>
+<li><a href="因果掩码.html">因果掩码</a> — 与位置编码配合实现时序建模</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="优化控制序.html">&larr; 优化控制序</a>
-    <a href="信噪比.html">信噪比 &rarr;</a>
+    <a href="位置偏差.html">&larr; 位置偏差</a>
+    <a href="低阶特征交互.html">低阶特征交互 &rarr;</a>
   </div>
 </div>
 </body>

@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>优势</strong>：AUC 对类别不平衡不敏感，适合<a href="隐式反馈.html">隐式反馈</a>场景（正样本远少于负样本）；不依赖绝对阈值，只关注相对排序。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：AUC 对所有负样本一视同仁，不考虑推荐列表顶部位置的权重；在实际推荐中，用户更关注 Top-K 推荐，此时 <a href="NDCG.html">NDCG</a>、MRR 等指标更合适。</p>
+<p><strong>局限性</strong>：AUC 对所有负样本一视同仁，不考虑推荐列表顶部位置的权重；在实际推荐中，用户更关注 Top-K 推荐，此时 <a href="NDCG.html">NDCG</a>、<a href="MRR.html">MRR</a> 等指标更合适。</p>
 </li>
 <li>
 <p><strong>作为 <a href="BPR.html">BPR</a> 实验的主要评价指标</strong>：<a href="../entities/BPR 论文.html">BPR 论文</a>在 Rossmann 和 <a href="../entities/Netflix.html">Netflix</a> 数据集上以 AUC 为主要指标，证明 <a href="BPR.html">BPR</a>-<a href="矩阵分解.html">MF</a> 显著优于 <a href="奇异值分解.html">SVD</a>-<a href="矩阵分解.html">MF</a> 和 WR-<a href="矩阵分解.html">MF</a>。</p>

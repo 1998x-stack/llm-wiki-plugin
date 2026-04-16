@@ -89,7 +89,7 @@ $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i > 0} \frac{(Ax)_i}{x_i}$$
 
 **Markov链（1908–）**：不可约非周期随机[[矩阵]]的[[谱半径|Perron根]] $=1$，对应左特征向量（归一化）即唯一平稳分布 $\pi$；谱间隙 $1 - |\lambda_2|$ 控制收敛速率。
 
-**Google PageRank（1998）**：将互联网链接结构建模为Google[[矩阵]]（$= \alpha P + (1-\alpha)\mathbf{1}\mathbf{v}^T/n$，$\alpha=0.85$），阻尼因子确保[[矩阵]]全正满足[[奥斯卡·佩龙|Perron]]条件，[[奥斯卡·佩龙|Perron]]特征向量的各分量即为网页排名。约50次幂迭代即可收敛。
+**[[Google]] PageRank（1998）**：将互联网链接结构建模为[[Google]][[矩阵]]（$= \alpha P + (1-\alpha)\mathbf{1}\mathbf{v}^T/n$，$\alpha=0.85$），阻尼因子确保[[矩阵]]全正满足[[奥斯卡·佩龙|Perron]]条件，[[奥斯卡·佩龙|Perron]]特征向量的各分量即为网页排名。约50次幂迭代即可收敛。
 
 **Leontief投入产出模型（经济学）**：$n$ 部门消耗[[矩阵]] $A$ 可逆且 $(I-A)^{-1} \geq 0$ 的充要条件是 $\rho(A) < 1$（Hawkins-Simon条件），即[[谱半径|Perron根]]严格小于1。
 

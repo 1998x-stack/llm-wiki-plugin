@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="provider">跨 Provider 上下文迁移</h1>
 <h2 id="_1">概述</h2>
-<p>Context Handoff 是 <a href="../entities/Pi-Agent.html">Pi-Agent</a> pi-ai 层最独特的能力：一个会话可以在 Anthropic → OpenAI → Google 等不同 Provider 之间无缝延续，历史对话、思维链、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。</p>
+<p>Context Handoff 是 <a href="../entities/Pi-Agent.html">Pi-Agent</a> pi-ai 层最独特的能力：一个会话可以在 Anthropic → OpenAI → <a href="../entities/Google.html">Google</a> 等不同 Provider 之间无缝延续，历史对话、思维链、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 核心机制</h3>
 <p>pi-ai 维护 Provider 无关的 <code>Context</code> 对象（消息数组），在切换 Provider 时自动执行转换管道：
