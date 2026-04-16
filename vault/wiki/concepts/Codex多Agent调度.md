@@ -30,7 +30,7 @@ supersedes: null
 
 ## 核心价值
 
-单 Agent 面临上下文窗口有限、顺序执行、单点失败三大局限。Multi-Agent 解决：任务分解（每个 subagent 专注较小上下文）、并行执行、专业分工、隔离失败（subagent 失败不影响主流程）。
+单 Agent 面临[[上下文窗口]]有限、顺序执行、单点失败三大局限。Multi-Agent 解决：任务分解（每个 subagent 专注较小上下文）、并行执行、专业分工、隔离失败（subagent 失败不影响主流程）。
 
 ## 核心工具集（feature flag: multi_agents）
 

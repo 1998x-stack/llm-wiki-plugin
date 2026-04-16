@@ -4,7 +4,7 @@ status: active
 confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: 2026-04-15
+last_accessed: 2026-04-16
 source_count: 1
 tags: [技术, 工具]
 aliases: [MCP Layer, Model Context Protocol, MCP协议]

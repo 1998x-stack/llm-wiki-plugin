@@ -135,41 +135,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">上下文重置</h1>
 <h2 id="_2">概述</h2>
-<p>上下文重置（Context Reset）是长时 Agent 任务中的一种会话管理策略：<strong>彻底清空上下文窗口，启动全新 Agent</strong>，通过精心设计的<strong>结构化交接工件（Handoff Artifact）</strong>将前一 Agent 的状态和后续步骤传递给新 Agent，提供"清白石板"（clean slate）。</p>
+<p>上下文重置（Context Reset）是长时 Agent 任务中的一种会话管理策略：<strong>彻底清空<a href="上下文窗口.html">上下文窗口</a>，启动全新 Agent</strong>，通过精心设计的<strong>结构化交接工件（Handoff Artifact）</strong>将前一 Agent 的状态和后续步骤传递给新 Agent，提供"清白石板"（clean slate）。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="compaction">与压缩（Compaction）的根本区别</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>上下文压缩（Compaction）</th>
-<th>上下文重置（Context Reset）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>机制</td>
-<td>原地摘要早期对话，同一 Agent 继续</td>
-<td>彻底清空，新 Agent 从交接工件出发</td>
-</tr>
-<tr>
-<td>连续性</td>
-<td>保留（同一 Agent "心理状态"）</td>
-<td>切断（新 Agent 完全独立）</td>
-</tr>
-<tr>
-<td><a href="上下文焦虑.html">上下文焦虑</a></td>
-<td><strong>仍可能持续</strong>（模型还在同一会话中）</td>
-<td><strong>解决</strong>（新 Agent 无历史负担）</td>
-</tr>
-<tr>
-<td>代价</td>
-<td>摘要失真风险；焦虑持续</td>
-<td>编排复杂度 + Token 开销 + 延迟</td>
-</tr>
-</tbody>
-</table>
-<p>Claude Agent SDK 的自动 Compaction 处理上下文增长，但对 Sonnet 4.5 的<a href="上下文焦虑.html">上下文焦虑</a>效果不足；Opus 4.6 则基本消除了焦虑，使重置策略不再必要。</p>
+<p>| | <a href="上下文压缩.html">上下文压缩</a>（<a href="上下文压缩.html">Compaction</a>） | 上下文重置（Context Reset） |
+|--|--|--|
+| 机制 | 原地摘要早期对话，同一 Agent 继续 | 彻底清空，新 Agent 从交接工件出发 |
+| 连续性 | 保留（同一 Agent "心理状态"） | 切断（新 Agent 完全独立） |
+| <a href="上下文焦虑.html">上下文焦虑</a> | <strong>仍可能持续</strong>（模型还在同一会话中） | <strong>解决</strong>（新 Agent 无历史负担） |
+| 代价 | 摘要失真风险；焦虑持续 | 编排复杂度 + Token 开销 + 延迟 |</p>
+<p>Claude Agent SDK 的自动 <a href="上下文压缩.html">Compaction</a> 处理上下文增长，但对 <a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.5 的<a href="上下文焦虑.html">上下文焦虑</a>效果不足；Opus 4.6 则基本消除了焦虑，使重置策略不再必要。</p>
 <h3 id="handoff-artifact">交接工件（Handoff Artifact）的设计要求</h3>
 <p>重置的关键在于交接工件的质量——它必须携带足够的状态让新 Agent 无缝衔接，包括：
 - <strong>已完成工作</strong>：已实现的功能列表和当前代码状态
@@ -179,8 +154,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>工件质量直接决定重置后的任务连贯性——工件越结构化，新 Agent 的"起跑线"越高。</p>
 <h3 id="harness">在 Harness 演化中的角色</h3>
 <p>在 Anthropic 的长时编码 Harness 演化过程中：
-1. <strong>早期（Sonnet 4.5 哈内斯）</strong>：上下文重置是核心设计，使模型能坚持完成多小时任务
-2. <strong>迭代后（Opus 4.6 哈内斯）</strong>：<a href="上下文焦虑.html">上下文焦虑</a>基本消失，重置被移除，Agent SDK 的自动 Compaction 已足够</p>
+1. <strong>早期（<a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.5 哈内斯）</strong>：上下文重置是核心设计，使模型能坚持完成多小时任务
+2. <strong>迭代后（Opus 4.6 哈内斯）</strong>：<a href="上下文焦虑.html">上下文焦虑</a>基本消失，重置被移除，Agent SDK 的自动 <a href="上下文压缩.html">Compaction</a> 已足够</p>
 <p>这一演化体现了 "every harness component encodes an assumption about what the model can't do on its own — those assumptions should be stress-tested as models improve" 的工程原则。</p>
 <h3 id="_4">实现代价</h3>
 <p>上下文重置在提升任务完成质量的同时引入了：

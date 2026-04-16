@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
 </div>
   <div class="content">
@@ -137,6 +137,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_1">概述</h2>
 <p>Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 LLM Agent 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——Anthropic 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化。</p>
 <h2 id="_2">关键内容</h2>
+<h3 id="swe-agent-aci">SWE-agent 论文的 ACI 贡献</h3>
+<p>Princeton 的 SWE-agent 论文（"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：</p>
+<blockquote>
+<p>软件工程 agent 的效果，很大程度上取决于它和计算机交互的"接口设计"是否合适。</p>
+</blockquote>
+<p>三大核心观点：
+1. <strong>软件工程不是纯文本生成任务</strong>，而是"读仓库 → 定位问题 → 修改文件 → 运行测试 → 继续迭代"的交互式任务
+2. <strong>ACI 是关键创新</strong>——给模型设计专门的交互方式（浏览代码库、查看文件、编辑代码、执行测试），而非只靠 prompt engineering
+3. <strong>Agent 上限由"模型 × 工具 × 界面"的系统乘积决定</strong>，不只是模型参数规模</p>
+<p>实验结果：SWE-agent 在 <a href="SWE-bench.html">SWE-bench</a> 上 pass@1 达到 12.5%，显著超过当时的非交互式方法。</p>
 <h3 id="aci-vs-hci">ACI vs. HCI</h3>
 <table>
 <thead>
@@ -215,6 +225,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Building Effective AI Agents.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Writing effective tools for AI agents—using AI agents.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — SWE-agent 论文核心观点总结</li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
@@ -222,6 +233,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Context-Engineering.html">Context-Engineering</a> — related_to（工具响应的 Token 效率是上下文工程的组成部分）</li>
 <li><a href="MCP协议层.html">MCP协议层</a> — related_to（MCP 工具的描述质量直接体现 ACI 原则）</li>
 <li><a href="Agent评估方法论.html">Agent评估方法论</a> — related_to（工具评估是 ACI 开发循环的核心环节）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> — uses（ACI 设计质量的验证基准）</li>
 </ul>
   </div>
   <div class="page-nav">

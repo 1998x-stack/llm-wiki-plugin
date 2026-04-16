@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">检索增强生成</h1>
 <h2 id="_2">概述</h2>
-<p>检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知识不足的技术。适用于知识库超过上下文窗口容量（约 20 万 token）的场景。</p>
+<p>检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知识不足的技术。适用于知识库超过<a href="上下文窗口.html">上下文窗口</a>容量（约 20 万 token）的场景。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="rag">标准 RAG 流水线</h3>
 <p><strong>预处理阶段（离线）：</strong>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这一问题催生了 <a href="情境化检索.html">情境化检索</a> 技术。</p>
 <h3 id="_4">适用边界</h3>
 <ul>
-<li><strong>知识库 &lt; 20 万 token（约 500 页）</strong>：可直接将全部内容放入提示（配合提示缓存大幅降低成本），无需 RAG</li>
+<li><strong>知识库 &lt; 20 万 token（约 500 页）</strong>：可直接将全部内容放入提示（配合<a href="提示词缓存.html">提示缓存</a>大幅降低成本），无需 RAG</li>
 <li><strong>知识库 &gt; 20 万 token</strong>：RAG 是可扩展的标准方案</li>
 <li><strong>动态频繁更新的内容</strong>：RAG 配合增量索引优于全量提示</li>
 </ul>

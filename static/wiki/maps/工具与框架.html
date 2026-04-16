@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工具与框架 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 工具与框架</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">map</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">工具与框架</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a> — Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事</li>
+<li><a href="../concepts/Codex TUI.html">Codex TUI</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的"驾驶舱"——不是简单的 REPL，而是一个<strong>事件驱动状态机</strong>，承担实时审批、diff 预览、会话导航、多 Agent 状态展</li>
+<li><a href="../concepts/Codex会话管理器.html">Codex会话管理器</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的上下文持久化层，解决 LLM 天然无状态与工程任务有状态之间的矛盾。通过 Session 持久化、Transcript 存储和 R</li>
+<li><a href="../concepts/Codex多Agent调度.html">Codex多Agent调度</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的并行任务执行系统，让 <a href="../entities/Codex CLI.html">Codex</a> 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Age</li>
+<li><a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong>操作系统内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核</li>
+<li><a href="../concepts/Codex配置系统.html">Codex配置系统</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的"神经系统"，控制每一个可调行为。不是简单的配置文件，而是一个<strong>多层继承、可版本化、环境感知</strong>的配置管理体系。</li>
+<li><a href="../concepts/Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> — Denavit-Hartenberg（DH）参数是一种用于描述串联机器人连杆和关节几何关系的标准化方法，由 <a href="../entities/Jacques Denavit.html">Jacques Denavit</a> 和 <span style="color:#e74c3c" title="broken link">Ri&lt;/li&gt;
+&lt;li&gt;[[ExecPolicy</span> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的命令审批引擎，位于 <a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a> 之前。将"哪些命令允许、哪些需要审批、哪些禁止"从硬编码逻辑中解放出来，变成**可</li>
+<li><a href="../concepts/FTS5.html">FTS5</a> — FTS5（Full-Text Search version 5）是 <a href="../entities/SQLite.html">SQLite</a> 的内置全文搜索扩展模块，提供高效的文本索引和检索能力。在 <span style="color:#e74c3c" title="broken link">Clau&lt;/li&gt;
+&lt;li&gt;[[Legged Robots That Balance</span> — 《Legged Robots That Balance》是 <a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> 于 1986 年由 MIT Press 出版的学术专著，被视</li>
+<li><a href="../concepts/MCP协议层.html">MCP协议层</a> — <a href="../entities/Codex CLI.html">Codex CLI</a> 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent</li>
+<li><a href="../concepts/PDDL.html">PDDL</a> — PDDL（Planning Domain Definition Language，规划领域定义语言）是自动规划领域的标准建模语言，由 Drew McDermot</li>
+<li><a href="../concepts/Probabilistic Robotics.html">Probabilistic Robotics</a> — 《Probabilistic Robotics》是由 <a href="../entities/Sebastian Thrun.html">Sebastian Thrun</a>、<a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> 和 <span style="color:#e74c3c" title="broken link">Dieter Fo&lt;/li&gt;
+&lt;li&gt;[[ROS (Robot Operating System)</span> — ROS（Robot Operating System）是一个开源的、模块化的机器人软件框架和元操作系统（meta-operating system），由 <span style="color:#e74c3c" title="broken link">M&lt;/li&gt;
+&lt;li&gt;[[RRT-Connect</span> — <a href="../concepts/快速扩展随机树 (RRT).html">RRT</a>-Connect 是快速扩展随机树（<a href="../concepts/快速扩展随机树 (RRT).html">RRT</a>）算法的重要变体，由 <span style="color:#e74c3c" title="broken link">Steven &lt;/li&gt;
+&lt;li&gt;[[bun-vs-uv</span> — 本文档深度对比了现代软件生态中两个革命性的工具链：<strong>Bun</strong>（JavaScript/TypeScript 生态）与 <strong>uv</strong>（Python 生态）。两者</li>
+<li><a href="../concepts/claude-cli-tools.html">claude-cli-tools</a> — Claude CLI 工具生态是指围绕 Anthropic 的 Claude 大模型构建的一系列命令行界面（CLI）编程代理与辅助工具的集合。该生态以官方推出的</li>
+<li><a href="../concepts/modern-cli-tools.html">modern-cli-tools</a> — 现代 CLI 工具全景是指一系列旨在替代传统 Unix 核心工具（如 <code>grep</code>, <code>find</code>, <code>ls</code>, <code>cat</code> 等）的新一代命令行实用程序集合。这</li>
+<li><a href="../concepts/快速扩展随机树 (RRT).html">快速扩展随机树 (RRT)</a> — 快速扩展随机树（Rapidly-Exploring Random Trees, RRT）是一种用于高维空间路径规划的采样算法，由 <span style="color:#e74c3c" title="broken link">Steven M. LaV&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;_3&quot;&gt;实体&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[[Alex-Newman</span> — Alex Newman（社交媒体账号 @thedotmack）是一位开源软件开发者，以其在 AI 编程辅助工具领域的创新工作而闻名。他是 **<span style="color:#e74c3c" title="broken link">Claude-&lt;/li&gt;
+&lt;li&gt;[[Boston Dynamics</span> — Boston Dynamics 是一家世界领先的机器人工程公司，成立于 1992 年，由著名机器人学家 <a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> 从麻省理工学院（</li>
+<li><a href="../entities/Brian Gerkey.html">Brian Gerkey</a> — Brian Gerkey 是著名的机器人学家和开源软件倡导者，<strong>ROS </strong>(<a href="../concepts/ROS (Robot Operating System).html">Robot Ope&lt;/li&gt;
+&lt;li&gt;[[ChromaDB</a> — ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（<a href="../concepts/Embedding.html">Embedding</a>s）</li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haik</li>
+<li><a href="../entities/Claude-Mem.html">Claude-Mem</a> — Claude-Mem 是一个专为 <strong>Claude Code</strong> 设计的开源持久化记忆插件，旨在解决大型语言模型（LLM）固有的“无状态”缺陷。通过自动捕获会话</li>
+<li><a href="../entities/Codex CLI.html">Codex CLI</a> — OpenAI 以 Rust 重写并开源的<strong>本地编码 Agent</strong>。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终</li>
+<li><a href="../entities/Faiss.html">Faiss</a> — Facebook 开源的<a href="../concepts/近似最近邻检索.html">向量检索</a>库，提供高效的<a href="../concepts/近似最近邻检索.html">近似最近邻</a>搜索算法，是推荐系统<a href="../concepts/候选生成.html">候选生成</a>阶段的核心检索基础设</li>
+<li><a href="../entities/Lydia Kavraki.html">Lydia Kavraki</a> — Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 <span style="color:#e74c3c" title="broken link">Jean-C&lt;/li&gt;
+&lt;li&gt;[[MH-1 机械手</span> — MH-1 是由 <a href="../entities/Heinrich A. Ernst.html">Heinrich A. Ernst</a> 于 1962 年在麻省理工学院（MIT）开发的世界上第一个由计算机控制并具备触觉反馈的机械手系统。作</li>
+<li><a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> — Marc H. Raibert 是美国著名的计算机科学家和机器人学家，被誉为现代动态腿式机器人之父。他于 1977 年在麻省理工学院（MIT）获得博士学位，随后</li>
+<li><a href="../entities/Mario-Zechner.html">Mario-Zechner</a> — Mario Zechner 是 libGDX 游戏引擎的创造者，拥有三十年工程经验的资深开发者。2025 年底因对 <a href="../entities/Claude-Code.html">Claude-Code</a> 复杂性的不满</li>
+<li><a href="../entities/Morgan Quigley.html">Morgan Quigley</a> — Morgan Quigley 是美国计算机科学家和机器人学家，<strong>ROS </strong>(<a href="../concepts/ROS (Robot Operating System).html">Robot Ope&lt;/li&gt;
+&lt;li&gt;[[PR2 机器人</a> — <strong><a href="../concepts/Probabilistic Robotics.html">PR</a>2 </strong>(Personal Robot 2) 是由 <strong><a href="../entities/Willow Garage.html">Willow Garage</a></strong> 开</li>
+<li><a href="../entities/PUMA 机器人.html">PUMA 机器人</a> — PUMA（Programmable Universal Machine for Assembly）系列机器人是由 <a href="../entities/Unimate.html">Unimation</a> 公</li>
+<li><a href="../entities/PaddleOCR.html">PaddleOCR</a> — Paddle<a href="../concepts/光学字符识别.html">OCR</a> 是百度飞桨（PaddlePaddle）开源的 <a href="../concepts/光学字符识别.html">OCR</a>（<a href="../concepts/光学字符识别.html">光学字符识别</a>）工具，以强大的中文识</li>
+<li><a href="../entities/PyMuPDF.html">PyMuPDF</a> — PyMuPDF 是 MuPDF 引擎的 Python 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 <a href="../entities/MinerU.html">MinerU</a> Te</li>
+<li><a href="../entities/Richard P. Paul.html">Richard P. Paul</a> — Richard P. Paul 是机器人运动学领域的奠基人之一，宾夕法尼亚大学教授。他于 1972 年在斯坦福大学获得博士学位，师从人工智能先驱 John Mc</li>
+<li><a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control</a> — 《Robot Manipulators: Mathematics, Programming, and Control》是由 [[Richard P. Paul]</li>
+<li><a href="../entities/SQLite.html">SQLite</a> — SQLite 是一个轻量级、无服务器、嵌入式的关系型数据库引擎，由 D. Richard Hipp 于2000年创建。它将整个数据库存储为单个磁盘文件，无需独立</li>
+<li><a href="../entities/ScaNN.html">ScaNN</a> — <a href="../entities/Google.html">Google</a> 开发的<a href="../concepts/近似最近邻检索.html">近似最近邻检索</a>库，专为大规模推荐系统设计，提供速度和精度最优平衡的向量搜索能力。</li>
+<li><a href="../entities/Shakey 机器人.html">Shakey 机器人</a> — Shakey 是世界上第一个具备通用目的的移动机器人，由斯坦福研究院（SRI International）人工智能中心于 1960 年代末至 1970 年代初研</li>
+<li><a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a> — Steven M. LaValle 是国际知名的计算机科学家和机器人学家，现任芬兰奥卢大学（University of Oulu）教授。他以提出**快速扩展随机</li>
+<li><a href="../entities/TX-0 计算机.html">TX-0 计算机</a> — TX-0（Transistorized Experimental computer zero）是由麻省理工学院（MIT）林肯实验室在 1950 年代中期开发的一</li>
+<li><a href="../entities/TensorFlow.html">TensorFlow</a> — <a href="../entities/Google.html">Google</a> 开源的大规模深度学习训练框架，为 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Y&lt;/li&gt;
+&lt;li&gt;[[Unimate</a> — Unimate 是世界上第一台投入实际应用的工业机器人，由 George Devol 发明并由 Joseph Engelberger 推广，于 1961 年首次</li>
+<li><a href="../entities/Willow Garage.html">Willow Garage</a> — Willow Garage 是一家成立于 2006 年的美国机器人技术孵化器，由硅谷企业家 Scott Hassan 创立。该机构致力于个人机器人技术的研发，其</li>
+<li><a href="../entities/opendatalab.html">opendatalab</a> — opendatalab 是开源数据和工具平台，与<a href="../entities/上海人工智能实验室.html">上海人工智能实验室</a>相关联，是 <a href="../entities/MinerU.html">MinerU</a>（<a href="../entities/MinerU.html">magic-pdf</a>）项目的 G</li>
+<li><a href="../entities/pdfminer.html">pdfminer</a> — pdfminer 是 Python 的 PDF 文本提取库，可从 PDF 中提取文本内容，但对多栏布局的处理能力有限，提取结果常为乱序字符流。</li>
+<li><a href="../entities/pypdf.html">pypdf</a> — pypdf 是 Python 的 PDF 处理库，提供基本的 PDF 读取、写入和文本提取功能，但对复杂布局的处理能力有限。</li>
+<li><a href="../entities/上海人工智能实验室.html">上海人工智能实验室</a> — 上海人工智能实验室（Shanghai AI Lab）是中国国家级人工智能科研机构，开源了 <a href="../entities/MinerU.html">MinerU</a>（<a href="../entities/MinerU.html">magic-pdf</a>）等高质</li>
+</ul>
+<h2 id="_4">综合分析</h2>
+<ul>
+<li><a href="../syntheses/知识系统的六个工程反模式.html">知识系统的六个工程反模式</a> — 在构建 LLM Wiki Plugin（AI 驱动的个人知识操作系统）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适</li>
+</ul>
+<h2 id="qa">QA 洞见</h2>
+<ul>
+<li><a href="../qa-insights/Cargo-for-X全能工具链模式.html">Cargo-for-X全能工具链模式</a> — Bun（JavaScript）和 uv（Python）代表了一种跨语言的工具链设计模式："Cargo for X"——用单一二进制文件统一运行时、包管理、构建和</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="其他.html">&larr; 其他</a>
+    <a href="推荐系统.html">推荐系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

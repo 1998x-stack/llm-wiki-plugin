@@ -41,7 +41,7 @@
 | `wiki:ingest` | 源材料 → wiki 页面 | 文件路径 / `all` | wiki 页面 + log.md |
 | `wiki:ingest-loop` | ralph-loop 批量 ingest | `<path> [--engine=qwen]` | 批量 wiki 页面 |
 | `wiki:query` | 统一搜索 (BM25+maps+graph) + 回答 | 问题文本 | 回答 + 可选 synthesis 页面 |
-| `wiki:check` | 只读健康诊断 (A-I 项) | 无 | 检查报告（不修改文件） |
+| `wiki:check` | 只读健康诊断 (A-J 项) | 无 | 检查报告（不修改文件） |
 | `wiki:lint` | 健康检查 + 自动修复 | 无 | lint 报告 + 自动修复 |
 | `wiki:build` | 构建所有静态产出 | 无 | graph.json + statistics + wiki HTML |
 | `wiki:relink` | 自动链接未链接的术语提及（最长匹配优先） | 无 | 修改后的 wiki 页面 |
@@ -76,7 +76,7 @@
 
 1. **读取源文件** — 完整阅读 `raw/<文件路径>`，根据格式选择解析方式
 2. **提取实体和概念** — 识别人物、公司、项目、工具、论文、书籍等实体，以及核心概念和主题。参考 `_schema/entity-types.md` 确定类型
-3. **查找已有页面** — 读取 `index.md`，对每个提取项检查是否已有对应 wiki 页面
+3. **查找已有页面** — 读取 `index.md` 全局名称列表快速去重 + 对应 `maps/*.md` 获取主题上下文
 4. **创建或更新页面** — 新实体写入 `wiki/entities/`，新概念写入 `wiki/concepts/`，已有页面追加新信息并更新 confidence 和 source_count。文件名用自然中文
 5. **建立关系** — 在 frontmatter `relates_to` 中添加关系（参考 `_schema/relationship-types.md`），同时更新被关联页面（双向）
 6. **矛盾检查** — 新信息与已有页面矛盾时，添加 `type: contradicts` 关系；新信息更可靠时用 `supersedes` 标记旧声明
@@ -451,10 +451,11 @@ Output: vault/graph.json
 
 **执行流程**：
 
-1. **Reindex** — 验证 index.md 完整性，修复缺失/孤条目，保存快照，按 tags 构建主题分类，生成 `maps/*.md`
-2. **Check** — 运行 `lint_wiki.py --json` + A-I 全部检查项 + 语义检查，生成诊断报告
-3. **Lint** — 基于诊断结果自动修复（frontmatter、断链、index.md、BM25），生成 lint 报告
-4. **Build** — 构建 graph.json + statistics + wiki HTML，同步到 `static/`
+1. **Relink** — 自动链接 wiki 中未链接的术语提及（最长匹配优先）
+2. **Reindex** — 验证 index.md 完整性，修复缺失/孤条目，保存快照，按 tags 构建主题分类，生成 `maps/*.md`（含概述，由 `build_maps.py`），精简 `index.md`（由 `snapshot_index --slim`）
+3. **Check** — 运行 `lint_wiki.py --json` + A-J 全部检查项 + 语义检查，生成诊断报告
+4. **Lint** — 基于诊断结果自动修复（frontmatter、断链、index.md、BM25），生成 lint 报告
+5. **Build** — 构建 graph.json + statistics + wiki HTML，同步到 `static/`
 
 **终止条件**：步骤 1 脚本异常时终止。步骤 2-4 的 warnings 不阻断流程。
 
@@ -1087,6 +1088,9 @@ pip install -r requirements.txt
 | `search_wiki.py` | 统一搜索 (BM25+maps+graph+RRF) | `python3 scripts/search_wiki.py "<查询>" --top 15 --json` |
 | `bm25_index.py` | BM25 全文搜索索引 | 见下文 |
 | `build_graph.py` | 知识图谱 JSON 构建 | 见下文 |
+| `build_maps.py` | 分主题 map 生成（含概述） | `bash scripts/wiki.sh build_maps --json` |
+| `snapshot_index.py` | Index 完整性检查/更新/精简 | `bash scripts/wiki.sh snapshot_index [--update\|--slim\|--snapshot]` |
+| `build_ingest_context.py` | Ingest 子代理上下文包 | `bash scripts/wiki.sh build_ingest_context [--topic AI工程]` |
 | `lint_wiki.py` | Wiki 页面质量检查 | 见下文 |
 | `qwen_ingest.py` | Qwen API 知识提取 | 见下文 |
 | `setup-ingest-loop.sh` | 批量 ingest 状态初始化 | `bash scripts/setup-ingest-loop.sh <路径>` |

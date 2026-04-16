@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文档处理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 文档处理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">map</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">文档处理</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/PDF解析.html">PDF解析</a> — PDF 解析是从 Portable Document Format 文件中提取结构化文本和语义信息的技术。PDF 本质上是"打印指令集"而非语义结构，解析的核心</li>
+<li><a href="../concepts/光学字符识别.html">光学字符识别</a> — 光学字符识别（OCR）是将图像中的文字转换为机器可读文本的技术，是扫描件 PDF 解析的核心手段。</li>
+<li><a href="../concepts/公式识别.html">公式识别</a> — 公式识别（Formula Recognition）是将 PDF 中以图像形式存储的数学公式转换为 LaTeX 代码的技术，是高质量学术文档解析的关键环节。</li>
+<li><a href="../concepts/文档布局检测.html">文档布局检测</a> — 文档布局检测（Document Layout Detection）是从 PDF 页面中识别和定位不同语义区域（文本区、图像、表格、公式框等）的计算机视觉任务，是</li>
+<li><a href="../concepts/文档结构化提取.html">文档结构化提取</a> — 文档结构化提取是将非结构化的文档（如 PDF）转换为带有语义标签的结构化数据（如 Markdown、JSON）的过程，是 <a href="../concepts/检索增强生成.html">RAG</a> 系统和知</li>
+<li><a href="../concepts/表格识别.html">表格识别</a> — 表格识别（Table Recognition）是将 PDF 中的表格还原为结构化数据（如 Markdown 表格）的技术，核心挑战在于从仅靠线条暗示的单元格边界</li>
+<li><a href="../concepts/阅读顺序重建.html">阅读顺序重建</a> — 阅读顺序重建（Reading Order Reconstruction）是从 PDF 页面元素的空间坐标中还原人类阅读序列的算法，解决多栏布局、脚注、侧边栏等复</li>
+</ul>
+<h2 id="_3">实体</h2>
+<ul>
+<li><a href="../entities/DocLayout-YOLO.html">DocLayout-YOLO</a> — DocLayout-YOLO 是面向<a href="../concepts/文档布局检测.html">文档布局检测</a>的 YOLO 系列模型变体，可检测 PDF 页面中的文本区、图像、表格、公式框等布局区域，是 <span style="color:#e74c3c" title="broken link">Min&lt;/li&gt;
+&lt;li&gt;[[LayoutLMv3</span> — LayoutLMv3 是微软推出的多模态文档理解模型，结合视觉和文本信息进行文档布局分析，是 <a href="../entities/MinerU.html">MinerU</a> 第三层流水线中可选的布局检测模型之一。</li>
+<li><a href="../entities/Marker.html">Marker</a> — Marker 是一款开源 PDF 文档解析工具，支持文字型 PDF 和扫描件的解析，但在公式和表格的结构化还原方面能力有限，采用 GPL 许可。</li>
+<li><a href="../entities/MinerU.html">MinerU</a> — MinerU（项目名 magic-pdf）是<a href="../entities/上海人工智能实验室.html">上海人工智能实验室</a>开源的高质量文档解析工具，专为学术论文、技术报告、教材等复杂 PDF 的结构化提取而设计。</li>
+<li><a href="../entities/Nougat.html">Nougat</a> — Nougat 是 Meta AI 开源的端到端 PDF 文档解析模型，基于视觉 <a href="../concepts/Transformer架构.html">Transformer</a> 将 PDF 页面图像</li>
+<li><a href="../entities/TableMaster.html">TableMaster</a> — TableMaster 是用于<a href="../concepts/表格识别.html">表格结构识别</a>的深度学习模型，可将 PDF 中的表格检测框还原为结构化表格数据，是 <a href="../entities/MinerU.html">MinerU</a> 第四层流</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="数学.html">&larr; 数学</a>
+    <a href="机器人学.html">机器人学 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

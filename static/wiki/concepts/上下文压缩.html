@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上下文压缩 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 上下文压缩</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="compaction">上下文压缩（Compaction）</h1>
+<h2 id="_1">概述</h2>
+<p>上下文压缩是 Anthropic 官方推出的服务端上下文管理策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始历史记录，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（Compaction / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心机制</h3>
+<p>启用压缩后，Claude 自动执行四步流程：
+1. <strong>检测</strong>输入令牌超过配置的触发阈值
+2. <strong>生成</strong>当前对话的摘要
+3. <strong>创建</strong> <code>compaction</code> 块包含摘要内容
+4. <strong>继续</strong>以压缩后的上下文完成回复</p>
+<p>后续请求中，API 自动丢弃 <code>compaction</code> 块之前的所有消息，从摘要继续对话。一次长时间对话可能产生多次压缩，最后一个压缩块反映最终状态。</p>
+<h3 id="_4">触发配置</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>必填</td>
+<td>必须为 <code>"compact_20260112"</code></td>
+</tr>
+<tr>
+<td><code>trigger</code></td>
+<td>object</td>
+<td>150,000 tokens</td>
+<td>何时触发压缩，最低 50,000 tokens</td>
+</tr>
+<tr>
+<td><code>pause_after_compaction</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>生成摘要后是否暂停，允许客户端注入额外内容</td>
+</tr>
+<tr>
+<td><code>instructions</code></td>
+<td>string</td>
+<td><code>null</code></td>
+<td>自定义摘要提示词，完全替换默认提示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">默认摘要提示词</h3>
+<pre><code>You have written a partial transcript for the initial task above.
+Please write a summary of the transcript. The purpose of this summary
+is to provide continuity so you can continue to make progress towards
+solving the task in a future context...
+</code></pre>
+<p>自定义指令通过 <code>instructions</code> 参数完全替换默认提示，而非追加。</p>
+<h3 id="pause_after_compaction">pause_after_compaction 模式</h3>
+<p>启用后，API 在生成压缩块后返回 <code>stop_reason: "compaction"</code> 并暂停。这允许客户端：
+- 保留最近的消息原文（不被摘要替换）
+- 注入特定的指令类消息
+- 在 API 继续前添加额外内容块</p>
+<p><strong>令牌预算控制</strong>：结合 <code>pause_after_compaction</code> 与压缩计数器，可估算累计消耗并在达到预算时优雅结束任务：</p>
+<pre><code class="language-python">if n_compactions * TRIGGER_THRESHOLD &gt;= TOTAL_TOKEN_BUDGET:
+    messages.append({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Please wrap up...&quot;})
+</code></pre>
+<h3 id="_6">与提示词缓存的协同</h3>
+<p>压缩与 <a href="提示词缓存.html">提示词缓存</a> 配合效果良好：
+- 在压缩块上添加 <code><a href="提示词缓存.html">cache_control</a>: { type: "ephemeral" }</code> 可缓存摘要内容
+- <strong>关键优化</strong>：在系统提示词末尾添加 <code><a href="提示词缓存.html">cache_control</a></code> 断点，使系统提示与对话分开缓存
+- 压缩发生时：系统提示缓存保持有效，只需将压缩摘要写入新缓存条目
+- 这对长系统提示词特别有益，即使多次压缩事件仍保持缓存</p>
+<h3 id="_7">流式处理差异</h3>
+<p>压缩块的流式传输与文本块不同：
+- 收到 <code>content_block_start</code> 事件
+- 随后是<strong>单个</strong> <code>content_block_delta</code> 包含完整摘要（无中间流式）
+- 最后收到 <code>content_block_stop</code> 事件</p>
+<h3 id="_8">计费与用量</h3>
+<p>压缩需要额外的采样步骤，计入速率限制和计费：
+- <code>usage.iterations</code> 数组显示每次采样的用量
+- 发生压缩时：<code>compaction</code> 迭代 + 主 <code>message</code> 迭代
+- 顶级 <code>input_tokens</code> / <code>output_tokens</code> <strong>不包含</strong>压缩迭代用量
+- 计算总消耗需对 <code>usage.iterations</code> 所有条目求和
+- 重新应用之前的 <code>compaction</code> 块不会产生额外压缩成本</p>
+<h3 id="_9">支持模型</h3>
+<ul>
+<li><a href="../entities/Claude-Mythos-Preview.html">Claude-Mythos-Preview</a> (<code><a href="../entities/Claude-Mythos-Preview.html">claude-mythos-preview</a></code>)</li>
+<li><a href="../entities/Claude-Opus-4-6.html">Claude-Opus-4-6</a> (<code><a href="../entities/Claude-Opus-4-6.html">claude-opus-4-6</a></code>)</li>
+<li><a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a> (<code><a href="../entities/Claude-Sonnet-4-6.html">claude-sonnet-4-6</a></code>)</li>
+</ul>
+<h3 id="_10">当前限制</h3>
+<ul>
+<li><strong>同模型摘要</strong>：请求中指定的模型同时用于摘要生成，无法使用更便宜的模型</li>
+<li><strong>Beta 阶段</strong>：需要 beta 标头 <code>compact-2026-01-12</code></li>
+<li><strong><a href="零数据保留.html">零数据保留</a></strong>：符合 <a href="零数据保留.html">零数据保留</a> (<a href="零数据保留.html">ZDR</a>) 条件</li>
+</ul>
+<h3 id="_11">与其他长时任务技术的对比</h3>
+<p><a href="Context-Engineering.html">Context-Engineering</a> 描述了三种长时任务技术：</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>适用场景</th>
+<th>控制粒度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compaction</strong></td>
+<td>需要流式回话的复杂推理</td>
+<td>服务端自动，集成量最小</td>
+</tr>
+<tr>
+<td><a href="结构化笔记法.html">结构化笔记法</a></td>
+<td>有明确里程碑的迭代开发</td>
+<td>客户端 Agent 写入持久存储</td>
+</tr>
+<tr>
+<td>多 Agent 架构</td>
+<td>需要并行探索的复杂研究</td>
+<td>子 Agent 返回精简摘要</td>
+</tr>
+</tbody>
+</table>
+<p>Compaction 是最"开箱即用"的方案，但牺牲了对压缩内容的精细控制。<a href="结构化笔记法.html">结构化笔记法</a> 和 <a href="分层记忆架构.html">分层记忆架构</a> 提供更多控制权，但需要更多集成工作。</p>
+<h2 id="_12">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic 官方文档</li>
+</ul>
+<h2 id="_13">相关</h2>
+<ul>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — implements（Compaction 是上下文工程的官方 API 实现）</li>
+<li><a href="上下文腐烂.html">上下文腐烂</a> — caused（压缩解决的核心问题）</li>
+<li><a href="提示词缓存.html">提示词缓存</a> — uses（压缩与缓存协同工作）</li>
+<li><a href="注意力预算.html">注意力预算</a> — related_to（压缩优化注意力资源分配）</li>
+<li><a href="结构化笔记法.html">结构化笔记法</a> — compares_to（替代方案）</li>
+<li><a href="分层记忆架构.html">分层记忆架构</a> — compares_to（替代方案）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="三分解控制框架.html">&larr; 三分解控制框架</a>
+    <a href="上下文感知.html">上下文感知 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

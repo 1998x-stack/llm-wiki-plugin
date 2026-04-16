@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经济学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 经济学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">map</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">经济学</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/Harrod-Domar 模型.html">Harrod-Domar 模型</a> — Harrod-Domar 模型是由英国经济学家罗伊·哈罗德（Roy Harrod, 1939）和美国经济学家埃夫塞·多马（Evsey Domar, 1946）分</li>
+<li><a href="../concepts/IS-LM 模型.html">IS-LM 模型</a> — IS-LM 模型（Investment-Saving / Liquidity preference-Money supply model）是宏观经济学中用于分析</li>
+<li><a href="../concepts/乘数效应.html">乘数效应</a> — 乘数效应（Multiplier Effect）是宏观经济学中的一个关键概念，由<a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>在《<a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a>》中系统化阐述</li>
+<li><a href="../concepts/内生增长理论.html">内生增长理论</a> — 内生增长理论（Endogenous Growth Theory）是 20 世纪 80 年代兴起的一系列经济增长模型的统称，旨在克服<a href="../concepts/索洛增长模型.html">索洛增长模型</a>中将技术进</li>
+<li><a href="../concepts/凯恩斯革命.html">凯恩斯革命</a> — <a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>革命（Keynesian Revolution）是指 20 世纪 30 年代由<a href="../entities/约翰·梅纳德·凯恩斯.html">约翰·梅纳德·凯恩斯</a>发起的经济学范式转</li>
+<li><a href="../concepts/动物精神.html">动物精神</a> — “动物精神”（Animal Spirits）是<a href="../entities/约翰·梅纳德·凯恩斯.html">约翰·梅纳德·凯恩斯</a>在《<a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a>》中提出的著名概念，用于描述驱动人类经济行为（特别是投</li>
+<li><a href="../concepts/收敛假说.html">收敛假说</a> — 收敛假说是<a href="../concepts/索洛增长模型.html">索洛增长模型</a>导出的一个重要经验预测，指贫穷国家的人均收入增长率倾向于高于富裕国家，从而导致各国人均收入水平随时间推移逐渐趋同的现象。这一假说的</li>
+<li><a href="../concepts/新古典生产函数.html">新古典生产函数</a> — 新古典生产函数是新古典增长理论（如<a href="../entities/罗伯特·默顿·索洛.html">索洛</a>模型）的核心数学工具，用于描述资本（K）和劳动（L，通常经过技术水平 A 调整）如何结合产生总</li>
+<li><a href="../concepts/有效需求.html">有效需求</a> — 有效需求（Effective Demand）是<a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>主义经济学的核心概念，指经济社会在某一特定价格水平下，消费者、企业和政府愿意且</li>
+<li><a href="../concepts/流动性偏好理论.html">流动性偏好理论</a> — 流动性偏好理论（Liquidity Preference Theory）是<a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>在《<a href="../entities/就业、利息和货币通论.html">就业、利息和货币通论</a>》中提出的关于货币</li>
+<li><a href="../concepts/流动性陷阱.html">流动性陷阱</a> — 流动性陷阱（Liquidity Trap）是<a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>主义经济学中的一种极端经济状态，指当名义利率降低到无可再降的低水平（接近零）时，</li>
+<li><a href="../concepts/理性预期假说.html">理性预期假说</a> — 理性预期假说（Rational Expectations Hypothesis）是由约翰·弗雷泽·穆思（John F. Muth）于 1961 年提出的经济学核</li>
+<li><a href="../concepts/索洛增长模型.html">索洛增长模型</a> — <a href="../entities/罗伯特·默顿·索洛.html">索洛</a>增长模型（Solow Growth Model）是由<a href="../entities/罗伯特·默顿·索洛.html">罗伯特·默顿·索洛</a>（<a href="../entities/罗伯特·默顿·索洛.html">Robert M. So&lt;/li&gt;
+&lt;li&gt;[[索洛残差</a> — <a href="../entities/罗伯特·默顿·索洛.html">索洛</a>残差（Solow Residual）是指在增长核算中，总产出增长率减去资本和劳动等要素投入加权增长率后的剩余部分。它由罗伯特·[</li>
+<li><a href="../concepts/菲利普斯曲线.html">菲利普斯曲线</a> — 菲利普斯曲线（Phillips Curve）最初由 <a href="../entities/A.W. 菲利普斯.html">A.W. 菲利普斯</a>于 1958 年提出，描述了失业率与名义工资变化率之间稳定的负向非线性关系。该曲线</li>
+<li><a href="../concepts/萨伊定律.html">萨伊定律</a> — 萨伊定律（Say's Law），又称“市场定律”，是古典经济学的核心信条之一，由法国经济学家让 - 巴蒂斯特·萨伊（Jean-Baptiste Say）在 19</li>
+<li><a href="../concepts/边际消费倾向.html">边际消费倾向</a> — 边际消费倾向（Marginal Propensity to Consume, 简称 MPC）是<a href="../entities/约翰·梅纳德·凯恩斯.html">凯恩斯</a>消费理论中的核心参数，定义为每</li>
+<li><a href="../concepts/黄金律资本水平.html">黄金律资本水平</a> — 黄金律资本水平（Golden Rule Level of Capital）是<a href="../concepts/索洛增长模型.html">索洛增长模型</a>中的一个规范性概念，由埃德蒙·费尔普斯（Edmund Phelp</li>
+</ul>
+<h2 id="_3">实体</h2>
+<ul>
+<li><a href="../entities/A.W. 菲利普斯.html">A.W. 菲利普斯</a> — 奥尔班·威廉·菲利普斯（A.W. Phillips, 1914-1975）是一位新西兰裔英国经济学家和工程师。他以其非凡的人生经历著称，从猎鳄者、矿工到二战战俘</li>
+<li><a href="../entities/MONIAC.html">MONIAC</a> — MONIAC（Monetary National Income Analogue Computer），又称“菲利普斯机器”，是由经济学家 <span style="color:#e74c3c" title="broken link">A.W. 菲利普斯&lt;/li&gt;
+&lt;li&gt;[[就业、利息和货币通论</span> — 《就业、利息和货币通论》（<em>The General Theory of Employment, Interest and Money</em>）是英国经济学家<span style="color:#e74c3c" title="broken link">约翰·&lt;/li&gt;
+&lt;li&gt;[[米尔顿·弗里德曼</span> — 米尔顿·弗里德曼（Milton Friedman，1912-2006）是二十世纪最具影响力的经济学家之一，芝加哥学派领军人物，1976 年诺贝尔经济学奖得主。他</li>
+<li><a href="../entities/约翰·梅纳德·凯恩斯.html">约翰·梅纳德·凯恩斯</a> — 约翰·梅纳德·凯恩斯（John Maynard Keynes，1883–1946）是 20 世纪最具影响力的英国经济学家，现代宏观经济学的创始人。他在大萧条时期</li>
+<li><a href="../entities/约翰·理查德·希克斯.html">约翰·理查德·希克斯</a> — 约翰·理查德·希克斯（John R. Hicks，1904-1989）是英国著名经济学家，1972 年诺贝尔经济学奖得主（与肯尼斯·阿罗共同获得）。他在微观经济</li>
+<li><a href="../entities/罗伯特·默顿·索洛.html">罗伯特·默顿·索洛</a> — 罗伯特·默顿·索洛（Robert M. Solow，1924 年生）是美国著名经济学家，新古典增长理论的奠基人。他因对经济增长理论的贡献荣获 1987 年诺贝尔</li>
+<li><a href="../entities/美国货币史，1867-1960.html">美国货币史，1867-1960</a> — 《美国货币史，1867-1960》（<em>A Monetary History of the United States, 1867-1960</em>）是由[[米尔顿·弗</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="矩阵理论.html">&larr; 矩阵理论</a>
+    
+  </div>
+</div>
+</body>
+</html>

@@ -134,7 +134,8 @@ vault/
 ├── index/                   # 搜索索引
 ├── templates/               # 页面模板
 ├── scripts/                 # 自动化脚本
-├── index.md                 # 全局内容目录
+├── maps/                    # 主题分类索引（含概述，由 build_maps.py 生成）
+├── index.md                 # 全局内容目录（精简版：统计表 + 名称列表）
 ├── log.md                   # 操作日志
 ├── log.hook.md              # Hook 执行日志
 ├── graph.json               # 知识图谱数据
@@ -255,7 +256,7 @@ journal/
 
 | 文件 | 说明 |
 |------|------|
-| `index.md` | 全局内容目录，按类别列出所有 wiki 页面（由 `snapshot_index.py` 自动维护的计算产出，勿手动编辑） |
+| `index.md` | 全局内容目录（精简版：统计表 + 全局名称列表，由 `snapshot_index.py --slim` 维护，详细清单见 `maps/*.md`，勿手动编辑） |
 | `log.md` | 操作日志，记录每次 ingest/lint/consolidate 的结果 |
 | `log.hook.md` | Hook 执行日志 |
 | `graph.json` | 知识图谱的节点和边数据 |
@@ -498,10 +499,11 @@ Lint Results:
 
 **处理流程：**
 
-1. **Reindex** — 验证 index.md 完整性，生成主题分类 maps
-2. **Check** — 只读诊断，生成问题报告
-3. **Lint** — 基于诊断结果自动修复可修复的问题
-4. **Build** — 构建 graph.json + statistics + wiki HTML
+1. **Relink** — 自动链接 wiki 中未链接的术语提及（最长匹配优先）
+2. **Reindex** — 验证 index.md 完整性，生成主题分类 maps（含概述），精简 index.md
+3. **Check** — 只读诊断，生成问题报告
+4. **Lint** — 基于诊断结果自动修复可修复的问题
+5. **Build** — 构建 graph.json + statistics + wiki HTML
 
 **适用场景：** 批量 ingest 后的全面维护、每周例行维护、发布前检查。
 

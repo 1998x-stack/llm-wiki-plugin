@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>矩阵理论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 矩阵理论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">map</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">矩阵理论</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/Hoffman-Wielandt定理.html">Hoffman-Wielandt定理</a> — Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>定理（1953）由 Alan J. Hoffman 与<a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a>发表于 *Duke Ma</li>
+<li><a href="../concepts/Householder变换.html">Householder变换</a> — <a href="../entities/阿尔斯顿·豪斯霍尔德.html">Householder</a> 变换（<a href="../entities/阿尔斯顿·豪斯霍尔德.html">Householder</a> Reflection）由<span style="color:#e74c3c" title="broken link">阿尔斯顿·豪斯霍尔&lt;/li&gt;
+&lt;li&gt;[[Kato-Rellich定理</span> — <a href="../entities/加藤敏夫.html">Kato</a>-Rellich定理是算子<a href="../concepts/矩阵扰动理论.html">扰动理论</a>的基础定理，由 Franz Rellich（1940年代）和<a href="../entities/加藤敏夫.html">加藤敏夫</a>（</li>
+<li><a href="../concepts/Ky Fan不等式.html">Ky Fan不等式</a> — <a href="../entities/樊畿.html">Ky Fan</a>不等式（1949–1951）由<a href="../entities/樊畿.html">樊畿</a>在三篇 PNAS 论文中建立，将<a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a>从单个特征值的逐项控制提升为**</li>
+<li><a href="../concepts/Perron-Frobenius定理.html">Perron-Frobenius定理</a> — <a href="../entities/奥斯卡·佩龙.html">Perron</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>定理是非负<a href="../concepts/矩阵.html">矩阵</a>谱理论的核心定理，由<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>（1907）</li>
+<li><a href="../concepts/QR算法.html">QR算法</a> — QR算法（QR Algorithm）是计算<a href="../concepts/矩阵.html">矩阵</a>全部特征值（即<a href="../concepts/Schur分解.html">Schur分解</a>）的最重要迭代算法，由英国工程师 John G. F. Francis</li>
+<li><a href="../concepts/Rayleigh商.html">Rayleigh商</a> — <a href="../entities/瑞利勋爵.html">Rayleigh</a>商（<a href="../entities/瑞利勋爵.html">Rayleigh</a> Quotient）是实对称<a href="../concepts/矩阵.html">矩阵</a> A 关于非零向量 x 定义的标量函数：R(x)</li>
+<li><a href="../concepts/Schur分解.html">Schur分解</a> — <a href="../entities/伊赛·舒尔.html">Schur</a>分解（<a href="../entities/伊赛·舒尔.html">Schur</a> Decomposition，或酉三角化定理）是<a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a>于1909年证明的[[矩阵]</li>
+<li><a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a> — Von Neumann迹不等式（1937）由<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>发表于 <em>Tomsk University Review</em>，建立了两个复<a href="../concepts/矩阵.html">矩阵</a>迹内积绝</li>
+<li><a href="../concepts/Weyl特征值不等式.html">Weyl特征值不等式</a> — <a href="../entities/赫尔曼·外尔.html">Weyl</a>特征值不等式（1912）是<a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a>的奠基性定理，由<a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a>在证明偏微分方程特征值渐近律的过程中作为技术工具</li>
+<li><a href="../concepts/不可约矩阵.html">不可约矩阵</a> — 非负<a href="../concepts/矩阵.html">矩阵</a> $A \in \mathbb{R}^{n \times n}_{\geq 0}$ 称为<strong>不可约</strong>（irreducible），若不存在非空真</li>
+<li><a href="../concepts/优化控制序.html">优化控制序</a> — 优化控制序（Majorization）是一种刻画向量"分散程度"的偏序关系：向量 $x$ 被 $y$ 控制（$x \prec y$），直觉上意味着 $x$ 比 </li>
+<li><a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a> — 卡尔曼滤波（Kalman Filter, KF）是一种递归式的最优状态估计算法，由 <a href="../entities/Rudolf.html">Rudolf</a> E. Kalman 于 1960 年提出。该方法通过将</li>
+<li><a href="../concepts/奇异值分解.html">奇异值分解</a> — 奇异值分解（Singular Value Decomposition，SVD）是<a href="../concepts/线性代数.html">线性代数</a>中最重要的<a href="../concepts/矩阵.html">矩阵</a>分解之一：**任意 $m \times n</li>
+<li><a href="../concepts/惯性律.html">惯性律</a> — 西尔维斯特惯性律（Sylvester's Law of Inertia，1852）是<a href="../concepts/线性代数.html">线性代数</a>中关于实对称双线性型的基本定理：对于任意实对称<a href="../concepts/矩阵.html">矩阵</a> </li>
+<li><a href="../concepts/极大极小定理.html">极大极小定理</a> — <a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 极大极小定理（<a href="../entities/恩斯特·菲舍尔.html">Fischer</a> Minimax Theorem，又称 Courant-<span style="color:#e74c3c" title="broken link">恩斯特·&lt;/li&gt;
+&lt;li&gt;[[正规矩阵</span> — <a href="../concepts/矩阵.html">矩阵</a> $A \in \mathbb{C}^{n \times n}$ 称为<strong>正规<a href="../concepts/矩阵.html">矩阵</a></strong>（normal matrix），若其与自身共轭转置对易</li>
+<li><a href="../concepts/矩阵.html">矩阵</a> — 矩阵（Matrix）是由 $m \times n$ 个数按行列排列成的矩形阵列，是<a href="../concepts/线性代数.html">线性代数</a>的核心对象。矩阵系统理论由<a href="../entities/阿瑟·凯莱.html">阿瑟·凯莱</a>（1855）奠基，</li>
+<li><a href="../concepts/矩阵扰动理论.html">矩阵扰动理论</a> — <a href="../concepts/矩阵.html">矩阵</a>扰动理论（<a href="../concepts/矩阵.html">Matrix</a> Perturbation Theory）研究<a href="../concepts/矩阵.html">矩阵</a>特征值、<a href="../concepts/奇异值分解.html">奇异值</a>和特征子空间在<span style="color:#e74c3c" title="broken link">矩&lt;/li&gt;
+&lt;li&gt;[[矩阵理论</span> — 研究<a href="../concepts/矩阵.html">矩阵</a>作为独立数学对象的学科，是<a href="../concepts/线性代数.html">线性代数</a>的核心组成部分。1850年西尔维斯特创造"<a href="../concepts/矩阵.html">矩阵</a>"术语，将其从行列式理论的附庸中解放出来。185</li>
+<li><a href="../concepts/线性代数.html">线性代数</a> — 线性代数（Linear Algebra）是研究向量空间、线性映射及其通过<a href="../concepts/矩阵.html">矩阵</a>表示的数学分支。核心对象包括向量、<a href="../concepts/矩阵.html">矩阵</a>、行列式、特征值与特征向量、线</li>
+<li><a href="../concepts/谱半径.html">谱半径</a> — <a href="../concepts/矩阵.html">矩阵</a> $A$ 的<strong>谱半径</strong>（spectral radius）定义为其所有特征值绝对值的最大值：$\rho(A) = \max{|\lambda| </li>
+<li><a href="../concepts/齐次变换矩阵.html">齐次变换矩阵</a> — 齐次变换<a href="../concepts/矩阵.html">矩阵</a>（Homogeneous Transformation <a href="../concepts/矩阵.html">Matrix</a>）是机器人学中用于描述刚体在三维空间中位姿（位置和姿态）的</li>
+</ul>
+<h2 id="_3">实体</h2>
+<ul>
+<li><a href="../entities/伊赛·舒尔.html">伊赛·舒尔</a> — 伊赛·舒尔（Issai Schur，1875–1941）是俄裔德国数学家，20世纪代数学与<a href="矩阵理论.html">矩阵理论</a>的核心奠基人之一。生于俄罗斯帝国莫吉廖夫（今白俄罗斯）</li>
+<li><a href="../entities/加藤敏夫.html">加藤敏夫</a> — 加藤敏夫（Tosio Kato，1917–1999）是日本数学家，二十世纪最杰出的数学物理学家之一。生于日本栃木县鹿沼市，东京帝国大学理论物理出身，1951年东</li>
+<li><a href="../entities/大卫·希尔伯特.html">大卫·希尔伯特</a> — 大卫·希尔伯特（David Hilbert，1862–1943）是德国数学家，20世纪最具影响力的数学家之一。他在数学基础（公理化方法）、不变量理论、积分方程、</li>
+<li><a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a> — 奥斯卡·佩龙（Oskar Perron，1880–1975）是德国数学家，生于弗兰肯塔尔，卒于慕尼黑，享年95岁。1902年在慕尼黑大学获博士学位（导师为Fer</li>
+<li><a href="../entities/恩斯特·菲舍尔.html">恩斯特·菲舍尔</a> — 恩斯特·西吉斯蒙德·菲舍尔（Ernst Sigismund Fischer，1875–1954）是20世纪初奥地利-德国数学家，以两项永久性贡献为后人铭记：其一</li>
+<li><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a> — 费迪南德·格奥尔格·弗罗贝尼乌斯（Ferdinand Georg Frobenius，1849–1917）是德国数学家，柏林大学教授，19世纪末至20世纪初代数</li>
+<li><a href="../entities/樊畿.html">樊畿</a> — 樊畿（Ky Fan，1914–2010）是美籍华裔数学家，20世纪最具影响力的分析学家之一。1914年生于杭州，北京大学数学系本科，1941年在巴黎大学师从泛函</li>
+<li><a href="../entities/瑞利勋爵.html">瑞利勋爵</a> — 瑞利勋爵（Lord Rayleigh，John William Strutt，1842–1919）是英国物理学家，诺贝尔物理学奖得主（1904年，因发现氩）。在</li>
+<li><a href="../entities/詹姆斯·约瑟夫·西尔维斯特.html">詹姆斯·约瑟夫·西尔维斯特</a> — 英国数学家，1850年首次创造"<a href="../concepts/矩阵.html">矩阵</a>"(matrix)一词，将矩形数表从行列式的附庸中解放出来，赋予其独立的数学身份。1852年证明<a href="../concepts/惯性律.html">惯性律</a>，给出</li>
+<li><a href="../entities/赫尔曼·外尔.html">赫尔曼·外尔</a> — 赫尔曼·外尔（Hermann Weyl，1885–1955）是德国数学家与理论物理学家，被誉为"最后一位数学全才"。生于埃姆斯霍恩，1904年入哥廷根大学师从[</li>
+<li><a href="../entities/赫尔穆特·维兰特.html">赫尔穆特·维兰特</a> — 赫尔穆特·维兰特（Helmut Wielandt，1910–2001）是德国数学家，在<a href="../concepts/矩阵.html">矩阵</a>分析与群论两大领域均有奠基性贡献。1935年在柏林大学获博士学</li>
+<li><a href="../entities/阿瑟·凯莱.html">阿瑟·凯莱</a> — 阿瑟·凯莱（Arthur Cayley，1821–1895）是英国数学家，<strong><a href="矩阵理论.html">矩阵理论</a></strong>的创始人之一。他在1855–1858年间系统建立<a href="../concepts/矩阵.html">矩阵</a>代</li>
+</ul>
+<h2 id="_4">综合分析</h2>
+<ul>
+<li><a href="../syntheses/矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事</a> — 本综合分析将1907–1966年间<a href="../concepts/矩阵.html">矩阵</a>/算子谱理论的九个核心贡献整合为一条连贯的知识谱系。这条链条从 <a href="../entities/奥斯卡·佩龙.html">Perron</a> 的正[[矩阵]</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="深度学习.html">&larr; 深度学习</a>
+    <a href="经济学.html">经济学 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

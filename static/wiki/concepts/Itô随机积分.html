@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Itô 公式（随机链式法则）</strong>：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通链式法则多出 $\frac{1}{2}F'' dt$ 项——来源于<a href="Wiener过程.html">布朗运动</a>的二次变差 $d[B,B]_t = dt$。这是<a href="Wiener过程.html">Wiener过程</a>路径不可微性在微积分中的体现。</p>
 </li>
 <li>
-<p><strong>鞅性质</strong>：若 $\mathbb{E}\int_0^T f^2 \, dt &lt; \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与<a href="概率论.html">概率论</a>中的鞅理论深度融合。</p>
+<p><strong>鞅性质</strong>：若 $\mathbb{E}\int_0^T f^2 \, dt &lt; \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与<a href="../maps/概率论.html">概率论</a>中的鞅理论深度融合。</p>
 </li>
 <li>
 <p><strong>为何需要新积分</strong>：<a href="Wiener过程.html">Wiener过程</a>路径处处不可微，故 Riemann-Stieltjes 积分 $\int g \, dB$ 无法直接定义（被积量无界变差）。Itô 积分通过左端点 Riemann 和（非中点）绕过这一困难——不同端点选取给出不同积分（Stratonovich 积分），这是随机积分的独特之处。</p>

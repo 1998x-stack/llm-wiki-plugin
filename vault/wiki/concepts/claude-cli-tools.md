@@ -47,7 +47,7 @@ Claude CLI 工具生态是指围绕 Anthropic 的 Claude 大模型构建的一�
 ## 关键内容
 
 ### 核心架构与分类
-Claude CLI 生态在 2026 年已形成清晰的三层架构。第一层为**官方原生工具**，即由 Anthropic 直接维护的 **Claude Code**。它代表了生态的最高标准，支持最新的 Claude Opus 4.6 和 Sonnet 4.6 模型，提供原子级的多文件编辑能力、子代理并行处理系统以及基于 Hooks 的事件驱动架构。第二层为**第三方 CLI 代理**，包括 **Aider**（主打 Git 原生与高频提交）、**claude-engineer**（强调动态工具生成与自扩展能力）以及 **Goose**（通用型 Agent）。这些工具通常通过 API Key 调用 Claude 模型，但在交互逻辑和本地化功能上各有侧重。第三层为**跨平台 AI 编程接口**，如 **Cursor CLI** 和 **Kiro CLI**，它们虽非专为 Claude 设计，但通过配置可兼容 Claude 模型，构成了广义的生态边界。
+Claude CLI 生态在 2026 年已形成清晰的三层架构。第一层为**官方原生工具**，即由 Anthropic 直接维护的 **Claude Code**。它代表了生态的最高标准，支持最新的 [[Claude-Opus-4-6|Claude Opus 4.6]] 和 [[Claude-Sonnet-4|Sonnet 4]].6 模型，提供原子级的多文件编辑能力、子代理并行处理系统以及基于 Hooks 的事件驱动架构。第二层为**第三方 CLI 代理**，包括 **Aider**（主打 Git 原生与高频提交）、**claude-engineer**（强调动态工具生成与自扩展能力）以及 **Goose**（通用型 Agent）。这些工具通常通过 API Key 调用 Claude 模型，但在交互逻辑和本地化功能上各有侧重。第三层为**跨平台 AI 编程接口**，如 **Cursor CLI** 和 **Kiro CLI**，它们虽非专为 Claude 设计，但通过配置可兼容 Claude 模型，构成了广义的生态边界。
 
 ### 关键技术特性
 该生态的核心竞争力体现在三大技术支柱上。首先是**[[Context-Engineering|上下文工程]]标准化**，通过 `CLAUDE.md` 文件实现项目级持久指令管理，开发者可在其中定义架构规范、编码风格及常用命令，确保 AI 行为的一致性。其次是**MCP（[[MCP协议层|Model Context Protocol]]）协议的普及**，作为连接外部服务的标准接口，MCP 允许 CLI 工具无缝集成 GitHub、Slack、PostgreSQL 等 300+ 种服务，打破了模型与本地环境的隔离。最后是**自动化工作流增强**，官方工具引入了 PreToolUse/PostToolUse 钩子系统，允许用户在工具执行前后插入自定义脚本（如自动格式化、静态检查），实现了“规划 - 执行 - 验证”的闭环自动化。

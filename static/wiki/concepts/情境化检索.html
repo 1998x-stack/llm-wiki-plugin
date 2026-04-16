@@ -175,7 +175,7 @@ Answer only with the succinct context and nothing else.
 - 取 Top-20 注入模型
 - 联合效果：失败率 <strong>-67%</strong>（5.7% → 1.9%）</p>
 <h3 id="_8">成本与实现</h3>
-<p><strong>为什么成本可控</strong>：配合 Anthropic 的 Prompt Caching 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
+<p><strong>为什么成本可控</strong>：配合 Anthropic 的 <a href="提示词缓存.html">Prompt Caching</a> 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
 <p><strong>实现注意事项</strong>：
 1. <strong>Chunk 边界</strong>：切块大小、边界策略和重叠影响检索效果，需实验调优
 2. <strong>嵌入模型选择</strong>：实验中 Gemini Text 004 和 Voyage 表现最佳

@@ -1,5 +1,30 @@
 # Changelog
 
+## [v3.8] - 2026-04-16
+
+### Added
+- **`scripts/build_maps.py`**: deterministic per-topic map generator from `topic-to-wiki.json`. Replaces LLM-driven maps generation in `wiki:reindex`. Each map now includes a `## 概述` overview section. Supports `--topic` filtering and `--json` output
+- **`snapshot_index.py --slim`**: rewrites `index.md` from ~626 lines to ~35 lines (stats table + comma-separated global name list). Detailed page listings moved to `maps/*.md`
+- **`build_ingest_context.py --topic`**: filters `existing_pages` to only pages in specified topic(s), reducing ingest subagent context from ~600 pages to ~20-70 per topic
+- **Check item J**: `wiki:check` now validates `maps/*.md` overview completeness and page_count accuracy
+
+### Changed
+- **`maps/*.md` enriched**: now includes `## 概述` overview section (formerly only in the deleted `guidelines/` system). Maps serve both scripts (search, lint) and LLM commands (ingest, query)
+- **`wiki:reindex` steps**: step 5 now calls `bash scripts/wiki.sh build_maps --json` (deterministic script) instead of LLM-driven generation; step 6 calls `snapshot_index --slim` to compact index.md; steps renumbered (8 total, was 7)
+- **`wiki:ingest` step 3**: reads slim `index.md` name list for quick dedup + `maps/*.md` for topic context (was reading full 626-line index)
+- **`wiki:ingest-loop` step 3**: passes `--topic` to `build_ingest_context` for per-topic context reduction
+- **`wiki:query` step 2**: reads `maps/{topic}.md` for topic overview and page list
+- **`wiki:maintain`**: reindex step includes `build_maps` + `snapshot_index --slim`; step count refs fixed (reindex 1-8, build 1-7, check 1-6)
+
+### Removed
+- **`guidelines/` directory**: merged into `maps/` — single directory now serves both script consumers and LLM prompt consumption
+- **`scripts/build_guidelines.py`**: replaced by `scripts/build_maps.py`
+- **`GUIDELINES_DIR` constant**: removed from `wiki_utils.py`
+
+### Documentation
+- All docs updated: CHANGELOG.md, README.md, USERGUIDE.md, docs/wiki.md, CLAUDE.md (root + vault), _schema/CLAUDE.md
+- Step count mismatches fixed in maintain.md (reindex 1-8, build 1-7) and lint.md (check 1-6)
+
 ## [v3.7] - 2026-04-16
 
 ### Fixed

@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="context-engineering">Context Engineering</h1>
 <h2 id="_1">概述</h2>
-<p>Context Engineering（上下文工程）是指对 LLM 的有限上下文窗口进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作<strong>有限缓存</strong>（Cache）和<strong>工作集</strong>（Working Set），而非日志记录器。</p>
+<p>Context Engineering（上下文工程）是指对 LLM 的有限<a href="上下文窗口.html">上下文窗口</a>进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作<strong>有限缓存</strong>（Cache）和<strong>工作集</strong>（Working Set），而非日志记录器。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">四条经验规律驱动的设计原则</h3>
 <table>
@@ -294,7 +294,7 @@ $$</p>
 <p><strong><a href="上下文腐烂.html">上下文腐烂</a>（<a href="上下文腐烂.html">Context Rot</a>）</strong>：<a href="../entities/ChromaDB.html">Chroma</a> Research 基准研究发现，随上下文 token 增加，模型从上下文中准确召回信息的能力持续下降。这不是硬性崖式截止，而是性能梯度——是上下文工程存在的核心动机。</p>
 <p><strong><a href="注意力预算.html">注意力预算</a>（<a href="注意力预算.html">Attention Budget</a>）</strong>：<a href="Transformer架构.html">Transformer</a> n² 注意力机制导致每个新 token 都消耗有限的<a href="注意力预算.html">注意力资源</a>，上下文增长时每对 token 关系可获得的参数容量被稀释。</p>
 <p><strong>长时任务的三种技术</strong>（Anthropic 实践）：
-1. <strong>Compaction</strong>：对话历史摘要压缩 → 适合需要流式回话的复杂推理
+1. <strong><a href="上下文压缩.html">上下文压缩</a>（Compaction）</strong>：Anthropic 官方 API，当对话接近窗口限制时自动将旧内容压缩为摘要。触发阈值可配置（默认 150,000 tokens，最低 50,000），支持 <code>pause_after_compaction</code> 暂停注入额外内容，支持自定义摘要指令。与 <a href="提示词缓存.html">提示词缓存</a> 协同：系统提示末尾加 <code><a href="提示词缓存.html">cache_control</a></code> 断点可保持系统<a href="提示词缓存.html">提示缓存</a>有效。详见 <a href="上下文压缩.html">上下文压缩</a>。
 2. <strong><a href="结构化笔记法.html">结构化笔记法</a></strong>（<a href="结构化笔记法.html">Agentic Memory</a>）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
 3. <strong>多 Agent 架构</strong>：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究</p>
 <p><strong><a href="即时上下文检索.html">即时上下文检索</a>（<a href="即时上下文检索.html">Just-in-Time Context</a>）</strong>：Agent 不预加载所有数据，而是持有轻量标识符（文件路径、URL、查询），运行时工具按需动态加载。Claude Code 的 glob/grep/Bash 模式是典型实现。</p>
@@ -305,6 +305,7 @@ $$</p>
 <li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a> — Anthropic</li>
 <li><a href="https://arxiv.org/abs/2307.03172">Lost in the Middle (Liu et al. 2023)</a></li>
 <li><a href="https://arxiv.org/abs/2310.08560">Towards LLMs as Operating Systems</a> — MemGPT</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic Compaction API 文档</li>
 </ul>
 <h2 id="_8">相关</h2>
 <ul>
@@ -320,6 +321,8 @@ $$</p>
 <li><a href="结构化笔记法.html">结构化笔记法</a> — 长时任务持久记忆技术</li>
 <li><a href="检索增强生成.html">检索增强生成</a> — 外部知识注入的主要技术路径</li>
 <li><a href="情境化检索.html">情境化检索</a> — 解决 RAG 上下文破坏的增强方案</li>
+<li><a href="上下文压缩.html">上下文压缩</a> — 长时任务 Compaction 技术的官方 API 实现</li>
+<li><a href="提示词缓存.html">提示词缓存</a> — 缓存优化与压缩协同工作</li>
 </ul>
   </div>
   <div class="page-nav">

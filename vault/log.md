@@ -4,6 +4,82 @@ type: log
 
 # 操作日志
 
+## [2026-04-16 12:15] maintain
+- Relink: 1998 terms, 162 new links across 41 pages
+- Reindex: OK (628 页面, 16 clusters, 16 maps, new: LLM能力) | Index: 36 行 | Schema 同步: 已更新
+- Check: 15 errors, 1334 warnings, 0 info (0 new gotchas)
+- Lint: 0 修复 (I1 expected with slim index), 15 待处理
+- Build: 634 节点, 5780 边 → static/ 已同步
+
+## [2026-04-16 09:40] ingest | SWE-agent 论文核心观点 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md
+- 创建页面: 1 个
+  - wiki/concepts/SWE-bench.md — 软件工程 Agent 基准测试，pass@1 指标，SWE-agent 12.5% 结果
+- 更新页面: 1 个
+  - wiki/concepts/Agent计算机接口.md — 补充 SWE-agent 论文三大核心观点、SWE-bench 关系、source_count 2→3
+- BM25: 2 页面全部更新成功
+- Index: +1 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings
+
+## [2026-04-16 09:35] ingest | Scaling Managed Agents
+- 源文件: raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md
+- 创建页面: 6 个
+  - wiki/concepts/Managed-Agents.md — Claude 托管 Agent 服务：三大抽象组件、安全边界、性能收益
+  - wiki/concepts/元控制框架.md — Meta-harness 设计模式：对接口有主见、对实现无主见
+  - wiki/concepts/脑手分离架构.md — Brain-Hands Decoupling：宠物变牲畜、TTFT 下降 60%/90%
+  - wiki/concepts/会话日志.md — Session 作为上下文窗口外的持久化上下文对象
+  - wiki/concepts/宠物与牲畜模式.md — Pets vs Cattle 基础设施范式
+  - wiki/concepts/首次令牌时间.md — TTFT 延迟指标及其在 Agent 架构中的意义
+- 更新页面: 1 个
+  - wiki/concepts/Agent Harness模式.md — 补充 Harness 假设过时风险、meta-harness 演进方向
+- BM25: 7 页面全部更新成功
+- Index: +6 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings (全部通过)
+
+## [2026-04-16 09:30] ingest | Context windows.md
+- 源文件: raw/articles/ai-engineering/anthropic-developer/Context windows.md
+- 创建页面: 10 个
+  - wiki/concepts/上下文窗口.md — 上下文窗口核心概念（1M/200k、上下文腐烂、验证错误行为）
+  - wiki/concepts/上下文感知.md — Claude 4.5+ 模型追踪剩余令牌预算的能力
+  - wiki/concepts/扩展思维.md — Extended Thinking 机制、思考块剥离、工具使用结合
+  - wiki/concepts/上下文编辑.md — 工具结果清除、思考块清除等细粒度策略
+  - wiki/concepts/交错式思考.md — Claude 4 模型在工具调用间思考的能力
+  - wiki/concepts/自适应思考.md — 动态决定思考分配的机制
+  - wiki/entities/Claude-Sonnet-4-5.md — 200k 窗口，支持上下文感知
+  - wiki/entities/Claude-Haiku-4-5.md — 200k 窗口，支持上下文感知
+  - wiki/entities/Claude-Sonnet-3-7.md — 验证错误行为起始模型，不支持交错思考
+  - wiki/entities/Claude-Sonnet-4.md — 已弃用模型
+- 更新页面: 3 个
+  - wiki/entities/Claude-Mythos-Preview.md — 补充 1M 窗口、上下文感知、交错式思考
+  - wiki/entities/Claude-Opus-4-6.md — 补充 1M 窗口、上下文感知、交错式思考
+  - wiki/entities/Claude-Sonnet-4-6.md — 补充 1M 窗口、上下文感知、交错式思考
+- BM25: 13 页面全部更新成功
+- Index: +10 新条目 (snapshot_index --update)
+- Lint: 0 errors, 2 warnings (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 09:25] ingest | Compaction.md
+- 源文件: raw/articles/ai-engineering/anthropic-developer/Compaction.md
+- 创建页面: 6 个
+  - wiki/concepts/上下文压缩.md — Anthropic 官方 Compaction API 机制
+  - wiki/concepts/零数据保留.md — ZDR 数据隐私协议
+  - wiki/concepts/提示词缓存.md — Prompt Caching 与 cache_control
+  - wiki/entities/Claude-Mythos-Preview.md — 预览版模型
+  - wiki/entities/Claude-Opus-4-6.md — Opus 4.6 模型
+  - wiki/entities/Claude-Sonnet-4-6.md — Sonnet 4.6 模型
+- 更新页面: 1 个
+  - wiki/concepts/Context-Engineering.md — 补充 Compaction API 详细参数与协同策略
+- BM25: 7 页面全部更新成功
+- Index: +6 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings (全部通过)
+
+## [2026-04-16 09:20] query → "claude code TOOL 设计有什么特别厉害的地方"
+- BM25 搜索: 57 候选, top 15 返回
+- 主题匹配: Agent系统, AI工程, 工具与框架
+- 读取页面: 8 个 (Claude-Code, Agent计算机接口, Agent循环, Agent Harness模式, Context Engineering, Claude Code Hook System, MCP协议层, 生成器-评估器架构)
+- 结晶化: 创建 wiki/syntheses/Claude-Code-TOOL-设计七维分析.md
+- QA 记录: raw/qa/qa-20260416-092000.md
+- Index 更新: +1 新条目
+
 ## [2026-04-16 15:30] maintain
 - Relink: 1921 terms, 1699 new links across 211 pages
 - Reindex: OK (593 页面, 15 clusters) | Schema 同步: 已更新

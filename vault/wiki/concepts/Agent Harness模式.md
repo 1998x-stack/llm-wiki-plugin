@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 4
+updated: 2026-04-16
+last_accessed: 2026-04-16
+source_count: 5
 tags: [AI, Agent, 架构, 设计模式, LLM]
 aliases: [Harness模式, Agent Harness, batteries-included agent harness]
 relates_to:
@@ -27,6 +27,12 @@ relates_to:
   - target: "[[上下文焦虑]]"
     type: related_to
     confidence: 0.85
+  - target: "[[元控制框架]]"
+    type: extends
+    confidence: 0.9
+  - target: "[[脑手分离架构]]"
+    type: related_to
+    confidence: 0.85
 supersedes: null
 ---
 
@@ -34,7 +40,7 @@ supersedes: null
 
 ## 概述
 
-**Agent Harness**（"马具"）是一种 AI Agent 工程架构模式：**不**从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 `create_agent`）之上，通过**[[ROS (Robot Operating System)|中间件]]**、**后端协议**和**默认系统提示**，以可组合的方式叠加"规划、文件系统、子代理、上下文压缩"等通用能力，让用户开箱即用。代表实现：[[DeepAgents]]。
+**Agent Harness**（"马具"）是一种 AI Agent 工程架构模式：**不**从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 `create_agent`）之上，通过**[[ROS (Robot Operating System)|中间件]]**、**后端协议**和**默认系统提示**，以可组合的方式叠加"规划、文件系统、子代理、[[上下文压缩]]"等通用能力，让用户开箱即用。代表实现：[[DeepAgents]]。
 
 ## 关键内容
 
@@ -118,11 +124,29 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 - **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
 - **Anthropic 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
 
+### Harness 假设的过时风险
+
+Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而**过时**。Anthropic 发现：
+
+- [[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入[[上下文重置]]
+- 但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重
+
+这引出了 [[元控制框架]] 的设计哲学：不对具体 harness 有主见，而是对**围绕 Claude 的接口**有主见，使 harness 实现可随模型能力自由替换。
+
+### 从 Harness 到 Meta-harness
+
+[[Managed-Agents]] 代表了 Harness 模式的下一个演进阶段——**[[元控制框架]]**（[[元控制框架]]）：
+- 定义通用接口（会话、harness、沙箱）而非具体实现
+- 每个组件可独立失败和替换
+- 通过 [[脑手分离架构]] 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
+- 性能收益：p50 [[首次令牌时间|TTFT]] 下降 60%，p95 [[首次令牌时间|TTFT]] 下降 90%+
+
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]
 - [[raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md]]
 - [[raw/articles/ai-tools/pi-agent/01-overview-philosophy.md]]
 - [[raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md]]
+- [[raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md]] — Meta-harness 与脑手分离
 
 ## 相关
 - [[DeepAgents]] — batteries-included 代表
@@ -133,3 +157,6 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 - [[DeepAgents中间件体系]]
 - [[DeepAgents后端协议]]
 - [[Context-Engineering]]
+- [[元控制框架]] — extends（Harness 模式的抽象演进）
+- [[脑手分离架构]] — related_to（Harness 组件的解耦模式）
+- [[Managed-Agents]] — implemented_by（Harness 模式的托管服务实现）

@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">上下文焦虑</h1>
 <h2 id="_2">概述</h2>
-<p>上下文焦虑（Context Anxiety）是 LLM 在长时任务中的一种失败模式：模型感知到自身接近上下文窗口限制时，会<strong>过早包装工作、草率结束任务</strong>，而非继续按计划执行。由 Anthropic 工程团队在长时 <a href="Agent Harness模式.html">Agent Harness</a> 实验中命名并系统描述。</p>
+<p>上下文焦虑（Context Anxiety）是 LLM 在长时任务中的一种失败模式：模型感知到自身接近<a href="上下文窗口.html">上下文窗口</a>限制时，会<strong>过早包装工作、草率结束任务</strong>，而非继续按计划执行。由 Anthropic 工程团队在长时 <a href="Agent Harness模式.html">Agent Harness</a> 实验中命名并系统描述。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>现象</strong>：在上下文窗口填满之前，模型开始表现出"收尾行为"——简化剩余任务、提前汇报完成、跳过本应执行的步骤。这不是因为任务真的结束，而是模型自我感知的上下文压力导致的提前退出。</p>
+<p><strong>现象</strong>：在<a href="上下文窗口.html">上下文窗口</a>填满之前，模型开始表现出"收尾行为"——简化剩余任务、提前汇报完成、跳过本应执行的步骤。这不是因为任务真的结束，而是模型自我感知的上下文压力导致的提前退出。</p>
 </li>
 <li>
-<p><strong>严重程度因模型而异</strong>：Anthropic 实验中，Claude Sonnet 4.5 表现出强烈的上下文焦虑，<strong>仅靠 <span style="color:#e74c3c" title="broken link">上下文压缩（Compaction）</span>（在原始会话中原地摘要）不足以解决此问题</strong>。Opus 4.6 在这方面有显著改善，上下文焦虑行为基本消失，使得不再需要强制<a href="上下文重置.html">上下文重置</a>。</p>
+<p><strong>严重程度因模型而异</strong>：Anthropic 实验中，<a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 表现出强烈的上下文焦虑，<strong>仅靠 <span style="color:#e74c3c" title="broken link">上下文压缩（Compaction）</span>（在原始会话中原地摘要）不足以解决此问题</strong>。Opus 4.6 在这方面有显著改善，上下文焦虑行为基本消失，使得不再需要强制<a href="上下文重置.html">上下文重置</a>。</p>
 </li>
 <li>
-<p><strong>与压缩（Compaction）的区别</strong>：</p>
+<p><strong>与压缩（<a href="上下文压缩.html">Compaction</a>）的区别</strong>：</p>
 </li>
-<li><strong>Compaction</strong>（上下文压缩）：压缩会话早期部分，同一 Agent 在缩短的历史上继续运行——保留了连续性，但 Agent 仍在同一"心理状态"中，上下文焦虑可能持续。</li>
+<li><strong><a href="上下文压缩.html">Compaction</a></strong>（<a href="上下文压缩.html">上下文压缩</a>）：压缩会话早期部分，同一 Agent 在缩短的历史上继续运行——保留了连续性，但 Agent 仍在同一"心理状态"中，上下文焦虑可能持续。</li>
 <li>
 <p><strong><a href="上下文重置.html">上下文重置</a></strong>：彻底清空上下文，启动全新 Agent，通过结构化交接工件携带状态——提供清白石板，但代价是编排复杂度、Token 开销和延迟。</p>
 </li>
@@ -171,8 +171,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="三分解控制框架.html">&larr; 三分解控制框架</a>
-    <a href="上下文腐烂.html">上下文腐烂 &rarr;</a>
+    <a href="上下文感知.html">&larr; 上下文感知</a>
+    <a href="上下文窗口.html">上下文窗口 &rarr;</a>
   </div>
 </div>
 </body>

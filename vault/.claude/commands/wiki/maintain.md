@@ -31,14 +31,15 @@ bash scripts/wiki.sh relink
 
 ### 2. Reindex — 索引完整性 + 主题分类
 
-执行 `wiki:reindex` 的完整流程（步骤 1-6）：
+执行 `wiki:reindex` 的完整流程（步骤 1-8）：
 
 - `bash scripts/wiki.sh snapshot_index` 检查完整性
 - 修复缺失/孤条目
 - 保存快照
 - 按 tags 构建主题分类
 - 审查 tags 质量
-- 生成 `maps/*.md`
+- 生成 `maps/*.md`（含 `## 概述`，由 `build_maps.py` 脚本生成）
+- 精简 `index.md` 为统计表 + 全局名称列表
 - 同步 `_schema/CLAUDE.md` 当前 Topics 列表（topics 集合有变化时）
 
 **终止条件**：snapshot_index.py 执行出错（脚本异常，非数据问题）→ 报告错误并停止。
@@ -65,7 +66,7 @@ bash scripts/wiki.sh relink
 
 ### 5. Build — 构建所有静态产出
 
-执行 `wiki:build` 的完整流程（步骤 1-6）：
+执行 `wiki:build` 的完整流程（步骤 1-7）：
 
 - `bash scripts/wiki.sh build_graph` 构建图谱
 - `cp graph.json ../static/graph.json` 同步
@@ -88,6 +89,8 @@ bash scripts/wiki.sh relink
   - 完整性: OK (N 页面)
   - 主题分类: K 个 cluster
   - Tags 修复: M 个页面
+  - Maps: G 个 map 生成（含概述）
+  - Index: 精简为 L 行
   - Schema 同步: _schema/CLAUDE.md Topics 已更新 / 无变化
 
 [3/5] Check
@@ -110,7 +113,7 @@ bash scripts/wiki.sh relink
 ```
 ## [YYYY-MM-DD HH:MM] maintain
 - Relink: T terms, L new links across P pages
-- Reindex: OK (N 页面, K clusters) | Schema 同步: 已更新/无变化
+- Reindex: OK (N 页面, K clusters, G maps) | Index: L 行 | Schema 同步: 已更新/无变化
 - Check: A errors, B warnings, C info (G new gotchas → ../docs/gotchas/[file].md)
 - Lint: X 修复, Y 待处理
 - Build: N 节点, M 边 → static/ 已同步

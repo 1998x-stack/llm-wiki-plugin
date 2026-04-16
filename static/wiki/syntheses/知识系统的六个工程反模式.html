@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>诊断信号</strong>：grep 发现同名函数 &gt;3 处。
 <strong>修复模式</strong>：提取共享模块，确立"canonical implementation"。</p>
 <h3 id="2-api-stateless-api-gap">2. 无状态 API 调用缺少上下文补偿（Stateless API Gap）</h3>
-<p>当系统的一部分（Claude 引擎）是上下文感知的，而另一部分（Qwen API）是无状态的，两者产出质量差距巨大。无状态 API 不知道已有哪些页面、不知道正确的 <span style="color:#e74c3c" title="broken link">wikilink</span> 目标、不知道哪些实体已经存在。</p>
+<p>当系统的一部分（Claude 引擎）是<a href="../concepts/上下文感知.html">上下文感知</a>的，而另一部分（Qwen API）是无状态的，两者产出质量差距巨大。无状态 API 不知道已有哪些页面、不知道正确的 <span style="color:#e74c3c" title="broken link">wikilink</span> 目标、不知道哪些实体已经存在。</p>
 <p><strong>诊断信号</strong>：API 调用方比内部引擎产出更多重复/断链。
 <strong>修复模式</strong>：在 API 调用前注入上下文（<code>--context-pages</code>），在 API 返回后做本地去重（<code>scan_existing_pages</code>）。</p>
 <h3 id="3-gate-keeper-data-loss">3. 入口严格导致静默数据丢失（Gate-Keeper Data Loss）</h3>

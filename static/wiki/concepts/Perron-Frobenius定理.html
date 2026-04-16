@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="perron-frobenius">Perron-Frobenius定理</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/奥斯卡·佩龙.html">Perron</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>定理是非负<a href="矩阵.html">矩阵</a>谱理论的核心定理，由<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>（1907）和<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908–1912）先后建立。<strong>对于元素全正的方阵，存在唯一的最大正实特征值（<a href="谱半径.html">Perron根</a>），其对应特征向量分量全正，其余特征值绝对值严格更小。</strong> <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>随后将结论推广到<a href="不可约矩阵.html">不可约非负矩阵</a>，并揭示了周期性谱结构。该定理是Markov链、PageRank、Leontief经济模型等现代应用的数学基础，也是<a href="概率论.html">概率论</a>"长期行为必趋稳定"直觉的精确表述。</p>
+<p><a href="../entities/奥斯卡·佩龙.html">Perron</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>定理是非负<a href="矩阵.html">矩阵</a>谱理论的核心定理，由<a href="../entities/奥斯卡·佩龙.html">奥斯卡·佩龙</a>（1907）和<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a>（1908–1912）先后建立。<strong>对于元素全正的方阵，存在唯一的最大正实特征值（<a href="谱半径.html">Perron根</a>），其对应特征向量分量全正，其余特征值绝对值严格更小。</strong> <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>随后将结论推广到<a href="不可约矩阵.html">不可约非负矩阵</a>，并揭示了周期性谱结构。该定理是Markov链、PageRank、Leontief经济模型等现代应用的数学基础，也是<a href="../maps/概率论.html">概率论</a>"长期行为必趋稳定"直觉的精确表述。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="perron1907">Perron定理（1907）：正矩阵版本</h3>
 <p><strong>设</strong> $A$ 为 $n \times n$ 实方阵，所有元素满足 $a_{ij} &gt; 0$。则：</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>极大极小证明</strong>（1908）：利用<a href="极大极小定理.html">极大极小定理</a>的精神，证明 $r = \max_{x&gt;0}\min_i (Ax)_i/x_i$。</p>
 <p><strong><a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>证明（1950）与Collatz-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>公式</strong>：最简洁的现代版本。<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>给出了<a href="谱半径.html">Perron根</a>的变分刻画：
 $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$
-这一极大极小公式将<a href="谱半径.html">Perron根</a>化为一个优化问题，既简化了证明，也为<a href="数值分析.html">数值计算</a>提供了实用算法。</p>
+这一极大极小公式将<a href="谱半径.html">Perron根</a>化为一个优化问题，既简化了证明，也为<a href="../maps/数值分析.html">数值计算</a>提供了实用算法。</p>
 <p><strong>Brouwer不动点证明</strong>：正<a href="矩阵.html">矩阵</a>作用于单纯形（simplex），不动点存在性直接给出<a href="../entities/奥斯卡·佩龙.html">Perron</a>向量。</p>
 <h3 id="_4">核心应用</h3>
 <p><strong>Markov链（1908–）</strong>：不可约非周期随机<a href="矩阵.html">矩阵</a>的<a href="谱半径.html">Perron根</a> $=1$，对应左特征向量（归一化）即唯一平稳分布 $\pi$；谱间隙 $1 - |\lambda_2|$ 控制收敛速率。</p>
@@ -173,7 +173,7 @@ $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$
 <p><strong>幂法（数值<a href="线性代数.html">线性代数</a>）</strong>：从任意正初始向量出发，迭代 $v_{k+1} = Av_k / |Av_k|$ 以比值 $|\lambda_2|/r$ 的速率收敛到<a href="../entities/奥斯卡·佩龙.html">Perron</a>向量。谱间隙 $r - |\lambda_2| &gt; 0$ 是收敛的保证。</p>
 <p><strong>Krein-Rutman定理（1948）</strong>：<a href="../entities/奥斯卡·佩龙.html">Perron</a>定理的无穷维推广：Banach空间中的紧正算子，若<a href="谱半径.html">谱半径</a>为正，则其为特征值且对应特征向量在正锥中。用于椭圆PDE<a href="谱半径.html">主特征值</a>理论。</p>
 <h3 id="_5">数学意义</h3>
-<p><a href="../entities/奥斯卡·佩龙.html">Perron</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>定理建立了"<a href="矩阵.html">矩阵</a>元素的正性"（经济/概率/生态中的自然条件）与谱的定性结构（<a href="谱半径.html">主特征值</a>存在、唯一、正实）之间的精确联系，使得<a href="矩阵理论.html">矩阵理论</a>能够系统应用于以正量为基本变量的科学领域。这一"正性方法"深刻影响了20世纪泛函分析中正算子理论的发展。</p>
+<p><a href="../entities/奥斯卡·佩龙.html">Perron</a>-<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>定理建立了"<a href="矩阵.html">矩阵</a>元素的正性"（经济/概率/生态中的自然条件）与谱的定性结构（<a href="谱半径.html">主特征值</a>存在、唯一、正实）之间的精确联系，使得<a href="../maps/矩阵理论.html">矩阵理论</a>能够系统应用于以正量为基本变量的科学领域。这一"正性方法"深刻影响了20世纪泛函分析中正算子理论的发展。</p>
 <h3 id="_6">更多应用</h3>
 <p><strong>统计力学</strong>：转移<a href="矩阵.html">矩阵</a>方法求解一维晶格模型配分函数，<a href="谱半径.html">Perron根</a>对应系统自由能密度。</p>
 <p><strong>符号动力学</strong>：有限型子移位的拓扑熵 $= \log r$（$r$ 为转移<a href="矩阵.html">矩阵</a><a href="谱半径.html">Perron根</a>）；非素<a href="矩阵.html">矩阵</a>对应周期子移位。</p>
@@ -197,7 +197,7 @@ $$r = \max_{x \geq 0,\, x \neq 0} \min_{x_i &gt; 0} \frac{(Ax)_i}{x_i}$$
 <li><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">格奥尔格·弗罗贝尼乌斯</a></li>
 <li><a href="../syntheses/矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事</a></li>
 <li><a href="谱半径.html">谱半径</a></li>
-<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../maps/矩阵理论.html">矩阵理论</a></li>
 <li><a href="极大极小定理.html">极大极小定理</a></li>
 <li><a href="大数定律.html">大数定律</a></li>
 </ul>

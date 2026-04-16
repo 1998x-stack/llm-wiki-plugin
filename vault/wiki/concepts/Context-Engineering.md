@@ -4,9 +4,9 @@ title: Context Engineering
 status: active
 confidence: 0.92
 created: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 2
+source_count: 3
 tags:
 - 技术
 - 方法论
@@ -35,6 +35,12 @@ relates_to:
 - target: '[[即时上下文检索]]'
   type: related_to
   confidence: 0.9
+- target: '[[上下文压缩]]'
+  type: implements
+  confidence: 0.95
+- target: '[[提示词缓存]]'
+  type: uses
+  confidence: 0.9
 supersedes: null
 ---
 
@@ -42,7 +48,7 @@ supersedes: null
 
 ## 概述
 
-Context Engineering（上下文工程）是指对 LLM 的有限上下文窗口进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
+Context Engineering（上下文工程）是指对 LLM 的有限[[上下文窗口]]进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
 
 ## 关键内容
 
@@ -178,7 +184,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 **[[注意力预算]]（[[注意力预算|Attention Budget]]）**：[[Transformer架构|Transformer]] n² 注意力机制导致每个新 token 都消耗有限的[[注意力预算|注意力资源]]，上下文增长时每对 token 关系可获得的参数容量被稀释。
 
 **长时任务的三种技术**（Anthropic 实践）：
-1. **Compaction**：对话历史摘要压缩 → 适合需要流式回话的复杂推理
+1. **[[上下文压缩]]（Compaction）**：Anthropic 官方 API，当对话接近窗口限制时自动将旧内容压缩为摘要。触发阈值可配置（默认 150,000 tokens，最低 50,000），支持 `pause_after_compaction` 暂停注入额外内容，支持自定义摘要指令。与 [[提示词缓存]] 协同：系统提示末尾加 `[[提示词缓存|cache_control]]` 断点可保持系统[[提示词缓存|提示缓存]]有效。详见 [[上下文压缩]]。
 2. **[[结构化笔记法]]**（[[结构化笔记法|Agentic Memory]]）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
 3. **多 Agent 架构**：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究
 
@@ -191,6 +197,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 - [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — Anthropic
 - [Lost in the Middle (Liu et al. 2023)](https://arxiv.org/abs/2307.03172)
 - [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) — MemGPT
+- [[raw/articles/ai-engineering/anthropic-developer/Compaction.md]] — Anthropic Compaction API 文档
 
 ## 相关
 
@@ -206,3 +213,5 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 - [[结构化笔记法]] — 长时任务持久记忆技术
 - [[检索增强生成]] — 外部知识注入的主要技术路径
 - [[情境化检索]] — 解决 RAG 上下文破坏的增强方案
+- [[上下文压缩]] — 长时任务 Compaction 技术的官方 API 实现
+- [[提示词缓存]] — 缓存优化与压缩协同工作

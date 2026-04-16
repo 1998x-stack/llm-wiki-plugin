@@ -62,7 +62,8 @@ bash scripts/wiki.sh <script_name> [args...]           # from vault/
 | `build_graph.py` | Knowledge graph JSON builder (outputs `graph.json`) | wiki_utils |
 | `build_statistics.py` | Statistics JSON from graph + frontmatter | wiki_utils, networkx |
 | `build_wiki_pages.py` | Wiki markdown → static HTML | wiki_utils, markdown |
-| `snapshot_index.py` | Index integrity checker (check/update/snapshot) | wiki_utils |
+| `snapshot_index.py` | Index integrity checker (check/update/snapshot/slim) | wiki_utils |
+| `build_maps.py` | Per-topic map generator from topic-to-wiki.json (with overview) | wiki_utils |
 | `build_raw_wiki_map.py` | Build raw → wiki page mapping (outputs `raw/raw-wiki-map.json`) | — |
 | `relink.py` | Auto-link unlinked wiki term mentions (longest-match-first) | wiki_utils |
 | `reclassify_raw.py` | Execute raw/ reclassification: reads `raw/re-map.json` → move → update wiki | — |

@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">架构</span><span class="tag">设计模式</span><span class="tag">LLM</span></div>
 </div>
   <div class="content">
     <h1 id="agent-harness">Agent Harness 模式</h1>
 <h2 id="_1">概述</h2>
-<p><strong>Agent Harness</strong>（"马具"）是一种 AI Agent 工程架构模式：<strong>不</strong>从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 <code>create_agent</code>）之上，通过<strong><a href="ROS (Robot Operating System).html">中间件</a></strong>、<strong>后端协议</strong>和<strong>默认系统提示</strong>，以可组合的方式叠加"规划、文件系统、子代理、上下文压缩"等通用能力，让用户开箱即用。代表实现：<a href="../entities/DeepAgents.html">DeepAgents</a>。</p>
+<p><strong>Agent Harness</strong>（"马具"）是一种 AI Agent 工程架构模式：<strong>不</strong>从零实现 Agent 运行时，而是在现有 LLM 框架（如 LangGraph 的 <code>create_agent</code>）之上，通过<strong><a href="ROS (Robot Operating System).html">中间件</a></strong>、<strong>后端协议</strong>和<strong>默认系统提示</strong>，以可组合的方式叠加"规划、文件系统、子代理、<a href="上下文压缩.html">上下文压缩</a>"等通用能力，让用户开箱即用。代表实现：<a href="../entities/DeepAgents.html">DeepAgents</a>。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心哲学</h3>
 <ul>
@@ -221,12 +221,26 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 <p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"batteries-included"路线形成对比：
 - <strong><a href="../entities/DeepAgents.html">DeepAgents</a> 路线</strong>：预设丰富<a href="ROS (Robot Operating System).html">中间件</a>，适合企业多场景
 - <strong>Anthropic 任务 Harness 路线</strong>：从最小 Harness 出发，随模型能力迭代减复杂度</p>
+<h3 id="harness_1">Harness 假设的过时风险</h3>
+<p>Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而<strong>过时</strong>。Anthropic 发现：</p>
+<ul>
+<li><a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 会在接近上下文限制时过早结束任务（<a href="上下文焦虑.html">上下文焦虑</a>），因此在 harness 中加入<a href="上下文重置.html">上下文重置</a></li>
+<li>但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重</li>
+</ul>
+<p>这引出了 <a href="元控制框架.html">元控制框架</a> 的设计哲学：不对具体 harness 有主见，而是对<strong>围绕 Claude 的接口</strong>有主见，使 harness 实现可随模型能力自由替换。</p>
+<h3 id="harness-meta-harness">从 Harness 到 Meta-harness</h3>
+<p><a href="Managed-Agents.html">Managed-Agents</a> 代表了 Harness 模式的下一个演进阶段——<strong><a href="元控制框架.html">元控制框架</a></strong>（<a href="元控制框架.html">元控制框架</a>）：
+- 定义通用接口（会话、harness、沙箱）而非具体实现
+- 每个组件可独立失败和替换
+- 通过 <a href="脑手分离架构.html">脑手分离架构</a> 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
+- 性能收益：p50 <a href="首次令牌时间.html">TTFT</a> 下降 60%，p95 <a href="首次令牌时间.html">TTFT</a> 下降 90%+</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/pi-agent/01-overview-philosophy.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md</span> — Meta-harness 与脑手分离</li>
 </ul>
 <h2 id="_7">相关</h2>
 <ul>
@@ -238,6 +252,9 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 <li><a href="DeepAgents中间件体系.html">DeepAgents中间件体系</a></li>
 <li><a href="DeepAgents后端协议.html">DeepAgents后端协议</a></li>
 <li><a href="Context-Engineering.html">Context-Engineering</a></li>
+<li><a href="元控制框架.html">元控制框架</a> — extends（Harness 模式的抽象演进）</li>
+<li><a href="脑手分离架构.html">脑手分离架构</a> — related_to（Harness 组件的解耦模式）</li>
+<li><a href="Managed-Agents.html">Managed-Agents</a> — implemented_by（Harness 模式的托管服务实现）</li>
 </ul>
   </div>
   <div class="page-nav">

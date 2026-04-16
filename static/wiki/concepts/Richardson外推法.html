@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="richardson">Richardson 外推法</h1>
 <h2 id="_1">概述</h2>
-<p>Richardson 外推法（Richardson Extrapolation）由<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>于 1911 年发表（1927 年系统阐述为"延迟趋近极限法"）。其核心思想是：数值方法的误差通常具有渐近展开式 $A(h) = A^<em> + a_1 h^p + O(h^{p+1})$，通过组合两个不同步长下的计算结果，可以</em><em>代数消去主导误差项 $a_1 h^p$</em>*，将精度从 $O(h^p)$ 提升到 $O(h^{p+1})$，同时无偿获得误差估计。外推法是<a href="数值分析.html">数值分析</a>中最通用的"元方法"——可叠加在几乎任何具有渐近误差展开的数值方法之上。</p>
+<p>Richardson 外推法（Richardson Extrapolation）由<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>于 1911 年发表（1927 年系统阐述为"延迟趋近极限法"）。其核心思想是：数值方法的误差通常具有渐近展开式 $A(h) = A^<em> + a_1 h^p + O(h^{p+1})$，通过组合两个不同步长下的计算结果，可以</em><em>代数消去主导误差项 $a_1 h^p$</em>*，将精度从 $O(h^p)$ 提升到 $O(h^{p+1})$，同时无偿获得误差估计。外推法是<a href="../maps/数值分析.html">数值分析</a>中最通用的"元方法"——可叠加在几乎任何具有渐近误差展开的数值方法之上。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心公式</h3>
 <p><strong>假设</strong>：误差渐近展开 $A(h) = A^* + a_1 h^p + O(h^{p+1})$（$p$ 是方法阶数，$a_1$ 与 $h$ 无关）</p>

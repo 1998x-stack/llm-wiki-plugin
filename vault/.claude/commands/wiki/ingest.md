@@ -21,8 +21,9 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
    - 参考 `_schema/entity-types.md` 确定实体类型
 
 3. **查找已有页面**
-   - 读取 `index.md` 查看已有页面列表
-   - 对每个提取的实体/概念，检查是否已有对应 wiki 页面
+   - 读取 `index.md` 的「全部页面」段落，快速检查提取的实体/概念是否已有对应 wiki 页面
+   - 如需更多上下文（概述、confidence），读取对应主题的 `maps/*.md`
+   - 如果 `maps/` 不存在或为空，回退到读取完整 `index.md`
 
 4. **创建或更新页面**
    - **新实体** → 在 `wiki/entities/` 创建新页面，使用 `templates/wiki-page.md` 模板

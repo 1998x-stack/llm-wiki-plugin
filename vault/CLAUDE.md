@@ -43,7 +43,7 @@ Three PostToolUse hooks fire on every Write/Edit to `wiki/**/*.md`:
 
 - `wiki:check` — read-only diagnostics (不修改文件)
 - `wiki:build` — build all static assets: graph + statistics + wiki HTML
-- `wiki:reindex` — validate index.md integrity + generate topic maps
+- `wiki:reindex` — validate index.md integrity + generate topic maps + slim index
 - `wiki:relink` — auto-link unlinked term mentions across wiki pages (longest-match-first)
 - `wiki:maintain` — 一键维护: relink → reindex → check → lint → build 全流水线
 - `wiki:ingest-loop <folder> [--engine=qwen]` — batch ingest, default Claude engine, --engine=qwen for Qwen API

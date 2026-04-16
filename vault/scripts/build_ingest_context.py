@@ -7,8 +7,11 @@ multiple files.
 
 Usage:
     python3 scripts/build_ingest_context.py
+    python3 scripts/build_ingest_context.py --topic AI工程
 """
+from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -76,7 +79,19 @@ def build_template() -> str:
     return ""
 
 
-def build():
+def load_topic_pages(topics: list[str]) -> set[str]:
+    """Load page names for given topics from topic-to-wiki.json."""
+    topic_map_path = VAULT_DIR / ".claude" / "topic-to-wiki.json"
+    if topic_map_path.exists():
+        data = json.loads(topic_map_path.read_text(encoding="utf-8"))
+        result = set()
+        for topic in topics:
+            result.update(data.get("topics", {}).get(topic, []))
+        return result
+    return set()
+
+
+def build(topic_filter: list[str] | None = None):
     if not WIKI_DIR.exists():
         print(json.dumps({"error": "wiki/ directory not found"}))
         sys.exit(2)
@@ -84,6 +99,11 @@ def build():
     pages = scan_existing_pages()
     schema = build_compact_schema()
     template = build_template()
+
+    # Apply topic filter
+    if topic_filter:
+        allowed = load_topic_pages(topic_filter)
+        pages = [p for p in pages if p["name"] in allowed]
 
     # Stats
     entities = sum(1 for p in pages if p["type"] == "entity")
@@ -107,8 +127,20 @@ def build():
         "template": template,
     }
 
+    if topic_filter:
+        output["topic_filter"] = topic_filter
+
     print(json.dumps(output, ensure_ascii=False))
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Build ingest context package")
+    parser.add_argument("--topic", type=str, help="Filter to topic(s), comma-separated (e.g. 'AI工程,Agent系统')")
+    args = parser.parse_args()
+
+    topic_filter = args.topic.split(",") if args.topic else None
+    build(topic_filter=topic_filter)
+
+
 if __name__ == "__main__":
-    build()
+    main()
