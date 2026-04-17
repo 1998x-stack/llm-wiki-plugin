@@ -22,7 +22,7 @@ supersedes: null
 
 ### 学术背景
 - 密歇根大学博士生期间在 [[Google]] 实习
-- 在 [[Google]] 推荐系统团队实习期间完成 [[MMoE]] 研究工作
+- 在 [[Google]] 推荐系统团队实习期间完成 MMoE 研究工作
 - 合作者包括 [[Zhe Zhao]], Xinyang Yi, Jilin Chen, Lichan Hong, [[Ed H. Chi]]
 
 ### 主要贡献
@@ -33,7 +33,7 @@ supersedes: null
 - 建立通过合成数据精确控制任务相关性来验证模型的实验范式
 
 ### 影响
-- [[MMoE]] 开创了"Expert + Gate"范式，催生大量后续研究(PLE、ESMM 等)
+- MMoE 开创了"Expert + Gate"范式，催生大量后续研究(PLE、ESMM 等)
 - 该工作推动了[[多任务学习]]在工业界推荐系统的广泛采纳
 
 ## 来源

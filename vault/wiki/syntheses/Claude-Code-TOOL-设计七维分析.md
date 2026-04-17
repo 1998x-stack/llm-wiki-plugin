@@ -46,7 +46,7 @@ supersedes: null
 
 ### 维度一：ACI 设计哲学
 
-工具设计遵循 Anthropic 的 [[Agent计算机接口|ACI]]（[[Agent计算机接口|Agent-Computer Interface]]）理念，将工具优化置于提示词优化之上。五大原则：少而精、命名空间、语义化响应、Token 效率、工具描述即提示工程。
+工具设计遵循 Anthropic 的 ACI（[[Agent计算机接口|Agent-Computer Interface]]）理念，将工具优化置于提示词优化之上。五大原则：少而精、命名空间、语义化响应、Token 效率、工具描述即提示工程。
 
 来源：[[Agent计算机接口]]
 

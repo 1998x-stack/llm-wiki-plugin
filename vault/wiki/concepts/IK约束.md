@@ -14,7 +14,7 @@ supersedes: null
 # IK约束
 
 ## 概述
-[[逆向运动学|IK]]约束（[[逆向运动学|IK]]Constraint）是 [[UrhoX引擎|UrhoX]] 的关节约束组件，通过刚性、伸展性和长度范围限制 [[逆向运动学|IK]] 关节的活动，防止非自然姿态，继承自 Component。
+IK约束（IKConstraint）是 [[UrhoX引擎|UrhoX]] 的关节约束组件，通过刚性、伸展性和长度范围限制 IK 关节的活动，防止非自然姿态，继承自 Component。
 
 ## 关键内容
 
@@ -30,10 +30,10 @@ supersedes: null
 - 挂载于骨骼链中需要限制的关节节点
 - 需在 [[IKSolver]] 上启用 `CONSTRAINTS = true` 才生效
 - stiffness 接近 1 适合脊柱等刚性部位；接近 0 适合柔性肢体
-- lengthConstraints 可防止手臂被 [[逆向运动学|IK]] 拉伸到不自然长度
+- lengthConstraints 可防止手臂被 IK 拉伸到不自然长度
 
 ### 设计意图
-[[逆向运动学|IK]] 求解器在无约束时可能将关节旋转到任意角度或拉伸骨骼超出物理范围。[[逆向运动学|IK]]Constraint 通过局部限制配合全局求解，在保持求解灵活性的同时维持动画自然度。
+IK 求解器在无约束时可能将关节旋转到任意角度或拉伸骨骼超出物理范围。IKConstraint 通过局部限制配合全局求解，在保持求解灵活性的同时维持动画自然度。
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/engine-docs/api/ik.md]] — UrhoX Lua API IK 模块文档

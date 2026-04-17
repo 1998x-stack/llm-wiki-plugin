@@ -25,7 +25,7 @@ entity_type: tool
 # Defold
 
 ## 概述
-Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以消息传递架构为核心设计，使用 Lua 5.1 作为脚本语言，组件之间通过 U[[强化学习|RL]] 寻址和 hash 消息通信。
+Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以消息传递架构为核心设计，使用 Lua 5.1 作为脚本语言，组件之间通过 URL 寻址和 hash 消息通信。
 
 ## 关键内容
 
@@ -38,7 +38,7 @@ Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以消息传递
    - `on_input(self, action_id, action)` — 输入事件
    - `final(self)` — 销毁回调
 
-3. **U[[强化学习|RL]] 寻址系统**：对象、组件通过 U[[强化学习|RL]] 字符串（如 `"#sprite"`、`"/player#script"`）寻址。`msg.url("#sprite")` 获取当前 Game Object 的 sprite 组件引用。
+3. **URL 寻址系统**：对象、组件通过 URL 字符串（如 `"#sprite"`、`"/player#script"`）寻址。`msg.url("#sprite")` 获取当前 Game Object 的 sprite 组件引用。
 
 4. **输入焦点机制**：脚本必须主动调用 `msg.post(".", "acquire_input_focus")` 才能接收输入事件，离开场景时需释放。
 

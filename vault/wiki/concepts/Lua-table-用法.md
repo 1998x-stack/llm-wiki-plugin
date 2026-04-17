@@ -99,9 +99,9 @@ local SkillSystem = {
 | 方案 | 特征 | 适用 |
 |------|------|------|
 | 大平铺表 | 字段全摊平，快速但易失控 | 小项目/原型 |
-| 分块对象表 | `base/attr/state/com[[bat]]` 分块，清晰维护 | 中大型手游（推荐） |
+| 分块对象表 | `base/attr/state/combat` 分块，清晰维护 | 中大型手游（推荐） |
 | ECS-ish | `Position[entity]` 等组件 table，批处理友好 | 大量单位/数据驱动 |
-| 状态树+事件流 | `[[bat]]tleState + eventQueue`，适合录像/回放 | 复杂战斗/战报需求 |
+| 状态树+事件流 | `battleState + eventQueue`，适合录像/回放 | 复杂战斗/战报需求 |
 
 ### 实战坑（补充）
 

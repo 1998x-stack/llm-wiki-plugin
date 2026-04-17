@@ -26,11 +26,11 @@ supersedes: null
 # HSTU
 
 ## 概述
-HSTU（Hierarchical Sequential Transduction Unit），[[Meta]] 在 ICML 2024 发表的万亿参数[[生成式推荐]]架构，针对推荐场景改造 [[Transformer架构|Transformer]]，首次在工业级推荐系统中验证 Scaling Laws，在线 A/B 测试提升 12.4%。
+HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表的万亿参数[[生成式推荐]]架构，针对推荐场景改造 [[Transformer架构|Transformer]]，首次在工业级推荐系统中验证 Scaling Laws，在线 A/B 测试提升 12.4%。
 
 ## 关键内容
 
-1. **论文信息**：*[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]: [[Actions Speak Louder than Words 论文|Trillion-Parameter Sequential Transducers for Generative Recommendations]]*，作者 Jiaqi Zhai 等（[[Meta]] MRS/PyTorch/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: [2402.17152](https://arxiv.o[[ripgrep|rg]]/abs/2402.17152)，代码开源: [github.com/meta-recsys/generative-recommenders](https://github.com/meta-recsys/generative-recommenders)。
+1. **论文信息**：*[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]: [[Actions Speak Louder than Words 论文|Trillion-Parameter Sequential Transducers for Generative Recommendations]]*，作者 Jiaqi Zhai 等（Meta MRS/PyTorch/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: [2402.17152](https://arxiv.org/abs/2402.17152)，代码开源: [github.com/meta-recsys/generative-recommenders](https://github.com/meta-recsys/generative-recommenders)。
 
 2. **核心方法**：将[[序列推荐]]从判别式模型转向生成式模型。用户行为序列被表示为时间序列 $\{(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)\}$，其中 $c_i$ 为内容 token，$a_i$ 为动作 token（点击、停留、购买等）。**召回**建模为预测下一个内容 token $c_{t+1}$，**排序**建模为预测下一个动作 token $a_{t+1}$，两者统一到单一模型中。
 
@@ -43,10 +43,10 @@ HSTU（Hierarchical Sequential Transduction Unit），[[Meta]] 在 ICML 2024 发
 
 4. **与 [[SASRec]] 的关系**：HSTU 的[[AR 模型（自回归模型）|自回归]]生成式思路可以追溯到 [[SASRec]] 建立的[[因果掩码]] + [[Self-Attention机制|自注意力]]框架。[[SASRec]] 为今天的[[生成式推荐]]奠定了概念基础。
 
-5. **部署规模**：1.5 万亿参数，1000 亿训练样本，256 块 H100 GPU 训练，部署于 [[Meta]] 数十亿用户平台，日均处理数百亿次用户交互。
+5. **部署规模**：1.5 万亿参数，1000 亿训练样本，256 块 H100 GPU 训练，部署于 Meta 数十亿用户平台，日均处理数百亿次用户交互。
 
 6. **实验结果**：
-   - 离线 [[NDCG]] 提升高达 65.8%；8192 长度序列上比 FlashAttention2 [[Transformer架构|Transformer]] 快 5.3x-15.2x。
+   - 离线 NDCG 提升高达 65.8%；8192 长度序列上比 FlashAttention2 [[Transformer架构|Transformer]] 快 5.3x-15.2x。
    - 在线 A/B 测试主要参与指标提升 **12.4%**（工业级极为罕见），HR@100 从 29.0% 提升到 36.9%。
    - [[Ablation Study|消融实验]]：仅用交互特征下降 2.6%，仅用内容特征下降 25.3%，验证"[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]"。
 

@@ -41,7 +41,7 @@ Chris Olah 是 Anthropic 的联合创始人之一。提出生成式 AI 系统是
 
 ### 相关引用
 
-- 引用来源：[The U[[ripgrep|rg]]ency of Interpretability](https://www.darioamodei.com/post/the-u[[ripgrep|rg]]ency-of-interpretability)
+- 引用来源：[The Urgency of Interpretability](https://www.darioamodei.com/post/the-urgency-of-interpretability)
 - 观点被 Anthropic 官方博客文章引用，讨论构建 AI 应用的挑战
 
 ## 来源

@@ -24,7 +24,7 @@ supersedes: null
 # Informer
 
 ## 概述
-Informer 由 Haoyi Zhou 等提出，获 AAAI 2021 最佳论文奖，首次将 [[Transformer架构|Transformer]] 成功应用于长序列时间序列预测（LS[[TensorFlow|TF]]），通过 ProbSparse [[Self-Attention机制|自注意力]]将复杂度从 O(L²) 降至 O(L log L)，引爆了"[[Transformer架构|Transformer]] for Time Series"研究浪潮。
+Informer 由 Haoyi Zhou 等提出，获 AAAI 2021 最佳论文奖，首次将 [[Transformer架构|Transformer]] 成功应用于长序列时间序列预测（LSTF），通过 ProbSparse [[Self-Attention机制|自注意力]]将复杂度从 O(L²) 降至 O(L log L)，引爆了"[[Transformer架构|Transformer]] for Time Series"研究浪潮。
 
 ## 关键内容
 

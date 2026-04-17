@@ -21,7 +21,7 @@ supersedes: null
 - **透视参数**：`fov`（视野角）、`nearClip`/`farClip`（近远裁剪面）、`aspectRatio`
 - **正交参数**：`orthoSize` 代表视野**全高度**，引擎内部使用 `orthoSize * 0.5` 作半高度参与[[矩阵]]计算
 - **坐标转换**：`GetScreenRay(x, y)` 实时计算射线；`WorldToScreenPoint` / `ScreenToWorldPoint` 双向转换
-- **[[LOD（细节层次）|LOD]] 偏置**：`lodBias` 影响可见物体的 [[LOD（细节层次）|LOD]] 级别选择
+- **LOD 偏置**：`lodBias` 影响可见物体的 LOD 级别选择
 - **视图遮罩**：`viewMask` 过滤可见 Drawable 对象
 - **反射/裁剪**：`useReflection` + `reflectionPlane` 实现水面反射；`useClipping` + `clipPlane` 斜裁剪
 - **重要陷阱**：手动将屏幕坐标转视图空间时，NDC 需乘以 `orthoSize * 0.5`，直接用 `orthoSize` 会导致 2× 误差

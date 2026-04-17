@@ -22,7 +22,7 @@ entity_type: tool
 # typescript-language-server
 
 ## 概述
-TypeScript 最主流的 LSP 实现，由 Type[[Dieter Fox|Fox]] 维护，作为 TypeScript 内置 tsserver 的 LSP 适配层，将 tsserver 的内部协议包装为标准 LSP 协议。
+TypeScript 最主流的 LSP 实现，由 TypeFox 维护，作为 TypeScript 内置 tsserver 的 LSP 适配层，将 tsserver 的内部协议包装为标准 LSP 协议。
 
 ## 关键内容
 

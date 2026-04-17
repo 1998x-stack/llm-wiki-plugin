@@ -15,7 +15,7 @@ relates_to:
   - target: "[[Lua脚本宿主模式]]"
     type: relates_to
     confidence: 0.8
-  - target: "[[Luau]]"
+  - target: "Luau"
     type: relates_to
     confidence: 0.6
 supersedes: null
@@ -34,7 +34,7 @@ LuaJIT 包含两个执行层：
 - **Tracing JIT**：识别热路径（循环等），记录执行踪迹并编译为 x86/x64 原生机器码
 
 ### FFI 库（外部函数接口）
-LuaJIT 的杀手级特性。用 `ffi.cdef[[...]]` 声明 C 结构体和函数签名，直接调用原生 C 函数，无需 `lua_pushXXX` / `lua_toXXX` 的手工绑定代码：
+LuaJIT 的杀手级特性。用 `ffi.cdef...` 声明 C 结构体和函数签名，直接调用原生 C 函数，无需 `lua_pushXXX` / `lua_toXXX` 的手工绑定代码：
 - `ffi.new("Vec3", {...})` — 创建栈上 C 值类型（无 GC 压力）
 - `ffi.C.function_name(...)` — 调用已声明的 C 函数
 - `ffi.new("Type[N]")` — 分配 C 数组，直接内存操作
@@ -60,4 +60,4 @@ LuaJIT 基于 Lua **5.1** 标准（不是 5.4），不支持 5.2+ 的 `_ENV`、5
 ## 相关
 - [[Lua C API 绑定层]] — LuaJIT FFI 是传统 C API 绑定层的高性能替代方案
 - [[Lua脚本宿主模式]] — LuaJIT 作为 VM 层选型，影响整个绑定层策略
-- [[Luau]] — Roblox 定制 Lua 方言，有类似的 Native codegen 方向
+- Luau — Roblox 定制 Lua 方言，有类似的 Native codegen 方向

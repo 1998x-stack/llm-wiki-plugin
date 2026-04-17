@@ -54,7 +54,7 @@ Love2D（LÖVE）是以 Lua 为脚本语言的开源 2D 游戏框架，提供窗
 
 7. **物理模块**：`love.physics.newWorld(gx, gy)` 创建物理世界，`newBody/newRectangleShape/newFixture` 创建刚体。每帧调用 `world:update(dt)` 推进物理模拟。
 
-8. **内部实现机制**：LÖVE 在 [[C++]] 层实现所有 Module（graphics、audio、physics 等），通过 `luaL_newlib` 注册为 Lua 模块，[[游戏主循环模式|主循环]]从 [[C++]] 触发 `love.update(dt)` 和 `love.draw()`。这是典型的 [[C++]] 引擎 + 全 Lua 暴露 API 的架构模式。
+8. **内部实现机制**：LÖVE 在 C++ 层实现所有 Module（graphics、audio、physics 等），通过 `luaL_newlib` 注册为 Lua 模块，[[游戏主循环模式|主循环]]从 C++ 触发 `love.update(dt)` 和 `love.draw()`。这是典型的 C++ 引擎 + 全 Lua 暴露 API 的架构模式。
 
 9. **配置文件 conf.lua**：`love.conf(t)` 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：`t.window.width/height`、`t.window.resizable`、`t.window.vsync`、`t.window.msaa`、`t.modules.physics`。是 Love2D 项目的标准初始化入口。
 

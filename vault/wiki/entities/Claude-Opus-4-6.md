@@ -53,7 +53,7 @@ Claude Opus 4.6 是 Anthropic 发布的 Claude Opus 系列模型，是 Anthropic
 - [[上下文感知]]（[[上下文感知|Context Awareness]]）
 - [[交错式思考]]（[[交错式思考|Interleaved Thinking]]）
 - [[Programmatic-Tool-Calling-PTC|程序化工具调用 (PTC)]] — 动态构造工具调用
-- 符合 [[零数据保留]] ([[零数据保留|ZDR]]) 条件
+- 符合 [[零数据保留]] (ZDR) 条件
 - [[提示词缓存]]（[[提示词缓存|Prompt Caching]]）
 
 ### 在知识库中的引用

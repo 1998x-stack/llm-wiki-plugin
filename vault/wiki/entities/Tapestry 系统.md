@@ -15,7 +15,7 @@ relates_to:
     type: part_of
   - target: "[[GroupLens]]"
     type: extends
-  - target: "[[TQL]]"
+  - target: "TQL"
     type: uses
 supersedes: null
 ---
@@ -27,7 +27,7 @@ Tapestry 是 [[Xerox PARC]] 于 1992 年开发的信息过滤系统，首次提�
 
 ## 关键内容
 
-1. **论文信息**：[[David Goldberg|Goldberg]], D., [[David Nichols|Nichols]], D., [[Brian M. Oki|Oki]], B.M., & [[Douglas Terry|Terry]], D. (1992). "Using [[协同过滤|Collaborative Filtering]] to Weave an Information Tapestry." *Communications of the ACM*, 35(12), 61-70。DOI: 10.1145/138859.138867。引用量约 2,841 次（ACM DL）。
+1. **论文信息**：[[David Goldberg|Goldberg]], D., [[David Nichols|Nichols]], D., Oki, B.M., & [[Douglas Terry|Terry]], D. (1992). "Using [[协同过滤|Collaborative Filtering]] to Weave an Information Tapestry." *Communications of the ACM*, 35(12), 61-70。DOI: 10.1145/138859.138867。引用量约 2,841 次（ACM DL）。
 
 2. **系统架构**：由多个协作组件构成：
    - **Indexer（索引器）**：提取文档可索引字段（发件人、主题、日期、关键词）
@@ -43,7 +43,7 @@ Tapestry 是 [[Xerox PARC]] 于 1992 年开发的信息过滤系统，首次提�
 4. **手动[[协同过滤]]的特征**：
    - 用户需要知道并选择信任特定的人
    - 用户自行编写 TQL 查询规则
-   - 适用于小型熟人社区（如 [[Xerox PARC|PARC]] 内部几百人）
+   - 适用于小型熟人社区（如 PARC 内部几百人）
    - 无任何"自动发现相似用户"机制
 
 5. **局限性**：
@@ -53,7 +53,7 @@ Tapestry 是 [[Xerox PARC]] 于 1992 年开发的信息过滤系统，首次提�
    - [[冷启动问题]]：新用户不知道该引用谁的标注
    - 只追加存储导致存储需求持续增长
 
-6. **历史地位**：推荐系统发展史的起点。1992 Tapestry → 1994 [[GroupLens]]（自动化 [[协同过滤|CF]]）→ 1995 [[Ringo]]/[[Firefly Networks|Firefly]]（音乐推荐）→ 1997 "推荐系统"术语确立 → 1998 [[Amazon]]（Item-based [[协同过滤|CF]]）→ 2006 [[Netflix Prize]] → 2010s 深度学习时代 → 2020s LLM 时代。
+6. **历史地位**：推荐系统发展史的起点。1992 Tapestry → 1994 [[GroupLens]]（自动化 CF）→ 1995 [[Ringo]]/[[Firefly Networks|Firefly]]（音乐推荐）→ 1997 "推荐系统"术语确立 → 1998 [[Amazon]]（Item-based CF）→ 2006 [[Netflix Prize]] → 2010s 深度学习时代 → 2020s LLM 时代。
 
 ## 来源
 - [[raw/books/推荐系统/01-tapestry-collaborative-filtering.md]] — 全文解读
@@ -63,5 +63,5 @@ Tapestry 是 [[Xerox PARC]] 于 1992 年开发的信息过滤系统，首次提�
 - [[协同过滤]] — Tapestry 首次提出并定义的核心概念
 - [[Xerox PARC]] — Tapestry 的开发机构
 - [[GroupLens]] — 受 Tapestry 启发，实现自动化协同过滤
-- [[TQL]] — Tapestry 的查询语言
+- TQL — Tapestry 的查询语言
 - [[基于内容的过滤]] — Tapestry 将内容过滤与协同过滤有机结合

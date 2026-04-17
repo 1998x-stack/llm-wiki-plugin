@@ -55,7 +55,7 @@ supersedes: null
 - [[上下文压缩]]（[[上下文压缩|Server-side Compaction]]，beta 阶段）
 - [[上下文感知]]（[[上下文感知|Context Awareness]]）
 - [[交错式思考]]（[[交错式思考|Interleaved Thinking]]）
-- 符合 [[零数据保留]] ([[零数据保留|ZDR]]) 条件
+- 符合 [[零数据保留]] (ZDR) 条件
 - [[提示词缓存]]（[[提示词缓存|Prompt Caching]]）
 
 ### 与 Opus 4.6 的对比

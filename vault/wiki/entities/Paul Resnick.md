@@ -39,7 +39,7 @@ Paul Resnick 是 MIT 协调科学中心的研究员，与明尼苏达大学的 [
 6. **研究领域确立**：与 [[Hal Varian]] 共同主编 1997 年 CACM 推荐系统特刊，正式确立"推荐系统"（Recommender Systems）作为研究领域的名称。论文 "Recommender Systems" (CACM, 1997) 是该领域最具影响力的综述之一。
 
 7. **主要论文**：
-   - Resnick, P., Iacovou, N., Suchak, M., Be[[ripgrep|rg]]strom, P., & Riedl, J. (1994). "[[GroupLens]]: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186.
+   - Resnick, P., Iacovou, N., Suchak, M., Bergstrom, P., & Riedl, J. (1994). "[[GroupLens]]: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186.
    - Resnick, P. & [[Hal Varian|Varian]], H.R. (1997). "Recommender Systems." *Communications of the ACM*, 40(3), 56-58.
 
 ## 来源

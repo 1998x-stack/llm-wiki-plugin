@@ -24,7 +24,7 @@ supersedes: null
 # Lua 战斗配置目录结构
 
 ## 概述
-手游战斗系统 Lua 配置的六层目录模板：cfg/[[bat]]tle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。
+手游战斗系统 Lua 配置的六层目录模板：cfg/battle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。
 
 ## 关键内容
 
@@ -139,11 +139,11 @@ return {
 
 ### 命名规范
 
-文件命名统一 `{类型}_{数字id}.lua`（`[[bat]]tle_1001.lua`、`unit_3001.lua`）。枚举字段优先字符串常量（`skill_type="active"`、`damage_type="fire"`），禁用魔法数字，导表时可转数字。
+文件命名统一 `{类型}_{数字id}.lua`（`battle_1001.lua`、`unit_3001.lua`）。枚举字段优先字符串常量（`skill_type="active"`、`damage_type="fire"`），禁用魔法数字，导表时可转数字。
 
 ### 策划协作版扩展目录
 
-适合中后期项目，对 [[bat]]tle 按玩法分目录（mainline/tower/arena/boss），buff 按性质分（positive/negative/control/dot），event 按层级分（[[bat]]tle_rule/wave_event/stage_mechanism/common_trigger）。
+适合中后期项目，对 battle 按玩法分目录（mainline/tower/arena/boss），buff 按性质分（positive/negative/control/dot），event 按层级分（battle_rule/wave_event/stage_mechanism/common_trigger）。
 
 ## 来源
 - [[raw/articles/programming/lua/战斗系统Lua目录模板.md]] — ChatGPT 对话：战斗系统 Lua table 配置六层目录结构模板 (https://chatgpt.com/c/69d65fae-bdcc-8324-91a2-68485c137f90)

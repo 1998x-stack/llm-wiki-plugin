@@ -14,7 +14,7 @@ supersedes: null
 # RenderPath渲染管线
 
 ## 概述
-RenderPath 描述一条完整的渲染管线，由一组 RenderTa[[ripgrep|rg]]et 和 RenderPathCommand 组成，支持前向渲染、延迟渲染及自定义后处理效果，通过 XML 文件定义。
+RenderPath 描述一条完整的渲染管线，由一组 RenderTarget 和 RenderPathCommand 组成，支持前向渲染、延迟渲染及自定义后处理效果，通过 XML 文件定义。
 
 ## 关键内容
 - **加载方式**：`Load(xmlFile)` 从 XML 文件加载；`Append(xmlFile)` 追加额外 Pass（如后处理）

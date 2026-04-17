@@ -121,8 +121,8 @@ joy:GetHatPosition(index)       -- int 方向键状态
 | 类别 | 枚举值 |
 |------|--------|
 | 鼠标按钮 | `MOUSEB_LEFT`, `MOUSEB_MIDDLE`, `MOUSEB_RIGHT` |
-| 修饰键 | `QUAL_SHIFT`, `QUAL_CT[[强化学习|RL]]`, `QUAL_ALT` |
-| 鼠标模式 | `[[UrhoX鼠标模式|MM_ABSOLUTE]]`, `[[UrhoX鼠标模式|MM_RELATIVE]]`, `MM_W[[rust-analyzer|RA]]P`, `MM_FREE` |
+| 修饰键 | `QUAL_SHIFT`, `QUAL_CTRL`, `QUAL_ALT` |
+| 鼠标模式 | `[[UrhoX鼠标模式|MM_ABSOLUTE]]`, `[[UrhoX鼠标模式|MM_RELATIVE]]`, `MM_WRAP`, `MM_FREE` |
 | 常用按键 | `KEY_SPACE`, `KEY_ESCAPE`, `KEY_RETURN`, `KEY_W/A/S/D` |
 
 ## 来源

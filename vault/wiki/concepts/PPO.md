@@ -9,7 +9,7 @@ source_count: 1
 tags: ["强化学习", "策略梯度", "算法", "RLHF"]
 aliases: ["Proximal Policy Optimization", "近端策略优化", "PPO-Clip", "PPO 2017"]
 relates_to:
-  - target: "[[TRPO]]"
+  - target: "TRPO"
     type: supersedes
     confidence: 0.95
   - target: "[[策略梯度定理]]"
@@ -33,7 +33,7 @@ supersedes: null
 # PPO
 
 ## 概述
-Schulman et al. (OpenAI, 2017) 提出的近端策略优化算法。通过 Clip 目标函数近似 [[TRPO]] 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 [[强化学习|RL]] 算法，也是 [[强化学习|RL]]HF（InstructGPT/ChatGPT）的核心组件。
+Schulman et al. (OpenAI, 2017) 提出的近端策略优化算法。通过 Clip 目标函数近似 TRPO 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 RL 算法，也是 RLHF（InstructGPT/ChatGPT）的核心组件。
 
 ## 关键内容
 
@@ -45,19 +45,19 @@ Schulman et al. (OpenAI, 2017) 提出的近端策略优化算法。通过 Clip �
    `L^{PPO} = L^{CLIP} - c₁·L^{VF} + c₂·S[π]`
    三项分别为策略目标（最大化）、[[价值函数]]损失（最小化）、熵正则化（最大化，促进探索）。
 
-3. **[[广义优势估计|GAE]] 优势估计**：使用[[广义优势估计]]（λ=0.95）计算 Â_t，在偏差-方差之间取得平衡，是 PPO 训练稳定的关键。
+3. **GAE 优势估计**：使用[[广义优势估计]]（λ=0.95）计算 Â_t，在偏差-方差之间取得平衡，是 PPO 训练稳定的关键。
 
-4. **数据复用（多轮更新）**：每批数据收集后执行 K=10 轮 mini-[[bat]]ch 更新，提高样本效率，是相较 [[TRPO]] 的重要工程优势。
+4. **数据复用（多轮更新）**：每批数据收集后执行 K=10 轮 mini-batch 更新，提高样本效率，是相较 TRPO 的重要工程优势。
 
 5. **工程细节**：优势归一化 (Â-mean)/std；梯度裁剪 max norm 0.5；Adam 学习率 3e-4；并行环境数据收集（N×T transitions）。
 
-6. **广泛应用**：OpenAI Dactyl（机器人）、OpenAI Five（Dota2）、InstructGPT/ChatGPT（[[强化学习|RL]]HF）、AlphaStar，是 [[强化学习|RL]]HF 标准算法选择。
+6. **广泛应用**：OpenAI Dactyl（机器人）、OpenAI Five（Dota2）、InstructGPT/ChatGPT（RLHF）、AlphaStar，是 RLHF 标准算法选择。
 
 ## 来源
 - [[raw/assets/RL-Analysis/rl_04_reinforce_trpo_ppo]] — P-03：PPO 完整分析（Schulman et al. OpenAI 2017）
 
 ## 相关
-- [[TRPO]] — supersedes
+- TRPO — supersedes
 - [[策略梯度定理]] — implements
 - [[广义优势估计]] — uses
 - [[重要性采样]] — uses

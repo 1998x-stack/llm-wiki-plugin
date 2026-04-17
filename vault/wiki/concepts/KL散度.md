@@ -43,7 +43,7 @@ supersedes: null
 
 ## 概述
 
-KL 散度（Kullback-Leibler Dive[[ripgrep|rg]]ence）度量两个概率分布之间的差异：D_KL(P||Q) = Σ P(x) log(P(x)/Q(x))，是[[信息论]]、统计学和机器学习中最核心的分布差异度量。
+KL 散度（Kullback-Leibler Divergence）度量两个概率分布之间的差异：D_KL(P||Q) = Σ P(x) log(P(x)/Q(x))，是[[信息论]]、统计学和机器学习中最核心的分布差异度量。
 
 ## 关键内容
 
@@ -86,7 +86,7 @@ $$H(P, Q) = H(P) + D_{\text{KL}}(P \| Q)$$
 - **[[交叉熵]]损失**：深度学习分类任务的标准损失函数
 - **变分自编码器(VAE)**：ELBO 中的 KL 正则化项
 - **知识蒸馏**：学生网络最小化与教师网络输出的 KL 散度
-- **[[强化学习]]**：[[PPO]]/[[TRPO]] 用 KL 散度约束策略更新幅度
+- **[[强化学习]]**：PPO/TRPO 用 KL 散度约束策略更新幅度
 - **GAN**：原始 GAN 目标函数与 Jensen-Shannon 散度（KL 的对称化版本）密切相关
 
 ## 来源

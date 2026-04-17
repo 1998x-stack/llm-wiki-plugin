@@ -24,7 +24,7 @@ supersedes: null
 # ARIMA 模型
 
 ## 概述
-ARIMA（[[AR 模型（自回归模型）|自回归]]积分移动平均模型）由 Geo[[ripgrep|rg]]e Box 和 Gwilym Jenkins 于 1970 年在《Time Series Analysis: Forecasting and Control》中提出，将 AR、差分和 MA 统一为单一框架，是时间序列分析历史上影响最深远的建模方法。
+ARIMA（[[AR 模型（自回归模型）|自回归]]积分移动平均模型）由 George Box 和 Gwilym Jenkins 于 1970 年在《Time Series Analysis: Forecasting and Control》中提出，将 AR、差分和 MA 统一为单一框架，是时间序列分析历史上影响最深远的建模方法。
 
 ## 关键内容
 
@@ -32,7 +32,7 @@ ARIMA（[[AR 模型（自回归模型）|自回归]]积分移动平均模型）�
 
 2. **ARIMA(p,d,q) 框架**：AR(p) [[AR 模型（自回归模型）|自回归]]部分（当前值依赖过去 p 个值）+ I(d) 差分部分（d 次差分实现平稳化）+ MA(q) 移动平均部分（当前值依赖过去 q 个随机冲击）。
 
-3. **Box-Jenkins 方法论**：提出系统性的建模流程——识别（通过 A[[协同过滤|CF]]/PA[[协同过滤|CF]] 选择 p,d,q）→ 估计（最大似然或最小二乘）→ 诊断检验（残差白噪声检验）→ 预测。
+3. **Box-Jenkins 方法论**：提出系统性的建模流程——识别（通过 ACF/PACF 选择 p,d,q）→ 估计（最大似然或最小二乘）→ 诊断检验（残差白噪声检验）→ 预测。
 
 4. **学科影响**：统计学、计量经济学、运筹学、信号处理、金融工程、气象学、工业控制等领域均受其深远影响，至今仍是时间序列分析的入门必修内容。
 

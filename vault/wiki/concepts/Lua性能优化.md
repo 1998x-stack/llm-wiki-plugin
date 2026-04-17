@@ -15,7 +15,7 @@ relates_to:
   - target: "[[Lua对象池]]"
     type: relates_to
     confidence: 0.88
-  - target: "[[Luau]]"
+  - target: "Luau"
     type: relates_to
     confidence: 0.6
 supersedes: null
@@ -140,4 +140,4 @@ GC 停止后测量可隔离计算成本，`mem` 差值反映分配压力。
 ## 相关
 - [[LuaJIT]] — JIT 编译与 FFI 高性能 C 调用，性能层级最高的优化手段
 - [[Lua对象池]] — 热路径分配优化的专项模式，配合 GC 调优使用
-- [[Luau]] — Roblox 定制 Lua，有自己的性能特性（Native codegen）
+- Luau — Roblox 定制 Lua，有自己的性能特性（Native codegen）

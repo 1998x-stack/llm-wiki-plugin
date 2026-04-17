@@ -24,7 +24,7 @@ supersedes: DDPG
 
 ## 概述
 
-TD3（Twin Delayed [[DDPG|Deep Deterministic Policy Gradient]]）由 McGill University 于 ICML 2018 发表（arXiv:1802.09477）。TD3 系统诊断了 [[DDPG]] 的三大失效机制——Critic 过估计、[[强化学习三大范式|Actor-Critic]] 正反馈循环、策略更新频率过高——并分别提出三个修复：双 Critic 取最小值、目标策略平滑化、延迟策略更新。在 MuJoCo 6 个任务上相比 [[DDPG]] 平均提升 50-100%，成为确定性策略连续控制的强基线。
+TD3（Twin Delayed [[DDPG|Deep Deterministic Policy Gradient]]）由 McGill University 于 ICML 2018 发表（arXiv:1802.09477）。TD3 系统诊断了 DDPG 的三大失效机制——Critic 过估计、[[强化学习三大范式|Actor-Critic]] 正反馈循环、策略更新频率过高——并分别提出三个修复：双 Critic 取最小值、目标策略平滑化、延迟策略更新。在 MuJoCo 6 个任务上相比 DDPG 平均提升 50-100%，成为确定性策略连续控制的强基线。
 
 ## 关键内容
 
@@ -36,9 +36,9 @@ TD3（Twin Delayed [[DDPG|Deep Deterministic Policy Gradient]]）由 McGill Univ
 - [[raw/assets/RL-Analysis/rl_05_a3c_ddpg_td3_sac.md]] — Part C：TD3 完整分析
 
 ## 相关
-- [[DDPG]] — extends
+- DDPG — extends
 - [[Double DQN]] — uses
 - [[Actor-Critic方法]] — extends
 - [[目标网络]] — uses
-- [[SAC]] — compares_to
+- SAC — compares_to
 - [[经验回放]] — uses

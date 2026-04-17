@@ -56,7 +56,7 @@ Luau 引入可选静态类型注解，类型检查在编辑器阶段（[[Roblox|
 Luau 基于 Lua **5.1** 扩展，语法层面向下兼容。主要新增：类型注解语法、`continue` 语句、bit32 库内建、CompileOptions 控制等。不支持 Lua 5.2+ 的 `goto`、5.4 的整数类型等特性。
 
 ### 应用范围
-Luau 目前主要在 [[Roblox]] 平台使用，但 Luau 已开源（luau-lang.o[[ripgrep|rg]]），可作为独立 Lua 运行时嵌入其他引擎。其类型系统设计对 Lua 生态的演进有参考价值。
+Luau 目前主要在 [[Roblox]] 平台使用，但 Luau 已开源（luau-lang.org），可作为独立 Lua 运行时嵌入其他引擎。其类型系统设计对 Lua 生态的演进有参考价值。
 
 ## 来源
 - [[lua-gameengine-deep-research]] — 深度研究报告，第8节 Luau 类型系统、性能特性与 Roblox 应用场景分析

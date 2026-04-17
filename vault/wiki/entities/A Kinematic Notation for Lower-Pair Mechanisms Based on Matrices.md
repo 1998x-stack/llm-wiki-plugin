@@ -33,7 +33,7 @@ supersedes: null
 # A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices
 
 ## 概述
-《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 [[Jacques Denavit]] 和 [[Richard S. Hartenberg]] 于 1955 年 6 月发表在《ASME Journal of Applied Mechanics》上的里程碑式论文。该文首次提出了利用四个参数和[[齐次变换矩阵]]来系统化描述任意低副机构（Lower-Pair Mechanisms）运动学关系的方法。这篇论文不仅解决了当时机构学领域描述方法混乱的问题，更为后来诞生的机器人学提供了核心的数学工具——**Denavit-Hartenbe[[ripgrep|rg]] (DH) 参数**，被公认为机器人运动学理论的奠基之作。
+《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 [[Jacques Denavit]] 和 [[Richard S. Hartenberg]] 于 1955 年 6 月发表在《ASME Journal of Applied Mechanics》上的里程碑式论文。该文首次提出了利用四个参数和[[齐次变换矩阵]]来系统化描述任意低副机构（Lower-Pair Mechanisms）运动学关系的方法。这篇论文不仅解决了当时机构学领域描述方法混乱的问题，更为后来诞生的机器人学提供了核心的数学工具——**Denavit-Hartenberg (DH) 参数**，被公认为机器人运动学理论的奠基之作。
 
 ## 关键内容
 

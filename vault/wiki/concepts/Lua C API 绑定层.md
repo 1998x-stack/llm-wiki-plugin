@@ -46,7 +46,7 @@ Lua 宿主接口围绕栈设计：宿主向栈压入参数，调用函数，再�
 - **边界粒度**：高频逻辑应批量提交，避免每帧跨边界数千次读 getter/setter
 
 ### 注册表（Registry）
-Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 [[C++]] 对象每次暴露给 Lua 应使用唯一包装缓存（避免 `a ~= b` 但两者指向同一原生对象）。
+Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 C++ 对象每次暴露给 Lua 应使用唯一包装缓存（避免 `a ~= b` 但两者指向同一原生对象）。
 
 ### 自动绑定 vs 手写绑定
 | 方案 | 代表工具 | 优点 | 缺点 |
@@ -59,7 +59,7 @@ Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→L
 
 ### 高频坑
 
-1. **对象失效**：Lua 还握着对象，[[C++]] 早删了，导致随机崩溃或场景切换后回调报错
+1. **对象失效**：Lua 还握着对象，C++ 早删了，导致随机崩溃或场景切换后回调报错
 2. **内存泄漏**：缓存表/事件表/闭包形成强引用链，GC 无法回收；弱表是缓解手段
 3. **边界调用太碎**：每帧跨边界数千次，性能在桥上被磨光
 4. **热更新打穿类型系统**：脚本重载后老闭包仍活着、metatable 更新不完整、旧 userdata 绑旧方法表
@@ -102,14 +102,14 @@ lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 luaL_unref(L, LUA_REGISTRYINDEX, ref);
 ```
 
-注册表伪索引 `LUA_REG[[重要性采样|IS]]TRYINDEX` 在任何地方可访问，是 C 侧持久存储 Lua 回调、对象缓存的标准方式。
+注册表伪索引 `LUA_REGISTRYINDEX` 在任何地方可访问，是 C 侧持久存储 Lua 回调、对象缓存的标准方式。
 
 ### luaL_* 辅助库
 
 参数检查系列（类型错误自动抛出含位置信息的 Lua 错误）：
-- `luaL_checkinteger(L, na[[ripgrep|rg]])` / `luaL_optinteger(L, na[[ripgrep|rg]], def)`
-- `luaL_checkstring(L, na[[ripgrep|rg]])` / `luaL_optstring(L, na[[ripgrep|rg]], def)`
-- `luaL_checkudata(L, na[[ripgrep|rg]], tname)` — 带类型名的 userdata 安全检查
+- `luaL_checkinteger(L, narg)` / `luaL_optinteger(L, narg, def)`
+- `luaL_checkstring(L, narg)` / `luaL_optstring(L, narg, def)`
+- `luaL_checkudata(L, narg, tname)` — 带类型名的 userdata 安全检查
 
 字符串缓冲区（高效构建字符串，避免中间分配）：
 ```c
@@ -131,7 +131,7 @@ luaL_pushresult(&b);    // 最终字符串压栈
 | LUA_ERRMEM | 4 | 内存分配失败 |
 | LUA_ERRERR | 5 | 错误处理函数本身出错 |
 
-推荐错误处理模式：先压入 traceback handler，再 `lua_pcall(L, na[[ripgrep|rg]]s, nresults, handler_idx)`。
+推荐错误处理模式：先压入 traceback handler，再 `lua_pcall(L, nargs, nresults, handler_idx)`。
 
 ## 来源
 - [[Lua 游戏引擎连接机制]] — ChatGPT 对话，系统介绍 Lua 与游戏引擎 C/C++/C# 层的连接/绑定机制

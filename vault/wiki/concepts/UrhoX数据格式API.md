@@ -39,7 +39,7 @@ xml:Save("output.xml", "\t")
 关键方法：`FromString`、`CreateRoot`、`GetOrCreateRoot`、`GetRoot`、`ToString`、`Patch`（XML patch 机制）、`Save`。
 
 ### XMLElement — XML 元素操作
-`X[[最大似然原理|MLE]]lement` 是轻量值类型（非指针），表示 XML DOM 节点，支持完整的子树遍历和属性读写。
+`XMLElement` 是轻量值类型（非指针），表示 XML DOM 节点，支持完整的子树遍历和属性读写。
 
 常用操作：
 ```lua
@@ -60,7 +60,7 @@ end
 支持的类型读写：`Bool`、`Float`、`Double`、`Int`/`UInt`/`Int64`/`UInt64`、`IntRect`、`IntVector2/3`、`Rect`、`Quaternion`、`Vector2/3/4`、`[[矩阵|Matrix]]3/3x4/4`、`Color`、`String`、`[[Hal Varian|Varian]]t`、`ResourceRef`/`ResourceRefList`。
 
 属性（只读）：`null`、`name`、`parent`、`value`、`numAttributes`、`file`。
-常量：`X[[最大似然原理|MLE]]lement.EMPTY`（空元素，用于判断是否有效）。
+常量：`XMLElement.EMPTY`（空元素，用于判断是否有效）。
 
 > ⚠️ `IsNull()` / `NotNull()` 用于检查元素是否有效；遍历到末尾时 `GetNext()` 返回空元素。
 

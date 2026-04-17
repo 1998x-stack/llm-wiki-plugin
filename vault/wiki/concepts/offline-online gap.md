@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **现象描述**：一些在离线评估（offline evaluation）中看起来更好的方案，在线上 A/B 测试（online evaluation）中并不一定更优。离线指标如 [[AUC]]、[[NDCG]]、[[RMSE]] 等的提升，并不总是转化为线上业务指标的提升。
+1. **现象描述**：一些在离线评估（offline evaluation）中看起来更好的方案，在线上 A/B 测试（online evaluation）中并不一定更优。离线指标如 AUC、NDCG、RMSE 等的提升，并不总是转化为线上业务指标的提升。
 
 2. **根源分析**：
    - 离线评估无法完全模拟用户的动态行为
@@ -33,7 +33,7 @@ supersedes: null
 
 3. **[[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 的发现**：[[Deep Neural Networks for YouTube Recommendations]] 坦诚地指出了离线指标与在线效果之间的差距。论文特别提到：用"预测未来的一次观看"替代传统的"随机 holdout"来构造训练标签，虽然在离线指标上差异不大，但在线上 A/B 测试中表现显著更好。
 
-4. **论文金句**："The choice of label and input context to the model is challenging to evaluate offline but has a la[[ripgrep|rg]]e impact on live performance."——这句话道出了推荐系统研究中一个最令人沮丧又最重要的事实。
+4. **论文金句**："The choice of label and input context to the model is challenging to evaluate offline but has a large impact on live performance."——这句话道出了推荐系统研究中一个最令人沮丧又最重要的事实。
 
 5. **应对策略**：
    - 尽可能使用线上 A/B 测试验证关键决策
@@ -48,7 +48,7 @@ supersedes: null
 
 ## 相关
 - [[Deep Neural Networks for YouTube Recommendations]] — 坦诚指出该问题的论文
-- [[AUC]] — 常用离线评估指标
-- [[NDCG]] — 常用离线评估指标
+- AUC — 常用离线评估指标
+- NDCG — 常用离线评估指标
 - [[Example Age]] — 缓解 offline-online gap 的技术之一
 - [[A/B 测试]] — 在线验证的金标准

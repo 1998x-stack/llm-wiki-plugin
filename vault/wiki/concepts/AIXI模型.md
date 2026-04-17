@@ -35,7 +35,7 @@ AIXI 是 Marcus Hutter (2000) 提出的通用人工智能理论模型，将 Solo
 
 AIXI = Solomonoff 归纳 + Bellman 最优方程
 
-- **感知**：使用 Solomonoff 先验 [[Solomonoff先验|M(x)]] 对环境进行[[托马斯·贝叶斯|贝叶斯]]预测
+- **感知**：使用 Solomonoff 先验 M(x) 对环境进行[[托马斯·贝叶斯|贝叶斯]]预测
 - **决策**：选择使期望累积奖励最大化的动作
 - **学习**：通过与环境交互不断更新后验信念
 

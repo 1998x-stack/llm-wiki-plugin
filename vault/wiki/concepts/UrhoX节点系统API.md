@@ -18,7 +18,7 @@ supersedes: null
 
 ## 关键内容
 1. **变换体系**：区分 Local（父节点相对）和 World（世界绝对）两套接口——`SetPosition/SetWorldPosition`、`GetTransform/GetWorldTransform`；2D 游戏使用 `SetPosition2D/SetRotation2D/SetScale2D` 对应接口。
-2. **旋转操作**：`Translate/Rotate` 支持 `TransformSpace`（TS_LOCAL / TS_WO[[强化学习|RL]]D / TS_PARENT）指定参考系；`Pitch/Yaw/Roll` 分别绕 X/Y/Z 轴旋转；`LookAt(target, upAxis, space)` 使节点朝向目标。
+2. **旋转操作**：`Translate/Rotate` 支持 `TransformSpace`（TS_LOCAL / TS_WORLD / TS_PARENT）指定参考系；`Pitch/Yaw/Roll` 分别绕 X/Y/Z 轴旋转；`LookAt(target, upAxis, space)` 使节点朝向目标。
 3. **坐标转换**：`LocalToWorld/WorldToLocal`（支持 Vector3 和 Vector4 齐次坐标）实现空间转换，是射线投射和相机映射的基础。
 4. **父子管理**：`CreateChild(name, mode, id)` 创建子节点；`AddChild/RemoveChild/RemoveAllChildren`；`Clone(mode)` 深拷贝子树；`SetParent` 重挂父节点；`GetChild(name/hash/index, recursive)` 递归查找。
 5. **组件管理**：`CreateComponent(type, mode, id)`/`GetOrCreateComponent`/`RemoveComponent`；`GetComponent(type, recursive)` 向下递归查找；`GetParentComponent(type, recursive)` 向上查找；支持按类型批量操作 `RemoveComponents(type)`。

@@ -25,7 +25,7 @@ entity_type: tool
 # yfinance
 
 ## 概述
-yfinance 是 Yahoo Finance 非官方 Python 封装库，提供全球市场数据（美股、港股、A 股、E[[TensorFlow|TF]]、加密货币、外汇、期货、指数），完全免费无需 API Key，是研究和原型开发的首选工具，但不建议用于生产交易系统。
+yfinance 是 Yahoo Finance 非官方 Python 封装库，提供全球市场数据（美股、港股、A 股、ETF、加密货币、外汇、期货、指数），完全免费无需 API Key，是研究和原型开发的首选工具，但不建议用于生产交易系统。
 
 ## 关键内容
 

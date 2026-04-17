@@ -96,11 +96,11 @@ supersedes: null
 
 ### Pi Agent：极简 Harness 的反面验证
 
-[[Pi-Agent]] 代表了 Harness 设计谱系的另一端——**极简主义**。相比 [[DeepAgents]] 的 batteries-included 方式（11 个[[ROS (Robot Operating System)|中间件]]、多后端协议），[[Pi-Agent|Pi]] 只有 4 个工具、< 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。
+[[Pi-Agent]] 代表了 Harness 设计谱系的另一端——**极简主义**。相比 [[DeepAgents]] 的 batteries-included 方式（11 个[[ROS (Robot Operating System)|中间件]]、多后端协议），Pi 只有 4 个工具、< 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。
 
 这证明了 Harness 模式的关键变体：
 - **[[DeepAgents]] 路线**：组合丰富的[[ROS (Robot Operating System)|中间件]]栈 → 适合企业级多场景
-- **[[Pi-Agent|Pi]] 路线**：极简工具 + 精确上下文控制 → 适合高级用户精确编程
+- **Pi 路线**：极简工具 + 精确上下文控制 → 适合高级用户精确编程
 
 两者的共同点：都将 Model 与 Harness 清晰分离，都强调 [[Context-Engineering]] 的重要性。
 
@@ -120,7 +120,7 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 
 核心设计原则：**每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。** Opus 4.5 需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。
 
-这与 [[DeepAgents]] 的"[[bat]]teries-included"路线形成对比：
+这与 [[DeepAgents]] 的"batteries-included"路线形成对比：
 - **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
 - **Anthropic 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
 
@@ -139,7 +139,7 @@ Harness 编码了关于"模型不能独立做什么"的假设，但这些假设�
 - 定义通用接口（会话、harness、沙箱）而非具体实现
 - 每个组件可独立失败和替换
 - 通过 [[脑手分离架构]] 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
-- 性能收益：p50 [[首次令牌时间|TTFT]] 下降 60%，p95 [[首次令牌时间|TTFT]] 下降 90%+
+- 性能收益：p50 TTFT 下降 60%，p95 TTFT 下降 90%+
 
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]

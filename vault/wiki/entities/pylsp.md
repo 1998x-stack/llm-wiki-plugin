@@ -28,7 +28,7 @@ entity_type: tool
 
 1. **历史**：2017 年 Palantir 发布 pyls，2021-01 停止维护，2021-03 社区 fork 为 python-lsp-server (pylsp)，持续活跃维护至 2024 年 v1.11.x。
 
-2. **插件生态**：支持 rope（重构）、flake8、autopep8、yapf、pylint、mccabe、p[[yfinance|yf]]lakes、ruff 等插件，通过 `pip install "python-lsp-server[all]"` 安装全功能。
+2. **插件生态**：支持 rope（重构）、flake8、autopep8、yapf、pylint、mccabe、pyflakes、ruff 等插件，通过 `pip install "python-lsp-server[all]"` 安装全功能。
 
 3. **功能覆盖**：代码补全、跳转定义、悬停信息、签名帮助、代码动作、重命名、格式化、诊断等完整 LSP 能力。
 

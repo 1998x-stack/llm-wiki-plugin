@@ -29,7 +29,7 @@ Solar2D（原 Corona SDK）是以 Lua 为唯一脚本语言的 2D 游戏框架�
 
 ## 关键内容
 
-1. **全 Lua 架构**：Solar2D 与 [[Love2D]] 类似，属于"全 Lua"引擎路线。开发者所有逻辑均用 Lua 编写，无需接触 C/[[C++]]。
+1. **全 Lua 架构**：Solar2D 与 [[Love2D]] 类似，属于"全 Lua"引擎路线。开发者所有逻辑均用 Lua 编写，无需接触 C/C++。
 
 2. **display 对象系统**：通过 `display.newRect`、`display.newCircle`、`display.newGroup` 等 API 创建可视对象。对象以 display group 组织层级，支持 `x/y/rotation/alpha` 等属性直接赋值。
 

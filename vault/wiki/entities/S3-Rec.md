@@ -24,7 +24,7 @@ S3-Rec（Self-Supervised [[序列推荐|Sequential Recommendation]]），2020 �
 
 ## 关键内容
 
-1. **论文信息**：S3-Rec（Self-Supervised Learning for [[序列推荐|Sequential Recommendation]] via Contrastive Estimation），发表于 C[[逆向运动学|IK]]M 2020。
+1. **论文信息**：S3-Rec（Self-Supervised Learning for [[序列推荐|Sequential Recommendation]] via Contrastive Estimation），发表于 CIKM 2020。
 
 2. **核心创新**：在 [[SASRec]] 的基础上引入自监督预训练阶段，通过四个辅助任务（Attribute Prediction, Masked Item Prediction, Segment Prediction, Maximal Association Prediction）学习物品和序列的表示，然后在下游推荐任务上进行微调。
 

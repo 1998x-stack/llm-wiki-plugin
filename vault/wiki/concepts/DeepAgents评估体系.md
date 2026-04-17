@@ -23,7 +23,7 @@ supersedes: null
 
 ## 概述
 
-[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（F[[rust-analyzer|RA]]MES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
+[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
 
 ## 关键内容
 
@@ -80,7 +80,7 @@ scorer = (
 
 ### pytest 配置（`conftest.py`）
 
-- **LangSmith 追踪门禁**：`LANGSMITH_TR[[Agent计算机接口|ACI]]NG` 环境变量必须为 `"true"`，否则整个会话退出码 1
+- **LangSmith 追踪门禁**：`LANGSMITH_TRACING` 环境变量必须为 `"true"`，否则整个会话退出码 1
 - CLI 参数：`--model`（被测模型）、`--eval-category`（筛选分类）、`--openrouter-provider`
 - 所有 eval 用例使用 `@pytest.mark.langsmith`
 
@@ -113,9 +113,9 @@ scorer = (
 | 类别 | 含义 |
 |------|------|
 | `CAPABILITY` | 模型能力/策略问题（无基础设施信号） |
-| `INF[[rust-analyzer|RA]]_OOM` | exit 137 / OOM |
-| `INF[[rust-analyzer|RA]]_TIMEOUT` | exit 124 / 超时 |
-| `INF[[rust-analyzer|RA]]_SANDBOX` | 沙箱崩溃、网络不可达、exec failed |
+| `INFRA_OOM` | exit 137 / OOM |
+| `INFRA_TIMEOUT` | exit 124 / 超时 |
+| `INFRA_SANDBOX` | 沙箱崩溃、网络不可达、exec failed |
 | `UNKNOWN` | 有异常文本但无法归类 |
 
 `is_infrastructure` 属性可在报表中剥离环境噪声，单独统计基础设施失败，避免污染模型能力评估。
@@ -138,7 +138,7 @@ scorer = (
 **生成类脚本**：
 - `generate_radar.py`：从 `evals_summary.json` 生成雷达图 PNG（`--toy` 支持离线预览）
 - `generate_eval_catalog.py`：重写 `EVAL_CATALOG.md`，`--check` 用于 CI 防漂移
-- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_[[生成式推荐|GR]]OUPS.md`
+- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_GROUPS.md`
 
 **工程化建议**：先确保轨迹与 `result.json` 完整再跑分析；解读分数时同时看 `format_ci` 与 MDE，并将 `is_infrastructure=True` 的 trial 单独分层统计。
 

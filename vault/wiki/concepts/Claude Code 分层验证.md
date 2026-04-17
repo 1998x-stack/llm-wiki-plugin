@@ -57,7 +57,7 @@ Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个�
 - 什么时候先用 LSP，什么时候再用 Bash lint
 - 失败输出如何阅读
 
-**特点：** 不是硬约束，而是 Anthropic 强调的 **usage patterns from [[eza|exa]]mples**。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。
+**特点：** 不是硬约束，而是 Anthropic 强调的 **usage patterns from examples**。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。
 
 #### 第 2 层：CLAUDE.md — 负责"想这么做"
 
@@ -71,7 +71,7 @@ Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个�
 - 修改 Python 文件后优先看 LSP 诊断
 - 只跑最小相关测试，不要先跑全量
 - formatter 可以自动修，但 typecheck 不通过不能提交
-- 前端改动先跑 eslint + ta[[ripgrep|rg]]eted test
+- 前端改动先跑 eslint + targeted test
 - migration / schema 变更时要补相应检查
 
 **特点：** CLAUDE.md 是"每个会话都会加载的指令层"，适合放长期稳定的项目规则，让 Claude 有稳定偏好。但它本身不会自动在写文件后触发命令。
@@ -112,7 +112,7 @@ Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上�
 
 ### 落地四步
 
-1. **先写 CLAUDE.md**：定义"先 LSP、后 ta[[ripgrep|rg]]eted lint、提交前再 widened checks"的策略
+1. **先写 CLAUDE.md**：定义"先 LSP、后 targeted lint、提交前再 widened checks"的策略
 2. **再配 PostToolUse 钩子**：匹配 Edit 或 Write，自动跑最轻量的 lint/check，并把结果回灌给 Claude
 3. **自定义 MCP validate 工具**：把"正确用法 + 示例"写进 tool description，而不是只写参数 schema
 4. **LSP 作为默认第一道反馈**：不要自己重造"每次 edit 后先跑重型检查"的流程

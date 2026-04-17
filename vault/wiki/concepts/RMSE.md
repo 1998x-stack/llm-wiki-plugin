@@ -26,10 +26,10 @@ supersedes: null
 2. **[[Netflix Prize]] 基线**：[[Cinematch]] 基线 RMSE 为 0.9514，竞赛目标为降至 0.8563 以下（10% 提升）。最终 [[BellKor's Pragmatic Chaos]] 以 0.8567（10.06% 提升）获胜。
 3. **各方法 RMSE 对比**：
    - [[FunkSVD]]: ~0.896（~5.9% 提升）
-   - [[奇异值分解|SVD]] (100 factors): 0.9025（~5.1% 提升）
+   - SVD (100 factors): 0.9025（~5.1% 提升）
    - [[SVD++]] (100 factors): 0.8924（~6.2% 提升）
    - [[timeSVD++]] (10 factors): < 0.8924（> 6.2% 提升）
-4. **局限性**：RMSE 优化评分预测精度，但不直接等价于推荐列表的排序质量。后来的研究逐渐转向 [[NDCG]]、MAP、[[AUC]] 等排序指标。
+4. **局限性**：RMSE 优化评分预测精度，但不直接等价于推荐列表的排序质量。后来的研究逐渐转向 NDCG、MAP、AUC 等排序指标。
 
 ## 来源
 - [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems

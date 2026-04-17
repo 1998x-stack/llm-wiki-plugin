@@ -138,7 +138,7 @@ Anthropic 推荐的工具开发流程：
 ### 使用 Tool Use Examples 补充 Schema
 
 JSON Schema 定义什么是**结构上有效**的，但无法表达**使用模式**。通过在工具定义中提供示例，直接展示：
-- 日期格式约定（"2024-11-06" vs [[重要性采样|IS]]O 8601）
+- 日期格式约定（"2024-11-06" vs ISO 8601）
 - ID 格式约定（"USR-12345" vs 整数）
 - 嵌套对象何时填写（critical bug vs feature request 的不同处理）
 - 可选参数的关联规则

@@ -41,7 +41,7 @@ Claude Haiku 4.5 是 Anthropic 发布的 Claude Haiku 系列模型，[[上下文
 ### 支持的功能
 
 - [[上下文感知]]（[[上下文感知|Context Awareness]]）
-- 符合 [[零数据保留]] ([[零数据保留|ZDR]]) 条件
+- 符合 [[零数据保留]] (ZDR) 条件
 
 ### 定位
 

@@ -20,15 +20,15 @@ supersedes: null
 
 ## 概述
 
-Lance Martin（@[[强化学习|RL]]anceMartin）是 AI Agent 和 Claude 生态系统的技术专家和内容创作者。专注于 Claude API [[Programmatic-Tool-Calling-PTC|程序化工具调用]]、Agent 技能开发和 AI 辅助软件工程领域。2026 年发表多篇关于 Claude 4.6 新能力的技术分析文章。
+Lance Martin（@RLanceMartin）是 AI Agent 和 Claude 生态系统的技术专家和内容创作者。专注于 Claude API [[Programmatic-Tool-Calling-PTC|程序化工具调用]]、Agent 技能开发和 AI 辅助软件工程领域。2026 年发表多篇关于 Claude 4.6 新能力的技术分析文章。
 
 ## 关键内容
 
 ### 核心贡献
 
-**[[Programmatic-Tool-Calling-PTC|Programmatic Tool Calling]] ([[Programmatic-Tool-Calling-PTC|PTC]]) 推广**：
+**[[Programmatic-Tool-Calling-PTC|Programmatic Tool Calling]] (PTC) 推广**：
 - 在 X 平台发表文章介绍 Claude Opus/[[Claude-Sonnet-4|Sonnet 4]].6 的[[Programmatic-Tool-Calling-PTC|程序化工具调用]]能力
-- 强调 [[Programmatic-Tool-Calling-PTC|PTC]] 作为 4.6 代模型的关键能力提升
+- 强调 PTC 作为 4.6 代模型的关键能力提升
 - 提出文件编辑 stale check 等实际应用场景
 
 **Claude 生态系统建设**：

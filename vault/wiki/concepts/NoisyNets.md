@@ -9,7 +9,7 @@ source_count: 1
 tags: ["强化学习", "探索", "神经网络", "DQN"]
 aliases: ["NoisyNet", "噪声网络", "NoisyLinear", "参数化噪声探索"]
 relates_to:
-  - target: "[[DQN]]"
+  - target: "DQN"
     type: extends
     confidence: 0.92
   - target: "[[强化学习]]"
@@ -44,6 +44,6 @@ NoisyNets（Fortunato et al., 2017）将探索机制内嵌进神经网络参数�
 - [[rl_03_rainbow]] — Rainbow: Combining Improvements in Deep Reinforcement Learning (arXiv:1710.02298, AAAI 2018)，含 NoisyNets 在 Rainbow 中集成的详细说明
 
 ## 相关
-- [[DQN]] — extends
+- DQN — extends
 - [[强化学习]] — part_of
 - [[Rainbow]] — part_of

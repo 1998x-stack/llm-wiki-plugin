@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理请求中多少输入 token 可以利用已缓存的 Key-Value 对，直接影响延迟（T[[TensorFlow|TF]]T）和成本——缓存命中与未命中的成本差异可达 10 倍。
+KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理请求中多少输入 token 可以利用已缓存的 Key-Value 对，直接影响延迟（TTFT）和成本——缓存命中与未命中的成本差异可达 10 倍。
 
 ## 关键内容
 

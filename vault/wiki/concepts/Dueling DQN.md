@@ -9,7 +9,7 @@ source_count: 1
 tags: ["强化学习", "DQN", "网络架构", "价值分解"]
 aliases: ["Dueling Network", "对抗网络DQN", "决斗DQN"]
 relates_to:
-  - target: "[[DQN]]"
+  - target: "DQN"
     type: extends
     confidence: 0.98
   - target: "[[强化学习]]"
@@ -27,7 +27,7 @@ supersedes: null
 # Dueling DQN
 
 ## 概述
-Dueling [[DQN]]（Wang et al., [[DeepMind]], ICML 2016）将 Q 值分解为状态价值 V(s) 和动作优势 A(s,a) 两个独立流，通过网络架构改进而非目标函数改动来提升学习效率。在动作选择不关键的状态下，V(s) 可从所有动作经验中高效学习，避免对每个 (s,a) 对重复采样。
+Dueling DQN（Wang et al., [[DeepMind]], ICML 2016）将 Q 值分解为状态价值 V(s) 和动作优势 A(s,a) 两个独立流，通过网络架构改进而非目标函数改动来提升学习效率。在动作选择不关键的状态下，V(s) 可从所有动作经验中高效学习，避免对每个 (s,a) 对重复采样。
 
 ## 关键内容
 
@@ -47,13 +47,13 @@ Dueling [[DQN]]（Wang et al., [[DeepMind]], ICML 2016）将 Q 值分解为状�
 
 5. **实验结果**：49 款 Atari 游戏中 57%（28/49）优于 [[Double DQN]]；平均得分比 [[Double DQN]] 提升约 15-20%；在 Centipede 等动作不关键游戏提升最显著。
 
-6. **正交性**：架构改动与 [[Double DQN]]（目标计算）和 [[优先经验回放|PER]]（采样策略）完全正交，可任意叠加。
+6. **正交性**：架构改动与 [[Double DQN]]（目标计算）和 PER（采样策略）完全正交，可任意叠加。
 
 ## 来源
 - [[rl_02_double_dueling_per]] — Dueling Network Architectures for Deep Reinforcement Learning (arXiv:1511.06581, ICML 2016)
 
 ## 相关
-- [[DQN]] — extends
+- DQN — extends
 - [[强化学习]] — part_of
 - [[Double DQN]] — compares_to
 - [[优先经验回放]] — compares_to

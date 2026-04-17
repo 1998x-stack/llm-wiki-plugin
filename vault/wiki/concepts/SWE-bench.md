@@ -49,9 +49,9 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
   - SWE-bench Lite：**18.00%** resolved（GPT-4 Turbo）
   - pass@k 曲线：k=6 时解决率升至 30%+，但单题波动明显
 - **Shell-only agent**（GPT-4 Turbo）：Lite 上 **11.00%**
-- **[[检索增强生成|RAG]]**（GPT-4 Turbo）：Full 上 1.31%，Lite 上 2.67%
+- **RAG**（GPT-4 Turbo）：Full 上 1.31%，Lite 上 2.67%
 
-该结果被用来支撑核心论点：交互式 Agent + 专门设计的 [[Agent计算机接口|ACI]]，比"只让模型直接输出 patch"更适合真实软件工程任务。
+该结果被用来支撑核心论点：交互式 Agent + 专门设计的 ACI，比"只让模型直接输出 patch"更适合真实软件工程任务。
 
 ### 在 ACI 研究中的角色
 
@@ -70,7 +70,7 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 | [[SWE-agent]] pass@1 | 12.5% | 87.7% | — |
 | 场景 | 静态代码修复 | 静态代码修复 | 动态多步工作流 |
 
-[[SWE-agent]] 在 [[HumanEvalFix]] 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：[[Agent计算机接口|ACI]] 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到仓库级时，好的交互界面带来的优势更加显著。
+[[SWE-agent]] 在 [[HumanEvalFix]] 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到仓库级时，好的交互界面带来的优势更加显著。
 
 ## 来源
 

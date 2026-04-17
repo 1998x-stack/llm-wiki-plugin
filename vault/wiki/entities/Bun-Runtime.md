@@ -20,7 +20,7 @@ relates_to:
   - target: “[[SQLite]]”
     type: uses
     confidence: 0.8
-  - target: “[[uv]]”
+  - target: “uv”
     type: compares_to
     confidence: 0.95
 supersedes: null
@@ -29,7 +29,7 @@ supersedes: null
 # Bun Runtime
 
 ## 概述
-Bun 是 JavaScript/TypeScript 生态的全能工具链（运行时 + 包管理器 + 打包器 + 测试框架），用 Zig 实现，由 Oven（Bun Inc.）开发，2022 年首发。定位为”Ca[[ripgrep|rg]]o for JS”，以极速替代 node+npm+jest+ts-node 整套工具链。
+Bun 是 JavaScript/TypeScript 生态的全能工具链（运行时 + 包管理器 + 打包器 + 测试框架），用 Zig 实现，由 Oven（Bun Inc.）开发，2022 年首发。定位为”Cargo for JS”，以极速替代 node+npm+jest+ts-node 整套工具链。
 
 ## 关键内容
 
@@ -44,6 +44,6 @@ Bun 是 JavaScript/TypeScript 生态的全能工具链（运行时 + 包管理�
 - [[raw/articles/programming/cli-tools/bun-vs-uv.md]] — Bun vs uv 跨语言深度对比
 
 ## 相关
-- [[uv]] — compares_to（Python 生态对标工具）
+- uv — compares_to（Python 生态对标工具）
 - [[Node.js]] — compares_to
 - [[SQLite]] — uses

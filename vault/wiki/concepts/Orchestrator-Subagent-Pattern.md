@@ -49,7 +49,7 @@ supersedes: null
 ### 实际案例
 
 **自动化[[Code-Review-for-Claude-Code|代码审查]]系统**：
-- **协调者**：接收 [[Probabilistic Robotics|PR]]，确定需要执行的检查
+- **协调者**：接收 PR，确定需要执行的检查
 - **[[Subagents-in-Claude-Code|子智能体]]**：
   - 安全子代理：检查漏洞、注入风险、身份验证问题
   - 测试子代理：验证测试覆盖率

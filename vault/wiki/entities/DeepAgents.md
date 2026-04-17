@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"[[bat]]teries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 Claude Code 一样能干活"的智能体，再按需裁剪扩展。
+LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 Claude Code 一样能干活"的智能体，再按需裁剪扩展。
 
 ## 关键内容
 
@@ -51,7 +51,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 | `libs/partners/` | 合作方沙箱：Daytona、Modal、QuickJS、Runloop |
 | `examples/` | 示例项目（各自独立 pyproject.toml） |
 
-各包**独立版本、独立锁文件**，无根级 [[uv]] workspace。工具链：[[uv]]（包管理）、make（任务聚合）、ruff（lint/format）、ty（类型检查）、pytest（测试）。
+各包**独立版本、独立锁文件**，无根级 uv workspace。工具链：uv（包管理）、make（任务聚合）、ruff（lint/format）、ty（类型检查）、pytest（测试）。
 
 ### 核心 API
 

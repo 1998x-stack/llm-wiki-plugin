@@ -19,7 +19,7 @@ supersedes: null
 # 生成式 LLM 推荐
 
 ## 概述
-使用大语言模型进行[[生成式推荐]]的范式，通过 LLM [[AR 模型（自回归模型）|自回归]]生成推荐结果，是 [[P5 论文|P5]] 范式的 LLM 时代延续。
+使用大语言模型进行[[生成式推荐]]的范式，通过 LLM [[AR 模型（自回归模型）|自回归]]生成推荐结果，是 P5 范式的 LLM 时代延续。
 
 ## 关键内容
 
@@ -27,16 +27,16 @@ supersedes: null
 
 2. **与[[判别式 LLM 推荐]]的对比**：Wu 等人的综述将 LLM 推荐方法分为判别式（[[判别式 LLM 推荐|DLLM4Rec]]）和生成式（GLLM4Rec）两大范式。生成式侧重灵活性和可解释性，判别式侧重预测准确性。
 
-3. **与[[生成式推荐 (LLM)]]的关系**：生成式 LLM 推荐是 [[P5 论文|P5]] 开创的[[生成式推荐 (LLM)]]范式在 LLM 时代的延续和升级——从 [[T5]]-small/base（60M-223M）到 LLaMA/Mistral/Qwen（7B-70B），从 Prompt 模板到[[指令调优]]。
+3. **与[[生成式推荐 (LLM)]]的关系**：生成式 LLM 推荐是 P5 开创的[[生成式推荐 (LLM)]]范式在 LLM 时代的延续和升级——从 T5-small/base（60M-223M）到 LLaMA/Mistral/Qwen（7B-70B），从 Prompt 模板到[[指令调优]]。
 
 4. **现代方案特征**：
    - 骨干模型：LLaMA/Mistral/Qwen（7B-70B）
    - ID 表示：[[语义 ID]] / 自然语言描述 / 多模态特征
-   - 训练策略：Lo[[rust-analyzer|RA]]/QLo[[rust-analyzer|RA]] 等参数高效微调
+   - 训练策略：LoRA/QLoRA 等参数高效微调
    - 任务统一：[[指令调优]]替代 Prompt 模板
    - 推理范式：多阶段检索+生成
 
-5. **代表工作**：[[TALLRec]]（LLaMA 推荐微调）、[[InstructRec]]（[[指令调优]]推荐）、[[LC-Rec]]（[[语义 ID]]）、[[LLMRec]]（双表示）、[[DEALRec]]（数据剪枝）、[[VIP5]]（多模态扩展）。
+5. **代表工作**：[[TALLRec]]（LLaMA 推荐微调）、[[InstructRec]]（[[指令调优]]推荐）、[[LC-Rec]]（[[语义 ID]]）、[[LLMRec]]（双表示）、[[DEALRec]]（数据剪枝）、VIP5（多模态扩展）。
 
 6. **工业界态度**：工业界对完全替代传统推荐模型持谨慎态度，更多将 LLM 作为推荐系统的辅助组件（特征增强、冷启动解决、用户意图理解）。
 
@@ -56,4 +56,4 @@ supersedes: null
 - [[LC-Rec]] — 生成式 LLM 推荐代表工作
 - [[LLMRec]] — 生成式 LLM 推荐代表工作
 - [[DEALRec]] — 生成式 LLM 推荐代表工作
-- [[VIP5]] — 生成式 LLM 推荐代表工作
+- VIP5 — 生成式 LLM 推荐代表工作

@@ -9,7 +9,7 @@ source_count: 1
 tags: [工具与框架, 游戏, 游戏开发]
 aliases: [Roblox Studio, Roblox平台]
 relates_to:
-  - target: "[[Luau]]"
+  - target: "Luau"
     type: uses
     confidence: 0.98
   - target: "[[Lua沙盒系统]]"
@@ -25,7 +25,7 @@ entity_type: tool
 # Roblox
 
 ## 概述
-Roblox 是面向用户自创游戏的在线游戏平台，使用 [[Luau]]（Lua 5.1 的 Roblox 扩展方言）作为脚本语言，采用严格的服务端/客户端分离架构和 RemoteEvent 通信机制。
+Roblox 是面向用户自创游戏的在线游戏平台，使用 Luau（Lua 5.1 的 Roblox 扩展方言）作为脚本语言，采用严格的服务端/客户端分离架构和 RemoteEvent 通信机制。
 
 ## 关键内容
 
@@ -37,7 +37,7 @@ Roblox 是面向用户自创游戏的在线游戏平台，使用 [[Luau]]（Lua 
 
 2. **RemoteEvent 通信**：客户端与服务端之间通过 RemoteEvent/RemoteFunction 通信。服务端必须验证客户端数据，永远不信任客户端传入的数值（反作弊关键）。`OnServerEvent:Connect(player, ...)` 处理客户端触发，`FireServer(...)` 从客户端发起。
 
-3. **[[Luau]] 类型系统**：在标准 Lua 上新增可选静态类型注解（`local x: number`）、联合类型（`"idle" | "running"`）、泛型（`Array<T>`）等。类型检查在 Studio 编辑阶段运行，运行时仍为动态类型。
+3. **Luau 类型系统**：在标准 Lua 上新增可选静态类型注解（`local x: number`）、联合类型（`"idle" | "running"`）、泛型（`Array<T>`）等。类型检查在 Studio 编辑阶段运行，运行时仍为动态类型。
 
 4. **安全沙盒**：Roblox 对玩家自编写脚本实施严格沙盒，禁止访问文件系统、网络库等，防止用户脚本滥用平台资源。
 
@@ -53,6 +53,6 @@ Roblox 是面向用户自创游戏的在线游戏平台，使用 [[Luau]]（Lua 
 - [[lua-gameengine-deep-research]] — 深度研究报告，分析 Roblox/Luau 架构、RemoteEvent 通信与类型系统
 
 ## 相关
-- [[Luau]] — Roblox 定制的类型化 Lua 方言
+- Luau — Roblox 定制的类型化 Lua 方言
 - [[Lua沙盒系统]] — Roblox 对用户脚本实施严格沙盒执行环境
 - [[游戏引擎架构]] — Roblox 是 Luau 优先的闭环平台

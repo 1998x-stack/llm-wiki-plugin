@@ -24,7 +24,7 @@ supersedes: null
 # LSTM（长短期记忆网络）
 
 ## 概述
-LSTM 由 Sepp Hochreiter 和 Jü[[ripgrep|rg]]en Schmidhuber 于 1997 年提出，通过门控机制解决传统 RNN 的梯度消失问题，使神经网络能够学习跨越数百个时间步的长期依赖关系，是深度学习序列建模的里程碑。
+LSTM 由 Sepp Hochreiter 和 Jürgen Schmidhuber 于 1997 年提出，通过门控机制解决传统 RNN 的梯度消失问题，使神经网络能够学习跨越数百个时间步的长期依赖关系，是深度学习序列建模的里程碑。
 
 ## 关键内容
 

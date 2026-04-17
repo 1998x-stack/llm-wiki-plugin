@@ -21,7 +21,7 @@ AnimatedModel 继承自 [[StaticModel静态网格体|StaticModel]]，支持骨�
 - **多动画混合**：同时添加多个 [[动画状态|AnimationState]]，通过权重混合（如走路+跑步过渡）
 - **Morph 变形**：`SetMorphWeight(name, weight)` 控制顶点变形权重（用于表情等）
 - **骨骼访问**：`skeleton` 属性访问[[骨骼系统|骨骼层级]]，可挂载子节点实现武器/配件附加
-- **动画 [[LOD（细节层次）|LOD]]**：`animationLodBias` 调整动画更新频率，远处物体降低更新率节省 CPU
+- **动画 LOD**：`animationLodBias` 调整动画更新频率，远处物体降低更新率节省 CPU
 - **不可见更新**：`updateInvisible` 控制摄像机视锥外是否继续更新动画
 - **主从模型**：`master` 属性标识主模型，多个 AnimatedModel 可共享同一骨骼
 

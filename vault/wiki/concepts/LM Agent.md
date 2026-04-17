@@ -50,7 +50,7 @@ LM Agent 是将语言模型从"回答问题的文本系统"重新定义为"在�
 
 ### 为什么重要
 
-这一定义是整篇论文的范式转换。只要接受"LM 是 agent"，后续 [[Agent计算机接口|ACI]]、[[Guardrails|护栏机制]]、[[Context-Engineering|上下文管理]] 等概念才成立。否则会将 [[SWE-agent]] 误解为"一个会自动改代码的 prompt workflow"。
+这一定义是整篇论文的范式转换。只要接受"LM 是 agent"，后续 ACI、[[Guardrails|护栏机制]]、[[Context-Engineering|上下文管理]] 等概念才成立。否则会将 [[SWE-agent]] 误解为"一个会自动改代码的 prompt workflow"。
 
 ### 与 Agent 循环的关系
 

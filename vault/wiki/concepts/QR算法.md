@@ -61,7 +61,7 @@ QR算法（QR Algorithm）是计算[[矩阵]]全部特征值（即[[Schur分解]
 $$A_k - \mu_k I = Q_k R_k, \quad A_{k+1} = R_k Q_k + \mu_k I$$
 [[瑞利勋爵|Rayleigh]] 商位移使收敛从线性加速到三次方，极大提升效率。
 
-**Hessenbe[[ripgrep|rg]]化预处理**：先将 $A$ 化为上 Hessenbe[[ripgrep|rg]] 形（上双对角和对角线以下全零），使每步 QR 分解代价从 $O(n^3)$ 降至 $O(n^2)$。
+**Hessenberg化预处理**：先将 $A$ 化为上 Hessenberg 形（上双对角和对角线以下全零），使每步 QR 分解代价从 $O(n^3)$ 降至 $O(n^2)$。
 
 **隐式 QR（Francis 双重位移）**：使用复共轭位移对处理实[[矩阵]]的复特征值，保持全程在实数算术中进行。
 

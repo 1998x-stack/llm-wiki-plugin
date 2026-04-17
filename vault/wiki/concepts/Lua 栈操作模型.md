@@ -66,7 +66,7 @@ int  lua_checkstack(L, int n)   // 确保有 n 个额外空间，失败返回 0
 | `lua_pushnumber(L, n)` | number (double) |
 | `lua_pushinteger(L, i)` | integer (Lua 5.3+) |
 | `lua_pushstring(L, s)` | string（内部复制） |
-| `lua_pus[[hls（Haskell Language Server）|hls]]tring(L, s, len)` | 带长度字符串（可含 \0） |
+| `lua_pushlstring(L, s, len)` | 带长度字符串（可含 \0） |
 | `lua_pushfstring(L, fmt, ...)` | 格式化字符串 |
 | `lua_pushcfunction(L, fn)` | C 函数 |
 | `lua_pushcclosure(L, fn, n)` | C 闭包（n 个 upvalue） |

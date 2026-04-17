@@ -23,7 +23,7 @@ supersedes: null
 
 1. **[[Wide & Deep]] 第一作者**：作为 16 人作者团队的第一作者，Heng-Tze Cheng 领导了 [[Wide & Deep]] 模型的研究工作，该模型将线性模型（Wide）和深度神经网络（Deep）[[联合训练]]，在统一框架内同时实现[[记忆与泛化]]能力。
 2. **[[Google]] 推荐系统研究**：工作于 [[Google|Google Inc.]]，参与了 [[Google]] Play 应用推荐系统的工业级落地，将 [[Wide & Deep]] 模型应用于服务 10 亿+活跃用户和 100 万+应用的超大规模推荐场景。
-3. **学术影响**：[[Wide & Deep]] 论文发表后成为推荐系统领域最高被引论文之一（超过 5000 次引用），深刻影响了后续 [[DeepFM]]、[[DCN]]、[[xDeepFM]] 等主流推荐模型的设计方向。
+3. **学术影响**：[[Wide & Deep]] 论文发表后成为推荐系统领域最高被引论文之一（超过 5000 次引用），深刻影响了后续 [[DeepFM]]、DCN、[[xDeepFM]] 等主流推荐模型的设计方向。
 
 ## 来源
 - Heng-Tze Cheng et al. — Wide & Deep Learning for Recommender Systems, DLRS 2016 (arXiv:1606.07792)

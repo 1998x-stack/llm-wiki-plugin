@@ -16,10 +16,10 @@ relates_to:
   - target: "[[现代 CLI 工具全景]]"
     type: part_of
     confidence: 1.0
-  - target: "[[fd]]"
+  - target: "fd"
     type: compares_to
     confidence: 0.9
-  - target: "[[jq]]"
+  - target: "jq"
     type: compares_to
     confidence: 0.8
 supersedes: null
@@ -44,5 +44,5 @@ ripgrep（简称 `rg`）是一个用 Rust 编写的高性能递归搜索工具�
 ## 相关
 
 - [[现代 CLI 工具全景]] — part_of
-- [[fd]] — compares_to（文件定位搭档）
-- [[jq]] — compares_to（JSON 输出管道）
+- fd — compares_to（文件定位搭档）
+- jq — compares_to（JSON 输出管道）

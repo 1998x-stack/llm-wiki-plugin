@@ -9,7 +9,7 @@ source_count: 1
 tags: [技术, 游戏开发, Lua]
 aliases: [Roblox内建API, Roblox平台API, Roblox Instance API]
 relates_to:
-  - target: "[[Luau]]"
+  - target: "Luau"
     type: implements
     confidence: 0.95
   - target: "[[Roblox]]"
@@ -24,7 +24,7 @@ supersedes: null
 # Roblox API
 
 ## 概述
-[[Roblox]] 平台提供的内建类型与服务 API，涵盖值类型（Vector3/[[协同过滤|CF]]rame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService [[游戏主循环模式|游戏循环]]。
+[[Roblox]] 平台提供的内建类型与服务 API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService [[游戏主循环模式|游戏循环]]。
 
 ## 关键内容
 
@@ -32,7 +32,7 @@ supersedes: null
 [[Roblox]] 的几何与颜色类型是值类型，与普通 [[Lua-table-用法|Lua table]] 不同，不产生垃圾回收压力：
 - **Vector3**：3D 坐标，支持 `+`/`*` 运算，`.Magnitude`、`.Unit`、`:Dot`、`:Cross`、`:Lerp`
 - **Vector2**：2D 坐标
-- **[[协同过滤|CF]]rame**：位置+姿态复合变换；`CFrame.lookAt(from, to)`；`*` 复合；`:ToObjectSpace` / `:ToWorldSpace` 坐标系转换；`:ToEulerAnglesXYZ` 提取欧拉角
+- **CFrame**：位置+姿态复合变换；`CFrame.lookAt(from, to)`；`*` 复合；`:ToObjectSpace` / `:ToWorldSpace` 坐标系转换；`:ToEulerAnglesXYZ` 提取欧拉角
 - **Color3**：`Color3.fromRGB(r, g, b)`
 - **UDim2**：GUI 布局尺寸，`UDim2.new(relX, absX, relY, absY)`（相对+绝对混合）
 - **Rect / Ray**：矩形区域和射线
@@ -49,7 +49,7 @@ parent:GetChildren() / :GetDescendants()
 instance:Clone() / :Destroy()
 part:GetPropertyChangedSignal("Prop"):Connect(fn)
 ```
-常用属性：`Name`、`Parent`、`Anchored`、`Size`、`Position`、`[[协同过滤|CF]]rame`、`Color`、`Material`、`Transparency`、`CanCollide`
+常用属性：`Name`、`Parent`、`Anchored`、`Size`、`Position`、`CFrame`、`Color`、`Material`、`Transparency`、`CanCollide`
 
 ### TweenService 动画
 ```lua
@@ -99,15 +99,15 @@ screenGui.Parent = player.PlayerGui
 ### task 库（帧调度）
 `wait()` 的精确替代：
 - `task.wait(seconds)` — 等待
-- `task.spawn(fn, a[[ripgrep|rg]]s)` — 立即执行（下一帧）
-- `task.defer(fn, a[[ripgrep|rg]]s)` — 延迟到帧末尾
-- `task.delay(seconds, fn, a[[ripgrep|rg]]s)` — 延迟执行
+- `task.spawn(fn, args)` — 立即执行（下一帧）
+- `task.defer(fn, args)` — 延迟到帧末尾
+- `task.delay(seconds, fn, args)` — 延迟执行
 - `task.cancel(thread)` — 取消协程
 
 ## 来源
 - [[luau-types]] — Luau 类型系统与 Roblox API 参考，含完整代码示例
 
 ## 相关
-- [[Luau]] — Roblox 的 Lua 方言，提供类型注解和性能优化
+- Luau — Roblox 的 Lua 方言，提供类型注解和性能优化
 - [[Roblox]] — 平台背景
 - [[游戏引擎架构]] — Roblox 引擎设计与通用游戏引擎的对比

@@ -97,13 +97,13 @@ $$Hx = x - 2\frac{v^Tx}{v^Tv}v \quad [O(n) \text{ 计算，} O(n) \text{ 存储}
 
 ### Hessenberg 化简（特征值预处理）
 
-对一般 $n\times n$ [[矩阵]]，通过两侧 [[阿尔斯顿·豪斯霍尔德|Householder]] 变换（$n-2$ 步）化为**上 Hessenbe[[ripgrep|rg]] 形式**（$h_{ij}=0$ 当 $i>j+1$）：
+对一般 $n\times n$ [[矩阵]]，通过两侧 [[阿尔斯顿·豪斯霍尔德|Householder]] 变换（$n-2$ 步）化为**上 Hessenberg 形式**（$h_{ij}=0$ 当 $i>j+1$）：
 
-$$Q^T A Q = H_{\text{Hessenbe[[ripgrep|rg]]}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$
+$$Q^T A Q = H_{\text{Hessenberg}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$
 
 对**对称[[矩阵]]**化为**三对角形式**：$\frac{4}{3}n^3$ 次运算
 
-**意义**：对 Hessenbe[[ripgrep|rg]] [[矩阵]]的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使[[QR算法]]实际可行。
+**意义**：对 Hessenberg [[矩阵]]的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使[[QR算法]]实际可行。
 
 ### 数值稳定性：为何优于 Gauss 消元
 
@@ -118,9 +118,9 @@ $$Q^T A Q = H_{\text{Hessenbe[[ripgrep|rg]]}} \quad [\frac{10}{3}n^3 \text{ 次�
 | 应用 | 说明 |
 |------|------|
 | QR 分解 | 最稳定的稠密[[矩阵]] QR 分解方法（LAPACK DGEQRF）|
-| Hessenbe[[ripgrep|rg]] 化简 | QR 算法特征值计算的预处理（LAPACK DGEHRD）|
+| Hessenberg 化简 | QR 算法特征值计算的预处理（LAPACK DGEHRD）|
 | 对称三对角化 | 对称特征值计算预处理（LAPACK DSYTRD）|
-| [[奇异值分解|SVD]] 计算 | Golub-Kahan 双对角化（LAPACK D[[Boston Dynamics|BD]]SDC）|
+| SVD 计算 | Golub-Kahan 双对角化（LAPACK DBDSDC）|
 | 最小二乘 | $\min\|Ax-b\|_2$：$A=QR$，解 $Rx=Q^Tb$（比法方程更稳定）|
 | 块 [[阿尔斯顿·豪斯霍尔德|Householder]]（WY 表示）| 现代并行计算中将多个变换合并为 BLAS-3 [[矩阵]]-[[矩阵]]乘 |
 

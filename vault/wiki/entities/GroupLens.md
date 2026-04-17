@@ -42,7 +42,7 @@ GroupLens 是历史上第一个自动化[[协同过滤]]系统，由 MIT 的 [[P
 
 ## 关键内容
 
-1. **论文信息**：[[Paul Resnick|Resnick]], P., Iacovou, N., Suchak, M., Be[[ripgrep|rg]]strom, P., & Riedl, J. (1994). "GroupLens: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。
+1. **论文信息**：[[Paul Resnick|Resnick]], P., Iacovou, N., Suchak, M., Bergstrom, P., & Riedl, J. (1994). "GroupLens: An Open Architecture for [[协同过滤|Collaborative Filtering]] of Netnews." *Proceedings of CSCW '94*, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。
 
 2. **时代背景**：1994 年 Usenet 新闻组每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。[[Tapestry 系统]] 虽首创"[[协同过滤]]"概念，但需手动指定信任对象，无法扩展。
 
@@ -51,7 +51,7 @@ GroupLens 是历史上第一个自动化[[协同过滤]]系统，由 MIT 的 [[P
 4. **系统架构**：由三类实体组成：
    - **新闻客户端（News Clients）**：用户阅读和评分的界面，团队为 Gnus、xrn、tin 等主流 Unix 新闻阅读器和 Macintosh 客户端开发了修改版本
    - **新闻服务器（News Servers）**：标准 Usenet NNTP 服务器，通过创建专用"评分传输新闻组"在服务器间同步评分数据
-   - **[[Better Bit Bureau]]（[[Better Bit Bureau|BBB]]，[[Better Bit Bureau|评分服务器]]）**：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分
+   - **[[Better Bit Bureau]]（BBB，[[Better Bit Bureau|评分服务器]]）**：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分
 
 5. **用户相似度计算**：采用 [[Pearson 相关系数]] 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：
    - **均值中心化**：衡量评分偏离个人均值的模式，而非绝对评分值，因此能兼容不同评分习惯的用户
@@ -62,7 +62,7 @@ GroupLens 是历史上第一个自动化[[协同过滤]]系统，由 MIT 的 [[P
    该公式后来成为 [[User-Based 协同过滤]] 的标准范式，在随后十余年间被无数论文引用、扩展和改进。
 
 7. **开放式架构设计五大目标**：
-   - **开放性（Openness）**：任何 Usenet 客户端都可参与，任何人都可开发替代的 [[Better Bit Bureau|BBB]] 服务器或客户端
+   - **开放性（Openness）**：任何 Usenet 客户端都可参与，任何人都可开发替代的 BBB 服务器或客户端
    - **易用性（Ease of Use）**：评分操作简便，不打断正常阅读流程
    - **与 Usenet 兼容（Compatibility）**：建立在现有基础设施之上，无需迁移到新平台
    - **可扩展性（Scalability）**：能随用户数量增长而扩展

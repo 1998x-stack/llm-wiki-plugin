@@ -15,7 +15,7 @@ relates_to:
   - target: "[[广义优势估计]]"
     type: extends
     confidence: 0.85
-  - target: "[[TRPO]]"
+  - target: "TRPO"
     type: extends
     confidence: 0.9
   - target: "[[强化学习三大范式]]"
@@ -27,7 +27,7 @@ supersedes: null
 # REINFORCE算法
 
 ## 概述
-Williams (1992) 提出的最早[[策略梯度定理|策略梯度]]算法，使用蒙特卡洛（MC）完整轨迹回报 G_t 直接估计[[策略梯度定理|策略梯度]]。理论简洁，支持连续动作和随机策略，但方差极高、样本效率低，是后续 [[TRPO]]、[[PPO]] 等算法的出发点。
+Williams (1992) 提出的最早[[策略梯度定理|策略梯度]]算法，使用蒙特卡洛（MC）完整轨迹回报 G_t 直接估计[[策略梯度定理|策略梯度]]。理论简洁，支持连续动作和随机策略，但方差极高、样本效率低，是后续 TRPO、PPO 等算法的出发点。
 
 ## 关键内容
 
@@ -53,5 +53,5 @@ Williams (1992) 提出的最早[[策略梯度定理|策略梯度]]算法，使�
 ## 相关
 - [[策略梯度定理]] — implements
 - [[广义优势估计]] — extends
-- [[TRPO]] — extends
+- TRPO — extends
 - [[强化学习三大范式]] — part_of

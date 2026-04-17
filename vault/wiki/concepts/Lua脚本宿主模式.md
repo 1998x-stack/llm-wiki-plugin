@@ -58,13 +58,13 @@ Lua thread（coroutine）对游戏引擎价值极高：异步等待不需要真�
 |------|------|---------|---------|-------|
 | **xLua**（Unity） | 高级桥接+热补丁层 | 生成代码/反射；`[LuaCallCSharp]` 配置 | MonoBehaviour 为主，Lua 桥接 | 支持方法级 Hotfix（C#→Lua 替换） |
 | **tolua#**（Unity） | 静态 wrapper 工厂 | 预生成 wrapper 大面积导出 C# API | 同 xLua，更静态 | wrapper 路线，无系统 Hotfix |
-| **[[Cocos2d-x]]/Lua** | 官方 [[C++]] 脚本桥 | LuaEngine+LuaStack；tolua++ 生成；handler id 回调 | ComponentLua 直接绑节点生命周期 | Lua 脚本可替换，非注入式 |
+| **[[Cocos2d-x]]/Lua** | 官方 C++ 脚本桥 | LuaEngine+LuaStack；tolua++ 生成；handler id 回调 | ComponentLua 直接绑节点生命周期 | Lua 脚本可替换，非注入式 |
 | **[[Defold]]/Lua** | Lua-first 运行时协议 | userdata + url/hash；非大规模类镜像 | init/update/final 原生入口 | 脚本运行时迭代，非补丁方案 |
 
 **生命周期自然度**：[[Defold]] > Cocos/Lua > xLua ≈ tolua#
 
 **选型建议**：
-- Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2[[C++|CPP]] 配置最成体系）
+- Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2CPP 配置最成体系）
 - 大面积 Unity API 脚本化 → tolua#
 - [[Cocos2d-x]] 节点逻辑 → Cocos/Lua（官方天然配合）
 - Lua 作为主逻辑层 + 消息驱动范式 → [[Defold]]

@@ -67,7 +67,7 @@ local n = buf:ReadInt()  -- 42
 ```
 
 ### NamedPipe — 命名管道
-`Named[[Pi-Agent|Pi]]pe : Object` 支持进程间通信（IPC），以服务端/客户端模式打开：
+`NamedPipe : Object` 支持进程间通信（IPC），以服务端/客户端模式打开：
 
 ```lua
 local pipe = NamedPipe("mypipe", true)  -- isServer=true

@@ -41,7 +41,7 @@ CREB（cAMP Response Element Binding protein）是一种转录因子，在长期
 - **长期记忆（5 次间隔训练）**：
   - cAMP 持续升高→PKA 催化亚基进入细胞核
   - 激活转录因子 CREB
-  - 合成新蛋白质（包括 [[Boston Dynamics|BD]]NF 等）
+  - 合成新蛋白质（包括 BDNF 等）
   - 突触末梢的数目和形态发生永久性改变
 
 ### 分子机制

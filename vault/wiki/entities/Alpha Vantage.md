@@ -35,7 +35,7 @@ Alpha Vantage 是 NASDAQ 官方授权的全球市场数据 API 服务，由 Y Co
 
 3. **MCP 支持**：官方 MCP Server，在 AI Agent 生态中处于领先地位。
 
-4. **实时数据**：实时美股数据（非延迟）需额外通过 Alpha X Terminal 完成数据授权流程（FIN[[rust-analyzer|RA]] 合规要求）。
+4. **实时数据**：实时美股数据（非延迟）需额外通过 Alpha X Terminal 完成数据授权流程（FINRA 合规要求）。
 
 ## 来源
 - [[alpha_vantage]] — Alpha Vantage 深度分析报告

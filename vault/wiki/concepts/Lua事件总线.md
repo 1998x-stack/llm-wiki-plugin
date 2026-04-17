@@ -84,7 +84,7 @@ end
 引擎保存 Lua function 引用时，必须存入注册表（`lua_ref`），不能保存栈上临时值。存注册表的引用在 GC 标记为存活，栈临时值随函数返回即可能被回收。
 
 ### 命名空间约定
-大型项目建议给事件名加前缀区分系统：`"ui:button_click"`, `"com[[bat]]:boss_dead"`, `"net:data_recv"`，避免全局命名冲突。
+大型项目建议给事件名加前缀区分系统：`"ui:button_click"`, `"combat:boss_dead"`, `"net:data_recv"`，避免全局命名冲突。
 
 ## 常见陷阱
 - **忘记 off**：订阅者对象已销毁但仍在 listeners 中，emit 时访问已释放数据

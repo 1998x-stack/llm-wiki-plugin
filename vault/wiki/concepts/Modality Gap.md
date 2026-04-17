@@ -9,7 +9,7 @@ source_count: 2
 tags: [AI工程]
 aliases: ["模态鸿沟", "跨模态对齐问题", "多模态表示鸿沟"]
 relates_to:
-  - target: "[[CLIP]]"
+  - target: "CLIP"
     type: extends
     confidence: 0.9
   - target: "[[多模态检索]]"
@@ -37,7 +37,7 @@ Modality Gap（模态鸿沟）指多模态 [[Embedding]] 模型中，图像向�
 2. **实证证据（v14 实验）**：在 3D 渲染图检索任务中：
    - `qwen3-vl-embedding`（MMEB-V2 第一名）的图像→图像 modality gap 比 CLIP 更大
    - `text-embedding-v3` 编码 VLM 生成的图片文字描述，判别力是直接图像通道的 **33.6 倍**
-   - **[[Pi-Agent|Pi]]peline A（图转文→文本检索）被生产验证**：唯一显著贡献搜索质量的管线
+   - **Pipeline A（图转文→文本检索）被生产验证**：唯一显著贡献搜索质量的管线
 
 3. **主要解决路径**：
    - **间接路径（最有效）**：用生成式 VLM（如 [[Qwen-VL]] ）将图像转为文字描述 → 文本 [[Embedding]] 检索（避开 modality gap）
@@ -46,7 +46,7 @@ Modality Gap（模态鸿沟）指多模态 [[Embedding]] 模型中，图像向�
 
 4. **对系统设计的影响**：在特定领域（3D 资产、医学影像、工业检测）中，"图转文再检索"往往比直接[[多模态检索]]效果更好。系统设计时应先评估 modality gap 的实际影响再决策。
 
-5. **与 CLIP 的关系**：[[CLIP]] 通过[[对比学习]]实现跨模态对齐，但 Modality Gap 说明即使是 CLIP 这类模型，对齐也只是近似的，特别是在远离训练分布的专业领域。
+5. **与 CLIP 的关系**：CLIP 通过[[对比学习]]实现跨模态对齐，但 Modality Gap 说明即使是 CLIP 这类模型，对齐也只是近似的，特别是在远离训练分布的专业领域。
 
 ## 来源
 
@@ -55,6 +55,6 @@ Modality Gap（模态鸿沟）指多模态 [[Embedding]] 模型中，图像向�
 
 ## 相关
 
-- [[CLIP]] — extends（CLIP 试图解决的问题，但未完全消除）
+- CLIP — extends（CLIP 试图解决的问题，但未完全消除）
 - [[多模态检索]] — causes（Modality Gap 是多模态检索的核心挑战）
 - [[Embedding]] — compares_to

@@ -44,13 +44,13 @@ GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱�
    - 权威构建：原创研究/白皮书、透明作者署名、被高权威网站引用
    - 技术实现：Schema Markup（结构化数据）、AI 爬虫友好（不屏蔽 GPTBot/ClaudeBot/PerplexityBot）
 
-5. **平台差异化**：ChatGPT 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；[[Google]] AI Overviews 偏好已有高 [[SEO搜索引擎优化|SEO]] 排名的内容；Claude 偏好可溯源、有引用的结构化内容。
+5. **平台差异化**：ChatGPT 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；[[Google]] AI Overviews 偏好已有高 SEO 排名的内容；Claude 偏好可溯源、有引用的结构化内容。
 
 6. **衡量指标**：AIGVR（AI Visibility Rate）、Citation Rate（引用率）、CER（内容提取率）、C2CR（AI 引用→业务转化率）。
 
 7. **核心挑战**：黑盒特性（选源逻辑不透明）、零点击风险（AI 直接给答案，用户不访问原网站）、归因困难。
 
-8. **最佳实践**：[[SEO搜索引擎优化|SEO]] + GEO 双轨并行，而非单独押注。GEO 不是 [[SEO搜索引擎优化|SEO]] 的替代品，是 AI 搜索时代的必要延伸。
+8. **最佳实践**：SEO + GEO 双轨并行，而非单独押注。GEO 不是 SEO 的替代品，是 AI 搜索时代的必要延伸。
 
 ## 来源
 

@@ -28,7 +28,7 @@ supersedes: null
 ## 关键内容
 
 ### MoonSharp：纯 C# Lua 解释器
-[[MoonSharp]] 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2[[C++|CPP]]/AOT 平台（iOS 等）。
+[[MoonSharp]] 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2CPP/AOT 平台（iOS 等）。
 
 **对象注册流程**：
 1. 在 C# 类上标注 `[MoonSharpUserData]`，通过 `UserData.RegisterAssembly()` 批量注册
@@ -59,13 +59,13 @@ var table = lua.GetTable("my_table");                    // 读取表
 | 维度 | [[MoonSharp]] | NLua |
 |------|-----------|------|
 | 实现方式 | 纯 C# Lua 解释器 | 原生 Lua C 库 P/Invoke |
-| AOT/IL2[[C++|CPP]] 兼容 | 好（无原生依赖） | 需平台 native DLL |
+| AOT/IL2CPP 兼容 | 好（无原生依赖） | 需平台 native DLL |
 | 性能 | 略低于原生 | 接近原生 Lua |
 | API 风格 | DynValue 类型系统，强类型感 | 动态类型，接近原始 [[Lua C API 绑定层|Lua C API]] |
-| 适用场景 | Unity iOS/IL2[[C++|CPP]]、跨平台 .NET | Windows/Android 性能优先场景 |
+| 适用场景 | Unity iOS/IL2CPP、跨平台 .NET | Windows/Android 性能优先场景 |
 
 ### 与 xLua/tolua 的区别
-[[MoonSharp]]/NLua 是**通用 .NET Lua 桥**，适合任意 .NET 项目。[[Lua脚本宿主模式|xLua]]/[[Lua脚本宿主模式|tolua]]# 是**Unity 专用桥**，深度集成 Unity 组件生命周期、MonoBehaviour 和 IL2[[C++|CPP]] 热补丁机制，工程化程度更高。
+[[MoonSharp]]/NLua 是**通用 .NET Lua 桥**，适合任意 .NET 项目。xLua/[[Lua脚本宿主模式|tolua]]# 是**Unity 专用桥**，深度集成 Unity 组件生命周期、MonoBehaviour 和 IL2CPP 热补丁机制，工程化程度更高。
 
 ## 来源
 - [[engine-integration]] — 游戏引擎集成参考文档，Unity MoonSharp/NLua 集成示例代码段

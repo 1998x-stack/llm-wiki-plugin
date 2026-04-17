@@ -31,7 +31,7 @@ supersedes: null
 
 4. **与其他指标的关系**：MAE 衡量的是预测值与真实值的平均偏差，对异常值不敏感（相比均方误差 MSE）。在推荐系统中，MAE 的降低直接对应推荐质量的提升。
 
-5. **局限性**：MAE 只衡量评分预测的准确性，不直接反映推荐结果的相关性、多样性或用户满意度。现代推荐系统评估还引入了 Precision@K、[[NDCG]]、覆盖率等更多维度的指标。
+5. **局限性**：MAE 只衡量评分预测的准确性，不直接反映推荐结果的相关性、多样性或用户满意度。现代推荐系统评估还引入了 Precision@K、NDCG、覆盖率等更多维度的指标。
 
 ## 来源
 - [[Item-Based Collaborative Filtering Recommendation Algorithms]] — 第 7.2 节

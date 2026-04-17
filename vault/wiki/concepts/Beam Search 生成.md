@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **在 [[P5 论文|P5]] 中的应用**：[[P5 论文]] 在推理阶段使用 beam search（beam size=20）进行解码生成，根据不同任务的 Prompt 格式生成评分数值、物品 ID、解释文本或评论摘要。
+1. **在 P5 中的应用**：[[P5 论文]] 在推理阶段使用 beam search（beam size=20）进行解码生成，根据不同任务的 Prompt 格式生成评分数值、物品 ID、解释文本或评论摘要。
 
 2. **工作原理**：Beam Search 维护 beam_size 个候选序列，每一步扩展所有候选序列并保留概率最高的 beam_size 个，平衡了贪婪搜索的短视和穷举搜索的计算复杂度。
 
@@ -41,6 +41,6 @@ supersedes: null
 ## 相关
 - [[P5 论文]] — 使用 Beam Search 生成的论文
 - [[生成式推荐 (LLM)]] — Beam Search 生成的服务范式
-- [[T5]] — 使用 Beam Search 的骨干模型
+- T5 — 使用 Beam Search 的骨干模型
 - [[采样 Softmax]] — 传统推荐的候选生成加速技术
 - [[近似最近邻检索]] — 传统推荐的推理加速方法

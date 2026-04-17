@@ -29,12 +29,12 @@ Klicpera 等人于 ICLR 2019 发表的论文，基于 Personalized PageRank 思�
 
 3. **与 [[LightGCN]] 的联系**：[[LightGCN]] 的层组合策略可以被视为 APPNP 思想的一种体现——通过将第0层嵌入纳入最终表示，同样实现了"在长距离传播的同时保持局部性"的平衡。两者共享类似的抗过平滑机制，但 [[LightGCN]] 的均匀加权方案更为简洁，避免了额外超参数 α 的引入。
 
-4. **谱图理论视角**：APPNP 对应 PageRank 多项式，与 [[SGC]] 的单项式滤波器和 [[LightGCN]] 的均匀加权多项式共同构成了多项式图滤波器的统一框架。
+4. **谱图理论视角**：APPNP 对应 PageRank 多项式，与 SGC 的单项式滤波器和 [[LightGCN]] 的均匀加权多项式共同构成了多项式图滤波器的统一框架。
 
 ## 来源
 - [[15-lightgcn.md]] — LightGCN 论文中与 APPNP 的理论对比分析
 
 ## 相关
 - [[LightGCN]] — 共享抗过平滑机制，但层组合策略不同
-- [[SGC]] — 同为简化 GNN 的代表工作
+- SGC — 同为简化 GNN 的代表工作
 - [[Embedding]] — APPNP 使用的核心技术

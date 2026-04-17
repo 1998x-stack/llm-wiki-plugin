@@ -112,7 +112,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 |---------|------|---------|
 | `on_edit(file)` | 单文件增量诊断 | 0.2–2 秒 |
 | `on_cross_file_signal` | 相关依赖图扩展 | 2–10 秒 |
-| `on_submit` | changed-files / ta[[ripgrep|rg]]eted workspace diagnostics | 10–30 秒 |
+| `on_submit` | changed-files / targeted workspace diagnostics | 10–30 秒 |
 
 ### Observation 返回格式
 
@@ -153,14 +153,14 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 | **Hooks / settings.json** | "真的会做"：PostToolUse 自动触发 lint/test | additionalContext + decision:block |
 | **LSP** | "即时反馈"：edit 后自动报告 type errors/warnings | 内建 code intelligence |
 
-**核心原则**：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + [[eza|exa]]mples，快速语义反馈交给 LSP。
+**核心原则**：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。
 
 ### 单文件 vs 多文件编辑
 
 - **单次工具调用**：针对一个 path，作用对象是一个文件
 - **整个 agent run**：可以连续修改多个文件、创建新文件、回退编辑
 - 当前编辑器支持 `view/create/str_replace/insert/undo_edit`
-- 多文件修改通过多次工具调用实现，不是原子性的 [[bat]]ch multi-file edit
+- 多文件修改通过多次工具调用实现，不是原子性的 batch multi-file edit
 
 ## 来源
 

@@ -13,7 +13,7 @@ relates_to:
   - target: "[[多模态检索]]"
     type: implements
     confidence: 0.9
-  - target: "[[CLIP]]"
+  - target: "CLIP"
     type: uses
     confidence: 0.85
   - target: "[[Modality Gap]]"
@@ -26,7 +26,7 @@ supersedes: null
 
 ## 概述
 
-[[Meta]]Find 是元宇宙/3D 场景感知的多模态资产检索系统，核心创新是 ESSGNN（场景感知等变图编码器）+ ULIP-2 三模态对齐，实现文本/图片/3D 模型任意组合查询，并能感知场景上下文（已有家具的风格/尺寸/功能关系）。
+MetaFind 是元宇宙/3D 场景感知的多模态资产检索系统，核心创新是 ESSGNN（场景感知等变图编码器）+ ULIP-2 三模态对齐，实现文本/图片/3D 模型任意组合查询，并能感知场景上下文（已有家具的风格/尺寸/功能关系）。
 
 ## 关键内容
 
@@ -53,5 +53,5 @@ supersedes: null
 ## 相关
 
 - [[多模态检索]] — implements
-- [[CLIP]] — uses（ULIP-2 基于 CLIP 思路扩展）
+- CLIP — uses（ULIP-2 基于 CLIP 思路扩展）
 - [[Modality Gap]] — compares_to

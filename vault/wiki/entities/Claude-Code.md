@@ -44,7 +44,7 @@ supersedes: null
 # Claude Code
 
 ## 概述
-Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（[[MCP协议层|Model Context Protocol]]）协议。通过 Hook 系统支持第三方插件扩展（如 [[Claude-Mem]]），是当代 AI 辅助软件工程（A[[重要性采样|IS]]E）的核心工具。
+Claude Code 是 Anthropic 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 Claude 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（[[MCP协议层|Model Context Protocol]]）协议。通过 Hook 系统支持第三方插件扩展（如 [[Claude-Mem]]），是当代 AI 辅助软件工程（AISE）的核心工具。
 
 ## 关键内容
 ### 核心特性
@@ -68,7 +68,7 @@ Claude Code 支持并行 Agent 模式：主代理可将复杂任务分解为子�
 **核心工具演进**：
 - **[[AskUserQuestion-Tool|AskUserQuestion Tool]]**：三阶段演进（修改 [[ExitPlanTool]] → 更改输出格式 → 独立工具）
 - **[[TodoWrite-Tool|TodoWrite]] → [[Task-Tool|Task Tool]]**：从"保持模型轨道"到"Agent 间协调"
-- **[[检索增强生成|RAG]] → Grep → [[Agent Skills]]**：从"被动接受上下文"到"主动嵌套搜索"
+- **RAG → Grep → [[Agent Skills]]**：从"被动接受上下文"到"主动嵌套搜索"
 
 **渐进式披露**：
 - Claude Code 添加新功能而不新增工具的常用技巧

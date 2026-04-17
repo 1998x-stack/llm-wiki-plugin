@@ -46,7 +46,7 @@ Claude Mythos Preview 是 Anthropic 发布的预览版 Claude 模型，是支持
 - [[上下文压缩]]（[[上下文压缩|Server-side Compaction]]）
 - [[上下文感知]]（[[上下文感知|Context Awareness]]）
 - [[交错式思考]]（[[交错式思考|Interleaved Thinking]]）
-- 符合 [[零数据保留]] ([[零数据保留|ZDR]]) 条件
+- 符合 [[零数据保留]] (ZDR) 条件
 
 ### 模型系列定位
 

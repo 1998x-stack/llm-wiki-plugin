@@ -9,7 +9,7 @@ source_count: 1
 tags: [AI工程]
 aliases: ["WAND", "Weak And", "BMW", "Block-Max WAND", "DAAT", "TAAT"]
 relates_to:
-  - target: "[[BM25]]"
+  - target: "BM25"
     type: uses
     confidence: 0.95
   - target: "[[倒排索引]]"
@@ -37,9 +37,9 @@ WAND（Weak And）是 DAAT（Document-At-A-Time）遍历策略的优化版本，
    - **DAAT（Document-At-A-Time）**：每个词条维护游标，每轮处理所有游标最小文档，计算该文档完整得分。内存 O(Q)，配合 WAND 可提前终止，适合 AND/Top-K 检索。
 
 2. **WAND 核心步骤**：
-   - 预计算每词条最大得分：`max_score(t) = IDF(t) × (k₁+1)`（BM25-[[TensorFlow|TF]] 上界）
+   - 预计算每词条最大得分：`max_score(t) = IDF(t) × (k₁+1)`（BM25-TF 上界）
    - 维护当前 Top-K 最低分阈值 θ
-   - 每轮：将词条按当前指向 doc_id 排序 → 累加 max_score 找到第一个使累计 > θ 的词条（[[Pi-Agent|Pi]]vot）→ 若 [[Pi-Agent|Pi]]vot doc_id 之前词条也指向同一文档则精确计算；否则将前面词条游标跳进到 [[Pi-Agent|Pi]]vot doc_id → 更新 θ
+   - 每轮：将词条按当前指向 doc_id 排序 → 累加 max_score 找到第一个使累计 > θ 的词条（Pivot）→ 若 Pivot doc_id 之前词条也指向同一文档则精确计算；否则将前面词条游标跳进到 Pivot doc_id → 更新 θ
 
 3. **BMW（Block-Max WAND）**：将 Posting List 分成固定大小块（128 doc/块），存储每块的局部最大得分。上界更紧（块级而非全局），跳过精度更高。Lucene 8+ 默认使用，加速比 10-50x vs 普通 WAND 5-20x。
 
@@ -57,7 +57,7 @@ WAND（Weak And）是 DAAT（Document-At-A-Time）遍历策略的优化版本，
 
 ## 相关
 
-- [[BM25]] — uses
+- BM25 — uses
 - [[倒排索引]] — uses
 - [[查询处理]] — implements
 - [[学习排序]] — compares_to

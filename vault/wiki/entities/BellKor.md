@@ -27,9 +27,9 @@ supersedes: null
 
 1. **团队组成**：BellKor 队名由三位核心成员姓氏融合而成——Bell（[[Robert Bell]], AT&T Labs）+ Kor（[[Yehuda Koren]], [[Yahoo Research]]）。[[Chris Volinsky]]（AT&T Labs）也是核心成员。
 2. **竞赛历程**：
-   - 2007 年获得 Progress Prize（[[RMSE]] 0.8712，8.43% 提升）
-   - 2008 年以 "[[BellKor in BigChaos]]" 身份参赛（[[RMSE]] 0.8616，约 9.4% 提升）
-   - 2009 年 9 月以 "[[BellKor's Pragmatic Chaos]]" 身份最终获胜（[[RMSE]] 0.8567，10.06% 提升）
+   - 2007 年获得 Progress Prize（RMSE 0.8712，8.43% 提升）
+   - 2008 年以 "[[BellKor in BigChaos]]" 身份参赛（RMSE 0.8616，约 9.4% 提升）
+   - 2009 年 9 月以 "[[BellKor's Pragmatic Chaos]]" 身份最终获胜（RMSE 0.8567，10.06% 提升）
 3. **技术方案**：方案融合了超过 100 个模型，其中[[矩阵分解]]方法是绝对主力。融合了[[矩阵分解]]、近邻方法、受限玻尔兹曼机等多种模型进行集成。
 4. **历史地位**：BellKor 团队的工作将 [[Netflix Prize]] 竞赛中的实战经验升华为系统化的学术知识，其核心方法论通过 Koren 等人 2009 年 IEEE Computer 论文传播至整个计算机科学界。
 

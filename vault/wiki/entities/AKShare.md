@@ -33,7 +33,7 @@ AKShare 是开源全品类财经数据接口库（Python），提供 1000+ 接�
 
 2. **数据源命名约定**：函数后缀标识数据来源——`_em`（东方财富）、`_sina`（新浪财经）、`_ths`（同花顺）、`_js`（金十数据）、`_bs`（[[Baostock]]）、`_qq`（腾讯财经）。
 
-3. **模块结构**：stock（A 股核心行情）、stock_feature（龙虎榜/融资融券/北向资金）、economic（宏观经济）、fund（公募基金/E[[TensorFlow|TF]]）、bond（债券）、futures（期货）、option（期权）、forex（外汇）、crypto（数字货币）、index（指数）、news（财经新闻/舆情）。
+3. **模块结构**：stock（A 股核心行情）、stock_feature（龙虎榜/融资融券/北向资金）、economic（宏观经济）、fund（公募基金/ETF）、bond（债券）、futures（期货）、option（期权）、forex（外汇）、crypto（数字货币）、index（指数）、news（财经新闻/舆情）。
 
 4. **优势**：完全免费、无需注册、无 API Key、接口数量最多（1,046+）、覆盖市场最广。
 

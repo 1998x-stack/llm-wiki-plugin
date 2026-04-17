@@ -22,7 +22,7 @@ relates_to:
   - target: "[[诺伯特·维纳]]"
     type: contradicts
     confidence: 0.8
-  - target: "[[LQR]]"
+  - target: "LQR"
     type: caused
     confidence: 0.95
 supersedes: null
@@ -57,5 +57,5 @@ Kalman 的工作引发了控制理论的革命。他与他人共同发展的**�
 - [[卡尔曼滤波]]
 - [[优化控制序]]
 - [[诺伯特·维纳]]
-- [[LQR]]
+- LQR
  E. Kalman.md

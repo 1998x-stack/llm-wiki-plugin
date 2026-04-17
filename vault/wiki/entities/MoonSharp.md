@@ -29,7 +29,7 @@ MoonSharp 是纯 C# 实现的 Lua 解释器，用于在 Unity 等 .NET 环境中
 
 ## 关键内容
 
-1. **纯 C# 实现**：MoonSharp 不依赖原生 Lua C 库，完全用 C# 编写，可在 Unity IL2[[C++|CPP]] 等受限环境运行，无平台适配问题。
+1. **纯 C# 实现**：MoonSharp 不依赖原生 Lua C 库，完全用 C# 编写，可在 Unity IL2CPP 等受限环境运行，无平台适配问题。
 
 2. **`[MoonSharpUserData]` 特性**：标记 C# 类后，`UserData.RegisterType<T>()` 将其注册为 Lua 可用类型。Lua 侧可调用所有公开方法和属性，方法名映射保持不变。
 
@@ -39,7 +39,7 @@ MoonSharp 是纯 C# 实现的 Lua 解释器，用于在 Unity 等 .NET 环境中
 
 5. **Unity 集成模式**：通常在 `MonoBehaviour.Start()` 初始化 `Script`，在 `Update()` 调用 Lua `update` 函数，通过代理类（EntityProxy 等）将 GameObject 能力暴露给 Lua，实现 AI 行为脚本化。
 
-6. **与 [[MoonSharp与NLua|NLua]] 对比**：[[MoonSharp与NLua|NLua]] 是另一种 Unity Lua 方案，基于原生 Lua C 库的 .NET 绑定（需平台原生库）；MoonSharp 纯 C# 更安全但性能略低。
+6. **与 NLua 对比**：NLua 是另一种 Unity Lua 方案，基于原生 Lua C 库的 .NET 绑定（需平台原生库）；MoonSharp 纯 C# 更安全但性能略低。
 
 ## 来源
 - [[lua-gameengine-deep-research]] — 深度研究报告，Unity via MoonSharp/NLua 集成模式与代码示例分析

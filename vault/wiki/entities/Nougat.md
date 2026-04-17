@@ -24,7 +24,7 @@ supersedes: null
 
 ## 概述
 
-Nougat 是 [[Meta]] AI 开源的端到端 PDF 文档解析模型，基于视觉 [[Transformer架构|Transformer]] 将 PDF 页面图像直接转换为 Markdown，速度较慢且不支持中文。
+Nougat 是 Meta AI 开源的端到端 PDF 文档解析模型，基于视觉 [[Transformer架构|Transformer]] 将 PDF 页面图像直接转换为 Markdown，速度较慢且不支持中文。
 
 ## 关键内容
 
@@ -33,7 +33,7 @@ Nougat 是 [[Meta]] AI 开源的端到端 PDF 文档解析模型，基于视觉 
 | 特性 | Nougat | [[MinerU]] |
 |------|--------|--------|
 | 文字型 PDF | ✅ | ✅ 高质量 |
-| 扫描件 | ✅ | ✅ [[光学字符识别|OCR]]管道 |
+| 扫描件 | ✅ | ✅ OCR管道 |
 | 公式 → LaTeX | ✅ | ✅ [[UniMERNet]] |
 | 表格结构 | ❌ | ✅ [[TableMaster]] |
 | [[阅读顺序重建|阅读顺序]] | ✅ | ✅ 多栏支持 |

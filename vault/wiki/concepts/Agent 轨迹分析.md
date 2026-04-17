@@ -32,7 +32,7 @@ supersedes: null
 
 ## 概述
 
-Agent 轨迹分析是对 [[SWE-agent]] 运行过程中产生的 thought/action/observation 序列进行结构化分析的方法论，用于定位失败根因、理解行为模式、优化 [[Agent计算机接口|ACI]] 设计。
+Agent 轨迹分析是对 [[SWE-agent]] 运行过程中产生的 thought/action/observation 序列进行结构化分析的方法论，用于定位失败根因、理解行为模式、优化 ACI 设计。
 
 ## 关键内容
 

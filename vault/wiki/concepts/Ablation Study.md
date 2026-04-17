@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 [[Agent计算机接口|ACI]] 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。
+Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。
 
 ## 关键内容
 
@@ -39,7 +39,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 
 ### 实验设计方法
 
-论文以当前最佳的 [[SWE-agent]] 配置为基准，每次只替换一个 [[Agent计算机接口|ACI]] 组件，看性能变化。实验在 **[[SWE-bench]] Lite（300 个样本）** 上进行，针对 [[SWE-agent]] with GPT-4 Turbo 的 [[Agent计算机接口|ACI]] 做消融。
+论文以当前最佳的 [[SWE-agent]] 配置为基准，每次只替换一个 ACI 组件，看性能变化。实验在 **[[SWE-bench]] Lite（300 个样本）** 上进行，针对 [[SWE-agent]] with GPT-4 Turbo 的 ACI 做消融。
 
 论文想回答的核心问题：
 - 搜索工具应该怎么呈现给 agent？
@@ -57,7 +57,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 | **File Viewer** | 100 lines vs 30 lines vs full file | 100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7） | -3.7 / -5.3 | 适中窗口利于局部推理 |
 | **Context** | last 5 obs vs full history vs w/o demo | 最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3） | -3.0 / -1.7 | 简洁反馈、工作记忆有限 |
 
-**Table 3 的核心论点**：[[SWE-agent]] 的提升不是"碰巧系统堆起来更强"，而是 [[Agent计算机接口|ACI]] 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。
+**Table 3 的核心论点**：[[SWE-agent]] 的提升不是"碰巧系统堆起来更强"，而是 ACI 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。
 
 ### 各组件详细分析
 
@@ -91,11 +91,11 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 - **Full history（15.0）**：保留完整历史会把过时、低相关、重复性 observation 带入 prompt，增加噪声和 token 占用。
 - **w/o demo.（16.3）**：去掉 demonstration 后下降 1.7 个点，说明有帮助但不是决定性来源，更多是帮助 agent 学会正确使用命令和格式。
 
-**证明**：context management 是 [[Agent计算机接口|ACI]] 的一部分，而不是简单把所有历史都喂回去。最好的 agent 不是"记住一切"，而是"只保留还有决策价值的最近状态"。
+**证明**：context management 是 ACI 的一部分，而不是简单把所有历史都喂回去。最好的 agent 不是"记住一切"，而是"只保留还有决策价值的最近状态"。
 
 ### 四类消融共同证明的观点
 
-1. **性能提升来自 [[Agent计算机接口|ACI]] 设计，而不只是模型本身**：同一个 GPT-4 Turbo，只是换 interface design choice，解题率就能从 10.3/12.0/12.7/15.0 提升到 18.0。
+1. **性能提升来自 ACI 设计，而不只是模型本身**：同一个 GPT-4 Turbo，只是换 interface design choice，解题率就能从 10.3/12.0/12.7/15.0 提升到 18.0。
 2. **对人类友好的界面，不一定对 LM 友好**：最典型是 Iterative search，借鉴人类熟悉的 next/prev 体验，但对 agent 反而更差。
 3. **高性能 agent 依赖"简单动作 + 紧凑反馈 + 护栏 + 受控上下文"**：四类消融分别对应论文第 2 节的四条设计原则。
 4. **软件工程 agent 的问题是系统设计问题，不只是推理问题**：SWE agent 的成败不只取决于"模型会不会想到正确 patch"，也取决于能不能高效找到地方、能不能稳定改进去、能不能看到正确反馈、能不能不被历史噪声淹没。
