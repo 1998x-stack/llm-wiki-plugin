@@ -142,13 +142,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>定义</strong>：在 MCAR 机制下，每个用户对每个物品的评分都有相同的概率被观测到，缺失完全是随机的。此时观测到的数据就是全量数据的一个无偏子集，可以放心地在上面训练和评估模型。</p>
 </li>
 <li>
-<p><strong>与 <a href="MNAR.html">MNAR</a> 的对比</strong>：<a href="MNAR.html">MNAR</a>（非随机缺失）下，某个评分是否被观测到与该评分的值本身高度相关。MCAR 是最理想的缺失机制，但现实中极少出现。</p>
+<p><strong>与 MNAR 的对比</strong>：MNAR（非随机缺失）下，某个评分是否被观测到与该评分的值本身高度相关。MCAR 是最理想的缺失机制，但现实中极少出现。</p>
 </li>
 <li>
-<p><strong>在传统推荐系统中的隐式假设</strong>：大量 <a href="矩阵分解.html">矩阵分解</a> 方法（如经典 <a href="奇异值分解.html">SVD</a>、<a href="交替最小二乘法 ALS.html">ALS</a> 等）直接在观测到的评分上最小化误差，隐式假设缺失数据是 MCAR 的。这一假设在推荐系统场景中通常不成立。</p>
+<p><strong>在传统推荐系统中的隐式假设</strong>：大量 <a href="矩阵分解.html">矩阵分解</a> 方法（如经典 SVD、ALS 等）直接在观测到的评分上最小化误差，隐式假设缺失数据是 MCAR 的。这一假设在推荐系统场景中通常不成立。</p>
 </li>
 <li>
-<p><strong>与 <a href="逆倾向评分.html">IPS</a> 的关系</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人证明，当所有 <a href="倾向性评分.html">倾向性评分</a> 相等时（即 MCAR 情形），<a href="逆倾向评分.html">IPS</a> 退化为传统的朴素估计器。这说明传统方法是 <a href="逆倾向评分.html">IPS</a> 在 MCAR 特殊假设下的特例。</p>
+<p><strong>与 IPS 的关系</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人证明，当所有 <a href="倾向性评分.html">倾向性评分</a> 相等时（即 MCAR 情形），IPS 退化为传统的朴素估计器。这说明传统方法是 IPS 在 MCAR 特殊假设下的特例。</p>
 </li>
 <li>
 <p><strong>随机对照实验</strong>：在推荐系统中，通过随机强制曝光实验（如 <a href="../entities/Yahoo! R3.html">Yahoo! R3</a> 数据集的收集方式）可以近似实现 MCAR 条件，获得无偏的 ground truth 数据用于评估。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="MNAR.html">MNAR</a> — 非随机缺失，MCAR 的现实对照</li>
+<li>MNAR — 非随机缺失，MCAR 的现实对照</li>
 <li><a href="矩阵分解.html">矩阵分解</a> — 传统方法隐式假设 MCAR</li>
 <li><a href="逆倾向评分.html">逆倾向评分</a> — 在 MCAR 下退化为朴素估计器</li>
 <li><a href="../entities/Yahoo! R3.html">Yahoo! R3</a> — 通过随机实验近似 MCAR 的数据集</li>

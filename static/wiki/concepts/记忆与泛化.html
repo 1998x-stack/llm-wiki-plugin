@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>泛化的优势与局限</strong>：优势在于处理新情况和长尾物品；局限在于当用户-物品交互<a href="矩阵.html">矩阵</a>非常稀疏且高秩时，可能"过度泛化"（over-generalize），推荐出相关性不高的物品。</li>
 <li><strong>记忆与泛化的互补性</strong>：理想的推荐系统应同时具备两种能力，像"既有丰富经验、又有灵活思维"的推荐专家。记忆确保已知模式的精确性，泛化确保新情况的适应性。</li>
 <li><strong>在 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 中的实现</strong>：Wide 组件（线性模型 + 交叉特征）负责记忆，Deep 组件（DNN + 嵌入）负责泛化，通过<a href="联合训练.html">联合训练</a>在统一框架中实现互补。</li>
-<li><strong>超越 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的持久性</strong>：即使具体实现被更先进方法取代，这一概念框架依然适用。后续模型（<a href="../entities/DeepFM.html">DeepFM</a>、<a href="../entities/DCN.html">DCN</a>、<a href="../entities/xDeepFM.html">xDeepFM</a> 等）都在不同方式下解决"如何更好地平衡记忆与泛化"这一核心问题。</li>
+<li><strong>超越 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的持久性</strong>：即使具体实现被更先进方法取代，这一概念框架依然适用。后续模型（<a href="../entities/DeepFM.html">DeepFM</a>、DCN、<a href="../entities/xDeepFM.html">xDeepFM</a> 等）都在不同方式下解决"如何更好地平衡记忆与泛化"这一核心问题。</li>
 <li><strong>通俗类比</strong>：记忆如同"老中医"——凭借多年经验精准识别常见病症组合；泛化如同"AI 医生"——通过海量数据推理处理罕见病例。两者联合会诊，各取所长、互补短板。</li>
 </ol>
 <h2 id="_4">来源</h2>

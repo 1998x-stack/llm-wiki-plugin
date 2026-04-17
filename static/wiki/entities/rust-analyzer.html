@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rust-analyzer">rust-analyzer</h1>
 <h2 id="_1">概述</h2>
-<p>Rust 官方语言服务器，2022 年合并进 rust-lang 组织，取代 <a href="rls.html">rls</a> 成为 Rust 生态的标准 LSP 实现，采用 Salsa 增量计算框架实现高效的代码分析。</p>
+<p>Rust 官方语言服务器，2022 年合并进 rust-lang 组织，取代 rls 成为 Rust 生态的标准 LSP 实现，采用 Salsa 增量计算框架实现高效的代码分析。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>历史演进</strong>：2018 年 Aleksey Kladov (@matklad) 启动实验项目，2020 年 Rust 官方宣布其为 <a href="rls.html">rls</a> 继任者，2022 年合并进 rust-lang 组织，2023 年随 rustup 默认分发。</p>
+<p><strong>历史演进</strong>：2018 年 Aleksey Kladov (@matklad) 启动实验项目，2020 年 Rust 官方宣布其为 rls 继任者，2022 年合并进 rust-lang 组织，2023 年随 rustup 默认分发。</p>
 </li>
 <li>
 <p><strong>架构设计</strong>：采用 Salsa 增量计算框架（基于依赖追踪的增量分析，只重算变更部分）、Resilient 解析（即使代码有语法错误也能提供服务）、离散数据结构 CST（保留所有空白/注释信息）、无 panic 设计。</p>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="../concepts/LSP（语言服务器协议）.html">LSP（语言服务器协议）</a> — implements</li>
-<li><a href="rls.html">rls</a> — supersedes</li>
+<li>rls — supersedes</li>
 <li><span style="color:#e74c3c" title="broken link">Salsa</span> — depends_on</li>
 </ul>
   </div>

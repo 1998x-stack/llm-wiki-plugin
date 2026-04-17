@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ikeffector">IKEffector</h1>
 <h2 id="_1">概述</h2>
-<p><a href="逆向运动学.html">IK</a>Effector 是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的 <a href="逆向运动学.html">IK</a> 末端执行器组件，定义 <a href="逆向运动学.html">IK</a> 链的目标位置与旋转，挂载于需要 <a href="逆向运动学.html">IK</a> 驱动的末端关节，继承自 Component。</p>
+<p>IKEffector 是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的 IK 末端执行器组件，定义 IK 链的目标位置与旋转，挂载于需要 IK 驱动的末端关节，继承自 Component。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心概念</h3>
-<p><a href="逆向运动学.html">IK</a>Effector 告诉 <a href="IKSolver.html">IKSolver</a> "这个关节要达到哪里"。链长（chainLength）决定从此节点向上回溯多少个父节点参与 <a href="逆向运动学.html">IK</a> 求解，从而控制哪些关节被 <a href="逆向运动学.html">IK</a> 驱动。</p>
+<p>IKEffector 告诉 <a href="IKSolver.html">IKSolver</a> "这个关节要达到哪里"。链长（chainLength）决定从此节点向上回溯多少个父节点参与 IK 求解，从而控制哪些关节被 IK 驱动。</p>
 <h3 id="_4">目标控制方法</h3>
 <table>
 <thead>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>GetChainLength() / SetChainLength(unsigned)</code></td>
-<td>[[逆向运动学</td>
+<td>IK 影响的父节点层数</td>
 </tr>
 <tr>
 <td><code>GetWeight() / SetWeight(float)</code></td>
@@ -226,7 +226,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><code>chainLength</code></td>
 <td>unsigned</td>
-<td>[[逆向运动学</td>
+<td>IK 链长度（父节点层数）</td>
 </tr>
 <tr>
 <td><code>weight</code></td>
@@ -257,9 +257,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_7">典型用法</h3>
 <ul>
-<li>手部 <a href="逆向运动学.html">IK</a>：chainLength=2（手→前臂→上臂），跟随武器/交互点</li>
-<li>脚部 <a href="逆向运动学.html">IK</a>：chainLength=2（脚→小腿→大腿），落在地形表面</li>
-<li>weight &lt; 1 可实现 <a href="逆向运动学.html">IK</a> 与动画的混合叠加</li>
+<li>手部 IK：chainLength=2（手→前臂→上臂），跟随武器/交互点</li>
+<li>脚部 IK：chainLength=2（脚→小腿→大腿），落在地形表面</li>
+<li>weight &lt; 1 可实现 IK 与动画的混合叠加</li>
 </ul>
 <h2 id="_8">来源</h2>
 <ul>

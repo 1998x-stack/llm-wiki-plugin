@@ -138,12 +138,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>以候选物品为 Query、用户历史行为为 Key 和 Value 的注意力机制，使同一用户面对不同候选时展现不同的兴趣侧面。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心思想</strong> — 在推荐场景中，用户兴趣不是固定不变的，而是随候选物品动态变化的。Ta<a href="../entities/ripgrep.html">rg</a>et Attention 以候选物品的 <a href="Embedding.html">Embedding</a> 作为 Query，以用户历史行为的 <a href="Embedding.html">Embedding</a> 作为 Key 和 Value，计算每个历史行为与候选物品的相关性权重。</li>
-<li><strong>与 NLP 注意力的区别</strong> — 在机器翻译中，注意力权重由解码器当前状态和编码器所有状态共同决定。而在 Ta<a href="../entities/ripgrep.html">rg</a>et Attention 中，权重由候选广告和用户历史行为共同决定，是 ta<a href="../entities/ripgrep.html">rg</a>et-aware 的设计。</li>
-<li><strong><a href="../entities/DIN.html">DIN</a> 中的实现</strong> — <a href="../entities/DIN.html">DIN</a> 的<a href="局部激活单元.html">局部激活单元</a>即 Ta<a href="../entities/ripgrep.html">rg</a>et Attention 的具体实现：$v_u(a) = \sum_{i=1}^{T} a(e_i, e_a) \cdot e_i$，其中 $a(e_i, e_a)$ 是注意力权重函数，$e_a$ 是候选广告 <a href="Embedding.html">Embedding</a>。</li>
-<li><strong>放弃 Softmax 归一化</strong> — <a href="../entities/DIN.html">DIN</a> 刻意不在注意力权重上施加 Softmax，以保留兴趣强度信息。两个用户相比，浏览了 10 个相关商品的用户应该比只浏览了 1 个相关商品的用户表现出更强的兴趣。</li>
-<li><strong>后续演进</strong> — Ta<a href="../entities/ripgrep.html">rg</a>et Attention 是最基础的注意力形式，后续工作引入了更复杂的变体：<a href="Self-Attention机制.html">Self-Attention</a>（<a href="../entities/BST.html">BST</a>、<a href="../entities/SASRec.html">SASRec</a>）让行为序列内部元素相互关注；<a href="多头注意力.html">Multi-Head Attention</a>（DSIN）通过多头机制并行捕获不同方面的兴趣；Cross-Attention 在多模态推荐中连接不同特征空间。</li>
-<li><strong>工业影响</strong> — Ta<a href="../entities/ripgrep.html">rg</a>et Attention 因其简洁性和有效性，成为工业级推荐系统的默认选择。当不确定用什么方法建模用户行为时，先用 Ta<a href="../entities/ripgrep.html">rg</a>et Attention 通常不会错。</li>
+<li><strong>核心思想</strong> — 在推荐场景中，用户兴趣不是固定不变的，而是随候选物品动态变化的。Target Attention 以候选物品的 <a href="Embedding.html">Embedding</a> 作为 Query，以用户历史行为的 <a href="Embedding.html">Embedding</a> 作为 Key 和 Value，计算每个历史行为与候选物品的相关性权重。</li>
+<li><strong>与 NLP 注意力的区别</strong> — 在机器翻译中，注意力权重由解码器当前状态和编码器所有状态共同决定。而在 Target Attention 中，权重由候选广告和用户历史行为共同决定，是 target-aware 的设计。</li>
+<li><strong>DIN 中的实现</strong> — DIN 的<a href="局部激活单元.html">局部激活单元</a>即 Target Attention 的具体实现：$v_u(a) = \sum_{i=1}^{T} a(e_i, e_a) \cdot e_i$，其中 $a(e_i, e_a)$ 是注意力权重函数，$e_a$ 是候选广告 <a href="Embedding.html">Embedding</a>。</li>
+<li><strong>放弃 Softmax 归一化</strong> — DIN 刻意不在注意力权重上施加 Softmax，以保留兴趣强度信息。两个用户相比，浏览了 10 个相关商品的用户应该比只浏览了 1 个相关商品的用户表现出更强的兴趣。</li>
+<li><strong>后续演进</strong> — Target Attention 是最基础的注意力形式，后续工作引入了更复杂的变体：<a href="Self-Attention机制.html">Self-Attention</a>（BST、<a href="../entities/SASRec.html">SASRec</a>）让行为序列内部元素相互关注；<a href="多头注意力.html">Multi-Head Attention</a>（DSIN）通过多头机制并行捕获不同方面的兴趣；Cross-Attention 在多模态推荐中连接不同特征空间。</li>
+<li><strong>工业影响</strong> — Target Attention 因其简洁性和有效性，成为工业级推荐系统的默认选择。当不确定用什么方法建模用户行为时，先用 Target Attention 通常不会错。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,11 +151,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../entities/DIN.html">DIN</a> — Target Attention 的首创者</li>
+<li>DIN — Target Attention 的首创者</li>
 <li><span style="color:#e74c3c" title="broken link">注意力机制</span> — Target Attention 的父类概念</li>
 <li><span style="color:#e74c3c" title="broken link">Self-Attention</span> — 后续演进方向</li>
 <li><a href="局部激活单元.html">局部激活单元</a> — Target Attention 在 DIN 中的具体实现</li>
-<li><a href="../entities/BST.html">BST</a> — 用 Self-Attention 替代 Target Attention</li>
+<li>BST — 用 Self-Attention 替代 Target Attention</li>
 </ul>
   </div>
   <div class="page-nav">

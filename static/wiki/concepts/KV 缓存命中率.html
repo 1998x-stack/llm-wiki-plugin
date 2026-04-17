@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="kv">KV 缓存命中率</h1>
 <h2 id="_1">概述</h2>
-<p>KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理请求中多少输入 token 可以利用已缓存的 Key-Value 对，直接影响延迟（T<a href="../entities/TensorFlow.html">TF</a>T）和成本——缓存命中与未命中的成本差异可达 10 倍。</p>
+<p>KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理请求中多少输入 token 可以利用已缓存的 Key-Value 对，直接影响延迟（TTFT）和成本——缓存命中与未命中的成本差异可达 10 倍。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="agent">为什么对 Agent 特别重要</h3>
 <p>典型 Agent 的运行模式导致<strong>输入/输出 token 比例高度倾斜</strong>：

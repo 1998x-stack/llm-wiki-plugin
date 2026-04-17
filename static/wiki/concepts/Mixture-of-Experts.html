@@ -147,8 +147,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="moe">从 MoE 到多任务学习的演进</h3>
 <ul>
 <li><strong>OMoE</strong>(One-gate MoE)：将 MoE 应用于<a href="多任务学习.html">多任务学习</a>的直接方式，所有任务共享同一门控网络</li>
-<li><strong><a href="MMoE.html">MMoE</a></strong>(Multi-gate MoE)：为每任务配备独立门控网络，实现任务特定的专家选择</li>
-<li><a href="MMoE.html">MMoE</a> 相比 Shared-Bottom 的进步：将底层网络模块化，不同输入激活不同专家组合</li>
+<li><strong>MMoE</strong>(Multi-gate MoE)：为每任务配备独立门控网络，实现任务特定的专家选择</li>
+<li>MMoE 相比 Shared-Bottom 的进步：将底层网络模块化，不同输入激活不同专家组合</li>
 </ul>
 <h3 id="_4">在大模型时代的复兴</h3>
 <ul>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="llm-moe-vs-moe">LLM 中的 MoE vs 推荐系统中的 MoE</h3>
 <ul>
 <li>LLM 中：token 级别的稀疏路由，通常使用 top-k 门控</li>
-<li>推荐系统中(<a href="MMoE.html">MMoE</a>)：样本级别的软路由，所有专家都有非零权重</li>
+<li>推荐系统中(MMoE)：样本级别的软路由，所有专家都有非零权重</li>
 <li>核心思想一脉相承：用门控/路由机制决定哪些专家处理当前输入</li>
 </ul>
 <h3 id="_5">未解之题</h3>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_7">相关</h2>
 <ul>
-<li><a href="MMoE.html">MMoE</a> — MoE 在多任务学习中的关键应用</li>
+<li>MMoE — MoE 在多任务学习中的关键应用</li>
 <li><a href="多任务学习.html">多任务学习</a> — MoE 的重要应用领域</li>
 <li>大语言模型 — MoE 在大模型时代的规模化复兴</li>
 </ul>

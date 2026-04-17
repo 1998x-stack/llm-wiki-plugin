@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>查询扩展</strong>：</p>
 </li>
 <li>基于关联规则（搜索日志挖掘同义词/相关词）</li>
-<li>伪相关反馈（<a href="Probabilistic Robotics.html">PR</a>F）：假设 Top-k 文档相关，从中提取高权重词加入查询。Rocchio 算法：<code>q_new = α×q_old + β×(相关文档均值) - γ×(非相关文档均值)</code>。风险：主题漂移（Query Drift）</li>
+<li>伪相关反馈（PRF）：假设 Top-k 文档相关，从中提取高权重词加入查询。Rocchio 算法：<code>q_new = α×q_old + β×(相关文档均值) - γ×(非相关文档均值)</code>。风险：主题漂移（Query Drift）</li>
 <li>
 <p>词嵌入扩展：Word2Vec 最相似词（cosine &gt; 0.7）</p>
 </li>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="倒排索引.html">倒排索引</a> — uses</li>
 <li><a href="文本预处理.html">文本预处理</a> — uses</li>
 <li><a href="WAND算法.html">WAND算法</a> — uses</li>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — uses</li>
+<li>BM25 — uses</li>
 </ul>
   </div>
   <div class="page-nav">

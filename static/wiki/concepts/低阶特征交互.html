@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>定义</strong>：低阶<a href="特征交叉.html">特征交互</a>包括一阶（单个特征的独立重要性）和二阶（两个特征之间的组合关系）。例如"用户喜欢辣"是一阶特征，"喜欢辣 × 夏天 = 酸辣冷面"是二阶交互。</li>
-<li><strong><a href="../entities/Factorization Machines.html">FM</a> 建模</strong>：<a href="../entities/Factorization Machines.html">FM</a> 通过为每个特征学习<a href="嵌入表示.html">隐向量</a>，用<a href="嵌入表示.html">隐向量</a>内积自动建模所有二阶<a href="特征交叉.html">特征交互</a>，无需手工构造交叉特征。二阶项的计算复杂度通过数学变换从 O(kn²) 化简为 O(kn)。</li>
-<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 中的角色</strong>：在 <a href="../entities/DeepFM.html">DeepFM</a> 中，低阶交互由 <a href="../entities/Factorization Machines.html">FM</a> 组件负责，包括一阶线性项 ⟨w, x⟩ 和二阶交叉项 Σ⟨V_i, V_j⟩ · x_i · x_j。<a href="../entities/Factorization Machines.html">FM</a> 组件擅长显式建模低阶交互。</li>
-<li><strong>与高阶交互的互补</strong>：实验表明低阶和高阶交互都不可或缺。只考虑低阶交互的 <a href="../entities/Factorization Machines.html">FM</a>，或只考虑高阶交互的 <a href="../entities/FNN.html">FNN</a>/<a href="../entities/PNN.html">PNN</a>，都不如同时考虑两者的 <a href="../entities/DeepFM.html">DeepFM</a>。</li>
-<li><strong>局限性</strong>：<a href="../entities/Factorization Machines.html">FM</a> 组件局限于二阶交叉，理论上可扩展到更高阶但计算复杂度指数级增长，实践中几乎不可行。<a href="../entities/AFM.html">AFM</a> 通过注意力机制为不同<a href="特征交叉.html">特征交互</a>赋予不同权重，解决了 <a href="../entities/Factorization Machines.html">FM</a> 暴力枚举所有特征对的问题。</li>
+<li><strong>FM 建模</strong>：FM 通过为每个特征学习<a href="嵌入表示.html">隐向量</a>，用<a href="嵌入表示.html">隐向量</a>内积自动建模所有二阶<a href="特征交叉.html">特征交互</a>，无需手工构造交叉特征。二阶项的计算复杂度通过数学变换从 O(kn²) 化简为 O(kn)。</li>
+<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 中的角色</strong>：在 <a href="../entities/DeepFM.html">DeepFM</a> 中，低阶交互由 FM 组件负责，包括一阶线性项 ⟨w, x⟩ 和二阶交叉项 Σ⟨V_i, V_j⟩ · x_i · x_j。FM 组件擅长显式建模低阶交互。</li>
+<li><strong>与高阶交互的互补</strong>：实验表明低阶和高阶交互都不可或缺。只考虑低阶交互的 FM，或只考虑高阶交互的 FNN/PNN，都不如同时考虑两者的 <a href="../entities/DeepFM.html">DeepFM</a>。</li>
+<li><strong>局限性</strong>：FM 组件局限于二阶交叉，理论上可扩展到更高阶但计算复杂度指数级增长，实践中几乎不可行。AFM 通过注意力机制为不同<a href="特征交叉.html">特征交互</a>赋予不同权重，解决了 FM 暴力枚举所有特征对的问题。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/DeepFM.html">DeepFM</a> — FM 组件负责低阶交互</li>
 <li><a href="../entities/Factorization Machines.html">Factorization Machines</a> — 低阶交互建模基础</li>
 <li><a href="高阶特征交互.html">高阶特征交互</a> — 互补概念</li>
-<li><a href="../entities/AFM.html">AFM</a> — 注意力加权的低阶交互</li>
+<li>AFM — 注意力加权的低阶交互</li>
 </ul>
   </div>
   <div class="page-nav">

@@ -166,13 +166,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>训练目标</strong>：<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在四个数据集（<a href="Amazon.html">Amazon</a> Beauty/Games, Steam, <a href="MovieLens.html">MovieLens</a>-1M）上均取得最优表现，Hit Rate 提升 6.9%，<a href="../concepts/NDCG.html">NDCG</a> 提升 9.6%（相对最强基线）。训练速度比 <a href="Caser.html">Caser</a> 快约 11 倍，比 <a href="GRU4Rec.html">GRU4Rec</a>+ 快约 17 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒收敛）。</p>
+<p><strong>实验结果</strong>：在四个数据集（<a href="Amazon.html">Amazon</a> Beauty/Games, Steam, <a href="MovieLens.html">MovieLens</a>-1M）上均取得最优表现，Hit Rate 提升 6.9%，NDCG 提升 9.6%（相对最强基线）。训练速度比 <a href="Caser.html">Caser</a> 快约 11 倍，比 <a href="GRU4Rec.html">GRU4Rec</a>+ 快约 17 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒收敛）。</p>
 </li>
 <li>
 <p><strong>理论退化分析</strong>：当<a href="../concepts/Self-Attention机制.html">自注意力</a>块退化为恒等映射、使用非共享物品嵌入、移除<a href="../concepts/位置编码.html">位置编码</a>时，SASRec 退化为 <a href="FPMC.html">分解马尔可夫链</a>，证明 SASRec 是经典<a href="../concepts/协同过滤.html">协同过滤</a>模型的广义化。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：<a href="../concepts/Transformer架构.html">Transformer</a> 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 <a href="../concepts/Transformer架构.html">Transformer</a> 时代。催生了 <a href="BERT4Rec.html">BERT4Rec</a>（2019）、<a href="TiSASRec.html">TiSASRec</a>（2020）、<a href="SSE-PT.html">SSE-PT</a>（2020）、<a href="BST.html">BST</a>（2019）、<a href="S3-Rec.html">S3-Rec</a>（2020）、<a href="LightSANs.html">LightSANs</a>（2021）、<a href="DuoRec.html">DuoRec</a>（2022）、<a href="SASRec+.html">SASRec+</a>（2023）等一系列后续工作。阿里巴巴的 <a href="BST.html">BST</a> 直接受其启发应用于淘宝<a href="../concepts/CTR 预估.html">点击率预估</a>系统。</p>
+<p><strong>历史地位</strong>：<a href="../concepts/Transformer架构.html">Transformer</a> 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 <a href="../concepts/Transformer架构.html">Transformer</a> 时代。催生了 <a href="BERT4Rec.html">BERT4Rec</a>（2019）、<a href="TiSASRec.html">TiSASRec</a>（2020）、<a href="SSE-PT.html">SSE-PT</a>（2020）、BST（2019）、<a href="S3-Rec.html">S3-Rec</a>（2020）、<a href="LightSANs.html">LightSANs</a>（2021）、<a href="DuoRec.html">DuoRec</a>（2022）、<a href="SASRec+.html">SASRec+</a>（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于淘宝<a href="../concepts/CTR 预估.html">点击率预估</a>系统。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 <a href="BERT4Rec.html">BERT4Rec</a> 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 <a href="TiSASRec.html">TiSASRec</a> 弥补）；"一正一负"训练目标非最优（后续 <a href="SASRec+.html">SASRec+</a> 证明替换为全物品 softmax 可显著提升）。</p>
@@ -191,7 +191,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/序列推荐.html">序列推荐</a> — SASRec 解决的核心场景</li>
 <li><a href="GRU4Rec.html">GRU4Rec</a> — SASRec 超越的 RNN 基线</li>
 <li><a href="Caser.html">Caser</a> — SASRec 超越的 CNN 基线</li>
-<li><a href="FPMC.html">FPMC</a> — SASRec 超越的 MC 基线，SASRec 可退化为其特例</li>
+<li>FPMC — SASRec 超越的 MC 基线，SASRec 可退化为其特例</li>
 <li><a href="BERT4Rec.html">BERT4Rec</a> — 双向 Transformer 后续工作，与 SASRec 持续竞争</li>
 <li><a href="../concepts/自注意力机制.html">自注意力机制</a> — SASRec 的核心计算机制</li>
 <li><a href="../concepts/位置编码.html">位置编码</a> — SASRec 使用可学习位置嵌入</li>
@@ -200,13 +200,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/二元交叉熵.html">二元交叉熵</a> — SASRec 的训练损失函数</li>
 <li><a href="../concepts/马尔可夫链.html">马尔可夫链</a> — SASRec 在稀疏数据上退化的行为模式</li>
 <li><a href="TiSASRec.html">TiSASRec</a> — 引入时间间隔感知的 SASRec 后续</li>
-<li><a href="BST.html">BST</a> — 阿里巴巴受 SASRec 启发的工业级 CTR 模型</li>
+<li>BST — 阿里巴巴受 SASRec 启发的工业级 CTR 模型</li>
 <li><a href="S3-Rec.html">S3-Rec</a> — 引入自监督预训练的 SASRec 后续</li>
 <li><a href="SSE-PT.html">SSE-PT</a> — 加入个性化嵌入的 SASRec 后续</li>
 <li><a href="LightSANs.html">LightSANs</a> — 轻量级自注意力网络的 SASRec 后续</li>
 <li><a href="DuoRec.html">DuoRec</a> — 对比学习增强的 SASRec 后续</li>
 <li><a href="SASRec+.html">SASRec+</a> — 优化损失函数后反超 BERT4Rec 的 SASRec 后续</li>
-<li><a href="HSTU.html">HSTU</a> — Meta 的生成式推荐工作，概念上追溯到 SASRec 的自回归框架</li>
+<li>HSTU — Meta 的生成式推荐工作，概念上追溯到 SASRec 的自回归框架</li>
 </ul>
   </div>
   <div class="page-nav">

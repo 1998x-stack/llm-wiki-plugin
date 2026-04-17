@@ -243,8 +243,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td><code>on_submit</code></td>
-<td>changed-files / ta<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
-&lt;td&gt;rg</span>eted workspace diagnostics</td>
+<td>changed-files / targeted workspace diagnostics</td>
+<td>10–30 秒</td>
 </tr>
 </tbody>
 </table>
@@ -322,13 +322,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><strong>核心原则</strong>：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + <a href="../entities/eza.html">exa</a>mples，快速语义反馈交给 LSP。</p>
+<p><strong>核心原则</strong>：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。</p>
 <h3 id="vs">单文件 vs 多文件编辑</h3>
 <ul>
 <li><strong>单次工具调用</strong>：针对一个 path，作用对象是一个文件</li>
 <li><strong>整个 agent run</strong>：可以连续修改多个文件、创建新文件、回退编辑</li>
 <li>当前编辑器支持 <code>view/create/str_replace/insert/undo_edit</code></li>
-<li>多文件修改通过多次工具调用实现，不是原子性的 <a href="../entities/bat.html">bat</a>ch multi-file edit</li>
+<li>多文件修改通过多次工具调用实现，不是原子性的 batch multi-file edit</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

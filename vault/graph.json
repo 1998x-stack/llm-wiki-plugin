@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generated": "2026-04-17T03:39:48.702435+00:00",
+    "generated": "2026-04-17T03:42:11.353267+00:00",
     "total_nodes": 953,
-    "total_edges": 7141,
+    "total_edges": 7145,
     "orphan_count": 0,
     "component_count": 10
   },
@@ -369,7 +369,7 @@
         "隐式反馈",
         "贝叶斯方法"
       ],
-      "edge_count": 31
+      "edge_count": 32
     },
     {
       "id": "wiki/concepts/Batch Normalization.md",
@@ -2339,7 +2339,7 @@
         "NCF",
         "模型融合"
       ],
-      "edge_count": 16
+      "edge_count": 19
     },
     {
       "id": "wiki/concepts/NoisyNets.md",
@@ -2963,7 +2963,7 @@
       "tags": [
         "AI工程"
       ],
-      "edge_count": 10
+      "edge_count": 11
     },
     {
       "id": "wiki/concepts/TOP1 Loss.md",
@@ -5737,7 +5737,7 @@
         "方法论",
         "AI工程"
       ],
-      "edge_count": 36
+      "edge_count": 37
     },
     {
       "id": "wiki/concepts/检索重排序.md",
@@ -7749,7 +7749,7 @@
         "排序学习",
         "UAI"
       ],
-      "edge_count": 31
+      "edge_count": 32
     },
     {
       "id": "wiki/entities/BST.md",
@@ -9466,7 +9466,7 @@
         "开源",
         "Baseline"
       ],
-      "edge_count": 12
+      "edge_count": 13
     },
     {
       "id": "wiki/entities/RecSys 2022.md",
@@ -13490,6 +13490,12 @@
     {
       "source": "wiki/concepts/BPR.md",
       "target": "wiki/entities/LightGCN.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/BPR.md",
+      "target": "wiki/concepts/NeuMF.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -32179,6 +32185,12 @@
     },
     {
       "source": "wiki/concepts/检索增强生成.md",
+      "target": "wiki/concepts/TF-IDF.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/检索增强生成.md",
       "target": "wiki/concepts/提示词缓存.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -38887,6 +38899,12 @@
     },
     {
       "source": "wiki/entities/BPR 论文.md",
+      "target": "wiki/concepts/NeuMF.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/BPR 论文.md",
       "target": "wiki/entities/DeepFM.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -45200,6 +45218,12 @@
     {
       "source": "wiki/entities/RecBole.md",
       "target": "wiki/concepts/协同过滤.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/RecBole.md",
+      "target": "wiki/concepts/NeuMF.md",
       "relation": "wikilink",
       "bidirectional": false
     },

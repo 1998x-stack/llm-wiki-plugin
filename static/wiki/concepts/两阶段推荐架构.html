@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构总览</strong>：数十亿视频语料库 → <a href="候选生成.html">候选生成</a>（缩小到数百个）→ 排序（精细化到数十个）→ 用户。核心思想是"漏斗模型"（Funnel Model）：第一阶段用相对简单的模型快速筛选，第二阶段用更复杂、特征更丰富的模型<a href="检索重排序.html">精排</a>。两个阶段各司其职，在效率和效果之间取得精妙平衡。</p>
 </li>
 <li>
-<p><strong><a href="候选生成.html">候选生成</a>阶段（<a href="候选生成.html">Candidate Generation</a> / 召回）</strong>：从数十亿候选集中快速筛选出数百个粗略候选。使用相对粗粒度的特征（如观看历史 embedding 平均、搜索历史、人口统计学），模型目标为高召回率。服务方式通常为 <a href="近似最近邻检索.html">近似最近邻检索</a>（<a href="近似最近邻检索.html">ANN</a>），在亚线性时间内完成检索。详见 <a href="候选生成.html">候选生成</a>。</p>
+<p><strong><a href="候选生成.html">候选生成</a>阶段（<a href="候选生成.html">Candidate Generation</a> / 召回）</strong>：从数十亿候选集中快速筛选出数百个粗略候选。使用相对粗粒度的特征（如观看历史 embedding 平均、搜索历史、人口统计学），模型目标为高召回率。服务方式通常为 <a href="近似最近邻检索.html">近似最近邻检索</a>（ANN），在亚线性时间内完成检索。详见 <a href="候选生成.html">候选生成</a>。</p>
 </li>
 <li>
 <p><strong>排序阶段（Ranking / <a href="检索重排序.html">精排</a>）</strong>：对数百个候选进行精细化打分排序。可使用丰富得多的特征（因为计算量可控），包括候选视频 embedding、用户与候选视频的交互特征、候选来源特征、用户历史统计特征、视频特征等。模型目标为高精确率，服务方式为逐一打分。</p>
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构演进</strong>：该范式后来被进一步细化为"召回 → 粗排 → <a href="检索重排序.html">精排</a> → 重排"的四阶段流水线，但基本思想一脉相承。全球几乎所有大规模推荐系统——淘宝、抖音、快手、<a href="../entities/Netflix.html">Netflix</a>、<a href="../entities/Spotify.html">Spotify</a>、LinkedIn、Twitter（X）——都在某种程度上遵循这一架构。</p>
 </li>
 <li>
-<p><strong>现代演进（2016 → 2026）</strong>：<a href="候选生成.html">候选生成</a>从简单 DNN + <a href="近似最近邻检索.html">ANN</a> 发展为多路召回 + 图神经网络 + 序列模型；排序从 DNN + 手工特征发展为 <a href="Transformer架构.html">Transformer</a> + 自动<a href="特征交叉.html">特征交叉</a> + <a href="多任务学习.html">多任务学习</a>；特征从稀疏 ID + 简单统计发展为预训练 embedding + 实时特征 + 多模态特征；优化目标从单目标发展为多目标<a href="联合训练.html">联合优化</a> + 约束优化。</p>
+<p><strong>现代演进（2016 → 2026）</strong>：<a href="候选生成.html">候选生成</a>从简单 DNN + ANN 发展为多路召回 + 图神经网络 + 序列模型；排序从 DNN + 手工特征发展为 <a href="Transformer架构.html">Transformer</a> + 自动<a href="特征交叉.html">特征交叉</a> + <a href="多任务学习.html">多任务学习</a>；特征从稀疏 ID + 简单统计发展为预训练 embedding + 实时特征 + 多模态特征；优化目标从单目标发展为多目标<a href="联合训练.html">联合优化</a> + 约束优化。</p>
 </li>
 <li>
-<p><strong>为何端到端无法替代</strong>：尽管学术界不断提出端到端（end-to-end）的推荐方案，但在真实的超大规模场景下，两阶段架构在效率和效果之间的平衡仍然无可替代。当需要从数十亿候选中进行快速检索时，"embedding + <a href="近似最近邻检索.html">ANN</a>"范式是不可或缺的基础组件。</p>
+<p><strong>为何端到端无法替代</strong>：尽管学术界不断提出端到端（end-to-end）的推荐方案，但在真实的超大规模场景下，两阶段架构在效率和效果之间的平衡仍然无可替代。当需要从数十亿候选中进行快速检索时，"embedding + ANN"范式是不可或缺的基础组件。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

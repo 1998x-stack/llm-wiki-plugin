@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="double-dqn">Double DQN</h1>
 <h2 id="_1">概述</h2>
-<p>Double <a href="DQN.html">DQN</a>（van Hasselt et al., <a href="../entities/DeepMind.html">DeepMind</a>, AAAI 2016）针对 <a href="DQN.html">DQN</a> 的 Q 值系统性过估计问题，通过解耦动作选择与 Q 值评估来消除偏差。核心改动仅需一行代码：用在线网络选择动作，用<a href="目标网络.html">目标网络</a>评估该动作的 Q 值，在 49 款 Atari 游戏中将中位数得分从 79% 提升至 117%。</p>
+<p>Double DQN（van Hasselt et al., <a href="../entities/DeepMind.html">DeepMind</a>, AAAI 2016）针对 DQN 的 Q 值系统性过估计问题，通过解耦动作选择与 Q 值评估来消除偏差。核心改动仅需一行代码：用在线网络选择动作，用<a href="目标网络.html">目标网络</a>评估该动作的 Q 值，在 49 款 Atari 游戏中将中位数得分从 79% 提升至 117%。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -149,17 +149,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>解决方案——解耦选择与评估</strong>：</p>
 </li>
-<li><strong><a href="DQN.html">DQN</a> 目标</strong>（选择和评估都用<a href="目标网络.html">目标网络</a>）：
+<li><strong>DQN 目标</strong>（选择和评估都用<a href="目标网络.html">目标网络</a>）：
      <code>y_DQN = r + γ · Q_{θ̄}(s', argmax_{a'} Q_{θ̄}(s', a'))</code></li>
 <li>
-<p><strong>Double <a href="DQN.html">DQN</a> 目标</strong>（在线网络选择，<a href="目标网络.html">目标网络</a>评估）：
+<p><strong>Double DQN 目标</strong>（在线网络选择，<a href="目标网络.html">目标网络</a>评估）：
      <code>y_DDQN = r + γ · Q_{θ̄}(s', argmax_{a'} Q_θ(s', a'))</code></p>
 </li>
 <li>
-<p><strong>实现极简</strong>：利用 <a href="DQN.html">DQN</a> 已有的在线网络 θ 与<a href="目标网络.html">目标网络</a> θ̄ 两套结构，仅修改目标计算一行，无需额外参数。</p>
+<p><strong>实现极简</strong>：利用 DQN 已有的在线网络 θ 与<a href="目标网络.html">目标网络</a> θ̄ 两套结构，仅修改目标计算一行，无需额外参数。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 49 款 Atari 游戏中 41 款优于 <a href="DQN.html">DQN</a>；Q 值过估计从平均 300% 高估降至接近真实值；Wizard of Wor 等游戏提升超 2 倍。</p>
+<p><strong>实验结果</strong>：在 49 款 Atari 游戏中 41 款优于 DQN；Q 值过估计从平均 300% 高估降至接近真实值；Wizard of Wor 等游戏提升超 2 倍。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：过估计未完全消除（两网络仍高度相关），且在某些低估情形下表现略差。</p>
@@ -171,7 +171,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="DQN.html">DQN</a> — extends</li>
+<li>DQN — extends</li>
 <li><a href="强化学习.html">强化学习</a> — part_of</li>
 <li><a href="Dueling DQN.html">Dueling DQN</a> — compares_to</li>
 <li><a href="优先经验回放.html">优先经验回放</a> — compares_to</li>

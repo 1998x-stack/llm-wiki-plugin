@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="light">Light光照系统</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的 Light 组件（继承自 Drawable）支持方向光、点光源、聚光灯三种类型，提供物理值模式、阴影级联、<a href="向量空间模型.html">VSM</a>软阴影等高级光照特性。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的 Light 组件（继承自 Drawable）支持方向光、点光源、聚光灯三种类型，提供物理值模式、阴影级联、VSM软阴影等高级光照特性。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>光照类型</strong>：通过 <code>lightType</code> 设置（方向光 / 点光源 / 聚光灯）</li>
 <li><strong>颜色与亮度</strong>：<code>color</code>、<code>brightness</code>、<code>specularIntensity</code>；<code>usePhysicalValues</code> 开启物理单位</li>
 <li><strong>光照范围</strong>：点光/聚光使用 <code>range</code> 和 <code>fadeDistance</code> 控制衰减</li>
 <li><strong>阴影系统</strong>：<code>castShadows</code> 开启阴影；<code>shadowBias</code>、<code>shadowCascade</code>（CSM）控制质量</li>
-<li><strong>软阴影</strong>：<a href="Renderer渲染器.html">Renderer</a> 层支持 <a href="向量空间模型.html">VSM</a>（<code>SetVSMShadowParameters</code>），Light 级可设 <code>shadowSoftness</code></li>
+<li><strong>软阴影</strong>：<a href="Renderer渲染器.html">Renderer</a> 层支持 VSM（<code>SetVSMShadowParameters</code>），Light 级可设 <code>shadowSoftness</code></li>
 <li><strong>色温</strong>：<code>temperature</code> + <code>usePhysicalValues</code> 模拟真实灯泡颜色温度</li>
 <li><strong>光照遮罩</strong>：<code>lightMask</code> / <code>shadowMask</code> 精确控制哪些物体受光/投影</li>
 <li><strong>Ramp/Shape 贴图</strong>：通过 <code>rampTexture</code> / <code>shapeTexture</code> 自定义光照形状与衰减曲线</li>

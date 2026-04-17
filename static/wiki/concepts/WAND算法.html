@@ -146,10 +146,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>WAND 核心步骤</strong>：</p>
 </li>
-<li>预计算每词条最大得分：<code>max_score(t) = IDF(t) × (k₁+1)</code>（BM25-<a href="../entities/TensorFlow.html">TF</a> 上界）</li>
+<li>预计算每词条最大得分：<code>max_score(t) = IDF(t) × (k₁+1)</code>（BM25-TF 上界）</li>
 <li>维护当前 Top-K 最低分阈值 θ</li>
 <li>
-<p>每轮：将词条按当前指向 doc_id 排序 → 累加 max_score 找到第一个使累计 &gt; θ 的词条（<a href="../entities/Pi-Agent.html">Pi</a>vot）→ 若 <a href="../entities/Pi-Agent.html">Pi</a>vot doc_id 之前词条也指向同一文档则精确计算；否则将前面词条游标跳进到 <a href="../entities/Pi-Agent.html">Pi</a>vot doc_id → 更新 θ</p>
+<p>每轮：将词条按当前指向 doc_id 排序 → 累加 max_score 找到第一个使累计 &gt; θ 的词条（Pivot）→ 若 Pivot doc_id 之前词条也指向同一文档则精确计算；否则将前面词条游标跳进到 Pivot doc_id → 更新 θ</p>
 </li>
 <li>
 <p><strong>BMW（Block-Max WAND）</strong>：将 Posting List 分成固定大小块（128 doc/块），存储每块的局部最大得分。上界更紧（块级而非全局），跳过精度更高。Lucene 8+ 默认使用，加速比 10-50x vs 普通 WAND 5-20x。</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — uses</li>
+<li>BM25 — uses</li>
 <li><a href="倒排索引.html">倒排索引</a> — uses</li>
 <li><a href="查询处理.html">查询处理</a> — implements</li>
 <li><a href="学习排序.html">学习排序</a> — compares_to</li>

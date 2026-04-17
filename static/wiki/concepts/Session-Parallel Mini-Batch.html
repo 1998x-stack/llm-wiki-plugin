@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心机制</strong>：将多个会话并排放置，每个 mini-<a href="../entities/bat.html">bat</a>ch 包含来自不同会话的同一"步骤"的事件；每步取各会话的当前事件作为输入、下一个事件作为目标；当某会话结束时，替换为新会话并重置对应位置的 <a href="生成式推荐.html">GR</a>U 隐藏状态；权重在每步都更新，而非等待整个会话完成。</p>
+<p><strong>核心机制</strong>：将多个会话并排放置，每个 mini-batch 包含来自不同会话的同一"步骤"的事件；每步取各会话的当前事件作为输入、下一个事件作为目标；当某会话结束时，替换为新会话并重置对应位置的 GRU 隐藏状态；权重在每步都更新，而非等待整个会话完成。</p>
 </li>
 <li>
 <p><strong>与传统 BPTT 的对比</strong>：传统方式将一个会话作为一个样本，对会话内所有时间步做反向传播（BPTT）。但会话长度差异巨大（2 次到几十次点击不等），导致效率低下且实现复杂。Session-Parallel Mini-Batch 提供了一种优雅的折中方案。</p>
@@ -148,8 +148,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>关键优势</strong>：</p>
 </li>
 <li><strong>计算效率</strong>：充分利用 GPU 并行计算能力，避免长短不一会话带来的 padding 浪费</li>
-<li><strong>隐藏状态管理</strong>：每个会话独立维护自己的 <a href="生成式推荐.html">GR</a>U 隐藏状态，会话结束后状态归零</li>
-<li><strong><a href="负采样.html">负采样</a>便利</strong>：mini-<a href="../entities/bat.html">bat</a>ch 中其他会话的目标物品天然作为当前会话的负样本，无需额外采样操作</li>
+<li><strong>隐藏状态管理</strong>：每个会话独立维护自己的 GRU 隐藏状态，会话结束后状态归零</li>
+<li><strong><a href="负采样.html">负采样</a>便利</strong>：mini-batch 中其他会话的目标物品天然作为当前会话的负样本，无需额外采样操作</li>
 <li>
 <p><strong>流行度采样</strong>：热门物品更容易被采到作为负样本，与 popularity-based sampling 一致</p>
 </li>

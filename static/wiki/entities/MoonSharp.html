@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>纯 C# 实现</strong>：MoonSharp 不依赖原生 Lua C 库，完全用 C# 编写，可在 Unity IL2<a href="C++.html">CPP</a> 等受限环境运行，无平台适配问题。</p>
+<p><strong>纯 C# 实现</strong>：MoonSharp 不依赖原生 Lua C 库，完全用 C# 编写，可在 Unity IL2CPP 等受限环境运行，无平台适配问题。</p>
 </li>
 <li>
 <p><strong><code>[MoonSharpUserData]</code> 特性</strong>：标记 C# 类后，<code>UserData.RegisterType&lt;T&gt;()</code> 将其注册为 Lua 可用类型。Lua 侧可调用所有公开方法和属性，方法名映射保持不变。</p>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Unity 集成模式</strong>：通常在 <code>MonoBehaviour.Start()</code> 初始化 <code>Script</code>，在 <code>Update()</code> 调用 Lua <code>update</code> 函数，通过代理类（EntityProxy 等）将 GameObject 能力暴露给 Lua，实现 AI 行为脚本化。</p>
 </li>
 <li>
-<p><strong>与 <a href="../concepts/MoonSharp与NLua.html">NLua</a> 对比</strong>：<a href="../concepts/MoonSharp与NLua.html">NLua</a> 是另一种 Unity Lua 方案，基于原生 Lua C 库的 .NET 绑定（需平台原生库）；MoonSharp 纯 C# 更安全但性能略低。</p>
+<p><strong>与 NLua 对比</strong>：NLua 是另一种 Unity Lua 方案，基于原生 Lua C 库的 .NET 绑定（需平台原生库）；MoonSharp 纯 C# 更安全但性能略低。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>标准架构</strong>：以 <a href="../entities/YouTube.html">YouTube</a> 2016 年里程碑论文为蓝本，形成四阶段管道：</li>
 <li><strong>召回（Retrieval）</strong>：从数十亿候选中快速筛选数千个，通常使用 <a href="双塔模型.html">双塔模型</a> 或<a href="倒排索引.html">倒排索引</a>，依赖 <a href="近似最近邻检索.html">近似最近邻检索</a>。</li>
 <li><strong>粗排（L1 Ranking）</strong>：轻量模型将候选缩减到数百个。</li>
-<li><strong><a href="检索重排序.html">精排</a>（L2 Ranking）</strong>：复杂模型（<span style="color:#e74c3c" title="broken link">DLRM</span> / <a href="../entities/DCN.html">DCN</a> / <a href="../entities/DeepFM.html">DeepFM</a> 等）精细排序，核心是 <a href="CTR 预估.html">CTR 预估</a>。</li>
+<li><strong><a href="检索重排序.html">精排</a>（L2 Ranking）</strong>：复杂模型（DLRM / DCN / <a href="../entities/DeepFM.html">DeepFM</a> 等）精细排序，核心是 <a href="CTR 预估.html">CTR 预估</a>。</li>
 <li>
 <p><strong>重排（L3 / Value Model）</strong>：根据业务策略做最终调整。</p>
 </li>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Scaling 瓶颈</strong>：传统 DLRM 在约 200B 参数后性能饱和，无法通过增加计算量持续提升。</p>
 </li>
 <li>
-<p><strong>与 <a href="生成式推荐.html">生成式推荐</a> 的对比</strong>：<a href="../entities/HSTU.html">HSTU</a> / <a href="生成式推荐.html">GR</a> 将召回和排序统一到单一序列生成模型中，消除了级联管道的阶段间信息损失。通过 <a href="../entities/M-FALCON.html">M-FALCON</a> 实现端到端推理，在相同预算下处理 285 倍复杂度。</p>
+<p><strong>与 <a href="生成式推荐.html">生成式推荐</a> 的对比</strong>：HSTU / GR 将召回和排序统一到单一序列生成模型中，消除了级联管道的阶段间信息损失。通过 <a href="../entities/M-FALCON.html">M-FALCON</a> 实现端到端推理，在相同预算下处理 285 倍复杂度。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：级联管道是工业推荐系统过去十年的标准范式，其"分而治之"的设计在算力受限时代是务实选择。但随着算力增长和 <a href="推荐系统 Scaling Laws.html">推荐系统 Scaling Laws</a> 的发现，其局限性日益凸显。</p>
@@ -174,8 +174,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — 级联管道的简化版本</li>
 <li><a href="双塔模型.html">双塔模型</a> — 召回阶段的核心模型</li>
 <li><a href="候选生成.html">候选生成</a> — 召回阶段的另一种称呼</li>
-<li><span style="color:#e74c3c" title="broken link">DLRM</span> — 精排阶段的核心模型</li>
-<li><a href="../entities/HSTU.html">HSTU</a> — 挑战级联管道范式的架构</li>
+<li>DLRM — 精排阶段的核心模型</li>
+<li>HSTU — 挑战级联管道范式的架构</li>
 <li><a href="CTR 预估.html">CTR 预估</a> — 精排阶段的核心任务</li>
 </ul>
   </div>

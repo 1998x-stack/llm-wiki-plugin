@@ -135,29 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mf-ips">MF-IPS</h1>
 <h2 id="_1">概述</h2>
-<p>基于 <a href="逆倾向评分.html">IPS</a> 的<a href="矩阵分解.html">矩阵分解</a>（<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a>）将逆倾向加权嵌入经验风险最小化框架，在 <a href="MNAR.html">MNAR</a> 数据上实现近似无偏的<a href="矩阵分解.html">矩阵分解</a>训练。</p>
+<p>基于 IPS 的<a href="矩阵分解.html">矩阵分解</a>（MF-IPS）将逆倾向加权嵌入经验风险最小化框架，在 MNAR 数据上实现近似无偏的<a href="矩阵分解.html">矩阵分解</a>训练。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想</strong>：传统<a href="矩阵分解.html">矩阵分解</a>在观测到的评分上最小化均方误差，等价于在 <a href="MCAR.html">MCAR</a> 假设下的经验风险最小化（ERM）。<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 用 <a href="逆倾向评分.html">IPS</a> 估计器替代朴素的均方误差，从而在 <a href="MNAR.html">MNAR</a> 数据上实现近似无偏的 ERM。</p>
+<p><strong>核心思想</strong>：传统<a href="矩阵分解.html">矩阵分解</a>在观测到的评分上最小化均方误差，等价于在 MCAR 假设下的经验风险最小化（ERM）。MF-IPS 用 IPS 估计器替代朴素的均方误差，从而在 MNAR 数据上实现近似无偏的 ERM。</p>
 </li>
 <li>
-<p><strong>优化目标</strong>：$\hat{Y}^* = \a<a href="../entities/ripgrep.html">rg</a>\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{<a href="逆倾向评分.html">IPS</a>}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是<a href="矩阵分解.html">矩阵分解</a>模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。</p>
+<p><strong>优化目标</strong>：$\hat{Y}^* = \arg\min_{\hat{Y} \in \mathcal{H}} \hat{R}_{IPS}(\hat{Y}) + \lambda \cdot \text{reg}(\hat{Y})$，其中 $\mathcal{H}$ 是<a href="矩阵分解.html">矩阵分解</a>模型的假设空间，$\lambda \cdot \text{reg}(\hat{Y})$ 是正则化项。</p>
 </li>
 <li>
-<p><strong>理论保证</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人推导了泛化误差界（generalization error bound），证明了 <a href="逆倾向评分.html">IPS</a>-ERM 框架的统计学习理论保证。</p>
+<p><strong>理论保证</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人推导了泛化误差界（generalization error bound），证明了 IPS-ERM 框架的统计学习理论保证。</p>
 </li>
 <li>
-<p><strong>与传统的关</strong>：当所有 <a href="倾向性评分.html">倾向性评分</a> 相等时（即 <a href="MCAR.html">MCAR</a>），<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 退化为传统的<a href="矩阵分解.html">矩阵分解</a>。这说明传统方法是 <a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 在特殊假设下的特例。</p>
+<p><strong>与传统的关</strong>：当所有 <a href="倾向性评分.html">倾向性评分</a> 相等时（即 MCAR），MF-IPS 退化为传统的<a href="矩阵分解.html">矩阵分解</a>。这说明传统方法是 MF-IPS 在特殊假设下的特例。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 <a href="../entities/Yahoo! R3.html">Yahoo! R3</a> 和 Coat Shopping 数据集上，<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 显著优于所有基线方法（<a href="矩阵分解.html">MF</a>-Naive、HL-MAR、HL-<a href="MNAR.html">MNAR</a>），配对 t 检验 p &lt; 0.001。<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 的性能甚至超过了计算复杂度远高于它的联合似然方法（HL-<a href="MNAR.html">MNAR</a>）。</p>
+<p><strong>实验结果</strong>：在 <a href="../entities/Yahoo! R3.html">Yahoo! R3</a> 和 Coat Shopping 数据集上，MF-IPS 显著优于所有基线方法（MF-Naive、HL-MAR、HL-MNAR），配对 t 检验 p &lt; 0.001。MF-IPS 的性能甚至超过了计算复杂度远高于它的联合似然方法（HL-MNAR）。</p>
 </li>
 <li>
-<p><strong>关键启示</strong>：一个概念上简单、计算上高效的方法（<a href="逆倾向评分.html">IPS</a> 加权的<a href="矩阵分解.html">矩阵分解</a>），通过正确地处理偏差，可以胜过复杂的联合概率模型。</p>
+<p><strong>关键启示</strong>：一个概念上简单、计算上高效的方法（IPS 加权的<a href="矩阵分解.html">矩阵分解</a>），通过正确地处理偏差，可以胜过复杂的联合概率模型。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：<a href="矩阵分解.html">MF</a>-<a href="逆倾向评分.html">IPS</a> 主要关注 <a href="显式反馈.html">显式反馈</a>（评分）场景。现代推荐系统越来越多地依赖 <a href="隐式反馈.html">隐式反馈</a>（点击、浏览、购买），<a href="隐式反馈.html">隐式反馈</a>中的偏差模式更加复杂。</p>
+<p><strong>局限性</strong>：MF-IPS 主要关注 <a href="显式反馈.html">显式反馈</a>（评分）场景。现代推荐系统越来越多地依赖 <a href="隐式反馈.html">隐式反馈</a>（点击、浏览、购买），<a href="隐式反馈.html">隐式反馈</a>中的偏差模式更加复杂。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -169,8 +169,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="矩阵分解.html">矩阵分解</a> — MF-IPS 的基础模型</li>
 <li><a href="逆倾向评分.html">逆倾向评分</a> — MF-IPS 的核心加权机制</li>
 <li><a href="倾向性评分.html">倾向性评分</a> — MF-IPS 的输入</li>
-<li><a href="MNAR.html">MNAR</a> — MF-IPS 适用的数据机制</li>
-<li><a href="MCAR.html">MCAR</a> — MCAR 下 MF-IPS 退化为传统矩阵分解</li>
+<li>MNAR — MF-IPS 适用的数据机制</li>
+<li>MCAR — MCAR 下 MF-IPS 退化为传统矩阵分解</li>
 <li><a href="../entities/Yahoo! R3.html">Yahoo! R3</a> — 验证 MF-IPS 效果的数据集</li>
 </ul>
   </div>

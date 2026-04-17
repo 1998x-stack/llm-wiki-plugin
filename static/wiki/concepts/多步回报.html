@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>偏差-方差权衡</strong>：n 越大，对当前价值估计误差依赖越小（减少偏差），但累积更多环境随机性（增加方差）。实践中 n=3~5 通常效果较好。</p>
 </li>
 <li>
-<p><strong>与 <a href="Rainbow.html">Rainbow</a> 的协同</strong>：在训练初期价值估计尚不准确时，n 步回报减少了对精确 Q 值的依赖，提供更好的梯度信号，加速收敛。<a href="Rainbow.html">Rainbow</a> 消融显示 Multi-step 重要性仅次于 <a href="优先经验回放.html">PER</a>。</p>
+<p><strong>与 <a href="Rainbow.html">Rainbow</a> 的协同</strong>：在训练初期价值估计尚不准确时，n 步回报减少了对精确 Q 值的依赖，提供更好的梯度信号，加速收敛。<a href="Rainbow.html">Rainbow</a> 消融显示 Multi-step 重要性仅次于 PER。</p>
 </li>
 <li>
-<p><strong>实现注意</strong>：<a href="经验回放.html">经验回放</a>中需存储 n 步的轨迹片段；与 <a href="优先经验回放.html">PER</a> 结合时优先级计算基于 n 步 TD 误差（<a href="Rainbow.html">Rainbow</a> 中改为 KL 散度）；与 off-policy 方法结合需处理<a href="重要性采样.html">重要性采样</a>修正（<a href="Rainbow.html">Rainbow</a> 中 n=3 较小，近似 on-policy，忽略 <a href="重要性采样.html">IS</a> 修正）。</p>
+<p><strong>实现注意</strong>：<a href="经验回放.html">经验回放</a>中需存储 n 步的轨迹片段；与 PER 结合时优先级计算基于 n 步 TD 误差（<a href="Rainbow.html">Rainbow</a> 中改为 KL 散度）；与 off-policy 方法结合需处理<a href="重要性采样.html">重要性采样</a>修正（<a href="Rainbow.html">Rainbow</a> 中 n=3 较小，近似 on-policy，忽略 IS 修正）。</p>
 </li>
 <li>
 <p><strong>超参数</strong>：<a href="Rainbow.html">Rainbow</a> 中 n=3，折扣因子 γ^n=γ^3；n 选择需权衡偏差、方差与轨迹截断带来的复杂度。</p>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="强化学习.html">强化学习</a> — part_of</li>
 <li><a href="贝尔曼方程.html">贝尔曼方程</a> — extends</li>
-<li><a href="DQN.html">DQN</a> — extends</li>
+<li>DQN — extends</li>
 <li><a href="Rainbow.html">Rainbow</a> — part_of</li>
 </ul>
   </div>

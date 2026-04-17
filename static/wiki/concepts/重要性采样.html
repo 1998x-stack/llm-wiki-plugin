@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">重要性采样</h1>
 <h2 id="_2">概述</h2>
-<p>用行为策略 β 采集的数据估计目标策略 π 下的期望的统计技术。核心公式：E_{x~π}[f(x)] = E_{x~β}[π(x)/β(x)·f(x)]，是 off-policy <a href="强化学习.html">强化学习</a>和 <a href="PPO.html">PPO</a>/<a href="TRPO.html">TRPO</a> 的数学基础。</p>
+<p>用行为策略 β 采集的数据估计目标策略 π 下的期望的统计技术。核心公式：E_{x~π}[f(x)] = E_{x~β}[π(x)/β(x)·f(x)]，是 off-policy <a href="强化学习.html">强化学习</a>和 PPO/TRPO 的数学基础。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -147,15 +147,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在<a href="强化学习.html">强化学习</a>中的应用</strong>：</p>
 </li>
 <li><strong>Off-policy 学习</strong>：用旧策略/行为策略采集的经验训练当前策略，提高样本效率</li>
-<li><strong><a href="PPO.html">PPO</a></strong>：使用重要性权重 π_θ(a|s)/π_θ_old(a|s) 衡量新旧策略差异，并用 Clip 限制权重范围防止大幅更新</li>
+<li><strong>PPO</strong>：使用重要性权重 π_θ(a|s)/π_θ_old(a|s) 衡量新旧策略差异，并用 Clip 限制权重范围防止大幅更新</li>
 <li>
-<p><strong><a href="TRPO.html">TRPO</a></strong>：代理目标函数中用重要性采样将 on-policy 梯度扩展到邻近策略</p>
+<p><strong>TRPO</strong>：代理目标函数中用重要性采样将 on-policy 梯度扩展到邻近策略</p>
 </li>
 <li>
-<p><strong>方差问题</strong>：当 π 与 β 相差较大时，重要性权重方差爆炸，导致估计不可靠。实践中通过 <a href="KL散度.html">KL散度</a> 约束（<a href="TRPO.html">TRPO</a>）或 Clip（<a href="PPO.html">PPO</a>）限制权重范围。</p>
+<p><strong>方差问题</strong>：当 π 与 β 相差较大时，重要性权重方差爆炸，导致估计不可靠。实践中通过 <a href="KL散度.html">KL散度</a> 约束（TRPO）或 Clip（PPO）限制权重范围。</p>
 </li>
 <li>
-<p><strong>与 off-policy/on-policy 的关系</strong>：完全 off-policy（如 <a href="DQN.html">DQN</a>）不使用重要性采样，而是通过 Q 函数直接估计价值；<a href="PPO.html">PPO</a> 是近似 on-policy，用有限的重要性采样比率。</p>
+<p><strong>与 off-policy/on-policy 的关系</strong>：完全 off-policy（如 DQN）不使用重要性采样，而是通过 Q 函数直接估计价值；PPO 是近似 on-policy，用有限的重要性采样比率。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -168,8 +168,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="策略梯度定理.html">策略梯度定理</a> — relates_to</li>
 <li><a href="强化学习三大范式.html">强化学习三大范式</a> — uses</li>
 <li><a href="KL散度.html">KL散度</a> — relates_to</li>
-<li><a href="TRPO.html">TRPO</a> — uses</li>
-<li><a href="PPO.html">PPO</a> — uses</li>
+<li>TRPO — uses</li>
+<li>PPO — uses</li>
 </ul>
   </div>
   <div class="page-nav">

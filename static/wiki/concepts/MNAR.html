@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>定义</strong>：在 MNAR 机制下，<strong>某个评分是否被观测到，与该评分的值本身高度相关</strong>。这与 <a href="MCAR.html">MCAR</a>（完全随机缺失）形成鲜明对比——<a href="MCAR.html">MCAR</a> 下缺失是完全随机的，观测数据是全量数据的无偏子集。</p>
+<p><strong>定义</strong>：在 MNAR 机制下，<strong>某个评分是否被观测到，与该评分的值本身高度相关</strong>。这与 MCAR（完全随机缺失）形成鲜明对比——MCAR 下缺失是完全随机的，观测数据是全量数据的无偏子集。</p>
 </li>
 <li>
 <p><strong>在推荐系统中的表现</strong>：</p>
@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与<a href="选择偏差.html">选择偏差</a>的关系</strong>：MNAR 是 <a href="选择偏差.html">选择偏差</a>、<a href="流行度偏差.html">流行度偏差</a>、<a href="位置偏差.html">位置偏差</a> 的统计学本质。所有这些偏差都可以归结为"数据缺失不是随机的"。</p>
 </li>
 <li>
-<p><strong>对传统方法的影响</strong>：大量 <a href="矩阵分解.html">矩阵分解</a> 方法（如经典 <a href="../entities/SVD++.html">SVD++</a>、<a href="交替最小二乘法 ALS.html">ALS</a> 等）直接在观测到的评分上最小化误差，隐式假设缺失数据是 <a href="MCAR.html">MCAR</a> 的。在 MNAR 数据上，这种做法在理论上是有偏的。</p>
+<p><strong>对传统方法的影响</strong>：大量 <a href="矩阵分解.html">矩阵分解</a> 方法（如经典 <a href="../entities/SVD++.html">SVD++</a>、ALS 等）直接在观测到的评分上最小化误差，隐式假设缺失数据是 MCAR 的。在 MNAR 数据上，这种做法在理论上是有偏的。</p>
 </li>
 <li>
 <p><strong>与 MAR 的区别</strong>：MAR（Missing At Random）指缺失机制与观测到的变量相关，但不与缺失值本身相关。MNAR 是最困难的缺失机制，因为缺失机制本身无法从观测数据中完全推断。</p>
@@ -161,8 +161,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>处理方法</strong>：</p>
 </li>
-<li><a href="逆倾向评分.html">IPS</a>：通过逆倾向加权校正 MNAR 偏差，当<a href="倾向性评分.html">倾向性评分</a>已知时，<a href="逆倾向评分.html">IPS</a> 是真实风险的无偏估计</li>
-<li><a href="SNIPS.html">SNIPS</a>：<a href="逆倾向评分.html">IPS</a> 的自归一化版本，降低方差</li>
+<li>IPS：通过逆倾向加权校正 MNAR 偏差，当<a href="倾向性评分.html">倾向性评分</a>已知时，IPS 是真实风险的无偏估计</li>
+<li><a href="SNIPS.html">SNIPS</a>：IPS 的自归一化版本，降低方差</li>
 <li>
 <p>联合似然推断：同时建模评分值和观测概率（如 Marlin &amp; Zemel 2009），但计算复杂度高</p>
 </li>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="MCAR.html">MCAR</a> — 完全随机缺失，MNAR 的对照</li>
+<li>MCAR — 完全随机缺失，MNAR 的对照</li>
 <li><a href="选择偏差.html">选择偏差</a> — MNAR 在推荐系统中的具体表现</li>
 <li><a href="逆倾向评分.html">逆倾向评分</a> — 处理 MNAR 的核心方法</li>
 <li><a href="倾向性评分.html">倾向性评分</a> — MNAR 校正的关键输入</li>

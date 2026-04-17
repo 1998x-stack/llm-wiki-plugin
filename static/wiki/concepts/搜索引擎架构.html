@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>核心组件</strong>：</p>
 </li>
-<li><strong>网络爬虫（Crawler）</strong>：U<a href="强化学习.html">RL</a> 调度、HTTP 下载、礼貌策略（robots.txt）、去重过滤（SimHash）</li>
+<li><strong>网络爬虫（Crawler）</strong>：URL 调度、HTTP 下载、礼貌策略（robots.txt）、去重过滤（SimHash）</li>
 <li><strong>文档解析器（Parser）</strong>：HTML 解析、字段提取（title/body/anchor）、元数据提取</li>
 <li><strong><a href="文本预处理.html">文本分析</a>器（Analyzer）</strong>：<a href="文本预处理.html">文本预处理</a>（分词、归一化、停用词、词干提取）</li>
 <li>
@@ -154,14 +154,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>评分排序模型演进</strong>：</p>
 </li>
 <li>布尔模型（AND/OR/NOT，无评分）</li>
-<li><a href="向量空间模型.html">向量空间模型</a>（<a href="向量空间模型.html">VSM</a>，<a href="TF-IDF.html">TF-IDF</a> 余弦相似度）</li>
-<li>概率模型（<span style="color:#e74c3c" title="broken link">BM25</span>，Robertson-Spärck Jones 权重）</li>
-<li><a href="学习排序.html">学习排序</a>（<a href="学习排序.html">LTR</a>，<a href="学习排序.html">RankSVM</a>/<a href="学习排序.html">LambdaMART</a>）</li>
+<li><a href="向量空间模型.html">向量空间模型</a>（VSM，<a href="TF-IDF.html">TF-IDF</a> 余弦相似度）</li>
+<li>概率模型（BM25，Robertson-Spärck Jones 权重）</li>
+<li><a href="学习排序.html">学习排序</a>（LTR，<a href="学习排序.html">RankSVM</a>/<a href="学习排序.html">LambdaMART</a>）</li>
 <li>
-<p><a href="学习排序.html">神经排序</a>（BERT/<a href="设备像素比.html">DPR</a>/ColBERT）</p>
+<p><a href="学习排序.html">神经排序</a>（BERT/DPR/ColBERT）</p>
 </li>
 <li>
-<p><strong>效果评估指标</strong>：Precision@K、<a href="Recall@K.html">Recall@K</a>、MAP（Mean Average Precision）、<a href="MRR.html">MRR</a>（<a href="MRR.html">Mean Reciprocal Rank</a>）、<a href="NDCG.html">NDCG</a>@K。效率指标：查询延迟 <a href="../entities/P5 论文.html">P5</a>0 &lt; 50ms，P99 &lt; 200ms，QPS 10,000+。</p>
+<p><strong>效果评估指标</strong>：Precision@K、<a href="Recall@K.html">Recall@K</a>、MAP（Mean Average Precision）、MRR（<a href="MRR.html">Mean Reciprocal Rank</a>）、NDCG@K。效率指标：查询延迟 P50 &lt; 50ms，P99 &lt; 200ms，QPS 10,000+。</p>
 </li>
 <li>
 <p><strong>工业系统</strong>：Lucene/Elasticsearch（BM25 默认）、Solr（<a href="TF-IDF.html">TF-IDF</a>/BM25）、Tantivy（Rust，高性能）。</p>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_5">相关</h2>
 <ul>
 <li><a href="倒排索引.html">倒排索引</a> — depends_on</li>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — uses</li>
+<li>BM25 — uses</li>
 <li><a href="TF-IDF.html">TF-IDF</a> — uses</li>
 <li><a href="文本预处理.html">文本预处理</a> — depends_on</li>
 <li><a href="查询处理.html">查询处理</a> — uses</li>

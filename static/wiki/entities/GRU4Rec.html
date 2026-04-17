@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="gru4rec">GRU4Rec</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Balazs Hidasi.html">Balazs Hidasi</a> 等人于 ICLR 2016 发表的开创性论文，首次将 <a href="../concepts/生成式推荐.html">GR</a>U 引入<a href="../concepts/会话推荐.html">会话推荐</a>场景，通过 <a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练策略和排序损失函数，开创了深度学习在<a href="../concepts/序列推荐.html">序列推荐</a>领域的先河。</p>
+<p><a href="Balazs Hidasi.html">Balazs Hidasi</a> 等人于 ICLR 2016 发表的开创性论文，首次将 GRU 引入<a href="../concepts/会话推荐.html">会话推荐</a>场景，通过 <a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练策略和排序损失函数，开创了深度学习在<a href="../concepts/序列推荐.html">序列推荐</a>领域的先河。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "<a href="../concepts/会话推荐.html">Session-based Recommendations</a> with Recurrent Neural Networks"，作者 <a href="Balazs Hidasi.html">Balazs Hidasi</a>, Al<a href="eza.html">exa</a>ndros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&amp;D（匈牙利）/ Telefonica Research（西班牙），发表于 <span style="color:#e74c3c" title="broken link">ICLR 2016</span>，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。</p>
+<p><strong>论文信息</strong>：标题 "<a href="../concepts/会话推荐.html">Session-based Recommendations</a> with Recurrent Neural Networks"，作者 <a href="Balazs Hidasi.html">Balazs Hidasi</a>, Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&amp;D（匈牙利）/ Telefonica Research（西班牙），发表于 <span style="color:#e74c3c" title="broken link">ICLR 2016</span>，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。</p>
 </li>
 <li>
 <p><strong>核心问题</strong>：给定匿名用户在当前会话中的点击序列 $[x_1, x_2, ..., x_t]$，预测下一次最可能点击的物品 $x_{t+1}$。不使用任何跨会话的用户信息，不依赖显式用户画像，本质上是一个序列到一的预测问题。</p>
 </li>
 <li>
-<p><strong>架构设计</strong>：输入层（1-of-N 编码）→ <a href="../concepts/生成式推荐.html">GR</a>U 层（单层，100 隐藏单元）→ 输出层（全连接 + 排序损失）。实验发现 <a href="../concepts/生成式推荐.html">GR</a>U &gt; LSTM &gt; 标准 RNN，单层即可取得最佳效果。</p>
+<p><strong>架构设计</strong>：输入层（1-of-N 编码）→ GRU 层（单层，100 隐藏单元）→ 输出层（全连接 + 排序损失）。实验发现 GRU &gt; LSTM &gt; 标准 RNN，单层即可取得最佳效果。</p>
 </li>
 <li>
-<p><strong><a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练策略</strong>：将多个会话并排放置，每步取各会话的当前事件作为输入、下一事件作为目标；会话结束时替换为新会话并重置对应隐藏状态。充分利用 GPU 并行能力，mini-<a href="bat.html">bat</a>ch 内其他会话的目标物品天然作为负样本。</p>
+<p><strong><a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练策略</strong>：将多个会话并排放置，每步取各会话的当前事件作为输入、下一事件作为目标；会话结束时替换为新会话并重置对应隐藏状态。充分利用 GPU 并行能力，mini-batch 内其他会话的目标物品天然作为负样本。</p>
 </li>
 <li>
-<p><strong>排序损失函数</strong>：提出 <span style="color:#e74c3c" title="broken link">BPR Loss</span> 和 <a href="../concepts/TOP1 Loss.html">TOP1 Loss</a> 两种 pairwise 排序损失，显著优于<a href="../concepts/交叉熵.html">交叉熵</a>（<a href="../concepts/交叉熵.html">交叉熵</a>在100次随机实验中仅10次收敛）。<a href="../concepts/TOP1 Loss.html">TOP1</a> 内置正则化项使其在更大隐藏层尺寸下表现更稳定。</p>
+<p><strong>排序损失函数</strong>：提出 <span style="color:#e74c3c" title="broken link">BPR Loss</span> 和 <a href="../concepts/TOP1 Loss.html">TOP1 Loss</a> 两种 pairwise 排序损失，显著优于<a href="../concepts/交叉熵.html">交叉熵</a>（<a href="../concepts/交叉熵.html">交叉熵</a>在100次随机实验中仅10次收敛）。TOP1 内置正则化项使其在更大隐藏层尺寸下表现更稳定。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 RSC15（YOOCHOOSE）数据集上，<a href="../concepts/候选生成.html">Recall</a>@20 达 0.5196，<a href="../concepts/MRR.html">MRR</a>@20 达 0.2164，相比 <a href="../concepts/基于物品的协同过滤.html">Item-KNN</a> 提升约 20-30%。后续 <a href="../concepts/生成式推荐.html">GR</a>U4Rec v2（C<a href="../concepts/逆向运动学.html">IK</a>M 2018）提出 <a href="../concepts/BPR.html">BPR</a>-max 和 <a href="../concepts/TOP1 Loss.html">TOP1</a>-max，性能再提升 35%。</p>
+<p><strong>实验结果</strong>：在 RSC15（YOOCHOOSE）数据集上，<a href="../concepts/候选生成.html">Recall</a>@20 达 0.5196，MRR@20 达 0.2164，相比 <a href="../concepts/基于物品的协同过滤.html">Item-KNN</a> 提升约 20-30%。后续 GRU4Rec v2（CIKM 2018）提出 BPR-max 和 TOP1-max，性能再提升 35%。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：开创了基于深度学习的<a href="../concepts/序列推荐.html">序列推荐</a>研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, 注意力机制）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯注意力）、<a href="SASRec.html">SASRec</a>（2018, <a href="../concepts/Self-Attention机制.html">自注意力</a>）、<a href="BERT4Rec.html">BERT4Rec</a>（2019, 双向 <a href="../concepts/Transformer架构.html">Transformer</a>）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（2019, 图神经网络）等一系列后续工作。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>局限性</strong>：RNN 单向顺序处理无法并行化；完全丢失会话间信息；无法捕获全局物品关系；使用简单 one-hot 编码未利用物品侧信息；在某些场景下被精心设计的会话 KNN 方法超越。</p>
 </li>
 <li>
-<p><strong>工业界采纳</strong>：<a href="Spotify.html">Spotify</a> 和 <a href="Pi-Agent.html">Pi</a>nterest 等公司的推荐系统借鉴了 <a href="../concepts/生成式推荐.html">GR</a>U4Rec 的思想。在 NVIDIA Merlin / <a href="../concepts/Transformer架构.html">Transformer</a>s4Rec 等现代框架中仍保留为标准基线模型。</p>
+<p><strong>工业界采纳</strong>：<a href="Spotify.html">Spotify</a> 和 Pinterest 等公司的推荐系统借鉴了 GRU4Rec 的思想。在 NVIDIA Merlin / <a href="../concepts/Transformer架构.html">Transformer</a>s4Rec 等现代框架中仍保留为标准基线模型。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -184,14 +184,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> — GRU4Rec 的训练策略</li>
 <li><a href="../concepts/矩阵分解.html">矩阵分解</a> — GRU4Rec 对比的基线方法</li>
 <li><a href="../concepts/基于物品的协同过滤.html">基于物品的协同过滤</a> — GRU4Rec 对比的基线方法</li>
-<li><span style="color:#e74c3c" title="broken link">NARM</span> — 在 GRU4Rec 基础上加入注意力机制</li>
-<li><span style="color:#e74c3c" title="broken link">HRNN</span> — 层次化 RNN，跨会话建模</li>
+<li>NARM — 在 GRU4Rec 基础上加入注意力机制</li>
+<li>HRNN — 层次化 RNN，跨会话建模</li>
 <li><span style="color:#e74c3c" title="broken link">STAMP</span> — 纯注意力机制，不使用 RNN</li>
 <li><a href="SASRec.html">SASRec</a> — 自注意力 Transformer 架构，超越 GRU4Rec</li>
 <li><a href="BERT4Rec.html">BERT4Rec</a> — 双向 Transformer，超越 GRU4Rec</li>
 <li><span style="color:#e74c3c" title="broken link">SR-GNN</span> — 图神经网络方法，超越 GRU4Rec</li>
 <li><a href="../concepts/Recall@K.html">Recall@K</a> — 主要评估指标</li>
-<li><a href="../concepts/MRR.html">MRR</a> — 主要评估指标</li>
+<li>MRR — 主要评估指标</li>
 <li><a href="Spotify.html">Spotify</a> — 工业界采纳者</li>
 </ul>
   </div>

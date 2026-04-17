@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="terrain">Terrain地形系统</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的 Terrain 组件通过高度图（Heightmap Image）生成分块 <a href="LOD（细节层次）.html">LOD</a> 地形，由 TerrainPatch 子组件构成，支持法线平滑、多邻居接缝和高精度碰撞查询。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的 Terrain 组件通过高度图（Heightmap Image）生成分块 LOD 地形，由 TerrainPatch 子组件构成，支持法线平滑、多邻居接缝和高精度碰撞查询。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>高度图</strong>：<code>SetHeightMap(image)</code> 加载灰度图，像素值映射为高度</li>
 <li><strong>间距控制</strong>：<code>spacing</code>（Vector3）定义每像素对应的 XYZ 世界尺寸</li>
 <li><strong>分块大小</strong>：<code>patchSize</code> 每个 TerrainPatch 包含的顶点数（默认 65）</li>
-<li><strong><a href="LOD（细节层次）.html">LOD</a> 级别</strong>：<code>maxLodLevels</code> 控制最多细分层数，远处自动降分辨率</li>
+<li><strong>LOD 级别</strong>：<code>maxLodLevels</code> 控制最多细分层数，远处自动降分辨率</li>
 <li><strong>法线平滑</strong>：<code>smoothing</code> 开启法线插值避免台阶感</li>
-<li><strong>邻居接缝</strong>：<code>SetNeighbors(north, south, west, east)</code> 设置相邻地形块，消除 <a href="LOD（细节层次）.html">LOD</a> 裂缝</li>
+<li><strong>邻居接缝</strong>：<code>SetNeighbors(north, south, west, east)</code> 设置相邻地形块，消除 LOD 裂缝</li>
 <li><strong>高度查询</strong>：<code>GetHeight(worldPos)</code> 实时查询任意世界坐标的地面高度</li>
 <li><strong>法线查询</strong>：<code>GetNormal(worldPos)</code> 获取地形法线（用于物体贴地对齐）</li>
 <li><strong>坐标转换</strong>：<code>WorldToHeightMap</code> / <code>HeightMapToWorld</code> 像素坐标与世界坐标互转</li>

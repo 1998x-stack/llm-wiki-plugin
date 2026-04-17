@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：<a href="Paul Resnick.html">Resnick</a>, P., Iacovou, N., Suchak, M., Be<a href="ripgrep.html">rg</a>strom, P., &amp; Riedl, J. (1994). "GroupLens: An Open Architecture for <a href="../concepts/协同过滤.html">Collaborative Filtering</a> of Netnews." <em>Proceedings of CSCW '94</em>, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。</p>
+<p><strong>论文信息</strong>：<a href="Paul Resnick.html">Resnick</a>, P., Iacovou, N., Suchak, M., Bergstrom, P., &amp; Riedl, J. (1994). "GroupLens: An Open Architecture for <a href="../concepts/协同过滤.html">Collaborative Filtering</a> of Netnews." <em>Proceedings of CSCW '94</em>, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。</p>
 </li>
 <li>
 <p><strong>时代背景</strong>：1994 年 Usenet 新闻组每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。<a href="Tapestry 系统.html">Tapestry 系统</a> 虽首创"<a href="../concepts/协同过滤.html">协同过滤</a>"概念，但需手动指定信任对象，无法扩展。</p>
@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>新闻客户端（News Clients）</strong>：用户阅读和评分的界面，团队为 Gnus、xrn、tin 等主流 Unix 新闻阅读器和 Macintosh 客户端开发了修改版本</li>
 <li><strong>新闻服务器（News Servers）</strong>：标准 Usenet NNTP 服务器，通过创建专用"评分传输新闻组"在服务器间同步评分数据</li>
 <li>
-<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（<a href="Better Bit Bureau.html">BBB</a>，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
+<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（BBB，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
 </li>
 <li>
 <p><strong>用户相似度计算</strong>：采用 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：</p>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>开放式架构设计五大目标</strong>：</p>
 </li>
-<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 <a href="Better Bit Bureau.html">BBB</a> 服务器或客户端</li>
+<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 BBB 服务器或客户端</li>
 <li><strong>易用性（Ease of Use）</strong>：评分操作简便，不打断正常阅读流程</li>
 <li><strong>与 Usenet 兼容（Compatibility）</strong>：建立在现有基础设施之上，无需迁移到新平台</li>
 <li><strong>可扩展性（Scalability）</strong>：能随用户数量增长而扩展</li>

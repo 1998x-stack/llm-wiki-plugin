@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="a-kinematic-notation-for-lower-pair-mechanisms-based-on-matrices">A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices</h1>
 <h2 id="_1">概述</h2>
-<p>《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 <a href="Jacques Denavit.html">Jacques Denavit</a> 和 <a href="Richard S. Hartenberg.html">Richard S. Hartenberg</a> 于 1955 年 6 月发表在《ASME Journal of Applied Mechanics》上的里程碑式论文。该文首次提出了利用四个参数和<a href="../concepts/齐次变换矩阵.html">齐次变换矩阵</a>来系统化描述任意低副机构（Lower-Pair Mechanisms）运动学关系的方法。这篇论文不仅解决了当时机构学领域描述方法混乱的问题，更为后来诞生的机器人学提供了核心的数学工具——<strong>Denavit-Hartenbe<a href="ripgrep.html">rg</a> (DH) 参数</strong>，被公认为机器人运动学理论的奠基之作。</p>
+<p>《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 <a href="Jacques Denavit.html">Jacques Denavit</a> 和 <a href="Richard S. Hartenberg.html">Richard S. Hartenberg</a> 于 1955 年 6 月发表在《ASME Journal of Applied Mechanics》上的里程碑式论文。该文首次提出了利用四个参数和<a href="../concepts/齐次变换矩阵.html">齐次变换矩阵</a>来系统化描述任意低副机构（Lower-Pair Mechanisms）运动学关系的方法。这篇论文不仅解决了当时机构学领域描述方法混乱的问题，更为后来诞生的机器人学提供了核心的数学工具——<strong>Denavit-Hartenberg (DH) 参数</strong>，被公认为机器人运动学理论的奠基之作。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 发表背景与动机</h3>
 <p>在 1955 年之前，机构学领域缺乏统一的运动学描述标准。德国工程师 Franz Reuleaux 的符号系统虽具开创性，但无法定量描述空间运动所需的变量数量。随着航空航天和自动化技术的发展，<strong>空间机构</strong>（三维运动）的分析需求激增，传统的几何直觉方法显得笨拙且难以计算机化。同时，<a href="../concepts/矩阵.html">矩阵</a>代数在工程中的应用正在兴起，但缺乏将其应用于机构几何关系的系统方法。本论文旨在回答：<strong>能否找到一种最小化、系统化的符号体系，用方程和<a href="../concepts/矩阵.html">矩阵</a>无歧义地描述任意空间机构？</strong></p>

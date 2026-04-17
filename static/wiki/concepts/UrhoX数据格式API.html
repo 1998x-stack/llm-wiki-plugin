@@ -154,7 +154,7 @@ xml:Save(&quot;output.xml&quot;, &quot;\t&quot;)
 </code></pre>
 <p>关键方法：<code>FromString</code>、<code>CreateRoot</code>、<code>GetOrCreateRoot</code>、<code>GetRoot</code>、<code>ToString</code>、<code>Patch</code>（XML patch 机制）、<code>Save</code>。</p>
 <h3 id="xmlelement-xml">XMLElement — XML 元素操作</h3>
-<p><code>X<a href="最大似然原理.html">MLE</a>lement</code> 是轻量值类型（非指针），表示 XML DOM 节点，支持完整的子树遍历和属性读写。</p>
+<p><code>XMLElement</code> 是轻量值类型（非指针），表示 XML DOM 节点，支持完整的子树遍历和属性读写。</p>
 <p>常用操作：</p>
 <pre><code class="language-lua">local item = root:CreateChild(&quot;item&quot;)
 item:SetAttribute(&quot;name&quot;, &quot;sword&quot;)
@@ -171,7 +171,7 @@ end
 </code></pre>
 <p>支持的类型读写：<code>Bool</code>、<code>Float</code>、<code>Double</code>、<code>Int</code>/<code>UInt</code>/<code>Int64</code>/<code>UInt64</code>、<code>IntRect</code>、<code>IntVector2/3</code>、<code>Rect</code>、<code>Quaternion</code>、<code>Vector2/3/4</code>、<code><a href="矩阵.html">Matrix</a>3/3x4/4</code>、<code>Color</code>、<code>String</code>、<code><a href="../entities/Hal Varian.html">Varian</a>t</code>、<code>ResourceRef</code>/<code>ResourceRefList</code>。</p>
 <p>属性（只读）：<code>null</code>、<code>name</code>、<code>parent</code>、<code>value</code>、<code>numAttributes</code>、<code>file</code>。
-常量：<code>X<a href="最大似然原理.html">MLE</a>lement.EMPTY</code>（空元素，用于判断是否有效）。</p>
+常量：<code>XMLElement.EMPTY</code>（空元素，用于判断是否有效）。</p>
 <blockquote>
 <p>⚠️ <code>IsNull()</code> / <code>NotNull()</code> 用于检查元素是否有效；遍历到末尾时 <code>GetNext()</code> 返回空元素。</p>
 </blockquote>

@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="sac">SAC</h1>
 <h2 id="_1">概述</h2>
-<p>SAC（Soft <a href="强化学习三大范式.html">Actor-Critic</a>）由 UC Berkeley 于 ICML 2018 发表（arXiv:1801.01290，v2 arXiv:1812.05905）。SAC 将<a href="最大熵强化学习.html">最大熵强化学习</a>框架与 off-policy <a href="强化学习三大范式.html">Actor-Critic</a> 结合，用随机策略替代确定性策略，实现自动探索。v2 版本引入温度参数 α 的自动调整，彻底免除最难调的超参数。在 MuJoCo 连续控制任务上超越 <a href="DDPG.html">DDPG</a>、<a href="TD3.html">TD3</a> 和 <a href="PPO.html">PPO</a>，是目前连续控制的默认选择。</p>
+<p>SAC（Soft <a href="强化学习三大范式.html">Actor-Critic</a>）由 UC Berkeley 于 ICML 2018 发表（arXiv:1801.01290，v2 arXiv:1812.05905）。SAC 将<a href="最大熵强化学习.html">最大熵强化学习</a>框架与 off-policy <a href="强化学习三大范式.html">Actor-Critic</a> 结合，用随机策略替代确定性策略，实现自动探索。v2 版本引入温度参数 α 的自动调整，彻底免除最难调的超参数。在 MuJoCo 连续控制任务上超越 DDPG、TD3 和 PPO，是目前连续控制的默认选择。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>软 Critic 更新</strong>：目标值包含熵项：y = r + γ·[min(Q_φ̄₁(s',ã'), Q_φ̄₂(s',ã')) - α log π(ã'|s')]，ã'~π(·|s')。继承 <a href="TD3.html">TD3</a> 双 Critic 取 min，同时将熵正则纳入 Bellman 目标而非 Actor 损失。</li>
+<li><strong>软 Critic 更新</strong>：目标值包含熵项：y = r + γ·[min(Q_φ̄₁(s',ã'), Q_φ̄₂(s',ã')) - α log π(ã'|s')]，ã'~π(·|s')。继承 TD3 双 Critic 取 min，同时将熵正则纳入 Bellman 目标而非 Actor 损失。</li>
 <li><strong>重参数化技巧</strong>：随机 Actor 输出均值和方差，通过 a = tanh(μ_θ(s) + σ_θ(s)⊙ε)，ε~N(0,I) 实现可微采样，梯度直接传入网络。Actor 损失：L(θ) = E[α log π(ã|s) - min Q(s,ã)]，同时优化奖励和熵。</li>
 <li><strong>自动温度（v2 核心）</strong>：L(α) = E[-α log π(a|s) - α H̄]，H̄ = -dim(A)（连续）。α 自动升高鼓励探索（策略过确定时），自动降低专注利用（熵已足够时），无需手动调整。训练稳定性、样本效率、探索性三者统一。</li>
 </ol>
@@ -150,8 +150,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="最大熵强化学习.html">最大熵强化学习</a> — implements</li>
 <li><a href="Actor-Critic方法.html">Actor-Critic方法</a> — extends</li>
-<li><a href="TD3.html">TD3</a> — extends</li>
-<li><a href="DDPG.html">DDPG</a> — compares_to</li>
+<li>TD3 — extends</li>
+<li>DDPG — compares_to</li>
 <li><a href="经验回放.html">经验回放</a> — uses</li>
 <li><a href="目标网络.html">目标网络</a> — uses</li>
 <li><a href="重要性采样.html">重要性采样</a> — relates_to</li>

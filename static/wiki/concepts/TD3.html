@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="td3">TD3</h1>
 <h2 id="_1">概述</h2>
-<p>TD3（Twin Delayed <a href="DDPG.html">Deep Deterministic Policy Gradient</a>）由 McGill University 于 ICML 2018 发表（arXiv:1802.09477）。TD3 系统诊断了 <a href="DDPG.html">DDPG</a> 的三大失效机制——Critic 过估计、<a href="强化学习三大范式.html">Actor-Critic</a> 正反馈循环、策略更新频率过高——并分别提出三个修复：双 Critic 取最小值、目标策略平滑化、延迟策略更新。在 MuJoCo 6 个任务上相比 <a href="DDPG.html">DDPG</a> 平均提升 50-100%，成为确定性策略连续控制的强基线。</p>
+<p>TD3（Twin Delayed <a href="DDPG.html">Deep Deterministic Policy Gradient</a>）由 McGill University 于 ICML 2018 发表（arXiv:1802.09477）。TD3 系统诊断了 DDPG 的三大失效机制——Critic 过估计、<a href="强化学习三大范式.html">Actor-Critic</a> 正反馈循环、策略更新频率过高——并分别提出三个修复：双 Critic 取最小值、目标策略平滑化、延迟策略更新。在 MuJoCo 6 个任务上相比 DDPG 平均提升 50-100%，成为确定性策略连续控制的强基线。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>双 Critic（Clipped Double Q-learning）</strong>：维护两个独立 Critic Q_φ₁、Q_φ₂，目标值取 min：y = r + γ·min(Q_φ̄₁(s',ã), Q_φ̄₂(s',ã))。悲观估计宁可低估也不过估计，防止 Actor 利用 Critic 错误高点；两个 Critic 独立用相同目标更新，Actor 梯度仅用第一个 Critic。</li>
@@ -148,11 +148,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="DDPG.html">DDPG</a> — extends</li>
+<li>DDPG — extends</li>
 <li><a href="Double DQN.html">Double DQN</a> — uses</li>
 <li><a href="Actor-Critic方法.html">Actor-Critic方法</a> — extends</li>
 <li><a href="目标网络.html">目标网络</a> — uses</li>
-<li><a href="SAC.html">SAC</a> — compares_to</li>
+<li>SAC — compares_to</li>
 <li><a href="经验回放.html">经验回放</a> — uses</li>
 </ul>
   </div>

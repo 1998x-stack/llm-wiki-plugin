@@ -180,7 +180,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>解耦方案</strong>：将"大脑"（Claude + harness）与"手"（沙箱）和"会话"（事件日志）分离</li>
 </ol>
 <h3 id="_7">性能收益</h3>
-<p>解耦后 p50 <a href="首次令牌时间.html">TTFT</a> 下降约 <strong>60%</strong>，p95 <a href="首次令牌时间.html">TTFT</a> 下降超过 <strong>90%</strong>。因为不需要沙箱的会话可立即开始推理，无需等待容器配置。</p>
+<p>解耦后 p50 TTFT 下降约 <strong>60%</strong>，p95 TTFT 下降超过 <strong>90%</strong>。因为不需要沙箱的会话可立即开始推理，无需等待容器配置。</p>
 <h3 id="_8">安全边界</h3>
 <p>在耦合设计中，Claude 生成的不可信代码与凭证运行在同一容器中。解耦后：
 - Git 令牌在沙箱初始化时注入本地 git remote，Agent 从不直接处理令牌

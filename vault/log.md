@@ -4,6 +4,14 @@ type: log
 
 # 操作日志
 
+## [2026-04-17 11:30] maintain
+- Relink: 3061 terms, 938 scanned, 5 new links (4 pages)
+- Check: 0 errors, 987 warnings (B1×683/F3×184/M1×54/O1×61/其他×5), 0 new gotchas
+- Lint: index.md rebuilt (948 pages)
+- Build: 953 nodes, 7145 edges, 0 orphans, 10 components → static/ synced
+
+---
+
 ## [2026-04-17 11:02] maintain
 - Relink: 3235 terms, 938 scanned, 0 new links (fully linked)
 - Check: 0 errors, 1035 warnings (B1×747/F3×189/I1×1/I2×3/M1×54/M2×1/O1×40), 0 new gotchas

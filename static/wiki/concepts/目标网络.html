@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">目标网络</h1>
 <h2 id="_2">概述</h2>
-<p>目标网络（Ta<a href="../entities/ripgrep.html">rg</a>et Network）是 <a href="DQN.html">DQN</a> 引入的稳定深度 Q-learning 训练的关键机制。通过维护一份与在线网络参数相同但更新频率极低（每 C 步硬拷贝一次）的独立网络来计算 TD 目标值，给目标值一个"稳定的锚点"，避免网络自我强化错误、防止训练振荡或发散。</p>
+<p>目标网络（Target Network）是 DQN 引入的稳定深度 Q-learning 训练的关键机制。通过维护一份与在线网络参数相同但更新频率极低（每 C 步硬拷贝一次）的独立网络来计算 TD 目标值，给目标值一个"稳定的锚点"，避免网络自我强化错误、防止训练振荡或发散。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -150,13 +150,13 @@ nav a.active { color: var(--link); font-weight: 600; }
    TD 目标用目标网络计算：<code>y_t = r_t + γ max_{a'} Q_{θ̄}(s', a')</code></p>
 </li>
 <li>
-<p><strong>软更新变体</strong>：后续算法（<a href="DDPG.html">DDPG</a>、<a href="SAC.html">SAC</a> 等）改用 Polyak 平均软更新 <code>θ̄ ← τθ + (1-τ)θ̄</code>（τ≈0.005），比硬更新更平滑，避免目标值的周期性跳变。</p>
+<p><strong>软更新变体</strong>：后续算法（DDPG、SAC 等）改用 Polyak 平均软更新 <code>θ̄ ← τθ + (1-τ)θ̄</code>（τ≈0.005），比硬更新更平滑，避免目标值的周期性跳变。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：目标网络每 C 步才同步，存在 C 步的目标滞后偏差；C 过大目标陈旧，C 过小稳定性下降，需要权衡调参。</p>
 </li>
 <li>
-<p><strong><a href="Ablation Study.html">消融实验</a>结论</strong>：<a href="DQN.html">DQN</a> 论文<a href="Ablation Study.html">消融实验</a>表明，去掉目标网络后训练稳定性大幅下降；同时去掉<a href="经验回放.html">经验回放</a>和目标网络则常常完全发散。</p>
+<p><strong><a href="Ablation Study.html">消融实验</a>结论</strong>：DQN 论文<a href="Ablation Study.html">消融实验</a>表明，去掉目标网络后训练稳定性大幅下降；同时去掉<a href="经验回放.html">经验回放</a>和目标网络则常常完全发散。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="DQN.html">DQN</a> — part_of</li>
+<li>DQN — part_of</li>
 <li><a href="强化学习.html">强化学习</a> — extends</li>
 </ul>
   </div>

@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="tf-idf">TF-IDF</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/TensorFlow.html">TF</a>-IDF（Term Frequency–Inverse Document Frequency）是信息检索最经典的词条权重方法：<a href="../entities/TensorFlow.html">TF</a> 衡量词条在<strong>当前文档</strong>的重要性，IDF 衡量词条在<strong>整个语料库</strong>的区分能力，两者相乘得到最终权重。</p>
+<p>TF-IDF（Term Frequency–Inverse Document Frequency）是信息检索最经典的词条权重方法：TF 衡量词条在<strong>当前文档</strong>的重要性，IDF 衡量词条在<strong>整个语料库</strong>的区分能力，两者相乘得到最终权重。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心直觉</strong>：</li>
-<li><strong><a href="../entities/TensorFlow.html">TF</a>（词频）</strong>："词在文档中出现越多，对该文档主题越重要"</li>
+<li><strong>TF（词频）</strong>："词在文档中出现越多，对该文档主题越重要"</li>
 <li><strong>IDF（逆文档频率）</strong>："词出现在越多文档中，区分能力越弱，权重越低"</li>
 <li>
-<p><strong><a href="../entities/TensorFlow.html">TF</a>-IDF</strong>：寻找在当前文档高频但在语料库低频的词，最能代表文档独特主题。</p>
+<p><strong>TF-IDF</strong>：寻找在当前文档高频但在语料库低频的词，最能代表文档独特主题。</p>
 </li>
 <li>
-<p><strong><a href="../entities/TensorFlow.html">TF</a> 变体</strong>：</p>
+<p><strong>TF 变体</strong>：</p>
 </li>
 <li>原始计数：<code>count(t, d)</code>，长文档偏置</li>
 <li>对数归一化：<code>log(1 + count)</code>（最常用），边际效用递减</li>
@@ -163,13 +163,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>BM25 IDF：<code>log((N-df+0.5)/(df+0.5)+1)</code> — 最稳健</p>
 </li>
 <li>
-<p><strong><a href="向量空间模型.html">向量空间模型</a>（<a href="向量空间模型.html">VSM</a>）</strong>：每篇文档表示为 <a href="../entities/TensorFlow.html">TF</a>-IDF 权重向量，用<strong>余弦相似度</strong>（而非欧氏距离）计算查询-文档相关性。余弦相似度消除文档长度影响：<code>cos(q, d) = q⃗·d⃗ / (‖q‖‖d‖)</code>。实践中对文档向量预先 L2 归一化，查询时只需点积。</p>
+<p><strong><a href="向量空间模型.html">向量空间模型</a>（VSM）</strong>：每篇文档表示为 TF-IDF 权重向量，用<strong>余弦相似度</strong>（而非欧氏距离）计算查询-文档相关性。余弦相似度消除文档长度影响：<code>cos(q, d) = q⃗·d⃗ / (‖q‖‖d‖)</code>。实践中对文档向量预先 L2 归一化，查询时只需点积。</p>
 </li>
 <li>
-<p><strong>SMART 表示法</strong>：三字母编码 <span style="color:#e74c3c" title="broken link">TF</span>变体][IDF变体][归一化]，如 <code>lnc-ltc</code>（文档用 log-<a href="../entities/TensorFlow.html">TF</a> 无IDF 余弦归一化，查询用 log-<a href="../entities/TensorFlow.html">TF</a> 标准IDF 余弦归一化）。</p>
+<p><strong>SMART 表示法</strong>：三字母编码 TF变体][IDF变体][归一化]，如 <code>lnc-ltc</code>（文档用 log-TF 无IDF 余弦归一化，查询用 log-TF 标准IDF 余弦归一化）。</p>
 </li>
 <li>
-<p><strong>局限</strong>：词袋模型（忽略词序）；语义盲区（car ≠ automobile）；长文档偏置（L2 归一化只部分缓解）。<span style="color:#e74c3c" title="broken link">BM25</span> 显式引入 <a href="../entities/TensorFlow.html">TF</a> 饱和函数和长度归一化参数解决后两个问题。</p>
+<p><strong>局限</strong>：词袋模型（忽略词序）；语义盲区（car ≠ automobile）；长文档偏置（L2 归一化只部分缓解）。BM25 显式引入 TF 饱和函数和长度归一化参数解决后两个问题。</p>
 </li>
 <li>
 <p><strong>Zipf 定律关联</strong>：自然语言词频满足 Zipf 分布（频率 × 排名 ≈ 常数），IDF 自然补偿了这种偏斜——高频词 IDF 低，低频词 IDF 高。</p>
@@ -181,7 +181,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — extends（BM25 是 TF-IDF 的概率框架升级）</li>
+<li>BM25 — extends（BM25 是 TF-IDF 的概率框架升级）</li>
 <li><a href="向量空间模型.html">向量空间模型</a> — implements</li>
 <li><a href="倒排索引.html">倒排索引</a> — uses</li>
 <li><a href="搜索引擎架构.html">搜索引擎架构</a> — part_of</li>

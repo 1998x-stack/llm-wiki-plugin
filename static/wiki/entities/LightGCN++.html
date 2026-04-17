@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lightgcn">LightGCN++</h1>
 <h2 id="_1">概述</h2>
-<p>RecSys 2024 发表的 <a href="LightGCN.html">LightGCN</a> 改进工作，在 <a href="LightGCN.html">LightGCN</a> 基础上引入灵活的嵌入范数缩放和邻居加权策略，在 <a href="../concepts/NDCG.html">NDCG</a>@20 上进一步提升了最高 17.81%。</p>
+<p>RecSys 2024 发表的 <a href="LightGCN.html">LightGCN</a> 改进工作，在 <a href="LightGCN.html">LightGCN</a> 基础上引入灵活的嵌入范数缩放和邻居加权策略，在 NDCG@20 上进一步提升了最高 17.81%。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>邻居加权</strong>：在邻域聚合中，不再使用简单的对称归一化 <code>1/√(|N_u|·|N_i|)</code>，而是引入可学习的邻居权重，使模型能区分不同邻居节点的重要性。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在多个数据集上，<a href="LightGCN.html">LightGCN</a>++ 相比 <a href="LightGCN.html">LightGCN</a> 在 <a href="../concepts/NDCG.html">NDCG</a>@20 上最高提升 17.81%，验证了均匀权重和简单邻居加权确实不是最优选择。</p>
+<p><strong>实验结果</strong>：在多个数据集上，<a href="LightGCN.html">LightGCN</a>++ 相比 <a href="LightGCN.html">LightGCN</a> 在 NDCG@20 上最高提升 17.81%，验证了均匀权重和简单邻居加权确实不是最优选择。</p>
 </li>
 <li>
 <p><strong>与 <a href="LightGCN.html">LightGCN</a> 的关系</strong>：不是推翻 <a href="LightGCN.html">LightGCN</a> 的设计，而是在其简洁框架上增加适度的灵活性。体现了"在正确的基础上做增量改进"的研究思路。</p>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="LightGCN.html">LightGCN</a> — LightGCN++ 的直接前身</li>
-<li><a href="../concepts/NDCG.html">NDCG</a> — LightGCN++ 的主要评估指标</li>
+<li>NDCG — LightGCN++ 的主要评估指标</li>
 <li><a href="../concepts/协同过滤.html">协同过滤</a> — LightGCN++ 解决的核心任务</li>
 </ul>
   </div>

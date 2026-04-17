@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mini-batch-aware-regularization">Mini-batch Aware Regularization</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/DIN.html">DIN</a> 提出的频次感知正则化方法，只对当前 mini-<a href="../entities/bat.html">bat</a>ch 中出现的特征计算正则项，低频特征获得更强约束。</p>
+<p>DIN 提出的频次感知正则化方法，只对当前 mini-batch 中出现的特征计算正则项，低频特征获得更强约束。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>问题背景</strong> — <a href="CTR 预估.html">CTR 预估</a>模型中特征稀疏性导致过拟合。商品 ID 特征维度达数亿，大部分商品出现频次极低。标准 L2 正则化需在每次梯度更新时计算所有参数的正则项，计算量过于庞大。</li>
 <li><strong>核心公式</strong> — $L_{\text{reg}} = \sum_{j=1}^{K} \sum_{m=1}^{B} \frac{\alpha_{mj}}{n_j} | w_j |^2$，其中 $n_j$ 是特征 $j$ 在整个训练集中的出现频次。</li>
 <li><strong>频次感知</strong> — 出现频次低的特征获得更强的正则化约束（因为 $n_j$ 小），出现频次高的特征获得较弱的约束。直觉是：高频特征有充足训练样本学习可靠 <a href="Embedding.html">Embedding</a>，低频特征容易过拟合到少量样本上。</li>
-<li><strong>计算效率</strong> — 只对当前 mini-<a href="../entities/bat.html">bat</a>ch 中实际出现的特征计算正则项，避免了对未出现特征的无效计算，在数亿参数规模下显著降低计算开销。</li>
-<li><strong>实验效果</strong> — 不使用正则化的模型在第一个 epoch 后就严重过拟合。Dropout 能缓解过拟合但收敛较慢。Mini-<a href="../entities/bat.html">bat</a>ch Aware Regularization 在防止过拟合和加速收敛之间取得最佳平衡，带来 +0.0031 的绝对 <a href="AUC.html">AUC</a> 提升。</li>
-<li><strong>后续影响</strong> — "只关注当前 <a href="../entities/bat.html">bat</a>ch 中出现的特征"的思路后来被广泛应用于各种大规模稀疏模型的训练中。</li>
+<li><strong>计算效率</strong> — 只对当前 mini-batch 中实际出现的特征计算正则项，避免了对未出现特征的无效计算，在数亿参数规模下显著降低计算开销。</li>
+<li><strong>实验效果</strong> — 不使用正则化的模型在第一个 epoch 后就严重过拟合。Dropout 能缓解过拟合但收敛较慢。Mini-batch Aware Regularization 在防止过拟合和加速收敛之间取得最佳平衡，带来 +0.0031 的绝对 AUC 提升。</li>
+<li><strong>后续影响</strong> — "只关注当前 batch 中出现的特征"的思路后来被广泛应用于各种大规模稀疏模型的训练中。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../entities/DIN.html">DIN</a> — Mini-batch Aware Regularization 的提出者</li>
+<li>DIN — Mini-batch Aware Regularization 的提出者</li>
 <li><span style="color:#e74c3c" title="broken link">L2 正则化</span> — MBAR 扩展的基础方法</li>
 <li><span style="color:#e74c3c" title="broken link">Dropout</span> — MBAR 对比的替代方案</li>
 <li><a href="Dice 激活函数.html">Dice 激活函数</a> — DIN 论文提出的另一项训练技巧</li>

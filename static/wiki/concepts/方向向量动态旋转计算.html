@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">方向向量动态旋转计算</h1>
 <h2 id="_2">概述</h2>
-<p>从移动方向向量动态推算旋转四元数（Yaw + <a href="../entities/Pi-Agent.html">Pi</a>tch分解），使Slerp插值始终走最短路径，是避免硬编码四元数导致旋转反向的根本解法。</p>
+<p>从移动方向向量动态推算旋转四元数（Yaw + Pitch分解），使Slerp插值始终走最短路径，是避免硬编码四元数导致旋转反向的根本解法。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心思想</h3>
 <p><strong>不要为每个离散方向硬编码四元数</strong>，而是用数学函数（<code>atan2</code>）从方向向量连续推算旋转，保证目标四元数的连续性，让Slerp自然选择最短路径。</p>

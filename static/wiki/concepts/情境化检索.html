@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">情境化检索</h1>
 <h2 id="_2">概述</h2>
-<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 <a href="检索增强生成.html">RAG</a> 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
+<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 RAG 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心问题：切块破坏上下文</h3>
-<p>传统 <a href="检索增强生成.html">RAG</a> 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
+<p>传统 RAG 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
 <pre><code>问题：What was ACME Corp's revenue growth in Q2 2023?
 原始 Chunk：&quot;The company's revenue grew by 3% over the previous quarter.&quot;
 缺失：哪家公司？哪个季度？→ 检索系统无法判断相关性
@@ -199,9 +199,9 @@ Answer only with the succinct context and nothing else.
 <td>—</td>
 </tr>
 <tr>
-<td>嵌入 + BM25（标准 <span style="color:#e74c3c" title="broken link">检索增强生成&lt;/td&gt;
-&lt;td&gt;RAG</span>）</td>
+<td>嵌入 + BM25（标准 RAG）</td>
 <td>约 4.5%</td>
+<td>~21%</td>
 </tr>
 <tr>
 <td>情境化嵌入</td>

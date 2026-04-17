@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>概念定义</strong>：Zero-shot 推荐指模型在训练阶段未见过特定 Prompt 模板或任务格式的情况下，仅凭对语言的理解自行组织合适的对话来完成推荐任务的能力。这是传统推荐模型完全不具备的。</p>
 </li>
 <li>
-<p><strong><a href="../entities/P5 论文.html">P5</a> 中的验证</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 设计了 47 个<a href="个性化 Prompt.html">个性化 Prompt</a> 模板覆盖五类任务家族，采用部分采样训练策略——对每条原始数据只采样部分 Prompt 模板进行训练，保留一些模板作为 zero-shot 评估使用。实验证明，无论使用训练中见过的还是未见过的 Prompt 模板，<a href="../entities/P5 论文.html">P5</a> 都能取得相近的性能。</p>
+<p><strong>P5 中的验证</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 设计了 47 个<a href="个性化 Prompt.html">个性化 Prompt</a> 模板覆盖五类任务家族，采用部分采样训练策略——对每条原始数据只采样部分 Prompt 模板进行训练，保留一些模板作为 zero-shot 评估使用。实验证明，无论使用训练中见过的还是未见过的 Prompt 模板，P5 都能取得相近的性能。</p>
 </li>
 <li>
 <p><strong>与传统<a href="冷启动问题.html">冷启动问题</a>的区别</strong>：<a href="冷启动问题.html">冷启动问题</a>关注新用户/新物品缺乏交互历史时的推荐，而 zero-shot 推荐关注模型对新任务格式/新 Prompt 的泛化能力，两者解决的是不同层面的泛化问题。</p>

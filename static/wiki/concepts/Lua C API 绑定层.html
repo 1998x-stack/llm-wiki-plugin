@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>错误传播</strong>：脚本报错需包裹在保护调用（<code>lua_pcall</code>）中，错误转为日志/堆栈输出，避免崩<a href="游戏主循环模式.html">主循环</a>
 - <strong>边界粒度</strong>：高频逻辑应批量提交，避免每帧跨边界数千次读 getter/setter</p>
 <h3 id="registry">注册表（Registry）</h3>
-<p>Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 <a href="../entities/C++.html">C++</a> 对象每次暴露给 Lua 应使用唯一包装缓存（避免 <code>a ~= b</code> 但两者指向同一原生对象）。</p>
+<p>Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 C++ 对象每次暴露给 Lua 应使用唯一包装缓存（避免 <code>a ~= b</code> 但两者指向同一原生对象）。</p>
 <h3 id="vs">自动绑定 vs 手写绑定</h3>
 <table>
 <thead>
@@ -180,7 +180,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>成熟引擎通常混用：核心热路径手写，大量普通接口自动导出。</p>
 <h3 id="_4">高频坑</h3>
 <ol>
-<li><strong>对象失效</strong>：Lua 还握着对象，<a href="../entities/C++.html">C++</a> 早删了，导致随机崩溃或场景切换后回调报错</li>
+<li><strong>对象失效</strong>：Lua 还握着对象，C++ 早删了，导致随机崩溃或场景切换后回调报错</li>
 <li><strong>内存泄漏</strong>：缓存表/事件表/闭包形成强引用链，GC 无法回收；弱表是缓解手段</li>
 <li><strong>边界调用太碎</strong>：每帧跨边界数千次，性能在桥上被磨光</li>
 <li><strong>热更新打穿类型系统</strong>：脚本重载后老闭包仍活着、metatable 更新不完整、旧 userdata 绑旧方法表</li>
@@ -214,12 +214,12 @@ lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 // 释放
 luaL_unref(L, LUA_REGISTRYINDEX, ref);
 </code></pre>
-<p>注册表伪索引 <code>LUA_REG<a href="重要性采样.html">IS</a>TRYINDEX</code> 在任何地方可访问，是 C 侧持久存储 Lua 回调、对象缓存的标准方式。</p>
+<p>注册表伪索引 <code>LUA_REGISTRYINDEX</code> 在任何地方可访问，是 C 侧持久存储 Lua 回调、对象缓存的标准方式。</p>
 <h3 id="lual_">luaL_* 辅助库</h3>
 <p>参数检查系列（类型错误自动抛出含位置信息的 Lua 错误）：
-- <code>luaL_checkinteger(L, na<a href="../entities/ripgrep.html">rg</a>)</code> / <code>luaL_optinteger(L, na<a href="../entities/ripgrep.html">rg</a>, def)</code>
-- <code>luaL_checkstring(L, na<a href="../entities/ripgrep.html">rg</a>)</code> / <code>luaL_optstring(L, na<a href="../entities/ripgrep.html">rg</a>, def)</code>
-- <code>luaL_checkudata(L, na<a href="../entities/ripgrep.html">rg</a>, tname)</code> — 带类型名的 userdata 安全检查</p>
+- <code>luaL_checkinteger(L, narg)</code> / <code>luaL_optinteger(L, narg, def)</code>
+- <code>luaL_checkstring(L, narg)</code> / <code>luaL_optstring(L, narg, def)</code>
+- <code>luaL_checkudata(L, narg, tname)</code> — 带类型名的 userdata 安全检查</p>
 <p>字符串缓冲区（高效构建字符串，避免中间分配）：</p>
 <pre><code class="language-c">luaL_Buffer b;
 luaL_buffinit(L, &amp;b);
@@ -269,7 +269,7 @@ luaL_pushresult(&amp;b);    // 最终字符串压栈
 </tr>
 </tbody>
 </table>
-<p>推荐错误处理模式：先压入 traceback handler，再 <code>lua_pcall(L, na<a href="../entities/ripgrep.html">rg</a>s, nresults, handler_idx)</code>。</p>
+<p>推荐错误处理模式：先压入 traceback handler，再 <code>lua_pcall(L, nargs, nresults, handler_idx)</code>。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">Lua 游戏引擎连接机制</span> — ChatGPT 对话，系统介绍 Lua 与游戏引擎 C/C++/C# 层的连接/绑定机制</li>

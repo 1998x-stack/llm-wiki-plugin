@@ -27,7 +27,7 @@ supersedes: null
 2. **BPR 实现**：RecBole 将 BPR 作为标准的 baseline 实现之一，提供 BPR-MF 的标准化代码、默认超参数配置和评估流程，方便研究者在新工作中与 BPR 进行公平比较。
 
 3. **支持的模型类别**：
-   - 传统[[协同过滤]]（BPR、NeuMF、Pop 等）
+   - 传统[[协同过滤]]（BPR、[[NeuMF]]、Pop 等）
    - 基于内容的推荐
    - [[序列推荐]]（[[SASRec]]、[[BERT4Rec]]、[[GRU4Rec]] 等）
    - 图神经网络推荐（[[LightGCN]]、NGCF、SGL 等）

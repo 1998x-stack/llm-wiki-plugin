@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想转变</strong>：<a href="DQN.html">DQN</a> 学习 <code>Q(s,a) = E[Z(s,a)]</code>（期望），C51 学习 <code>Z(s,a) ~ p(·)</code>（完整分布），保留了值分布的多峰性（如奖励有多条路径时分布呈多峰）。</p>
+<p><strong>核心思想转变</strong>：DQN 学习 <code>Q(s,a) = E[Z(s,a)]</code>（期望），C51 学习 <code>Z(s,a) ~ p(·)</code>（完整分布），保留了值分布的多峰性（如奖励有多条路径时分布呈多峰）。</p>
 </li>
 <li>
 <p><strong>C51 参数化（51 个原子）</strong>：分布离散为等间距原子 <code>{z_i}_{i=0}^{50}</code>，<code>Δz = (V_max - V_min) / 50</code>，V_min=-10，V_max=10（Atari 设定）；网络输出 51 个概率值经 softmax 归一化。</p>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>损失函数</strong>：<code>KL(projection(T Z_{θ̄}(s',a*)) || Z_θ(s,a))</code>，用 KL 散度而非 MSE，更好地度量分布差异。</p>
 </li>
 <li>
-<p><strong>在 <a href="Rainbow.html">Rainbow</a> 中的变体</strong>：<a href="优先经验回放.html">PER</a> 的优先级从 TD 误差改为 KL 散度；Dueling 分解也扩展到分布维度（V 流和 A 流各输出 51 维分布）。</p>
+<p><strong>在 <a href="Rainbow.html">Rainbow</a> 中的变体</strong>：PER 的优先级从 TD 误差改为 KL 散度；Dueling 分解也扩展到分布维度（V 流和 A 流各输出 51 维分布）。</p>
 </li>
 <li>
 <p><strong>优势</strong>：保留多峰分布结构；提供比单点估计更丰富的梯度信号；天然表达风险和不确定性；与 Double Q 结合可进一步降低过估计。</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="DQN.html">DQN</a> — extends</li>
+<li>DQN — extends</li>
 <li><a href="强化学习.html">强化学习</a> — part_of</li>
 <li><a href="价值函数.html">价值函数</a> — extends</li>
 <li><a href="贝尔曼方程.html">贝尔曼方程</a> — extends</li>

@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>本质区别</strong>：</li>
-<li><strong>Bi-encoder</strong>：<code>score(q,d) = cos(E_q(q), E_d(d))</code>。文档向量<strong>离线预计算并固定</strong>，与查询无关。查询时只需计算查询向量再做 <a href="近似最近邻检索.html">ANN</a> 检索。本质是"在共享向量空间找几何最近点"。</li>
+<li><strong>Bi-encoder</strong>：<code>score(q,d) = cos(E_q(q), E_d(d))</code>。文档向量<strong>离线预计算并固定</strong>，与查询无关。查询时只需计算查询向量再做 ANN 检索。本质是"在共享向量空间找几何最近点"。</li>
 <li>
 <p><strong>Cross-encoder</strong>：<code>score(q,d) = f([q;d])</code>。将查询和文档拼接输入模型，<strong>文档的表示随查询动态变化</strong>。输出直接是相关性分数，无需向量空间。</p>
 </li>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>实践架构（两阶段）</strong>：</p>
 </li>
-<li>第一阶段：Bi-encoder（BGE/E5/text-embedding）+ <a href="近似最近邻检索.html">ANN</a>（<a href="../entities/Faiss.html">FAISS</a>/Milvus）→ Top-100，延迟 &lt; 20ms</li>
+<li>第一阶段：Bi-encoder（BGE/E5/text-embedding）+ ANN（<a href="../entities/Faiss.html">FAISS</a>/Milvus）→ Top-100，延迟 &lt; 20ms</li>
 <li>
 <p>第二阶段：Cross-encoder（BGE-reranker/LLM）<a href="检索重排序.html">精排</a> Top-100 → Top-10，延迟 &lt; 100ms</p>
 </li>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="检索重排序.html">检索重排序</a> — implements（具体实现架构）</li>
 <li><a href="Embedding.html">Embedding</a> — compares_to</li>
 <li><a href="近似最近邻检索.html">近似最近邻检索</a> — compares_to（Bi-encoder 配合 ANN）</li>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — compares_to（稀疏 vs 稠密第一阶段召回）</li>
+<li>BM25 — compares_to（稀疏 vs 稠密第一阶段召回）</li>
 </ul>
   </div>
   <div class="page-nav">

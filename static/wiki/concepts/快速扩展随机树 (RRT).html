@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rrt">快速扩展随机树 (RRT)</h1>
 <h2 id="_1">概述</h2>
-<p>快速扩展随机树（Rapidly-Exploring Random Trees, RRT）是一种用于高维空间路径规划的采样算法，由 <a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a> 于 1998 年提出。该算法通过构建一棵以起始点为根的树，利用随机采样引导树向未探索区域生长，从而高效地解决单查询<a href="运动规划.html">运动规划</a>问题。RRT 的核心优势在于其极致的简洁性、对非完整约束和动力学约束的天然适应性，以及增量式构建带来的实时响应能力。作为基于采样的<a href="运动规划.html">运动规划</a>两大支柱之一（另一为 <a href="概率路线图 (PRM).html">PRM</a>），RRT 已广泛应用于机器人学、自动驾驶及手术导航等领域。</p>
+<p>快速扩展随机树（Rapidly-Exploring Random Trees, RRT）是一种用于高维空间路径规划的采样算法，由 <a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a> 于 1998 年提出。该算法通过构建一棵以起始点为根的树，利用随机采样引导树向未探索区域生长，从而高效地解决单查询<a href="运动规划.html">运动规划</a>问题。RRT 的核心优势在于其极致的简洁性、对非完整约束和动力学约束的天然适应性，以及增量式构建带来的实时响应能力。作为基于采样的<a href="运动规划.html">运动规划</a>两大支柱之一（另一为 PRM），RRT 已广泛应用于机器人学、自动驾驶及手术导航等领域。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心算法循环</h3>
 <p>RRT 算法维护一棵树 $T$，初始仅包含起始构型 $q_{init}$。算法反复执行以下循环直至找到目标或达到迭代上限：
@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">处理非完整与动力学约束</h3>
 <p>与传统方法不同，RRT 的延伸步骤天然支持前向模拟：算法不需要解决困难的两点边值问题（即如何从状态 A 精确移动到状态 B），只需从当前状态 $x_{near}$ 选择一个随机控制输入 $u$，对动力学方程进行短时间积分得到新状态 $x_{new}$。只要模拟器是物理正确的，生成的每一步运动自动满足所有的运动和动力学约束。这种“构建即可行”的特性使得 RRT 成为该领域事实上的标准方法。</p>
 <h3 id="_5">局限性与改进</h3>
-<p>基本 RRT 存在路径质量差（锯齿状）和不保证最优性的缺陷。为解决这些问题，后续提出了 <strong><span style="color:#e74c3c" title="broken link">RRT*</span></strong> 算法，通过重新选择父节点和重布线（rewiring）实现了渐近最优性。此外，针对窄通道问题，研究者开发了多种自适应采样策略。尽管存在局限，RRT 及其变体因其模块化和易实现性，已成为 <strong><span style="color:#e74c3c" title="broken link">OMPL</span></strong> 等标准库的核心组件。</p>
+<p>基本 RRT 存在路径质量差（锯齿状）和不保证最优性的缺陷。为解决这些问题，后续提出了 <strong>RRT</strong><em> 算法，通过重新选择父节点和重布线（rewiring）实现了渐近最优性。此外，针对窄通道问题，研究者开发了多种自适应采样策略。尽管存在局限，RRT 及其变体因其模块化和易实现性，已成为 </em><em>OMPL</em>* 等标准库的核心组件。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/11-lavalle-rapidly-exploring-random-trees.md</span></li>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><span style="color:#e74c3c" title="broken link">概率路线图方法</span></li>
 <li><a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a></li>
 <li><a href="RRT-Connect.html">RRT-Connect</a></li>
-<li><span style="color:#e74c3c" title="broken link">RRT*</span></li>
+<li>RRT*</li>
 <li><a href="运动规划.html">运动规划</a></li>
 <li><a href="Kinodynamic Planning.html">Kinodynamic Planning</a></li>
 </ul>

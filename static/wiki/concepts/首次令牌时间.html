@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="time-to-first-token-ttft">首次令牌时间（Time to First Token / TTFT）</h1>
 <h2 id="_1">概述</h2>
-<p>首次令牌时间（T<a href="../entities/TensorFlow.html">TF</a>T）衡量 Agent 会话从接受工作到产生第一个响应 token 之间的等待时间，是用户最能<strong>直观感受</strong>到的延迟指标。</p>
+<p>首次令牌时间（TTFT）衡量 Agent 会话从接受工作到产生第一个响应 token 之间的等待时间，是用户最能<strong>直观感受</strong>到的延迟指标。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定义</h3>
-<p>T<a href="../entities/TensorFlow.html">TF</a>T = 从会话接受工作到产生第一个响应 token 的时间间隔。</p>
+<p>TTFT = 从会话接受工作到产生第一个响应 token 的时间间隔。</p>
 <h3 id="agent">在 Agent 架构中的意义</h3>
-<p>在 Agent 系统中，T<a href="../entities/TensorFlow.html">TF</a>T 受以下因素影响：
+<p>在 Agent 系统中，TTFT 受以下因素影响：
 - 容器配置时间
 - 仓库克隆时间
 - 进程启动时间
@@ -153,10 +153,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 编排层从<a href="会话日志.html">会话日志</a>拉取待处理事件后即可开始推理</p>
 <h3 id="_4">性能改善</h3>
 <p>Anthropic 报告的数据：
-- <strong>p50 T<a href="../entities/TensorFlow.html">TF</a>T</strong>：下降约 <strong>60%</strong>
-- <strong>p95 T<a href="../entities/TensorFlow.html">TF</a>T</strong>：下降超过 <strong>90%</strong></p>
+- <strong>p50 TTFT</strong>：下降约 <strong>60%</strong>
+- <strong>p95 TTFT</strong>：下降超过 <strong>90%</strong></p>
 <h3 id="_5">与模型推理延迟的区别</h3>
-<p>T<a href="../entities/TensorFlow.html">TF</a>T 特指 Agent 系统的<strong>端到端启动延迟</strong>，不同于模型本身的推理延迟。它包含了基础设施层面的所有启动开销，是用户最能感受到的延迟。</p>
+<p>TTFT 特指 Agent 系统的<strong>端到端启动延迟</strong>，不同于模型本身的推理延迟。它包含了基础设施层面的所有启动开销，是用户最能感受到的延迟。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md</span> — Anthropic Engineering Blog</li>

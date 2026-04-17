@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">游戏引擎架构</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/C++.html">C++</a> 游戏引擎按模块分层构建，核心层次为 Platform → Core → Render → Scene → Resource → Audio/Physics/Scripting/Editor。先跑通最小链路，再逐步扩展。</p>
+<p>C++ 游戏引擎按模块分层构建，核心层次为 Platform → Core → Render → Scene → Resource → Audio/Physics/Scripting/Editor。先跑通最小链路，再逐步扩展。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>分层模块划分</strong>：Platform（<a href="../entities/SDL2.html">SDL2</a>/GLFW）、Core（日志/事件/Timer）、Render（图形API封装）、Scene（<a href="场景树.html">场景树</a>或ECS）、Resource（资源缓存/引用计数）、Physics（Box2D/Bullet）、Audio（miniaudio/OpenAL）、Scripting（Lua）、Editor（<a href="../entities/Dear ImGui.html">Dear ImGui</a>）</li>
+<li><strong>分层模块划分</strong>：Platform（SDL2/GLFW）、Core（日志/事件/Timer）、Render（图形API封装）、Scene（<a href="场景树.html">场景树</a>或ECS）、Resource（资源缓存/引用计数）、Physics（Box2D/Bullet）、Audio（miniaudio/OpenAL）、Scripting（Lua）、Editor（<a href="../entities/Dear ImGui.html">Dear ImGui</a>）</li>
 <li><strong>推荐开发顺序</strong>：① 窗口+<a href="游戏主循环模式.html">主循环</a>+三角形 → ② 渲染基础（Shader/Texture/Mesh）→ ③ 场景系统（Entity/Transform）→ ④ 资源系统 → ⑤ 编辑器雏形 → ⑥ 高级扩展（物理/脚本/多线程）</li>
 <li>
 <p><strong>设计原则</strong>：先跑通再抽象；先做 Runtime 再做 Editor；窄而深优于大而全；必须有 Sandbox 测试场景；日志/断言/资源管理不可省</p>
@@ -148,9 +148,9 @@ nav a.active { color: var(--link); font-weight: 600; }
    | 模式 | 代表 | 优点 | 缺点 |
    |------|------|------|------|
    | 全 Lua | <a href="../entities/Love2D.html">Love2D</a>、<a href="../entities/Solar2D.html">Solar2D</a> | 迭代最快 | 性能上限低 |
-   | <a href="../entities/C++.html">C++</a> 引擎 + Lua 脚本 | 自定义引擎、CryEngine | 平衡性能与灵活 | 绑定维护成本 |
+   | C++ 引擎 + Lua 脚本 | 自定义引擎、CryEngine | 平衡性能与灵活 | 绑定维护成本 |
    | C# 引擎 + Lua 解释 | Unity + <a href="../entities/MoonSharp.html">MoonSharp</a> | 生态丰富 | 双语言开销 |
-   | <a href="Luau.html">Luau</a> 类型化 | <a href="../entities/Roblox.html">Roblox</a> | 安全性+性能 | 仅 <a href="../entities/Roblox.html">Roblox</a> 平台 |
+   | Luau 类型化 | <a href="../entities/Roblox.html">Roblox</a> | 安全性+性能 | 仅 <a href="../entities/Roblox.html">Roblox</a> 平台 |
    | <a href="LuaJIT.html">LuaJIT FFI</a> | <a href="LuaJIT.html">LuaJIT</a> 平台 | 接近 C 性能 | 复杂性高 |</p>
 </li>
 </ol>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="场景树.html">场景树</a> — 场景层的核心组织方式</li>
 <li><a href="ECS架构.html">ECS架构</a> — 场景层的另一种（数据导向）方案</li>
 <li><a href="../entities/Dear ImGui.html">Dear ImGui</a> — 编辑器层首选轻量 UI 库</li>
-<li><a href="../entities/SDL2.html">SDL2</a> — 跨平台平台层首选库</li>
+<li>SDL2 — 跨平台平台层首选库</li>
 <li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — Scripting 层的五层架构设计模式</li>
 </ul>
   </div>

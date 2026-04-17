@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="p5">P5 论文</h1>
 <h2 id="_1">概述</h2>
-<p>P5 首次将推荐系统五大核心任务统一为 text-to-text 语言生成问题，通过<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 和 <a href="T5.html">T5</a> 预训练实现"一个模型、一个损失函数、一个数据格式"处理所有推荐场景。</p>
+<p>P5 首次将推荐系统五大核心任务统一为 text-to-text 语言生成问题，通过<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 和 T5 预训练实现"一个模型、一个损失函数、一个数据格式"处理所有推荐场景。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：全称 "<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a> (<a href="../concepts/生成式推荐 (LLM).html">RLP</a>): A Unified Pretrain, <a href="../concepts/个性化 Prompt.html">Personalized Prompt</a> &amp; Predict Paradigm (P5)"，作者 <a href="Shijie Geng.html">Shijie Geng</a>, Shuchang Liu, Zuohui Fu, Yingqiang Ge, <a href="Yongfeng Zhang.html">Yongfeng Zhang</a>，机构 <a href="Rutgers University.html">Rutgers University</a>，发表于 <a href="RecSys 2022.html">RecSys 2022</a>（第16届ACM推荐系统会议），arXiv:2203.13366，代码仓库 github.com/jeykigung/P5，引用量 545+。</p>
+<p><strong>论文信息</strong>：全称 "<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a> (RLP): A Unified Pretrain, <a href="../concepts/个性化 Prompt.html">Personalized Prompt</a> &amp; Predict Paradigm (P5)"，作者 <a href="Shijie Geng.html">Shijie Geng</a>, Shuchang Liu, Zuohui Fu, Yingqiang Ge, <a href="Yongfeng Zhang.html">Yongfeng Zhang</a>，机构 <a href="Rutgers University.html">Rutgers University</a>，发表于 <a href="RecSys 2022.html">RecSys 2022</a>（第16届ACM推荐系统会议），arXiv:2203.13366，代码仓库 github.com/jeykigung/P5，引用量 545+。</p>
 </li>
 <li>
-<p><strong>核心范式突破</strong>：将推荐系统的五大任务——<span style="color:#e74c3c" title="broken link">评分预测</span>、<a href="../concepts/序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——全部转化为自然语言的输入-输出文本对，使用 <a href="T5.html">T5</a> 作为骨干模型，实现"一个模型走天下"。</p>
+<p><strong>核心范式突破</strong>：将推荐系统的五大任务——<span style="color:#e74c3c" title="broken link">评分预测</span>、<a href="../concepts/序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——全部转化为自然语言的输入-输出文本对，使用 T5 作为骨干模型，实现"一个模型走天下"。</p>
 </li>
 <li>
-<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头注意力）和 P5-base（223.28M参数，12层编解码器，768维，12头注意力），使用 Sentence<a href="Pi-Agent.html">Pi</a>ece 分词器（词汇表 32,128），4块 NVIDIA RTX A5000 GPU 训练 10 epochs。</p>
+<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头注意力）和 P5-base（223.28M参数，12层编解码器，768维，12头注意力），使用 SentencePiece 分词器（词汇表 32,128），4块 NVIDIA RTX A5000 GPU 训练 10 epochs。</p>
 </li>
 <li>
 <p><strong>47个<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 模板</strong>：覆盖五类任务家族，每类包含多种措辞和格式。评分预测采用高斯采样将5个整数类别扩展为41个浮点数类别以避免过拟合；<a href="../concepts/序列推荐.html">序列推荐</a>将用户历史交互编码为自然语言序列；解释生成和评论摘要利用文本生成能力；直接推荐以是/否形式判断偏好。</p>
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../concepts/Whole-word Embedding.html">Whole-word Embedding</a> 设计</strong>：对比 P5-I（独立 token）和 P5-S（子词分词 + 全词<a href="../concepts/共享嵌入.html">共享嵌入</a>），实验证明 P5-S 在<a href="../concepts/序列推荐.html">序列推荐</a>和直接推荐上显著优于 P5-I，通过协同学习获得更好的推荐性能同时保持 token 数量恒定。</p>
 </li>
 <li>
-<p><strong>多任务训练策略</strong>：从预训练 <a href="T5.html">T5</a> 检查点加载权重，将五类任务数据混合采样，使用标准 seq2seq <a href="../concepts/二元交叉熵.html">交叉熵损失</a><a href="../concepts/联合训练.html">联合训练</a>，推理时使用 beam search（beam size=20）解码。</p>
+<p><strong>多任务训练策略</strong>：从预训练 T5 检查点加载权重，将五类任务数据混合采样，使用标准 seq2seq <a href="../concepts/二元交叉熵.html">交叉熵损失</a><a href="../concepts/联合训练.html">联合训练</a>，推理时使用 beam search（beam size=20）解码。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 <a href="Amazon US Reviews.html">Amazon US Reviews</a>（Sports/Beauty/Toys）和 <a href="Yelp Review.html">Yelp Review</a> 数据集上验证。评分预测 <a href="../concepts/平均绝对误差 MAE.html">MAE</a> 优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>；<a href="../concepts/序列推荐.html">序列推荐</a>在全量物品设置下评估；直接推荐显著优于 <a href="../concepts/BPR.html">BPR</a>-<a href="../concepts/矩阵分解.html">MF</a> 和 <a href="../concepts/BPR.html">BPR</a>-MLP；生成任务超越参数量大得多的 T0（11B）和 GPT-2（1.5B）。</p>
+<p><strong>实验结果</strong>：在 <a href="Amazon US Reviews.html">Amazon US Reviews</a>（Sports/Beauty/Toys）和 <a href="Yelp Review.html">Yelp Review</a> 数据集上验证。评分预测 MAE 优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>；<a href="../concepts/序列推荐.html">序列推荐</a>在全量物品设置下评估；直接推荐显著优于 BPR-MF 和 BPR-MLP；生成任务超越参数量大得多的 T0（11B）和 GPT-2（1.5B）。</p>
 </li>
 <li>
 <p><strong><a href="../concepts/Zero-shot 推荐.html">Zero-shot 推荐</a>能力</strong>：保留部分 Prompt 模板用于测试，模型在未见过的 Prompt 格式上仍能给出合理推荐，这是传统推荐模型完全不具备的能力。</p>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>局限性</strong>：推理效率问题（<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>解码延迟远高于向量内积）；物品词汇表可扩展性（百万/亿级 ID 空间）；与专用模型的性能差距；数据集规模有限；ID 语义鸿沟（后续 <a href="LC-Rec.html">LC-Rec</a> 等试图解决）；可复现性挑战（RecSys 2024 专门研究）。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：<a href="RecSys 2022.html">RecSys 2022</a> 杰出论文之一，催生 <a href="OpenP5.html">OpenP5</a>、<a href="VIP5.html">VIP5</a>、<a href="InstructRec.html">InstructRec</a>、<a href="TALLRec.html">TALLRec</a>、<a href="LC-Rec.html">LC-Rec</a>、<a href="LLMRec.html">LLMRec</a>、<a href="DEALRec.html">DEALRec</a> 等后续工作，帮助社区形成"语言是连接不同推荐任务的天然桥梁"的共识。</p>
+<p><strong>历史地位</strong>：<a href="RecSys 2022.html">RecSys 2022</a> 杰出论文之一，催生 <a href="OpenP5.html">OpenP5</a>、VIP5、<a href="InstructRec.html">InstructRec</a>、<a href="TALLRec.html">TALLRec</a>、<a href="LC-Rec.html">LC-Rec</a>、<a href="LLMRec.html">LLMRec</a>、<a href="DEALRec.html">DEALRec</a> 等后续工作，帮助社区形成"语言是连接不同推荐任务的天然桥梁"的共识。</p>
 </li>
 <li>
 <p><strong>金句</strong>："Language can describe almost anything and language grounding is a powerful medium to represent various problems or tasks."（语言可以描述几乎任何事物，语言基础是表示各种问题或任务的强大媒介。）</p>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="Shijie Geng.html">Shijie Geng</a> — 第一作者</li>
 <li><a href="Yongfeng Zhang.html">Yongfeng Zhang</a> — 通讯作者</li>
-<li><a href="T5.html">T5</a> — 骨干模型</li>
+<li>T5 — 骨干模型</li>
 <li><a href="../concepts/生成式推荐.html">生成式推荐</a> — P5 开创的推荐范式</li>
 <li><a href="../concepts/推荐系统基础模型.html">推荐系统基础模型</a> — P5 提出的愿景</li>
 <li><a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> — P5 的核心技术</li>
@@ -194,7 +194,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="TALLRec.html">TALLRec</a> — 首个用 LLaMA 微调推荐的工作</li>
 <li><a href="LC-Rec.html">LC-Rec</a> — 用语义 ID 解决 P5 的 ID 语义鸿沟</li>
 <li><a href="LLMRec.html">LLMRec</a> — 同时使用唯一标识符和语义文本</li>
-<li><a href="VIP5.html">VIP5</a> — P5 扩展到多模态推荐</li>
+<li>VIP5 — P5 扩展到多模态推荐</li>
 <li><a href="DEALRec.html">DEALRec</a> — 通过数据剪枝提升 LLM 推荐训练效率</li>
 <li><a href="SASRec.html">SASRec</a> — 传统序列推荐基线</li>
 <li><a href="BERT4Rec.html">BERT4Rec</a> — 使用 BERT 的序列推荐基线</li>

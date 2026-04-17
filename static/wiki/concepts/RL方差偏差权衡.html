@@ -135,47 +135,47 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rl">RL方差偏差权衡</h1>
 <h2 id="_1">概述</h2>
-<p><a href="强化学习.html">强化学习</a>中方差与偏差的权衡是三大范式差异的核心张力：Monte-Carlo 方法（<a href="REINFORCE算法.html">REINFORCE</a>）无偏但方差极高；TD/Bootstrapping 方法（<a href="DQN.html">DQN</a>）方差低但引入偏差；<a href="强化学习三大范式.html">Actor-Critic</a> 方法通过 <a href="广义优势估计.html">GAE</a> 在两者之间取得折中。方差排序（高→低）：<a href="REINFORCE算法.html">REINFORCE</a> &gt;&gt; <a href="A3C.html">A3C</a> ≈ <a href="PPO.html">PPO</a> &gt; <a href="SAC.html">SAC</a> &gt; <a href="DDPG.html">DDPG</a> ≈ <a href="TD3.html">TD3</a> &gt; <a href="DQN.html">DQN</a>。</p>
+<p><a href="强化学习.html">强化学习</a>中方差与偏差的权衡是三大范式差异的核心张力：Monte-Carlo 方法（<a href="REINFORCE算法.html">REINFORCE</a>）无偏但方差极高；TD/Bootstrapping 方法（DQN）方差低但引入偏差；<a href="强化学习三大范式.html">Actor-Critic</a> 方法通过 GAE 在两者之间取得折中。方差排序（高→低）：<a href="REINFORCE算法.html">REINFORCE</a> &gt;&gt; A3C ≈ PPO &gt; SAC &gt; DDPG ≈ TD3 &gt; DQN。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>方差来源</strong>：</li>
 <li>Monte-Carlo 回报（<a href="REINFORCE算法.html">REINFORCE</a>）：对整条轨迹求和，若单步方差为 σ²，T 步轨迹方差为 T·σ²，随 episode 长度线性增长</li>
-<li>TD 更新（<a href="DQN.html">DQN</a>）：仅单步 Bootstrap，批采样噪声是唯一方差来源，方差最低</li>
+<li>TD 更新（DQN）：仅单步 Bootstrap，批采样噪声是唯一方差来源，方差最低</li>
 <li>
-<p>随机<a href="策略梯度定理.html">策略梯度</a>（<a href="A3C.html">A3C</a>/<a href="PPO.html">PPO</a>）：用 <a href="广义优势估计.html">GAE</a> 替代 MC 回报大幅降低方差，但随机采样仍引入方差</p>
+<p>随机<a href="策略梯度定理.html">策略梯度</a>（A3C/PPO）：用 GAE 替代 MC 回报大幅降低方差，但随机采样仍引入方差</p>
 </li>
 <li>
 <p><strong>偏差来源</strong>：</p>
 </li>
-<li>函数逼近误差：所有深度 <a href="强化学习.html">RL</a> 方法均有，神经网络无法完美拟合真实价值</li>
+<li>函数逼近误差：所有深度 RL 方法均有，神经网络无法完美拟合真实价值</li>
 <li>Bootstrapping 偏差：TD 方法用当前不准确的 Q 函数估计目标值，引入偏差</li>
-<li>过估计偏差：max 操作（<a href="DQN.html">DQN</a>）系统性高估 Q 值；<a href="Double DQN.html">Double DQN</a> 通过分离选择与评估网络缓解</li>
+<li>过估计偏差：max 操作（DQN）系统性高估 Q 值；<a href="Double DQN.html">Double DQN</a> 通过分离选择与评估网络缓解</li>
 <li>
-<p>函数逼近 + Off-policy 组合：致命三角（Deadly Triad），<a href="DQN.html">DQN</a> 的工程稳定化技术（<a href="目标网络.html">目标网络</a>+<a href="经验回放.html">经验回放</a>）是工程补丁而非理论保证</p>
+<p>函数逼近 + Off-policy 组合：致命三角（Deadly Triad），DQN 的工程稳定化技术（<a href="目标网络.html">目标网络</a>+<a href="经验回放.html">经验回放</a>）是工程补丁而非理论保证</p>
 </li>
 <li>
 <p><strong>各算法梯度估计对比</strong>：</p>
 </li>
 <li><a href="REINFORCE算法.html">REINFORCE</a>：<code>ĝ = (1/N) Σ_τ [ Σ_t ∇_θ log π_θ(a_t|s_t) · G_t ]</code>，MC 回报 G_t 高方差</li>
-<li><a href="强化学习三大范式.html">Actor-Critic</a>（<a href="A3C.html">A3C</a>/<a href="PPO.html">PPO</a>）：<code>ĝ = (1/N) Σ_t [ ∇_θ log π_θ(a_t|s_t) · Â_t^GAE ]</code>，<a href="广义优势估计.html">GAE</a> 优势降方差</li>
-<li><a href="DDPG.html">DDPG</a>/<a href="TD3.html">TD3</a>（确定性）：<code>ĝ = (1/N) Σ_s [ ∇_θ μ_θ(s) · ∇_a Q_φ(s,a) ]</code>，无随机采样，链式法则</li>
+<li><a href="强化学习三大范式.html">Actor-Critic</a>（A3C/PPO）：<code>ĝ = (1/N) Σ_t [ ∇_θ log π_θ(a_t|s_t) · Â_t^GAE ]</code>，GAE 优势降方差</li>
+<li>DDPG/TD3（确定性）：<code>ĝ = (1/N) Σ_s [ ∇_θ μ_θ(s) · ∇_a Q_φ(s,a) ]</code>，无随机采样，链式法则</li>
 <li>
-<p><a href="SAC.html">SAC</a>（随机+重参数化）：<code>ĝ = (1/N) Σ_{s,ε} [ ∇_θ(α log π_θ(ã|s) - Q_φ(s,ã)) ]</code>，重参数化消除采样方差</p>
+<p>SAC（随机+重参数化）：<code>ĝ = (1/N) Σ_{s,ε} [ ∇_θ(α log π_θ(ã|s) - Q_φ(s,ã)) ]</code>，重参数化消除采样方差</p>
 </li>
 <li>
 <p><strong>收敛理论保证对比</strong>：</p>
 </li>
-<li>Q-learning（表格）：有限 <a href="马尔可夫决策过程.html">MDP</a> 收敛保证（Bellman 压缩算子）</li>
-<li><a href="DQN.html">DQN</a>：无理论保证，工程稳定化（<a href="目标网络.html">目标网络</a>+<a href="经验回放.html">经验回放</a>）</li>
+<li>Q-learning（表格）：有限 MDP 收敛保证（Bellman 压缩算子）</li>
+<li>DQN：无理论保证，工程稳定化（<a href="目标网络.html">目标网络</a>+<a href="经验回放.html">经验回放</a>）</li>
 <li><a href="REINFORCE算法.html">REINFORCE</a>：局部最优收敛（<a href="策略梯度定理.html">策略梯度定理</a>）</li>
-<li><a href="TRPO.html">TRPO</a>：单调改进保证（信赖域+KL 约束，前提：精确策略评估）</li>
-<li><a href="PPO.html">PPO</a>：近似收敛保证（Clip 近似约束）</li>
-<li><a href="SAC.html">SAC</a>：软 Q 迭代收敛（软贝尔曼压缩算子）</li>
+<li>TRPO：单调改进保证（信赖域+KL 约束，前提：精确策略评估）</li>
+<li>PPO：近似收敛保证（Clip 近似约束）</li>
+<li>SAC：软 Q 迭代收敛（软贝尔曼压缩算子）</li>
 <li>
-<p><a href="DDPG.html">DDPG</a>/<a href="TD3.html">TD3</a>：无保证（DPG 定理有限适用）</p>
+<p>DDPG/TD3：无保证（DPG 定理有限适用）</p>
 </li>
 <li>
-<p><strong>重参数化技巧</strong>：<a href="SAC.html">SAC</a> 将随机策略 a~π(·|s) 改写为 a = tanh(μ(s) + σ(s)⊙ε)，ε~N(0,I)，使梯度可通过确定性函数传播，避免直接对采样操作求导，将方差从 MC 采样降至仅批次噪声级别。</p>
+<p><strong>重参数化技巧</strong>：SAC 将随机策略 a~π(·|s) 改写为 a = tanh(μ(s) + σ(s)⊙ε)，ε~N(0,I)，使梯度可通过确定性函数传播，避免直接对采样操作求导，将方差从 MC 采样降至仅批次噪声级别。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -186,9 +186,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="强化学习三大范式.html">强化学习三大范式</a> — part_of</li>
 <li><a href="REINFORCE算法.html">REINFORCE算法</a> — compares_to</li>
-<li><a href="DQN.html">DQN</a> — compares_to</li>
+<li>DQN — compares_to</li>
 <li><a href="广义优势估计.html">广义优势估计</a> — uses</li>
-<li><a href="SAC.html">SAC</a> — compares_to</li>
+<li>SAC — compares_to</li>
 <li><a href="最大熵强化学习.html">最大熵强化学习</a> — relates_to</li>
 </ul>
   </div>

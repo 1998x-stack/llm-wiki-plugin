@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>字节码解释器</strong>：处理冷路径代码，与标准 Lua 兼容
 - <strong>Tracing JIT</strong>：识别热路径（循环等），记录执行踪迹并编译为 x86/x64 原生机器码</p>
 <h3 id="ffi">FFI 库（外部函数接口）</h3>
-<p>LuaJIT 的杀手级特性。用 <code>ffi.cdef<span style="color:#e74c3c" title="broken link">...</span></code> 声明 C 结构体和函数签名，直接调用原生 C 函数，无需 <code>lua_pushXXX</code> / <code>lua_toXXX</code> 的手工绑定代码：
+<p>LuaJIT 的杀手级特性。用 <code>ffi.cdef...</code> 声明 C 结构体和函数签名，直接调用原生 C 函数，无需 <code>lua_pushXXX</code> / <code>lua_toXXX</code> 的手工绑定代码：
 - <code>ffi.new("Vec3", {...})</code> — 创建栈上 C 值类型（无 GC 压力）
 - <code>ffi.C.function_name(...)</code> — 调用已声明的 C 函数
 - <code>ffi.new("Type[N]")</code> — 分配 C 数组，直接内存操作</p>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — LuaJIT FFI 是传统 C API 绑定层的高性能替代方案</li>
 <li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — LuaJIT 作为 VM 层选型，影响整个绑定层策略</li>
-<li><a href="Luau.html">Luau</a> — Roblox 定制 Lua 方言，有类似的 Native codegen 方向</li>
+<li>Luau — Roblox 定制 Lua 方言，有类似的 Native codegen 方向</li>
 </ul>
   </div>
   <div class="page-nav">

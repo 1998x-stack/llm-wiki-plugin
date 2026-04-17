@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="iksolver">IKSolver</h1>
 <h2 id="_1">概述</h2>
-<p><a href="逆向运动学.html">IK</a>Solver 是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的<a href="逆向运动学.html">逆向运动学</a>求解器组件，挂载于骨骼根节点，负责管理 <a href="逆向运动学.html">IK</a> 链并驱动关节求解，继承自 Component。</p>
+<p>IKSolver 是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的<a href="逆向运动学.html">逆向运动学</a>求解器组件，挂载于骨骼根节点，负责管理 IK 链并驱动关节求解，继承自 Component。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">方法</h3>
 <table>
@@ -148,60 +148,60 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>RebuildChainTrees()</code></td>
-<td>重建 <span style="color:#e74c3c" title="broken link">逆向运动学&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;RecalculateSegmentLengths()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;重新计算各段骨骼长度&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;CalculateJointRotations()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;计算关节旋转（通常由 Solve 内部调用）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;Solve()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;执行一次 [[逆向运动学&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;ApplyOriginalPoseToScene()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;将原始姿态写回场景节点&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;ApplySceneToOriginalPose()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;从场景节点读取并保存为原始姿态&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;ApplyActivePoseToScene()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;将当前活动姿态写回场景节点&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;ApplySceneToActivePose()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;从场景节点读取并保存为活动姿态&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;ApplyOriginalPoseToActivePose()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;将原始姿态复制到活动姿态&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;DrawDebugGeometry(bool depthTest)&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;绘制 [[逆向运动学&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;_4&quot;&gt;属性&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;属性&lt;/th&gt;
-&lt;th&gt;类型&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;algorithm&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;[[逆向运动学&lt;/td&gt;
-&lt;td&gt;IK</span>Solver::Algorithm</td>
+<td>重建 IK 链树，场景结构变化后调用</td>
+</tr>
+<tr>
+<td><code>RecalculateSegmentLengths()</code></td>
+<td>重新计算各段骨骼长度</td>
+</tr>
+<tr>
+<td><code>CalculateJointRotations()</code></td>
+<td>计算关节旋转（通常由 Solve 内部调用）</td>
+</tr>
+<tr>
+<td><code>Solve()</code></td>
+<td>执行一次 IK 求解迭代</td>
+</tr>
+<tr>
+<td><code>ApplyOriginalPoseToScene()</code></td>
+<td>将原始姿态写回场景节点</td>
+</tr>
+<tr>
+<td><code>ApplySceneToOriginalPose()</code></td>
+<td>从场景节点读取并保存为原始姿态</td>
+</tr>
+<tr>
+<td><code>ApplyActivePoseToScene()</code></td>
+<td>将当前活动姿态写回场景节点</td>
+</tr>
+<tr>
+<td><code>ApplySceneToActivePose()</code></td>
+<td>从场景节点读取并保存为活动姿态</td>
+</tr>
+<tr>
+<td><code>ApplyOriginalPoseToActivePose()</code></td>
+<td>将原始姿态复制到活动姿态</td>
+</tr>
+<tr>
+<td><code>DrawDebugGeometry(bool depthTest)</code></td>
+<td>绘制 IK 链调试几何体</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">属性</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>algorithm</code></td>
+<td>IKSolver::Algorithm</td>
+<td>IK 算法（如 FABRIK）</td>
 </tr>
 <tr>
 <td><code>maximumIterations</code></td>
@@ -252,7 +252,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_5">使用模式</h3>
 <ul>
-<li>将 <a href="逆向运动学.html">IK</a>Solver 挂载到骨骼根节点</li>
+<li>将 IKSolver 挂载到骨骼根节点</li>
 <li>在子节点挂载 <a href="IKEffector.html">IKEffector</a> 指定目标</li>
 <li>可选在关节节点挂载 <a href="IK约束.html">IK约束</a> 限制活动范围</li>
 <li>设置 <code>AUTO_SOLVE = true</code> 自动驱动，或手动调用 <code>Solve()</code></li>

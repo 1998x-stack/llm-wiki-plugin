@@ -190,7 +190,7 @@ end
 <h3 id="_6">引用存储规则</h3>
 <p>引擎保存 Lua function 引用时，必须存入注册表（<code>lua_ref</code>），不能保存栈上临时值。存注册表的引用在 GC 标记为存活，栈临时值随函数返回即可能被回收。</p>
 <h3 id="_7">命名空间约定</h3>
-<p>大型项目建议给事件名加前缀区分系统：<code>"ui:button_click"</code>, <code>"com<a href="../entities/bat.html">bat</a>:boss_dead"</code>, <code>"net:data_recv"</code>，避免全局命名冲突。</p>
+<p>大型项目建议给事件名加前缀区分系统：<code>"ui:button_click"</code>, <code>"combat:boss_dead"</code>, <code>"net:data_recv"</code>，避免全局命名冲突。</p>
 <h2 id="_8">常见陷阱</h2>
 <ul>
 <li><strong>忘记 off</strong>：订阅者对象已销毁但仍在 listeners 中，emit 时访问已释放数据</li>

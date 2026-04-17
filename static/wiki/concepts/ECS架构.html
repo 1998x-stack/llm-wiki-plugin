@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>三元素</strong>：Entity（唯一ID，无行为）、Component（纯数据结构，如 Transform/Sprite<a href="Renderer渲染器.html">Renderer</a>/Rigidbody）、System（遍历特定组件组合并执行逻辑）</li>
 <li><strong>优势场景</strong>：游戏对象数量多（大量 NPC、粒子、子弹）；需要批量系统化处理；性能敏感场景（数据局部性好于面向对象继承树）</li>
 <li><strong>与<a href="场景树.html">场景树</a>混合</strong>：现代引擎常见方案——Entity 存 ECS，Transform 组件保存 parent/children 实现层级，渲染/物理/动画 System 按 ECS 批处理。"树描述关系，ECS 描述数据和系统执行"</li>
-<li><strong><a href="../entities/C++.html">C++</a> 实现推荐</strong>：初期用轻量 Entity+Component 方案（不需纯粹 ECS），进阶可接 <a href="../entities/entt.html">entt</a> 库</li>
+<li><strong>C++ 实现推荐</strong>：初期用轻量 Entity+Component 方案（不需纯粹 ECS），进阶可接 entt 库</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="游戏引擎架构.html">游戏引擎架构</a> — ECS 是场景层的高性能组织方案</li>
 <li><a href="场景树.html">场景树</a> — 与 ECS 互补，适合层级明确对象</li>
-<li><a href="../entities/entt.html">entt</a> — C++ ECS 库推荐实现</li>
+<li>entt — C++ ECS 库推荐实现</li>
 </ul>
   </div>
   <div class="page-nav">

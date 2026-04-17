@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mdl">MDL格式</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a>/Urho3D 引擎的原生 3D 模型格式，存储几何体、骨骼、<a href="LOD（细节层次）.html">LOD</a> 层级、顶点属性及包围盒信息，由 <a href="FBX格式.html">FBX</a> 等格式导入生成。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a>/Urho3D 引擎的原生 3D 模型格式，存储几何体、骨骼、LOD 层级、顶点属性及包围盒信息，由 FBX 等格式导入生成。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>结构组成</strong>：<a href="最小描述长度原理.html">MDL</a> 文件包含包围盒（Bounding Box）、多个 Geometry（几何体）及其 <a href="LOD（细节层次）.html">LOD</a> 层级（每级记录顶点数、三角面数、切换距离 lodDist）、顶点属性列表（Position/Normal/Tangent/TexCoord/<a href="骨骼系统.html">Bone</a>Weights/<a href="骨骼系统.html">Bone</a>Indices）和骨骼（<a href="骨骼系统.html">Skeleton</a>）信息。</li>
+<li><strong>结构组成</strong>：MDL 文件包含包围盒（Bounding Box）、多个 Geometry（几何体）及其 LOD 层级（每级记录顶点数、三角面数、切换距离 lodDist）、顶点属性列表（Position/Normal/Tangent/TexCoord/BoneWeights/BoneIndices）和骨骼（<a href="骨骼系统.html">Skeleton</a>）信息。</li>
 <li><strong>model-info 查询</strong>：使用 <code>UrhoXCLI model-info -i &lt;mdl&gt;</code> 检查模型的完整元信息；加 <code>--bones</code> 参数可列出所有骨骼名称及父索引，用于<a href="动画重定向.html">动画重定向</a>前的骨骼结构验证。</li>
-<li><strong>路径规则</strong>：<a href="最小描述长度原理.html">MDL</a> 文件路径必须使用绝对路径；若同目录存在同名 <code>.lodgroup</code> 文件，model-info 还会输出 <a href="LOD（细节层次）.html">LOD</a> 切换参数（screenSize/maxDeviation）。</li>
-<li><strong>典型工作流</strong>：<a href="FBX格式.html">FBX</a> 导入（<code>import-model</code>）→ <a href="最小描述长度原理.html">MDL</a> 验证（<code>model-info</code>）→ 检查顶点数/面数/骨骼数是否符合预期。</li>
+<li><strong>路径规则</strong>：MDL 文件路径必须使用绝对路径；若同目录存在同名 <code>.lodgroup</code> 文件，model-info 还会输出 LOD 切换参数（screenSize/maxDeviation）。</li>
+<li><strong>典型工作流</strong>：FBX 导入（<code>import-model</code>）→ MDL 验证（<code>model-info</code>）→ 检查顶点数/面数/骨骼数是否符合预期。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

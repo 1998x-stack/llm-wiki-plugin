@@ -160,19 +160,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="矩阵分解.html">矩阵分解</a></strong>：需要用户长期历史，在纯 session-based 场景下表现不佳</p>
 </li>
 <li>
-<p><strong>深度学习方法</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a>（2016）首次将 <a href="生成式推荐.html">GR</a>U 引入会话推荐，通过 <a href="Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练和排序损失函数，在 <a href="候选生成.html">Recall</a>@20 上比 Item-KNN 提升 20-30%。后续工作包括 NARM（注意力机制）、HRNN（层次化 RNN）、STAMP（纯注意力）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（图神经网络）等。</p>
+<p><strong>深度学习方法</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a>（2016）首次将 GRU 引入会话推荐，通过 <a href="Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> 训练和排序损失函数，在 <a href="候选生成.html">Recall</a>@20 上比 Item-KNN 提升 20-30%。后续工作包括 NARM（注意力机制）、HRNN（层次化 RNN）、STAMP（纯注意力）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（图神经网络）等。</p>
 </li>
 <li>
 <p><strong>持续研究价值</strong>：</p>
 </li>
-<li><strong>隐私保护</strong>：GD<a href="Probabilistic Robotics.html">PR</a> 等法规下，长期存储用户行为数据受限</li>
+<li><strong>隐私保护</strong>：GDPR 等法规下，长期存储用户行为数据受限</li>
 <li><strong>冷启动</strong>：新用户、新平台的<a href="冷启动问题.html">冷启动问题</a>天然适合会话推荐</li>
 <li><strong>实时性</strong>：用户意图在会话中快速变化，需要模型实时适应</li>
 <li>
 <p><strong>多模态</strong>：现代会话推荐融合点击、停留时间、滚动行为等多种信号</p>
 </li>
 <li>
-<p><strong>评估范式</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 确立的评估方式（<a href="Recall@K.html">Recall@K</a> 和 <a href="MRR.html">MRR</a>@K、基于会话的划分策略、RSC15 数据集）成为后续研究的标准评估范式，被数百篇论文沿用。</p>
+<p><strong>评估范式</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 确立的评估方式（<a href="Recall@K.html">Recall@K</a> 和 MRR@K、基于会话的划分策略、RSC15 数据集）成为后续研究的标准评估范式，被数百篇论文沿用。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -186,7 +186,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="冷启动问题.html">冷启动问题</a> — 会话推荐天然适合冷启动场景</li>
 <li><a href="基于物品的协同过滤.html">基于物品的协同过滤</a> — 传统基线方法</li>
 <li><a href="矩阵分解.html">矩阵分解</a> — 在会话场景下表现不佳</li>
-<li><span style="color:#e74c3c" title="broken link">NARM</span> — 加入注意力机制的后续工作</li>
+<li>NARM — 加入注意力机制的后续工作</li>
 <li><span style="color:#e74c3c" title="broken link">SR-GNN</span> — 图神经网络方法</li>
 </ul>
   </div>

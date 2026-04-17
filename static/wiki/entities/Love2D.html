@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>物理模块</strong>：<code>love.physics.newWorld(gx, gy)</code> 创建物理世界，<code>newBody/newRectangleShape/newFixture</code> 创建刚体。每帧调用 <code>world:update(dt)</code> 推进物理模拟。</p>
 </li>
 <li>
-<p><strong>内部实现机制</strong>：LÖVE 在 <a href="C++.html">C++</a> 层实现所有 Module（graphics、audio、physics 等），通过 <code>luaL_newlib</code> 注册为 Lua 模块，<a href="../concepts/游戏主循环模式.html">主循环</a>从 <a href="C++.html">C++</a> 触发 <code>love.update(dt)</code> 和 <code>love.draw()</code>。这是典型的 <a href="C++.html">C++</a> 引擎 + 全 Lua 暴露 API 的架构模式。</p>
+<p><strong>内部实现机制</strong>：LÖVE 在 C++ 层实现所有 Module（graphics、audio、physics 等），通过 <code>luaL_newlib</code> 注册为 Lua 模块，<a href="../concepts/游戏主循环模式.html">主循环</a>从 C++ 触发 <code>love.update(dt)</code> 和 <code>love.draw()</code>。这是典型的 C++ 引擎 + 全 Lua 暴露 API 的架构模式。</p>
 </li>
 <li>
 <p><strong>配置文件 conf.lua</strong>：<code>love.conf(t)</code> 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：<code>t.window.width/height</code>、<code>t.window.resizable</code>、<code>t.window.vsync</code>、<code>t.window.msaa</code>、<code>t.modules.physics</code>。是 Love2D 项目的标准初始化入口。</p>

@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>变换体系</strong>：区分 Local（父节点相对）和 World（世界绝对）两套接口——<code>SetPosition/SetWorldPosition</code>、<code>GetTransform/GetWorldTransform</code>；2D 游戏使用 <code>SetPosition2D/SetRotation2D/SetScale2D</code> 对应接口。</li>
-<li><strong>旋转操作</strong>：<code>Translate/Rotate</code> 支持 <code>TransformSpace</code>（TS_LOCAL / TS_WO<a href="强化学习.html">RL</a>D / TS_PARENT）指定参考系；<code>Pitch/Yaw/Roll</code> 分别绕 X/Y/Z 轴旋转；<code>LookAt(target, upAxis, space)</code> 使节点朝向目标。</li>
+<li><strong>旋转操作</strong>：<code>Translate/Rotate</code> 支持 <code>TransformSpace</code>（TS_LOCAL / TS_WORLD / TS_PARENT）指定参考系；<code>Pitch/Yaw/Roll</code> 分别绕 X/Y/Z 轴旋转；<code>LookAt(target, upAxis, space)</code> 使节点朝向目标。</li>
 <li><strong>坐标转换</strong>：<code>LocalToWorld/WorldToLocal</code>（支持 Vector3 和 Vector4 齐次坐标）实现空间转换，是射线投射和相机映射的基础。</li>
 <li><strong>父子管理</strong>：<code>CreateChild(name, mode, id)</code> 创建子节点；<code>AddChild/RemoveChild/RemoveAllChildren</code>；<code>Clone(mode)</code> 深拷贝子树；<code>SetParent</code> 重挂父节点；<code>GetChild(name/hash/index, recursive)</code> 递归查找。</li>
 <li><strong>组件管理</strong>：<code>CreateComponent(type, mode, id)</code>/<code>GetOrCreateComponent</code>/<code>RemoveComponent</code>；<code>GetComponent(type, recursive)</code> 向下递归查找；<code>GetParentComponent(type, recursive)</code> 向上查找；支持按类型批量操作 <code>RemoveComponents(type)</code>。</li>

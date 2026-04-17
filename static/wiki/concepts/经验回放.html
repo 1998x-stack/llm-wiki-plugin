@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">经验回放</h1>
 <h2 id="_2">概述</h2>
-<p>经验回放（Experience Replay）是深度<a href="强化学习.html">强化学习</a>的核心工程技术，由 Lin（1992）提出、<a href="DQN.html">DQN</a> 系统化应用。将智能体与环境交互产生的 transition 存入固定容量的回放缓冲区，训练时均匀随机采样 mini-<a href="../entities/bat.html">bat</a>ch，从而打破时序相关性、提升样本效率，是 off-policy 方法的标配机制。</p>
+<p>经验回放（Experience Replay）是深度<a href="强化学习.html">强化学习</a>的核心工程技术，由 Lin（1992）提出、DQN 系统化应用。将智能体与环境交互产生的 transition 存入固定容量的回放缓冲区，训练时均匀随机采样 mini-batch，从而打破时序相关性、提升样本效率，是 off-policy 方法的标配机制。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>机制</strong>：回放缓冲区 D 存储 (s, a, r, s', done) transition，容量 N=1,000,000；训练时均匀随机采样 <a href="../entities/bat.html">bat</a>ch size=32 条进行梯度更新。</p>
+<p><strong>机制</strong>：回放缓冲区 D 存储 (s, a, r, s', done) transition，容量 N=1,000,000；训练时均匀随机采样 batch size=32 条进行梯度更新。</p>
 </li>
 <li>
 <p><strong>为什么有效</strong>：</p>
@@ -150,13 +150,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>分布平滑</strong>：采样覆盖历史经验，减小当前策略引起的数据分布漂移</p>
 </li>
 <li>
-<p><strong>代价与限制</strong>：只适用于 off-policy 方法（Q-learning 天然满足）；on-policy 方法（SARSA、<a href="PPO.html">PPO</a> 等）不能使用，因为需要当前策略产生的数据。</p>
+<p><strong>代价与限制</strong>：只适用于 off-policy 方法（Q-learning 天然满足）；on-policy 方法（SARSA、PPO 等）不能使用，因为需要当前策略产生的数据。</p>
 </li>
 <li>
 <p><strong>改进方向</strong>：均匀采样忽略 transition 的重要性差异 → <a href="优先经验回放.html">优先经验回放</a>（<a href="优先经验回放.html">Prioritized Experience Replay</a>）按 TD 误差加权采样；容量固定且队列式替换导致旧数据被淘汰。</p>
 </li>
 <li>
-<p><strong>工程细节</strong>：<a href="DQN.html">DQN</a> 原版采用前 50,000 步预热（只收集不训练）填充缓冲区后才开始训练，避免初期数据过于稀少。</p>
+<p><strong>工程细节</strong>：DQN 原版采用前 50,000 步预热（只收集不训练）填充缓冲区后才开始训练，避免初期数据过于稀少。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="DQN.html">DQN</a> — part_of</li>
+<li>DQN — part_of</li>
 <li><a href="强化学习.html">强化学习</a> — extends</li>
 <li><a href="优先经验回放.html">优先经验回放</a> — extends</li>
 </ul>

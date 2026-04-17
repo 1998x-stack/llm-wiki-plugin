@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">优先经验回放</h1>
 <h2 id="_2">概述</h2>
-<p>优先<a href="经验回放.html">经验回放</a>（PER，Schaul et al., <a href="../entities/DeepMind.html">DeepMind</a>, ICLR 2016）针对 <a href="DQN.html">DQN</a> 均匀采样的低效性，以 TD 误差绝对值为优先级指标，优先从<a href="经验回放.html">回放缓冲区</a>中采样高学习价值的 transition。配合<a href="重要性采样.html">重要性采样</a>修正（<a href="重要性采样.html">IS</a> Correction）消除分布偏移引入的偏差，使用 SumTree 数据结构实现 O(log N) 采样效率。</p>
+<p>优先<a href="经验回放.html">经验回放</a>（PER，Schaul et al., <a href="../entities/DeepMind.html">DeepMind</a>, ICLR 2016）针对 DQN 均匀采样的低效性，以 TD 误差绝对值为优先级指标，优先从<a href="经验回放.html">回放缓冲区</a>中采样高学习价值的 transition。配合<a href="重要性采样.html">重要性采样</a>修正（IS Correction）消除分布偏移引入的偏差，使用 SumTree 数据结构实现 O(log N) 采样效率。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心问题</strong>：<a href="DQN.html">DQN</a> 均匀采样假设所有 transition 学习价值相等，实际上 TD 误差大的 transition（信息量更大）应被更频繁采样，类似监督学习中的"难例挖掘"。</p>
+<p><strong>核心问题</strong>：DQN 均匀采样假设所有 transition 学习价值相等，实际上 TD 误差大的 transition（信息量更大）应被更频繁采样，类似监督学习中的"难例挖掘"。</p>
 </li>
 <li>
 <p><strong>优先级定义</strong>：<code>p_i = |δ_i| + ε</code>，其中 δ_i 是 TD 误差，ε 是避免优先级为 0 的小常数。</p>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>α = 0：退化为均匀采样；α = 1：完全按优先级采样；典型值 α = 0.6</p>
 </li>
 <li>
-<p><strong><a href="重要性采样.html">重要性采样</a>修正（<a href="重要性采样.html">IS</a> Correction）</strong>：非均匀采样引入分布偏移，破坏梯度无偏性。通过权重 <code>w_i = (1/(N·P(i)))^β</code> 修正，β 从 β₀=0.4 线性退火至 1.0（训练初期允许偏差以降低方差，后期恢复无偏）。</p>
+<p><strong><a href="重要性采样.html">重要性采样</a>修正（IS Correction）</strong>：非均匀采样引入分布偏移，破坏梯度无偏性。通过权重 <code>w_i = (1/(N·P(i)))^β</code> 修正，β 从 β₀=0.4 线性退火至 1.0（训练初期允许偏差以降低方差，后期恢复无偏）。</p>
 </li>
 <li>
 <p><strong>SumTree 高效实现</strong>：线段树结构，叶节点存储 p_i^α，内部节点存储子树和。更新优先级和按优先级采样均为 O(log N)，远优于朴素 O(N)。</p>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>新样本优先级</strong>：初始赋予当前最大优先级，确保每个 transition 至少被采样一次。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：<a href="DQN.html">DQN</a> + PER 相对 <a href="DQN.html">DQN</a> 提升 +46%；<a href="Double DQN.html">Double DQN</a> + PER 提升 +97%（协同效应显著）；三改进相互正交，均被 <a href="Rainbow.html">Rainbow</a> 采用。</p>
+<p><strong>实验结果</strong>：DQN + PER 相对 DQN 提升 +46%；<a href="Double DQN.html">Double DQN</a> + PER 提升 +97%（协同效应显著）；三改进相互正交，均被 <a href="Rainbow.html">Rainbow</a> 采用。</p>
 </li>
 <li>
 <p><strong>变体——基于排名</strong>：<code>P(i) ∝ rank(i)^{-α}</code>，对异常 TD 误差更鲁棒，但实现更复杂。</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="DQN.html">DQN</a> — extends</li>
+<li>DQN — extends</li>
 <li><a href="强化学习.html">强化学习</a> — part_of</li>
 <li><a href="Double DQN.html">Double DQN</a> — compares_to</li>
 <li><a href="Dueling DQN.html">Dueling DQN</a> — compares_to</li>

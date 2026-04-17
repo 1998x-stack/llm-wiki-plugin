@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>Lua 绑定机制</strong>：Cocos2d-x 通过 <code>tolua++</code> 自动生成 <a href="C++.html">C++</a> → Lua 的 wrapper 代码，<a href="C++.html">C++</a> 类以 <code>cc.ClassName</code> 形式暴露给 Lua。引擎核心类（Scene、Layer、Sprite 等）均可在 Lua 侧直接调用。</p>
+<p><strong>Lua 绑定机制</strong>：Cocos2d-x 通过 <code>tolua++</code> 自动生成 C++ → Lua 的 wrapper 代码，C++ 类以 <code>cc.ClassName</code> 形式暴露给 Lua。引擎核心类（Scene、Layer、Sprite 等）均可在 Lua 侧直接调用。</p>
 </li>
 <li>
 <p><strong>节点系统</strong>：以 Scene/Layer 为根，Sprite 等节点通过 <code>addChild(node, zOrder)</code> 构建层级树。位置用 <code>cc.p(x, y)</code> 表示，锚点/位置/旋转在 Lua 侧设置。</p>

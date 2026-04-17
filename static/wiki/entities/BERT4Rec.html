@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bert4rec">BERT4Rec</h1>
 <h2 id="_1">概述</h2>
-<p>Sun 等人于 C<a href="../concepts/逆向运动学.html">IK</a>M 2019 发表的论文，将双向 <a href="../concepts/Transformer架构.html">Transformer</a>（BERT 风格）和 Cloze 任务引入<a href="../concepts/序列推荐.html">序列推荐</a>，与 <a href="SASRec.html">SASRec</a> 形成单向 vs 双向的长期学术辩论。</p>
+<p>Sun 等人于 CIKM 2019 发表的论文，将双向 <a href="../concepts/Transformer架构.html">Transformer</a>（BERT 风格）和 Cloze 任务引入<a href="../concepts/序列推荐.html">序列推荐</a>，与 <a href="SASRec.html">SASRec</a> 形成单向 vs 双向的长期学术辩论。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "BERT4Rec: <a href="../concepts/序列推荐.html">Sequential Recommendation</a> with Bidirectional Encoder Representations from <a href="../concepts/Transformer架构.html">Transformer</a>"，作者 Fei Sun 等人，发表于 C<a href="../concepts/逆向运动学.html">IK</a>M 2019。</p>
+<p><strong>论文信息</strong>：标题 "BERT4Rec: <a href="../concepts/序列推荐.html">Sequential Recommendation</a> with Bidirectional Encoder Representations from <a href="../concepts/Transformer架构.html">Transformer</a>"，作者 Fei Sun 等人，发表于 CIKM 2019。</p>
 </li>
 <li>
 <p><strong>核心创新</strong>：与 <a href="SASRec.html">SASRec</a> 的单向（<a href="../concepts/因果掩码.html">因果掩码</a>）架构不同，BERT4Rec 采用双向 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder，通过 Cloze（完形填空）任务训练——随机掩码序列中的某些物品，让模型预测被掩码的物品。这使得序列中每个位置都能利用双向上下文信息。</p>

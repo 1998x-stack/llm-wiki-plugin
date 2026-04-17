@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">样条方法</h1>
 <h2 id="_2">概述</h2>
-<p>样条方法（Spline methods）用<strong>分段低次多项式</strong>逐段拼接来逼近函数，是对<a href="龙格现象.html">龙格现象</a>的直接回应。与整体高次多项式不同，每段只需低次多项式（通常三次），在拼接点保持连续性和光滑性（$C^2$ 连续），从而规避了全局多项式在端点附近振荡失控的问题。样条方法由 Isaac Schoenbe<a href="../entities/ripgrep.html">rg</a> 在 1946 年系统发展，是 20 世纪<a href="../maps/数值分析.html">数值分析</a>最重要的发展之一，也是计算机辅助设计（CAD）和计算机图形学的基础。</p>
+<p>样条方法（Spline methods）用<strong>分段低次多项式</strong>逐段拼接来逼近函数，是对<a href="龙格现象.html">龙格现象</a>的直接回应。与整体高次多项式不同，每段只需低次多项式（通常三次），在拼接点保持连续性和光滑性（$C^2$ 连续），从而规避了全局多项式在端点附近振荡失控的问题。样条方法由 Isaac Schoenberg 在 1946 年系统发展，是 20 世纪<a href="../maps/数值分析.html">数值分析</a>最重要的发展之一，也是计算机辅助设计（CAD）和计算机图形学的基础。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心思想：分段代替整体</h3>
 <p><strong>整体高次多项式</strong>（龙格的问题）：$n+1$ 个节点 → $n$ 次全局多项式 → 端点振荡失控。</p>
@@ -188,27 +188,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>1946</td>
-<td>Isaac Schoenbe<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1962&lt;/td&gt;
-&lt;td&gt;J. C. Fe[[ripgrep&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1972&lt;/td&gt;
-&lt;td&gt;Gordon &amp;amp; Riesenfeld 将 B 样条推广为 B 样条曲面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1975&lt;/td&gt;
-&lt;td&gt;Versprille 博士论文提出 NURBS，CAD 工业标准基础&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;_6&quot;&gt;应用&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;CAD/CAM&lt;/strong&gt;：NURBS 是曲线/曲面的工业标准&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;计算机图形学&lt;/strong&gt;：贝塞尔曲线（Bézier curve）是 B 样条的特例&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;[[有限元方法</span></strong>：等几何分析（IGA）将 B 样条/NURBS 作为有限元形函数</li>
+<td>Isaac Schoenberg 系统建立样条函数理论（受<a href="龙格现象.html">龙格现象</a>启发）</td>
+</tr>
+<tr>
+<td>1962</td>
+<td>J. C. Ferguson 将三次样条用于 Boeing 飞机曲面设计</td>
+</tr>
+<tr>
+<td>1972</td>
+<td>Gordon &amp; Riesenfeld 将 B 样条推广为 B 样条曲面</td>
+</tr>
+<tr>
+<td>1975</td>
+<td>Versprille 博士论文提出 NURBS，CAD 工业标准基础</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">应用</h3>
+<ul>
+<li><strong>CAD/CAM</strong>：NURBS 是曲线/曲面的工业标准</li>
+<li><strong>计算机图形学</strong>：贝塞尔曲线（Bézier curve）是 B 样条的特例</li>
+<li><strong><a href="有限元方法.html">有限元方法</a></strong>：等几何分析（IGA）将 B 样条/NURBS 作为有限元形函数</li>
 <li><strong>数据拟合</strong>：避免<a href="龙格现象.html">龙格现象</a>的鲁棒插值工具</li>
 <li><strong>图像处理</strong>：双三次样条插值（双线性插值的光滑升级）</li>
 </ul>

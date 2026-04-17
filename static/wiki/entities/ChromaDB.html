@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="chromadb">ChromaDB</h1>
 <h2 id="_1">概述</h2>
-<p>ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（<a href="../concepts/Embedding.html">Embedding</a>s）。它支持语义搜索——将文本转换为高维向量后，按语义相似度检索，而非关键词匹配。在 <a href="Claude-Mem.html">Claude-Mem</a> 中，ChromaDB 作为可选的向量存储后端，为记忆检索提供语义搜索能力，补充 <a href="SQLite.html">SQLite</a> 的 <a href="../concepts/FTS5.html">FTS5</a> 关键词搜索。</p>
+<p>ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 应用设计，用于存储和检索向量嵌入（<a href="../concepts/Embedding.html">Embedding</a>s）。它支持语义搜索——将文本转换为高维向量后，按语义相似度检索，而非关键词匹配。在 <a href="Claude-Mem.html">Claude-Mem</a> 中，ChromaDB 作为可选的向量存储后端，为记忆检索提供语义搜索能力，补充 <a href="SQLite.html">SQLite</a> 的 FTS5 关键词搜索。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
-<li><strong>核心功能</strong>：存储文档及其向量嵌入；支持<a href="../concepts/近似最近邻检索.html">近似最近邻</a>（<a href="../concepts/近似最近邻检索.html">ANN</a>）相似度搜索；支持元数据过滤</li>
+<li><strong>核心功能</strong>：存储文档及其向量嵌入；支持<a href="../concepts/近似最近邻检索.html">近似最近邻</a>（ANN）相似度搜索；支持元数据过滤</li>
 <li><strong>部署模式</strong>：本地内存模式（测试）、持久化磁盘模式（生产）、HTTP 客户端/服务端模式</li>
-<li><strong>与传统数据库对比</strong>：<a href="SQLite.html">SQLite</a>/<a href="../concepts/FTS5.html">FTS5</a> 适合精确关键词匹配；ChromaDB 适合语义相似度检索（"找意思相近的记忆"）</li>
-<li><strong>生态</strong>：与 LangChain、LlamaIndex 等 <a href="../concepts/检索增强生成.html">RAG</a> 框架深度集成</li>
+<li><strong>与传统数据库对比</strong>：<a href="SQLite.html">SQLite</a>/FTS5 适合精确关键词匹配；ChromaDB 适合语义相似度检索（"找意思相近的记忆"）</li>
+<li><strong>生态</strong>：与 LangChain、LlamaIndex 等 RAG 框架深度集成</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="Claude-Mem.html">Claude-Mem</a></li>
 <li><a href="SQLite.html">SQLite</a></li>
-<li><a href="../concepts/FTS5.html">FTS5</a></li>
+<li>FTS5</li>
 </ul>
   </div>
   <div class="page-nav">

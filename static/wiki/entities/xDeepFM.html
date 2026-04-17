@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="xdeepfm">xDeepFM</h1>
 <h2 id="_1">概述</h2>
-<p>微软于 KDD 2018 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，引入 CIN（Compressed Interaction Network）在向量级显式建模任意阶<a href="../concepts/特征交叉.html">特征交互</a>，解决 <a href="DeepFM.html">DeepFM</a> <a href="Factorization Machines.html">FM</a> 组件仅二阶交叉的局限。</p>
+<p>微软于 KDD 2018 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，引入 CIN（Compressed Interaction Network）在向量级显式建模任意阶<a href="../concepts/特征交叉.html">特征交互</a>，解决 <a href="DeepFM.html">DeepFM</a> FM 组件仅二阶交叉的局限。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>CIN 网络</strong>：提出 Compressed Interaction Network，在向量级（vector-wise）而非维度级（dimension-wise）进行<a href="../concepts/特征交叉.html">特征交互</a>计算，保留了更丰富的特征结构信息。</li>
-<li><strong>显式任意阶交互</strong>：相比 <a href="DeepFM.html">DeepFM</a> 的 <a href="Factorization Machines.html">FM</a> 组件仅能建模二阶交互，x<a href="DeepFM.html">DeepFM</a> 通过 CIN 显式建模任意阶的向量级<a href="../concepts/特征交叉.html">特征交互</a>。</li>
-<li><strong>解决 <a href="DeepFM.html">DeepFM</a> 局限</strong>：直接针对 <a href="DeepFM.html">DeepFM</a> 的两大不足——<a href="Factorization Machines.html">FM</a> 局限于二阶交叉、DNN 学习的是维度级交互而非向量级交互——提供了系统性的改进方案。</li>
+<li><strong>显式任意阶交互</strong>：相比 <a href="DeepFM.html">DeepFM</a> 的 FM 组件仅能建模二阶交互，x<a href="DeepFM.html">DeepFM</a> 通过 CIN 显式建模任意阶的向量级<a href="../concepts/特征交叉.html">特征交互</a>。</li>
+<li><strong>解决 <a href="DeepFM.html">DeepFM</a> 局限</strong>：直接针对 <a href="DeepFM.html">DeepFM</a> 的两大不足——FM 局限于二阶交叉、DNN 学习的是维度级交互而非向量级交互——提供了系统性的改进方案。</li>
 <li><strong>KDD 2018</strong>：论文 "x<a href="DeepFM.html">DeepFM</a>: Combining Explicit and Implicit <a href="../concepts/特征交叉.html">Feature Interaction</a>s for Recommender Systems" 发表于 KDD 2018。</li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="DeepFM.html">DeepFM</a> — 直接改进的前作</li>
-<li><a href="DCN.html">DCN</a> — 同期显式交叉的并行工作</li>
+<li>DCN — 同期显式交叉的并行工作</li>
 <li><a href="AutoInt.html">AutoInt</a> — 后续可解释交互工作</li>
 <li><a href="../concepts/特征交叉.html">特征交叉</a> — 核心建模目标</li>
 <li><a href="../concepts/CTR 预估.html">CTR 预估</a> — 应用场景</li>

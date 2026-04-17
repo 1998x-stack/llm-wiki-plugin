@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/MoonSharp.html">MoonSharp</a> 和 NLua 是两种在 Unity（及任意 .NET 项目）中嵌入 Lua 脚本的主流桥接库，前者为纯 C# 实现，后者基于原生 Lua C 库，两者均提供 C# 对象注入、函数互调和返回值获取机制。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="moonsharp-c-lua">MoonSharp：纯 C# Lua 解释器</h3>
-<p><a href="../entities/MoonSharp.html">MoonSharp</a> 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2<a href="../entities/C++.html">CPP</a>/AOT 平台（iOS 等）。</p>
+<p><a href="../entities/MoonSharp.html">MoonSharp</a> 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2CPP/AOT 平台（iOS 等）。</p>
 <p><strong>对象注册流程</strong>：
 1. 在 C# 类上标注 <code>[MoonSharpUserData]</code>，通过 <code>UserData.RegisterAssembly()</code> 批量注册
 2. <code>script.Globals["key"] = obj</code> 将 C# 对象注入 Lua 全局变量
@@ -173,9 +173,9 @@ var table = lua.GetTable(&quot;my_table&quot;);                    // 读取表
 <td>原生 Lua C 库 P/Invoke</td>
 </tr>
 <tr>
-<td>AOT/IL2<span style="color:#e74c3c" title="broken link">C++&lt;/td&gt;
-&lt;td&gt;CPP</span> 兼容</td>
+<td>AOT/IL2CPP 兼容</td>
 <td>好（无原生依赖）</td>
+<td>需平台 native DLL</td>
 </tr>
 <tr>
 <td>性能</td>
@@ -189,13 +189,13 @@ var table = lua.GetTable(&quot;my_table&quot;);                    // 读取表
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;适用场景&lt;/td&gt;
-&lt;td&gt;Unity iOS/IL2[[C++&lt;/td&gt;
-&lt;td&gt;CPP</span>、跨平台 .NET</td>
-</tr>
-</tbody>
-</table>
-<h3 id="xluatolua">与 xLua/tolua 的区别</h3>
-<p><a href="../entities/MoonSharp.html">MoonSharp</a>/NLua 是<strong>通用 .NET Lua 桥</strong>，适合任意 .NET 项目。<a href="Lua脚本宿主模式.html">xLua</a>/<a href="Lua脚本宿主模式.html">tolua</a># 是<strong>Unity 专用桥</strong>，深度集成 Unity 组件生命周期、MonoBehaviour 和 IL2<a href="../entities/C++.html">CPP</a> 热补丁机制，工程化程度更高。</p>
+&lt;td&gt;Unity iOS/IL2CPP、跨平台 .NET&lt;/td&gt;
+&lt;td&gt;Windows/Android 性能优先场景&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;xluatolua&quot;&gt;与 xLua/tolua 的区别&lt;/h3&gt;
+&lt;p&gt;[[MoonSharp</span>/NLua 是<strong>通用 .NET Lua 桥</strong>，适合任意 .NET 项目。xLua/<a href="Lua脚本宿主模式.html">tolua</a># 是<strong>Unity 专用桥</strong>，深度集成 Unity 组件生命周期、MonoBehaviour 和 IL2CPP 热补丁机制，工程化程度更高。</p>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">engine-integration</span> — 游戏引擎集成参考文档，Unity MoonSharp/NLua 集成示例代码段</li>

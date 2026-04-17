@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>稀疏向量 vs 稠密向量</strong>：VSM 向量维度等于词典大小（10万+），大多数维度为 0，属于稀疏表示。<a href="Embedding.html">Embedding</a> 模型（BERT、BGE 等）生成 768/1024 维稠密向量，需要<a href="近似最近邻检索.html">近似最近邻检索</a>（<a href="../entities/Faiss.html">FAISS</a>/Milvus）。</p>
 </li>
 <li>
-<p><strong>VSM 局限</strong>：词袋假设（忽略词序）；语义盲区（car ≠ automobile，无法跨语言）；高维空间计算相似度效率低（稠密向量需要 <a href="近似最近邻检索.html">ANN</a>）。</p>
+<p><strong>VSM 局限</strong>：词袋假设（忽略词序）；语义盲区（car ≠ automobile，无法跨语言）；高维空间计算相似度效率低（稠密向量需要 ANN）。</p>
 </li>
 <li>
 <p><strong>演进</strong>：VSM(<a href="TF-IDF.html">TF-IDF</a>) → BM25（概率框架，显式长度归一化）→ Dense Retrieval（稠密向量，语义理解）→ 混合检索（BM25 + Dense，两者互补）。</p>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_5">相关</h2>
 <ul>
 <li><a href="TF-IDF.html">TF-IDF</a> — implements</li>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — compares_to</li>
+<li>BM25 — compares_to</li>
 <li><a href="Embedding.html">Embedding</a> — compares_to（稠密向量空间模型）</li>
 <li><a href="近似最近邻检索.html">近似最近邻检索</a> — extends（稠密向量需 ANN）</li>
 <li><a href="检索增强生成.html">检索增强生成</a> — uses</li>

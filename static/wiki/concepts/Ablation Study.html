@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ablation-study">Ablation Study</h1>
 <h2 id="_1">概述</h2>
-<p>Ablation Study（消融实验）是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 <a href="Agent计算机接口.html">ACI</a> 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。</p>
+<p>Ablation Study（消融实验）是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">为什么重要</h3>
 <blockquote>
 <p>"没有 ablation，这篇论文就更像一个系统报告；有了 ablation，它才真正证明性能增益来自哪些界面设计选择。"</p>
 </blockquote>
 <h3 id="_4">实验设计方法</h3>
-<p>论文以当前最佳的 <a href="../entities/SWE-agent.html">SWE-agent</a> 配置为基准，每次只替换一个 <a href="Agent计算机接口.html">ACI</a> 组件，看性能变化。实验在 <strong><a href="SWE-bench.html">SWE-bench</a> Lite（300 个样本）</strong> 上进行，针对 <a href="../entities/SWE-agent.html">SWE-agent</a> with GPT-4 Turbo 的 <a href="Agent计算机接口.html">ACI</a> 做消融。</p>
+<p>论文以当前最佳的 <a href="../entities/SWE-agent.html">SWE-agent</a> 配置为基准，每次只替换一个 ACI 组件，看性能变化。实验在 <strong><a href="SWE-bench.html">SWE-bench</a> Lite（300 个样本）</strong> 上进行，针对 <a href="../entities/SWE-agent.html">SWE-agent</a> with GPT-4 Turbo 的 ACI 做消融。</p>
 <p>论文想回答的核心问题：
 - 搜索工具应该怎么呈现给 agent？
 - 编辑能力应该是 shell 原生，还是专门设计动作？
@@ -191,7 +191,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><strong>Table 3 的核心论点</strong>：<a href="../entities/SWE-agent.html">SWE-agent</a> 的提升不是"碰巧系统堆起来更强"，而是 <a href="Agent计算机接口.html">ACI</a> 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。</p>
+<p><strong>Table 3 的核心论点</strong>：<a href="../entities/SWE-agent.html">SWE-agent</a> 的提升不是"碰巧系统堆起来更强"，而是 ACI 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。</p>
 <h3 id="_5">各组件详细分析</h3>
 <h4 id="editor-ablation">Editor Ablation</h4>
 <ul>
@@ -220,10 +220,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Full history（15.0）</strong>：保留完整历史会把过时、低相关、重复性 observation 带入 prompt，增加噪声和 token 占用。</li>
 <li><strong>w/o demo.（16.3）</strong>：去掉 demonstration 后下降 1.7 个点，说明有帮助但不是决定性来源，更多是帮助 agent 学会正确使用命令和格式。</li>
 </ul>
-<p><strong>证明</strong>：context management 是 <a href="Agent计算机接口.html">ACI</a> 的一部分，而不是简单把所有历史都喂回去。最好的 agent 不是"记住一切"，而是"只保留还有决策价值的最近状态"。</p>
+<p><strong>证明</strong>：context management 是 ACI 的一部分，而不是简单把所有历史都喂回去。最好的 agent 不是"记住一切"，而是"只保留还有决策价值的最近状态"。</p>
 <h3 id="_6">四类消融共同证明的观点</h3>
 <ol>
-<li><strong>性能提升来自 <a href="Agent计算机接口.html">ACI</a> 设计，而不只是模型本身</strong>：同一个 GPT-4 Turbo，只是换 interface design choice，解题率就能从 10.3/12.0/12.7/15.0 提升到 18.0。</li>
+<li><strong>性能提升来自 ACI 设计，而不只是模型本身</strong>：同一个 GPT-4 Turbo，只是换 interface design choice，解题率就能从 10.3/12.0/12.7/15.0 提升到 18.0。</li>
 <li><strong>对人类友好的界面，不一定对 LM 友好</strong>：最典型是 Iterative search，借鉴人类熟悉的 next/prev 体验，但对 agent 反而更差。</li>
 <li><strong>高性能 agent 依赖"简单动作 + 紧凑反馈 + 护栏 + 受控上下文"</strong>：四类消融分别对应论文第 2 节的四条设计原则。</li>
 <li><strong>软件工程 agent 的问题是系统设计问题，不只是推理问题</strong>：SWE agent 的成败不只取决于"模型会不会想到正确 patch"，也取决于能不能高效找到地方、能不能稳定改进去、能不能看到正确反馈、能不能不被历史噪声淹没。</li>

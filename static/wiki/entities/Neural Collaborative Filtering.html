@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="neural-collaborative-filtering">Neural Collaborative Filtering</h1>
 <h2 id="_1">概述</h2>
-<p><a href="何向南.html">何向南</a>等人于 WWW 2017 发表的里程碑论文，用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>中的内积操作，构建通用神经<a href="../concepts/协同过滤.html">协同过滤</a>框架（N<a href="../concepts/协同过滤.html">CF</a>），使模型能自动学习任意复杂的用户-物品交互函数。截至2026年引用超10000次。</p>
+<p><a href="何向南.html">何向南</a>等人于 WWW 2017 发表的里程碑论文，用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>中的内积操作，构建通用神经<a href="../concepts/协同过滤.html">协同过滤</a>框架（NCF），使模型能自动学习任意复杂的用户-物品交互函数。截至2026年引用超10000次。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心洞察</strong>：<a href="../concepts/矩阵分解.html">矩阵分解</a>的内积是线性函数，表达能力有限。N<a href="../concepts/协同过滤.html">CF</a> 用可学习的神经网络 $f$ 替代固定内积，由于神经网络是通用函数逼近器，N<a href="../concepts/协同过滤.html">CF</a> 在表达能力上严格优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>。论文从理论上证明了<a href="../concepts/矩阵分解.html">矩阵分解</a>是 N<a href="../concepts/协同过滤.html">CF</a> 的一个特例（当 <a href="../concepts/GMF.html">GMF</a> 的激活函数为恒等函数、权重向量为全1时）。</li>
-<li><strong>N<a href="../concepts/协同过滤.html">CF</a> 四层架构</strong>：输入层（one-hot 表示）→ <a href="../concepts/Embedding.html">Embedding</a> 层（稀疏→稠密映射）→ 神经<a href="../concepts/协同过滤.html">协同过滤</a>层（多层神经网络学习交互函数）→ 输出层（预测分数 $\hat{y}_{ui} \in [0, 1]$）。</li>
-<li><strong><a href="../concepts/GMF.html">GMF</a>（广义<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：N<a href="../concepts/协同过滤.html">CF</a> 的第一个实例化，交互函数为 $\hat{y}<em>{ui} = a</em>{out}(\mathbf{h}^T (\mathbf{p}<em>u \odot \mathbf{q}_i))$，其中 $\odot$ 为逐元素乘积，$\mathbf{h}$ 为可学习权重向量。当 $a</em>{out}$ 为恒等函数且 $\mathbf{h}$ 为全1时退化为标准 <a href="../concepts/矩阵分解.html">MF</a>。</li>
-<li><strong>MLP（多层感知机）</strong>：N<a href="../concepts/协同过滤.html">CF</a> 的第二个实例化，用户和物品嵌入先拼接（concatenation），再通过塔式全连接层（如 $256 \to 128 \to 64 \to 32$），ReLU 激活。与 <a href="../concepts/GMF.html">GMF</a> 的逐元素乘积不同，MLP 能学习任意复杂的交叉模式。</li>
-<li><strong><a href="../concepts/NeuMF.html">NeuMF</a>（神经<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：最终融合模型，<a href="../concepts/GMF.html">GMF</a> 和 MLP 使用<strong>独立嵌入空间</strong>（不共享），在倒数第二层拼接输出后通过线性层 + sigmoid 预测。体现"线性与非线性各有所长，融合比替代更好"的设计哲学。</li>
-<li><strong>预训练策略</strong>：由于 <a href="../concepts/NeuMF.html">NeuMF</a> 目标函数非凸，先分别训练 <a href="../concepts/GMF.html">GMF</a> 和 MLP 至收敛，再用其参数初始化 <a href="../concepts/NeuMF.html">NeuMF</a> 对应部分，融合层权重初始化为 $[\alpha \mathbf{h}^{<a href="../concepts/GMF.html">GMF</a>}; (1-\alpha) \mathbf{h}^{MLP}]$（$\alpha = 0.5$），最后用 Adam 端到端微调。</li>
+<li><strong>核心洞察</strong>：<a href="../concepts/矩阵分解.html">矩阵分解</a>的内积是线性函数，表达能力有限。NCF 用可学习的神经网络 $f$ 替代固定内积，由于神经网络是通用函数逼近器，NCF 在表达能力上严格优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>。论文从理论上证明了<a href="../concepts/矩阵分解.html">矩阵分解</a>是 NCF 的一个特例（当 GMF 的激活函数为恒等函数、权重向量为全1时）。</li>
+<li><strong>NCF 四层架构</strong>：输入层（one-hot 表示）→ <a href="../concepts/Embedding.html">Embedding</a> 层（稀疏→稠密映射）→ 神经<a href="../concepts/协同过滤.html">协同过滤</a>层（多层神经网络学习交互函数）→ 输出层（预测分数 $\hat{y}_{ui} \in [0, 1]$）。</li>
+<li><strong>GMF（广义<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：NCF 的第一个实例化，交互函数为 $\hat{y}<em>{ui} = a</em>{out}(\mathbf{h}^T (\mathbf{p}<em>u \odot \mathbf{q}_i))$，其中 $\odot$ 为逐元素乘积，$\mathbf{h}$ 为可学习权重向量。当 $a</em>{out}$ 为恒等函数且 $\mathbf{h}$ 为全1时退化为标准 MF。</li>
+<li><strong>MLP（多层感知机）</strong>：NCF 的第二个实例化，用户和物品嵌入先拼接（concatenation），再通过塔式全连接层（如 $256 \to 128 \to 64 \to 32$），ReLU 激活。与 GMF 的逐元素乘积不同，MLP 能学习任意复杂的交叉模式。</li>
+<li><strong><a href="../concepts/NeuMF.html">NeuMF</a>（神经<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：最终融合模型，GMF 和 MLP 使用<strong>独立嵌入空间</strong>（不共享），在倒数第二层拼接输出后通过线性层 + sigmoid 预测。体现"线性与非线性各有所长，融合比替代更好"的设计哲学。</li>
+<li><strong>预训练策略</strong>：由于 <a href="../concepts/NeuMF.html">NeuMF</a> 目标函数非凸，先分别训练 GMF 和 MLP 至收敛，再用其参数初始化 <a href="../concepts/NeuMF.html">NeuMF</a> 对应部分，融合层权重初始化为 $[\alpha \mathbf{h}^{GMF}; (1-\alpha) \mathbf{h}^{MLP}]$（$\alpha = 0.5$），最后用 Adam 端到端微调。</li>
 <li><strong>损失函数</strong>：将<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐建模为<strong>二分类问题</strong>，采用<a href="../concepts/二元交叉熵.html">二元交叉熵</a>替代传统 MSE。<a href="../concepts/负采样.html">负采样</a>比例为每个正样本 4-5 个负样本。<a href="../concepts/交叉熵.html">交叉熵</a>在概率意义上对 0/1 二值数据更加合理。</li>
-<li><strong>实验结论</strong>：在 <a href="MovieLens.html">MovieLens</a> 1M 和 <a href="Pi-Agent.html">Pi</a>nterest 数据集上，<a href="../concepts/NeuMF.html">NeuMF</a> 显著优于 e<a href="../concepts/交替最小二乘法 ALS.html">ALS</a> 和<a href="../concepts/BPR.html">BPR</a>-<a href="../concepts/矩阵分解.html">MF</a>。仅用 8 个预测因子的 <a href="../concepts/NeuMF.html">NeuMF</a> 超过 64 个因子的 e<a href="../concepts/交替最小二乘法 ALS.html">ALS</a>。MLP 优于 <a href="../concepts/GMF.html">GMF</a>，<a href="../concepts/NeuMF.html">NeuMF</a> 优于两者。更深的网络（1→3层）性能持续提升。</li>
-<li><strong>后续争议</strong>：Ferrari Dacrema 等人（2019）复现发现 N<a href="../concepts/协同过滤.html">CF</a> 无法持续超越精心调优的传统方法（如 ItemKNN、SLIM）。<a href="Steffen Rendle.html">Steffen Rendle</a>等人（2020，<a href="Google.html">Google</a>）指出 N<a href="../concepts/协同过滤.html">CF</a> 的 <a href="../concepts/矩阵分解.html">MF</a> 基线存在缺陷，精心调优的 <a href="../concepts/矩阵分解.html">MF</a> 可匹敌 <a href="../concepts/NeuMF.html">NeuMF</a>。源代码中 epoch 数在测试集上选择而非验证集，违反了 ML 基本评估准则。</li>
-<li><strong>历史影响</strong>：开启了"DNN 做 <a href="../concepts/协同过滤.html">CF</a>"的研究方向，后续衍生 <a href="NGCF.html">NGCF</a>（2019）、<a href="LightGCN.html">LightGCN</a>（2020）等工作。成为推荐系统领域最常用的基线方法之一。<a href="../concepts/双塔模型.html">双塔架构</a>思想（用户塔和物品塔分别编码，高层交互）成为工业推荐系统的标准设计模式。推动了推荐系统的可复现性运动和 <a href="RecBole.html">RecBole</a> 等统一评估框架的出现。</li>
+<li><strong>实验结论</strong>：在 <a href="MovieLens.html">MovieLens</a> 1M 和 Pinterest 数据集上，<a href="../concepts/NeuMF.html">NeuMF</a> 显著优于 eALS 和BPR-MF。仅用 8 个预测因子的 <a href="../concepts/NeuMF.html">NeuMF</a> 超过 64 个因子的 eALS。MLP 优于 GMF，<a href="../concepts/NeuMF.html">NeuMF</a> 优于两者。更深的网络（1→3层）性能持续提升。</li>
+<li><strong>后续争议</strong>：Ferrari Dacrema 等人（2019）复现发现 NCF 无法持续超越精心调优的传统方法（如 ItemKNN、SLIM）。<a href="Steffen Rendle.html">Steffen Rendle</a>等人（2020，<a href="Google.html">Google</a>）指出 NCF 的 MF 基线存在缺陷，精心调优的 MF 可匹敌 <a href="../concepts/NeuMF.html">NeuMF</a>。源代码中 epoch 数在测试集上选择而非验证集，违反了 ML 基本评估准则。</li>
+<li><strong>历史影响</strong>：开启了"DNN 做 CF"的研究方向，后续衍生 NGCF（2019）、<a href="LightGCN.html">LightGCN</a>（2020）等工作。成为推荐系统领域最常用的基线方法之一。<a href="../concepts/双塔模型.html">双塔架构</a>思想（用户塔和物品塔分别编码，高层交互）成为工业推荐系统的标准设计模式。推动了推荐系统的可复现性运动和 <a href="RecBole.html">RecBole</a> 等统一评估框架的出现。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -161,13 +161,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="何向南.html">何向南</a> — 第一作者</li>
 <li><a href="Tat-Seng Chua.html">Tat-Seng Chua</a> — 通讯作者，新加坡国立大学教授</li>
 <li><a href="../concepts/矩阵分解.html">矩阵分解</a> — NCF 的基线和理论特例</li>
-<li><a href="../concepts/GMF.html">GMF</a> — NCF 的广义矩阵分解实例化</li>
+<li>GMF — NCF 的广义矩阵分解实例化</li>
 <li><a href="../concepts/NeuMF.html">NeuMF</a> — NCF 的最终融合模型</li>
 <li><a href="../concepts/Embedding.html">Embedding</a> — NCF 使用的核心技术</li>
 <li><a href="../concepts/隐式反馈.html">隐式反馈</a> — NCF 建模的数据场景</li>
 <li><a href="../concepts/二元交叉熵.html">二元交叉熵</a> — NCF 采用的损失函数</li>
 <li><a href="../concepts/负采样.html">负采样</a> — NCF 训练中的负样本构造策略</li>
-<li><a href="../concepts/BPR.html">BPR</a> — NCF 对比的基线方法之一</li>
+<li>BPR — NCF 对比的基线方法之一</li>
 <li><a href="Steffen Rendle.html">Steffen Rendle</a> — 对 NCF 提出直接质疑的研究者</li>
 <li><a href="Google.html">Google</a> — Rendle 等人质疑论文的作者机构</li>
 </ul>

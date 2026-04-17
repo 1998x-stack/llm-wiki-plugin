@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><code>qwen3-vl-embedding</code>（MMEB-V2 第一名）的图像→图像 modality gap 比 CLIP 更大</li>
 <li><code>text-embedding-v3</code> 编码 VLM 生成的图片文字描述，判别力是直接图像通道的 <strong>33.6 倍</strong></li>
 <li>
-<p><strong><a href="../entities/Pi-Agent.html">Pi</a>peline A（图转文→文本检索）被生产验证</strong>：唯一显著贡献搜索质量的管线</p>
+<p><strong>Pipeline A（图转文→文本检索）被生产验证</strong>：唯一显著贡献搜索质量的管线</p>
 </li>
 <li>
 <p><strong>主要解决路径</strong>：</p>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>对系统设计的影响</strong>：在特定领域（3D 资产、医学影像、工业检测）中，"图转文再检索"往往比直接<a href="多模态检索.html">多模态检索</a>效果更好。系统设计时应先评估 modality gap 的实际影响再决策。</p>
 </li>
 <li>
-<p><strong>与 CLIP 的关系</strong>：<span style="color:#e74c3c" title="broken link">CLIP</span> 通过<a href="对比学习.html">对比学习</a>实现跨模态对齐，但 Modality Gap 说明即使是 CLIP 这类模型，对齐也只是近似的，特别是在远离训练分布的专业领域。</p>
+<p><strong>与 CLIP 的关系</strong>：CLIP 通过<a href="对比学习.html">对比学习</a>实现跨模态对齐，但 Modality Gap 说明即使是 CLIP 这类模型，对齐也只是近似的，特别是在远离训练分布的专业领域。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">CLIP</span> — extends（CLIP 试图解决的问题，但未完全消除）</li>
+<li>CLIP — extends（CLIP 试图解决的问题，但未完全消除）</li>
 <li><a href="多模态检索.html">多模态检索</a> — causes（Modality Gap 是多模态检索的核心挑战）</li>
 <li><a href="Embedding.html">Embedding</a> — compares_to</li>
 </ul>

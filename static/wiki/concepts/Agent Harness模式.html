@@ -202,10 +202,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>图仍是 LangGraph 原生产物，与 checkpoint、流式、可观测性方案直接对接</li>
 </ul>
 <h3 id="pi-agent-harness">Pi Agent：极简 Harness 的反面验证</h3>
-<p><a href="../entities/Pi-Agent.html">Pi-Agent</a> 代表了 Harness 设计谱系的另一端——<strong>极简主义</strong>。相比 <a href="../entities/DeepAgents.html">DeepAgents</a> 的 batteries-included 方式（11 个<a href="ROS (Robot Operating System).html">中间件</a>、多后端协议），<a href="../entities/Pi-Agent.html">Pi</a> 只有 4 个工具、&lt; 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。</p>
+<p><a href="../entities/Pi-Agent.html">Pi-Agent</a> 代表了 Harness 设计谱系的另一端——<strong>极简主义</strong>。相比 <a href="../entities/DeepAgents.html">DeepAgents</a> 的 batteries-included 方式（11 个<a href="ROS (Robot Operating System).html">中间件</a>、多后端协议），Pi 只有 4 个工具、&lt; 1000 token 系统提示，却在 Terminal-Bench 基准测试中击败了工具集更丰富的 Agent。</p>
 <p>这证明了 Harness 模式的关键变体：
 - <strong><a href="../entities/DeepAgents.html">DeepAgents</a> 路线</strong>：组合丰富的<a href="ROS (Robot Operating System).html">中间件</a>栈 → 适合企业级多场景
-- <strong><a href="../entities/Pi-Agent.html">Pi</a> 路线</strong>：极简工具 + 精确上下文控制 → 适合高级用户精确编程</p>
+- <strong>Pi 路线</strong>：极简工具 + 精确上下文控制 → 适合高级用户精确编程</p>
 <p>两者的共同点：都将 Model 与 Harness 清晰分离，都强调 <a href="Context-Engineering.html">Context-Engineering</a> 的重要性。</p>
 <h3 id="anthropic-harness-agent">Anthropic 长时自主编码 Harness（三 Agent 系统）</h3>
 <p><a href="../entities/Prithvi-Rajasekaran.html">Prithvi-Rajasekaran</a> 在 Anthropic 构建的长时自主编码 Harness 代表了另一类 Harness 设计哲学——<strong>面向任务能力边界的动态调整</strong>：</p>
@@ -218,7 +218,7 @@ Evaluator（Playwright MCP，点击测试运行中的应用 + 对照准则打分
 Generator（修复 + 迭代，循环直到所有准则通过）
 </code></pre>
 <p>核心设计原则：<strong>每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。</strong> Opus 4.5 需要 Sprint 分解 + <a href="上下文重置.html">上下文重置</a> 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。</p>
-<p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"<a href="../entities/bat.html">bat</a>teries-included"路线形成对比：
+<p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"batteries-included"路线形成对比：
 - <strong><a href="../entities/DeepAgents.html">DeepAgents</a> 路线</strong>：预设丰富<a href="ROS (Robot Operating System).html">中间件</a>，适合企业多场景
 - <strong>Anthropic 任务 Harness 路线</strong>：从最小 Harness 出发，随模型能力迭代减复杂度</p>
 <h3 id="harness_1">Harness 假设的过时风险</h3>
@@ -233,7 +233,7 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 - 定义通用接口（会话、harness、沙箱）而非具体实现
 - 每个组件可独立失败和替换
 - 通过 <a href="脑手分离架构.html">脑手分离架构</a> 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
-- 性能收益：p50 <a href="首次令牌时间.html">TTFT</a> 下降 60%，p95 <a href="首次令牌时间.html">TTFT</a> 下降 90%+</p>
+- 性能收益：p50 TTFT 下降 60%，p95 TTFT 下降 90%+</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>

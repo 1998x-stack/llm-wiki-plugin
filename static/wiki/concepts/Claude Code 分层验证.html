@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <code>scope=changed</code> 和 <code>scope=workspace</code> 的区别
 - 什么时候先用 LSP，什么时候再用 Bash lint
 - 失败输出如何阅读</p>
-<p><strong>特点：</strong> 不是硬约束，而是 Anthropic 强调的 <strong>usage patterns from <a href="../entities/eza.html">exa</a>mples</strong>。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。</p>
+<p><strong>特点：</strong> 不是硬约束，而是 Anthropic 强调的 <strong>usage patterns from examples</strong>。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。</p>
 <h4 id="2-claudemd">第 2 层：CLAUDE.md — 负责"想这么做"</h4>
 <p><strong>放什么：</strong>
 - 项目验证策略
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 修改 Python 文件后优先看 LSP 诊断
 - 只跑最小相关测试，不要先跑全量
 - formatter 可以自动修，但 typecheck 不通过不能提交
-- 前端改动先跑 eslint + ta<a href="../entities/ripgrep.html">rg</a>eted test
+- 前端改动先跑 eslint + targeted test
 - migration / schema 变更时要补相应检查</p>
 <p><strong>特点：</strong> CLAUDE.md 是"每个会话都会加载的指令层"，适合放长期稳定的项目规则，让 Claude 有稳定偏好。但它本身不会自动在写文件后触发命令。</p>
 <h4 id="3-hooks-settingsjson">第 3 层：Hooks / settings.json — 负责"真的会做"</h4>
@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：<strong>重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。</strong></p>
 <h3 id="_7">落地四步</h3>
 <ol>
-<li><strong>先写 CLAUDE.md</strong>：定义"先 LSP、后 ta<a href="../entities/ripgrep.html">rg</a>eted lint、提交前再 widened checks"的策略</li>
+<li><strong>先写 CLAUDE.md</strong>：定义"先 LSP、后 targeted lint、提交前再 widened checks"的策略</li>
 <li><strong>再配 PostToolUse 钩子</strong>：匹配 Edit 或 Write，自动跑最轻量的 lint/check，并把结果回灌给 Claude</li>
 <li><strong>自定义 MCP validate 工具</strong>：把"正确用法 + 示例"写进 tool description，而不是只写参数 schema</li>
 <li><strong>LSP 作为默认第一道反馈</strong>：不要自己重造"每次 edit 后先跑重型检查"的流程</li>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lua">Lua 战斗配置目录结构</h1>
 <h2 id="_1">概述</h2>
-<p>手游战斗系统 Lua 配置的六层目录模板：cfg/<a href="../entities/bat.html">bat</a>tle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。</p>
+<p>手游战斗系统 Lua 配置的六层目录模板：cfg/battle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">六层目录职责</h3>
 <pre><code>battle_config/
@@ -223,9 +223,9 @@ return M
 }
 </code></pre>
 <h3 id="_6">命名规范</h3>
-<p>文件命名统一 <code>{类型}_{数字id}.lua</code>（<code><a href="../entities/bat.html">bat</a>tle_1001.lua</code>、<code>unit_3001.lua</code>）。枚举字段优先字符串常量（<code>skill_type="active"</code>、<code>damage_type="fire"</code>），禁用魔法数字，导表时可转数字。</p>
+<p>文件命名统一 <code>{类型}_{数字id}.lua</code>（<code>battle_1001.lua</code>、<code>unit_3001.lua</code>）。枚举字段优先字符串常量（<code>skill_type="active"</code>、<code>damage_type="fire"</code>），禁用魔法数字，导表时可转数字。</p>
 <h3 id="_7">策划协作版扩展目录</h3>
-<p>适合中后期项目，对 <a href="../entities/bat.html">bat</a>tle 按玩法分目录（mainline/tower/arena/boss），buff 按性质分（positive/negative/control/dot），event 按层级分（<a href="../entities/bat.html">bat</a>tle_rule/wave_event/stage_mechanism/common_trigger）。</p>
+<p>适合中后期项目，对 battle 按玩法分目录（mainline/tower/arena/boss），buff 按性质分（positive/negative/control/dot），event 按层级分（battle_rule/wave_event/stage_mechanism/common_trigger）。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/programming/lua/战斗系统Lua目录模板.md</span> — ChatGPT 对话：战斗系统 Lua table 配置六层目录结构模板 (https://chatgpt.com/c/69d65fae-bdcc-8324-91a2-68485c137f90)</li>

@@ -135,58 +135,58 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rl">RL算法选型指南</h1>
 <h2 id="_1">概述</h2>
-<p><a href="强化学习.html">强化学习</a>算法选型的核心维度是动作空间类型（离散/连续）与任务需求（稳定性/性能/样本效率）。连续动作首选 <a href="SAC.html">SAC</a>（自动调参，稳定性最优）；离散动作+视觉输入首选 <a href="Rainbow.html">Rainbow</a>；<a href="强化学习.html">RL</a>HF 和多任务场景首选 <a href="PPO.html">PPO</a>。选型需权衡超参数敏感性、计算资源与收敛保证。</p>
+<p><a href="强化学习.html">强化学习</a>算法选型的核心维度是动作空间类型（离散/连续）与任务需求（稳定性/性能/样本效率）。连续动作首选 SAC（自动调参，稳定性最优）；离散动作+视觉输入首选 <a href="Rainbow.html">Rainbow</a>；RLHF 和多任务场景首选 PPO。选型需权衡超参数敏感性、计算资源与收敛保证。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>离散动作空间选型</strong>：</li>
 <li>视觉/像素输入 + 追求最高性能 → <a href="Rainbow.html">Rainbow</a>（Atari 中位数得分 223%）</li>
-<li>视觉输入 + 简单实现 → <a href="DQN.html">DQN</a> / <a href="Double DQN.html">Double DQN</a></li>
-<li>低维向量 + 样本效率优先 → <a href="DQN.html">DQN</a> + <a href="优先经验回放.html">PER</a></li>
-<li>低维向量 + 稳定性优先 → <a href="PPO.html">PPO</a>（离散版本）</li>
+<li>视觉输入 + 简单实现 → DQN / <a href="Double DQN.html">Double DQN</a></li>
+<li>低维向量 + 样本效率优先 → DQN + PER</li>
+<li>低维向量 + 稳定性优先 → PPO（离散版本）</li>
 <li>
-<p>稀疏奖励/探索困难 → <a href="PPO.html">PPO</a> + 内在奖励（ICM/RND）</p>
+<p>稀疏奖励/探索困难 → PPO + 内在奖励（ICM/RND）</p>
 </li>
 <li>
 <p><strong>连续动作空间选型</strong>：</p>
 </li>
-<li>稳定性 + 自动调参（首选） → <a href="SAC.html">SAC</a>（超参敏感性极低，MuJoCo 最优）</li>
-<li>极限性能 + 可控探索 → <a href="TD3.html">TD3</a>（HalfCheetah ~9600, Walker2D ~4680）</li>
-<li>多任务 / <a href="强化学习.html">RL</a>HF → <a href="PPO.html">PPO</a>（连续版本，工业标准）</li>
+<li>稳定性 + 自动调参（首选） → SAC（超参敏感性极低，MuJoCo 最优）</li>
+<li>极限性能 + 可控探索 → TD3（HalfCheetah ~9600, Walker2D ~4680）</li>
+<li>多任务 / RLHF → PPO（连续版本，工业标准）</li>
 <li>
-<p>资源受限 / 快速原型 → <a href="DDPG.html">DDPG</a></p>
+<p>资源受限 / 快速原型 → DDPG</p>
 </li>
 <li>
 <p><strong>特殊场景</strong>：</p>
 </li>
-<li>安全约束 <a href="强化学习.html">RL</a>（单调改进保证） → <a href="TRPO.html">TRPO</a> / CPO</li>
-<li>多智能体 / 分布式计算 → <a href="A3C.html">A3C</a> / IMPALA / MA<a href="PPO.html">PPO</a></li>
-<li>人类反馈（<a href="强化学习.html">RL</a>HF） → <a href="PPO.html">PPO</a>（InstructGPT/ChatGPT 标准方案）</li>
-<li>学术研究（方法论完备性） → <a href="SAC.html">SAC</a>（软贝尔曼收敛保证）</li>
+<li>安全约束 RL（单调改进保证） → TRPO / CPO</li>
+<li>多智能体 / 分布式计算 → A3C / IMPALA / MAPPO</li>
+<li>人类反馈（RLHF） → PPO（InstructGPT/ChatGPT 标准方案）</li>
+<li>学术研究（方法论完备性） → SAC（软贝尔曼收敛保证）</li>
 <li>
 <p>分布式大规模训练 → IMPALA / Ape-X</p>
 </li>
 <li>
 <p><strong>超参数敏感性对比</strong>（敏感性由低到高）：</p>
 </li>
-<li><a href="SAC.html">SAC</a>：极低（自动温度 α，几乎免调）</li>
-<li><a href="PPO.html">PPO</a>：低（clip ε 和 <a href="广义优势估计.html">GAE</a> λ 鲁棒）</li>
-<li><a href="TRPO.html">TRPO</a>：低（信赖域 δ 自动处理）</li>
-<li><a href="DQN.html">DQN</a>/<a href="TD3.html">TD3</a>：中</li>
+<li>SAC：极低（自动温度 α，几乎免调）</li>
+<li>PPO：低（clip ε 和 GAE λ 鲁棒）</li>
+<li>TRPO：低（信赖域 δ 自动处理）</li>
+<li>DQN/TD3：中</li>
 <li><a href="Rainbow.html">Rainbow</a>：高（六组件各有超参）</li>
 <li>
-<p><a href="DDPG.html">DDPG</a>：高（OU噪声 σ 极敏感）</p>
+<p>DDPG：高（OU噪声 σ 极敏感）</p>
 </li>
 <li>
 <p><strong>计算资源需求</strong>：</p>
 </li>
-<li>GPU 密集：<a href="DQN.html">DQN</a>/<a href="Rainbow.html">Rainbow</a>（单GPU+大回放缓冲）</li>
-<li>CPU 并行：<a href="A3C.html">A3C</a>（天然多核，无需 GPU）</li>
-<li>均衡：<a href="PPO.html">PPO</a>（多环境并行，低-中 GPU）</li>
+<li>GPU 密集：DQN/<a href="Rainbow.html">Rainbow</a>（单GPU+大回放缓冲）</li>
+<li>CPU 并行：A3C（天然多核，无需 GPU）</li>
+<li>均衡：PPO（多环境并行，低-中 GPU）</li>
 <li>
-<p>二阶方法：<a href="TRPO.html">TRPO</a>（CG 计算，CPU 高需求）</p>
+<p>二阶方法：TRPO（CG 计算，CPU 高需求）</p>
 </li>
 <li>
-<p><strong>MuJoCo 基准</strong>（参考分）：<a href="SAC.html">SAC</a> HalfCheetah ~10100 &gt; <a href="TD3.html">TD3</a> ~9600 &gt; <a href="DDPG.html">DDPG</a> ~8600 &gt;&gt; <a href="PPO.html">PPO</a> ~1800；Atari 基准：<a href="Rainbow.html">Rainbow</a> 223% &gt; <a href="离散">[SAC]</a> ~180% &gt; <a href="PPO.html">PPO</a> ~100-150% &gt; <a href="DQN.html">DQN</a> 79%。</p>
+<p><strong>MuJoCo 基准</strong>（参考分）：SAC HalfCheetah ~10100 &gt; TD3 ~9600 &gt; DDPG ~8600 &gt;&gt; PPO ~1800；Atari 基准：<a href="Rainbow.html">Rainbow</a> 223% &gt; SAC(离散) ~180% &gt; PPO ~100-150% &gt; DQN 79%。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -196,12 +196,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="强化学习三大范式.html">强化学习三大范式</a> — extends</li>
-<li><a href="SAC.html">SAC</a> — compares_to</li>
-<li><a href="PPO.html">PPO</a> — compares_to</li>
+<li>SAC — compares_to</li>
+<li>PPO — compares_to</li>
 <li><a href="Rainbow.html">Rainbow</a> — compares_to</li>
-<li><a href="TD3.html">TD3</a> — compares_to</li>
-<li><a href="DDPG.html">DDPG</a> — compares_to</li>
-<li><a href="TRPO.html">TRPO</a> — compares_to</li>
+<li>TD3 — compares_to</li>
+<li>DDPG — compares_to</li>
+<li>TRPO — compares_to</li>
 </ul>
   </div>
   <div class="page-nav">

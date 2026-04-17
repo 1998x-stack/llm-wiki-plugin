@@ -142,32 +142,32 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Pointwise</strong>：独立预测每个文档的相关性分数，回归/分类问题，简单但忽略文档间关系</li>
 <li><strong>Pairwise</strong>：预测两文档哪个更相关，RankSVM 的基础，比 Pointwise 更符合排序任务</li>
 <li>
-<p><strong>Listwise</strong>：直接优化整个排名列表的评估指标（<a href="NDCG.html">NDCG</a>/MAP），LambdaMART 是代表</p>
+<p><strong>Listwise</strong>：直接优化整个排名列表的评估指标（NDCG/MAP），LambdaMART 是代表</p>
 </li>
 <li>
 <p><strong>主流 LTR 模型</strong>：</p>
 </li>
-<li><strong>RankSVM</strong>：最大化相关文档对间的 ma<a href="../entities/ripgrep.html">rg</a>in</li>
+<li><strong>RankSVM</strong>：最大化相关文档对间的 margin</li>
 <li>
-<p><strong>LambdaMART</strong>：梯度提升树（G<a href="../entities/Boston Dynamics.html">BD</a>T）+ Lambda 梯度，直接优化 <a href="NDCG.html">NDCG</a>，工业界最广泛使用的传统 LTR 算法</p>
+<p><strong>LambdaMART</strong>：梯度提升树（GBDT）+ Lambda 梯度，直接优化 NDCG，工业界最广泛使用的传统 LTR 算法</p>
 </li>
 <li>
 <p><strong>特征工程</strong>（传统 LTR 的核心）：</p>
 </li>
 <li>查询-文档特征：<a href="TF-IDF.html">TF-IDF</a>/BM25 分数、查询词覆盖率、最小词距</li>
-<li>文档特征：PageRank/入链数量、文档长度、U<a href="强化学习.html">RL</a> 深度、内容新鲜度</li>
+<li>文档特征：PageRank/入链数量、文档长度、URL 深度、内容新鲜度</li>
 <li>查询特征：查询长度、查询频率（是否热门查询）</li>
 <li>
 <p>交互特征：点击率（CTR）、停留时间（Dwell Time）、跳出率</p>
 </li>
 <li>
-<p><strong>排序演进谱系</strong>：布尔模型 → <a href="向量空间模型.html">向量空间模型</a>（<a href="TF-IDF.html">TF-IDF</a>）→ 概率模型（<span style="color:#e74c3c" title="broken link">BM25</span>）→ LTR（RankSVM/LambdaMART）→ 神经排序（BERT/<a href="设备像素比.html">DPR</a>/ColBERT）。</p>
+<p><strong>排序演进谱系</strong>：布尔模型 → <a href="向量空间模型.html">向量空间模型</a>（<a href="TF-IDF.html">TF-IDF</a>）→ 概率模型（BM25）→ LTR（RankSVM/LambdaMART）→ 神经排序（BERT/DPR/ColBERT）。</p>
 </li>
 <li>
-<p><strong>两阶段检索中的定位</strong>：第一阶段 BM25+<a href="WAND算法.html">WAND</a> 高效召回 Top-1000（延迟&lt;20ms），第二阶段 LTR 或神经重排器（BERT reranker）<a href="检索重排序.html">精排</a>（延迟&lt;100ms），最终返回 Top-10。</p>
+<p><strong>两阶段检索中的定位</strong>：第一阶段 BM25+WAND 高效召回 Top-1000（延迟&lt;20ms），第二阶段 LTR 或神经重排器（BERT reranker）<a href="检索重排序.html">精排</a>（延迟&lt;100ms），最终返回 Top-10。</p>
 </li>
 <li>
-<p><strong>评估指标</strong>：<a href="NDCG.html">NDCG</a>@K（<a href="NDCG.html">归一化折扣累积增益</a>）、MAP（平均精度均值）、<a href="MRR.html">MRR</a>（<a href="MRR.html">平均倒数排名</a>）。</p>
+<p><strong>评估指标</strong>：NDCG@K（<a href="NDCG.html">归一化折扣累积增益</a>）、MAP（平均精度均值）、MRR（<a href="MRR.html">平均倒数排名</a>）。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">BM25</span> — extends</li>
+<li>BM25 — extends</li>
 <li><a href="检索重排序.html">检索重排序</a> — compares_to（神经重排是 LTR 的升级）</li>
 <li><a href="WAND算法.html">WAND算法</a> — compares_to（第一阶段配合使用）</li>
 <li><a href="搜索引擎架构.html">搜索引擎架构</a> — part_of</li>

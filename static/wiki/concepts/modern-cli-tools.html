@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>该全景图涵盖了文件系统操作、文本搜索、内容查看及任务自动化等多个维度：</p>
 <ul>
 <li><strong>安全删除 (<code>rm</code> → <code>trash</code>)</strong>：传统的 <code>rm</code> 命令一旦执行即永久删除，风险极高。<code>trash</code> 将文件移至系统回收站，支持恢复，为 AI Agent 执行批量清理任务提供了重要的安全网，防止因逻辑错误导致源码丢失。</li>
-<li><strong>极速搜索 (<code>grep</code> → <code>rg</code>, <code>find</code> → <code>fd</code>)</strong>：<code>ripgrep</code> (<a href="../entities/ripgrep.html">rg</a>) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（<code>-A/-B</code>）和 JSON 输出，便于管道处理。<code>fd</code> 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。</li>
+<li><strong>极速搜索 (<code>grep</code> → <code>rg</code>, <code>find</code> → <code>fd</code>)</strong>：<code>ripgrep</code> (rg) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（<code>-A/-B</code>）和 JSON 输出，便于管道处理。<code>fd</code> 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。</li>
 <li><strong>增强查看 (<code>cat</code> → <code>bat</code>, <code>ls</code> → <code>eza</code>)</strong>：<code>bat</code> 集成了语法高亮、Git 变更标注（显示哪些行被修改过）和自动分页功能，使<a href="Code-Review-for-Claude-Code.html">代码审查</a>更清晰。<code>eza</code> 作为 <code>ls</code> 的现代继承者，支持图标显示、树状视图（替代 <code>tree</code>）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。</li>
 <li><strong>现代化编辑与构建 (<code>sed</code> → <code>sd</code>, <code>make</code> → <code>just</code>)</strong>：<code>sd</code> 简化了流编辑器的正则捕获组语法，减少转义错误。<code>just</code> 作为任务运行器，解决了 <code>make</code> 依赖文件时间戳的局限，支持参数传递和更清晰的语法，成为管理开发任务（如测试、构建、部署）的首选。</li>
 <li><strong>可视化与分析 (<code>du</code> → <code>dust</code>, <code>df</code> → <code>duf</code>)</strong>：<code>dust</code> 以交互式树形图展示磁盘占用，直观定位大文件；<code>duf</code> 则以彩色分组形式呈现磁盘使用情况，区分本地、网络和特殊挂载点。</li>
@@ -166,11 +166,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_7">相关</h2>
 <ul>
 <li><a href="../entities/ripgrep.html">ripgrep</a> — part_of（内容搜索）</li>
-<li><a href="../entities/fd.html">fd</a> — part_of（文件定位）</li>
-<li><a href="../entities/bat.html">bat</a> — part_of（文件查看）</li>
-<li><a href="../entities/eza.html">eza</a> — part_of（目录列表）</li>
-<li><a href="../entities/just.html">just</a> — part_of（任务运行）</li>
-<li><a href="../entities/jq.html">jq</a> — part_of（JSON 处理）</li>
+<li>fd — part_of（文件定位）</li>
+<li>bat — part_of（文件查看）</li>
+<li>eza — part_of（目录列表）</li>
+<li>just — part_of（任务运行）</li>
+<li>jq — part_of（JSON 处理）</li>
 <li><span style="color:#e74c3c" title="broken link">trash-cli</span></li>
 <li><span style="color:#e74c3c" title="broken link">AI Agent</span></li>
 <li><span style="color:#e74c3c" title="broken link">Rust 编程语言</span></li>

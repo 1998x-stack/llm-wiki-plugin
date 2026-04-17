@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>带位移的QR算法</strong>（Francis 1961）：在 QR 分解前减去位移 $\mu_k$：
 $$A_k - \mu_k I = Q_k R_k, \quad A_{k+1} = R_k Q_k + \mu_k I$$
 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 商位移使收敛从线性加速到三次方，极大提升效率。</p>
-<p><strong>Hessenbe<a href="../entities/ripgrep.html">rg</a>化预处理</strong>：先将 $A$ 化为上 Hessenbe<a href="../entities/ripgrep.html">rg</a> 形（上双对角和对角线以下全零），使每步 QR 分解代价从 $O(n^3)$ 降至 $O(n^2)$。</p>
+<p><strong>Hessenberg化预处理</strong>：先将 $A$ 化为上 Hessenberg 形（上双对角和对角线以下全零），使每步 QR 分解代价从 $O(n^3)$ 降至 $O(n^2)$。</p>
 <p><strong>隐式 QR（Francis 双重位移）</strong>：使用复共轭位移对处理实<a href="矩阵.html">矩阵</a>的复特征值，保持全程在实数算术中进行。</p>
 <p><strong><a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a> 位移（1965）</strong>：<a href="../entities/詹姆斯·威尔金森.html">詹姆斯·威尔金森</a>为对称三对角<a href="矩阵.html">矩阵</a>提出的位移策略——选取末部 $2\times 2$ 子<a href="矩阵.html">矩阵</a>中更接近 $a_{nn}$ 的特征值作为位移，实现<strong>全局收敛性</strong>和<strong>三次方渐近收敛速率</strong>；实际计算中每个特征值通常只需1–2次迭代即可隔离。是对称特征值计算的黄金标准。</p>
 <h3 id="_6">历史背景</h3>

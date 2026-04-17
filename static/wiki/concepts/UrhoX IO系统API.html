@@ -175,7 +175,7 @@ buf:Seek(0)
 local n = buf:ReadInt()  -- 42
 </code></pre>
 <h3 id="namedpipe">NamedPipe — 命名管道</h3>
-<p><code>Named<a href="../entities/Pi-Agent.html">Pi</a>pe : Object</code> 支持进程间通信（IPC），以服务端/客户端模式打开：</p>
+<p><code>NamedPipe : Object</code> 支持进程间通信（IPC），以服务端/客户端模式打开：</p>
 <pre><code class="language-lua">local pipe = NamedPipe(&quot;mypipe&quot;, true)  -- isServer=true
 if pipe:IsOpen() then
     pipe:WriteString(&quot;data&quot;)

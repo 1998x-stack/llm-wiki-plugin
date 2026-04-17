@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepagents">DeepAgents 评估体系</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（F<a href="../entities/rust-analyzer.html">RA</a>MES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
+<p><a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用<strong>两层断言模型</strong>区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">两层断言模型（核心设计）</h3>
 <table>
@@ -228,7 +228,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>雷达图（Radar）使用前 6 个分类（排除 <code>unit_test</code>），避免 SDK 行为与"模型能力"维度混淆。</p>
 <h3 id="pytest-conftestpy">pytest 配置（<code>conftest.py</code>）</h3>
 <ul>
-<li><strong>LangSmith 追踪门禁</strong>：<code>LANGSMITH_TR<a href="Agent计算机接口.html">ACI</a>NG</code> 环境变量必须为 <code>"true"</code>，否则整个会话退出码 1</li>
+<li><strong>LangSmith 追踪门禁</strong>：<code>LANGSMITH_TRACING</code> 环境变量必须为 <code>"true"</code>，否则整个会话退出码 1</li>
 <li>CLI 参数：<code>--model</code>（被测模型）、<code>--eval-category</code>（筛选分类）、<code>--openrouter-provider</code></li>
 <li>所有 eval 用例使用 <code>@pytest.mark.langsmith</code></li>
 </ul>
@@ -263,15 +263,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>模型能力/策略问题（无基础设施信号）</td>
 </tr>
 <tr>
-<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_OOM</code></td>
+<td><code>INFRA_OOM</code></td>
 <td>exit 137 / OOM</td>
 </tr>
 <tr>
-<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_TIMEOUT</code></td>
+<td><code>INFRA_TIMEOUT</code></td>
 <td>exit 124 / 超时</td>
 </tr>
 <tr>
-<td><code>INF<a href="../entities/rust-analyzer.html">RA</a>_SANDBOX</code></td>
+<td><code>INFRA_SANDBOX</code></td>
 <td>沙箱崩溃、网络不可达、exec failed</td>
 </tr>
 <tr>
@@ -315,7 +315,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>生成类脚本</strong>：
 - <code>generate_radar.py</code>：从 <code>evals_summary.json</code> 生成雷达图 PNG（<code>--toy</code> 支持离线预览）
 - <code>generate_eval_catalog.py</code>：重写 <code>EVAL_CATALOG.md</code>，<code>--check</code> 用于 CI 防漂移
-- <code>generate_model_groups.py</code>：从 <code>.github/scripts/models.py</code> 注册表生成 <code>MODEL_<a href="生成式推荐.html">GR</a>OUPS.md</code></p>
+- <code>generate_model_groups.py</code>：从 <code>.github/scripts/models.py</code> 注册表生成 <code>MODEL_GROUPS.md</code></p>
 <p><strong>工程化建议</strong>：先确保轨迹与 <code>result.json</code> 完整再跑分析；解读分数时同时看 <code>format_ci</code> 与 MDE，并将 <code>is_infrastructure=True</code> 的 trial 单独分层统计。</p>
 <h3 id="_6">编写评估用例（五步流程）</h3>
 <ol>

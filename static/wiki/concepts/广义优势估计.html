@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">广义优势估计</h1>
 <h2 id="_2">概述</h2>
-<p>Schulman (2016) 提出的<a href="价值函数.html">优势函数</a>估计方法，通过超参数 λ 在单步 TD 估计（低方差高偏差）和完整蒙特卡洛回报（高方差低偏差）之间平滑插值，是 <a href="PPO.html">PPO</a> 和 <a href="A3C.html">A3C</a> 等算法的标准技术。</p>
+<p>Schulman (2016) 提出的<a href="价值函数.html">优势函数</a>估计方法，通过超参数 λ 在单步 TD 估计（低方差高偏差）和完整蒙特卡洛回报（高方差低偏差）之间平滑插值，是 PPO 和 A3C 等算法的标准技术。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 TD(λ) 的关系</strong>：GAE 是 TD(λ) 在<a href="价值函数.html">优势函数</a>估计上的扩展，将 λ-加权的多步 TD 误差之和作为优势估计。</p>
 </li>
 <li>
-<p><strong>工程价值</strong>：GAE 解决了<a href="策略梯度定理.html">策略梯度</a>方法中的核心挑战——高方差导致训练不稳定。<a href="PPO.html">PPO</a>、<a href="TRPO.html">TRPO</a> 均采用 GAE 作为标准优势估计器。</p>
+<p><strong>工程价值</strong>：GAE 解决了<a href="策略梯度定理.html">策略梯度</a>方法中的核心挑战——高方差导致训练不稳定。PPO、TRPO 均采用 GAE 作为标准优势估计器。</p>
 </li>
 <li>
 <p><strong>实现细节</strong>：计算时从轨迹末尾向前递推：
@@ -174,8 +174,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="贝尔曼方程.html">贝尔曼方程</a> — uses</li>
 <li><a href="策略梯度定理.html">策略梯度定理</a> — extends</li>
 <li><a href="强化学习三大范式.html">强化学习三大范式</a> — part_of</li>
-<li><a href="PPO.html">PPO</a> — uses</li>
-<li><a href="TRPO.html">TRPO</a> — uses</li>
+<li>PPO — uses</li>
+<li>TRPO — uses</li>
 </ul>
   </div>
   <div class="page-nav">

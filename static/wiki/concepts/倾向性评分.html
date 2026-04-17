@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">倾向性评分</h1>
 <h2 id="_2">概述</h2>
-<p>倾向性评分是某个用户-物品对的评分被观测到的概率，用于量化数据生成过程中的<a href="选择偏差.html">选择偏差</a>，是<a href="逆倾向评分.html">逆倾向评分</a>加权（<a href="逆倾向评分.html">IPS</a>）的核心输入。</p>
+<p>倾向性评分是某个用户-物品对的评分被观测到的概率，用于量化数据生成过程中的<a href="选择偏差.html">选择偏差</a>，是<a href="逆倾向评分.html">逆倾向评分</a>加权（IPS）的核心输入。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -158,10 +158,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>逻辑回归</strong>：将"是否观测到"作为二分类标签，用户和物品特征作为输入。变体包括：仅用户特征（LR-U）、仅物品特征（LR-I）、同时使用（LR）。</p>
 </li>
 <li>
-<p><strong>在 <a href="逆倾向评分.html">IPS</a> 中的作用</strong>：<a href="逆倾向评分.html">IPS</a> 估计器 $\hat{R}<em>{<a href="逆倾向评分.html">IPS</a>} = \frac{1}{U \cdot I} \sum \frac{\delta}{P</em>{u,i}}$ 直接依赖倾向性评分。当倾向性评分已知时，<a href="逆倾向评分.html">IPS</a> 是无偏的。</p>
+<p><strong>在 IPS 中的作用</strong>：IPS 估计器 $\hat{R}<em>{IPS} = \frac{1}{U \cdot I} \sum \frac{\delta}{P</em>{u,i}}$ 直接依赖倾向性评分。当倾向性评分已知时，IPS 是无偏的。</p>
 </li>
 <li>
-<p><strong>估计不精确的鲁棒性</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人的实验表明，即使倾向性估计存在噪声和偏差，<a href="逆倾向评分.html">IPS</a> 和 <a href="SNIPS.html">SNIPS</a> 仍然显著优于忽略偏差的朴素方法。"大致正确"的倾向性已足以带来显著改善。</p>
+<p><strong>估计不精确的鲁棒性</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人的实验表明，即使倾向性估计存在噪声和偏差，IPS 和 <a href="SNIPS.html">SNIPS</a> 仍然显著优于忽略偏差的朴素方法。"大致正确"的倾向性已足以带来显著改善。</p>
 </li>
 <li>
 <p><strong>根本挑战</strong>：倾向性评分本身需要从有偏数据中估计，形成"鸡生蛋还是蛋生鸡"的循环依赖。朴素<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>和逻辑回归方法做出了较强的参数化假设（如条件独立性假设）。</p>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="逆倾向评分.html">逆倾向评分</a> — 以倾向性评分为核心输入</li>
 <li><a href="SNIPS.html">SNIPS</a> — 同样依赖倾向性评分</li>
-<li><a href="MNAR.html">MNAR</a> — 倾向性评分用于校正的缺失机制</li>
+<li>MNAR — 倾向性评分用于校正的缺失机制</li>
 <li><a href="选择偏差.html">选择偏差</a> — 倾向性评分量化的偏差类型</li>
 <li><a href="MF-IPS.html">MF-IPS</a> — 在训练中使用倾向性评分加权的矩阵分解</li>
 </ul>

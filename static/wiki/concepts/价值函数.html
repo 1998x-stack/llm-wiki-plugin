@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>
 <p><strong>最优价值函数</strong>：Q<em>(s,a) = max_π Q^π(s,a)，满足<a href="贝尔曼方程.html">贝尔曼最优方程</a>。
-   <a href="强化学习三大范式.html">Value-Based</a> 方法（<a href="DQN.html">DQN</a> 系列）的目标是逼近 Q</em>，由此推导确定性贪心策略：π<em>(s) = a<a href="../entities/ripgrep.html">rg</a>max_a Q</em>(s,a)。</p>
+   <a href="强化学习三大范式.html">Value-Based</a> 方法（DQN 系列）的目标是逼近 Q</em>，由此推导确定性贪心策略：π<em>(s) = argmax_a Q</em>(s,a)。</p>
 </li>
 <li>
 <p><strong>参数化表示</strong>：深度学习中用神经网络参数化：Q_φ(s,a)（Q网络）和 V_φ(s)（价值网络），参数 φ 通过最小化 TD 误差学习。</p>

@@ -210,10 +210,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>隐式表示</strong>（重要！）：$H$ 无需显式存储为 $n\times n$ <a href="矩阵.html">矩阵</a>，只存储 $v$（$n$ 个数），<a href="矩阵.html">矩阵</a>-向量乘积：</p>
 <p>$$Hx = x - 2\frac{v^Tx}{v^Tv}v \quad [O(n) \text{ 计算，} O(n) \text{ 存储}]$$</p>
 <h3 id="hessenberg">Hessenberg 化简（特征值预处理）</h3>
-<p>对一般 $n\times n$ <a href="矩阵.html">矩阵</a>，通过两侧 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">Householder</a> 变换（$n-2$ 步）化为<strong>上 Hessenbe<a href="../entities/ripgrep.html">rg</a> 形式</strong>（$h_{ij}=0$ 当 $i&gt;j+1$）：</p>
-<p>$$Q^T A Q = H_{\text{Hessenbe<a href="../entities/ripgrep.html">rg</a>}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$</p>
+<p>对一般 $n\times n$ <a href="矩阵.html">矩阵</a>，通过两侧 <a href="../entities/阿尔斯顿·豪斯霍尔德.html">Householder</a> 变换（$n-2$ 步）化为<strong>上 Hessenberg 形式</strong>（$h_{ij}=0$ 当 $i&gt;j+1$）：</p>
+<p>$$Q^T A Q = H_{\text{Hessenberg}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$</p>
 <p>对<strong>对称<a href="矩阵.html">矩阵</a></strong>化为<strong>三对角形式</strong>：$\frac{4}{3}n^3$ 次运算</p>
-<p><strong>意义</strong>：对 Hessenbe<a href="../entities/ripgrep.html">rg</a> <a href="矩阵.html">矩阵</a>的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使<a href="QR算法.html">QR算法</a>实际可行。</p>
+<p><strong>意义</strong>：对 Hessenberg <a href="矩阵.html">矩阵</a>的 QR 迭代每步仅需 $O(n^2)$（而非 $O(n^3)$），这使<a href="QR算法.html">QR算法</a>实际可行。</p>
 <h3 id="gauss">数值稳定性：为何优于 Gauss 消元</h3>
 <p><a href="../entities/阿尔斯顿·豪斯霍尔德.html">Householder</a> 变换（正交变换）的<a href="条件数.html">条件数</a> $\kappa_2(H) = 1$——<strong>不放大误差</strong>。</p>
 <p>相比之下，Gauss 消元的增长因子可达 $2^{n-1}$（最坏情况），即使带列主元选取，在某些<a href="矩阵.html">矩阵</a>上仍不够稳定。</p>
@@ -232,16 +232,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>最稳定的稠密<a href="矩阵.html">矩阵</a> QR 分解方法（LAPACK DGEQRF）</td>
 </tr>
 <tr>
-<td>Hessenbe<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
-&lt;td&gt;rg</span> 化简</td>
+<td>Hessenberg 化简</td>
+<td>QR 算法特征值计算的预处理（LAPACK DGEHRD）</td>
 </tr>
 <tr>
 <td>对称三对角化</td>
 <td>对称特征值计算预处理（LAPACK DSYTRD）</td>
 </tr>
 <tr>
-<td><span style="color:#e74c3c" title="broken link">奇异值分解&lt;/td&gt;
-&lt;td&gt;SVD</span> 计算</td>
+<td>SVD 计算</td>
+<td>Golub-Kahan 双对角化（LAPACK DBDSDC）</td>
 </tr>
 <tr>
 <td>最小二乘</td>

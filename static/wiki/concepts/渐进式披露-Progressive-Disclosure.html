@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>渐进式披露最初源于人机交互（HCI）领域，用于简化复杂软件的界面，避免新手用户被过多的选项和功能吓退。其核心思想是：<strong>默认只显示最常用、最核心的信息，将高级或详细信息隐藏在次级界面中，待用户需要时再展开。</strong>
 在 LLM 时代，这一概念被赋予了新的内涵。由于 Token 成本高昂且<a href="上下文窗口.html">上下文窗口</a>有限，“用户”不仅是人类，更是消耗资源的 AI 模型。此时的渐进式披露不仅是为了易用性，更是为了<strong>经济性</strong>和<strong>推理质量</strong>。</p>
 <h3 id="ai">在 AI 检索系统中的实施</h3>
-<p>在传统的 <a href="检索增强生成.html">RAG</a>（<a href="检索增强生成.html">检索增强生成</a>）系统中，系统往往会一次性将所有检索到的文档片段全部填入 Context，这是一种“全量披露”的反面教材。相比之下，基于渐进式披露的架构（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）采用以下策略：</p>
+<p>在传统的 RAG（<a href="检索增强生成.html">检索增强生成</a>）系统中，系统往往会一次性将所有检索到的文档片段全部填入 Context，这是一种“全量披露”的反面教材。相比之下，基于渐进式披露的架构（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）采用以下策略：</p>
 <h4 id="1">1. 分层信息结构</h4>
 <ul>
 <li><strong>第一层（索引层）</strong>：仅披露元数据（标题、时间、类型、简短摘要）。这一层的信息密度极高，Token 消耗极低，足以让模型进行相关性判断和筛选。</li>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="claude-code">Claude Code 中的演进应用</h3>
 <p><strong>搜索能力演进</strong>：</p>
 <ol>
-<li><strong><a href="检索增强生成.html">RAG</a> 阶段（早期）</strong></li>
+<li><strong>RAG 阶段（早期）</strong></li>
 <li>向量数据库预索引整个代码库</li>
 <li>每次响应前检索相关片段并交给 Claude</li>
 <li>

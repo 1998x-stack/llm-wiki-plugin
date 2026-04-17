@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">设备像素比</h1>
 <h2 id="_2">概述</h2>
-<p>设备像素比（D<a href="Probabilistic Robotics.html">PR</a>，Device <a href="../entities/Pi-Agent.html">Pi</a>xel Ratio）是物理像素数与逻辑像素数之比，决定高 DPI 屏幕（Retina/高清屏）上的渲染清晰度。常见值：1.0（普通屏）、2.0（Retina）、3.0（超高密度屏）。</p>
+<p>设备像素比（DPR，Device Pixel Ratio）是物理像素数与逻辑像素数之比，决定高 DPI 屏幕（Retina/高清屏）上的渲染清晰度。常见值：1.0（普通屏）、2.0（Retina）、3.0（超高密度屏）。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心关系</strong>：<code>系统逻辑分辨率 = 物理分辨率 / DPR</code>。在 <a href="../entities/UrhoX引擎.html">UrhoX</a> 中通过 <code>graphics:GetDPR()</code> 获取，物理分辨率通过 <code>graphics:GetWidth()/GetHeight()</code> 获取。</li>
-<li><strong>高DPI适配意义</strong>：若忽略 D<a href="Probabilistic Robotics.html">PR</a> 直接以物理像素为单位绘制（模式C），在 D<a href="Probabilistic Robotics.html">PR</a>=2 的屏幕上 UI 尺寸仅为设计稿的 1/4，导致界面过小；正确传入 <code>pixelRatio=dpr</code> 给渲染器可确保清晰度与尺寸正确。</li>
-<li><strong>输入坐标转换</strong>：引擎鼠标/触摸输入 API 返回物理像素坐标，转换到逻辑坐标需除以 D<a href="Probabilistic Robotics.html">PR</a>：<code>logicalX = inputX / dpr</code>；进一步转到设计坐标还需除以设计缩放比 scale。</li>
+<li><strong>高DPI适配意义</strong>：若忽略 DPR 直接以物理像素为单位绘制（模式C），在 DPR=2 的屏幕上 UI 尺寸仅为设计稿的 1/4，导致界面过小；正确传入 <code>pixelRatio=dpr</code> 给渲染器可确保清晰度与尺寸正确。</li>
+<li><strong>输入坐标转换</strong>：引擎鼠标/触摸输入 API 返回物理像素坐标，转换到逻辑坐标需除以 DPR：<code>logicalX = inputX / dpr</code>；进一步转到设计坐标还需除以设计缩放比 scale。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

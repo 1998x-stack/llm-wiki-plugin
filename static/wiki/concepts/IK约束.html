@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ik">IK约束</h1>
 <h2 id="_1">概述</h2>
-<p><a href="逆向运动学.html">IK</a>约束（<a href="逆向运动学.html">IK</a>Constraint）是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的关节约束组件，通过刚性、伸展性和长度范围限制 <a href="逆向运动学.html">IK</a> 关节的活动，防止非自然姿态，继承自 Component。</p>
+<p>IK约束（IKConstraint）是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 的关节约束组件，通过刚性、伸展性和长度范围限制 IK 关节的活动，防止非自然姿态，继承自 Component。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">参数说明</h3>
 <table>
@@ -169,10 +169,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>挂载于骨骼链中需要限制的关节节点</li>
 <li>需在 <a href="IKSolver.html">IKSolver</a> 上启用 <code>CONSTRAINTS = true</code> 才生效</li>
 <li>stiffness 接近 1 适合脊柱等刚性部位；接近 0 适合柔性肢体</li>
-<li>lengthConstraints 可防止手臂被 <a href="逆向运动学.html">IK</a> 拉伸到不自然长度</li>
+<li>lengthConstraints 可防止手臂被 IK 拉伸到不自然长度</li>
 </ul>
 <h3 id="_5">设计意图</h3>
-<p><a href="逆向运动学.html">IK</a> 求解器在无约束时可能将关节旋转到任意角度或拉伸骨骼超出物理范围。<a href="逆向运动学.html">IK</a>Constraint 通过局部限制配合全局求解，在保持求解灵活性的同时维持动画自然度。</p>
+<p>IK 求解器在无约束时可能将关节旋转到任意角度或拉伸骨骼超出物理范围。IKConstraint 通过局部限制配合全局求解，在保持求解灵活性的同时维持动画自然度。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/engine-docs/api/ik.md</span> — UrhoX Lua API IK 模块文档</li>

@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>透视参数</strong>：<code>fov</code>（视野角）、<code>nearClip</code>/<code>farClip</code>（近远裁剪面）、<code>aspectRatio</code></li>
 <li><strong>正交参数</strong>：<code>orthoSize</code> 代表视野<strong>全高度</strong>，引擎内部使用 <code>orthoSize * 0.5</code> 作半高度参与<a href="矩阵.html">矩阵</a>计算</li>
 <li><strong>坐标转换</strong>：<code>GetScreenRay(x, y)</code> 实时计算射线；<code>WorldToScreenPoint</code> / <code>ScreenToWorldPoint</code> 双向转换</li>
-<li><strong><a href="LOD（细节层次）.html">LOD</a> 偏置</strong>：<code>lodBias</code> 影响可见物体的 <a href="LOD（细节层次）.html">LOD</a> 级别选择</li>
+<li><strong>LOD 偏置</strong>：<code>lodBias</code> 影响可见物体的 LOD 级别选择</li>
 <li><strong>视图遮罩</strong>：<code>viewMask</code> 过滤可见 Drawable 对象</li>
 <li><strong>反射/裁剪</strong>：<code>useReflection</code> + <code>reflectionPlane</code> 实现水面反射；<code>useClipping</code> + <code>clipPlane</code> 斜裁剪</li>
 <li><strong>重要陷阱</strong>：手动将屏幕坐标转视图空间时，NDC 需乘以 <code>orthoSize * 0.5</code>，直接用 <code>orthoSize</code> 会导致 2× 误差</li>

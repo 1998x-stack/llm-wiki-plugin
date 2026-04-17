@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="roblox-api">Roblox API</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Roblox.html">Roblox</a> 平台提供的内建类型与服务 API，涵盖值类型（Vector3/<a href="协同过滤.html">CF</a>rame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService <a href="游戏主循环模式.html">游戏循环</a>。</p>
+<p><a href="../entities/Roblox.html">Roblox</a> 平台提供的内建类型与服务 API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService <a href="游戏主循环模式.html">游戏循环</a>。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="gc">内建值类型（无 GC 压力）</h3>
 <p><a href="../entities/Roblox.html">Roblox</a> 的几何与颜色类型是值类型，与普通 <a href="Lua-table-用法.html">Lua table</a> 不同，不产生垃圾回收压力：
 - <strong>Vector3</strong>：3D 坐标，支持 <code>+</code>/<code>*</code> 运算，<code>.Magnitude</code>、<code>.Unit</code>、<code>:Dot</code>、<code>:Cross</code>、<code>:Lerp</code>
 - <strong>Vector2</strong>：2D 坐标
-- <strong><a href="协同过滤.html">CF</a>rame</strong>：位置+姿态复合变换；<code>CFrame.lookAt(from, to)</code>；<code>*</code> 复合；<code>:ToObjectSpace</code> / <code>:ToWorldSpace</code> 坐标系转换；<code>:ToEulerAnglesXYZ</code> 提取欧拉角
+- <strong>CFrame</strong>：位置+姿态复合变换；<code>CFrame.lookAt(from, to)</code>；<code>*</code> 复合；<code>:ToObjectSpace</code> / <code>:ToWorldSpace</code> 坐标系转换；<code>:ToEulerAnglesXYZ</code> 提取欧拉角
 - <strong>Color3</strong>：<code>Color3.fromRGB(r, g, b)</code>
 - <strong>UDim2</strong>：GUI 布局尺寸，<code>UDim2.new(relX, absX, relY, absY)</code>（相对+绝对混合）
 - <strong>Rect / Ray</strong>：矩形区域和射线
@@ -156,7 +156,7 @@ parent:GetChildren() / :GetDescendants()
 instance:Clone() / :Destroy()
 part:GetPropertyChangedSignal(&quot;Prop&quot;):Connect(fn)
 </code></pre>
-<p>常用属性：<code>Name</code>、<code>Parent</code>、<code>Anchored</code>、<code>Size</code>、<code>Position</code>、<code><a href="协同过滤.html">CF</a>rame</code>、<code>Color</code>、<code>Material</code>、<code>Transparency</code>、<code>CanCollide</code></p>
+<p>常用属性：<code>Name</code>、<code>Parent</code>、<code>Anchored</code>、<code>Size</code>、<code>Position</code>、<code>CFrame</code>、<code>Color</code>、<code>Material</code>、<code>Transparency</code>、<code>CanCollide</code></p>
 <h3 id="tweenservice">TweenService 动画</h3>
 <pre><code class="language-lua">local info = TweenInfo.new(duration, EasingStyle, EasingDirection, repeatCount, reverses, delay)
 local tween = TweenService:Create(instance, info, {Position = ..., Transparency = ...})
@@ -198,9 +198,9 @@ screenGui.Parent = player.PlayerGui
 <h3 id="task">task 库（帧调度）</h3>
 <p><code>wait()</code> 的精确替代：
 - <code>task.wait(seconds)</code> — 等待
-- <code>task.spawn(fn, a<a href="../entities/ripgrep.html">rg</a>s)</code> — 立即执行（下一帧）
-- <code>task.defer(fn, a<a href="../entities/ripgrep.html">rg</a>s)</code> — 延迟到帧末尾
-- <code>task.delay(seconds, fn, a<a href="../entities/ripgrep.html">rg</a>s)</code> — 延迟执行
+- <code>task.spawn(fn, args)</code> — 立即执行（下一帧）
+- <code>task.defer(fn, args)</code> — 延迟到帧末尾
+- <code>task.delay(seconds, fn, args)</code> — 延迟执行
 - <code>task.cancel(thread)</code> — 取消协程</p>
 <h2 id="_4">来源</h2>
 <ul>
@@ -208,7 +208,7 @@ screenGui.Parent = player.PlayerGui
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="Luau.html">Luau</a> — Roblox 的 Lua 方言，提供类型注解和性能优化</li>
+<li>Luau — Roblox 的 Lua 方言，提供类型注解和性能优化</li>
 <li><a href="../entities/Roblox.html">Roblox</a> — 平台背景</li>
 <li><a href="游戏引擎架构.html">游戏引擎架构</a> — Roblox 引擎设计与通用游戏引擎的对比</li>
 </ul>

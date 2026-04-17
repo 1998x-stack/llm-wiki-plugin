@@ -139,14 +139,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心问题</strong>：给定一个由旧策略（logging policy）产生的历史数据集，如何无偏地估计新策略（ta<a href="../entities/ripgrep.html">rg</a>et policy）的性能？这在在线实验成本高或风险大的场景中尤为重要。</p>
+<p><strong>核心问题</strong>：给定一个由旧策略（logging policy）产生的历史数据集，如何无偏地估计新策略（target policy）的性能？这在在线实验成本高或风险大的场景中尤为重要。</p>
 </li>
 <li>
 <p><strong>主要方法</strong>：</p>
 </li>
-<li><strong><a href="逆倾向评分.html">逆倾向评分</a>（<a href="逆倾向评分.html">IPS</a>）</strong>：对历史样本按新旧策略倾向性之比加权，是无偏估计的标准方法</li>
-<li><a href="SNIPS.html">SNIPS</a>：<a href="逆倾向评分.html">IPS</a> 的自归一化版本，降低方差</li>
-<li><a href="双重鲁棒估计器.html">DR</a>：结合 <a href="逆倾向评分.html">IPS</a> 和直接方法，提供双重保护</li>
+<li><strong><a href="逆倾向评分.html">逆倾向评分</a>（IPS）</strong>：对历史样本按新旧策略倾向性之比加权，是无偏估计的标准方法</li>
+<li><a href="SNIPS.html">SNIPS</a>：IPS 的自归一化版本，降低方差</li>
+<li>DR：结合 IPS 和直接方法，提供双重保护</li>
 <li>
 <p>直接方法（Direct Method）：直接建模奖励函数并在新策略下积分</p>
 </li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>挑战</strong>：</p>
 </li>
 <li>覆盖度（coverage）：新策略可能推荐旧策略从未推荐的物品，导致<a href="重要性采样.html">重要性权重</a>无限大</li>
-<li>方差：<a href="逆倾向评分.html">IPS</a> 类方法在策略差异大时方差极高</li>
+<li>方差：IPS 类方法在策略差异大时方差极高</li>
 <li>
 <p>倾向性估计：旧策略的<a href="倾向性评分.html">倾向性评分</a>通常未知，需要从数据中估计</p>
 </li>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与<a href="反事实学习.html">反事实学习</a>的关系</strong>：OPE 是<a href="反事实学习.html">反事实学习</a>的评估组件。<a href="反事实学习.html">反事实学习</a>利用 OPE 提供的无偏性能估计来优化新策略。</p>
 </li>
 <li>
-<p><strong>标准基线</strong>：在 OPE 研究中，<a href="逆倾向评分.html">IPS</a> 和 <a href="SNIPS.html">SNIPS</a> 已经成为标准的基线方法，后续工作在此基础上提出了大量改进方法（如截断 <a href="逆倾向评分.html">IPS</a>、序列 <a href="逆倾向评分.html">IPS</a> 等）。</p>
+<p><strong>标准基线</strong>：在 OPE 研究中，IPS 和 <a href="SNIPS.html">SNIPS</a> 已经成为标准的基线方法，后续工作在此基础上提出了大量改进方法（如截断 IPS、序列 IPS 等）。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

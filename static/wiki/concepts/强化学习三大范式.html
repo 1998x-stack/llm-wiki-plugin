@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>Value-Based（基于价值）</strong>：</li>
-<li>核心：学习<a href="价值函数.html">价值函数</a>，策略由<a href="价值函数.html">价值函数</a>贪心导出（π(s) = a<a href="../entities/ripgrep.html">rg</a>max_a Q(s,a)）</li>
-<li>策略表示：隐式（a<a href="../entities/ripgrep.html">rg</a>max Q(s,a)）</li>
+<li>核心：学习<a href="价值函数.html">价值函数</a>，策略由<a href="价值函数.html">价值函数</a>贪心导出（π(s) = argmax_a Q(s,a)）</li>
+<li>策略表示：隐式（argmax Q(s,a)）</li>
 <li>优化目标：最小化 TD 误差（<a href="贝尔曼方程.html">贝尔曼方程</a>）</li>
-<li>代表算法：<a href="DQN.html">DQN</a>, <a href="Double DQN.html">Double DQN</a>, <a href="Dueling DQN.html">Dueling DQN</a>, <a href="优先经验回放.html">PER</a>, <a href="Rainbow.html">Rainbow</a></li>
+<li>代表算法：DQN, <a href="Double DQN.html">Double DQN</a>, <a href="Dueling DQN.html">Dueling DQN</a>, PER, <a href="Rainbow.html">Rainbow</a></li>
 <li>
 <p>优势：样本效率高（<a href="经验回放.html">经验回放</a>），Q 值可解释；劣势：难处理连续动作，函数逼近引入偏差</p>
 </li>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>核心：直接参数化并优化策略 π_θ(a|s)</li>
 <li>策略表示：显式（概率分布）</li>
 <li>优化目标：最大化 J(θ) = E[R]，用<a href="策略梯度定理.html">策略梯度定理</a>梯度上升</li>
-<li>代表算法：<a href="REINFORCE算法.html">REINFORCE</a>, <a href="TRPO.html">TRPO</a>, <a href="PPO.html">PPO</a></li>
+<li>代表算法：<a href="REINFORCE算法.html">REINFORCE</a>, TRPO, PPO</li>
 <li>
 <p>优势：天然支持连续动作，估计无偏；劣势：方差高，样本效率低（on-policy）</p>
 </li>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>核心：同时学习策略（Actor）和<a href="价值函数.html">价值函数</a>（Critic），互相配合</li>
 <li>Actor 用<a href="策略梯度定理.html">策略梯度</a>更新，Critic 用 TD 误差更新</li>
-<li>代表算法：<a href="A3C.html">A3C</a>, <a href="DDPG.html">DDPG</a>, <a href="TD3.html">TD3</a>, <a href="SAC.html">SAC</a></li>
+<li>代表算法：A3C, DDPG, TD3, SAC</li>
 <li>
 <p>优势：结合两者优点，方差-偏差居中，支持连续动作</p>
 </li>
@@ -213,16 +213,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <ol>
 <li>
-<p><strong>历史演化</strong>：三大范式并非相互排斥，现代最优算法（<a href="SAC.html">SAC</a>, <a href="PPO.html">PPO</a>）均融合了多范式思想。<a href="SAC.html">SAC</a> 在 Actor-Critic 框架上引入最大熵思想；<a href="PPO.html">PPO</a> 用 Clip 目标简化 <a href="TRPO.html">TRPO</a> 的 KL 约束。</p>
+<p><strong>历史演化</strong>：三大范式并非相互排斥，现代最优算法（SAC, PPO）均融合了多范式思想。SAC 在 Actor-Critic 框架上引入最大熵思想；PPO 用 Clip 目标简化 TRPO 的 KL 约束。</p>
 </li>
 <li>
-<p><strong>算法演化时间线</strong>：1992 Q-learning/<a href="REINFORCE算法.html">REINFORCE</a> → 2015 <a href="DQN.html">DQN</a>/<a href="TRPO.html">TRPO</a> → 2016 <a href="Double DQN.html">Double DQN</a>/Dueling/<a href="优先经验回放.html">PER</a>/<a href="A3C.html">A3C</a>/<a href="DDPG.html">DDPG</a> → 2017 <a href="PPO.html">PPO</a> → 2018 <a href="TD3.html">TD3</a>/<a href="SAC.html">SAC</a>/<a href="Rainbow.html">Rainbow</a>。三大范式互相借鉴：<a href="SAC.html">SAC</a> 在 AC 框架上引入最大熵（Policy-Based 思想）；<a href="PPO.html">PPO</a> 在 Policy-Based 中引入 Critic 降低方差。</p>
+<p><strong>算法演化时间线</strong>：1992 Q-learning/<a href="REINFORCE算法.html">REINFORCE</a> → 2015 DQN/TRPO → 2016 <a href="Double DQN.html">Double DQN</a>/Dueling/PER/A3C/DDPG → 2017 PPO → 2018 TD3/SAC/<a href="Rainbow.html">Rainbow</a>。三大范式互相借鉴：SAC 在 AC 框架上引入最大熵（Policy-Based 思想）；PPO 在 Policy-Based 中引入 Critic 降低方差。</p>
 </li>
 <li>
 <p><strong>一句话定义</strong>：</p>
 </li>
 <li>Value-Based："评价是关键"——把策略隐藏在价值极值里，工程导向，离散动作霸主</li>
-<li>Policy-Based："直接才是最优"——梯度穿透策略直接优化目标，理论优美，<a href="强化学习.html">RL</a>HF 选择</li>
+<li>Policy-Based："直接才是最优"——梯度穿透策略直接优化目标，理论优美，RLHF 选择</li>
 <li>Actor-Critic："取长补短"——评价者降低方差，行动者保持策略灵活性，连续控制王者</li>
 </ol>
 <h2 id="_4">来源</h2>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="romberg">Romberg 积分</h1>
 <h2 id="_1">概述</h2>
-<p>Rombe<a href="../entities/ripgrep.html">rg</a> 积分由 Werner Rombe<a href="../entities/ripgrep.html">rg</a> 于 1955 年提出，是<a href="Richardson外推法.html">Richardson外推法</a>在数值积分中最优雅的应用。它将梯形法则（Trapezoidal rule）与 Richardson 递归外推相结合，充分利用<strong>欧拉-麦克劳林（Euler-Maclaurin）求和公式</strong>给出的梯形误差展开只含 $h$ 的<strong>偶数次幂</strong>这一特殊结构，每次外推消去一个误差项，从而以较少的函数求值达到极高的积分精度。</p>
+<p>Romberg 积分由 Werner Romberg 于 1955 年提出，是<a href="Richardson外推法.html">Richardson外推法</a>在数值积分中最优雅的应用。它将梯形法则（Trapezoidal rule）与 Richardson 递归外推相结合，充分利用<strong>欧拉-麦克劳林（Euler-Maclaurin）求和公式</strong>给出的梯形误差展开只含 $h$ 的<strong>偶数次幂</strong>这一特殊结构，每次外推消去一个误差项，从而以较少的函数求值达到极高的积分精度。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="-">数学基础：欧拉-麦克劳林展开</h3>
 <p>梯形法则的误差展开（欧拉-麦克劳林公式）：</p>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>从最粗的梯形法则开始，逐步加密步长并外推：</p>
 <p>设 $T(h_k) = T(h/2^k)$，初始列 $R_{k,0} = T(h/2^k)$（梯形法则直接值），外推列：</p>
 <p>$$R_{k,j} = \frac{4^j R_{k,j-1} - R_{k-1,j-1}}{4^j - 1} \quad (j \geq 1)$$</p>
-<p><strong>Rombe<a href="../entities/ripgrep.html">rg</a> 外推表</strong>（$n$ 行 $n$ 列，对角线精度最高）：</p>
+<p><strong>Romberg 外推表</strong>（$n$ 行 $n$ 列，对角线精度最高）：</p>
 <table>
 <thead>
 <tr>
@@ -194,16 +194,45 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>梯形法则有一个实用特性：步长减半时，细网格的节点<strong>包含</strong>粗网格的所有节点。因此：</p>
 <p>$$T(h/2) = \frac{T(h)}{2} + \frac{h}{2}\sum_{\text{新节点}} f(x_i)$$</p>
 <p>从 $n$ 点梯形法则到 $2n+1$ 点只需计算 $n$ 个<strong>新</strong>函数值，旧值可完全重用。</p>
-<p>这使得 Rombe<a href="../entities/ripgrep.html">rg</a> 积分的总函数求值次数为 $2^n + 1$（到第 $n$ 层），每一层只额外支付新节点的代价，而精度从 $O(h^{2n})$ 到 $O(h^{2n+2})$。</p>
+<p>这使得 Romberg 积分的总函数求值次数为 $2^n + 1$（到第 $n$ 层），每一层只额外支付新节点的代价，而精度从 $O(h^{2n})$ 到 $O(h^{2n+2})$。</p>
 <h3 id="_5">与高斯求积的比较</h3>
-<p>| 维度 | Rombe<a href="../entities/ripgrep.html">rg</a>积分 | <a href="高斯求积公式.html">高斯求积公式</a> |
-|------|------------|----------------|
-| 节点嵌套 | 是（可重用旧节点） | 否（每次 $n$ 点公式节点全换） |
-| 精度 | $O(h^{2n})$（$n$ 次外推后） | $O(h^{2n})$（$n$ 点精确至 $2n-1$ 次多项式）|
-| 适用范围 | 一维，光滑函数 | 一维，光滑函数 |
-| 实现复杂度 | 简单（梯形法则 + 递推） | 需预计算高斯节点和权重 |
-| 自适应扩展 | 容易（逐步加密） | 需 Gauss-Kronrod 等专门设计 |</p>
-<p>实践中两者精度相当，Rombe<a href="../entities/ripgrep.html">rg</a> 因其实现简单和节点嵌套特性而常被用于自适应积分。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Romberg积分</th>
+<th><a href="高斯求积公式.html">高斯求积公式</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>节点嵌套</td>
+<td>是（可重用旧节点）</td>
+<td>否（每次 $n$ 点公式节点全换）</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>$O(h^{2n})$（$n$ 次外推后）</td>
+<td>$O(h^{2n})$（$n$ 点精确至 $2n-1$ 次多项式）</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>一维，光滑函数</td>
+<td>一维，光滑函数</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>简单（梯形法则 + 递推）</td>
+<td>需预计算高斯节点和权重</td>
+</tr>
+<tr>
+<td>自适应扩展</td>
+<td>容易（逐步加密）</td>
+<td>需 Gauss-Kronrod 等专门设计</td>
+</tr>
+</tbody>
+</table>
+<p>实践中两者精度相当，Romberg 因其实现简单和节点嵌套特性而常被用于自适应积分。</p>
 <h3 id="_6">局限性</h3>
 <ul>
 <li><strong>仅适用光滑函数</strong>：函数有奇异性时，欧拉-麦克劳林展开中出现非整数次幂，外推失效</li>

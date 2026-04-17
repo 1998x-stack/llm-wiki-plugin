@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>作用</strong>：允许梯度直接回传，缓解深层网络梯度消失；让网络学习"残差"（增量）而非完整映射，更易优化；<a href="Transformer架构.html">Transformer</a> 中每个子层（Attention、FFN）都使用残差连接</p>
 </li>
 <li>
-<p><strong>与归一化的配合</strong>：残差路径将原始输入与子层输出相加，若两者数值尺度差异大会导致不稳定，因此需要 <a href="Layer Normalization.html">Layer Normalization</a> 来控制数值范围。Pre-<a href="Layer Normalization.html">LN</a> 和 Post-<a href="Layer Normalization.html">LN</a> 两种方案均在残差结构基础上放置 <a href="Layer Normalization.html">LayerNorm</a></p>
+<p><strong>与归一化的配合</strong>：残差路径将原始输入与子层输出相加，若两者数值尺度差异大会导致不稳定，因此需要 <a href="Layer Normalization.html">Layer Normalization</a> 来控制数值范围。Pre-LN 和 Post-LN 两种方案均在残差结构基础上放置 <a href="Layer Normalization.html">LayerNorm</a></p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

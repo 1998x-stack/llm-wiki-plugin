@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 <a href="Recall@K.html">Recall@K</a> 的区别</strong>：<a href="Recall@K.html">Recall@K</a> 只关心"是否在前 K 内"，MRR 关心"排在第几位"。若正确物品排在第 1 位，MRR 贡献为 1.0；排在第 10 位，贡献仅 0.1。MRR 对排序位置更敏感。</p>
 </li>
 <li>
-<p><strong>与 <a href="NDCG.html">NDCG</a> 的区别</strong>：<a href="NDCG.html">NDCG</a> 通过折扣因子对多个相关物品的位置进行加权，适合多标签场景；MRR 通常假设每个测试样本只有一个正确物品，计算更简单。两者在单标签场景下趋势一致。</p>
+<p><strong>与 NDCG 的区别</strong>：NDCG 通过折扣因子对多个相关物品的位置进行加权，适合多标签场景；MRR 通常假设每个测试样本只有一个正确物品，计算更简单。两者在单标签场景下趋势一致。</p>
 </li>
 <li>
 <p><strong>在<a href="序列推荐.html">序列推荐</a>中的应用</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 使用 MRR@20 作为辅助评估指标，在 RSC15 数据集上达到 0.2164。后续研究通常报告 MRR@5、MRR@10、MRR@20 多个 K 值。</p>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Recall@K.html">Recall@K</a> — 互补的召回指标</li>
-<li><a href="NDCG.html">NDCG</a> — 更细粒度的排序指标</li>
+<li>NDCG — 更细粒度的排序指标</li>
 <li><a href="序列推荐.html">序列推荐</a> — 主要应用场景</li>
 </ul>
   </div>

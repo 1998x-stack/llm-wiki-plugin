@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ddpg">DDPG</h1>
 <h2 id="_1">概述</h2>
-<p>DDPG（Deep Deterministic Policy Gradient）由 <a href="../entities/DeepMind.html">DeepMind</a> 于 ICLR 2016 发表（arXiv:1509.02971）。核心贡献：将 <a href="DQN.html">DQN</a> 的<a href="经验回放.html">经验回放</a>与<a href="目标网络.html">目标网络</a>引入连续动作空间，结合确定性<a href="策略梯度定理.html">策略梯度定理</a>（DPG，Silver et al. 2014），首次实现连续控制任务的端到端深度<a href="强化学习.html">强化学习</a>。确定性策略 a=μ_θ(s) 避免了 <a href="DQN.html">DQN</a> 在连续空间中的 a<a href="../entities/ripgrep.html">rg</a>max 不可行问题，OU 噪声提供探索。软<a href="目标网络.html">目标网络</a>更新（τ=0.005）比 <a href="DQN.html">DQN</a> 的硬复制更稳定。</p>
+<p>DDPG（Deep Deterministic Policy Gradient）由 <a href="../entities/DeepMind.html">DeepMind</a> 于 ICLR 2016 发表（arXiv:1509.02971）。核心贡献：将 DQN 的<a href="经验回放.html">经验回放</a>与<a href="目标网络.html">目标网络</a>引入连续动作空间，结合确定性<a href="策略梯度定理.html">策略梯度定理</a>（DPG，Silver et al. 2014），首次实现连续控制任务的端到端深度<a href="强化学习.html">强化学习</a>。确定性策略 a=μ_θ(s) 避免了 DQN 在连续空间中的 argmax 不可行问题，OU 噪声提供探索。软<a href="目标网络.html">目标网络</a>更新（τ=0.005）比 DQN 的硬复制更稳定。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>四网络结构</strong>：在线 Actor μ_θ、目标 Actor μ_θ̄、在线 Critic Q_φ、目标 Critic Q_φ̄。Critic 计算 TD 目标：y = r + γ·Q_φ̄(s', μ_θ̄(s'))；Actor 最大化期望 Q 值：∇J = ∇<em>a Q_φ(s,a)|</em>{a=μ_θ(s)} · ∇_θ μ_θ(s)。<a href="目标网络.html">目标网络</a>软更新：θ̄ ← τθ + (1-τ)θ̄。</li>
 <li><strong>OU 噪声探索</strong>：确定性策略无内在随机性，通过 Ornstein-Uhlenbeck 过程添加时间相关噪声 dN = θ(μ-N)dt + σdW，适合物理控制；实践中也常用简单高斯噪声。</li>
-<li><strong>主要缺陷</strong>：Critic 系统性过估计 Q 值（比真实值高 200-600%），Actor 利用过估计区域形成正反馈循环，训练不稳定，OU 噪声超参数难调。这些问题由 <a href="TD3.html">TD3</a> 系统性修复。</li>
+<li><strong>主要缺陷</strong>：Critic 系统性过估计 Q 值（比真实值高 200-600%），Actor 利用过估计区域形成正反馈循环，训练不稳定，OU 噪声超参数难调。这些问题由 TD3 系统性修复。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,9 +151,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Actor-Critic方法.html">Actor-Critic方法</a> — extends</li>
 <li><a href="经验回放.html">经验回放</a> — uses</li>
 <li><a href="目标网络.html">目标网络</a> — uses</li>
-<li><a href="DQN.html">DQN</a> — extends</li>
-<li><a href="TD3.html">TD3</a> — compares_to</li>
-<li><a href="SAC.html">SAC</a> — compares_to</li>
+<li>DQN — extends</li>
+<li>TD3 — compares_to</li>
+<li>SAC — compares_to</li>
 <li><a href="../entities/DeepMind.html">DeepMind</a> — 作者机构</li>
 </ul>
   </div>

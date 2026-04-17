@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>贝尔曼最优方程</strong>（Bellman Optimality Equation）：
    <code>Q*(s,a) = E_{s'~P} [ R(s,a,s') + γ max_{a'} Q*(s',a') ]</code>
-   最优 Q 函数满足此方程，是 <a href="DQN.html">DQN</a> 等 <a href="强化学习三大范式.html">Value-Based</a> 方法的优化目标。</p>
+   最优 Q 函数满足此方程，是 DQN 等 <a href="强化学习三大范式.html">Value-Based</a> 方法的优化目标。</p>
 </li>
 <li>
 <p><strong>时序差分误差（TD Error）</strong>：贝尔曼方程的单步近似误差：
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
    TD 误差是 <a href="强化学习三大范式.html">Actor-Critic</a> 方法中 Critic 的训练信号，也是<a href="广义优势估计.html">广义优势估计</a>的基础。</p>
 </li>
 <li>
-<p><strong>与<a href="动态规划.html">动态规划</a>的关系</strong>：贝尔曼方程是<a href="动态规划.html">动态规划</a>中值迭代和策略迭代的理论基础。当转移概率已知时，可直接迭代求解；当未知时，用采样估计（<a href="强化学习.html">RL</a>）。</p>
+<p><strong>与<a href="动态规划.html">动态规划</a>的关系</strong>：贝尔曼方程是<a href="动态规划.html">动态规划</a>中值迭代和策略迭代的理论基础。当转移概率已知时，可直接迭代求解；当未知时，用采样估计（RL）。</p>
 </li>
 <li>
-<p><strong>函数逼近挑战</strong>：用神经网络逼近 Q 函数时，贝尔曼方程不再保证收敛，这是 <a href="DQN.html">DQN</a> 引入<a href="经验回放.html">经验回放</a>和<a href="目标网络.html">目标网络</a>的根本原因。</p>
+<p><strong>函数逼近挑战</strong>：用神经网络逼近 Q 函数时，贝尔曼方程不再保证收敛，这是 DQN 引入<a href="经验回放.html">经验回放</a>和<a href="目标网络.html">目标网络</a>的根本原因。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

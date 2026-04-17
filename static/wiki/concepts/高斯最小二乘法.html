@@ -149,13 +149,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>最小二乘解 $\hat{\mathbf{y}} = A\hat{\boldsymbol{\beta}}$ 是观测向量 $\mathbf{y}$ 在 $A$ 的列空间上的<strong>正交投影</strong>，残差向量垂直于列空间。</p>
 <h3 id="_7">统计理论基础</h3>
 <ul>
-<li><strong>与<a href="最大似然原理.html">MLE</a>的等价性</strong>：误差服从<a href="正态分布.html">正态分布</a> $N(0, \sigma^2)$ 时，最小二乘估计 = <a href="最大似然原理.html">最大似然估计</a></li>
+<li><strong>与MLE的等价性</strong>：误差服从<a href="正态分布.html">正态分布</a> $N(0, \sigma^2)$ 时，最小二乘估计 = <a href="最大似然原理.html">最大似然估计</a></li>
 <li><strong>高斯-<a href="../entities/马尔可夫.html">马尔可夫</a>定理</strong>：仅要求误差零均值、等方差、不相关（无需正态性），最小二乘是所有线性无偏估计中方差最小者（BLUE: Best Linear Unbiased Estimator）</li>
 </ul>
 <h3 id="_8">为何用平方和</h3>
 <ul>
 <li><strong>数学便利</strong>：平方函数处处可微，可用微积分求极值</li>
-<li><strong>统计最优</strong>：正态误差假设下等价于<a href="最大似然原理.html">MLE</a></li>
+<li><strong>统计最优</strong>：正态误差假设下等价于MLE</li>
 <li><strong>大偏差惩罚重</strong>：偏差翻倍，惩罚增加四倍，促使误差均匀分布</li>
 </ul>
 <h3 id="_9">主要变体</h3>
@@ -181,14 +181,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>非线性最小二乘</td>
-<td>用高斯-<a href="牛顿法.html">牛顿法</a>、Levenbe<span style="color:#e74c3c" title="broken link">ripgrep&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;_10&quot;&gt;数值求解建议&lt;/h3&gt;
-&lt;p&gt;直接求解正规方程数值不稳定（$A^T A$ [[条件数</span>是 $A$ <a href="条件数.html">条件数</a>的平方）。应优先使用 <strong><a href="Householder变换.html">QR分解</a></strong> 或 <strong><a href="奇异值分解.html">SVD</a></strong>。</p>
+<td>用高斯-<a href="牛顿法.html">牛顿法</a>、Levenberg-Marquardt法迭代求解</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">数值求解建议</h3>
+<p>直接求解正规方程数值不稳定（$A^T A$ <a href="条件数.html">条件数</a>是 $A$ <a href="条件数.html">条件数</a>的平方）。应优先使用 <strong><a href="Householder变换.html">QR分解</a></strong> 或 <strong>SVD</strong>。</p>
 <h3 id="_11">历史意义</h3>
-<p>1801年高斯用该方法从40天观测数据预测谷神星轨道，误差仅约半度，一举成名。该方法将过定方程组的求解从"艺术"变为有理论基础的"科学"，催生了现代统计学（线性回归）和数值<a href="线性代数.html">线性代数</a>（<a href="Householder变换.html">QR分解</a>、<a href="奇异值分解.html">SVD</a>）。</p>
+<p>1801年高斯用该方法从40天观测数据预测谷神星轨道，误差仅约半度，一举成名。该方法将过定方程组的求解从"艺术"变为有理论基础的"科学"，催生了现代统计学（线性回归）和数值<a href="线性代数.html">线性代数</a>（<a href="Householder变换.html">QR分解</a>、SVD）。</p>
 <h3 id="_12">局限性</h3>
 <ul>
 <li>对<strong>异常值</strong>敏感（催生了稳健统计学：Huber M-估计等）</li>
@@ -200,7 +200,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>回归分析（线性回归 → GLM → <a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>回归）</li>
 <li>信号处理（<a href="../entities/诺伯特·维纳.html">维纳</a>滤波、<a href="卡尔曼滤波.html">卡尔曼滤波</a>、LMS算法）</li>
 <li>机器学习（MSE损失函数、SVM变体、PCA）</li>
-<li>数值<a href="线性代数.html">线性代数</a>（<a href="Householder变换.html">QR分解</a>、<a href="奇异值分解.html">SVD</a>、LS<a href="QR算法.html">QR算法</a>）</li>
+<li>数值<a href="线性代数.html">线性代数</a>（<a href="Householder变换.html">QR分解</a>、SVD、LS<a href="QR算法.html">QR算法</a>）</li>
 <li>大地测量与GPS定位</li>
 </ul>
 <h2 id="_14">来源</h2>

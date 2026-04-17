@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 $$\sum_{i=1}^n |\lambda_i - \mu_{\pi(i)}|^2 \leq |A - B|_F^2$$</p>
 <p><strong>等号条件</strong>：$A$ 与 $B$ 可被同一酉<a href="矩阵.html">矩阵</a>同时对角化，即 $AB = BA$（$A$ 与 $B$ 交换）。此时两<a href="矩阵.html">矩阵</a>共享特征向量基，$E = B-A$ 在公共特征基下对角化，<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数精确等于特征值差的平方和。</p>
 <h3 id="weyl">与 Weyl 不等式的比较</h3>
-<p>| 性质 | <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式（1912） | Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>（1953） |
+<p>| 性质 | Weyl 不等式（1912） | Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>（1953） |
 |------|-----------------|------------------------|
 | 适用范围 | Hermitian <a href="矩阵.html">矩阵</a> | 所有<a href="正规矩阵.html">正规矩阵</a> |
 | 范数类型 | 谱范数 $|E|_2$ | <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数 $|E|_F$ |
@@ -152,9 +152,9 @@ $$\sum_{i=1}^n |\lambda_i - \mu_{\pi(i)}|^2 \leq |A - B|_F^2$$</p>
 | 配对问题 | 按实数升序（自然排序） | 需在 $n!$ 种配对中取最优 |
 | 是否最优 | 是（谱范数意义下最优） | 是（<a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数意义下最优） |</p>
 <p><strong>具体比较（Hermitian 情形）</strong>：
-- <a href="../entities/赫尔曼·外尔.html">Weyl</a>：$\sum |\lambda_i - \mu_i|^2 \leq n|E|_2^2$（平方求和后变宽松）
+- Weyl：$\sum |\lambda_i - \mu_i|^2 \leq n|E|_2^2$（平方求和后变宽松）
 - Hoffman-<a href="../entities/赫尔穆特·维兰特.html">Wielandt</a>：$\sum |\lambda_i - \mu_i|^2 \leq |E|_F^2 \leq n|E|_2^2$</p>
-<p>因此 HW 不等式<strong>严格强于</strong> <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式的平方和版本。</p>
+<p>因此 HW 不等式<strong>严格强于</strong> Weyl 不等式的平方和版本。</p>
 <h3 id="birkhoff-von-neumann">证明思路（Birkhoff-von Neumann 桥接）</h3>
 <p>核心方法：将<strong>分析问题</strong>（特征值偏移）化为<strong>凸优化</strong>（双随机<a href="矩阵.html">矩阵</a>上的线性函数），再用 <strong>Birkhoff 定理</strong>转化为<strong>组合问题</strong>（指派问题）。</p>
 <ol>
@@ -166,7 +166,7 @@ $$\sum_{i=1}^n |\lambda_i - \mu_{\pi(i)}|^2 \leq |A - B|_F^2$$</p>
    $$\min_\pi \sum_i|\lambda_i - \mu_{\pi(i)}|^2 \leq \sum_{i,j} S_{ij}|\lambda_i - \mu_j|^2 = |A-B|_F^2$$</li>
 </ol>
 <p><strong>指派问题解读</strong>：左端的最优配对问题恰好是经典<strong>指派问题</strong>（assignment problem），可用匈牙利算法（Hungarian algorithm）在 $O(n^3)$ 时间求解。HW 定理给出其最优解的上界。</p>
-<p><strong>与 von Neumann <a href="Von Neumann迹不等式.html">迹不等式</a>的联系</strong>：两者证明技术完全相同（<a href="奇异值分解.html">SVD</a>/对角化 → 双随机<a href="矩阵.html">矩阵</a> → Birkhoff 定理 → 排序不等式），是"双随机<a href="矩阵.html">矩阵</a> + Birkhoff 定理"方法论的两个典范应用。</p>
+<p><strong>与 von Neumann <a href="Von Neumann迹不等式.html">迹不等式</a>的联系</strong>：两者证明技术完全相同（SVD/对角化 → 双随机<a href="矩阵.html">矩阵</a> → Birkhoff 定理 → 排序不等式），是"双随机<a href="矩阵.html">矩阵</a> + Birkhoff 定理"方法论的两个典范应用。</p>
 <h3 id="_4">正规性限制</h3>
 <p>定理<strong>仅适用于<a href="正规矩阵.html">正规矩阵</a></strong>（$A^<em>A = AA^</em>$）。对非<a href="正规矩阵.html">正规矩阵</a>，特征值可对扰动任意敏感：</p>
 <ul>
@@ -186,7 +186,7 @@ $$\sum_{i=1}^n |\lambda_i - \mu_{\pi(i)}|^2 \leq |A - B|_F^2$$</p>
 <h2 id="_7">局限性</h2>
 <ol>
 <li><strong>正规性本质性</strong>：非<a href="正规矩阵.html">正规矩阵</a>无类似结论</li>
-<li><strong>整体不精确</strong>：不控制单个特征值（需 <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式），且不涉及特征向量/不变子空间（需 Davis-Kahan 定理）</li>
+<li><strong>整体不精确</strong>：不控制单个特征值（需 Weyl 不等式），且不涉及特征向量/不变子空间（需 Davis-Kahan 定理）</li>
 <li><strong>不提供最优配对的构造</strong>：需额外运行匈牙利算法找到 $\pi$</li>
 <li><strong><a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a> 范数仅给 $\ell^2$-整体控制</strong>：$\ell^1$ 或 $\ell^\infty$ 控制需其他工具</li>
 </ol>
