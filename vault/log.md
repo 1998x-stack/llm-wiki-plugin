@@ -4,6 +4,202 @@ type: log
 
 # 操作日志
 
+## [2026-04-17 18:30] ingest | raw/books/计算机科学/09-ritchie-thompson-unix.md
+
+**来源文件**：`raw/books/计算机科学/09-ritchie-thompson-unix.md` — Ritchie & Thompson 1974年论文《The UNIX Time-Sharing System》的深度精读笔记。
+
+**创建了 9 个新页面**：
+- `wiki/entities/UNIX 论文.md` — 论文实体页：11页篇幅、11,000+次引用、核心设计
+- `wiki/entities/Dennis Ritchie.md` — C 语言发明者、UNIX 共同创造者、1983年图灵奖
+- `wiki/entities/Ken Thompson.md` — UNIX 原型开发者、fork 的偶然优雅、1983年图灵奖
+- `wiki/concepts/UNIX.md` — 以简洁性、模块化、"一切皆文件"为核心的操作系统
+- `wiki/concepts/C 语言.md` — 为了编写 UNIX 而发展起来的系统编程语言
+- `wiki/concepts/Multics.md` — UNIX 反叛的对象，"复杂性代价"的经典教训
+- `wiki/concepts/操作系统.md` — UNIX 定义了现代操作系统的基因
+- `wiki/entities/Brian Kernighan.md` — 《C 程序设计语言》合著者、awk 共同发明者
+- `wiki/entities/Doug McIlroy.md` — 管道思想的提出者、Bell Labs UNIX 团队成员
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：9 新页面 0 ERROR（初版3个 B1 断链已修复）
+**BM25 更新**：9 个页面全部更新成功
+**Index 同步**：1012 页（+9 新增）
+
+## [2026-04-17 18:00] ingest | raw/books/计算机科学/08-cook-np-completeness.md
+
+**来源文件**：`raw/books/计算机科学/08-cook-np-completeness.md` — Cook 1971年论文《The Complexity of Theorem-Proving Procedures》的深度精读笔记。
+
+**创建了 10 个新页面**：
+- `wiki/entities/Cook NP 完全性论文.md` — 论文实体页：NP 完全性定义、Cook-Levin 定理、历史影响
+- `wiki/entities/Stephen Cook.md` — NP 完全性定义者、1982年图灵奖
+- `wiki/entities/Leonid Levin.md` — 苏联裔计算机科学家，独立发现 NP 完全性
+- `wiki/entities/Richard Karp.md` — 证明了21个经典组合问题的 NP 完全性
+- `wiki/concepts/NP 完全性.md` — 计算复杂度理论核心概念，"一荣俱荣、一损俱损"
+- `wiki/concepts/Cook-Levin 定理.md` — SAT 是 NP 完全的，证明核心思路
+- `wiki/concepts/SAT 问题.md` — 布尔可满足性问题，第一个 NP 完全问题
+- `wiki/concepts/P vs NP.md` — 千禧年数学问题，悬赏100万美元
+- `wiki/concepts/多项式时间归约.md` — 比较问题复杂度的核心工具
+- `wiki/concepts/计算复杂度理论.md` — 研究算法资源需求和内在难度的学科
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：10 新页面 0 ERROR（初版1个 B1 断链已修复）
+**BM25 更新**：10 个页面全部更新成功
+**Index 同步**：1003 页（+10 新增）
+
+## [2026-04-17 17:30] ingest | raw/books/计算机科学/07-codd-relational-model.md
+
+**来源文件**：`raw/books/计算机科学/07-codd-relational-model.md` — Codd 1970年论文《A Relational Model of Data for Large Shared Data Banks》的深度精读笔记。
+
+**创建了 8 个新页面**：
+- `wiki/entities/关系模型论文.md` — 论文实体页：关系、关系代数、关系演算、规范化、数据独立性
+- `wiki/entities/E.F. Codd.md` — 关系模型发明者、1981年图灵奖得主
+- `wiki/concepts/关系模型.md` — 用二维表作为数据统一逻辑表示，取代层次/网状模型
+- `wiki/concepts/关系代数.md` — 选择、投影、并、差、笛卡尔积五种基本运算，闭包性
+- `wiki/concepts/关系演算.md` — 基于一阶谓词逻辑的声明式查询，与关系代数等价
+- `wiki/concepts/数据独立性.md` — 物理数据独立性和逻辑数据独立性，三级模式架构
+- `wiki/concepts/规范化理论.md` — 消除数据冗余和更新异常的科学化数据库设计方法
+- `wiki/concepts/SQL.md` — 关系模型的标准查询语言，历史上使用最广泛的声明式编程语言
+
+**更新了 1 个已有页面**：
+- `wiki/entities/SQLite.md` — 新增关系模型、SQL、Codd 三个 relates_to、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：8 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：9 个页面（8 新 + 1 更新）全部更新成功
+**Index 同步**：993 页（+8 新增）
+
+## [2026-04-17 17:00] ingest | raw/books/计算机科学/06-dijkstra-goto-considered-harmful.md
+
+**来源文件**：`raw/books/计算机科学/06-dijkstra-goto-considered-harmful.md` — Dijkstra 1968年《Go To Statement Considered Harmful》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/Go To Statement Considered Harmful 论文.md` — 论文实体页：坐标系论证、核心论点、历史影响
+- `wiki/entities/Edsger Dijkstra.md` — 荷兰计算机科学家、1972年图灵奖、结构化编程开创者
+- `wiki/concepts/结构化编程.md` — 顺序/选择/循环三种基本控制结构，消除 goto
+- `wiki/concepts/意大利面条式代码.md` — goto 导致的控制流混乱，被结构化编程取代
+- `wiki/concepts/Bohm-Jacopini 定理.md` — 1966年证明 goto 在表达能力上冗余
+- `wiki/concepts/软件危机.md` — 1960年代末软件行业困境，结构化编程的时代背景
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/函数式编程.md` — 新增 Dijkstra 关系、新增来源、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：7 个页面（6 新 + 1 更新）全部更新成功
+**Index 同步**：986 页（+6 新增）
+
+## [2026-04-17 16:30] ingest | raw/books/计算机科学/05-mccarthy-lisp.md
+
+**来源文件**：`raw/books/计算机科学/05-mccarthy-lisp.md` — McCarthy 1960年论文《Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I》的深度精读笔记。
+
+**创建了 9 个新页面**：
+- `wiki/entities/LISP 论文.md` — 论文实体页：S-表达式、五个基本函数、eval 函数、垃圾回收
+- `wiki/entities/John McCarthy.md` — LISP 发明者、"人工智能"术语提出者、1971年图灵奖
+- `wiki/entities/Steve Russell.md` — McCarthy 学生，实现第一个 LISP 解释器
+- `wiki/concepts/LISP.md` — 世界第二古老的高级编程语言，开创函数式编程范式
+- `wiki/concepts/函数式编程.md` — 将计算视为数学函数求值的编程范式
+- `wiki/concepts/S-表达式.md` — LISP 的统一数据表示，原子和有序对递归定义
+- `wiki/concepts/同像性.md` — 程序和数据共享相同表示，LISP 宏系统的基础
+- `wiki/concepts/垃圾回收.md` — 自动内存管理，McCarthy 首次提出
+- `wiki/concepts/eval 函数.md` — 用不到一页定义的 LISP 自解释器，"计算机科学史上最美丽的一页"
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/λ 演算.md` — 新增 LISP 和函数式编程 relates_to、新增来源、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：9 新页面 0 ERROR（I1 警告将由 snapshot_index 修复，B1 断链已修复）
+**BM25 更新**：10 个页面（9 新 + 1 更新）全部更新成功
+**Index 同步**：980 页（+9 新增）
+
+## [2026-04-17 16:00] ingest | raw/books/计算机科学/04-backus-fortran.md
+
+**来源文件**：`raw/books/计算机科学/04-backus-fortran.md` — Backus 等人1957年论文《The FORTRAN Automatic Coding System》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/FORTRAN 编译器论文.md` — 论文实体页：六阶段编译器架构、性能数据、工程规模、历史影响
+- `wiki/entities/John Backus.md` — FORTRAN 之父、BNF 发明者、1977年图灵奖得主
+- `wiki/entities/Grace Hopper.md` — 编译器技术先驱、A-0 系统开发者、COBOL 推动者
+- `wiki/concepts/FORTRAN.md` — 世界上第一个广泛使用的高级编程语言，专为科学计算设计
+- `wiki/concepts/编译器优化.md` — 公共子表达式消除、循环不变量外提、强度削减、寄存器分配等核心技术
+- `wiki/concepts/BNF.md` — Backus-Naur Form，描述编程语言语法的形式化表示法
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/冯·诺依曼瓶颈.md` — 新增 Backus 图灵奖演讲背景、2 个新 relates_to、新增来源
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR, 0 WARNING（初版 3 个 B1 断链已修复）
+**BM25 更新**：7 个页面（6 新 + 1 更新）全部更新成功
+**Index 同步**：971 页（+6 新增）
+
+## [2026-04-17 15:30] ingest | raw/books/计算机科学/03-von-neumann-edvac.md
+
+**来源文件**：`raw/books/计算机科学/03-von-neumann-edvac.md` — von Neumann 1945年报告《First Draft of a Report on the EDVAC》的深度精读笔记。
+
+**创建了 7 个新页面**：
+- `wiki/entities/EDVAC 报告.md` — 论文实体页：五大组件架构、核心贡献、署名争议、传播效应
+- `wiki/concepts/存储程序计算机.md` — 指令与数据统一存储、取指-解码-执行循环、与图灵机的关系
+- `wiki/concepts/冯·诺依曼瓶颈.md` — CPU-内存数据传输瓶颈、历史演变、LLM 时代的回响
+- `wiki/entities/J. Presper Eckert.md` — ENIAC/EDVAC 设计者、署名争议核心人物
+- `wiki/entities/John Mauchly.md` — ENIAC/EDVAC 设计者、署名争议核心人物
+- `wiki/entities/Herman Goldstine.md` — EDVAC 报告分发者、ENIAC 项目军方联络官
+- `wiki/entities/Maurice Wilkes.md` — EDSAC 建造者、第一个实用存储程序计算机
+
+**更新了 1 个已有页面**：
+- `wiki/entities/约翰·冯·诺依曼.md` — 新增 EDVAC 报告与存储程序计算机完整章节（五大组件、存储程序概念、署名争议、传播效应、从理论到工程的桥梁）、10 个新 relates_to、source_count 3→4
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：7 新页面全部 0 ERROR, 0 WARNING（初版 6 个 B1 断链已修复）
+**BM25 更新**：8 个页面（7 新 + 1 更新）全部更新成功
+**Index 同步**：965 页（+7 新增）
+
+## [2026-04-17 15:00] ingest | raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md
+
+**来源文件**：`raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md` — Shannon 1948年论文《A Mathematical Theory of Communication》的深度精读笔记（计算机科学视角）。
+
+**创建了 4 个新页面**：
+- `wiki/concepts/信源信道分离定理.md` — 信源编码和信道编码可分别独立优化而不损失性能，为通信系统模块化设计提供理论保障
+- `wiki/concepts/渐近等分性 (AEP).md` — 信源编码定理证明的核心数学工具，典型集大小约 2^{nH}
+- `wiki/concepts/随机编码论证.md` — Shannon 信道编码定理证明的核心方法，存在性而非构造性证明
+- `wiki/entities/Warren Weaver.md` — 1949年与 Shannon 合编《The Mathematical Theory of Communication》，撰写通俗导读
+
+**更新了 9 个已有页面**：
+- `wiki/entities/克劳德·香农.md` — 新增论文标题"A" vs "The"的微妙含义、编码理论半世纪征程、3 个新 relates_to、source_count 4→5
+- `wiki/concepts/信息与语义分离.md` — 新增 Shannon 1948年明确重述段落、3 个新 relates_to、source_count 1→2
+- `wiki/concepts/信息熵.md` — source_count 2→3
+- `wiki/concepts/信道容量.md` — source_count 2→3
+- `wiki/concepts/信道编码定理.md` — source_count 2→3
+- `wiki/concepts/信源编码定理.md` — source_count 2→3
+- `wiki/concepts/互信息.md` — source_count 1→2
+- `wiki/concepts/通信系统模型.md` — source_count 1→2
+- `wiki/concepts/典型序列.md` — source_count 1→2
+- `wiki/concepts/信息论.md` — source_count 8→9
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：4 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：14 个页面（4 新 + 10 更新）全部更新成功
+**Index 同步**：958 页（+4 新增）
+
+## [2026-04-17 14:30] ingest | raw/books/计算机科学/01-turing-on-computable-numbers.md
+
+**来源文件**：`raw/books/计算机科学/01-turing-on-computable-numbers.md` — Turing 1936年论文《On Computable Numbers, with an Application to the Entscheidungsproblem》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/库尔特·哥德尔.md` — Godel 不完备定理（1931）、一般递归函数、与 Hilbert 纲领的关系
+- `wiki/entities/阿隆佐·邱奇.md` — λ 演算发明者、1936年率先用 λ 演算否定回答判定问题、Turing 博士导师
+- `wiki/concepts/判定问题 (Entscheidungsproblem).md` — Hilbert 1928年提出、Church/Turing 1936年独立否定回答、从停机问题的归约
+- `wiki/concepts/可计算数.md` — Turing 定义：存在图灵机能逐位输出小数展开的实数；绝大多数实数不可计算
+- `wiki/concepts/λ 演算.md` — Church 发明的极简形式系统、与图灵机等价、函数式编程语言理论基础
+- `wiki/entities/On Computable Numbers 论文.md` — 论文实体页：四大核心贡献、历史意义、论文信息
+
+**更新了 3 个已有页面**：
+- `wiki/entities/大卫·希尔伯特.md` — 新增 Hilbert 形式化纲领与判定问题段落、3 个新 relates_to
+- `wiki/entities/约翰·冯·诺依曼.md` — 新增与 Turing 的联系段落、3 个新 relates_to
+- `wiki/entities/阿兰·图灵.md` — 新增 7 个 relates_to（哥德尔、邱奇、判定问题、可计算数、λ 演算、论文）
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR，0 WARNING（On Computable Numbers 页面初版有 3×B1 断链已修复）
+**BM25 更新**：9 个页面（6 新 + 3 更新）全部更新成功
+**Index 同步**：954 页（+6 新增）
+
 ## [2026-04-17 11:30] maintain
 - Relink: 3061 terms, 938 scanned, 5 new links (4 pages)
 - Check: 0 errors, 987 warnings (B1×683/F3×184/M1×54/O1×61/其他×5), 0 new gotchas

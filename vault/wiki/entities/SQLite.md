@@ -6,7 +6,7 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
-source_count: 1
+source_count: 2
 tags: [工具, 数据库, 技术, 工具与框架]
 aliases: ["sqlite", "SQLite3"]
 relates_to:
@@ -19,7 +19,16 @@ relates_to:
   - target: "FTS5"
     type: related_to
     confidence: 0.95
-supersedes: null
+  - target: "[[关系模型]]"
+    type: implements
+    confidence: 0.9
+  - target: "[[SQL]]"
+    type: implements
+    confidence: 0.9
+  - target: "[[E.F. Codd]]"
+    type: extends
+    confidence: 0.8
+  supersedes: null
 ---
 
 # SQLite
@@ -36,9 +45,13 @@ SQLite 是一个轻量级、无服务器、嵌入式的关系型数据库引擎�
 
 ## 来源
 - 综合自内部引用：[[Claude-Mem]]、[[Bun-Runtime]] 等
+- [[raw/books/计算机科学/07-codd-relational-model.md]] — 关系模型背景
 
 ## 相关
 - [[Claude-Mem]]
 - [[Bun-Runtime|Bun Runtime]]
 - FTS5
 - [[ChromaDB]]
+- [[关系模型]] — 实现的理论基础
+- [[SQL]] — 使用的查询语言
+- [[E.F. Codd]] — 关系模型奠基者

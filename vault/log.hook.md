@@ -2042,3 +2042,438 @@
 [2026-04-16 22:52] GRAPH skip — rebuilt 14s ago
 [2026-04-16 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX数据格式API.md — OK
 [2026-04-16 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX数据格式API.md — indexed
+[2026-04-17 11:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/库尔特·哥德尔.md — OK
+[2026-04-17 11:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/库尔特·哥德尔.md — indexed
+[2026-04-17 11:49] GRAPH rebuild — OK
+[2026-04-17 11:50] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿隆佐·邱奇.md — OK
+[2026-04-17 11:50] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿隆佐·邱奇.md — indexed
+[2026-04-17 11:50] GRAPH skip — rebuilt 19s ago
+[2026-04-17 11:50] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/判定问题 (Entscheidungsproblem).md — OK
+[2026-04-17 11:50] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/判定问题 (Entscheidungsproblem).md — indexed
+[2026-04-17 11:50] GRAPH rebuild — OK
+[2026-04-17 11:50] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/可计算数.md — OK
+[2026-04-17 11:50] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/可计算数.md — indexed
+[2026-04-17 11:50] GRAPH skip — rebuilt 17s ago
+[2026-04-17 11:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — OK
+[2026-04-17 11:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — indexed
+[2026-04-17 11:51] GRAPH rebuild — OK
+[2026-04-17 11:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/On Computable Numbers 论文.md — OK
+[2026-04-17 11:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/On Computable Numbers 论文.md — indexed
+[2026-04-17 11:51] GRAPH skip — rebuilt 23s ago
+[2026-04-17 11:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/大卫·希尔伯特.md — OK
+[2026-04-17 11:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/大卫·希尔伯特.md — indexed
+[2026-04-17 11:52] GRAPH rebuild — OK
+[2026-04-17 11:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/大卫·希尔伯特.md — OK
+[2026-04-17 11:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/大卫·希尔伯特.md — indexed
+[2026-04-17 11:52] GRAPH skip — rebuilt 11s ago
+[2026-04-17 11:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 11:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 11:52] GRAPH skip — rebuilt 20s ago
+[2026-04-17 11:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 11:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 11:52] GRAPH skip — rebuilt 27s ago
+[2026-04-17 11:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — OK
+[2026-04-17 11:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/阿兰·图灵.md — indexed
+[2026-04-17 11:52] GRAPH rebuild — OK
+[2026-04-17 11:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/On Computable Numbers 论文.md — OK
+[2026-04-17 11:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/On Computable Numbers 论文.md — indexed
+[2026-04-17 11:53] GRAPH rebuild — OK
+[2026-04-17 14:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源信道分离定理.md — OK
+[2026-04-17 14:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源信道分离定理.md — indexed
+[2026-04-17 14:45] GRAPH rebuild — OK
+[2026-04-17 14:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/渐近等分性 (AEP).md — OK
+[2026-04-17 14:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/渐近等分性 (AEP).md — indexed
+[2026-04-17 14:45] GRAPH rebuild — OK
+[2026-04-17 14:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/随机编码论证.md — OK
+[2026-04-17 14:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/随机编码论证.md — indexed
+[2026-04-17 14:45] GRAPH skip — rebuilt 18s ago
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Warren Weaver.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Warren Weaver.md — indexed
+[2026-04-17 14:46] GRAPH rebuild — OK
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — indexed
+[2026-04-17 14:46] GRAPH skip — rebuilt 17s ago
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — indexed
+[2026-04-17 14:46] GRAPH skip — rebuilt 25s ago
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息与语义分离.md — indexed
+[2026-04-17 14:46] GRAPH skip — rebuilt 28s ago
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — indexed
+[2026-04-17 14:46] GRAPH rebuild — OK
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — indexed
+[2026-04-17 14:46] GRAPH skip — rebuilt 3s ago
+[2026-04-17 14:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — OK
+[2026-04-17 14:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — indexed
+[2026-04-17 14:46] GRAPH skip — rebuilt 9s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 16s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息熵.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息熵.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 21s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息熵.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息熵.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 24s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道容量.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道容量.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 25s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道容量.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道容量.md — indexed
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道编码定理.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道编码定理.md — indexed
+[2026-04-17 14:47] GRAPH rebuild — OK
+[2026-04-17 14:47] GRAPH rebuild — OK
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道编码定理.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信道编码定理.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 2s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源编码定理.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源编码定理.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 4s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源编码定理.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信源编码定理.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 7s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/互信息.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/互信息.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 9s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/互信息.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/互信息.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 12s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/通信系统模型.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/通信系统模型.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 13s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/通信系统模型.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/通信系统模型.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 17s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/典型序列.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/典型序列.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 18s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/典型序列.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/典型序列.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 21s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息论.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息论.md — indexed
+[2026-04-17 14:47] GRAPH skip — rebuilt 23s ago
+[2026-04-17 14:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息论.md — OK
+[2026-04-17 14:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/信息论.md — indexed
+[2026-04-17 14:47] GRAPH rebuild — OK
+[2026-04-17 14:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — OK
+[2026-04-17 14:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/克劳德·香农.md — indexed
+[2026-04-17 14:48] GRAPH skip — rebuilt 16s ago
+[2026-04-17 14:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — OK
+[2026-04-17 14:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — indexed
+[2026-04-17 14:51] GRAPH rebuild — OK
+[2026-04-17 14:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — OK
+[2026-04-17 14:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — indexed
+[2026-04-17 14:51] GRAPH skip — rebuilt 19s ago
+[2026-04-17 14:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — OK
+[2026-04-17 14:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — indexed
+[2026-04-17 14:51] GRAPH rebuild — OK
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — indexed
+[2026-04-17 14:52] GRAPH skip — rebuilt 14s ago
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — indexed
+[2026-04-17 14:52] GRAPH skip — rebuilt 29s ago
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — indexed
+[2026-04-17 14:52] GRAPH rebuild — OK
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Maurice Wilkes.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Maurice Wilkes.md — indexed
+[2026-04-17 14:52] GRAPH skip — rebuilt 10s ago
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 14:52] GRAPH skip — rebuilt 16s ago
+[2026-04-17 14:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 14:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 14:52] GRAPH skip — rebuilt 27s ago
+[2026-04-17 14:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 14:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 14:53] GRAPH rebuild — OK
+[2026-04-17 14:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — OK
+[2026-04-17 14:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/约翰·冯·诺依曼.md — indexed
+[2026-04-17 14:53] GRAPH skip — rebuilt 11s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — indexed
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/EDVAC 报告.md — indexed
+[2026-04-17 14:54] GRAPH rebuild — OK
+[2026-04-17 14:54] GRAPH rebuild — OK
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 0s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 3s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/存储程序计算机.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 5s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 8s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/J. Presper Eckert.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 10s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 12s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Mauchly.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 14s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 17s ago
+[2026-04-17 14:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — OK
+[2026-04-17 14:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Herman Goldstine.md — indexed
+[2026-04-17 14:54] GRAPH skip — rebuilt 19s ago
+[2026-04-17 15:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/FORTRAN 编译器论文.md — OK
+[2026-04-17 15:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/FORTRAN 编译器论文.md — indexed
+[2026-04-17 15:01] GRAPH rebuild — OK
+[2026-04-17 15:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — OK
+[2026-04-17 15:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — indexed
+[2026-04-17 15:02] GRAPH skip — rebuilt 13s ago
+[2026-04-17 15:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — OK
+[2026-04-17 15:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — indexed
+[2026-04-17 15:02] GRAPH skip — rebuilt 25s ago
+[2026-04-17 15:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — OK
+[2026-04-17 15:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — indexed
+[2026-04-17 15:02] GRAPH rebuild — OK
+[2026-04-17 15:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/编译器优化.md — OK
+[2026-04-17 15:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/编译器优化.md — indexed
+[2026-04-17 15:02] GRAPH skip — rebuilt 13s ago
+[2026-04-17 15:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/BNF.md — OK
+[2026-04-17 15:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/BNF.md — indexed
+[2026-04-17 15:03] GRAPH skip — rebuilt 26s ago
+[2026-04-17 15:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — OK
+[2026-04-17 15:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — indexed
+[2026-04-17 15:04] GRAPH rebuild — OK
+[2026-04-17 15:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — OK
+[2026-04-17 15:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — indexed
+[2026-04-17 15:04] GRAPH skip — rebuilt 2s ago
+[2026-04-17 15:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — OK
+[2026-04-17 15:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/冯·诺依曼瓶颈.md — indexed
+[2026-04-17 15:04] GRAPH skip — rebuilt 4s ago
+[2026-04-17 15:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — OK
+[2026-04-17 15:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — indexed
+[2026-04-17 15:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — OK
+[2026-04-17 15:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John Backus.md — indexed
+[2026-04-17 15:05] GRAPH rebuild — OK
+[2026-04-17 15:05] GRAPH rebuild — OK
+[2026-04-17 15:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — OK
+[2026-04-17 15:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — indexed
+[2026-04-17 15:05] GRAPH skip — rebuilt 1s ago
+[2026-04-17 15:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — OK
+[2026-04-17 15:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Grace Hopper.md — indexed
+[2026-04-17 15:06] GRAPH skip — rebuilt 2s ago
+[2026-04-17 15:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — OK
+[2026-04-17 15:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — indexed
+[2026-04-17 15:06] GRAPH skip — rebuilt 5s ago
+[2026-04-17 15:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — OK
+[2026-04-17 15:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/FORTRAN.md — indexed
+[2026-04-17 15:06] GRAPH skip — rebuilt 7s ago
+[2026-04-17 17:23] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/LISP 论文.md — OK
+[2026-04-17 17:23] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/LISP 论文.md — indexed
+[2026-04-17 17:23] GRAPH rebuild — OK
+[2026-04-17 17:23] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — OK
+[2026-04-17 17:23] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — indexed
+[2026-04-17 17:23] GRAPH skip — rebuilt 6s ago
+[2026-04-17 17:23] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Steve Russell.md — OK
+[2026-04-17 17:23] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Steve Russell.md — indexed
+[2026-04-17 17:23] GRAPH skip — rebuilt 15s ago
+[2026-04-17 17:24] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LISP.md — OK
+[2026-04-17 17:24] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LISP.md — indexed
+[2026-04-17 17:24] GRAPH skip — rebuilt 27s ago
+[2026-04-17 17:24] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — OK
+[2026-04-17 17:24] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — indexed
+[2026-04-17 17:24] GRAPH rebuild — OK
+[2026-04-17 17:24] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/S-表达式.md — OK
+[2026-04-17 17:24] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/S-表达式.md — indexed
+[2026-04-17 17:24] GRAPH skip — rebuilt 12s ago
+[2026-04-17 17:24] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/同像性.md — OK
+[2026-04-17 17:24] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/同像性.md — indexed
+[2026-04-17 17:24] GRAPH skip — rebuilt 24s ago
+[2026-04-17 17:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/垃圾回收.md — OK
+[2026-04-17 17:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/垃圾回收.md — indexed
+[2026-04-17 17:25] GRAPH rebuild — OK
+[2026-04-17 17:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/eval 函数.md — OK
+[2026-04-17 17:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/eval 函数.md — indexed
+[2026-04-17 17:25] GRAPH skip — rebuilt 13s ago
+[2026-04-17 17:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — OK
+[2026-04-17 17:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — indexed
+[2026-04-17 17:25] GRAPH skip — rebuilt 22s ago
+[2026-04-17 17:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — OK
+[2026-04-17 17:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — indexed
+[2026-04-17 17:25] GRAPH skip — rebuilt 26s ago
+[2026-04-17 17:26] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — OK
+[2026-04-17 17:26] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/λ 演算.md — indexed
+[2026-04-17 17:26] GRAPH rebuild — OK
+[2026-04-17 17:26] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — OK
+[2026-04-17 17:26] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — indexed
+[2026-04-17 17:26] GRAPH rebuild — OK
+[2026-04-17 17:26] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — OK
+[2026-04-17 17:26] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/John McCarthy.md — indexed
+[2026-04-17 17:26] GRAPH skip — rebuilt 3s ago
+[2026-04-17 17:26] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LISP.md — OK
+[2026-04-17 17:26] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LISP.md — indexed
+[2026-04-17 17:26] GRAPH skip — rebuilt 9s ago
+[2026-04-17 18:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Go To Statement Considered Harmful 论文.md — OK
+[2026-04-17 18:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Go To Statement Considered Harmful 论文.md — indexed
+[2026-04-17 18:05] GRAPH rebuild — OK
+[2026-04-17 18:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Edsger Dijkstra.md — OK
+[2026-04-17 18:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Edsger Dijkstra.md — indexed
+[2026-04-17 18:06] GRAPH skip — rebuilt 27s ago
+[2026-04-17 18:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/结构化编程.md — OK
+[2026-04-17 18:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/结构化编程.md — indexed
+[2026-04-17 18:06] GRAPH rebuild — OK
+[2026-04-17 18:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/意大利面条式代码.md — OK
+[2026-04-17 18:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/意大利面条式代码.md — indexed
+[2026-04-17 18:06] GRAPH skip — rebuilt 5s ago
+[2026-04-17 18:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Bohm-Jacopini 定理.md — OK
+[2026-04-17 18:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Bohm-Jacopini 定理.md — indexed
+[2026-04-17 18:06] GRAPH skip — rebuilt 12s ago
+[2026-04-17 18:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/软件危机.md — OK
+[2026-04-17 18:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/软件危机.md — indexed
+[2026-04-17 18:06] GRAPH skip — rebuilt 19s ago
+[2026-04-17 18:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — OK
+[2026-04-17 18:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — indexed
+[2026-04-17 18:07] GRAPH rebuild — OK
+[2026-04-17 18:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — OK
+[2026-04-17 18:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — indexed
+[2026-04-17 18:07] GRAPH skip — rebuilt 4s ago
+[2026-04-17 18:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — OK
+[2026-04-17 18:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/函数式编程.md — indexed
+[2026-04-17 18:07] GRAPH skip — rebuilt 6s ago
+[2026-04-17 22:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/关系模型论文.md — OK
+[2026-04-17 22:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/关系模型论文.md — indexed
+[2026-04-17 22:47] GRAPH rebuild — OK
+[2026-04-17 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/E.F. Codd.md — OK
+[2026-04-17 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/E.F. Codd.md — indexed
+[2026-04-17 22:48] GRAPH skip — rebuilt 14s ago
+[2026-04-17 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系模型.md — OK
+[2026-04-17 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系模型.md — indexed
+[2026-04-17 22:48] GRAPH rebuild — OK
+[2026-04-17 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系代数.md — OK
+[2026-04-17 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系代数.md — indexed
+[2026-04-17 22:48] GRAPH skip — rebuilt 12s ago
+[2026-04-17 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系演算.md — OK
+[2026-04-17 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/关系演算.md — indexed
+[2026-04-17 22:48] GRAPH skip — rebuilt 27s ago
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/数据独立性.md — OK
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/数据独立性.md — indexed
+[2026-04-17 22:49] GRAPH rebuild — OK
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/规范化理论.md — OK
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/规范化理论.md — indexed
+[2026-04-17 22:49] GRAPH skip — rebuilt 12s ago
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SQL.md — OK
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SQL.md — indexed
+[2026-04-17 22:49] GRAPH skip — rebuilt 29s ago
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — OK
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — indexed
+[2026-04-17 22:49] GRAPH rebuild — OK
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — ERROR: {
+  "total_files": 1,
+  "errors": 1,
+  "warnings": 0,
+  "checks": [
+    {
+      "file": "wiki/entities/SQLite.md",
+      "check": "F2",
+      "severity": "error",
+      "message": "Invalid or missing 
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — indexed
+[2026-04-17 22:49] GRAPH skip — rebuilt 1s ago
+[2026-04-17 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — ERROR: {
+  "total_files": 1,
+  "errors": 1,
+  "warnings": 0,
+  "checks": [
+    {
+      "file": "wiki/entities/SQLite.md",
+      "check": "F2",
+      "severity": "error",
+      "message": "Invalid or missing 
+[2026-04-17 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/SQLite.md — indexed
+[2026-04-17 22:49] GRAPH skip — rebuilt 6s ago
+[2026-04-17 22:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Cook NP 完全性论文.md — OK
+[2026-04-17 22:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Cook NP 完全性论文.md — indexed
+[2026-04-17 22:51] GRAPH rebuild — OK
+[2026-04-17 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Stephen Cook.md — OK
+[2026-04-17 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Stephen Cook.md — indexed
+[2026-04-17 22:52] GRAPH skip — rebuilt 13s ago
+[2026-04-17 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — OK
+[2026-04-17 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — indexed
+[2026-04-17 22:52] GRAPH skip — rebuilt 24s ago
+[2026-04-17 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Richard Karp.md — OK
+[2026-04-17 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Richard Karp.md — indexed
+[2026-04-17 22:52] GRAPH rebuild — OK
+[2026-04-17 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/NP 完全性.md — OK
+[2026-04-17 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/NP 完全性.md — indexed
+[2026-04-17 22:52] GRAPH skip — rebuilt 17s ago
+[2026-04-17 22:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Cook-Levin 定理.md — OK
+[2026-04-17 22:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Cook-Levin 定理.md — indexed
+[2026-04-17 22:53] GRAPH rebuild — OK
+[2026-04-17 22:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SAT 问题.md — OK
+[2026-04-17 22:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SAT 问题.md — indexed
+[2026-04-17 22:53] GRAPH skip — rebuilt 14s ago
+[2026-04-17 22:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/P vs NP.md — OK
+[2026-04-17 22:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/P vs NP.md — indexed
+[2026-04-17 22:53] GRAPH rebuild — OK
+[2026-04-17 22:53] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/多项式时间归约.md — OK
+[2026-04-17 22:53] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/多项式时间归约.md — indexed
+[2026-04-17 22:53] GRAPH skip — rebuilt 12s ago
+[2026-04-17 22:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/计算复杂度理论.md — OK
+[2026-04-17 22:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/计算复杂度理论.md — indexed
+[2026-04-17 22:54] GRAPH rebuild — OK
+[2026-04-17 22:54] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — OK
+[2026-04-17 22:54] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — indexed
+[2026-04-17 22:55] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — OK
+[2026-04-17 22:55] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Leonid Levin.md — indexed
+[2026-04-17 22:54] GRAPH rebuild — OK
+[2026-04-17 22:55] GRAPH rebuild — OK
+[2026-04-17 23:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UNIX 论文.md — OK
+[2026-04-17 23:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UNIX 论文.md — indexed
+[2026-04-17 23:01] GRAPH rebuild — OK
+[2026-04-17 23:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Dennis Ritchie.md — OK
+[2026-04-17 23:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Dennis Ritchie.md — indexed
+[2026-04-17 23:01] GRAPH skip — rebuilt 6s ago
+[2026-04-17 23:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Ken Thompson.md — OK
+[2026-04-17 23:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Ken Thompson.md — indexed
+[2026-04-17 23:01] GRAPH skip — rebuilt 15s ago
+[2026-04-17 23:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UNIX.md — OK
+[2026-04-17 23:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UNIX.md — indexed
+[2026-04-17 23:01] GRAPH skip — rebuilt 26s ago
+[2026-04-17 23:01] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — OK
+[2026-04-17 23:01] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — indexed
+[2026-04-17 23:01] GRAPH rebuild — OK
+[2026-04-17 23:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — OK
+[2026-04-17 23:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — indexed
+[2026-04-17 23:02] GRAPH skip — rebuilt 13s ago
+[2026-04-17 23:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/操作系统.md — OK
+[2026-04-17 23:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/操作系统.md — indexed
+[2026-04-17 23:02] GRAPH skip — rebuilt 28s ago
+[2026-04-17 23:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — OK
+[2026-04-17 23:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — indexed
+[2026-04-17 23:02] GRAPH rebuild — OK
+[2026-04-17 23:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Doug McIlroy.md — OK
+[2026-04-17 23:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Doug McIlroy.md — indexed
+[2026-04-17 23:02] GRAPH skip — rebuilt 8s ago
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — indexed
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/C 语言.md — indexed
+[2026-04-17 23:03] GRAPH rebuild — OK
+[2026-04-17 23:03] GRAPH rebuild — OK
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — indexed
+[2026-04-17 23:03] GRAPH skip — rebuilt 0s ago
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Multics.md — indexed
+[2026-04-17 23:03] GRAPH skip — rebuilt 2s ago
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — indexed
+[2026-04-17 23:03] GRAPH skip — rebuilt 5s ago
+[2026-04-17 23:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — OK
+[2026-04-17 23:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/Brian Kernighan.md — indexed
+[2026-04-17 23:03] GRAPH skip — rebuilt 6s ago
