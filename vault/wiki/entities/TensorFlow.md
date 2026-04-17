@@ -7,7 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [深度学习框架, Google, 推荐系统基础设施]
+tags: [深度学习框架, Google, 推荐系统基础设施, 推荐系统]
 aliases: [Tensorflow, TF]
 relates_to:
   - {target: Deep Neural Networks for YouTube Recommendations, type: uses}

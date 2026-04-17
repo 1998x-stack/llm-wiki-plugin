@@ -20,7 +20,7 @@ supersedes: null
 # LC-Rec
 
 ## 概述
-用[[语义 ID|语义标识符]]替代数字 ID 的 LLM 推荐方法，解决了 [[P5 论文|P5]] 的 ID 语义鸿沟问题。
+用[[语义 ID|语义标识符]]替代数字 ID 的 LLM 推荐方法，解决了 P5 的 ID 语义鸿沟问题。
 
 ## 关键内容
 
@@ -28,14 +28,14 @@ supersedes: null
 
 2. **解决方案**：用[[语义 ID|语义标识符]]（semantic identifiers）替代数字 ID，通过量化或聚类方法将物品映射到有意义的语义空间，使 ID 本身携带语义信息。
 
-3. **与[[Whole-word Embedding]]的对比**：[[P5 论文|P5]] 的 [[Whole-word Embedding]] 通过共享[[Whole-word Embedding|全词嵌入]]改善了 ID 表示，但仍然依赖数字 ID。LC-Rec 从根本上用[[语义 ID]] 替代数字 ID，是更彻底的解决方案。
+3. **与[[Whole-word Embedding]]的对比**：P5 的 [[Whole-word Embedding]] 通过共享[[Whole-word Embedding|全词嵌入]]改善了 ID 表示，但仍然依赖数字 ID。LC-Rec 从根本上用[[语义 ID]] 替代数字 ID，是更彻底的解决方案。
 
 4. **技术优势**：
    - 缓解[[冷启动问题]]：新物品可通过语义描述获得有意义的表示
    - 增强跨域迁移：语义空间比数字 ID 空间更具可迁移性
    - 提升模型理解：语言模型能更好地理解有语义的标识符
 
-5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]]范式，与 [[LLMRec]]（同时使用唯一标识符和语义文本）共同探索了 ID 表示的最佳实践。
+5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]][[规范化理论|范式]]，与 [[LLMRec]]（同时使用唯一标识符和语义文本）共同探索了 ID 表示的最佳实践。
 
 ## 来源
 - LC-Rec 论文 — Semantic ID for LLM-based Recommendation

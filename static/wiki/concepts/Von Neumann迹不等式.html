@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>等号成立条件</strong>：存在酉<a href="矩阵.html">矩阵</a> $U, V$ 使 $A = U\Sigma_A V^<em>$ 且 $B = U\Sigma_B V^</em>$，即 $A$ 与 $B$ 共享奇异向量对。</p>
 <h3 id="_4">证明思路</h3>
 <ol>
-<li><strong><a href="奇异值分解.html">SVD</a> 标准化</strong>：$A = U_A\Sigma_A V_A^<em>$，$B = U_B\Sigma_B V_B^</em>$，代入后迹变为 $\operatorname{tr}(\Sigma_A W \Sigma_B)$，其中 $W = V_A^* U_B$ 为酉<a href="矩阵.html">矩阵</a></li>
+<li><strong>SVD 标准化</strong>：$A = U_A\Sigma_A V_A^<em>$，$B = U_B\Sigma_B V_B^</em>$，代入后迹变为 $\operatorname{tr}(\Sigma_A W \Sigma_B)$，其中 $W = V_A^* U_B$ 为酉<a href="矩阵.html">矩阵</a></li>
 <li><strong>双随机<a href="矩阵.html">矩阵</a></strong>：酉<a href="矩阵.html">矩阵</a> $W$ 的元素模方构成双随机<a href="矩阵.html">矩阵</a> $M_{ij} = |W_{ij}|^2$（行列和均为1）</li>
 <li><strong>Birkhoff定理</strong>：双随机<a href="矩阵.html">矩阵</a>是置换<a href="矩阵.html">矩阵</a>的凸组合</li>
 <li><strong>排序不等式</strong>：凸组合中以恒等排列取得最大值（大配大、小配小），得到 $\sum_i\sigma_i(A)\sigma_i(B)$</li>
@@ -187,19 +187,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_7">主要推广</h3>
 <p><strong><a href="../entities/樊畿.html">Ky Fan</a> <a href="矩阵.html">矩阵</a>不等式（1949–1951）</strong>：<a href="../entities/樊畿.html">樊畿</a>在普林斯顿与 von Neumann 的交流启发下，建立了特征值部分和的极值原理和 Fan $k$-范数（$\sum_{i=1}^k\sigma_i(A)$），并证明所有 <a href="../entities/樊畿.html">Ky Fan</a> $k$-范数被控制 $\Leftrightarrow$ 所有酉不变范数被控制（Fan 控制定理）。这是 von Neumann 迹不等式思想在范数理论中的系统延伸。详见 <a href="Ky Fan不等式.html">Ky Fan不等式</a>。</p>
-<p><strong>Mirsky 1960</strong>：Eckart-Young 低秩逼近最优性从 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>/谱范数推广到所有酉不变范数——截断 <a href="奇异值分解.html">SVD</a> 在任意酉不变范数下均给出最优低秩逼近。</p>
+<p><strong>Mirsky 1960</strong>：Eckart-Young 低秩逼近最优性从 <a href="../entities/格奥尔格·弗罗贝尼乌斯.html">Frobenius</a>/谱范数推广到所有酉不变范数——截断 SVD 在任意酉不变范数下均给出最优低秩逼近。</p>
 <p><strong>Kristof 1969</strong>：推广到多<a href="矩阵.html">矩阵</a>乘积 $\operatorname{tr}(Z_1A_1Z_2A_2\cdots)$ 的极值问题。</p>
 <p><strong>Schatten类（1960）</strong>：将有限维理论推广到无穷维 Hilbert 空间上的紧算子，核范数推广为 Schatten 1-范数。</p>
 <h2 id="_8">现代应用</h2>
 <p><strong><a href="矩阵.html">矩阵</a>补全（推荐系统）</strong>：核范数作为<a href="矩阵.html">矩阵</a>秩的凸松弛，用于从部分观测恢复低秩<a href="矩阵.html">矩阵</a>。<a href="../entities/Netflix Prize.html">Netflix Prize</a> 问题的核心。Candes &amp; Recht（2009）在不相干条件下证明核范数最小化精确恢复低秩<a href="矩阵.html">矩阵</a>。</p>
-<p><strong>低秩<a href="矩阵.html">矩阵</a>逼近（数据压缩）</strong>：截断 <a href="奇异值分解.html">SVD</a> 在迹内积意义下保留最大"信息量"——von Neumann 迹不等式是其最优性证明的核心。图像压缩、信号降噪、基因组降维均依赖此框架。</p>
-<p><strong>主成分分析（PCA）</strong>：截断 <a href="奇异值分解.html">SVD</a> 给出的子空间在迹内积意义下是最优投影。</p>
+<p><strong>低秩<a href="矩阵.html">矩阵</a>逼近（数据压缩）</strong>：截断 SVD 在迹内积意义下保留最大"信息量"——von Neumann 迹不等式是其最优性证明的核心。图像压缩、信号降噪、基因组降维均依赖此框架。</p>
+<p><strong>主成分分析（PCA）</strong>：截断 SVD 给出的子空间在迹内积意义下是最优投影。</p>
 <p><strong>量子信息</strong>：密度<a href="矩阵.html">矩阵</a>的迹范数（Schatten 1-范数）是量子态可区分度的基本度量，量子<a href="信道容量.html">信道容量</a>的核心工具。</p>
 <p><strong>核范数正则化</strong>：类比 L1 范数产生稀疏解，核范数正则化产生低秩解，广泛用于<a href="多任务学习.html">多任务学习</a>、鲁棒 PCA、<a href="矩阵.html">矩阵</a>分类。</p>
 <h2 id="_9">局限性</h2>
 <ol>
 <li><strong>有限维</strong>：推广到无穷维 Hilbert 空间需要 Schatten 类条件</li>
-<li><strong>等号难验证</strong>：要求共享奇异向量，<a href="数值分析.html">数值计算</a>中近乎不可达</li>
+<li><strong>等号难验证</strong>：要求共享奇异向量，<a href="../maps/数值分析.html">数值计算</a>中近乎不可达</li>
 <li><strong>仅给上界</strong>：不提供下界（Ruhe 1970 年补充正定<a href="矩阵.html">矩阵</a>下界）</li>
 <li><strong>非交换结构</strong>：推广到半单 Lie 群需全新工具（Tam 等，2015）</li>
 </ol>
@@ -211,13 +211,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a></li>
 <li><a href="奇异值分解.html">奇异值分解</a></li>
-<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../maps/矩阵理论.html">矩阵理论</a></li>
 <li><a href="Weyl特征值不等式.html">Weyl特征值不等式</a></li>
 <li><a href="Schur分解.html">Schur分解</a></li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="User-Based 协同过滤.html">&larr; User-Based 协同过滤</a>
+    <a href="Viewport渲染视口.html">&larr; Viewport渲染视口</a>
     <a href="Voronoi 偏置.html">Voronoi 偏置 &rarr;</a>
   </div>
 </div>

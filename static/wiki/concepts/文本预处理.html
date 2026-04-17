@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文本预处理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 文本预处理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">文本预处理</h1>
+<h2 id="_2">概述</h2>
+<p>文本预处理（Text Preprocessing）是搜索引擎的核心前处理阶段，决定哪些词条被索引（影响召回率）、词条如何归一化（影响精确率）。黄金法则：索引时与查询时的预处理步骤必须<strong>完全一致</strong>。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>完整流水线</strong>（顺序固定）：字符级清洗 → 分词（Tokenization）→ 大小写归一化 → 停用词过滤 → 词干提取/词形还原 → 同义词扩展（可选）。</p>
+</li>
+<li>
+<p><strong>分词（Tokenization）</strong>：</p>
+</li>
+<li><strong>空白分词</strong>：最简单，标点粘连问题</li>
+<li><strong>标准分词</strong>：Unicode 规则，处理缩写（U.S.A.）、连字符</li>
+<li><strong>中文分词</strong>：无天然空格，主流方法：基于词典前向最大匹配（jieba）、HMM（将分词视为 B/M/E/S 序列标注 + Viterbi 算法）、CRF（判别式版本，特征更丰富）、深度学习（BiLSTM-CRF，LTP/HanLP）</li>
+<li>
+<p><strong>N-gram 分词</strong>：字符级 bigram 用于拼写容错，词级 bigram 用于短语匹配，但索引膨胀 5-50 倍</p>
+</li>
+<li>
+<p><strong>停用词过滤</strong>：高频低语义词（英文约 100-200 个，中文"的/了/是"等）。现代引擎更倾向<strong>IDF 自动识别</strong>：出现在所有文档中的词 IDF→0，自动获得极低权重，效果等同于被过滤。风险：不应过滤命名实体（"The Office"、"to do list"）。</p>
+</li>
+<li>
+<p><strong>词干提取（Stemming）</strong>：启发式规则截断词根，速度极快但不精确：</p>
+</li>
+<li>Porter Stemmer（经典，~5% 错误率）</li>
+<li>Snowball/Porter2（改进版，~3% 错误率）</li>
+<li>Lancaster（激进，~15% 错误率）</li>
+<li>
+<p>常见错误：过度截断（general/generalize→general，不同词合并）、截断不足</p>
+</li>
+<li>
+<p><strong>词形还原（Lemmatization）</strong>：词典+词性分析，返回真实词典形式（lemma）。比词干提取慢但精确：better→good、geese→<a href="../entities/Goose.html">goose</a>、went→go。搜索引擎通常优先速度，用词干提取；问答系统优先准确性，用词形还原。</p>
+</li>
+<li>
+<p><strong>同义词扩展</strong>：索引时扩展（索引膨胀）vs 查询时扩展（更灵活）。来源：WordNet、人工词典、Word2Vec 相似词、搜索日志挖掘。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><code>raw/articles/ai-engineering/search-retrieval/02_text_preprocessing.md</code> — 传统搜索引擎深度解析系列 第2篇</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="搜索引擎架构.html">搜索引擎架构</a> — part_of</li>
+<li><a href="倒排索引.html">倒排索引</a> — used_by</li>
+<li>BM25 — used_by</li>
+<li><a href="查询处理.html">查询处理</a> — compares_to（查询侧需相同处理）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="数据独立性.html">&larr; 数据独立性</a>
+    <a href="文档布局检测.html">文档布局检测 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

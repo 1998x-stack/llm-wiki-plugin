@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="ky-fan_2">定理二：Ky Fan 部分和不等式</h3>
 <p>设 $A, B$ 为 $n \times n$ Hermitian <a href="矩阵.html">矩阵</a>，对任意 $1 \leq k \leq n$：</p>
 <p>$$\sum_{i=1}^{k} \lambda_i(A+B) \leq \sum_{i=1}^{k} \lambda_i(A) + \sum_{i=1}^{k} \lambda_i(B)$$</p>
-<p><strong>与 <a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式的关系</strong>：
-- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（<a href="../entities/赫尔曼·外尔.html">Weyl</a> 特例）
+<p><strong>与 Weyl 不等式的关系</strong>：
+- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（Weyl 特例）
 - $k=n$：两端均为 $\operatorname{tr}(A+B) = \operatorname{tr}(A)+\operatorname{tr}(B)$（等式）
-- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 <a href="../entities/赫尔曼·外尔.html">Weyl</a>（$k=1$）与迹等式（$k=n$）的一族不等式</p>
+- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 Weyl（$k=1$）与迹等式（$k=n$）的一族不等式</p>
 <p><strong>证明</strong>（极值原理的直接推论）：由极值原理，存在最优子空间 $V^*$ 使左端取最大值；在该子空间上，两项分别 $\leq$ 对应的部分和上界，相加即得。</p>
 <p><strong>Majorization 表述</strong>：Fan 不等式等价于弱<a href="优化控制序.html">优化控制序</a> $\lambda(A+B) \prec_w \lambda(A)+\lambda(B)$（详见<a href="优化控制序.html">优化控制序</a>）。</p>
 <h3 id="ky-fan-k-">定理三：Ky Fan $k$-范数与控制定理</h3>
@@ -219,7 +219,7 @@ $$|X|<em>{(k)} = \sum</em>{i=1}^{k} \sigma_i(X), \quad 1 \leq k \leq n$$</p>
   </div>
   <div class="page-nav">
     <a href="Krylov子空间方法.html">&larr; Krylov子空间方法</a>
-    <a href="LLM-Statelessness.html">LLM-Statelessness &rarr;</a>
+    <a href="LISP.html">LISP &rarr;</a>
   </div>
 </div>
 </body>

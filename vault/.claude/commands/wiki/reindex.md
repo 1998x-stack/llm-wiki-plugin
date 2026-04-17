@@ -110,38 +110,31 @@ for page in wiki_pages:
 
 ### 5. 生成 maps/*.md
 
-从 `.claude/topic-to-wiki.json` 读取 `topics` 映射，对每个 topic：
+从 `.claude/topic-to-wiki.json` 生成每个 topic 的 map 文件：
 
-1. 删除旧的 `maps/*.md`（保留 `reindex.snapshot.json`）
-2. 生成新文件 `maps/{topic}.md`：
-
-```markdown
----
-type: map
-topic: "{topic}"
-page_count: 15
-updated: 2026-04-15
----
-
-# {topic}
-
-## 概念
-
-- [[牛顿法]] — 数值分析最基本迭代求根算法，二次收敛速度 (confidence: 0.95)
-- [[欧拉方法]] — 数值分析最基础ODE解法 (confidence: 0.95)
-
-## 实体
-
-- [[艾萨克·牛顿]] — 英国数学家，微积分奠基人 (confidence: 0.95)
-
-## 综合分析
-
-- [[矩阵谱理论的统一叙事]] — 三种证明范式的知识谱系 (confidence: 0.92)
+```bash
+bash scripts/wiki.sh build_maps --json
 ```
 
-每个 section 内按 title 字母序排列。
+解析 JSON 输出，记录生成的 topic 数量和各 topic 页面数。
 
-### 6. 同步 _schema/CLAUDE.md 的 Topics 列表
+每个 map 文件包含：
+- frontmatter: `type: map`, `topic`, `page_count`, `updated`
+- `## 概述` 段（核心主题概览，≤100 字）
+- 按类型分 section（概念、实体、综合分析、QA 洞见）
+- 每条含 `[[双链]]`、概述、`(confidence: X.XX)`
+
+### 6. 精简 index.md
+
+```bash
+bash scripts/wiki.sh snapshot_index --slim
+```
+
+将 index.md 从完整清单重写为：
+- 统计表（每个 topic 一行，含概念/实体/合计数和指向 map 的链接）
+- 全局页面名称列表（逗号分隔，用于快速去重）
+
+### 7. 同步 _schema/CLAUDE.md 的 Topics 列表
 
 maps/ 变化后，更新 `_schema/CLAUDE.md` 中 **"当前 Topics"** 小节，保持文档与实际目录同步。
 
@@ -192,7 +185,7 @@ maps/ 变化后，更新 `_schema/CLAUDE.md` 中 **"当前 Topics"** 小节，�
 - `其他` — 小型 cluster 合并（8 页）
 ```
 
-### 7. 清理 + 日志
+### 8. 清理 + 日志
 
 - 删除 `/tmp/wiki_manifest.txt`
 - 保留 `.claude/topic-to-wiki.json`（供后续 maintain/query 步骤引用）
@@ -203,5 +196,7 @@ maps/ 变化后，更新 `_schema/CLAUDE.md` 中 **"当前 Topics"** 小节，�
 - 完整性: OK (N 页面, 0 缺失, 0 孤条目)
 - 主题分类 (subagent): T 个 topics → topic1(N1), topic2(N2), ... → .claude/topic-to-wiki.json
 - Tags 修复: M 个页面补充了 tags
+- Maps: G 个 map 文件生成 → maps/
+- Index: 精简为 L 行（统计表 + 名称列表）
 - Schema 同步: _schema/CLAUDE.md Topics 已更新（如有变化）
 ```

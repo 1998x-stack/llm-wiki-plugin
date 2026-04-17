@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">联合训练</h1>
 <h2 id="_2">概述</h2>
-<p>多组件模型的训练范式，各组件共享同一损失函数、同时优化参数，使组件在训练过程中自动协调分工、互补不足，区别于<a href="模型融合.html">集成学习</a>中各模型独立训练后推理时组合预测。</p>
+<p>多组件模型的训练<a href="规范化理论.html">范式</a>，各组件共享同一损失函数、同时优化参数，使组件在训练过程中自动协调分工、互补不足，区别于<a href="模型融合.html">集成学习</a>中各模型独立训练后推理时组合预测。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>与<a href="模型融合.html">集成学习</a>的本质区别</strong>：<a href="模型融合.html">集成学习</a>中各子模型独立训练、彼此互不知晓，仅在推理时组合预测（投票、加权平均）；联合训练中所有组件同时训练、共享损失函数，梯度从输出层反向传播到每个组件。</li>
@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>端到端优化</strong>：整个模型针对最终目标函数统一优化，避免子模型之间目标不一致的问题。<a href="模型融合.html">集成学习</a>中各子模型可能优化不同的中间目标，导致最终组合时出现目标冲突。</li>
 <li><strong>差异化优化策略</strong>：联合训练不要求所有组件使用相同优化器。<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 中 Wide 组件用 FTRL+L1（产生稀疏解，适合高维稀疏特征），Deep 组件用 AdaGrad（自适应学习率，适合稠密参数），两者在同一损失函数下协同优化。</li>
 <li><strong>数学表达</strong>：以 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 为例，$P(Y=1|\mathbf{x}) = \sigma(\mathbf{w}<em>{wide}^T [\mathbf{x}, \phi(\mathbf{x})] + \mathbf{w}</em>{deep}^T a^{(l_f)} + b)$，损失函数对 $\mathbf{w}<em>{wide}$ 和 $\mathbf{w}</em>{deep}$ 同时求梯度。</li>
-<li><strong>在推荐系统中的影响</strong>：联合训练是 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 从"概念框架"落地为"可行方案"的关键技术桥梁，深刻影响了后续所有"双路"模型的设计，包括 <a href="../entities/DeepFM.html">DeepFM</a>、<a href="../entities/DCN.html">DCN</a>、<a href="../entities/xDeepFM.html">xDeepFM</a> 等。</li>
+<li><strong>在推荐系统中的影响</strong>：联合训练是 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 从"概念框架"落地为"可行方案"的关键技术桥梁，深刻影响了后续所有"双路"模型的设计，包括 <a href="../entities/DeepFM.html">DeepFM</a>、DCN、<a href="../entities/xDeepFM.html">xDeepFM</a> 等。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -158,8 +158,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="缩放点积注意力.html">&larr; 缩放点积注意力</a>
-    <a href="自注意力机制.html">自注意力机制 &rarr;</a>
+    <a href="耗散结构.html">&larr; 耗散结构</a>
+    <a href="脑手分离架构.html">脑手分离架构 &rarr;</a>
   </div>
 </div>
 </body>

@@ -130,31 +130,31 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">LLM</span><span class="tag">推理</span><span class="tag">解码</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">LLM</span><span class="tag">推理</span><span class="tag">解码</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="beam-search">Beam Search 生成</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/P5 论文.html">P5 论文</a>使用的推理方法，通过 beam size=20 的束搜索自回归生成物品 ID 或文本，是 LLM 推荐的核心推理范式。</p>
+<p><a href="../entities/P5 论文.html">P5 论文</a>使用的推理方法，通过 beam size=20 的束搜索<a href="AR 模型（自回归模型）.html">自回归</a>生成物品 ID 或文本，是 LLM 推荐的核心推理<a href="规范化理论.html">范式</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>在 <a href="../entities/P5 论文.html">P5</a> 中的应用</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 在推理阶段使用 beam search（beam size=20）进行解码生成，根据不同任务的 Prompt 格式生成评分数值、物品 ID、解释文本或评论摘要。</p>
+<p><strong>在 P5 中的应用</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 在推理阶段使用 beam search（beam size=20）进行解码生成，根据不同任务的 Prompt 格式生成评分数值、物品 ID、解释文本或评论摘要。</p>
 </li>
 <li>
 <p><strong>工作原理</strong>：Beam Search 维护 beam_size 个候选序列，每一步扩展所有候选序列并保留概率最高的 beam_size 个，平衡了贪婪搜索的短视和穷举搜索的计算复杂度。</p>
 </li>
 <li>
-<p><strong>与传统推荐的对比</strong>：传统推荐模型的推理是向量内积计算（O(1) 或 O(log N) 通过 <a href="近似最近邻检索.html">近似最近邻检索</a>），而 Beam Search 生成需要自回归解码（O(L) 步，L 为生成序列长度），推理延迟远高于传统方法。</p>
+<p><strong>与传统推荐的对比</strong>：传统推荐模型的推理是向量内积计算（O(1) 或 O(log N) 通过 <a href="近似最近邻检索.html">近似最近邻检索</a>），而 Beam Search 生成需要<a href="AR 模型（自回归模型）.html">自回归</a>解码（O(L) 步，L 为生成序列长度），推理延迟远高于传统方法。</p>
 </li>
 <li>
-<p><strong>与<a href="采样 Softmax.html">采样 Softmax</a>的关系</strong>：<a href="采样 Softmax.html">采样 Softmax</a> 是<a href="两阶段推荐架构.html">两阶段推荐架构</a><a href="候选生成.html">候选生成</a>阶段的加速技术，用于在大规模物品空间中高效采样。Beam Search 生成是 LLM 推荐的推理方式，两者服务于不同的推荐范式。</p>
+<p><strong>与<a href="采样 Softmax.html">采样 Softmax</a>的关系</strong>：<a href="采样 Softmax.html">采样 Softmax</a> 是<a href="两阶段推荐架构.html">两阶段推荐架构</a><a href="候选生成.html">候选生成</a>阶段的加速技术，用于在大规模物品空间中高效采样。Beam Search 生成是 LLM 推荐的推理方式，两者服务于不同的推荐<a href="规范化理论.html">范式</a>。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：对于工业级推荐系统，Beam Search 生成的推理延迟可能是不可接受的。这促使工业界更多将 LLM 作为推荐系统的辅助组件而非完全替代传统模型。</p>
 </li>
 <li>
-<p><strong>现代演进</strong>：现代 LLM 推荐方案探索多阶段检索+生成的推理范式，结合传统推荐模型的效率和 LLM 的语义理解能力。</p>
+<p><strong>现代演进</strong>：现代 LLM 推荐方案探索多阶段检索+生成的推理<a href="规范化理论.html">范式</a>，结合传统推荐模型的效率和 LLM 的语义理解能力。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/P5 论文.html">P5 论文</a> — 使用 Beam Search 生成的论文</li>
 <li><a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a> — Beam Search 生成的服务范式</li>
-<li><a href="../entities/T5.html">T5</a> — 使用 Beam Search 的骨干模型</li>
+<li>T5 — 使用 Beam Search 的骨干模型</li>
 <li><a href="采样 Softmax.html">采样 Softmax</a> — 传统推荐的候选生成加速技术</li>
 <li><a href="近似最近邻检索.html">近似最近邻检索</a> — 传统推荐的推理加速方法</li>
 </ul>

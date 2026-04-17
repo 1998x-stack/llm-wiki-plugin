@@ -130,15 +130,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">长时任务 Agent 设计</h1>
 <h2 id="_1">概述</h2>
-<p>针对跨多个上下文窗口的长时自主任务（数小时至数日）的 <a href="Agent Harness模式.html">Agent Harness</a> 设计模式：<strong>初始化 Agent</strong>（建立环境和功能列表）+ <strong>编码 Agent</strong>（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。</p>
+<p>针对跨多个<a href="上下文窗口.html">上下文窗口</a>的长时自主任务（数小时至数日）的 <a href="Agent Harness模式.html">Agent Harness</a> 设计模式：<strong>初始化 Agent</strong>（建立环境和功能列表）+ <strong>编码 Agent</strong>（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心问题：无记忆的交接</h3>
-<p>长时任务必须在多个 Context Window 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（Compaction）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。</p>
+<p>长时任务必须在多个 <a href="上下文窗口.html">Context Window</a> 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（<a href="上下文压缩.html">Compaction</a>）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。</p>
 <h3 id="_4">两阶段解决方案</h3>
 <p><strong>第一阶段：初始化 Agent</strong></p>
 <p>首次会话使用专门提示，负责搭建环境：
@@ -219,8 +219,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="采样定理.html">&larr; 采样定理</a>
-    <a href="阅读顺序重建.html">阅读顺序重建 &rarr;</a>
+    <a href="镜像神经元.html">&larr; 镜像神经元</a>
+    <a href="长时程增强（LTP）.html">长时程增强（LTP） &rarr;</a>
   </div>
 </div>
 </body>

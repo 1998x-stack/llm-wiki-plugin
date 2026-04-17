@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 宏观经济学
-  - 研究
-  - 方法论
+tags: [宏观经济学, 研究, 方法论, 经济学]
 aliases: ["Hicks-Hansen 模型", "希克斯 - 汉森模型", "投资 - 储蓄/流动性偏好 - 货币供给模型"]
 relates_to:
   - target: "[[约翰·理查德·希克斯]]"

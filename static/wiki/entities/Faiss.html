@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">向量检索</span><span class="tag">ANN</span><span class="tag">Facebook</span><span class="tag">推荐系统基础设施</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">向量检索</span><span class="tag">ANN</span><span class="tag">Facebook</span><span class="tag">推荐系统基础设施</span><span class="tag">推荐系统</span></div>
 </div>
   <div class="content">
     <h1 id="faiss">Faiss</h1>
 <h2 id="_1">概述</h2>
-<p>Facebook 开源的<a href="../concepts/近似最近邻检索.html">向量检索</a>库，提供高效的<a href="../concepts/近似最近邻检索.html">近似最近邻</a>搜索算法，是推荐系统<a href="../concepts/候选生成.html">候选生成</a>阶段的核心检索基础设施。</p>
+<p><a href="Meta.html">Facebook</a> 开源的<a href="../concepts/近似最近邻检索.html">向量检索</a>库，提供高效的<a href="../concepts/近似最近邻检索.html">近似最近邻</a>搜索算法，是推荐系统<a href="../concepts/候选生成.html">候选生成</a>阶段的核心检索基础设施。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>与 <a href="Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 的关系</strong>：<a href="Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中"训练时用 softmax，服务时用 <a href="../concepts/近似最近邻检索.html">ANN</a> 检索"的思路，直接推动了<a href="../concepts/近似最近邻检索.html">向量检索</a>技术在推荐系统中的广泛应用。<a href="Faiss.html">Faiss</a>（Facebook）、<a href="ScaNN.html">ScaNN</a>（<a href="Google.html">Google</a>）、Milvus、<a href="Pi-Agent.html">Pi</a>necone 等向量数据库和检索库的兴起，都与这一范式的流行密切相关。</p>
+<p><strong>与 <a href="Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 的关系</strong>：<a href="Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中"训练时用 softmax，服务时用 ANN 检索"的思路，直接推动了<a href="../concepts/近似最近邻检索.html">向量检索</a>技术在推荐系统中的广泛应用。<a href="Faiss.html">Faiss</a>（<a href="Meta.html">Facebook</a>）、<a href="ScaNN.html">ScaNN</a>（<a href="Google.html">Google</a>）、Milvus、Pinecone 等向量数据库和检索库的兴起，都与这一<a href="../concepts/规范化理论.html">范式</a>的流行密切相关。</p>
 </li>
 <li>
-<p><strong>核心能力</strong>：支持多种 <a href="../concepts/近似最近邻检索.html">ANN</a> 算法（IVF-PQ、HNSW、Flat 等），可在 CPU 和 GPU 上运行，支持数十亿级别的<a href="../concepts/近似最近邻检索.html">向量检索</a>。提供了从精确搜索到各种近似搜索的完整方案谱系。</p>
+<p><strong>核心能力</strong>：支持多种 ANN 算法（IVF-PQ、HNSW、Flat 等），可在 CPU 和 GPU 上运行，支持数十亿级别的<a href="../concepts/近似最近邻检索.html">向量检索</a>。提供了从精确搜索到各种近似搜索的完整方案谱系。</p>
 </li>
 <li>
 <p><strong>在推荐系统中的角色</strong>：在 <a href="../concepts/双塔模型.html">双塔模型</a> 产生用户和物品 embedding 后，Faiss 用于在物品 embedding 空间中快速找到与用户 embedding 最近的 Top-N 个物品，是 <a href="../concepts/候选生成.html">候选生成</a> 阶段的核心检索组件。</p>
 </li>
 <li>
-<p><strong>性能</strong>：相比传统的精确最近邻搜索（O(V)），Faiss 的 <a href="../concepts/近似最近邻检索.html">ANN</a> 算法能在亚线性时间内完成检索，同时保持较高的召回率。</p>
+<p><strong>性能</strong>：相比传统的精确最近邻搜索（O(V)），Faiss 的 ANN 算法能在亚线性时间内完成检索，同时保持较高的召回率。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

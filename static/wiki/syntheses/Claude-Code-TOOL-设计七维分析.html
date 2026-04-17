@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude-Code-TOOL-设计七维分析 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../syntheses/index.html">syntheses</a> / Claude-Code-TOOL-设计七维分析</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具设计</span><span class="tag">ACI</span><span class="tag">上下文工程</span><span class="tag">Agent架构</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="claude-code-tool">Claude Code TOOL 设计七维分析</h1>
+<h2 id="_1">概述</h2>
+<p>本分析综合了 8 个知识库页面，从七个维度系统拆解 Claude Code 的 TOOL 设计为何被视为业界标杆。核心洞见：<strong>Claude Code 不是把工具当 API 包装，而是把工具当 Agent 的"<a href="../concepts/操作系统.html">操作系统</a>接口"</strong>。</p>
+<h2 id="_2">七维分析框架</h2>
+<h3 id="aci">维度一：ACI 设计哲学</h3>
+<p>工具设计遵循 Anthropic 的 ACI（<a href="../concepts/Agent计算机接口.html">Agent-Computer Interface</a>）理念，将工具优化置于提示词优化之上。五大原则：少而精、命名空间、语义化响应、Token 效率、工具描述即提示工程。</p>
+<p>来源：<a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></p>
+<h3 id="tool-use-examples">维度二：Tool Use Examples 模式</h3>
+<p>JSON Schema + 示例的双重定义方式，将复杂参数处理准确率从 72% 提升至 90%。Schema 定义结构有效性，示例表达使用模式。</p>
+<p>来源：<a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></p>
+<h3 id="agent">维度三：Agent 循环容错机制</h3>
+<p>五层容错：失败反馈自我修正、参数验证防崩溃、实时进度推送、消息队列化、AbortSignal 中断。工具执行不是"调用→返回"，而是"调用→验证→执行→反馈→修正"的闭环。</p>
+<p>来源：<a href="../concepts/Agent循环.html">Agent循环</a></p>
+<h3 id="hook">维度四：Hook 系统可编程性</h3>
+<p>覆盖会话全生命周期的钩子（Context/New/Save/Summary/Cleanup），采用即发即忘模式不阻塞主进程。使 Claude Code 从聊天机器人升级为可编程开发平台。</p>
+<p>来源：<span style="color:#e74c3c" title="broken link">Claude Code Hook System</span></p>
+<h3 id="mcp">维度五：MCP 可组合性</h3>
+<p>同时扮演 MCP 客户端和服务端，实现 Agent 的"可组合性"——任何实例都可成为更大系统的工具节点。工具集成从编程问题变成配置问题。</p>
+<p>来源：<a href="../concepts/MCP协议层.html">MCP协议层</a></p>
+<h3 id="_3">维度六：上下文工程驱动</h3>
+<p>工具响应深度融入 Context Engineering：<a href="../concepts/即时上下文检索.html">即时上下文检索</a>、<a href="../concepts/上下文腐烂.html">上下文腐烂</a>意识、<a href="../concepts/注意力预算.html">注意力预算</a>约束。工具响应必须高<a href="../concepts/信噪比.html">信噪比</a>，因为 <a href="../concepts/Transformer架构.html">Transformer</a> 的<a href="../concepts/注意力预算.html">注意力资源</a>有限。</p>
+<p>来源：<span style="color:#e74c3c" title="broken link">Context Engineering</span></p>
+<h3 id="_4">维度七：评估驱动开发</h3>
+<p>工具开发不是"写完就上线"，而是原型→评估→分析→改进的循环。实验显示 Claude 优化后的工具性能高于人工编写版本。</p>
+<p>来源：<a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></p>
+<h2 id="_5">核心结论</h2>
+<p>Claude Code TOOL 设计的本质突破在于：<strong>Agent 的上限不再仅由模型参数规模决定，而是由"模型 × 工具 × 界面"的系统乘积决定</strong>。</p>
+<p>这与 <a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> 中的 Anthropic 任务 Harness 路线一致：从最小 Harness 出发，随模型能力迭代减复杂度。也与 <a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a> 的分离评估思想呼应——工具设计需要独立的评估循环，而非依赖模型自我评估。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a></li>
+<li><a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></li>
+<li><a href="../concepts/Agent循环.html">Agent循环</a></li>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a></li>
+<li><span style="color:#e74c3c" title="broken link">Context Engineering</span></li>
+<li><a href="../concepts/Claude-Code-Hook-System.html">Claude Code Hook System</a></li>
+<li><a href="../concepts/MCP协议层.html">MCP协议层</a></li>
+<li><a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="Claude-Code上下文工程全景.html">Claude-Code上下文工程全景 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

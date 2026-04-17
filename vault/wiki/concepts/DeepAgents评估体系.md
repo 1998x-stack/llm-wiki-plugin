@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 9
-tags: [AI, Agent, 评估, LangSmith, 测试]
+tags: [AI, Agent, 评估, LangSmith, 测试, Agent系统]
 aliases: [deepagents evals, Agent评估框架, TrajectoryScorer]
 relates_to:
   - target: "[[DeepAgents]]"
@@ -80,7 +80,7 @@ scorer = (
 
 ### pytest 配置（`conftest.py`）
 
-- **LangSmith 追踪门禁**：`LANGSMITH_TR[[Agent计算机接口|ACI]]NG` 环境变量必须为 `"true"`，否则整个会话退出码 1
+- **LangSmith 追踪门禁**：`LANGSMITH_TRACING` 环境变量必须为 `"true"`，否则整个会话退出码 1
 - CLI 参数：`--model`（被测模型）、`--eval-category`（筛选分类）、`--openrouter-provider`
 - 所有 eval 用例使用 `@pytest.mark.langsmith`
 
@@ -138,7 +138,7 @@ scorer = (
 **生成类脚本**：
 - `generate_radar.py`：从 `evals_summary.json` 生成雷达图 PNG（`--toy` 支持离线预览）
 - `generate_eval_catalog.py`：重写 `EVAL_CATALOG.md`，`--check` 用于 CI 防漂移
-- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_[[生成式推荐|GR]]OUPS.md`
+- `generate_model_groups.py`：从 `.github/scripts/models.py` 注册表生成 `MODEL_GROUPS.md`
 
 **工程化建议**：先确保轨迹与 `result.json` 完整再跑分析；解读分数时同时看 `format_ci` 与 MDE，并将 `is_infrastructure=True` 的 trial 单独分层统计。
 

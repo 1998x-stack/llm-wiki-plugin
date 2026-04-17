@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoX 2D动画系统API — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / UrhoX 2D动画系统API</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">2D图形</span><span class="tag">动画</span><span class="tag">Lua</span><span class="tag">API</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhox-2dapi">UrhoX 2D动画系统API</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 2D动画系统基于 AnimationSet2D 资源和 AnimatedSprite2D 组件，支持帧动画播放与循环模式控制，另有 StretchableSprite2D 支持九宫格拉伸。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">类层次</h3>
+<ul>
+<li><code>AnimationSet2D : Resource</code> — 动画集资源，存储多个命名动画</li>
+<li><code>AnimatedSprite2D : StaticSprite2D</code> — 动画精灵组件，在节点上播放动画</li>
+<li><code>StretchableSprite2D : StaticSprite2D</code> — 九宫格拉伸精灵，用于 UI 面板/按钮背景</li>
+</ul>
+<h3 id="animationset2d">AnimationSet2D</h3>
+<pre><code class="language-lua">local animSet = cache:GetResource(&quot;AnimationSet2D&quot;, &quot;Sprites/hero.scml&quot;)
+-- 查询动画数量和名称
+local count = animSet.numAnimations       -- readonly
+local name  = animSet:GetAnimation(0)    -- 按索引获取动画名（Lua 0-based 调用）
+</code></pre>
+<h3 id="animatedsprite2d">AnimatedSprite2D 关键属性</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>animationSet</td>
+<td>AnimationSet2D*</td>
+<td>关联动画集资源</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>String</td>
+<td>Spriter 实体名（多实体 scml 时使用）</td>
+</tr>
+<tr>
+<td>animation</td>
+<td>String</td>
+<td>当前播放的动画名</td>
+</tr>
+<tr>
+<td>loopMode</td>
+<td>LoopMode2D</td>
+<td>循环模式（LM_DEFAULT / LM_FORCE_LOOPED / LM_FORCE_CLAMPED）</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>float</td>
+<td>播放速度倍率（1.0=正常）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">播放动画</h3>
+<pre><code class="language-lua">local animSprite = node:CreateComponent(&quot;AnimatedSprite2D&quot;)
+animSprite.animationSet = cache:GetResource(&quot;AnimationSet2D&quot;, &quot;Sprites/hero.scml&quot;)
+animSprite.entity = &quot;hero&quot;
+animSprite:SetAnimation(&quot;run&quot;, LM_DEFAULT)
+animSprite.speed = 1.5
+</code></pre>
+<h3 id="stretchablesprite2d">StretchableSprite2D</h3>
+<p>九宫格拉伸精灵，适合按钮背景、对话框等 UI 元素。</p>
+<pre><code class="language-lua">local stretchable = node:CreateComponent(&quot;StretchableSprite2D&quot;)
+stretchable.sprite = cache:GetResource(&quot;Sprite2D&quot;, &quot;UI/button.png&quot;)
+-- border 定义九宫格边缘（left, top, right, bottom 像素数）
+stretchable.border = IntRect(8, 8, 8, 8)
+</code></pre>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/engine-docs/api/graphics-2d.md</span> — UrhoX Lua API 2D图形模块文档</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="UrhoX 2D精灵系统API.html">UrhoX 2D精灵系统API</a> — relates_to</li>
+<li><a href="UrhoX组件系统API.html">UrhoX组件系统API</a> — relates_to</li>
+<li><a href="../entities/UrhoX引擎.html">UrhoX引擎</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="URL.html">&larr; URL</a>
+    <a href="UrhoX 2D粒子系统API.html">UrhoX 2D粒子系统API &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

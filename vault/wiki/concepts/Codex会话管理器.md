@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 工具]
+tags: [技术, 工具, Agent系统]
 aliases: [Codex Session Manager, Codex Session]
 relates_to:
   - target: "[[Codex CLI]]"
@@ -27,7 +27,7 @@ supersedes: null
 
 ## 核心问题
 
-LLM 每次 API 调用独立，没有内置记忆，上下文窗口有限。但工程任务可能持续数小时甚至数天，需要中断恢复，多步骤依赖前置结果。Session Manager 在无状态 LLM 之上构建**有状态的任务上下文**。
+LLM 每次 API 调用独立，没有内置记忆，[[上下文窗口]]有限。但工程任务可能持续数小时甚至数天，需要中断恢复，多步骤依赖前置结果。Session Manager 在无状态 LLM 之上构建**有状态的任务上下文**。
 
 ## Session 数据结构
 

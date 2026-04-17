@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长时程增强（LTP） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 长时程增强（LTP）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">学习</span><span class="tag">记忆</span><span class="tag">突触</span></div>
+</div>
+  <div class="content">
+    <h1 id="long-term-potentiation-ltp">长时程增强（Long-Term Potentiation, LTP）</h1>
+<h2 id="_1">概述</h2>
+<p>长时程增强（LTP）是突触传递效能持久增强的现象，由 Bliss 和 Lømo 于 1973 年在兔海马穿通路中首次发现。LTP 具有快速诱导、持久性、特异性等特性，与记忆惊人相似，被公认为学习和记忆的神经生物学基础，是<a href="赫布学习律.html">赫布学习律</a>的实验证明。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">历史背景</h3>
+<p><strong><a href="赫布学习律.html">赫布突触假说</a>（1949）</strong>：
+- 加拿大心理学家<a href="../entities/Donald O. Hebb.html">唐纳德·赫布</a>（<a href="../entities/Donald O. Hebb.html">Donald Hebb</a>）在《行为的组织》中提出
+- "当神经元 A 的轴突足够靠近神经元 B 并持续激发它，某种生长或代谢变化将发生，使得 A 激发 B 的效率提高"
+- 这是学习的神经基础的推测，但长期缺乏实验证明</p>
+<p><strong>LTP 的发现</strong>：
+- 1966 年，挪威研究者 Terje Lømo 在英国 NIMR 实验室开始寻找突触效能变化的迹象
+- 1968 年，Tim Bliss 加入，两人合作
+- 1973 年发表里程碑论文，命名"Long-lasting Potentiation"
+- 1975 年改名为"Long-Term Potentiation（LTP）"</p>
+<h3 id="_4">实验设计</h3>
+<p><strong>解剖学背景</strong>：
+- 海马是记忆研究的核心脑区（H.M.案例已证明）
+- 穿通路（perforant path）从内嗅皮层投射到齿状回（DG）
+- 包含大量谷氨酸能突触，是研究突触可塑性的理想切入点</p>
+<p><strong>刺激方案</strong>：
+1. 基线测量：以低频（0.1 Hz）测试刺激评估突触传递效能
+2. 高频刺激（HFS，Tetanic stimulation）：施加 100Hz、持续 1 秒的高频刺激串
+3. 追踪记录：在此后数小时内继续低频测试，监测突触效能变化</p>
+<p><strong>震惊性结果</strong>：
+- 高频刺激后，突触效能显著且持久地提高
+- 在麻醉状态的兔子中，这种增强持续了数小时
+- 在清醒动物中，这种增强可以持续数天甚至数周</p>
+<h3 id="ltp">LTP 的关键特性</h3>
+<table>
+<thead>
+<tr>
+<th>LTP 特性</th>
+<th>对应记忆特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>快速诱导</strong>（100Hz 刺激约 1 秒）</td>
+<td>记忆编码发生于事件中（几秒内）</td>
+</tr>
+<tr>
+<td><strong>持久性</strong>（小时→天→周）</td>
+<td>长期记忆可保持数年</td>
+</tr>
+<tr>
+<td><strong>特异性</strong>（只在被激活的突触增强）</td>
+<td>记忆具有内容特异性</td>
+</tr>
+<tr>
+<td><strong>协同性</strong>（弱刺激 + 强刺激→LTP 增强）</td>
+<td>记忆巩固需要重复和强化</td>
+</tr>
+<tr>
+<td><strong>输入特异性</strong>（仅激活通路的突触增强）</td>
+<td>记忆编码路径特异</td>
+</tr>
+<tr>
+<td><strong>联合性</strong>（两通路同时激活→相互增强）</td>
+<td>联想记忆（条件反射）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">分子机制</h3>
+<p><strong>NMDA 受体：巧合探测器</strong>：
+- NMDA 受体是一种特殊的离子通道蛋白
+- 需要同时满足两个条件才能开放：
+  1. 配体结合：谷氨酸（来自突触前神经元）必须结合
+  2. 去极化：突触后膜必须同时去极化（驱逐 Mg²⁺离子块）
+- 这使得 NMDA 受体成为完美的"赫布符合探测器"</p>
+<p><strong>信号级联</strong>：</p>
+<pre><code>NMDA 受体开放 → Ca²⁺内流 → CaMKII 激活
+    ↓
+AMPA 受体磷酸化（短期增强）
+    ↓
+更多 AMPA 受体插入突触膜（中期增强）
+    ↓
+基因转录（CREB 激活）→ 新蛋白合成 → 突触形态改变（长期增强）
+</code></pre>
+<p><strong>早期 LTP vs 晚期 LTP</strong>：
+- 早期 LTP：持续数分钟至数小时，依赖蛋白质磷酸化
+- 晚期 LTP：持续数天至数周，依赖基因转录和新蛋白合成</p>
+<h3 id="_6">学科地位</h3>
+<p><strong>神经科学史上被引用最多的论文之一</strong>：
+- 累计引用超过 10,000 次
+- 突触可塑性研究的基石
+- 距诺贝尔奖最近却至今未得的发现之一</p>
+<p><strong>记忆分子机制研究的主战场</strong>：
+- <a href="赫布学习律.html">赫布学习律</a>的实验证明
+- AI 学习算法的生物学对标
+- 理解学习障碍和记忆疾病的关键</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_05_bliss_lomo_LTP_1973.md</span> — LTP：记忆是如何写入神经元的</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Tim Bliss</span> — 发现者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">Terje Lømo</span> — 发现者（part_of）</li>
+<li><a href="赫布学习律.html">赫布学习律</a> — 实验证明（implements）</li>
+<li><span style="color:#e74c3c" title="broken link">海马</span> — 发现位置（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">NMDA 受体</span> — 分子机制（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">记忆</span> — 生物学基础（caused）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="长时任务Agent设计.html">&larr; 长时任务Agent设计</a>
+    <a href="阅读顺序重建.html">阅读顺序重建 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

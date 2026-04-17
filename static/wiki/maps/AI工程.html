@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI工程 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / AI工程</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="ai">AI工程</h1>
+<h2 id="_1">概念</h2>
+<ul>
+<li><a href="../concepts/Context-Engineering.html">Context-Engineering</a> — Context Engineering（上下文工程）是指对 LLM 的有限上下文窗口进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 toke</li>
+<li><a href="../concepts/LLM-Wire-Protocol统一模式.html">LLM-Wire-Protocol统一模式</a> — <a href="../entities/Mario-Zechner.html">Mario-Zechner</a> 在构建 <a href="../entities/Pi-Agent.html">Pi-Agent</a> 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire P</li>
+<li><a href="../concepts/Sprint合约制.html">Sprint合约制</a> — Sprint 合约制是<a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a>三 Agent 系统中的一个机制：在每个 Sprint 开始前，**生成器（Generator）和评估器（Eva</li>
+<li><a href="../concepts/Think工具.html">Think工具</a> — Think 工具是一个无副作用的特殊工具：模型调用它时，输入文本被追加到日志中作为"思考"，不获取新信息，不修改任何状态。它为模型在复杂工具链中提供一个**结构</li>
+<li><a href="../concepts/上下文焦虑.html">上下文焦虑</a> — 上下文焦虑（Context Anxiety）是 LLM 在长时任务中的一种失败模式：模型感知到自身接近上下文窗口限制时，会<strong>过早包装工作、草率结束任务</strong>，而</li>
+<li><a href="../concepts/上下文腐烂.html">上下文腐烂</a> — 上下文腐烂（Context Rot）是指随着 LLM 上下文窗口中 token 数量增加，模型从上下文中<strong>准确召回和推理信息的能力非均匀下降</strong>的现象。由 [</li>
+<li><a href="../concepts/上下文重置.html">上下文重置</a> — 上下文重置（Context Reset）是长时 Agent 任务中的一种会话管理策略：<strong>彻底清空上下文窗口，启动全新 Agent</strong>，通过精心设计的**结构化</li>
+<li><a href="../concepts/分层记忆架构.html">分层记忆架构</a> — 分层记忆架构（Hierarchical Memory Architecture）是 <a href="../concepts/Context-Engineering.html">Context-Engineering</a> 的核心实现模式。将 LLM </li>
+<li><a href="../concepts/即时上下文检索.html">即时上下文检索</a> — 即时上下文检索（Just-in-Time Context Retrieval）是一种 Agent 信息管理策略：Agent **不在运行前预加载所有可能相关的数</li>
+<li><a href="../concepts/情境化检索.html">情境化检索</a> — 情境化检索（Contextual Retrieval）是 Anthropic 提出的 <a href="../concepts/检索增强生成.html">RAG</a> 增强方案：在将文档 Chunk 建立<span style="color:#e74c3c" title="broken link">Em&lt;/li&gt;
+&lt;li&gt;[[检索增强生成</span> — 检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知</li>
+<li><a href="../concepts/检索重排序.html">检索重排序</a> — 检索重排序（Retrieval Reranking）是 <a href="../concepts/检索增强生成.html">RAG</a> 流水线中的精排步骤：在初始召回（粗排）获得大量候选 Chunk 后，用专门</li>
+<li><a href="../concepts/注意力预算.html">注意力预算</a> — 注意力预算（Attention Budget）是对 <a href="../concepts/Transformer架构.html">Transformer</a> 模型处理上下文时有限注意力资源的比喻性描述：每个</li>
+<li><a href="../concepts/渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — 渐进式披露（Progressive Disclosure）是一种交互设计和信息管理策略，旨在通过分阶段、按需的方式向用户（或 AI 模型）展示信息，以避免认知过</li>
+<li><a href="../concepts/结构化笔记法.html">结构化笔记法</a> — 结构化笔记法（Structured Note-taking）是 Agent 长时任务中的持久记忆技术：Agent 将关键信息**定期写入上下文窗口之外的持久存储</li>
+<li><a href="../concepts/跨Provider上下文迁移.html">跨Provider上下文迁移</a> — Context Handoff 是 <a href="../entities/Pi-Agent.html">Pi-Agent</a> pi-ai 层最独特的能力：一个会话可以在 Anthropic → OpenAI → <span style="color:#e74c3c" title="broken link">Goog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;_2&quot;&gt;实体&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[[Dieter Fox</span> — Dieter Fox 是美国华盛顿大学（University of Washington）教授，著名的机器人学和人工智能专家。他是<span style="color:#e74c3c" title="broken link">Probabilistic&lt;/li&gt;
+&lt;li&gt;[[Heinrich A. Ernst</span> — Heinrich A. Ernst 是一位在机器人学和人工智能领域具有开创性贡献的研究者，以其 1962 年在麻省理工学院（MIT）完成的博士论文《<span style="color:#e74c3c" title="broken link">MH-1&lt;/li&gt;
+&lt;li&gt;[[Jean-Claude Latombe</span> — Jean-Claude Latombe 是机器人<a href="../concepts/运动规划.html">运动规划</a>领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成</li>
+<li><a href="../entities/Nils J. Nilsson.html">Nils J. Nilsson</a> — Nils J. Nilsson（<a href="../entities/威廉·卡汉.html">1933-</a>2019）是人工智能领域的先驱人物，斯坦福大学计算机科学系奠基性教授之一，曾任 SRI Inter</li>
+<li><a href="../entities/Richard E. Fikes.html">Richard E. Fikes</a> — Richard E. Fikes 是一位杰出的计算机科学家，曾任斯坦福研究院（SRI International）人工智能中心的研究员，后任职于 <span style="color:#e74c3c" title="broken link">Xerox&lt;/li&gt;
+&lt;li&gt;[[Sebastian Thrun</span> — Sebastian Thrun 是斯坦福大学人工智能实验室前主任，著名计算机科学家，<a href="../concepts/Probabilistic Robotics.html">概率机器人学</a>领域的奠基</li>
+<li><a href="../entities/UniMERNet.html">UniMERNet</a> — UniMERNet 是用于<a href="../concepts/公式识别.html">数学公式识别</a>的深度学习模型，可将图像中的公式检测框转换为 LaTeX 代码，是 <a href="../entities/MinerU.html">MinerU</a> 第四层流水线中</li>
+</ul>
+<h2 id="_3">综合分析</h2>
+<ul>
+<li><a href="../syntheses/Claude-Code上下文工程全景.html">Claude-Code上下文工程全景</a> — Claude Code 的<a href="../concepts/Context-Engineering.html">上下文工程</a>本质是：**在 <a href="../concepts/LLM-Statelessness.html">LLM 无状态性</a></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    
+    <a href="AI设计.html">AI设计 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

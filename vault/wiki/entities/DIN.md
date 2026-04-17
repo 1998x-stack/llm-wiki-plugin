@@ -31,11 +31,11 @@ supersedes: null
 1. **核心洞察：用户兴趣是多峰分布** — 传统方法将所有历史行为等权相加（Sum/Average Pooling），假设用户兴趣是单峰分布。DIN 指出用户兴趣在向量空间中呈多峰分布，强行平均得到的向量可能落在完全不相关的位置上。
 2. **[[局部激活单元]]（[[局部激活单元|Local Activation Unit]]）** — 根据候选广告自适应地为用户历史行为分配权重。输入为 $[e_i; e_a; e_i \odot e_a]$ 的拼接（历史行为、候选广告、外积交互），通过小型 MLP 输出标量权重。刻意放弃 Softmax 归一化以保留兴趣强度信息。
 3. **[[Target Attention]] 机制** — 以候选商品为 Query，历史行为为 Key 和 Value，实现 target-aware 的注意力。同一用户面对不同候选广告时自动"激活"不同的历史行为，得到完全不同的兴趣表示。
-4. **[[Dice 激活函数]]** — 数据自适应激活函数，通过引入输入均值和方差将分界点从固定的零移动到数据分布中心，可视为 [[Probabilistic Robotics|PR]]eLU 的泛化形式。
+4. **[[Dice 激活函数]]** — 数据自适应激活函数，通过引入输入均值和方差将分界点从固定的零移动到数据分布中心，可视为 PReLU 的泛化形式。
 5. **[[Mini-batch Aware Regularization]]** — 频次感知正则化，只对当前 mini-batch 中出现的特征计算正则项，低频特征获得更强约束，解决数亿参数规模下的过拟合问题。
-6. **工业级效果** — 在阿里巴巴展示广告系统中取得 CTR 提升 10.0%、RPM 提升 3.8% 的在线 A/B 测试结果。0.001 的绝对 [[AUC]] 提升在数亿流量系统中即具有显著商业价值。
-7. **后续影响** — 开创了基于深度学习的用户行为序列建模方向，直接催生 [[DIEN]]（2019, [[生成式推荐|GR]]U+辅助损失）、DSIN（2019, Session+Self-attention）、[[BST]]（2019, [[Transformer架构|Transformer]]）、MIND（2019, 胶囊网络）、SIM（2020, 长序列建模）等工作。截至 2025 年被引 4000+ 次。
-8. **局限性** — 忽略行为之间的时序关系（由 [[DIEN]] 解决）；行为序列长度限制（由 SIM/SDIM 解决）；对稀疏行为用户效果有限。
+6. **工业级效果** — 在阿里巴巴展示广告系统中取得 CTR 提升 10.0%、RPM 提升 3.8% 的在线 A/B 测试结果。0.001 的绝对 AUC 提升在数亿流量系统中即具有显著商业价值。
+7. **后续影响** — 开创了基于深度学习的用户行为序列建模方向，直接催生 DIEN（2019, GRU+辅助损失）、DSIN（2019, Session+Self-attention）、BST（2019, [[Transformer架构|Transformer]]）、MIND（2019, 胶囊网络）、SIM（2020, 长序列建模）等工作。截至 2025 年被引 4000+ 次。
+8. **局限性** — 忽略行为之间的时序关系（由 DIEN 解决）；行为序列长度限制（由 SIM/SDIM 解决）；对稀疏行为用户效果有限。
 
 ## 来源
 - [Deep Interest Network for Click-Through Rate Prediction (KDD 2018)](https://arxiv.org/abs/1706.06978)
@@ -47,10 +47,10 @@ supersedes: null
 - [[CTR 预估]] — 应用场景
 - [[华为诺亚方舟实验室]] — DeepFM 来源机构
 - [[Wide & Deep]] — Google 同期工作
-- [[DIEN]] — 解决 DIN 不建模时序关系的缺陷
+- DIEN — 解决 DIN 不建模时序关系的缺陷
 - [[局部激活单元]] — DIN 核心组件
 - [[Dice 激活函数]] — DIN 提出的训练技巧
 - [[Target Attention]] — DIN 使用的注意力类型
-- [[MIND]] — 从 DIN 单向量扩展为多向量表示
-- [[BST]] — 用 Transformer 替代 DIN 简单注意力
-- [[SIM]] — 将 DIN 扩展到超长行为序列
+- MIND — 从 DIN 单向量扩展为多向量表示
+- BST — 用 Transformer 替代 DIN 简单注意力
+- SIM — 将 DIN 扩展到超长行为序列

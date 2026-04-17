@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">研究</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="claude-mem">Claude-Mem</h1>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>系统采用“两进程 + 一数据库”模型：
 - <strong>主进程（Claude Code）</strong>：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - <strong>后台服务（Worker Service）</strong>：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- <strong>数据层</strong>：使用 <a href="SQLite.html">SQLite</a> 配合 <a href="../concepts/FTS5.html">FTS5</a> 进行全文检索，结合 <a href="ChromaDB.html">ChromaDB</a> 进行语义<a href="../concepts/近似最近邻检索.html">向量检索</a>，形成混合检索能力。</p>
+- <strong>数据层</strong>：使用 <a href="SQLite.html">SQLite</a> 配合 FTS5 进行全文检索，结合 <a href="ChromaDB.html">ChromaDB</a> 进行语义<a href="../concepts/近似最近邻检索.html">向量检索</a>，形成混合检索能力。</p>
 <h3 id="hook">Hook 架构细节</h3>
 <p>Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 <strong>Lifecycle Hooks</strong> 机制，在特定时间节点介入工作流：
 - <strong>Hook 层</strong>：运行在 Claude Code 进程中的 6 个脚本（<code>smart-install.js</code>, <code>context-hook.js</code>, <code>new-hook.js</code>, <code>save-hook.js</code>, <code>summary-hook.js</code>, <code>cleanup-hook.js</code>），负责数据采集、预处理和指令下发。
@@ -177,18 +177,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_10">三层存储架构</h3>
 <p>Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
 1. <strong>关系型数据层</strong>：利用 <a href="SQLite.html">SQLite</a> 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
-2. <strong>全文检索层</strong>：利用 <a href="../concepts/FTS5.html">FTS5</a> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
+2. <strong>全文检索层</strong>：利用 FTS5 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
 3. <strong>语义向量层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
 <h3 id="_11">检索工作流</h3>
 <p>系统根据查询类型自动选择最优检索策略：
-- <strong>精确关键词检索</strong>：优先使用 <a href="../concepts/FTS5.html">FTS5</a> 实现毫秒级响应
-- <strong>语义相似度检索</strong>：当 <a href="../concepts/FTS5.html">FTS5</a> 召回不足时，启用 <a href="ChromaDB.html">ChromaDB</a> 进行模糊匹配
+- <strong>精确关键词检索</strong>：优先使用 FTS5 实现毫秒级响应
+- <strong>语义相似度检索</strong>：当 FTS5 召回不足时，启用 <a href="ChromaDB.html">ChromaDB</a> 进行模糊匹配
 - <strong>混合检索</strong>：复杂查询可能组合多种检索方式，通过<a href="../concepts/检索重排序.html">重排序</a>确保最相关结果优先</p>
 <h3 id="_12">工程特性</h3>
 <ul>
 <li><strong>解耦设计</strong>：内部使用 <code>sdk_session_id</code>，外部兼容 <code>claude_session_id</code>，便于未来扩展支持其他 AI 工具（如 Cursor）。</li>
-<li><strong>自动化同步</strong>：通过 9 个 <a href="SQLite.html">SQLite</a> 触发器（Insert/Update/Delete）自动维护 <a href="../concepts/FTS5.html">FTS5</a> 索引，对应用层完全透明。</li>
-<li><strong>安全性</strong>：内置严格的 <a href="../concepts/FTS5.html">FTS5</a> 查询转义机制，并通过 332 个测试用例防止 SQL 注入。</li>
+<li><strong>自动化同步</strong>：通过 9 个 <a href="SQLite.html">SQLite</a> 触发器（Insert/Update/Delete）自动维护 FTS5 索引，对应用层完全透明。</li>
+<li><strong>安全性</strong>：内置严格的 FTS5 查询转义机制，并通过 332 个测试用例防止 SQL 注入。</li>
 <li><strong>迁移系统</strong>：拥有完善的 10 步迁移历史，确保版本升级时的数据完整性和向后兼容性。</li>
 </ul>
 <h2 id="_13">来源</h2>
@@ -215,13 +215,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><span style="color:#e74c3c" title="broken link">Save Hook</span></li>
 <li><span style="color:#e74c3c" title="broken link">Summary Hook</span></li>
 <li><span style="color:#e74c3c" title="broken link">Cleanup Hook</span></li>
-<li><a href="../concepts/FTS5.html">FTS5</a></li>
+<li>FTS5</li>
 <li><span style="color:#e74c3c" title="broken link">三层存储架构</span></li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Claude-Code.html">&larr; Claude-Code</a>
-    <a href="Codex CLI.html">Codex CLI &rarr;</a>
+    <a href="Claude-Haiku-4-5.html">&larr; Claude-Haiku-4-5</a>
+    <a href="Claude-Mythos-Preview.html">Claude-Mythos-Preview &rarr;</a>
   </div>
 </div>
 </body>

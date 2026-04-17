@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">贝叶斯推理</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理（Bayesian Inference）是一种统计推断范式：将未知参数视为随机变量，通过<a href="贝叶斯定理.html">贝叶斯定理</a>将先验信念与观测数据结合，得到后验分布，从而不断更新对参数的认识。由<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>（1763年）创立逆概率框架，经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1774年独立发展并系统化），在20世纪计算能力提升后成为统计学和机器学习的核心范式之一，与频率学派形成两大统计推断传统。</p>
+<p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理（Bayesian Inference）是一种统计推断<a href="规范化理论.html">范式</a>：将未知参数视为随机变量，通过<a href="贝叶斯定理.html">贝叶斯定理</a>将先验信念与观测数据结合，得到后验分布，从而不断更新对参数的认识。由<a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a>（1763年）创立逆概率框架，经<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">皮埃尔-西蒙·拉普拉斯</a>（1774年独立发展并系统化），在20世纪计算能力提升后成为统计学和机器学习的核心<a href="规范化理论.html">范式</a>之一，与频率学派形成两大统计推断传统。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心框架：先验 → 似然 → 后验</h3>
 <p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>推理的完整流程：</p>
@@ -181,7 +181,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 | 先验信息 | 不使用（客观性要求） | 显式编码先验信念 |
 | 不确定性表达 | 置信区间（频率意义） | 可信区间（概率意义） |</p>
 <h3 id="_6">贝叶斯方法的历史起源</h3>
-<p><strong>逆概率问题</strong>（Bayes, 1763年）：在当时，<a href="概率论.html">概率论</a>只能回答"已知 p，n 次试验 k 次成功的概率？"（正向问题）。<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>首次系统解决了<strong>逆向问题</strong>：已知 k 次成功，p 的分布是什么？</p>
+<p><strong>逆概率问题</strong>（Bayes, 1763年）：在当时，<a href="../maps/概率论.html">概率论</a>只能回答"已知 p，n 次试验 k 次成功的概率？"（正向问题）。<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>首次系统解决了<strong>逆向问题</strong>：已知 k 次成功，p 的分布是什么？</p>
 <p><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>的关键洞见是将 p 视为随机变量，赋予其先验分布（均匀分布），然后通过观测数据计算后验分布。这在当时是概念上的革命：参数不再是"未知的固定常数"，而是有分布的随机量。</p>
 <p><strong><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的独立发展（1774年）</strong>：<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>独立提出了更一般化的逆概率方法，并应用于天文学（彗星轨道推断）和人口统计学。由于<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的工作更加完整和系统，<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>思想的实际传播主要通过<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a>的工作实现。</p>
 <h3 id="_7">先验分布的选择问题</h3>
@@ -233,7 +233,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="贝叶斯定理.html">&larr; 贝叶斯定理</a>
-    <a href="负迁移.html">负迁移 &rarr;</a>
+    <a href="贝尔曼方程.html">贝尔曼方程 &rarr;</a>
   </div>
 </div>
 </body>

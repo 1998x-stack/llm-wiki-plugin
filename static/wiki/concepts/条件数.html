@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">条件数</h1>
 <h2 id="_2">概述</h2>
-<p>条件数（condition number）$\kappa(A) = |A| \cdot |A^{-1}|$ 是衡量线性方程组 $Ax = b$ 对输入扰动的<strong>固有敏感程度</strong>的核心量。由<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>于 1948 年系统引入（记作 $N(A)$），<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>与 Goldstine 于 1947 年独立提出类似概念。条件数大（病态问题）意味着输入的微小扰动会被极度放大到输出，与算法选择无关；条件数小（良态问题）则意味着结果对误差不敏感。结合<a href="后向误差分析.html">后向误差分析</a>，条件数提供了<a href="数值分析.html">数值计算</a>可靠性的完整理论框架。</p>
+<p>条件数（condition number）$\kappa(A) = |A| \cdot |A^{-1}|$ 是衡量线性方程组 $Ax = b$ 对输入扰动的<strong>固有敏感程度</strong>的核心量。由<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>于 1948 年系统引入（记作 $N(A)$），<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>与 Goldstine 于 1947 年独立提出类似概念。条件数大（病态问题）意味着输入的微小扰动会被极度放大到输出，与算法选择无关；条件数小（良态问题）则意味着结果对误差不敏感。结合<a href="后向误差分析.html">后向误差分析</a>，条件数提供了<a href="../maps/数值分析.html">数值计算</a>可靠性的完整理论框架。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>$$\kappa(A) = |A| \cdot |A^{-1}|$$</p>
@@ -181,7 +181,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><a href="../entities/阿兰·图灵.html">图灵</a>引入"病态"（ill-conditioned）和"良态"（well-conditioned）这对术语，至今是<a href="数值分析.html">数值分析</a>最常用的专业词汇。</p>
+<p><a href="../entities/阿兰·图灵.html">图灵</a>引入"病态"（ill-conditioned）和"良态"（well-conditioned）这对术语，至今是<a href="../maps/数值分析.html">数值分析</a>最常用的专业词汇。</p>
 <h3 id="_7">条件数与后向误差分析的结合</h3>
 <p><a href="后向误差分析.html">后向误差分析</a>（<a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a> 1963–1965）将算法误差分解为：</p>
 <p>$$\underbrace{\text{前向误差}}<em>{\text{结果精度}} \approx \underbrace{\kappa(A)}</em>{\text{问题固有难度}} \times \underbrace{\epsilon_{\text{backward}}}_{\text{算法稳定性}}$$</p>
@@ -199,7 +199,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 | 主要对象 | 高斯消元法 | <a href="矩阵.html">矩阵</a>求逆 |
 | 现代标准 | 更接近（便于推广）| 仅适用<a href="正规矩阵.html">正规矩阵</a> |</p>
 <h3 id="_8">条件数的推广</h3>
-<p>条件数概念已推广到几乎所有<a href="数值分析.html">数值计算</a>领域：</p>
+<p>条件数概念已推广到几乎所有<a href="../maps/数值分析.html">数值计算</a>领域：</p>
 <table>
 <thead>
 <tr>
@@ -244,7 +244,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="期望观看时长.html">&larr; 期望观看时长</a>
-    <a href="极大极小定理.html">极大极小定理 &rarr;</a>
+    <a href="极大值原理（Pontryagin Maximum Principle）.html">极大值原理（Pontryagin Maximum Principle） &rarr;</a>
   </div>
 </div>
 </body>

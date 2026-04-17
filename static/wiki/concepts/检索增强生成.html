@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">检索增强生成</h1>
 <h2 id="_2">概述</h2>
-<p>检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知识不足的技术。适用于知识库超过上下文窗口容量（约 20 万 token）的场景。</p>
+<p>检索增强生成（Retrieval-Augmented Generation, RAG）是一种通过检索外部知识库中的相关信息并注入提示，来弥补 LLM 静态训练知识不足的技术。适用于知识库超过<a href="上下文窗口.html">上下文窗口</a>容量（约 20 万 token）的场景。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="rag">标准 RAG 流水线</h3>
 <p><strong>预处理阶段（离线）：</strong>
@@ -147,10 +147,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 5. 向量数据库按语义相似度召回 Top-K 个 Chunk
 6. 将 Top-K Chunk 追加到提示中，模型生成回答</p>
 <h3 id="bm25">BM25 混合检索</h3>
-<p>纯语义嵌入擅长捕捉语义关系，但会遗漏精确词汇匹配。BM25（Best Matching 25）作为补充，通过词频-逆文档频率（<a href="../entities/TensorFlow.html">TF</a>-IDF）进行词汇精确匹配，对含有专有标识符或技术术语的查询尤为有效。</p>
+<p>纯语义嵌入擅长捕捉语义关系，但会遗漏精确词汇匹配。BM25（Best Matching 25）作为补充，通过词频-逆文档频率（<a href="TF-IDF.html">TF-IDF</a>）进行词汇精确匹配，对含有专有标识符或技术术语的查询尤为有效。</p>
 <p><strong>示例</strong>：查询 "Error code TS-999"——嵌入模型可能检索到关于错误码的泛化内容，而 BM25 能精确定位包含 "TS-999" 的文档。</p>
 <p>标准混合 RAG 流程：
-1. 切 Chunk → 生成 <a href="../entities/TensorFlow.html">TF</a>-IDF 编码 + 语义嵌入
+1. 切 Chunk → 生成 <a href="TF-IDF.html">TF-IDF</a> 编码 + 语义嵌入
 2. BM25 找到词汇精确匹配的 Top Chunks
 3. 嵌入找到语义相似的 Top Chunks
 4. <strong>Rank Fusion</strong>（倒数排名融合等方式）合并去重
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这一问题催生了 <a href="情境化检索.html">情境化检索</a> 技术。</p>
 <h3 id="_4">适用边界</h3>
 <ul>
-<li><strong>知识库 &lt; 20 万 token（约 500 页）</strong>：可直接将全部内容放入提示（配合提示缓存大幅降低成本），无需 RAG</li>
+<li><strong>知识库 &lt; 20 万 token（约 500 页）</strong>：可直接将全部内容放入提示（配合<a href="提示词缓存.html">提示缓存</a>大幅降低成本），无需 RAG</li>
 <li><strong>知识库 &gt; 20 万 token</strong>：RAG 是可扩展的标准方案</li>
 <li><strong>动态频繁更新的内容</strong>：RAG 配合增量索引优于全量提示</li>
 </ul>
@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="样条方法.html">&larr; 样条方法</a>
+    <a href="格兰杰因果（Granger Causality）.html">&larr; 格兰杰因果（Granger Causality）</a>
     <a href="检索重排序.html">检索重排序 &rarr;</a>
   </div>
 </div>

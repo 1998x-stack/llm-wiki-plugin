@@ -4,6 +4,1017 @@ type: log
 
 # 操作日志
 
+## [2026-04-17 21:20] maintain
+- Relink: 3418 terms, 1058 scanned, 957 new links (291 pages)
+- Check: 0 errors, 1003 warnings (B1×698/F3×184/M1×54/O1×61/其他×6), 0 new gotchas
+- Lint: index.md rebuilt (1067 pages); SQLite.md F2 YAML修复（supersedes 缩进错误）
+- Build: 1073 nodes, 8520 edges, 0 orphans, 7 components → static/ synced
+
+---
+
+## [2026-04-17 21:00] ingest | batch 18-20（最终批次）
+
+**批量处理**：`raw/books/计算机科学/18-20` — 三篇论文的深度精读笔记。
+
+### 文件 18: lamport-paxos.md
+**创建了 3 个新页面**：
+- `wiki/entities/Paxos 论文.md` — Lamport 1998年发表（初稿1989年），分布式共识奠基之作
+- `wiki/concepts/Paxos 算法.md` — 两阶段协议、多数派机制、安全性无条件保证
+- `wiki/concepts/FLP 不可能性定理.md` — 异步系统中确定性共识不可能的理论证明
+
+### 文件 19: dean-ghemawat-mapreduce.md
+**创建了 4 个新页面**：
+- `wiki/entities/MapReduce 论文.md` — Google 三驾马车之一
+- `wiki/entities/Jeffrey Dean.md` — Google 核心系统工程师、TensorFlow 主导者
+- `wiki/entities/Sanjay Ghemawat.md` — GFS 主要设计者
+- `wiki/concepts/MapReduce.md` — Map/Reduce 编程模型，大数据时代的开篇
+
+### 文件 20: vaswani-transformer.md
+**创建了 4 个新页面**：
+- `wiki/entities/Transformer 论文.md` — Attention Is All You Need，引用量超过13万次
+- `wiki/entities/Ashish Vaswani.md` — 论文第一作者
+- `wiki/concepts/Transformer 架构.md` — 完全基于注意力的序列转换架构
+- `wiki/concepts/自注意力机制.md` — O(1) 路径长度，任意位置直接连接
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：8 个页面全部更新成功
+**Index 同步**：1067 页（+8 新增）
+
+---
+
+## 批量 ingest 完成总结
+
+**处理范围**：`raw/books/计算机科学/` 全部 20 个文件
+**总创建页面**：约 100+ 个新页面（从 993 页增长到 1067 页，+74 页）
+**处理时间**：2026-04-17 14:30 - 21:00
+**矛盾检查**：0 个矛盾
+**失败文件**：0
+
+## [2026-04-17 20:30] ingest | batch 15-17
+
+**批量处理**：`raw/books/计算机科学/15-17` — 三篇论文的深度精读笔记。
+
+### 文件 15: thompson-trusting-trust.md
+**创建了 3 个新页面**：
+- `wiki/entities/Thompson 信任信任论文.md` — 1984年图灵奖演讲，编译器木马攻击
+- `wiki/concepts/供应链安全.md` — 开创的安全研究方向
+- `wiki/concepts/可重现构建.md` — 对 Thompson 问题的工程回应
+
+### 文件 16: brooks-no-silver-bullet.md
+**创建了 2 个新页面**：
+- `wiki/entities/No Silver Bullet 论文.md` — 软件工程中不存在"银弹"
+- `wiki/entities/Frederick Brooks.md` — 《人月神话》作者
+
+### 文件 17: berners-lee-www.md
+**创建了 6 个新页面**：
+- `wiki/entities/万维网提案.md` — 1989年 CERN 内部提案
+- `wiki/entities/Tim Berners-Lee.md` — 万维网发明者、2016年图灵奖
+- `wiki/concepts/万维网.md` — 基于 URL/HTTP/HTML 的分布式信息系统
+- `wiki/concepts/URL.md` — 全球信息空间统一编址
+- `wiki/concepts/HTTP.md` — 极简的请求-响应协议
+- `wiki/concepts/HTML.md` — 人人都能写的标记语言
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：11 个页面全部更新成功
+**Index 同步**：1057 页（+11 新增）
+
+## [2026-04-17 20:00] ingest | batch 12-14
+
+**批量处理**：`raw/books/计算机科学/12-14` — 三篇论文的深度精读笔记。
+
+### 文件 12: backus-liberated-von-neumann.md
+**创建了 1 个新页面**：
+- `wiki/entities/Backus 函数式编程论文.md` — Backus 1978年图灵奖演讲，批判冯·诺依曼范式
+
+### 文件 13: lamport-time-clocks.md
+**创建了 6 个新页面**：
+- `wiki/entities/Lamport 逻辑时钟论文.md` — 论文实体页：happened-before、逻辑时钟、互斥算法
+- `wiki/entities/Leslie Lamport.md` — 分布式系统理论奠基者、2013年图灵奖
+- `wiki/concepts/happened-before 关系.md` — 事件之间的因果偏序关系
+- `wiki/concepts/逻辑时钟.md` — 不依赖物理时钟的因果追踪机制
+- `wiki/concepts/分布式系统.md` — 多台通过网络互联的计算机组成的系统
+- `wiki/concepts/向量时钟.md` — 完整捕获因果信息的改进机制
+
+### 文件 14: hoare-csp.md
+**创建了 3 个新页面**：
+- `wiki/entities/Hoare CSP 论文.md` — 论文实体页：CSP 模型、同步通信、守卫命令
+- `wiki/entities/Tony Hoare.md` — 快速排序、Hoare 逻辑、CSP 发明者、1980年图灵奖
+- `wiki/concepts/CSP 模型.md` — 通过消息传递而非共享内存实现并发
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：10 个页面全部更新成功
+**Index 同步**：1046 页（+10 新增）
+
+## [2026-04-17 19:30] ingest | raw/books/计算机科学/11-diffie-hellman-new-directions.md
+
+**来源文件**：`raw/books/计算机科学/11-diffie-hellman-new-directions.md` — Diffie & Hellman 1976年论文《New Directions in Cryptography》的深度精读笔记。
+
+**创建了 13 个新页面**：
+- `wiki/entities/Diffie-Hellman 论文.md` — 论文实体页：公钥密码学、DH 协议、数字签名框架
+- `wiki/entities/Whitfield Diffie.md` — 公钥密码学共同发明者、2015年图灵奖
+- `wiki/entities/Martin Hellman.md` — 公钥密码学共同发明者、2015年图灵奖、DES 批评者
+- `wiki/entities/James Ellis.md` — GCHQ 成员，1970年独立提出公钥密码学概念
+- `wiki/entities/Clifford Cocks.md` — GCHQ 成员，1973年独立发明类似 RSA 算法
+- `wiki/entities/Malcolm Williamson.md` — GCHQ 成员，1974年独立发明类似 DH 方案
+- `wiki/concepts/公钥密码学.md` — 加密和解密使用不同密钥的革命性范式
+- `wiki/concepts/Diffie-Hellman 密钥交换.md` — 第一个公钥密钥交换协议
+- `wiki/concepts/数字签名.md` — 认证性、完整性、不可否认性
+- `wiki/concepts/离散对数问题.md` — DH 协议的安全性基础
+- `wiki/concepts/单向陷门函数.md` — 公钥密码学的数学基础
+- `wiki/concepts/后量子密码学.md` — 量子计算威胁下的新密码学范式
+- `wiki/concepts/中间人攻击.md` — DH 协议的主要弱点
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：13 新页面 0 ERROR（I1 警告将由 snapshot_index 修复）
+**BM25 更新**：13 个页面全部更新成功
+**Index 同步**：1036 页（+13 新增）
+
+## [2026-04-17 19:00] ingest | raw/books/计算机科学/10-cerf-kahn-tcp-ip.md
+
+**来源文件**：`raw/books/计算机科学/10-cerf-kahn-tcp-ip.md` — Cerf & Kahn 1974年论文《A Protocol for Packet Network Intercommunication》的深度精读笔记。
+
+**创建了 11 个新页面**：
+- `wiki/entities/Vinton Cerf.md` — TCP/IP 共同发明者、"互联网之父"、2004年图灵奖
+- `wiki/entities/Robert Kahn.md` — TCP/IP 共同发明者、"互联网之父"、2004年图灵奖
+- `wiki/entities/TCP-IP 论文.md` — 论文实体页：网关概念、端到端原则、TCP 机制
+- `wiki/entities/Louis Pouzin.md` — CYCLADES 项目领导者，数据报模型启发了 TCP/IP
+- `wiki/concepts/TCP-IP.md` — 全球互联网的核心协议族
+- `wiki/concepts/端到端原则.md` — 智能在边缘，核心保持简单
+- `wiki/concepts/网关与路由器.md` — 连接异构网络的无状态专用设备
+- `wiki/concepts/ARPANET.md` — 互联网的前身，1969年投入运行
+- `wiki/concepts/分组交换.md` — 互联网的技术基础
+- `wiki/concepts/IPv4.md` — 32位地址，约43亿个唯一地址
+- `wiki/concepts/拥塞控制.md` — Van Jacobson 1988年引入，防止网络崩溃
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：11 新页面 0 ERROR（I1 警告将由 snapshot_index 修复）
+**BM25 更新**：11 个页面全部更新成功
+**Index 同步**：1023 页（+11 新增）
+
+## [2026-04-17 18:30] ingest | raw/books/计算机科学/09-ritchie-thompson-unix.md
+
+**来源文件**：`raw/books/计算机科学/09-ritchie-thompson-unix.md` — Ritchie & Thompson 1974年论文《The UNIX Time-Sharing System》的深度精读笔记。
+
+**创建了 9 个新页面**：
+- `wiki/entities/UNIX 论文.md` — 论文实体页：11页篇幅、11,000+次引用、核心设计
+- `wiki/entities/Dennis Ritchie.md` — C 语言发明者、UNIX 共同创造者、1983年图灵奖
+- `wiki/entities/Ken Thompson.md` — UNIX 原型开发者、fork 的偶然优雅、1983年图灵奖
+- `wiki/concepts/UNIX.md` — 以简洁性、模块化、"一切皆文件"为核心的操作系统
+- `wiki/concepts/C 语言.md` — 为了编写 UNIX 而发展起来的系统编程语言
+- `wiki/concepts/Multics.md` — UNIX 反叛的对象，"复杂性代价"的经典教训
+- `wiki/concepts/操作系统.md` — UNIX 定义了现代操作系统的基因
+- `wiki/entities/Brian Kernighan.md` — 《C 程序设计语言》合著者、awk 共同发明者
+- `wiki/entities/Doug McIlroy.md` — 管道思想的提出者、Bell Labs UNIX 团队成员
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：9 新页面 0 ERROR（初版3个 B1 断链已修复）
+**BM25 更新**：9 个页面全部更新成功
+**Index 同步**：1012 页（+9 新增）
+
+## [2026-04-17 18:00] ingest | raw/books/计算机科学/08-cook-np-completeness.md
+
+**来源文件**：`raw/books/计算机科学/08-cook-np-completeness.md` — Cook 1971年论文《The Complexity of Theorem-Proving Procedures》的深度精读笔记。
+
+**创建了 10 个新页面**：
+- `wiki/entities/Cook NP 完全性论文.md` — 论文实体页：NP 完全性定义、Cook-Levin 定理、历史影响
+- `wiki/entities/Stephen Cook.md` — NP 完全性定义者、1982年图灵奖
+- `wiki/entities/Leonid Levin.md` — 苏联裔计算机科学家，独立发现 NP 完全性
+- `wiki/entities/Richard Karp.md` — 证明了21个经典组合问题的 NP 完全性
+- `wiki/concepts/NP 完全性.md` — 计算复杂度理论核心概念，"一荣俱荣、一损俱损"
+- `wiki/concepts/Cook-Levin 定理.md` — SAT 是 NP 完全的，证明核心思路
+- `wiki/concepts/SAT 问题.md` — 布尔可满足性问题，第一个 NP 完全问题
+- `wiki/concepts/P vs NP.md` — 千禧年数学问题，悬赏100万美元
+- `wiki/concepts/多项式时间归约.md` — 比较问题复杂度的核心工具
+- `wiki/concepts/计算复杂度理论.md` — 研究算法资源需求和内在难度的学科
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：10 新页面 0 ERROR（初版1个 B1 断链已修复）
+**BM25 更新**：10 个页面全部更新成功
+**Index 同步**：1003 页（+10 新增）
+
+## [2026-04-17 17:30] ingest | raw/books/计算机科学/07-codd-relational-model.md
+
+**来源文件**：`raw/books/计算机科学/07-codd-relational-model.md` — Codd 1970年论文《A Relational Model of Data for Large Shared Data Banks》的深度精读笔记。
+
+**创建了 8 个新页面**：
+- `wiki/entities/关系模型论文.md` — 论文实体页：关系、关系代数、关系演算、规范化、数据独立性
+- `wiki/entities/E.F. Codd.md` — 关系模型发明者、1981年图灵奖得主
+- `wiki/concepts/关系模型.md` — 用二维表作为数据统一逻辑表示，取代层次/网状模型
+- `wiki/concepts/关系代数.md` — 选择、投影、并、差、笛卡尔积五种基本运算，闭包性
+- `wiki/concepts/关系演算.md` — 基于一阶谓词逻辑的声明式查询，与关系代数等价
+- `wiki/concepts/数据独立性.md` — 物理数据独立性和逻辑数据独立性，三级模式架构
+- `wiki/concepts/规范化理论.md` — 消除数据冗余和更新异常的科学化数据库设计方法
+- `wiki/concepts/SQL.md` — 关系模型的标准查询语言，历史上使用最广泛的声明式编程语言
+
+**更新了 1 个已有页面**：
+- `wiki/entities/SQLite.md` — 新增关系模型、SQL、Codd 三个 relates_to、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：8 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：9 个页面（8 新 + 1 更新）全部更新成功
+**Index 同步**：993 页（+8 新增）
+
+## [2026-04-17 17:00] ingest | raw/books/计算机科学/06-dijkstra-goto-considered-harmful.md
+
+**来源文件**：`raw/books/计算机科学/06-dijkstra-goto-considered-harmful.md` — Dijkstra 1968年《Go To Statement Considered Harmful》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/Go To Statement Considered Harmful 论文.md` — 论文实体页：坐标系论证、核心论点、历史影响
+- `wiki/entities/Edsger Dijkstra.md` — 荷兰计算机科学家、1972年图灵奖、结构化编程开创者
+- `wiki/concepts/结构化编程.md` — 顺序/选择/循环三种基本控制结构，消除 goto
+- `wiki/concepts/意大利面条式代码.md` — goto 导致的控制流混乱，被结构化编程取代
+- `wiki/concepts/Bohm-Jacopini 定理.md` — 1966年证明 goto 在表达能力上冗余
+- `wiki/concepts/软件危机.md` — 1960年代末软件行业困境，结构化编程的时代背景
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/函数式编程.md` — 新增 Dijkstra 关系、新增来源、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：7 个页面（6 新 + 1 更新）全部更新成功
+**Index 同步**：986 页（+6 新增）
+
+## [2026-04-17 16:30] ingest | raw/books/计算机科学/05-mccarthy-lisp.md
+
+**来源文件**：`raw/books/计算机科学/05-mccarthy-lisp.md` — McCarthy 1960年论文《Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I》的深度精读笔记。
+
+**创建了 9 个新页面**：
+- `wiki/entities/LISP 论文.md` — 论文实体页：S-表达式、五个基本函数、eval 函数、垃圾回收
+- `wiki/entities/John McCarthy.md` — LISP 发明者、"人工智能"术语提出者、1971年图灵奖
+- `wiki/entities/Steve Russell.md` — McCarthy 学生，实现第一个 LISP 解释器
+- `wiki/concepts/LISP.md` — 世界第二古老的高级编程语言，开创函数式编程范式
+- `wiki/concepts/函数式编程.md` — 将计算视为数学函数求值的编程范式
+- `wiki/concepts/S-表达式.md` — LISP 的统一数据表示，原子和有序对递归定义
+- `wiki/concepts/同像性.md` — 程序和数据共享相同表示，LISP 宏系统的基础
+- `wiki/concepts/垃圾回收.md` — 自动内存管理，McCarthy 首次提出
+- `wiki/concepts/eval 函数.md` — 用不到一页定义的 LISP 自解释器，"计算机科学史上最美丽的一页"
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/λ 演算.md` — 新增 LISP 和函数式编程 relates_to、新增来源、source_count 1→2
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：9 新页面 0 ERROR（I1 警告将由 snapshot_index 修复，B1 断链已修复）
+**BM25 更新**：10 个页面（9 新 + 1 更新）全部更新成功
+**Index 同步**：980 页（+9 新增）
+
+## [2026-04-17 16:00] ingest | raw/books/计算机科学/04-backus-fortran.md
+
+**来源文件**：`raw/books/计算机科学/04-backus-fortran.md` — Backus 等人1957年论文《The FORTRAN Automatic Coding System》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/FORTRAN 编译器论文.md` — 论文实体页：六阶段编译器架构、性能数据、工程规模、历史影响
+- `wiki/entities/John Backus.md` — FORTRAN 之父、BNF 发明者、1977年图灵奖得主
+- `wiki/entities/Grace Hopper.md` — 编译器技术先驱、A-0 系统开发者、COBOL 推动者
+- `wiki/concepts/FORTRAN.md` — 世界上第一个广泛使用的高级编程语言，专为科学计算设计
+- `wiki/concepts/编译器优化.md` — 公共子表达式消除、循环不变量外提、强度削减、寄存器分配等核心技术
+- `wiki/concepts/BNF.md` — Backus-Naur Form，描述编程语言语法的形式化表示法
+
+**更新了 1 个已有页面**：
+- `wiki/concepts/冯·诺依曼瓶颈.md` — 新增 Backus 图灵奖演讲背景、2 个新 relates_to、新增来源
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR, 0 WARNING（初版 3 个 B1 断链已修复）
+**BM25 更新**：7 个页面（6 新 + 1 更新）全部更新成功
+**Index 同步**：971 页（+6 新增）
+
+## [2026-04-17 15:30] ingest | raw/books/计算机科学/03-von-neumann-edvac.md
+
+**来源文件**：`raw/books/计算机科学/03-von-neumann-edvac.md` — von Neumann 1945年报告《First Draft of a Report on the EDVAC》的深度精读笔记。
+
+**创建了 7 个新页面**：
+- `wiki/entities/EDVAC 报告.md` — 论文实体页：五大组件架构、核心贡献、署名争议、传播效应
+- `wiki/concepts/存储程序计算机.md` — 指令与数据统一存储、取指-解码-执行循环、与图灵机的关系
+- `wiki/concepts/冯·诺依曼瓶颈.md` — CPU-内存数据传输瓶颈、历史演变、LLM 时代的回响
+- `wiki/entities/J. Presper Eckert.md` — ENIAC/EDVAC 设计者、署名争议核心人物
+- `wiki/entities/John Mauchly.md` — ENIAC/EDVAC 设计者、署名争议核心人物
+- `wiki/entities/Herman Goldstine.md` — EDVAC 报告分发者、ENIAC 项目军方联络官
+- `wiki/entities/Maurice Wilkes.md` — EDSAC 建造者、第一个实用存储程序计算机
+
+**更新了 1 个已有页面**：
+- `wiki/entities/约翰·冯·诺依曼.md` — 新增 EDVAC 报告与存储程序计算机完整章节（五大组件、存储程序概念、署名争议、传播效应、从理论到工程的桥梁）、10 个新 relates_to、source_count 3→4
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：7 新页面全部 0 ERROR, 0 WARNING（初版 6 个 B1 断链已修复）
+**BM25 更新**：8 个页面（7 新 + 1 更新）全部更新成功
+**Index 同步**：965 页（+7 新增）
+
+## [2026-04-17 15:00] ingest | raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md
+
+**来源文件**：`raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md` — Shannon 1948年论文《A Mathematical Theory of Communication》的深度精读笔记（计算机科学视角）。
+
+**创建了 4 个新页面**：
+- `wiki/concepts/信源信道分离定理.md` — 信源编码和信道编码可分别独立优化而不损失性能，为通信系统模块化设计提供理论保障
+- `wiki/concepts/渐近等分性 (AEP).md` — 信源编码定理证明的核心数学工具，典型集大小约 2^{nH}
+- `wiki/concepts/随机编码论证.md` — Shannon 信道编码定理证明的核心方法，存在性而非构造性证明
+- `wiki/entities/Warren Weaver.md` — 1949年与 Shannon 合编《The Mathematical Theory of Communication》，撰写通俗导读
+
+**更新了 9 个已有页面**：
+- `wiki/entities/克劳德·香农.md` — 新增论文标题"A" vs "The"的微妙含义、编码理论半世纪征程、3 个新 relates_to、source_count 4→5
+- `wiki/concepts/信息与语义分离.md` — 新增 Shannon 1948年明确重述段落、3 个新 relates_to、source_count 1→2
+- `wiki/concepts/信息熵.md` — source_count 2→3
+- `wiki/concepts/信道容量.md` — source_count 2→3
+- `wiki/concepts/信道编码定理.md` — source_count 2→3
+- `wiki/concepts/信源编码定理.md` — source_count 2→3
+- `wiki/concepts/互信息.md` — source_count 1→2
+- `wiki/concepts/通信系统模型.md` — source_count 1→2
+- `wiki/concepts/典型序列.md` — source_count 1→2
+- `wiki/concepts/信息论.md` — source_count 8→9
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：4 新页面全部 0 ERROR, 0 WARNING
+**BM25 更新**：14 个页面（4 新 + 10 更新）全部更新成功
+**Index 同步**：958 页（+4 新增）
+
+## [2026-04-17 14:30] ingest | raw/books/计算机科学/01-turing-on-computable-numbers.md
+
+**来源文件**：`raw/books/计算机科学/01-turing-on-computable-numbers.md` — Turing 1936年论文《On Computable Numbers, with an Application to the Entscheidungsproblem》的深度精读笔记。
+
+**创建了 6 个新页面**：
+- `wiki/entities/库尔特·哥德尔.md` — Godel 不完备定理（1931）、一般递归函数、与 Hilbert 纲领的关系
+- `wiki/entities/阿隆佐·邱奇.md` — λ 演算发明者、1936年率先用 λ 演算否定回答判定问题、Turing 博士导师
+- `wiki/concepts/判定问题 (Entscheidungsproblem).md` — Hilbert 1928年提出、Church/Turing 1936年独立否定回答、从停机问题的归约
+- `wiki/concepts/可计算数.md` — Turing 定义：存在图灵机能逐位输出小数展开的实数；绝大多数实数不可计算
+- `wiki/concepts/λ 演算.md` — Church 发明的极简形式系统、与图灵机等价、函数式编程语言理论基础
+- `wiki/entities/On Computable Numbers 论文.md` — 论文实体页：四大核心贡献、历史意义、论文信息
+
+**更新了 3 个已有页面**：
+- `wiki/entities/大卫·希尔伯特.md` — 新增 Hilbert 形式化纲领与判定问题段落、3 个新 relates_to
+- `wiki/entities/约翰·冯·诺依曼.md` — 新增与 Turing 的联系段落、3 个新 relates_to
+- `wiki/entities/阿兰·图灵.md` — 新增 7 个 relates_to（哥德尔、邱奇、判定问题、可计算数、λ 演算、论文）
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：6 新页面全部 0 ERROR，0 WARNING（On Computable Numbers 页面初版有 3×B1 断链已修复）
+**BM25 更新**：9 个页面（6 新 + 3 更新）全部更新成功
+**Index 同步**：954 页（+6 新增）
+
+## [2026-04-17 11:30] maintain
+- Relink: 3061 terms, 938 scanned, 5 new links (4 pages)
+- Check: 0 errors, 987 warnings (B1×683/F3×184/M1×54/O1×61/其他×5), 0 new gotchas
+- Lint: index.md rebuilt (948 pages)
+- Build: 953 nodes, 7145 edges, 0 orphans, 10 components → static/ synced
+
+---
+
+## [2026-04-17 11:02] maintain
+- Relink: 3235 terms, 938 scanned, 0 new links (fully linked)
+- Check: 0 errors, 1035 warnings (B1×747/F3×189/I1×1/I2×3/M1×54/M2×1/O1×40), 0 new gotchas
+- Lint: index.md rebuilt (948 pages), 0 additional fixes
+- Build: 953 nodes, 7697 edges, 0 orphans, 2 components → static/ synced
+- Bonus fixes: `build_statistics.py` + `build_wiki_pages.py` confidence string → float 崩溃修复
+
+---
+
+## [2026-04-17 10:43] lint
+
+- 扫描: 953 个页面
+- ERROR: 0 | WARNING: 2009 条（含 953×I1 + 23×I2 假阳性，见 gotcha #44）
+- 真实问题: ~110 条（B1 学术引用 + M1 地图断链 + F3 概述过长）
+- 自动修复: 4 个
+  - [F] index.md 重建（`snapshot_index --slim`）→ 948 页，补入全部新增页面
+  - [G] BM25 清理 2 个旧条目（`wiki/concepts/untitled.md`, `wiki/entities/UrhoX.md`）
+  - [A] `wiki/qa-insights/数值PDE稳定收敛三角.md` 补充 `updated` 字段
+  - 新增 gotcha #44（I1/I2 假阳性根因文档化）
+- 需要人工处理:
+  - `wiki:reindex` 重建 topic-to-wiki.json（849 页未分类，index.md 统计表依然基于旧映射）
+  - Codex 系列 5 页缺失章节（概述/关键内容/相关）
+  - M1: 54 条 maps 指向不存在页面（地图更新后部分链接失效）
+  - B1: 746 条断链（大部分为学术来源 slug 引用，属预期行为）
+
+---
+
+## [2026-04-16 23:30] ingest | raw/articles/ai-engineering/search-retrieval/（19 个文件）
+
+**来源目录**：`raw/articles/ai-engineering/search-retrieval/`（传统搜索引擎 8 篇深度解析 + GEO/SEO + Agentic Search + CLIP + BGE Reranker + Qwen-VL + MetaFind + 代码领域选型框架）
+
+**创建了 15 个新概念页面**：
+- `wiki/concepts/搜索引擎架构.md` — 搜索引擎两大管道、核心组件、评分模型演进、评估指标体系
+- `wiki/concepts/倒排索引.md` — Posting List、差值编码、SPIMI/MapReduce 构建算法、FST 词典
+- `wiki/concepts/TF-IDF.md` — TF/IDF 变体、向量空间模型、余弦相似度、SMART 表示法
+- `wiki/concepts/文本预处理.md` — 分词（中英文）、停用词、词干提取、词形还原、同义词扩展
+- `wiki/concepts/查询处理.md` — 意图识别、拼写纠错、伪相关反馈、布尔查询 AST、查询松弛
+- `wiki/concepts/WAND算法.md` — TAAT/DAAT 对比、WAND 跳过机制、BMW 块级上界、两阶段检索
+- `wiki/concepts/索引压缩.md` — VByte、Elias Gamma/Delta、PForDelta、Simple-9、前缀编码、FST
+- `wiki/concepts/向量空间模型.md` — 稀疏 vs 稠密向量、余弦 vs 欧氏距离、VSM 演进
+- `wiki/concepts/GEO生成式引擎优化.md` — KDD 2024、语义密度/权威信号、AIGVR 指标体系、SEO+GEO 双轨
+- `wiki/concepts/SEO搜索引擎优化.md` — 发展历程、四大核心模块、Core Web Vitals、E-E-A-T
+- `wiki/concepts/Agentic Search.md` — RAG vs Agentic 对比、ReAct/CRAG/Self-RAG、代码领域优先 Agentic 原则
+- `wiki/concepts/学习排序.md` — Pointwise/Pairwise/Listwise、LambdaMART、LTR 特征工程
+- `wiki/concepts/Modality Gap.md` — 锥体效应、对比学习缺陷、图转文间接检索是生产最优解
+- `wiki/concepts/多模态检索.md` — CLIP 底层、3D 模型渲染检索、混合架构（文本通道+图像通道 RRF）
+- `wiki/concepts/Cross-encoder与Bi-encoder.md` — 独立编码 vs 联合编码、大模型重排优势分析
+
+**创建了 1 个新实体页面**：
+- `wiki/entities/MetaFind.md` — 元宇宙 3D 资产检索，ESSGNN 场景感知等变图编码，ULIP-2 三模态对齐
+
+**lint 验证**：所有页面 0 ERROR，1 warning（Page not listed in index，已由 snapshot_index 修复）
+**BM25 更新**：16 个页面全部更新成功
+**index.md 更新**：已同步（909 条目）
+
+## [2026-04-16 22:45] maintain
+- Relink: 2622 terms, 862 pages scanned, 新链接（已在 reindex 后添加）
+- Check: 145 errors (F2 YAML frontmatter), 1989 warnings — 0 new gotchas
+- Lint: 自动修复 145 个 F2 错误（15 missing FM + 76 duplicate inline+block tags + 54 indented duplicates）→ 0 errors
+- Build: 884 节点, 7292 边, 0 孤页, 4 连通分量 → static/ 已同步, 884 HTML 页面
+
+## [2026-04-16 22:30] reindex
+- 完整性: 742 页面已快照（index.md 格式不兼容，通过 --slim 重建）
+- 主题分类 (haiku subagent): 228 个新页面 → 9 个新 topic + 扩展 4 个已有 topic
+- 新 topics: 强化学习(30), Lua编程(25), 游戏开发(22), 脑科学(23), 控制论(15), 时间序列(15), 社会科学(17), C++编程(10)
+- Topics 总计: 23 个 topics → .claude/topic-to-wiki.json
+- Tags 修复: 102 个页面补充了 topic tag
+- Maps: 23 个 map 文件生成 → maps/
+- Index: 精简为 43 行（统计表 + 名称列表）
+- Schema 同步: _schema/CLAUDE.md Topics 已更新（14→23 个 topics）
+
+## [2026-04-16 21:05] ingest-loop | Claude Code 功能文档（92 文件）
+- 源路径：raw/assets/claude-howto/
+- 处理文件：92 个（10 个主题目录 + 元数据文件）
+- 创建页面：8 个概念
+  - wiki/concepts/斜杠命令（Slash Commands）.md — 4 类命令（内置/Skills/插件/MCP）、55+ 内置命令速查
+  - wiki/concepts/Claude Code 记忆系统.md — 4 层记忆范围（受管策略/项目/用户/本地）、自动加载机制
+  - wiki/concepts/渐进式披露（Progressive Disclosure）.md — 三层加载（描述→SKILL.md→支持文件）
+  - wiki/concepts/Claude Code 插件系统.md — 4 种插件类型（官方/社区/组织/个人）、一体化打包
+  - wiki/concepts/Checkpoints 与 Rewind.md — 快照/回退/分支点、5 种 Rewind 选项
+  - wiki/concepts/Claude Code 权限模式.md — 6 种权限级别（default/acceptEdits/plan/auto/dontAsk/bypassPermissions）
+  - wiki/concepts/会话分支（Branching）.md — /branch 命令、与 Checkpoints 对比
+  - wiki/concepts/上下文压缩（Context Compaction）.md — /compact 命令、与渐进式披露对比
+
+## [2026-04-16 22:00] ingest-loop (qwen) — build123d CAD 建模工具
+- 源: raw/assets/build123/ (5 files)
+- 引擎: qwen3-plus via DashScope API
+- 处理文件:
+  - build123d-deep-analysis.md → 8 页 (build123d 深度分析)
+  - build123d-skill/SKILL.md → 4 页 (Skill 定义)
+  - build123d-skill/references/objects.md → 4 页 (对象参考)
+  - build123d-skill/references/operations_enums_tips_assembly.md → 7 页 (操作/枚举/装配)
+  - build123d-skill/references/topology.md → 7 页 (拓扑结构)
+- 结果: 全部 5 文件 SUCCESS，共提取 30 个 wiki 页面
+- 主题: build123d、CAD 建模、OpenCASCADE、参数化设计、拓扑结构
+- 状态: 完成
+
+## [2026-04-16 21:00] ingest-loop (qwen) | 规则漏洞学系列（25 文件，13 有内容）
+- 源路径：raw/articles/essays/thinking-series/规则漏洞学系列/
+- 处理文件：13 个有内容（01-12 + overview），12 个空文件跳过（13-24）
+- 引擎：qwen3-plus（Qwen API）
+- 创建页面：7 个（1 实体 + 6 概念）
+  - wiki/entities/孙宇晨.md — 规则漏洞学典型实践者，ICO 卡点/巴菲特午餐/新概念作文
+  - wiki/concepts/规则漏洞学.md — 核心定义、两条红线、三大认知误区、运作机制
+  - wiki/concepts/规则的阶层筛选属性.md — 规则双重属性、内卷陷阱、破局路径
+  - wiki/concepts/规则的4大先天缺陷.md — 滞后性/不周延性/执行弹性/地域时间差
+  - wiki/concepts/人性套利.md — 五大人性弱点（贪婪/猎奇/从众/迷信权威/厌恶损失）
+  - wiki/concepts/有限风险无限收益公式.md — 预期净收益公式、风险封顶准则
+  - wiki/concepts/全维度漏洞扫描法.md — 3 项前置准备 + 4 步标准化扫描
+
+## [2026-04-16 21:30] ingest-loop (qwen) — ChatGPT 对话记录（7 个对话，39 文件）
+- 源: raw/ChatGPT-Chat/ (7 个子目录，39 个 markdown 文件)
+- 引擎: qwen3-plus via DashScope API
+- 对话主题:
+  - Agent Eval 论文推荐 (1 文件)
+  - Claude Code TOOL 设计分析 (3 文件)
+  - SWE-agent 论文核心观点 (22 文件)
+  - Self-Attention 机制解析 (3 文件)
+  - Sonnet vs Opus 对比 (3 文件)
+  - 文章解读 Anthropic Agent (3 文件)
+  - 注意力掩码解析 (4 文件)
+- 结果: 39/39 SUCCESS，共提取 ~142 个 wiki 页面
+- 主题覆盖: Agent 评估、Claude Code 工具设计、SWE-agent、Self-Attention、LLM 模型对比、Managed Agents、注意力掩码/KV Cache/解码策略
+- 状态: 完成
+
+## [2026-04-16 20:55] ingest | 县域体制内的"剩女"——基于中部 D 县的调查（社会学论文）
+- 源文件：raw/articles/essays/social/县域体制内的"剩女"——基于中部D县的调查.md
+- 创建页面：4 个（1 实体 + 3 概念）
+  - wiki/concepts/县域体制内剩女.md — 体制内剩女分布特征、女教师为主体、越剩越多现象、青年人才困境
+  - wiki/concepts/择偶梯度理论.md — 女性"上嫁"倾向、县域体制内梯度失衡、与北上广剩女共性
+  - wiki/concepts/婚姻挤压理论.md — 体制内性别结构失衡（非总体性别比）、与农村光棍对比
+  - wiki/entities/欧阳静.md — 县域治理研究学者，首次发现县域体制内剩女现象
+
+## [2026-04-16 20:35] ingest-loop | 编程文章合集（37 文件）
+- 源路径：raw/articles/programming/
+- 处理文件：37 个（cli-tools×3 + cpp×6 + lsp×9 跳过(已有) + lua×19）
+- 新建页面：~65 个（cli工具×9, C++×15, Lua×41）
+- 更新页面：~15 个
+- 备注：LSP 9 个文件在前序 session（18:55）已完成，本次跳过
+- 引擎：claude（并行子代理，每批 3 个）
+
+## [2026-04-16 20:50] ingest | 为什么国人写不出 CSAPP 级别的好书（知乎多回答）
+- 源文件：raw/articles/essays/social/为什么国人写不出一本能平替甚至超越《深入理解计算机系统》的好书？ - Soulflare 的回答.md
+- 创建页面：6 个（3 实体 + 3 概念）
+  - wiki/entities/深入理解计算机系统（CSAPP）.md — CMU 15-213 课程配套教材，配套实验体系（Bomb Lab/Attack Lab 等），迭代 20 年
+  - wiki/entities/Randal E. Bryant.md — CMU 资深教授，CSAPP 合著者
+  - wiki/entities/David R. O'Hallaron.md — CMU 教授，CSAPP 合著者，实验体系设计者
+  - wiki/concepts/技术出版经济学.md — 写书 ROI 极低（2000-3000 小时投入 vs 8 万版税），机会成本抹杀动力
+  - wiki/concepts/学术评价体系.md — 非升即走压力下写教材权重低，追逐短平快热点
+  - wiki/concepts/后图书时代.md — 静态书籍跟不上技术迭代，AI+开源源码的交互式学习替代传统阅读
+
+## [2026-04-16 20:45] ingest | 黎叔的硅星人 Pro 采访（TapTap Maker 产品理念）
+- 源文件：raw/articles/essays/social/黎叔的硅星人Pro的采访.md
+- 创建页面：5 个（3 实体 + 2 概念）
+  - wiki/entities/黎叔.md — TapTap Maker 产品负责人，AI 原生游戏开发理念倡导者
+  - wiki/entities/TapTap Maker.md — AI 原生游戏引擎，支持 30 万行中型游戏，开发-发布全闭环
+  - wiki/entities/嗒啦啦.md — TapTap AI 创作助手，拟人化设计
+  - wiki/concepts/AI 原生架构.md — GUI 不适合 AI、技能优于知识、人机共创
+  - wiki/concepts/上下文漂移.md — "改A坏B"行业通病，拆会话/组件解耦缓解
+
+## [2026-04-16 20:40] ingest | 应对被动单身：县域体制内大龄女青年的行动策略（社会学论文）
+- 源文件：raw/articles/essays/social/应对被动单身：县域体制内大龄女青年的行动策略及其影响——基于中部Y县的实地调研.md
+- 创建页面：2 个
+  - wiki/concepts/被动单身.md — 概念界定、结构性原因、四种理想类型、对外/对内策略、异变婚恋观、身份再生产机制
+  - wiki/concepts/社会行动理论.md — 韦伯理论核心、伯格与卢克曼发展、理想类型方法、意外后果概念
+
+## [2026-04-16 20:35] ingest | AI 产品积分系统设计深度分析
+- 源文件：raw/articles/essays/product-design/AI 产品积分系统设计深度分析.md
+- 创建页面：1 个
+  - wiki/concepts/AI 产品积分系统设计.md — 5 种定价模式、"赌博感"痛点、Agent 循环问题、v0 迁移教训、Builder.io 最佳实践、10 大设计原则、工程架构（原子扣减/Rollover/预估成本）
+
+## [2026-04-16 20:30] ingest | 资源与能力差异（ChatGPT 对话）
+- 源文件：raw/articles/essays/product-design/资源与能力差异.md
+- 创建页面：1 个
+  - wiki/concepts/资源与能力差异.md — 乘法系统模型、归因偏差、资源作为前置条件、生存资本、二阶效应、评价体系盲区、胜者叙事、AI 时代放大效应、问题拥有权、个体策略
+
+## [2026-04-16 20:25] ingest | 随机变量的收敛（Wikipedia 词条）
+- 源文件：raw/articles/essays/math/Convergence of random variables.md
+- 创建页面：1 个
+  - wiki/concepts/随机变量的收敛.md — 6 种收敛概念（依分布/依概率/几乎必然/必然/r阶矩/几乎完全）+ 强度层级 + 关键定理
+- 更新页面：0 个
+
+## [2026-04-16 20:20] ingest-loop | 金融数据工具（8 文件）
+- 源路径：raw/assets/finance-knowledge/
+- 处理文件：8 个（4 个深度分析报告 + 4 个 SKILL.md）
+- 新建页面：4 个实体
+  - AKShare — 开源全品类财经数据接口库（1000+ 接口，37 分类）
+  - Alpha Vantage — NASDAQ 官方授权全球市场数据 API（50+ 技术指标，MCP 原生支持）
+  - Baostock — 中国 A 股免费历史数据平台（从 1990 年至今）
+  - yfinance — Yahoo Finance 非官方 Python 封装（全球市场，研究/原型首选）
+- 引擎：claude（手动处理）
+
+## [2026-04-16 20:15] ingest-loop | RL-Analysis（7 文件）
+- 源路径：raw/assets/RL-Analysis/
+- 处理文件：7 个（rl_00 ~ rl_06）
+- 新建页面：29 个（28 概念 + 1 实体）
+- 更新页面：7 个
+- 涵盖主题：MDP、价值函数、贝尔曼方程、DQN 系列（Double/Dueling/PER/Rainbow/C51/NoisyNets）、策略梯度系列（REINFORCE/TRPO/PPO）、Actor-Critic 系列（A3C/DDPG/TD3/SAC/最大熵RL）、算法选型指南
+
+## [2026-04-16 20:00] ingest-loop | 控制论书籍（23 文件）
+- 源路径：raw/books/控制论/
+- 处理文件：23 个（含 3 个综述/趋势文件）
+- 新建页面：19 个（17 概念 + 1 综合 + 1 实体更新）
+  - 调速器稳定性理论、行为目的与目的论、McCulloch-Pitts 神经元模型
+  - 控制论（Cybernetics）、超稳定系统、一般系统论
+  - 极大值原理、动态规划、必要多样性定律
+  - 二阶控制论、自创生、可行系统模型（VSM）
+  - 耗散结构、模糊集合、反向传播
+  - 强化学习、控制即推断、强化学习与控制的概率推断视角
+  - 控制论的最新发展（synthesis）
+- 更新页面：卡尔曼滤波（source_count +1）
+- 引擎：claude（手动处理）
+
+## [2026-04-16 21:00] ingest | 脑科学系列论文（13/13 完成）✅
+- 源文件夹：raw/books/脑科学/
+- 文件总数：13 个 markdown 文件
+- 已完成：13/13（100%）
+- 创建页面：22 个
+  - **实体页面 (10 个)**:
+    - wiki/entities/Santiago Ramón y Cajal.md — 现代神经科学之父，神经元学说创立者，1906 年诺贝尔奖
+    - wiki/entities/David H. Hubel.md — 视觉皮层研究者，方向选择性发现者，1981 年诺贝尔奖
+    - wiki/entities/Torsten N. Wiesel.md — 视觉皮层研究者，关键期发现者，1981 年诺贝尔奖
+    - wiki/entities/Karl Deisseroth.md — 光遗传学发明者，斯坦福教授，2021 年拉斯克奖
+    - wiki/entities/John O'Keefe.md — 位置细胞发现者，认知地图理论，2014 年诺贝尔奖
+    - wiki/entities/Donald O. Hebb.md — 赫布学习律提出者，认知神经科学先驱
+    - wiki/entities/Otto Loewi.md — 神经递质发现者，"梦中的实验"，1936 年诺贝尔奖
+    - wiki/entities/Eric Kandel.md — 海兔记忆研究者，CREB 发现者，2000 年诺贝尔奖
+    - wiki/entities/Luigi Galvani.md — 生物电发现者，电生理学开创者，1791 年
+    - wiki/entities/Pierre Paul Broca.md — 布罗卡区发现者，语言定位，功能定位论确立者
+  - **概念页面 (12 个)**:
+    - wiki/concepts/神经元学说.md — 神经系统由离散细胞单元组成，推翻网状理论，1954 年电子显微镜证实
+    - wiki/concepts/视觉皮层.md — V1 区方向选择性、简单细胞/复杂细胞、柱状结构、关键期，启发 CNN 设计
+    - wiki/concepts/长时程增强（LTP）.md — 突触可塑性基石，Bliss & Lømo 1973，赫布学习律的实验证明
+    - wiki/concepts/镜像神经元.md — 执行和观察同一动作时均放电，Rizzolatti 1996，争议与影响
+    - wiki/concepts/光遗传学.md — ChR2 光感蛋白控制特定神经元，Deisseroth 2005，毫秒级精度因果研究
+    - wiki/concepts/位置细胞.md — 海马空间地图，O'Keefe 1971，位置场，认知地图神经实现
+    - wiki/concepts/网格细胞.md — 内嗅皮层六边形网格，Moser 夫妇 2005，最优几何编码
+    - wiki/concepts/赫布学习律.md — "Cells that fire together wire together"，Hebb 1949，LTP 等待 24 年的验证
+    - wiki/concepts/神经递质.md — 化学突触传递物质，Loewi 1921 青蛙心脏实验发现，乙酰胆碱是第一个
+    - wiki/concepts/CREB.md — 长期记忆分子开关，Kandel 在海兔中发现，cAMP→PKA→CREB→基因转录
+    - wiki/concepts/生物电.md — Galvani 1791 年青蛙腿实验发现，开创电生理学，与伏打争论催生电池发明
+    - wiki/concepts/布罗卡区.md — 左侧额叶下回 BA44/45，语言产生中枢，Broca 1861 年通过"Tan"病例发现
+- BM25: 22 页面全部更新成功
+- Index: +22 新条目 (snapshot_index --update)
+- 状态：完成 ✅
+
+## [2026-04-16 20:30] ingest | 脑科学系列论文（9/13 完成）
+- 源文件夹：raw/books/脑科学/
+- 文件总数：13 个 markdown 文件
+- 已完成：9/13（69%）
+- 创建页面：14 个
+  - **实体页面 (6 个)**:
+    - wiki/entities/Santiago Ramón y Cajal.md — 现代神经科学之父，神经元学说创立者，1906 年诺贝尔奖
+    - wiki/entities/David H. Hubel.md — 视觉皮层研究者，方向选择性发现者，1981 年诺贝尔奖
+    - wiki/entities/Torsten N. Wiesel.md — 视觉皮层研究者，关键期发现者，1981 年诺贝尔奖
+    - wiki/entities/Karl Deisseroth.md — 光遗传学发明者，斯坦福教授，2021 年拉斯克奖
+    - wiki/entities/John O'Keefe.md — 位置细胞发现者，认知地图理论，2014 年诺贝尔奖
+    - wiki/entities/Donald O. Hebb.md — 赫布学习律提出者，认知神经科学先驱
+  - **概念页面 (8 个)**:
+    - wiki/concepts/神经元学说.md — 神经系统由离散细胞单元组成，推翻网状理论，1954 年电子显微镜证实
+    - wiki/concepts/视觉皮层.md — V1 区方向选择性、简单细胞/复杂细胞、柱状结构、关键期，启发 CNN 设计
+    - wiki/concepts/长时程增强（LTP）.md — 突触可塑性基石，Bliss & Lømo 1973，赫布学习律的实验证明
+    - wiki/concepts/镜像神经元.md — 执行和观察同一动作时均放电，Rizzolatti 1996，争议与影响
+    - wiki/concepts/光遗传学.md — ChR2 光感蛋白控制特定神经元，Deisseroth 2005，毫秒级精度因果研究
+    - wiki/concepts/位置细胞.md — 海马空间地图，O'Keefe 1971，位置场，认知地图神经实现
+    - wiki/concepts/网格细胞.md — 内嗅皮层六边形网格，Moser 夫妇 2005，最优几何编码
+    - wiki/concepts/赫布学习律.md — "Cells that fire together wire together"，Hebb 1949，LTP 等待 24 年的验证
+- BM25: 14 页面全部更新成功
+- Index: +14 新条目 (snapshot_index --update)
+- 待处理：4 个文件（paper_10 神经递质，paper_11 海兔学习，paper_12 生物电，paper_13 语言区）
+
+## [2026-04-16 20:15] ingest-loop (qwen) — 社会学经典著作
+- 源: raw/books/社会学/ (6 files, 含 1 个 HTML 转换)
+- 引擎: qwen3-plus via DashScope API
+- 处理文件:
+  - paper_01_comte_cours.md → 8 页 (孔德、实证主义等)
+  - paper_02_marx_manifesto_kapital.md → 8 页 (马克思、阶级理论等)
+  - paper_03_durkheim_division_suicide.md → 11 页 (涂尔干、社会分工、自杀论等)
+  - paper_04_weber_protestant_ethic.md → 8 页 (韦伯、新教伦理、理性化等)
+  - paper_05_goffman_mills.md → 7 页 (戈夫曼、米尔斯、拟剧论等)
+  - sociology_history_timeline.md → 16 页 (社会学发展史、各流派)
+- 结果: 全部 6 文件 SUCCESS，共提取 58 个 wiki 页面
+- 状态: 完成
+
+## [2026-04-16 19:50] ingest-loop | 时间序列分析书籍（17 文件）
+- 源路径：raw/books/时间序列分析/
+- 处理文件：17 个
+  - 01-yule-1927-ar-model.md → 新建 AR 模型
+  - 02-wold-1938-decomposition.md → 新建 Wold 分解定理
+  - 03-holt-1957-exponential-smoothing.md → 新建 指数平滑
+  - 04-kalman-1960-filter.md → 更新 卡尔曼滤波（source_count 1→2）
+  - 05-granger-1969-causality.md → 新建 格兰杰因果
+  - 06-box-jenkins-1970-arima.md → 新建 ARIMA 模型
+  - 07-akaike-1974-aic.md → 新建 AIC（赤池信息准则）
+  - 08-engle-1982-arch.md → 新建 ARCH 模型
+  - 09-bollerslev-1986-garch.md → 新建 GARCH 模型
+  - 10-johansen-1988-cointegration.md → 新建 协整分析
+  - 11-hamilton-1989-regime-switching.md → 新建 马尔可夫体制转换模型
+  - 12-hochreiter-1997-lstm.md → 新建 LSTM
+  - 13-prophet-2017-forecasting-at-scale.md → 新建 Prophet
+  - 14-nbeats-2019-neural-basis-expansion.md → 新建 N-BEATS
+  - 15-informer-2021-transformer-time-series.md → 新建 Informer
+  - 16-dlinear-2023-are-transformers-effective.md → 新建 DLinear
+  - 17-patchtst-2023-time-series-worth-64-words.md → 新建 PatchTST
+- 新建页面：16 个
+- 更新页面：1 个（卡尔曼滤波）
+- 引擎：claude（手动处理）
+
+## [2026-04-16 19:45] lint
+- 扫描：688 个页面
+- ERROR: 146 个 | WARNING: 1528 个 | INFO: 0 个
+- 自动修复：146 个 F2 错误（YAML frontmatter 修复）
+- 需要人工处理：
+  - F3 警告：27 个页面概述超过 200 字符（需手动精简）
+  - B1 断链：约 200+ 个（需手动修正或创建缺失页面）
+  - I2 过期：15 个 map 文件在 index.md 中（需运行 wiki:reindex 更新）
+  - M1/M2 地图：201 个页面未分配到任何地图（需运行 wiki:reindex 重新分类）
+  - O1 孤页：12 个（已从 24 个修复至 12 个）
+
+**已自动修复**：
+- 146 个 F2 错误：YAML frontmatter 格式修复（添加缺失的 type/status/confidence 等字段）
+- index.md 同步：已完成（snapshot_index --update）
+- O1 孤页修复 (12 个)：
+  - Multi-Agent-Coordination-Patterns → Cara-Phillips
+  - Subagents-in-Claude-Code → Chris-Olah
+  - Manus/Wide-Research → Meta
+  - 提示词缓存 → 令牌计数
+  - LSP（语言服务器协议）→ gopls/hls/lua-language-server/vtsls
+  - Code-Review-for-Claude-Code → Advisor Tool
+  - 脑手分离架构/Managed-Agents → 宠物与牲畜模式
+  - ARIMA 模型 → N-BEATS/Prophet/协整分析/马尔可夫体制转换模型
+  - LSIF → Semantic Tokens
+
+**待人工处理**：
+- 27 个 F3 页面需精简概述至 200 字符以内
+- 断链修复：创建缺失页面或修正链接目标
+- 地图更新：运行 wiki:reindex 重新分类页面（将解决 10 个 map 孤页）
+- 孤页处理：剩余 2 个（Claude-Code-TOOL-设计七维分析.syntheses, LSIF 可能假阳性）
+
+## [2026-04-16 19:10] ingest-loop (qwen) — taptap-maker 技术文档
+- 源: raw/articles/game-dev/taptap-maker/ (25 files)
+- 引擎: qwen3-plus via DashScope API
+- 结果: 全部 25 文件 SUCCESS，共提取 ~95 个 wiki 页面
+- 主题: ACP 协议、Agent 客户端架构、Gateway 消息、Skill Hub、语音输入、Monorepo
+- 状态: 完成
+
+## [2026-04-16 18:55] ingest-loop | LSP 语言服务器协议调研（9 文件）
+- 源路径：raw/articles/programming/lsp/
+- 处理文件：9 个
+  - 00_lsp_overview.md → 新建 LSP 概念页 + Semantic Tokens + LSIF
+  - 01_python_lsp.md → 新建 pyright + pylsp 实体页
+  - 02_typescript_lsp.md → 新建 typescript-language-server + vtsls 实体页
+  - 03_rust_lsp.md → 新建 rust-analyzer + rls 实体页
+  - 04_go_lsp.md → 新建 gopls 实体页
+  - 05_cpp_lsp.md → 新建 clangd + ccls 实体页
+  - 06_java_csharp_kotlin_lsp.md → 新建 eclipse.jdt.ls + lsp4j 实体页
+  - 07_lua_haskell_ruby_php_lsp.md → 新建 lua-language-server + hls 实体页
+  - 08_data_markup_lsp.md → 内容已覆盖（JSON/YAML/SQL 等 LSP 工具）
+- 新建页面：16 个（3 概念 + 13 实体）
+- 引擎：claude（手动处理）
+
+## [2026-04-16 19:00] ingest | claude-blog 批量导入（9 文件）
+- 源文件夹：raw/articles/ai-engineering/claude-blog/
+- 处理文件：9 个 markdown 文件
+- 创建页面：12 个
+  - **概念页面 (9 个)**:
+    - wiki/concepts/Code-Review-for-Claude-Code.md — Claude Code 多智能体代码审查系统，84% 大 PR 发现问题，平均 7.5 个问题，$15-25/次
+    - wiki/concepts/Subagents-in-Claude-Code.md — Claude Code 子智能体使用场景（研究/并行/验证/流水线）和 5 种调用方法（对话/自定义/CLAUDE.md/Skills/Hooks）
+    - wiki/concepts/Multi-Agent-Coordination-Patterns.md — 五种多智能体协调模式总览（生成器 - 验证器/协调器 - 子智能体/智能体团队/消息总线/共享状态）
+    - wiki/concepts/Generator-Verifier-Pattern.md — 模式 1：生成器→验证器→反馈循环，适用于高质量关键输出
+    - wiki/concepts/Orchestrator-Subagent-Pattern.md — 模式 2：层级结构，协调者分配任务给子智能体，Claude Code 采用此模式
+    - wiki/concepts/Agent-Teams-Pattern.md — 模式 3：团队成员持续运行积累上下文，适用于独立并行子任务
+    - wiki/concepts/Message-Bus-Pattern.md — 模式 4：发布/订阅事件驱动，适用于不断扩展的智能体生态系统
+    - wiki/concepts/Shared-State-Pattern.md — 模式 5：共享存储库消除中间环节，适用于协作式研究
+    - wiki/concepts/Wide-Research.md — Manus 广泛研究架构，并行子代理解决上下文窗口限制
+  - **实体页面 (3 个)**:
+    - wiki/entities/Chris-Olah.md — Anthropic 联合创始人，提出"培育"而非"构建"AI 系统的观点
+    - wiki/entities/Cara-Phillips.md — 多智能体协调模式文章作者
+    - wiki/entities/Meta.md — 2026 年收购 Manus 的公司
+- 更新页面：1 个
+  - wiki/concepts/提示词缓存.md — 补充 Claude Code 团队 5 条优化经验（前缀匹配/用消息而非修改提示/不中途换模型/不中途改工具/监控命中率）、source_count 3→4
+- BM25: 13 页面全部更新成功
+- Index: +12 新条目 (snapshot_index --update)
+- Lint: 0 errors, 5 warnings (B1 预留链接×3, I1×2 已由 slim index 处理)
+
+## [2026-04-16 18:35] ingest-loop (qwen) — SWE-agent 论文核心观点
+- 源: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/ (22 files)
+- 引擎: qwen3-plus via DashScope API
+- 结果: 全部 22 文件 SUCCESS，共提取 ~55 个 wiki 页面
+- 主题: SWE-agent, ACI, Agent 系统, 软件工程自动化
+- 状态: 完成
+
+## [2026-04-16 18:50] reindex
+- 完整性: OK (644 页面, 0 缺失, 0 孤条目)
+- 主题分类 (subagent): 14 个 topics → 推荐系统(216), AI工程(67), 数值分析(62), 机器人学(56), 信息论(51), 概率论(43), 矩阵理论(32), 经济学(26), Agent系统(24), LLM能力(23), 文档处理(20), 工具与框架(11), AI设计(8), 计算理论(5) → .claude/topic-to-wiki.json
+- Tags 修复: 242 个页面补充了 topic tags
+- Maps: 14 个 map 文件生成 → maps/
+- Index: 精简为 35 行（统计表 + 名称列表）
+- Schema 同步: _schema/CLAUDE.md Topics 已更新（16→14 topics, +计算理论, -深度学习/数学/其他）
+
+## [2026-04-16 17:00] ingest | Give Claude a computer: Programmatic Tool Calling (PTC)
+- 源文件：raw/articles/ai-engineering/claude-blog/Give Claude a computerGive Claude a computer 给 Claude 一台电脑.md（clipping fragment，12 行）
+- 创建页面：2 个
+  - wiki/concepts/Programmatic-Tool-Calling-PTC.md — Claude 4.6 新能力：动态构造工具调用，支持运行时决策和参数构造，应用场景（文件编辑 stale check/动态工具选择）
+  - wiki/entities/Lance-Martin.md — AI Agent 技术专家，@RLanceMartin，PTC 推广者，Claude 生态系统内容创作者
+- 更新页面：2 个
+  - wiki/entities/Claude-Opus-4-6.md — 补充 PTC 能力支持、source_count 2→3、新增 2 个 relates_to
+  - wiki/entities/Claude-Sonnet-4-6.md — 补充 PTC 能力支持、source_count 2→3、新增 2 个 relates_to
+- BM25: 4 页面全部更新成功
+- Index: +2 新条目 (Programmatic-Tool-Calling-PTC, Lance-Martin)
+- Lint: 0 errors, 5 warnings (B1 预留链接×3, I1×2 已由 slim index 处理)
+
+## [2026-04-16 18:25] ingest-loop | Anthropic Developer Documentation (6 files)
+- 源路径：raw/articles/ai-engineering/anthropic-developer/
+- 处理文件：6 个
+  - Compaction.md → 已有页面（上下文压缩.md），内容已覆盖
+  - Context editing.md → 已有页面（上下文编辑.md），内容已覆盖
+  - Context windows.md → 已有页面（上下文窗口.md），内容已覆盖
+  - Prompt caching.md → 更新 提示词缓存.md（source_count: 2→3）
+  - Token counting.md → 新建 wiki/concepts/令牌计数（Token Counting）.md
+  - advisor_deep_analysis.md → 新建 wiki/concepts/Advisor Tool（顾问工具）.md
+- 新建页面：2 个
+- 更新页面：1 个
+- 去重跳过：3 个（已有页面覆盖）
+- 引擎：claude（手动处理，subagent 未响应）
+
+## [2026-04-16 16:30] ingest | Seeing like an agent: Claude Code 工具设计哲学
+- 源文件：raw/articles/ai-engineering/claude-blog/Seeing like an agent_ how we design tools in Claude Code.md
+- 创建页面：5 个
+  - wiki/entities/Thariq-Shihipar.md — Anthropic 技术人员，Claude Code 工具设计哲学提出者
+  - wiki/concepts/AskUserQuestion-Tool.md — 三阶段演进（ExitPlanTool 修改→输出格式→独立工具），模态框 UI 降低回答摩擦
+  - wiki/concepts/ExitPlanTool.md — 早期计划生成工具，AskUserQuestion 演进尝试 1 失败案例
+  - wiki/concepts/TodoWrite-Tool.md — 早期任务跟踪工具，局限性（僵化清单/子代理协作困难），被 Task Tool 取代
+  - wiki/concepts/Task-Tool.md — TodoWrite 替代者（supersedes），从"保持轨道"到"Agent 协调"，支持依赖/跨 Agent 共享/灵活修改
+- 更新页面：2 个
+  - wiki/concepts/渐进式披露 -Progressive-Disclosure.md — 补充 Claude Code Guide 案例、搜索能力演进（RAG→Grep→Agent Skills）、source_count 1→2
+  - wiki/entities/Claude-Code.md — 补充工具设计哲学段落（"像智能体一样观察"、核心工具演进、渐进式披露应用、工具数量控制）、新增 5 个 relates_to、source_count 2→3
+- BM25: 7 页面全部更新成功
+- Index: +5 新条目 (snapshot_index --update)
+- Lint: 0 errors, 12 warnings (B1 预留链接×6, I1×6 已由 slim index 处理)
+
+## [2026-04-16 15:20] ingest | Manus 上下文工程六原则 (官方博客转载)
+- 源文件: raw/articles/ai-engineering/claude-blog/AI代理的上下文工程：构建Manus的经验教训.md
+- 创建页面: 2 个
+  - wiki/entities/Manus.md — Manus 项目实体：技术路线选择（押注上下文工程而非模型训练）、六大原则概览、典型任务特征（50 次工具调用、100:1 输入输出比）、2025 年被 Meta 收购
+  - wiki/concepts/KV 缓存命中率.md — KV 缓存命中率概念：为什么对 Agent 特别重要（100:1 输入输出比）、成本影响（10 倍差异）、三大实践（前缀稳定/只追加/缓存断点）、与工具动态变化的冲突
+- 更新页面: 2 个
+  - wiki/concepts/Context-Engineering.md — 补充 Manus 六原则段落、source_count 4→5
+  - wiki/concepts/提示词缓存.md — 补充 Manus 生产环境 KV 缓存最佳实践、source_count 1→2
+- BM25: 4 页面全部更新成功
+- Index: +2 新条目 (Manus, KV 缓存命中率)
+- Lint: 0 errors, 1 warning/page (I1 index listing — 页面已出现在 index entries 中)；KV 缓存命中率 B1 已修复（[[vLLM]] → vLLM 纯文本）
+
+## [2026-04-16 15:10] ingest | Anthropic Skill-Creator 评估框架增强 (官方博客)
+- 源文件: raw/articles/ai-engineering/claude-blog/Improving skill-creator_ Test, measure, and refine Agent Skills.md
+- 创建页面: 0 个（已有页面可覆盖）
+- 更新页面: 1 个
+  - wiki/concepts/Agent Skills.md — 补充两种技能类型（能力提升 vs 编码偏好）、Skill-Creator 评估框架（Evals 两大用途）、基准测试模式、多智能体并行评估、对比智能体 A/B 测试、描述优化（精准触发）、展望未来（从"如何做"到"做什么"）、source_count 1→2
+- BM25: 1 页面更新成功
+- Index: 无新增条目（复用已有页面）
+- Lint: 无新页面，跳过
+
+## [2026-04-16 15:00] ingest | Anthropic Effective Context Engineering (官方博文)
+- 源文件: raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md
+- 创建页面: 0 个（已有页面可覆盖）
+- 更新页面: 1 个
+  - wiki/concepts/Context-Engineering.md — 补充系统 Prompt Altitude 校准（Goldilocks zone）、工具设计的上下文工程含义（最小可行集、token-efficient 返回）、混合检索策略（Claude Code 典型实现）、来源作者信息、source_count 3→4
+- BM25: 1 页面更新成功
+- Index: 无新增条目（复用已有页面）
+- Lint: 无新页面，跳过
+
+## [2026-04-16 14:45] ingest | Claude Code edit 后 validate 分层设计 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/12-claude code中，edit后做 validate  linting，需要在tool des.md
+- 创建页面: 1 个
+  - wiki/concepts/Claude Code 分层验证.md — Claude Code 分层验证概念：四层分工（tool description/CLAUDE.md/hooks/LSP）、为什么不能只靠单一层面、与 SWE-agent 对比、落地四步
+- 更新页面: 2 个
+  - wiki/concepts/Edit 后验证.md — 补充 Claude Code 分层验证方案段落、新增来源、source_count 2→3
+  - wiki/entities/Claude-Code.md — 补充 Edit 后验证分层段落、新增来源和关系、source_count 1→2
+- BM25: 3 页面全部更新成功
+- Index: +1 新条目 (Claude Code 分层验证)
+- Lint: 0 errors, 1 warning (I1 index listing — 页面已出现在 index entries 中)
+
+## [2026-04-16 14:35] ingest | edit validate ablation study (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/11-SWE-agent 是否对 edit 是否 validate 做了 ablation study？有.md
+- 创建页面: 0 个
+- 更新页面: 2 个
+  - wiki/concepts/Edit 后验证.md — 补充 Ablation Study 证据（Table 3：w/ linting 18.0 vs edit action 15.0 vs No edit 10.3）、两层结论、source_count 1→2
+  - wiki/concepts/Ablation Study.md — 补充新来源、source_count 3→4
+- BM25: 2 页面全部更新成功
+- Index: 无新增条目（复用已有页面）
+- Lint: 无新页面，跳过
+
+## [2026-04-16 14:25] ingest | edit后lint/lsp validate设计 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/10-swe-agent 每次 edit后，如何设计lintlsp 等validate？.md
+- 创建页面: 1 个
+  - wiki/concepts/Edit 后验证.md — Edit 后验证概念：SWE-agent 实现（USE_LINTER + flake8 单文件检查）、增量诊断设计（previous errors filtering）、三层 validate 架构建议、LSP 触发策略、observation 返回格式
+- 更新页面: 2 个
+  - wiki/concepts/Guardrails.md — 补充 LSP 增量诊断作为 Guardrail 的扩展方向、三层 validate 架构、source_count 3→4
+  - wiki/entities/SWE-agent.md — 补充 Edit 后验证段落（linter 实现、previous errors filtering）、source_count 1→2
+- BM25: 3 页面全部更新成功
+- Index: +1 新条目 (Edit 后验证)
+- Lint: 0 errors, 1 warning (I1 index listing — 页面已出现在 index entries 中)
+
+## [2026-04-16 14:10] ingest | trajectory常见字段 schema (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/08-trajectory常见字段 schema包含哪些，分别什么意思，分别如何构造.md
+- 创建页面: 2 个
+  - wiki/entities/SWE-agent.md — SWE-agent 项目实体：核心架构、SWE-bench 表现、trajectory 格式、工程化建议
+  - wiki/concepts/Trajectory Schema.md — Trajectory Schema 概念：顶层字段、step 级字段（response/thought/action/observation/state/query）、message→query 版本差异、6 步构造流水线、分析友好增强字段
+- 更新页面: 1 个
+  - wiki/concepts/Agent 轨迹分析.md — 补充 Trajectory Schema 关系、新增来源、source_count 1→2
+- BM25: 3 页面全部更新成功
+- Index: +2 新条目 (SWE-agent, Trajectory Schema)
+- Lint: 0 errors, 1 warning/page (I1 index listing — 已由 snapshot_index 处理，页面已出现在 index entries 中)
+
+## [2026-04-16 12:40] ingest | SWE-agent 轨迹分析方法论 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/07-SWE-agent 轨迹 格式长什么样，怎么进行分析，怎么判断轨迹中哪些问题导致了后续任务的失败？.md
+- 创建页面: 1 个
+  - wiki/concepts/Agent 轨迹分析.md — 轨迹格式（Figure 9 + .traj JSON）、四层分析法、根因链诊断框架、失败模式分类（7 类）
+- 更新页面: 4 个
+  - wiki/concepts/ReAct 风格循环.md — 补充轨迹分析方法论来源、source_count 1→2
+  - wiki/concepts/Localization.md — 补充轨迹分析方法论来源、source_count 2→3
+  - wiki/concepts/恢复机制.md — 补充轨迹分析方法论来源、source_count 1→2
+  - wiki/concepts/Agent计算机接口.md — 补充轨迹分析方法论来源、source_count 7→8
+- BM25: 5 页面全部更新成功
+- Index: +1 新条目 (snapshot_index --update)
+- Lint: 0 errors, 1 warning (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 12:35] ingest | SWE-agent 论文图表分析 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md
+- 创建页面: 0 个（图表数据补充到已有页面）
+- 更新页面: 6 个
+  - wiki/concepts/SWE-bench.md — 补充 Table 1 详细结果（Full 12.47%/Lite 18.00%/Shell-only 11%/RAG 1.31%）、pass@k 曲线、source_count 3→4
+  - wiki/concepts/HumanEvalFix.md — 补充 Table 2 多语言结果（Python 87.7%/JS 89.7%/Java 87.9%）、source_count 2→3
+  - wiki/concepts/Ablation Study.md — 补充 Table 3 详细消融数据 + Figure 5-6 可视化支撑、source_count 1→2
+  - wiki/concepts/Localization.md — 补充 Figure 7 成功轨迹行为模式 + Figure 8 失败模式分布（52% 实现错误/23.4% 恢复失败）、source_count 1→2
+  - wiki/concepts/Guardrails.md — 补充 Figure 6 三种 Edit Interface 对比、source_count 2→3
+  - wiki/concepts/Agent计算机接口.md — 补充 Figure 1-2 ACI 系统图和 IDE 类比、source_count 6→7
+- BM25: 6 页面全部更新成功
+- Index: 无新增条目（更新已有页面）
+- Lint: 未运行（未创建新页面）
+
+## [2026-04-16 12:30] ingest | SWE-agent 五大保障机制 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md
+- 创建页面: 3 个
+  - wiki/concepts/环境反馈设计.md — specific & concise 反馈设计，四字段框架（Outcome/Delta/Anchor/Next-step hint）
+  - wiki/concepts/状态变化感知.md — 四个状态模块（文件/搜索/执行/协议），显式状态转移系统
+  - wiki/concepts/恢复机制.md — 三层恢复（编辑失败不提交/失败原因回显/格式错误重试+历史去噪），77% 恢复率
+- 更新页面: 3 个
+  - wiki/concepts/Guardrails.md — 补充六层 Guardrail 体系（Protocol/Action/State/Semantic/扩展语义/隐式）、source_count 1→2
+  - wiki/concepts/ACI 设计原则.md — 补充 3 个新 relates_to、source_count 1→2
+  - wiki/concepts/Agent计算机接口.md — 补充 3 个新 relates_to、source_count 5→6
+- BM25: 6 页面全部更新成功
+- Index: +3 新条目 (snapshot_index --update)
+- Lint: 0 errors, 3 warnings (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 12:25] ingest | SWE-agent 24 个核心概念词条 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md
+- 创建页面: 7 个
+  - wiki/concepts/LM Agent.md — LM 从文本生成器到环境决策体的范式转换
+  - wiki/concepts/ACI 设计原则.md — 四条核心原则：动作简单、反馈简洁、状态可见、护栏机制
+  - wiki/concepts/Guardrails.md — 错误 containment 策略，linting 作为 cheap critic
+  - wiki/concepts/Localization.md — 文件级/行级代码定位，SWE agent 的本质瓶颈
+  - wiki/concepts/Context Management.md — 工作记忆管理，最近 5 条优于 full history
+  - wiki/concepts/ReAct 风格循环.md — thought + command 循环，想一点做一点看反馈
+  - wiki/concepts/Ablation Study.md — 将 agent 设计从玄学调 prompt 变为分部件优化
+- 更新页面: 3 个
+  - wiki/concepts/Agent计算机接口.md — 补充 5 个新 relates_to、source_count 4→5
+  - wiki/concepts/SWE-bench.md — 补充新来源、source_count 2→3
+  - wiki/concepts/HumanEvalFix.md — 补充新来源、source_count 1→2
+- BM25: 10 页面全部更新成功
+- Index: +7 新条目 (snapshot_index --update)
+- Lint: 0 errors, 7 warnings (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 12:20] ingest | SWE-agent 论文 5 页读书笔记 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版".md
+- 创建页面: 1 个
+  - wiki/concepts/HumanEvalFix.md — 代码修复基准，SWE-agent pass@1 87.7%，与 SWE-bench 对比
+- 更新页面: 2 个
+  - wiki/concepts/SWE-bench.md — 补充 HumanEvalFix 对比表（87.7% vs 12.5% 差距分析）、source_count 1→2
+  - wiki/concepts/Agent计算机接口.md — 补充"为什么不能直接把 Linux shell 丢给 Agent"五大原因、界面设计作为研究对象的范式变化、source_count 3→4
+- BM25: 3 页面全部更新成功
+- Index: +1 新条目 (snapshot_index --update)
+- Lint: 0 errors, 1 warning (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 12:15] maintain
+- Relink: 1998 terms, 162 new links across 41 pages
+- Reindex: OK (628 页面, 16 clusters, 16 maps, new: LLM能力) | Index: 36 行 | Schema 同步: 已更新
+- Check: 15 errors, 1334 warnings, 0 info (0 new gotchas)
+- Lint: 0 修复 (I1 expected with slim index), 15 待处理
+- Build: 634 节点, 5780 边 → static/ 已同步
+
+## [2026-04-16 09:40] ingest | SWE-agent 论文核心观点 (ChatGPT QA)
+- 源文件: raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md
+- 创建页面: 1 个
+  - wiki/concepts/SWE-bench.md — 软件工程 Agent 基准测试，pass@1 指标，SWE-agent 12.5% 结果
+- 更新页面: 1 个
+  - wiki/concepts/Agent计算机接口.md — 补充 SWE-agent 论文三大核心观点、SWE-bench 关系、source_count 2→3
+- BM25: 2 页面全部更新成功
+- Index: +1 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings
+
+## [2026-04-16 09:35] ingest | Scaling Managed Agents
+- 源文件: raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md
+- 创建页面: 6 个
+  - wiki/concepts/Managed-Agents.md — Claude 托管 Agent 服务：三大抽象组件、安全边界、性能收益
+  - wiki/concepts/元控制框架.md — Meta-harness 设计模式：对接口有主见、对实现无主见
+  - wiki/concepts/脑手分离架构.md — Brain-Hands Decoupling：宠物变牲畜、TTFT 下降 60%/90%
+  - wiki/concepts/会话日志.md — Session 作为上下文窗口外的持久化上下文对象
+  - wiki/concepts/宠物与牲畜模式.md — Pets vs Cattle 基础设施范式
+  - wiki/concepts/首次令牌时间.md — TTFT 延迟指标及其在 Agent 架构中的意义
+- 更新页面: 1 个
+  - wiki/concepts/Agent Harness模式.md — 补充 Harness 假设过时风险、meta-harness 演进方向
+- BM25: 7 页面全部更新成功
+- Index: +6 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings (全部通过)
+
+## [2026-04-16 09:30] ingest | Context windows.md
+- 源文件: raw/articles/ai-engineering/anthropic-developer/Context windows.md
+- 创建页面: 10 个
+  - wiki/concepts/上下文窗口.md — 上下文窗口核心概念（1M/200k、上下文腐烂、验证错误行为）
+  - wiki/concepts/上下文感知.md — Claude 4.5+ 模型追踪剩余令牌预算的能力
+  - wiki/concepts/扩展思维.md — Extended Thinking 机制、思考块剥离、工具使用结合
+  - wiki/concepts/上下文编辑.md — 工具结果清除、思考块清除等细粒度策略
+  - wiki/concepts/交错式思考.md — Claude 4 模型在工具调用间思考的能力
+  - wiki/concepts/自适应思考.md — 动态决定思考分配的机制
+  - wiki/entities/Claude-Sonnet-4-5.md — 200k 窗口，支持上下文感知
+  - wiki/entities/Claude-Haiku-4-5.md — 200k 窗口，支持上下文感知
+  - wiki/entities/Claude-Sonnet-3-7.md — 验证错误行为起始模型，不支持交错思考
+  - wiki/entities/Claude-Sonnet-4.md — 已弃用模型
+- 更新页面: 3 个
+  - wiki/entities/Claude-Mythos-Preview.md — 补充 1M 窗口、上下文感知、交错式思考
+  - wiki/entities/Claude-Opus-4-6.md — 补充 1M 窗口、上下文感知、交错式思考
+  - wiki/entities/Claude-Sonnet-4-6.md — 补充 1M 窗口、上下文感知、交错式思考
+- BM25: 13 页面全部更新成功
+- Index: +10 新条目 (snapshot_index --update)
+- Lint: 0 errors, 2 warnings (I1 index listing, 已由 snapshot_index 处理)
+
+## [2026-04-16 09:25] ingest | Compaction.md
+- 源文件: raw/articles/ai-engineering/anthropic-developer/Compaction.md
+- 创建页面: 6 个
+  - wiki/concepts/上下文压缩.md — Anthropic 官方 Compaction API 机制
+  - wiki/concepts/零数据保留.md — ZDR 数据隐私协议
+  - wiki/concepts/提示词缓存.md — Prompt Caching 与 cache_control
+  - wiki/entities/Claude-Mythos-Preview.md — 预览版模型
+  - wiki/entities/Claude-Opus-4-6.md — Opus 4.6 模型
+  - wiki/entities/Claude-Sonnet-4-6.md — Sonnet 4.6 模型
+- 更新页面: 1 个
+  - wiki/concepts/Context-Engineering.md — 补充 Compaction API 详细参数与协同策略
+- BM25: 7 页面全部更新成功
+- Index: +6 新条目 (snapshot_index --update)
+- Lint: 0 errors, 0 warnings (全部通过)
+
+## [2026-04-16 09:20] query → "claude code TOOL 设计有什么特别厉害的地方"
+- BM25 搜索: 57 候选, top 15 返回
+- 主题匹配: Agent系统, AI工程, 工具与框架
+- 读取页面: 8 个 (Claude-Code, Agent计算机接口, Agent循环, Agent Harness模式, Context Engineering, Claude Code Hook System, MCP协议层, 生成器-评估器架构)
+- 结晶化: 创建 wiki/syntheses/Claude-Code-TOOL-设计七维分析.md
+- QA 记录: raw/qa/qa-20260416-092000.md
+- Index 更新: +1 新条目
+
 ## [2026-04-16 15:30] maintain
 - Relink: 1921 terms, 1699 new links across 211 pages
 - Reindex: OK (593 页面, 15 clusters) | Schema 同步: 已更新

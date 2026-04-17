@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="slam">SLAM</h1>
 <h2 id="_1">概述</h2>
-<p>SLAM（Simultaneous Localization and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，机器人如何边走边建图、边建图边定位——打破"需要地图才能定位、需要定位才能建图"的循环依赖。</p>
+<p>SLAM（Simultaneous <a href="Localization.html">Localization</a> and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，机器人如何边走边建图、边建图边定位——打破"需要地图才能定位、需要定位才能建图"的循环依赖。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">问题定义</h3>
 <p>已知观测序列 z₁:t 和<a href="优化控制序.html">控制序</a>列 u₁:t，同时估计：
@@ -144,36 +144,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 即求后验 P(x₁:t, m | z₁:t, u₁:t)</p>
 <p><strong>核心困难</strong>：定位需要地图，建图需要精确位置——形成循环依赖（"鸡生蛋"问题）。</p>
 <h3 id="_4">三大算法范式</h3>
-<table>
-<thead>
-<tr>
-<th>范式</th>
-<th>核心方法</th>
-<th>复杂度</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**E<span style="color:#e74c3c" title="broken link">卡尔曼滤波&lt;/td&gt;
-&lt;td&gt;KF</span>-SLAM**</td>
-<td>扩展<a href="卡尔曼滤波.html">卡尔曼滤波</a>，联合估计所有地标</td>
-<td>O(n²)</td>
-</tr>
-<tr>
-<td><strong>FastSLAM</strong></td>
-<td>Rao-Blackwellized 粒子滤波，轨迹-地标分解</td>
-<td>O(n log n)</td>
-<td>复杂度突破，可扩展到数万地标</td>
-</tr>
-<tr>
-<td><strong>GraphSLAM</strong></td>
-<td>图优化，位姿/地标为节点，约束为边</td>
-<td>稀疏<a href="矩阵.html">矩阵</a>求解</td>
-<td>全局一致性，适合离线大图</td>
-</tr>
-</tbody>
-</table>
+<p>| <a href="规范化理论.html">范式</a> | 核心方法 | 复杂度 | 特点 |
+|------|---------|--------|------|
+| <strong>EKF-SLAM</strong> | 扩展<a href="卡尔曼滤波.html">卡尔曼滤波</a>，联合估计所有地标 | O(n²) | 理论清晰，不可扩展 |
+| <strong>FastSLAM</strong> | Rao-Blackwellized 粒子滤波，轨迹-地标分解 | O(n log n) | 复杂度突破，可扩展到数万地标 |
+| <strong>GraphSLAM</strong> | 图优化，位姿/地标为节点，约束为边 | 稀疏<a href="矩阵.html">矩阵</a>求解 | 全局一致性，适合离线大图 |</p>
 <p><strong>FastSLAM 核心洞察</strong>：已知机器人轨迹后，各地标的位置估计相互独立，可用独立的<a href="卡尔曼滤波.html">卡尔曼滤波</a>处理，将复杂度从 O(n²) 降至 O(n log n)。</p>
 <p><strong>GraphSLAM 贡献</strong>：将 SLAM 建模为约束满足问题，利用稀疏结构实现高效全局优化，催生了 g2o、iSAM、GTSAM 等框架。</p>
 <h3 id="_5">地图表示形式</h3>
@@ -210,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Romberg积分.html">&larr; Romberg积分</a>
+    <a href="SEO搜索引擎优化.html">&larr; SEO搜索引擎优化</a>
     <a href="SNIPS.html">SNIPS &rarr;</a>
   </div>
 </div>

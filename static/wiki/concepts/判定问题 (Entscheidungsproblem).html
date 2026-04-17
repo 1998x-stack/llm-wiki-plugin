@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>判定问题 (Entscheidungsproblem) — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 判定问题 (Entscheidungsproblem)</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算理论</span><span class="tag">数学</span><span class="tag">历史</span><span class="tag">基础理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="entscheidungsproblem">判定问题 (Entscheidungsproblem)</h1>
+<h2 id="_1">概述</h2>
+<p>Hilbert 于1928年提出的数学基础核心问题：是否存在一种纯机械的算法，能在有限步骤内判定一阶谓词逻辑中任意命题的真假？1936年被 Church 和 Turing 独立证明为不可能，标志着数学推理无法被完全机械化。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">问题的精确表述</h3>
+<blockquote>
+<p>是否存在一种算法（definite method），它以一阶谓词逻辑的一个命题作为输入，能够在有限步骤内给出"该命题是普遍有效的（universally valid）"还是"不是"的回答？</p>
+</blockquote>
+<p>关键词是"算法"——一种纯机械的、不需要任何灵感或创造力的、能在有限时间内终止的操作程序。但在1936年之前，"算法"这个概念本身就没有严格的数学定义。</p>
+<h3 id="_4">为什么如此关键</h3>
+<p>判定问题触及一个根本性的哲学追问：<strong>数学推理能否被完全机械化？</strong></p>
+<ul>
+<li>如果答案是肯定的 → 原则上可以建造一台"数学真理发现机"，数学家的创造性工作在理论上多余</li>
+<li>如果答案是否定的 → 人类的数学直觉和创造力具有某种不可被机器替代的本质</li>
+</ul>
+<h3 id="hilbert">Hilbert 纲领中的位置</h3>
+<p>Hilbert 试图将全部数学形式化为公理系统，并证明三个关键性质：
+1. <strong>一致性</strong>：系统内部不会推导出矛盾
+2. <strong>完备性</strong>：系统中的每一个真命题都能被证明
+3. <strong>可判定性</strong>：存在机械化方法判定任意命题真假</p>
+<p>Godel 不完备定理（1931）已经粉碎了完备性和一致性的期望，但判定问题——作为关于"算法存在性"的问题——仍然悬而未决。</p>
+<h3 id="church-1936">Church 的先行回答（1936春）</h3>
+<p>Church 使用 <a href="λ 演算.html">λ 演算</a>证明了判定问题的答案是否定的：
+- 定义"有效可计算性"为"λ可定义性"
+- 证明存在不可 λ 定义的函数
+- 但 <a href="λ 演算.html">λ 演算</a>高度抽象，缺乏"计算"的直观含义</p>
+<h3 id="turing-1936">Turing 的独立回答（1936）</h3>
+<p>Turing 用截然不同的方法得出了同样的结论：
+- 首先精确定义了"算法"（通过<a href="图灵机.html">图灵机</a>模型）
+- 证明了<a href="停机问题.html">停机问题</a>不可判定
+- 由此推导出判定问题不可解：如果判定问题可解，则<a href="停机问题.html">停机问题</a>也可判定——矛盾</p>
+<p>Turing 的方法具有 Church 的方法所不具备的优势：<a href="图灵机.html">图灵机</a>可以被想象为一台物理机器，任何人都能理解其工作方式。</p>
+<h3 id="_5">从停机问题到判定问题的归约</h3>
+<p>Turing 的论证路线：
+如果判定问题可解 → 存在算法判定一阶逻辑中任意命题的真假 → 特别地，能判定"存在一台<a href="图灵机.html">图灵机</a> M，在输入 w 上执行 n 步后停机" → 通过搜索所有可能的 n，这将能判定 M 在 w 上是否最终停机 → 但<a href="停机问题.html">停机问题</a>不可判定 → 因此判定问题也不可判定。</p>
+<h3 id="_6">历史意义</h3>
+<p>与 Godel 不完备定理一起，判定问题的否定回答彻底终结了 Hilbert 纲领：
+- <strong>Godel（1931）</strong>：数学有不可证的真命题（完备性的边界）
+- <strong>Turing/Church（1936）</strong>：有不可判定的问题（算法能力的边界）</p>
+<p>合并解读：数学真理的范围永远超出任何形式系统，算法的能力也有根本限制——数学推理不能被完全机械化。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/01-turing-on-computable-numbers.md</span></li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/大卫·希尔伯特.html">大卫·希尔伯特</a> — 提出者</li>
+<li><a href="../entities/阿兰·图灵.html">阿兰·图灵</a> — 通过图灵机给出否定回答</li>
+<li><a href="../entities/阿隆佐·邱奇.html">阿隆佐·邱奇</a> — 率先通过 λ 演算给出否定回答</li>
+<li><a href="停机问题.html">停机问题</a> — 判定问题不可解的归约目标</li>
+<li><a href="图灵机.html">图灵机</a> — 精确定义"算法"的模型</li>
+<li><a href="../entities/库尔特·哥德尔.html">库尔特·哥德尔</a> — 不完备定理为判定问题的解决铺平道路</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="判别式 LLM 推荐.html">&larr; 判别式 LLM 推荐</a>
+    <a href="前缀复杂性.html">前缀复杂性 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">双重鲁棒估计器</h1>
 <h2 id="_2">概述</h2>
-<p>双重鲁棒估计器结合<a href="逆倾向评分.html">逆倾向评分</a>（<a href="逆倾向评分.html">IPS</a>）和直接方法（Direct Method），即使其中一个模型（倾向性模型或结果模型）出错，估计器仍然保持无偏。</p>
+<p>双重鲁棒估计器结合<a href="逆倾向评分.html">逆倾向评分</a>（IPS）和直接方法（Direct Method），即使其中一个模型（倾向性模型或结果模型）出错，估计器仍然保持无偏。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心思想</strong>：双重鲁棒（Doubly Robust, DR）估计器同时使用两个模型——倾向性模型（估计观测概率）和结果模型（直接预测评分/结果）。只要其中至少一个模型正确，估计器就是无偏的。这提供了"双重保护"。</p>
 </li>
 <li>
-<p><strong>与 <a href="逆倾向评分.html">IPS</a> 的关系</strong>：DR 可以看作是 <a href="逆倾向评分.html">IPS</a> 的增强版本。<a href="逆倾向评分.html">IPS</a> 仅依赖倾向性模型，当倾向性估计不准确时可能产生较大偏差。DR 通过引入结果模型作为补充，降低了对方差敏感的倾向性权重的依赖。</p>
+<p><strong>与 IPS 的关系</strong>：DR 可以看作是 IPS 的增强版本。IPS 仅依赖倾向性模型，当倾向性估计不准确时可能产生较大偏差。DR 通过引入结果模型作为补充，降低了对方差敏感的倾向性权重的依赖。</p>
 </li>
 <li>
-<p><strong>数学形式</strong>：DR 估计器结合了 <a href="逆倾向评分.html">IPS</a> 项和直接预测项。当倾向性模型正确时，DR 无偏；当结果模型正确时，DR 也无偏。这种双重保证使其在实践中比纯 <a href="逆倾向评分.html">IPS</a> 更稳定。</p>
+<p><strong>数学形式</strong>：DR 估计器结合了 IPS 项和直接预测项。当倾向性模型正确时，DR 无偏；当结果模型正确时，DR 也无偏。这种双重保证使其在实践中比纯 IPS 更稳定。</p>
 </li>
 <li>
 <p><strong>在推荐系统中的应用</strong>：Wang 等人（2019）将 DR 方法引入推荐系统，用于去偏的推荐评估和训练。后续工作进一步将 DR 与深度学习结合，提出了神经双重鲁棒等方法。</p>
@@ -153,10 +153,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>优势</strong>：</p>
 </li>
-<li>比纯 <a href="逆倾向评分.html">IPS</a> 更低的方差</li>
+<li>比纯 IPS 更低的方差</li>
 <li>双重保护：一个模型出错时另一个可以补偿</li>
 <li>
-<p>在实践中通常比 <a href="逆倾向评分.html">IPS</a> 和直接方法都更准确</p>
+<p>在实践中通常比 IPS 和直接方法都更准确</p>
 </li>
 <li>
 <p><strong>局限性</strong>：DR 需要同时训练两个模型（倾向性模型和结果模型），增加了计算复杂度。如果两个模型都不准确，DR 也无法保证无偏性。</p>

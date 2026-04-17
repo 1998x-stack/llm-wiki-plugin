@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 技术
-  - 工具
-  - 方法论
-  - 研究
+tags: [技术, 工具, 方法论, 研究, 工具与框架]
 aliases:
   - Bun vs uv
   - Modern Package Managers Comparison
@@ -20,13 +16,13 @@ relates_to:
   - target: "[[Bun-Runtime]]"
     type: extends
     confidence: 1.0
-  - target: "[[uv]]"
+  - target: "uv"
     type: extends
     confidence: 1.0
-  - target: "[[npm]]"
+  - target: "npm"
     type: contradicts
     confidence: 0.9
-  - target: "[[pip]]"
+  - target: "pip"
     type: contradicts
     confidence: 0.9
   - target: "[[Node.js]]"
@@ -35,10 +31,10 @@ relates_to:
   - target: "[[Python]]"
     type: depends_on
     confidence: 0.8
-  - target: "[[Rust]]"
+  - target: "Rust"
     type: uses
     confidence: 1.0
-  - target: "[[Zig]]"
+  - target: "Zig"
     type: uses
     confidence: 1.0
   - target: "[[Cargo]]"
@@ -85,12 +81,12 @@ supersedes: null
 
 ## 相关
 - [[Bun-Runtime]]
-- [[uv]]
-- [[npm]]
-- [[pip]]
+- uv
+- npm
+- pip
 - [[Node.js]]
 - [[Python]]
-- [[Rust]]
-- [[Zig]]
+- Rust
+- Zig
 - [[Cargo]]
 - [[claude-cli-tools|Claude CLI 工具生态]]

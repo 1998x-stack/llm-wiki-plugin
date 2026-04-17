@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">结构化笔记法</h1>
 <h2 id="_2">概述</h2>
-<p>结构化笔记法（Structured Note-taking）是 Agent 长时任务中的持久记忆技术：Agent 将关键信息<strong>定期写入上下文窗口之外的持久存储</strong>（文件、记忆工具），在后续轮次中按需读回，从而在不撑满上下文窗口的前提下维持多轮/多小时任务的连贯性。</p>
+<p>结构化笔记法（Structured Note-taking）是 Agent 长时任务中的持久记忆技术：Agent 将关键信息<strong>定期写入<a href="上下文窗口.html">上下文窗口</a>之外的持久存储</strong>（文件、记忆工具），在后续轮次中按需读回，从而在不撑满<a href="上下文窗口.html">上下文窗口</a>的前提下维持多轮/多小时任务的连贯性。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心机制</h3>
 <pre><code>Agent 工作 → 产生关键状态（目标进度、决策、依赖）
@@ -146,9 +146,9 @@ nav a.active { color: var(--link); font-weight: 600; }
                 ↓
    Agent 重新启动 → 读取笔记 → 恢复状态 → 继续工作
 </code></pre>
-<p>笔记的本质：<strong>将上下文窗口的"短期记忆"外置为"长期记忆"</strong>，解决 <a href="LLM-Statelessness.html">LLM 天然无状态</a>的问题。</p>
+<p>笔记的本质：<strong>将<a href="上下文窗口.html">上下文窗口</a>的"短期记忆"外置为"长期记忆"</strong>，解决 <a href="LLM-Statelessness.html">LLM 天然无状态</a>的问题。</p>
 <h3 id="_5">典型实现</h3>
-<p><strong>Claude Code 的 Todo 列表</strong>：Claude Code 自动创建待办清单文件，跟踪复杂任务的进度、依赖和未完成事项，在压缩或重启后通过读取 Todo 恢复任务状态。</p>
+<p><strong>Claude Code 的 Todo 列表</strong>：Claude Code 自动创建<a href="TodoWrite-Tool.html">待办清单</a>文件，跟踪复杂任务的进度、依赖和未完成事项，在压缩或重启后通过读取 Todo 恢复任务状态。</p>
 <p><strong>Claude 玩 Pokémon</strong>（Anthropic 演示）：Claude 无需任何关于记忆结构的额外提示，自发：
 - 维护精确的训练步数记录（"过去 1,234 步在路线 1 训练，皮卡丘升了 8 级，目标 10 级"）
 - 建立探索地图
@@ -157,43 +157,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <a href="上下文重置.html">上下文重置</a>后读取自己的笔记，继续多小时的训练序列或地城探索，展现了长时任务连贯性。</p>
 <p><strong>自定义 Agent 的 NOTES.md</strong>：通用模式——Agent 维护一个 NOTES.md 文件，跟踪整个复杂任务中的进度、关键约束和跨工具调用的依赖关系。</p>
 <h3 id="anthropic-beta">Anthropic 记忆工具（Beta）</h3>
-<p>随 Claude Sonnet 4.5 发布，Anthropic 在 Claude Developer Platform 上线了公开 Beta 版记忆工具，提供：
+<p>随 <a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 发布，Anthropic 在 Claude Developer Platform 上线了公开 Beta 版记忆工具，提供：
 - 基于文件系统的上下文外信息存储
 - 跨会话的项目状态维护
 - 无需将历史全放入上下文即可引用历史工作</p>
 <h3 id="compaction">与 Compaction 的协同</h3>
-<p>结构化笔记法和压缩（Compaction）是互补而非竞争的策略：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>结构化笔记法</th>
-<th>Compaction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>本质</td>
-<td>外置持久存储</td>
-<td>内置压缩摘要</td>
-</tr>
-<tr>
-<td>状态粒度</td>
-<td>精确（Agent 选择写什么）</td>
-<td>自动（摘要模型决定）</td>
-</tr>
-<tr>
-<td>跨会话</td>
-<td>天然支持</td>
-<td>需额外机制</td>
-</tr>
-<tr>
-<td>适合任务</td>
-<td>有明确里程碑的迭代开发</td>
-<td>需要流式回话的复杂推理</td>
-</tr>
-</tbody>
-</table>
+<p>结构化笔记法和压缩（<a href="上下文压缩.html">Compaction</a>）是互补而非竞争的策略：</p>
+<p>| | 结构化笔记法 | <a href="上下文压缩.html">Compaction</a> |
+|--|--|--|
+| 本质 | 外置持久存储 | 内置压缩摘要 |
+| 状态粒度 | 精确（Agent 选择写什么） | 自动（摘要模型决定）  |
+| 跨会话 | 天然支持 | 需额外机制 |
+| 适合任务 | 有明确里程碑的迭代开发 | 需要流式回话的复杂推理 |</p>
 <h3 id="_6">三种长时任务技术的选择指南</h3>
 <p>（来自 Anthropic 工程实践）</p>
 <table>
@@ -205,8 +180,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td><strong>Compaction</strong></td>
-<td>需要频繁往返交互的任务，保持对话流畅</td>
+<td>**<span style="color:#e74c3c" title="broken link">上下文压缩&lt;/td&gt;
+&lt;td&gt;Compaction</span>**</td>
 </tr>
 <tr>
 <td><strong>结构化笔记法</strong></td>
@@ -233,7 +208,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="结构化UI风格知识库.html">&larr; 结构化UI风格知识库</a>
-    <a href="结构因果模型.html">结构因果模型 &rarr;</a>
+    <a href="结构化编程.html">结构化编程 &rarr;</a>
   </div>
 </div>
 </body>

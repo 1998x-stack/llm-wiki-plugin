@@ -27,7 +27,7 @@ David Goldberg 是 [[Xerox PARC]] 研究员，[[Tapestry 系统]]的第一作者
 
 1. **主要贡献**：作为 [[Tapestry 系统|Tapestry]] 论文的第一作者，Goldberg 参与了[[协同过滤]]概念的首次形式化定义和 [[Tapestry 系统]]的设计与实现。
 
-2. **论文**：Goldberg, D., [[David Nichols|Nichols]], D., [[Brian M. Oki|Oki]], B.M., & [[Douglas Terry|Terry]], D. (1992). "[[Tapestry 系统|Using Collaborative Filtering to Weave an Information Tapestry]]." *Communications of the ACM*, 35(12), 61-70.
+2. **论文**：Goldberg, D., [[David Nichols|Nichols]], D., Oki, B.M., & [[Douglas Terry|Terry]], D. (1992). "[[Tapestry 系统|Using Collaborative Filtering to Weave an Information Tapestry]]." *Communications of the ACM*, 35(12), 61-70.
 
 3. **机构**：[[Xerox PARC]]（施乐帕洛阿尔托研究中心）。
 

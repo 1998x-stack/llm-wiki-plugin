@@ -5,12 +5,9 @@ status: active
 confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
-last_accessed: '2026-04-15'
+last_accessed: '2026-04-16'
 source_count: 1
-tags:
-  - AI
-  - 工具
-  - 方法论
+tags: [AI, 工具, 方法论, AI工程]
 aliases:
   - Claude Code Hooks
   - Hook Lifecycle

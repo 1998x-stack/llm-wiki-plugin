@@ -67,10 +67,10 @@ Fan 的形式更简洁：把内层的"在 $V$ 中取极小"替换为"对 $V$ 求
 
 $$\sum_{i=1}^{k} \lambda_i(A+B) \leq \sum_{i=1}^{k} \lambda_i(A) + \sum_{i=1}^{k} \lambda_i(B)$$
 
-**与 [[赫尔曼·外尔|Weyl]] 不等式的关系**：
-- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（[[赫尔曼·外尔|Weyl]] 特例）
+**与 Weyl 不等式的关系**：
+- $k=1$：退化为 $\lambda_1(A+B) \leq \lambda_1(A)+\lambda_1(B)$（Weyl 特例）
 - $k=n$：两端均为 $\operatorname{tr}(A+B) = \operatorname{tr}(A)+\operatorname{tr}(B)$（等式）
-- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 [[赫尔曼·外尔|Weyl]]（$k=1$）与迹等式（$k=n$）的一族不等式
+- 随 $k$ 增大，不等式逐渐趋向等式——Fan不等式是连接 Weyl（$k=1$）与迹等式（$k=n$）的一族不等式
 
 **证明**（极值原理的直接推论）：由极值原理，存在最优子空间 $V^*$ 使左端取最大值；在该子空间上，两项分别 $\leq$ 对应的部分和上界，相加即得。
 

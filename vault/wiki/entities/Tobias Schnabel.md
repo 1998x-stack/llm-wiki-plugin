@@ -25,7 +25,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **核心贡献**：作为第一作者发表 [[Recommendations as Treatments]]（ICML 2016），提出将推荐类比为医学处方的[[因果推断]]视角，引入 [[逆倾向评分|IPS]] 和 [[SNIPS]] 方法处理推荐系统中的[[选择偏差]]。
+1. **核心贡献**：作为第一作者发表 [[Recommendations as Treatments]]（ICML 2016），提出将推荐类比为医学处方的[[因果推断]]视角，引入 IPS 和 [[SNIPS]] 方法处理推荐系统中的[[选择偏差]]。
 
 2. **研究背景**：在 [[Cornell University]] 师从 [[Thorsten Joachims]] 教授，研究方向包括[[因果推断]]、推荐系统、信息检索、公平机器学习。
 

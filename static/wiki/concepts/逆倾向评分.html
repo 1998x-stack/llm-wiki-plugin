@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>直观解释</strong>：如果某个评分被观测到的概率只有 0.1，则该评分在估计中应被赋予 10 倍权重——它"代表"了约 10 个类似但未被观测到的评分。反之，高倾向性（如 0.8）的样本仅获 1.25 倍权重。</p>
 </li>
 <li>
-<p><strong>与朴素估计器的对比</strong>：朴素估计器直接在观测数据上计算平均损失，隐式假设数据是 <a href="MCAR.html">MCAR</a> 的。在 <a href="MNAR.html">MNAR</a> 场景下，朴素估计器的误差随<a href="选择偏差.html">选择偏差</a>增大而急剧增长，而 IPS 始终保持低估计误差。</p>
+<p><strong>与朴素估计器的对比</strong>：朴素估计器直接在观测数据上计算平均损失，隐式假设数据是 MCAR 的。在 MNAR 场景下，朴素估计器的误差随<a href="选择偏差.html">选择偏差</a>增大而急剧增长，而 IPS 始终保持低估计误差。</p>
 </li>
 <li>
 <p><strong>高方差问题</strong>：当某些<a href="倾向性评分.html">倾向性评分</a>极小时（如冷门物品几乎从未被评分），逆倾向权重 $1/P_{u,i}$ 会变得非常大，导致单个观测对估计结果影响过大。这促使了 <a href="SNIPS.html">SNIPS</a>（自归一化版本）的提出。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在推荐系统中的应用</strong>：<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人在 ICML 2016 论文 <a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a> 中首次系统地将 IPS 引入推荐系统，提出 <a href="MF-IPS.html">MF-IPS</a>（基于 IPS 的<a href="矩阵分解.html">矩阵分解</a>），在 <a href="../entities/Yahoo! R3.html">Yahoo! R3</a> 和 Coat Shopping 数据集上显著优于传统方法。</p>
 </li>
 <li>
-<p><strong>理论保证</strong>：IPS 估计器不仅有理论无偏性，还具有有限样本下的尾部概率界（tail bound），刻画了估计器的集中性。当所有<a href="倾向性评分.html">倾向性评分</a>相等时（<a href="MCAR.html">MCAR</a> 情形），IPS 退化为传统朴素估计器。</p>
+<p><strong>理论保证</strong>：IPS 估计器不仅有理论无偏性，还具有有限样本下的尾部概率界（tail bound），刻画了估计器的集中性。当所有<a href="倾向性评分.html">倾向性评分</a>相等时（MCAR 情形），IPS 退化为传统朴素估计器。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -169,8 +169,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="倾向性评分.html">倾向性评分</a> — IPS 的核心输入</li>
 <li><a href="SNIPS.html">SNIPS</a> — IPS 的自归一化低方差变体</li>
 <li><a href="选择偏差.html">选择偏差</a> — IPS 旨在校正的问题</li>
-<li><a href="MNAR.html">MNAR</a> — IPS 适用的数据缺失机制</li>
-<li><a href="MCAR.html">MCAR</a> — IPS 在 MCAR 下退化为朴素估计器</li>
+<li>MNAR — IPS 适用的数据缺失机制</li>
+<li>MCAR — IPS 在 MCAR 下退化为朴素估计器</li>
 <li><a href="MF-IPS.html">MF-IPS</a> — IPS 在矩阵分解训练中的应用</li>
 <li><a href="离线策略评估.html">离线策略评估</a> — IPS 的标准应用场景</li>
 <li><a href="矩阵分解.html">矩阵分解</a> — IPS 可嵌入的传统模型</li>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="近似最近邻检索.html">&larr; 近似最近邻检索</a>
-    <a href="选择偏差.html">选择偏差 &rarr;</a>
+    <a href="逆向运动学.html">逆向运动学 &rarr;</a>
   </div>
 </div>
 </body>

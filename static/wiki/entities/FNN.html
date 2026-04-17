@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="fnn">FNN</h1>
 <h2 id="_1">概述</h2>
-<p>Factorization-machine supported Neural Networks，采用两阶段训练策略（<a href="Factorization Machines.html">FM</a> 预训练 <a href="../concepts/Embedding.html">Embedding</a> + DNN），是 <a href="DeepFM.html">DeepFM</a> 端到端训练范式的对比基线。</p>
+<p>Factorization-machine supported Neural Networks，采用两阶段训练策略（FM 预训练 <a href="../concepts/Embedding.html">Embedding</a> + DNN），是 <a href="DeepFM.html">DeepFM</a> 端到端训练<a href="../concepts/规范化理论.html">范式</a>的对比基线。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>两阶段训练</strong>：先用 <a href="Factorization Machines.html">FM</a> 预训练 <a href="../concepts/Embedding.html">Embedding</a>，再将预训练好的 <a href="../concepts/Embedding.html">Embedding</a> 作为 DNN 的初始化。这种串行方式存在两个问题：预训练阶段的 <a href="Factorization Machines.html">FM</a> 能力受限于二阶交互，且预训练的 <a href="../concepts/Embedding.html">Embedding</a> 可能不是 DNN 的最优初始化。</li>
-<li><strong>与 <a href="DeepFM.html">DeepFM</a> 对比</strong>：<a href="DeepFM.html">DeepFM</a> 实现了从随机初始化开始的端到端训练，不需要 <a href="Factorization Machines.html">FM</a> 预训练等额外步骤。实验表明端到端训练的 <a href="DeepFM.html">DeepFM</a> 表现优于需要预训练的 FNN。</li>
-<li><strong>历史地位</strong>：FNN 是早期尝试将 <a href="Factorization Machines.html">FM</a> 与 DNN 结合的工作，为后续 <a href="DeepFM.html">DeepFM</a> 的<a href="../concepts/共享嵌入.html">共享嵌入</a> + 端到端训练范式提供了重要的研究基础。</li>
+<li><strong>两阶段训练</strong>：先用 FM 预训练 <a href="../concepts/Embedding.html">Embedding</a>，再将预训练好的 <a href="../concepts/Embedding.html">Embedding</a> 作为 DNN 的初始化。这种串行方式存在两个问题：预训练阶段的 FM 能力受限于二阶交互，且预训练的 <a href="../concepts/Embedding.html">Embedding</a> 可能不是 DNN 的最优初始化。</li>
+<li><strong>与 <a href="DeepFM.html">DeepFM</a> 对比</strong>：<a href="DeepFM.html">DeepFM</a> 实现了从随机初始化开始的端到端训练，不需要 FM 预训练等额外步骤。实验表明端到端训练的 <a href="DeepFM.html">DeepFM</a> 表现优于需要预训练的 FNN。</li>
+<li><strong>历史地位</strong>：FNN 是早期尝试将 FM 与 DNN 结合的工作，为后续 <a href="DeepFM.html">DeepFM</a> 的<a href="../concepts/共享嵌入.html">共享嵌入</a> + 端到端训练<a href="../concepts/规范化理论.html">范式</a>提供了重要的研究基础。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="FFM.html">&larr; FFM</a>
-    <a href="FPMC.html">FPMC &rarr;</a>
+    <a href="FORTRAN 编译器论文.html">FORTRAN 编译器论文 &rarr;</a>
   </div>
 </div>
 </body>

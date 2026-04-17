@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>新闻客户端（News Clients）</strong>：用户阅读和评分的界面，团队为 Gnus、xrn、tin 等主流 Unix 新闻阅读器和 Macintosh 客户端开发了修改版本</li>
 <li><strong>新闻服务器（News Servers）</strong>：标准 Usenet NNTP 服务器，通过创建专用"评分传输新闻组"在服务器间同步评分数据</li>
 <li>
-<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（<a href="Better Bit Bureau.html">BBB</a>，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
+<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（BBB，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
 </li>
 <li>
 <p><strong>用户相似度计算</strong>：采用 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：</p>
@@ -165,12 +165,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>加权预测公式</strong>：
    $$\hat{r}<em>{u,j} = \bar{r}_u + \frac{\sum</em>{k \in N(u)} w(u,k) \cdot (r_{k,j} - \bar{r}<em>k)}{\sum</em>{k \in N(u)} |w(u,k)|}$$
-   该公式后来成为 <a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> 的标准范式，在随后十余年间被无数论文引用、扩展和改进。</p>
+   该公式后来成为 <a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> 的标准<a href="../concepts/规范化理论.html">范式</a>，在随后十余年间被无数论文引用、扩展和改进。</p>
 </li>
 <li>
 <p><strong>开放式架构设计五大目标</strong>：</p>
 </li>
-<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 <a href="Better Bit Bureau.html">BBB</a> 服务器或客户端</li>
+<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 BBB 服务器或客户端</li>
 <li><strong>易用性（Ease of Use）</strong>：评分操作简便，不打断正常阅读流程</li>
 <li><strong>与 Usenet 兼容（Compatibility）</strong>：建立在现有基础设施之上，无需迁移到新平台</li>
 <li><strong>可扩展性（Scalability）</strong>：能随用户数量增长而扩展</li>
@@ -231,7 +231,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Google.html">&larr; Google</a>
+    <a href="Grace Hopper.html">&larr; Grace Hopper</a>
     <a href="HSTU.html">HSTU &rarr;</a>
   </div>
 </div>

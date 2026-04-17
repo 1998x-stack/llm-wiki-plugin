@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++指针与引用 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / C++指针与引用</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">cpp</span><span class="tag">指针</span><span class="tag">引用</span><span class="tag">const</span><span class="tag">类型系统</span><span class="tag">编程语言</span><span class="tag">设计哲学</span><span class="tag">python</span><span class="tag">C++编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="c">C++指针与引用</h1>
+<h2 id="_1">概述</h2>
+<p>C++ 中指针（<code>*</code>）和引用（<code>&amp;</code>）的核心区别：引用是对象的不可改绑别名，指针是可变的地址值。<code>const</code> 修饰左边的东西（左边无则修饰右边），决定"谁只读"。指针源于直接控制硬件的需求，引用是为更安全的别名传递而引入的后续设计。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>从右往左读法</strong>：先抓变量名，再往两边扩展。<code>*</code> 左边有 <code>const T</code> → "指向只读 T 的指针"；<code>&amp;</code> → "别名"。</li>
+<li><strong>四种核心写法对比</strong>：</li>
+<li><code>T&amp;</code>：可写引用，改别名即改原对象；绑定后不可改绑。</li>
+<li><code>const T&amp;</code>：只读引用，不能通过它修改对象；常用于"传大对象避免拷贝且不允许修改"。</li>
+<li><code>T*</code>：可写指针，可改 <code>*p</code>（对象值），也可改 <code>p</code>（指向）。</li>
+<li><code>const T*</code>（等价 <code>T const*</code>）：指向只读对象的指针，不能改 <code>*p</code>，但可改 <code>p</code> 指向。</li>
+<li><strong>const 的位置决定修饰目标</strong>：</li>
+<li><code>const T* p</code>："指向常量的指针"，<code>*p</code> 不可改，<code>p</code> 可改。</li>
+<li><code>T* const p</code>："常量指针"，<code>p</code> 不可改，<code>*p</code> 可改。</li>
+<li><code>const T* const p</code>：两者均不可改。</li>
+<li><strong>引用无"改指向"语义</strong>：引用在绑定时固定，<code>r = b</code> 是给原对象赋值，不是改绑；这与指针根本不同。</li>
+<li><strong>函数参数实用口诀</strong>：</li>
+<li><code>void f(T x)</code> → 传值拷贝；<code>void f(T&amp; x)</code> → 可写引用；<code>void f(const T&amp; x)</code> → 只读引用；<code>void f(T* p)</code> → 指针（可为空）；<code>void f(const T* p)</code> → 只读指针。</li>
+</ol>
+<h2 id="_3">速记表</h2>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>中文直觉</th>
+<th>能改值</th>
+<th>能改绑定/指向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>T&amp;</code></td>
+<td>可写引用</td>
+<td>可以</td>
+<td>不行</td>
+</tr>
+<tr>
+<td><code>const T&amp;</code></td>
+<td>只读引用</td>
+<td>不可以</td>
+<td>不行</td>
+</tr>
+<tr>
+<td><code>T*</code></td>
+<td>可写指针</td>
+<td>可以（<code>*p</code>）</td>
+<td>可以</td>
+</tr>
+<tr>
+<td><code>const T*</code></td>
+<td>指向只读对象的指针</td>
+<td>不可以（<code>*p</code>）</td>
+<td>可以</td>
+</tr>
+<tr>
+<td><code>T* const</code></td>
+<td>常量指针</td>
+<td>可以（<code>*p</code>）</td>
+<td>不行</td>
+</tr>
+<tr>
+<td><code>const T* const</code></td>
+<td>指向常量的常量指针</td>
+<td>不可以</td>
+<td>不行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">设计哲学：为什么要有指针和引用</h2>
+<h3 id="_5">指针的起源</h3>
+<p>C/C++ 诞生于离机器很近的时代，需要直接操作内存地址以实现：
+- 间接访问数据（避免拷贝大对象）
+- 动态申请内存（<code>new int[100]</code>）
+- 构造链表、树、图等复杂数据结构（节点间存地址）
+- 与<a href="操作系统.html">操作系统</a>底层接口交互（"地址 + 长度"形式）</p>
+<p><strong>指针本质：存地址的变量。</strong></p>
+<h3 id="_6">引用的引入</h3>
+<p>指针太容易出错（野指针、空指针解引用、随意改指向），C++ 引入引用作为更安全的"别名"：
+- 一旦绑定不可改绑（比指针更安全）
+- 函数参数无需手动解引用（<code>x++</code> vs <code>(*x)++</code>）
+- 支持运算符重载、返回值优化等高级语义
+- <code>const T&amp;</code> 是现代 C++ 的基础用法</p>
+<h3 id="_7">设计定位区分</h3>
+<p><strong>指针</strong>（显式地址操作）适合：可能为空、需要改指向、动态内存、数据结构链接、底层接口。</p>
+<p><strong>引用</strong>（对象别名）适合：参数传递、返回对象本身、operator 重载、避免拷贝。</p>
+<p>核心原则：<strong>指针负责表达底层控制；引用负责表达高级语义。</strong></p>
+<h2 id="python">与 Python 的对比</h2>
+<p>Python 不是没有指针，而是不暴露给开发者。Python 内部有引用计数和对象指针，但由解释器管理：
+- <code>b = a</code>（列表）：两个名字绑定同一对象，改 <code>b</code> 同时改 <code>a</code>
+- Python 变量名绑定到对象，这个绑定效果类似引用，但不是语言级语法</p>
+<p>Python 选择隐藏内存细节的原因：设计目标是简单、可读、开发效率高、少踩内存错误、跨平台兼容（不绑定具体实现如 CPython/PyPy）。</p>
+<p><strong>关键误区</strong>：Python 不是"没有引用关系"，而是把引用关系做成了默认语义，不单独给 <code>&amp;</code> 和 <code>*</code>。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">C++ 指针引用解读</span> — ChatGPT 对话整理，从右往左读法 + 四类写法 + const 位置辨析</li>
+<li><span style="color:#e74c3c" title="broken link">c++指针和引用</span> — ChatGPT 对话，指针/引用设计起源 + Python 对比</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li>C++ — 本概念所属编程语言</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="C++基本语法.html">&larr; C++基本语法</a>
+    <a href="C++流缓冲区机制.html">C++流缓冲区机制 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

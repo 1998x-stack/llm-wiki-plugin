@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>被动单身 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 被动单身</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">社会学</span><span class="tag">社会科学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">被动单身</h1>
+<h2 id="_2">概述</h2>
+<p>县域体制内大龄女青年因受客观结构性约束和主观文化-认知性因素双重制约而形塑的暂时性却亟待改变的社会身份状态，与主动单身相对立，描述个体想要择偶而不能或无果的身份状态。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>概念界定</strong>：被动单身不是非婚主义，而是个体想要择偶但因结构性约束未能实现的身份状态。它是县域体制内大龄女青年婚恋行动受阻或失败的结果表现形式，是一种结构化的社会身份状态，具有一定稳定性但也会随婚恋关系确立而消解。</p>
+</li>
+<li>
+<p><strong>形成背景</strong>：县域是传统与现代交融密集且存在隐性张力的文化空间。相较于城市大龄女青年选择主动单身，县域体制内大龄女青年多与父母同住，家长精神施压和家庭代际责任传导未被物理空间阻隔，不得不直面催婚。在"半熟人社会"的县域，面临弱关系增强与强关系未变弱的现实情形。</p>
+</li>
+<li>
+<p><strong>结构性原因</strong>：县域体制内人才结构出现<a href="婚姻挤压理论.html">性别失衡</a>——较多优质男青年倾向进城就业，部分优质女青年倾向回流县城寻求体制内稳定工作，形成"女多男少"的人才结构，使体制内大龄女青年在县域婚姻市场遇阻。</p>
+</li>
+<li>
+<p><strong>四种理想类型</strong>（基于<a href="社会行动理论.html">社会行动理论</a>，按理性化-感性化程度和个体-家庭意识强度划分）：</p>
+</li>
+<li><strong>独立理性型</strong>（理性化强，个体意识强）：被动单身程度最强</li>
+<li><strong>挣扎无奈型</strong>（感性化强，个体意识强）：被动单身程度次之</li>
+<li><strong>挑选负责型</strong>（理性化强，家庭意识强）：被动单身程度再次之</li>
+<li>
+<p><strong>依恋顾家型</strong>（感性化强，家庭意识强）：被动单身程度最弱</p>
+</li>
+<li>
+<p><strong>对外策略（日常反抗）</strong>：</p>
+</li>
+<li><strong>说理</strong>：理性剖析婚恋问题，以"理"说服父母（挑选负责型、依恋顾家型常用）</li>
+<li><strong>争论</strong>：力争抗衡传统婚恋观，抵制传统婚恋观带来的心理压力（独立理性型常用）</li>
+<li>
+<p><strong>诉苦</strong>：采用共情机制唤醒父辈同理心，以情动人展现弱者角色（挑选负责型常用）</p>
+</li>
+<li>
+<p><strong>对内策略（自我认同与身份建构）</strong>：</p>
+</li>
+<li><strong>充实自我生活</strong>：培养兴趣爱好、学习备考、发展职业，占据时间和精力</li>
+<li><strong>"躲避型"策略</strong>：主动疏远已婚女性朋友等异质群体，维系朋友圈同质性</li>
+<li>
+<p><strong>"迎合型"策略</strong>：借助网络找到同质群体，建立情绪宣泄窗口，获取身份认同和归属感</p>
+</li>
+<li>
+<p><strong>异变婚恋观的形成</strong>：对外柔性抗争与对内自我认同双重叠加，形成反抗主流婚恋价值观和践行个体主义消费观的异变婚恋观。这种婚恋观反过来降低婚恋行动积极性，固化被动单身身份，构成身份再生产的文化机制。</p>
+</li>
+<li>
+<p><strong>意外后果</strong>：自我身份建构与认同虽是对被动单身的间接应对策略，但反向作用于大龄女青年，占据择偶和恋爱时间，耗费个人精力，延长单身状态时间，加大解决婚恋问题的现实难度。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">应对被动单身：县域体制内大龄女青年的行动策略及其影响</span> — 刘敏、熊琼，基于中部 Y 县实地调研</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="婚姻挤压理论.html">婚姻挤压理论</a> — relates_to</li>
+<li><a href="择偶梯度理论.html">择偶梯度理论</a> — relates_to</li>
+<li><a href="社会行动理论.html">社会行动理论</a> — depends_on</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="表格识别.html">&larr; 表格识别</a>
+    <a href="规则漏洞学.html">规则漏洞学 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 4
-tags: [AI, Agent, 架构, 协议, 沙箱]
+tags: [AI, Agent, 架构, 协议, 沙箱, Agent系统]
 aliases: [BackendProtocol, SandboxBackendProtocol, DeepAgents backend]
 relates_to:
   - target: "[[DeepAgents]]"

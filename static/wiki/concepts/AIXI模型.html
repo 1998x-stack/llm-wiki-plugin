@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="aixi">AIXI模型</h1>
@@ -140,14 +140,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_3">核心思想</h3>
 <p>AIXI = Solomonoff 归纳 + Bellman 最优方程</p>
 <ul>
-<li><strong>感知</strong>：使用 Solomonoff 先验 <a href="Solomonoff先验.html">M(x)</a> 对环境进行<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>预测</li>
+<li><strong>感知</strong>：使用 Solomonoff 先验 M(x) 对环境进行<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>预测</li>
 <li><strong>决策</strong>：选择使期望累积奖励最大化的动作</li>
 <li><strong>学习</strong>：通过与环境交互不断更新后验信念</li>
 </ul>
 <h3 id="_4">最优性</h3>
 <p>AIXI 在任何可计算的环境中都能做出最优决策——它的累积奖励与最优策略的差距有界，且上界仅取决于环境的 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性。</p>
 <h3 id="_5">不可计算性</h3>
-<p>与 Solomonoff 先验一样，AIXI 是不可计算的。它提供了一个理论上限（gold standard），实际的强化学习算法可以视为 AIXI 的可计算近似。</p>
+<p>与 Solomonoff 先验一样，AIXI 是不可计算的。它提供了一个理论上限（gold standard），实际的<a href="强化学习.html">强化学习</a>算法可以视为 AIXI 的可计算近似。</p>
 <h3 id="llm">与 LLM 的关系</h3>
 <p>大语言模型可以看作 AIXI 在纯文本环境中的某种近似：通过大规模预训练学习了一个"通用先验"，然后通过上下文学习（in-context learning）适应新任务——类似于 AIXI 的<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>更新机制。</p>
 <h2 id="_6">来源</h2>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ACP协议.html">&larr; ACP协议</a>
+    <a href="AIC（赤池信息准则）.html">&larr; AIC（赤池信息准则）</a>
     <a href="AI设计推理层.html">AI设计推理层 &rarr;</a>
   </div>
 </div>

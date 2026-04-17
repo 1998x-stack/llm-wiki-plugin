@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love2D — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Love2D</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具与框架</span><span class="tag">游戏</span><span class="tag">游戏开发</span></div>
+</div>
+  <div class="content">
+    <h1 id="love2d">Love2D</h1>
+<h2 id="_1">概述</h2>
+<p>Love2D（LÖVE）是以 Lua 为脚本语言的开源 2D 游戏框架，提供窗口、图形、输入、音频等游戏能力，开发者只需在回调函数中填写逻辑即可跑起游戏。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>定位</strong>：Love2D 不是完整游戏引擎，而是"游戏能力提供者"。Lua 写逻辑，LÖVE 提供平台能力（开窗口、画图、播放声音、接收键盘输入）。</p>
+</li>
+<li>
+<p><strong>核心回调</strong>：引擎在生命周期中主动调用开发者定义的函数：</p>
+</li>
+<li><code>love.load()</code> — 启动时执行一次，初始化变量/加载资源</li>
+<li><code>love.update(dt)</code> — 每帧更新逻辑，<code>dt</code> 为帧间时间差（秒）</li>
+<li><code>love.draw()</code> — 每帧绘制画面</li>
+<li>
+<p><code>love.keypressed(key)</code> — 按键按下瞬间触发</p>
+</li>
+<li>
+<p><strong>主要模块</strong>：</p>
+</li>
+<li><code>love.graphics</code> — 绘图（<code>print</code>、<code>rectangle</code>、<code>circle</code>、<code>draw</code>、<code>newImage</code>）</li>
+<li><code>love.keyboard</code> — 键盘（<code>isDown</code> 持续检测、<code>keypressed</code> 单次触发）</li>
+<li><code>love.audio</code> — 音频（<code>newSource</code>）</li>
+<li>
+<p><code>love.window</code> — 窗口管理（<code>setTitle</code>）</p>
+</li>
+<li>
+<p><strong>输入两种模式</strong>：<code>love.keyboard.isDown()</code> 适合持续移动；<code>love.keypressed</code> 适合单次触发动作（跳跃、发射子弹）。</p>
+</li>
+<li>
+<p><strong>dt 时间无关移动</strong>：<code>x = x + speed * dt</code> 使物体速度与帧率无关，保证低帧率/高帧率下行为一致。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/Lua-table-用法.html">Lua table</a> 作为对象</strong>：惯用 table 组织角色状态（<code>player = {x, y, speed}</code>），是 Love2D 项目的标准写法。</p>
+</li>
+<li>
+<p><strong>物理模块</strong>：<code>love.physics.newWorld(gx, gy)</code> 创建物理世界，<code>newBody/newRectangleShape/newFixture</code> 创建刚体。每帧调用 <code>world:update(dt)</code> 推进物理模拟。</p>
+</li>
+<li>
+<p><strong>内部实现机制</strong>：LÖVE 在 C++ 层实现所有 Module（graphics、audio、physics 等），通过 <code>luaL_newlib</code> 注册为 Lua 模块，<a href="../concepts/游戏主循环模式.html">主循环</a>从 C++ 触发 <code>love.update(dt)</code> 和 <code>love.draw()</code>。这是典型的 C++ 引擎 + 全 Lua 暴露 API 的架构模式。</p>
+</li>
+<li>
+<p><strong>配置文件 conf.lua</strong>：<code>love.conf(t)</code> 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：<code>t.window.width/height</code>、<code>t.window.resizable</code>、<code>t.window.vsync</code>、<code>t.window.msaa</code>、<code>t.modules.physics</code>。是 Love2D 项目的标准初始化入口。</p>
+</li>
+<li>
+<p><strong>完整生命周期回调集</strong>：除核心三件套外，还有 <code>love.quit()</code>（返回 true 可取消退出）、<code>love.resize(w,h)</code>、<code>love.focus(f)</code>、<code>love.mousereleased/moved/wheelmoved</code>、<code>love.touchpressed/released</code>、<code>love.gamepadpressed/released</code>、<code>love.errhand(msg)</code>（全局错误处理）。</p>
+</li>
+<li>
+<p><strong>Canvas 离屏渲染</strong>：<code>love.graphics.newCanvas(w,h)</code> 创建离屏渲染目标，<code>love.graphics.setCanvas(canvas)</code> 切换渲染目标（nil 恢复默认屏幕），配合 Shader 实现后处理效果。<code>love.graphics.setShader(shader)</code> / <code>love.graphics.newShader(vert,frag)</code> 支持自定义着色器。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua 与 Love2D 交互</span> — ChatGPT 对话整理，介绍 Lua 与 Love2D 的交互机制、回调系统与 API 用法</li>
+<li><span style="color:#e74c3c" title="broken link">Lua 移动方块示例</span> — 20 行示例代码，展示 love.keyboard.isDown 持续检测与 love.graphics.rectangle 绘制</li>
+<li><span style="color:#e74c3c" title="broken link">lua-gameengine-deep-research</span> — 深度研究报告，第4.1节 LÖVE2D 生命周期回调、物理集成与内部实现机制</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/游戏引擎架构.html">游戏引擎架构</a> — Love2D 是轻量 2D 游戏框架，Scripting 层用 Lua</li>
+<li><a href="../concepts/游戏主循环模式.html">游戏主循环模式</a> — Love2D 的 load/update/draw 是游戏主循环模式的典型实现</li>
+<li><a href="Defold.html">Defold</a> — 同为 Lua 游戏框架，Defold 使用消息传递架构而非回调函数风格</li>
+<li><a href="Solar2D.html">Solar2D</a> — 同为全 Lua 2D 框架，Solar2D 偏移动端，Love2D 偏桌面端</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Louis Pouzin.html">&larr; Louis Pouzin</a>
+    <a href="Luigi Galvani.html">Luigi Galvani &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

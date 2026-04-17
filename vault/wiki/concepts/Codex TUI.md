@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 工具]
+tags: [技术, 工具, Agent系统]
 aliases: [Codex Terminal UI, Codex 交互终端]
 relates_to:
   - target: "[[Codex CLI]]"
@@ -64,7 +64,7 @@ Agent 提出文件修改时，TUI 渲染语法高亮的 diff。用户可选 `[A]
 
 ### 斜杠命令系统
 
-内置"内部 CLI"：`/model`（切换模型）、`/clear`（新会话）、`/review`（独立 Agent 做 Code Review）、`/status`、`/copy`、`/theme`、`/permissions`（只读规划模式）、`/plugins`、`/title`、`/exit`。
+内置"内部 CLI"：`/model`（切换模型）、`/clear`（新会话）、`/review`（独立 Agent 做 [[Code-Review-for-Claude-Code|Code Review]]）、`/status`、`/copy`、`/theme`、`/permissions`（只读规划模式）、`/plugins`、`/title`、`/exit`。
 
 ## Alternate Screen 模式
 

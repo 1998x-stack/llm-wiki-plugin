@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="scaling-laws">推荐系统 Scaling Laws</h1>
 <h2 id="_1">概述</h2>
-<p>推荐系统模型质量随训练计算量呈幂律增长的规律，由 Meta <a href="../entities/HSTU.html">HSTU</a> 论文首次在工业级推荐系统中验证，为推荐领域"基础模型"路线提供实证基础。</p>
+<p>推荐系统模型质量随训练计算量呈幂律增长的规律，由 Meta HSTU 论文首次在工业级推荐系统中验证，为推荐领域"基础模型"路线提供实证基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>发现背景</strong>：OpenAI 2020 年发现 LLM 的 Scaling Laws——模型质量随计算量呈幂律增长，直接催生 GPT-3/4。推荐系统领域此前一直未找到类似规律。传统 <span style="color:#e74c3c" title="broken link">DLRM</span> 在约 200B 参数量级出现性能饱和，无论加深网络、增加<a href="特征交叉.html">特征交叉</a>还是扩大 embedding 表，收益都趋于平坦。</p>
+<p><strong>发现背景</strong>：OpenAI 2020 年发现 LLM 的 Scaling Laws——模型质量随计算量呈幂律增长，直接催生 GPT-3/4。推荐系统领域此前一直未找到类似规律。传统 DLRM 在约 200B 参数量级出现性能饱和，无论加深网络、增加<a href="特征交叉.html">特征交叉</a>还是扩大 embedding 表，收益都趋于平坦。</p>
 </li>
 <li>
-<p><strong>核心发现</strong>：<a href="../entities/HSTU.html">HSTU</a> 架构下，<a href="生成式推荐.html">生成式推荐</a> 模型质量（以 <a href="NDCG.html">NDCG</a> 等指标衡量）随训练 FLOPs 呈<strong>幂律关系增长</strong>，跨越三个数量级，从小型模型一直扩展到 GPT-3/LLaMA-2 规模。</p>
+<p><strong>核心发现</strong>：HSTU 架构下，<a href="生成式推荐.html">生成式推荐</a> 模型质量（以 NDCG 等指标衡量）随训练 FLOPs 呈<strong>幂律关系增长</strong>，跨越三个数量级，从小型模型一直扩展到 GPT-3/LLaMA-2 规模。</p>
 </li>
 <li>
 <p><strong>实践意义</strong>：</p>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>与 LLM Scaling Laws 的对比</strong>：</p>
 </li>
-<li>相似性：都通过自回归序列建模捕捉复杂模式，都展现幂律增长，都用统一框架替代碎片化方案。</li>
+<li>相似性：都通过<a href="AR 模型（自回归模型）.html">自回归</a>序列建模捕捉复杂模式，都展现幂律增长，都用统一框架替代碎片化方案。</li>
 <li>
 <p>差异性：推荐处理的是用户行为——噪声更大、非平稳性更强的信号。物品词汇表持续变化（新物品上线、旧物品下架），与 NLP 的固定词汇表不同。</p>
 </li>
@@ -175,15 +175,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../entities/HSTU.html">HSTU</a> — 首次验证推荐系统 Scaling Laws 的架构</li>
+<li>HSTU — 首次验证推荐系统 Scaling Laws 的架构</li>
 <li><a href="生成式推荐.html">生成式推荐</a> — Scaling Laws 适用的推荐范式</li>
-<li><span style="color:#e74c3c" title="broken link">DLRM</span> — 不展现 Scaling Laws 的传统推荐模型</li>
+<li>DLRM — 不展现 Scaling Laws 的传统推荐模型</li>
 <li><a href="矩阵分解.html">矩阵分解</a> — 更早期的推荐方法，同样不展现 Scaling Laws</li>
-<li><a href="NDCG.html">NDCG</a> — 验证 Scaling Laws 使用的核心评估指标</li>
+<li>NDCG — 验证 Scaling Laws 使用的核心评估指标</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="指令调优.html">&larr; 指令调优</a>
+    <a href="控制论（Cybernetics）.html">&larr; 控制论（Cybernetics）</a>
     <a href="推荐系统基础模型.html">推荐系统基础模型 &rarr;</a>
   </div>
 </div>

@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepfm">DeepFM</h1>
 <h2 id="_1">概述</h2>
-<p>Guo 等人于 IJCAI 2017 提出的 <a href="Factorization Machines.html">FM</a> + DNN 并行架构模型，<a href="Factorization Machines.html">FM</a> 组件捕获显式低阶交互，DNN 组件捕获隐式高阶交互，共享<a href="../concepts/嵌入表示.html">嵌入层</a>，无需手工特征工程。</p>
+<p>Guo 等人于 IJCAI 2017 提出的 FM + DNN 并行架构模型，FM 组件捕获显式低阶交互，DNN 组件捕获隐式高阶交互，共享<a href="../concepts/嵌入表示.html">嵌入层</a>，无需手工特征工程。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>并行架构</strong>：Deep<a href="Factorization Machines.html">FM</a> 由两部分并行组成——<a href="Factorization Machines.html">FM</a> 部分（浅层模块）负责捕获显式的低阶（二阶）<a href="../concepts/特征交叉.html">特征交互</a>，DNN 部分（深层模块）负责捕获隐式的高阶非线性<a href="../concepts/特征交叉.html">特征交互</a>。两部分共享同一组<a href="../concepts/嵌入表示.html">嵌入向量</a>，<a href="../concepts/联合训练.html">联合训练</a>。最终输出为 sigmoid(y_<a href="Factorization Machines.html">FM</a> + y_DNN)。</li>
-<li><strong><a href="../concepts/共享嵌入.html">共享嵌入</a></strong>：<a href="Factorization Machines.html">FM</a> 和 DNN 共享类别型特征的<a href="../concepts/嵌入表示.html">嵌入表示</a>，避免了分别学习导致的参数冗余和不一致性。这种"浅层 + 深层"的并行设计模式已成为推荐系统的标准架构。<a href="../concepts/共享嵌入.html">共享嵌入</a>带来三重优势：参数效率、<a href="../concepts/联合训练.html">联合优化</a>、消除预训练。</li>
-<li><strong>无需手工特征</strong>：Deep<a href="Factorization Machines.html">FM</a> 的端到端设计消除了对人工构造交叉特征的依赖，模型自动学习<a href="../concepts/特征交叉.html">特征交互</a>，大幅降低了特征工程成本。相比 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的 Wide 部分需要手工 cross-product 特征，Deep<a href="Factorization Machines.html">FM</a> 用 <a href="Factorization Machines.html">FM</a> 完全替代。</li>
-<li><strong>与 <a href="Factorization Machines.html">FM</a> 的关系</strong>：Deep<a href="Factorization Machines.html">FM</a> 直接在架构中保留了完整的 <a href="Factorization Machines.html">FM</a> 组件作为"浅层"模块，是 <a href="Factorization Machines.html">FM</a> 思想在深度学习时代的自然延伸。<a href="Factorization Machines.html">FM</a> 负责低阶交互的显式建模，DNN 补足高阶交互的隐式学习，两者互补。</li>
-<li><strong><a href="../concepts/CTR 预估.html">CTR 预估</a>效果</strong>：在 <a href="Criteo.html">Criteo</a> 数据集上 <a href="../concepts/AUC.html">AUC</a>=0.8016、LogLoss=0.44985（最优）；在华为应用市场约10亿条记录的真实数据上 <a href="../concepts/AUC.html">AUC</a>=0.8715。在线 A/B 测试中 Deep<a href="Factorization Machines.html">FM</a>-D 相比精心调优的 LR 模型，CTR 提升超过 10%。</li>
-<li><strong>后续影响</strong>：Deep<a href="Factorization Machines.html">FM</a> 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 <a href="DCN.html">DCN</a>（<a href="Google.html">Google</a> 2017，Cross Network 显式交叉）、<a href="xDeepFM.html">xDeepFM</a>（微软 2018，CIN 向量级显式交叉）、<a href="AutoInt.html">AutoInt</a>（2019，<a href="../concepts/多头注意力.html">多头自注意力</a>可解释交互）等。</li>
-<li><strong>局限性</strong>：<a href="Factorization Machines.html">FM</a> 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；<a href="Factorization Machines.html">FM</a> 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 <a href="xDeepFM.html">xDeepFM</a>、<a href="AutoInt.html">AutoInt</a>、<a href="DIN.html">DIN</a> 分别针对这些局限进行了改进。</li>
-<li><strong>架构一般性</strong>：Deep<a href="Factorization Machines.html">FM</a> 框架具有可扩展性，论文提出 Deep<a href="Factorization Machines.html">FM</a>-D（Deep 部分用标准 DNN）和 Deep<a href="Factorization Machines.html">FM</a>-P（Deep 部分用 <a href="PNN.html">PNN</a>）两个变体，"<a href="Factorization Machines.html">FM</a> + Deep <a href="../concepts/共享嵌入.html">共享嵌入</a>"是可替换 Deep 部分实现的通用范式。</li>
+<li><strong>并行架构</strong>：DeepFM 由两部分并行组成——FM 部分（浅层模块）负责捕获显式的低阶（二阶）<a href="../concepts/特征交叉.html">特征交互</a>，DNN 部分（深层模块）负责捕获隐式的高阶非线性<a href="../concepts/特征交叉.html">特征交互</a>。两部分共享同一组<a href="../concepts/嵌入表示.html">嵌入向量</a>，<a href="../concepts/联合训练.html">联合训练</a>。最终输出为 sigmoid(y_FM + y_DNN)。</li>
+<li><strong><a href="../concepts/共享嵌入.html">共享嵌入</a></strong>：FM 和 DNN 共享类别型特征的<a href="../concepts/嵌入表示.html">嵌入表示</a>，避免了分别学习导致的参数冗余和不一致性。这种"浅层 + 深层"的并行设计模式已成为推荐系统的标准架构。<a href="../concepts/共享嵌入.html">共享嵌入</a>带来三重优势：参数效率、<a href="../concepts/联合训练.html">联合优化</a>、消除预训练。</li>
+<li><strong>无需手工特征</strong>：DeepFM 的端到端设计消除了对人工构造交叉特征的依赖，模型自动学习<a href="../concepts/特征交叉.html">特征交互</a>，大幅降低了特征工程成本。相比 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的 Wide 部分需要手工 cross-product 特征，DeepFM 用 FM 完全替代。</li>
+<li><strong>与 FM 的关系</strong>：DeepFM 直接在架构中保留了完整的 FM 组件作为"浅层"模块，是 FM 思想在深度学习时代的自然延伸。FM 负责低阶交互的显式建模，DNN 补足高阶交互的隐式学习，两者互补。</li>
+<li><strong><a href="../concepts/CTR 预估.html">CTR 预估</a>效果</strong>：在 <a href="Criteo.html">Criteo</a> 数据集上 AUC=0.8016、LogLoss=0.44985（最优）；在华为应用市场约10亿条记录的真实数据上 AUC=0.8715。在线 A/B 测试中 DeepFM-D 相比精心调优的 LR 模型，CTR 提升超过 10%。</li>
+<li><strong>后续影响</strong>：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（<a href="Google.html">Google</a> 2017，Cross Network 显式交叉）、<a href="xDeepFM.html">xDeepFM</a>（微软 2018，CIN 向量级显式交叉）、<a href="AutoInt.html">AutoInt</a>（2019，<a href="../concepts/多头注意力.html">多头自注意力</a>可解释交互）等。</li>
+<li><strong>局限性</strong>：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 <a href="xDeepFM.html">xDeepFM</a>、<a href="AutoInt.html">AutoInt</a>、DIN 分别针对这些局限进行了改进。</li>
+<li><strong>架构一般性</strong>：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep <a href="../concepts/共享嵌入.html">共享嵌入</a>"是可替换 Deep 部分实现的通用<a href="../concepts/规范化理论.html">范式</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -159,17 +159,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/特征交叉.html">特征交叉</a> — FM 部分建模目标</li>
 <li><a href="../concepts/嵌入表示.html">嵌入表示</a> — 共享嵌入层</li>
 <li><a href="../concepts/CTR 预估.html">CTR 预估</a> — 主要应用场景</li>
-<li><a href="FFM.html">FFM</a> — 同代 FM 扩展模型</li>
+<li>FFM — 同代 FM 扩展模型</li>
 <li><span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> — DeepFM 直接改进的前作</li>
 <li><a href="xDeepFM.html">xDeepFM</a> — 引入 CIN 显式高阶交互的后续工作</li>
-<li><a href="DCN.html">DCN</a> — Cross Network 显式交叉的并行工作</li>
+<li>DCN — Cross Network 显式交叉的并行工作</li>
 <li><a href="AutoInt.html">AutoInt</a> — 多头自注意力可解释交互的后续工作</li>
-<li><a href="DIN.html">DIN</a> — 引入注意力建模用户兴趣序列的后续工作</li>
+<li>DIN — 引入注意力建模用户兴趣序列的后续工作</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="DeepCTR.html">&larr; DeepCTR</a>
-    <a href="Dieter Fox.html">Dieter Fox &rarr;</a>
+    <a href="DeepMind.html">DeepMind &rarr;</a>
   </div>
 </div>
 </body>

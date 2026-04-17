@@ -18,11 +18,11 @@ supersedes: null
 # BellKor in BigChaos
 
 ## 概述
-[[BellKor]] 团队在 [[Netflix Prize]] 竞赛 2008 年阶段的队伍名称，取得 [[RMSE]] 0.8616（约 9.4% 提升）。
+[[BellKor]] 团队在 [[Netflix Prize]] 竞赛 2008 年阶段的队伍名称，取得 RMSE 0.8616（约 9.4% 提升）。
 
 ## 关键内容
 
-1. **2008 年成绩**：以 [[BellKor]] in BigChaos 身份参赛，取得 [[RMSE]] 0.8616，相比 [[Cinematch]] 基线提升约 9.4%。
+1. **2008 年成绩**：以 [[BellKor]] in BigChaos 身份参赛，取得 RMSE 0.8616，相比 [[Cinematch]] 基线提升约 9.4%。
 2. **团队演进**：[[BellKor]] 团队在竞赛期间经历了多次队伍名称变化：2007 年 Progress Prize → 2008 年 [[BellKor]] in BigChaos → 2009 年 [[BellKor's Pragmatic Chaos]]（最终获胜）。
 
 ## 来源

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardrails — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Guardrails</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="guardrails">Guardrails</h1>
+<h2 id="_1">概述</h2>
+<p>Guardrails（护栏机制）是 Agent 系统中的错误 containment 策略，用于在错误刚出现时将其截断，防止错误传播污染整条轨迹。它是 <a href="ACI 设计原则.html">ACI 设计原则</a> 的第四条核心原则。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心问题</h3>
+<blockquote>
+<p>"Agent 最大的问题之一不是犯错，而是犯错后继续在错的状态上推进。"</p>
+</blockquote>
+<p>Guardrails 的作用是把错误显式化、局部化、可恢复化。</p>
+<h3 id="_4">实现方式</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>示例</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法检查</strong></td>
+<td>Linting（代码语法验证）</td>
+<td>编辑后即时检测语法错误</td>
+</tr>
+<tr>
+<td><strong>格式验证</strong></td>
+<td>命令格式合法性检查</td>
+<td>防止非法命令执行</td>
+</tr>
+<tr>
+<td><strong>编辑恢复</strong></td>
+<td>无效编辑丢弃 + 错误反馈</td>
+<td>让 agent 重新尝试</td>
+</tr>
+<tr>
+<td><strong>状态保护</strong></td>
+<td>错误命令不改变环境状态</td>
+<td>防止错误操作污染环境</td>
+</tr>
+</tbody>
+</table>
+<h3 id="linting-guardrail">Linting 作为 Guardrail</h3>
+<p>Linting 是一种典型的<strong>局部验证器</strong>：
+- 不负责判断问题是否最终修好
+- 但能快速判断"这次编辑是不是把代码直接写坏了"
+- 本质是在 <a href="Agent循环.html">Agent循环</a> 里插入一个 cheap critic
+- 论文证据：带 linting 的编辑设置效果优于不带 linting</p>
+<h3 id="_5">与人类开发流程的类比</h3>
+<p>如果说 ACI 是 agent 的"工作台"，那么 guardrails 就是"工作台上的护栏"。它不是为了让 agent 更聪明，而是为了让 agent 没那么容易把自己搞崩——这在长轨迹任务里尤为重要。</p>
+<h3 id="_6">扩展方向</h3>
+<p>Linting 只是 guardrail 的一种。后续可扩展为：
+- 单元测试（功能正确性验证）
+- 类型检查（类型安全验证）
+- 静态分析（代码质量验证）
+- LSP 增量诊断（语义级错误检测）
+- 这些都可视为 cheap critic 的扩展形式</p>
+<h3 id="lsp-guardrail">LSP 增量诊断作为 Guardrail</h3>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 的 linter 实现（<code>flake8 --select=F821,F822,F831,E111,E112,E113,E999,E902</code>）是单文件、快速、偏语法与低级静态错误的校验。若要进一步增强，可引入 LSP 增量诊断：</p>
+<p><strong>三层 Validate 架构：</strong>
+1. <strong>Edit 后单文件增量</strong>（0.2–2 秒）：parser/syntax/单文件 LSP diagnostics，只返回新引入问题
+2. <strong>Changed-files 级检查</strong>（2–10 秒）：当 edit 涉及 public API/types/build files 时，跑 typecheck / LSP workspace slice
+3. <strong>提交前全量</strong>（10–30 秒）：最小测试集 + changed-files lint/typecheck + repo smoke test</p>
+<p><strong>增量诊断关键设计：</strong>
+- <code>previous errors filtering</code>：更新旧错误行号，过滤编辑窗口外的旧问题，只保留本次 edit 新引入的错误
+- Observation 压缩：不直接返回 LSP 原始 JSON，而是压成 <code>file/range/severity/message/是否新引入/是否阻断提交</code> 的 agent-friendly 格式
+- 触发策略：<code>on_edit(file)</code> → 单文件增量；<code>on_cross_file_signal</code> → 依赖图扩展；<code>on_submit</code> → changed-files workspace diagnostics</p>
+<h3 id="guardrail">六层 Guardrail 体系</h3>
+<p>基于 <a href="../entities/SWE-agent.html">SWE-agent</a> 思想，完整的 guardrail 体系可分为 6 层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>保护对象</th>
+<th>论文状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Protocol Guardrails</td>
+<td>交互协议（thought/action 格式、参数校验、非法输出重试）</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Action Guardrails</td>
+<td>单个动作不推环境入不可解释状态（edit 只允许改打开文件、search 限制返回量）</td>
+<td>大部分实现</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>State Guardrails</td>
+<td>始终能解释"现在是什么状态"（当前文件/窗口/目录显式回显）</td>
+<td>大部分实现</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Semantic Guardrails</td>
+<td>代码没有写坏（syntax/lint）</td>
+<td>已实现</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>扩展语义护栏</td>
+<td>type checker、build validation、unit-test subset rerun</td>
+<td>未来方向</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>隐式护栏</td>
+<td>小动作空间、100-line viewer、summarized search</td>
+<td>已实现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guardrails_1">隐式 Guardrails</h3>
+<p>论文虽未直接命名为 guardrail，但以下设计都在发挥护栏作用：
+- <strong>小动作空间</strong>：通过 interface restriction 降低错误率
+- <strong>100-line viewer</strong>：限制模型看到的窗口，Full file 反而更差
+- <strong>Summarized search</strong>：限制 agent 不要在 next/prev 结果里机械穷举</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/10-swe-agent 每次 edit后，如何设计lintlsp 等validate？.md</span> — Edit 后 validate 设计详解</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="ACI 设计原则.html">ACI 设计原则</a> — implements（Guardrails 是第四条设计原则的具体实现）</li>
+<li><a href="Agent计算机接口.html">Agent计算机接口</a> — part_of（Guardrails 是 ACI 的组成部分）</li>
+<li><a href="Agent循环.html">Agent循环</a> — uses（Guardrails 在 Agent 循环中发挥作用）</li>
+<li><a href="恢复机制.html">恢复机制</a> — uses（恢复机制依赖护栏机制拦截错误）</li>
+<li><a href="环境反馈设计.html">环境反馈设计</a> — related_to（反馈设计本身就是一种护栏）</li>
+<li><a href="Edit 后验证.html">Edit 后验证</a> — caused（Guardrails 催生了具体的 edit 后验证实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Generator-Verifier-Pattern.html">&larr; Generator-Verifier-Pattern</a>
+    <a href="HTML.html">HTML &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

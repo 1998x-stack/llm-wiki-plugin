@@ -135,28 +135,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm">判别式 LLM 推荐</h1>
 <h2 id="_1">概述</h2>
-<p>使用 LLM 进行判别式推荐（分类/排序）的范式，将推荐建模为预测用户对物品偏好的判别任务而非生成任务。</p>
+<p>使用 LLM 进行判别式推荐（分类/排序）的<a href="规范化理论.html">范式</a>，将推荐建模为预测用户对物品偏好的判别任务而非生成任务。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>范式定义</strong>：判别式 LLM 推荐（DLLM4Rec）将推荐建模为判别任务——给定用户和物品，预测用户是否喜欢该物品（二分类）或预测评分（回归），而非生成式地产生推荐结果。</p>
+<p><strong><a href="规范化理论.html">范式</a>定义</strong>：判别式 LLM 推荐（DLLM4Rec）将推荐建模为判别任务——给定用户和物品，预测用户是否喜欢该物品（二分类）或预测评分（回归），而非生成式地产生推荐结果。</p>
 </li>
 <li>
 <p><strong>与<a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a>的对比</strong>：</p>
 </li>
-<li>生成式：输入 Prompt，输出物品 ID 或推荐文本（如 <a href="../entities/P5 论文.html">P5</a> 的 "item_92"）</li>
+<li>生成式：输入 Prompt，输出物品 ID 或推荐文本（如 P5 的 "item_92"）</li>
 <li>
 <p>判别式：输入用户-物品对，输出偏好分数或分类标签（如 "Yes/No" 或评分）</p>
 </li>
 <li>
-<p><strong>与<a href="生成式 LLM 推荐.html">生成式 LLM 推荐</a>的关系</strong>：Wu 等人的综述将 LLM 推荐方法分为判别式（DLLM4Rec）和生成式（<a href="生成式 LLM 推荐.html">GLLM4Rec</a>）两大范式。判别式侧重预测准确性，生成式侧重灵活性和可解释性。</p>
+<p><strong>与<a href="生成式 LLM 推荐.html">生成式 LLM 推荐</a>的关系</strong>：Wu 等人的综述将 LLM 推荐方法分为判别式（DLLM4Rec）和生成式（<a href="生成式 LLM 推荐.html">GLLM4Rec</a>）两大<a href="规范化理论.html">范式</a>。判别式侧重预测准确性，生成式侧重灵活性和可解释性。</p>
 </li>
 <li>
 <p><strong>技术特点</strong>：</p>
 </li>
 <li>通常使用 LLM 的<a href="嵌入表示.html">嵌入表示</a>能力编码用户和物品特征</li>
 <li>在 LLM 之上添加分类头或回归头</li>
-<li>训练目标多为<a href="二元交叉熵.html">二元交叉熵</a>或<a href="RMSE.html">RMSE</a></li>
+<li>训练目标多为<a href="二元交叉熵.html">二元交叉熵</a>或RMSE</li>
 <li>
 <p>推理效率通常优于生成式方案</p>
 </li>
@@ -178,13 +178,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="CTR 预估.html">CTR 预估</a> — 判别式推荐的传统形式</li>
 <li><a href="Pointwise 学习.html">Pointwise 学习</a> — 判别式 LLM 推荐的学习方式</li>
 <li><a href="二元交叉熵.html">二元交叉熵</a> — 判别式 LLM 推荐的损失函数</li>
-<li><a href="RMSE.html">RMSE</a> — 判别式 LLM 推荐的回归指标</li>
+<li>RMSE — 判别式 LLM 推荐的回归指标</li>
 <li><a href="嵌入表示.html">嵌入表示</a> — 判别式 LLM 推荐的特征编码方式</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="切比雪夫逼近理论.html">&larr; 切比雪夫逼近理论</a>
-    <a href="前缀复杂性.html">前缀复杂性 &rarr;</a>
+    <a href="判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem) &rarr;</a>
   </div>
 </div>
 </body>

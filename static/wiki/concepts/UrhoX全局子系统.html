@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoX全局子系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / UrhoX全局子系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">游戏引擎</span><span class="tag">API</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhox">UrhoX全局子系统</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/UrhoX引擎.html">UrhoX Lua</a> API 在全局作用域预注册了18个只读单例对象，覆盖音频、渲染、输入、网络等核心功能，无需声明即可在任意脚本中直接访问。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="18">18个全局单例</h3>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>audio</code></td>
+<td>Audio*</td>
+<td>音频系统（播放/暂停/音量）</td>
+</tr>
+<tr>
+<td><code>cache</code></td>
+<td>ResourceCache*</td>
+<td>资源加载与缓存</td>
+</tr>
+<tr>
+<td><code>console</code></td>
+<td>Console*</td>
+<td>控制台输入输出</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>Context*</td>
+<td>引擎上下文（系统注册中心）</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td>Database*</td>
+<td>数据库访问</td>
+</tr>
+<tr>
+<td><code>debugHud</code></td>
+<td>DebugHud*</td>
+<td>调试信息显示（FPS、内存等）</td>
+</tr>
+<tr>
+<td><code>engine</code></td>
+<td>Engine*</td>
+<td><span style="color:#e74c3c" title="broken link">UrhoX引擎生命周期API&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;eventHandler&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;EventHandler*&lt;/td&gt;
+&lt;td&gt;当前事件处理器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;eventSender&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;EventSender*&lt;/td&gt;
+&lt;td&gt;当前事件发送者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;fileSystem&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;FileSystem*&lt;/td&gt;
+&lt;td&gt;文件系统操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;graphics&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Graphics*&lt;/td&gt;
+&lt;td&gt;图形设备与分辨率查询&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;input&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Input*&lt;/td&gt;
+&lt;td&gt;键盘/鼠标/触摸输入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;localization&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;[[Localization</span>*</td>
+<td>多语言本地化</td>
+</tr>
+<tr>
+<td><code>log</code></td>
+<td>Log*</td>
+<td>日志系统</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td>Network*</td>
+<td>网络连接</td>
+</tr>
+<tr>
+<td><code>renderer</code></td>
+<td><span style="color:#e74c3c" title="broken link">Renderer渲染器&lt;/td&gt;
+&lt;td&gt;Renderer</span>*</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Time*</td>
+<td>时间与帧率</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>UI*</td>
+<td>原生UI系统（已废弃，见<a href="UrhoX Lua开发准则.html">UrhoX Lua开发准则</a>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">访问方式</h3>
+<p>每个全局对象同时提供直接变量访问和 Get 函数两种形式：</p>
+<pre><code class="language-lua">-- 直接访问（推荐）
+local w = graphics:GetWidth()
+
+-- 等价的函数形式
+local w = GetGraphics():GetWidth()
+</code></pre>
+<h3 id="_4">常用模式</h3>
+<pre><code class="language-lua">-- 获取分辨率（SetMode已禁用）
+local physW, physH = graphics:GetWidth(), graphics:GetHeight()
+local dpr = graphics:GetDPR()
+
+-- 资源加载
+local tex = cache:GetResource(&quot;Texture2D&quot;, &quot;Textures/player.png&quot;)
+
+-- 日志输出
+log:Write(LOG_INFO, &quot;message&quot;)
+
+-- 时间步
+-- 通过 Update 事件的 eventData 获取，而非 time 直接调用
+</code></pre>
+<h3 id="_5">全局变量系统</h3>
+<p>引擎还提供跨脚本共享的 Variant 键值存储：</p>
+<pre><code class="language-lua">SetGlobalVar(&quot;score&quot;, Variant(100))
+local v = GetGlobalVar(&quot;score&quot;):GetInt()
+local all = GetGlobalVars()  -- 返回 VariantMap
+</code></pre>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/engine-docs/api/globals.md</span> — UrhoX Lua API Global Scope 文档</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/UrhoX引擎.html">UrhoX引擎</a> — relates_to，全局子系统是引擎暴露给 Lua 层的接口</li>
+<li><a href="UrhoX Lua开发准则.html">UrhoX Lua开发准则</a> — relates_to，开发准则规定了分辨率获取、UI系统选择等全局对象使用规范</li>
+<li><a href="UrhoX音频系统API.html">UrhoX音频系统API</a> — relates_to，<code>audio</code> 全局对象的详细 API</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="UrhoX TileMap系统API.html">&larr; UrhoX TileMap系统API</a>
+    <a href="UrhoX场景系统API.html">UrhoX场景系统API &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

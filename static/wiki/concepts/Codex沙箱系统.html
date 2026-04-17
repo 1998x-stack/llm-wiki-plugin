@@ -130,11 +130,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="codex">Codex沙箱系统</h1>
-<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong>操作系统内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 <a href="../entities/Codex CLI.html">Codex CLI</a> 三道防线中的最后一道。</p>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong><a href="操作系统.html">操作系统</a>内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 <a href="../entities/Codex CLI.html">Codex CLI</a> 三道防线中的最后一道。</p>
 <h2 id="os">为什么需要 OS 级沙箱</h2>
 <p>应用层过滤（如 <a href="ExecPolicy.html">ExecPolicy</a>）是<strong>意图层面的拦截</strong>，无法处理所有边缘情况：</p>
 <table>

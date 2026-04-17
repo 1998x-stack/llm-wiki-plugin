@@ -38,5 +38,5 @@ Tang 与 Wang 于 WWW 2018 提出的 CNN [[序列推荐]]方法，用水平和�
 ## 相关
 - [[SASRec]] — 在效果和效率上全面超越 Caser
 - [[GRU4Rec]] — Caser 对比的 RNN 基线
-- [[FPMC]] — Caser 对比的 MC 基线
+- FPMC — Caser 对比的 MC 基线
 - [[序列推荐]] — Caser 解决的核心场景

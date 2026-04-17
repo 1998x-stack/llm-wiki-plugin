@@ -69,15 +69,20 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
 
 3. **构建上下文包**
 
-   - **claude 引擎**：构建一次性上下文包供所有子代理使用：
+   - **claude 引擎**：构建一次性上下文包供所有子代理使用。
+   
+     首先判断源材料的主题（从文件夹路径或文件内容推断），然后按主题构建上下文包：
      ```
-     Bash: bash scripts/wiki.sh build_ingest_context
+     Bash: bash scripts/wiki.sh build_ingest_context --topic <推断的主题>
      ```
+     如果无法确定主题，不传 `--topic`（回退到全量模式）。
+     
      解析 JSON 输出，提取：
-     - `existing_pages` — 已有页面列表（用于去重）
+     - `existing_pages` — 该主题的已有页面列表（用于去重）
      - `schema_compact` — 合并后的 schema 规则
      - `template` — wiki-page 模板
      - `stats` — 当前页面统计
+     - `topic_filter` — 实际使用的主题过滤（如有）
 
    - **qwen 引擎**：生成已有页面上下文供 Qwen 使用：
      ```
@@ -117,7 +122,7 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
      你是一个 wiki 知识提取器。处理一个源文件，将知识编译为 wiki 页面。
 
      ## 工作目录
-     /Users/mx/Desktop/series/核心项目系列/llm-wiki/vault
+     {VAULT_DIR 的绝对路径，即当前工作目录}
 
      ## 源文件
      使用 Read 工具读取: {当前文件路径}

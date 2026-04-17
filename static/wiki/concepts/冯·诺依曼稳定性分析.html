@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">冯·诺依曼稳定性分析</h1>
 <h2 id="_2">概述</h2>
-<p>冯·诺依曼稳定性分析（von Neumann stability analysis）由<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>于 1940 年代在曼哈顿计划<a href="数值分析.html">数值计算</a>工作中发展。其核心思想是将有限差分格式的<strong>误差</strong>展开为傅里叶级数，分析每个傅里叶模式经一个时间步后的放大倍数（amplification factor）$g(\xi)$。稳定性等价于所有模式的放大因子满足 $|g(\xi)| \leq 1$。这一方法提供了比<a href="CFL条件.html">CFL条件</a>更精确的稳定性判据，将定性的收敛条件转化为可精确计算的不等式。</p>
+<p>冯·诺依曼稳定性分析（von Neumann stability analysis）由<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>于 1940 年代在曼哈顿计划<a href="../maps/数值分析.html">数值计算</a>工作中发展。其核心思想是将有限差分格式的<strong>误差</strong>展开为傅里叶级数，分析每个傅里叶模式经一个时间步后的放大倍数（amplification factor）$g(\xi)$。稳定性等价于所有模式的放大因子满足 $|g(\xi)| \leq 1$。这一方法提供了比<a href="CFL条件.html">CFL条件</a>更精确的稳定性判据，将定性的收敛条件转化为可精确计算的不等式。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">方法框架</h3>
 <p>考虑线性有限差分格式，将误差 $\epsilon_j^n = u_j^n - u(x_j, t_n)$ 展开为傅里叶模式：</p>
@@ -148,13 +148,38 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$|g(\xi)|^2 = 1 + \nu^2\sin^2(\xi\Delta x)$，当 $\nu \neq 0$ 时恒 $&gt; 1$——<strong>无条件不稳定</strong>！</p>
 <p>对<strong>Lax-Friedrichs 格式</strong>（Lax 1954年修改为稳定格式），放大因子在 $\nu = c\Delta t/\Delta x \leq 1$ 时满足 $|g(\xi)| \leq 1$——这精确验证了<a href="CFL条件.html">CFL条件</a>。</p>
 <h3 id="cfl">与 CFL 条件的关系</h3>
-<p>|  | <a href="协同过滤.html">CF</a>L 条件（1928）| 冯·诺依曼分析（1940s）|
-|--|---|---|
-| 来源 | 依赖域几何论证（物理直觉）| 傅里叶模式代数计算（定量工具）|
-| 输出 | 收敛必要条件 | 精确稳定性充要条件（对线性格式）|
-| 适用范围 | 显式格式，双曲方程 | 线性格式，任意类型方程 |
-| 局限性 | 必要非充分 | 仅适用线性、常系数格式 |</p>
-<p>对许多格式，两者条件完全一致；冯·诺依曼分析提供了 <a href="协同过滤.html">CF</a>L 条件的数学"证明"。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CFL 条件（1928）</th>
+<th>冯·诺依曼分析（1940s）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来源</td>
+<td>依赖域几何论证（物理直觉）</td>
+<td>傅里叶模式代数计算（定量工具）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>收敛必要条件</td>
+<td>精确稳定性充要条件（对线性格式）</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>显式格式，双曲方程</td>
+<td>线性格式，任意类型方程</td>
+</tr>
+<tr>
+<td>局限性</td>
+<td>必要非充分</td>
+<td>仅适用线性、常系数格式</td>
+</tr>
+</tbody>
+</table>
+<p>对许多格式，两者条件完全一致；冯·诺依曼分析提供了 CFL 条件的数学"证明"。</p>
 <h3 id="lax-1956">Lax 等价定理（1956）</h3>
 <p><a href="../entities/彼得·拉克斯.html">Peter Lax</a> 和 R. D. Richtmyer 将冯·诺依曼分析的稳定性概念与收敛性正式联系起来：</p>
 <p><strong>Lax 等价定理</strong>：对于适定的线性初值问题的一致差分格式，<strong>稳定性 ⟺ 收敛性</strong>。</p>
@@ -164,13 +189,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$g(\xi) = 1 - 4r\sin^2!\left(\frac{\xi\Delta x}{2}\right), \quad r = \frac{\nu\Delta t}{(\Delta x)^2}$$</p>
 <p>稳定条件 $|g(\xi)| \leq 1$ 要求 $r \leq 1/2$，即：</p>
 <p>$$\Delta t \leq \frac{(\Delta x)^2}{2\nu}$$</p>
-<p>这是经典的抛物型方程时间步长限制：空间步长减半则时间步长须减至四分之一（比波动方程的 <a href="协同过滤.html">CF</a>L 更严格）。</p>
+<p>这是经典的抛物型方程时间步长限制：空间步长减半则时间步长须减至四分之一（比波动方程的 CFL 更严格）。</p>
 <h3 id="1947">矩阵计算误差分析（1947 论文）</h3>
-<p>冯·诺依曼与戈尔茨坦（Herman Goldstine）的 1947 年<a href="矩阵.html">矩阵</a>求逆论文是另一重要贡献，奠定了数值<a href="线性代数.html">线性代数</a>误差分析基础：</p>
+<p>冯·诺依曼与戈尔茨坦（<a href="../entities/Herman Goldstine.html">Herman Goldstine</a>）的 1947 年<a href="矩阵.html">矩阵</a>求逆论文是另一重要贡献，奠定了数值<a href="线性代数.html">线性代数</a>误差分析基础：</p>
 <ul>
 <li><strong><a href="条件数.html">矩阵条件</a>数</strong>（<a href="条件数.html">condition number</a>）概念首次系统提出：$\text{cond}(A) = |\lambda_{\max}|/|\lambda_{\min}|$（<a href="正规矩阵.html">正规矩阵</a>情形），衡量问题对输入扰动的敏感性</li>
 <li><strong>误差界定理</strong>：$t$ 位浮点精度下<a href="矩阵.html">矩阵</a>求逆的相对误差 $\sim \text{cond}(A) \cdot 2^{-t}$</li>
-<li><strong>统计误差模型</strong>：将舍入误差建模为随机变量，推导期望误差——此方法被后来的<a href="后向误差分析.html">后向误差分析</a>（<a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>, 1963）的确定性方法部分取代，但在现代概率<a href="数值分析.html">数值分析</a>中重新受到重视</li>
+<li><strong>统计误差模型</strong>：将舍入误差建模为随机变量，推导期望误差——此方法被后来的<a href="后向误差分析.html">后向误差分析</a>（<a href="../entities/詹姆斯·威尔金森.html">Wilkinson</a>, 1963）的确定性方法部分取代，但在现代概率<a href="../maps/数值分析.html">数值分析</a>中重新受到重视</li>
 </ul>
 <h3 id="_6">局限性</h3>
 <ul>
@@ -197,7 +222,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="内生增长理论.html">&larr; 内生增长理论</a>
+    <a href="冯·诺依曼瓶颈.html">&larr; 冯·诺依曼瓶颈</a>
     <a href="冷启动问题.html">冷启动问题 &rarr;</a>
   </div>
 </div>

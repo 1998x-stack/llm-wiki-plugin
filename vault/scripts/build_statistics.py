@@ -54,6 +54,10 @@ def main():
         c = n.get("confidence")
         if c is None:
             continue
+        try:
+            c = float(c)
+        except (TypeError, ValueError):
+            continue
         if c < 0.3:
             conf_buckets["0.0-0.3"] += 1
         elif c < 0.5:

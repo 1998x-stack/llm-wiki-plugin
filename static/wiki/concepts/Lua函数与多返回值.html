@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua函数与多返回值 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua函数与多返回值</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">编程语言</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 函数与多返回值</h1>
+<h2 id="_1">概述</h2>
+<p>Lua 函数是一等公民，支持多返回值、可变参数与闭包，是构建模块和 OOP 的基础语法单元。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">函数定义与调用</h3>
+<pre><code class="language-lua">-- 全局函数
+function sayHello()
+    print(&quot;Hello&quot;)
+end
+
+-- 局部函数（推荐）
+local function add(a, b)
+    return a + b
+end
+
+sayHello()
+print(add(3, 5))  -- 8
+</code></pre>
+<h3 id="_4">多返回值</h3>
+<p>Lua 原生支持函数返回多个值，无需包装成 table：</p>
+<pre><code class="language-lua">function calc(a, b)
+    return a + b, a - b
+end
+
+local x, y = calc(8, 3)
+print(x, y)  -- 11  5
+</code></pre>
+<p>多余的返回值被丢弃，变量不足时补 <code>nil</code>：</p>
+<pre><code class="language-lua">local sum = calc(8, 3)   -- sum=11，第二个返回值被丢弃
+local a, b, c = calc(8, 3)  -- c=nil
+</code></pre>
+<h3 id="_5">函数是一等公民</h3>
+<p>函数可以赋值给变量、作为参数传递、存入 table：</p>
+<pre><code class="language-lua">local ops = {
+    add = function(a, b) return a + b end,
+    sub = function(a, b) return a - b end,
+}
+print(ops.add(10, 3))  -- 13
+</code></pre>
+<h3 id="_6">可变参数</h3>
+<p>使用 <code>...</code> 接收可变参数，<code>select("#", ...)</code> 获取参数个数：</p>
+<pre><code class="language-lua">local function sum(...)
+    local total = 0
+    for _, v in ipairs({...}) do
+        total = total + v
+    end
+    return total
+end
+print(sum(1, 2, 3, 4))  -- 10
+</code></pre>
+<h3 id="_7">闭包</h3>
+<p>函数捕获外层局部变量（upvalue），形成闭包：</p>
+<pre><code class="language-lua">local function makeCounter()
+    local count = 0
+    return function()
+        count = count + 1
+        return count
+    end
+end
+
+local counter = makeCounter()
+print(counter())  -- 1
+print(counter())  -- 2
+</code></pre>
+<h3 id="_8">尾调用优化</h3>
+<p>Lua 支持尾调用优化（TCO）：形如 <code>return f(...)</code> 的调用不增加调用栈，适合递归算法。</p>
+<h3 id="_9">冒号语法糖</h3>
+<p>在 OOP 场景下，<code>obj:method(x)</code> 是 <code>obj.method(obj, x)</code> 的语法糖，自动传入 <code>self</code>。详见 <a href="Lua-OOP.html">Lua-OOP</a>。</p>
+<h2 id="_10">常见坑</h2>
+<ul>
+<li><strong>多返回值只在最后一个位置展开</strong>：<code>local t = {calc(8,3), 100}</code> 中 <code>calc(8,3)</code> 只保留第一个返回值（11），结果为 <code>{11, 100}</code>。</li>
+<li><strong>忘记 <code>local</code></strong>：不加 <code>local</code> 的函数名会成为全局变量，污染全局命名空间。</li>
+<li><strong><code>nil</code> 截断可变参数</strong>：<code>...</code> 中含 <code>nil</code> 时 <code>ipairs({...})</code> 会在 nil 处停止；用 <code>select</code> 代替。</li>
+</ul>
+<h2 id="_11">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua 语法教程</span> — ChatGPT 对话，Lua 初级语法教程，涵盖函数定义、多返回值与可变参数 (https://chatgpt.com/c/69d65bb9-90a8-8321-bc95-04e5a304d9b7)</li>
+</ul>
+<h2 id="_12">相关</h2>
+<ul>
+<li><a href="Lua基础语法.html">Lua基础语法</a> — 函数的基础语法环境（变量、类型、运算符）</li>
+<li><a href="Lua作用域与local.html">Lua作用域与local</a> — 闭包依赖 local 变量的作用域规则</li>
+<li><a href="Lua-OOP.html">Lua-OOP</a> — 冒号语法糖与函数是 OOP 的语法基础</li>
+<li><a href="Lua-table.html">Lua-table</a> — 函数常存入 table 作为方法</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua元表魔法.html">&larr; Lua元表魔法</a>
+    <a href="Lua函数式编程.html">Lua函数式编程 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

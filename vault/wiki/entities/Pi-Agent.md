@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 3
-tags:
-  - 工具
-  - AI
-  - Agent
-  - 技术
+tags: [工具, AI, Agent, 技术, Agent系统]
 aliases:
   - Pi
   - pi-mono

@@ -130,13 +130,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="codex">Codex会话管理器</h1>
 <p><a href="../entities/Codex CLI.html">Codex CLI</a> 的上下文持久化层，解决 LLM 天然无状态与工程任务有状态之间的矛盾。通过 Session 持久化、Transcript 存储和 Resume 机制，将 Agent 变成"有记忆的协作者"。</p>
 <h2 id="_1">核心问题</h2>
-<p>LLM 每次 API 调用独立，没有内置记忆，上下文窗口有限。但工程任务可能持续数小时甚至数天，需要中断恢复，多步骤依赖前置结果。Session Manager 在无状态 LLM 之上构建<strong>有状态的任务上下文</strong>。</p>
+<p>LLM 每次 API 调用独立，没有内置记忆，<a href="上下文窗口.html">上下文窗口</a>有限。但工程任务可能持续数小时甚至数天，需要中断恢复，多步骤依赖前置结果。Session Manager 在无状态 LLM 之上构建<strong>有状态的任务上下文</strong>。</p>
 <h2 id="session">Session 数据结构</h2>
 <p>每个 Session 存储于 <code>~/.codex/sessions/&lt;session_id&gt;/</code>：</p>
 <table>

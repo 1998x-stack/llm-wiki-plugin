@@ -111,7 +111,7 @@ $$A \text{ 正规（}A^*A = AA^*\text{）} \iff A = QDQ^*, D \text{ 为对角[[�
 
 对分块[[矩阵]] $M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}$（$D$ 可逆），[[伊赛·舒尔|Schur]] 补定义为
 
-$$M/D = A - [[Boston Dynamics|BD]]^{-1}C$$
+$$M/D = A - BD^{-1}C$$
 
 由 Emilie Haynsworth（1968）以 [[伊赛·舒尔|Schur]] 名字命名，用于高斯消元、正定性判别、条件分布计算和 Kron 网络约化。
 

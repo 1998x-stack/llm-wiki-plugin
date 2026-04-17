@@ -141,12 +141,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>PDF 内部将每个字符、每条线段存储为带坐标的图元（glyph/path），<strong>没有</strong>"这是标题"、"这是公式"、"这是表格"这样的语义信息。这导致：</p>
 <ul>
 <li><strong>直接文本提取</strong>得到的是乱序字符流，多栏布局、脚注、侧边栏全部混在一起</li>
-<li><strong>图像化 PDF</strong>（扫描件）根本没有文字层，纯靠 <a href="光学字符识别.html">OCR</a></li>
+<li><strong>图像化 PDF</strong>（扫描件）根本没有文字层，纯靠 OCR</li>
 <li><strong>公式</strong>以图像形式存储，无法直接转成 LaTeX</li>
 <li><strong>表格</strong>的单元格边界仅靠线条暗示，结构难以还原</li>
 </ul>
 <h3 id="_4">大模型时代的重要性</h3>
-<p><a href="检索增强生成.html">RAG</a> 系统、知识库构建、文档问答，全都依赖<strong>精准的文本提取</strong>。PDF 解析质量直接决定下游应用的上限。</p>
+<p>RAG 系统、知识库构建、文档问答，全都依赖<strong>精准的文本提取</strong>。PDF 解析质量直接决定下游应用的上限。</p>
 <h3 id="_5">主要工具对比</h3>
 <p>| 工具 | 文字型 PDF | 扫描件 | 公式→LaTeX | 表格结构 | <a href="阅读顺序重建.html">阅读顺序</a> | 中文支持 |
 |------|-----------|--------|-----------|---------|---------|---------|
@@ -154,9 +154,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 | <a href="../entities/PyMuPDF.html">PyMuPDF</a> | ✅ | ❌ | ❌ | ❌ | ❌ | ⚠️ |
 | <a href="../entities/Marker.html">Marker</a> | ✅ | ✅ | ⚠️ 有限 | ⚠️ | ✅ | ⚠️ |
 | <a href="../entities/Nougat.html">Nougat</a> | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| <a href="../entities/MinerU.html">MinerU</a> | ✅ 高质量 | ✅ <a href="光学字符识别.html">OCR</a> | ✅ <a href="../entities/UniMERNet.html">UniMERNet</a> | ✅ <a href="../entities/TableMaster.html">TableMaster</a> | ✅ 多栏 | ✅ 极佳 |</p>
+| <a href="../entities/MinerU.html">MinerU</a> | ✅ 高质量 | ✅ OCR | ✅ <a href="../entities/UniMERNet.html">UniMERNet</a> | ✅ <a href="../entities/TableMaster.html">TableMaster</a> | ✅ 多栏 | ✅ 极佳 |</p>
 <h3 id="_6">解决路径</h3>
-<p>现代高质量 PDF 解析采用<strong>多模型协同流水线</strong>：布局检测 → 内容专项识别（<a href="光学字符识别.html">OCR</a>/公式/表格）→ <a href="阅读顺序重建.html">阅读顺序重建</a> → 结构化输出。</p>
+<p>现代高质量 PDF 解析采用<strong>多模型协同流水线</strong>：布局检测 → 内容专项识别（OCR/公式/表格）→ <a href="阅读顺序重建.html">阅读顺序重建</a> → 结构化输出。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="PDDL.html">&larr; PDDL</a>
-    <a href="Pairwise 学习.html">Pairwise 学习 &rarr;</a>
+    <a href="PPO.html">PPO &rarr;</a>
   </div>
 </div>
 </body>

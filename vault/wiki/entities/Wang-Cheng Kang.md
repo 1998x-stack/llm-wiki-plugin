@@ -29,7 +29,7 @@ supersedes: null
 
 3. **开源贡献**：[[SASRec]] 官方代码开源在 GitHub（https://github.com/kang205/[[SASRec]]），成为[[序列推荐]]领域最常用的基准实现之一。
 
-4. **学术影响**：[[SASRec]] 直接催生了 [[BERT4Rec]]、[[TiSASRec]]、[[BST]]、[[S3-Rec]]、[[SSE-PT]]、[[LightSANs]]、[[DuoRec]]、[[SASRec+]] 等一系列后续工作，奠定了 [[Transformer架构|Transformer]] 在推荐系统中的基础地位。
+4. **学术影响**：[[SASRec]] 直接催生了 [[BERT4Rec]]、[[TiSASRec]]、BST、[[S3-Rec]]、[[SSE-PT]]、[[LightSANs]]、[[DuoRec]]、[[SASRec+]] 等一系列后续工作，奠定了 [[Transformer架构|Transformer]] 在推荐系统中的基础地位。
 
 ## 来源
 - [SASRec 原始论文 (ICDM 2018)](https://ieeexplore.ieee.org/document/8594844)

@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>提出背景</strong>：<a href="../entities/Steffen Rendle.html">Steffen Rendle</a>（<a href="BPR.html">BPR</a> 第一作者）在 <a href="BPR.html">BPR</a> 之后的工作中提出了 Factorization Machines，将<a href="矩阵分解.html">矩阵分解</a>的思想推广到任意实值特征向量，而不仅限于用户-物品交互<a href="矩阵.html">矩阵</a>。</p>
+<p><strong>提出背景</strong>：<a href="../entities/Steffen Rendle.html">Steffen Rendle</a>（BPR 第一作者）在 BPR 之后的工作中提出了 Factorization Machines，将<a href="矩阵分解.html">矩阵分解</a>的思想推广到任意实值特征向量，而不仅限于用户-物品交互<a href="矩阵.html">矩阵</a>。</p>
 </li>
 <li>
-<p><strong>模型公式</strong>：F<a href="Solomonoff先验.html">M(x)</a> = w₀ + Σ_i w_i x_i + Σ_i Σ_j&gt;i ⟨v_i, v_j⟩ x_i x_j，其中 w₀ 为全局偏置，w_i 为一阶权重，v_i 为特征 i 的<a href="嵌入表示.html">隐向量</a>，通过<a href="嵌入表示.html">隐向量</a>内积 ⟨v_i, v_j⟩ 建模特征对的交互。</p>
+<p><strong>模型公式</strong>：FM(x) = w₀ + Σ_i w_i x_i + Σ_i Σ_j&gt;i ⟨v_i, v_j⟩ x_i x_j，其中 w₀ 为全局偏置，w_i 为一阶权重，v_i 为特征 i 的<a href="嵌入表示.html">隐向量</a>，通过<a href="嵌入表示.html">隐向量</a>内积 ⟨v_i, v_j⟩ 建模特征对的交互。</p>
 </li>
 <li>
 <p><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当输入特征仅为用户 one-hot 和物品 one-hot 时，FM 退化为标准的<a href="矩阵分解.html">矩阵分解</a>模型。FM 可处理额外的上下文特征（如时间、地点、物品属性等）。</p>
@@ -161,13 +161,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="矩阵分解.html">矩阵分解</a> — extends</li>
-<li><a href="BPR.html">BPR</a> — relates_to</li>
+<li>BPR — relates_to</li>
 <li><a href="隐式反馈.html">隐式反馈</a> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="FTS5.html">&larr; FTS5</a>
-    <a href="GMF.html">GMF &rarr;</a>
+    <a href="GARCH 模型.html">GARCH 模型 &rarr;</a>
   </div>
 </div>
 </body>

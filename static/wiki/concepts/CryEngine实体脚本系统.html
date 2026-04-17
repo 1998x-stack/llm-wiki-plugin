@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryEngine实体脚本系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / CryEngine实体脚本系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.78</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">游戏引擎</span></div>
+</div>
+  <div class="content">
+    <h1 id="cryengine">CryEngine 实体脚本系统</h1>
+<h2 id="_1">概述</h2>
+<p>CryEngine（及其派生引擎 <a href="../entities/Amazon.html">Amazon</a> Lumberyard）通过 Lua 实体脚本驱动游戏对象行为，实体属性在编辑器中以 Properties 表暴露，生命周期回调、FlowGraph 节点和 AI 状态机均以 Lua 实现。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">实体脚本结构</h3>
+<p>CryEngine 实体脚本以一个同名全局 table 定义：</p>
+<pre><code class="language-lua">MyEntity = {
+    Properties = {
+        bEnabled = 1,     -- bool（通过初始值类型推断编辑器控件类型）
+        fSpeed   = 5.0,   -- float
+        nMaxCount = 10,   -- int
+        sName = &quot;default&quot; -- string
+        Attack = { fDamage = 25.0 }  -- 嵌套属性组
+    }
+}
+</code></pre>
+<p>属性值在编辑器中可直接调整，引擎通过类型推断（数值前缀：b/f/n/s）决定控件类型。</p>
+<h3 id="_4">生命周期回调</h3>
+<table>
+<thead>
+<tr>
+<th>回调</th>
+<th>时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnInit(self)</code></td>
+<td>实体初始化（关卡加载或运行时生成）</td>
+</tr>
+<tr>
+<td><code>OnReset(self)</code></td>
+<td>编辑器进入游戏模式/退出时重置属性</td>
+</tr>
+<tr>
+<td><code>OnUpdate(self, dt)</code></td>
+<td>每帧更新（需在 OnInit 中启用更新）</td>
+</tr>
+<tr>
+<td><code>OnCollision(self, hit)</code></td>
+<td>碰撞事件（hit.pos, hit.normal, hit.damage）</td>
+</tr>
+<tr>
+<td><code>Event_OnActivate(self)</code></td>
+<td>FlowGraph 激活输入节点时触发</td>
+</tr>
+</tbody>
+</table>
+<p>典型模式：<code>OnInit</code> 调 <code>OnReset</code>，<code>OnReset</code> 从 Properties 同步运行时状态（实现编辑器属性修改即时生效）。</p>
+<h3 id="flowgraph">FlowGraph 集成</h3>
+<p>实体可作为 FlowGraph 节点，输入/输出通过 <code>Event_*</code> 回调绑定：
+- <code>OnFlowgraphActivation(nodeID, inputs)</code> — 接收激活信号和输入数据
+- 实体脚本通过 FlowGraph 与关卡逻辑（触发器、门、机关）解耦连接</p>
+<h3 id="ai">AI 状态机</h3>
+<p><code>SetupState(stateMachine)</code> 定义 AI 行为状态机：</p>
+<pre><code class="language-lua">stateMachine:SetDefaultState(&quot;Idle&quot;)
+stateMachine:AddState{
+    name = &quot;Idle&quot;,
+    OnEnter = function(self)
+        AI.SetBehaviorVariable(self.id, &quot;IsAlert&quot;, false)
+    end,
+    transitions = {
+        {to=&quot;Alert&quot;, condition=function(self)
+            return AI.GetBehaviorVariable(self.id, &quot;ThreatDetected&quot;)
+        end}
+    }
+}
+</code></pre>
+<p>状态机以声明式 table 定义，条件函数在每帧轮询，满足条件时自动迁移状态。</p>
+<h3 id="_5">与其他引擎的对比</h3>
+<p>CryEngine 实体脚本的独特之处在于：属性系统（Properties 表→编辑器控件）、FlowGraph 可视化逻辑连接、AI 行为变量桥接，三者协同工作，是 AAA 引擎 Lua 集成的典型"数据驱动 + 脚本逻辑"混合方案。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">engine-integration</span> — 游戏引擎集成参考文档，CryEngine/Lumberyard 实体脚本结构与 AI 状态机示例</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Lua脚本宿主模式.html">Lua脚本宿主模式</a> — CryEngine 实体脚本属于引擎嵌入 Lua 的宿主模式，生命周期由引擎驱动</li>
+<li><a href="游戏引擎架构.html">游戏引擎架构</a> — CryEngine 代表 AAA 级 C++ 引擎 + Lua 脚本层架构</li>
+<li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — CryEngine 内部通过 C API 将引擎函数注册给 Lua 实体脚本</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Cross-encoder与Bi-encoder.html">&larr; Cross-encoder与Bi-encoder</a>
+    <a href="Cubemap天空盒.html">Cubemap天空盒 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

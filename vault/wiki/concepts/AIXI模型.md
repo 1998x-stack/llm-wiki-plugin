@@ -6,9 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- 技术
-- 研究
+tags: [技术, 研究, AI工程]
 aliases:
 - AIXI
 - 通用人工智能模型
@@ -37,7 +35,7 @@ AIXI 是 Marcus Hutter (2000) 提出的通用人工智能理论模型，将 Solo
 
 AIXI = Solomonoff 归纳 + Bellman 最优方程
 
-- **感知**：使用 Solomonoff 先验 [[Solomonoff先验|M(x)]] 对环境进行[[托马斯·贝叶斯|贝叶斯]]预测
+- **感知**：使用 Solomonoff 先验 M(x) 对环境进行[[托马斯·贝叶斯|贝叶斯]]预测
 - **决策**：选择使期望累积奖励最大化的动作
 - **学习**：通过与环境交互不断更新后验信念
 
@@ -47,7 +45,7 @@ AIXI 在任何可计算的环境中都能做出最优决策——它的累积奖
 
 ### 不可计算性
 
-与 Solomonoff 先验一样，AIXI 是不可计算的。它提供了一个理论上限（gold standard），实际的强化学习算法可以视为 AIXI 的可计算近似。
+与 Solomonoff 先验一样，AIXI 是不可计算的。它提供了一个理论上限（gold standard），实际的[[强化学习]]算法可以视为 AIXI 的可计算近似。
 
 ### 与 LLM 的关系
 

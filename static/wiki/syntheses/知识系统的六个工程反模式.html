@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">工具</span><span class="tag">技术</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">工具</span><span class="tag">技术</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">知识系统的六个工程反模式</h1>
 <h2 id="_2">概述</h2>
-<p>在构建 LLM Wiki Plugin（AI 驱动的个人知识操作系统）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适用于任何由多个脚本/微服务组成的数据管线。</p>
+<p>在构建 LLM Wiki Plugin（AI 驱动的个人知识<a href="../concepts/操作系统.html">操作系统</a>）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适用于任何由多个脚本/微服务组成的数据管线。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="1-silent-duplication">1. 隐性复制（Silent Duplication）</h3>
 <p>同一逻辑（如 YAML frontmatter 解析）在 6 个脚本中独立实现，每个实现行为略有不同（regex vs string-find vs yaml.safe_load）。表面上系统工作正常，但一个 bug 修复不会传播到其他副本，且边界行为不一致导致间歇性数据丢失。</p>
 <p><strong>诊断信号</strong>：grep 发现同名函数 &gt;3 处。
 <strong>修复模式</strong>：提取共享模块，确立"canonical implementation"。</p>
 <h3 id="2-api-stateless-api-gap">2. 无状态 API 调用缺少上下文补偿（Stateless API Gap）</h3>
-<p>当系统的一部分（Claude 引擎）是上下文感知的，而另一部分（Qwen API）是无状态的，两者产出质量差距巨大。无状态 API 不知道已有哪些页面、不知道正确的 <span style="color:#e74c3c" title="broken link">wikilink</span> 目标、不知道哪些实体已经存在。</p>
+<p>当系统的一部分（Claude 引擎）是<a href="../concepts/上下文感知.html">上下文感知</a>的，而另一部分（Qwen API）是无状态的，两者产出质量差距巨大。无状态 API 不知道已有哪些页面、不知道正确的 <span style="color:#e74c3c" title="broken link">wikilink</span> 目标、不知道哪些实体已经存在。</p>
 <p><strong>诊断信号</strong>：API 调用方比内部引擎产出更多重复/断链。
 <strong>修复模式</strong>：在 API 调用前注入上下文（<code>--context-pages</code>），在 API 返回后做本地去重（<code>scan_existing_pages</code>）。</p>
 <h3 id="3-gate-keeper-data-loss">3. 入口严格导致静默数据丢失（Gate-Keeper Data Loss）</h3>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="DeepAgents评估设计哲学.html">&larr; DeepAgents评估设计哲学</a>
+    <a href="控制论的最新发展.html">&larr; 控制论的最新发展</a>
     <a href="矩阵谱理论的统一叙事.html">矩阵谱理论的统一叙事 &rarr;</a>
   </div>
 </div>

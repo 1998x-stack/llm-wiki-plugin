@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>镜像神经元 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 镜像神经元</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">社会认知</span><span class="tag">镜像</span></div>
+</div>
+  <div class="content">
+    <h1 id="mirror-neurons">镜像神经元（Mirror Neurons）</h1>
+<h2 id="_1">概述</h2>
+<p>镜像神经元是一种特殊类型的神经元，在个体执行某个动作和观察其他个体执行同一动作时均会放电。由 Giacomo Rizzolatti 团队于 1996 年在猕猴运动前皮层（F5 区）发现，被 V.S. Ramachandran 称为"神经科学的 DNA 双螺旋"，对理解模仿学习、共情、语言起源等社会认知功能有深远影响。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">意外发现</h3>
+<p><strong>1980 年代末的偶然发现</strong>：
+- 里佐拉蒂实验室研究猕猴 F5 区神经元对抓握动作的响应
+- 当猴子主动抓取花生时，F5 区某些神经元剧烈放电（正常功能）
+- 研究者走进实验室，自己拿起花生放入口中
+- 录音器突然响起——猴子的 F5 神经元放电了，但猴子本身没有任何动作</p>
+<p><strong>镜像属性的确认</strong>：
+- 当猴子观察另一个个体（人或猴子）执行某个动作时
+- 它自己执行同一动作的运动神经元也随之激活——就像镜子一样
+- 多次重复实验确认是真实的生理信号</p>
+<h3 id="_4">核心特性</h3>
+<p><strong>镜像神经元的定义</strong>：
+1. 执行动作时激活：猴子自己抓取物体时放电
+2. 观察他人执行同一动作时也激活
+3. 对动作的"含义"而非运动本身响应：同样的手部运动，如果没有目标（无意义的手部挥动），不激活；有目标（抓取花生）则激活
+4. 不对单纯物体呈现响应：看见花生本身不激活，必须看见"抓花生"的动作过程</p>
+<p><strong>编码内容</strong>：
+- 镜像神经元编码的是"有目的的动作（goal-directed action）"的语义
+- 而非纯粹的视觉刺激或运动指令</p>
+<h3 id="_5">功能类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>严格镜像神经元</strong></td>
+<td>观察和执行的动作必须完全一致才激活</td>
+</tr>
+<tr>
+<td><strong>广义镜像神经元</strong></td>
+<td>对类似但不完全一样的动作也激活（如"抓"vs"夹"）</td>
+</tr>
+<tr>
+<td><strong>视听镜像神经元</strong></td>
+<td>不仅对视觉刺激，对声音（如花生壳破裂声）也激活</td>
+</tr>
+<tr>
+<td><strong>后续动作预测型</strong></td>
+<td>对动作完成后的"预期目标"响应</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">人类镜像系统</h3>
+<p><strong>间接证据</strong>：
+- <strong>fMRI 研究（Iacoboni et al., 1999）</strong>：人在观察手部动作时，大脑<a href="布罗卡区.html">布罗卡区</a>（<a href="../entities/Pierre Paul Broca.html">Broca</a>'s area，F5 的同源区）和运动前皮层激活
+- <strong>EEG Mu 波抑制</strong>：运动执行时产生 mu 节律（8–13Hz）抑制，观察他人运动时也产生类似抑制
+- <strong>TMS 研究（Fadiga et al., 1995）</strong>：观察他人手部动作时，TMS 在被试自己手部肌肉上诱发的运动电位（MEP）幅度增大</p>
+<p><strong>直接证据</strong>：
+- <strong>2010 年 Mukamel 等</strong>：在癫痫患者中记录到人类单个神经元水平的镜像属性
+- 在执行和观察抓握、面部表情时均激活
+- 但样本量有限，争议持续</p>
+<p><strong>结论</strong>：
+- 人类确实存在功能上类似的"镜像系统"
+- 但是否由"镜像神经元"（单细胞）还是"镜像系统"（网络）实现，仍有争论</p>
+<h3 id="_7">理论影响与争议</h3>
+<p><strong>V.S. Ramachandran 的宏大叙事</strong>：
+- 2000 年宣布："镜像神经元将成为心理学的关键，就像 DNA 在生物学中的地位一样"
+- 提出镜像系统解释了：
+  - 人类文化的快速传播（模仿是文化的核心）
+  - 语言的起源（从"手势动作镜像"演化为语音符号）
+  - 人类共情能力（感受他人感受的神经基础）</p>
+<p><strong>自闭症的"镜像<a href="神经元学说.html">神经元理论</a>"</strong>：
+- Ramachandran 等人提出"自闭症的镜像神经元功能障碍假说"
+- 自闭症患者缺乏共情和模仿能力，可能是镜像系统受损的结果（"破碎镜像理论"）
+- 后来的研究严重质疑：
+  - 多数 fMRI 研究显示自闭症患者的镜像区域激活与神经典型人群无显著差异
+  - EEG mu 波研究结果高度不一致</p>
+<p><strong>争议焦点</strong>：
+- 镜像神经元本身是扎实的实验发现
+- 但被扩展解释到了令许多科学家不安的程度
+- 是否真正解释了共情、语言、文化等高级功能，仍有激烈争论</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_06_mirror_neurons_rizzolatti_1996.md</span> — 镜像神经元：当你看见别人的动作，你的大脑也在"做"</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Giacomo Rizzolatti</span> — 发现者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">运动前皮层</span> — 发现位置（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">F5 区</span> — 发现位置（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">模仿学习</span> — 应用领域（uses）</li>
+<li><span style="color:#e74c3c" title="broken link">共情</span> — 理论应用（uses）</li>
+<li><span style="color:#e74c3c" title="broken link">语言起源</span> — 理论应用（uses）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="重要性采样.html">&larr; 重要性采样</a>
+    <a href="长时任务Agent设计.html">长时任务Agent设计 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

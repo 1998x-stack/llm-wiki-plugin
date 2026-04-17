@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="mineru">MinerU</h1>
@@ -156,18 +156,33 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td><strong>格式无关</strong></td>
-<td>支持文字型 PDF 和扫描件（<span style="color:#e74c3c" title="broken link">OCR</span>Based / MixedBased）</li>
+<td>支持文字型 PDF 和扫描件（OCR）两种管道</td>
+</tr>
+<tr>
+<td><strong>可扩展输出</strong></td>
+<td>导出 Markdown、JSON（带 bbox 坐标）、多模态格式</td>
+</tr>
+<tr>
+<td><strong>工业级鲁棒性</strong></td>
+<td>能处理数千页的大型 PDF，不崩溃</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">七层流水线架构</h3>
+<p>MinerU 的核心处理逻辑是一条串行流水线，按七个阶段逐层处理：</p>
+<ol>
+<li><strong>PDF 类型判断 &amp; 后端选择</strong>（TextBased / OCRBased / MixedBased）</li>
 <li><strong>底层 PDF 解析</strong>（<a href="PyMuPDF.html">PyMuPDF</a> 提取原始 Span/Block + 页面渲染为图像）</li>
 <li><strong><a href="../concepts/文档布局检测.html">文档布局检测</a></strong>（<a href="DocLayout-YOLO.html">DocLayout-YOLO</a> / <a href="LayoutLMv3.html">LayoutLMv3</a> → 检测文本区/图/表/公式框）</li>
-<li><strong>内容专项识别</strong>（<a href="../concepts/光学字符识别.html">OCR</a>/<a href="PaddleOCR.html">PaddleOCR</a>、<a href="../concepts/公式识别.html">公式识别</a>/<a href="UniMERNet.html">UniMERNet</a>、<a href="../concepts/表格识别.html">表格识别</a>/<a href="TableMaster.html">TableMaster</a>）</li>
+<li><strong>内容专项识别</strong>（OCR/<a href="PaddleOCR.html">PaddleOCR</a>、<a href="../concepts/公式识别.html">公式识别</a>/<a href="UniMERNet.html">UniMERNet</a>、<a href="../concepts/表格识别.html">表格识别</a>/<a href="TableMaster.html">TableMaster</a>）</li>
 <li><strong>内容块分类与属性标注</strong>（title / text / figure / table / formula）</li>
 <li><strong><a href="../concepts/阅读顺序重建.html">阅读顺序</a>排序</strong>（基于坐标与分栏分析，重建人类阅读序列）</li>
 <li><strong>Markdown / JSON 内容生成</strong>（将有序内容块序列化为目标格式）</li>
 </ol>
 <h3 id="_5">三条核心管道</h3>
 <ul>
-<li><strong>TextBased</strong>：适用于数字原生 PDF，<a href="PyMuPDF.html">PyMuPDF</a> 直接读取亚像素级字符坐标，不需要 <a href="../concepts/光学字符识别.html">OCR</a></li>
-<li><strong><a href="../concepts/光学字符识别.html">OCR</a>Based</strong>：适用于扫描件，页面渲染为图像后 <a href="PaddleOCR.html">PaddleOCR</a> 全量识别</li>
+<li><strong>TextBased</strong>：适用于数字原生 PDF，<a href="PyMuPDF.html">PyMuPDF</a> 直接读取亚像素级字符坐标，不需要 OCR</li>
+<li><strong>OCRBased</strong>：适用于扫描件，页面渲染为图像后 <a href="PaddleOCR.html">PaddleOCR</a> 全量识别</li>
 <li><strong>Mixed</strong>：逐页判断，分别走对应管道</li>
 </ul>
 <h3 id="pdfpageinfo">核心数据结构：PDFPageInfo</h3>
@@ -193,9 +208,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>扫描件</td>
-<td>✅ <span style="color:#e74c3c" title="broken link">光学字符识别&lt;/td&gt;
-&lt;td&gt;OCR</span>管道</td>
+<td>✅ OCR管道</td>
 <td>❌</td>
+<td>✅</td>
 <td>✅</td>
 </tr>
 <tr>
@@ -267,8 +282,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Matrix Factorization Techniques for Recommender Systems.html">&larr; Matrix Factorization Techniques for Recommender Systems</a>
-    <a href="Morgan Quigley.html">Morgan Quigley &rarr;</a>
+    <a href="MetaFind.html">&larr; MetaFind</a>
+    <a href="MoonSharp.html">MoonSharp &rarr;</a>
   </div>
 </div>
 </body>

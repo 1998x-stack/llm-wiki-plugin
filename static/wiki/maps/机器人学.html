@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机器人学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 机器人学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">机器人学</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/SLAM.html">SLAM</a> — SLAM（Simultaneous Localization and Mapping，同时定位与建图）是移动机器人学的核心问题：在地图和自身位置均未知的条件下，</li>
+<li><a href="../concepts/人工势场法.html">人工势场法</a> — 人工势场法（Artificial Potential Field, APF）是由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 于 1986 年提出的一种机器人实时避障</li>
+<li><a href="../concepts/动态平衡.html">动态平衡</a> — 动态平衡（Dynamic Balance）是指系统在运动过程中，通过主动控制力和力矩来维持整体稳定性，而不要求系统在每一时刻都处于静力平衡状态的一种控制模式。在</li>
+<li><a href="../concepts/包容体系结构.html">包容体系结构</a> — 包容体系结构（Subsumption Architecture）是由 <a href="../entities/Rodney Brooks.html">Rodney Brooks</a> 于 1986 年提出的一种革命性机器人控制架构。它彻底</li>
+<li><a href="../concepts/手眼协调.html">手眼协调</a> — 手眼协调（Hand-Eye Coordination）是机器人学中的一个核心研究领域，指机器人系统整合视觉感知（眼）与机械操作（手）能力，以实现对物体的识别、定</li>
+<li><a href="../concepts/操作空间控制.html">操作空间控制</a> — 操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 在 1980 </li>
+<li><a href="../concepts/构型空间方法.html">构型空间方法</a> — <strong>构型空间方法（Configuration Space Approach）</strong>，简称 <strong>C-space 方法</strong>，是由 <span style="color:#e74c3c" title="broken link">Tomas Lozano-Per&lt;/li&gt;
+&lt;li&gt;[[蒙特卡罗定位</span> — 蒙特卡罗定位（Monte Carlo Localization, MCL）是 <a href="../entities/Sebastian Thrun.html">Thrun</a>、<a href="../entities/Dieter Fox.html">Fo&lt;/li&gt;
+&lt;li&gt;[[行为机器人学</a> — 行为机器人学（Behavior-based Robotics, BBR）是机器人学的一个主要研究范式，兴起于 1980 年代末，由 <span style="color:#e74c3c" title="broken link">Rodney Brook&lt;/li&gt;
+&lt;li&gt;[[视觉-语言-动作模型</span> — 视觉-语言-动作模型（VLA）是将预训练视觉-语言模型（VLM）直接微调为机器人控制策略的范式：通过将机器人动作离散化为文本 token，使模型能利用互联网规模</li>
+<li><a href="../concepts/运动规划.html">运动规划</a> — <strong>运动规划（Motion Planning）</strong>，又称路径规划（Path Planning），是机器人学和人工智能领域的核心问题之一。其基本任务是：给定一个机</li>
+</ul>
+<h2 id="_3">实体</h2>
+<ul>
+<li><a href="../entities/A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices.html">A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices</a> — 《A Kinematic Notation for Lower-Pair Mechanisms Based on Matrices》是由 <span style="color:#e74c3c" title="broken link">Jacques D&lt;/li&gt;
+&lt;li&gt;[[Jacques Denavit</span> — Jacques Denavit 是一位在机构学和机器人学领域具有开创性贡献的学者。他最著名的成就是与 <a href="../entities/Richard S. Hartenberg.html">Richard S. Hartenberg</a> 合作，</li>
+<li><a href="../entities/Oussama Khatib.html">Oussama Khatib</a> — Oussama Khatib 是国际著名的机器人学专家，现任斯坦福大学计算机科学系教授兼机器人实验室主任。他于 1980 年在法国图卢兹高等航空航天学院获得电气</li>
+<li><a href="../entities/Petr Švestka.html">Petr Švestka</a> — Petr Švestka 是捷克裔计算机科学家，曾在荷兰乌得勒支大学（Utrecht University）师从 <a href="../entities/Mark Overmars.html">Mark Overmars</a> 攻读博士学</li>
+<li><a href="../entities/Prithvi-Rajasekaran.html">Prithvi-Rajasekaran</a> — Anthropic Labs 团队成员，AI 工程实践研究者，专注于长时自主编码 Agent 的 Harness 设计与前端设计质量提升，提出了 <span style="color:#e74c3c" title="broken link">生成器-评&lt;/li&gt;
+&lt;li&gt;[[Richard S. Hartenberg</span> — Richard S. Hartenberg 是 20 世纪中期著名的机构学专家，以其在运动学符号系统化方面的杰出贡献而闻名。他与 <span style="color:#e74c3c" title="broken link">Jacques Denav&lt;/li&gt;
+&lt;li&gt;[[Rodney Brooks</span> — Rodney A. Brooks（罗德尼·布鲁克斯）是澳大利亚裔计算机科学家、机器人学家及企业家，曾任 MIT 人工智能实验室主任。他是“<a href="../concepts/行为机器人学.html">行为机器人学</a>”</li>
+<li><a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a> — Tomas Lozano-Perez 是麻省理工学院（MIT）的终身教授，机器人学与人工智能领域的杰出科学家。他于 1983 年发表的论文《Spatial Pl</li>
+<li><a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> — Wolfram Burgard 是德国弗莱堡大学（University of Freiburg）教授，国际知名的机器人学专家，尤其在移动机器人导航、机器学习和[</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="文档处理.html">&larr; 文档处理</a>
+    <a href="概率论.html">概率论 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [UI, 设计系统, AI, 持久化, 上下文工程]
+tags: [UI, 设计系统, AI, 持久化, 上下文工程, AI设计]
 aliases:
   - Master Overrides 模式
   - 设计系统持久化

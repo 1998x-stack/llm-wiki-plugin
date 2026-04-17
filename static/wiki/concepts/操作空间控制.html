@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">操作空间控制</h1>
 <h2 id="_2">概述</h2>
-<p>操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 在 1980 年代系统提出并完善。该方法的核心思想是直接在机器人的任务空间（通常是末端执行器的笛卡尔空间）中定义和控制动力学行为，而不是传统的在关节空间中进行控制。通过利用雅可比<a href="矩阵.html">矩阵</a>及其动力学扩展，OSC 能够将任务空间中指定的虚拟力或阻抗特性精确映射为关节力矩，从而实现直观、解耦且高性能的运动控制。它是连接高层<a href="运动规划.html">运动规划</a>（如<a href="人工势场法.html">人工势场法</a>）与底层电机驱动的数学桥梁。</p>
+<p>操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 在 1980 年代系统提出并完善。该方法的核心思想是直接在机器人的任务空间（通常是<a href="IKEffector.html">末端执行器</a>的笛卡尔空间）中定义和控制动力学行为，而不是传统的在关节空间中进行控制。通过利用雅可比<a href="矩阵.html">矩阵</a>及其动力学扩展，OSC 能够将任务空间中指定的虚拟力或阻抗特性精确映射为关节力矩，从而实现直观、解耦且高性能的运动控制。它是连接高层<a href="运动规划.html">运动规划</a>（如<a href="人工势场法.html">人工势场法</a>）与底层电机驱动的数学桥梁。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">基本原理与数学基础</h3>
 <p>在传统控制中，工程师需要在关节空间设计控制器，这往往导致任务空间的行为难以直观预测，尤其是在多自由度冗余机器人中。操作空间控制通过建立任务空间变量 $x$（如位置、姿态）与关节变量 $q$ 之间的动力学关系来解决这一问题。</p>
@@ -146,7 +146,7 @@ $$\tau = J^T(q) F + (I - J^T(q) \bar{J}^T(q)) \tau_{null}$$
 <p>操作空间控制是<strong><a href="人工势场法.html">人工势场法</a></strong>得以高效实施的关键载体。在 Khatib 的避障框架中，引力和斥力自然地定义在笛卡尔空间中（末端到目标的距离、连杆到障碍物的距离）。如果没有 OSC，这些力需要经过复杂的逆运动学和动力学转换才能作用于关节。OSC 提供了一种直接的映射机制 $\tau = J^T F$，使得势场产生的“虚拟力”能够瞬间转化为真实的关节力矩。这种结合使得机器人能够像受物理力场作用的粒子一样，在复杂环境中平滑、实时地运动。</p>
 <h3 id="_6">优势与应用</h3>
 <p>OSC 的主要优势在于<strong>解耦性</strong>和<strong>直观性</strong>。它允许设计师直接在任务层面指定刚度、阻尼和质量参数（阻抗控制），而不必关心底层关节的具体配置。这对于需要与环境进行物理交互的任务（如打磨、装配、人机协作）至关重要。此外，OSC 天然支持冗余机器人的优化控制，可以在完成主任务的同时，利用零空间优化次要目标（如避障、能耗最小化）。</p>
-<p>如今，OSC 已成为高端人形机器人（如 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a> Atlas, Honda ASIMO）和精密工业机械臂的标准控制架构。它与模型预测控制（<a href="边际消费倾向.html">MPC</a>）和全身控制（Whole-Body Control, WBC）紧密结合，代表了现代机器人控制理论的最高水平之一。</p>
+<p>如今，OSC 已成为高端人形机器人（如 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a> Atlas, Honda ASIMO）和精密工业机械臂的标准控制架构。它与模型预测控制（MPC）和全身控制（Whole-Body Control, WBC）紧密结合，代表了现代机器人控制理论的最高水平之一。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/07-khatib-artificial-potential-field.md</span></li>
@@ -159,8 +159,8 @@ $$\tau = J^T(q) F + (I - J^T(q) \bar{J}^T(q)) \tau_{null}$$
 </ul>
   </div>
   <div class="page-nav">
-    <a href="推荐系统基础模型.html">&larr; 推荐系统基础模型</a>
-    <a href="收敛假说.html">收敛假说 &rarr;</a>
+    <a href="搜索引擎架构.html">&larr; 搜索引擎架构</a>
+    <a href="操作系统.html">操作系统 &rarr;</a>
   </div>
 </div>
 </body>

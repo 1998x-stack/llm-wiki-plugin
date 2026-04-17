@@ -39,4 +39,4 @@ CIKM 2021 发表的图推荐论文，在 [[LightGCN]] 基础上进一步简化�
 - [[LightGCN]] — UltraGCN 的直接前身
 - [[SimpleX]] — 同期简化推荐模型工作
 - [[协同过滤]] — UltraGCN 解决的核心任务
-- [[BPR]] — UltraGCN 使用的损失函数
+- BPR — UltraGCN 使用的损失函数

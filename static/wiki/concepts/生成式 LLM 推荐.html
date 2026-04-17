@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm">生成式 LLM 推荐</h1>
 <h2 id="_1">概述</h2>
-<p>使用大语言模型进行<a href="生成式推荐.html">生成式推荐</a>的范式，通过 LLM 自回归生成推荐结果，是 <a href="../entities/P5 论文.html">P5</a> 范式的 LLM 时代延续。</p>
+<p>使用大语言模型进行<a href="生成式推荐.html">生成式推荐</a>的<a href="规范化理论.html">范式</a>，通过 LLM <a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果，是 P5 <a href="规范化理论.html">范式</a>的 LLM 时代延续。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>范式定义</strong>：生成式 LLM 推荐（GLLM4Rec）使用大语言模型（LLaMA、Mistral、Qwen 等 7B-70B 参数）作为骨干，通过自回归生成推荐结果——物品 ID、推荐列表或推荐理由文本。</p>
+<p><strong><a href="规范化理论.html">范式</a>定义</strong>：生成式 LLM 推荐（GLLM4Rec）使用大语言模型（LLaMA、Mistral、Qwen 等 7B-70B 参数）作为骨干，通过<a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果——物品 ID、推荐列表或推荐理由文本。</p>
 </li>
 <li>
-<p><strong>与<a href="判别式 LLM 推荐.html">判别式 LLM 推荐</a>的对比</strong>：Wu 等人的综述将 LLM 推荐方法分为判别式（<a href="判别式 LLM 推荐.html">DLLM4Rec</a>）和生成式（GLLM4Rec）两大范式。生成式侧重灵活性和可解释性，判别式侧重预测准确性。</p>
+<p><strong>与<a href="判别式 LLM 推荐.html">判别式 LLM 推荐</a>的对比</strong>：Wu 等人的综述将 LLM 推荐方法分为判别式（<a href="判别式 LLM 推荐.html">DLLM4Rec</a>）和生成式（GLLM4Rec）两大<a href="规范化理论.html">范式</a>。生成式侧重灵活性和可解释性，判别式侧重预测准确性。</p>
 </li>
 <li>
-<p><strong>与<a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a>的关系</strong>：生成式 LLM 推荐是 <a href="../entities/P5 论文.html">P5</a> 开创的<a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a>范式在 LLM 时代的延续和升级——从 <a href="../entities/T5.html">T5</a>-small/base（60M-223M）到 LLaMA/Mistral/Qwen（7B-70B），从 Prompt 模板到<a href="指令调优.html">指令调优</a>。</p>
+<p><strong>与<a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a>的关系</strong>：生成式 LLM 推荐是 P5 开创的<a href="生成式推荐 (LLM).html">生成式推荐 (LLM)</a><a href="规范化理论.html">范式</a>在 LLM 时代的延续和升级——从 T5-small/base（60M-223M）到 LLaMA/Mistral/Qwen（7B-70B），从 Prompt 模板到<a href="指令调优.html">指令调优</a>。</p>
 </li>
 <li>
 <p><strong>现代方案特征</strong>：</p>
@@ -155,10 +155,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>训练策略：LoRA/QLoRA 等参数高效微调</li>
 <li>任务统一：<a href="指令调优.html">指令调优</a>替代 Prompt 模板</li>
 <li>
-<p>推理范式：多阶段检索+生成</p>
+<p>推理<a href="规范化理论.html">范式</a>：多阶段检索+生成</p>
 </li>
 <li>
-<p><strong>代表工作</strong>：<a href="../entities/TALLRec.html">TALLRec</a>（LLaMA 推荐微调）、<a href="../entities/InstructRec.html">InstructRec</a>（<a href="指令调优.html">指令调优</a>推荐）、<a href="../entities/LC-Rec.html">LC-Rec</a>（<a href="语义 ID.html">语义 ID</a>）、<a href="../entities/LLMRec.html">LLMRec</a>（双表示）、<a href="../entities/DEALRec.html">DEALRec</a>（数据剪枝）、<a href="../entities/VIP5.html">VIP5</a>（多模态扩展）。</p>
+<p><strong>代表工作</strong>：<a href="../entities/TALLRec.html">TALLRec</a>（LLaMA 推荐微调）、<a href="../entities/InstructRec.html">InstructRec</a>（<a href="指令调优.html">指令调优</a>推荐）、<a href="../entities/LC-Rec.html">LC-Rec</a>（<a href="语义 ID.html">语义 ID</a>）、<a href="../entities/LLMRec.html">LLMRec</a>（双表示）、<a href="../entities/DEALRec.html">DEALRec</a>（数据剪枝）、VIP5（多模态扩展）。</p>
 </li>
 <li>
 <p><strong>工业界态度</strong>：工业界对完全替代传统推荐模型持谨慎态度，更多将 LLM 作为推荐系统的辅助组件（特征增强、冷启动解决、用户意图理解）。</p>
@@ -182,7 +182,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/LC-Rec.html">LC-Rec</a> — 生成式 LLM 推荐代表工作</li>
 <li><a href="../entities/LLMRec.html">LLMRec</a> — 生成式 LLM 推荐代表工作</li>
 <li><a href="../entities/DEALRec.html">DEALRec</a> — 生成式 LLM 推荐代表工作</li>
-<li><a href="../entities/VIP5.html">VIP5</a> — 生成式 LLM 推荐代表工作</li>
+<li>VIP5 — 生成式 LLM 推荐代表工作</li>
 </ul>
   </div>
   <div class="page-nav">

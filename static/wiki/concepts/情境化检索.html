@@ -130,15 +130,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">情境化检索</h1>
 <h2 id="_2">概述</h2>
-<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 <a href="检索增强生成.html">RAG</a> 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
+<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 RAG 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心问题：切块破坏上下文</h3>
-<p>传统 <a href="检索增强生成.html">RAG</a> 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
+<p>传统 RAG 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
 <pre><code>问题：What was ACME Corp's revenue growth in Q2 2023?
 原始 Chunk：&quot;The company's revenue grew by 3% over the previous quarter.&quot;
 缺失：哪家公司？哪个季度？→ 检索系统无法判断相关性
@@ -175,7 +175,7 @@ Answer only with the succinct context and nothing else.
 - 取 Top-20 注入模型
 - 联合效果：失败率 <strong>-67%</strong>（5.7% → 1.9%）</p>
 <h3 id="_8">成本与实现</h3>
-<p><strong>为什么成本可控</strong>：配合 Anthropic 的 Prompt Caching 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
+<p><strong>为什么成本可控</strong>：配合 Anthropic 的 <a href="提示词缓存.html">Prompt Caching</a> 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
 <p><strong>实现注意事项</strong>：
 1. <strong>Chunk 边界</strong>：切块大小、边界策略和重叠影响检索效果，需实验调优
 2. <strong>嵌入模型选择</strong>：实验中 Gemini Text 004 和 Voyage 表现最佳
@@ -199,9 +199,9 @@ Answer only with the succinct context and nothing else.
 <td>—</td>
 </tr>
 <tr>
-<td>嵌入 + BM25（标准 <span style="color:#e74c3c" title="broken link">检索增强生成&lt;/td&gt;
-&lt;td&gt;RAG</span>）</td>
+<td>嵌入 + BM25（标准 RAG）</td>
 <td>约 4.5%</td>
+<td>~21%</td>
 </tr>
 <tr>
 <td>情境化嵌入</td>
@@ -233,7 +233,7 @@ Answer only with the succinct context and nothing else.
 </ul>
   </div>
   <div class="page-nav">
-    <a href="快速扩展随机树 (RRT).html">&larr; 快速扩展随机树 (RRT)</a>
+    <a href="恢复机制.html">&larr; 恢复机制</a>
     <a href="惯性律.html">惯性律 &rarr;</a>
   </div>
 </div>

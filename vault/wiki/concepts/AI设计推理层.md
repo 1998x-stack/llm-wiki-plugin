@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 设计, UI, 架构, 设计模式]
+tags: [AI, 设计, UI, 架构, 设计模式, AI设计]
 aliases:
   - 设计推理层
   - Design Reasoning Layer

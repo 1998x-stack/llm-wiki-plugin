@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [数学，工具，方法论]
+tags: [数学，工具，方法论, 机器人学]
 aliases: ["DH Parameters", "D-H Convention", "DH 约定"]
 relates_to:
   - target: "[[Jacques Denavit]]"

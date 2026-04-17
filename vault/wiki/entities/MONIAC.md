@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - 宏观经济学
-  - 工具
-  - 研究
-  - 方法论
+tags: [宏观经济学, 工具, 研究, 方法论, 经济学]
 aliases: ["Monetary National Income Analogue Computer", "液压计算机", "菲利普斯机器"]
 relates_to:
   - target: "[[A.W. 菲利普斯]]"

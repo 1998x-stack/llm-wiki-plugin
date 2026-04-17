@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code-Review-for-Claude-Code — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Code-Review-for-Claude-Code</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="code-review-for-claude-code">Code Review for Claude Code</h1>
+<h2 id="_1">概述</h2>
+<p>Code Review 是 Claude Code 推出的多智能体代码审查系统，为每个 PR 派遣一组智能体进行深度审查，捕捉人类审核者容易遗漏的漏洞。目前面向 Team 和 Enterprise 计划提供研究预览版。这是 Anthropic 内部几乎每个 PR 都采用的系统，审查深度优先于速度。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">设计动机</h3>
+<p><strong>解决代码审查瓶颈</strong>：
+- Anthropic 工程师的代码输出量在过去一年增长了 200%
+- 代码审查成为瓶颈，开发人员人手紧张
+- 许多 PR 只被快速浏览，而非深入审阅
+- 需要值得信赖的审查者，对每个 PR 进行深度审查</p>
+<h3 id="_4">工作原理</h3>
+<p><strong>多智能体并行审查</strong>：
+1. <strong>智能体派遣</strong>：当 PR 创建时，系统派遣一组智能体
+2. <strong>并行查找</strong>：智能体并行查找漏洞
+3. <strong>验证过滤</strong>：验证漏洞以过滤误报
+4. <strong>严重性排序</strong>：按严重程度对漏洞进行排序
+5. <strong>结果呈现</strong>：
+   - 单条高价值总览评论
+   - 针对特定漏洞的行内评论</p>
+<p><strong>动态扩展</strong>：
+- 审查规模随 PR 规模扩展
+- 大型或复杂变更：更多智能体，更深入审查
+- 琐碎变更：轻量级快速通过
+- 平均审查时间：约 20 分钟</p>
+<h3 id="_5">实际效果</h3>
+<p><strong>Anthropic 内部数据</strong>：
+- <strong>之前</strong>：16% 的 PR 收到实质性审查意见
+- <strong>现在</strong>：54% 的 PR 收到实质性审查意见
+- <strong>不会自动批准</strong>：仍需要人工判断，但缩小了审查范围</p>
+<p><strong>审查发现率</strong>：
+- <strong>大型 PR（&gt;1000 行）</strong>：84% 发现问题，平均 7.5 个问题
+- <strong>小型 PR（&lt;50 行）</strong>：31% 发现问题，平均 0.5 个问题
+- <strong>工程师认可度</strong>：超过 99% 的发现被标记为正确（不到 1% 被标记为错误）</p>
+<h3 id="_6">实际案例</h3>
+<p><strong>案例 1：一行代码的关键漏洞</strong>
+- 场景：生产服务的一行代码修改看似常规
+- Code Review 标记为关键问题
+- 问题：修改会破坏服务的身份验证功能
+- 结果：在合并前修复，工程师表示自己也发现不了</p>
+<p><strong>案例 2：TrueNAS ZFS 加密重构</strong>
+- 项目：TrueNAS 开源<a href="ROS (Robot Operating System).html">中间件</a>的 ZFS 加密重构
+- 发现：相邻代码中早已存在的漏洞
+- 问题：类型不匹配，每次同步时静默清除加密密钥缓存
+- 价值：人工审查者浏览代码变更时不会立即查找这类问题</p>
+<h3 id="_7">成本与管控</h3>
+<p><strong>定价</strong>：
+- 按令牌使用量计费
+- 平均费用：$15-25/次审查
+- 随 PR 规模和复杂度浮动
+- 比 Claude Code GitHub Action 更昂贵（但更全面）</p>
+<p><strong>管理员控制</strong>：
+1. <strong>每月组织上限</strong>：定义所有审查的总月度支出
+2. <strong>仓库级控制</strong>：仅在选择的仓库上启用审查
+3. <strong>分析仪表板</strong>：跟踪已审查的 PR、接受率、总审查成本</p>
+<h3 id="github-action">与 GitHub Action 的对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Code Review</th>
+<th>GitHub Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>深度</strong></td>
+<td>深度多智能体审查</td>
+<td>轻量级审查</td>
+</tr>
+<tr>
+<td><strong>成本</strong></td>
+<td>$15-25/次</td>
+<td>更便宜</td>
+</tr>
+<tr>
+<td><strong>速度</strong></td>
+<td>平均 20 分钟</td>
+<td>更快</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>关键 PR、大变更</td>
+<td>日常小变更</td>
+</tr>
+<tr>
+<td><strong>开源</strong></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">使用场景</h3>
+<p><strong>适合使用 Code Review 的场景</strong>：
+- 大型 PR（&gt;500 行变更）
+- 关键功能或安全相关变更
+- 复杂重构
+- 需要深度审查的生产代码</p>
+<p><strong>适合使用 GitHub Action 的场景</strong>：
+- 小型日常变更
+- 文档更新
+- 配置调整
+- 快速迭代开发</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Code Review for Claude Code.md</span> — Anthropic 官方发布</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — 所属项目（part_of）</li>
+<li><a href="Subagents-in-Claude-Code.html">Subagents-in-Claude-Code</a> — 使用的技术（uses）</li>
+<li><a href="Multi-Agent-Coordination-Patterns.html">Multi-Agent-Coordination-Patterns</a> — 相关模式（implements）</li>
+<li><a href="Generator-Verifier-Pattern.html">Generator-Verifier-Pattern</a> — 审查模式（uses）</li>
+<li><a href="Advisor Tool（顾问工具）.html">Advisor Tool（顾问工具）</a> — compares_to（多模型协作 vs 多智能体协作）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Claude-Code-Hook-System.html">&larr; Claude-Code-Hook-System</a>
+    <a href="Codex TUI.html">Codex TUI &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

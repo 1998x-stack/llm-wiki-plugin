@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="neumf">NeuMF</h1>
 <h2 id="_1">概述</h2>
-<p>神经<a href="矩阵分解.html">矩阵分解</a>，<a href="../entities/Neural Collaborative Filtering.html">NCF</a> 框架的最终融合模型，将 <a href="GMF.html">GMF</a> 的线性建模能力与 MLP 的非线性建模能力结合，通过独立嵌入空间和后融合策略实现互补。</p>
+<p>神经<a href="矩阵分解.html">矩阵分解</a>，NCF 框架的最终融合模型，将 GMF 的线性建模能力与 MLP 的非线性建模能力结合，通过独立嵌入空间和后融合策略实现互补。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>融合架构</strong>：<a href="GMF.html">GMF</a> 和 MLP 使用<strong>各自独立的用户/物品嵌入</strong>，不<a href="共享嵌入.html">共享嵌入</a>空间。这赋予两个子模型更大的灵活性，使它们能在各自的嵌入空间中学习不同的特征表示。</li>
-<li><strong>后融合策略</strong>：两个子模型的倒数第二层输出被拼接，然后通过一个线性层和 sigmoid 输出最终预测：$\hat{y}_{ui} = \sigma(\mathbf{h}^T [\phi^{<a href="GMF.html">GMF</a>}; \phi^{MLP}])$，其中 $\phi^{<a href="GMF.html">GMF</a>} = \mathbf{p}_u^G \odot \mathbf{q}_i^G$，$\phi^{MLP}$ 是 MLP 最后一个隐藏层的输出。</li>
-<li><strong>设计哲学</strong>：体现"线性模型和非线性模型各有所长，融合比替代更好"的工程直觉。<a href="GMF.html">GMF</a> 擅长捕捉潜在因子之间的线性交互，MLP 能发现复杂的非线性模式。通过独立嵌入空间 + 高层融合，避免了两个子模型相互妥协。</li>
-<li><strong>预训练策略</strong>：由于 Neu<a href="矩阵分解.html">MF</a> 的目标函数非凸，随机初始化可能导致优化陷入较差的局部最优。先分别独立训练 <a href="GMF.html">GMF</a> 和 MLP 至收敛，再用训练好的参数初始化 Neu<a href="矩阵分解.html">MF</a> 对应部分，融合层权重初始化为 $[\alpha \mathbf{h}^{<a href="GMF.html">GMF</a>}; (1-\alpha) \mathbf{h}^{MLP}]$（$\alpha = 0.5$），最后用 Adam 端到端微调。</li>
-<li><strong>实验表现</strong>：Neu<a href="矩阵分解.html">MF</a> 在 <a href="../entities/MovieLens.html">MovieLens</a> 1M 和 <a href="../entities/Pi-Agent.html">Pi</a>nterest 数据集上均显著优于 e<a href="交替最小二乘法 ALS.html">ALS</a> 和<a href="BPR.html">BPR</a>-<a href="矩阵分解.html">MF</a>。仅用 8 个预测因子的 Neu<a href="矩阵分解.html">MF</a> 超过 64 个因子的 e<a href="交替最小二乘法 ALS.html">ALS</a>。性能持续优于其两个子模型 <a href="GMF.html">GMF</a> 和 MLP。</li>
-<li><strong>后续争议</strong>：<a href="../entities/Steffen Rendle.html">Steffen Rendle</a>等人（2020）指出，精心调优的 <a href="矩阵分解.html">MF</a> 可以达到与 Neu<a href="矩阵分解.html">MF</a> 相当甚至更好的效果，质疑 Neu<a href="矩阵分解.html">MF</a> 的优势是否来自训练策略差异而非模型架构本身。</li>
+<li><strong>融合架构</strong>：GMF 和 MLP 使用<strong>各自独立的用户/物品嵌入</strong>，不<a href="共享嵌入.html">共享嵌入</a>空间。这赋予两个子模型更大的灵活性，使它们能在各自的嵌入空间中学习不同的特征表示。</li>
+<li><strong>后融合策略</strong>：两个子模型的倒数第二层输出被拼接，然后通过一个线性层和 sigmoid 输出最终预测：$\hat{y}_{ui} = \sigma(\mathbf{h}^T [\phi^{GMF}; \phi^{MLP}])$，其中 $\phi^{GMF} = \mathbf{p}_u^G \odot \mathbf{q}_i^G$，$\phi^{MLP}$ 是 MLP 最后一个隐藏层的输出。</li>
+<li><strong>设计哲学</strong>：体现"线性模型和非线性模型各有所长，融合比替代更好"的工程直觉。GMF 擅长捕捉潜在因子之间的线性交互，MLP 能发现复杂的非线性模式。通过独立嵌入空间 + 高层融合，避免了两个子模型相互妥协。</li>
+<li><strong>预训练策略</strong>：由于 NeuMF 的目标函数非凸，随机初始化可能导致优化陷入较差的局部最优。先分别独立训练 GMF 和 MLP 至收敛，再用训练好的参数初始化 NeuMF 对应部分，融合层权重初始化为 $[\alpha \mathbf{h}^{GMF}; (1-\alpha) \mathbf{h}^{MLP}]$（$\alpha = 0.5$），最后用 Adam 端到端微调。</li>
+<li><strong>实验表现</strong>：NeuMF 在 <a href="../entities/MovieLens.html">MovieLens</a> 1M 和 Pinterest 数据集上均显著优于 eALS 和BPR-MF。仅用 8 个预测因子的 NeuMF 超过 64 个因子的 eALS。性能持续优于其两个子模型 GMF 和 MLP。</li>
+<li><strong>后续争议</strong>：<a href="../entities/Steffen Rendle.html">Steffen Rendle</a>等人（2020）指出，精心调优的 MF 可以达到与 NeuMF 相当甚至更好的效果，质疑 NeuMF 的优势是否来自训练策略差异而非模型架构本身。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -152,16 +152,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> — NeuMF 所属的通用框架</li>
-<li><a href="GMF.html">GMF</a> — NeuMF 的线性子模型</li>
+<li>GMF — NeuMF 的线性子模型</li>
 <li><a href="模型融合.html">模型融合</a> — NeuMF 采用的核心设计策略</li>
 <li><a href="矩阵分解.html">矩阵分解</a> — NeuMF 通过 GMF 间接扩展的方法</li>
-<li><a href="BPR.html">BPR</a> — NeuMF 对比的基线方法之一</li>
+<li>BPR — NeuMF 对比的基线方法之一</li>
 <li><a href="../entities/Steffen Rendle.html">Steffen Rendle</a> — 对 NeuMF 提出质疑的研究者</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="NDCG.html">&larr; NDCG</a>
-    <a href="Occam剃刀.html">Occam剃刀 &rarr;</a>
+    <a href="NanoVG分辨率模式.html">&larr; NanoVG分辨率模式</a>
+    <a href="NoisyNets.html">NoisyNets &rarr;</a>
   </div>
 </div>
 </body>

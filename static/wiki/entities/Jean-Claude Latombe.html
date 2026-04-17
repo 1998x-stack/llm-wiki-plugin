@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="jean-claude-latombe">Jean-Claude Latombe</h1>
 <h2 id="_1">概述</h2>
-<p>Jean-Claude Latombe 是机器人<a href="../concepts/运动规划.html">运动规划</a>领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成就是撰写了该领域的权威专著《Robot <a href="../concepts/运动规划.html">Motion Planning</a>》（1991 年），该书系统化了构型空间（Configuration Space）理论，至今仍是该领域的标准参考书。作为 <a href="Lydia Kavraki.html">Lydia Kavraki</a> 的博士导师，他与 Kavraki、<a href="Mark Overmars.html">Mark Overmars</a> 等人合作提出了概率路线图（<a href="../concepts/概率路线图 (PRM).html">PRM</a>）方法，推动了<a href="../concepts/运动规划.html">运动规划</a>从精确几何方法向随机采样方法的范式转变。</p>
+<p>Jean-Claude Latombe 是机器人<a href="../concepts/运动规划.html">运动规划</a>领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成就是撰写了该领域的权威专著《Robot <a href="../concepts/运动规划.html">Motion Planning</a>》（1991 年），该书系统化了构型空间（Configuration Space）理论，至今仍是该领域的标准参考书。作为 <a href="Lydia Kavraki.html">Lydia Kavraki</a> 的博士导师，他与 Kavraki、<a href="Mark Overmars.html">Mark Overmars</a> 等人合作提出了概率路线图（PRM）方法，推动了<a href="../concepts/运动规划.html">运动规划</a>从精确几何方法向随机采样方法的<a href="../concepts/规范化理论.html">范式</a>转变。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">构型空间理论的集大成者</h3>
-<p>在 <a href="../concepts/概率路线图 (PRM).html">PRM</a> 提出之前，Latombe 的主要贡献在于对构型空间（C-space）理论的梳理和推广。1983 年 Lozano-Perez 提出 C-space 概念后，Latombe 在其 1991 年的专著中将其发展为一套完整的理论框架。他清晰地阐述了如何将机器人的<a href="../concepts/运动规划.html">运动规划</a>问题转化为 C-space 中点的路径搜索问题，并将碰撞检测定义为判断点是否落在 C-obstacle 内。尽管后来的 <a href="../concepts/概率路线图 (PRM).html">PRM</a> 方法避开了显式构造 C-obstacle 的计算困难，但 Latombe 建立的这一抽象框架仍然是所有现代<a href="../concepts/运动规划.html">运动规划</a>算法（包括采样方法）的理论基石。</p>
+<p>在 PRM 提出之前，Latombe 的主要贡献在于对构型空间（C-space）理论的梳理和推广。1983 年 Lozano-Perez 提出 C-space 概念后，Latombe 在其 1991 年的专著中将其发展为一套完整的理论框架。他清晰地阐述了如何将机器人的<a href="../concepts/运动规划.html">运动规划</a>问题转化为 C-space 中点的路径搜索问题，并将碰撞检测定义为判断点是否落在 C-obstacle 内。尽管后来的 PRM 方法避开了显式构造 C-obstacle 的计算困难，但 Latombe 建立的这一抽象框架仍然是所有现代<a href="../concepts/运动规划.html">运动规划</a>算法（包括采样方法）的理论基石。</p>
 <h3 id="prm">PRM 的幕后推手</h3>
-<p>作为斯坦福团队的领军人物，Latombe 在 <a href="../concepts/概率路线图 (PRM).html">PRM</a> 的诞生过程中扮演了关键角色。他不仅提供了深厚的理论背景，还带来了丰富的实际机器人规划经验。在与乌得勒支大学（Utrecht University）的 <a href="Mark Overmars.html">Mark Overmars</a> 团队合作时，Latombe 确保了算法设计既符合计算几何的严谨性，又能解决实际工业中高自由度机械臂的规划难题。他是连接经典精确规划时代与现代采样规划时代的桥梁人物。</p>
+<p>作为斯坦福团队的领军人物，Latombe 在 PRM 的诞生过程中扮演了关键角色。他不仅提供了深厚的理论背景，还带来了丰富的实际机器人规划经验。在与乌得勒支大学（Utrecht University）的 <a href="Mark Overmars.html">Mark Overmars</a> 团队合作时，Latombe 确保了算法设计既符合计算几何的严谨性，又能解决实际工业中高自由度机械臂的规划难题。他是连接经典精确规划时代与现代采样规划时代的桥梁人物。</p>
 <h3 id="_4">学术传承与影响</h3>
-<p>Latombe 培养了一批杰出的学生，其中最著名的是 <a href="Lydia Kavraki.html">Lydia Kavraki</a>。他在斯坦福指导 Kavraki 完成了关于随机化<a href="../concepts/运动规划.html">运动规划</a>的博士论文，直接催生了 <a href="../concepts/概率路线图 (PRM).html">PRM</a> 算法。他的教育理念强调理论与实践的结合，鼓励学生在面对“维数灾难”等看似无解的理论困境时，勇于引入随机性等非传统手段寻找工程上的突破。这种思想深深影响了后续几十年的机器人学研究方向。</p>
+<p>Latombe 培养了一批杰出的学生，其中最著名的是 <a href="Lydia Kavraki.html">Lydia Kavraki</a>。他在斯坦福指导 Kavraki 完成了关于随机化<a href="../concepts/运动规划.html">运动规划</a>的博士论文，直接催生了 PRM 算法。他的教育理念强调理论与实践的结合，鼓励学生在面对“维数灾难”等看似无解的理论困境时，勇于引入随机性等非传统手段寻找工程上的突破。这种思想深深影响了后续几十年的机器人学研究方向。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/10-kavraki-probabilistic-roadmaps.md</span></li>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Jay Adams.html">&larr; Jay Adams</a>
-    <a href="Jiaqi Ma.html">Jiaqi Ma &rarr;</a>
+    <a href="Jeffrey Dean.html">Jeffrey Dean &rarr;</a>
   </div>
 </div>
 </body>

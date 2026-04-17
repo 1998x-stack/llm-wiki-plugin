@@ -20,7 +20,7 @@ $ARGUMENTS — 要回答的问题。
 2. **主题扩展**（利用 maps 系统）
    - 读取 `.claude/topic-to-wiki.json`（若存在）
    - 将 `REWRITTEN_QUERY` 的核心关键词与每个 topic 名和其页面列表做字符串匹配
-   - 若找到匹配 topic → 记录 `MATCHED_TOPIC` 和对应的 `TOPIC_PAGES` 列表（后续步骤优先深读）
+   - 若找到匹配 topic → 读取 `maps/{MATCHED_TOPIC}.md` 获取该主题的页面清单和概述，作为后续搜索的优先上下文
    - 若未找到匹配 → 继续，不强制扩展
 
 3. **统一搜索**

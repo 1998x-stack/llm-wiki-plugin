@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [UI, UX, 设计, AI, 规则系统, 可访问性]
+tags: [UI, UX, 设计, AI, 规则系统, 可访问性, AI设计]
 aliases:
   - 可机器执行的UX规则
   - UX规则工程化
@@ -92,7 +92,7 @@ PRE-DELIVERY CHECKLIST（P0 必过项）:
 | 比较 | Bar Chart（≤12类别）、Radar | Grouped Bar 超过 3 系列 |
 | 趋势 | Line Chart、Sparkline | 数据点 < 5 时用折线（应用柱状）|
 | 分布 | Histogram、Scatter Plot | — |
-| 构成 | [[Pi-Agent|Pi]]e（< 5 片）、Treemap | [[Pi-Agent|Pi]]e ≥ 6 片难以分辨 |
+| 构成 | Pie（< 5 片）、Treemap | Pie ≥ 6 片难以分辨 |
 | 关系 | Sankey、Network Graph | — |
 
 **核心图表规则**：Y 轴必须从 0 开始（截断是视觉欺骗）；颜色编码必须有图例且不能仅靠颜色区分。

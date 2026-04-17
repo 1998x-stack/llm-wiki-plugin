@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoXCLI — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / UrhoXCLI</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">游戏引擎</span><span class="tag">CLI工具</span><span class="tag">3D渲染</span><span class="tag">天空盒</span><span class="tag">模型导入</span><span class="tag">glTF</span><span class="tag">GLB</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhoxcli">UrhoXCLI</h1>
+<h2 id="_1">概述</h2>
+<p><a href="UrhoX引擎.html">UrhoX</a> 引擎配套命令行工具，支持全景图转 <a href="../concepts/Cubemap天空盒.html">Cubemap</a> 等资源处理操作，路径为 <code>/workspace/.cli/UrhoXCLI</code>。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>全景图转换</strong>：<code>convert-panorama</code> 子命令将 HDR/PNG/JPG/TGA 全景图转为 DDS 或 KTX 格式的 <a href="../concepts/Cubemap天空盒.html">Cubemap</a>，支持自动检测<a href="../concepts/等距柱状投影.html">等距柱状投影</a>（2:1）和横条（6:1）布局。</li>
+<li><strong>主要参数</strong>：<code>-i</code> 输入路径、<code>-o</code> 输出路径、<code>--size N</code> 指定 Face 尺寸、<code>--strip</code> 强制横条模式、<code>--mips</code> 生成 Mipmap 链。</li>
+<li><strong>路径要求</strong>：输入和输出必须使用绝对路径；HDR 输出保持 RGBA32F 浮点精度（适合 IBL 光照）；LDR 输出为 RGBA8（适合天空盒背景）。</li>
+<li><strong>FBX 模型导入</strong>：<code>import-model</code> 子命令将 FBX 转为引擎 MDL 格式；可选生成材质 XML、纹理（含 sidecar <code>.xml</code> 配置）、预制体和 ANI 动画；各产物路径独立，不传则跳过。默认开启 3 级 <a href="../concepts/LOD（细节层次）.html">LOD（细节层次）</a> 自动生成（85%/65%/45% 简化比例），可用 <code>--no-lod</code> 关闭或 <code>--lod-levels</code> 调整级数。</li>
+<li><strong>GLB/glTF 模型导入</strong>：<code>import-gltf</code> 子命令将 <a href="../concepts/GLB_glTF格式.html">GLB/glTF</a> 转为引擎 MDL 格式；自动处理右手系→左手系坐标转换、UV 翻转和单位转换；GLB 内嵌纹理自动提取；输出产物（MDL、材质、纹理、预制体、动画）均独立可选，不传则跳过。</li>
+<li><strong>MDL 模型信息查询</strong>：<code>model-info -i &lt;mdl&gt;</code> 输出包围盒（Min/Max/Size）、Geometry 数量及每个几何体的 LOD 层级（顶点数/三角面数/切换距离）、顶点属性、骨骼数；加 <code>--bones</code> 列出完整骨骼列表（骨骼名+父索引），用于导入验证和 <a href="../concepts/动画重定向.html">动画重定向</a> 前检查。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/.claude/skills/convert-panorama/SKILL</span> — UrhoX convert-panorama 技能文档</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/.claude/skills/import-fbx/SKILL.md</span> — UrhoX import-model FBX 导入完整工作流</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/.claude/skills/import-glb/SKILL.md</span> — UrhoX import-gltf GLB/glTF 导入完整工作流</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/.claude/skills/model-info/SKILL.md</span> — UrhoX model-info MDL 模型信息查询技能文档</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/Cubemap天空盒.html">Cubemap天空盒</a> — uses</li>
+<li><a href="../concepts/等距柱状投影.html">等距柱状投影</a> — uses</li>
+<li><a href="../concepts/FBX格式.html">FBX格式</a> — uses</li>
+<li><a href="../concepts/LOD（细节层次）.html">LOD（细节层次）</a> — uses</li>
+<li><a href="../concepts/GLB_glTF格式.html">GLB_glTF格式</a> — uses</li>
+<li><a href="../concepts/MDL格式.html">MDL格式</a> — uses</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Unimate.html">&larr; Unimate</a>
+    <a href="UrhoX引擎.html">UrhoX引擎 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

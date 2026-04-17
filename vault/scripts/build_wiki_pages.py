@@ -281,7 +281,10 @@ def build_meta_card(fm: dict) -> str:
     page_type = fm.get("type", "unknown")
     color = TYPE_COLORS.get(page_type, DEFAULT_COLOR)
     confidence = fm.get("confidence")
-    conf_str = f"{float(confidence):.2f}" if confidence is not None else "\u2014"
+    try:
+        conf_str = f"{float(confidence):.2f}" if confidence is not None else "\u2014"
+    except (TypeError, ValueError):
+        conf_str = str(confidence)
     tags = fm.get("tags", []) or []
     created = fm.get("created", "\u2014")
     updated = fm.get("updated", "\u2014")
@@ -398,7 +401,10 @@ def main():
             t = p["fm"].get("type", "unknown")
             color = TYPE_COLORS.get(t, DEFAULT_COLOR)
             conf = p["fm"].get("confidence")
-            conf_str = f'<span class="page-conf">({float(conf):.2f})</span>' if conf is not None else ""
+            try:
+                conf_str = f'<span class="page-conf">({float(conf):.2f})</span>' if conf is not None else ""
+            except (TypeError, ValueError):
+                conf_str = f'<span class="page-conf">({conf})</span>' if conf is not None else ""
             items += f'<li><a href="{subdir_name}/{p["stem"]}.html">{p["stem"]}</a><span class="page-type" style="background:{color}">{t}</span>{conf_str}</li>\n'
         sections_html += f'<h2>{label} ({len(pages_in)})</h2>\n<ul class="page-list">\n{items}</ul>\n'
 

@@ -1,5 +1,61 @@
 # Changelog
 
+## [v3.10] - 2026-04-17
+
+### Fixed
+
+- **`lint_wiki.py` — `load_index_links()`**: now also parses the `## 全部页面` comma-separated plain-text section (slim format). Previously returned an empty set for slim-format `index.md`, causing all 953 wiki pages to trigger false-positive I1 warnings on every check/lint run (#44)
+- **`lint_wiki.py` — `check_stale_index()`**: now skips `maps/` prefixed entries. Map references in the statistics table (e.g., `[[maps/AI工程]]`) were incorrectly reported as stale I2 entries because they reference `maps/*.md` files, not wiki pages
+- **`commands/wiki/ingest.md` step 7**: changed `snapshot_index --update` to `snapshot_index --slim`. `--update` silently no-ops on slim-format `index.md` (finds no section headers to insert into); `--slim` correctly rebuilds the full stats table + page list
+- **`commands/wiki/lint.md` fix F**: same fix as ingest — `--update` → `--slim`
+- **`commands/wiki/check.md` check J**: corrected suggested repair command from `build_maps` (which only regenerates existing maps, no reclassification) to `wiki:reindex` (rebuilds `topic-to-wiki.json`) followed by `wiki:build`
+
+### Documentation
+
+- New gotcha #44 in `docs/gotchas/script-fixes.md`: I1/I2 plain-text index false positives — root cause, trigger condition, and fix documented
+
+## [v3.9] - 2026-04-16
+
+### Fixed
+- **`ingest-loop.md`**: removed hardcoded `/Users/mx/` path in subagent prompt template (#38)
+- **`setup-ingest-loop.sh`**: added missing newline before `current_index` in YAML state file output — was producing invalid YAML (#39)
+- **`setup-ingest-loop.sh`**: replaced unsafe `python3 -c '...$file...'` string interpolation with `sys.argv` argument passing (#40)
+- **`split_chat_json.py`**: source JSON no longer deleted before verifying all output files exist and are non-empty (#41)
+- **`build_maps.py`**: replaced hardcoded `["concepts", "entities", "syntheses", "qa-insights"]` with `WIKI_SUBDIRS` from `wiki_utils` (#42)
+- **All hooks** (`hook_bm25.sh`, `hook_lint.sh`, `hook_graph.sh`): JSON parse errors now logged to `log.hook.md` instead of silently swallowed via `2>/dev/null` (#43)
+
+### Changed
+- **`wiki:maintain`**: docs updated to reflect current pipeline (relink → check → lint → build, no reindex)
+
+### Documentation
+- New gotchas file: `docs/gotchas/v3.9-script-review.md` (#38-43)
+- Updated: `gotchas.md` index, `USERGUIDE.md`, `README.md`, `CHANGELOG.md`
+
+## [v3.8] - 2026-04-16
+
+### Added
+- **`scripts/build_maps.py`**: deterministic per-topic map generator from `topic-to-wiki.json`. Replaces LLM-driven maps generation in `wiki:reindex`. Each map now includes a `## 概述` overview section. Supports `--topic` filtering and `--json` output
+- **`snapshot_index.py --slim`**: rewrites `index.md` from ~626 lines to ~35 lines (stats table + comma-separated global name list). Detailed page listings moved to `maps/*.md`
+- **`build_ingest_context.py --topic`**: filters `existing_pages` to only pages in specified topic(s), reducing ingest subagent context from ~600 pages to ~20-70 per topic
+- **Check item J**: `wiki:check` now validates `maps/*.md` overview completeness and page_count accuracy
+
+### Changed
+- **`maps/*.md` enriched**: now includes `## 概述` overview section (formerly only in the deleted `guidelines/` system). Maps serve both scripts (search, lint) and LLM commands (ingest, query)
+- **`wiki:reindex` steps**: step 5 now calls `bash scripts/wiki.sh build_maps --json` (deterministic script) instead of LLM-driven generation; step 6 calls `snapshot_index --slim` to compact index.md; steps renumbered (8 total, was 7)
+- **`wiki:ingest` step 3**: reads slim `index.md` name list for quick dedup + `maps/*.md` for topic context (was reading full 626-line index)
+- **`wiki:ingest-loop` step 3**: passes `--topic` to `build_ingest_context` for per-topic context reduction
+- **`wiki:query` step 2**: reads `maps/{topic}.md` for topic overview and page list
+- **`wiki:maintain`**: removed reindex step from pipeline (now relink → check → lint → build); reindex is a separate on-demand command
+
+### Removed
+- **`guidelines/` directory**: merged into `maps/` — single directory now serves both script consumers and LLM prompt consumption
+- **`scripts/build_guidelines.py`**: replaced by `scripts/build_maps.py`
+- **`GUIDELINES_DIR` constant**: removed from `wiki_utils.py`
+
+### Documentation
+- All docs updated: CHANGELOG.md, README.md, USERGUIDE.md, docs/wiki.md, CLAUDE.md (root + vault), _schema/CLAUDE.md
+- Step count mismatches fixed in maintain.md (reindex 1-8, build 1-7) and lint.md (check 1-6)
+
 ## [v3.7] - 2026-04-16
 
 ### Fixed

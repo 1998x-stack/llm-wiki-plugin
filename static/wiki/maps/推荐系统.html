@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推荐系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / 推荐系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="_1">推荐系统</h1>
+<h2 id="_2">概念</h2>
+<ul>
+<li><a href="../concepts/AUC.html">AUC</a> — 衡量分类器或排序模型区分正负样本能力的评估指标，在推荐系统中用于评价个性化排序质量。</li>
+<li><a href="../concepts/Adjusted Cosine Similarity.html">Adjusted Cosine Similarity</a> — 一种改进的余弦相似度计算方法，通过减去每个用户的平均评分来消除用户评分尺度差异对物品相似度计算的干扰，是 <a href="../concepts/基于物品的协同过滤.html">Item-Based CF</a></li>
+<li><a href="../concepts/BPR.html">BPR</a> — 一种基于<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>最大后验估计的 pairwise 学习框架，将<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐问题从评分预测重新定义为个性化偏好排序学习。</li>
+<li><a href="../concepts/Beam Search 生成.html">Beam Search 生成</a> — <a href="../entities/P5 论文.html">P5 论文</a>使用的推理方法，通过 beam size=20 的束搜索自回归生成物品 ID 或文本，是 LLM 推荐的核心推理范式。</li>
+<li><a href="../concepts/Bias 建模.html">Bias 建模</a> — 推荐系统中将评分信号分解为系统性偏差（全局均值、用户偏置、物品偏置）和用户-物品交互项的建模方法。</li>
+<li><a href="../concepts/CTR 预估.html">CTR 预估</a> — 预测用户点击广告或推荐内容概率的机器学习任务，是计算广告和推荐系统的核心问题，经历了从逻辑回归 + 手工特征到自动<a href="../concepts/特征交叉.html">特征交叉</a>模型的范式转变。</li>
+<li><a href="../concepts/DIEN.html">DIEN</a> — 阿里巴巴于 2019 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，在 <a href="../entities/DIN.html">DIN</a> 基础上引入 <a href="../concepts/生成式推荐.html">GR</a>U 和辅助损失，显式建模用户兴趣的时序演化过程。</li>
+<li><a href="../concepts/Dice 激活函数.html">Dice 激活函数</a> — <a href="../entities/DIN.html">DIN</a> 论文提出的数据自适应激活函数，通过引入输入统计量将分界点从固定的零移动到数据分布中心，可视为 <a href="../concepts/Probabilistic Robotics.html">&lt;/li&gt;
+&lt;li&gt;[[Embedding</a> — 将离散对象（用户、物品、词等）映射为低维稠密向量的表示学习方法，在推荐系统中等价于<a href="../concepts/矩阵分解.html">矩阵分解</a>的隐因子向量。</li>
+<li><a href="../concepts/Example Age.html">Example Age</a> — 推荐系统中解决新鲜度偏差的特征工程技术：将训练样本的"年龄"作为显式输入，推理时设为零以偏好新鲜内容。</li>
+<li><a href="../concepts/GMF.html">GMF</a> — 广义<a href="../concepts/矩阵分解.html">矩阵分解</a>，<a href="../entities/Neural Collaborative Filtering.html">NCF</a> 框架的第一个实例化模型，用可学习的逐元素乘积和权重向量替代传</li>
+<li><a href="../concepts/InfoNCE.html">InfoNCE</a> — <a href="../concepts/对比学习.html">对比学习</a>中的核心损失函数，通过最大化正样本对<a href="../concepts/互信息.html">互信息</a>下界来学习高质量表征，在单负样本设定下退化为 <a href="../concepts/BPR.html">BPR</a> Loss。</li>
+<li><a href="../concepts/MF-IPS.html">MF-IPS</a> — 基于 <a href="../concepts/逆倾向评分.html">IPS</a> 的<a href="../concepts/矩阵分解.html">矩阵分解</a>（<a href="../concepts/矩阵分解.html">MF</a>-<a href="../concepts/逆倾向评分.html">IPS</a>）将逆倾向加权嵌入经验风险最小化框架，在 [[MNAR]</li>
+<li><a href="../concepts/MMoE.html">MMoE</a> — M<a href="Multi-gate <a href="../concepts/Mixture-of-Experts.html">Mixture-of-Experts</a>">[Mixture-of-Experts|MoE]</a>是一种<a href="../concepts/多任务学习.html">多任务学习</a>架构，通过为</li>
+<li><a href="../concepts/MNAR.html">MNAR</a> — 非随机缺失（Missing Not At Random）指数据的缺失机制与缺失值本身相关，即某个值是否被观测到取决于该值的大小，导致观测数据有偏。</li>
+<li><a href="../concepts/MRR.html">MRR</a> — 平均倒数排名指标，衡量正确物品在推荐列表中排名的倒数的均值，对排序位置敏感，是推荐系统评估中与 <a href="../concepts/Recall@K.html">Recall@K</a> 互补的核心指标。</li>
+<li><a href="../concepts/Mini-batch Aware Regularization.html">Mini-batch Aware Regularization</a> — <a href="../entities/DIN.html">DIN</a> 提出的频次感知正则化方法，只对当前 mini-batch 中出现的特征计算正则项，低频特征获得更强约束。</li>
+<li><a href="../concepts/Mixture-of-Experts.html">Mixture-of-Experts</a> — Mixture-of-Experts(MoE)是一种深度学习架构，训练多个小型专家网络处理输入空间不同区域，通过门控网络决定各专家意见的权重。</li>
+<li><a href="../concepts/NDCG.html">NDCG</a> — 一种考虑推荐列表位置权重的排序质量评估指标，对排名靠前的相关物品赋予更高的权重。</li>
+<li><a href="../concepts/NeuMF.html">NeuMF</a> — 神经<a href="../concepts/矩阵分解.html">矩阵分解</a>，<a href="../entities/Neural Collaborative Filtering.html">NCF</a> 框架的最终融合模型，将 <a href="../concepts/GMF.html">GMF</a> 的线性建模能力与 M</li>
+<li><a href="../concepts/Pairwise 学习.html">Pairwise 学习</a> — 一种机器学习训练范式，通过比较样本对之间的相对关系而非预测单个样本的绝对值来进行模型优化。</li>
+<li><a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> — Pearson 相关系数（Pearson Correlation Coefficient）是衡量两个变量之间线性相关程度的统计量，取值范围 [-1, 1]，在推</li>
+<li><a href="../concepts/Pointwise 学习.html">Pointwise 学习</a> — 一种逐个预测单个样本绝对分数或概率的机器学习训练范式，在推荐系统中用于预测用户对物品的评分或交互概率。</li>
+<li><a href="../concepts/RMSE.html">RMSE</a> — 均方根误差，推荐系统评分预测任务的核心评估指标，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛的官方评判标准。</li>
+<li><a href="../concepts/Recall@K.html">Recall@K</a> — 推荐系统核心评估指标，衡量在推荐列表前 K 个物品中是否包含用户实际交互的物品，反映模型的召回能力而非排序精细度。</li>
+<li><a href="../concepts/SNIPS.html">SNIPS</a> — SN<a href="../concepts/逆倾向评分.html">IPS</a> 是 <a href="../concepts/逆倾向评分.html">IPS</a> 的自归一化变体，通过用逆倾向权重总和进行归一化，显著降低估计方差，同时保持最优解不变，是因果推荐</li>
+<li><a href="../concepts/Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a> — <a href="../entities/GRU4Rec.html">GRU4Rec</a> 提出的 RNN 训练策略，将多个会话并排放置逐步推进，充分利用 GPU 并行计算能力，避免长短不一会话带来的 padding 浪费，同时</li>
+<li><a href="../concepts/TOP1 Loss.html">TOP1 Loss</a> — <a href="../entities/GRU4Rec.html">GRU4Rec</a> 提出的 pairwise 排序损失函数，包含正负样本分数比较项和负样本分数正则化项，内置稳定性使其在更大隐藏层尺寸下表现优于 <span style="color:#e74c3c" title="broken link">BPR&lt;/li&gt;
+&lt;li&gt;[[Target Attention</span> — 以候选物品为 Query、用户历史行为为 Key 和 Value 的注意力机制，使同一用户面对不同候选时展现不同的兴趣侧面。</li>
+<li><a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> — User-Based <a href="../concepts/协同过滤.html">协同过滤</a>（<a href="../concepts/基于用户的协同过滤.html">User-Based Collaborative Filtering</a>）是一种推荐算法范式，通</li>
+<li><a href="../concepts/Whole-word Embedding.html">Whole-word Embedding</a> — <a href="../entities/P5 论文.html">P5 论文</a>中提出的 ID 表示策略，为同一完整 ID 的所有子词单元添加共享的全词<a href="../concepts/Embedding.html">嵌入向量</a>，显著优于独立 token 方案。</li>
+<li><a href="../concepts/Zero-shot 推荐.html">Zero-shot 推荐</a> — 模型在面对从未见过的 Prompt 格式或推荐场景时仍能给出合理推荐的能力，由 <a href="../entities/P5 论文.html">P5 论文</a>首次在推荐系统中系统展示。</li>
+<li><a href="../concepts/offline-online gap.html">offline-online gap</a> — 推荐系统中离线评估指标与线上 A/B 测试结果不一致的现象，是工业推荐系统研究的核心挑战之一。</li>
+<li><a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a> — 推荐系统的标准架构范式：第一阶段<a href="../concepts/候选生成.html">候选生成</a>从海量候选中快速筛选（高召回），第二阶段排序精细化打分（高精确），在效率与效果间取得平衡。</li>
+<li><a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> — <a href="../entities/P5 论文.html">P5 论文</a>提出的核心技术，将用户ID、物品ID、交互历史等个性化信息转化为自然语言序列嵌入 Prompt 模板中。</li>
+<li><a href="../concepts/二元交叉熵.html">二元交叉熵</a> — 二分类任务的损失函数，在推荐系统中用于<a href="../concepts/隐式反馈.html">隐式反馈</a>场景，将用户-物品交互建模为概率预测问题，替代传统的均方误差（MSE）。</li>
+<li><a href="../concepts/交叉积变换.html">交叉积变换</a> — <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 模型中 Wide 组件的核心操作，通过布尔变量控制特征间的 AND 逻辑组合，将高维稀疏原始特征转化为交叉特征，用于精确记忆训练</li>
+<li><a href="../concepts/交替最小二乘法 ALS.html">交替最小二乘法 ALS</a> — <a href="../concepts/矩阵分解.html">矩阵分解</a>的优化方法之一，交替固定用户<a href="../concepts/矩阵.html">矩阵</a>或物品<a href="../concepts/矩阵.html">矩阵</a>，将非凸问题转化为可精确求解的二次优化子问题。</li>
+<li><a href="../concepts/会话推荐.html">会话推荐</a> — 仅基于用户当前匿名会话中的短期点击行为进行推荐，不依赖跨会话的用户历史或显式用户画像，适用于未登录用户、低回访率垂直电商等场景。</li>
+<li><a href="../concepts/位置偏差.html">位置偏差</a> — 位置偏差指排在推荐列表或搜索结果顶部的物品获得更多点击和评分，不是因为它们本质上更好，而是因为用户注意力天然集中在前几个位置。</li>
+<li><a href="../concepts/低阶特征交互.html">低阶特征交互</a> — 一阶特征重要性和二阶特征对之间的组合关系，可通过线性模型和<a href="../entities/Factorization Machines.html">因子分解机</a>显式建模。</li>
+<li><a href="../concepts/信息茧房.html">信息茧房</a> — 信息茧房（Filter Bubble / Echo Chamber）是指个性化推荐算法将用户封闭在品味相似者的小圈子中，隔绝多元观点，导致用户接触的信息越来越单</li>
+<li><a href="../concepts/候选生成.html">候选生成</a> — 推荐系统两阶段架构的第一阶段：从海量候选集中快速筛选出数百个粗略候选，追求高召回率。</li>
+<li><a href="../concepts/倾向性评分.html">倾向性评分</a> — 倾向性评分是某个用户-物品对的评分被观测到的概率，用于量化数据生成过程中的<a href="../concepts/选择偏差.html">选择偏差</a>，是<a href="../concepts/逆倾向评分.html">逆倾向评分</a>加权（<a href="../concepts/逆倾向评分.html">IPS</a>）的核心输入。</li>
+<li><a href="../concepts/共享嵌入.html">共享嵌入</a> — 在并行多组件模型中，不同组件使用同一套嵌入参数，通过<a href="../concepts/联合训练.html">联合优化</a>使嵌入同时适配多种学习任务。</li>
+<li><a href="../concepts/冷启动问题.html">冷启动问题</a> — 冷启动问题（Cold Start Problem）是推荐系统中的经典挑战，指当新用户加入系统或新物品进入系统时，由于缺乏历史交互数据，<a href="../concepts/协同过滤.html">协同过滤</a>等基于用户</li>
+<li><a href="../concepts/判别式 LLM 推荐.html">判别式 LLM 推荐</a> — 使用 LLM 进行判别式推荐（分类/排序）的范式，将推荐建模为预测用户对物品偏好的判别任务而非生成任务。</li>
+<li><a href="../concepts/协同过滤.html">协同过滤</a> — 协同过滤（Collaborative Filtering, CF）是一种信息过滤方法，通过收集和分析用户群体对文档或物品的主观评价与行为数据，利用群体智慧帮助个</li>
+<li><a href="../concepts/双塔模型.html">双塔模型</a> — <a href="../concepts/推荐系统基础模型.html">推荐系统基础模型</a>架构：用户塔和物品塔分别独立产生 embedding，通过内积计算相似度，支持高效的 <a href="../concepts/近似最近邻检索.html">ANN</a> 检索。</li>
+<li><a href="../concepts/双重鲁棒估计器.html">双重鲁棒估计器</a> — 双重鲁棒估计器结合<a href="../concepts/逆倾向评分.html">逆倾向评分</a>（<a href="../concepts/逆倾向评分.html">IPS</a>）和直接方法（Direct Method），即使其中一个模型（倾向性模型或结果模型）出错，估计器</li>
+<li><a href="../concepts/反事实学习.html">反事实学习</a> — 反事实学习利用历史日志数据评估和优化新的推荐策略，而无需在线实验，是<a href="../concepts/因果推断.html">因果推断</a>在推荐系统中的核心应用方向之一。</li>
+<li><a href="../concepts/因果推断.html">因果推断</a> — 因果推断是从观测数据中识别和估计因果效应的统计学方法，为推荐系统中的偏差校正提供了理论框架。</li>
+<li><a href="../concepts/因果掩码.html">因果掩码</a> — 因果掩码（Causal Masking）是 <a href="../concepts/Transformer架构.html">Transformer</a> 中实现自回归预测的关键技术，通过下三角掩码<a href="../concepts/矩阵.html">矩阵</a>确</li>
+<li><a href="../concepts/基于内容的过滤.html">基于内容的过滤</a> — 基于内容的过滤（Content-based Filtering）是一种信息过滤方法，通过匹配文档的关键词、主题、来源等元数据与用户的信息需求来筛选内容，是<span style="color:#e74c3c" title="broken link">协&lt;/li&gt;
+&lt;li&gt;[[基于物品的协同过滤</span> — 通过计算物品之间的相似度而非用户之间的相似度来生成推荐，将推荐系统的计算瓶颈从在线实时搜索相似用户转化为离线预计算物品相似度表，实现数量级的性能提升。</li>
+<li><a href="../concepts/基于用户的协同过滤.html">基于用户的协同过滤</a> — 通过寻找与目标用户品味相似的其他用户（邻居用户），将邻居用户喜欢但目标用户尚未接触的物品进行推荐，是<a href="../concepts/协同过滤.html">协同过滤</a>最早被提出和验证的技术路线。</li>
+<li><a href="../concepts/多任务学习.html">多任务学习</a> — 多任务学习(Multi-Task Learning, MTL)是一种机器学习范式，用一个模型同时优化多个相关任务，通过共享表征提升泛化能力和计算效率。</li>
+<li><a href="../concepts/对比学习.html">对比学习</a> — 一种通过拉近正样本对、推远负样本对来学习高质量表征的机器学习范式，在推荐系统中用于增强用户和物品的向量表示。</li>
+<li><a href="../concepts/局部激活单元.html">局部激活单元</a> — <a href="../entities/DIN.html">DIN</a> 中实现 <a href="../concepts/Target Attention.html">Target Attention</a> 的核心组件，根据候选广告为用户历史行为自适应分配权重的小型前馈网络。</li>
+<li><a href="../concepts/嵌入表示.html">嵌入表示</a> — 将高维稀疏的类别型特征映射为低维稠密实数向量的表示学习方法，是 <a href="../entities/Factorization Machines.html">Factorization Machines</a> 隐向量和现代深度学习推荐模型的核心组件。</li>
+<li><a href="../concepts/平均绝对误差 MAE.html">平均绝对误差 MAE</a> — 推荐系统预测评分准确性的核心评估指标，计算预测评分与实际评分之间绝对误差的平均值，MAE 越小说明预测越准确。</li>
+<li><a href="../concepts/序列推荐.html">序列推荐</a> — 将用户行为建模为有序序列，利用历史交互的时序模式预测下一次交互，涵盖<a href="../concepts/会话推荐.html">会话推荐</a>和长期序列建模两大场景，是深度学习在推荐系统中的主流范式之一。</li>
+<li><a href="../concepts/指令调优.html">指令调优</a> — 用自然语言指令替代固定 Prompt 模板来训练 LLM 推荐模型的方法，是 <a href="../entities/P5 论文.html">P5</a> Prompt 模板范式的现代演进。</li>
+<li><a href="../concepts/推荐系统 Scaling Laws.html">推荐系统 Scaling Laws</a> — 推荐系统模型质量随训练计算量呈幂律增长的规律，由 Meta <a href="../entities/HSTU.html">HSTU</a> 论文首次在工业级推荐系统中验证，为推荐领域"基础模型"路线提供实证基础。</li>
+<li><a href="../concepts/推荐系统基础模型.html">推荐系统基础模型</a> — 类比 BERT 之于 NLP、ViT 之于 CV 的推荐系统愿景——通过大规模预训练获得通用推荐理解能力，通过 Prompt/指令适配具体场景。</li>
+<li><a href="../concepts/显式反馈.html">显式反馈</a> — 显式反馈（Explicit Feedback）是用户主动向系统表达偏好的行为数据，如评分、点赞/点踩、撰写评论等，是<a href="../concepts/协同过滤.html">协同过滤</a>系统的核心数据来源。</li>
+<li><a href="../concepts/期望观看时长.html">期望观看时长</a> — 推荐排序模型的优化目标：通过加权逻辑回归近似期望观看时长，避免 CTR 优化导致的标题党问题。</li>
+<li><a href="../concepts/模型融合.html">模型融合</a> — 将多个独立模型的预测结果进行集成，以获得优于任何单一模型的综合预测效果的机器学习方法。</li>
+<li><a href="../concepts/流行度偏差.html">流行度偏差</a> — 流行度偏差指热门物品获得的曝光和评分远多于冷门物品，导致推荐系统天然偏向推荐热门内容，加剧"强者愈强"的马太效应。</li>
+<li><a href="../concepts/混合推荐系统.html">混合推荐系统</a> — 混合推荐系统（Hybrid Recommender Systems）是将多种推荐技术（如<a href="../concepts/基于内容的过滤.html">基于内容的过滤</a>和<a href="../concepts/协同过滤.html">协同过滤</a>）有机结合的推荐范式，通过互补各</li>
+<li><a href="../concepts/潜在结果框架.html">潜在结果框架</a> — 潜在结果框架（Rubin 因果模型）是<a href="../concepts/因果推断.html">因果推断</a>的两大范式之一，通过比较同一单位在接受和未接受处理时的潜在结果来定义因果效应。</li>
+<li><a href="../concepts/特征交叉.html">特征交叉</a> — 机器学习中将两个或多个原始特征组合成新特征的过程，用于捕获特征之间的联合效应，是提升推荐系统和 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型精度的核心手段。</li>
+<li><a href="../concepts/生成式 LLM 推荐.html">生成式 LLM 推荐</a> — 使用大语言模型进行<a href="../concepts/生成式推荐.html">生成式推荐</a>的范式，通过 LLM 自回归生成推荐结果，是 <a href="../entities/P5 论文.html">P5</a> 范式的 LLM 时代延续。</li>
+<li><a href="../concepts/生成式推荐.html">生成式推荐</a> — 将推荐问题重新定义为端到端序列生成任务，用单一模型统一召回和排序，通过自回归方式预测用户下一个交互 token，是推荐系统领域的范式转换。</li>
+<li><a href="../concepts/生成式推荐 (LLM).html">生成式推荐 (LLM)</a> — 将推荐任务重构为文本生成问题的 LLM 范式，通过语言模型自回归生成推荐结果，由 <a href="../entities/P5 论文.html">P5 论文</a>首次系统性提出。</li>
+<li><a href="../concepts/矩阵分解.html">矩阵分解</a> — 推荐系统中通过将用户-物品交互<a href="../concepts/矩阵.html">矩阵</a>分解为低维<a href="../concepts/嵌入表示.html">隐向量</a>来学习用户和物品 latent 表示的核心技术。</li>
+<li><a href="../concepts/离线策略评估.html">离线策略评估</a> — 离线策略评估（OPE）利用历史日志数据评估新策略的性能，而无需在线部署，是强化学习和推荐系统中的关键评估范式。</li>
+<li><a href="../concepts/级联推荐管道.html">级联推荐管道</a> — 工业推荐系统的经典架构，将推荐流程分为召回→粗排→<a href="../concepts/检索重排序.html">精排</a>→重排多个独立优化阶段，过去十年主导了行业实践，但面临端到端优化困难和 Scaling</li>
+<li><a href="../concepts/结构因果模型.html">结构因果模型</a> — 结构因果模型通过有向无环图（DAG）显式建模变量间的因果关系，利用 do-calculus 进行因果效应的识别和估计。</li>
+<li><a href="../concepts/缩放点积注意力.html">缩放点积注意力</a> — 缩放点积注意力（Scaled Dot-Product Attention）是 <a href="../concepts/Transformer架构.html">Transformer</a> 的核心计算单元，通过 </li>
+<li><a href="../concepts/联合训练.html">联合训练</a> — 多组件模型的训练范式，各组件共享同一损失函数、同时优化参数，使组件在训练过程中自动协调分工、互补不足，区别于<a href="../concepts/模型融合.html">集成学习</a>中各模型独立训练后推理时组</li>
+<li><a href="../concepts/记忆与泛化.html">记忆与泛化</a> — 推荐系统设计的核心概念框架，由 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 论文（2016）提出，将推荐挑战抽象为"记忆已知模式"与"泛化未知组合"的统一问题，影响后续所有</li>
+<li><a href="../concepts/语义 ID.html">语义 ID</a> — 用语义标识符或自然语言描述替代传统数字 ID 来表示用户和物品，解决 LLM 推荐中 ID 与语义空间的鸿沟问题。</li>
+<li><a href="../concepts/负采样.html">负采样</a> — 从用户未交互的物品中选择负样本用于模型训练的策略，其质量直接影响排序模型的学习效果。</li>
+<li><a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> — 在大规模向量空间中快速找到与查询向量最相似的 Top-N 个向量的技术，是推荐系统<a href="../concepts/候选生成.html">候选生成</a>阶段的核心检索方式。</li>
+<li><a href="../concepts/逆倾向评分.html">逆倾向评分</a> — 逆倾向评分加权（Inverse Propensity Scoring, IPS）是<a href="../concepts/因果推断.html">因果推断</a>中用于校正<a href="../concepts/选择偏差.html">选择偏差</a>的核心方法，通过对观测样本按其被观测</li>
+<li><a href="../concepts/选择偏差.html">选择偏差</a> — 选择偏差指用户倾向于只对感兴趣的物品进行评分或交互，导致观测数据并非真实偏好的随机样本，而是经过自我筛选的有偏样本。</li>
+<li><a href="../concepts/采样 Softmax.html">采样 Softmax</a> — 超大规模多分类训练技术：每次只采样数千个负样本来近似完整 softmax，将计算开销从语料库大小降低到可接受范围。</li>
+<li><a href="../concepts/隐因子模型.html">隐因子模型</a> — 将用户和物品映射到共享低维隐因子空间，通过向量运算衡量匹配度的推荐系统建模范式，<a href="../concepts/矩阵分解.html">矩阵分解</a>是其核心实现。</li>
+<li><a href="../concepts/隐式反馈.html">隐式反馈</a> — 推荐系统中通过用户行为（浏览、点击、购买、收藏等）间接推断偏好的信号，与显式评分互补而非替代。</li>
+<li><a href="../concepts/高阶特征交互.html">高阶特征交互</a> — 三个及以上特征之间的非线性组合关系，通常通过 DNN 多层变换隐式学习，难以显式建模但表达能力强。</li>
+</ul>
+<h2 id="_3">实体</h2>
+<ul>
+<li><a href="../entities/AFM.html">AFM</a> — 引入注意力机制的<a href="../entities/Factorization Machines.html">因子分解机</a>变体，为不同<a href="../concepts/特征交叉.html">特征交互</a>赋予不同权重，解决 <span style="color:#e74c3c" title="broken link">Factoriza&lt;/li&gt;
+&lt;li&gt;[[AT&amp;amp;T Labs--Research</span> — AT&amp;T 旗下研究机构，<a href="../entities/Robert Bell.html">Robert Bell</a> 和 <a href="../entities/Chris Volinsky.html">Chris Volinsky</a> 任职于此，是<a href="../concepts/矩阵分解.html">矩阵分解</a>综述论文的共同作者单位。</li>
+<li><a href="../entities/Actions Speak Louder than Words 论文.html">Actions Speak Louder than Words 论文</a> — ICML 2024 论文，Meta 团队提出 1.5 万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>模型 <a href="../entities/HSTU.html">HSTU</a>，首次在工业级推荐系统中验证 Scaling Laws，在</li>
+<li><a href="../entities/Adith Swaminathan.html">Adith Swaminathan</a> — 机器学习研究员，ICML 2016 论文《<a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a>》合作者，在<a href="../concepts/反事实学习.html">反事实学习</a>和<a href="../concepts/离线策略评估.html">离线策略评估</a></li>
+<li><a href="../entities/Amazon.html">Amazon</a> — 全球电商平台，工业界采用<a href="../concepts/矩阵分解.html">矩阵分解</a>方法作为推荐系统核心策略的代表性公司之一，早期以<a href="../concepts/基于物品的协同过滤.html">基于物品的协同过滤</a>闻名。</li>
+<li><a href="../entities/Amazon US Reviews.html">Amazon US Reviews</a> — <a href="../entities/Amazon.html">Amazon</a> 产品评论数据集，<a href="../entities/P5 论文.html">P5 论文</a>使用其三个子集（Sports/Beauty/Toys）进行实验验证。</li>
+<li><a href="../entities/Apache Spark MLlib.html">Apache Spark MLlib</a> — Apache Spark 的机器学习库，将 <a href="../concepts/交替最小二乘法 ALS.html">ALS</a> 优化的<a href="../concepts/矩阵分解.html">矩阵分解</a>作为标准推荐算法实现，推动了<a href="../concepts/矩阵分解.html">矩阵分解</a>在工业界的</li>
+<li><a href="../entities/Ashudeep Singh.html">Ashudeep Singh</a> — 机器学习研究员，ICML 2016 论文《<a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a>》合作者，研究聚焦于公平机器学习与<a href="../concepts/因果推断.html">因果推断</a>。</li>
+<li><a href="../entities/AutoInt.html">AutoInt</a> — 2019 年提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，通过<a href="../concepts/多头注意力.html">多头自注意力</a>机制显式建模<a href="../concepts/特征交叉.html">特征交互</a>，解决了 <a href="../entities/DeepFM.html">DeepFM</a> DNN </li>
+<li><a href="../entities/BERT4Rec.html">BERT4Rec</a> — Sun 等人于 CIKM 2019 发表的论文，将双向 <a href="../concepts/Transformer架构.html">Transformer</a>（BERT 风格）和 Cloze 任务引入<span style="color:#e74c3c" title="broken link">&lt;/li&gt;
+&lt;li&gt;[[BPR 论文</span> — Rendle 等人 2009 年发表于 UAI 的里程碑论文，提出<a href="../concepts/BPR.html">贝叶斯个性化排序</a>框架，将<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐从评分预测重新定义为排序学习。</li>
+<li><a href="../entities/BST.html">BST</a> — Behavior Sequence <a href="../concepts/Transformer架构.html">Transformer</a>，阿里巴巴于 KDD 2019 发表的工业级 <a href="../concepts/CTR 预估.html">CTR 预估</a></li>
+<li><a href="../entities/Badrul Sarwar.html">Badrul Sarwar</a> — 明尼苏达大学研究员，<a href="../entities/GroupLens.html">GroupLens 研究组</a>成员，<a href="../concepts/基于物品的协同过滤.html">Item-Based CF</a> 论文的第一作者，与 Ge</li>
+<li><a href="../entities/Balazs Hidasi.html">Balazs Hidasi</a> — 匈牙利研究者，Gravity R&amp;D 团队成员，<a href="../entities/GRU4Rec.html">GRU4Rec</a> 论文第一作者，首次将门控循环单元（<a href="../concepts/生成式推荐.html">GR</a>U）引入<a href="../concepts/会话推荐.html">会话推荐</a>场景，</li>
+<li><a href="../entities/BellKor.html">BellKor</a> — <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛传奇团队，由 <a href="../entities/Yehuda Koren.html">Yehuda Koren</a>、<a href="../entities/Robert Bell.html">Robert Bell</a>、<a href="../entities/Chris Volinsky.html">Chris Volinsky</a> 组</li>
+<li><a href="../entities/BellKor in BigChaos.html">BellKor in BigChaos</a> — <a href="../entities/BellKor.html">BellKor</a> 团队在 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛 2008 年阶段的队伍名称，取得 <a href="../concepts/RMSE.html">RMSE</a> 0.8616（约 9.4% 提升）</li>
+<li><a href="../entities/BellKor&#x27;s Pragmatic Chaos.html">BellKor&#x27;s Pragmatic Chaos</a> — <a href="../entities/BellKor.html">BellKor</a> 团队在 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛最终阶段的队伍名称，2009 年 9 月以 <a href="../concepts/RMSE.html">RMSE</a> 0.8567 赢得 100</li>
+<li><a href="../entities/Better Bit Bureau.html">Better Bit Bureau</a> — Better Bit Bureau（BBB，更好的比特局）是 <a href="../entities/GroupLens.html">GroupLens</a> 系统引入的核心组件，作为评分服务器负责收集用户评分、跨服务器共享评分数</li>
+<li><a href="../entities/Brian M. Oki.html">Brian M. Oki</a> — Brian M. Oki 是 <a href="../entities/Xerox PARC.html">Xerox PARC</a> 研究员，<a href="../entities/Tapestry 系统.html">Tapestry 系统</a>的共同开发者，与 <a href="../entities/David Goldberg.html">David Goldberg</a>、<span style="color:#e74c3c" title="broken link">D&lt;/li&gt;
+&lt;li&gt;[[Caser</span> — Tang 与 Wang 于 WWW 2018 提出的 CNN <a href="../concepts/序列推荐.html">序列推荐</a>方法，用水平和垂直卷积捕获序列模式，但感受野受限，后被 <a href="../entities/SASRec.html">SASRec</a> 以显</li>
+<li><a href="../entities/Chris Volinsky.html">Chris Volinsky</a> — 统计学家与推荐系统研究者，<span style="color:#e74c3c" title="broken link">AT&amp;amp;T Labs--Research</span> 科学家，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 冠军团队 <a href="../entities/BellKor.html">BellKor</a> 核心成员</li>
+<li><a href="../entities/Cinematch.html">Cinematch</a> — <a href="../entities/Netflix.html">Netflix</a> 原有推荐引擎，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛的基线系统，<a href="../concepts/RMSE.html">RMSE</a> 0.9514，后被<a href="../concepts/矩阵分解.html">矩阵分解</a>方法全面超越。</li>
+<li><a href="../entities/Cornell University.html">Cornell University</a> — 美国常春藤盟校，计算机科学和机器学习研究重镇，因果推荐方向奠基性论文《<a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a>》的产出机构。</li>
+<li><a href="../entities/Criteo.html">Criteo</a> — 业界标准的 <a href="../concepts/CTR 预估.html">CTR 预估</a> benchmark 数据集，包含 4500 万条用户点击记录，广泛用于推荐模型评估。</li>
+<li><a href="../entities/DCN.html">DCN</a> — <a href="../entities/Google.html">Google</a> 于 2017 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，通过 Cross Network 显式建模任意阶<a href="../concepts/特征交叉.html">特征交叉</a>，与 <a href="../entities/DeepFM.html">DeepFM</a></li>
+<li><a href="../entities/DEALRec.html">DEALRec</a> — 通过数据剪枝方法提升 LLM 推荐的训练效率，减少冗余训练数据同时保持推荐性能。</li>
+<li><a href="../entities/DIN.html">DIN</a> — 阿里巴巴 Guorui Zhou 等于 KDD 2018 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，首次将注意力机制系统性地应用于工业级推荐系统，通过[[局部激活单元]</li>
+<li><a href="../entities/DLRS 2016.html">DLRS 2016</a> — The 1st Workshop on Deep Learning for Recommender Systems，2016 年在 RecSys 会议上举办的首</li>
+<li><a href="../entities/David Goldberg.html">David Goldberg</a> — David Goldberg 是 <a href="../entities/Xerox PARC.html">Xerox PARC</a> 研究员，<a href="../entities/Tapestry 系统.html">Tapestry 系统</a>的第一作者，与 <a href="../entities/David Nichols.html">David Nichols</a>、<span style="color:#e74c3c" title="broken link">B&lt;/li&gt;
+&lt;li&gt;[[David Nichols</span> — David Nichols 是 <a href="../entities/Xerox PARC.html">Xerox PARC</a> 研究员，<a href="../entities/Tapestry 系统.html">Tapestry 系统</a>的共同开发者，与 <a href="../entities/David Goldberg.html">David Goldberg</a>、<span style="color:#e74c3c" title="broken link">&lt;/li&gt;
+&lt;li&gt;[[Deep Neural Networks for YouTube Recommendations</span> — RecSys 2016 发表的里程碑论文，提出"<a href="../concepts/候选生成.html">候选生成</a> + 排序"两阶段架构，将推荐建模为超大规模多分类问题，奠定十年工业推荐系统基础范式。</li>
+<li><a href="../entities/DeepCTR.html">DeepCTR</a> — 开源深度学习 <a href="../concepts/CTR 预估.html">CTR 预估</a>框架，将 <a href="../entities/DeepFM.html">DeepFM</a> 作为核心模型之一提供支持，推动了 <a href="../entities/DeepFM.html">DeepFM</a> 的工业普及。</li>
+<li><a href="../entities/DeepFM.html">DeepFM</a> — Guo 等人于 IJCAI 2017 提出的 <a href="../entities/Factorization Machines.html">FM</a> + DNN 并行架构模型，<span style="color:#e74c3c" title="broken link">Factorizatio&lt;/li&gt;
+&lt;li&gt;[[Douglas Terry</span> — Douglas Terry 是 <a href="../entities/Xerox PARC.html">Xerox PARC</a> 研究员，<a href="../entities/Tapestry 系统.html">Tapestry 系统</a>的共同开发者，据信是"<a href="../concepts/协同过滤.html">协同过滤</a>"（<a href="../concepts/协同过滤.html">Co&lt;/li&gt;
+&lt;li&gt;[[DuoRec</a> — DuoRec，2022 年提出的<a href="../concepts/对比学习.html">对比学习</a>增强的<a href="../concepts/序列推荐.html">序列推荐</a>模型，在 <a href="../entities/SASRec.html">SASRec</a> 架构上引入模型级和数据级的<a href="../concepts/对比学习.html">对比学习</a>，提升表示质量和</li>
+<li><a href="../entities/Ed H. Chi.html">Ed H. Chi</a> — <a href="../entities/Google.html">Google</a> Research 杰出科学家，长期深耕推荐系统和人机交互领域，<a href="../entities/MMoE 论文.html">MMoE 论文</a>通讯作者。</li>
+<li><a href="../entities/Emre Sargin.html">Emre Sargin</a> — <a href="../entities/Google.html">Google</a>/<a href="../entities/YouTube.html">YouTube</a> 工程师，<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（</li>
+<li><a href="../entities/FFM.html">FFM</a> — Juan 等人于 RecSys 2016 提出的 <a href="../entities/Factorization Machines.html">FM</a> 扩展模型，引入"场"（Field）概念，让不同场之</li>
+<li><a href="../entities/FNN.html">FNN</a> — Factorization-machine supported Neural Networks，采用两阶段训练策略（<span style="color:#e74c3c" title="broken link">Factorization Machin&lt;/li&gt;
+&lt;li&gt;[[FPMC</span> — Factorized Personalized <a href="../concepts/马尔可夫链.html">Markov Chain</a>s，结合<a href="../concepts/马尔可夫链.html">马尔可夫链</a>与<a href="../concepts/矩阵分解.html">矩阵分解</a>的<a href="../concepts/序列推荐.html">序列推荐</a>方法，</li>
+<li><a href="../entities/Factorization Machines.html">Factorization Machines</a> — <a href="../entities/Steffen Rendle.html">Steffen Rendle</a> 于 ICDM 2010 发表的论文，提出用<a href="../concepts/嵌入表示.html">隐向量</a>内积建模<a href="../concepts/特征交叉.html">特征交互</a>的通用预测模型，以线性</li>
+<li><a href="../entities/Firefly Networks.html">Firefly Networks</a> — Firefly Networks（前身为 Agents, Inc.）是 MIT 研究人员受 <a href="../entities/Ringo.html">Ringo</a> 音乐推荐系统启发而创立的推荐系统公司，将<span style="color:#e74c3c" title="broken link">协同&lt;/li&gt;
+&lt;li&gt;[[FunkSVD</span> — <a href="../entities/Simon Funk.html">Simon Funk</a> 2006 年提出的基于 SGD 的<a href="../concepts/矩阵分解.html">矩阵分解</a>方法，放弃了完整<a href="../concepts/矩阵.html">矩阵</a>精确 <a href="../concepts/奇异值分解.html">SVD</a> 分解的传统思路，仅</li>
+<li><a href="../entities/GLoSS.html">GLoSS</a> — 在<a href="../concepts/序列推荐.html">序列推荐</a>任务上超越 <a href="../entities/P5 论文.html">P5</a> 的后续专用模型，在相同数据集上取得了更好的 <a href="../concepts/候选生成.html">Recall</a>@5 指标。</li>
+<li><a href="../entities/GRU4Rec.html">GRU4Rec</a> — <a href="../entities/Balazs Hidasi.html">Balazs Hidasi</a> 等人于 ICLR 2016 发表的开创性论文，首次将 <a href="../concepts/生成式推荐.html">GR</a>U 引入<a href="../concepts/会话推荐.html">会话推荐</a>场景，通过 <span style="color:#e74c3c" title="broken link">Ses&lt;/li&gt;
+&lt;li&gt;[[Google</span> — 全球领先的科技公司，在推荐系统领域贡献了 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 模型（2016），该模型在 Google Play 应用推荐中服务 10 亿+用户，开</li>
+<li><a href="../entities/GroupLens.html">GroupLens</a> — GroupLens 是历史上第一个自动化<a href="../concepts/协同过滤.html">协同过滤</a>系统，由 MIT 的 <a href="../entities/Paul Resnick.html">Paul Resnick</a> 与明尼苏达大学的 <a href="../entities/John Riedl.html">John Riedl</a> </li>
+<li><a href="../entities/HSTU.html">HSTU</a> — HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表的万亿参数[[生成式推荐]</li>
+<li><a href="../entities/Hal Varian.html">Hal Varian</a> — Hal Varian 是著名经济学家和计算机科学家，与 <a href="../entities/Paul Resnick.html">Paul Resnick</a> 共同主编了 1997 年 CACM 推荐系统特刊，正式确立了"推荐系统</li>
+<li><a href="../entities/Heng-Tze Cheng.html">Heng-Tze Cheng</a> — <a href="../entities/Google.html">Google</a> 研究员，<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep Learning for Recommender Systems</span>（2016</li>
+<li><a href="../entities/Huifeng Guo.html">Huifeng Guo</a> — <a href="../entities/DeepFM.html">DeepFM</a> 论文第一作者，<a href="../entities/华为诺亚方舟实验室.html">华为诺亚方舟实验室</a>研究员，与 <a href="../entities/Ruiming Tang.html">Ruiming Tang</a> 等人合作提出 <a href="../entities/DeepFM.html">DeepFM</a> 模型。</li>
+<li><a href="../entities/InstructRec.html">InstructRec</a> — 微信团队提出的基于<a href="../concepts/指令调优.html">指令调优</a>的推荐方法，借鉴 <a href="../entities/P5 论文.html">P5</a> 的任务统一思想，用指令格式替代 Prompt 模板。</li>
+<li><a href="../entities/Item-Based Collaborative Filtering Recommendation Algorithms.html">Item-Based Collaborative Filtering Recommendation Algorithms</a> — 推荐系统领域引用量最高的论文之一（<a href="../entities/Google.html">Google</a> Scholar 超 10,000 次），首次系统性分析和评估了<a href="../concepts/基于物品的协同过滤.html">基于物品的协同过滤</a>方法，确立了"离</li>
+<li><a href="../entities/Jay Adams.html">Jay Adams</a> — <a href="../entities/Google.html">Google</a>/<a href="../entities/YouTube.html">YouTube</a> 工程师，<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（</li>
+<li><a href="../entities/Jiaqi Ma.html">Jiaqi Ma</a> — 推荐系统研究者，<a href="../entities/MMoE 论文.html">MMoE 论文</a>第一作者，当时为密歇根大学博士生，在 <a href="../entities/Google.html">Google</a> 实习期间完成该奠基性工作。</li>
+<li><a href="../entities/John Riedl.html">John Riedl</a> — John Riedl 是明尼苏达大学计算机科学系教授，<a href="../entities/GroupLens.html">GroupLens 研究组</a>的联合领导者，与 MIT 的 <span style="color:#e74c3c" title="broken link">Paul Resn&lt;/li&gt;
+&lt;li&gt;[[Joseph Konstan</span> — Joseph Konstan 是 <a href="../entities/GroupLens.html">GroupLens 研究组</a>创始人之一，ACM Fellow，1997 年在《Communicati</li>
+<li><a href="../entities/Julian McAuley.html">Julian McAuley</a> — UCSD 教授，推荐系统与用户行为建模领域知名学者，与 <a href="../entities/Wang-Cheng Kang.html">Wang-Cheng Kang</a> 合作发表 <a href="../entities/SASRec.html">SASRec</a>（ICDM 2018），开创了<span style="color:#e74c3c" title="broken link">&lt;/li&gt;
+&lt;li&gt;[[LC-Rec</span> — 用<a href="../concepts/语义 ID.html">语义标识符</a>替代数字 ID 的 LLM 推荐方法，解决了 <a href="../entities/P5 论文.html">P5</a> 的 ID 语义鸿沟问题。</li>
+<li><a href="../entities/LLMRec.html">LLMRec</a> — 同时使用唯一标识符和语义文本作为物品表示的 LLM 推荐方法，结合 ID 精确性和文本语义性。</li>
+<li><a href="../entities/LightGCN.html">LightGCN</a> — <a href="../entities/何向南.html">何向南</a>团队于 SIGIR 2020 发表的图<a href="../concepts/协同过滤.html">协同过滤</a>经典论文，通过移除 GCN 中的特征变换和非线性激活，仅保留邻域聚合与层组合，实现"Less</li>
+<li><a href="../entities/LightGCN++.html">LightGCN++</a> — RecSys 2024 发表的 <a href="../entities/LightGCN.html">LightGCN</a> 改进工作，在 <a href="../entities/LightGCN.html">LightGCN</a> 基础上引入灵活的嵌入范数缩放和邻居加权策略，在 [[NDCG]</li>
+<li><a href="../entities/LightSANs.html">LightSANs</a> — LightSANs（Lightweight Self-Attentive Network），2021 年提出的轻量级<a href="../concepts/Self-Attention机制.html">自注意&lt;/li&gt;
+&lt;li&gt;[[M-FALCON</a> — M-FALCON（Microbatched-Fast Attention Leveraging Cacheable OperatioNs），Meta 提出的高效</li>
+<li><a href="../entities/MMoE 论文.html">MMoE 论文</a> — KDD 2018 发表的奠基性论文，提出 <a href="../concepts/MMoE.html">MMoE</a> 架构解决<a href="../concepts/多任务学习.html">多任务学习</a>中的<a href="../concepts/负迁移.html">负迁移</a>问题，成为推荐系统领域<a href="../concepts/多任务学习.html">多任务学习</a>的事实标准。</li>
+<li><a href="../entities/Matrix Factorization Techniques for Recommender Systems.html">Matrix Factorization Techniques for Recommender Systems</a> — Koren、Bell、Volinsky 2009 年发表于 IEEE Computer 的综述论文，系统化了 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛中的<span style="color:#e74c3c" title="broken link">矩&lt;/li&gt;
+&lt;li&gt;[[MovieLens</span> — MovieLens 是从 <a href="../entities/GroupLens.html">GroupLens 研究组</a>于 1997 年直接孵化出的在线电影推荐平台，同时产出了推荐系统领域最重要的公开</li>
+<li><a href="../entities/NGCF.html">NGCF</a> — <a href="../entities/何向南.html">何向南</a>团队于 SIGIR 2019 发表的论文，首次将完整 GCN 框架（特征变换 + 非线性激活 + 邻域聚合）系统应用于<a href="../concepts/协同过滤.html">协同过滤</a>，是图推荐领</li>
+<li><a href="../entities/Navin Chandak.html">Navin Chandak</a> — 机器学习研究员，ICML 2016 论文《<a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a>》合作者，研究方向包括强化学习与<a href="../concepts/因果推断.html">因果推断</a>。</li>
+<li><a href="../entities/Net Perceptions.html">Net Perceptions</a> — Net Perceptions 是 <a href="../entities/GroupLens.html">GroupLens</a> 团队于 1996 年 5 月创立的第一家专注于推荐引擎的商业公司，客户包括 <a href="../entities/Amazon.html">Amazon</a></li>
+<li><a href="../entities/Netflix.html">Netflix</a> — 全球流媒体巨头，2006 年发起 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛推动推荐系统技术革命，其 <a href="../entities/Cinematch.html">Cinematch</a> 推荐引擎和公开数据集奠定了<span style="color:#e74c3c" title="broken link">矩&lt;/li&gt;
+&lt;li&gt;[[Netflix Prize</span> — <a href="../entities/Netflix.html">Netflix</a> 2006-2009 年举办的推荐算法竞赛，100 万美元奖金推动<a href="../concepts/矩阵分解.html">矩阵分解</a>技术崛起，彻底改变了推荐系统领域的发展轨迹。</li>
+<li><a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> — <a href="../entities/何向南.html">何向南</a>等人于 WWW 2017 发表的里程碑论文，用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>中的内积操作，构建通用神经<a href="../concepts/协同过滤.html">协同过滤</a>框架（N<a href="../concepts/协同过滤.html">CF</a></li>
+<li><a href="../entities/OpenP5.html">OpenP5</a> — <a href="../entities/P5 论文.html">P5</a> 作者团队推出的标准化基准平台，方便后续研究者在 <a href="../entities/P5 论文.html">P5</a> 范式下进行公平对比实验。</li>
+<li><a href="../entities/P5 论文.html">P5 论文</a> — P5 首次将推荐系统五大核心任务统一为 text-to-text 语言生成问题，通过<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 和 <a href="../entities/T5.html">T5</a> 预训练实现"一个模型、一个损</li>
+<li><a href="../entities/PNN.html">PNN</a> — Product-based Neural Network，通过内积/外积操作显式建模<a href="../concepts/特征交叉.html">特征交互</a>的神经网络架构，<a href="../entities/DeepFM.html">DeepFM</a> 论文中将其作</li>
+<li><a href="../entities/Paul Covington.html">Paul Covington</a> — <a href="../entities/Google.html">Google</a>/<a href="../entities/YouTube.html">YouTube</a> 工程师，<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（</li>
+<li><a href="../entities/Paul Resnick.html">Paul Resnick</a> — Paul Resnick 是 MIT 协调科学中心的研究员，与明尼苏达大学的 <a href="../entities/John Riedl.html">John Riedl</a> 团队联合完成了 <a href="../entities/GroupLens.html">GroupLens</a> 论文（1</li>
+<li><a href="../entities/PinSage.html">PinSage</a> — <a href="../entities/Pi-Agent.html">Pi</a>nterest 于 KDD 2018 发表的工业级图推荐系统，首次在数十亿节点规模上部署基于图卷积的推荐模型，证明了 GCN 在推</li>
+<li><a href="../entities/RecBole.html">RecBole</a> — 一个主流开源推荐系统框架，提供统一的基准测试平台和标准化实现，将 <a href="../concepts/BPR.html">BPR</a> 作为标准的 baseline 实现之一。</li>
+<li><a href="../entities/RecSys 2022.html">RecSys 2022</a> — 第16届ACM推荐系统会议，<a href="../entities/P5 论文.html">P5 论文</a>在此发表并被选为杰出论文之一，是 LLM+推荐系统领域的里程碑事件。</li>
+<li><a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a> — ICML 2016 奠基性论文，首次将<a href="../concepts/因果推断.html">因果推断</a>的<a href="../concepts/逆倾向评分.html">逆倾向评分</a>（<a href="../concepts/逆倾向评分.html">IPS</a>）方法系统引入推荐系统，将"推荐"类比为"处方"，统一解决</li>
+<li><a href="../entities/Ringo.html">Ringo</a> — Ringo 是 1995 年开发的音乐推荐系统，是最早将<a href="../concepts/协同过滤.html">协同过滤</a>应用于音乐推荐的研究原型之一，后发展为 <a href="../entities/Firefly Networks.html">Firefly Networks</a> 公司的</li>
+<li><a href="../entities/Robert Bell.html">Robert Bell</a> — 推荐系统领域研究者，<span style="color:#e74c3c" title="broken link">AT&amp;amp;T Labs--Research</span> 科学家，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 冠军团队 <a href="../entities/BellKor.html">BellKor</a> 核心成员，<span style="color:#e74c3c" title="broken link">&lt;/li&gt;
+&lt;li&gt;[[Ruiming Tang</span> — <a href="../entities/DeepFM.html">DeepFM</a> 论文共同作者，<a href="../entities/华为诺亚方舟实验室.html">华为诺亚方舟实验室</a>研究员，参与提出 <a href="../entities/DeepFM.html">DeepFM</a> 模型。</li>
+<li><a href="../entities/Rutgers University.html">Rutgers University</a> — 美国新泽西州立大学，<a href="../entities/P5 论文.html">P5 论文</a>的所属机构，<a href="../entities/Yongfeng Zhang.html">Yongfeng Zhang</a> 教授团队在此推动了 LLM for Recommendation 研究范</li>
+<li><a href="../entities/S3-Rec.html">S3-Rec</a> — S3-Rec（Self-Supervised <a href="../concepts/序列推荐.html">Sequential Recommendation</a>），2020 年提出的 <a href="../entities/SASRec.html">SASRec</a> </li>
+<li><a href="../entities/SASRec.html">SASRec</a> — <a href="../entities/Wang-Cheng Kang.html">Wang-Cheng Kang</a> 与 <a href="../entities/Julian McAuley.html">Julian McAuley</a> 于 ICDM 2018 发表的里程碑论文，首次将 <span style="color:#e74c3c" title="broken link">Self-Attenti&lt;/li&gt;
+&lt;li&gt;[[SASRec+</span> — <a href="../entities/SASRec.html">SASRec</a>+，2023 年提出的改进版 <a href="../entities/SASRec.html">SASRec</a>，通过替换损失函数为全物品 softmax <a href="../concepts/交叉熵.html">交叉熵</a>，在公平比较条件下反超 <span style="color:#e74c3c" title="broken link">BE&lt;/li&gt;
+&lt;li&gt;[[SSE-PT</span> — SSE-PT（Personalized <a href="../concepts/Transformer架构.html">Transformer</a> for <a href="../concepts/序列推荐.html">Sequential Recommen&lt;/li&gt;
+&lt;li&gt;[[SVD++</a> — <a href="../entities/Yehuda Koren.html">Yehuda Koren</a> 于 KDD 2008 提出的<a href="../concepts/矩阵分解.html">矩阵分解</a>扩展模型，在 <a href="../concepts/矩阵分解.html">MF</a> 基础上引入用户<a href="../concepts/隐式反馈.html">隐式反馈</a>历史，在 <span style="color:#e74c3c" title="broken link">&lt;/li&gt;
+&lt;li&gt;[[Shijie Geng</span> — <a href="../entities/P5 论文.html">P5 论文</a>第一作者，<a href="../entities/Rutgers University.html">Rutgers University</a> 研究者，提出了将推荐系统统一为语言处理任务的开创性范式。</li>
+<li><a href="../entities/Simon Funk.html">Simon Funk</a> — 独立开发者，2006 年博客文章提出基于 SGD 的<a href="../concepts/矩阵分解.html">矩阵分解</a>方法（<a href="../entities/FunkSVD.html">FunkSVD</a>），点燃推荐系统<a href="../concepts/隐因子模型.html">隐因子模型</a>革命的里程碑人物。</li>
+<li><a href="../entities/Spotify.html">Spotify</a> — 全球音乐流媒体平台，工业界采用<a href="../concepts/矩阵分解.html">矩阵分解</a>方法作为推荐系统核心策略的代表性公司之一。</li>
+<li><a href="../entities/Steffen Rendle.html">Steffen Rendle</a> — 德国康斯坦茨大学计算机科学家，<a href="../entities/Factorization Machines.html">Factorization Machines</a> (<a href="../entities/Factorization Machines.html">FM</a>) 提出者，开源</li>
+<li><a href="../entities/TALLRec.html">TALLRec</a> — 首个尝试用大语言模型 LLaMA 进行推荐任务微调的工作，使用<a href="../concepts/指令调优.html">指令调优</a>使 LLaMA 适配推荐场景。</li>
+<li><a href="../entities/Tapestry 系统.html">Tapestry 系统</a> — Tapestry 是 <a href="../entities/Xerox PARC.html">Xerox PARC</a> 于 1992 年开发的信息过滤系统，首次提出"<a href="../concepts/协同过滤.html">协同过滤</a>"（<a href="../concepts/协同过滤.html">Collaborative &lt;/li&gt;
+&lt;li&gt;[[Tat-Seng Chua</a> — 新加坡国立大学（NUS）教授，多媒体与推荐系统领域资深研究者，<a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（<span style="color:#e74c3c" title="broken link">Neural Colla&lt;/li&gt;
+&lt;li&gt;[[The Ensemble</span> — <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛队伍，2009 年 9 月取得与获胜队伍完全相同的 <a href="../concepts/RMSE.html">RMSE</a> 0.8567，但因晚了 20 分钟提交而与 100</li>
+<li><a href="../entities/Thorsten Joachims.html">Thorsten Joachims</a> — <a href="../entities/Cornell University.html">Cornell University</a> 计算机科学教授，机器学习与信息检索领域权威，因果推荐方向的重要推动者，<a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 的导</li>
+<li><a href="../entities/TiSASRec.html">TiSASRec</a> — Time-Interval Aware <a href="../entities/SASRec.html">SASRec</a>，2020 年提出的 <a href="../entities/SASRec.html">SASRec</a> 后续工作，在<a href="../concepts/Self-Attention机制.html">自注意&lt;/li&gt;
+&lt;li&gt;[[Tobias Schnabel</a> — <a href="../entities/Cornell University.html">Cornell University</a> 研究员，因果推荐方向奠基人之一，以 ICML 2016 论文《<span style="color:#e74c3c" title="broken link">Recommendations as Treat&lt;/li&gt;
+&lt;li&gt;[[UltraGCN</span> — CIKM 2021 发表的图推荐论文，在 <a href="../entities/LightGCN.html">LightGCN</a> 基础上进一步简化，连显式邻域传播都省掉，通过直接逼近无限层传播的极限来做推荐。</li>
+<li><a href="../entities/VIP5.html">VIP5</a> — 将 <a href="../entities/P5 论文.html">P5</a> 扩展到多模态（视觉+语言）推荐场景的工作，在 <a href="../entities/P5 论文.html">P5</a> 的语言统一基础上增加视觉模态。</li>
+<li><a href="../entities/Wang-Cheng Kang.html">Wang-Cheng Kang</a> — 推荐系统领域研究者，UCSD 博士，与 <a href="../entities/Julian McAuley.html">Julian McAuley</a> 合作发表了 <a href="../entities/SASRec.html">SASRec</a>（ICDM 2018），首次将 <span style="color:#e74c3c" title="broken link">Self-At&lt;/li&gt;
+&lt;li&gt;[[Wide &amp;amp; Deep</span> — <a href="../entities/Google.html">Google</a> 于 2016 年在 <a href="../entities/DLRS 2016.html">DLRS 2016</a> 提出的推荐模型，通过<a href="../concepts/联合训练.html">联合训练</a>线性模型（Wide）和深度神经网络（Deep），在统一</li>
+<li><a href="../entities/Xerox PARC.html">Xerox PARC</a> — Xerox PARC（施乐帕洛阿尔托研究中心）是 Xerox Corporation 旗下的研究机构，被誉为计算机科学的"梦工厂"，图形用户界面、以太网、激光打</li>
+<li><a href="../entities/Xiuqiang He.html">Xiuqiang He</a> — <a href="../entities/DeepFM.html">DeepFM</a> 论文共同作者，<a href="../entities/华为诺亚方舟实验室.html">华为诺亚方舟实验室</a>研究员，<a href="../entities/DeepFM.html">DeepFM</a> 项目核心成员。</li>
+<li><a href="../entities/Yahoo Research.html">Yahoo Research</a> — 雅虎旗下研究机构，<a href="../entities/Yehuda Koren.html">Yehuda Koren</a> 2009 年任职于此，是<a href="../concepts/矩阵分解.html">矩阵分解</a>综述论文的第一作者单位。</li>
+<li><a href="../entities/Yahoo! R3.html">Yahoo! R3</a> — Yahoo Music 歌曲评分数据集，同时包含自然评分（<a href="../concepts/MNAR.html">MNAR</a>）和随机强制曝光评分（<a href="../concepts/MCAR.html">MCAR</a>），是因果推荐研究中验证去偏方法的标准数据集。</li>
+<li><a href="../entities/Yehuda Koren.html">Yehuda Koren</a> — 推荐系统领域研究者，<a href="../concepts/矩阵分解.html">矩阵分解</a>技术先驱，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 冠军团队 <a href="../entities/BellKor.html">BellKor</a> 核心成员，2009 年发表 <span style="color:#e74c3c" title="broken link">Matrix&lt;/li&gt;
+&lt;li&gt;[[Yelp Review</span> — Yelp 商户评论数据集，<a href="../entities/P5 论文.html">P5 论文</a>用于实验验证的四个数据集之一。</li>
+<li><a href="../entities/Yongfeng Zhang.html">Yongfeng Zhang</a> — <a href="../entities/P5 论文.html">P5 论文</a>通讯作者，<a href="../entities/Rutgers University.html">Rutgers University</a> 教授，<a href="../concepts/推荐系统基础模型.html">推荐系统基础模型</a>方向的先驱研究者，推动了 LLM for Recomme</li>
+<li><a href="../entities/YouTube.html">YouTube</a> — 全球最大视频平台，工业界推荐系统的引领者。从<a href="../concepts/矩阵分解.html">矩阵分解</a>到深度神经推荐系统，确立了"<a href="../concepts/候选生成.html">候选生成</a> + 排序"的两阶段架构范式。</li>
+<li><a href="../entities/Yunming Ye.html">Yunming Ye</a> — <a href="../entities/DeepFM.html">DeepFM</a> 论文共同作者，哈尔滨工业大学深圳研究生院教授，为 <a href="../entities/DeepFM.html">DeepFM</a> 提供学术指导。</li>
+<li><a href="../entities/Zhenguo Li.html">Zhenguo Li</a> — <a href="../entities/DeepFM.html">DeepFM</a> 论文共同作者，<a href="../entities/华为诺亚方舟实验室.html">华为诺亚方舟实验室</a>研究员。</li>
+<li><a href="../entities/libFM.html">libFM</a> — <a href="../entities/Steffen Rendle.html">Steffen Rendle</a> 开发的 <a href="../entities/Factorization Machines.html">Factorization Machines</a> 开源 C++ 实现库，支持 SGD、<span style="color:#e74c3c" title="broken link">交替最小二乘法 AL&lt;/li&gt;
+&lt;li&gt;[[timeSVD++</span> — <a href="../concepts/矩阵分解.html">矩阵分解</a>的时间动态扩展模型，将用户偏好的时间演化纳入建模，10 维 time<a href="../entities/SVD++.html">SVD++</a> 精度超过 200 维标准 <a href="../concepts/奇异值分解.html">SVD</a>。</li>
+<li><a href="../entities/xDeepFM.html">xDeepFM</a> — 微软于 KDD 2018 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，引入 CIN（Compressed Interaction Network）在向量级显式建模任意阶[</li>
+<li><a href="../entities/何向南.html">何向南</a> — 推荐系统研究者，新加坡国立大学博士，<a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（<span style="color:#e74c3c" title="broken link">Neural Collaborative Filt&lt;/li&gt;
+&lt;li&gt;[[华为诺亚方舟实验室</span> — 华为旗下人工智能研究机构，在推荐系统和 <a href="../concepts/CTR 预估.html">CTR 预估</a>领域有重要研究产出，代表作 <a href="../entities/DeepFM.html">DeepFM</a>。</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="工具与框架.html">&larr; 工具与框架</a>
+    <a href="数值分析.html">数值分析 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

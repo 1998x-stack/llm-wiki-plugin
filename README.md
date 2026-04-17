@@ -82,7 +82,8 @@ graph LR
 | **Hook System** | ingest 后自动触发 BM25 重建、图谱更新、lint 检查 |
 | **Unified Search** | BM25 + maps topic expansion + graph traversal with RRF fusion |
 | **Format Conversion** | markitdown 批量转换 PDF/DOCX/PPTX/XLSX → markdown |
-| **Index Integrity** | snapshot_index.py 验证 index.md 完整性，防止条目丢失 |
+| **Index Integrity** | snapshot_index.py 验证 index.md 完整性，--slim 模式压缩至 ~35 行统计表 |
+| **Per-Topic Maps** | build_maps.py 从 topic-to-wiki.json 生成分主题 map（含概述），支持 --topic 按主题过滤 ingest 上下文 |
 | **Custom Dictionary** | jieba 自定义词典从 wiki 元数据自动构建，提升领域术语分词精度 |
 | **4-Layer Memory** | Working → Episodic → Semantic → Procedural 知识生命周期 |
 | **QA Integration** | QA 对话数据批量导入，自动提取洞见并双向链接 |
@@ -143,9 +144,9 @@ All commands are invoked via Claude Code's `wiki:` prefix (e.g. `/wiki:ingest`).
 | `qa-import` | `/wiki:qa-import <path>` | QA 数据批量导入 |
 | `ingest-loop` | `/wiki:ingest-loop <dir> [--engine=qwen]` | Ralph-loop 批量 ingest（默认 Claude，--engine=qwen 用 Qwen API） |
 | `build` | `/wiki:build` | 构建所有静态产出: graph + statistics + wiki HTML |
-| `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps |
+| `reindex` | `/wiki:reindex` | 验证 index 完整性 + 生成主题 maps + 精简 index |
 | `relink` | `/wiki:relink` | 自动链接 wiki 中未链接的术语提及（最长匹配优先） |
-| `maintain` | `/wiki:maintain` | 一键维护: relink → reindex → check → lint → build |
+| `maintain` | `/wiki:maintain` | 一键维护: relink → check → lint → build |
 | `convert-to-markdown` | `/wiki:convert-to-markdown [dir]` | markitdown 批量转换 PDF/DOCX → markdown |
 
 ## Vault Structure
@@ -184,9 +185,9 @@ vault/
 ├── qa/                      # QA 数据存放
 ├── index/BM25/              # BM25 搜索索引
 ├── templates/               # 5 套模板
-├── maps/                    # 主题分类索引
+├── maps/                    # 主题分类索引（含概述，由 build_maps.py 生成）
 ├── scripts/                 # Python & Shell 自动化脚本
-├── index.md                 # 内容目录
+├── index.md                 # 内容目录（精简版：统计表 + 全局名称列表）
 ├── log.md                   # 操作日志
 ├── log.hook.md              # Hook 执行日志
 ├── graph.json               # 知识图谱数据

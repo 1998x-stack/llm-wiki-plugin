@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../maps/index.html">maps</a> / Agent系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <h1 id="agent">Agent系统</h1>
+<h2 id="_1">概念</h2>
+<ul>
+<li><a href="../concepts/ACP协议.html">ACP协议</a> — <strong>Agent Client Protocol（ACP）</strong> 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和</li>
+<li><a href="../concepts/AIXI模型.html">AIXI模型</a> — AIXI 是 Marcus Hutter (2000) 提出的通用人工智能理论模型，将 Solomonoff 归纳推理与 Bellman 最优控制结合，在任何可</li>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> — <strong>Agent Harness</strong>（"马具"）是一种 AI Agent 工程架构模式：<strong>不</strong>从零实现 Agent 运行时，而是在现有 LLM 框架（如 La</li>
+<li><a href="../concepts/Agent Skills.html">Agent Skills</a> — Agent Skills（代理技能）是 Anthropic 提出的开放标准：<strong>一个含 SKILL.md 文件的目录</strong>，通过渐进式披露机制为 Agent 提供</li>
+<li><a href="../concepts/Agent工作流模式.html">Agent工作流模式</a> — Anthropic 从与数十个客户团队协作中提炼的 LLM 系统架构分类：<strong>工作流</strong>（LLM 和工具经由预定义代码路径编排）与<strong>Agent</strong>（LLM 动</li>
+<li><a href="../concepts/Agent循环.html">Agent循环</a> — Agent 循环（Agent Loop）是所有 AI Agent 的核心心跳：反复调用 LLM，根据停止原因分支——若 <code>stop</code> 则输出结果，若 `tool</li>
+<li><a href="../concepts/Agent计算机接口.html">Agent计算机接口</a> — Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 LLM Agent 设计工具接口需要与 </li>
+<li><a href="../concepts/Agent评估方法论.html">Agent评估方法论</a> — Anthropic 从内部实践和客户协作中提炼的 Agent 系统评估（Eval）系统方法论：词汇体系、评分器类型、能力评估与回归评估、pass@k vs pa</li>
+<li><a href="../concepts/DeepAgents中间件体系.html">DeepAgents中间件体系</a> — <a href="../entities/DeepAgents.html">DeepAgents</a> <a href="../concepts/ROS (Robot Operating System).html">中间件</a>（`libs/deepagents/deepagents/</li>
+<li><a href="../concepts/DeepAgents后端协议.html">DeepAgents后端协议</a> — <a href="../entities/DeepAgents.html">DeepAgents</a> 的存储与执行抽象层（<code>libs/deepagents/deepagents/backends/</code>）。`BackendProtoco</li>
+<li><a href="../concepts/DeepAgents评估体系.html">DeepAgents评估体系</a> — <a href="../entities/DeepAgents.html">DeepAgents</a> 的评估框架（<code>libs/evals/</code>），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"</li>
+<li><a href="../concepts/Kinodynamic Planning.html">Kinodynamic Planning</a> — Kinodynamic Planning（动力学<a href="../concepts/运动规划.html">运动规划</a>）是一类同时考虑运动学约束（如非完整约束）和动力学约束（如速度、加速度、力矩限制）的<span style="color:#e74c3c" title="broken link">运动规划&lt;/li&gt;
+&lt;li&gt;[[LLM-as-Judge</span> — 使用 LLM 作为自动评判器（Judge），对 AI 系统的输出按预定义<strong>准则</strong>打分，代替人工评估。适用于难以用规则/子串匹配表达的**语义正确性、风格、完</li>
+<li><a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a> — STR<a href="../concepts/逆倾向评分.html">IPS</a>（STanford Research Institute Problem Solver）是人工智能历史上最具影响力的自动规划系统</li>
+<li><a href="../concepts/三分解控制框架.html">三分解控制框架</a> — 三分解控制框架（Three-Part Decomposition）是由 <a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> 提出的一种用于动态腿式运动控制的核心理论架构。该</li>
+<li><a href="../concepts/事件驱动Agent架构.html">事件驱动Agent架构</a> — 事件驱动 Agent 架构是指：Agent 循环内所有状态变化都通过<strong>事件发射（emit）</strong>通知订阅者，而不依赖返回值。同一 Agent 核心可同时驱动终端</li>
+<li><a href="../concepts/多Agent架构.html">多Agent架构</a> — 多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：**子 Agent 通过各自独立上下文窗口进行并行探索，再将</li>
+<li><a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a> — 受 GAN（生成对抗网络）启发的多 Agent 设计模式：<strong>生成器（Generator）</strong>负责产出，<strong>评估器（Evaluator）</strong>负责评判并给出详细批</li>
+<li><a href="../concepts/长时任务Agent设计.html">长时任务Agent设计</a> — 针对跨多个上下文窗口的长时自主任务（数小时至数日）的 <a href="../concepts/Agent Harness模式.html">Agent Harness</a> 设计模式：<strong>初始化 Agent</strong>（</li>
+</ul>
+<h2 id="_2">实体</h2>
+<ul>
+<li><a href="../entities/DeepAgents.html">DeepAgents</a> — LangChain 官方开源的 <strong>生产级 <a href="../concepts/Agent Harness模式.html">Agent Harness</a></strong>（`langchain-ai/deepagen</li>
+<li><a href="../entities/OpenClaw.html">OpenClaw</a> — OpenClaw 是一个多渠道 AI 助手，以 <a href="../entities/Pi-Agent.html">Pi-Agent</a> 为核心引擎，支持 WhatsApp、Telegram、Discord、Slack、Si</li>
+<li><a href="../entities/Pi-Agent.html">Pi-Agent</a> — Pi Agent 是由 <a href="../entities/Mario-Zechner.html">Mario-Zechner</a> 创建的极简 AI 编程代理工具包（TypeScript Monorepo），以 4 个工具 + &lt; </li>
+</ul>
+<h2 id="_3">综合分析</h2>
+<ul>
+<li><a href="../syntheses/DeepAgents评估设计哲学.html">DeepAgents评估设计哲学</a> — <a href="../entities/DeepAgents.html">DeepAgents</a> 的评估体系建立在<strong>三条核心分离线</strong>上，每条分离线都针对一个常见的"评估混淆陷阱"：</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="AI设计.html">&larr; AI设计</a>
+    <a href="信息论.html">信息论 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -142,16 +142,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>定义</strong>：<a href="候选生成.html">Recall</a>@K = $\frac{1}{|U|} \sum_{u \in U} \mathbb{I}(\text{hit}_u@K)$，其中 $\text{hit}_u@K$ 表示用户 $u$ 的真实交互物品是否出现在推荐列表的前 K 个中。取值范围 [0, 1]，越高越好。</p>
 </li>
 <li>
-<p><strong>与 <a href="MRR.html">MRR</a> 的区别</strong>：<a href="候选生成.html">Recall</a>@K 只关心"是否召回"，不关心召回物品在列表中的具体位置（只要在前 K 内即可）；<a href="MRR.html">MRR</a> 衡量正确物品排名的倒数，对排序位置更敏感。两者结合使用可全面评估推荐质量。</p>
+<p><strong>与 MRR 的区别</strong>：<a href="候选生成.html">Recall</a>@K 只关心"是否召回"，不关心召回物品在列表中的具体位置（只要在前 K 内即可）；MRR 衡量正确物品排名的倒数，对排序位置更敏感。两者结合使用可全面评估推荐质量。</p>
 </li>
 <li>
-<p><strong>与 <a href="NDCG.html">NDCG</a> 的区别</strong>：<a href="NDCG.html">NDCG</a> 同时考虑召回和排序位置的质量（通过折扣因子），是更细粒度的指标；<a href="候选生成.html">Recall</a>@K 更粗粒度但更直观，是推荐系统论文中最常用的主指标之一。</p>
+<p><strong>与 NDCG 的区别</strong>：NDCG 同时考虑召回和排序位置的质量（通过折扣因子），是更细粒度的指标；<a href="候选生成.html">Recall</a>@K 更粗粒度但更直观，是推荐系统论文中最常用的主指标之一。</p>
 </li>
 <li>
 <p><strong>在<a href="序列推荐.html">序列推荐</a>中的应用</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 使用 <a href="候选生成.html">Recall</a>@20 作为主要评估指标，在 RSC15 数据集上达到 0.5196。后续研究通常报告 <a href="候选生成.html">Recall</a>@5、<a href="候选生成.html">Recall</a>@10、<a href="候选生成.html">Recall</a>@20 多个 K 值。</p>
 </li>
 <li>
-<p><strong>在两阶段架构中的意义</strong>：在<a href="两阶段推荐架构.html">两阶段推荐架构</a>的<a href="候选生成.html">候选生成</a>阶段，<a href="候选生成.html">Recall</a>@K 是核心评估指标，衡量候选集是否覆盖了用户可能感兴趣的物品；在<a href="检索重排序.html">精排</a>阶段则更关注 <a href="NDCG.html">NDCG</a> 等排序质量指标。</p>
+<p><strong>在两阶段架构中的意义</strong>：在<a href="两阶段推荐架构.html">两阶段推荐架构</a>的<a href="候选生成.html">候选生成</a>阶段，<a href="候选生成.html">Recall</a>@K 是核心评估指标，衡量候选集是否覆盖了用户可能感兴趣的物品；在<a href="检索重排序.html">精排</a>阶段则更关注 NDCG 等排序质量指标。</p>
 </li>
 <li>
 <p><strong>K 值选择</strong>：K 的选择取决于业务场景。电商推荐通常 K=20~50，信息流推荐 K=10~20，搜索推荐 K=5~10。K 越大 <a href="候选生成.html">Recall</a> 越高，但用户体验可能因推荐列表过长而下降。</p>
@@ -163,15 +163,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="MRR.html">MRR</a> — 互补的排序质量指标</li>
-<li><a href="NDCG.html">NDCG</a> — 更细粒度的排序指标</li>
+<li>MRR — 互补的排序质量指标</li>
+<li>NDCG — 更细粒度的排序指标</li>
 <li><a href="序列推荐.html">序列推荐</a> — 主要应用场景</li>
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — 候选生成阶段的核心指标</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Rayleigh商.html">&larr; Rayleigh商</a>
-    <a href="Richardson外推法.html">Richardson外推法 &rarr;</a>
+    <a href="ReAct 风格循环.html">&larr; ReAct 风格循环</a>
+    <a href="RenderPath渲染管线.html">RenderPath渲染管线 &rarr;</a>
   </div>
 </div>
 </body>

@@ -19,7 +19,20 @@ from pathlib import Path
 
 from wiki_utils import VAULT_DIR, WIKI_DIR, WIKI_SUBDIRS, parse_frontmatter
 
-MIN_TERM_LEN = 2  # skip single-char terms
+MIN_TERM_LEN = 2        # minimum length for CJK/mixed terms
+MIN_EN_TERM_LEN = 5     # minimum length for ASCII-only (English) terms
+
+
+def _is_ascii_term(term: str) -> bool:
+    """Return True if every character in term is ASCII (English/abbreviation)."""
+    return all(c.isascii() for c in term)
+
+
+def _term_ok(term: str) -> bool:
+    """Return True if term meets the minimum-length requirement."""
+    if _is_ascii_term(term):
+        return len(term) >= MIN_EN_TERM_LEN
+    return len(term) >= MIN_TERM_LEN
 
 
 def collect_terms() -> dict[str, str]:
@@ -27,6 +40,9 @@ def collect_terms() -> dict[str, str]:
 
     page_name is the filename stem (used in [[page_name]]).
     Longer terms shadow shorter ones at same position (handled in apply phase).
+
+    English (ASCII-only) terms shorter than MIN_EN_TERM_LEN are excluded to
+    avoid false matches like 'rg' → ripgrep, 'fd' → fd, 'uv' → uv, etc.
     """
     terms: dict[str, str] = {}
     for subdir in WIKI_SUBDIRS:
@@ -41,7 +57,7 @@ def collect_terms() -> dict[str, str]:
             fm, _ = parse_frontmatter(text)
 
             # Title = filename stem
-            if len(page_name) >= MIN_TERM_LEN:
+            if _term_ok(page_name):
                 terms[page_name] = page_name
 
             if not fm:
@@ -52,13 +68,11 @@ def collect_terms() -> dict[str, str]:
             if isinstance(aliases, list):
                 for a in aliases:
                     a = str(a).strip()
-                    if len(a) >= MIN_TERM_LEN:
-                        # Don't overwrite if a longer page already claimed this term
-                        if a not in terms:
-                            terms[a] = page_name
-            elif isinstance(aliases, str) and len(aliases.strip()) >= MIN_TERM_LEN:
+                    if _term_ok(a) and a not in terms:
+                        terms[a] = page_name
+            elif isinstance(aliases, str):
                 a = aliases.strip()
-                if a not in terms:
+                if _term_ok(a) and a not in terms:
                     terms[a] = page_name
 
     return terms

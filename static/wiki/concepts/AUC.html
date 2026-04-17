@@ -145,16 +145,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在推荐系统中的计算</strong>：对用户 u，AUC(u) = (1/|I_u^+| · |I \ I_u^+|) Σ_(i,j) δ(x̂_uij &gt; 0)，其中 I_u^+ 为正样本集合，I \ I_u^+ 为负样本集合，δ 为指示函数。</p>
 </li>
 <li>
-<p><strong>与 <a href="BPR.html">BPR</a> 的关系</strong>：<a href="BPR.html">BPR</a>-OPT 是 AUC 的可微光滑近似，用 ln σ(x) 替代不可微的 Heaviside 阶跃函数 δ(x &gt; 0)。优化 <a href="BPR.html">BPR</a>-OPT 近似等价于直接优化 AUC。</p>
+<p><strong>与 BPR 的关系</strong>：BPR-OPT 是 AUC 的可微光滑近似，用 ln σ(x) 替代不可微的 Heaviside 阶跃函数 δ(x &gt; 0)。优化 BPR-OPT 近似等价于直接优化 AUC。</p>
 </li>
 <li>
 <p><strong>优势</strong>：AUC 对类别不平衡不敏感，适合<a href="隐式反馈.html">隐式反馈</a>场景（正样本远少于负样本）；不依赖绝对阈值，只关注相对排序。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：AUC 对所有负样本一视同仁，不考虑推荐列表顶部位置的权重；在实际推荐中，用户更关注 Top-K 推荐，此时 <a href="NDCG.html">NDCG</a>、<a href="MRR.html">MRR</a> 等指标更合适。</p>
+<p><strong>局限性</strong>：AUC 对所有负样本一视同仁，不考虑推荐列表顶部位置的权重；在实际推荐中，用户更关注 Top-K 推荐，此时 NDCG、MRR 等指标更合适。</p>
 </li>
 <li>
-<p><strong>作为 <a href="BPR.html">BPR</a> 实验的主要评价指标</strong>：<a href="../entities/BPR 论文.html">BPR 论文</a>在 Rossmann 和 <a href="../entities/Netflix.html">Netflix</a> 数据集上以 AUC 为主要指标，证明 <a href="BPR.html">BPR</a>-<a href="矩阵分解.html">MF</a> 显著优于 <a href="奇异值分解.html">SVD</a>-<a href="矩阵分解.html">MF</a> 和 WR-<a href="矩阵分解.html">MF</a>。</p>
+<p><strong>作为 BPR 实验的主要评价指标</strong>：<a href="../entities/BPR 论文.html">BPR 论文</a>在 Rossmann 和 <a href="../entities/Netflix.html">Netflix</a> 数据集上以 AUC 为主要指标，证明 BPR-MF 显著优于 SVD-MF 和 WR-MF。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -163,14 +163,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="BPR.html">BPR</a> — relates_to</li>
+<li>BPR — relates_to</li>
 <li><a href="Pairwise 学习.html">Pairwise 学习</a> — relates_to</li>
-<li><a href="NDCG.html">NDCG</a> — compares_to</li>
+<li>NDCG — compares_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="AI设计推理层.html">&larr; AI设计推理层</a>
-    <a href="Adjusted Cosine Similarity.html">Adjusted Cosine Similarity &rarr;</a>
+    <a href="ARPANET.html">&larr; ARPANET</a>
+    <a href="Ablation Study.html">Ablation Study &rarr;</a>
   </div>
 </div>
 </body>

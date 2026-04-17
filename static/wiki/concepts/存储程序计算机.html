@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>存储程序计算机 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 存储程序计算机</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">历史</span><span class="tag">计算理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">存储程序计算机</h1>
+<h2 id="_2">概述</h2>
+<p>存储程序计算机是一种将程序指令和数据存储在同一内存空间中的计算机架构，由<a href="../entities/约翰·冯·诺依曼.html">von Neumann</a>在1945年 <a href="../entities/EDVAC 报告.html">EDVAC 报告</a>中首次系统阐述。这一设计消除了物理重新接线的需要，使"编程"从硬件操作变为纯粹的智力活动。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心思想</h3>
+<p><strong>指令与数据的统一存储</strong>：程序指令和数据存储在同一个内存空间中，使用相同的寻址方式。从内存的角度看，一个存储单元中的内容既可以被解释为数据，也可以被解释为指令——区别仅在于控制单元在何种上下文中读取它。</p>
+<h3 id="_5">五大组件</h3>
+<p><a href="../entities/EDVAC 报告.html">EDVAC 报告</a>将计算机分解为五个功能器官：
+1. <strong>中央算术单元（CA）</strong> — 执行算术和逻辑运算，对应现代 ALU
+2. <strong>中央控制单元（CC）</strong> — 取指、解码、执行，维护程序计数器
+3. <strong>内存（M）</strong> — 同时存储数据和指令
+4. <strong>输入设备（I）</strong> — 将外部数据和程序输入内存
+5. <strong>输出设备（O）</strong> — 将计算结果输出到外部</p>
+<h3 id="-">取指-解码-执行循环</h3>
+<p>Von Neumann 描述了处理器工作的基本<a href="规范化理论.html">范式</a>：
+1. CC 从内存中取出当前地址处的指令（fetch）
+2. CC 解释该指令的含义（decode）
+3. CC 协调 CA、M 等组件执行该指令（execute）
+4. 程序计数器递增，指向下一条指令
+5. 重复上述过程</p>
+<h3 id="_6">程序的可操作性</h3>
+<p>由于指令本身就是内存中的数据，程序可以像数据一样被读取、修改、复制和生成：
+- <strong>自修改程序</strong>：程序可以在运行过程中修改自己的指令
+- <strong>子程序调用</strong>：一段程序可以"调用"另一段程序
+- <strong>条件分支</strong>：根据计算结果选择不同的执行路径</p>
+<h3 id="_7">与图灵机的关系</h3>
+<p>存储程序计算机本质上是<a href="图灵机.html">通用图灵机</a>的工程实现：
+- 内存 ↔ 纸带
+- CPU ↔ 读写头和状态转换规则
+- 程序 ↔ 纸带上的机器描述</p>
+<p>Von Neumann 在1930年代曾在普林斯顿与 Turing 有过交往，对<a href="图灵机.html">通用图灵机</a>的概念有着深刻理解。<a href="../entities/EDVAC 报告.html">EDVAC 报告</a>完成了从 Turing 的纯数学概念到可用当时电子技术建造的工程方案的关键转化。</p>
+<h3 id="_8">历史影响</h3>
+<p>几乎所有通用数字计算机——从最早的真空管计算机到今天的智能手机——在本质上都是存储程序架构的变体。这一术语"冯·诺依曼架构"已成为存储程序计算机的同义词。</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/03-von-neumann-edvac.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/EDVAC 报告.html">EDVAC 报告</a> — 首次系统阐述</li>
+<li><a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a> — 提出者</li>
+<li><a href="图灵机.html">图灵机</a> — 理论源头</li>
+<li>ENIAC — 被取代的前代架构（物理接线编程）</li>
+<li><a href="冯·诺依曼瓶颈.html">冯·诺依曼瓶颈</a> — 固有性能限制</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="婚姻挤压理论.html">&larr; 婚姻挤压理论</a>
+    <a href="学习排序.html">学习排序 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar2D — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Solar2D</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具与框架</span><span class="tag">游戏</span><span class="tag">游戏开发</span></div>
+</div>
+  <div class="content">
+    <h1 id="solar2d">Solar2D</h1>
+<h2 id="_1">概述</h2>
+<p>Solar2D（原 Corona SDK）是以 Lua 为唯一脚本语言的 2D 游戏框架，通过 Runtime 事件系统驱动游戏逻辑，内置 display 对象系统和 Box2D 物理集成，适合移动端 2D 游戏开发。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>全 Lua 架构</strong>：Solar2D 与 <a href="Love2D.html">Love2D</a> 类似，属于"全 Lua"引擎路线。开发者所有逻辑均用 Lua 编写，无需接触 C/C++。</p>
+</li>
+<li>
+<p><strong>display 对象系统</strong>：通过 <code>display.newRect</code>、<code>display.newCircle</code>、<code>display.newGroup</code> 等 API 创建可视对象。对象以 display group 组织层级，支持 <code>x/y/rotation/alpha</code> 等属性直接赋值。</p>
+</li>
+<li>
+<p><strong>物理集成</strong>：通过 <code>require("physics")</code> 引入，<code>physics.addBody(object, "static"|"dynamic", params)</code> 将任意 display 对象绑定物理属性（<code>radius/friction/bounce/density</code>）。重力通过 <code>physics.setGravity(x, y)</code> 设置。</p>
+</li>
+<li>
+<p><strong>Runtime 事件系统</strong>：使用 <code>Runtime:addEventListener(eventName, handler)</code> 订阅全局事件。<code>"enterFrame"</code> 用于帧更新，<code>"collision"</code> 用于碰撞处理，<code>"tap"</code> 用于触摸输入。与 <a href="Love2D.html">Love2D</a> 的回调函数风格不同，Solar2D 采用发布-订阅模式。</p>
+</li>
+<li>
+<p><strong>视口跟随</strong>：通过在 <code>enterFrame</code> 中移动 display group 实现摄像机跟随（<code>gameGroup.y = display.contentCenterY - player.y</code>），是 Solar2D 的惯用模式。</p>
+</li>
+<li>
+<p><strong>移动端优先</strong>：Solar2D 原名 Corona SDK，面向 iOS/Android 移动端设计，提供原生触摸事件和设备传感器接口。</p>
+</li>
+<li>
+<p><strong>Composer 场景管理</strong>：<code>require("composer")</code> 引入场景路由系统，<code>composer.gotoScene("scenes.game", {effect="fade", params={level=1}})</code> 切换场景。场景模块实现 <code>scene:create</code>、<code>scene:show</code>（will/did 两阶段）、<code>scene:hide</code>、<code>scene:destroy</code> 四个生命周期钩子，通过 <code>scene:addEventListener</code> 注册。</p>
+</li>
+<li>
+<p><strong>关节系统</strong>：<code>physics.newJoint("pivot", bodyA, bodyB, anchorX, anchorY)</code> 创建铰接关节，支持 <code>setRotationLimits</code> 限制旋转角度范围，是 Solar2D 实现布娃娃、机械臂等复杂物理结构的基础。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">lua-gameengine-deep-research</span> — 深度研究报告，Solar2D（Corona SDK）Lua 游戏开发架构与 API 分析</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/游戏引擎架构.html">游戏引擎架构</a> — Solar2D 属于 "全 Lua 引擎" 模式，性能上限受 Lua 解释器约束</li>
+<li><a href="../concepts/Lua脚本宿主模式.html">Lua脚本宿主模式</a> — Solar2D 是 Lua 作为唯一逻辑层的典型实现</li>
+<li><a href="Love2D.html">Love2D</a> — 同为全 Lua 2D 框架，Solar2D 偏移动端，Love2D 偏桌面端</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Simon Funk.html">&larr; Simon Funk</a>
+    <a href="Spotify.html">Spotify &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

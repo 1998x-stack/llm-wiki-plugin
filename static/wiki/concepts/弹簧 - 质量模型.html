@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，数值分析，研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学，数值分析，研究</span><span class="tag">数值分析</span></div>
 </div>
   <div class="content">
     <h1 id="-">弹簧 - 质量模型</h1>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>能量守恒与注入</strong>：在无损耗的理想情况下，SLIP 模型是保守系统。为了实现持续运动或改变运动状态，必须在每个周期通过主动致动器（如 <a href="../entities/Marc H. Raibert.html">Raibert</a> 机器人中的液压缸）注入或耗散能量。
 - <strong>混沌行为</strong>：在某些参数设置下，SLIP 模型可能表现出混沌行为，这对控制器的鲁棒性提出了挑战，但也提供了丰富的运动模式可能性。</p>
 <h3 id="_6">局限性与扩展</h3>
-<p>尽管 SLIP 模型非常成功，但它也有局限性。它忽略了腿部的质量、关节摩擦、肌肉激活延迟以及复杂的接触力学。因此，在高精度控制或极端动态场景下，通常需要更复杂的模型（如多刚体模型）进行补充。然而，现代控制方法如模型预测控制（<a href="边际消费倾向.html">MPC</a>）往往仍以 SLIP 模型作为预测模型的核心部分，因为它在计算效率和物理洞察力之间取得了最佳平衡。此外，研究者还提出了带有阻尼的 SLIP 模型、带有转动惯量的 SLIP 模型等变体，以适应不同的应用场景。</p>
+<p>尽管 SLIP 模型非常成功，但它也有局限性。它忽略了腿部的质量、关节摩擦、肌肉激活延迟以及复杂的接触力学。因此，在高精度控制或极端动态场景下，通常需要更复杂的模型（如多刚体模型）进行补充。然而，现代控制方法如模型预测控制（MPC）往往仍以 SLIP 模型作为预测模型的核心部分，因为它在计算效率和物理洞察力之间取得了最佳平衡。此外，研究者还提出了带有阻尼的 SLIP 模型、带有转动惯量的 SLIP 模型等变体，以适应不同的应用场景。</p>
 <h3 id="_7">在现代机器人学中的地位</h3>
 <p>今天，SLIP 模型依然是腿式机器人学中最常用的简化模型之一。它不仅用于控制器设计，还用于步态规划、稳定性分析和硬件参数优化。从 MIT Cheetah 到 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a> 的 Atlas，许多先进机器人的底层控制逻辑仍然深深植根于 SLIP 模型所揭示的物理直觉。对于研究人员来说，理解 SLIP 模型是进入动态腿式运动领域的必经之路。</p>
 <h2 id="_8">来源</h2>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="序列推荐.html">&larr; 序列推荐</a>
-    <a href="归一化压缩距离.html">归一化压缩距离 &rarr;</a>
+    <a href="强化学习.html">强化学习 &rarr;</a>
   </div>
 </div>
 </body>

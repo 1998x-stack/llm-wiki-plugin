@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="recommendations-as-treatments-debiasing-learning-and-evaluation">Recommendations as Treatments: Debiasing Learning and Evaluation</h1>
 <h2 id="_1">概述</h2>
-<p>ICML 2016 奠基性论文，首次将<a href="../concepts/因果推断.html">因果推断</a>的<a href="../concepts/逆倾向评分.html">逆倾向评分</a>（<a href="../concepts/逆倾向评分.html">IPS</a>）方法系统引入推荐系统，将"推荐"类比为"处方"，统一解决了训练和评估中的<a href="../concepts/选择偏差.html">选择偏差</a>问题。</p>
+<p>ICML 2016 奠基性论文，首次将<a href="../concepts/因果推断.html">因果推断</a>的<a href="../concepts/逆倾向评分.html">逆倾向评分</a>（IPS）方法系统引入推荐系统，将"推荐"类比为"处方"，统一解决了训练和评估中的<a href="../concepts/选择偏差.html">选择偏差</a>问题。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -147,19 +147,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>关键方法</strong>：</p>
 </li>
-<li><strong><a href="../concepts/逆倾向评分.html">IPS</a></strong>：逆倾向加权估计器，当<a href="../concepts/倾向性评分.html">倾向性评分</a>已知时是真实风险的无偏估计</li>
-<li><strong><a href="../concepts/SNIPS.html">SNIPS</a></strong>：自归一化 <a href="../concepts/逆倾向评分.html">IPS</a>，显著降低方差，保持最优解不变</li>
+<li><strong>IPS</strong>：逆倾向加权估计器，当<a href="../concepts/倾向性评分.html">倾向性评分</a>已知时是真实风险的无偏估计</li>
+<li><strong><a href="../concepts/SNIPS.html">SNIPS</a></strong>：自归一化 IPS，显著降低方差，保持最优解不变</li>
 <li>
-<p><strong><a href="../concepts/MF-IPS.html">MF-IPS</a></strong>：基于 <a href="../concepts/逆倾向评分.html">IPS</a> 的<a href="../concepts/矩阵分解.html">矩阵分解</a>训练，在 <a href="../concepts/MNAR.html">MNAR</a> 数据上实现近似无偏的 ERM</p>
+<p><strong><a href="../concepts/MF-IPS.html">MF-IPS</a></strong>：基于 IPS 的<a href="../concepts/矩阵分解.html">矩阵分解</a>训练，在 MNAR 数据上实现近似无偏的 ERM</p>
 </li>
 <li>
-<p><strong>倾向性估计</strong>：提出朴素<a href="托马斯·贝叶斯.html">贝叶斯</a>（无特征时）和逻辑回归（有特征时）两种<a href="../concepts/倾向性评分.html">倾向性评分</a>估计方法。实验证明即使倾向性估计存在噪声，<a href="../concepts/逆倾向评分.html">IPS</a>/<a href="../concepts/SNIPS.html">SNIPS</a> 仍显著优于朴素方法。</p>
+<p><strong>倾向性估计</strong>：提出朴素<a href="托马斯·贝叶斯.html">贝叶斯</a>（无特征时）和逻辑回归（有特征时）两种<a href="../concepts/倾向性评分.html">倾向性评分</a>估计方法。实验证明即使倾向性估计存在噪声，IPS/<a href="../concepts/SNIPS.html">SNIPS</a> 仍显著优于朴素方法。</p>
 </li>
 <li>
 <p><strong>实验验证</strong>：在 ML100K（半合成）、<a href="Yahoo! R3.html">Yahoo! R3</a>（Yahoo Music 随机曝光数据）、Coat Shopping（作者自建数据集）上验证。<a href="../concepts/MF-IPS.html">MF-IPS</a> 在两个真实数据集上显著优于所有基线（p &lt; 0.001），甚至超过计算复杂度远高于它的联合似然方法。</p>
 </li>
 <li>
-<p><strong>理论贡献</strong>：证明 <a href="../concepts/逆倾向评分.html">IPS</a> 估计器的无偏性和有限样本尾部概率界；推导 <a href="../concepts/逆倾向评分.html">IPS</a>-ERM 的泛化误差界；证明传统<a href="../concepts/矩阵分解.html">矩阵分解</a>是 <a href="../concepts/MF-IPS.html">MF-IPS</a> 在 <a href="../concepts/MCAR.html">MCAR</a> 假设下的特例。</p>
+<p><strong>理论贡献</strong>：证明 IPS 估计器的无偏性和有限样本尾部概率界；推导 IPS-ERM 的泛化误差界；证明传统<a href="../concepts/矩阵分解.html">矩阵分解</a>是 <a href="../concepts/MF-IPS.html">MF-IPS</a> 在 MCAR 假设下的特例。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：被广泛视为"因果推荐"（Causal Recommendation）方向的奠基性工作之一，引用量 1000+（截至 2025 年）。推动了偏差和公平性成为推荐系统研究的主流方向。</p>

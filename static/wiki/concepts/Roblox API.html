@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox API — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Roblox API</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">游戏开发</span><span class="tag">Lua</span></div>
+</div>
+  <div class="content">
+    <h1 id="roblox-api">Roblox API</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/Roblox.html">Roblox</a> 平台提供的内建类型与服务 API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService <a href="游戏主循环模式.html">游戏循环</a>。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="gc">内建值类型（无 GC 压力）</h3>
+<p><a href="../entities/Roblox.html">Roblox</a> 的几何与颜色类型是值类型，与普通 <a href="Lua-table-用法.html">Lua table</a> 不同，不产生<a href="垃圾回收.html">垃圾回收</a>压力：
+- <strong>Vector3</strong>：3D 坐标，支持 <code>+</code>/<code>*</code> 运算，<code>.Magnitude</code>、<code>.Unit</code>、<code>:Dot</code>、<code>:Cross</code>、<code>:Lerp</code>
+- <strong>Vector2</strong>：2D 坐标
+- <strong>CFrame</strong>：位置+姿态复合变换；<code>CFrame.lookAt(from, to)</code>；<code>*</code> 复合；<code>:ToObjectSpace</code> / <code>:ToWorldSpace</code> 坐标系转换；<code>:ToEulerAnglesXYZ</code> 提取欧拉角
+- <strong>Color3</strong>：<code>Color3.fromRGB(r, g, b)</code>
+- <strong>UDim2</strong>：GUI 布局尺寸，<code>UDim2.new(relX, absX, relY, absY)</code>（相对+绝对混合）
+- <strong>Rect / Ray</strong>：矩形区域和射线
+- <a href="../entities/Roblox.html">Roblox</a> 须用 <code>typeof()</code> 检测类型，<code>type(Vector3.new())</code> 返回 <code>"userdata"</code>，<code>typeof</code> 才返回 <code>"Vector3"</code></p>
+<h3 id="instance">Instance 操作</h3>
+<pre><code>Instance.new(&quot;ClassName&quot;)          -- 创建实例
+parent:FindFirstChild(&quot;name&quot;)      -- 查找子级（第二参数 true 递归）
+parent:FindFirstChildOfClass(&quot;X&quot;)  -- 按类名精确匹配
+parent:FindFirstChildWhichIsA(&quot;X&quot;) -- 含子类匹配
+parent:WaitForChild(&quot;name&quot;, timeout)
+parent:GetChildren() / :GetDescendants()
+instance:Clone() / :Destroy()
+part:GetPropertyChangedSignal(&quot;Prop&quot;):Connect(fn)
+</code></pre>
+<p>常用属性：<code>Name</code>、<code>Parent</code>、<code>Anchored</code>、<code>Size</code>、<code>Position</code>、<code>CFrame</code>、<code>Color</code>、<code>Material</code>、<code>Transparency</code>、<code>CanCollide</code></p>
+<h3 id="tweenservice">TweenService 动画</h3>
+<pre><code class="language-lua">local info = TweenInfo.new(duration, EasingStyle, EasingDirection, repeatCount, reverses, delay)
+local tween = TweenService:Create(instance, info, {Position = ..., Transparency = ...})
+tween:Play()
+tween.Completed:Connect(function(state) end)
+</code></pre>
+<ul>
+<li><code>Enum.EasingStyle.Quad</code> / <code>Enum.EasingDirection.Out</code> 等缓动参数</li>
+<li><code>repeatCount = -1</code> 为无限循环</li>
+</ul>
+<h3 id="raycast">射线检测（Raycast）</h3>
+<pre><code class="language-lua">local params = RaycastParams.new()
+params.FilterDescendantsInstances = {character}
+params.FilterType = Enum.RaycastFilterType.Exclude
+local result = workspace:Raycast(origin, direction, params)
+-- result.Instance / result.Position / result.Normal / result.Material
+</code></pre>
+<h3 id="_3">玩家与角色</h3>
+<pre><code class="language-lua">local Players = game:GetService(&quot;Players&quot;)
+local player = Players.LocalPlayer  -- 仅客户端
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild(&quot;Humanoid&quot;)
+local rootPart = character:WaitForChild(&quot;HumanoidRootPart&quot;)
+humanoid:TakeDamage(25)
+humanoid:MoveTo(Vector3.new(0, 0, 0))
+humanoid.Died:Connect(function() end)
+</code></pre>
+<h3 id="gui">GUI</h3>
+<pre><code class="language-lua">local screenGui = Instance.new(&quot;ScreenGui&quot;)
+screenGui.Parent = player.PlayerGui
+-- Frame: Size = UDim2, Position = UDim2, BackgroundColor3
+-- TextButton: .Text, .MouseButton1Click:Connect(fn)
+</code></pre>
+<h3 id="runservice">RunService 游戏循环</h3>
+<p>三种循环时机，均传入 <code>dt</code>（帧时间）：
+- <strong>Heartbeat</strong>：物理计算后，每帧；用于游戏逻辑
+- <strong>RenderStepped</strong>：渲染前，仅客户端；用于摄像机等视觉更新
+- <strong>Stepped</strong>：物理计算前，传 <code>(time, dt)</code>；用于物理前处理</p>
+<h3 id="task">task 库（帧调度）</h3>
+<p><code>wait()</code> 的精确替代：
+- <code>task.wait(seconds)</code> — 等待
+- <code>task.spawn(fn, args)</code> — 立即执行（下一帧）
+- <code>task.defer(fn, args)</code> — 延迟到帧末尾
+- <code>task.delay(seconds, fn, args)</code> — 延迟执行
+- <code>task.cancel(thread)</code> — 取消协程</p>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">luau-types</span> — Luau 类型系统与 Roblox API 参考，含完整代码示例</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li>Luau — Roblox 的 Lua 方言，提供类型注解和性能优化</li>
+<li><a href="../entities/Roblox.html">Roblox</a> — 平台背景</li>
+<li><a href="游戏引擎架构.html">游戏引擎架构</a> — Roblox 引擎设计与通用游戏引擎的对比</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Richardson外推法.html">&larr; Richardson外推法</a>
+    <a href="Romberg积分.html">Romberg积分 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

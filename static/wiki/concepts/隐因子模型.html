@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">隐因子模型</h1>
 <h2 id="_2">概述</h2>
-<p>将用户和物品映射到共享低维隐因子空间，通过向量运算衡量匹配度的推荐系统建模范式，<a href="矩阵分解.html">矩阵分解</a>是其核心实现。</p>
+<p>将用户和物品映射到共享低维隐因子空间，通过向量运算衡量匹配度的推荐系统建模<a href="规范化理论.html">范式</a>，<a href="矩阵分解.html">矩阵分解</a>是其核心实现。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心定义</strong>：隐因子模型假设存在一组"隐因子"（latent factors），描述了用户偏好和物品属性的本质特征。在电影推荐场景中，这些隐因子可能对应"喜剧程度"、"动作场面多少"、"演技深度"等难以直接观测但真实存在的维度。</li>
 <li><strong>数学表达</strong>：将用户-物品评分<a href="矩阵.html">矩阵</a> $R_{m \times n}$ 分解为 $P_{m \times k}$ 和 $Q_{n \times k}$ 的乘积，使得 $R \approx P \times Q^T$。预测评分为 $\hat{r}_{ui} = p_u^T \cdot q_i$。</li>
-<li><strong>范式确立</strong>：Koren 等人 2009 年论文以令人信服的实验结果证明，隐因子模型在精度上全面优于近邻<a href="协同过滤.html">协同过滤</a>方法，从此确立了"隐因子模型"作为推荐系统第一范式的地位。</li>
+<li><strong><a href="规范化理论.html">范式</a>确立</strong>：Koren 等人 2009 年论文以令人信服的实验结果证明，隐因子模型在精度上全面优于近邻<a href="协同过滤.html">协同过滤</a>方法，从此确立了"隐因子模型"作为推荐系统第一<a href="规范化理论.html">范式</a>的地位。</li>
 <li><strong>与 <a href="Embedding.html">Embedding</a> 的关系</strong>：隐因子向量本质上就是现代深度学习中的 <a href="Embedding.html">Embedding</a>。2013 年 Word2Vec 引发 NLP 领域的 <a href="Embedding.html">Embedding</a> 革命后，人们才发现推荐系统早在 2006-2009 年就已在使用 <a href="Embedding.html">Embedding</a> 思想。</li>
-<li><strong>现代演进</strong>：从<a href="矩阵分解.html">矩阵分解</a>到<a href="../entities/Factorization Machines.html">因子分解机</a>（<a href="../entities/Factorization Machines.html">FM</a>）、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、<a href="../entities/Neural Collaborative Filtering.html">NCF</a>、<a href="../entities/BERT4Rec.html">BERT4Rec</a>、<a href="双塔模型.html">双塔模型</a>，隐因子模型的"双向量 + 相似度"范式至今仍是推荐系统的骨架。</li>
+<li><strong>现代演进</strong>：从<a href="矩阵分解.html">矩阵分解</a>到<a href="../entities/Factorization Machines.html">因子分解机</a>（FM）、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、NCF、<a href="../entities/BERT4Rec.html">BERT4Rec</a>、<a href="双塔模型.html">双塔模型</a>，隐因子模型的"双向量 + 相似度"<a href="规范化理论.html">范式</a>至今仍是推荐系统的<a href="骨骼系统.html">骨架</a>。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="随机游走.html">&larr; 随机游走</a>
+    <a href="随机编码论证.html">&larr; 随机编码论证</a>
     <a href="隐式反馈.html">隐式反馈 &rarr;</a>
   </div>
 </div>

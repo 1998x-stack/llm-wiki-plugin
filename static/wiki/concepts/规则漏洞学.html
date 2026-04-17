@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规则漏洞学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 规则漏洞学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">经济学</span><span class="tag">AI</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">规则漏洞学</h1>
+<h2 id="_2">概述</h2>
+<p>规则漏洞学是一门研究成文与不成文规则的天然局限性、人性底层弱点与社会商业博弈交叉关系的实用学科。其核心逻辑在于识别并利用规则制定者留下的时间差、地域差及执行弹性缝隙，在不突破法律强制性红线的前提下，实现个体收益最大化与风险极致隔离。该学科强调对规则边界的深度拆解，反对盲目内卷与被动执行，旨在帮助个体从规则的奴隶转变为规则的精准利用者，是打破无效竞争、实现阶层跃迁的高阶思维模型。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心定义与本质</h3>
+<p>规则漏洞学并非教唆违法犯罪或单纯的投机取巧，而是一门关于“规则边界”的精密科学。任何人为制定的规则（包括法律、公司制度、平台算法、行业标准）都存在天然的滞后性、模糊性和覆盖不全的缺陷。这门学问的核心任务是发现这些“空白地带”，即在法律底线之上、道德争议之外的灰色操作空间。它要求研究者具备超越常人的视角，不仅读懂规则的字面含义，更要洞察规则背后的立法意图、执行成本以及不同司法管辖区的差异。</p>
+<h3 id="_5">两条绝对红线</h3>
+<p>学习与应用规则漏洞学必须严守两条不可触碰的红线，这是区分“高手”与“罪犯”的分水岭：
+1. <strong>绝对不突破国家法律的强制性规定</strong>：刑事违法是绝对的禁区。规则漏洞学利用的是规则的缝隙（Loopholes），而非破坏法律的基石（Breaking the Law）。例如，利用政策发布的时间差进行操作是合法的，但伪造文件或诈骗则是违法的。
+2. <strong>绝对不做风险不可控的操作</strong>：遵循“风险封顶，收益不封顶”的原则。所有操作必须经过严密的风险预案设计，确保最坏情况下的损失是可控的（如仅损失时间或少量资金），而潜在收益却是巨大的。反之，那些看似稳妥但一旦失败就面临无限责任（如牢狱之灾或巨额债务）的行为，严禁涉足。</p>
+<h3 id="_6">运作机制与策略</h3>
+<p>规则漏洞学的实战应用主要依赖以下三种机制：
+- <strong>时间差套利</strong>：利用政策或规则从“制定”到“生效”之间的窗口期。典型案例是在禁令发布前一秒完成合规操作，并在生效后立即切割风险。这需要极强的信息预判能力和快速执行力。
+- <strong>地域差套利</strong>：利用不同国家、地区之间监管标准的差异。在一个监管宽松的市场进行创新或高风险高回报的业务，同时在监管严格的市场保持完全合规甚至退出，从而规避单一市场的限制。
+- <strong>执行弹性利用</strong>：深入研究规则执行层面的模糊地带。许多规则在文本上是刚性的，但在实际执行中受限于人力、技术或解释空间，存在弹性。高手通过精准解读这些弹性，找到低成本达成目标的路径。</p>
+<h3 id="_7">认知误区辨析</h3>
+<p>大众对规则漏洞学存在三大致命误解：
+1. <strong>等同于违法犯罪</strong>：实际上，真正的规则漏洞学极度重视合规，其所有操作均在法律框架内寻找最优解，甚至比普通人更懂法。
+2. <strong>等同于不劳而获</strong>：表面上看是运气或投机，实则是基于对海量规则文件、历史案例的深度研究和极致拆解。这是一种高强度的智力劳动，而非简单的碰运气。
+3. <strong>仅适用于赚快钱</strong>：其价值远不止于金融投机。在职场晋升、学术研究、创业选品等领域，理解规则缝隙能帮助个体避开无效内卷，用最低成本获取最大资源。</p>
+<h3 id="_8">应用场景与价值</h3>
+<p>对于普通人而言，掌握规则漏洞学的核心价值在于“避坑”与“破局”。在职场中，它能帮助员工识别晋升规则中的隐性标准，避免在无意义的加班中消耗生命；在投资中，它能帮助投资者看穿理财产品的合规陷阱，避免成为被收割的韭菜；在创业中，它能帮助创业者发现巨头忽视的监管空白赛道，实现低风险启动。这是一种从被动适应规则到主动驾驭规则的认知升级。</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/01.md</span></li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a></li>
+<li><span style="color:#e74c3c" title="broken link">博弈论</span></li>
+<li><span style="color:#e74c3c" title="broken link">信息不对称</span></li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="被动单身.html">&larr; 被动单身</a>
+    <a href="规则的4大先天缺陷.html">规则的4大先天缺陷 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

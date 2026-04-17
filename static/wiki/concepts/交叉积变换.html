@@ -143,8 +143,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>记忆能力的来源</strong>：交叉积变换精确捕捉特定特征共现模式——如果历史上安装了 <a href="../entities/Netflix.html">Netflix</a> 的用户大概率也下载 Hulu，模型通过该交叉特征精确记住这一规律。</li>
 <li><strong>根本性局限</strong>：对于训练数据中从未出现过的特征组合，交叉特征的值恒为 0，完全无法提供信息。这一局限无法通过线性模型自身解决，必须依赖 Deep 组件的泛化能力来补足。</li>
 <li><strong>手工特征工程依赖</strong>：交叉特征的设计需要领域专家根据业务知识决定哪些特征应该交叉。这带来三个问题：（1）不可扩展——特征维度增加时交叉组合呈指数增长；（2）依赖领域知识——不同业务场景需要不同设计；（3）可能遗漏重要交互——隐含的、非直觉的交互模式难以被发现。</li>
-<li><strong>后续改进方向</strong>：这一局限性直接催生了后续工作——<a href="../entities/DeepFM.html">DeepFM</a> 用 <a href="../entities/Factorization Machines.html">FM</a> 组件替代手工交叉特征、<a href="../entities/DCN.html">DCN</a> 用 Cross Network 自动学习显式交叉、<a href="../entities/AutoInt.html">AutoInt</a> 用 <a href="Self-Attention机制.html">Self-Attention</a> 自动发现重要<a href="特征交叉.html">特征交互</a>。</li>
-<li><strong>与一般<a href="特征交叉.html">特征交叉</a>的关系</strong>：交叉积变换是<a href="特征交叉.html">特征交叉</a>的一种具体实现方式，特指通过乘积（AND）操作构造的交叉特征，区别于其他交叉方式（如 <a href="../entities/Factorization Machines.html">FM</a> 中的内积交叉、<a href="../entities/DCN.html">DCN</a> 中的多层交叉网络）。</li>
+<li><strong>后续改进方向</strong>：这一局限性直接催生了后续工作——<a href="../entities/DeepFM.html">DeepFM</a> 用 FM 组件替代手工交叉特征、DCN 用 Cross Network 自动学习显式交叉、<a href="../entities/AutoInt.html">AutoInt</a> 用 <a href="Self-Attention机制.html">Self-Attention</a> 自动发现重要<a href="特征交叉.html">特征交互</a>。</li>
+<li><strong>与一般<a href="特征交叉.html">特征交叉</a>的关系</strong>：交叉积变换是<a href="特征交叉.html">特征交叉</a>的一种具体实现方式，特指通过乘积（AND）操作构造的交叉特征，区别于其他交叉方式（如 FM 中的内积交叉、DCN 中的多层交叉网络）。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

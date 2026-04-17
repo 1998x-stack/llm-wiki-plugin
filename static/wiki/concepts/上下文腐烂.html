@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">研究</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">上下文腐烂</h1>
 <h2 id="_2">概述</h2>
-<p>上下文腐烂（Context Rot）是指随着 LLM 上下文窗口中 token 数量增加，模型从上下文中<strong>准确召回和推理信息的能力非均匀下降</strong>的现象。由 <a href="../entities/ChromaDB.html">Chroma</a> Research（<a href="../entities/ChromaDB.html">ChromaDB</a> 母公司）于 2025 年 7 月通过系统性跨模型实验命名、量化和分类，覆盖 18 个主流 LLM。</p>
+<p>上下文腐烂（Context Rot）是指随着 LLM <a href="上下文窗口.html">上下文窗口</a>中 token 数量增加，模型从上下文中<strong>准确召回和推理信息的能力非均匀下降</strong>的现象。由 <a href="../entities/ChromaDB.html">Chroma</a> Research（<a href="../entities/ChromaDB.html">ChromaDB</a> 母公司）于 2025 年 7 月通过系统性跨模型实验命名、量化和分类，覆盖 18 个主流 LLM。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="niah">为何 NIAH 基准不够充分</h3>
 <p>针刺干草堆（Needle In A Haystack, NIAH）是最广泛使用的长上下文基准测试，但存在根本局限：
@@ -197,13 +197,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li>上下文腐烂不是崖式崩溃，而是<strong>性能梯度下降</strong>，且降速因语义相似度、干扰项数量、内容结构而非均匀</li>
 <li>所有 18 个主流 LLM 均表现出此现象，包括 GPT-4.1、Claude 4、Gemini 2.5、Qwen3</li>
-<li>等待更大的上下文窗口不能解决此问题——即使窗口扩大，退化仍然发生</li>
+<li>等待更大的<a href="上下文窗口.html">上下文窗口</a>不能解决此问题——即使窗口扩大，退化仍然发生</li>
 <li>这是<a href="Context-Engineering.html">Context-Engineering</a>存在的核心动机：<strong>精心策划呈现给模型的信息，而非简单堆砌</strong></li>
 </ul>
 <h3 id="_6">对系统设计的含义</h3>
 <ul>
-<li><strong><a href="检索增强生成.html">RAG</a> 和<a href="即时上下文检索.html">即时上下文检索</a>的必要性</strong>：预先过滤 + 只传递相关信息，而非传入完整文档</li>
-<li><strong>干扰项设计</strong>：<a href="检索增强生成.html">RAG</a> 系统中检索到的相似但不相关的 chunk 就是干扰项，其危害大于完全无关内容</li>
+<li><strong>RAG 和<a href="即时上下文检索.html">即时上下文检索</a>的必要性</strong>：预先过滤 + 只传递相关信息，而非传入完整文档</li>
+<li><strong>干扰项设计</strong>：RAG 系统中检索到的相似但不相关的 chunk 就是干扰项，其危害大于完全无关内容</li>
 <li><strong>信息密度</strong>：压缩和精选比填入更多信息更重要</li>
 </ul>
 <h2 id="_7">来源</h2>
@@ -223,7 +223,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="上下文焦虑.html">&larr; 上下文焦虑</a>
+    <a href="上下文编辑.html">&larr; 上下文编辑</a>
     <a href="上下文重置.html">上下文重置 &rarr;</a>
   </div>
 </div>

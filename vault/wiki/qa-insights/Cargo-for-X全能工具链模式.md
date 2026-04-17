@@ -10,10 +10,7 @@ updated: 2026-04-15
 last_accessed: 2026-04-15
 status: active
 source_count: 1
-tags:
-  - 工具
-  - 技术
-  - 方法论
+tags: [工具, 技术, 方法论, 工具与框架]
 aliases:
   - Cargo for X Pattern
   - All-in-One 工具链
@@ -52,7 +49,7 @@ Bun（JavaScript）和 uv（Python）代表了一种跨语言的工具链设计�
 
 1. **碎片化是痛点而非特性**：npm/pip 生态中需要 4-5 个独立工具协作的模式，不是"Unix 哲学"的体现，而是历史包袱。Cargo 证明了统一工具链可以更好。
 
-2. **系统语言重写是性能杠杆**：用 Zig/Rust 重写 JS/Python 工具链，获得的不是 20% 提升而是 10-100x 提升。这不是优化，是范式转换。
+2. **系统语言重写是性能杠杆**：用 Zig/Rust 重写 JS/Python 工具链，获得的不是 20% 提升而是 10-100x 提升。这不是优化，是[[规范化理论|范式]]转换。
 
 3. **AI 友好是新的选型维度**：现代工具链强调"零配置"和"确定性输出"，这些恰好是 AI Agent（如 [[Claude-Code]]）高效工作的前提条件。
 

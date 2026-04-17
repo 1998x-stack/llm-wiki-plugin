@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 6
-tags: [AI, 方法论, 技术]
+tags: [AI, 方法论, 技术, AI工程]
 synthesizes:
   - "[[Context-Engineering]]"
   - "[[分层记忆架构]]"

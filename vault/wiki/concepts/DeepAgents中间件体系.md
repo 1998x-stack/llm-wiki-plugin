@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 9
-tags: [AI, Agent, 中间件, LangChain, 架构]
+tags: [AI, Agent, 中间件, LangChain, 架构, Agent系统]
 aliases: [AgentMiddleware, DeepAgents middleware]
 relates_to:
   - target: "[[DeepAgents]]"
@@ -26,7 +26,7 @@ supersedes: null
 
 ## 概述
 
-[[DeepAgents]] [[ROS (Robot Operating System)|中间件]]（`libs/deepagents/deepagents/middleware/`）是 [[Agent Harness模式]] 的核心扩展点：每个[[ROS (Robot Operating System)|中间件]]继承 `AgentMiddleware`，重写 `wrap_model_call()` 在**每次 LLM 调用前**拦截请求，改写系统提示、工具列表或消息，实现横切能力（规划、文件系统、子代理、上下文压缩、记忆、人机协同等）。
+[[DeepAgents]] [[ROS (Robot Operating System)|中间件]]（`libs/deepagents/deepagents/middleware/`）是 [[Agent Harness模式]] 的核心扩展点：每个[[ROS (Robot Operating System)|中间件]]继承 `AgentMiddleware`，重写 `wrap_model_call()` 在**每次 LLM 调用前**拦截请求，改写系统提示、工具列表或消息，实现横切能力（规划、文件系统、子代理、[[上下文压缩]]、记忆、人机协同等）。
 
 ## 关键内容
 

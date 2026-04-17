@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>定义</strong>：高阶<a href="特征交叉.html">特征交互</a>指三个及以上特征之间的组合关系，如"用户口味偏好 × 季节 × 用餐人数 × 聚会类型"这样的多因素联合影响。</li>
 <li><strong>学习方式</strong>：在 <a href="../entities/DeepFM.html">DeepFM</a> 中，高阶交互由 DNN 组件通过多层非线性变换隐式学习。DNN 的每一层可以视为对前一层特征的进一步组合，层数越多能捕获的交互阶数越高。</li>
-<li><strong>与低阶交互的关系</strong>：低阶交互（一阶、二阶）捕获直接的线性关系和两两组合，高阶交互捕获更复杂的非线性模式。两者缺一不可——实验表明只考虑低阶的 <a href="../entities/Factorization Machines.html">FM</a> 或只考虑高阶的 <a href="../entities/FNN.html">FNN</a> 都不如同时考虑两者的 <a href="../entities/DeepFM.html">DeepFM</a>。</li>
+<li><strong>与低阶交互的关系</strong>：低阶交互（一阶、二阶）捕获直接的线性关系和两两组合，高阶交互捕获更复杂的非线性模式。两者缺一不可——实验表明只考虑低阶的 FM 或只考虑高阶的 FNN 都不如同时考虑两者的 <a href="../entities/DeepFM.html">DeepFM</a>。</li>
 <li><strong>黑盒问题</strong>：DNN 学习的高阶交互是完全隐式的"黑盒"过程，无法清楚知道模型学到了哪些具体的高阶交互模式。<a href="../entities/AutoInt.html">AutoInt</a> 通过<a href="多头注意力.html">多头自注意力</a>机制使交互学习更加透明。</li>
 <li><strong>维度级 vs 向量级</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 中 DNN 学习的是维度级（dimension-wise）交互，即 <a href="Embedding.html">Embedding</a> 向量被展平后逐维度进行全连接变换。<a href="../entities/xDeepFM.html">xDeepFM</a> 的 CIN 在向量级（vector-wise）进行交互，保留了更丰富的特征结构信息。</li>
 </ol>

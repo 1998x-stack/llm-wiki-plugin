@@ -27,7 +27,7 @@ supersedes: null
 
 1. **问题来源**：[[P5 论文]] 使用字面数字 ID（如 "item_1532"）表示物品，后续研究指出这些 ID 本身不携带语义信息，与预训练语言模型的语义空间存在天然鸿沟，影响模型性能。
 
-2. **[[Whole-word Embedding]] 的局限**：[[P5 论文|P5]] 的 [[Whole-word Embedding]] 虽然通过共享[[Whole-word Embedding|全词嵌入]]改善了 ID 表示，但仍然依赖数字 ID 作为基础，无法从根本上解决语义鸿沟问题。
+2. **[[Whole-word Embedding]] 的局限**：P5 的 [[Whole-word Embedding]] 虽然通过共享[[Whole-word Embedding|全词嵌入]]改善了 ID 表示，但仍然依赖数字 ID 作为基础，无法从根本上解决语义鸿沟问题。
 
 3. **[[LC-Rec]] 方案**：用语义标识符（semantic identifiers）替代数字 ID，通过量化或聚类方法将物品映射到有意义的语义空间，使 ID 本身携带语义信息。
 

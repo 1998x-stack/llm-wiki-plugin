@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWE-bench — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / SWE-bench</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="swe-bench">SWE-bench</h1>
+<h2 id="_1">概述</h2>
+<p>SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自动修复 GitHub 仓库中真实 issue 和 bug 的能力。采用 pass@1 指标，即 Agent 一次性成功修复问题的比例。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">测试机制</h3>
+<ul>
+<li>从真实 GitHub 仓库中抽取 issue 和对应的修复 commit</li>
+<li>Agent 接收 issue 描述和代码库访问权限</li>
+<li>通过运行仓库测试套件验证修复是否正确</li>
+<li><strong>pass@1</strong>：单次尝试成功修复的比例</li>
+</ul>
+<h3 id="_4">代表性结果</h3>
+<ul>
+<li><strong><a href="../entities/SWE-agent.html">SWE-agent</a></strong>（Princeton 2024）：</li>
+<li>SWE-bench Full：<strong>12.47%</strong> resolved（GPT-4 Turbo）</li>
+<li>SWE-bench Lite：<strong>18.00%</strong> resolved（GPT-4 Turbo）</li>
+<li>pass@k 曲线：k=6 时解决率升至 30%+，但单题波动明显</li>
+<li><strong>Shell-only agent</strong>（GPT-4 Turbo）：Lite 上 <strong>11.00%</strong></li>
+<li><strong>RAG</strong>（GPT-4 Turbo）：Full 上 1.31%，Lite 上 2.67%</li>
+</ul>
+<p>该结果被用来支撑核心论点：交互式 Agent + 专门设计的 ACI，比"只让模型直接输出 patch"更适合真实软件工程任务。</p>
+<h3 id="aci">在 ACI 研究中的角色</h3>
+<p><a href="Agent计算机接口.html">Agent计算机接口</a> 研究中，SWE-bench 被用作工具设计质量的验证平台：
+- Anthropic 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化
+- 仅改工具描述就在 SWE-bench 上达到 SOTA
+- 证明了"接口设计质量直接决定 Agent 成功率"的核心假设</p>
+<h3 id="_5">与其他评估体系的对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>SWE-bench</th>
+<th><a href="HumanEvalFix.html">HumanEvalFix</a></th>
+<th><a href="DeepAgents评估体系.html">DeepAgents评估体系</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>评估对象</td>
+<td>真实仓库 issue 修复</td>
+<td>单函数级代码修复</td>
+<td>多轮 Agent 轨迹</td>
+</tr>
+<tr>
+<td>粒度</td>
+<td>仓库级（跨文件）</td>
+<td>函数级</td>
+<td>工作流级</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>pass@1 成功率</td>
+<td>pass@1 成功率</td>
+<td>成功断言 + 效率断言</td>
+</tr>
+<tr>
+<td><a href="../entities/SWE-agent.html">SWE-agent</a> pass@1</td>
+<td>12.5%</td>
+<td>87.7%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>静态代码修复</td>
+<td>静态代码修复</td>
+<td>动态多步工作流</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到仓库级时，好的交互界面带来的优势更加显著。</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — ChatGPT 对话总结</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版&quot;.md</span> — SWE-agent 论文 5 页读书笔记</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 24 个核心概念词条分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="Agent计算机接口.html">Agent计算机接口</a> — uses（SWE-bench 是 ACI 设计质量的验证平台）</li>
+<li><a href="Agent评估方法论.html">Agent评估方法论</a> — implements（软件工程 Agent 的标准基准）</li>
+<li><a href="DeepAgents评估体系.html">DeepAgents评估体系</a> — compares_to（不同的评估范式）</li>
+<li><a href="HumanEvalFix.html">HumanEvalFix</a> — compares_to（不同粒度的代码修复基准，SWE-agent 87.7% vs 12.5%）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="STRIPS 规划器.html">&larr; STRIPS 规划器</a>
+    <a href="Schur分解.html">Schur分解 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

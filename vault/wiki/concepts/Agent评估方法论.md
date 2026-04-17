@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, AI工程]
 aliases: ["Agent Evaluation", "Agent Evals", "Agent评估", "eval方法论", "LLM评估"]
 relates_to:
   - target: "[[生成器-评估器架构]]"

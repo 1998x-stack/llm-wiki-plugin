@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">何向南</h1>
 <h2 id="_2">概述</h2>
-<p>推荐系统研究者，新加坡国立大学博士，<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（<a href="Neural Collaborative Filtering.html">NCF</a>）第一作者，后续提出 <a href="NGCF.html">Neural Graph Collaborative Filtering</a>（<a href="NGCF.html">NGCF</a>）和 <a href="LightGCN.html">LightGCN</a> 等图<a href="../concepts/协同过滤.html">协同过滤</a>经典方法。</p>
+<p>推荐系统研究者，新加坡国立大学博士，<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（NCF）第一作者，后续提出 <a href="NGCF.html">Neural Graph Collaborative Filtering</a>（NGCF）和 <a href="LightGCN.html">LightGCN</a> 等图<a href="../concepts/协同过滤.html">协同过滤</a>经典方法。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong><a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（<a href="Neural Collaborative Filtering.html">NCF</a>，WWW 2017）</strong>：第一作者，与 Lizi Liao、Hanwang Zhang、Liqiang Nie、Xia Hu、<a href="Tat-Seng Chua.html">Tat-Seng Chua</a> 合作。提出用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>内积操作的通用框架，包含 <a href="../concepts/GMF.html">GMF</a>、MLP、<a href="../concepts/NeuMF.html">NeuMF</a> 三个模型变体。论文截至2026年引用超10000次，是推荐系统领域引用最高的论文之一。开源代码：github.com/hexiangnan/neural_collaborative_filtering。</li>
-<li><strong><a href="../concepts/NeuMF.html">NeuMF</a> 融合设计</strong>：在 <a href="Neural Collaborative Filtering.html">NCF</a> 中提出 <a href="../concepts/GMF.html">GMF</a>（广义<a href="../concepts/矩阵分解.html">矩阵分解</a>）与 MLP（多层感知机）双塔融合架构，两者使用独立嵌入空间，在高层拼接输出。体现了"线性与非线性各有所长，融合比替代更好"的工程直觉。</li>
-<li><strong>后续工作</strong>：<a href="Neural Collaborative Filtering.html">NCF</a> 之后，何向南继续推进<a href="../concepts/协同过滤.html">协同过滤</a>的深度学习方向，提出 <a href="NGCF.html">Neural Graph Collaborative Filtering</a>（<a href="NGCF.html">NGCF</a>, 2019），将图神经网络引入<a href="../concepts/协同过滤.html">协同过滤</a>，在用户-物品二部图上进行消息传递。其后续工作 <a href="LightGCN.html">LightGCN</a>（2020）简化了 <a href="NGCF.html">NGCF</a>，去除不必要的非线性变换，成为图<a href="../concepts/协同过滤.html">协同过滤</a>的经典方法。</li>
-<li><strong>学术争议</strong>：<a href="Neural Collaborative Filtering.html">NCF</a> 论文成为推荐系统领域可复现性危机的典型案例。Ferrari Dacrema 等人（2019）和<a href="Steffen Rendle.html">Steffen Rendle</a>等人（2020）对 <a href="Neural Collaborative Filtering.html">NCF</a> 的实验方法论提出质疑，包括基线未充分调优、测试集泄露等问题。</li>
+<li><strong><a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a>（NCF，WWW 2017）</strong>：第一作者，与 Lizi Liao、Hanwang Zhang、Liqiang Nie、Xia Hu、<a href="Tat-Seng Chua.html">Tat-Seng Chua</a> 合作。提出用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>内积操作的通用框架，包含 GMF、MLP、<a href="../concepts/NeuMF.html">NeuMF</a> 三个模型变体。论文截至2026年引用超10000次，是推荐系统领域引用最高的论文之一。开源代码：github.com/hexiangnan/neural_collaborative_filtering。</li>
+<li><strong><a href="../concepts/NeuMF.html">NeuMF</a> 融合设计</strong>：在 NCF 中提出 GMF（广义<a href="../concepts/矩阵分解.html">矩阵分解</a>）与 MLP（多层感知机）双塔融合架构，两者使用独立嵌入空间，在高层拼接输出。体现了"线性与非线性各有所长，融合比替代更好"的工程直觉。</li>
+<li><strong>后续工作</strong>：NCF 之后，何向南继续推进<a href="../concepts/协同过滤.html">协同过滤</a>的深度学习方向，提出 <a href="NGCF.html">Neural Graph Collaborative Filtering</a>（NGCF, 2019），将图神经网络引入<a href="../concepts/协同过滤.html">协同过滤</a>，在用户-物品二部图上进行消息传递。其后续工作 <a href="LightGCN.html">LightGCN</a>（2020）简化了 NGCF，去除不必要的非线性变换，成为图<a href="../concepts/协同过滤.html">协同过滤</a>的经典方法。</li>
+<li><strong>学术争议</strong>：NCF 论文成为推荐系统领域可复现性危机的典型案例。Ferrari Dacrema 等人（2019）和<a href="Steffen Rendle.html">Steffen Rendle</a>等人（2020）对 NCF 的实验方法论提出质疑，包括基线未充分调优、测试集泄露等问题。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

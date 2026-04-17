@@ -186,14 +186,96 @@ def save_snapshot(pages):
     print(json.dumps({"status": "ok", "snapshot": str(SNAPSHOT_PATH), "pages": len(pages)}))
 
 
+def slim_index(pages):
+    """Rewrite index.md as compact summary table + global name list."""
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    # Load topic mapping for stats
+    topic_map_path = VAULT_DIR / ".claude" / "topic-to-wiki.json"
+
+    page_topic = {}
+    if topic_map_path.exists():
+        data = json.loads(topic_map_path.read_text(encoding="utf-8"))
+        for topic, names in data.get("topics", {}).items():
+            for name in names:
+                page_topic[name] = topic
+
+    # Count by topic and type
+    topic_stats = {}  # topic -> {concept: N, entity: N, other: N}
+    for name, info in pages.items():
+        topic = page_topic.get(name, "其他")
+        if topic not in topic_stats:
+            topic_stats[topic] = {"concept": 0, "entity": 0, "other": 0}
+        t = info["type"]
+        if t in ("concept", "entity"):
+            topic_stats[topic][t] += 1
+        else:
+            topic_stats[topic]["other"] += 1
+
+    # Global counts
+    entity_count = sum(1 for p in pages.values() if p["type"] == "entity")
+    concept_count = sum(1 for p in pages.values() if p["type"] == "concept")
+    synthesis_count = sum(1 for p in pages.values() if p["type"] == "synthesis")
+    qa_count = sum(1 for p in pages.values() if p["type"] == "qa-insight")
+    total = len(pages)
+
+    # Build table rows (sorted by total desc, 其他 last)
+    rows = []
+    for topic, stats in sorted(topic_stats.items(), key=lambda x: (x[0] == "其他", -sum(x[1].values()))):
+        t_total = sum(stats.values())
+        rows.append(f"| {topic} | {stats['concept']} | {stats['entity']} | {t_total} | [[maps/{topic}]] |")
+
+    # Build global name list (comma-separated, sorted)
+    all_names = ", ".join(sorted(pages.keys()))
+
+    lines = [
+        "---",
+        "type: index",
+        f"updated: {today}",
+        "---",
+        "",
+        "# 知识库目录",
+        "",
+        "> 本文件由 LLM 自动维护。详细清单见各 `maps/*.md`。",
+        "",
+        "## 统计",
+        "",
+        "| 主题 | 概念 | 实体 | 合计 | map |",
+        "|------|------|------|------|-----|",
+    ]
+    lines.extend(rows)
+    lines.extend([
+        "",
+        f"总计: {total} 页 ({concept_count} 概念, {entity_count} 实体, {synthesis_count} 综合, {qa_count} QA)",
+        "",
+        "## 全部页面",
+        "",
+        all_names,
+        "",
+    ])
+
+    INDEX_PATH.write_text("\n".join(lines), encoding="utf-8")
+    print(json.dumps({
+        "status": "slim",
+        "total": total,
+        "topics": len(topic_stats),
+        "index_lines": len(lines),
+    }, ensure_ascii=False, indent=2))
+
+
 def main():
     parser = argparse.ArgumentParser(description="Index integrity checker")
     parser.add_argument("--update", action="store_true", help="Add missing entries to index.md")
     parser.add_argument("--snapshot", action="store_true", help="Save snapshot JSON")
+    parser.add_argument("--slim", action="store_true", help="Rewrite index.md as compact summary")
     args = parser.parse_args()
 
     pages = scan_wiki()
     indexed = parse_index()
+
+    if args.slim:
+        slim_index(pages)
+        return
 
     if args.snapshot:
         save_snapshot(pages)

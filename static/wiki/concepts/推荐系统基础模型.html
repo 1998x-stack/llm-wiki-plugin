@@ -156,15 +156,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>技术路线</strong>：</p>
 </li>
-<li><strong><a href="../entities/P5 论文.html">P5</a> 路线</strong>（2022）：基于 <a href="../entities/T5.html">T5</a>-small/base（60M-223M），Prompt 模板，全参数微调</li>
+<li><strong>P5 路线</strong>（2022）：基于 T5-small/base（60M-223M），Prompt 模板，全参数微调</li>
 <li>
 <p><strong>现代方案</strong>（2024-2025）：基于 LLaMA/Mistral/Qwen（7B-70B），<a href="指令调优.html">指令调优</a>，LoRA/QLoRA 参数高效微调</p>
 </li>
 <li>
-<p><strong>挑战</strong>：推理效率（自回归解码延迟）；物品词汇表可扩展性；ID 语义鸿沟；工业落地兼容性。工业界对完全替代传统推荐模型持谨慎态度，更多将 LLM 作为辅助组件（特征增强、冷启动解决、用户意图理解）。</p>
+<p><strong>挑战</strong>：推理效率（<a href="AR 模型（自回归模型）.html">自回归</a>解码延迟）；物品词汇表可扩展性；ID 语义鸿沟；工业落地兼容性。工业界对完全替代传统推荐模型持谨慎态度，更多将 LLM 作为辅助组件（特征增强、冷启动解决、用户意图理解）。</p>
 </li>
 <li>
-<p><strong>后续工作</strong>：<a href="../entities/OpenP5.html">OpenP5</a> 标准化基准平台、<a href="../entities/VIP5.html">VIP5</a> 多模态扩展、<a href="../entities/InstructRec.html">InstructRec</a> <a href="指令调优.html">指令调优</a>、<a href="../entities/TALLRec.html">TALLRec</a> LLaMA 微调、<a href="../entities/LC-Rec.html">LC-Rec</a> <a href="语义 ID.html">语义 ID</a>、<a href="../entities/LLMRec.html">LLMRec</a> 双表示、<a href="../entities/DEALRec.html">DEALRec</a> 数据剪枝。</p>
+<p><strong>后续工作</strong>：<a href="../entities/OpenP5.html">OpenP5</a> 标准化基准平台、VIP5 多模态扩展、<a href="../entities/InstructRec.html">InstructRec</a> <a href="指令调优.html">指令调优</a>、<a href="../entities/TALLRec.html">TALLRec</a> LLaMA 微调、<a href="../entities/LC-Rec.html">LC-Rec</a> <a href="语义 ID.html">语义 ID</a>、<a href="../entities/LLMRec.html">LLMRec</a> 双表示、<a href="../entities/DEALRec.html">DEALRec</a> 数据剪枝。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/P5 论文.html">P5 论文</a> — 首次提出推荐系统基础模型愿景</li>
 <li><a href="生成式推荐.html">生成式推荐</a> — 基础模型的核心范式</li>
-<li><a href="../entities/T5.html">T5</a> — P5 使用的基础模型骨干</li>
+<li>T5 — P5 使用的基础模型骨干</li>
 <li><a href="多任务学习.html">多任务学习</a> — 基础模型的训练策略</li>
 <li><a href="../entities/OpenP5.html">OpenP5</a> — 基础模型的标准化基准平台</li>
 <li><a href="指令调优.html">指令调优</a> — 现代基础模型的适配方式</li>
@@ -187,7 +187,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="推荐系统 Scaling Laws.html">&larr; 推荐系统 Scaling Laws</a>
-    <a href="操作空间控制.html">操作空间控制 &rarr;</a>
+    <a href="提示词缓存.html">提示词缓存 &rarr;</a>
   </div>
 </div>
 </body>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoX数据格式API — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / UrhoX数据格式API</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">XML</span><span class="tag">JSON</span><span class="tag">数据格式</span><span class="tag">游戏引擎</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhoxapi">UrhoX数据格式API</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 提供 XML 和 JSON 两套结构化数据格式支持，均继承自 Resource，可通过资源缓存加载，也支持字符串直接解析和文件保存。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="xmlfile-xml">XMLFile — XML 资源</h3>
+<p><code>XMLFile : Resource</code> 代表一个 XML 文档，支持从字符串解析、DOM 操作和文件保存。</p>
+<pre><code class="language-lua">-- 从文件加载
+local xml = cache:GetResource(&quot;XMLFile&quot;, &quot;config.xml&quot;)
+
+-- 从字符串解析
+local xml2 = XMLFile()
+xml2:FromString(&quot;&lt;root&gt;&lt;item name='a'/&gt;&lt;/root&gt;&quot;)
+
+-- 获取根元素
+local root = xml:GetRoot(&quot;root&quot;)
+
+-- 保存
+xml:Save(&quot;output.xml&quot;, &quot;\t&quot;)
+</code></pre>
+<p>关键方法：<code>FromString</code>、<code>CreateRoot</code>、<code>GetOrCreateRoot</code>、<code>GetRoot</code>、<code>ToString</code>、<code>Patch</code>（XML patch 机制）、<code>Save</code>。</p>
+<h3 id="xmlelement-xml">XMLElement — XML 元素操作</h3>
+<p><code>XMLElement</code> 是轻量值类型（非指针），表示 XML DOM 节点，支持完整的子树遍历和属性读写。</p>
+<p>常用操作：</p>
+<pre><code class="language-lua">local item = root:CreateChild(&quot;item&quot;)
+item:SetAttribute(&quot;name&quot;, &quot;sword&quot;)
+item:SetInt(&quot;damage&quot;, 50)
+item:SetBool(&quot;magic&quot;, true)
+item:SetVector3(&quot;pos&quot;, Vector3(1, 2, 3))
+
+-- 遍历子元素
+local child = root:GetChild(&quot;item&quot;)
+while child:NotNull() do
+    local name = child:GetAttribute(&quot;name&quot;)
+    child = child:GetNext(&quot;item&quot;)
+end
+</code></pre>
+<p>支持的类型读写：<code>Bool</code>、<code>Float</code>、<code>Double</code>、<code>Int</code>/<code>UInt</code>/<code>Int64</code>/<code>UInt64</code>、<code>IntRect</code>、<code>IntVector2/3</code>、<code>Rect</code>、<code>Quaternion</code>、<code>Vector2/3/4</code>、<code><a href="矩阵.html">Matrix</a>3/3x4/4</code>、<code>Color</code>、<code>String</code>、<code><a href="../entities/Hal Varian.html">Varian</a>t</code>、<code>ResourceRef</code>/<code>ResourceRefList</code>。</p>
+<p>属性（只读）：<code>null</code>、<code>name</code>、<code>parent</code>、<code>value</code>、<code>numAttributes</code>、<code>file</code>。
+常量：<code>XMLElement.EMPTY</code>（空元素，用于判断是否有效）。</p>
+<blockquote>
+<p>⚠️ <code>IsNull()</code> / <code>NotNull()</code> 用于检查元素是否有效；遍历到末尾时 <code>GetNext()</code> 返回空元素。</p>
+</blockquote>
+<h3 id="jsonfile-json">JSONFile — JSON 资源</h3>
+<p><code>JSONFile : Resource</code> 代表一个 JSON 文档。</p>
+<pre><code class="language-lua">local jf = JSONFile()
+jf:FromString('{&quot;score&quot;: 100, &quot;name&quot;: &quot;player1&quot;}')
+local root = jf:GetRoot()  -- 返回 JSONValue
+local score = root:Get(&quot;score&quot;):GetInt()
+jf:Save(&quot;save.json&quot;, &quot;\t&quot;)
+</code></pre>
+<p>方法：<code>FromString</code>、<code>ToString</code>、<code>GetRoot</code>、<code>Save</code>。</p>
+<h3 id="jsonvalue-json">JSONValue — JSON 节点</h3>
+<p><code>JSONValue</code> 是 JSON 树中的任意节点，支持类型检查、基本类型读写和数组/对象操作。</p>
+<pre><code class="language-lua">local val = JSONValue()
+val:SetInt(42)
+print(val:IsNumber(), val:GetInt())   -- true   42
+
+-- 数组操作
+local arr = JSONValue()
+arr:SetArray({})
+arr:Push(JSONValue(1.0))
+arr:Push(JSONValue(&quot;hello&quot;))
+print(arr:Size())   -- 2
+
+-- 对象操作
+local obj = JSONValue()
+obj:SetObject({})
+obj:Set(&quot;key&quot;, JSONValue(true))
+print(obj:Contains(&quot;key&quot;))   -- true
+obj:Erase(&quot;key&quot;)
+</code></pre>
+<p>类型检查：<code>IsNull</code>、<code>IsBool</code>、<code>IsNumber</code>、<code>IsString</code>、<code>IsArray</code>、<code>IsObject</code>。
+类型读取：<code>GetBool</code>、<code>GetInt</code>、<code>GetUInt</code>、<code>GetFloat</code>、<code>GetDouble</code>、<code>GetString</code>、<code>GetArray</code>、<code>GetObject</code>。
+类型写入：<code>SetBool</code>、<code>SetInt</code>、<code>SetUint</code>、<code>SetFloat</code>、<code>SetDouble</code>、<code>SetString</code>、<code>SetArray</code>、<code>SetObject</code>。
+Variant 互转：<code>Set<a href="../entities/Hal Varian.html">Varian</a>t</code>/<code>Get<a href="../entities/Hal Varian.html">Varian</a>t</code>、<code>Set<a href="../entities/Hal Varian.html">Varian</a>tMap</code>/<code>Get<a href="../entities/Hal Varian.html">Varian</a>tMap</code>。
+常量：<code>JSONValue.EMPTY</code>、<code>JSONValue.emptyArray</code>、<code>JSONValue.emptyObject</code>。</p>
+<blockquote>
+<p>⚠️ 引擎提供 <code>File</code>+JSON 的原生路径，但对于复杂 JSON 操作推荐优先使用 <code>cjson</code>（见 <code>engine-docs/recipes/json.md</code>），性能更好且 API 更简洁。</p>
+</blockquote>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/engine-docs/api/io.md</span> — UrhoX Lua API 官方文档</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/UrhoX引擎.html">UrhoX引擎</a> — relates_to</li>
+<li><a href="UrhoX IO系统API.html">UrhoX IO系统API</a> — relates_to</li>
+<li><a href="UrhoX序列化系统API.html">UrhoX序列化系统API</a> — relates_to</li>
+<li><a href="UrhoX全局子系统.html">UrhoX全局子系统</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="UrhoX引擎生命周期API.html">&larr; UrhoX引擎生命周期API</a>
+    <a href="UrhoX示例管理系统.html">UrhoX示例管理系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

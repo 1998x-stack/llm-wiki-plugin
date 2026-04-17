@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 8
-tags: [AI, LLM, Agent, LangChain, 开源, Python]
+tags: [AI, LLM, Agent, LangChain, 开源, Python, Agent系统]
 aliases: [langchain-ai/deepagents, deep agents, deepagents]
 relates_to:
   - target: "[[Agent Harness模式]]"

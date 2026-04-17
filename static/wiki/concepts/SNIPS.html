@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="snips">自归一化逆倾向评分 (SNIPS)</h1>
 <h2 id="_1">概述</h2>
-<p>SN<a href="逆倾向评分.html">IPS</a> 是 <a href="逆倾向评分.html">IPS</a> 的自归一化变体，通过用逆倾向权重总和进行归一化，显著降低估计方差，同时保持最优解不变，是因果推荐中的标准估计器。</p>
+<p>SNIPS 是 IPS 的自归一化变体，通过用逆倾向权重总和进行归一化，显著降低估计方差，同时保持最优解不变，是因果推荐中的标准估计器。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心公式</strong>：$\hat{R}<em>{SN<a href="逆倾向评分.html">IPS</a>}(\hat{Y}) = \frac{\sum</em>{(u,i): O_{u,i}=1} \frac{\delta(\hat{y}<em>{u,i}, y</em>{u,i})}{P_{u,i}}}{\sum_{(u,i): O_{u,i}=1} \frac{1}{P_{u,i}}}$。分母为所有逆倾向权重之和，使归一化后权重总和为 1。</p>
+<p><strong>核心公式</strong>：$\hat{R}<em>{SNIPS}(\hat{Y}) = \frac{\sum</em>{(u,i): O_{u,i}=1} \frac{\delta(\hat{y}<em>{u,i}, y</em>{u,i})}{P_{u,i}}}{\sum_{(u,i): O_{u,i}=1} \frac{1}{P_{u,i}}}$。分母为所有逆倾向权重之和，使归一化后权重总和为 1。</p>
 </li>
 <li>
 <p><strong>来源</strong>：源自<a href="因果推断.html">因果推断</a>文献中的 Hajek 估计器，由 <a href="../entities/Tobias Schnabel.html">Tobias Schnabel</a> 等人在 <a href="../entities/Recommendations as Treatments.html">Recommendations as Treatments</a> 中引入推荐系统领域。</p>
@@ -148,16 +148,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>优势</strong>：</p>
 </li>
 <li><strong>显著降低方差</strong>：通过归一化避免极端权重（如 $1/0.001 = 1000$）的影响</li>
-<li><strong>牺牲极小偏差</strong>：SN<a href="逆倾向评分.html">IPS</a> 不再是严格无偏的，但引入的偏差通常可忽略</li>
-<li><strong>保持最优解不变</strong>：用于学习时，SN<a href="逆倾向评分.html">IPS</a> 不改变 argmax，最优模型参数不受归一化影响</li>
+<li><strong>牺牲极小偏差</strong>：SNIPS 不再是严格无偏的，但引入的偏差通常可忽略</li>
+<li><strong>保持最优解不变</strong>：用于学习时，SNIPS 不改变 argmax，最优模型参数不受归一化影响</li>
 <li>
 <p><strong>无需额外调参</strong>：不像倾向性裁剪（propensity clipping）需人工设定截断阈值</p>
 </li>
 <li>
-<p><strong>与 <a href="逆倾向评分.html">IPS</a> 的权衡</strong>：<a href="逆倾向评分.html">IPS</a> 严格无偏但方差高，SN<a href="逆倾向评分.html">IPS</a> 有微小偏差但方差显著更低。在实际推荐场景中，SN<a href="逆倾向评分.html">IPS</a> 通常表现更稳定，尤其在各种偏差程度下都维持良好精度。</p>
+<p><strong>与 IPS 的权衡</strong>：IPS 严格无偏但方差高，SNIPS 有微小偏差但方差显著更低。在实际推荐场景中，SNIPS 通常表现更稳定，尤其在各种偏差程度下都维持良好精度。</p>
 </li>
 <li>
-<p><strong>药物临床类比</strong>：如果某类患者服药概率极低（0.001），一旦观察到这样的患者，其 <a href="逆倾向评分.html">IPS</a> 权重高达 1000 倍，一个人的数据可能主导整个估计。SN<a href="逆倾向评分.html">IPS</a> 通过归一化避免"一个极端样本搅动全局"的问题。</p>
+<p><strong>药物临床类比</strong>：如果某类患者服药概率极低（0.001），一旦观察到这样的患者，其 IPS 权重高达 1000 倍，一个人的数据可能主导整个估计。SNIPS 通过归一化避免"一个极端样本搅动全局"的问题。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="SLAM.html">&larr; SLAM</a>
-    <a href="STRIPS 规划器.html">STRIPS 规划器 &rarr;</a>
+    <a href="SQL.html">SQL &rarr;</a>
   </div>
 </div>
 </body>

@@ -139,19 +139,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>问题背景</strong>：在语言模型中表示用户和物品 ID 是一个棘手问题。<a href="../entities/P5 论文.html">P5 论文</a> 探索了两种策略：<a href="../entities/P5 论文.html">P5</a>-I（Independent Tokens）和 <a href="../entities/P5 论文.html">P5</a>-S（Sub-word + Whole-word <a href="Embedding.html">Embedding</a>）。</p>
+<p><strong>问题背景</strong>：在语言模型中表示用户和物品 ID 是一个棘手问题。<a href="../entities/P5 论文.html">P5 论文</a> 探索了两种策略：P5-I（Independent Tokens）和 P5-S（Sub-word + Whole-word <a href="Embedding.html">Embedding</a>）。</p>
 </li>
 <li>
-<p><strong><a href="../entities/P5 论文.html">P5</a>-I 策略（失败方案）</strong>：为每个用户和物品分配一个独立的新词元（token），加入 <a href="../entities/T5.html">T5</a> 词汇表。实验证明效果较差，因为大量新引入的词元和<a href="Embedding.html">嵌入向量</a>无法像原始 <a href="../entities/T5.html">T5</a> 的子词单元那样被充分训练。</p>
+<p><strong>P5-I 策略（失败方案）</strong>：为每个用户和物品分配一个独立的新词元（token），加入 T5 词汇表。实验证明效果较差，因为大量新引入的词元和<a href="Embedding.html">嵌入向量</a>无法像原始 T5 的子词单元那样被充分训练。</p>
 </li>
 <li>
-<p><strong><a href="../entities/P5 论文.html">P5</a>-S 策略（成功方案）</strong>：将用户/物品 ID 作为普通文本进行分词（如 "user_1532" 分词为多个子词单元），然后引入 Whole-word <a href="Embedding.html">Embedding</a> 机制，为同一个完整 ID 的所有子词单元添加一个共享的全词<a href="Embedding.html">嵌入向量</a>。</p>
+<p><strong>P5-S 策略（成功方案）</strong>：将用户/物品 ID 作为普通文本进行分词（如 "user_1532" 分词为多个子词单元），然后引入 Whole-word <a href="Embedding.html">Embedding</a> 机制，为同一个完整 ID 的所有子词单元添加一个共享的全词<a href="Embedding.html">嵌入向量</a>。</p>
 </li>
 <li>
-<p><strong>核心优势</strong>：既保持了 <a href="../entities/T5.html">T5</a> 原有词汇表的完整性，又赋予了 ID 特定的语义信息。允许模型通过协同学习获得更好的推荐性能，同时保持 token 数量恒定。</p>
+<p><strong>核心优势</strong>：既保持了 T5 原有词汇表的完整性，又赋予了 ID 特定的语义信息。允许模型通过协同学习获得更好的推荐性能，同时保持 token 数量恒定。</p>
 </li>
 <li>
-<p><strong>实验验证</strong>：在<a href="序列推荐.html">序列推荐</a>和直接推荐任务上，<a href="../entities/P5 论文.html">P5</a>-S 显著优于 <a href="../entities/P5 论文.html">P5</a>-I，验证了 Whole-word <a href="Embedding.html">Embedding</a> 的有效性。</p>
+<p><strong>实验验证</strong>：在<a href="序列推荐.html">序列推荐</a>和直接推荐任务上，P5-S 显著优于 P5-I，验证了 Whole-word <a href="Embedding.html">Embedding</a> 的有效性。</p>
 </li>
 <li>
 <p><strong>与<a href="语义 ID.html">语义 ID</a>的关系</strong>：Whole-word <a href="Embedding.html">Embedding</a> 仍依赖数字 ID 作为基础表示，后续研究指出这与预训练语言模型的语义空间存在天然鸿沟。<a href="../entities/LC-Rec.html">LC-Rec</a> 等工作用<a href="语义 ID.html">语义标识符</a>替代数字 ID，进一步解决了这一问题。</p>
@@ -165,13 +165,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/P5 论文.html">P5 论文</a> — 提出 Whole-word Embedding 的论文</li>
 <li><a href="Embedding.html">Embedding</a> — 嵌入表示的一般概念</li>
-<li><a href="../entities/T5.html">T5</a> — 使用 Whole-word Embedding 的基础模型</li>
+<li>T5 — 使用 Whole-word Embedding 的基础模型</li>
 <li><a href="语义 ID.html">语义 ID</a> — 后续替代数字 ID 的方案</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Weyl特征值不等式.html">&larr; Weyl特征值不等式</a>
-    <a href="Wiener测度.html">Wiener测度 &rarr;</a>
+    <a href="Wide-Research.html">Wide-Research &rarr;</a>
   </div>
 </div>
 </body>

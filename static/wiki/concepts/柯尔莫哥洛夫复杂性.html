@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - "000...0"（1000 个 0）的 K(x) 很小——只需一行代码 <code>print("0" * 1000)</code>
 - 真正的随机字符串的 K(x) ≈ |x|——没有比直接存储更短的描述</p>
 <h3 id="solomonoff">与 Solomonoff 先验的关系</h3>
-<p>$$K(x) \leq -\log_2 <a href="Solomonoff先验.html">M(x)</a> \leq K(x) + O(\log K(x))$$</p>
+<p>$$K(x) \leq -\log_2 M(x) \leq K(x) + O(\log K(x))$$</p>
 <p><a href="Solomonoff先验.html">算法概率</a>的负对数近似等于柯尔莫哥洛夫复杂性。一个字符串的先验概率主要由能产生它的最短程序决定。</p>
 <h3 id="_6">不可计算性</h3>
 <p>K(x) 是不可计算的——不存在算法能在有限时间内精确计算任意字符串的柯尔莫哥洛夫复杂性。这与<a href="停机问题.html">停机问题</a>密切相关。</p>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>尽管 Solomonoff 最早提出，但这一概念以 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 命名，因为 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 是 20 世纪最伟大的数学家之一，名声远超 Solomonoff。</p>
 <h3 id="_8">应用</h3>
 <ul>
-<li><strong><a href="最小描述长度原理.html">MDL</a> 原理</strong>：最小描述长度是 K(x) 的可计算近似</li>
+<li><strong>MDL 原理</strong>：最小描述长度是 K(x) 的可计算近似</li>
 <li><strong><a href="算法随机性.html">算法随机性</a></strong>：如果 K(x) ≈ |x|，则 x 是算法随机的</li>
 <li><strong>机器学习正则化</strong>：模型复杂度惩罚项可以理解为对 K(模型) 的近似</li>
 </ul>
@@ -172,11 +172,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/雷·所罗门诺夫.html">雷·所罗门诺夫</a> — 最早提出者</li>
 <li><a href="算法信息论.html">算法信息论</a> — 所属学科</li>
 <li><a href="Solomonoff先验.html">Solomonoff先验</a> -M(x) 的负对数近似等于 K(x)</li>
-<li><a href="信息论.html">信息论</a> — 相关学科</li>
+<li><a href="../maps/信息论.html">信息论</a> — 相关学科</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="构型空间方法.html">&larr; 构型空间方法</a>
+    <a href="查询处理.html">&larr; 查询处理</a>
     <a href="样本空间.html">样本空间 &rarr;</a>
   </div>
 </div>

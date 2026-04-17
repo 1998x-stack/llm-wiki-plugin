@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [工具，研究]
+tags: [工具，研究, 机器人学]
 aliases: ["PUMA 560", "Programmable Universal Machine for Assembly", "Unimation PUMA"]
 relates_to:
   - target: "[[Robot Manipulators: Mathematics, Programming, and Control]]"

@@ -129,14 +129,32 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="agent-aci">Agent 计算机接口（ACI）</h1>
 <h2 id="_1">概述</h2>
-<p>Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 LLM Agent 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——Anthropic 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化。</p>
+<p>Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L<a href="LM Agent.html">LM Agent</a> 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——Anthropic 在 <a href="SWE-bench.html">SWE-bench</a> 中花费在工具优化上的时间多于整体提示词优化。</p>
 <h2 id="_2">关键内容</h2>
+<h3 id="swe-agent-aci">SWE-agent 论文的 ACI 贡献</h3>
+<p>Princeton 的 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文（"<a href="../entities/SWE-agent.html">SWE-agent</a>: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：</p>
+<blockquote>
+<p>软件工程 agent 的效果，很大程度上取决于它和计算机交互的"接口设计"是否合适。</p>
+</blockquote>
+<p><strong>论文真正想回答的问题</strong>：LLM agent 在软件工程任务上的瓶颈，到底来自模型能力不足，还是来自交互界面设计太差？作者的判断是后者至少同样重要。</p>
+<p>三大核心观点：
+1. <strong>软件工程不是纯文本生成任务</strong>，而是"读仓库 → 定位问题 → 修改文件 → 运行测试 → 继续迭代"的交互式任务
+2. <strong>ACI 是关键创新</strong>——给模型设计专门的交互方式（浏览代码库、查看文件、编辑代码、执行测试），而非只靠 prompt engineering
+3. <strong>Agent 上限由"模型 × 工具 × 界面"的系统乘积决定</strong>，不只是模型参数规模</p>
+<p><strong>为什么不能直接把 Linux shell 丢给 Agent</strong>：
+- 命令空间太开放，容易乱走
+- 编辑操作不稳定
+- 文件改坏了不一定有清晰反馈
+- 长输出容易让上下文失控
+- 在大型仓库中导航效率很差</p>
+<p>因此 <a href="../entities/SWE-agent.html">SWE-agent</a> 不是让模型直接裸用电脑，而是通过 ACI 提供一套更适合 Agent 的动作抽象。<strong>把"界面设计"从工程细节提升成研究对象</strong>，这是论文最有思想含量的贡献。</p>
+<p>实验结果：<a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="SWE-bench.html">SWE-bench</a> 上 pass@1 达到 12.5%，在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上达到 87.7%。两者差距说明 ACI 设计在复杂任务上的价值远大于简单任务。</p>
 <h3 id="aci-vs-hci">ACI vs. HCI</h3>
 <table>
 <thead>
@@ -150,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>使用者</td>
 <td>人类</td>
-<td>LLM Agent</td>
+<td>L<a href="LM Agent.html">LM Agent</a></td>
 </tr>
 <tr>
 <td>设计约束</td>
@@ -194,7 +212,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>工具描述是最高效的 Agent 调优手段之一：
 - 像给新团队成员写文档一样编写：包含专业查询格式、领域术语定义、资源间关系
 - 参数名应无歧义（<code>user_id</code> 优于 <code>user</code>）
-- 细微的描述改进可带来显著性能变化——SWE-bench 中仅改工具描述就达到 SOTA</p>
+- 细微的描述改进可带来显著性能变化——<a href="SWE-bench.html">SWE-bench</a> 中仅改工具描述就达到 SOTA</p>
 <h3 id="_4">工具开发的评估驱动循环</h3>
 <p>Anthropic 推荐的工具开发流程：</p>
 <ol>
@@ -215,6 +233,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Building Effective AI Agents.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Writing effective tools for AI agents—using AI agents.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — SWE-agent 论文核心观点总结</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版&quot;.md</span> — SWE-agent 论文 5 页读书笔记</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 24 个核心概念词条分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/07-SWE-agent 轨迹 格式长什么样，怎么进行分析，怎么判断轨迹中哪些问题导致了后续任务的失败？.md</span> — SWE-agent 轨迹分析方法论</li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
@@ -222,6 +246,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Context-Engineering.html">Context-Engineering</a> — related_to（工具响应的 Token 效率是上下文工程的组成部分）</li>
 <li><a href="MCP协议层.html">MCP协议层</a> — related_to（MCP 工具的描述质量直接体现 ACI 原则）</li>
 <li><a href="Agent评估方法论.html">Agent评估方法论</a> — related_to（工具评估是 ACI 开发循环的核心环节）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> — uses（ACI 设计质量的验证基准）</li>
+<li><a href="HumanEvalFix.html">HumanEvalFix</a> — uses（ACI 在简单任务上的验证基准，87.7% pass@1）</li>
+<li><a href="ACI 设计原则.html">ACI 设计原则</a> — extends（ACI 研究的方法论贡献：四条核心原则）</li>
+<li><a href="Guardrails.html">Guardrails</a> — uses（ACI 的错误 containment 策略）</li>
+<li><a href="Localization.html">Localization</a> — uses（ACI 的核心子任务：代码定位）</li>
+<li><a href="Context Management.html">Context Management</a> — uses（ACI 的工作记忆管理组件）</li>
+<li><a href="Ablation Study.html">Ablation Study</a> — uses（验证 ACI 各组件贡献的方法论）</li>
+<li><a href="环境反馈设计.html">环境反馈设计</a> — uses（ACI 的反馈设计组件：specific &amp; concise）</li>
+<li><a href="状态变化感知.html">状态变化感知</a> — uses（ACI 的状态可见性组件）</li>
+<li><a href="恢复机制.html">恢复机制</a> — uses（ACI 的错误恢复组件）</li>
 </ul>
   </div>
   <div class="page-nav">

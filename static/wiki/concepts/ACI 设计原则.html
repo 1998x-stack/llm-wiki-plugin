@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACI 设计原则 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / ACI 设计原则</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">技术</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="aci">ACI 设计原则</h1>
+<h2 id="_1">概述</h2>
+<p>ACI 设计原则是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文在 <a href="Agent计算机接口.html">Agent计算机接口</a> 研究中总结的一组方法论，包括四条核心原则：动作简单明确、反馈简洁高密度、<a href="状态变化感知.html">状态可见性</a>、<a href="Guardrails.html">护栏机制</a>。这些原则是论文最有方法论价值的贡献。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">原则一：动作要简单、容易理解</h3>
+<blockquote>
+<p>"Actions should be simple and easy to understand for agents."</p>
+</blockquote>
+<ul>
+<li>很多 bash 命令太灵活、太开放、语义负担太重，对 LM 不友好</li>
+<li>少量、清晰、功能边界明确的动作更好</li>
+<li>背后的逻辑：语言模型对"语义上明确的工具"更容易形成稳定使用模式，而对几乎无限制的 shell 容易出现动作选择混乱</li>
+</ul>
+<p><strong>实验支撑</strong>：Shell-only baseline 对比证明，为 LM 专门设计的动作集优于原始 Linux shell。</p>
+<h3 id="_4">原则二：反馈要简洁、信息密度高</h3>
+<blockquote>
+<p>"Feedback should be specific and concise."</p>
+</blockquote>
+<ul>
+<li>人类可以忽略无关信息，但对 LM 来说所有内容都有固定 token 成本和干扰成本</li>
+<li>ACI 的反馈设计本质上是"压缩状态表示"——加工成足够行动、又不至于淹没<a href="上下文窗口.html">上下文窗口</a>的观察</li>
+<li>这个点对今天所有 agent 仍然成立</li>
+</ul>
+<h3 id="_5">原则三：帮助模型感知状态变化</h3>
+<ul>
+<li>好的 ACI 应该帮助 agent 理解当前状态、此前改动的后果、以及最近动作的结果</li>
+<li>编辑后给出更新后的文件片段，就是"<a href="状态变化感知.html">状态可见性</a>"的例子</li>
+<li>本质：把软件工程从"token continuation"变成"stateful control"</li>
+</ul>
+<h3 id="guardrails">原则四：要有 Guardrails（护栏）</h3>
+<ul>
+<li><a href="Guardrails.html">Guardrails</a> 可以减少错误传播、加速恢复</li>
+<li>例如在编辑动作中加入 syntax checker</li>
+<li>不是锦上添花，而是 agent 系统稳定性的核心——LM 很容易在早期引入小错误，然后整条轨迹被污染</li>
+<li>Guardrail 的作用是在"错误刚出现时"把它截断</li>
+</ul>
+<h3 id="_6">实验验证</h3>
+<p>论文通过 <a href="Ablation Study.html">消融实验</a> 验证了这些原则：
+- 总结式搜索优于迭代式搜索（原则二：反馈简洁）
+- 100-line viewer 优于太小或全文件（原则二：信息密度）
+- Edit + linting 优于无 linting（原则四：<a href="Guardrails.html">Guardrails</a>）
+- 最近 5 条 observation 优于 full history（原则二：简洁反馈）</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Agent计算机接口.html">Agent计算机接口</a> — part_of（ACI 设计原则是 ACI 研究的方法论核心）</li>
+<li><a href="Guardrails.html">Guardrails</a> — extends（原则四的具体实现）</li>
+<li><a href="LM Agent.html">LM Agent</a> — uses（这些原则服务于 LM Agent 的有效行动）</li>
+<li><a href="环境反馈设计.html">环境反馈设计</a> — extends（原则二"反馈简洁高密度"的具体实现）</li>
+<li><a href="状态变化感知.html">状态变化感知</a> — extends（原则三"状态可见性"的具体实现）</li>
+<li><a href="恢复机制.html">恢复机制</a> — extends（原则四"护栏机制"的恢复策略实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="A3C.html">&larr; A3C</a>
+    <a href="ACP协议.html">ACP协议 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

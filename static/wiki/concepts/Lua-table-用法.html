@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua-table-用法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua-table-用法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">编程语言</span><span class="tag">游戏开发</span><span class="tag">Lua编程</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua-table">Lua table 用法</h1>
+<h2 id="_1">概述</h2>
+<p>Lua table 是 Lua 唯一的复合数据结构，同时覆盖 array、map、object、struct、set、namespace 六种语义，是游戏开发中的万能容器。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心用途（游戏开发）</h3>
+<ol>
+<li>
+<p><strong>配置表</strong>：存静态数据（关卡、角色、技能、掉落、商店），是数据驱动架构的核心。
+   <code>lua
+   local heroConfig = { id = 1001, name = "Knight", hp = 1200, skills = {101, 102, 103} }</code></p>
+</li>
+<li>
+<p><strong>数组 / 列表容器</strong>：存实体列表、背包列表、敌人波次，配合 <code>ipairs</code> 遍历。</p>
+</li>
+<li>
+<p><strong>字典 / Map</strong>：key-value 快速索引（playerId → 玩家数据、buffId → buff 实例），比线性遍历高效。</p>
+</li>
+<li>
+<p><strong>模拟对象</strong>：table + metatable 实现 OOP，<code>__index</code> 做继承，<code>setmetatable</code> 绑定方法。
+   <code>lua
+   local Player = {}
+   Player.__index = Player
+   function Player:new(name) ... end</code></p>
+</li>
+<li>
+<p><strong>状态存储</strong>：运行时状态（分数、波次、暂停标志）、玩家存档、战斗上下文。</p>
+</li>
+<li>
+<p><strong>事件系统 / 回调注册</strong>：table 存监听器列表，消息分发、UI 按钮回调、状态机回调。</p>
+</li>
+<li>
+<p><strong>组件系统 / ECS 风格</strong>：entity 以 table 存组件数据，位置/速度/HP 各自为嵌套 table。</p>
+</li>
+<li>
+<p><strong>协议消息结构</strong>：客户端/服务器消息对象，发送前编码为 JSON / protobuf。</p>
+</li>
+<li>
+<p><strong>树形结构</strong>：任务树、UI 节点树、剧情分支，用嵌套 table 自然表达。</p>
+</li>
+<li>
+<p><strong>缓存 / 对象池</strong>：spriteCache、资源引用表，避免重复加载。</p>
+</li>
+</ol>
+<h3 id="_4">典型混合模式</h3>
+<p>真实项目一个系统同时用多种角色：</p>
+<pre><code class="language-lua">local SkillSystem = {
+    configs = {},      -- 技能配置表（静态数据）
+    activeSkills = {}, -- 当前实例（运行时状态）
+    listeners = {},    -- 事件监听（回调）
+    cache = {}         -- 运行缓存
+}
+</code></pre>
+<h3 id="_5">常见坑</h3>
+<table>
+<thead>
+<tr>
+<th>坑</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组与字典混用</td>
+<td><code>{1, 2, a=10}</code> 遍历和 <code>#</code> 语义混乱</td>
+</tr>
+<tr>
+<td>浅拷贝问题</td>
+<td><code>b = a</code> 只是引用，修改 <code>b.pos</code> 影响 <code>a</code></td>
+</tr>
+<tr>
+<td>nil 删键</td>
+<td><code>t.hp = nil</code> 是删除字段，不是置空值</td>
+</tr>
+<tr>
+<td>GC 压力</td>
+<td>高频 new table（子弹/特效循环）造成垃圾回收抖动</td>
+</tr>
+<tr>
+<td>pairs vs ipairs</td>
+<td><code>ipairs</code> 适合连续数组；<code>pairs</code> 适合字典或混合表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5">游戏战斗系统 5 层组织模型</h3>
+<p>手游战斗逻辑最常见的 table 分层（Unity/xLua、Cocos Lua 均适用）：</p>
+<ol>
+<li><strong>配置表</strong>：静态只读数据，按 id 索引 <code>cfg[id] -&gt; row</code>，不写入运行时状态</li>
+<li><strong>对象表</strong>：单位/技能/Buff 实例，分块组织（base/attr/state/combat 等子 table）</li>
+<li><strong>索引表</strong>：同一批数据建多份视图——数组（遍历）+ map（O(1) 查询）+ 分组 map</li>
+<li><strong>上下文表</strong>：一次技能/伤害结算的临时载体，统一传参避免参数爆炸</li>
+<li><strong>事件/消息表</strong>：逻辑层产出 event table，表现层消费，实现逻辑/表现解耦</li>
+</ol>
+<p>核心原则：<strong>配置负责定义，状态负责变化，索引负责查询，上下文负责流程，事件负责解耦</strong></p>
+<h3 id="unityxlua">Unity/xLua 特有模式</h3>
+<ul>
+<li><strong>Lua 侧逻辑对象</strong>：<code>setmetatable + __index</code> 模拟 class，管理逻辑状态</li>
+<li><strong>Lua/C# 生命周期分离</strong>：<code>self.view = {go=csObj}</code> 与 <code>self.data = {hp=100}</code> 分开，避免引用悬挂</li>
+<li><strong>代理缓存表</strong>：<code>cachedAttr = {atk=csUnit:GetAtk()}</code> 减少高频跨语言访问开销</li>
+</ul>
+<h3 id="4">战斗对象表 4 种方案对比</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>特征</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大平铺表</td>
+<td>字段全摊平，快速但易失控</td>
+<td>小项目/原型</td>
+</tr>
+<tr>
+<td>分块对象表</td>
+<td><code>base/attr/state/combat</code> 分块，清晰维护</td>
+<td>中大型手游（推荐）</td>
+</tr>
+<tr>
+<td>ECS-ish</td>
+<td><code>Position[entity]</code> 等组件 table，批处理友好</td>
+<td>大量单位/数据驱动</td>
+</tr>
+<tr>
+<td>状态树+事件流</td>
+<td><code>battleState + eventQueue</code>，适合录像/回放</td>
+<td>复杂战斗/战报需求</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">实战坑（补充）</h3>
+<table>
+<thead>
+<tr>
+<th>坑</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置表写运行时数据</td>
+<td><code>SkillCfg[1001].cd = 0</code> 污染所有实例</td>
+</tr>
+<tr>
+<td>数组/map 混用不自知</td>
+<td><code>t[1]=a; t[10001]=b</code> 导致遍历/length/序列化异常</td>
+</tr>
+<tr>
+<td>ctx table 成垃圾桶</td>
+<td>字段越塞越多，生命周期不清，残留字段跨阶段污染</td>
+</tr>
+<tr>
+<td>对象表混管逻辑/表现/网络</td>
+<td>短期快，迭代后牵一发动全身</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua table 用法</span> — ChatGPT 会话：Lua table 在游戏开发中的典型用法 (https://chatgpt.com/c/69d65da5-a1e4-8322-bd0c-907517ed043e)</li>
+<li><span style="color:#e74c3c" title="broken link">Lua表格组织方式</span> — ChatGPT 对话：Unity/xLua、Cocos Lua、手游战斗系统中 table 组织模式 (https://chatgpt.com/c/69d65e85-e85c-8321-855d-38aeba85c657)</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/lua-language-server.html">lua-language-server</a> — part_of（Lua 生态）</li>
+<li><a href="Lua-table-游戏战斗架构.html">Lua-table-游戏战斗架构</a> — 战斗系统 table 架构模板与落地模式</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua-table-游戏战斗架构.html">&larr; Lua-table-游戏战斗架构</a>
+    <a href="Lua-游戏配置文件模板.html">Lua-游戏配置文件模板 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

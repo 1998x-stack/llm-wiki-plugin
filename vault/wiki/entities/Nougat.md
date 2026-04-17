@@ -7,9 +7,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
 source_count: 1
-tags:
-- 技术
-- AI
+tags: [技术, AI, 文档处理]
 aliases:
 - Nougat
 relates_to:
@@ -35,7 +33,7 @@ Nougat 是 Meta AI 开源的端到端 PDF 文档解析模型，基于视觉 [[Tr
 | 特性 | Nougat | [[MinerU]] |
 |------|--------|--------|
 | 文字型 PDF | ✅ | ✅ 高质量 |
-| 扫描件 | ✅ | ✅ [[光学字符识别|OCR]]管道 |
+| 扫描件 | ✅ | ✅ OCR管道 |
 | 公式 → LaTeX | ✅ | ✅ [[UniMERNet]] |
 | 表格结构 | ❌ | ✅ [[TableMaster]] |
 | [[阅读顺序重建|阅读顺序]] | ✅ | ✅ 多栏支持 |

@@ -6,7 +6,7 @@ LOG="$VAULT_DIR/log.hook.md"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M')
 
 # Read file_path from stdin JSON
-FILE_PATH=$(cat | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d.get("tool_input",{}).get("file_path",""))' 2>/dev/null)
+FILE_PATH=$(cat | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d.get("tool_input",{}).get("file_path",""))' 2>>"$LOG")
 
 # Only process wiki content pages (not .claude/commands/wiki/)
 if [[ -z "$FILE_PATH" ]] || [[ "$FILE_PATH" != *"wiki/"* ]] || [[ "$FILE_PATH" == *".claude/"* ]]; then

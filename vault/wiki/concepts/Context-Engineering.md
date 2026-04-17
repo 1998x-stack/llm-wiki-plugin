@@ -4,9 +4,9 @@ title: Context Engineering
 status: active
 confidence: 0.92
 created: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 2
+source_count: 5
 tags:
 - 技术
 - 方法论
@@ -35,6 +35,12 @@ relates_to:
 - target: '[[即时上下文检索]]'
   type: related_to
   confidence: 0.9
+- target: '[[上下文压缩]]'
+  type: implements
+  confidence: 0.95
+- target: '[[提示词缓存]]'
+  type: uses
+  confidence: 0.9
 supersedes: null
 ---
 
@@ -42,7 +48,7 @@ supersedes: null
 
 ## 概述
 
-Context Engineering（上下文工程）是指对 LLM 的有限上下文窗口进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
+Context Engineering（上下文工程）是指对 LLM 的有限[[上下文窗口]]进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
 
 ## 关键内容
 
@@ -178,11 +184,47 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 **[[注意力预算]]（[[注意力预算|Attention Budget]]）**：[[Transformer架构|Transformer]] n² 注意力机制导致每个新 token 都消耗有限的[[注意力预算|注意力资源]]，上下文增长时每对 token 关系可获得的参数容量被稀释。
 
 **长时任务的三种技术**（Anthropic 实践）：
-1. **Compaction**：对话历史摘要压缩 → 适合需要流式回话的复杂推理
+1. **[[上下文压缩]]（Compaction）**：Anthropic 官方 API，当对话接近窗口限制时自动将旧内容压缩为摘要。触发阈值可配置（默认 150,000 tokens，最低 50,000），支持 `pause_after_compaction` 暂停注入额外内容，支持自定义摘要指令。与 [[提示词缓存]] 协同：系统提示末尾加 `[[提示词缓存|cache_control]]` 断点可保持系统[[提示词缓存|提示缓存]]有效。详见 [[上下文压缩]]。
 2. **[[结构化笔记法]]**（[[结构化笔记法|Agentic Memory]]）：Agent 将关键状态写入上下文外的持久存储 → 适合有明确里程碑的迭代开发
 3. **多 Agent 架构**：子 Agent 处理深度工作并返回精简摘要 → 适合需要并行探索的复杂研究
 
 **[[即时上下文检索]]（[[即时上下文检索|Just-in-Time Context]]）**：Agent 不预加载所有数据，而是持有轻量标识符（文件路径、URL、查询），运行时工具按需动态加载。Claude Code 的 glob/grep/Bash 模式是典型实现。
+
+**系统 Prompt 的"高度"（Altitude）校准**：Anthropic 提出系统 prompt 应处于 Goldilocks zone——在两个常见失败模式之间找到平衡：
+- **过低（过度具体）**：硬编码复杂的 if-else 逻辑，试图精确控制 agent 行为 → 导致脆弱性和维护成本递增
+- **过高（过度抽象）**：提供模糊的高层指导，无法给 LLM 具体信号或错误假设共享上下文 → 导致行为不可预测
+- **最佳高度**：足够具体以有效引导行为，又足够灵活以给模型提供强启发式指导
+
+推荐用 XML 标签或 Markdown header 将 prompt 分成独立段落（`<background_information>`、`<instructions>`、`## Tool guidance` 等），但随模型能力提升，精确格式的重要性在下降。
+
+**工具设计的上下文工程含义**：
+- 工具集应是最小可行集（minimal viable set），功能重叠会导致 agent 在工具选择上产生歧义
+- 如果人类工程师都无法确定某场景该用哪个工具，就不能指望 agent 做得更好
+- 工具返回的信息必须 token-efficient，避免把 agent 的有限注意力预算浪费在冗余数据上
+- Few-shot examples 应精选 diverse、canonical 的样例，而非往 prompt 里塞一长串 edge case
+
+**混合检索策略（Hybrid Strategy）**：
+- 部分数据预加载（速度优先）+ 部分运行时自主探索（灵活性优先）
+- Claude Code 是典型混合实现：`CLAUDE.md` 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
+- 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
+- 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少
+
+### 来源作者
+
+本文由 Anthropic Applied AI 团队撰写：[[Prithvi-Rajasekaran|Prithvi Rajasekaran]], Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。
+
+### Manus 的上下文工程六原则（2025）
+
+[[Manus]] 团队通过四次框架重建总结出六条核心原则，是上下文工程在生产环境的重要实践补充：
+
+1. **围绕 [[KV 缓存命中率]] 进行设计**：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍
+2. **遮蔽，而非移除**：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效
+3. **使用文件系统作为上下文**：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的
+4. **通过复述操控注意力**：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"
+5. **保留错误的内容**：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率
+6. **不要被少样本示例所困**：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏
+
+**核心哲学**：上下文工程仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。
 
 ## 来源
 
@@ -191,6 +233,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 - [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — Anthropic
 - [Lost in the Middle (Liu et al. 2023)](https://arxiv.org/abs/2307.03172)
 - [Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) — MemGPT
+- [[raw/articles/ai-engineering/anthropic-developer/Compaction.md]] — Anthropic Compaction API 文档
 
 ## 相关
 
@@ -206,3 +249,5 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 - [[结构化笔记法]] — 长时任务持久记忆技术
 - [[检索增强生成]] — 外部知识注入的主要技术路径
 - [[情境化检索]] — 解决 RAG 上下文破坏的增强方案
+- [[上下文压缩]] — 长时任务 Compaction 技术的官方 API 实现
+- [[提示词缓存]] — 缓存优化与压缩协同工作

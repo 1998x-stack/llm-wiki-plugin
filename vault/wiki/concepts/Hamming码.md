@@ -73,7 +73,7 @@ Hamming 码是 Richard Hamming (1950) 发明的第一个实用[[纠错编码]]�
 
 ### 工业应用
 
-- **[[纠错编码|ECC]] 内存**：服务器和关键系统的内存使用 SECDED Hamming 码保护
+- **ECC 内存**：服务器和关键系统的内存使用 SECDED Hamming 码保护
 - **闪存/SSD**：使用 Hamming 码或更强的 BCH 码纠正存储错误
 - **通信协议**：许多基础通信协议使用 Hamming 原理进行错误检测
 

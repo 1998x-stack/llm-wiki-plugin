@@ -135,16 +135,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="steffen-rendle">Steffen Rendle</h1>
 <h2 id="_1">概述</h2>
-<p>德国康斯坦茨大学计算机科学家，<a href="Factorization Machines.html">Factorization Machines</a> (<a href="Factorization Machines.html">FM</a>) 提出者，开源工具 <a href="libFM.html">libFM</a> 和 xLearn 的开发者，后加入 <a href="Google.html">Google</a> 继续推动推荐系统研究。</p>
+<p>德国康斯坦茨大学计算机科学家，<a href="Factorization Machines.html">Factorization Machines</a> (FM) 提出者，开源工具 <a href="libFM.html">libFM</a> 和 xLearn 的开发者，后加入 <a href="Google.html">Google</a> 继续推动推荐系统研究。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong><a href="Factorization Machines.html">Factorization Machines</a> (2010)</strong>：在 ICDM 2010 发表 <a href="Factorization Machines.html">FM</a> 论文（28,000+ 引用，截至2026年），提出用<a href="../concepts/嵌入表示.html">隐向量</a>内积建模<a href="../concepts/特征交叉.html">特征交互</a>的通用预测模型，以线性复杂度解决稀疏数据下的<a href="../concepts/特征交叉.html">特征交叉</a>问题，统一了<a href="../concepts/矩阵分解.html">矩阵分解</a>、<a href="SVD++.html">SVD++</a>、PI<a href="TensorFlow.html">TF</a>、<a href="FPMC.html">FPMC</a> 等专用分解模型。</li>
-<li><strong><a href="libFM.html">libFM</a> 开发</strong>：开发并开源 <a href="libFM.html">libFM</a> 库，实现了 <a href="Factorization Machines.html">FM</a> 的 SGD、<a href="../concepts/交替最小二乘法 ALS.html">ALS</a>、MCMC 三种优化方法，极大推动了 <a href="Factorization Machines.html">FM</a> 在工业界的普及和应用。后续发表 <em><a href="Factorization Machines.html">Factorization Machines</a> with <a href="libFM.html">libFM</a></em>（ACM TIST, 2012）。</li>
-<li><strong>PI<a href="TensorFlow.html">TF</a> (2010)</strong>：与 Schmidt-Thieme 合作提出 Pairwise Interaction Tensor Factorization，针对标签推荐任务的成对交互张量分解模型，后被证明可被 <a href="Factorization Machines.html">FM</a> 框架等价表示。</li>
-<li><strong><a href="FPMC.html">FPMC</a> (2010)</strong>：提出 Fusion of <a href="../concepts/矩阵分解.html">Matrix Factorization</a> and <a href="../concepts/马尔可夫链.html">Markov Chain</a>s，融合<a href="../concepts/马尔可夫链.html">马尔可夫链</a>和<a href="../concepts/矩阵分解.html">矩阵分解</a>的<a href="../concepts/序列推荐.html">序列推荐</a>模型，同样被纳入 <a href="Factorization Machines.html">FM</a> 统一框架。</li>
-<li><strong><a href="Google.html">Google</a> 时期</strong>：后加入 <a href="Google.html">Google</a> 继续推荐系统研究。2020 年发表 "<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> vs. <a href="../concepts/矩阵分解.html">Matrix Factorization</a> Revisited"，指出精心调优的<a href="../concepts/矩阵分解.html">矩阵分解</a>（<a href="Factorization Machines.html">FM</a> 特例）在多项基准测试上仍可匹敌甚至超过<a href="Neural Collaborative Filtering.html">神经协同过滤</a>模型，提醒业界不要低估简单模型的力量。</li>
+<li><strong><a href="Factorization Machines.html">Factorization Machines</a> (2010)</strong>：在 ICDM 2010 发表 FM 论文（28,000+ 引用，截至2026年），提出用<a href="../concepts/嵌入表示.html">隐向量</a>内积建模<a href="../concepts/特征交叉.html">特征交互</a>的通用预测模型，以线性复杂度解决稀疏数据下的<a href="../concepts/特征交叉.html">特征交叉</a>问题，统一了<a href="../concepts/矩阵分解.html">矩阵分解</a>、<a href="SVD++.html">SVD++</a>、PITF、FPMC 等专用分解模型。</li>
+<li><strong><a href="libFM.html">libFM</a> 开发</strong>：开发并开源 <a href="libFM.html">libFM</a> 库，实现了 FM 的 SGD、ALS、MCMC 三种优化方法，极大推动了 FM 在工业界的普及和应用。后续发表 <em><a href="Factorization Machines.html">Factorization Machines</a> with <a href="libFM.html">libFM</a></em>（ACM TIST, 2012）。</li>
+<li><strong>PITF (2010)</strong>：与 Schmidt-Thieme 合作提出 Pairwise Interaction Tensor Factorization，针对标签推荐任务的成对交互张量分解模型，后被证明可被 FM 框架等价表示。</li>
+<li><strong>FPMC (2010)</strong>：提出 Fusion of <a href="../concepts/矩阵分解.html">Matrix Factorization</a> and <a href="../concepts/马尔可夫链.html">Markov Chain</a>s，融合<a href="../concepts/马尔可夫链.html">马尔可夫链</a>和<a href="../concepts/矩阵分解.html">矩阵分解</a>的<a href="../concepts/序列推荐.html">序列推荐</a>模型，同样被纳入 FM 统一框架。</li>
+<li><strong><a href="Google.html">Google</a> 时期</strong>：后加入 <a href="Google.html">Google</a> 继续推荐系统研究。2020 年发表 "<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> vs. <a href="../concepts/矩阵分解.html">Matrix Factorization</a> Revisited"，指出精心调优的<a href="../concepts/矩阵分解.html">矩阵分解</a>（FM 特例）在多项基准测试上仍可匹敌甚至超过<a href="Neural Collaborative Filtering.html">神经协同过滤</a>模型，提醒业界不要低估简单模型的力量。</li>
 <li><strong>核心洞察</strong>："The interactions of a factorization machine are not independent but they depend on each other."——参数分解打破独立性假设，让模型在从未见过的特征组合上做出合理预测，这一思想与深度学习中的权重共享、参数绑定等技术一脉相承。</li>
-<li><strong>学术影响</strong>：<a href="Factorization Machines.html">FM</a> 论文仅6页篇幅却改变了整个推荐系统和 <a href="../concepts/CTR 预估.html">CTR 预估</a>领域的格局，后续几乎所有重要的<a href="../concepts/特征交叉.html">特征交互</a>模型（<a href="FFM.html">FFM</a>、<a href="DeepFM.html">DeepFM</a>、x<a href="DeepFM.html">DeepFM</a>、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 等）都直接或间接继承了 <a href="Factorization Machines.html">FM</a> 的思想。</li>
+<li><strong>学术影响</strong>：FM 论文仅6页篇幅却改变了整个推荐系统和 <a href="../concepts/CTR 预估.html">CTR 预估</a>领域的格局，后续几乎所有重要的<a href="../concepts/特征交叉.html">特征交互</a>模型（FFM、<a href="DeepFM.html">DeepFM</a>、x<a href="DeepFM.html">DeepFM</a>、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 等）都直接或间接继承了 FM 的思想。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -157,8 +157,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="Factorization Machines.html">Factorization Machines</a> — 代表作</li>
 <li><a href="libFM.html">libFM</a> — 开发的开源工具</li>
-<li><span style="color:#e74c3c" title="broken link">PITF</span> — 合作提出的标签推荐模型</li>
-<li><a href="FPMC.html">FPMC</a> — 合作提出的序列推荐模型</li>
+<li>PITF — 合作提出的标签推荐模型</li>
+<li>FPMC — 合作提出的序列推荐模型</li>
 <li><a href="Google.html">Google</a> — 后期任职机构</li>
 <li><span style="color:#e74c3c" title="broken link">University of Konstanz</span> — FM 发表时任职机构</li>
 <li><a href="Yehuda Koren.html">Yehuda Koren</a> — 同时期推荐系统领域重要研究者</li>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Spotify.html">&larr; Spotify</a>
-    <a href="Steven M. LaValle.html">Steven M. LaValle &rarr;</a>
+    <a href="Stephen Cook.html">Stephen Cook &rarr;</a>
   </div>
 </div>
 </body>

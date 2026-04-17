@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [深度学习, NLP, 大模型, 序列建模]
+tags: [深度学习, NLP, 大模型, 序列建模, LLM能力]
 aliases: ["Transformer", "变换器架构", "Transformer model"]
 relates_to:
   - target: "[[Self-Attention机制]]"
@@ -25,16 +25,16 @@ supersedes: null
 
 ## 概述
 
-Transformer 是 2017 年提出的序列到序列神经网络架构，以 [[Self-Attention机制]] 替代 RNN 的顺序传播，实现完全并行的全局上下文建模，成为现代大语言模型的基础架构。
+[[Transformer 架构|Transformer]] 是 2017 年提出的序列到序列神经网络架构，以 [[Self-Attention机制]] 替代 RNN 的顺序传播，实现完全并行的全局上下文建模，成为现代大语言模型的基础架构。
 
 ## 关键内容
 
 ### 核心设计思想
 
-Transformer 的关键创新是用 [[Self-Attention机制]] 取代 RNN 的循环结构：
+[[Transformer 架构|Transformer]] 的关键创新是用 [[Self-Attention机制]] 取代 RNN 的循环结构：
 
 - **RNN**：时间步串行，难以并行；长距依赖靠梯度传播，易丢失
-- **Transformer**：每层所有位置同时计算，直接建模全局上下文
+- **[[Transformer 架构|Transformer]]**：每层所有位置同时计算，直接建模全局上下文
 
 核心模块：
 1. **[[多头注意力]]（[[多头注意力|Multi-Head Attention]]）**：并行多子空间注意力
@@ -49,11 +49,11 @@ Transformer 的关键创新是用 [[Self-Attention机制]] 取代 RNN 的循环�
 - 时间复杂度：$O(n^2 d)$
 - 空间复杂度：$O(n^2)$
 
-这是 Transformer 处理超长序列的主要障碍，也是 [[注意力预算]] 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。
+这是 [[Transformer 架构|Transformer]] 处理超长序列的主要障碍，也是 [[注意力预算]] 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。
 
 ### 与 RNN/CNN 的比较
 
-| | RNN | CNN | Transformer |
+| | RNN | CNN | [[Transformer 架构|Transformer]] |
 |--|-----|-----|-------------|
 | 并行度 | 低（顺序） | 高（局部） | 高（全局） |
 | 长距依赖 | 弱 | 弱 | 强 |

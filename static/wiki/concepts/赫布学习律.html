@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赫布学习律 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 赫布学习律</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">学习</span><span class="tag">突触</span><span class="tag">心理学</span></div>
+</div>
+  <div class="content">
+    <h1 id="hebbian-learning">赫布学习律（Hebbian Learning）</h1>
+<h2 id="_1">概述</h2>
+<p>赫布学习律是神经科学史上最有影响力的学习规则，由 <a href="../entities/Donald O. Hebb.html">Donald Hebb</a> 于 1949 年在《行为的组织》中提出。核心观点是"当细胞 A 的轴突足够近地激发细胞 B，并反复或持续地参与其激发，A 激发 B 的效率将提高"，后人将其浓缩为"Cells that fire together, wire together."（共同激活的细胞，连接会增强）。LTP 的发现（1973）被视为其实验验证。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">原文表述</h3>
+<p><strong>赫布突触假说（1949）</strong>：
+- "当细胞 A 的轴突足够近地激发细胞 B，并反复或持续地参与其激发，某种生长过程或代谢变化将在一个或两个细胞中发生，使得 A 作为激发 B 的细胞之一时，其效率得以提高"
+- 后人将其浓缩为："Cells that fire together, wire together."（共同激活的细胞，连接会增强）
+- 在 1949 年，这只是一个推测——没有任何人能直接观测到突触效能的增强</p>
+<p><strong>基于的推论</strong>：
+- 赫布基于的不是实验数据
+- 而是对已有神经解剖学、心理学和行为实验的深刻综合推论
+- 受到麦卡洛克与皮茨（1943）逻辑神经元模型的深刻影响</p>
+<h3 id="_4">细胞集群理论</h3>
+<p><strong>细胞集群（Cell Assembly）</strong>：
+- 通过赫布学习规则，反复被同时激活的一组神经元会逐渐形成强化的相互连接
+- 变成一个功能性神经集群
+- 这个集群之后可以作为整体被激活——即使只有部分成员被刺激，整个集群也能被"召唤"
+- 这是联想记忆（associative memory）的神经机制第一次被明确提出</p>
+<p><strong>相变序列（Phase Sequence）</strong>：
+- 多个细胞集群可以按时间顺序激活，形成相变序列
+- 这是赫布对"思维流（stream of thought）"和"时间推理"的神经基础的描述
+- 一个想法激活下一个想法，因为它们的细胞集群在过去的共同经历中被连接起来了</p>
+<h3 id="_5">数学化形式</h3>
+<p><strong>简洁形式（1960–70 年代）</strong>：</p>
+<pre><code>Δw_ij = η · x_i · x_j
+</code></pre>
+<p>其中：
+- w_ij 是神经元 i 到 j 的突触权重
+- x_i, x_j 是两个神经元的激活值
+- η 是学习率
+- Δw_ij 是权重更新量</p>
+<p><strong>含义</strong>：
+- 当两个神经元同时激活（x_i &gt; 0 且 x_j &gt; 0），它们之间的权重增强
+- 如果一个激活而另一个不激活，权重减弱或不变</p>
+<h3 id="_6">问题与改进</h3>
+<p><strong>纯粹赫布学习的问题</strong>：
+- 权重只会增大，最终所有突触饱和
+- 若没有"遗忘"或"竞争"机制，网络会崩溃</p>
+<p><strong>后续改进</strong>：
+- <strong>Oja 规则（1982）</strong>：加入权重归一化约束，使赫布学习提取主成分（PCA 的神经实现）
+- <strong>BCM 理论（Bienenstock-Cooper-Munro, 1982）</strong>：引入滑动阈值，低于阈值的活动导致 LTD（长时程抑制），高于阈值导致 LTP
+- <strong>STDP（突触时间依赖可塑性）</strong>：精确到毫秒级的"共激活"定义——突触前先于突触后放电→LTP；反之→LTD</p>
+<h3 id="ltp-24">LTP：赫布规则等待了 24 年的实验验证</h3>
+<p><strong>1973 年 LTP 发现</strong>：
+- 布利斯与洛默的 LTP 论文发表后，神经科学界立刻意识到：这正是赫布预言的"突触效能增强"的实验证明
+- LTP 之所以被称为"赫布型突触可塑性（Hebbian synaptic plasticity）"，是因为 NMDA 受体介导的 LTP 精确实现了赫布的"符合检测"</p>
+<p><strong>NMDA 受体的符合检测</strong>：
+- NMDA 受体只在突触前（谷氨酸释放）AND 突触后（去极化）同时满足时才开放
+- 这是对"共同激活→增强"的分子级实现
+- 单独的突触前激活（无后膜去极化）→无 LTP（即使谷氨酸存在，Mg²⁺阻塞 NMDA 通道）
+- 单独的突触后去极化（无谷氨酸）→无 LTP</p>
+<h3 id="_7">与行为主义的决裂</h3>
+<p><strong>反对行为主义</strong>：
+- "行为主义告诉我们刺激和反应的关系，但没有告诉我们大脑在中间做了什么"
+- "不理解神经机制，心理学只是描述，而非解释"
+- 《行为的组织》标志着认知神经科学方法论（将认知现象与神经机制挂钩）的早期宣言</p>
+<h3 id="_8">历史地位</h3>
+<p><strong>20 世纪最重要的理论著作之一</strong>：
+- 突触可塑性研究的预言性框架
+- 人工神经网络学习规则的直接思想来源
+- LTP 的发现（1973）被视为其实验验证</p>
+<p><strong>在深度学习中的影响</strong>：
+- 被引入深度学习、<a href="强化学习.html">强化学习</a>、无监督学习的理论基础
+- 现代神经网络的权重更新规则源于赫布学习律的思想
+- 是无监督学习和特征学习的核心机制</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_09_hebb_1949.md</span> — 赫布学习律：神经科学史上最有影响力的一句话</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/Donald O. Hebb.html">Donald O. Hebb</a> — 提出者（part_of）</li>
+<li>LTP — 实验验证（implements）</li>
+<li><span style="color:#e74c3c" title="broken link">细胞集群理论</span> — 相关理论（part_of）</li>
+<li>STDP — 改进形式（extends）</li>
+<li><span style="color:#e74c3c" title="broken link">认知神经科学</span> — 开创领域（caused）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="赌徒破产问题.html">&larr; 赌徒破产问题</a>
+    <a href="超稳定系统（Design for a Brain）.html">超稳定系统（Design for a Brain） &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

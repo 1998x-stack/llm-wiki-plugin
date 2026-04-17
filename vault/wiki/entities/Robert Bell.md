@@ -24,7 +24,7 @@ supersedes: null
 ## 关键内容
 
 1. **学术身份**：2009 年任职于 [[AT&T Labs--Research]]，与 [[Yehuda Koren]]、[[Chris Volinsky]] 共同发表 *[[Matrix Factorization Techniques for Recommender Systems]]*（IEEE Computer, 2009）。
-2. **[[Netflix Prize]] 贡献**：[[BellKor]] 团队命名中的 "Bell" 即指 Robert Bell，该团队于 2009 年 9 月赢得 [[Netflix Prize]] 最终大奖（[[RMSE]] 0.8567，10.06% 提升）。团队还曾获得 2007 年 Progress Prize（[[RMSE]] 0.8712，8.43% 提升）和 2008 年第二名（[[BellKor in BigChaos]]，[[RMSE]] 0.8616）。
+2. **[[Netflix Prize]] 贡献**：[[BellKor]] 团队命名中的 "Bell" 即指 Robert Bell，该团队于 2009 年 9 月赢得 [[Netflix Prize]] 最终大奖（RMSE 0.8567，10.06% 提升）。团队还曾获得 2007 年 Progress Prize（RMSE 0.8712，8.43% 提升）和 2008 年第二名（[[BellKor in BigChaos]]，RMSE 0.8616）。
 3. **技术贡献**：参与构建了[[矩阵分解]]的统一建模框架，包括 [[Bias 建模]]、[[SVD++]]、[[timeSVD++]] 等核心方法，这些方法成为推荐系统工业界的标准实践。
 
 ## 来源

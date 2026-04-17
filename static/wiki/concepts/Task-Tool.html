@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task-Tool — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Task-Tool</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="task-tool">Task Tool</h1>
+<h2 id="_1">概述</h2>
+<p>Claude Code 推出的任务协调工具，用于替代 <a href="TodoWrite-Tool.html">TodoWrite-Tool</a>。与 <a href="TodoWrite-Tool.html">TodoWrite</a> 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">设计动机</h3>
+<p><strong><a href="TodoWrite-Tool.html">TodoWrite</a> 的局限性</strong>：
+- 僵化的清单思维：Claude 认为必须严格遵守清单，无法灵活调整
+- 子代理协作困难：不支持多个子代理在共享清单上协作
+- 能力错配：随着模型能力提升，旧工具从"帮助"变成"约束"</p>
+<p><strong>新需求</strong>：
+- Opus 4.5 等更强模型的子代理使用能力提升
+- 需要支持多 Agent 协调的机制
+- 需要更灵活的任务管理方式</p>
+<h3 id="_4">核心特性</h3>
+<p><strong>Agent 间沟通</strong>：
+- 核心目标：帮助 Agent 之间进行沟通，而非单纯跟踪进度
+- 任务作为沟通载体，而非约束清单
+- 支持自然的任务演进和调整</p>
+<p><strong>依赖关系管理</strong>：
+- 支持任务间的依赖关系声明
+- 自动识别前置任务和后续任务
+- 优化任务执行顺序</p>
+<p><strong>跨子代理共享</strong>：
+- 多个子代理可以访问和更新共享任务池
+- 支持任务状态同步
+- 避免信息孤岛</p>
+<p><strong>灵活修改</strong>：
+- 模型可以修改任务内容
+- 支持删除不再相关的任务
+- 适应动态变化的需求</p>
+<h3 id="vs-todowrite">vs TodoWrite</h3>
+<p>| 维度 | <a href="TodoWrite-Tool.html">TodoWrite</a> | Task Tool |
+|------|-----------|-----------|
+| <strong>核心目标</strong> | 保持模型轨道 | Agent 间协调 |
+| <strong>设计理念</strong> | 约束模型行为 | 赋能 Agent 协作 |
+| <strong>结构</strong> | 单一清单列表 | 任务网络图 |
+| <strong>依赖关系</strong> | ❌ 不支持 | ✅ 原生支持 |
+| <strong>跨 Agent</strong> | ❌ 困难 | ✅ 原生支持 |
+| <strong>可修改性</strong> | ⚠️ 有限 | ✅ 可修改和删除 |
+| <strong>适用模型</strong> | 早期模型（需提醒） | 现代模型（Opus 4.5+） |</p>
+<h3 id="_5">演进历程</h3>
+<p><strong>替代 <a href="TodoWrite-Tool.html">TodoWrite</a></strong>：
+- 识别到 <a href="TodoWrite-Tool.html">TodoWrite</a> 的局限性后，没有选择修补，而是重新设计
+- Task Tool 从零开始设计，专注于 Agent 协调需求
+- 反映了"不断重新审视假设"的设计哲学</p>
+<p><strong>与 <a href="AskUserQuestion-Tool.html">AskUserQuestion</a> 的协同</strong>：
+- <a href="AskUserQuestion-Tool.html">AskUserQuestion</a>：在计划阶段收集用户需求
+- Task Tool：在执行阶段协调 Agent 工作
+- 两者可能在同一工作流中协同使用</p>
+<h3 id="_6">设计哲学启示</h3>
+<p><strong>工具演进原则</strong>：
+1. <strong>能力匹配</strong>：工具设计需要契合模型当前能力水平
+2. <strong>持续审视</strong>：随着模型能力提升，需要重新审视旧工具
+3. <strong>勇于替代</strong>：当旧工具变成约束时，应该设计新工具替代而非修补</p>
+<p><strong>"像智能体一样观察"</strong>：
+- 站在模型角度思考：需要什么样的任务管理工具？
+- 实验频繁、阅读输出、尝试新方法
+- 最重要的：试着像智能体一样思考</p>
+<p><strong>小模型集合策略</strong>：
+- 坚持使用少数几个能力特征相似的模型
+- 避免工具需要适配过多不同的能力水平
+- 降低工具设计的复杂度</p>
+<h3 id="_7">使用场景</h3>
+<p><strong>多 Agent 协作</strong>：
+- 主代理分解任务 → 创建子任务
+- 子代理执行任务 → 更新状态
+- 主代理汇总结果 → 标记完成</p>
+<p><strong>复杂项目管理</strong>：
+- 声明任务依赖 → 自动排序
+- 动态调整计划 → 修改任务
+- 识别关键路径 → 优化执行</p>
+<p><strong>长时任务跟踪</strong>：
+- 跨会话持久化
+- 支持暂停和恢复
+- 上下文传递</p>
+<h3 id="claude-code">在 Claude Code 生态中的位置</h3>
+<p><strong>工具集合</strong>：
+- Claude Code 目前拥有约 20 个工具
+- Task Tool 是核心协调工具之一
+- 与 <a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a>、<a href="ExitPlanTool.html">ExitPlanTool</a> 等协同工作</p>
+<p><strong>与 <a href="Agent Skills.html">Agent Skills</a> 的关系</strong>：
+- Task Tool 是内置工具
+- <span style="color:#e74c3c" title="broken link">Agent-Skills</span> 可以扩展和自定义 Task Tool 的使用方式
+- 渐进式披露机制允许 <a href="Agent Skills.html">Skills</a> 引入 Task 相关的最佳实践</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Seeing like an agent_ how we design tools in Claude Code.md</span> — Task Tool 设计动机、与 TodoWrite 对比、演进原因</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="TodoWrite-Tool.html">TodoWrite-Tool</a> — 被此工具取代（supersedes）</li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — 所属项目</li>
+<li><a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a> — 同时期设计的提问工具</li>
+<li><a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — 设计方法论</li>
+<li><span style="color:#e74c3c" title="broken link">Agent-Skills</span> — 可扩展 Task Tool 使用方式</li>
+<li><a href="脑手分离架构.html">脑手分离架构</a> — Task Tool 可能用于协调 Brain/Hands 角色</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Target Attention.html">&larr; Target Attention</a>
+    <a href="Terrain地形系统.html">Terrain地形系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

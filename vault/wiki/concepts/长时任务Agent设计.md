@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 2
-tags: [技术, AI, 方法论]
+tags: [技术, AI, 方法论, AI工程]
 aliases: ["Long-running Agent Harness", "长时自主Agent", "多上下文窗口工作流", "初始化Agent"]
 relates_to:
   - target: "[[Agent Harness模式]]"
@@ -28,13 +28,13 @@ supersedes: null
 
 ## 概述
 
-针对跨多个上下文窗口的长时自主任务（数小时至数日）的 [[Agent Harness模式|Agent Harness]] 设计模式：**初始化 Agent**（建立环境和功能列表）+ **编码 Agent**（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。
+针对跨多个[[上下文窗口]]的长时自主任务（数小时至数日）的 [[Agent Harness模式|Agent Harness]] 设计模式：**初始化 Agent**（建立环境和功能列表）+ **编码 Agent**（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。
 
 ## 关键内容
 
 ### 核心问题：无记忆的交接
 
-长时任务必须在多个 Context Window 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（Compaction）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。
+长时任务必须在多个 [[上下文窗口|Context Window]] 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（[[上下文压缩|Compaction]]）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。
 
 ### 两阶段解决方案
 

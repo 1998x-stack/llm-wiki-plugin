@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论，工具</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="rrt-connect">RRT-Connect</h1>
 <h2 id="_1">概述</h2>
-<p><a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 是快速扩展随机树（<a href="快速扩展随机树 (RRT).html">RRT</a>）算法的重要变体，由 <a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a> 和 James J. Kuffner Jr. 于 2000 年提出。该算法通过同时从起始构型和目标构型生长两棵树，并尝试在每一步迭代中连接这两棵树，从而显著提高了路径规划的效率。<a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 引入了贪心延伸策略，使其在开阔空间中的收敛速度通常比基本 <a href="快速扩展随机树 (RRT).html">RRT</a> 快一个数量级，特别适用于单查询<a href="运动规划.html">运动规划</a>问题。</p>
+<p>RRT-Connect 是快速扩展随机树（RRT）算法的重要变体，由 <a href="../entities/Steven M. LaValle.html">Steven M. LaValle</a> 和 James J. Kuffner Jr. 于 2000 年提出。该算法通过同时从起始构型和目标构型生长两棵树，并尝试在每一步迭代中连接这两棵树，从而显著提高了路径规划的效率。RRT-Connect 引入了贪心延伸策略，使其在开阔空间中的收敛速度通常比基本 RRT 快一个数量级，特别适用于单查询<a href="运动规划.html">运动规划</a>问题。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">双向生长机制</h3>
-<p>与基本 <a href="快速扩展随机树 (RRT).html">RRT</a> 仅从起点单向生长不同，<a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 维护两棵树：$T_{init}$（ rooted at $q_{init}$）和 $T_{goal}$（rooted at $q_{goal}$）。算法在每一步迭代中交替扩展这两棵树。扩展一棵树后，算法立即尝试将新生成的节点与另一棵树中的最近节点进行连接。如果连接路径无碰撞，则两棵树成功合并，形成从起点到终点的完整路径。这种双向搜索策略大幅减少了搜索空间的覆盖时间，因为两棵树从两端相向而行，更容易在中间相遇。</p>
+<p>与基本 RRT 仅从起点单向生长不同，RRT-Connect 维护两棵树：$T_{init}$（ rooted at $q_{init}$）和 $T_{goal}$（rooted at $q_{goal}$）。算法在每一步迭代中交替扩展这两棵树。扩展一棵树后，算法立即尝试将新生成的节点与另一棵树中的最近节点进行连接。如果连接路径无碰撞，则两棵树成功合并，形成从起点到终点的完整路径。这种双向搜索策略大幅减少了搜索空间的覆盖时间，因为两棵树从两端相向而行，更容易在中间相遇。</p>
 <h3 id="_4">贪心延伸策略</h3>
-<p><a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 的一个关键创新是<strong>贪心延伸（Greedy Extension）</strong>。在标准 <a href="快速扩展随机树 (RRT).html">RRT</a> 中，每次扩展只向前移动一个固定步长 $\epsilon$。而在 <a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 中，当试图向另一棵树的方向延伸时，算法会连续执行延伸操作，直到遇到障碍物或到达目标树的连接范围。这种策略在无障碍或开阔区域能迅速拉长树枝，极大地减少了所需的迭代次数。贪心延伸充分利用了局部空间的连通性，避免了单步探索的低效。</p>
+<p>RRT-Connect 的一个关键创新是<strong>贪心延伸（Greedy Extension）</strong>。在标准 RRT 中，每次扩展只向前移动一个固定步长 $\epsilon$。而在 RRT-Connect 中，当试图向另一棵树的方向延伸时，算法会连续执行延伸操作，直到遇到障碍物或到达目标树的连接范围。这种策略在无障碍或开阔区域能迅速拉长树枝，极大地减少了所需的迭代次数。贪心延伸充分利用了局部空间的连通性，避免了单步探索的低效。</p>
 <h3 id="_5">性能优势与应用</h3>
-<p>实验表明，<a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 在多种基准测试中表现出比基本 <a href="快速扩展随机树 (RRT).html">RRT</a> 快 5 到 10 倍的速度提升，尤其在中等难度的规划问题中效果显著。由于其高效性和鲁棒性，<a href="快速扩展随机树 (RRT).html">RRT</a>-Connect 成为了开源<a href="运动规划.html">运动规划</a>库 <strong><span style="color:#e74c3c" title="broken link">OMPL</span></strong> 中的默认推荐算法之一，并被广泛应用于工业机器人、类人机器人（如 H7 机器人手臂规划）以及自动驾驶领域。它是解决单查询、高维、非完整约束规划问题的强有力工具。</p>
+<p>实验表明，RRT-Connect 在多种基准测试中表现出比基本 RRT 快 5 到 10 倍的速度提升，尤其在中等难度的规划问题中效果显著。由于其高效性和鲁棒性，RRT-Connect 成为了开源<a href="运动规划.html">运动规划</a>库 <strong>OMPL</strong> 中的默认推荐算法之一，并被广泛应用于工业机器人、类人机器人（如 H7 机器人手臂规划）以及自动驾驶领域。它是解决单查询、高维、非完整约束规划问题的强有力工具。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/11-lavalle-rapidly-exploring-random-trees.md</span></li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="ROS (Robot Operating System).html">&larr; ROS (Robot Operating System)</a>
-    <a href="Rayleigh商.html">Rayleigh商 &rarr;</a>
+    <a href="Rainbow.html">Rainbow &rarr;</a>
   </div>
 </div>
 </body>

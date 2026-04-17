@@ -21,8 +21,9 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
    - 参考 `_schema/entity-types.md` 确定实体类型
 
 3. **查找已有页面**
-   - 读取 `index.md` 查看已有页面列表
-   - 对每个提取的实体/概念，检查是否已有对应 wiki 页面
+   - 读取 `index.md` 的「全部页面」段落，快速检查提取的实体/概念是否已有对应 wiki 页面
+   - 如需更多上下文（概述、confidence），读取对应主题的 `maps/*.md`
+   - 如果 `maps/` 不存在或为空，回退到读取完整 `index.md`
 
 4. **创建或更新页面**
    - **新实体** → 在 `wiki/entities/` 创建新页面，使用 `templates/wiki-page.md` 模板
@@ -45,9 +46,9 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
      - 如果新信息更可靠（更新、更多来源），用 supersedes 标记旧声明
 
 7. **同步 index.md**
-   - 执行：`Bash: bash scripts/wiki.sh snapshot_index --update`
-   - 脚本自动检测新增/删除的页面并同步 index.md
-   - 注意：index.md 是计算产物（由 snapshot_index.py 维护），不要手动编辑
+   - 执行：`Bash: bash scripts/wiki.sh snapshot_index --slim`
+   - 脚本完整重建 index.md（统计表 + 全部页面列表）
+   - 注意：index.md 只含 `## 统计` 和 `## 全部页面`，详细清单见各 `maps/*.md`，不要手动编辑
 
 8. **更新 log.md**
    - 追加条目：`## [YYYY-MM-DD HH:MM] ingest | 源文件名`

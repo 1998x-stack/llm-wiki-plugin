@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, 机器人学，研究，工具]
+tags: [AI, 机器人学，研究，工具, 机器人学]
 aliases: ["Rodney A. Brooks", "罗德尼·布鲁克斯"]
 relates_to:
   - target: "[[包容体系结构]]"
@@ -31,7 +31,7 @@ supersedes: null
 # Rodney Brooks
 
 ## 概述
-Rodney A. Brooks（罗德尼·布鲁克斯）是澳大利亚裔计算机科学家、机器人学家及企业家，曾任 MIT 人工智能实验室主任。他是“[[行为机器人学]]”（[[行为机器人学|Behavior-based Robotics]]）的奠基人，以 1986 年提出的[[包容体系结构]]而闻名于世，该理论彻底挑战了当时主导 AI 界的符号主义范式。Brooks 主张智能应源于身体与环境的直接交互（具身智能），而非抽象的符号推理。他将学术成果成功转化为商业产品，联合创立了 iRobot 公司（代表作 Roomba 扫地机器人）和 Rethink Robotics（代表作 Baxter 协作机器人），对现代服务机器人和工业协作机器人领域产生了深远影响。
+Rodney A. Brooks（罗德尼·布鲁克斯）是澳大利亚裔计算机科学家、机器人学家及企业家，曾任 MIT 人工智能实验室主任。他是“[[行为机器人学]]”（[[行为机器人学|Behavior-based Robotics]]）的奠基人，以 1986 年提出的[[包容体系结构]]而闻名于世，该理论彻底挑战了当时主导 AI 界的符号主义[[规范化理论|范式]]。Brooks 主张智能应源于身体与环境的直接交互（具身智能），而非抽象的符号推理。他将学术成果成功转化为商业产品，联合创立了 iRobot 公司（代表作 Roomba 扫地机器人）和 Rethink Robotics（代表作 Baxter 协作机器人），对现代服务机器人和工业协作机器人领域产生了深远影响。
 
 ## 关键内容
 

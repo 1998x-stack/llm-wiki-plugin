@@ -27,7 +27,7 @@ supersedes: null
 # User-Based 协同过滤
 
 ## 概述
-User-Based [[协同过滤]]（[[基于用户的协同过滤|User-Based Collaborative Filtering]]）是一种推荐算法范式，通过计算用户之间的相似度，找到与目标用户品味相似的邻居用户，然后基于邻居用户的评分来预测目标用户对未交互物品的评分。
+User-Based [[协同过滤]]（[[基于用户的协同过滤|User-Based Collaborative Filtering]]）是一种推荐算法[[规范化理论|范式]]，通过计算用户之间的相似度，找到与目标用户品味相似的邻居用户，然后基于邻居用户的评分来预测目标用户对未交互物品的评分。
 
 ## 关键内容
 
@@ -53,7 +53,7 @@ User-Based [[协同过滤]]（[[基于用户的协同过滤|User-Based Collabora
    - 可扩展性瓶颈：用户数量增长时计算复杂度平方级增长
    - 后来 [[Amazon]] 等公司转向 [[Item-Based 协同过滤]] 正是为了解决这一瓶颈
 
-7. **历史地位**：[[GroupLens]] 的加权预测公式后来成为 [[基于用户的协同过滤|User-Based CF]] 的标准范式，在随后十余年间被无数论文引用、扩展和改进。[[Pearson 相关系数]]在此后十余年间一直是 [[基于用户的协同过滤|User-Based CF]] 的默认相似度度量。
+7. **历史地位**：[[GroupLens]] 的加权预测公式后来成为 [[基于用户的协同过滤|User-Based CF]] 的标准[[规范化理论|范式]]，在随后十余年间被无数论文引用、扩展和改进。[[Pearson 相关系数]]在此后十余年间一直是 [[基于用户的协同过滤|User-Based CF]] 的默认相似度度量。
 
 ## 来源
 - [[raw/books/推荐系统/02-grouplens-collaborative-filtering.md]] — 核心方法详解章节

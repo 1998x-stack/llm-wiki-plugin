@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmatic-Tool-Calling-PTC — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Programmatic-Tool-Calling-PTC</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="programmatic-tool-calling-ptc">Programmatic Tool Calling (PTC)</h1>
+<h2 id="_1">概述</h2>
+<p>Programmatic Tool Calling（PTC，程序化工具调用）是 <a href="../entities/Claude-Opus-4-6.html">Claude Opus 4.6</a> 和 <a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.6 模型中引入的新能力。允许通过编程方式动态调用工具，而非仅依赖预定义的工具描述。这一能力使得工具调用更加灵活，支持运行时决策和动态参数构造。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心特性</h3>
+<p><strong>动态工具调用</strong>：
+- 不依赖静态工具描述
+- 支持运行时根据上下文动态构造工具调用
+- 允许条件性工具选择和参数生成</p>
+<p><strong>与静态工具调用的对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>静态工具调用</th>
+<th>程序化工具调用 (PTC)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定义时机</strong></td>
+<td>系统提示中预定义</td>
+<td>运行时动态构造</td>
+</tr>
+<tr>
+<td><strong>灵活性</strong></td>
+<td>固定工具和参数</td>
+<td>可动态调整</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>稳定、可预测的工作流</td>
+<td>复杂、条件性任务</td>
+</tr>
+<tr>
+<td><strong>维护成本</strong></td>
+<td>需要手动更新工具定义</td>
+<td>代码即定义</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">应用场景</h3>
+<p><strong>文件编辑的 stale 检查</strong>：
+- 文件编辑工具可以运行 staleness check
+- 验证文件自模型最后读取后是否发生变化
+- 避免基于过期上下文进行修改
+- 提升编辑操作的可靠性和原子性</p>
+<p><strong>动态工具选择</strong>：
+- 根据任务复杂度选择不同工具
+- 条件性工具链编排
+- 自适应工具参数构造</p>
+<h3 id="claude-46">在 Claude 4.6 中的实现</h3>
+<p><strong>支持模型</strong>：
+- <a href="../entities/Claude-Opus-4-6.html">Claude-Opus-4-6</a> — 完整支持 PTC
+- <a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a> — 完整支持 PTC</p>
+<p><strong>能力意义</strong>：
+- PTC 是 4.6 代模型的关键能力提升之一
+- 与 <a href="上下文压缩.html">上下文压缩</a>、<a href="交错式思考.html">交错式思考</a> 等能力协同
+- 为复杂 Agent 工作流提供更灵活的工具调用机制</p>
+<h3 id="_5">设计启示</h3>
+<p><strong>工具演进方向</strong>：
+- 从静态定义到动态编程
+- 从预定义工具集到运行时工具构造
+- 反映了模型处理复杂性的能力提升</p>
+<p><strong>与渐进式披露的关系</strong>：
+- PTC 允许工具按需动态构造
+- 符合"<a href="渐进式披露（Progressive Disclosure）.html">按需加载</a>"的设计哲学
+- 可能减少预定义工具数量，提升灵活性</p>
+<h3 id="ai">在 AI 工程中的位置</h3>
+<p><strong>与 <a href="Agent Skills.html">Agent Skills</a> 的关系</strong>：
+- <a href="Agent Skills.html">Agent Skills</a>：通过 <a href="Agent Skills.html">SKILL.md</a> 文件提供领域知识
+- PTC：提供动态工具调用能力
+- 可能协同：<a href="Agent Skills.html">Skills</a> 可以包含 PTC 的最佳实践和模式</p>
+<p><strong>与 Claude Code 的关系</strong>：
+- Claude Code 目前使用约 20 个预定义工具
+- PTC 可能影响未来工具设计策略
+- 需要持续实验验证 PTC 在实际工作流中的价值</p>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Give Claude a computerGive Claude a computer 给 Claude 一台电脑.md</span> — Lance Martin 关于 PTC 的 X 文章</li>
+</ul>
+<h2 id="_7">相关</h2>
+<ul>
+<li><a href="../entities/Claude-Opus-4-6.html">Claude-Opus-4-6</a> — 支持模型（implements）</li>
+<li><a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a> — 支持模型（implements）</li>
+<li><span style="color:#e74c3c" title="broken link">Agent-Skills</span> — 相关能力扩展机制（compares_to）</li>
+<li><span style="color:#e74c3c" title="broken link">渐进式披露 -Progressive-Disclosure</span> — 相关设计哲学（related_to）</li>
+<li><a href="../entities/Claude-Code.html">Claude-Code</a> — 工具调用系统（part_of）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Probabilistic Robotics.html">&larr; Probabilistic Robotics</a>
+    <a href="Prophet.html">Prophet &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

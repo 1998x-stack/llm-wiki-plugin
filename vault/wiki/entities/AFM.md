@@ -20,13 +20,13 @@ supersedes: null
 # AFM
 
 ## 概述
-引入注意力机制的[[Factorization Machines|因子分解机]]变体，为不同[[特征交叉|特征交互]]赋予不同权重，解决 [[Factorization Machines|FM]] 暴力枚举所有特征对缺乏选择性的问题。
+引入注意力机制的[[Factorization Machines|因子分解机]]变体，为不同[[特征交叉|特征交互]]赋予不同权重，解决 FM 暴力枚举所有特征对缺乏选择性的问题。
 
 ## 关键内容
 
-1. **注意力加权[[特征交叉|特征交互]]**：[[Factorization Machines|FM]] 组件会计算所有特征对之间的交互，没有选择性地关注更重要的交互。A[[Factorization Machines|FM]] 通过引入注意力机制来为不同的[[特征交叉|特征交互]]赋予不同的权重。
-2. **解决 [[DeepFM]] 局限**：[[DeepFM]] 的 [[Factorization Machines|FM]] 部分暴力枚举所有特征对，在特征数量很大时大量不相关的特征对交互实际上是噪声。A[[Factorization Machines|FM]] 的注意力机制可以自动筛选重要交互。
-3. **与 [[DeepFM]] 的关系**：A[[Factorization Machines|FM]] 是对 [[Factorization Machines|FM]] 本身的改进，可以视为 [[DeepFM]] [[Factorization Machines|FM]] 组件的潜在替换方案。将 A[[Factorization Machines|FM]] 替代 [[Factorization Machines|FM]] 集成到 [[DeepFM]] 架构中是一个自然的研究方向。
+1. **注意力加权[[特征交叉|特征交互]]**：FM 组件会计算所有特征对之间的交互，没有选择性地关注更重要的交互。AFM 通过引入注意力机制来为不同的[[特征交叉|特征交互]]赋予不同的权重。
+2. **解决 [[DeepFM]] 局限**：[[DeepFM]] 的 FM 部分暴力枚举所有特征对，在特征数量很大时大量不相关的特征对交互实际上是噪声。AFM 的注意力机制可以自动筛选重要交互。
+3. **与 [[DeepFM]] 的关系**：AFM 是对 FM 本身的改进，可以视为 [[DeepFM]] FM 组件的潜在替换方案。将 AFM 替代 FM 集成到 [[DeepFM]] 架构中是一个自然的研究方向。
 
 ## 来源
 - [Attentional Factorization Machines: Learning the Weight of Feature Interactions via Attention Networks (IJCAI 2017)](https://arxiv.org/abs/1708.04617)

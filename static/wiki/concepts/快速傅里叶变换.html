@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">快速傅里叶变换</h1>
 <h2 id="_2">概述</h2>
-<p>基于分治策略（divide and conquer）的算法，将<a href="离散傅里叶变换.html">离散傅里叶变换</a>（<a href="离散傅里叶变换.html">DFT</a>）的计算复杂度从O(n²)降低到O(n log n)，使大规模频谱分析从理论上可行变为实践中可行，从根本上改变了信号处理、通信、图像处理等领域的计算面貌。</p>
+<p>基于分治策略（divide and conquer）的算法，将<a href="离散傅里叶变换.html">离散傅里叶变换</a>（DFT）的计算复杂度从O(n²)降低到O(n log n)，使大规模频谱分析从理论上可行变为实践中可行，从根本上改变了信号处理、通信、图像处理等领域的计算面貌。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="radix-2-cooley-tukey">核心算法（Radix-2 Cooley-Tukey）</h3>
-<p><strong><a href="离散傅里叶变换.html">DFT</a> 定义</strong>：$X_k = \sum_{j=0}^{n-1} x_j \omega_n^{jk}$，$\omega_n = e^{-2\pi i/n}$，直接计算 $O(n^2)$</p>
+<p><strong>DFT 定义</strong>：$X_k = \sum_{j=0}^{n-1} x_j \omega_n^{jk}$，$\omega_n = e^{-2\pi i/n}$，直接计算 $O(n^2)$</p>
 <p><strong>分治分解</strong>（$n = 2M$，按奇偶拆分）：</p>
 <p>$$X_k = \underbrace{\sum_{j=0}^{M-1} x_{2j}\omega_M^{jk}}<em>{A_k} + \omega_n^k \underbrace{\sum</em>{j=0}^{M-1} x_{2j+1}\omega_M^{jk}}_{B_k}$$</p>
 <p><strong>蝴蝶运算</strong>（butterfly operation）：利用周期性 $A_{k+M}=A_k$，$\omega_n^{k+M}=-\omega_n^k$：</p>
@@ -146,11 +146,36 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>一次乘法（$\omega_n^k B_k$）同时产生两个输出——算法名称"蝴蝶"来自数据流图的形状。</p>
 <h3 id="_4">复杂度</h3>
 <p>递推：$T(n) = 2T(n/2) + O(n)$ → <strong>$T(n) = O(n\log n)$</strong></p>
-<p>| $n$ | 直接 <a href="离散傅里叶变换.html">DFT</a>（$n^2$）| FFT（$\frac{n}{2}\log_2 n$）| 加速比 |
-|-----|-----------------|---------------------------|--------|
-| 1024 | 1,048,576 | 5,120 | <strong>205×</strong> |
-| 65536 | $4\times 10^9$ | 524,288 | <strong>4096×</strong> |
-| $10^6$ | $10^{12}$ | $10^7$ | <strong>$\approx$50000×</strong> |</p>
+<table>
+<thead>
+<tr>
+<th>$n$</th>
+<th>直接 DFT（$n^2$）</th>
+<th>FFT（$\frac{n}{2}\log_2 n$）</th>
+<th>加速比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1024</td>
+<td>1,048,576</td>
+<td>5,120</td>
+<td><strong>205×</strong></td>
+</tr>
+<tr>
+<td>65536</td>
+<td>$4\times 10^9$</td>
+<td>524,288</td>
+<td><strong>4096×</strong></td>
+</tr>
+<tr>
+<td>$10^6$</td>
+<td>$10^{12}$</td>
+<td>$10^7$</td>
+<td><strong>$\approx$50000×</strong></td>
+</tr>
+</tbody>
+</table>
 <h3 id="_5">算法要素</h3>
 <ul>
 <li><strong>位反转排列</strong>（bit-reversal permutation）：就地（in-place）实现的输入重排，将 $j$ 替换为其二进制反转</li>
@@ -160,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">历史背景</h3>
 <p><strong>冷战动因</strong>：1963年《部分禁止核试验条约》签署后，监测地下核试验需实时频谱分析全球地震数据。Richard Garwin（IBM物理学家，美国总统科学顾问委员会成员）促成了 Tukey-Cooley 合作。FFT 的诞生有深刻的地缘政治背景。</p>
 <p><strong>高斯先驱</strong>（鲜为人知）：<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 早在 <strong>1805 年</strong>计算小行星轨道时就在手稿中描述了类似的快速分解方法，但直到 1866 年才以拉丁文遗著发表，未被传播——FFT 的核心思想被独立重发现了。</p>
-<p><strong>Danielson-Lanczos 引理</strong>（1942）：<a href="../entities/康尼利厄斯·朗佐斯.html">康尼利厄斯·朗佐斯</a>与 Danielson 已将 <a href="离散傅里叶变换.html">DFT</a> 分解表示为两个半长 <a href="离散傅里叶变换.html">DFT</a> 的组合，但未递归到 $O(n\log n)$。</p>
+<p><strong>Danielson-Lanczos 引理</strong>（1942）：<a href="../entities/康尼利厄斯·朗佐斯.html">康尼利厄斯·朗佐斯</a>与 Danielson 已将 DFT 分解表示为两个半长 DFT 的组合，但未递归到 $O(n\log n)$。</p>
 <h3 id="_7">主要应用领域</h3>
 <table>
 <thead>
@@ -195,7 +220,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_8">变体与改进</h3>
 <ul>
 <li><strong>Radix-4 / Split-Radix FFT</strong>：进一步减少乘法次数</li>
-<li><strong>Bluestein 算法</strong>：处理任意长度（含素数长度）的 <a href="离散傅里叶变换.html">DFT</a></li>
+<li><strong>Bluestein 算法</strong>：处理任意长度（含素数长度）的 DFT</li>
 <li><strong>实数 FFT</strong>：利用实数信号对称性节省一半计算量</li>
 <li><strong>FFTW</strong>（Fastest Fourier Transform in the West，MIT）：自适应选择最优实现的开源库</li>
 </ul>
@@ -213,7 +238,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="微分熵.html">&larr; 微分熵</a>
+    <a href="必要多样性定律.html">&larr; 必要多样性定律</a>
     <a href="快速扩展随机树 (RRT).html">快速扩展随机树 (RRT) &rarr;</a>
   </div>
 </div>

@@ -23,10 +23,10 @@ supersedes: null
 
 ## 关键内容
 
-1. **Cross Network**：提出 Cross Network（交叉网络），通过逐层交叉操作显式建模任意阶[[特征交叉|特征交互]]，与 [[DeepFM]] 依赖 [[Factorization Machines|FM]] 二阶 + DNN 隐式高阶的策略不同。
-2. **Deep & Cross 架构**：采用 Cross Network（显式交叉）+ Deep Network（隐式交叉）的并行架构，与 [[DeepFM]] 的 [[Factorization Machines|FM]] + DNN 并行架构设计理念相似但实现不同。
-3. **DCN V2**：2020 年推出 DCN V2，引入[[矩阵]]核 CrossNet 和 [[Mixture-of-Experts|MoE]]（[[Mixture-of-Experts|Mixture of Experts]]），进一步提升了模型的表达能力和效率。
-4. **CTR 模型演化链**：在 CTR 模型演化史上，DCN 与 [[DeepFM]] 处于同一分叉点，确立了"显式交叉组件 + DNN"的标准范式。
+1. **Cross Network**：提出 Cross Network（交叉网络），通过逐层交叉操作显式建模任意阶[[特征交叉|特征交互]]，与 [[DeepFM]] 依赖 FM 二阶 + DNN 隐式高阶的策略不同。
+2. **Deep & Cross 架构**：采用 Cross Network（显式交叉）+ Deep Network（隐式交叉）的并行架构，与 [[DeepFM]] 的 FM + DNN 并行架构设计理念相似但实现不同。
+3. **DCN V2**：2020 年推出 DCN V2，引入[[矩阵]]核 CrossNet 和 MoE（[[Mixture-of-Experts|Mixture of Experts]]），进一步提升了模型的表达能力和效率。
+4. **CTR 模型演化链**：在 CTR 模型演化史上，DCN 与 [[DeepFM]] 处于同一分叉点，确立了"显式交叉组件 + DNN"的标准[[规范化理论|范式]]。
 
 ## 来源
 - [Deep & Cross Network (Google 2017)](https://arxiv.org/abs/1708.05123)

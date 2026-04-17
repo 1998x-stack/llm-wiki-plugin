@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="agent">多 Agent 架构</h1>
 <h2 id="_1">概述</h2>
-<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong>子 Agent 通过各自独立上下文窗口进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
+<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong>子 Agent 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="agent_1">多 Agent 系统的适用条件</h3>
 <p>Anthropic 研究表明，多 Agent 架构在以下场景最有价值：
 - <strong>重度并行化</strong>的任务（如广度优先研究：同时探索多个独立方向）
-- <strong>信息量超过单个上下文窗口</strong>的任务
+- <strong>信息量超过单个<a href="上下文窗口.html">上下文窗口</a></strong>的任务
 - <strong>连接大量复杂工具</strong>的任务
 - 任务价值足以支付 <strong>~15× 于聊天的 token 成本</strong></p>
 <p><strong>不适合</strong>：大多数编码任务（真正可并行的子任务较少）、Agent 间需要实时协调的场景。</p>
@@ -188,7 +188,7 @@ LeadResearcher 综合结果
   - 传递给 CitationAgent 处理引用
 </code></pre>
 <h3 id="agent_2">子 Agent 作为"压缩器"</h3>
-<p>子 Agent 的核心贡献不只是并行，而是<strong>上下文压缩</strong>：
+<p>子 Agent 的核心贡献不只是并行，而是<strong><a href="上下文压缩.html">上下文压缩</a></strong>：
 - 每个子 Agent 可能消耗数万 token 探索信息
 - 但只返回 1000-2000 token 的精简摘要给主 Agent
 - 实现关注点分离：主 Agent 专注综合，子 Agent 专注深度探索</p>
@@ -198,13 +198,13 @@ LeadResearcher 综合结果
 <li><strong>教导编排者如何委派</strong>：明确目标、输出格式、工具使用指导、任务边界——否则子 Agent 重复工作或留下空白</li>
 <li><strong>按查询复杂度缩放努力</strong>：嵌入明确的规模规则（简单事实查询：1 个 Agent + 3-10 次工具调用；复杂研究：10+ 子 Agent）</li>
 <li><strong>从宽到窄的搜索策略</strong>：先用短宽泛查询探索，再逐步聚焦</li>
-<li><strong>引导思考过程</strong>：让主 Agent 用 Extended Thinking 规划方法，子 Agent 用 Interleaved Thinking 评估每次工具结果</li>
+<li><strong>引导思考过程</strong>：让主 Agent 用 <a href="扩展思维.html">Extended Thinking</a> 规划方法，子 Agent 用 <a href="交错式思考.html">Interleaved Thinking</a> 评估每次工具结果</li>
 </ol>
 <h3 id="_4">工程可靠性挑战</h3>
 <p><strong>错误传播与状态</strong>：Agent 运行时间长，错误可传播。建议：
 - 结合 AI 的适应性（让 Agent 知道工具失败，自行适应）与确定性保障（重试逻辑、定期检查点）</p>
 <p><strong>调试</strong>：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。</p>
-<p><strong>部署</strong>：使用彩虹部署（Rainbow Deployment）避免更新中断运行中的 Agent。</p>
+<p><strong>部署</strong>：使用彩虹部署（<a href="Rainbow.html">Rainbow</a> Deployment）避免更新中断运行中的 Agent。</p>
 <p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待子 Agent 完成，创建信息流瓶颈。异步执行是下一步。</p>
 <h3 id="_5">并行工具调用</h3>
 <p>多 Agent 并行外，单个 Agent 内的并行工具调用也至关重要：

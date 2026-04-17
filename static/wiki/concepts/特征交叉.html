@@ -140,11 +140,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>定义与动机</strong>：单个特征只能建模独立影响，而特征交叉（如"用户年龄 × 广告类别"）能捕获联合效应。在推荐系统中，用户 ID 和物品 ID 的交叉直接建模个性化偏好；在 <a href="CTR 预估.html">CTR 预估</a>中，"性别=男 AND 广告类别=体育"的交叉能捕获特定人群的点击倾向。</li>
 <li><strong>传统方法</strong>：工程师手工构造交叉特征——对类别型特征做笛卡尔积、对数值型特征做分桶后交叉。这项工作耗时且高度依赖领域经验，难以迁移到新任务。多项式核 SVM 理论上可自动建模交叉，但在高度稀疏数据上完全失败，因为独立参数 $w_{ij}$ 需要特征 $i$ 和 $j$ 共现才能学习。</li>
-<li><strong><a href="../entities/Factorization Machines.html">FM</a> 的解决方案</strong>：<a href="../entities/Factorization Machines.html">Factorization Machines</a> 通过<a href="嵌入表示.html">隐向量</a>分解 $\langle \mathbf{v}_i, \mathbf{v}_j \rangle$ 建模特征交叉，参数不再独立而是通过<a href="嵌入表示.html">隐向量</a>相互关联。即使特征 $i$ 和 $j$ 从未共现，只要 $\mathbf{v}_i$ 和 $\mathbf{v}_j$ 从其他交互中学到合理表示，<a href="../entities/Factorization Machines.html">FM</a> 仍能预测其交叉效应。</li>
-<li><strong>线性复杂度</strong>：<a href="../entities/Factorization Machines.html">FM</a> 通过代数变换将二阶特征交叉的计算复杂度从 $O(kn^2)$ 降至 $O(kn)$，使得在百万甚至千万维特征空间中进行交叉建模成为可能。这是 <a href="../entities/Factorization Machines.html">FM</a> 能够在工业界落地的前提条件。</li>
-<li><strong>高阶交叉</strong>：标准 <a href="../entities/Factorization Machines.html">FM</a> 仅支持二阶交叉。高阶 <a href="../entities/Factorization Machines.html">FM</a> 因组合爆炸导致的计算复杂度和数值不稳定性在实践中很少使用。后续工作如 x<a href="../entities/DeepFM.html">DeepFM</a> 的 CIN 网络尝试显式建模高阶交叉，而 DNN 则隐式学习高阶交互。</li>
-<li><strong>交叉的等权问题</strong>：<a href="../entities/Factorization Machines.html">FM</a> 对所有特征对交叉一视同仁，无法区分有意义的交叉与噪声。<a href="../entities/FFM.html">FFM</a> 通过场感知机制为不同语义类别的交叉使用不同<a href="嵌入表示.html">隐向量</a>来缓解此问题。<a href="../entities/AFM.html">AFM</a>（Attentional <a href="../entities/Factorization Machines.html">FM</a>）用注意力机制为不同交叉分配不同权重。</li>
-<li><strong>与<a href="嵌入表示.html">嵌入表示</a>的关系</strong>：特征交叉的<a href="嵌入表示.html">隐向量</a> $\mathbf{v}_i$ 本质上就是类别型特征的<a href="嵌入表示.html">嵌入表示</a>。现代推荐系统中，<a href="嵌入表示.html">嵌入层</a>可以看作 <a href="../entities/Factorization Machines.html">FM</a> <a href="嵌入表示.html">隐向量</a>的自然延伸，几乎所有深度模型都会为每个类别型特征学习低维<a href="Embedding.html">嵌入向量</a>。</li>
+<li><strong>FM 的解决方案</strong>：<a href="../entities/Factorization Machines.html">Factorization Machines</a> 通过<a href="嵌入表示.html">隐向量</a>分解 $\langle \mathbf{v}_i, \mathbf{v}_j \rangle$ 建模特征交叉，参数不再独立而是通过<a href="嵌入表示.html">隐向量</a>相互关联。即使特征 $i$ 和 $j$ 从未共现，只要 $\mathbf{v}_i$ 和 $\mathbf{v}_j$ 从其他交互中学到合理表示，FM 仍能预测其交叉效应。</li>
+<li><strong>线性复杂度</strong>：FM 通过代数变换将二阶特征交叉的计算复杂度从 $O(kn^2)$ 降至 $O(kn)$，使得在百万甚至千万维特征空间中进行交叉建模成为可能。这是 FM 能够在工业界落地的前提条件。</li>
+<li><strong>高阶交叉</strong>：标准 FM 仅支持二阶交叉。高阶 FM 因组合爆炸导致的计算复杂度和数值不稳定性在实践中很少使用。后续工作如 x<a href="../entities/DeepFM.html">DeepFM</a> 的 CIN 网络尝试显式建模高阶交叉，而 DNN 则隐式学习高阶交互。</li>
+<li><strong>交叉的等权问题</strong>：FM 对所有特征对交叉一视同仁，无法区分有意义的交叉与噪声。FFM 通过场感知机制为不同语义类别的交叉使用不同<a href="嵌入表示.html">隐向量</a>来缓解此问题。AFM（Attentional FM）用注意力机制为不同交叉分配不同权重。</li>
+<li><strong>与<a href="嵌入表示.html">嵌入表示</a>的关系</strong>：特征交叉的<a href="嵌入表示.html">隐向量</a> $\mathbf{v}_i$ 本质上就是类别型特征的<a href="嵌入表示.html">嵌入表示</a>。现代推荐系统中，<a href="嵌入表示.html">嵌入层</a>可以看作 FM <a href="嵌入表示.html">隐向量</a>的自然延伸，几乎所有深度模型都会为每个类别型特征学习低维<a href="Embedding.html">嵌入向量</a>。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -156,13 +156,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="嵌入表示.html">嵌入表示</a> — 特征交叉的隐向量即嵌入</li>
 <li><a href="CTR 预估.html">CTR 预估</a> — 特征交叉的核心应用场景</li>
 <li><a href="协同过滤.html">协同过滤</a> — 用户-物品交叉是 CF 的核心</li>
-<li><a href="../entities/FFM.html">FFM</a> — 场感知特征交叉</li>
-<li><a href="../entities/AFM.html">AFM</a> — 注意力加权的特征交叉</li>
+<li>FFM — 场感知特征交叉</li>
+<li>AFM — 注意力加权的特征交叉</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="牛顿法.html">&larr; 牛顿法</a>
-    <a href="率失真函数.html">率失真函数 &rarr;</a>
+    <a href="状态变化感知.html">状态变化感知 &rarr;</a>
   </div>
 </div>
 </body>

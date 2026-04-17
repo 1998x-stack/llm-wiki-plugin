@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="jacobi">Jacobi 迭代法</h1>
 <h2 id="_1">概述</h2>
-<p>Jacobi 迭代法是求解线性方程组 $Ax=b$ 的经典迭代方法，由<a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a>约于 1845 年提出。核心思想是将系数<a href="矩阵.html">矩阵</a>分裂为对角部分与非对角部分（$A=D+L+U$），利用旧值同步更新所有分量，在对角占优等条件下保证收敛。其"同时更新"特性使它天然适合并行计算，并开创了迭代求解线性方程组的整个范式。</p>
+<p>Jacobi 迭代法是求解线性方程组 $Ax=b$ 的经典迭代方法，由<a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a>约于 1845 年提出。核心思想是将系数<a href="矩阵.html">矩阵</a>分裂为对角部分与非对角部分（$A=D+L+U$），利用旧值同步更新所有分量，在对角占优等条件下保证收敛。其"同时更新"特性使它天然适合并行计算，并开创了迭代求解线性方程组的整个<a href="规范化理论.html">范式</a>。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">矩阵分裂与迭代格式</h3>
 <p>将 $A=D+L+U$（$D$ 对角，$L$ 严格下三角，$U$ 严格上三角），方程组改写为：</p>
@@ -222,7 +222,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;异步迭代&lt;/td&gt;
-&lt;td&gt;Chazan &amp;amp; Miranker（1969），分布式计算中允许使用&quot;过时&quot;数据仍收敛&lt;/td&gt;
+&lt;td&gt;Chazan &amp;amp; Miranker（1969），[[分布式系统&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;GPU 计算&lt;/td&gt;
@@ -245,7 +245,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/卡尔·古斯塔夫·雅各布·雅可比.html">卡尔·古斯塔夫·雅各布·雅可比</a></li>
 <li><a href="谱半径.html">谱半径</a></li>
 <li><a href="Gauss-Seidel方法.html">Gauss-Seidel方法</a></li>
-<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../maps/矩阵理论.html">矩阵理论</a></li>
 </ul>
   </div>
   <div class="page-nav">

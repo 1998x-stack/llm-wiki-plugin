@@ -22,9 +22,9 @@ supersedes: null
 
 ## 关键内容
 
-1. **提出背景**：[[Steffen Rendle]]（[[BPR]] 第一作者）在 [[BPR]] 之后的工作中提出了 Factorization Machines，将[[矩阵分解]]的思想推广到任意实值特征向量，而不仅限于用户-物品交互[[矩阵]]。
+1. **提出背景**：[[Steffen Rendle]]（BPR 第一作者）在 BPR 之后的工作中提出了 Factorization Machines，将[[矩阵分解]]的思想推广到任意实值特征向量，而不仅限于用户-物品交互[[矩阵]]。
 
-2. **模型公式**：F[[Solomonoff先验|M(x)]] = w₀ + Σ_i w_i x_i + Σ_i Σ_j>i ⟨v_i, v_j⟩ x_i x_j，其中 w₀ 为全局偏置，w_i 为一阶权重，v_i 为特征 i 的[[嵌入表示|隐向量]]，通过[[嵌入表示|隐向量]]内积 ⟨v_i, v_j⟩ 建模特征对的交互。
+2. **模型公式**：FM(x) = w₀ + Σ_i w_i x_i + Σ_i Σ_j>i ⟨v_i, v_j⟩ x_i x_j，其中 w₀ 为全局偏置，w_i 为一阶权重，v_i 为特征 i 的[[嵌入表示|隐向量]]，通过[[嵌入表示|隐向量]]内积 ⟨v_i, v_j⟩ 建模特征对的交互。
 
 3. **与[[矩阵分解]]的关系**：当输入特征仅为用户 one-hot 和物品 one-hot 时，FM 退化为标准的[[矩阵分解]]模型。FM 可处理额外的上下文特征（如时间、地点、物品属性等）。
 
@@ -37,5 +37,5 @@ supersedes: null
 
 ## 相关
 - [[矩阵分解]] — extends
-- [[BPR]] — relates_to
+- BPR — relates_to
 - [[隐式反馈]] — relates_to

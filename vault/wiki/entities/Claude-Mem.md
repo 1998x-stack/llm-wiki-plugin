@@ -7,11 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 3
-tags:
-  - AI
-  - 工具
-  - 方法论
-  - 研究
+tags: [AI, 工具, 方法论, 研究, Agent系统]
 aliases: ["Claude Memory Plugin", "Claude Code Memory", "Claude Memory"]
 relates_to:
   - target: "[[Claude-Code]]"
@@ -56,7 +52,7 @@ relates_to:
   - target: "[[Cleanup Hook]]"
     type: uses
     confidence: 1.0
-  - target: "[[FTS5]]"
+  - target: "FTS5"
     type: implements
     confidence: 1.0
   - target: "[[三层存储架构]]"
@@ -82,7 +78,7 @@ Claude-Mem 的核心命题是赋予 AI 编程助手真实的项目记忆。在�
 系统采用“两进程 + 一数据库”模型：
 - **主进程（Claude Code）**：运行 6 个 JavaScript 钩子脚本（context, new, save, summary, cleanup, user-message），负责拦截生命周期事件。
 - **后台服务（Worker Service）**：基于 Express.js 和 Bun 运行的常驻进程，监听本地端口（默认 37777）。它负责异步处理 AI 压缩、管理会话状态、提供 SSE 实时推送以及托管 React 编写的 Viewer UI。
-- **数据层**：使用 [[SQLite]] 配合 [[FTS5]] 进行全文检索，结合 [[ChromaDB]] 进行语义[[近似最近邻检索|向量检索]]，形成混合检索能力。
+- **数据层**：使用 [[SQLite]] 配合 FTS5 进行全文检索，结合 [[ChromaDB]] 进行语义[[近似最近邻检索|向量检索]]，形成混合检索能力。
 
 ### Hook 架构细节
 Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提供的 **Lifecycle Hooks** 机制，在特定时间节点介入工作流：
@@ -115,19 +111,19 @@ Claude-Mem 采用“神经末梢”式的架构设计，利用 Claude Code 提�
 ### 三层存储架构
 Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
 1. **关系型数据层**：利用 [[SQLite]] 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
-2. **全文检索层**：利用 [[FTS5]] 的 BM25 算法，在 10 万条记录下实现<10ms 的查询速度，远优于传统 LIKE 查询。
+2. **全文检索层**：利用 FTS5 的 BM25 算法，在 10 万条记录下实现<10ms 的查询速度，远优于传统 LIKE 查询。
 3. **语义向量层**：可选集成 [[ChromaDB]]，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。
 
 ### 检索工作流
 系统根据查询类型自动选择最优检索策略：
-- **精确关键词检索**：优先使用 [[FTS5]] 实现毫秒级响应
-- **语义相似度检索**：当 [[FTS5]] 召回不足时，启用 [[ChromaDB]] 进行模糊匹配
+- **精确关键词检索**：优先使用 FTS5 实现毫秒级响应
+- **语义相似度检索**：当 FTS5 召回不足时，启用 [[ChromaDB]] 进行模糊匹配
 - **混合检索**：复杂查询可能组合多种检索方式，通过[[检索重排序|重排序]]确保最相关结果优先
 
 ### 工程特性
 - **解耦设计**：内部使用 `sdk_session_id`，外部兼容 `claude_session_id`，便于未来扩展支持其他 AI 工具（如 Cursor）。
-- **自动化同步**：通过 9 个 [[SQLite]] 触发器（Insert/Update/Delete）自动维护 [[FTS5]] 索引，对应用层完全透明。
-- **安全性**：内置严格的 [[FTS5]] 查询转义机制，并通过 332 个测试用例防止 SQL 注入。
+- **自动化同步**：通过 9 个 [[SQLite]] 触发器（Insert/Update/Delete）自动维护 FTS5 索引，对应用层完全透明。
+- **安全性**：内置严格的 FTS5 查询转义机制，并通过 332 个测试用例防止 SQL 注入。
 - **迁移系统**：拥有完善的 10 步迁移历史，确保版本升级时的数据完整性和向后兼容性。
 
 ## 来源
@@ -152,5 +148,5 @@ Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用
 - [[Save Hook]]
 - [[Summary Hook]]
 - [[Cleanup Hook]]
-- [[FTS5]]
+- FTS5
 - [[三层存储架构]]

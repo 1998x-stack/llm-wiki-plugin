@@ -25,7 +25,7 @@ David Nichols 是 [[Xerox PARC]] 研究员，[[Tapestry 系统]]的共同开发�
 
 1. **主要贡献**：作为 [[Tapestry 系统|Tapestry]] 论文的第二作者，参与了[[协同过滤]]概念的首次提出和 [[Tapestry 系统]]的开发。
 
-2. **论文**：[[David Goldberg|Goldberg]], D., Nichols, D., [[Brian M. Oki|Oki]], B.M., & [[Douglas Terry|Terry]], D. (1992). "[[Tapestry 系统|Using Collaborative Filtering to Weave an Information Tapestry]]." *Communications of the ACM*, 35(12), 61-70.
+2. **论文**：[[David Goldberg|Goldberg]], D., Nichols, D., Oki, B.M., & [[Douglas Terry|Terry]], D. (1992). "[[Tapestry 系统|Using Collaborative Filtering to Weave an Information Tapestry]]." *Communications of the ACM*, 35(12), 61-70.
 
 3. **机构**：[[Xerox PARC]]（施乐帕洛阿尔托研究中心）。
 

@@ -130,18 +130,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">NLP</span><span class="tag">大模型</span><span class="tag">序列建模</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">NLP</span><span class="tag">大模型</span><span class="tag">序列建模</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="transformer">Transformer架构</h1>
 <h2 id="_1">概述</h2>
-<p>Transformer 是 2017 年提出的序列到序列神经网络架构，以 <a href="Self-Attention机制.html">Self-Attention机制</a> 替代 RNN 的顺序传播，实现完全并行的全局上下文建模，成为现代大语言模型的基础架构。</p>
+<p><a href="Transformer 架构.html">Transformer</a> 是 2017 年提出的序列到序列神经网络架构，以 <a href="Self-Attention机制.html">Self-Attention机制</a> 替代 RNN 的顺序传播，实现完全并行的全局上下文建模，成为现代大语言模型的基础架构。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心设计思想</h3>
-<p>Transformer 的关键创新是用 <a href="Self-Attention机制.html">Self-Attention机制</a> 取代 RNN 的循环结构：</p>
+<p><a href="Transformer 架构.html">Transformer</a> 的关键创新是用 <a href="Self-Attention机制.html">Self-Attention机制</a> 取代 RNN 的循环结构：</p>
 <ul>
 <li><strong>RNN</strong>：时间步串行，难以并行；长距依赖靠梯度传播，易丢失</li>
-<li><strong>Transformer</strong>：每层所有位置同时计算，直接建模全局上下文</li>
+<li><strong><a href="Transformer 架构.html">Transformer</a></strong>：每层所有位置同时计算，直接建模全局上下文</li>
 </ul>
 <p>核心模块：
 1. <strong><a href="多头注意力.html">多头注意力</a>（<a href="多头注意力.html">Multi-Head Attention</a>）</strong>：并行多子空间注意力
@@ -154,44 +154,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>时间复杂度：$O(n^2 d)$</li>
 <li>空间复杂度：$O(n^2)$</li>
 </ul>
-<p>这是 Transformer 处理超长序列的主要障碍，也是 <a href="注意力预算.html">注意力预算</a> 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。</p>
+<p>这是 <a href="Transformer 架构.html">Transformer</a> 处理超长序列的主要障碍，也是 <a href="注意力预算.html">注意力预算</a> 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。</p>
 <h3 id="rnncnn">与 RNN/CNN 的比较</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>RNN</th>
-<th>CNN</th>
-<th>Transformer</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>并行度</td>
-<td>低（顺序）</td>
-<td>高（局部）</td>
-<td>高（全局）</td>
-</tr>
-<tr>
-<td>长距依赖</td>
-<td>弱</td>
-<td>弱</td>
-<td>强</td>
-</tr>
-<tr>
-<td>序列复杂度</td>
-<td>$O(n)$</td>
-<td>$O(n)$</td>
-<td>$O(n^2)$</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>流式、短序列</td>
-<td>局部模式</td>
-<td>全局上下文建模</td>
-</tr>
-</tbody>
-</table>
+<p>| | RNN | CNN | <a href="Transformer 架构.html">Transformer</a> |
+|--|-----|-----|-------------|
+| 并行度 | 低（顺序） | 高（局部） | 高（全局） |
+| 长距依赖 | 弱 | 弱 | 强 |
+| 序列复杂度 | $O(n)$ | $O(n)$ | $O(n^2)$ |
+| 适用场景 | 流式、短序列 | 局部模式 | 全局上下文建模 |</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/01-解释Transformer架构中的Self-Attention机制，并说明其计算复杂度.md</span> — 架构概述与复杂度对比</li>
@@ -204,8 +174,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Think工具.html">&larr; Think工具</a>
-    <a href="User-Based 协同过滤.html">User-Based 协同过滤 &rarr;</a>
+    <a href="Transformer 架构.html">&larr; Transformer 架构</a>
+    <a href="UNIX.html">UNIX &rarr;</a>
   </div>
 </div>
 </body>

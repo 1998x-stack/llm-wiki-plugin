@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **现象描述**：一些在离线评估（offline evaluation）中看起来更好的方案，在线上 A/B 测试（online evaluation）中并不一定更优。离线指标如 [[AUC]]、[[NDCG]]、[[RMSE]] 等的提升，并不总是转化为线上业务指标的提升。
+1. **现象描述**：一些在离线评估（offline evaluation）中看起来更好的方案，在线上 A/B 测试（online evaluation）中并不一定更优。离线指标如 AUC、NDCG、RMSE 等的提升，并不总是转化为线上业务指标的提升。
 
 2. **根源分析**：
    - 离线评估无法完全模拟用户的动态行为
@@ -48,7 +48,7 @@ supersedes: null
 
 ## 相关
 - [[Deep Neural Networks for YouTube Recommendations]] — 坦诚指出该问题的论文
-- [[AUC]] — 常用离线评估指标
-- [[NDCG]] — 常用离线评估指标
+- AUC — 常用离线评估指标
+- NDCG — 常用离线评估指标
 - [[Example Age]] — 缓解 offline-online gap 的技术之一
 - [[A/B 测试]] — 在线验证的金标准

@@ -14,6 +14,7 @@ import os
 import re
 import sys
 import argparse
+from typing import Optional, List
 
 
 def _strip_timestamp(text: str) -> str:
@@ -39,7 +40,7 @@ def _make_filename(prompt_text: str, index: int) -> str:
     return f"{index:02d}-{safe}.md"
 
 
-def split_chat(json_path: str, outdir: str | None = None) -> list[str]:
+def split_chat(json_path: str, outdir: Optional[str] = None) -> List[str]:
     """Split a ChatGPT JSON export into per-round markdown files.
 
     Returns list of created file paths.
@@ -103,10 +104,13 @@ def split_chat(json_path: str, outdir: str | None = None) -> list[str]:
         created.append(filepath)
         i += 2  # Move to next pair
 
-    # Remove source JSON after successful split
-    os.remove(json_path)
-
-    print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON removed)")
+    # Verify all writes succeeded before removing source
+    all_ok = all(os.path.isfile(p) and os.path.getsize(p) > 0 for p in created)
+    if all_ok and created:
+        os.remove(json_path)
+        print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON removed)")
+    else:
+        print(f"Split {json_path} → {len(created)} files in {outdir}/ (JSON kept — verify writes)")
     for p in created:
         print(f"  {os.path.basename(p)}")
 
@@ -114,9 +118,13 @@ def split_chat(json_path: str, outdir: str | None = None) -> list[str]:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Split ChatGPT JSON into per-round markdowns")
+    parser = argparse.ArgumentParser(
+        description="Split ChatGPT JSON into per-round markdowns"
+    )
     parser.add_argument("json_file", help="Path to ChatGPT JSON export")
-    parser.add_argument("--outdir", help="Output directory (default: <json_file> without .json)")
+    parser.add_argument(
+        "--outdir", help="Output directory (default: <json_file> without .json)"
+    )
     args = parser.parse_args()
 
     if not os.path.isfile(args.json_file):

@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>模型架构</strong>：通常采用 <a href="双塔模型.html">双塔模型</a> 结构——用户塔产生用户 embedding，物品塔产生物品 embedding，通过内积计算相似度。这种设计使得服务时可以转化为 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
 </li>
 <li>
-<p><strong>服务方式</strong>：训练时用 softmax 分类，服务时用 <a href="近似最近邻检索.html">ANN</a> 检索。每个视频预先存储其 embedding 向量（softmax 层权重），用户请求时通过神经网络前向计算得到用户 embedding，然后在视频 embedding 空间中找到与用户 embedding 最近的 Top-N 个视频。</p>
+<p><strong>服务方式</strong>：训练时用 softmax 分类，服务时用 ANN 检索。每个视频预先存储其 embedding 向量（softmax 层权重），用户请求时通过神经网络前向计算得到用户 embedding，然后在视频 embedding 空间中找到与用户 embedding 最近的 Top-N 个视频。</p>
 </li>
 <li>
 <p><strong>多路召回</strong>：现代推荐系统中，候选生成往往不止一路，而是多路召回——包括基于<a href="协同过滤.html">协同过滤</a>的召回、基于内容的召回、基于热门趋势的召回、基于图神经网络的召回等。各路召回的结果合并后进入下一阶段。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与传统方法的关系</strong>：候选生成阶段取代了传统推荐系统中 <a href="矩阵分解.html">矩阵分解</a> 等浅层模型的角色，但核心目标一致——从海量候选中快速找到用户可能感兴趣的物品。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：候选生成模型的特征相对粗糙，丢失了细粒度的用户-物品交<a href="互信息.html">互信息</a>。用户观看历史和搜索历史的简单平均操作丢失了时序信息和长期兴趣演化（后续 <a href="../entities/DIN.html">DIN</a>、<a href="DIEN.html">DIEN</a>、<a href="../entities/SASRec.html">SASRec</a> 等工作对此做了改进）。</p>
+<p><strong>局限性</strong>：候选生成模型的特征相对粗糙，丢失了细粒度的用户-物品交<a href="互信息.html">互信息</a>。用户观看历史和搜索历史的简单平均操作丢失了时序信息和长期兴趣演化（后续 DIN、DIEN、<a href="../entities/SASRec.html">SASRec</a> 等工作对此做了改进）。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="信道编码定理.html">&larr; 信道编码定理</a>
+    <a href="倒排索引.html">&larr; 倒排索引</a>
     <a href="倾向性评分.html">倾向性评分 &rarr;</a>
   </div>
 </div>

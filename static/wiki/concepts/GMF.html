@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="gmf">GMF</h1>
 <h2 id="_1">概述</h2>
-<p>广义<a href="矩阵分解.html">矩阵分解</a>，<a href="../entities/Neural Collaborative Filtering.html">NCF</a> 框架的第一个实例化模型，用可学习的逐元素乘积和权重向量替代传统<a href="矩阵分解.html">矩阵分解</a>的固定内积操作。</p>
+<p>广义<a href="矩阵分解.html">矩阵分解</a>，NCF 框架的第一个实例化模型，用可学习的逐元素乘积和权重向量替代传统<a href="矩阵分解.html">矩阵分解</a>的固定内积操作。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>公式定义</strong>：$\hat{y}<em>{ui} = a</em>{out}(\mathbf{h}^T (\mathbf{p}<em>u \odot \mathbf{q}_i))$，其中 $\odot$ 为逐元素乘积（Hadamard product），$\mathbf{h}$ 是可学习的权重向量，$a</em>{out}$ 是输出激活函数（<a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> 论文中使用 sigmoid）。</li>
-<li><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当 $a_{out}$ 为恒等函数、$\mathbf{h}$ 为全1向量时，G<a href="矩阵分解.html">MF</a> 恰好退化为标准 <a href="矩阵分解.html">MF</a>。这证明了<strong><a href="矩阵分解.html">MF</a> 是 <a href="../entities/Neural Collaborative Filtering.html">NCF</a> 的一个特例</strong>。G<a href="矩阵分解.html">MF</a> 的"广义"体现在：(1) 权重向量 $\mathbf{h}$ 允许不同潜在维度有不同的重要性；(2) 非线性激活函数引入表达能力提升。</li>
-<li><strong>在 <a href="../entities/Neural Collaborative Filtering.html">NCF</a> 中的角色</strong>：G<a href="矩阵分解.html">MF</a> 负责捕捉潜在因子之间的线性交互模式（传统 <a href="矩阵分解.html">MF</a> 擅长的部分），与 MLP 的非线性建模能力形成互补。</li>
-<li><strong>独立嵌入空间</strong>：在最终的 <a href="NeuMF.html">NeuMF</a> 融合模型中，G<a href="矩阵分解.html">MF</a> 使用自己独立的用户/物品嵌入 $\mathbf{p}_u^G, \mathbf{q}_i^G$，不与 MLP 共享，赋予子模型更大的灵活性。</li>
-<li><strong>实验表现</strong>：在大多数设置下，G<a href="矩阵分解.html">MF</a> 的性能不如 MLP，验证了非线性交互函数优于线性交互函数的假设。但 G<a href="矩阵分解.html">MF</a> + MLP 的融合（<a href="NeuMF.html">NeuMF</a>）持续优于单一模型。</li>
+<li><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当 $a_{out}$ 为恒等函数、$\mathbf{h}$ 为全1向量时，GMF 恰好退化为标准 MF。这证明了<strong>MF 是 NCF 的一个特例</strong>。GMF 的"广义"体现在：(1) 权重向量 $\mathbf{h}$ 允许不同潜在维度有不同的重要性；(2) 非线性激活函数引入表达能力提升。</li>
+<li><strong>在 NCF 中的角色</strong>：GMF 负责捕捉潜在因子之间的线性交互模式（传统 MF 擅长的部分），与 MLP 的非线性建模能力形成互补。</li>
+<li><strong>独立嵌入空间</strong>：在最终的 <a href="NeuMF.html">NeuMF</a> 融合模型中，GMF 使用自己独立的用户/物品嵌入 $\mathbf{p}_u^G, \mathbf{q}_i^G$，不与 MLP 共享，赋予子模型更大的灵活性。</li>
+<li><strong>实验表现</strong>：在大多数设置下，GMF 的性能不如 MLP，验证了非线性交互函数优于线性交互函数的假设。但 GMF + MLP 的融合（<a href="NeuMF.html">NeuMF</a>）持续优于单一模型。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Factorization Machines.html">&larr; Factorization Machines</a>
+    <a href="GLB_glTF格式.html">&larr; GLB_glTF格式</a>
     <a href="Gauss-Seidel方法.html">Gauss-Seidel方法 &rarr;</a>
   </div>
 </div>

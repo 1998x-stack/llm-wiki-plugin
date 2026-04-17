@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pairwise">Pairwise 学习</h1>
 <h2 id="_1">概述</h2>
-<p>一种机器学习训练范式，通过比较样本对之间的相对关系而非预测单个样本的绝对值来进行模型优化。</p>
+<p>一种机器学习训练<a href="规范化理论.html">范式</a>，通过比较样本对之间的相对关系而非预测单个样本的绝对值来进行模型优化。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>与 Pointwise 的对比</strong>：<a href="Pointwise 学习.html">Pointwise 方法</a>逐个预测 (user, item) 对的绝对分数/概率，优化 MSE 或<a href="交叉熵.html">交叉熵</a>；Pairwise 方法以三元组 (user, item_i, item_j) 为训练单元，预测两个物品的相对排序，优化 log-sigmoid 等排序损失。</p>
 </li>
 <li>
-<p><strong>在推荐系统中的优势</strong>：推荐系统的最终输出是有序列表而非分数集合，pairwise 方法直接优化排序质量，与最终评价指标（<a href="AUC.html">AUC</a>/<a href="NDCG.html">NDCG</a>）一致，避免了训练目标与评估目标不匹配的问题。</p>
+<p><strong>在推荐系统中的优势</strong>：推荐系统的最终输出是有序列表而非分数集合，pairwise 方法直接优化排序质量，与最终评价指标（AUC/NDCG）一致，避免了训练目标与评估目标不匹配的问题。</p>
 </li>
 <li>
 <p><strong>对缺失数据的处理</strong>：<a href="Pointwise 学习.html">Pointwise 方法</a>需将未交互物品标记为 0 或忽略，存在建模错误；Pairwise 方法只假设正样本排在未观测数据前面，不对未观测物品之间的相对顺序做假设，遵循最小假设原则。</p>
 </li>
 <li>
-<p><strong><a href="BPR.html">BPR</a> 中的实现</strong>：<a href="BPR.html">BPR</a>-Opt = Σ_(u,i,j) ln σ(x̂_ui - x̂_ui) - λ‖Θ‖²，通过 logistic sigmoid 函数建模偏好概率，是 <a href="AUC.html">AUC</a> 的可微光滑近似。</p>
+<p><strong>BPR 中的实现</strong>：BPR-Opt = Σ_(u,i,j) ln σ(x̂_ui - x̂_ui) - λ‖Θ‖²，通过 logistic sigmoid 函数建模偏好概率，是 AUC 的可微光滑近似。</p>
 </li>
 <li>
-<p><strong>与 Listwise 的比较</strong>：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）考虑整个物品列表，在 <a href="NDCG.html">NDCG</a>、<a href="MRR.html">MRR</a> 等指标上提供更紧的下界，但计算复杂度更高。</p>
+<p><strong>与 Listwise 的比较</strong>：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax <a href="交叉熵.html">交叉熵</a>）考虑整个物品列表，在 NDCG、MRR 等指标上提供更紧的下界，但计算复杂度更高。</p>
 </li>
 <li>
-<p><strong>在信息检索中的先例</strong>：Pairwise 排序学习在信息检索领域（Learning to Rank）已有先例，如 RankNet、LambdaRank，<a href="BPR.html">BPR</a> 是第一个将其系统化应用于推荐系统<a href="隐式反馈.html">隐式反馈</a>场景的工作。</p>
+<p><strong>在信息检索中的先例</strong>：Pairwise 排序学习在信息检索领域（<a href="学习排序.html">Learning to Rank</a>）已有先例，如 RankNet、LambdaRank，BPR 是第一个将其系统化应用于推荐系统<a href="隐式反馈.html">隐式反馈</a>场景的工作。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -164,13 +164,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Pointwise 学习.html">Pointwise 学习</a> — compares_to</li>
-<li><a href="BPR.html">BPR</a> — implements</li>
-<li><a href="AUC.html">AUC</a> — relates_to</li>
+<li>BPR — implements</li>
+<li>AUC — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="PDF解析.html">&larr; PDF解析</a>
-    <a href="Pearson 相关系数.html">Pearson 相关系数 &rarr;</a>
+    <a href="PPO.html">&larr; PPO</a>
+    <a href="PatchTST.html">PatchTST &rarr;</a>
   </div>
 </div>
 </body>

@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [技术, 工具]
+tags: [技术, 工具, Agent系统]
 aliases: [Codex Sandbox, Codex Sandbox System]
 relates_to:
   - target: "[[Codex CLI]]"
@@ -23,7 +23,7 @@ supersedes: null
 
 # Codex沙箱系统
 
-[[Codex CLI]] 的执行边界层，用**操作系统内核级机制**限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
+[[Codex CLI]] 的执行边界层，用**[[操作系统]]内核级机制**限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
 
 ## 为什么需要 OS 级沙箱
 

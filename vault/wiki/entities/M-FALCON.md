@@ -23,7 +23,7 @@ M-FALCON（Microbatched-Fast Attention Leveraging Cacheable OperatioNs），Meta
 
 ## 关键内容
 
-1. **核心问题**：1.5 万亿参数的 [[HSTU]] 模型如何在生产环境中以毫秒级延迟运行？Meta 推荐系统每天处理数百亿次用户交互，推理延迟要求在毫秒级别。
+1. **核心问题**：1.5 万亿参数的 HSTU 模型如何在生产环境中以毫秒级延迟运行？Meta 推荐系统每天处理数百亿次用户交互，推理延迟要求在毫秒级别。
 
 2. **KV 缓存复用**：用户历史序列的 KV 缓存可在编码阶段完成后缓存下来，对所有候选物品共享复用。避免为每个候选重复计算历史序列的注意力。
 
@@ -33,14 +33,14 @@ M-FALCON（Microbatched-Fast Attention Leveraging Cacheable OperatioNs），Meta
 
 5. **工程意义**：M-FALCON 是[[生成式推荐]]从理论走向工业部署的关键工程创新。没有它，万亿参数模型的推理成本在经济上不可行。
 
-6. **与 [[两阶段推荐架构]] 的关系**：传统架构中召回层用 [[近似最近邻检索|ANN]] 快速筛选候选，排序层用复杂模型精细排序。M-FALCON 使单一生成式模型能以可接受成本直接处理大量候选，模糊了召回和排序的边界。
+6. **与 [[两阶段推荐架构]] 的关系**：传统架构中召回层用 ANN 快速筛选候选，排序层用复杂模型精细排序。M-FALCON 使单一生成式模型能以可接受成本直接处理大量候选，模糊了召回和排序的边界。
 
 ## 来源
 - [Actions Speak Louder than Words (ArXiv)](https://arxiv.org/abs/2402.17152)
 - [ICML 2024 Proceedings](https://proceedings.mlr.press/v235/zhai24a.html)
 
 ## 相关
-- [[HSTU]] — M-FALCON 服务的目标架构
+- HSTU — M-FALCON 服务的目标架构
 - [[生成式推荐]] — M-FALCON 支撑的推荐范式
 - [[两阶段推荐架构]] — M-FALCON 试图弥合的召回-排序边界
 - [[近似最近邻检索]] — 传统召回层的核心技术，M-FALCON 部分替代其作用

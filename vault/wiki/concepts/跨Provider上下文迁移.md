@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - AI
-  - 技术
-  - 方法论
+tags: [AI, 技术, 方法论, AI工程]
 aliases:
   - Context Handoff
   - Cross-Provider Context Migration
@@ -53,7 +50,7 @@ pi-ai 维护 Provider 无关的 `Context` 对象（消息数组），在切换 P
 
 ### 4. 依赖 JSONL 会话格式
 
-Context Handoff 的前提是 [[Pi-Agent|Pi]] 的 JSONL 会话持久化——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 [[Pi-Agent|Pi]] "会话 JSONL 第一公民"哲学的直接产物。
+Context Handoff 的前提是 Pi 的 JSONL 会话持久化——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 Pi "会话 JSONL 第一公民"哲学的直接产物。
 
 ## 来源
 

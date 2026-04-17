@@ -7,7 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, Agent, 架构, 设计模式, LLM, 事件驱动]
+tags: [AI, Agent, 架构, 设计模式, LLM, 事件驱动, Agent系统]
 aliases:
   - Event-driven Agent
   - Agent事件模型

@@ -135,18 +135,39 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">约翰·冯·诺依曼</h1>
 <h2 id="_2">概述</h2>
-<p>匈牙利裔美国数学家，20世纪最具影响力的数学家之一。在<a href="../concepts/数值分析.html">数值分析</a>领域，冯·诺依曼与戈尔茨坦合作发展了有限差分格式稳定性分析方法。二战期间深度参与曼哈顿计划，在洛斯阿拉莫斯从事流体力学方程数值模拟，直接催生了对数值格式稳定性的研究。</p>
+<p>匈牙利裔美国数学家，20世纪最具影响力的数学家之一。在<a href="../maps/数值分析.html">数值分析</a>领域，冯·诺依曼与戈尔茨坦合作发展了有限差分格式稳定性分析方法。二战期间深度参与曼哈顿计划，在洛斯阿拉莫斯从事流体力学方程数值模拟，直接催生了对数值格式稳定性的研究。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>主要贡献（<a href="../concepts/矩阵.html">矩阵</a>分析）</strong>：1937年发表<a href="../concepts/Von Neumann迹不等式.html">迹不等式</a>论文，建立 $|\operatorname{tr}(A^*B)| \leq \sum\sigma_i(A)\sigma_i(B)$，奠定酉不变范数理论基础；同文建立酉不变范数与对称规范函数的一一对应</li>
-<li><strong>主要贡献（<a href="../concepts/数值分析.html">数值分析</a>）</strong>：1947年发表《高阶<a href="../concepts/矩阵.html">矩阵</a>的数值求逆》，提出<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>方法</li>
+<li><strong>主要贡献（<a href="../maps/数值分析.html">数值分析</a>）</strong>：1947年发表《高阶<a href="../concepts/矩阵.html">矩阵</a>的数值求逆》，提出<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>方法</li>
 <li><strong>计算机先驱</strong>：参与ENIAC和IAS计算机开发，提出冯·诺依曼体系结构</li>
-<li><strong>研究领域</strong>：纯数学（算子代数、遍历理论）、量子力学数学基础、博弈论、计算机体系结构、<a href="../concepts/数值分析.html">数值分析</a></li>
+<li><strong>研究领域</strong>：纯数学（算子代数、遍历理论）、量子力学数学基础、博弈论、计算机体系结构、<a href="../maps/数值分析.html">数值分析</a></li>
 <li><strong>历史背景</strong>：1926–1927年在哥廷根随Hilbert工作建立量子力学数学基础；1933年成为普林斯顿高等研究院首批五位教授之一（与Einstein并列）</li>
-<li><strong>合作者</strong>：与 Murray 创立算子代数（von Neumann代数）；与戈尔茨坦在<a href="../concepts/数值分析.html">数值计算</a>方面深入合作</li>
+<li><strong>合作者</strong>：与 Murray 创立算子代数（von Neumann代数）；与戈尔茨坦在<a href="../maps/数值分析.html">数值计算</a>方面深入合作</li>
+<li><strong>与 Turing 的联系</strong>：<a href="On Computable Numbers 论文.html">Turing 1936</a>–38年在普林斯顿攻读博士学位时，von Neumann 是他的同事。von Neumann 充分了解 Turing 的工作。<a href="EDVAC 报告.html">EDVAC 报告</a>（<a href="EDVAC 报告.html">First Draft of a Report on the EDVAC</a>, 1945）——现代计算机架构的奠基文献——的核心思想"将程序和数据一同存储在内存中"，与通用<a href="../concepts/图灵机.html">图灵机</a>"将机器描述和数据一同写在纸带上"的思想如出一辙。</li>
 <li><strong><a href="../concepts/Von Neumann迹不等式.html">迹不等式</a>的历史意义</strong>：发表于苏联托木斯克大学刊物（1937年），推动了 Schatten 类算子理论、<a href="../concepts/矩阵.html">矩阵</a>补全、低秩优化等现代领域的发展</li>
 </ul>
-<h2 id="_4">关键内容（补充：矩阵计算误差分析）</h2>
+<h2 id="edvac">关键内容（补充：EDVAC 报告与存储程序计算机）</h2>
+<h3 id="edvac-1945">EDVAC 报告（1945）</h3>
+<p>1945年2月至6月，von Neumann 在普林斯顿与洛斯阿拉莫斯之间往返的火车上，以手写笔记的形式记录了与<a href="J. Presper Eckert.html">Eckert</a> 和 <a href="John Mauchly.html">Mauchly</a> 关于 EDVAC 设计的讨论中涌现的设计思想。这份报告最终以 von Neumann 一人署名的形式被 <a href="Herman Goldstine.html">Goldstine</a> 分发至美国及英国多个研究机构。</p>
+<p><strong>五大组件架构</strong>：将计算机分解为中央算术单元（CA）、中央控制单元（CC）、内存（M）、输入设备（I）、输出设备（O）五个功能器官。</p>
+<p><strong>存储程序概念</strong>：指令与数据统一存储于同一内存，消除了物理重新接线的需要。"编程"从一项需要物理操作硬件的工作变成了一项纯粹的智力活动。</p>
+<p><strong>取指-解码-执行循环</strong>：描述了处理器工作的基本<a href="../concepts/规范化理论.html">范式</a>，八十年后的今天，即使是最先进的处理器，其核心工作方式在逻辑上仍然是这个循环的变体。</p>
+<p><strong>二进制表示</strong>：明确推荐使用二进制而非十进制，大幅简化了算术运算电路的设计。</p>
+<p><strong>神经网络类比</strong>：报告中使用了 <a href="../concepts/McCulloch-Pitts 神经元模型.html">McCulloch-Pitts 神经元模型</a> 的术语来描述计算机的逻辑元件，将基本逻辑门称为"E 元件"。</p>
+<h3 id="_4">署名争议</h3>
+<p>报告以 von Neumann 一人署名分发，引发了计算机史上最著名的优先权之争。Eckert 和 Mauchly 认为存储程序的核心概念源自他们在1944年的讨论，von Neumann 是将他们的工程直觉提炼为逻辑框架的人，而非概念的唯一发明者。由于报告被视为公开披露，直接导致 Eckert 和 Mauchly 后来申请的 EDVAC 专利无法执行。</p>
+<h3 id="_5">传播效应</h3>
+<p>报告被广泛分发后，几乎每一个读到它的团队都能够理解其设计思想并据此建造自己的<a href="../concepts/存储程序计算机.html">存储程序计算机</a>：
+- <strong>EDSAC</strong>（1949，剑桥大学）— <a href="Maurice Wilkes.html">Maurice Wilkes</a> 主持，第一台实用的<a href="../concepts/存储程序计算机.html">存储程序计算机</a>
+- <strong>Manchester Baby</strong>（1948，曼彻斯特大学）— 第一台运行存储程序的实验性原型机
+- <strong>EDVAC</strong>（1951，宾夕法尼亚大学）— 报告中直接描述的那台机器
+- <strong>IAS 计算机</strong>（1952，普林斯顿高等研究院）— von Neumann 亲自主持建造</p>
+<h3 id="_6">从理论到工程的桥梁</h3>
+<p>这份报告完成了计算机科学史上最重要的一次理论-实践转化：将 <a href="On Computable Numbers 论文.html">Turing 1936</a>年提出的纯粹数学概念——<a href="../concepts/图灵机.html">通用图灵机</a>——转化为了一个可以用当时的电子技术建造出来的工程方案。<a href="../concepts/存储程序计算机.html">存储程序计算机</a>本质上就是<a href="../concepts/图灵机.html">通用图灵机</a>的工程实现。</p>
+<h3 id="_7">冯·诺依曼瓶颈</h3>
+<p>报告设计的架构存在一个根本性的性能限制——CPU 与内存之间的数据传输瓶颈。八十年后，这一瓶颈不仅没有消失，反而变得更加突出，推动着从缓存层次到存内计算、从异构加速到量子计算的持续技术革新。</p>
+<h2 id="_8">关键内容（补充：矩阵计算误差分析）</h2>
 <ul>
 <li><strong>与戈尔茨坦合作（1947）</strong>：《Numerical Inverting of Matrices of High Order》，<em>Bulletin of the American Mathematical Society</em>，78页，开创数值<a href="../concepts/线性代数.html">线性代数</a>误差分析</li>
 <li>首次系统提出<a href="../concepts/矩阵.html">矩阵</a><strong><a href="../concepts/条件数.html">条件数</a></strong>（<a href="../concepts/条件数.html">condition number</a>）$\text{cond}(A) = |\lambda_{\max}|/|\lambda_{\min}|$</li>
@@ -155,19 +176,20 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a>起源</strong>（1944–1947，洛斯阿拉莫斯内部报告）：曼哈顿计划流体力学模拟需求，傅里叶模态放大因子 $|g(\xi)| \leq 1$ 判据</li>
 <li><strong>首次数值天气预报</strong>（1950）：与 Charney、Fjortoft 合作，ENIAC 上完成，直接继承<a href="刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>的遗产</li>
 </ul>
-<h2 id="_5">来源</h2>
+<h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/数值分析/13_von_neumann_stability.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/矩阵分析/11_von_neumann_trace_inequality_1937.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/03-von-neumann-edvac.md</span> — EDVAC 报告深度解析</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_10">相关</h2>
 <ul>
 <li><a href="../concepts/Von Neumann迹不等式.html">Von Neumann迹不等式</a></li>
 <li><a href="../concepts/奇异值分解.html">奇异值分解</a></li>
 <li><a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析</a></li>
 <li><span style="color:#e74c3c" title="broken link">ENIAC</span></li>
 <li><span style="color:#e74c3c" title="broken link">赫尔曼·戈尔茨坦</span></li>
-<li><a href="../concepts/矩阵理论.html">矩阵理论</a></li>
+<li><a href="../maps/矩阵理论.html">矩阵理论</a></li>
 </ul>
   </div>
   <div class="page-nav">

@@ -130,23 +130,23 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，研究</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具，研究</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="pr2">PR2 机器人</h1>
 <h2 id="_1">概述</h2>
-<p><strong><a href="../concepts/Probabilistic Robotics.html">PR</a>2 </strong>(Personal Robot 2) 是由 <strong><a href="Willow Garage.html">Willow Garage</a></strong> 开发的一款全尺寸移动操作机器人平台，被视为 <a href="../concepts/ROS (Robot Operating System).html">ROS (Robot Operating System)</a> 的旗舰硬件载体。<a href="../concepts/Probabilistic Robotics.html">PR</a>2 造价高昂（约 40 万美元），配备两条 7 自由度手臂、可倾斜激光雷达、多个摄像头及全向移动底座。它不仅是 <a href="Willow Garage.html">Willow Garage</a> 技术实力的展示，更是 ROS 生态系统的"杀手级应用"。通过 2010 年启动的 <a href="../concepts/Probabilistic Robotics.html">PR</a>2 Beta Program，<a href="Willow Garage.html">Willow Garage</a> 免费向全球 11 所顶尖研究机构赠送了该机器人，极大地加速了 ROS 的普及和机器人学研究的发展。</p>
+<p><strong>PR2 </strong>(Personal Robot 2) 是由 <strong><a href="Willow Garage.html">Willow Garage</a></strong> 开发的一款全尺寸移动操作机器人平台，被视为 <a href="../concepts/ROS (Robot Operating System).html">ROS (Robot Operating System)</a> 的旗舰硬件载体。PR2 造价高昂（约 40 万美元），配备两条 7 自由度手臂、可倾斜激光雷达、多个摄像头及全向移动底座。它不仅是 <a href="Willow Garage.html">Willow Garage</a> 技术实力的展示，更是 ROS 生态系统的"杀手级应用"。通过 2010 年启动的 PR2 Beta Program，<a href="Willow Garage.html">Willow Garage</a> 免费向全球 11 所顶尖研究机构赠送了该机器人，极大地加速了 ROS 的普及和机器人学研究的发展。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">硬件规格与设计理念</h3>
-<p><a href="../concepts/Probabilistic Robotics.html">PR</a>2 是一款高度集成的研究型机器人，设计目标是支持复杂的日常操作任务。其主要特征包括：
+<p>PR2 是一款高度集成的研究型机器人，设计目标是支持复杂的日常操作任务。其主要特征包括：
 *   <strong>双机械臂</strong>：两条 7 自由度手臂，具备力控能力，可执行抓取、折叠衣物、操作门把手等精细动作。
 *   <strong>感知系统</strong>：头部装有可俯仰的 Hokuyo 激光雷达用于建图和定位，胸部和手臂配备多个 RGB 摄像头用于视觉识别，全身覆盖触觉传感器。
 *   <strong>移动底盘</strong>：采用全向轮设计，可在狭窄空间灵活移动。
 *   <strong>计算平台</strong>：板载多台高性能计算机，运行 Ubuntu Linux 和 ROS 系统，处理海量的传感器数据和复杂的规划算法。</p>
 <h3 id="ros">与 ROS 的共生关系</h3>
-<p><a href="../concepts/Probabilistic Robotics.html">PR</a>2 与 ROS 是相辅相成的关系。<a href="../concepts/Probabilistic Robotics.html">PR</a>2 的所有软件栈——从底层电机驱动、传感器融合到高层的任务规划、人机交互——完全构建在 ROS 之上。<a href="Willow Garage.html">Willow Garage</a> 利用 <a href="../concepts/Probabilistic Robotics.html">PR</a>2 完成了一系列里程碑式的演示，如自主导航、开门、叠毛巾、从冰箱取啤酒等，这些演示有力地证明了 ROS 支撑复杂多模态系统的能力。反过来，<a href="../concepts/Probabilistic Robotics.html">PR</a>2 的复杂性也推动了 ROS 工具链（如 <a href="TensorFlow.html">TF</a> 坐标变换、MoveIt! <a href="../concepts/运动规划.html">运动规划</a>）的成熟和完善。</p>
+<p>PR2 与 ROS 是相辅相成的关系。PR2 的所有软件栈——从底层电机驱动、传感器融合到高层的任务规划、人机交互——完全构建在 ROS 之上。<a href="Willow Garage.html">Willow Garage</a> 利用 PR2 完成了一系列里程碑式的演示，如自主导航、开门、叠毛巾、从冰箱取啤酒等，这些演示有力地证明了 ROS 支撑复杂多模态系统的能力。反过来，PR2 的复杂性也推动了 ROS 工具链（如 TF 坐标变换、MoveIt! <a href="../concepts/运动规划.html">运动规划</a>）的成熟和完善。</p>
 <h3 id="pr2-beta-program">PR2 Beta Program 的历史意义</h3>
-<p>2010 年，<a href="Willow Garage.html">Willow Garage</a> 实施了著名的 <strong><a href="../concepts/Probabilistic Robotics.html">PR</a>2 Beta Program</strong>，将 11 台 <a href="../concepts/Probabilistic Robotics.html">PR</a>2 机器人免费赠送给 MIT、UC Berkeley、斯坦福、佐治亚理工、弗莱堡大学等机构。这一举措在机器人学界引起了轰动。获得 <a href="../concepts/Probabilistic Robotics.html">PR</a>2 的实验室迅速成为了 ROS 创新的中心，产出了大量高影响力的研究成果，并反向为 ROS 贡献了数千个功能包。这种"种子投放"策略成功地在全球范围内建立了一个紧密协作的研究者网络，确立了 ROS 作为机器人软件事实标准的地位。尽管 <a href="../concepts/Probabilistic Robotics.html">PR</a>2 本身因成本过高未能量产商业化，但它作为研究平台的价值不可估量，被誉为机器人学界的"Model T"。</p>
+<p>2010 年，<a href="Willow Garage.html">Willow Garage</a> 实施了著名的 <strong>PR2 Beta Program</strong>，将 11 台 PR2 机器人免费赠送给 MIT、UC Berkeley、斯坦福、佐治亚理工、弗莱堡大学等机构。这一举措在机器人学界引起了轰动。获得 PR2 的实验室迅速成为了 ROS 创新的中心，产出了大量高影响力的研究成果，并反向为 ROS 贡献了数千个功能包。这种"种子投放"策略成功地在全球范围内建立了一个紧密协作的研究者网络，确立了 ROS 作为机器人软件事实标准的地位。尽管 PR2 本身因成本过高未能量产商业化，但它作为研究平台的价值不可估量，被誉为机器人学界的"Model T"。</p>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/13-quigley-ros-robot-operating-system.md</span></li>

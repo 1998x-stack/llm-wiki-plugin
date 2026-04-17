@@ -141,13 +141,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心公式</strong>：FM 模型由三部分组成：全局偏置 $w_0$、一阶特征权重 $\sum w_i x_i$、二阶<a href="../concepts/特征交叉.html">特征交互</a> $\sum_{i&lt;j} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$。通过将交互<a href="../concepts/矩阵分解.html">矩阵分解</a>为<a href="../concepts/嵌入表示.html">隐向量</a>内积，参数量从 $O(n^2)$ 降至 $O(kn)$。</li>
 <li><strong>线性复杂度推导</strong>：通过代数变换 $\sum_{i&lt;j} \langle \mathbf{v}<em>i, \mathbf{v}_j \rangle x_i x_j = \frac{1}{2} \sum</em>{f=1}^{k} \left( (\sum_i v_{i,f} x_i)^2 - \sum_i v_{i,f}^2 x_i^2 \right)$，将计算复杂度从 $O(kn^2)$ 降至 $O(kn)$，稀疏数据下为 $O(k\bar{n})$。</li>
 <li><strong>稀疏数据有效性</strong>：与多项式 SVM 的独立交互参数不同，FM 的<a href="../concepts/嵌入表示.html">隐向量</a>通过参数共享机制相互关联，即使特征 $i$ 和 $j$ 从未共现，只要 $\mathbf{v}_i$ 和 $\mathbf{v}_j$ 从其他交互中学到合理表示，FM 仍能预测其交互。</li>
-<li><strong>统一框架</strong>：FM 通过不同的特征编码方式可等价表示 <a href="../concepts/矩阵分解.html">矩阵分解</a>（用户-物品 one-hot 编码）、<a href="SVD++.html">SVD++</a>（加入<a href="../concepts/隐式反馈.html">隐式反馈</a>指示变量）、PI<a href="TensorFlow.html">TF</a>（用户-物品-标签三元 one-hot）、<a href="FPMC.html">FPMC</a> 等专用分解模型，实现了"一个公式统一所有分解模型"。</li>
-<li><strong>训练方法</strong>：支持 SGD（大规模在线学习）、<a href="../concepts/交替最小二乘法 ALS.html">ALS</a>（回归任务稳定）、MCMC（<a href="托马斯·贝叶斯.html">贝叶斯</a>推断自动调参）三种优化方法，梯度可在线性时间内计算。</li>
-<li><strong>实验验证</strong>：在稀疏<a href="../concepts/协同过滤.html">协同过滤</a>数据上显著优于线性 SVM 和多项式核 SVM；在评分预测任务上与 <a href="../concepts/矩阵分解.html">MF</a> 性能相当，加入丰富特征编码后可媲美 <a href="SVD++.html">SVD++</a>；在 <a href="Netflix.html">Netflix</a> 数据集（约1亿条评分）上展示工业级可扩展性。</li>
+<li><strong>统一框架</strong>：FM 通过不同的特征编码方式可等价表示 <a href="../concepts/矩阵分解.html">矩阵分解</a>（用户-物品 one-hot 编码）、<a href="SVD++.html">SVD++</a>（加入<a href="../concepts/隐式反馈.html">隐式反馈</a>指示变量）、PITF（用户-物品-标签三元 one-hot）、FPMC 等专用分解模型，实现了"一个公式统一所有分解模型"。</li>
+<li><strong>训练方法</strong>：支持 SGD（大规模在线学习）、ALS（回归任务稳定）、MCMC（<a href="托马斯·贝叶斯.html">贝叶斯</a>推断自动调参）三种优化方法，梯度可在线性时间内计算。</li>
+<li><strong>实验验证</strong>：在稀疏<a href="../concepts/协同过滤.html">协同过滤</a>数据上显著优于线性 SVM 和多项式核 SVM；在评分预测任务上与 MF 性能相当，加入丰富特征编码后可媲美 <a href="SVD++.html">SVD++</a>；在 <a href="Netflix.html">Netflix</a> 数据集（约1亿条评分）上展示工业级可扩展性。</li>
 <li><strong>局限性</strong>：仅支持二阶交叉（高阶 FM 因组合爆炸很少使用）；本质为线性模型，无法学习高度非线性模式；对所有特征对交叉等权处理，无法区分有意义交叉与噪声；<a href="../concepts/嵌入表示.html">隐向量</a>维度 $k$ 的选择缺乏理论指导。</li>
-<li><strong>历史影响</strong>：直接催生 <a href="FFM.html">FFM</a>（2016）、<a href="FNN.html">FNN</a>（2016）、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>（2016）、<a href="DeepFM.html">DeepFM</a>（2017）、NFM（2017）、x<a href="DeepFM.html">DeepFM</a>（2018）、<a href="AFM.html">AFM</a>（2017）等一系列后续工作，是整个 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型谱系的"始祖"。美团、阿里巴巴、华为、Twitter 等公司在推荐和广告系统中大量使用 FM 及其变体。</li>
+<li><strong>历史影响</strong>：直接催生 FFM（2016）、FNN（2016）、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>（2016）、<a href="DeepFM.html">DeepFM</a>（2017）、NFM（2017）、x<a href="DeepFM.html">DeepFM</a>（2018）、AFM（2017）等一系列后续工作，是整个 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型谱系的"始祖"。美团、阿里巴巴、华为、Twitter 等公司在推荐和广告系统中大量使用 FM 及其变体。</li>
 <li><strong>与 <a href="../concepts/Transformer架构.html">Transformer</a> 的结构相似性</strong>：FM 的交叉项 $\sum_i \sum_j \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$ 与 <a href="../concepts/Transformer架构.html">Transformer</a> <a href="../concepts/自注意力机制.html">自注意力机制</a> $\text{softmax}(QK^T/\sqrt{d})V$ 存在结构相似性，都可看作通过"向量内积"衡量元素交互强度。</li>
-<li><strong>Rendle 后续贡献</strong>：Rendle 加入 <a href="Google.html">Google</a> 后，于 2020 年发表 "<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> vs. <a href="../concepts/矩阵分解.html">Matrix Factorization</a> Revisited"，指出精心调优的 <a href="../concepts/矩阵分解.html">MF</a>（FM 特例）在多项基准测试上仍可匹敌<a href="Neural Collaborative Filtering.html">神经协同过滤</a>模型。</li>
+<li><strong>Rendle 后续贡献</strong>：Rendle 加入 <a href="Google.html">Google</a> 后，于 2020 年发表 "<a href="Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> vs. <a href="../concepts/矩阵分解.html">Matrix Factorization</a> Revisited"，指出精心调优的 MF（FM 特例）在多项基准测试上仍可匹敌<a href="Neural Collaborative Filtering.html">神经协同过滤</a>模型。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/CTR 预估.html">CTR 预估</a> — FM 主要应用场景</li>
 <li><a href="libFM.html">libFM</a> — Rendle 开发的 FM 开源实现</li>
 <li><a href="../concepts/隐式反馈.html">隐式反馈</a> — SVD++ 通过 FM 编码纳入</li>
-<li><a href="FFM.html">FFM</a> — FM 的场感知扩展</li>
+<li>FFM — FM 的场感知扩展</li>
 <li><a href="DeepFM.html">DeepFM</a> — FM + DNN 并行架构</li>
 <li><span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> — Wide 部分对应 FM 线性项</li>
 </ul>

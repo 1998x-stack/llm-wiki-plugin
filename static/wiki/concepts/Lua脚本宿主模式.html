@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua脚本宿主模式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Lua脚本宿主模式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">Lua</span><span class="tag">游戏开发</span><span class="tag">架构</span></div>
+</div>
+  <div class="content">
+    <h1 id="lua">Lua 脚本宿主模式</h1>
+<h2 id="_1">概述</h2>
+<p>将 Lua 脚本层嵌入游戏引擎的完整架构模式，分为 VM→绑定→对象代理→调度事件→业务五层；工业实现有 xLua、tolua#、Cocos/Lua、<a href="../entities/Defold.html">Defold</a>/Lua 四类路线。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">五层分层模型</h3>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. VM 层</strong></td>
+<td>[[Lua C API 绑定层</td>
+</tr>
+<tr>
+<td><strong>2. 绑定层</strong></td>
+<td>原生函数注册、userdata 封装、metatable 组装、类型转换</td>
+</tr>
+<tr>
+<td><strong>3. 对象代理层</strong></td>
+<td>对象缓存、唯一实例映射、句柄有效性检查、反射/属性分发</td>
+</tr>
+<tr>
+<td><strong>4. 调度与事件层</strong></td>
+<td>Update/Timer/UI 回调/网络事件/coroutine 恢复</td>
+</tr>
+<tr>
+<td><strong>5. 业务框架层</strong></td>
+<td>战斗脚本、任务系统、剧情系统、配表逻辑、热更新策略</td>
+</tr>
+</tbody>
+</table>
+<p>"Lua 接入做得好"不是第2层 API 写通了，而是第3、4、5层没有互相污染。</p>
+<h3 id="_4">协程作为调度桥</h3>
+<p>Lua thread（coroutine）对游戏引擎价值极高：异步等待不需要真正多线程，只需等待帧/动画/网络/资源。典型用法：<code>yield_wait_seconds(1.0)</code> / <code>yield_wait_event("BossDead")</code>。关键问题：谁恢复 coroutine、在哪一帧恢复、对象销毁时是否取消、错误是否向上冒泡到调度器。</p>
+<h3 id="_5">事件/回调桥</h3>
+<p>引擎保存 Lua function 引用（存注册表，不保存栈上临时值），在特定时机回调。设计重点：
+- <strong>可失效</strong>：对象销毁后解绑回调
+- <strong>可追踪</strong>：跨帧回调中旧闭包捕获过期 upvalue 是高频 bug 来源
+- <strong>可清理</strong>：场景切换时事件表整体重置</p>
+<h3 id="_6">四类工业方案对比</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>定位</th>
+<th>对象连接</th>
+<th>生命周期</th>
+<th>热更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>xLua</strong>（Unity）</td>
+<td>高级桥接+热补丁层</td>
+<td>生成代码/反射；<code>[LuaCallCSharp]</code> 配置</td>
+<td>MonoBehaviour 为主，Lua 桥接</td>
+<td>支持方法级 Hotfix（C#→Lua 替换）</td>
+</tr>
+<tr>
+<td><strong>tolua#</strong>（Unity）</td>
+<td>静态 wrapper 工厂</td>
+<td>预生成 wrapper 大面积导出 C# API</td>
+<td>同 xLua，更静态</td>
+<td>wrapper 路线，无系统 Hotfix</td>
+</tr>
+<tr>
+<td><strong><a href="../entities/Cocos2d-x.html">Cocos2d-x</a>/Lua</strong></td>
+<td>官方 C++ 脚本桥</td>
+<td>LuaEngine+LuaStack；tolua++ 生成；handler id 回调</td>
+<td>ComponentLua 直接绑节点生命周期</td>
+<td>Lua 脚本可替换，非注入式</td>
+</tr>
+<tr>
+<td><strong><a href="../entities/Defold.html">Defold</a>/Lua</strong></td>
+<td>Lua-first 运行时协议</td>
+<td>userdata + url/hash；非大规模类镜像</td>
+<td>init/update/final 原生入口</td>
+<td>脚本运行时迭代，非补丁方案</td>
+</tr>
+</tbody>
+</table>
+<p><strong>生命周期自然度</strong>：<a href="../entities/Defold.html">Defold</a> &gt; Cocos/Lua &gt; xLua ≈ tolua#</p>
+<p><strong>选型建议</strong>：
+- Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2CPP 配置最成体系）
+- 大面积 Unity API 脚本化 → tolua#
+- <a href="../entities/Cocos2d-x.html">Cocos2d-x</a> 节点逻辑 → Cocos/Lua（官方天然配合）
+- Lua 作为主逻辑层 + 消息驱动<a href="规范化理论.html">范式</a> → <a href="../entities/Defold.html">Defold</a></p>
+<h3 id="_7">优秀连接机制判断标准</h3>
+<ol>
+<li>对象身份稳定（同一原生对象→同一脚本代理）</li>
+<li>所有权清晰（Lua 是引用者还是拥有者）</li>
+<li>错误有隔离（脚本崩了不拖死<a href="游戏主循环模式.html">主循环</a>）</li>
+<li>边界足够粗（高频逻辑减少跨语言往返）</li>
+<li>事件可解绑（回调生命周期能自动收口）</li>
+<li>支持调试与观测</li>
+<li>热更新有边界（类型和对象状态有严格迁移策略）</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Lua 游戏引擎连接机制</span> — ChatGPT 对话，系统分析 Lua 游戏引擎连接机制与 xLua/tolua#/Cocos/Defold 方案对比</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Lua C API 绑定层.html">Lua C API 绑定层</a> — 第2层绑定层的底层实现</li>
+<li><a href="Lua userdata.html">Lua userdata</a> — 第3层对象代理层的核心载体</li>
+<li><a href="游戏引擎架构.html">游戏引擎架构</a> — Scripting 层在引擎整体架构中的位置</li>
+<li><a href="游戏主循环模式.html">游戏主循环模式</a> — 第4层调度层与主循环的关系</li>
+<li><a href="Lua模块系统.html">Lua模块系统</a> — 第1层 VM 层的模块加载机制</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Lua状态机.html">&larr; Lua状态机</a>
+    <a href="MCAR.html">MCAR &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

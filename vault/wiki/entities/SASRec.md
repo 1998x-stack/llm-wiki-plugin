@@ -52,7 +52,7 @@ supersedes: null
    - **逐点前馈网络**：两层 FFN，权重在所有位置间共享（类似 1x1 卷积）
    - **预测层**：序列最后位置输出与候选物品嵌入做点积，嵌入[[矩阵]]与输入层共享
 
-4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（自回归模式），而非 Encoder 的双向模式。
+4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（[[AR 模型（自回归模型）|自回归]]模式），而非 Encoder 的双向模式。
 
 5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
 
@@ -60,11 +60,11 @@ supersedes: null
 
 7. **训练目标**：[[二元交叉熵]]损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。
 
-8. **实验结果**：在四个数据集（[[Amazon]] Beauty/Games, Steam, [[MovieLens]]-1M）上均取得最优表现，Hit Rate 提升 6.9%，[[NDCG]] 提升 9.6%（相对最强基线）。训练速度比 [[Caser]] 快约 11 倍，比 [[GRU4Rec]]+ 快约 17 倍（[[MovieLens]]-1M 上 ~350 秒收敛）。
+8. **实验结果**：在四个数据集（[[Amazon]] Beauty/Games, Steam, [[MovieLens]]-1M）上均取得最优表现，Hit Rate 提升 6.9%，NDCG 提升 9.6%（相对最强基线）。训练速度比 [[Caser]] 快约 11 倍，比 [[GRU4Rec]]+ 快约 17 倍（[[MovieLens]]-1M 上 ~350 秒收敛）。
 
 9. **理论退化分析**：当[[Self-Attention机制|自注意力]]块退化为恒等映射、使用非共享物品嵌入、移除[[位置编码]]时，SASRec 退化为 [[FPMC|分解马尔可夫链]]，证明 SASRec 是经典[[协同过滤]]模型的广义化。
 
-10. **历史地位**：[[Transformer架构|Transformer]] 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 [[Transformer架构|Transformer]] 时代。催生了 [[BERT4Rec]]（2019）、[[TiSASRec]]（2020）、[[SSE-PT]]（2020）、[[BST]]（2019）、[[S3-Rec]]（2020）、[[LightSANs]]（2021）、[[DuoRec]]（2022）、[[SASRec+]]（2023）等一系列后续工作。阿里巴巴的 [[BST]] 直接受其启发应用于淘宝[[CTR 预估|点击率预估]]系统。
+10. **历史地位**：[[Transformer架构|Transformer]] 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 [[Transformer架构|Transformer]] 时代。催生了 [[BERT4Rec]]（2019）、[[TiSASRec]]（2020）、[[SSE-PT]]（2020）、BST（2019）、[[S3-Rec]]（2020）、[[LightSANs]]（2021）、[[DuoRec]]（2022）、[[SASRec+]]（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于淘宝[[CTR 预估|点击率预估]]系统。
 
 11. **局限性**：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 [[BERT4Rec]] 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 [[TiSASRec]] 弥补）；"一正一负"训练目标非最优（后续 [[SASRec+]] 证明替换为全物品 softmax 可显著提升）。
 
@@ -79,7 +79,7 @@ supersedes: null
 - [[序列推荐]] — SASRec 解决的核心场景
 - [[GRU4Rec]] — SASRec 超越的 RNN 基线
 - [[Caser]] — SASRec 超越的 CNN 基线
-- [[FPMC]] — SASRec 超越的 MC 基线，SASRec 可退化为其特例
+- FPMC — SASRec 超越的 MC 基线，SASRec 可退化为其特例
 - [[BERT4Rec]] — 双向 Transformer 后续工作，与 SASRec 持续竞争
 - [[自注意力机制]] — SASRec 的核心计算机制
 - [[位置编码]] — SASRec 使用可学习位置嵌入
@@ -88,10 +88,10 @@ supersedes: null
 - [[二元交叉熵]] — SASRec 的训练损失函数
 - [[马尔可夫链]] — SASRec 在稀疏数据上退化的行为模式
 - [[TiSASRec]] — 引入时间间隔感知的 SASRec 后续
-- [[BST]] — 阿里巴巴受 SASRec 启发的工业级 CTR 模型
+- BST — 阿里巴巴受 SASRec 启发的工业级 CTR 模型
 - [[S3-Rec]] — 引入自监督预训练的 SASRec 后续
 - [[SSE-PT]] — 加入个性化嵌入的 SASRec 后续
 - [[LightSANs]] — 轻量级自注意力网络的 SASRec 后续
 - [[DuoRec]] — 对比学习增强的 SASRec 后续
 - [[SASRec+]] — 优化损失函数后反超 BERT4Rec 的 SASRec 后续
-- [[HSTU]] — Meta 的生成式推荐工作，概念上追溯到 SASRec 的自回归框架
+- HSTU — Meta 的生成式推荐工作，概念上追溯到 SASRec 的自回归框架

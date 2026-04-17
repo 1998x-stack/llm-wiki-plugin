@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">奇异值分解</h1>
 <h2 id="_2">概述</h2>
-<p>奇异值分解（Singular Value Decomposition，SVD）是<a href="线性代数.html">线性代数</a>中最重要的<a href="矩阵.html">矩阵</a>分解之一：<strong>任意 $m \times n$ 复<a href="矩阵.html">矩阵</a> $A$ 均可分解为 $A = U\Sigma V^*$</strong>，其中 $U$（$m \times m$）和 $V$（$n \times n$）为酉<a href="矩阵.html">矩阵</a>，$\Sigma$（$m \times n$）为非负对角<a href="矩阵.html">矩阵</a>，对角元素 $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ 称为<strong>奇异值</strong>。SVD 适用于任意（非方形、非对称）<a href="矩阵.html">矩阵</a>，揭示了<a href="矩阵.html">矩阵</a>作为线性映射的本质几何结构，是<a href="正规矩阵.html">正规矩阵</a>谱定理对一般<a href="矩阵.html">矩阵</a>的自然推广。其应用覆盖<a href="数值分析.html">数值计算</a>、数据科学、量子信息等核心领域。</p>
+<p>奇异值分解（Singular Value Decomposition，SVD）是<a href="线性代数.html">线性代数</a>中最重要的<a href="矩阵.html">矩阵</a>分解之一：<strong>任意 $m \times n$ 复<a href="矩阵.html">矩阵</a> $A$ 均可分解为 $A = U\Sigma V^*$</strong>，其中 $U$（$m \times m$）和 $V$（$n \times n$）为酉<a href="矩阵.html">矩阵</a>，$\Sigma$（$m \times n$）为非负对角<a href="矩阵.html">矩阵</a>，对角元素 $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$ 称为<strong>奇异值</strong>。SVD 适用于任意（非方形、非对称）<a href="矩阵.html">矩阵</a>，揭示了<a href="矩阵.html">矩阵</a>作为线性映射的本质几何结构，是<a href="正规矩阵.html">正规矩阵</a>谱定理对一般<a href="矩阵.html">矩阵</a>的自然推广。其应用覆盖<a href="../maps/数值分析.html">数值计算</a>、数据科学、量子信息等核心领域。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>对任意 $A \in \mathbb{C}^{m \times n}$（$m \geq n$），存在酉<a href="矩阵.html">矩阵</a> $U \in \mathbb{C}^{m \times m}$，$V \in \mathbb{C}^{n \times n}$ 和非负对角<a href="矩阵.html">矩阵</a></p>
@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <a href="../entities/伊赛·舒尔.html">Schur</a>：$A = QTQ^<em>$（方形<a href="矩阵.html">矩阵</a>，上三角 $T$，单个酉<a href="矩阵.html">矩阵</a> $Q$）
 - SVD：$A = U\Sigma V^</em>$（任意矩形<a href="矩阵.html">矩阵</a>，对角 $\Sigma$，两个酉<a href="矩阵.html">矩阵</a>）</p>
 <h3 id="_8">奇异值与特征值的关系</h3>
-<p>对 $A \in \mathbb{C}^{n \times n}$，奇异值与特征值的关系由 <strong><a href="../entities/赫尔曼·外尔.html">Weyl</a> 不等式</strong>（1949）刻画：</p>
+<p>对 $A \in \mathbb{C}^{n \times n}$，奇异值与特征值的关系由 <strong>Weyl 不等式</strong>（1949）刻画：</p>
 <p>$$|\lambda_1(A)| \geq |\lambda_2(A)| \geq \cdots, \quad \prod_{i=1}^k |\lambda_i(A)| \leq \prod_{i=1}^k \sigma_i(A)$$</p>
 <p>等号 $\Leftrightarrow$ $A$ 为<a href="正规矩阵.html">正规矩阵</a>时，$|\lambda_i| = \sigma_i$。</p>
 <h3 id="_9">计算算法</h3>
@@ -248,14 +248,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>信号处理</td>
-<td>子空间方法（MUSIC，ES<span style="color:#e74c3c" title="broken link">Probabilistic Robotics&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;量子信息&lt;/td&gt;
-&lt;td&gt;Schmidt 分解（量子纠缠度量）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;数值[[线性代数</span></td>
+<td>子空间方法（MUSIC，ESPRIT）去噪</td>
+</tr>
+<tr>
+<td>量子信息</td>
+<td>Schmidt 分解（量子纠缠度量）</td>
+</tr>
+<tr>
+<td>数值<a href="线性代数.html">线性代数</a></td>
 <td>伪逆计算、最小二乘解、<a href="条件数.html">条件数</a>估计</td>
 </tr>
 </tbody>
@@ -272,7 +272,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Von Neumann迹不等式.html">Von Neumann迹不等式</a></li>
 <li><a href="Schur分解.html">Schur分解</a></li>
 <li><a href="正规矩阵.html">正规矩阵</a></li>
-<li><a href="矩阵理论.html">矩阵理论</a></li>
+<li><a href="../maps/矩阵理论.html">矩阵理论</a></li>
 <li><a href="Weyl特征值不等式.html">Weyl特征值不等式</a></li>
 <li><a href="QR算法.html">QR算法</a></li>
 <li><a href="Householder变换.html">Householder变换</a></li>
@@ -280,7 +280,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="大数定律.html">&larr; 大数定律</a>
-    <a href="对比学习.html">对比学习 &rarr;</a>
+    <a href="婚姻挤压理论.html">婚姻挤压理论 &rarr;</a>
   </div>
 </div>
 </body>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网格细胞 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 网格细胞</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">空间认知</span><span class="tag">内嗅皮层</span></div>
+</div>
+  <div class="content">
+    <h1 id="grid-cells">网格细胞（Grid Cells）</h1>
+<h2 id="_1">概述</h2>
+<p>网格细胞是内嗅皮层（MEC）中的神经元，其放电位置在整个环境中呈现出完美的正三角形网格（六边形蜂窝格子）。由 Edvard Moser 和 May-Britt Moser 夫妇于 2005 年发现，与<a href="位置细胞.html">位置细胞</a>共同构成大脑的 GPS 系统。Moser 夫妇与 <a href="../entities/John O&#x27;Keefe.html">John O&#x27;Keefe</a> 共同获得 2014 年诺贝尔生理学或医学奖。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">发现历史</h3>
+<p><strong>莫泽夫妇的发现（2005）</strong>：
+- Edvard Moser 和 May-Britt Moser 在奥斯陆大学/特隆赫姆神经科学研究所进行研究
+- 对大鼠内嗅皮层（medial entorhinal cortex, MEC）进行单细胞记录
+- 内嗅皮层是海马的主要输入来源，与<a href="位置细胞.html">位置细胞</a>密切相关
+- 发现 MEC 神经元的放电位置在整个环境中呈现出完美的正三角形网格
+- 这些神经元被命名为"网格细胞（Grid Cells）"</p>
+<h3 id="_4">网格细胞的几何美学</h3>
+<p><strong>放电模式参数</strong>：
+1. <strong>网格间距（grid spacing/scale）</strong>：相邻激活顶点之间的距离，在不同细胞中从 25cm 到数米不等
+2. <strong>网格方向（orientation）</strong>：六边形网格在环境中的旋转角度
+3. <strong>网格相位（phase）</strong>：网格原点相对于环境参考点的偏移</p>
+<p><strong>关键发现</strong>：
+- 沿 MEC 背腹轴，网格间距以近似几何级数递增（约√2 倍）
+- 从背侧（小网格，高精度）到腹侧（大网格，低精度）
+- 形成多尺度空间表征</p>
+<p><strong>数学最优性</strong>：
+- 正六边形铺砌是以最少节点覆盖最大面积的最优几何方案
+- 大脑以最优编码策略表征空间位置
+- 体现了神经编码的数学美学</p>
+<h3 id="_5">与位置细胞的协作</h3>
+<p><strong>大脑 GPS 系统</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>细胞类型</th>
+<th>所在脑区</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="位置细胞.html">位置细胞</a></strong></td>
+<td>海马 CA1, CA3</td>
+<td>编码当前位置（"我在哪里"）</td>
+</tr>
+<tr>
+<td><strong>网格细胞</strong></td>
+<td>内嗅皮层（MEC）</td>
+<td>提供通用坐标系（度量空间）</td>
+</tr>
+<tr>
+<td><strong>头方向细胞</strong></td>
+<td>前下丘脑、内嗅皮层</td>
+<td>编码当前朝向（"我面朝哪里"）</td>
+</tr>
+<tr>
+<td><strong>边界细胞</strong></td>
+<td>下托（subiculum）、MEC</td>
+<td>响应环境边界，锚定参考系</td>
+</tr>
+<tr>
+<td><strong>速度细胞</strong></td>
+<td>MEC, 海马</td>
+<td>编码运动速度，更新位置估计</td>
+</tr>
+</tbody>
+</table>
+<p><strong>协作机制</strong>：
+- 网格细胞提供度量空间的通用坐标系
+- <a href="位置细胞.html">位置细胞</a>基于网格细胞的输入编码特定位置
+- 头方向细胞提供方向信息
+- 边界细胞锚定参考系
+- 速度细胞更新位置估计</p>
+<p><strong>功能实现</strong>：
+- 位置估计（Where am I？）
+- 路径整合（Path integration）：根据速度和方向累积计算位移
+- 目标导向导航（How do I get there？）
+- 场景记忆的空间框架（Events happen at locations）</p>
+<h3 id="_6">多尺度表征</h3>
+<p><strong>背腹轴梯度</strong>：
+- 背侧 MEC：小网格，高精度，局部空间表征
+- 腹侧 MEC：大网格，低精度，全局空间表征
+- 网格间距以近似几何级数递增（约√2 倍）</p>
+<p><strong>功能意义</strong>：
+- 多尺度表征允许同时编码精细和粗略的空间信息
+- 类似地图的缩放级别（zoom levels）
+- 支持从局部导航到全局定位的多层次需求</p>
+<h3 id="_7">历史地位</h3>
+<p><strong>2014 年诺贝尔奖</strong>：
+- Edvard Moser、May-Britt Moser 与 <a href="../entities/John O&#x27;Keefe.html">John O&#x27;Keefe</a> 共享诺贝尔生理学或医学奖
+- 获奖理由：发现构成大脑定位系统的细胞</p>
+<p><strong>科学意义</strong>：
+- 揭示了大脑空间认知的细胞机制
+- 网格细胞的六边形网格是神经科学中最美丽的发现之一
+- 为理解大脑如何表征抽象空间提供关键线索</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_08_place_cells_grid_cells.md</span> — 大脑内置的 GPS：位置细胞与网格细胞</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Edvard Moser</span> — 发现者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">May-Britt Moser</span> — 发现者（part_of）</li>
+<li><a href="位置细胞.html">位置细胞</a> — 协作细胞（compares_to）</li>
+<li><span style="color:#e74c3c" title="broken link">内嗅皮层</span> — 所在脑区（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">认知地图</span> — 实现机制（implements）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="网关与路由器.html">&larr; 网关与路由器</a>
+    <a href="耗散结构.html">耗散结构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

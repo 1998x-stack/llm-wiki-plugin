@@ -7,10 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags:
-  - AI
-  - 技术
-  - 架构
+tags: [AI, 技术, 架构, AI工程]
 aliases:
   - LLM Wire Protocol
   - 四协议统一模式

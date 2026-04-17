@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO搜索引擎优化 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / SEO搜索引擎优化</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="seo">SEO搜索引擎优化</h1>
+<h2 id="_1">概述</h2>
+<p>SEO（Search Engine Optimization，搜索引擎优化）是通过优化网站技术架构、内容质量、外部链接，使页面在 <a href="../entities/Google.html">Google</a>/Bing 等传统搜索引擎的自然搜索结果（SERP）获得更高排名的综合策略。市场规模 2024 年达 891 亿美元。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>发展历程</strong>：1990s 关键词堆砌 → 2000s PageRank 主导 → 2010s 熊猫/企鹅算法（内容/链接质量）→ 2015 RankBrain（机器学习引入排名）→ 2018 E-A-T 框架 → 2021 Core Web Vitals → 2023 E-E-A-T 升级 → 2024 AI Overviews 全量上线 → 2025 GEO 兴起。</p>
+</li>
+<li>
+<p><strong>四大核心模块</strong>：</p>
+</li>
+<li><strong>技术 SEO</strong>：爬虫可访问性、Core Web Vitals（LCP&lt;2.5s，INP&lt;200ms，CLS&lt;0.1）、移动优先、URL规范化、robots.txt/sitemap</li>
+<li><strong>内容 SEO</strong>：E-E-A-T（Experience/Expertise/Authoritativeness/Trustworthiness）、关键词研究与布局、内容深度与权威性</li>
+<li><strong>站内 SEO</strong>：标题/H标签/meta优化、内部链接结构、图片 alt、URL 结构</li>
+<li>
+<p><strong>站外 SEO</strong>：反向链接（Backlink）质量与数量、品牌提及、数字 PR</p>
+</li>
+<li>
+<p><strong>评估指标</strong>：关键词排名（SERP 位置）、自然搜索流量、点击率（CTR）、转化率、Domain Authority（DA/DR）。</p>
+</li>
+<li>
+<p><strong>SEO vs GEO</strong>：SEO 目标传统 SERP 蓝链，约 10 个竞争位置，30+ 年历史，可量化；GEO 目标 AI 生成答案引用，约 2-7 个竞争位置，2023 年提出，归因困难。两者互补，业界推荐双轨并行。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><code>raw/articles/ai-engineering/search-retrieval/02_SEO深度解析.md</code> — 2025 年最新实践</li>
+<li><code>raw/articles/ai-engineering/search-retrieval/03_GEO_vs_SEO对比分析.md</code> — GEO vs SEO 全维度对比</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="GEO生成式引擎优化.html">GEO生成式引擎优化</a> — compares_to</li>
+<li><a href="搜索引擎架构.html">搜索引擎架构</a> — uses</li>
+<li>BM25 — uses（搜索引擎排序底层）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="SAT 问题.html">&larr; SAT 问题</a>
+    <a href="SLAM.html">SLAM &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

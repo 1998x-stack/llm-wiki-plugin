@@ -6,7 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 1
-tags: [AI, Agent, 协议, 网络, LangChain]
+tags: [AI, Agent, 协议, 网络, LangChain, Agent系统]
 aliases: [Agent Client Protocol, ACP, deepagents-acp]
 relates_to:
   - target: "[[DeepAgents]]"

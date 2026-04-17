@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配置驱动示例系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 配置驱动示例系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">软件架构</span><span class="tag">文档生成</span><span class="tag">配置驱动</span><span class="tag">AI工具</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">配置驱动示例系统</h1>
+<h2 id="_2">概述</h2>
+<p>以 YAML 配置文件作为单一真实来源（SSOT），自动生成多视图文档索引和 API 反向映射的示例管理架构。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心架构</h3>
+<p>三层结构：配置文件 → 处理脚本 → 多种输出文档。</p>
+<pre><code>examples-config.yaml (SSOT)
+        ↓
+tools/process_examples.py
+        ↓
+├── 复制示例文件
+├── index.md（按分类/难度的主索引）
+└── api-index.md（API → 示例的反向映射）
+</code></pre>
+<h3 id="ssot">SSOT 配置结构</h3>
+<p>每个示例的元信息集中存储在 YAML 中：
+- <code>source/target</code>：文件路径映射
+- <code>metadata</code>：title（双语）、category、difficulty、apis、features、tags</p>
+<p>分类和难度级别也在配置中统一定义，支持图标和颜色标注。</p>
+<h3 id="_5">多视图文档生成</h3>
+<p>主索引 <code>index.md</code> 自动生成三种浏览视图：
+1. <strong>按分类浏览</strong>：分类 → 难度分组
+2. <strong>按难度浏览</strong>：难度 → 示例列表
+3. <strong>快速查找表</strong>：完整表格</p>
+<h3 id="api">API 反向索引</h3>
+<p><code>api-index.md</code> 构建 API → 使用该 API 的示例列表的反向映射，主要用途：
+- AI 助手快速定位特定 API 的使用示例
+- 评估 API 文档覆盖率
+- 开发者学习 API 用法</p>
+<h3 id="_6">设计决策</h3>
+<table>
+<thead>
+<tr>
+<th>决策</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用 YAML</td>
+<td>可读性强，支持注释和嵌套，Python 生态成熟</td>
+</tr>
+<tr>
+<td>配置与代码分离</td>
+<td>非程序员可编辑，配置变更不需改代码</td>
+</tr>
+<tr>
+<td>生成而非手写索引</td>
+<td>避免多视图不同步，减少人为错误</td>
+</tr>
+<tr>
+<td>文件复制而非符号链接</td>
+<td>Windows 兼容，可独立分发，支持复制时转换</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai">AI 友好设计</h3>
+<p>系统专为 AI 助手优化：
+- 结构化元信息（apis 字段）便于语义检索
+- API 反向索引支持"给我看用 RigidBody 的示例"类查询
+- 双语标题支持中英文检索</p>
+<h3 id="_7">扩展点</h3>
+<ul>
+<li>添加新分类：在 <code>categories</code> 部分增加条目</li>
+<li>添加新元数据字段：metadata 下增加自定义字段，脚本自动保留</li>
+<li>添加新生成器：扩展 <code>ExamplesProcessor</code> 类的 <code>generate_*</code> 方法</li>
+<li>添加新验证规则：在 <code>validate_config()</code> 中增加逻辑</li>
+</ul>
+<h3 id="_8">工作流程</h3>
+<p>添加新示例：编辑 YAML → <code>--validate</code> 验证 → 执行生成 → 提交全部变更（配置 + 示例文件 + 生成文档）。</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/config/EXAMPLES_SYSTEM.md</span> — UrhoX AI Dev Kit 示例系统架构文档 v1.0（2025-11-17）</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="游戏脚手架模式.html">游戏脚手架模式</a> — relates_to，同属 UrhoX 开发体系，脚手架也是配置驱动的模板系统</li>
+<li><a href="../entities/UrhoX引擎.html">UrhoX引擎</a> — relates_to，该系统为 UrhoX Lua 示例管理而设计</li>
+<li><a href="../entities/UrhoXCLI.html">UrhoXCLI</a> — relates_to，AI Dev Kit 的 CLI 工具链</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="逻辑时钟.html">&larr; 逻辑时钟</a>
+    <a href="采样 Softmax.html">采样 Softmax &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

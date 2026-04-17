@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="timesvd">timeSVD++</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../concepts/矩阵分解.html">矩阵分解</a>的时间动态扩展模型，将用户偏好的时间演化纳入建模，10 维 time<a href="SVD++.html">SVD++</a> 精度超过 200 维标准 <a href="../concepts/奇异值分解.html">SVD</a>。</p>
+<p><a href="../concepts/矩阵分解.html">矩阵分解</a>的时间动态扩展模型，将用户偏好的时间演化纳入建模，10 维 time<a href="SVD++.html">SVD++</a> 精度超过 200 维标准 SVD。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心创新</strong>：将 bias 和用户因子都变为时间的函数：</li>
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>$b_u(t)$：用户偏置随时间变化（包括长期漂移和日特定波动）</li>
 <li>$p_u(t)$：用户隐因子向量随时间变化（品味的演化）</li>
 <li><strong>静态假设</strong>：物品的隐因子 $q_i$ 不随时间变化，因为物品本身是静态的。</li>
-<li><strong>效果</strong>：一个仅 10 维的 time<a href="SVD++.html">SVD++</a> 模型，精度就超过了 200 维的标准 <a href="../concepts/奇异值分解.html">SVD</a> 模型。Koren 总结："正确处理时间动态对精度的影响，大于设计更复杂的推荐架构。"</li>
+<li><strong>效果</strong>：一个仅 10 维的 time<a href="SVD++.html">SVD++</a> 模型，精度就超过了 200 维的标准 SVD 模型。Koren 总结："正确处理时间动态对精度的影响，大于设计更复杂的推荐架构。"</li>
 <li><strong>公式</strong>：$\hat{r}<em>{ui}(t) = \mu + b_i(t) + b_u(t) + q_i^T \cdot (p_u(t) + |R(u)|^{-1/2} \sum</em>{j \in R(u)} y_j)$</li>
 <li><strong>后续影响</strong>：为<a href="../concepts/序列推荐.html">序列推荐</a>、<a href="../concepts/会话推荐.html">会话推荐</a>等研究方向埋下了种子。</li>
 </ol>
@@ -159,8 +159,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="pypdf.html">&larr; pypdf</a>
-    <a href="xDeepFM.html">xDeepFM &rarr;</a>
+    <a href="rust-analyzer.html">&larr; rust-analyzer</a>
+    <a href="typescript-language-server.html">typescript-language-server &rarr;</a>
   </div>
 </div>
 </body>

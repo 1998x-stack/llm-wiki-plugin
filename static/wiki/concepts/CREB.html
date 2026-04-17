@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CREB — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / CREB</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">记忆</span><span class="tag">分子生物学</span></div>
+</div>
+  <div class="content">
+    <h1 id="crebcamp">CREB（cAMP 响应元件结合蛋白）</h1>
+<h2 id="_1">概述</h2>
+<p>CREB（cAMP Response Element Binding protein）是一种转录因子，在长期记忆形成中起核心作用。由 <a href="../entities/Eric Kandel.html">Eric Kandel</a> 在海兔研究中发现，CREB 激活是短期记忆转化为长期记忆的关键分子开关。在果蝇、小鼠和人类中，CREB 激活被反复证明对长期记忆形成必要，是认知增强药物研发的核心靶点。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">发现历史</h3>
+<p><strong>Kandel 的海兔研究</strong>：
+- <a href="../entities/Eric Kandel.html">Eric Kandel</a> 选择加州海兔（Aplysia californica）作为模式生物
+- 研究鳃缩回反射的三种学习形式：习惯化、敏感化、经典条件反射
+- 发现短期记忆和长期记忆的分子机制存在本质差异</p>
+<p><strong>短期 vs 长期记忆</strong>：
+- <strong>短期记忆（单次训练）</strong>：
+  - cAMP→PKA 激活→现有蛋白质磷酸化
+  - 不需要新蛋白质合成
+  - 突触只是功能性改变，不改变数目和形态
+- <strong>长期记忆（5 次间隔训练）</strong>：
+  - cAMP 持续升高→PKA 催化亚基进入细胞核
+  - 激活转录因子 CREB
+  - 合成新蛋白质（包括 BDNF 等）
+  - 突触末梢的数目和形态发生永久性改变</p>
+<h3 id="_4">分子机制</h3>
+<p><strong>CREB 激活通路</strong>：</p>
+<pre><code>cAMP 持续升高
+    ↓
+PKA 催化亚基进入细胞核
+    ↓
+CREB 磷酸化激活
+    ↓
+结合 cAMP 响应元件（CRE）
+    ↓
+激活下游基因转录
+    ↓
+合成新蛋白质（BDNF 等）
+    ↓
+突触结构性重塑
+</code></pre>
+<p><strong>关键特性</strong>：
+- CREB 是一种转录因子
+- 被 PKA 磷酸化后激活
+- 结合到 DNA 上的 cAMP 响应元件（CRE）
+- 激活下游基因的转录
+- 导致新蛋白质合成
+- 引发突触的结构性改变</p>
+<h3 id="_5">在记忆中的作用</h3>
+<p><strong>跨物种保守性</strong>：
+- 在果蝇、小鼠和人类中，CREB 激活被反复证明对长期记忆形成必要
+- CREB 激活剂作为认知增强药物的研究持续进行
+- 过度激活 CREB 导致的记忆效应，被 Kandel 称为"photographic memory 的分子基础"
+- 在转基因小鼠实验中得到验证</p>
+<p><strong>阿尔茨海默病</strong>：
+- 阿尔茨海默病中 CREB 信号通路受损
+- 是 AD 记忆障碍的重要机制
+- CREB 激活剂可能是治疗 AD 的潜在药物</p>
+<h3 id="_6">历史地位</h3>
+<p><strong>2000 年诺贝尔奖</strong>：
+- <a href="../entities/Eric Kandel.html">Eric Kandel</a> 因发现信号转导在神经系统中的关键作用获诺贝尔生理学或医学奖
+- CREB 是这一发现的核心分子</p>
+<p><strong>科学意义</strong>：
+- 首次在分子水平证明：长期记忆的形成需要基因转录和新蛋白质合成
+- 并伴随突触的结构性重塑
+- 确立了"记忆的分子生物学"研究<a href="规范化理论.html">范式</a>
+- CREB 成为记忆分子生物学的核心靶点</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_11_kandel_aplysia.md</span> — 海兔的教诲：记忆是如何写进分子的</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="../entities/Eric Kandel.html">Eric Kandel</a> — 发现者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">海兔</span> — 模式生物（uses）</li>
+<li><span style="color:#e74c3c" title="broken link">记忆</span> — 核心功能（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">长期记忆</span> — 分子开关（caused）</li>
+<li><span style="color:#e74c3c" title="broken link">突触可塑性</span> — 调控机制（part_of）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="CFL条件.html">&larr; CFL条件</a>
+    <a href="CSP 模型.html">CSP 模型 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

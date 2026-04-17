@@ -120,7 +120,7 @@ $$Q^T A Q = H_{\text{Hessenberg}} \quad [\frac{10}{3}n^3 \text{ 次运算}]$$
 | QR 分解 | 最稳定的稠密[[矩阵]] QR 分解方法（LAPACK DGEQRF）|
 | Hessenberg 化简 | QR 算法特征值计算的预处理（LAPACK DGEHRD）|
 | 对称三对角化 | 对称特征值计算预处理（LAPACK DSYTRD）|
-| [[奇异值分解|SVD]] 计算 | Golub-Kahan 双对角化（LAPACK D[[Boston Dynamics|BD]]SDC）|
+| SVD 计算 | Golub-Kahan 双对角化（LAPACK DBDSDC）|
 | 最小二乘 | $\min\|Ax-b\|_2$：$A=QR$，解 $Rx=Q^Tb$（比法方程更稳定）|
 | 块 [[阿尔斯顿·豪斯霍尔德|Householder]]（WY 表示）| 现代并行计算中将多个变换合并为 BLAS-3 [[矩阵]]-[[矩阵]]乘 |
 

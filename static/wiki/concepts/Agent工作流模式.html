@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">Agent 工作流模式</h1>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h4 id="2-routing">2. 路由（Routing）</h4>
 <p>对输入分类，导向专门的后续处理路径，实现关注点分离和专业化提示。</p>
 <p><strong>适用</strong>：有多个明确类别需分别处理，且分类本身可以准确执行。
-<strong>例</strong>：客服查询分流（退款 / 技术支持 / 一般问题）；简单问题路由到 Haiku 4.5，复杂问题路由到 Sonnet 4.5。</p>
+<strong>例</strong>：客服查询分流（退款 / 技术支持 / 一般问题）；简单问题路由到 Haiku 4.5，复杂问题路由到 <a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.5。</p>
 <h4 id="3-parallelization">3. 并行化（Parallelization）</h4>
 <p>LLM 同时处理任务，结果聚合。两个变体：
 - <strong>Sectioning</strong>：将任务拆分为独立子任务并行执行
@@ -195,7 +195,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <strong>适用标准</strong>：① LLM 响应在人类反馈下可显著改善；② LLM 能够提供此类反馈。
 <strong>例</strong>：文学翻译（译者 + 评审）；复杂信息搜集任务（评估者决定是否需要进一步搜索）。</p>
 <h3 id="agent-agent">Agent（自主 Agent）</h3>
-<p>真正的 Agent 是 LLM 基于环境反馈在循环中使用工具。关键特征：
+<p>真正的 Agent 是 LLM 基于<a href="环境反馈设计.html">环境反馈</a>在循环中使用工具。关键特征：
 - 任务明确后<strong>独立计划执行</strong>，必要时回来寻求帮助
 - 每步从环境获取"ground truth"（工具调用结果、代码执行结果）
 - 支持停止条件（最大迭代数），必要时暂停等待人类反馈</p>
@@ -210,7 +210,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>保持 Agent 设计的简洁性</strong></li>
 <li><strong>透明性</strong>：明确展示 Agent 的规划步骤</li>
-<li><strong>工具文档和测试</strong>：与 <a href="Agent计算机接口.html">ACI</a> 设计同等重要</li>
+<li><strong>工具文档和测试</strong>：与 ACI 设计同等重要</li>
 </ol>
 <h2 id="_5">来源</h2>
 <ul>
@@ -227,7 +227,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Agent Skills.html">&larr; Agent Skills</a>
+    <a href="Agentic Search.html">&larr; Agentic Search</a>
     <a href="Agent循环.html">Agent循环 &rarr;</a>
   </div>
 </div>

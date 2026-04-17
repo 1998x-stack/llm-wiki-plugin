@@ -37,9 +37,9 @@ supersedes: null
    - 解释生成："Generate an explanation for user_15 about why item_25 is recommended." → 自然语言解释
    - 直接推荐："Will user_15 like item_25? Yes or No?" → "Yes"
 
-4. **47个 Prompt 模板**：[[P5 论文|P5]] 设计了总计 47 个个性化 Prompt 模板，覆盖评分预测、[[序列推荐]]、解释生成、评论摘要、直接推荐五个任务家族。
+4. **47个 Prompt 模板**：P5 设计了总计 47 个个性化 Prompt 模板，覆盖评分预测、[[序列推荐]]、解释生成、评论摘要、直接推荐五个任务家族。
 
-5. **与[[指令调优]]的关系**：Prompt 模板是 [[P5 论文|P5]]（2022）时代的任务统一方式，后续工作如 [[InstructRec]] 和 [[TALLRec]] 转向[[指令调优]]（[[指令调优|Instruction Tuning]]），用更灵活的指令格式替代固定模板。
+5. **与[[指令调优]]的关系**：Prompt 模板是 P5（2022）时代的任务统一方式，后续工作如 [[InstructRec]] 和 [[TALLRec]] 转向[[指令调优]]（[[指令调优|Instruction Tuning]]），用更灵活的指令格式替代固定模板。
 
 ## 来源
 - Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)
@@ -48,7 +48,7 @@ supersedes: null
 - [[P5 论文]] — 提出个性化 Prompt 的论文
 - [[生成式推荐 (LLM)]] — 个性化 Prompt 服务的范式
 - [[Zero-shot 推荐]] — 个性化 Prompt 部分采样训练带来的能力
-- [[T5]] — 使用个性化 Prompt 的骨干模型
+- T5 — 使用个性化 Prompt 的骨干模型
 - [[指令调优]] — 替代 Prompt 模板的现代方法
 - [[InstructRec]] — 使用指令调优的后续工作
 - [[TALLRec]] — 使用指令调优的后续工作

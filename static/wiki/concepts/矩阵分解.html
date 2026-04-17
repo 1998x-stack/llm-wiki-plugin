@@ -145,28 +145,28 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>预测公式</strong>：用户 u 对物品 i 的预测评分为 x̂_ui = ⟨w_u, h_i⟩ = Σ_f w_uf · h_if，通过<a href="嵌入表示.html">隐向量</a>内积捕捉用户-物品交互模式。</p>
 </li>
 <li>
-<p><strong>在 <a href="BPR.html">BPR</a> 中的应用</strong>：<a href="BPR.html">BPR</a>-MF 将<a href="矩阵.html">矩阵</a>分解与 <a href="BPR.html">BPR</a> 优化准则结合，x̂_uij = ⟨w_u, h_i - h_j⟩，参数更新梯度为 ∂x̂_uij/∂w_u = h_i - h_j, ∂x̂_uij/∂h_i = w_u, ∂x̂_uij/∂h_j = -w_u。</p>
+<p><strong>在 BPR 中的应用</strong>：BPR-MF 将<a href="矩阵.html">矩阵</a>分解与 BPR 优化准则结合，x̂_uij = ⟨w_u, h_i - h_j⟩，参数更新梯度为 ∂x̂_uij/∂w_u = h_i - h_j, ∂x̂_uij/∂h_i = w_u, ∂x̂_uij/∂h_j = -w_u。</p>
 </li>
 <li>
-<p><strong>传统优化方式</strong>：经典 MF 使用 pointwise 回归损失（如 MSE/<a href="奇异值分解.html">SVD</a>）优化，<a href="BPR.html">BPR</a> 证明了同样的 MF 模型使用排序优化准则（<a href="BPR.html">BPR</a>-OPT）能获得显著更好的排序质量。</p>
+<p><strong>传统优化方式</strong>：经典 MF 使用 pointwise 回归损失（如 MSE/SVD）优化，BPR 证明了同样的 MF 模型使用排序优化准则（BPR-OPT）能获得显著更好的排序质量。</p>
 </li>
 <li>
-<p><strong><a href="嵌入表示.html">隐向量</a>维度选择</strong>：实验表明<a href="嵌入表示.html">隐向量</a>维度从 8 到 128 变化时，<a href="BPR.html">BPR</a>-MF 始终优于 <a href="奇异值分解.html">SVD</a>-MF 和 WR-MF，维度增加通常带来性能提升但需防止过拟合。</p>
+<p><strong><a href="嵌入表示.html">隐向量</a>维度选择</strong>：实验表明<a href="嵌入表示.html">隐向量</a>维度从 8 到 128 变化时，BPR-MF 始终优于 SVD-MF 和 WR-MF，维度增加通常带来性能提升但需防止过拟合。</p>
 </li>
 <li>
-<p><strong>与深度学习的关系</strong>：Rendle (2020) 指出经过精心调优的 MF + <a href="BPR.html">BPR</a> 在许多标准数据集上仍能与复杂深度学习模型竞争，提醒研究者不应忽视优化目标的重要性。</p>
+<p><strong>与深度学习的关系</strong>：Rendle (2020) 指出经过精心调优的 MF + BPR 在许多标准数据集上仍能与复杂深度学习模型竞争，提醒研究者不应忽视优化目标的重要性。</p>
 </li>
 <li>
-<p><strong><a href="../entities/Netflix Prize.html">Netflix Prize</a> 与 MF 的崛起</strong>：2006-2009 年 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛中，<a href="矩阵.html">矩阵</a>分解方法从 <a href="../entities/FunkSVD.html">FunkSVD</a>（<a href="RMSE.html">RMSE</a> ~0.896）到 <a href="../entities/SVD++.html">SVD++</a>（0.8924）到 <a href="../entities/timeSVD++.html">timeSVD++</a>（&lt; 0.8924），逐步超越传统近邻<a href="协同过滤.html">协同过滤</a>。<a href="../entities/BellKor.html">BellKor</a> 团队最终以 <a href="RMSE.html">RMSE</a> 0.8567 赢得 100 万美元大奖，MF 是方案绝对主力。</p>
+<p><strong><a href="../entities/Netflix Prize.html">Netflix Prize</a> 与 MF 的崛起</strong>：2006-2009 年 <a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛中，<a href="矩阵.html">矩阵</a>分解方法从 <a href="../entities/FunkSVD.html">FunkSVD</a>（RMSE ~0.896）到 <a href="../entities/SVD++.html">SVD++</a>（0.8924）到 <a href="../entities/timeSVD++.html">timeSVD++</a>（&lt; 0.8924），逐步超越传统近邻<a href="协同过滤.html">协同过滤</a>。<a href="../entities/BellKor.html">BellKor</a> 团队最终以 RMSE 0.8567 赢得 100 万美元大奖，MF 是方案绝对主力。</p>
 </li>
 <li>
 <p><strong>Koren 的层次化建模框架</strong>：Koren, Bell, Volinsky (2009) 提出了由简到繁的 MF 框架：基本 MF → <a href="Bias 建模.html">Bias 建模</a>（$\hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u$）→ <a href="../entities/SVD++.html">SVD++</a>（融合<a href="隐式反馈.html">隐式反馈</a>）→ <a href="../entities/timeSVD++.html">timeSVD++</a>（时间动态）。这一框架构成了推荐系统领域长达十余年的技术基石。</p>
 </li>
 <li>
-<p><strong>优化方法</strong>：SGD（实现简单、收敛快）和 <a href="交替最小二乘法 ALS.html">ALS</a>（精确求解、适合并行、适合<a href="隐式反馈.html">隐式反馈</a>）是 MF 的两大主流优化方法。<a href="交替最小二乘法 ALS.html">ALS</a> 优化的 MF 成为了 <a href="../entities/Apache Spark MLlib.html">Apache Spark MLlib</a> 的标准推荐算法实现。</p>
+<p><strong>优化方法</strong>：SGD（实现简单、收敛快）和 ALS（精确求解、适合并行、适合<a href="隐式反馈.html">隐式反馈</a>）是 MF 的两大主流优化方法。ALS 优化的 MF 成为了 <a href="../entities/Apache Spark MLlib.html">Apache Spark MLlib</a> 的标准推荐算法实现。</p>
 </li>
 <li>
-<p><strong>现代视角</strong>：MF 的隐因子向量本质上是 <a href="Embedding.html">Embedding</a> 的早期形式。从 MF 到 <a href="../entities/Factorization Machines.html">FM</a>、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、<a href="../entities/Neural Collaborative Filtering.html">NCF</a>、<a href="../entities/BERT4Rec.html">BERT4Rec</a>、<a href="双塔模型.html">双塔模型</a>，"双向量 + 相似度"范式至今仍是推荐系统的骨架。</p>
+<p><strong>现代视角</strong>：MF 的隐因子向量本质上是 <a href="Embedding.html">Embedding</a> 的早期形式。从 MF 到 FM、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、NCF、<a href="../entities/BERT4Rec.html">BERT4Rec</a>、<a href="双塔模型.html">双塔模型</a>，"双向量 + 相似度"<a href="规范化理论.html">范式</a>至今仍是推荐系统的<a href="骨骼系统.html">骨架</a>。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="协同过滤.html">协同过滤</a> — implements</li>
-<li><a href="BPR.html">BPR</a> — compares_to</li>
+<li>BPR — compares_to</li>
 <li><a href="隐式反馈.html">隐式反馈</a> — relates_to</li>
 </ul>
   </div>

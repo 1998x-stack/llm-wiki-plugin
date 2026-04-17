@@ -8,7 +8,7 @@
 
 ### 1. 诊断
 
-运行 `wiki:check` 的完整流程（步骤 1-5），获取所有问题清单。
+运行 `wiki:check` 的完整流程（步骤 1-6），获取所有问题清单。
 
 ### 2. 自动修复
 
@@ -21,7 +21,7 @@
 | **C. 断链** | 近似名称页面 → 自动修正链接目标；否则 → 跳过 |
 | **D. 矛盾** | 基于 confidence 和 source_count 提出建议（不自动解决） |
 | **E. 过期** | 标记 status=stale（不删除） |
-| **F. index.md** | 执行 `Bash: bash scripts/wiki.sh snapshot_index --update` 同步 |
+| **F. index.md** | 执行 `Bash: bash scripts/wiki.sh snapshot_index --slim` 完整重建（统计表 + 全部页面） |
 | **G. BM25** | 执行 `Bash: bash scripts/wiki.sh bm25_index update <missing_file>` |
 | **H. 图谱** | 跳过（由 wiki:build 负责） |
 | **I. 模板** | 跳过（报告即可） |

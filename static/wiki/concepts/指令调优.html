@@ -135,21 +135,21 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">指令调优</h1>
 <h2 id="_2">概述</h2>
-<p>用自然语言指令替代固定 Prompt 模板来训练 LLM 推荐模型的方法，是 <a href="../entities/P5 论文.html">P5</a> Prompt 模板范式的现代演进。</p>
+<p>用自然语言指令替代固定 Prompt 模板来训练 LLM 推荐模型的方法，是 P5 Prompt 模板<a href="规范化理论.html">范式</a>的现代演进。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>概念定义</strong>：指令调优（Instruction Tuning）是在大规模指令数据集上微调语言模型，使其能够遵循自然语言指令完成各种任务的方法。在推荐系统中，它将 <a href="../entities/P5 论文.html">P5</a> 的固定 Prompt 模板升级为更灵活的指令格式。</p>
+<p><strong>概念定义</strong>：指令调优（Instruction Tuning）是在大规模指令数据集上微调语言模型，使其能够遵循自然语言指令完成各种任务的方法。在推荐系统中，它将 P5 的固定 Prompt 模板升级为更灵活的指令格式。</p>
 </li>
 <li>
 <p><strong>与<a href="个性化 Prompt.html">个性化 Prompt</a>的对比</strong>：</p>
 </li>
-<li><a href="../entities/P5 论文.html">P5</a>（2022）：47 个固定 Prompt 模板，措辞和格式预先定义</li>
+<li>P5（2022）：47 个固定 Prompt 模板，措辞和格式预先定义</li>
 <li>
 <p>指令调优（2024-2025）：自然语言指令，格式更灵活，覆盖更广的任务描述空间</p>
 </li>
 <li>
-<p><strong><a href="../entities/InstructRec.html">InstructRec</a> 方案</strong>：微信团队提出的基于指令调优的推荐方法，借鉴了 <a href="../entities/P5 论文.html">P5</a> 的任务统一思想，但用指令格式替代 Prompt 模板，使模型能够理解更复杂的推荐指令。</p>
+<p><strong><a href="../entities/InstructRec.html">InstructRec</a> 方案</strong>：微信团队提出的基于指令调优的推荐方法，借鉴了 P5 的任务统一思想，但用指令格式替代 Prompt 模板，使模型能够理解更复杂的推荐指令。</p>
 </li>
 <li>
 <p><strong><a href="../entities/TALLRec.html">TALLRec</a> 方案</strong>：首个尝试用大语言模型（LLaMA）进行推荐任务微调的工作，使用指令调优使 LLaMA 适配推荐场景。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>更好的 zero-shot/few-shot 能力：模型学会"遵循指令"的元能力</p>
 </li>
 <li>
-<p><strong>在现代方案中的地位</strong>：从 <a href="../entities/P5 论文.html">P5</a> 到现代方案的演进中，指令调优替代 Prompt 模板成为任务统一的主要方式，配合 LoRA/QLoRA 参数高效微调，使大规模 LLM 推荐成为可能。</p>
+<p><strong>在现代方案中的地位</strong>：从 P5 到现代方案的演进中，指令调优替代 Prompt 模板成为任务统一的主要方式，配合 LoRA/QLoRA 参数高效微调，使大规模 LLM 推荐成为可能。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -183,8 +183,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="技术栈感知设计规则.html">&larr; 技术栈感知设计规则</a>
-    <a href="推荐系统 Scaling Laws.html">推荐系统 Scaling Laws &rarr;</a>
+    <a href="择偶梯度理论.html">&larr; 择偶梯度理论</a>
+    <a href="指数平滑.html">指数平滑 &rarr;</a>
   </div>
 </div>
 </body>

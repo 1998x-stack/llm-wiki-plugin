@@ -38,11 +38,26 @@ def collect_wiki_files(single: Optional[str] = None) -> List[Path]:
 
 
 def load_index_links() -> Set[str]:
-    """Return set of page names referenced in index.md as [[Name]] or [[Name|Alias]]."""
+    """Return set of page names listed in index.md.
+
+    Supports two formats:
+    - Wikilink: [[Name]] or [[Name|Alias]] (used in older verbose format)
+    - Plain text: comma-separated names in the ## 全部页面 section (slim format)
+    """
     if not INDEX_FILE.exists():
         return set()
     text = INDEX_FILE.read_text(encoding="utf-8")
-    return set(re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", text))
+    # Wikilink format
+    names = set(re.findall(r"\[\[([^\]|]+?)(?:\|[^\]]*?)?\]\]", text))
+    # Plain text format: extract the ## 全部页面 section and parse comma-separated names
+    m = re.search(r"## 全部页面\s*\n+(.+?)(?:\n##|\Z)", text, re.DOTALL)
+    if m:
+        raw = m.group(1).strip()
+        for name in raw.split(","):
+            name = name.strip()
+            if name:
+                names.add(name)
+    return names
 
 
 def load_docmap() -> Optional[dict]:
@@ -174,9 +189,14 @@ def check_orphans(all_pages: Set[str], wiki_files: List[Path],
 
 
 def check_stale_index(index_links: Set[str], all_pages: Set[str]) -> List[dict]:
-    """I2: entries in index.md that have no corresponding wiki file."""
+    """I2: entries in index.md that have no corresponding wiki file.
+
+    Skips maps/ references — those are valid links to maps/*.md, not wiki pages.
+    """
     findings: List[dict] = []
     for name in sorted(index_links - all_pages):
+        if name.startswith("maps/"):
+            continue  # maps/ links in the stats table are intentional
         findings.append(dict(
             file="index.md", check="I2", severity=SEVERITY_WARN,
             message="Stale index entry: [[%s]]" % name, fixed=False))

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">序列推荐</h1>
 <h2 id="_2">概述</h2>
-<p>将用户行为建模为有序序列，利用历史交互的时序模式预测下一次交互，涵盖<a href="会话推荐.html">会话推荐</a>和长期序列建模两大场景，是深度学习在推荐系统中的主流范式之一。</p>
+<p>将用户行为建模为有序序列，利用历史交互的时序模式预测下一次交互，涵盖<a href="会话推荐.html">会话推荐</a>和长期序列建模两大场景，是深度学习在推荐系统中的主流<a href="规范化理论.html">范式</a>之一。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -145,16 +145,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>技术演进路线</strong>：</p>
 </li>
 <li><strong>2015 前</strong>：<a href="../entities/马尔可夫.html">马尔可夫</a>链（一阶/高阶转移概率），状态空间爆炸限制扩展</li>
-<li><strong>2016</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 首次将深度 RNN（<a href="生成式推荐.html">GR</a>U）引入序列推荐，开创深度学习方向</li>
-<li><strong>2017</strong>：NARM（<a href="生成式推荐.html">GR</a>U + 注意力，区分全局/局部意图）、HRNN（层次化 RNN，跨会话建模）</li>
+<li><strong>2016</strong>：<a href="../entities/GRU4Rec.html">GRU4Rec</a> 首次将深度 RNN（GRU）引入序列推荐，开创深度学习方向</li>
+<li><strong>2017</strong>：NARM（GRU + 注意力，区分全局/局部意图）、HRNN（层次化 RNN，跨会话建模）</li>
 <li><strong>2018</strong>：STAMP（纯注意力，无 RNN）、<a href="../entities/SASRec.html">SASRec</a>（<a href="Self-Attention机制.html">自注意力</a> <a href="Transformer架构.html">Transformer</a>，单向序列建模）</li>
 <li><strong>2019</strong>：<a href="../entities/BERT4Rec.html">BERT4Rec</a>（双向 <a href="Transformer架构.html">Transformer</a>，Cloze 任务训练）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（图神经网络）</li>
-<li><strong>2020+</strong>：自监督学习（<a href="../entities/SSE-PT.html">SSE-PT</a>, CL4SRec）、<a href="对比学习.html">对比学习</a>等新范式</li>
+<li><strong>2020+</strong>：自监督学习（<a href="../entities/SSE-PT.html">SSE-PT</a>, CL4SRec）、<a href="对比学习.html">对比学习</a>等新<a href="规范化理论.html">范式</a></li>
 <li>
 <p><strong>2024-2025</strong>：大语言模型赋能推荐（LLM4Rec）</p>
 </li>
 <li>
-<p><strong>与<a href="协同过滤.html">协同过滤</a>的对比</strong>：传统 <a href="协同过滤.html">CF</a> 假设用户身份可识别且有长期历史，通过用户-物品<a href="矩阵.html">矩阵</a>学习低秩表示；序列推荐不依赖用户身份，聚焦行为序列中的时序模式，更适合匿名用户和动态意图场景。</p>
+<p><strong>与<a href="协同过滤.html">协同过滤</a>的对比</strong>：传统 CF 假设用户身份可识别且有长期历史，通过用户-物品<a href="矩阵.html">矩阵</a>学习低秩表示；序列推荐不依赖用户身份，聚焦行为序列中的时序模式，更适合匿名用户和动态意图场景。</p>
 </li>
 <li>
 <p><strong>关键建模能力</strong>：</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="位置偏差.html">位置偏差</a>处理</strong>：避免过度依赖最近点击而忽视早期信号</p>
 </li>
 <li>
-<p><strong>评估指标</strong>：<a href="Recall@K.html">Recall@K</a>（召回率）、<a href="MRR.html">MRR</a>@K（<a href="MRR.html">平均倒数排名</a>）、<a href="NDCG.html">NDCG</a>@K（<a href="NDCG.html">归一化折扣累积增益</a>）。</p>
+<p><strong>评估指标</strong>：<a href="Recall@K.html">Recall@K</a>（召回率）、MRR@K（<a href="MRR.html">平均倒数排名</a>）、NDCG@K（<a href="NDCG.html">归一化折扣累积增益</a>）。</p>
 </li>
 <li>
 <p><strong>现代框架中的位置</strong>：在 NVIDIA Merlin / <a href="Transformer架构.html">Transformer</a>s4Rec 等框架中，从 <a href="../entities/GRU4Rec.html">GRU4Rec</a> 到 <a href="Transformer架构.html">Transformer</a> 的完整模型谱系被保留，工程师根据会话长度、延迟要求、计算资源选择合适方案。经过精心调优的 <a href="../entities/GRU4Rec.html">GRU4Rec</a> 在某些数据集上仍不弱于 <a href="../entities/SASRec.html">SASRec</a> 和 <a href="../entities/BERT4Rec.html">BERT4Rec</a>。</p>
@@ -187,11 +187,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/马尔可夫.html">马尔可夫</a> — 传统序列建模方法</li>
 <li><a href="协同过滤.html">协同过滤</a> — 不依赖序列信息的传统方法</li>
 <li><a href="Recall@K.html">Recall@K</a> — 主要评估指标</li>
-<li><a href="MRR.html">MRR</a> — 主要评估指标</li>
+<li>MRR — 主要评估指标</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="平均绝对误差 MAE.html">&larr; 平均绝对误差 MAE</a>
+    <a href="广义优势估计.html">&larr; 广义优势估计</a>
     <a href="弹簧 - 质量模型.html">弹簧 - 质量模型 &rarr;</a>
   </div>
 </div>

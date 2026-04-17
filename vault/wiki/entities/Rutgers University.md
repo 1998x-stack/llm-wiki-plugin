@@ -20,7 +20,7 @@ supersedes: null
 # Rutgers University
 
 ## 概述
-美国新泽西州立大学，[[P5 论文]]的所属机构，[[Yongfeng Zhang]] 教授团队在此推动了 LLM for Recommendation 研究范式。
+美国新泽西州立大学，[[P5 论文]]的所属机构，[[Yongfeng Zhang]] 教授团队在此推动了 LLM for Recommendation 研究[[规范化理论|范式]]。
 
 ## 关键内容
 
@@ -30,7 +30,7 @@ supersedes: null
 
 3. **[[OpenP5]] 平台**：Rutgers 团队开发了 [[OpenP5]] 标准化基准平台，为 LLM 推荐系统研究提供了可复现性基础设施。
 
-4. **学术影响**：[[P5 论文|P5]] 工作帮助形成了"语言是连接不同推荐任务的天然桥梁"的学术共识，使"LLM for Recommendation"从小众方向迅速成长为推荐系统领域最热门的研究主题。
+4. **学术影响**：P5 工作帮助形成了"语言是连接不同推荐任务的天然桥梁"的学术共识，使"LLM for Recommendation"从小众方向迅速成长为推荐系统领域最热门的研究主题。
 
 ## 来源
 - Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 1.00</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，工具</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">研究，工具</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <h1 id="shakey">Shakey 机器人</h1>
@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 1.  <strong>底层运动控制</strong>：负责轮子转速、方向等具体执行细节。
 2.  <strong>中层动作执行</strong>：将高层指令分解为具体的运动原语（如“向前移动 2 米”、“推物体”）。
 3.  <strong>高层任务规划</strong>：由 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a> 担任，负责接收用户的高级目标（如“把 Box1 推到 Room3"），自动推理出达成目标所需的动作序列。</p>
-<p>这种“规划 - 执行”分离的架构成为了后来机器人系统设计的标准范式。</p>
+<p>这种“规划 - 执行”分离的架构成为了后来机器人系统设计的标准<a href="../concepts/规范化理论.html">范式</a>。</p>
 <h3 id="_4">核心技术突破</h3>
 <p>Shakey 项目产出了多项计算机科学史上的里程碑式成果：
 *   <strong>自动规划</strong>：为了解决“想清楚再行动”的问题，项目组开发了 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>，首次用形式化逻辑描述了动作的前提与效果，解决了复杂环境下的多步规划难题。
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 *   </em><em>计算机视觉</em><em>：为了让机器人识别环境中的线条和物体边界，项目团队应用并推广了 Hough 变换，这是早期计算机视觉的关键算法。
 *   </em><em>感知整合</em>*：Shakey 能够通过摄像头识别简单的几何形状，构建内部的世界模型（World Model），并利用该模型进行逻辑推理，实现了从“感知”到“认知”的跨越。</p>
 <h3 id="_5">历史意义与局限</h3>
-<p>Shakey 证明了人工智能系统可以在真实物理世界中自主运行，而不仅仅停留在模拟或理论层面。它展示了符号主义 AI 在解决结构化问题上的强大能力。然而，受限于当时的计算能力和传感器技术，Shakey 的行动非常缓慢，且依赖于高度受控的环境（如特定的地板标记、光照条件）。尽管如此，它所确立的技术范式和算法遗产至今仍深刻影响着机器人学和人工智能的发展，特别是在具身智能（Embodied AI）和任务与<a href="../concepts/运动规划.html">运动规划</a>（TAMP）领域。</p>
+<p>Shakey 证明了人工智能系统可以在真实物理世界中自主运行，而不仅仅停留在模拟或理论层面。它展示了符号主义 AI 在解决结构化问题上的强大能力。然而，受限于当时的计算能力和传感器技术，Shakey 的行动非常缓慢，且依赖于高度受控的环境（如特定的地板标记、光照条件）。尽管如此，它所确立的技术<a href="../concepts/规范化理论.html">范式</a>和算法遗产至今仍深刻影响着机器人学和人工智能的发展，特别是在具身智能（Embodied AI）和任务与<a href="../concepts/运动规划.html">运动规划</a>（TAMP）领域。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/04-fikes-nilsson-strips-planner.md</span></li>

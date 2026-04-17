@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分布式系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 分布式系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">分布式系统</h1>
+<h2 id="_2">概述</h2>
+<p>分布式系统是由多台通过网络互联的计算机组成的系统，它们协调工作以完成共同的任务，没有全局时钟或共享内存。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">核心挑战</h3>
+<ul>
+<li><strong>没有全局时钟</strong>：每台机器有自己的本地时钟，不可能完美同步</li>
+<li><strong>网络延迟不确定</strong>：消息传播时间从微秒到数秒不等</li>
+<li><strong>进程可能崩溃</strong>：故障是常态而非异常</li>
+<li><strong>消息可能丢失或乱序</strong></li>
+</ul>
+<h3 id="_5">理论基础</h3>
+<ul>
+<li><strong><a href="happened-before 关系.html">happened-before 关系</a></strong>（1978）：定义事件之间的<a href="happened-before 关系.html">因果顺序</a></li>
+<li><strong><a href="逻辑时钟.html">逻辑时钟</a></strong>：不依赖物理时钟的因果追踪</li>
+<li><strong>共识协议</strong>：<a href="Paxos 算法.html">Paxos</a>、Raft 等</li>
+<li><strong>容错理论</strong>：拜占庭将军问题、<a href="FLP 不可能性定理.html">FLP 不可能性</a></li>
+</ul>
+<h3 id="_6">一致性模型</h3>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>强度</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性一致性</td>
+<td>最强</td>
+<td>事件顺序与物理时间一致</td>
+</tr>
+<tr>
+<td>顺序一致性</td>
+<td>强</td>
+<td>所有进程看到的事件顺序一致</td>
+</tr>
+<tr>
+<td>因果一致性</td>
+<td>中</td>
+<td>因果相关的事件顺序一致</td>
+</tr>
+<tr>
+<td>最终一致性</td>
+<td>最弱</td>
+<td>最终所有副本收敛到相同状态</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">现代应用</h3>
+<ul>
+<li>云计算（AWS、<a href="../entities/Google.html">Google</a> Cloud、Azure）</li>
+<li>分布式数据库（CockroachDB、TiDB、Spanner）</li>
+<li>区块链（比特币、以太坊）</li>
+<li>微服务架构</li>
+<li>内容分发网络（CDN）</li>
+</ul>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/13-lamport-time-clocks.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/Lamport 逻辑时钟论文.html">Lamport 逻辑时钟论文</a> — 理论基础</li>
+<li><a href="../entities/Leslie Lamport.html">Leslie Lamport</a> — 奠基者</li>
+<li><a href="逻辑时钟.html">逻辑时钟</a> — 核心机制</li>
+<li><a href="happened-before 关系.html">happened-before 关系</a> — 基本语言</li>
+<li><a href="TCP-IP.html">TCP-IP</a> — 通信基础</li>
+<li><span style="color:#e74c3c" title="broken link">Paxos</span> — 共识协议</li>
+<li><a href="向量时钟.html">向量时钟</a> — 因果追踪</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="分层记忆架构.html">&larr; 分层记忆架构</a>
+    <a href="分组交换.html">分组交换 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

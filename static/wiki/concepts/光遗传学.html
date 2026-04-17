@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光遗传学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 光遗传学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经科学</span><span class="tag">技术</span><span class="tag">光遗传</span></div>
+</div>
+  <div class="content">
+    <h1 id="optogenetics">光遗传学（Optogenetics）</h1>
+<h2 id="_1">概述</h2>
+<p>光遗传学是一种利用光控制特定神经元活动的技术，由 <a href="../entities/Karl Deisseroth.html">Karl Deisseroth</a> 和 Edward Boyden 等人于 2005 年发明。通过将藻类的光感蛋白 ChR2 引入哺乳动物神经元，实现了毫秒级精度的特定神经元类型控制。这项技术开启了"神经回路因果研究"时代，被 2010 年《自然·方法》评为年度方法。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">技术背景</h3>
+<p><strong>电刺激的局限</strong>：
+- 电刺激会同时激活区域内的所有细胞类型（兴奋性神经元、抑制性中间神经元、胶质细胞、过路纤维）
+- 无法分辨是哪类细胞的激活导致了观察到的行为
+- 时间分辨率差——电刺激通常维持数百毫秒到数秒，而神经元的天然动作电位只有约 1ms</p>
+<p><strong>科学家梦想的工具</strong>：
+- 能在毫秒级精度激活或抑制大脑中特定类型的单一神经元群体
+- 不影响周围其他细胞</p>
+<h3 id="_4">自然界的礼物：光感蛋白</h3>
+<p><strong>通道视紫红质蛋白 -2（ChR2）</strong>：
+- 2003 年，德国科学家 Georg Nagel 等人从单细胞绿藻（Chlamydomonas reinhardtii）中克隆出 ChR2
+- 特性：
+  - 光门控离子通道——蓝光（~470nm）照射时自动打开，允许阳离子（主要是 Na⁺）内流
+  - 黑暗中自动关闭
+  - 响应速度极快：从光照开始到通道开放约 0.2ms，关闭约 10ms
+  - 无需任何细胞内第二信使——完全"光=开关"
+  - 自带"感光基团（全反式视黄醛）"，哺乳动物细胞内自然存在视黄醛</p>
+<h3 id="_5">关键实验：三个步骤实现精准控制</h3>
+<p><strong>步骤 1：基因递送</strong>：
+- 通过腺相关病毒（AAV）载体导入大脑神经元
+- 利用细胞特异性启动子确保只有特定类型的细胞表达 ChR2
+- 例如：CaMKII 启动子→只在兴奋性锥体神经元中表达；GAD 启动子→只在抑制性 GABA 能神经元中表达
+- 结合 Cre-lox 重组系统（转基因小鼠），可以在特定神经元类型中精准表达</p>
+<p><strong>步骤 2：光纤传导</strong>：
+- 颅内植入一根极细的光纤（直径约 200μm）
+- 将蓝色激光导入目标脑区
+- 体外实验用显微镜蓝色照明直接照射；活体动物则将光纤尖端插至目标脑区</p>
+<p><strong>步骤 3：精准控制</strong>：
+- 蓝光脉冲：10ms 照射→被标记神经元精确激发一个动作电位
+- 光频率：5Hz 光脉冲→神经元以 5Hz 频率激发
+- 时间精度：毫秒级（远超任何药物）
+- 细胞特异性：只有表达 ChR2 的细胞响应
+- 可逆性：关灯即停，无需洗脱</p>
+<h3 id="_6">抑制工具</h3>
+<p><strong>卤视紫红质蛋白（Halorhodopsin, NpHR）</strong>：
+- 来自嗜盐古菌
+- 黄色光驱动抑制
+- 在黄光（~580nm）照射下将 Cl⁻泵入细胞，使神经元超极化，沉默放电</p>
+<p><strong>后续开发</strong>：
+- Archaerhodopsin（Arch）和 iC1C2 等提供更多激活/抑制选项
+- 不同颜色光可以同时控制同一脑区的不同细胞类型——双色光遗传学</p>
+<h3 id="_7">科学革命：从"相关"到"因果"</h3>
+<p><strong>以前</strong>：
+- 看到大脑某区域与某行为"相关"激活（fMRI）
+- 但无法判断是否是因果关系——它也许只是"旁观者"</p>
+<p><strong>光遗传学之后</strong>：
+- 激活/抑制特定神经元，观察行为改变
+- 这是真正的因果操控</p>
+<p><strong>里程碑实验</strong>：
+- 精确操控特定神经元类型，观察行为变化
+- 验证神经回路与行为的因果关系
+- 开启神经回路因果研究时代</p>
+<h3 id="_8">历史地位</h3>
+<p><strong>2010 年《自然·方法》年度方法</strong>：
+- 被评选为年度方法
+- 当代神经科学最革命性的技术工具</p>
+<p><strong>2021 年拉斯克奖</strong>：
+- <a href="../entities/Karl Deisseroth.html">Deisseroth</a> 和 Boyden 获基础医学奖
+- 被广泛认为是当代最具可能性的诺贝尔奖候选</p>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/脑科学/paper_07_optogenetics_deisseroth_2005.md</span> — 光遗传学：一束蓝光，精准控制一类神经元</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="../entities/Karl Deisseroth.html">Karl Deisseroth</a> — 发明者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">Edward Boyden</span> — 发明者（part_of）</li>
+<li><span style="color:#e74c3c" title="broken link">通道视紫红质蛋白</span> — 核心工具（uses）</li>
+<li><span style="color:#e74c3c" title="broken link">神经回路因果研究</span> — 开创领域（caused）</li>
+<li>LTP — compares_to（都是研究突触可塑性的技术）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="光学字符识别.html">&larr; 光学字符识别</a>
+    <a href="全维度漏洞扫描法.html">全维度漏洞扫描法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
