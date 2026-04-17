@@ -23,7 +23,7 @@ supersedes: null
 # RL方差偏差权衡
 
 ## 概述
-[[强化学习]]中方差与偏差的权衡是三大范式差异的核心张力：Monte-Carlo 方法（[[REINFORCE算法|REINFORCE]]）无偏但方差极高；TD/Bootstrapping 方法（DQN）方差低但引入偏差；[[强化学习三大范式|Actor-Critic]] 方法通过 GAE 在两者之间取得折中。方差排序（高→低）：[[REINFORCE算法|REINFORCE]] >> A3C ≈ PPO > SAC > DDPG ≈ TD3 > DQN。
+[[强化学习]]中方差与偏差的权衡是三大[[规范化理论|范式]]差异的核心张力：Monte-Carlo 方法（[[REINFORCE算法|REINFORCE]]）无偏但方差极高；TD/Bootstrapping 方法（DQN）方差低但引入偏差；[[强化学习三大范式|Actor-Critic]] 方法通过 GAE 在两者之间取得折中。方差排序（高→低）：[[REINFORCE算法|REINFORCE]] >> A3C ≈ PPO > SAC > DDPG ≈ TD3 > DQN。
 
 ## 关键内容
 

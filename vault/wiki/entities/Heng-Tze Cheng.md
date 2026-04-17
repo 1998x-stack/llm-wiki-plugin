@@ -17,7 +17,7 @@ supersedes: null
 # Heng-Tze Cheng
 
 ## 概述
-[[Google]] 研究员，[[Wide & Deep|Wide & Deep Learning for Recommender Systems]]（2016）论文的第一作者，该论文开创了推荐系统中"[[记忆与泛化]]统一"的双路模型架构范式。
+[[Google]] 研究员，[[Wide & Deep|Wide & Deep Learning for Recommender Systems]]（2016）论文的第一作者，该论文开创了推荐系统中"[[记忆与泛化]]统一"的双路模型架构[[规范化理论|范式]]。
 
 ## 关键内容
 

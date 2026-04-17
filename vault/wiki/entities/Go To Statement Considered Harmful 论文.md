@@ -57,7 +57,7 @@ supersedes: null
 
 ## 概述
 
-Edsger Dijkstra 于1968年发表的编辑来信《Go To Statement Considered Harmful》，是计算机科学史上影响最深远的短文之一，开创了结构化编程运动。
+[[Edsger Dijkstra]] 于1968年发表的编辑来信《Go To Statement Considered Harmful》，是计算机科学史上影响最深远的短文之一，开创了[[结构化编程]]运动。
 
 ## 关键内容
 
@@ -67,7 +67,7 @@ Edsger Dijkstra 于1968年发表的编辑来信《Go To Statement Considered Har
 |------|------|
 | **标题** | Go To Statement Considered Harmful（原投稿标题：A Case against the GO TO Statement） |
 | **标题更改者** | Niklaus Wirth（后来设计了 Pascal 语言） |
-| **作者** | Edsger Wybe Dijkstra（1930–2002） |
+| **作者** | [[Edsger Dijkstra|Edsger Wybe Dijkstra]]（1930–2002） |
 | **发表时间** | 1968年3月 |
 | **刊物** | Communications of the ACM, Vol. 11, No. 3, pp. 147-148 |
 | **发表形式** | Letters to the Editor（编辑来信） |
@@ -76,11 +76,11 @@ Edsger Dijkstra 于1968年发表的编辑来信《Go To Statement Considered Har
 
 ### 核心论点
 
-Dijkstra 论证了 `goto` 语句从根本上破坏了程序的逻辑结构可理解性，使程序员无法在静态的程序文本与动态的执行过程之间建立可靠的心智对应。主张程序应当仅使用**顺序**、**选择**和**循环**三种控制结构来组织。
+[[Edsger Dijkstra|Dijkstra]] 论证了 `goto` 语句从根本上破坏了程序的逻辑结构可理解性，使程序员无法在静态的程序文本与动态的执行过程之间建立可靠的心智对应。主张程序应当仅使用**顺序**、**选择**和**循环**三种控制结构来组织。
 
 ### 坐标系论证
 
-Dijkstra 独创性地用"坐标系"类比来分析不同控制结构的复杂度：
+[[Edsger Dijkstra|Dijkstra]] 独创性地用"坐标系"类比来分析不同控制结构的复杂度：
 - 纯顺序执行：只需一个数字（文本索引）
 - 过程调用：需要一个栈
 - 循环：文本索引 + 循环计数器
@@ -88,10 +88,10 @@ Dijkstra 独创性地用"坐标系"类比来分析不同控制结构的复杂度
 
 ### 历史影响
 
-- 开创了结构化编程运动
+- 开创了[[结构化编程]]运动
 - 直接影响了此后五十年间几乎所有编程语言的设计决策
 - "X Considered Harmful" 成为技术界最广泛使用的批评文体
-- Dijkstra 于1972年获得图灵奖
+- [[Edsger Dijkstra|Dijkstra]] 于1972年获得[[阿兰·图灵|图灵]]奖
 
 ## 来源
 

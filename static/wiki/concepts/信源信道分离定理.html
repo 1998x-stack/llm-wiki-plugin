@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信源信道分离定理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 信源信道分离定理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">信息论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">信源信道分离定理</h1>
+<h2 id="_2">概述</h2>
+<p>Shannon 证明的优雅定理：<a href="信源编码定理.html">信源编码</a>（压缩）和<a href="信道编码定理.html">信道编码</a>（纠错）可以分别独立优化，而不会损失总体性能。最优通信系统可分解为两个独立步骤——先压缩去冗余，再加保护性冗余。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">定理陈述</h3>
+<blockquote>
+<p>对于一个给定的信源和信道，分别进行最优<a href="信源编码定理.html">信源编码</a>和最优<a href="信道编码定理.html">信道编码</a>所得到的系统，其性能与联合最优设计完全相同。</p>
+</blockquote>
+<p>换言之，通信系统可以被分解为两个独立的模块：
+1. <strong><a href="信源编码定理.html">信源编码</a></strong>：去除冗余，将消息压缩到接近熵率 H 的比特率
+2. <strong><a href="信道编码定理.html">信道编码</a></strong>：添加保护性冗余，使压缩后的比特能够可靠地通过噪声信道</p>
+<h3 id="_5">工程意义</h3>
+<p>这一分离定理为通信系统的<strong>模块化设计</strong>提供了严格的理论保障：
+- 压缩算法的设计者不必关心信道特性
+- <a href="纠错编码.html">纠错编码</a>的设计者不必关心信源统计特性
+- 两者可以独立开发、独立优化、独立测试</p>
+<h3 id="_6">实际影响</h3>
+<p>今天所有现代通信系统都遵循分离架构：
+- <strong>音频</strong>：MP3/AAC 压缩 + <a href="信道编码定理.html">信道编码</a>
+- <strong>视频</strong>：H.264/H.265 压缩 + <a href="信道编码定理.html">信道编码</a>
+- <strong>数据</strong>：ZIP/LZ 压缩 + <a href="信道编码定理.html">信道编码</a>
+- <strong>5G</strong>：独立的压缩层和纠错层</p>
+<h3 id="_7">分离定理的局限</h3>
+<p>在<strong>多用户通信</strong>（网络<a href="../maps/信息论.html">信息论</a>）场景下，分离定理不一定成立。联合信源<a href="信道编码定理.html">信道编码</a>在某些多用户场景中可以获得比分离设计更好的性能。但在点对点通信中，分离定理始终成立。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md</span></li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../entities/克劳德·香农.html">克劳德·香农</a> — 证明者</li>
+<li><a href="信源编码定理.html">信源编码定理</a> — 分离定理的一端</li>
+<li><a href="信道编码定理.html">信道编码定理</a> — 分离定理的另一端</li>
+<li><a href="通信系统模型.html">通信系统模型</a> — 分离定理为其模块化设计提供理论保障</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="信息论.html">&larr; 信息论</a>
+    <a href="信源编码定理.html">信源编码定理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

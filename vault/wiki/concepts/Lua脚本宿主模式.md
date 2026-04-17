@@ -67,7 +67,7 @@ Lua thread（coroutine）对游戏引擎价值极高：异步等待不需要真�
 - Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2CPP 配置最成体系）
 - 大面积 Unity API 脚本化 → tolua#
 - [[Cocos2d-x]] 节点逻辑 → Cocos/Lua（官方天然配合）
-- Lua 作为主逻辑层 + 消息驱动范式 → [[Defold]]
+- Lua 作为主逻辑层 + 消息驱动[[规范化理论|范式]] → [[Defold]]
 
 ### 优秀连接机制判断标准
 1. 对象身份稳定（同一原生对象→同一脚本代理）

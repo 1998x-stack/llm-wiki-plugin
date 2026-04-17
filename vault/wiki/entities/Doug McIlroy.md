@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家，Bell Labs UNIX 团队成员，Thompson 和 Ritchie 的同事和主管。1964年提出"将程序像花园软管一样连接起来"的想法，这一想法在1973年成为 UNIX 管道（Pipeline）的实现。
+美国计算机科学家，[[贝尔实验室|Bell Labs]] UNIX 团队成员，Thompson 和 Ritchie 的同事和主管。1964年提出"将程序像花园软管一样连接起来"的想法，这一想法在1973年成为 UNIX 管道（Pipeline）的实现。
 
 ## 关键内容
 
@@ -52,7 +52,7 @@ supersedes: null
 
 ### Bell Labs 团队
 
-- 是 Bell Labs UNIX 团队的核心成员之一
+- 是 [[贝尔实验室|Bell Labs]] UNIX 团队的核心成员之一
 - 与 Thompson、Ritchie、Kernighan、Ossanna 等人一起创造了 UNIX 生态
 
 ## 来源

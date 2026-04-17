@@ -35,7 +35,7 @@ Sun 等人于 CIKM 2019 发表的论文，将双向 [[Transformer架构|Transfor
 
 4. **架构差异**：BERT4Rec 使用双向注意力 + Cloze 训练，[[SASRec]] 使用[[因果掩码]] + [[二元交叉熵]]。BERT4Rec 在训练阶段信息利用更充分，但推理时需要额外步骤。
 
-5. **历史地位**：与 [[SASRec]] 共同奠定了 [[Transformer架构|Transformer]] 在[[序列推荐]]中的基础架构范式，后续工作多在此两者基础上改进。
+5. **历史地位**：与 [[SASRec]] 共同奠定了 [[Transformer架构|Transformer]] 在[[序列推荐]]中的基础架构[[规范化理论|范式]]，后续工作多在此两者基础上改进。
 
 ## 来源
 - [BERT4Rec 原始论文 (CIKM 2019)](https://arxiv.org/abs/1904.06690)

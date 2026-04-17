@@ -151,14 +151,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>当涉及旋转自由度时，$C_{obs}$ 的边界变得复杂，通常由一系列曲面片组成（由障碍物的面、边、顶点与机器人的面、边、顶点相互作用产生）。此时往往需要采用近似方法，如将旋转角度离散化，对每个固定角度计算平移 $C_{obs}$ 并堆叠，或使用单元分解（Cell Decomposition）来近似表示自由空间。</p>
 <h3 id="_5">方法的优势与局限性</h3>
 <p><strong>优势</strong>：
-*   <strong>概念统一</strong>：无论机器人形状多么复杂，在 C-space 中均简化为点，使得路径搜索算法（如 A<em>、Dijkstra、随机采样）可以通用化。
+*   <strong>概念统一</strong>：无论机器人形状多么复杂，在 C-space 中均简化为点，使得路径搜索算法（如 A<em>、<a href="../entities/Edsger Dijkstra.html">Dijkstra</a>、随机采样）可以通用化。
 *   </em><em>解耦复杂性</em><em>：将实时的碰撞检测预处理为空间构建问题，路径搜索阶段只需进行简单的点包含测试或图遍历。
 *   </em><em>理论完备性</em>*：为分析<a href="运动规划.html">运动规划</a>问题的可判定性、复杂度（如 PSPACE-hard）提供了严格的数学基础。</p>
 <p><strong>局限性</strong>：
 *   <strong>维数灾难（Curse of Dimensionality）</strong>：随着自由度增加，C-space 维度线性增长，但 $C_{obs}$ 的显式表示和计算复杂度呈指数级爆炸。对于 6 自由度以上的机器人，精确计算 $C_{obs}$ 在实际中不可行。
 *   <strong>动态与环境假设</strong>：原始方法主要假设静态环境和刚性物体，未直接处理动态障碍物或非完整约束（如汽车不能横向移动），虽然后续研究对此进行了扩展。</p>
 <h3 id="_6">历史演变与现代应用</h3>
-<p>尽管 Lozano-Perez 原始论文中的精确计算方法受限于维数灾难，但 C-space 的概念框架生命力极强。20 世纪 90 年代诞生的<strong>采样方法</strong>（Sampling-based Methods），如概率路线图（PRM）和快速探索随机树（RRT），正是为了克服高维 C-space 的显式表示困难而生。这些方法不显式构建 $C_{obs}$，而是通过随机采样和碰撞检测器隐式地探索 $C_{free}$。今天，从工业机械臂的路径规划到自动驾驶汽车的轨迹生成，再到蛋白质折叠模拟，几乎所有主流规划系统（如 MoveIt!, OMPL）底层都遵循 C-space 范式。它已不再仅仅是一种算法，而是机器人学中描述运动问题的标准语言。</p>
+<p>尽管 Lozano-Perez 原始论文中的精确计算方法受限于维数灾难，但 C-space 的概念框架生命力极强。20 世纪 90 年代诞生的<strong>采样方法</strong>（Sampling-based Methods），如概率路线图（PRM）和快速探索随机树（RRT），正是为了克服高维 C-space 的显式表示困难而生。这些方法不显式构建 $C_{obs}$，而是通过随机采样和碰撞检测器隐式地探索 $C_{free}$。今天，从工业机械臂的路径规划到自动驾驶汽车的轨迹生成，再到蛋白质折叠模拟，几乎所有主流规划系统（如 MoveIt!, OMPL）底层都遵循 C-space <a href="规范化理论.html">范式</a>。它已不再仅仅是一种算法，而是机器人学中描述运动问题的标准语言。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>

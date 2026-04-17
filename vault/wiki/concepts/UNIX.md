@@ -54,7 +54,7 @@ supersedes: null
 
 ## 概述
 
-UNIX 是由 Ken Thompson 和 Dennis Ritchie 在 Bell Labs 开发的分时操作系统，以简洁性、模块化和"一切皆文件"为核心设计哲学，其后代（Linux、macOS、Android）统治了几乎所有计算平台。
+UNIX 是由 [[Ken Thompson]] 和 [[Dennis Ritchie]] 在 [[贝尔实验室|Bell Labs]] 开发的分时[[操作系统]]，以简洁性、模块化和"一切皆文件"为核心设计哲学，其后代（Linux、macOS、Android）统治了几乎所有计算平台。
 
 ## 关键内容
 
@@ -62,8 +62,8 @@ UNIX 是由 Ken Thompson 和 Dennis Ritchie 在 Bell Labs 开发的分时操作�
 
 - 1969年：Thompson 在 PDP-7 上写出第一个原型（三个星期）
 - 1971年：迁移到 PDP-11/20
-- 1973年：用 C 语言重写整个内核——人类历史上第一次用高级语言编写操作系统内核
-- 1974年：发表 UNIX 论文
+- 1973年：用 [[C 语言]]重写整个内核——人类历史上第一次用高级语言编写[[操作系统]]内核
+- 1974年：发表 [[UNIX 论文]]
 
 ### 核心设计
 
@@ -75,7 +75,7 @@ UNIX 是由 Ken Thompson 和 Dennis Ritchie 在 Bell Labs 开发的分时操作�
 
 **Shell 作为普通用户程序**：命令解释器可从内核替换，支持变量、条件、循环。
 
-**管道（Pipeline）**：`command1 | command2 | command3`，程序组合的操作系统级实现。
+**管道（Pipeline）**：`command1 | command2 | command3`，程序组合的[[操作系统]]级实现。
 
 ### 设计哲学
 
@@ -90,14 +90,14 @@ UNIX 是由 Ken Thompson 和 Dennis Ritchie 在 Bell Labs 开发的分时操作�
 |------|---------------|---------|
 | Linux | 从零重写的 UNIX 兼容系统 | 服务器、超级计算机、Android |
 | macOS / iOS | 基于 FreeBSD/Mach 的 Darwin | Apple 全平台 |
-| Android | 基于 Linux 内核 | 全球最大移动操作系统 |
+| Android | 基于 Linux 内核 | 全球最大移动[[操作系统]] |
 | FreeBSD | BSD UNIX 的直系后代 | 服务器、网络设备 |
 
 ### 历史影响
 
-- 1983年 Thompson 和 Ritchie 获得图灵奖
+- 1983年 Thompson 和 Ritchie 获得[[阿兰·图灵|图灵]]奖
 - 开源运动的先驱
-- 管道思想影响了函数式编程、微服务架构、数据工程等
+- 管道思想影响了[[函数式编程]]、微服务架构、数据工程等
 
 ## 来源
 

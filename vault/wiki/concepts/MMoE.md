@@ -49,7 +49,7 @@ MMoE(Multi-gate [[Mixture-of-Experts]])是一种[[多任务学习]]架构，通�
 
 ### 历史影响
 - 发表於 KDD 2018，至今被引用数千次
-- 开创"Expert + Gate"范式，催生 PLE、DBMTL、AC-MMoE、BEnet 等后续工作
+- 开创"Expert + Gate"[[规范化理论|范式]]，催生 PLE、DBMTL、AC-MMoE、BEnet 等后续工作
 - MoE 思想在大模型时代复兴(Mixtral、DeepSeek、Qwen3 等)
 
 ## 来源

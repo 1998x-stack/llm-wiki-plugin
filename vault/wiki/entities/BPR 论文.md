@@ -38,7 +38,7 @@ Rendle 等人 2009 年发表于 UAI 的里程碑论文，提出[[BPR|贝叶斯�
 
 5. **金句**："The prediction quality does not only depend on the model but also largely on the optimization criterion."（预测质量不仅取决于模型本身，也在很大程度上取决于优化准则。）
 
-6. **影响力**：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了[[隐式反馈]]推荐的标准范式，BPR Loss 成为事实标准。
+6. **影响力**：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了[[隐式反馈]]推荐的标准[[规范化理论|范式]]，BPR Loss 成为事实标准。
 
 7. **后续影响**：直接催生[[负采样]]策略研究（DNS、IRGAN、ANCE）、Listwise 排序学习、深度推荐模型（[[NeuMF]]、[[DeepFM]]）、图神经网络推荐（[[LightGCN]]）、视觉增强推荐（VBPR）等研究方向。
 

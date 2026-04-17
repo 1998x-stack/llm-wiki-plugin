@@ -29,7 +29,7 @@ supersedes: null
 # Lydia Kavraki
 
 ## 概述
-Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 [[Jean-Claude Latombe]] 等人共同提出了**概率路线图（PRM）**算法，该工作开创了采样规划（Sampling-based Planning）这一主导现代[[运动规划]]的方法论范式。Kavraki 的研究跨越了机器人[[运动规划]]、计算几何和计算生物学，她将 PRM 的思想成功应用于蛋白质折叠和药物设计等高维构型空间问题。因其开创性工作，她当选为 ACM Fellow 和 IEEE Fellow，并获得 IEEE RAS 先驱奖等多项荣誉。
+Lydia E. Kavraki 是计算机科学和机器人学领域的杰出学者，现任莱斯大学（Rice University）教授。她最著名的贡献是与 [[Jean-Claude Latombe]] 等人共同提出了**概率路线图（PRM）**算法，该工作开创了采样规划（Sampling-based Planning）这一主导现代[[运动规划]]的方法论[[规范化理论|范式]]。Kavraki 的研究跨越了机器人[[运动规划]]、计算几何和计算生物学，她将 PRM 的思想成功应用于蛋白质折叠和药物设计等高维构型空间问题。因其开创性工作，她当选为 ACM Fellow 和 IEEE Fellow，并获得 IEEE RAS 先驱奖等多项荣誉。
 
 ## 关键内容
 

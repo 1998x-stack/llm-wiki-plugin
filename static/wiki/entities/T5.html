@@ -148,13 +148,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构特点</strong>：采用 encoder-decoder <a href="../concepts/Transformer架构.html">Transformer</a> 架构。T5-small 为 6 层编码器 + 6 层解码器，512 维，8 头注意力；T5-base 为 12 层编码器 + 12 层解码器，768 维，12 头注意力。</p>
 </li>
 <li>
-<p><strong>预训练范式</strong>：T5 通过大规模语料上的无监督预训练获得通用语言理解能力，下游任务通过微调适配。P5 沿用这一范式，从预训练 T5 检查点加载权重后进行推荐任务的联合微调。</p>
+<p><strong>预训练<a href="../concepts/规范化理论.html">范式</a></strong>：T5 通过大规模语料上的无监督预训练获得通用语言理解能力，下游任务通过微调适配。P5 沿用这一<a href="../concepts/规范化理论.html">范式</a>，从预训练 T5 检查点加载权重后进行推荐任务的联合微调。</p>
 </li>
 <li>
 <p><strong>与 BERT 的对比</strong>：不同于 BERT 的 encoder-only 掩码语言建模，T5 的 encoder-decoder 架构天然支持生成式任务，这使其成为统一推荐（包含解释生成、评论摘要等生成任务）的理想选择。<a href="BERT4Rec.html">BERT4Rec</a> 等早期工作使用 BERT 做<a href="../concepts/序列推荐.html">序列推荐</a>，但无法处理生成式任务。</p>
 </li>
 <li>
-<p><strong>影响</strong>：T5 的"将一切转化为 text-to-text"思想直接启发了 P5 的"<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a>"范式，成为连接 NLP 基础模型与推荐系统的关键桥梁。</p>
+<p><strong>影响</strong>：T5 的"将一切转化为 text-to-text"思想直接启发了 P5 的"<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a>"<a href="../concepts/规范化理论.html">范式</a>，成为连接 NLP 基础模型与推荐系统的关键桥梁。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

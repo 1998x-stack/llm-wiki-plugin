@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="legged-robots-that-balance">Legged Robots That Balance</h1>
 <h2 id="_1">概述</h2>
-<p>《Legged Robots That Balance》是 <a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> 于 1986 年由 MIT Press 出版的学术专著，被视为腿式机器人学领域的奠基之作。本书系统地阐述了动态腿式运动的控制理论，提出了著名的"<a href="三分解控制框架.html">三分解控制框架</a>"，将复杂的<a href="动态平衡.html">动态平衡</a>问题分解为弹跳高度、前进速度和身体姿态三个子问题。书中详细记录了从单腿弹跳到四足奔跑的实验过程，证明了<a href="动态平衡.html">动态平衡</a>（允许飞行相和重心脱离支撑区）的可行性。该书不仅是技术文献，更标志着腿式机器人研究从静态步行向动态运动的范式转移，直接催生了 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a> 公司的成立及其后续产品。</p>
+<p>《Legged Robots That Balance》是 <a href="../entities/Marc H. Raibert.html">Marc H. Raibert</a> 于 1986 年由 MIT Press 出版的学术专著，被视为腿式机器人学领域的奠基之作。本书系统地阐述了动态腿式运动的控制理论，提出了著名的"<a href="三分解控制框架.html">三分解控制框架</a>"，将复杂的<a href="动态平衡.html">动态平衡</a>问题分解为弹跳高度、前进速度和身体姿态三个子问题。书中详细记录了从单腿弹跳到四足奔跑的实验过程，证明了<a href="动态平衡.html">动态平衡</a>（允许飞行相和重心脱离支撑区）的可行性。该书不仅是技术文献，更标志着腿式机器人研究从静态步行向动态运动的<a href="规范化理论.html">范式</a>转移，直接催生了 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a> 公司的成立及其后续产品。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心贡献：三分解控制框架</h3>
 <p>本书的核心在于提出了一种优雅的控制结构，将高维非线性的动态腿式运动分解为三个直觉性极强的子任务：
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">从单腿到多腿的统一理论</h3>
 <p>本书的一个重要章节讨论了如何将单腿控制策略推广到多腿系统。<a href="../entities/Marc H. Raibert.html">Raibert</a> 引入了"虚拟腿"（virtual leg）的概念，指出双足奔跑是两条真实腿的交替，而四足奔跑（如 trot, pace, bound）则是两组"虚拟腿"的交替。通过改变腿的相位关系和组合方式，同一套控制算法可以生成多种不同的步态。这一发现揭示了不同腿数动物运动背后共享的控制原理，极大地简化了多足机器人的控制器设计。</p>
 <h3 id="_6">历史意义与范式转移</h3>
-<p>在本书出版之前，腿式机器人研究主要受限于"静态稳定"范式，即要求重心始终落在支撑多边形内，导致机器人运动缓慢且笨拙。<a href="../entities/Marc H. Raibert.html">Raibert</a> 通过本书证明了"动态稳定"的优越性：允许机器人在运动过程中经历不稳定的飞行相，通过主动控制维持整体平衡。这一范式转移不仅提高了机器人的速度和地形适应能力，也为后来的仿生机器人学奠定了理论基础。</p>
+<p>在本书出版之前，腿式机器人研究主要受限于"静态稳定"<a href="规范化理论.html">范式</a>，即要求重心始终落在支撑多边形内，导致机器人运动缓慢且笨拙。<a href="../entities/Marc H. Raibert.html">Raibert</a> 通过本书证明了"动态稳定"的优越性：允许机器人在运动过程中经历不稳定的飞行相，通过主动控制维持整体平衡。这一<a href="规范化理论.html">范式</a>转移不仅提高了机器人的速度和地形适应能力，也为后来的仿生机器人学奠定了理论基础。</p>
 <h3 id="_7">对后世的影响</h3>
 <p>本书的影响远远超出了学术界。<a href="../entities/Marc H. Raibert.html">Raibert</a> 基于书中的理论于 1992 年创办了 <a href="../entities/Boston Dynamics.html">Boston Dynamics</a>，将书中的思想转化为 BigDog、Atlas 和 Spot 等现实产品。书中的落脚点规划思想被后来的研究者发展为 Capture Point 理论和模型预测控制（MPC）方法。此外，书中提出的<a href="弹簧 - 质量模型.html">弹簧 - 质量模型</a>与生物力学领域的发现相互印证，成为理解动物运动和設計高性能机器人的通用语言。</p>
 <h2 id="_8">来源</h2>

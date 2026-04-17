@@ -46,15 +46,15 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1943–），UNIX 操作系统的共同创造者，最初在 PDP-7 上写出了 UNIX 的第一个原型。1983年与 Dennis Ritchie 共同获得 ACM 图灵奖。
+美国计算机科学家（1943–），[[UNIX|UNIX 操作系统]]的共同创造者，最初在 PDP-7 上写出了 UNIX 的第一个原型。1983年与 [[Dennis Ritchie]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
 
 ## 关键内容
 
 ### UNIX 的诞生
 
-- 1969年，在 Bell Labs 实验室角落里一台被冷落的 PDP-7 小型机上，利用妻子带孩子回娘家的三个星期，写出了 UNIX 的第一个原型
+- 1969年，在 [[贝尔实验室|Bell Labs]] 实验室角落里一台被冷落的 PDP-7 小型机上，利用妻子带孩子回娘家的三个星期，写出了 UNIX 的第一个原型
 - 包括文件系统、进程子系统、命令解释器和若干实用工具
-- 最初的名字是 UNICS（Uniplexed Information and Computing Service），是对 Multics 的戏谑
+- 最初的名字是 UNICS（Uniplexed Information and Computing Service），是对 [[Multics]] 的戏谑
 
 ### Space Travel 游戏
 
@@ -69,7 +69,7 @@ supersedes: null
 
 ### 图灵奖演讲（1984）
 
-- 题为"Reflections on Trusting Trust"
+- 题为"[[Thompson 信任信任论文|Reflections on Trusting Trust]]"
 - 展示了如何在编译器中植入不可检测的后门
 - 后来成为计算机安全领域的经典文献
 
@@ -77,7 +77,7 @@ supersedes: null
 
 - 参与开发了 Go 编程语言
 - 是正则表达式和 QED 编辑器的早期开发者
-- 与 Ritchie、McIlroy、Ossanna、Kernighan 等人组成了 Bell Labs 最具影响力的 UNIX 团队
+- 与 Ritchie、McIlroy、Ossanna、Kernighan 等人组成了 [[贝尔实验室|Bell Labs]] 最具影响力的 UNIX 团队
 
 ## 来源
 

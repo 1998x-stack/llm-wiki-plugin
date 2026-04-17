@@ -28,7 +28,7 @@ relates_to:
   - target: "[[E.F. Codd]]"
     type: extends
     confidence: 0.8
-  supersedes: null
+supersedes: null
 ---
 
 # SQLite

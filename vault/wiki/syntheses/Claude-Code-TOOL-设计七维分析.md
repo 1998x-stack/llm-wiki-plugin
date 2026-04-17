@@ -40,7 +40,7 @@ supersedes: null
 
 ## 概述
 
-本分析综合了 8 个知识库页面，从七个维度系统拆解 Claude Code 的 TOOL 设计为何被视为业界标杆。核心洞见：**Claude Code 不是把工具当 API 包装，而是把工具当 Agent 的"操作系统接口"**。
+本分析综合了 8 个知识库页面，从七个维度系统拆解 Claude Code 的 TOOL 设计为何被视为业界标杆。核心洞见：**Claude Code 不是把工具当 API 包装，而是把工具当 Agent 的"[[操作系统]]接口"**。
 
 ## 七维分析框架
 

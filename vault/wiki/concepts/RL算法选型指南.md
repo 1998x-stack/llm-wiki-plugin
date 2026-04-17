@@ -44,7 +44,7 @@ supersedes: null
 
 3. **特殊场景**：
    - 安全约束 RL（单调改进保证） → TRPO / CPO
-   - 多智能体 / 分布式计算 → A3C / IMPALA / MAPPO
+   - 多智能体 / [[分布式系统|分布式计算]] → A3C / IMPALA / MAPPO
    - 人类反馈（RLHF） → PPO（InstructGPT/ChatGPT 标准方案）
    - 学术研究（方法论完备性） → SAC（软贝尔曼收敛保证）
    - 分布式大规模训练 → IMPALA / Ape-X

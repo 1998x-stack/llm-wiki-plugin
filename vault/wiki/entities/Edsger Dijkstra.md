@@ -51,7 +51,7 @@ supersedes: null
 
 ## 概述
 
-荷兰计算机科学家（1930–2002），1972年图灵奖得主。1968年发表《Go To Statement Considered Harmful》开创了结构化编程运动，对编程语言设计和软件工程方法论产生了深远影响。
+荷兰计算机科学家（1930–2002），1972年[[阿兰·图灵|图灵]]奖得主。1968年发表《[[Go To Statement Considered Harmful 论文|Go To Statement Considered Harmful]]》开创了[[结构化编程]]运动，对编程语言设计和软件工程方法论产生了深远影响。
 
 ## 关键内容
 
@@ -60,13 +60,13 @@ supersedes: null
 - **最短路径算法**（1956年）— 以他名字命名的 Dijkstra 算法
 - **ALGOL 60 语言设计** — 参与设计并开发了首个 ALGOL 60 编译器
 - **信号量**（semaphore）— 解决并发编程中的同步问题
-- **结构化编程** — 1968年论文开创了整个运动
+- **[[结构化编程]]** — 1968年论文开创了整个运动
 - **最弱前置条件**（weakest precondition）— 程序推导和验证的理论框架
 
 ### Go To Statement Considered Harmful（1968）
 
 - 以编辑来信形式发表，不到两页
-- 原标题为"A Case against the GO TO Statement"，被编辑 Niklaus Wirth 改为更具争议性的形式
+- 原标题为"[[Go To Statement Considered Harmful 论文|A Case against the GO TO Statement]]"，被编辑 Niklaus Wirth 改为更具争议性的形式
 - 论证了 goto 语句破坏了程序文本与执行过程之间的结构化对应关系
 - 开创了"X Considered Harmful"的学术批评文体
 

@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **核心思想**：将 [[P5 论文]] 的"[[生成式推荐 (LLM)|Recommendation as Language Processing]]"范式扩展到多模态场景，同时处理视觉和语言信息，实现多模态推荐的统一框架。
+1. **核心思想**：将 [[P5 论文]] 的"[[生成式推荐 (LLM)|Recommendation as Language Processing]]"[[规范化理论|范式]]扩展到多模态场景，同时处理视觉和语言信息，实现多模态推荐的统一框架。
 
 2. **与 P5 的关系**：VIP5 是 P5 作者团队自己推出的扩展工作，在 P5 的语言统一基础上增加视觉模态，使模型能够同时理解物品的文本描述和视觉特征。
 
@@ -34,7 +34,7 @@ supersedes: null
 
 4. **应用场景**：适用于需要视觉理解的推荐场景，如时尚推荐、家居推荐、艺术品推荐等，其中物品的视觉特征对推荐决策至关重要。
 
-5. **在 LLM 推荐谱系中的位置**：代表了 P5 范式向多模态方向的扩展，与 [[InstructRec]]、[[TALLRec]] 等纯文本方向的演进形成互补。
+5. **在 LLM 推荐谱系中的位置**：代表了 P5 [[规范化理论|范式]]向多模态方向的扩展，与 [[InstructRec]]、[[TALLRec]] 等纯文本方向的演进形成互补。
 
 ## 来源
 - VIP5 论文 — Multimodal Extension of P5 for Recommendation

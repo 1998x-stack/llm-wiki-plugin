@@ -33,7 +33,7 @@ Guo 等人于 IJCAI 2017 提出的 FM + DNN 并行架构模型，FM 组件捕获
 5. **[[CTR 预估]]效果**：在 [[Criteo]] 数据集上 AUC=0.8016、LogLoss=0.44985（最优）；在华为应用市场约10亿条记录的真实数据上 AUC=0.8715。在线 A/B 测试中 DeepFM-D 相比精心调优的 LR 模型，CTR 提升超过 10%。
 6. **后续影响**：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（[[Google]] 2017，Cross Network 显式交叉）、[[xDeepFM]]（微软 2018，CIN 向量级显式交叉）、[[AutoInt]]（2019，[[多头注意力|多头自注意力]]可解释交互）等。
 7. **局限性**：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 [[xDeepFM]]、[[AutoInt]]、DIN 分别针对这些局限进行了改进。
-8. **架构一般性**：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep [[共享嵌入]]"是可替换 Deep 部分实现的通用范式。
+8. **架构一般性**：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep [[共享嵌入]]"是可替换 Deep 部分实现的通用[[规范化理论|范式]]。
 
 ## 来源
 - [DeepFM: A Factorization-Machine based Neural Network for CTR Prediction (IJCAI 2017)](https://arxiv.org/abs/1703.04247) — Guo, Tang, Ye, Li, He. 华为诺亚方舟实验室

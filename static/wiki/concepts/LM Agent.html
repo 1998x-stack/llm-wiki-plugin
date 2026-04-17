@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lm-agent">LM Agent</h1>
 <h2 id="_1">概述</h2>
-<p>LM Agent 是将语言模型从"回答问题的文本系统"重新定义为"在环境中反复采取行动并接收反馈的决策体"的范式。这一范式转换是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文最底层的理论基础。</p>
+<p>LM Agent 是将语言模型从"回答问题的文本系统"重新定义为"在环境中反复采取行动并接收反馈的决策体"的<a href="规范化理论.html">范式</a>。这一<a href="规范化理论.html">范式</a>转换是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文最底层的理论基础。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定义</h3>
 <blockquote>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">为什么重要</h3>
-<p>这一定义是整篇论文的范式转换。只要接受"LM 是 agent"，后续 ACI、<a href="Guardrails.html">护栏机制</a>、<a href="Context-Engineering.html">上下文管理</a> 等概念才成立。否则会将 <a href="../entities/SWE-agent.html">SWE-agent</a> 误解为"一个会自动改代码的 prompt workflow"。</p>
+<p>这一定义是整篇论文的<a href="规范化理论.html">范式</a>转换。只要接受"LM 是 agent"，后续 ACI、<a href="Guardrails.html">护栏机制</a>、<a href="Context-Engineering.html">上下文管理</a> 等概念才成立。否则会将 <a href="../entities/SWE-agent.html">SWE-agent</a> 误解为"一个会自动改代码的 prompt workflow"。</p>
 <h3 id="agent">与 Agent 循环的关系</h3>
 <p>LM Agent 的实现依赖于 <a href="Agent循环.html">Agent循环</a>：</p>
 <pre><code>while (true):

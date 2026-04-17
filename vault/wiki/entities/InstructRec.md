@@ -35,7 +35,7 @@ supersedes: null
 
 4. **团队背景**：由微信团队提出，代表了工业界对 LLM 推荐方向的探索。
 
-5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]]范式，与 [[TALLRec]]、[[LC-Rec]]、[[LLMRec]] 等工作共同推动了从 P5 到现代 LLM 推荐的演进。
+5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]][[规范化理论|范式]]，与 [[TALLRec]]、[[LC-Rec]]、[[LLMRec]] 等工作共同推动了从 P5 到现代 LLM 推荐的演进。
 
 ## 来源
 - InstructRec 论文 — Instruction Tuning for Recommendation

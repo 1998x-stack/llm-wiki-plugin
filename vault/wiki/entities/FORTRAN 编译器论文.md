@@ -48,7 +48,7 @@ supersedes: null
 
 ## 概述
 
-John Backus 等人于1957年发表的《The FORTRAN Automatic Coding System》，是编程语言史上第一篇系统描述高级语言编译器设计的论文，证明了编译生成的代码效率可达手写汇编的90%以上。
+[[John Backus]] 等人于1957年发表的《The [[FORTRAN]] Automatic Coding System》，是编程语言史上第一篇系统描述高级语言编译器设计的论文，证明了编译生成的代码效率可达手写汇编的90%以上。
 
 ## 关键内容
 
@@ -56,7 +56,7 @@ John Backus 等人于1957年发表的《The FORTRAN Automatic Coding System》�
 
 | 项目 | 内容 |
 |------|------|
-| **标题** | The FORTRAN Automatic Coding System |
+| **标题** | The [[FORTRAN]] Automatic Coding System |
 | **作者** | John W. Backus, R.J. Beeber, S. Best 等13人 |
 | **发表时间** | 1957年2月 |
 | **Venue** | Proceedings of the Western Joint Computer Conference (WJCC), pp. 188-198 |
@@ -72,7 +72,7 @@ John Backus 等人于1957年发表的《The FORTRAN Automatic Coding System》�
 
 ### 性能数据
 
-FORTRAN 生成的代码效率通常达到手写汇编的 90% 以上，在某些以循环为主的科学计算程序中甚至优于普通程序员的手写汇编。
+[[FORTRAN]] 生成的代码效率通常达到手写汇编的 90% 以上，在某些以循环为主的科学计算程序中甚至优于普通程序员的手写汇编。
 
 ### 工程规模
 
@@ -81,9 +81,9 @@ FORTRAN 生成的代码效率通常达到手写汇编的 90% 以上，在某些�
 ### 历史影响
 
 - 彻底击碎了"编译器不可能高效"的神话
-- 1958年底超过半数 IBM 704 用户开始使用 FORTRAN
+- 1958年底超过半数 IBM 704 用户开始使用 [[FORTRAN]]
 - 催生了编译器科学这一全新学科
-- Backus 后来因 FORTRAN 和 BNF 的贡献获得1977年图灵奖
+- Backus 后来因 [[FORTRAN]] 和 BNF 的贡献获得1977年[[阿兰·图灵|图灵]]奖
 
 ## 来源
 

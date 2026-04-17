@@ -19,7 +19,7 @@ supersedes: null
 # Julian McAuley
 
 ## 概述
-UCSD 教授，推荐系统与用户行为建模领域知名学者，与 [[Wang-Cheng Kang]] 合作发表 [[SASRec]]（ICDM 2018），开创了[[序列推荐]]的 [[Transformer架构|Transformer]] 范式。
+UCSD 教授，推荐系统与用户行为建模领域知名学者，与 [[Wang-Cheng Kang]] 合作发表 [[SASRec]]（ICDM 2018），开创了[[序列推荐]]的 [[Transformer架构|Transformer]] [[规范化理论|范式]]。
 
 ## 关键内容
 

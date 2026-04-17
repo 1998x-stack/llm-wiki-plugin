@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心问题</strong>：LLM 推荐模型（如 P5 范式）需要大量训练数据，但并非所有数据对模型学习都有同等贡献。DEALRec 通过数据剪枝识别和保留最有价值的训练样本。</p>
+<p><strong>核心问题</strong>：LLM 推荐模型（如 P5 <a href="../concepts/规范化理论.html">范式</a>）需要大量训练数据，但并非所有数据对模型学习都有同等贡献。DEALRec 通过数据剪枝识别和保留最有价值的训练样本。</p>
 </li>
 <li>
 <p><strong>技术方法</strong>：通过数据剪枝（data pruning）方法筛选训练数据，去除冗余或低信息量的样本，提升 LLM 推荐的训练效率。</p>
 </li>
 <li>
-<p><strong>在 LLM 推荐谱系中的位置</strong>：属于<a href="../concepts/生成式 LLM 推荐.html">生成式 LLM 推荐</a>范式，关注训练效率优化，与 <a href="TALLRec.html">TALLRec</a>、<a href="InstructRec.html">InstructRec</a>、<a href="LC-Rec.html">LC-Rec</a> 等工作共同推动了 LLM 推荐的实用化。</p>
+<p><strong>在 LLM 推荐谱系中的位置</strong>：属于<a href="../concepts/生成式 LLM 推荐.html">生成式 LLM 推荐</a><a href="../concepts/规范化理论.html">范式</a>，关注训练效率优化，与 <a href="TALLRec.html">TALLRec</a>、<a href="InstructRec.html">InstructRec</a>、<a href="LC-Rec.html">LC-Rec</a> 等工作共同推动了 LLM 推荐的实用化。</p>
 </li>
 <li>
 <p><strong>实际意义</strong>：对于大规模工业场景，数据剪枝可以显著降低训练成本，使 LLM 推荐方案更具可行性。</p>

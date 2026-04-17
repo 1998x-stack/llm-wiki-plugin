@@ -45,7 +45,7 @@ Thariq Shihipar 是 Anthropic 的技术团队成员（member of technical staff�
 - 揭示了[[渐进式披露（Progressive Disclosure）]]在工具设计中的应用
 
 **工具演进洞察**：
-- 从 RAG 预索引到 Grep 自主搜索的范式转变
+- 从 RAG 预索引到 Grep 自主搜索的[[规范化理论|范式]]转变
 - [[TodoWrite-Tool|TodoWrite]] 到 [[Task-Tool|Task Tool]] 的演进：从"保持模型轨道"到"Agent 间协调"
 - 随着模型能力提升，旧工具可能从"帮助"变为"约束"
 

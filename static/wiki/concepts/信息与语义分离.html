@@ -173,15 +173,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Hartley 的决断是：<strong>只度量物理层面，完全排除语义和实用层面。</strong></p>
 <h3 id="_6">反直觉性</h3>
 <p>在日常理解中，"A 股今天涨了 5%"比"今天是星期三"包含更多"信息"，因为前者更"有用"。但 Hartley 认为，"有用性"是主观的、因人而异的、无法客观度量的。</p>
+<h3 id="shannon-1948">Shannon 的明确重述（1948）</h3>
+<p>Shannon 在1948年论文开篇第一段以更明确的方式重申了这一原则：</p>
+<blockquote>
+<p>"通信的根本问题是，在一端精确地或近似地重现在另一端所选择的消息。这些消息往往具有意义……但通信的语义方面与工程问题无关。"</p>
+</blockquote>
+<p>Shannon 的贡献在于将这一原则从认识论立场转化为工程实践：他的整个理论框架——<a href="信息熵.html">信息熵</a>、<a href="信道容量.html">信道容量</a>、<a href="通信系统模型.html">通信系统模型</a>——都建立在语义中立的基础之上。一段莎士比亚的独白和一段随机字母序列，只要长度相同、字符分布相同，就包含同样多的"信息"。</p>
 <h3 id="_7">深远影响</h3>
 <ul>
 <li>这一原则影响了 20 世纪的科学哲学，尤其是逻辑实证主义对"意义"的讨论</li>
 <li>正因为不关心"意义"，<a href="../maps/信息论.html">信息论</a>才能同时应用于电话、电视、互联网、DNA 序列和黑洞物理</li>
-<li>Shannon (1948) 完全继承了这一原则</li>
+<li>Shannon (1948) 完全继承了这一原则，并将其转化为完整的数学框架</li>
+<li>当代大语言模型的训练目标（最小化<a href="交叉熵.html">交叉熵</a>）完全不涉及"理解"语义，只涉及预测下一个 token 的概率分布——这正是 Shannon 语义中立立场的直接延续</li>
 </ul>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/信息论/01_hartley_1928_transmission_of_information.md</span> — Hartley (1928): Transmission of Information 深度解析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md</span> — Shannon (1948) 深度解析</li>
 </ul>
 <h2 id="_9">相关</h2>
 <ul>

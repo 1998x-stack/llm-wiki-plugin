@@ -32,7 +32,7 @@ supersedes: null
 
 4. **Zero-shot 能力**：通过[[指令调优]]，TALLRec 展示了强大的 zero-shot 推荐能力，能够遵循未见过的指令完成推荐任务。
 
-5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]]范式，与 [[InstructRec]]、[[LC-Rec]]、[[LLMRec]] 等工作共同推动了 LLM 推荐的发展。
+5. **在 LLM 推荐谱系中的位置**：属于[[生成式 LLM 推荐]][[规范化理论|范式]]，与 [[InstructRec]]、[[LC-Rec]]、[[LLMRec]] 等工作共同推动了 LLM 推荐的发展。
 
 ## 来源
 - TALLRec 论文 — LLaMA-based Recommendation with Instruction Tuning

@@ -52,7 +52,7 @@ HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表�
 
 7. **局限性**：训练成本极高（仅科技巨头可复制）；序列长度翻倍致 FLOPs 四倍增长；[[冷启动问题]]未专门讨论；万亿参数黑盒可解释性差；外部复现困难。
 
-8. **历史地位**：被广泛认为是推荐系统的"GPT 时刻"，推动了 [[Google]]、快手、美团、阿里、[[Netflix]]、字节等向[[生成式推荐]]范式迁移。MLCommons DLRMv3 基准直接受其启发。
+8. **历史地位**：被广泛认为是推荐系统的"GPT 时刻"，推动了 [[Google]]、快手、美团、阿里、[[Netflix]]、字节等向[[生成式推荐]][[规范化理论|范式]]迁移。MLCommons DLRMv3 基准直接受其启发。
 
 ## 来源
 - [论文原文 (ArXiv)](https://arxiv.org/abs/2402.17152)

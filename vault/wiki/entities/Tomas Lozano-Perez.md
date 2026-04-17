@@ -48,7 +48,7 @@ Lozano-Perez 最具影响力的工作是将“机器人如何在有障碍物的�
 *   **计算化学**：利用[[运动规划]]算法解决蛋白质折叠和分子对接问题，展示了 C-space 方法在生物学领域的跨学科潜力。
 
 ### 荣誉与奖项
-鉴于其对机器人学的奠基性贡献，Lozano-Perez 获得了多项顶级荣誉。他是 IEEE、ACM 和 AAAI 三个主要专业协会的 Fellow。2011 年，他因在[[运动规划]]领域的开创性工作获得 IEEE Robotics Pioneer Award；2021 年，他又获得了 IEEE Robotics and Automation Award。他的 1983 年论文被引用超过 3700 次，是机器人学历史上被引用最多的论文之一，其提出的概念已成为现代机器人操作系统（如 ROS/MoveIt!）和规划库（如 OMPL）的核心基础。
+鉴于其对机器人学的奠基性贡献，Lozano-Perez 获得了多项顶级荣誉。他是 IEEE、ACM 和 AAAI 三个主要专业协会的 Fellow。2011 年，他因在[[运动规划]]领域的开创性工作获得 IEEE Robotics Pioneer Award；2021 年，他又获得了 IEEE Robotics and Automation Award。他的 1983 年论文被引用超过 3700 次，是机器人学历史上被引用最多的论文之一，其提出的概念已成为现代机器人[[操作系统]]（如 ROS/MoveIt!）和规划库（如 OMPL）的核心基础。
 
 ## 来源
 - [[raw/books/机器人学/06-lozano-perez-configuration-space.md]]

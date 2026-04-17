@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>模型结构</strong>：SVD++ 的预测公式包含四部分：全局偏置、用户偏置、物品偏置、用户-物品<a href="../concepts/嵌入表示.html">隐向量</a>内积，以及<a href="../concepts/隐式反馈.html">隐式反馈</a>项（用户历史行为物品的<a href="../concepts/嵌入表示.html">隐向量</a>加权求和）。这使得模型不仅利用显式评分，还利用了用户的<a href="../concepts/隐式反馈.html">行为信号</a>。</li>
 <li><strong><a href="Netflix Prize.html">Netflix Prize</a> 表现</strong>：SVD++ 是 <a href="BellKor.html">BellKor</a> 团队赢得 <a href="Netflix Prize.html">Netflix Prize</a>（2009年，100万美元大奖）的核心技术之一，在 <a href="Netflix.html">Netflix</a> 数据集上取得了显著的精度提升。</li>
 <li><strong>与 FM 的等价关系</strong>：在 <a href="Factorization Machines.html">Factorization Machines</a> 框架下，只需在特征向量中额外拼接一组归一化的物品指示变量（表示用户历史评过的物品），FM 的交互项就会自动包含 SVD++ 中的<a href="../concepts/隐式反馈.html">隐式反馈</a>交互，无需重新设计模型方程和优化算法。</li>
-<li><strong>后续影响</strong>：SVD++ 的<a href="../concepts/隐式反馈.html">隐式反馈</a>融合思想被后续大量推荐系统工作继承，包括 <a href="timeSVD++.html">timeSVD++</a>（加入时间动态建模）等变体。FM 的统一框架进一步证明了这种"特征编码决定建模能力"而非"模型结构决定一切"的范式。</li>
+<li><strong>后续影响</strong>：SVD++ 的<a href="../concepts/隐式反馈.html">隐式反馈</a>融合思想被后续大量推荐系统工作继承，包括 <a href="timeSVD++.html">timeSVD++</a>（加入时间动态建模）等变体。FM 的统一框架进一步证明了这种"特征编码决定建模能力"而非"模型结构决定一切"的<a href="../concepts/规范化理论.html">范式</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

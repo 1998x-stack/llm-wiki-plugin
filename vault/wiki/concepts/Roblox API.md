@@ -29,7 +29,7 @@ supersedes: null
 ## 关键内容
 
 ### 内建值类型（无 GC 压力）
-[[Roblox]] 的几何与颜色类型是值类型，与普通 [[Lua-table-用法|Lua table]] 不同，不产生垃圾回收压力：
+[[Roblox]] 的几何与颜色类型是值类型，与普通 [[Lua-table-用法|Lua table]] 不同，不产生[[垃圾回收]]压力：
 - **Vector3**：3D 坐标，支持 `+`/`*` 运算，`.Magnitude`、`.Unit`、`:Dot`、`:Cross`、`:Lerp`
 - **Vector2**：2D 坐标
 - **CFrame**：位置+姿态复合变换；`CFrame.lookAt(from, to)`；`*` 复合；`:ToObjectSpace` / `:ToWorldSpace` 坐标系转换；`:ToEulerAnglesXYZ` 提取欧拉角

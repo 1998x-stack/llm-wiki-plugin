@@ -24,11 +24,11 @@ entity_type: paper
 # Item-Based Collaborative Filtering Recommendation Algorithms
 
 ## 概述
-推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次），首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构范式。
+推荐系统领域引用量最高的论文之一（[[Google]] Scholar 超 10,000 次），首次系统性分析和评估了[[基于物品的协同过滤]]方法，确立了"离线预计算 + 在线查表"的工业级推荐系统架构[[规范化理论|范式]]。
 
 ## 关键内容
 
-1. **基本信息**：由明尼苏达大学 [[GroupLens|GroupLens 研究组]]的 [[Badrul Sarwar]]、George Karypis、[[Joseph Konstan]]、[[John Riedl]] 于 2001 年发表在 WWW '01 会议（第 10 届国际万维网大会，香港）。DOI: 10.1145/371920.372071。
+1. **基本信息**：由明尼苏达大学 [[GroupLens|GroupLens 研究组]]的 [[Badrul Sarwar]]、George Karypis、[[Joseph Konstan]]、[[John Riedl]] 于 2001 年发表在 WWW '01 会议（第 10 届国际[[万维网]]大会，香港）。DOI: 10.1145/371920.372071。
 
 2. **核心贡献**：提出将相似度计算从用户维度转换到物品维度，通过离线预计算物品相似度表，将推荐系统的在线计算复杂度从 O(M)（用户总数）降低到 O(K)（邻居数量），实现数量级的性能提升。
 

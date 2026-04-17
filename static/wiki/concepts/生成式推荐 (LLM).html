@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm">生成式推荐 (LLM)</h1>
 <h2 id="_1">概述</h2>
-<p>将推荐任务重构为文本生成问题的 LLM 范式，通过语言模型<a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果，由 <a href="../entities/P5 论文.html">P5 论文</a>首次系统性提出。</p>
+<p>将推荐任务重构为文本生成问题的 LLM <a href="规范化理论.html">范式</a>，通过语言模型<a href="AR 模型（自回归模型）.html">自回归</a>生成推荐结果，由 <a href="../entities/P5 论文.html">P5 论文</a>首次系统性提出。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>范式定义</strong>：将推荐系统的所有任务——评分预测、<a href="序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——统一为"输入一段文本，输出一段文本"的语言生成问题，不再需要专门的<a href="协同过滤.html">协同过滤</a>层、评分预测头或排序损失函数。</p>
+<p><strong><a href="规范化理论.html">范式</a>定义</strong>：将推荐系统的所有任务——评分预测、<a href="序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——统一为"输入一段文本，输出一段文本"的语言生成问题，不再需要专门的<a href="协同过滤.html">协同过滤</a>层、评分预测头或排序损失函数。</p>
 </li>
 <li>
 <p><strong>开创性工作</strong>：<a href="../entities/P5 论文.html">P5 论文</a>（<a href="../entities/RecSys 2022.html">RecSys 2022</a>）首次系统性地论证了"将推荐系统完全重构为语言处理任务"的可行性，使用 T5 作为骨干模型，将五大推荐任务完整统一到一个语言模型框架中。</p>

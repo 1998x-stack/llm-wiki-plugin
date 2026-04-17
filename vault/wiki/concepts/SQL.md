@@ -51,24 +51,24 @@ supersedes: null
 
 ## 概述
 
-SQL（Structured Query Language，结构化查询语言）是关系模型的标准查询语言，将关系代数和关系演算的思想转化为人类可读的查询语言，是历史上使用最广泛的声明式编程语言。
+SQL（Structured Query Language，结构化查询语言）是[[关系模型]]的标准查询语言，将[[关系代数]]和[[关系演算]]的思想转化为人类可读的查询语言，是历史上使用最广泛的声明式编程语言。
 
 ## 关键内容
 
 ### 起源
 
 - **System R**（IBM 圣何塞研究实验室，1970年代中期）：SQL 的前身 SEQUEL（Structured English Query Language）为 System R 设计
-- **Ingres**（UC Berkeley）：使用 QUEL 查询语言，更忠实于 Codd 的元组关系演算
+- **Ingres**（UC Berkeley）：使用 QUEL 查询语言，更忠实于 Codd 的元组[[关系演算]]
 - **1986年**：SQL 被 ANSI 采纳为标准
 - 此后经历了多次修订：SQL-89、SQL-92、SQL:1999、SQL:2003 等
 
 ### 设计哲学
 
-用近似自然语言的方式表达查询意图，使得非专业程序员也能够有效地操纵数据库。`SELECT ... FROM ... WHERE ...` 的结构直接对应关系演算的声明式风格。
+用近似自然语言的方式表达查询意图，使得非专业程序员也能够有效地操纵数据库。`SELECT ... FROM ... WHERE ...` 的结构直接对应[[关系演算]]的声明式风格。
 
 ### Codd 的不满
 
-Codd 对 SQL 语言的设计表达了不满，认为它在某些方面偏离了关系模型的数学纯粹性（如允许重复行、NULL 值的处理等），但到那时 SQL 已经成为了事实标准。
+Codd 对 SQL 语言的设计表达了不满，认为它在某些方面偏离了[[关系模型]]的数学纯粹性（如允许重复行、NULL 值的处理等），但到那时 SQL 已经成为了事实标准。
 
 ### 标准化历程
 
@@ -83,7 +83,7 @@ Codd 对 SQL 语言的设计表达了不满，认为它在某些方面偏离了�
 
 - "SQL-on-everything"成为通用数据查询趋势
 - Text-to-SQL 技术使自然语言查询成为可能
-- Presto/Trino、Apache Spark SQL、Amazon Athena 等将 SQL 扩展到分布式存储系统
+- Presto/Trino、Apache Spark SQL、[[Amazon]] Athena 等将 SQL 扩展到分布式存储系统
 
 ## 来源
 

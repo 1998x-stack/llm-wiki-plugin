@@ -72,8 +72,8 @@ supersedes: null
 
 | 字段 | 内容 |
 |------|------|
-| **标题** | On Computable Numbers, with an Application to the Entscheidungsproblem |
-| **作者** | Alan Mathison Turing (1912–1954) |
+| **标题** | On [[可计算数|Computable Numbers]], with an Application to the [[判定问题 (Entscheidungsproblem)|Entscheidungsproblem]] |
+| **作者** | [[阿兰·图灵|Alan Mathison Turing]] (1912–1954) |
 | **提交时间** | 1936年5月28日 |
 | **正式出版** | 1937年，附勘误与附录 |
 | **发表期刊** | Proceedings of the London Mathematical Society, Series 2, Volume 42, pp. 230–265 |
@@ -85,13 +85,13 @@ supersedes: null
 
 2. **[[图灵机|通用图灵机]]**：证明存在一台能模拟任意[[图灵机]]的机器——在概念层面预言了可编程计算机的出现，比 ENIAC（1946年）早10年，比 von Neumann 存储程序架构（1945年）早9年。
 
-3. **[[停机问题]]不可判定**：通过反证法和对角化论证，证明不存在算法能判定任意程序是否停机。这是第一个被严格证明不可判定的具体问题，开创了不可判定性理论的整个领域。
+3. **[[停机问题]]不可判定**：通过反证法和对角化论证，证明不存在算法能判定任意程序是否停机。这是第一个被严格证明不可判定的具体问题，开创了[[停机问题|不可判定性]]理论的整个领域。
 
-4. **[[判定问题 (Entscheidungsproblem)]]的否定回答**：由停机问题的不可判定性推导出 Hilbert 判定问题不可解，与 Godel 不完备定理一起彻底终结了 Hilbert 形式化纲领。
+4. **[[判定问题 (Entscheidungsproblem)]]的否定回答**：由[[停机问题]]的[[停机问题|不可判定性]]推导出 Hilbert 判定问题不可解，与 Godel 不完备定理一起彻底终结了 Hilbert 形式化纲领。
 
 ### 附录：与 Church λ 演算的等价性
 
-Turing 在附录中证明了图灵可计算性与 λ 可定义性的完全等价，这一结果连同与 Godel 递归函数、Post 产生式系统、Markov 算法等的等价性，共同构成了[[Church-Turing 论题]]的经验基础。
+Turing 在附录中证明了[[阿兰·图灵|图灵]]可计算性与 λ 可定义性的完全等价，这一结果连同与 Godel 递归函数、Post 产生式系统、Markov 算法等的等价性，共同构成了[[Church-Turing 论题]]的经验基础。
 
 ### 历史意义
 

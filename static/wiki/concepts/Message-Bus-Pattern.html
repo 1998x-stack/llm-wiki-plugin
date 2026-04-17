@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>两个原语</strong>：
 1. <strong>发布（Publish）</strong>：智能体发布事件到总线
 2. <strong>订阅（Subscribe）</strong>：智能体订阅其关注的主题
-3. <strong>路由</strong>：路由器传递匹配的消息</p>
+3. <strong>路由</strong>：<a href="网关与路由器.html">路由器</a>传递匹配的消息</p>
 <p><strong>特点</strong>：
 - 智能体通过共享通信层交互
 - 新智能体可轻松加入生态系统
@@ -179,8 +179,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 级联事件需要细致的日志记录和关联分析
 - 调试比顺序式决策更难</p>
 <p><strong>路由准确性</strong>：
-- 路由器对事件进行错误分类或丢弃会导致系统无声失效
-- 基于大模型的路由器具备语义灵活性，但也会带来自身的故障模式
+- <a href="网关与路由器.html">路由器</a>对事件进行错误分类或丢弃会导致系统无声失效
+- 基于大模型的<a href="网关与路由器.html">路由器</a>具备语义灵活性，但也会带来自身的故障模式
 - 系统除了不崩溃外什么都处理不了</p>
 <p><strong>无声失效</strong>：
 - 系统失效时不会崩溃
@@ -204,27 +204,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>路由</strong></td>
 <td>协调者决定</td>
-<td>路由器基于主题</td>
-</tr>
-<tr>
-<td><strong>扩展性</strong></td>
-<td>协调者成为瓶颈</td>
-<td>可轻松添加新智能体</td>
-</tr>
-<tr>
-<td><strong>调试</strong></td>
-<td>顺序决策易追踪</td>
-<td>级联事件难追踪</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_8">设计建议</h3>
-<p><strong>日志记录</strong>：
-- 细致的日志记录所有事件
-- 关联分析工具
-- 监控和告警机制</p>
-<p><strong>路由准确性</strong>：
-- 测试路由器的分类准确性
+<td><span style="color:#e74c3c" title="broken link">路由器</span>的分类准确性
 - 设置误分类检测和告警
 - 考虑基于规则和基于模型的混合路由</p>
 <p><strong>监控</strong>：

@@ -55,7 +55,7 @@ supersedes: null
 
 ## 概述
 
-FORTRAN（FORmula TRANslation，公式翻译）是世界上第一个广泛使用的高级编程语言，由 John Backus 领导的 IBM 团队于1954-1957年开发，专为科学计算设计。
+FORTRAN（FORmula TRANslation，公式翻译）是世界上第一个广泛使用的高级编程语言，由 [[John Backus]] 领导的 IBM 团队于1954-1957年开发，专为科学计算设计。
 
 ## 关键内容
 
@@ -64,7 +64,7 @@ FORTRAN（FORmula TRANslation，公式翻译）是世界上第一个广泛使用
 - **算术表达式**：直接书写数学公式 `Y = A*X**2 + B*X + C`
 - **DO 循环**：`DO n i = m1, m2, m3`，对应科学计算中最常见的迭代模式
 - **算术 IF**：`IF (expression) n1, n2, n3`，根据表达式值的正负零三路分支
-- **数组和下标运算**：`DIMENSION` 声明支持矩阵和向量运算
+- **数组和下标运算**：`DIMENSION` 声明支持[[矩阵]]和向量运算
 - **子程序和函数**：`SUBROUTINE`、`FUNCTION` 支持代码复用
 - **格式化 I/O**：`FORMAT` 和 `READ`/`WRITE` 语句
 
@@ -91,7 +91,7 @@ FORTRAN（FORmula TRANslation，公式翻译）是世界上第一个广泛使用
 - 催生了编译器科学
 - 证明了"抽象不等于低效"
 - 至今仍是高性能科学计算的主力语言之一
-- Backus 因 FORTRAN 和 BNF 获得1977年图灵奖
+- Backus 因 FORTRAN 和 BNF 获得1977年[[阿兰·图灵|图灵]]奖
 
 ## 来源
 

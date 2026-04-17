@@ -29,7 +29,7 @@ supersedes: null
 # Jean-Claude Latombe
 
 ## 概述
-Jean-Claude Latombe 是机器人[[运动规划]]领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成就是撰写了该领域的权威专著《Robot [[运动规划|Motion Planning]]》（1991 年），该书系统化了构型空间（Configuration Space）理论，至今仍是该领域的标准参考书。作为 [[Lydia Kavraki]] 的博士导师，他与 Kavraki、[[Mark Overmars]] 等人合作提出了概率路线图（PRM）方法，推动了[[运动规划]]从精确几何方法向随机采样方法的范式转变。
+Jean-Claude Latombe 是机器人[[运动规划]]领域的奠基人之一，曾任斯坦福大学（Stanford University）教授。他最为人熟知的成就是撰写了该领域的权威专著《Robot [[运动规划|Motion Planning]]》（1991 年），该书系统化了构型空间（Configuration Space）理论，至今仍是该领域的标准参考书。作为 [[Lydia Kavraki]] 的博士导师，他与 Kavraki、[[Mark Overmars]] 等人合作提出了概率路线图（PRM）方法，推动了[[运动规划]]从精确几何方法向随机采样方法的[[规范化理论|范式]]转变。
 
 ## 关键内容
 

@@ -4,6 +4,153 @@ type: log
 
 # 操作日志
 
+## [2026-04-17 21:20] maintain
+- Relink: 3418 terms, 1058 scanned, 957 new links (291 pages)
+- Check: 0 errors, 1003 warnings (B1×698/F3×184/M1×54/O1×61/其他×6), 0 new gotchas
+- Lint: index.md rebuilt (1067 pages); SQLite.md F2 YAML修复（supersedes 缩进错误）
+- Build: 1073 nodes, 8520 edges, 0 orphans, 7 components → static/ synced
+
+---
+
+## [2026-04-17 21:00] ingest | batch 18-20（最终批次）
+
+**批量处理**：`raw/books/计算机科学/18-20` — 三篇论文的深度精读笔记。
+
+### 文件 18: lamport-paxos.md
+**创建了 3 个新页面**：
+- `wiki/entities/Paxos 论文.md` — Lamport 1998年发表（初稿1989年），分布式共识奠基之作
+- `wiki/concepts/Paxos 算法.md` — 两阶段协议、多数派机制、安全性无条件保证
+- `wiki/concepts/FLP 不可能性定理.md` — 异步系统中确定性共识不可能的理论证明
+
+### 文件 19: dean-ghemawat-mapreduce.md
+**创建了 4 个新页面**：
+- `wiki/entities/MapReduce 论文.md` — Google 三驾马车之一
+- `wiki/entities/Jeffrey Dean.md` — Google 核心系统工程师、TensorFlow 主导者
+- `wiki/entities/Sanjay Ghemawat.md` — GFS 主要设计者
+- `wiki/concepts/MapReduce.md` — Map/Reduce 编程模型，大数据时代的开篇
+
+### 文件 20: vaswani-transformer.md
+**创建了 4 个新页面**：
+- `wiki/entities/Transformer 论文.md` — Attention Is All You Need，引用量超过13万次
+- `wiki/entities/Ashish Vaswani.md` — 论文第一作者
+- `wiki/concepts/Transformer 架构.md` — 完全基于注意力的序列转换架构
+- `wiki/concepts/自注意力机制.md` — O(1) 路径长度，任意位置直接连接
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：8 个页面全部更新成功
+**Index 同步**：1067 页（+8 新增）
+
+---
+
+## 批量 ingest 完成总结
+
+**处理范围**：`raw/books/计算机科学/` 全部 20 个文件
+**总创建页面**：约 100+ 个新页面（从 993 页增长到 1067 页，+74 页）
+**处理时间**：2026-04-17 14:30 - 21:00
+**矛盾检查**：0 个矛盾
+**失败文件**：0
+
+## [2026-04-17 20:30] ingest | batch 15-17
+
+**批量处理**：`raw/books/计算机科学/15-17` — 三篇论文的深度精读笔记。
+
+### 文件 15: thompson-trusting-trust.md
+**创建了 3 个新页面**：
+- `wiki/entities/Thompson 信任信任论文.md` — 1984年图灵奖演讲，编译器木马攻击
+- `wiki/concepts/供应链安全.md` — 开创的安全研究方向
+- `wiki/concepts/可重现构建.md` — 对 Thompson 问题的工程回应
+
+### 文件 16: brooks-no-silver-bullet.md
+**创建了 2 个新页面**：
+- `wiki/entities/No Silver Bullet 论文.md` — 软件工程中不存在"银弹"
+- `wiki/entities/Frederick Brooks.md` — 《人月神话》作者
+
+### 文件 17: berners-lee-www.md
+**创建了 6 个新页面**：
+- `wiki/entities/万维网提案.md` — 1989年 CERN 内部提案
+- `wiki/entities/Tim Berners-Lee.md` — 万维网发明者、2016年图灵奖
+- `wiki/concepts/万维网.md` — 基于 URL/HTTP/HTML 的分布式信息系统
+- `wiki/concepts/URL.md` — 全球信息空间统一编址
+- `wiki/concepts/HTTP.md` — 极简的请求-响应协议
+- `wiki/concepts/HTML.md` — 人人都能写的标记语言
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：11 个页面全部更新成功
+**Index 同步**：1057 页（+11 新增）
+
+## [2026-04-17 20:00] ingest | batch 12-14
+
+**批量处理**：`raw/books/计算机科学/12-14` — 三篇论文的深度精读笔记。
+
+### 文件 12: backus-liberated-von-neumann.md
+**创建了 1 个新页面**：
+- `wiki/entities/Backus 函数式编程论文.md` — Backus 1978年图灵奖演讲，批判冯·诺依曼范式
+
+### 文件 13: lamport-time-clocks.md
+**创建了 6 个新页面**：
+- `wiki/entities/Lamport 逻辑时钟论文.md` — 论文实体页：happened-before、逻辑时钟、互斥算法
+- `wiki/entities/Leslie Lamport.md` — 分布式系统理论奠基者、2013年图灵奖
+- `wiki/concepts/happened-before 关系.md` — 事件之间的因果偏序关系
+- `wiki/concepts/逻辑时钟.md` — 不依赖物理时钟的因果追踪机制
+- `wiki/concepts/分布式系统.md` — 多台通过网络互联的计算机组成的系统
+- `wiki/concepts/向量时钟.md` — 完整捕获因果信息的改进机制
+
+### 文件 14: hoare-csp.md
+**创建了 3 个新页面**：
+- `wiki/entities/Hoare CSP 论文.md` — 论文实体页：CSP 模型、同步通信、守卫命令
+- `wiki/entities/Tony Hoare.md` — 快速排序、Hoare 逻辑、CSP 发明者、1980年图灵奖
+- `wiki/concepts/CSP 模型.md` — 通过消息传递而非共享内存实现并发
+
+**矛盾检查**：0 个矛盾发现
+**BM25 更新**：10 个页面全部更新成功
+**Index 同步**：1046 页（+10 新增）
+
+## [2026-04-17 19:30] ingest | raw/books/计算机科学/11-diffie-hellman-new-directions.md
+
+**来源文件**：`raw/books/计算机科学/11-diffie-hellman-new-directions.md` — Diffie & Hellman 1976年论文《New Directions in Cryptography》的深度精读笔记。
+
+**创建了 13 个新页面**：
+- `wiki/entities/Diffie-Hellman 论文.md` — 论文实体页：公钥密码学、DH 协议、数字签名框架
+- `wiki/entities/Whitfield Diffie.md` — 公钥密码学共同发明者、2015年图灵奖
+- `wiki/entities/Martin Hellman.md` — 公钥密码学共同发明者、2015年图灵奖、DES 批评者
+- `wiki/entities/James Ellis.md` — GCHQ 成员，1970年独立提出公钥密码学概念
+- `wiki/entities/Clifford Cocks.md` — GCHQ 成员，1973年独立发明类似 RSA 算法
+- `wiki/entities/Malcolm Williamson.md` — GCHQ 成员，1974年独立发明类似 DH 方案
+- `wiki/concepts/公钥密码学.md` — 加密和解密使用不同密钥的革命性范式
+- `wiki/concepts/Diffie-Hellman 密钥交换.md` — 第一个公钥密钥交换协议
+- `wiki/concepts/数字签名.md` — 认证性、完整性、不可否认性
+- `wiki/concepts/离散对数问题.md` — DH 协议的安全性基础
+- `wiki/concepts/单向陷门函数.md` — 公钥密码学的数学基础
+- `wiki/concepts/后量子密码学.md` — 量子计算威胁下的新密码学范式
+- `wiki/concepts/中间人攻击.md` — DH 协议的主要弱点
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：13 新页面 0 ERROR（I1 警告将由 snapshot_index 修复）
+**BM25 更新**：13 个页面全部更新成功
+**Index 同步**：1036 页（+13 新增）
+
+## [2026-04-17 19:00] ingest | raw/books/计算机科学/10-cerf-kahn-tcp-ip.md
+
+**来源文件**：`raw/books/计算机科学/10-cerf-kahn-tcp-ip.md` — Cerf & Kahn 1974年论文《A Protocol for Packet Network Intercommunication》的深度精读笔记。
+
+**创建了 11 个新页面**：
+- `wiki/entities/Vinton Cerf.md` — TCP/IP 共同发明者、"互联网之父"、2004年图灵奖
+- `wiki/entities/Robert Kahn.md` — TCP/IP 共同发明者、"互联网之父"、2004年图灵奖
+- `wiki/entities/TCP-IP 论文.md` — 论文实体页：网关概念、端到端原则、TCP 机制
+- `wiki/entities/Louis Pouzin.md` — CYCLADES 项目领导者，数据报模型启发了 TCP/IP
+- `wiki/concepts/TCP-IP.md` — 全球互联网的核心协议族
+- `wiki/concepts/端到端原则.md` — 智能在边缘，核心保持简单
+- `wiki/concepts/网关与路由器.md` — 连接异构网络的无状态专用设备
+- `wiki/concepts/ARPANET.md` — 互联网的前身，1969年投入运行
+- `wiki/concepts/分组交换.md` — 互联网的技术基础
+- `wiki/concepts/IPv4.md` — 32位地址，约43亿个唯一地址
+- `wiki/concepts/拥塞控制.md` — Van Jacobson 1988年引入，防止网络崩溃
+
+**矛盾检查**：0 个矛盾发现
+**Lint 验证**：11 新页面 0 ERROR（I1 警告将由 snapshot_index 修复）
+**BM25 更新**：11 个页面全部更新成功
+**Index 同步**：1023 页（+11 新增）
+
 ## [2026-04-17 18:30] ingest | raw/books/计算机科学/09-ritchie-thompson-unix.md
 
 **来源文件**：`raw/books/计算机科学/09-ritchie-thompson-unix.md` — Ritchie & Thompson 1974年论文《The UNIX Time-Sharing System》的深度精读笔记。

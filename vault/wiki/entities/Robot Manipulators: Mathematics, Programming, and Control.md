@@ -31,7 +31,7 @@ supersedes: null
 # Robot Manipulators: Mathematics, Programming, and Control
 
 ## 概述
-《Robot Manipulators: Mathematics, Programming, and Control》是由 [[Richard P. Paul]] 于 1981 年出版的学术专著，被公认为机器人学领域的第一本“圣经”。该书首次系统化地整合了机器人操作臂的数学基础，包括齐次变换、正逆运动学、轨迹规划和力控制，将此前分散的理论统一到一个完整的数学框架中。它不仅定义了“机器人学”作为一门独立工程学科的基本内涵，还确立了延续至今的机器人学教育标准范式，对工业界和学术界产生了深远影响。
+《Robot Manipulators: Mathematics, Programming, and Control》是由 [[Richard P. Paul]] 于 1981 年出版的学术专著，被公认为机器人学领域的第一本“圣经”。该书首次系统化地整合了机器人操作臂的数学基础，包括齐次变换、正逆运动学、轨迹规划和力控制，将此前分散的理论统一到一个完整的数学框架中。它不仅定义了“机器人学”作为一门独立工程学科的基本内涵，还确立了延续至今的机器人学教育标准[[规范化理论|范式]]，对工业界和学术界产生了深远影响。
 
 ## 关键内容
 ### 历史背景与时代意义

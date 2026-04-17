@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>在推荐系统中的应用</strong>：<a href="../entities/Neural Collaborative Filtering.html">Neural Collaborative Filtering</a> 论文将<a href="隐式反馈.html">隐式反馈</a>推荐从回归问题重新建模为<strong>二分类问题</strong>，采用二元<a href="交叉熵.html">交叉熵</a>替代传统 MF 常用的均方误差（MSE）。对于 0/1 二值数据，<a href="交叉熵.html">交叉熵</a>在概率意义上更加合理，将问题建模为"用户是否会与该物品交互"的概率预测。</li>
 <li><strong>与 MSE 的对比</strong>：NCF 实验表明，使用二元<a href="交叉熵.html">交叉熵</a>（log loss）训练的模型显著优于使用均方误差训练的版本。MSE 更适合连续值评分预测（如<a href="显式反馈.html">显式反馈</a>的 1-5 星评分），而<a href="交叉熵.html">交叉熵</a>更适合<a href="隐式反馈.html">隐式反馈</a>的 0/1 二值数据。</li>
 <li><strong><a href="负采样.html">负采样</a>依赖</strong>：二元<a href="交叉熵.html">交叉熵</a>在<a href="隐式反馈.html">隐式反馈</a>场景下需要<a href="负采样.html">负采样</a>构造负样本集合 $\mathcal{Y}^-$。NCF 论文中设定<a href="负采样.html">负采样</a>比例为每个正样本对应 4-5 个负样本，从未观察到的交互中均匀采样。</li>
-<li><strong>后续影响</strong>：NCF 采用二元<a href="交叉熵.html">交叉熵</a>的选择为后来的推荐系统研究设定了重要的实践范式，后续的深度学习推荐模型（如<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、<a href="../entities/DeepFM.html">DeepFM</a>等）在<a href="隐式反馈.html">隐式反馈</a>场景下普遍采用<a href="交叉熵.html">交叉熵</a>作为损失函数。</li>
+<li><strong>后续影响</strong>：NCF 采用二元<a href="交叉熵.html">交叉熵</a>的选择为后来的推荐系统研究设定了重要的实践<a href="规范化理论.html">范式</a>，后续的深度学习推荐模型（如<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、<a href="../entities/DeepFM.html">DeepFM</a>等）在<a href="隐式反馈.html">隐式反馈</a>场景下普遍采用<a href="交叉熵.html">交叉熵</a>作为损失函数。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

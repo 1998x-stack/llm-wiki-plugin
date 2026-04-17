@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="../concepts/CTR 预估.html">CTR 预估</a>效果</strong>：在 <a href="Criteo.html">Criteo</a> 数据集上 AUC=0.8016、LogLoss=0.44985（最优）；在华为应用市场约10亿条记录的真实数据上 AUC=0.8715。在线 A/B 测试中 DeepFM-D 相比精心调优的 LR 模型，CTR 提升超过 10%。</li>
 <li><strong>后续影响</strong>：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（<a href="Google.html">Google</a> 2017，Cross Network 显式交叉）、<a href="xDeepFM.html">xDeepFM</a>（微软 2018，CIN 向量级显式交叉）、<a href="AutoInt.html">AutoInt</a>（2019，<a href="../concepts/多头注意力.html">多头自注意力</a>可解释交互）等。</li>
 <li><strong>局限性</strong>：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 <a href="xDeepFM.html">xDeepFM</a>、<a href="AutoInt.html">AutoInt</a>、DIN 分别针对这些局限进行了改进。</li>
-<li><strong>架构一般性</strong>：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep <a href="../concepts/共享嵌入.html">共享嵌入</a>"是可替换 Deep 部分实现的通用范式。</li>
+<li><strong>架构一般性</strong>：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep <a href="../concepts/共享嵌入.html">共享嵌入</a>"是可替换 Deep 部分实现的通用<a href="../concepts/规范化理论.html">范式</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

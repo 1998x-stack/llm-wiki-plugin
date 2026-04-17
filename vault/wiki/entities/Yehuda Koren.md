@@ -22,7 +22,7 @@ supersedes: null
 # Yehuda Koren
 
 ## 概述
-推荐系统领域研究者，[[矩阵分解]]技术先驱，[[Netflix Prize]] 冠军团队 [[BellKor]] 核心成员，2009 年发表 [[Matrix Factorization Techniques for Recommender Systems|MF 综述论文]]奠定[[隐因子模型]]范式。
+推荐系统领域研究者，[[矩阵分解]]技术先驱，[[Netflix Prize]] 冠军团队 [[BellKor]] 核心成员，2009 年发表 [[Matrix Factorization Techniques for Recommender Systems|MF 综述论文]]奠定[[隐因子模型]][[规范化理论|范式]]。
 
 ## 关键内容
 

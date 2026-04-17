@@ -36,7 +36,7 @@ Brian Gerkey 是著名的机器人学家和开源软件倡导者，**ROS **([[RO
 ## 关键内容
 
 ### Player/Stage 的先驱工作
-在 ROS 出现之前，Brian Gerkey 与 Richard Vaughan、Kasper Stoy 于 2000 年在南加州大学创建了 **Player/Stage** 项目。Player 提供了一种网络透明的机器人设备接口，允许程序通过 TCP/IP 统一访问传感器和执行器；Stage 则是一个轻量级的二维多机器人模拟器。Player/Stage 是当时最成功的开源机器人软件框架，被十几个研究机构采用。然而，其客户端 - 服务器架构在处理复杂系统和分布式计算时存在局限，这促使 Gerkey 思考下一代架构的可能性，并为后来 ROS 的点对点设计提供了宝贵的经验教训。
+在 ROS 出现之前，Brian Gerkey 与 Richard Vaughan、Kasper Stoy 于 2000 年在南加州大学创建了 **Player/Stage** 项目。Player 提供了一种网络透明的机器人设备接口，允许程序通过 [[TCP-IP|TCP/IP]] 统一访问传感器和执行器；Stage 则是一个轻量级的二维多机器人模拟器。Player/Stage 是当时最成功的开源机器人软件框架，被十几个研究机构采用。然而，其客户端 - 服务器架构在处理复杂系统和[[分布式系统|分布式计算]]时存在局限，这促使 Gerkey 思考下一代架构的可能性，并为后来 ROS 的点对点设计提供了宝贵的经验教训。
 
 ### 打造 ROS 生态系统
 加入 [[Willow Garage]] 后，Gerkey 将 Player/Stage 的设计经验注入 ROS 架构中。他不仅参与了核心技术决策，更在社区建设上发挥了关键作用。他推动了 BSD 许可证的选择，降低了商业应用门槛；建立了 ROS Wiki 和 ROS Answers，促进了知识共享；并主导了 PR2 Beta Program，通过向全球顶尖高校赠送机器人，成功构建了 ROS 的早期用户网络。Gerkey 深知，一个成功的开源项目不仅需要优秀的技术，更需要活跃的社区和可持续的治理结构。

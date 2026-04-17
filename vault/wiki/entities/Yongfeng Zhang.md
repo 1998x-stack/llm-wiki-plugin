@@ -21,7 +21,7 @@ supersedes: null
 # Yongfeng Zhang
 
 ## 概述
-[[P5 论文]]通讯作者，[[Rutgers University]] 教授，[[推荐系统基础模型]]方向的先驱研究者，推动了 LLM for Recommendation 研究范式。
+[[P5 论文]]通讯作者，[[Rutgers University]] 教授，[[推荐系统基础模型]]方向的先驱研究者，推动了 LLM for Recommendation 研究[[规范化理论|范式]]。
 
 ## 关键内容
 

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">知识系统的六个工程反模式</h1>
 <h2 id="_2">概述</h2>
-<p>在构建 LLM Wiki Plugin（AI 驱动的个人知识操作系统）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适用于任何由多个脚本/微服务组成的数据管线。</p>
+<p>在构建 LLM Wiki Plugin（AI 驱动的个人知识<a href="../concepts/操作系统.html">操作系统</a>）过程中，v3.3 重构暴露了六个反复出现的工程反模式。这些模式不仅适用于知识管理系统，也适用于任何由多个脚本/微服务组成的数据管线。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="1-silent-duplication">1. 隐性复制（Silent Duplication）</h3>
 <p>同一逻辑（如 YAML frontmatter 解析）在 6 个脚本中独立实现，每个实现行为略有不同（regex vs string-find vs yaml.safe_load）。表面上系统工作正常，但一个 bug 修复不会传播到其他副本，且边界行为不一致导致间歇性数据丢失。</p>

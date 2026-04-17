@@ -18,7 +18,7 @@ supersedes: null
 # Paul Covington
 
 ## 概述
-[[Google]]/[[YouTube]] 工程师，[[Deep Neural Networks for YouTube Recommendations]]（RecSys 2016）第一作者，该论文确立了工业推荐系统的两阶段架构范式。
+[[Google]]/[[YouTube]] 工程师，[[Deep Neural Networks for YouTube Recommendations]]（RecSys 2016）第一作者，该论文确立了工业推荐系统的两阶段架构[[规范化理论|范式]]。
 
 ## 关键内容
 

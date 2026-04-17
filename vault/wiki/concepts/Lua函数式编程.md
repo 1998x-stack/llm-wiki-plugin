@@ -23,7 +23,7 @@ supersedes: null
 # Lua 函数式编程
 
 ## 概述
-Lua 一等公民函数支持完整函数式编程范式：map/filter/reduce、函数组合（compose/pipe）、柯里化（curry）、记忆化（memoize）均可用闭包实现。
+Lua 一等公民函数支持完整[[函数式编程]][[规范化理论|范式]]：map/filter/reduce、函数组合（compose/pipe）、柯里化（curry）、记忆化（memoize）均可用闭包实现。
 
 ## 关键内容
 

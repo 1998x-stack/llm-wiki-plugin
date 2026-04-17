@@ -52,7 +52,7 @@ supersedes: null
 
 ## 概述
 
-Dennis Ritchie 和 Ken Thompson 于1974年发表的《The UNIX Time-Sharing System》，是操作系统史上被引最多的文献之一（11,000+次），首次向世界正式介绍了 UNIX 操作系统的设计哲学和实现细节。
+[[Dennis Ritchie]] 和 [[Ken Thompson]] 于1974年发表的《The UNIX Time-Sharing System》，是[[操作系统]]史上被引最多的文献之一（11,000+次），首次向世界正式介绍了 [[UNIX|UNIX 操作系统]]的设计哲学和实现细节。
 
 ## 关键内容
 
@@ -61,7 +61,7 @@ Dennis Ritchie 和 Ken Thompson 于1974年发表的《The UNIX Time-Sharing Syst
 | 条目 | 内容 |
 |------|------|
 | **标题** | The UNIX Time-Sharing System |
-| **作者** | Dennis M. Ritchie, Ken Thompson |
+| **作者** | Dennis M. Ritchie, [[Ken Thompson]] |
 | **发表时间** | 1974年7月（正式版）；1973年10月在第四届 ACM SOSP 会议上宣读前一版本 |
 | **刊物** | Communications of the ACM, Vol. 17, No. 7, pp. 365-375 |
 | **篇幅** | 11页 |
@@ -72,20 +72,20 @@ Dennis Ritchie 和 Ken Thompson 于1974年发表的《The UNIX Time-Sharing Syst
 - **i-node 结构**：文件元数据与文件名分离
 - **fork/exec 进程模型**：创建进程和加载程序分离
 - **Shell 作为普通用户程序**：命令解释器可从内核替换
-- **管道（Pipeline）**：程序组合的操作系统级实现
+- **管道（Pipeline）**：程序组合的[[操作系统]]级实现
 
 ### 历史背景
 
-- 从 Multics 项目的废墟中汲取灵感
+- 从 [[Multics]] 项目的废墟中汲取灵感
 - Thompson 在 PDP-7 上利用三个星期写出第一个原型
-- 1973年用 C 语言重写整个内核——人类历史上第一次用高级语言编写操作系统内核
+- 1973年用 [[C 语言]]重写整个内核——人类历史上第一次用高级语言编写[[操作系统]]内核
 
 ### 影响
 
-- 定义了现代操作系统的基因
+- 定义了现代[[操作系统]]的基因
 - 其后代（Linux、macOS、Android）统治了几乎所有计算平台
 - 开源运动的先驱
-- 1983年 Thompson 和 Ritchie 因此获得图灵奖
+- 1983年 Thompson 和 Ritchie 因此获得[[阿兰·图灵|图灵]]奖
 
 ## 来源
 

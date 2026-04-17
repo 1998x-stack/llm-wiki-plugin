@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/Roblox.html">Roblox</a> 平台提供的内建类型与服务 API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService <a href="游戏主循环模式.html">游戏循环</a>。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="gc">内建值类型（无 GC 压力）</h3>
-<p><a href="../entities/Roblox.html">Roblox</a> 的几何与颜色类型是值类型，与普通 <a href="Lua-table-用法.html">Lua table</a> 不同，不产生垃圾回收压力：
+<p><a href="../entities/Roblox.html">Roblox</a> 的几何与颜色类型是值类型，与普通 <a href="Lua-table-用法.html">Lua table</a> 不同，不产生<a href="垃圾回收.html">垃圾回收</a>压力：
 - <strong>Vector3</strong>：3D 坐标，支持 <code>+</code>/<code>*</code> 运算，<code>.Magnitude</code>、<code>.Unit</code>、<code>:Dot</code>、<code>:Cross</code>、<code>:Lerp</code>
 - <strong>Vector2</strong>：2D 坐标
 - <strong>CFrame</strong>：位置+姿态复合变换；<code>CFrame.lookAt(from, to)</code>；<code>*</code> 复合；<code>:ToObjectSpace</code> / <code>:ToWorldSpace</code> 坐标系转换；<code>:ToEulerAnglesXYZ</code> 提取欧拉角

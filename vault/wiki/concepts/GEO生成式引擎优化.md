@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化范式，目标是让内容被 ChatGPT、Perplexity、[[Google]] AI Overviews、Claude 等 LLM 在生成答案时**主动引用**。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。
+GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化[[规范化理论|范式]]，目标是让内容被 ChatGPT、Perplexity、[[Google]] AI Overviews、Claude 等 LLM 在生成答案时**主动引用**。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。
 
 ## 关键内容
 

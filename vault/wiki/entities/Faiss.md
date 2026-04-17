@@ -24,7 +24,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **与 [[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 的关系**：[[Deep Neural Networks for YouTube Recommendations]] 中"训练时用 softmax，服务时用 ANN 检索"的思路，直接推动了[[近似最近邻检索|向量检索]]技术在推荐系统中的广泛应用。[[Faiss]]（[[Meta|Facebook]]）、[[ScaNN]]（[[Google]]）、Milvus、Pinecone 等向量数据库和检索库的兴起，都与这一范式的流行密切相关。
+1. **与 [[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 的关系**：[[Deep Neural Networks for YouTube Recommendations]] 中"训练时用 softmax，服务时用 ANN 检索"的思路，直接推动了[[近似最近邻检索|向量检索]]技术在推荐系统中的广泛应用。[[Faiss]]（[[Meta|Facebook]]）、[[ScaNN]]（[[Google]]）、Milvus、Pinecone 等向量数据库和检索库的兴起，都与这一[[规范化理论|范式]]的流行密切相关。
 
 2. **核心能力**：支持多种 ANN 算法（IVF-PQ、HNSW、Flat 等），可在 CPU 和 GPU 上运行，支持数十亿级别的[[近似最近邻检索|向量检索]]。提供了从精确搜索到各种近似搜索的完整方案谱系。
 

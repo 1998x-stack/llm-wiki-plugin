@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../concepts/Ablation Study.html">消融实验</a>的教训</strong>：<a href="LightGCN.html">LightGCN</a> 论文对 NGCF 进行了细致的消融分析，发现：（a）移除特征变换（NGCF-f）带来一致性提升；（b）单独移除非线性激活（NGCF-n）效果略有下降；（c）同时移除两者（NGCF-fn）效果最好。NGCF 的问题在于训练困难而非过拟合——训练损失始终高于简化版本。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：NGCF 掀起了 GCN 在推荐系统中的范式变革，与 <a href="PinSage.html">PinSage</a>（KDD 2018）、GC-MC（KDD 2018）等标志性工作共同奠定了图推荐方向。后被 <a href="LightGCN.html">LightGCN</a> 取代成为新的基线标准。</p>
+<p><strong>历史地位</strong>：NGCF 掀起了 GCN 在推荐系统中的<a href="../concepts/规范化理论.html">范式</a>变革，与 <a href="PinSage.html">PinSage</a>（KDD 2018）、GC-MC（KDD 2018）等标志性工作共同奠定了图推荐方向。后被 <a href="LightGCN.html">LightGCN</a> 取代成为新的基线标准。</p>
 </li>
 <li>
 <p><strong>与 <a href="PinSage.html">PinSage</a> 的区别</strong>：<a href="PinSage.html">PinSage</a> 面向工业级规模（数十亿节点），使用邻域采样和<a href="../concepts/随机游走.html">随机游走</a>；NGCF 面向学术实验，使用全图传播。<a href="PinSage.html">PinSage</a> 利用节点特征（图片嵌入），NGCF 仅使用 ID 嵌入。</p>

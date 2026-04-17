@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <h3 id="1">1. 历史背景与范式转换</h3>
 <p>在卡尔曼滤波提出之前，信号处理领域的主流方法是<a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a>（<a href="../entities/诺伯特·维纳.html">Norbert Wiener</a>）提出的<strong>Wiener 滤波</strong>。然而，Wiener 滤波存在显著局限：它仅适用于平稳随机过程，要求无限长的数据记录，且需在频率域求解复杂的 Wiener-Hopf 积分方程，难以处理多变量系统。随着太空竞赛的开启和数字计算机的出现，航天器导航急需一种能处理非平稳轨迹、利用有限数据并进行实时递归计算的算法。</p>
-<p>Kalman 的突破性贡献在于将滤波问题从<strong>频率域</strong>转移到了<strong>时间域的状态空间</strong>。这一范式转换使得算法能够自然地处理多变量系统、非平稳统计特性，并完美适配数字计算机的递推计算需求。</p>
+<p>Kalman 的突破性贡献在于将滤波问题从<strong>频率域</strong>转移到了<strong>时间域的状态空间</strong>。这一<a href="规范化理论.html">范式</a>转换使得算法能够自然地处理多变量系统、非平稳统计特性，并完美适配数字计算机的递推计算需求。</p>
 <h3 id="2">2. 数学原理与核心算法</h3>
 <p>卡尔曼滤波针对如下线性动态系统：
 - <strong>系统方程</strong>：(k+1) = \Phi x(k) + w(k)$，其中 $ 为过程噪声。
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="协整分析（Cointegration）.html">&larr; 协整分析（Cointegration）</a>
+    <a href="单向陷门函数.html">&larr; 单向陷门函数</a>
     <a href="即时上下文检索.html">即时上下文检索 &rarr;</a>
   </div>
 </div>

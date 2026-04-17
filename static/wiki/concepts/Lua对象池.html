@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Lua 对象池通过预分配并复用 table 对象来减少 GC 压力，适用于游戏中高频创建/销毁的临时对象（子弹、粒子、特效）。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="lua-gc">核心问题：Lua GC 压力</h3>
-<p>Lua 使用增量式垃圾回收。高频 <code>{}</code> 创建会产生大量短命 table，触发 GC 步进时引起帧率毛刺。对象池通过回收复用对象绕过 GC。</p>
+<p>Lua 使用增量式<a href="垃圾回收.html">垃圾回收</a>。高频 <code>{}</code> 创建会产生大量短命 table，触发 GC 步进时引起帧率毛刺。对象池通过回收复用对象绕过 GC。</p>
 <h3 id="_3">基础对象池实现</h3>
 <pre><code class="language-lua">local ObjectPool = {}
 ObjectPool.__index = ObjectPool

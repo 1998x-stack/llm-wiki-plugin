@@ -144,36 +144,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 即求后验 P(x₁:t, m | z₁:t, u₁:t)</p>
 <p><strong>核心困难</strong>：定位需要地图，建图需要精确位置——形成循环依赖（"鸡生蛋"问题）。</p>
 <h3 id="_4">三大算法范式</h3>
-<table>
-<thead>
-<tr>
-<th>范式</th>
-<th>核心方法</th>
-<th>复杂度</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>EKF-SLAM</strong></td>
-<td>扩展<a href="卡尔曼滤波.html">卡尔曼滤波</a>，联合估计所有地标</td>
-<td>O(n²)</td>
-<td>理论清晰，不可扩展</td>
-</tr>
-<tr>
-<td><strong>FastSLAM</strong></td>
-<td>Rao-Blackwellized 粒子滤波，轨迹-地标分解</td>
-<td>O(n log n)</td>
-<td>复杂度突破，可扩展到数万地标</td>
-</tr>
-<tr>
-<td><strong>GraphSLAM</strong></td>
-<td>图优化，位姿/地标为节点，约束为边</td>
-<td>稀疏<a href="矩阵.html">矩阵</a>求解</td>
-<td>全局一致性，适合离线大图</td>
-</tr>
-</tbody>
-</table>
+<p>| <a href="规范化理论.html">范式</a> | 核心方法 | 复杂度 | 特点 |
+|------|---------|--------|------|
+| <strong>EKF-SLAM</strong> | 扩展<a href="卡尔曼滤波.html">卡尔曼滤波</a>，联合估计所有地标 | O(n²) | 理论清晰，不可扩展 |
+| <strong>FastSLAM</strong> | Rao-Blackwellized 粒子滤波，轨迹-地标分解 | O(n log n) | 复杂度突破，可扩展到数万地标 |
+| <strong>GraphSLAM</strong> | 图优化，位姿/地标为节点，约束为边 | 稀疏<a href="矩阵.html">矩阵</a>求解 | 全局一致性，适合离线大图 |</p>
 <p><strong>FastSLAM 核心洞察</strong>：已知机器人轨迹后，各地标的位置估计相互独立，可用独立的<a href="卡尔曼滤波.html">卡尔曼滤波</a>处理，将复杂度从 O(n²) 降至 O(n log n)。</p>
 <p><strong>GraphSLAM 贡献</strong>：将 SLAM 建模为约束满足问题，利用稀疏结构实现高效全局优化，催生了 g2o、iSAM、GTSAM 等框架。</p>
 <h3 id="_5">地图表示形式</h3>

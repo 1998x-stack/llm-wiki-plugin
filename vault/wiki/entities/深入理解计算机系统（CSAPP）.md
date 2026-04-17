@@ -28,11 +28,11 @@ entity_type: book
 # 深入理解计算机系统（CSAPP）
 
 ## 概述
-《深入理解计算机系统》（Computer Systems: A Programmer's Perspective）由 CMU 教授 [[Randal E. Bryant]] 和 [[David R. O'Hallaron]] 基于 15-213 课程讲义反复打磨而成，是计算机科学领域最经典的系统教材之一，将硬件体系结构、操作系统、编译器、网络、并发等核心课程用"程序员视角"串联。
+《深入理解计算机系统》（Computer Systems: A Programmer's Perspective）由 CMU 教授 [[Randal E. Bryant]] 和 [[David R. O'Hallaron]] 基于 15-213 课程讲义反复打磨而成，是计算机科学领域最经典的系统教材之一，将硬件体系结构、[[操作系统]]、编译器、网络、并发等核心课程用"程序员视角"串联。
 
 ## 关键内容
 
-1. **诞生背景**：CMU 90 年代末教学改革，发现学生学了计组、操作系统、编译原理但知识割裂，不知道一个 `printf("hello, world\n")` 背后从预处理到屏幕像素的完整链路。CSAPP 为打通这个任督二脉而生。
+1. **诞生背景**：CMU 90 年代末教学改革，发现学生学了计组、[[操作系统]]、编译原理但知识割裂，不知道一个 `printf("hello, world\n")` 背后从预处理到屏幕像素的完整链路。CSAPP 为打通这个任督二脉而生。
 
 2. **配套实验体系**（灵魂所在）：
    - **Data Lab**：用位运算实现整数/浮点数函数，建立二进制表示的刻骨铭心理解

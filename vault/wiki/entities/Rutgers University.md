@@ -20,7 +20,7 @@ supersedes: null
 # Rutgers University
 
 ## 概述
-美国新泽西州立大学，[[P5 论文]]的所属机构，[[Yongfeng Zhang]] 教授团队在此推动了 LLM for Recommendation 研究范式。
+美国新泽西州立大学，[[P5 论文]]的所属机构，[[Yongfeng Zhang]] 教授团队在此推动了 LLM for Recommendation 研究[[规范化理论|范式]]。
 
 ## 关键内容
 

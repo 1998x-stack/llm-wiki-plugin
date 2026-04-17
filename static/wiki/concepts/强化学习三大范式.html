@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">强化学习三大范式</h1>
 <h2 id="_2">概述</h2>
-<p><a href="强化学习.html">强化学习</a>算法按学习对象分为三大范式：Value-Based（学<a href="价值函数.html">价值函数</a>）、Policy-Based（直接优化策略）、Actor-Critic（同时学习两者）。三者在方差-偏差、连续动作支持、样本效率上各有取舍。</p>
+<p><a href="强化学习.html">强化学习</a>算法按学习对象分为三大<a href="规范化理论.html">范式</a>：Value-Based（学<a href="价值函数.html">价值函数</a>）、Policy-Based（直接优化策略）、Actor-Critic（同时学习两者）。三者在方差-偏差、连续动作支持、样本效率上各有取舍。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>Value-Based（基于价值）</strong>：</li>
@@ -213,10 +213,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <ol>
 <li>
-<p><strong>历史演化</strong>：三大范式并非相互排斥，现代最优算法（SAC, PPO）均融合了多范式思想。SAC 在 Actor-Critic 框架上引入最大熵思想；PPO 用 Clip 目标简化 TRPO 的 KL 约束。</p>
+<p><strong>历史演化</strong>：三大<a href="规范化理论.html">范式</a>并非相互排斥，现代最优算法（SAC, PPO）均融合了多<a href="规范化理论.html">范式</a>思想。SAC 在 Actor-Critic 框架上引入最大熵思想；PPO 用 Clip 目标简化 TRPO 的 KL 约束。</p>
 </li>
 <li>
-<p><strong>算法演化时间线</strong>：1992 Q-learning/<a href="REINFORCE算法.html">REINFORCE</a> → 2015 DQN/TRPO → 2016 <a href="Double DQN.html">Double DQN</a>/Dueling/PER/A3C/DDPG → 2017 PPO → 2018 TD3/SAC/<a href="Rainbow.html">Rainbow</a>。三大范式互相借鉴：SAC 在 AC 框架上引入最大熵（Policy-Based 思想）；PPO 在 Policy-Based 中引入 Critic 降低方差。</p>
+<p><strong>算法演化时间线</strong>：1992 Q-learning/<a href="REINFORCE算法.html">REINFORCE</a> → 2015 DQN/TRPO → 2016 <a href="Double DQN.html">Double DQN</a>/Dueling/PER/A3C/DDPG → 2017 PPO → 2018 TD3/SAC/<a href="Rainbow.html">Rainbow</a>。三大<a href="规范化理论.html">范式</a>互相借鉴：SAC 在 AC 框架上引入最大熵（Policy-Based 思想）；PPO 在 Policy-Based 中引入 Critic 降低方差。</p>
 </li>
 <li>
 <p><strong>一句话定义</strong>：</p>
