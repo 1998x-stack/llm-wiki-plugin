@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Factory 对象创建</strong>：<code>factory.create("#enemy_factory", pos, rot, props, scale)</code> 从 Factory 组件生成游戏对象，返回 ID；<code>go.delete(id)</code> 销毁单个对象，<code>go.delete_all()</code> 删除 factory 所有创建物。是 Defold 实现对象池/动态生成的核心机制。</p>
 </li>
 <li>
-<p><strong>属性动画系统</strong>：<code>go.animate(url, property, playback, to, easing, duration)</code> 对任意属性做补间动画（如 sprite 的 <code>tint</code>），支持 <code>PLAYBACK_ONCE_FORWARD</code>、<code>EASING_OUTSINE</code> 等常量。<code>go.get/set(url, key)</code> 读写组件属性，无需消息往返。</p>
+<p><strong><a href="../concepts/属性动画.html">属性动画</a>系统</strong>：<code>go.animate(url, property, playback, to, easing, duration)</code> 对任意属性做补间动画（如 sprite 的 <code>tint</code>），支持 <code>PLAYBACK_ONCE_FORWARD</code>、<code>EASING_OUTSINE</code> 等常量。<code>go.get/set(url, key)</code> 读写组件属性，无需消息往返。</p>
 </li>
 <li>
 <p><strong>fixed_update 与 on_reload</strong>：<code>fixed_update(self, dt)</code> 以固定时间步执行（解耦物理与帧率）；<code>on_reload(self)</code> 在脚本热重载时调用，可用于重置内部状态、保证热迭代正确性。</p>

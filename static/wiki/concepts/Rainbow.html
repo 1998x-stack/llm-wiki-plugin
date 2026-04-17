@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>六大组件与协同效应</strong>：各组件源于不同论文（2013-2017），Rainbow 首次系统验证它们相互正交且存在协同效应——组合性能远超各自独立性能之和。</p>
 </li>
 <li>
-<p><strong>消融实验——组件重要性排序</strong>：移除<a href="优先经验回放.html">优先经验回放</a>导致最大性能下降（最重要），<a href="多步回报.html">多步回报</a>第二，<a href="C51.html">C51</a>第三，<a href="NoisyNets.html">NoisyNets</a>第四，Double Q 次之（分布式学习本身降低过估计），<a href="Dueling DQN.html">Dueling DQN</a>在完整 Rainbow 中贡献最小。</p>
+<p><strong><a href="Ablation Study.html">消融实验</a>——组件重要性排序</strong>：移除<a href="优先经验回放.html">优先经验回放</a>导致最大性能下降（最重要），<a href="多步回报.html">多步回报</a>第二，<a href="C51.html">C51</a>第三，<a href="NoisyNets.html">NoisyNets</a>第四，Double Q 次之（分布式学习本身降低过估计），<a href="Dueling DQN.html">Dueling DQN</a>在完整 Rainbow 中贡献最小。</p>
 </li>
 <li>
 <p><strong>完整架构</strong>：84×84×4 帧 → 共享卷积 → <a href="NoisyNets.html">NoisyLinear</a> FC(512) → Dueling 分流（Value 流 + Advantage 流各输出 51 个原子分布）→ 合并为 Q 分布 → <a href="优先经验回放.html">PER</a> 采样 + n=3 步目标 + Double 目标计算，损失函数为带 <a href="重要性采样.html">IS</a> 权重的 KL 散度。</p>

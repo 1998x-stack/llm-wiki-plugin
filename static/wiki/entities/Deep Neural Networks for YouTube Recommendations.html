@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>两阶段架构范式</strong>：提出经典的"<a href="../concepts/候选生成.html">候选生成</a>（<a href="../concepts/候选生成.html">Candidate Generation</a>）+ 排序（Ranking）"<a href="../concepts/两阶段推荐架构.html">漏斗模型</a>。<a href="../concepts/候选生成.html">候选生成</a>从数十亿视频缩小到数百个（高召回率），排序从数百个精细化到数十个推荐结果（高精确率）。这一架构至今仍是全球推荐系统的标准骨架，影响了淘宝、抖音、<a href="Netflix.html">Netflix</a>、<a href="Spotify.html">Spotify</a> 等平台。详见 <a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a>。</p>
+<p><strong>两阶段架构范式</strong>：提出经典的"<a href="../concepts/候选生成.html">候选生成</a>（<a href="../concepts/候选生成.html">Candidate Generation</a>）+ 排序（Ranking）"<a href="../concepts/两阶段推荐架构.html">漏斗模型</a>。<a href="../concepts/候选生成.html">候选生成</a>从数十亿视频缩小到数百个（高召回率），排序从数百个精细化到数十个推荐结果（高精确率）。这一架构至今仍是全球推荐系统的标准<a href="../concepts/骨骼系统.html">骨架</a>，影响了淘宝、抖音、<a href="Netflix.html">Netflix</a>、<a href="Spotify.html">Spotify</a> 等平台。详见 <a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a>。</p>
 </li>
 <li>
 <p><strong>极端多分类建模</strong>：将推荐问题形式化为超大规模多分类问题，类别数等于视频语料库大小。使用 <a href="../concepts/采样 Softmax.html">采样 Softmax</a> 技术，每次只采样数千个负样本来近似完整 softmax，大幅降低计算开销。训练时每个视频对应一个 embedding（softmax 层权重），用户通过神经网络前向计算得到 embedding。</p>

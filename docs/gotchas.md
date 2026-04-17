@@ -15,7 +15,7 @@ Issues are split into topical files under `docs/gotchas/`.
 | [knowledge-graph.md](gotchas/knowledge-graph.md) | Cross-domain connections, fix checklist | #9 |
 | [code-review-bugs.md](gotchas/code-review-bugs.md) | V2.1-V2.3 code review (12 bugs fixed) | #10 |
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
-| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math, B1 false-positive in code blocks | #15-17, #35 |
+| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math, B1 false-positive in code blocks, I1/I2 plain-text index false positives | #15-17, #35, #44 |
 | [v3.3-refactor.md](gotchas/v3.3-refactor.md) | wiki_utils, dedup, QA pipeline, XSS, debounce | #18-27 |
 | [v3.4-relink-reorganize.md](gotchas/v3.4-relink-reorganize.md) | relink substring matching, bold markers, hooks, macOS case, re-map.json, lint removal | #28-34 |
 | [v3.9-script-review.md](gotchas/v3.9-script-review.md) | hardcoded path, YAML newline, unsafe quoting, source deletion, hook silent errors | #38-43 |

@@ -75,3 +75,15 @@ Hook 仅在 Write/Edit 到 `wiki/**/*.md` 时触发，但新创建的页面需�
 **When it bites**: 任何 wiki 页面的代码块中包含 `[[...]]` 形式的文本时都会触发，典型场景：TOML（`[[section]]`）、Python 列表嵌套（`[[a, b], [c, d]]`）、Markdown 表格内的 wikilink 示例。
 
 **Workaround/Fix**: 将代码块中包含 `[[...]]` 的 TOML 示例改为注释风格（`# key = value`）或纯文字描述，避免在代码块里出现双方括号。根本修复需在 `lint_wiki.py` 的 B1 检查前先剥离 fenced code block 内容再扫描。
+
+---
+
+## #44 — I1/I2: index.md 使用纯文本列举页面导致全量 I1 误报
+
+**Status**: New (2026-04-17)
+
+`index.md` 的 `## 全部页面` 章节以逗号分隔纯文本列举所有 wiki 页面（如 `A3C, ACI 设计原则, ACP协议, ...`），而非 `[[wikilink]]` 格式。`lint_wiki.py` 的 `load_index_links()` 只提取 `[[...]]` 格式的链接，仅捕获到表格中的 23 个 map 引用（如 `[[maps/AI工程]]`），因此所有 953 个实际 wiki 页面均触发 I1（"Page not listed in index.md"）。同时，这 23 个 map 引用被 I2 检查与 `wiki/` 页面集合对比，全部误报为 "stale index entries"。
+
+**When it bites**: 每次运行 `wiki:check` / `wiki:lint` 时必然触发，导致 953 条 I1 + 23 条 I2 噪声警告，掩盖真实问题。
+
+**Workaround/Fix**: 忽略 I1/I2 报告，或将 index.md 的 `## 全部页面` 节改为 `[[wikilink]]` 格式（与 `load_index_links()` 匹配）。根本修复可选：在 `build_statistics.py` / `lint_wiki.py` 中同时支持纯文本格式的页面检测。

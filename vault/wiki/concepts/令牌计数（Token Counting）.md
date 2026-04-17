@@ -34,7 +34,7 @@ Anthropic API 的 `/v1/messages/count_tokens` 端点，用于在发送消息给 
 
 3. **支持模型**：所有活跃模型均支持令牌计数功能。
 
-4. **与上下文管理结合**：支持传入 `context_management` 参数，可预览应用[[上下文编辑]]（如工具结果清除、思维块清除）后的令牌使用量。响应返回 `input_tokens`（编辑后）和 `context_management.original_input_tokens`（编辑前）。
+4. **与[[Context Management|上下文管理]]结合**：支持传入 `context_management` 参数，可预览应用[[上下文编辑]]（如[[上下文编辑|工具结果清除]]、思维块清除）后的令牌使用量。响应返回 `input_tokens`（编辑后）和 `context_management.original_input_tokens`（编辑前）。
 
 5. **与压缩结合**：可检查应用先前压缩操作后的有效令牌计数，帮助判断是否需要触发新的压缩。
 

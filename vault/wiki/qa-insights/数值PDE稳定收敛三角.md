@@ -5,6 +5,7 @@ source_lines: [10, 65]
 topics: ["数值PDE", "稳定性分析", "收敛理论", "CFL条件", "冯·诺依曼分析"]
 confidence: 0.95
 created: 2026-04-15
+updated: 2026-04-15
 status: active
 tags:
 - 数值分析

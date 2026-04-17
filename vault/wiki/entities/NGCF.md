@@ -32,7 +32,7 @@ supersedes: null
 
 3. **与 [[Neural Collaborative Filtering|NCF]] 的关系**：NG[[协同过滤|CF]] 是 [[Neural Collaborative Filtering]] 的后续工作，从"用神经网络建模用户-物品交互"推进到"用图结构传播协同信号"。[[Neural Collaborative Filtering|NCF]] 关注交互函数的表达能力，NG[[协同过滤|CF]] 关注高阶连通性（high-order connectivity）的利用。
 
-4. **消融实验的教训**：[[LightGCN]] 论文对 NG[[协同过滤|CF]] 进行了细致的消融分析，发现：（a）移除特征变换（NG[[协同过滤|CF]]-f）带来一致性提升；（b）单独移除非线性激活（NG[[协同过滤|CF]]-n）效果略有下降；（c）同时移除两者（NG[[协同过滤|CF]]-fn）效果最好。NG[[协同过滤|CF]] 的问题在于训练困难而非过拟合——训练损失始终高于简化版本。
+4. **[[Ablation Study|消融实验]]的教训**：[[LightGCN]] 论文对 NG[[协同过滤|CF]] 进行了细致的消融分析，发现：（a）移除特征变换（NG[[协同过滤|CF]]-f）带来一致性提升；（b）单独移除非线性激活（NG[[协同过滤|CF]]-n）效果略有下降；（c）同时移除两者（NG[[协同过滤|CF]]-fn）效果最好。NG[[协同过滤|CF]] 的问题在于训练困难而非过拟合——训练损失始终高于简化版本。
 
 5. **历史地位**：NG[[协同过滤|CF]] 掀起了 GCN 在推荐系统中的范式变革，与 [[PinSage]]（KDD 2018）、GC-MC（KDD 2018）等标志性工作共同奠定了图推荐方向。后被 [[LightGCN]] 取代成为新的基线标准。
 

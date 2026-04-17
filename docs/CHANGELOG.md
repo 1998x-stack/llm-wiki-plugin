@@ -1,5 +1,19 @@
 # Changelog
 
+## [v3.10] - 2026-04-17
+
+### Fixed
+
+- **`lint_wiki.py` — `load_index_links()`**: now also parses the `## 全部页面` comma-separated plain-text section (slim format). Previously returned an empty set for slim-format `index.md`, causing all 953 wiki pages to trigger false-positive I1 warnings on every check/lint run (#44)
+- **`lint_wiki.py` — `check_stale_index()`**: now skips `maps/` prefixed entries. Map references in the statistics table (e.g., `[[maps/AI工程]]`) were incorrectly reported as stale I2 entries because they reference `maps/*.md` files, not wiki pages
+- **`commands/wiki/ingest.md` step 7**: changed `snapshot_index --update` to `snapshot_index --slim`. `--update` silently no-ops on slim-format `index.md` (finds no section headers to insert into); `--slim` correctly rebuilds the full stats table + page list
+- **`commands/wiki/lint.md` fix F**: same fix as ingest — `--update` → `--slim`
+- **`commands/wiki/check.md` check J**: corrected suggested repair command from `build_maps` (which only regenerates existing maps, no reclassification) to `wiki:reindex` (rebuilds `topic-to-wiki.json`) followed by `wiki:build`
+
+### Documentation
+
+- New gotcha #44 in `docs/gotchas/script-fixes.md`: I1/I2 plain-text index false positives — root cause, trigger condition, and fix documented
+
 ## [v3.9] - 2026-04-16
 
 ### Fixed

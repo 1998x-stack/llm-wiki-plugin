@@ -198,9 +198,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">关注点分离</h3>
-<p>会话日志与 harness 的上下文管理做了关注点分离：
+<p>会话日志与 harness 的<a href="Context Management.html">上下文管理</a>做了关注点分离：
 - <strong>会话</strong>：保证持久化和可查询性
-- <strong>Harness</strong>：编码任意上下文管理逻辑（如组织上下文以实现高 prompt 缓存命中率）</p>
+- <strong>Harness</strong>：编码任意<a href="Context Management.html">上下文管理</a>逻辑（如组织上下文以实现高 prompt 缓存命中率）</p>
 <p>这种分离使系统能适应未来模型所需的特定<a href="Context-Engineering.html">上下文工程</a>，而无需预测具体需要什么。</p>
 <h3 id="repl">类比：REPL 中的上下文对象</h3>
 <p>先前研究探索将上下文存储为 REPL 中的对象，LLM 通过编写代码来过滤或切片访问。会话日志提供相同好处，但上下文存储在会话日志中而非沙箱或 REPL 内。</p>

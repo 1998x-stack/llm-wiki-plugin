@@ -172,12 +172,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>由 Alex Newman (<a href="Alex-Newman.html">@thedotmack</a>) 开发，遵循 AGPL-3.0 协议。当前版本为 v10.6.2，GitHub Stars 超过 41.5k，已成为增强 Claude Code 生产力的重要工具。</p>
 <h3 id="_9">数据库架构演进</h3>
 <p>系统经历了从 v3 到 v4 的重大重构：
-- <strong>v3 时代</strong>：采用粗粒度的 <code>sessions</code> -&gt; <code>memories</code> -&gt; <code>overviews</code> 模型，缺乏高效的全文检索能力，仅支持低效的 LIKE 查询。
+- <strong>v3 时代</strong>：采用粗粒度的 <code>sessions</code> -&gt; <code>memories</code> -&gt; <code>overviews</code> 模型，缺乏高效的全文检索能力，仅支持低效的 L<a href="../concepts/逆向运动学.html">IK</a>E 查询。
 - <strong>v4 时代（当前）</strong>：引入了细粒度的 <code>observations</code>（观察记录）作为记忆原子单元，每条工具调用（如 Read/Bash/Write）都被独立记录并结构化。新增了 <code>session_summaries</code>（会话摘要）提供宏观叙事，以及 <code>user_prompts</code> 存档用户原始指令。这种分层模型支持更精准的上下文注入策略：先呈现宏观摘要，再补充微观细节。</p>
 <h3 id="_10">三层存储架构</h3>
 <p>Claude-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
 1. <strong>关系型数据层</strong>：利用 <a href="SQLite.html">SQLite</a> 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
-2. <strong>全文检索层</strong>：利用 <a href="../concepts/FTS5.html">FTS5</a> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
+2. <strong>全文检索层</strong>：利用 <a href="../concepts/FTS5.html">FTS5</a> 的 BM25 算法，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 L<a href="../concepts/逆向运动学.html">IK</a>E 查询。
 3. <strong>语义向量层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
 <h3 id="_11">检索工作流</h3>
 <p>系统根据查询类型自动选择最优检索策略：

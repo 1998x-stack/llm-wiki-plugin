@@ -26,7 +26,7 @@ ICML 2024 论文，[[Meta]] 团队提出 1.5 万亿参数[[生成式推荐]]模�
 
 1. **论文信息**：*Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations*，作者 Jiaqi Zhai, Lucy Liao, Xing Liu, Yueming Wang, Rui Li, Xuan Cao, Leon Gao, Zhaojie Gong, Fangda Gu, Michael He, Yinghai Lu, Yu Shi。机构：[[Meta]]（横跨 MRS、PyTorch、AI Infra、Discovery、Instagram 团队）。发表于 ICML 2024（PMLR 235:58484-58509）。
 
-2. **标题含义**："Actions Speak Louder than Words"有双重含义——用户行为（actions）比文本描述（words）更能反映真实偏好；模型应直接从行为学习而非依赖物品描述。消融实验验证：仅用内容特征下降 25.3%，仅用行为特征仅下降 2.6%。
+2. **标题含义**："Actions Speak Louder than Words"有双重含义——用户行为（actions）比文本描述（words）更能反映真实偏好；模型应直接从行为学习而非依赖物品描述。[[Ablation Study|消融实验]]验证：仅用内容特征下降 25.3%，仅用行为特征仅下降 2.6%。
 
 3. **核心贡献**：
    - 提出 [[HSTU]] 架构，针对推荐场景改造 [[Transformer架构|Transformer]]（SiLU 注意力、相对偏置、U [[矩阵]]门控）。

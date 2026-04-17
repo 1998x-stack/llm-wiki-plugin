@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoX Lua数学函数库 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / UrhoX Lua数学函数库</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">数学</span><span class="tag">API</span><span class="tag">向量</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhox-lua">UrhoX Lua数学函数库</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 全局作用域提供完整的数学工具函数集，涵盖标量运算、向量逐分量操作、类型转换和随机数生成，全部在 Lua 全局作用域直接调用。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">标量数学函数</h3>
+<p>与标准数学库对应，但作用于 float 类型：</p>
+<pre><code class="language-lua">-- 基础运算
+Abs(x), Ceil(x), Floor(x), Round(x), Sqrt(x)
+Sin(angle), Cos(angle), Tan(angle)   -- angle 单位：度
+Asin(x), Acos(x), Atan(x), Atan2(y, x)
+Pow(x, y), Ln(x), Mod(x, y), Fract(x)
+
+-- 数值限制与插值
+Clamp(value, min, max)
+Lerp(lhs, rhs, t)
+InverseLerp(lhs, rhs, x)
+SmoothStep(lhs, rhs, t)
+
+-- 符号与比较
+Sign(value)
+Equals(a, b)   -- 浮点数近似相等
+IsNaN(value)
+Max(a, b), Min(a, b)
+</code></pre>
+<h3 id="_4">向量逐分量操作</h3>
+<p>UrhoX 为 Vector2/3/4 和 IntVector2/3 提供批量运算函数：</p>
+<pre><code class="language-lua">-- 逐分量算术（Vector2/3/4 通用）
+VectorCeil(vec), VectorFloor(vec), VectorRound(vec)
+VectorMax(a, b), VectorMin(a, b)
+VectorLerp(lhs, rhs, t)
+
+-- 整数向量转换
+VectorCeilToInt(vec2),  VectorFloorToInt(vec2),  VectorRoundToInt(vec2)
+VectorMax(iv2a, iv2b),  VectorMin(iv2a, iv2b)
+</code></pre>
+<h3 id="_5">随机数函数</h3>
+<pre><code class="language-lua">Random()               -- [0, 1)
+Random(range)          -- [0, range)
+Random(min, max)       -- [min, max)
+RandomInt(range)       -- 整数 [0, range)
+RandomInt(min, max)    -- 整数 [min, max)
+RandStandardNormal()   -- 标准正态分布
+RandomNormal(mean, variance)
+
+-- 可复现随机（种子固定输出固定）
+StableRandom(seed_float)
+StableRandom(seed_Vector2)
+StableRandom(seed_Vector3)
+
+SetRandomSeed(seed)
+GetRandomSeed()
+</code></pre>
+<h3 id="_6">类型字符串转换</h3>
+<p>从字符串反序列化向量/颜色（常用于配置加载）：</p>
+<pre><code class="language-lua">ToVector2(&quot;1 2&quot;), ToVector3(&quot;1 2 3&quot;), ToVector4(&quot;1 2 3 4&quot;)
+ToIntVector2(&quot;1 2&quot;), ToIntVector3(&quot;1 2 3&quot;)
+ToIntRect(&quot;0 0 100 100&quot;), ToRect(&quot;0 0 1 1&quot;)
+ToQuaternion(&quot;0 0 0 1&quot;), ToMatrix3x4(&quot;...&quot;), ToMatrix4(&quot;...&quot;)
+ToColor(&quot;1 0 0 1&quot;)
+</code></pre>
+<h3 id="_7">整数工具函数</h3>
+<pre><code class="language-lua">AbsInt(n), ClampInt(n, min, max)
+CeilToInt(f), FloorToInt(f), RoundToInt(f)
+MaxInt(a, b), MinInt(a, b)
+ToInt(str), ToUInt(str), ToInt64(str)
+
+-- 位操作
+CountSetBits(n), IsPowerOfTwo(n)
+NextPowerOfTwo(n), LogBaseTwo(n)
+SDBMHash(hash, c)
+</code></pre>
+<h3 id="_8">重要数学常量</h3>
+<pre><code class="language-lua">M_PI         -- π
+M_HALF_PI    -- π/2
+M_DEGTORAD   -- π/180（度转弧度）
+M_RADTODEG   -- 180/π（弧度转度）
+M_EPSILON    -- 浮点最小精度
+M_INFINITY   -- 无穷大
+M_MAX_INT, M_MIN_INT
+M_MAX_UNSIGNED, M_MIN_UNSIGNED
+</code></pre>
+<blockquote>
+<p>注意：<a href="../entities/UrhoX引擎.html">UrhoX</a> 三角函数的角度参数单位是<strong>度</strong>而非弧度，与标准数学库不同。</p>
+</blockquote>
+<h2 id="_9">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/engine-docs/api/globals.md</span> — UrhoX Lua API Global Scope 文档</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="UrhoX全局子系统.html">UrhoX全局子系统</a> — relates_to，数学函数与全局子系统同属全局作用域</li>
+<li><a href="UrhoX Lua开发准则.html">UrhoX Lua开发准则</a> — relates_to，坐标系与单位规则（度/米）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="UrhoX Lua开发准则.html">&larr; UrhoX Lua开发准则</a>
+    <a href="UrhoX TileMap系统API.html">UrhoX TileMap系统API &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

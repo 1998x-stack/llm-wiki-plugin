@@ -1216,8 +1216,8 @@ python3 scripts/lint_wiki.py --fix
 | F4 | 存在空的段落 | warning |
 | B1 | `[[链接]]` 指向不存在的页面 | warning |
 | B2 | 页面不在 BM25 docmap 中 | warning |
-| I1 | 页面未出现在 index.md 中 | warning |
-| I2 | index.md 中有指向已删除页面的条目（仅全量扫描） | warning |
+| I1 | 页面未出现在 index.md 中（支持 slim 纯文本格式和 wikilink 格式） | warning |
+| I2 | index.md 中有指向已删除页面的条目（仅全量扫描；`maps/` 前缀引用自动跳过） | warning |
 | O1 | 孤页——没有入链（仅全量扫描） | warning |
 
 **退出码**：

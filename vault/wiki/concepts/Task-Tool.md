@@ -40,13 +40,13 @@ supersedes:
 
 ## 概述
 
-Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 TodoWrite 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。
+Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 [[TodoWrite-Tool|TodoWrite]] 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。
 
 ## 关键内容
 
 ### 设计动机
 
-**TodoWrite 的局限性**：
+**[[TodoWrite-Tool|TodoWrite]] 的局限性**：
 - 僵化的清单思维：Claude 认为必须严格遵守清单，无法灵活调整
 - 子代理协作困难：不支持多个子代理在共享清单上协作
 - 能力错配：随着模型能力提升，旧工具从"帮助"变成"约束"
@@ -80,7 +80,7 @@ Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 
 
 ### vs TodoWrite
 
-| 维度 | TodoWrite | Task Tool |
+| 维度 | [[TodoWrite-Tool|TodoWrite]] | Task Tool |
 |------|-----------|-----------|
 | **核心目标** | 保持模型轨道 | Agent 间协调 |
 | **设计理念** | 约束模型行为 | 赋能 Agent 协作 |
@@ -92,13 +92,13 @@ Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 
 
 ### 演进历程
 
-**替代 TodoWrite**：
-- 识别到 TodoWrite 的局限性后，没有选择修补，而是重新设计
+**替代 [[TodoWrite-Tool|TodoWrite]]**：
+- 识别到 [[TodoWrite-Tool|TodoWrite]] 的局限性后，没有选择修补，而是重新设计
 - Task Tool 从零开始设计，专注于 Agent 协调需求
 - 反映了"不断重新审视假设"的设计哲学
 
-**与 AskUserQuestion 的协同**：
-- AskUserQuestion：在计划阶段收集用户需求
+**与 [[AskUserQuestion-Tool|AskUserQuestion]] 的协同**：
+- [[AskUserQuestion-Tool|AskUserQuestion]]：在计划阶段收集用户需求
 - Task Tool：在执行阶段协调 Agent 工作
 - 两者可能在同一工作流中协同使用
 

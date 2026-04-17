@@ -138,9 +138,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>将一套骨骼动画应用到另一个不同骨骼结构模型上的技术，要求源动画骨骼名与目标模型骨骼名匹配。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>匹配原则</strong>：动画重定向依赖骨骼名称映射；源 <a href="ANI动画文件格式.html">ANI 文件</a>的骨骼轨道名必须与目标 MDL 模型的骨骼名一致，否则重定向失败或部分轨道丢失。</li>
+<li><strong>匹配原则</strong>：动画重定向依赖骨骼名称映射；源 <a href="ANI动画文件格式.html">ANI 文件</a>的骨骼轨道名必须与目标 <a href="最小描述长度原理.html">MDL</a> 模型的骨骼名一致，否则重定向失败或部分轨道丢失。</li>
 <li><strong>排查方法</strong>：使用 <a href="../entities/UrhoXCLI.html">UrhoXCLI</a> 的 <code>anim-info --tracks</code> 获取动画骨骼列表，再用 <code>model-info --bones</code> 获取目标模型骨骼列表，逐一对比骨骼名差异。</li>
-<li><strong>典型失败原因</strong>：命名约定不同（如 <code>Hips</code> vs <code>hip</code>、驼峰 vs 下划线）、骨骼层级不匹配、导入时骨骼被重命名等。</li>
+<li><strong>典型失败原因</strong>：命名约定不同（如 <code>Hips</code> vs <code>hip</code>、驼峰 vs 下划线）、<a href="骨骼系统.html">骨骼层级</a>不匹配、导入时骨骼被重命名等。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="动物精神.html">&larr; 动物精神</a>
+    <a href="动画状态.html">&larr; 动画状态</a>
     <a href="勒贝格常数.html">勒贝格常数 &rarr;</a>
   </div>
 </div>

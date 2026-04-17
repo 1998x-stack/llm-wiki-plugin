@@ -23,11 +23,11 @@ supersedes: null
 # BERT4Rec
 
 ## 概述
-Sun 等人于 CIKM 2019 发表的论文，将双向 [[Transformer架构|Transformer]]（BERT 风格）和 Cloze 任务引入[[序列推荐]]，与 [[SASRec]] 形成单向 vs 双向的长期学术辩论。
+Sun 等人于 C[[逆向运动学|IK]]M 2019 发表的论文，将双向 [[Transformer架构|Transformer]]（BERT 风格）和 Cloze 任务引入[[序列推荐]]，与 [[SASRec]] 形成单向 vs 双向的长期学术辩论。
 
 ## 关键内容
 
-1. **论文信息**：标题 "BERT4Rec: [[序列推荐|Sequential Recommendation]] with Bidirectional Encoder Representations from [[Transformer架构|Transformer]]"，作者 Fei Sun 等人，发表于 CIKM 2019。
+1. **论文信息**：标题 "BERT4Rec: [[序列推荐|Sequential Recommendation]] with Bidirectional Encoder Representations from [[Transformer架构|Transformer]]"，作者 Fei Sun 等人，发表于 C[[逆向运动学|IK]]M 2019。
 
 2. **核心创新**：与 [[SASRec]] 的单向（[[因果掩码]]）架构不同，BERT4Rec 采用双向 [[Transformer架构|Transformer]] Encoder，通过 Cloze（完形填空）任务训练——随机掩码序列中的某些物品，让模型预测被掩码的物品。这使得序列中每个位置都能利用双向上下文信息。
 

@@ -77,9 +77,15 @@ files:
   - "raw/articles/personal/ai-dev-kit/prompts/game-development.zh.md"
   - "raw/articles/personal/ai-dev-kit/prompts/game-planning-for-tapcode.en.md"
   - "raw/articles/personal/ai-dev-kit/prompts/game-planning-for-tapcode.zh.md"
-current_index: 0
+current_index: 30
 total: 75
-completed: []
+completed:
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/anim-info/SKILL.md"
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/convert-panorama/SKILL.md"
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/import-fbx/SKILL.md"
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/import-glb/SKILL.md"
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/materials/SKILL.md"
+  - "raw/articles/personal/ai-dev-kit/.claude/skills/model-info/SKILL.md"
 failed: []
 started_at: "2026-04-16T13:52:43Z"
 session_id: "C77B25F5-5CB3-49C8-9DED-DA1432A648E6"

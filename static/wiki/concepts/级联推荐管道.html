@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>标准架构</strong>：以 <a href="../entities/YouTube.html">YouTube</a> 2016 年里程碑论文为蓝本，形成四阶段管道：</li>
-<li><strong>召回（Retrieval）</strong>：从数十亿候选中快速筛选数千个，通常使用 <a href="双塔模型.html">双塔模型</a> 或倒排索引，依赖 <a href="近似最近邻检索.html">近似最近邻检索</a>。</li>
+<li><strong>召回（Retrieval）</strong>：从数十亿候选中快速筛选数千个，通常使用 <a href="双塔模型.html">双塔模型</a> 或<a href="倒排索引.html">倒排索引</a>，依赖 <a href="近似最近邻检索.html">近似最近邻检索</a>。</li>
 <li><strong>粗排（L1 Ranking）</strong>：轻量模型将候选缩减到数百个。</li>
 <li><strong><a href="检索重排序.html">精排</a>（L2 Ranking）</strong>：复杂模型（<span style="color:#e74c3c" title="broken link">DLRM</span> / <a href="../entities/DCN.html">DCN</a> / <a href="../entities/DeepFM.html">DeepFM</a> 等）精细排序，核心是 <a href="CTR 预估.html">CTR 预估</a>。</li>
 <li>

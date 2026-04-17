@@ -48,7 +48,7 @@ Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以消息传递
 
 7. **Factory 对象创建**：`factory.create("#enemy_factory", pos, rot, props, scale)` 从 Factory 组件生成游戏对象，返回 ID；`go.delete(id)` 销毁单个对象，`go.delete_all()` 删除 factory 所有创建物。是 Defold 实现对象池/动态生成的核心机制。
 
-8. **属性动画系统**：`go.animate(url, property, playback, to, easing, duration)` 对任意属性做补间动画（如 sprite 的 `tint`），支持 `PLAYBACK_ONCE_FORWARD`、`EASING_OUTSINE` 等常量。`go.get/set(url, key)` 读写组件属性，无需消息往返。
+8. **[[属性动画]]系统**：`go.animate(url, property, playback, to, easing, duration)` 对任意属性做补间动画（如 sprite 的 `tint`），支持 `PLAYBACK_ONCE_FORWARD`、`EASING_OUTSINE` 等常量。`go.get/set(url, key)` 读写组件属性，无需消息往返。
 
 9. **fixed_update 与 on_reload**：`fixed_update(self, dt)` 以固定时间步执行（解耦物理与帧率）；`on_reload(self)` 在脚本热重载时调用，可用于重置内部状态、保证热迭代正确性。
 

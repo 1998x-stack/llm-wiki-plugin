@@ -14,10 +14,10 @@ supersedes: null
 # Lua 游戏配置文件模板
 
 ## 概述
-以 `local T = {...} return T` 为骨架的 Lua 游戏数据文件约定，每文件返回一个 table，作为游戏实体配置模块使用。
+以 `local T = {...} return T` 为[[骨骼系统|骨架]]的 Lua 游戏数据文件约定，每文件返回一个 table，作为游戏实体配置模块使用。
 
 ## 关键内容
-1. **模块骨架约定**：每个配置文件定义一个局部 table（`local Battle = {...}`）并在末尾 `return Battle`，文件本身即模块，调用方通过 `require` 或 `dofile` 加载得到该 table。这是 Lua 游戏项目中最常见的数据组织惯用法。
+1. **模块[[骨骼系统|骨架]]约定**：每个配置文件定义一个局部 table（`local Battle = {...}`）并在末尾 `return Battle`，文件本身即模块，调用方通过 `require` 或 `dofile` 加载得到该 table。这是 Lua 游戏项目中最常见的数据组织惯用法。
 2. **五类核心模板**：
    - **[[bat]]tle**：战场配置，含 id/key/name/desc、战斗配置（type/mode/round_limit/time_limit）、attacker/defender 双方阵营、scene 场景、win/lose 条件、waves 波次、phases 阶段、rewards 奖励。
    - **unit**：单位配置，含基础信息、unit_type/camp/race/job、展示资源（model/icon/portrait）、等级/品质、attr 基础属性（hp/atk/def/spd/cri/ten/hit/dodge/rage）、growth 成长属性、skills 技能组（normal/active/passive/ultimate）、buffs/traits、ai 策略、[[bat]]tle 站位参数、drops 掉落。

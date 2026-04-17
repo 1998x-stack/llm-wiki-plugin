@@ -17,7 +17,7 @@ supersedes: null
 Entity Component System（ECS）是游戏引擎的数据导向场景组织方案：Entity 是 ID，Component 是纯数据，System 是逻辑处理器，通过连续内存布局提升批处理性能。
 
 ## 关键内容
-1. **三元素**：Entity（唯一ID，无行为）、Component（纯数据结构，如 Transform/SpriteRenderer/Rigidbody）、System（遍历特定组件组合并执行逻辑）
+1. **三元素**：Entity（唯一ID，无行为）、Component（纯数据结构，如 Transform/Sprite[[Renderer渲染器|Renderer]]/Rigidbody）、System（遍历特定组件组合并执行逻辑）
 2. **优势场景**：游戏对象数量多（大量 NPC、粒子、子弹）；需要批量系统化处理；性能敏感场景（数据局部性好于面向对象继承树）
 3. **与[[场景树]]混合**：现代引擎常见方案——Entity 存 ECS，Transform 组件保存 parent/children 实现层级，渲染/物理/动画 System 按 ECS 批处理。"树描述关系，ECS 描述数据和系统执行"
 4. **[[C++]] 实现推荐**：初期用轻量 Entity+Component 方案（不需纯粹 ECS），进阶可接 [[entt]] 库

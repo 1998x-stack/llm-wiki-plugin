@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>信息对称设计</strong>：Advisor 比 Executor 信息更全，但 Executor 看不到 Advisor 的推理链</p>
 </li>
 <li>
-<p><strong><code>advisor_redacted_result</code> 加密变体</strong>：返回 <code>encrypted_content</code> 字段，客户端无法读取但必须原样传回，服务端解密后注入 Executor 上下文。用于企业 ZDR 场景和敏感建议隔离。</p>
+<p><strong><code>advisor_redacted_result</code> 加密变体</strong>：返回 <code>encrypted_content</code> 字段，客户端无法读取但必须原样传回，服务端解密后注入 Executor 上下文。用于企业 <a href="零数据保留.html">ZDR</a> 场景和敏感建议隔离。</p>
 </li>
 <li>
 <p><strong>三层设计意图</strong>：</p>

@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-Claude Opus 4.6 是 Anthropic 发布的 Claude Opus 系列模型，是 Anthropic 能力最强的模型之一，支持 [[上下文压缩]] 等高级上下文管理功能。
+Claude Opus 4.6 是 Anthropic 发布的 Claude Opus 系列模型，是 Anthropic 能力最强的模型之一，支持 [[上下文压缩]] 等高级[[Context Management|上下文管理]]功能。
 
 ## 关键内容
 

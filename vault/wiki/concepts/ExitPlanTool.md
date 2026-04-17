@@ -32,7 +32,7 @@ supersedes: null
 
 ## 概述
 
-Claude Code 早期工具之一，用于生成执行计划。在 AskUserQuestion Tool 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 Claude Code 工具演进历史的重要案例。
+Claude Code 早期工具之一，用于生成执行计划。在 [[AskUserQuestion-Tool|AskUserQuestion Tool]] 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 Claude Code 工具演进历史的重要案例。
 
 ## 关键内容
 
@@ -78,11 +78,11 @@ Claude Code 早期工具之一，用于生成执行计划。在 AskUserQuestion 
 1. ExitPlanTool 作为早期工具存在
 2. 尝试扩展以支持提问 → 失败
 3. 尝试更改输出格式 → 失败
-4. 最终创建独立的 AskUserQuestion Tool
+4. 最终创建独立的 [[AskUserQuestion-Tool|AskUserQuestion Tool]]
 
 **与后续工具的关系**：
-- AskUserQuestion Tool：独立的提问工具，解决了 ExitPlanTool 无法处理的需求
-- TodoWrite/Task：任务跟踪工具，可能与 ExitPlanTool 协同使用
+- [[AskUserQuestion-Tool|AskUserQuestion Tool]]：独立的提问工具，解决了 ExitPlanTool 无法处理的需求
+- [[TodoWrite-Tool|TodoWrite]]/Task：任务跟踪工具，可能与 ExitPlanTool 协同使用
 
 ### 相关设计文档
 

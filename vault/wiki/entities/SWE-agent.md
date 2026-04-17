@@ -43,7 +43,7 @@ SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LL
 
 ### 核心架构
 
-1. **[[ReAct 风格循环]]**：每一步生成 thought（思考）和 action（命令），再接收 observation（环境反馈），形成"想一点、做一点、看反馈、再想一点"的交互循环。
+1. **[[ReAct 风格循环]]**：每一步生成 thought（思考）和 action（命令），再接收 observation（[[环境反馈设计|环境反馈]]），形成"想一点、做一点、看反馈、再想一点"的交互循环。
 2. **Agent 计算机接口（[[Agent计算机接口|ACI]]）**：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。
 3. **Trajectory 落盘**：每次运行产生 `.traj` 文件，记录完整的 thought/action/observation 序列，支持事后分析和调试。
 
@@ -57,7 +57,7 @@ SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LL
 
 SWE-agent 的 `.traj` 文件是 JSON 格式，核心结构包含：
 - 顶层：`environment`、`trajectory` 数组
-- 每步：`response`（模型原文）、`thought`（解析后的思考）、`action`（执行的命令）、`observation`（环境反馈）、`state`（环境状态）、`query`（发送给模型的输入）
+- 每步：`response`（模型原文）、`thought`（解析后的思考）、`action`（执行的命令）、`observation`（[[环境反馈设计|环境反馈]]）、`state`（环境状态）、`query`（发送给模型的输入）
 - 版本差异：1.1.0 之前用 `message` 字段表示输入，1.1.0 起改为 `query` 表示精确输入
 
 ### Edit 后验证

@@ -41,12 +41,12 @@ Thariq Shihipar 是 Anthropic 的技术团队成员（member of technical staff�
 **Claude Code 工具设计哲学**：
 - 提出"像智能体一样观察"（See like an agent）的设计理念
 - 强调工具设计需要契合模型自身能力，而非人类直觉
-- 记录了 AskUserQuestion、[[ExitPlanTool]]、TodoWrite、Task 等核心工具的演进历程
+- 记录了 [[AskUserQuestion-Tool|AskUserQuestion]]、[[ExitPlanTool]]、[[TodoWrite-Tool|TodoWrite]]、Task 等核心工具的演进历程
 - 揭示了[[渐进式披露（Progressive Disclosure）]]在工具设计中的应用
 
 **工具演进洞察**：
 - 从 [[检索增强生成|RAG]] 预索引到 Grep 自主搜索的范式转变
-- TodoWrite 到 Task Tool 的演进：从"保持模型轨道"到"Agent 间协调"
+- [[TodoWrite-Tool|TodoWrite]] 到 [[Task-Tool|Task Tool]] 的演进：从"保持模型轨道"到"Agent 间协调"
 - 随着模型能力提升，旧工具可能从"帮助"变为"约束"
 
 ### 发表作品

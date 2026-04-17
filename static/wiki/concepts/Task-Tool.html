@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="task-tool">Task Tool</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code 推出的任务协调工具，用于替代 <a href="TodoWrite-Tool.html">TodoWrite-Tool</a>。与 TodoWrite 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。</p>
+<p>Claude Code 推出的任务协调工具，用于替代 <a href="TodoWrite-Tool.html">TodoWrite-Tool</a>。与 <a href="TodoWrite-Tool.html">TodoWrite</a> 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">设计动机</h3>
-<p><strong>TodoWrite 的局限性</strong>：
+<p><strong><a href="TodoWrite-Tool.html">TodoWrite</a> 的局限性</strong>：
 - 僵化的清单思维：Claude 认为必须严格遵守清单，无法灵活调整
 - 子代理协作困难：不支持多个子代理在共享清单上协作
 - 能力错配：随着模型能力提升，旧工具从"帮助"变成"约束"</p>
@@ -164,59 +164,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 支持删除不再相关的任务
 - 适应动态变化的需求</p>
 <h3 id="vs-todowrite">vs TodoWrite</h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>TodoWrite</th>
-<th>Task Tool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>核心目标</strong></td>
-<td>保持模型轨道</td>
-<td>Agent 间协调</td>
-</tr>
-<tr>
-<td><strong>设计理念</strong></td>
-<td>约束模型行为</td>
-<td>赋能 Agent 协作</td>
-</tr>
-<tr>
-<td><strong>结构</strong></td>
-<td>单一清单列表</td>
-<td>任务网络图</td>
-</tr>
-<tr>
-<td><strong>依赖关系</strong></td>
-<td>❌ 不支持</td>
-<td>✅ 原生支持</td>
-</tr>
-<tr>
-<td><strong>跨 Agent</strong></td>
-<td>❌ 困难</td>
-<td>✅ 原生支持</td>
-</tr>
-<tr>
-<td><strong>可修改性</strong></td>
-<td>⚠️ 有限</td>
-<td>✅ 可修改和删除</td>
-</tr>
-<tr>
-<td><strong>适用模型</strong></td>
-<td>早期模型（需提醒）</td>
-<td>现代模型（Opus 4.5+）</td>
-</tr>
-</tbody>
-</table>
+<p>| 维度 | <a href="TodoWrite-Tool.html">TodoWrite</a> | Task Tool |
+|------|-----------|-----------|
+| <strong>核心目标</strong> | 保持模型轨道 | Agent 间协调 |
+| <strong>设计理念</strong> | 约束模型行为 | 赋能 Agent 协作 |
+| <strong>结构</strong> | 单一清单列表 | 任务网络图 |
+| <strong>依赖关系</strong> | ❌ 不支持 | ✅ 原生支持 |
+| <strong>跨 Agent</strong> | ❌ 困难 | ✅ 原生支持 |
+| <strong>可修改性</strong> | ⚠️ 有限 | ✅ 可修改和删除 |
+| <strong>适用模型</strong> | 早期模型（需提醒） | 现代模型（Opus 4.5+） |</p>
 <h3 id="_5">演进历程</h3>
-<p><strong>替代 TodoWrite</strong>：
-- 识别到 TodoWrite 的局限性后，没有选择修补，而是重新设计
+<p><strong>替代 <a href="TodoWrite-Tool.html">TodoWrite</a></strong>：
+- 识别到 <a href="TodoWrite-Tool.html">TodoWrite</a> 的局限性后，没有选择修补，而是重新设计
 - Task Tool 从零开始设计，专注于 Agent 协调需求
 - 反映了"不断重新审视假设"的设计哲学</p>
-<p><strong>与 AskUserQuestion 的协同</strong>：
-- AskUserQuestion：在计划阶段收集用户需求
+<p><strong>与 <a href="AskUserQuestion-Tool.html">AskUserQuestion</a> 的协同</strong>：
+- <a href="AskUserQuestion-Tool.html">AskUserQuestion</a>：在计划阶段收集用户需求
 - Task Tool：在执行阶段协调 Agent 工作
 - 两者可能在同一工作流中协同使用</p>
 <h3 id="_6">设计哲学启示</h3>
@@ -270,7 +233,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Target Attention.html">&larr; Target Attention</a>
-    <a href="Think工具.html">Think工具 &rarr;</a>
+    <a href="Terrain地形系统.html">Terrain地形系统 &rarr;</a>
   </div>
 </div>
 </body>

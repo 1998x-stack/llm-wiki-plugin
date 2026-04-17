@@ -66,8 +66,8 @@ Claude Code 支持并行 Agent 模式：主代理可将复杂任务分解为子�
 - 随着模型能力提升，工具也必须演进
 
 **核心工具演进**：
-- **AskUserQuestion Tool**：三阶段演进（修改 [[ExitPlanTool]] → 更改输出格式 → 独立工具）
-- **TodoWrite → Task Tool**：从"保持模型轨道"到"Agent 间协调"
+- **[[AskUserQuestion-Tool|AskUserQuestion Tool]]**：三阶段演进（修改 [[ExitPlanTool]] → 更改输出格式 → 独立工具）
+- **[[TodoWrite-Tool|TodoWrite]] → [[Task-Tool|Task Tool]]**：从"保持模型轨道"到"Agent 间协调"
 - **[[检索增强生成|RAG]] → Grep → [[Agent Skills]]**：从"被动接受上下文"到"主动嵌套搜索"
 
 **渐进式披露**：

@@ -4,6 +4,61 @@ type: log
 
 # 操作日志
 
+## [2026-04-17 11:02] maintain
+- Relink: 3235 terms, 938 scanned, 0 new links (fully linked)
+- Check: 0 errors, 1035 warnings (B1×747/F3×189/I1×1/I2×3/M1×54/M2×1/O1×40), 0 new gotchas
+- Lint: index.md rebuilt (948 pages), 0 additional fixes
+- Build: 953 nodes, 7697 edges, 0 orphans, 2 components → static/ synced
+- Bonus fixes: `build_statistics.py` + `build_wiki_pages.py` confidence string → float 崩溃修复
+
+---
+
+## [2026-04-17 10:43] lint
+
+- 扫描: 953 个页面
+- ERROR: 0 | WARNING: 2009 条（含 953×I1 + 23×I2 假阳性，见 gotcha #44）
+- 真实问题: ~110 条（B1 学术引用 + M1 地图断链 + F3 概述过长）
+- 自动修复: 4 个
+  - [F] index.md 重建（`snapshot_index --slim`）→ 948 页，补入全部新增页面
+  - [G] BM25 清理 2 个旧条目（`wiki/concepts/untitled.md`, `wiki/entities/UrhoX.md`）
+  - [A] `wiki/qa-insights/数值PDE稳定收敛三角.md` 补充 `updated` 字段
+  - 新增 gotcha #44（I1/I2 假阳性根因文档化）
+- 需要人工处理:
+  - `wiki:reindex` 重建 topic-to-wiki.json（849 页未分类，index.md 统计表依然基于旧映射）
+  - Codex 系列 5 页缺失章节（概述/关键内容/相关）
+  - M1: 54 条 maps 指向不存在页面（地图更新后部分链接失效）
+  - B1: 746 条断链（大部分为学术来源 slug 引用，属预期行为）
+
+---
+
+## [2026-04-16 23:30] ingest | raw/articles/ai-engineering/search-retrieval/（19 个文件）
+
+**来源目录**：`raw/articles/ai-engineering/search-retrieval/`（传统搜索引擎 8 篇深度解析 + GEO/SEO + Agentic Search + CLIP + BGE Reranker + Qwen-VL + MetaFind + 代码领域选型框架）
+
+**创建了 15 个新概念页面**：
+- `wiki/concepts/搜索引擎架构.md` — 搜索引擎两大管道、核心组件、评分模型演进、评估指标体系
+- `wiki/concepts/倒排索引.md` — Posting List、差值编码、SPIMI/MapReduce 构建算法、FST 词典
+- `wiki/concepts/TF-IDF.md` — TF/IDF 变体、向量空间模型、余弦相似度、SMART 表示法
+- `wiki/concepts/文本预处理.md` — 分词（中英文）、停用词、词干提取、词形还原、同义词扩展
+- `wiki/concepts/查询处理.md` — 意图识别、拼写纠错、伪相关反馈、布尔查询 AST、查询松弛
+- `wiki/concepts/WAND算法.md` — TAAT/DAAT 对比、WAND 跳过机制、BMW 块级上界、两阶段检索
+- `wiki/concepts/索引压缩.md` — VByte、Elias Gamma/Delta、PForDelta、Simple-9、前缀编码、FST
+- `wiki/concepts/向量空间模型.md` — 稀疏 vs 稠密向量、余弦 vs 欧氏距离、VSM 演进
+- `wiki/concepts/GEO生成式引擎优化.md` — KDD 2024、语义密度/权威信号、AIGVR 指标体系、SEO+GEO 双轨
+- `wiki/concepts/SEO搜索引擎优化.md` — 发展历程、四大核心模块、Core Web Vitals、E-E-A-T
+- `wiki/concepts/Agentic Search.md` — RAG vs Agentic 对比、ReAct/CRAG/Self-RAG、代码领域优先 Agentic 原则
+- `wiki/concepts/学习排序.md` — Pointwise/Pairwise/Listwise、LambdaMART、LTR 特征工程
+- `wiki/concepts/Modality Gap.md` — 锥体效应、对比学习缺陷、图转文间接检索是生产最优解
+- `wiki/concepts/多模态检索.md` — CLIP 底层、3D 模型渲染检索、混合架构（文本通道+图像通道 RRF）
+- `wiki/concepts/Cross-encoder与Bi-encoder.md` — 独立编码 vs 联合编码、大模型重排优势分析
+
+**创建了 1 个新实体页面**：
+- `wiki/entities/MetaFind.md` — 元宇宙 3D 资产检索，ESSGNN 场景感知等变图编码，ULIP-2 三模态对齐
+
+**lint 验证**：所有页面 0 ERROR，1 warning（Page not listed in index，已由 snapshot_index 修复）
+**BM25 更新**：16 个页面全部更新成功
+**index.md 更新**：已同步（909 条目）
+
 ## [2026-04-16 22:45] maintain
 - Relink: 2622 terms, 862 pages scanned, 新链接（已在 reindex 后添加）
 - Check: 145 errors (F2 YAML frontmatter), 1989 warnings — 0 new gotchas

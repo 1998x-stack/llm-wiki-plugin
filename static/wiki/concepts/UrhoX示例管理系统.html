@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrhoX示例管理系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / UrhoX示例管理系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">示例系统</span><span class="tag">YAML</span><span class="tag">代码生成</span><span class="tag">文档生成</span></div>
+</div>
+  <div class="content">
+    <h1 id="urhox">UrhoX示例管理系统</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a>示例管理系统以单一 YAML 配置文件统一管理 25 个 Lua 示例的元数据，并通过处理脚本自动生成多视图文档（按分类/难度索引 + API <a href="倒排索引.html">反向索引</a>），为用户、开发者和 AI 助手提供结构化的示例查找能力。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心文件结构</strong>：<code>examples-config.yaml</code>（核心配置，定义示例的源/目标文件、分类、难度、标题、描述、API、功能、标签）；<code>tools/process_examples.py</code>（处理脚本，加载验证配置、复制示例文件、生成索引文档）。</li>
+<li><strong>分类与难度</strong>：10 个分类（3D图形、2D图形、3D/2D物理、UI、音频、网络、动画、导航、高级）；3 个难度级别（初级 beginner、中级 intermediate、高级 advanced）；共 25 个示例（初级6、中级11、高级8）。按分类：3D图形6、2D图形5、物理3D/3+2D/2、UI3、音频1、网络2、动画2、导航2、高级1。</li>
+<li><strong>生成的文档视图</strong>：<code>examples/index.md</code>（按分类/难度分组的主索引）；<code>examples/api-index.md</code>（API <a href="倒排索引.html">反向索引</a>：列出使用特定 API 的所有示例），两份文档均在执行 <code>process_examples.py</code> 后自动生成。</li>
+<li><strong>配置字段规范</strong>：每条示例需声明 <code>source</code>（源 <code>.lua</code> 文件名）、<code>target</code>（目标文件名）、<code>metadata.title</code>（中英双语）、<code>category</code>、<code>difficulty</code>、<code>description</code>、<code>features</code>（3-6条，动词开头）、<code>apis</code>（只列主要 API）、<code>concepts</code>（核心学习点）、<code>tags</code>（关键词）。可选字段：<code>line_count</code>、<code>dependencies</code>。</li>
+<li><strong>文件命名规范</strong>：目标文件名格式 <code>{两位序号}-{kebab-case}.lua</code>，如 <code>01-hello-world.lua</code>、<code>07-physics-3d.lua</code>。分类选择最相关的单一分类（3D物理示例 → <code>physics</code>，不是 <code>3d-graphics</code>）。</li>
+<li><strong>难度评估标准</strong>：Beginner（&lt;200行，单一功能）；Intermediate（200-400行，多功能，中等复杂度）；Advanced（&gt;400行，复杂系统，高级特性）。</li>
+<li><strong>使用方式</strong>：<code>--validate</code> 仅校验配置（检查源文件存在性、分类/难度合法性、必填字段）；<code>--dry-run</code> 预览不写文件；无参数则正式处理（复制文件 + 生成文档）。</li>
+<li><strong>AI 友好设计</strong>：通过 <code>api-index.md</code> 可快速定位"使用某 API 的示例"；通过分类/难度过滤可推荐合适示例；结构化元数据方便 LLM 解析。双语标题支持中英文检索。</li>
+<li><strong>扩展方式</strong>：添加新示例只需编辑 <code>examples-config.yaml</code> 新增条目，再运行处理脚本即可，无需手动维护文档。支持自定义元数据字段（<code>related_examples</code>、<code>video_url</code>、<code>min_version</code>）和多语言扩展。</li>
+<li><strong>关键约束</strong>：生成的文档（<code>index.md</code>、<code>api-index.md</code>）不可手动编辑，下次运行脚本会覆盖。应通过修改配置文件来控制生成内容。依赖 Python 3.6+ 和 PyYAML（<code>pip install pyyaml</code>）。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/config/NEW_FEATURE_SUMMARY</span> — UrhoX AI Dev Kit 示例系统新功能摘要（v1.0，2025-11-17）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/config/examples-config</span> — examples-config.yaml 配置系统说明文档（v1.0，2025-11-17）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/config/示例系统说明</span> — UrhoX示例系统使用说明（v1.0，2025-11-17）</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/UrhoX引擎.html">UrhoX引擎</a> — relates_to（宿主引擎）</li>
+<li><a href="UrhoX Lua开发准则.html">UrhoX Lua开发准则</a> — relates_to（示例遵循的开发准则）</li>
+<li><a href="游戏脚手架模式.html">游戏脚手架模式</a> — relates_to（示例与脚手架协同使用）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="UrhoX数据格式API.html">&larr; UrhoX数据格式API</a>
+    <a href="UrhoX组件系统API.html">UrhoX组件系统API &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

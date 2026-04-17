@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>HSTU 架构改造</strong>（与标准 <a href="../concepts/Transformer架构.html">Transformer</a> 的关键区别）：</p>
 </li>
-<li><strong>SiLU 注意力替代 Softmax</strong>：注意力分数计算使用 $\phi_2(QK^\top + \text{relative_attention_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。消融实验证实 Softmax 替换导致性能下降。</li>
+<li><strong>SiLU 注意力替代 Softmax</strong>：注意力分数计算使用 $\phi_2(QK^\top + \text{relative_attention_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。<a href="../concepts/Ablation Study.html">消融实验</a>证实 Softmax 替换导致性能下降。</li>
 <li><strong>相对注意力偏置替代<a href="../concepts/绝对位置编码.html">绝对位置编码</a></strong>：将位置信息和时间间隔作为相对偏置直接注入注意力分数，同时编码序列顺序和交互时间距离。</li>
 <li><strong>门控机制（U <a href="../concepts/矩阵.html">矩阵</a>）</strong>：在 QKV 之外引入 U <a href="../concepts/矩阵.html">矩阵</a>作为门控信号，通过 Hadamard 乘积控制<a href="../concepts/特征交叉.html">特征交互</a>贡献，类似 LSTM 门控。</li>
 <li><strong>精简架构</strong>：注意力外线性层从 6 个减少到 2 个，激进融合计算操作，降低激活内存。</li>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>离线 <a href="../concepts/NDCG.html">NDCG</a> 提升高达 65.8%；8192 长度序列上比 FlashAttention2 <a href="../concepts/Transformer架构.html">Transformer</a> 快 5.3x-15.2x。</li>
 <li>在线 A/B 测试主要参与指标提升 <strong>12.4%</strong>（工业级极为罕见），HR@100 从 29.0% 提升到 36.9%。</li>
 <li>
-<p>消融实验：仅用交互特征下降 2.6%，仅用内容特征下降 25.3%，验证"<a href="Actions Speak Louder than Words 论文.html">Actions Speak Louder than Words</a>"。</p>
+<p><a href="../concepts/Ablation Study.html">消融实验</a>：仅用交互特征下降 2.6%，仅用内容特征下降 25.3%，验证"<a href="Actions Speak Louder than Words 论文.html">Actions Speak Louder than Words</a>"。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：训练成本极高（仅科技巨头可复制）；序列长度翻倍致 FLOPs 四倍增长；<a href="../concepts/冷启动问题.html">冷启动问题</a>未专门讨论；万亿参数黑盒可解释性差；外部复现困难。</p>

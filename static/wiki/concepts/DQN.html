@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实验结果（49 款 Atari 游戏）</strong>：29/49 超越人类；Breakout 超人类 1293%，Boxing 1775%；Montezuma's Revenge 因稀疏奖励完全失败（0分）。</p>
 </li>
 <li>
-<p><strong>消融实验</strong>：去掉<a href="目标网络.html">目标网络</a>或<a href="经验回放.html">经验回放</a>均显著降低性能，两者同时去掉则常常发散。</p>
+<p><strong><a href="Ablation Study.html">消融实验</a></strong>：去掉<a href="目标网络.html">目标网络</a>或<a href="经验回放.html">经验回放</a>均显著降低性能，两者同时去掉则常常发散。</p>
 </li>
 <li>
 <p><strong>核心缺陷</strong>：Q 值过估计（max 操作引入正偏差）→ <a href="Double DQN.html">Double DQN</a>；均匀采样低效 → <a href="优先经验回放.html">优先经验回放</a>；无价值分解 → <a href="Dueling DQN.html">Dueling DQN</a>；六大改进集成 → <a href="Rainbow.html">Rainbow</a>（2018）。</p>

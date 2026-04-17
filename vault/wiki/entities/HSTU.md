@@ -35,7 +35,7 @@ HSTU（Hierarchical Sequential Transduction Unit），[[Meta]] 在 ICML 2024 发
 2. **核心方法**：将[[序列推荐]]从判别式模型转向生成式模型。用户行为序列被表示为时间序列 $\{(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)\}$，其中 $c_i$ 为内容 token，$a_i$ 为动作 token（点击、停留、购买等）。**召回**建模为预测下一个内容 token $c_{t+1}$，**排序**建模为预测下一个动作 token $a_{t+1}$，两者统一到单一模型中。
 
 3. **HSTU 架构改造**（与标准 [[Transformer架构|Transformer]] 的关键区别）：
-   - **SiLU 注意力替代 Softmax**：注意力分数计算使用 $\phi_2(QK^\top + \text{relative\_attention\_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。消融实验证实 Softmax 替换导致性能下降。
+   - **SiLU 注意力替代 Softmax**：注意力分数计算使用 $\phi_2(QK^\top + \text{relative\_attention\_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。[[Ablation Study|消融实验]]证实 Softmax 替换导致性能下降。
    - **相对注意力偏置替代[[绝对位置编码]]**：将位置信息和时间间隔作为相对偏置直接注入注意力分数，同时编码序列顺序和交互时间距离。
    - **门控机制（U [[矩阵]]）**：在 QKV 之外引入 U [[矩阵]]作为门控信号，通过 Hadamard 乘积控制[[特征交叉|特征交互]]贡献，类似 LSTM 门控。
    - **精简架构**：注意力外线性层从 6 个减少到 2 个，激进融合计算操作，降低激活内存。
@@ -48,7 +48,7 @@ HSTU（Hierarchical Sequential Transduction Unit），[[Meta]] 在 ICML 2024 发
 6. **实验结果**：
    - 离线 [[NDCG]] 提升高达 65.8%；8192 长度序列上比 FlashAttention2 [[Transformer架构|Transformer]] 快 5.3x-15.2x。
    - 在线 A/B 测试主要参与指标提升 **12.4%**（工业级极为罕见），HR@100 从 29.0% 提升到 36.9%。
-   - 消融实验：仅用交互特征下降 2.6%，仅用内容特征下降 25.3%，验证"[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]"。
+   - [[Ablation Study|消融实验]]：仅用交互特征下降 2.6%，仅用内容特征下降 25.3%，验证"[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]"。
 
 7. **局限性**：训练成本极高（仅科技巨头可复制）；序列长度翻倍致 FLOPs 四倍增长；[[冷启动问题]]未专门讨论；万亿参数黑盒可解释性差；外部复现困难。
 

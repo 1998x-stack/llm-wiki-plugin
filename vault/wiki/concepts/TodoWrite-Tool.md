@@ -77,7 +77,7 @@ Claude Code 早期推出的任务跟踪工具，用于让模型在会话开始�
 **替代方案**：[[Task-Tool]]
 
 **改进点**：
-| 维度 | TodoWrite | Task Tool |
+| 维度 | TodoWrite | [[Task-Tool|Task Tool]] |
 |------|-----------|-----------|
 | **核心目标** | 保持模型轨道 | Agent 间协调 |
 | **结构** | 单一清单 | 任务网络 |
@@ -87,7 +87,7 @@ Claude Code 早期推出的任务跟踪工具，用于让模型在会话开始�
 
 **设计哲学转变**：
 - TodoWrite：聚焦于"让模型不忘记"
-- Task Tool：聚焦于"Agent 间沟通"
+- [[Task-Tool|Task Tool]]：聚焦于"Agent 间沟通"
 - 从"约束模型"到"赋能协作"
 
 ### 设计启示
@@ -103,7 +103,7 @@ Claude Code 早期推出的任务跟踪工具，用于让模型在会话开始�
 
 **从简单到复杂**：
 - TodoWrite：简单的清单模型
-- Task Tool：复杂的任务网络和依赖管理
+- [[Task-Tool|Task Tool]]：复杂的任务网络和依赖管理
 - 演进反映了模型处理复杂性的能力提升
 
 ### 在工具历史中的位置
@@ -112,8 +112,8 @@ Claude Code 早期推出的任务跟踪工具，用于让模型在会话开始�
 1. Claude Code 发布 → TodoWrite 作为核心工具
 2. 发现局限性 → 添加系统提醒（每 5 轮）
 3. 模型能力提升 → Opus 4.5 子代理使用增加
-4. 认识到局限 → 开发 Task Tool
-5. 最终取代 → TodoWrite 被 Task Tool 替代
+4. 认识到局限 → 开发 [[Task-Tool|Task Tool]]
+5. 最终取代 → TodoWrite 被 [[Task-Tool|Task Tool]] 替代
 
 **相关工具**：
 - [[AskUserQuestion-Tool]]：同时期的提问工具优化

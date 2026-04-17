@@ -32,7 +32,7 @@ supersedes: null
 
 5. **与 Listwise 的比较**：Pairwise 每次只比较两个物品，无法建模全局排序意图；Listwise 方法（如 Softmax [[交叉熵]]）考虑整个物品列表，在 [[NDCG]]、[[MRR]] 等指标上提供更紧的下界，但计算复杂度更高。
 
-6. **在信息检索中的先例**：Pairwise 排序学习在信息检索领域（Learning to Rank）已有先例，如 RankNet、LambdaRank，[[BPR]] 是第一个将其系统化应用于推荐系统[[隐式反馈]]场景的工作。
+6. **在信息检索中的先例**：Pairwise 排序学习在信息检索领域（[[学习排序|Learning to Rank]]）已有先例，如 RankNet、LambdaRank，[[BPR]] 是第一个将其系统化应用于推荐系统[[隐式反馈]]场景的工作。
 
 ## 来源
 - [[BPR 论文]] — Rendle et al. (2009) UAI 2009, pairwise 范式确立

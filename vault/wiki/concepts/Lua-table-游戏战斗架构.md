@@ -24,7 +24,7 @@ supersedes: null
 # Lua table 游戏战斗架构
 
 ## 概述
-手游战斗系统（Unity/[[Lua脚本宿主模式|xLua]]、Cocos Lua）中 [[Lua-table-用法|Lua table]] 的标准落地架构模板，涵盖 Battle/Unit 骨架与最佳实践。
+手游战斗系统（Unity/[[Lua脚本宿主模式|xLua]]、Cocos Lua）中 [[Lua-table-用法|Lua table]] 的标准落地架构模板，涵盖 Battle/Unit [[骨骼系统|骨架]]与最佳实践。
 
 ## 关键内容
 

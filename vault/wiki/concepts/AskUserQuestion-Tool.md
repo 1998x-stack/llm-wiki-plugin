@@ -108,8 +108,8 @@ Claude Code 中的专用工具，用于在计划模式（plan mode）下向用�
 - AskUserQuestion：专注于收集用户输入
 - 分离关注点，避免单一工具承担过多职责
 
-**vs TodoWrite/Task**：
-- TodoWrite/Task：跟踪任务进度
+**vs [[TodoWrite-Tool|TodoWrite]]/Task**：
+- [[TodoWrite-Tool|TodoWrite]]/Task：跟踪任务进度
 - AskUserQuestion：在计划阶段收集需求
 - 可能协同使用（先问问题，再生成任务）
 

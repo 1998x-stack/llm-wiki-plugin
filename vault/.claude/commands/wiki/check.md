@@ -63,8 +63,8 @@
    **J. Maps 概述完整性**
    - 检查每个 `maps/*.md` 是否包含 `## 概述` section
    - 检查每个 map 的 `page_count` 是否与实际 wiki 页面数匹配
-   - 检查是否有 wiki 页面不属于任何 map（可能是 topic-to-wiki.json 缺失）
-   - 缺失概述 → 报告为 WARNING（建议运行 `bash scripts/wiki.sh build_maps` 重新生成）
+   - 检查是否有 wiki 页面不属于任何 map（基于 `.claude/topic-to-wiki.json`）
+   - 缺失概述或大量页面未分类 → 报告为 WARNING，建议运行 `wiki:reindex`（重建 topic-to-wiki.json）再运行 `wiki:build`（重建 maps）
 
 4. **语义检查**（Claude 独有）
    - 矛盾合理性：`contradicts` 关系是否有合理的解决方案？

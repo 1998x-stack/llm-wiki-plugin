@@ -46,9 +46,9 @@ $ARGUMENTS — 源文件路径（相对于 raw/），或 "all" 处理所有未�
      - 如果新信息更可靠（更新、更多来源），用 supersedes 标记旧声明
 
 7. **同步 index.md**
-   - 执行：`Bash: bash scripts/wiki.sh snapshot_index --update`
-   - 脚本自动检测新增/删除的页面并同步 index.md
-   - 注意：index.md 是计算产物（由 snapshot_index.py 维护），不要手动编辑
+   - 执行：`Bash: bash scripts/wiki.sh snapshot_index --slim`
+   - 脚本完整重建 index.md（统计表 + 全部页面列表）
+   - 注意：index.md 只含 `## 统计` 和 `## 全部页面`，详细清单见各 `maps/*.md`，不要手动编辑
 
 8. **更新 log.md**
    - 追加条目：`## [YYYY-MM-DD HH:MM] ingest | 源文件名`

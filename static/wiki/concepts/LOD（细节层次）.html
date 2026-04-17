@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>根据物体与相机的距离动态切换不同精度网格的渲染技术，远处使用低面数模型以大幅提升运行时性能。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>自动生成</strong>：UrhoX 的 <code>import-model</code> 命令默认自动生成 3 级 LOD，使用保守简化比例（85%/65%/45%），无需手动建模。</li>
+<li><strong>自动生成</strong>：<a href="../entities/UrhoX引擎.html">UrhoX</a> 的 <code>import-model</code> 命令默认自动生成 3 级 LOD，使用保守简化比例（85%/65%/45%），无需手动建模。</li>
 <li><strong>切换阈值</strong>：通过固定 <code>screenSize</code> 阈值（0.2/0.08/0.03）控制 LOD 级别切换距离，值越小表示物体在屏幕中占比越小时切换。</li>
 <li><strong>参数控制</strong>：使用 <code>--no-lod</code> 关闭自动生成，<code>--lod-levels &lt;n&gt;</code>（1-4）调整级数，<code>--merge-meshes</code> 可先合并网格再生成 LOD。</li>
 </ol>

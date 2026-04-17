@@ -152,24 +152,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td><strong>L0</strong></td>
 <td>Cached Prefix</td>
 <td>系统指令、output schema、few-shot、工具契约</td>
-<td>固定不变，天然适合前缀缓存</td>
-</tr>
-<tr>
-<td><strong>L1</strong></td>
-<td>Working Memory</td>
-<td>当前任务目标、约束、实体、术语表、未解决问题、当前计划</td>
-<td>最贵，只放"这轮必须记住"的内容</td>
-</tr>
-<tr>
-<td><strong>L2</strong></td>
-<td>Episodic Memory</td>
-<td>按阶段压缩的"回合摘要"：决策、证据、结论、pending items</td>
-<td>把"过去发生过什么"变成结构化 checkpoints</td>
-</tr>
-<tr>
-<td><strong>L3</strong></td>
-<td>Semantic Memory</td>
-<td><span style="color:#e74c3c" title="broken link">近似最近邻检索&lt;/td&gt;
+<td>固定不变，天然适合<span style="color:#e74c3c" title="broken link">KV 缓存命中率&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;L1&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Working Memory&lt;/td&gt;
+&lt;td&gt;当前任务目标、约束、实体、术语表、未解决问题、当前计划&lt;/td&gt;
+&lt;td&gt;最贵，只放&quot;这轮必须记住&quot;的内容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;L2&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Episodic Memory&lt;/td&gt;
+&lt;td&gt;按阶段压缩的&quot;回合摘要&quot;：决策、证据、结论、pending items&lt;/td&gt;
+&lt;td&gt;把&quot;过去发生过什么&quot;变成结构化 checkpoints&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;L3&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Semantic Memory&lt;/td&gt;
+&lt;td&gt;[[近似最近邻检索&lt;/td&gt;
 &lt;td&gt;向量检索</span> + 关键词检索 + 元数据过滤的长期知识层</td>
 </tr>
 <tr>
@@ -189,7 +189,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>L4</strong>：保留 source anchor，不直接注入 prompt</li>
 </ul>
 <h3 id="memory-object">Memory Object 结构</h3>
-<p>上下文管理的单元是 memory object，而非 message：</p>
+<p><a href="Context Management.html">上下文管理</a>的单元是 memory object，而非 message：</p>
 <pre><code class="language-json">{
   &quot;id&quot;: &quot;mem_xxx&quot;,
   &quot;type&quot;: &quot;fact | decision | preference | plan | episode&quot;,

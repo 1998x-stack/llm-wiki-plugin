@@ -1763,3 +1763,282 @@
 [2026-04-16 21:55] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LOD（细节层次）.md — OK
 [2026-04-16 21:55] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/LOD（细节层次）.md — indexed
 [2026-04-16 21:55] GRAPH rebuild — OK
+[2026-04-16 21:59] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 21:59] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 21:59] GRAPH rebuild — OK
+[2026-04-16 22:00] GRAPH skip — rebuilt 18s ago
+[2026-04-16 22:00] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:00] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/GLB_glTF格式.md — OK
+[2026-04-16 22:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/GLB_glTF格式.md — indexed
+[2026-04-16 22:02] GRAPH rebuild — OK
+[2026-04-16 22:02] GRAPH skip — rebuilt 2s ago
+[2026-04-16 22:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/PBR材质系统.md — OK
+[2026-04-16 22:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/PBR材质系统.md — indexed
+[2026-04-16 22:02] GRAPH skip — rebuilt 6s ago
+[2026-04-16 22:02] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:02] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 16s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 19s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX材质库.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX材质库.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 23s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/MDL格式.md — OK
+[2026-04-16 22:03] GRAPH skip — rebuilt 23s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/MDL格式.md — indexed
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 28s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/搜索引擎架构.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/搜索引擎架构.md — indexed
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH rebuild — OK
+[2026-04-16 22:03] GRAPH rebuild — OK
+[2026-04-16 22:03] GRAPH skip — rebuilt 5s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 17s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/倒排索引.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/倒排索引.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 21s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:03] GRAPH skip — rebuilt 27s ago
+[2026-04-16 22:03] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — OK
+[2026-04-16 22:03] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoXCLI.md — indexed
+[2026-04-16 22:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/TF-IDF.md — OK
+[2026-04-16 22:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/TF-IDF.md — indexed
+[2026-04-16 22:04] GRAPH rebuild — OK
+[2026-04-16 22:04] GRAPH skip — rebuilt 20s ago
+[2026-04-16 22:04] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/文本预处理.md — OK
+[2026-04-16 22:04] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/文本预处理.md — indexed
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/查询处理.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/查询处理.md — indexed
+[2026-04-16 22:05] GRAPH rebuild — OK
+[2026-04-16 22:05] GRAPH skip — rebuilt 3s ago
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/NanoVG分辨率模式.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/NanoVG分辨率模式.md — indexed
+[2026-04-16 22:05] GRAPH skip — rebuilt 16s ago
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/设备像素比.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/设备像素比.md — indexed
+[2026-04-16 22:05] GRAPH skip — rebuilt 20s ago
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/WAND算法.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/WAND算法.md — indexed
+[2026-04-16 22:05] GRAPH skip — rebuilt 21s ago
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/索引压缩.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/索引压缩.md — indexed
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — indexed
+[2026-04-16 22:05] GRAPH rebuild — OK
+[2026-04-16 22:05] GRAPH skip — rebuilt 3s ago
+[2026-04-16 22:05] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/向量空间模型.md — OK
+[2026-04-16 22:05] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/向量空间模型.md — indexed
+[2026-04-16 22:06] GRAPH skip — rebuilt 12s ago
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX.md — indexed
+[2026-04-16 22:06] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — indexed
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX Lua开发准则.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX Lua开发准则.md — indexed
+[2026-04-16 22:06] GRAPH rebuild — OK
+[2026-04-16 22:06] GRAPH skip — rebuilt 1s ago
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/GEO生成式引擎优化.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/GEO生成式引擎优化.md — indexed
+[2026-04-16 22:06] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SEO搜索引擎优化.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/SEO搜索引擎优化.md — indexed
+[2026-04-16 22:06] GRAPH skip — rebuilt 28s ago
+[2026-04-16 22:06] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — OK
+[2026-04-16 22:06] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — indexed
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — indexed
+[2026-04-16 22:07] GRAPH rebuild — OK
+[2026-04-16 22:07] GRAPH skip — rebuilt 4s ago
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/UrhoX引擎.md — indexed
+[2026-04-16 22:07] GRAPH skip — rebuilt 7s ago
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — OK
+[2026-04-16 22:07] GRAPH skip — rebuilt 8s ago
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Agentic Search.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — indexed
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Agentic Search.md — indexed
+[2026-04-16 22:07] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/NanoVG.md — indexed
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/游戏脚手架模式.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/游戏脚手架模式.md — indexed
+[2026-04-16 22:07] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/学习排序.md — OK
+[2026-04-16 22:07] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/学习排序.md — indexed
+[2026-04-16 22:07] GRAPH rebuild — OK
+[2026-04-16 22:07] GRAPH rebuild — OK
+[2026-04-16 22:08] GRAPH skip — rebuilt 19s ago
+[2026-04-16 22:08] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Modality Gap.md — OK
+[2026-04-16 22:08] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Modality Gap.md — indexed
+[2026-04-16 22:08] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/多模态检索.md — OK
+[2026-04-16 22:08] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/多模态检索.md — indexed
+[2026-04-16 22:08] GRAPH rebuild — OK
+[2026-04-16 22:08] GRAPH skip — rebuilt 19s ago
+[2026-04-16 22:08] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Cross-encoder与Bi-encoder.md — OK
+[2026-04-16 22:08] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Cross-encoder与Bi-encoder.md — indexed
+[2026-04-16 22:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/MetaFind.md — OK
+[2026-04-16 22:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/entities/MetaFind.md — indexed
+[2026-04-16 22:09] GRAPH rebuild — OK
+[2026-04-16 22:09] GRAPH skip — rebuilt 1s ago
+[2026-04-16 22:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/CollisionShape直径参数陷阱.md — OK
+[2026-04-16 22:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/CollisionShape直径参数陷阱.md — indexed
+[2026-04-16 22:09] GRAPH skip — rebuilt 11s ago
+[2026-04-16 22:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/鼠标滚轮输入API陷阱.md — OK
+[2026-04-16 22:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/鼠标滚轮输入API陷阱.md — indexed
+[2026-04-16 22:09] GRAPH skip — rebuilt 24s ago
+[2026-04-16 22:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/CustomGeometry程序化几何体.md — OK
+[2026-04-16 22:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/CustomGeometry程序化几何体.md — indexed
+[2026-04-16 22:09] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/三角形绕序与面朝向.md — OK
+[2026-04-16 22:09] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/三角形绕序与面朝向.md — indexed
+[2026-04-16 22:09] GRAPH rebuild — OK
+[2026-04-16 22:11] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/正交缩放补偿orthoSize半高度因子.md — OK
+[2026-04-16 22:11] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/正交缩放补偿orthoSize半高度因子.md — indexed
+[2026-04-16 22:11] GRAPH rebuild — OK
+[2026-04-16 22:11] GRAPH skip — rebuilt 3s ago
+[2026-04-16 22:11] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/四元数Slerp路径陷阱.md — OK
+[2026-04-16 22:11] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/四元数Slerp路径陷阱.md — indexed
+[2026-04-16 22:11] GRAPH skip — rebuilt 26s ago
+[2026-04-16 22:11] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/方向向量动态旋转计算.md — OK
+[2026-04-16 22:11] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/方向向量动态旋转计算.md — indexed
+[2026-04-16 22:13] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/配置驱动示例系统.md — OK
+[2026-04-16 22:13] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/配置驱动示例系统.md — indexed
+[2026-04-16 22:13] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:13] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:13] GRAPH rebuild — OK
+[2026-04-16 22:13] GRAPH rebuild — OK
+[2026-04-16 22:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:25] GRAPH rebuild — OK
+[2026-04-16 22:25] GRAPH skip — rebuilt 6s ago
+[2026-04-16 22:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:25] GRAPH skip — rebuilt 9s ago
+[2026-04-16 22:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:25] GRAPH skip — rebuilt 17s ago
+[2026-04-16 22:25] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:25] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:41] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:41] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:41] GRAPH rebuild — OK
+[2026-04-16 22:41] GRAPH skip — rebuilt 6s ago
+[2026-04-16 22:41] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:41] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:41] GRAPH skip — rebuilt 12s ago
+[2026-04-16 22:41] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — OK
+[2026-04-16 22:41] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX示例管理系统.md — indexed
+[2026-04-16 22:43] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/动画控制器.md — OK
+[2026-04-16 22:43] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX音频系统API.md — OK
+[2026-04-16 22:43] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/动画控制器.md — indexed
+[2026-04-16 22:43] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX音频系统API.md — indexed
+[2026-04-16 22:43] GRAPH rebuild — OK
+[2026-04-16 22:43] GRAPH rebuild — OK
+[2026-04-16 22:43] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:43] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/动画状态.md — OK
+[2026-04-16 22:43] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/动画状态.md — indexed
+[2026-04-16 22:43] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/骨骼系统.md — OK
+[2026-04-16 22:43] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/骨骼系统.md — indexed
+[2026-04-16 22:43] GRAPH rebuild — OK
+[2026-04-16 22:43] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:43] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/属性动画.md — OK
+[2026-04-16 22:43] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/属性动画.md — indexed
+[2026-04-16 22:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX场景系统API.md — OK
+[2026-04-16 22:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX场景系统API.md — indexed
+[2026-04-16 22:45] GRAPH rebuild — OK
+[2026-04-16 22:45] GRAPH skip — rebuilt 7s ago
+[2026-04-16 22:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX全局子系统.md — OK
+[2026-04-16 22:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX全局子系统.md — indexed
+[2026-04-16 22:45] GRAPH skip — rebuilt 19s ago
+[2026-04-16 22:45] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX节点系统API.md — OK
+[2026-04-16 22:45] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX节点系统API.md — indexed
+[2026-04-16 22:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX Lua数学函数库.md — OK
+[2026-04-16 22:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX Lua数学函数库.md — indexed
+[2026-04-16 22:46] GRAPH rebuild — OK
+[2026-04-16 22:46] GRAPH skip — rebuilt 5s ago
+[2026-04-16 22:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX组件系统API.md — OK
+[2026-04-16 22:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX组件系统API.md — indexed
+[2026-04-16 22:46] GRAPH skip — rebuilt 25s ago
+[2026-04-16 22:46] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX引擎生命周期API.md — OK
+[2026-04-16 22:46] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX引擎生命周期API.md — indexed
+[2026-04-16 22:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D精灵系统API.md — OK
+[2026-04-16 22:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D精灵系统API.md — indexed
+[2026-04-16 22:47] GRAPH rebuild — OK
+[2026-04-16 22:47] GRAPH skip — rebuilt 5s ago
+[2026-04-16 22:47] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Camera渲染摄像机.md — OK
+[2026-04-16 22:47] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Camera渲染摄像机.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/逆向运动学.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/逆向运动学.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 16s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Light光照系统.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Light光照系统.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 21s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D动画系统API.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D动画系统API.md — indexed
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IKSolver.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IKSolver.md — indexed
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/StaticModel静态网格体.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/StaticModel静态网格体.md — indexed
+[2026-04-16 22:48] GRAPH rebuild — OK
+[2026-04-16 22:48] GRAPH rebuild — OK
+[2026-04-16 22:48] GRAPH skip — rebuilt 2s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D粒子系统API.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX 2D粒子系统API.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 11s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/AnimatedModel骨骼动画模型.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/AnimatedModel骨骼动画模型.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 16s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IKEffector.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IKEffector.md — indexed
+[2026-04-16 22:48] GRAPH skip — rebuilt 24s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Renderer渲染器.md — OK
+[2026-04-16 22:48] GRAPH skip — rebuilt 25s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX TileMap系统API.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Renderer渲染器.md — indexed
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX TileMap系统API.md — indexed
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IK约束.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/IK约束.md — indexed
+[2026-04-16 22:48] GRAPH rebuild — OK
+[2026-04-16 22:48] GRAPH skip — rebuilt 2s ago
+[2026-04-16 22:48] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Viewport渲染视口.md — OK
+[2026-04-16 22:48] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Viewport渲染视口.md — indexed
+[2026-04-16 22:49] GRAPH skip — rebuilt 15s ago
+[2026-04-16 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/RenderPath渲染管线.md — OK
+[2026-04-16 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/RenderPath渲染管线.md — indexed
+[2026-04-16 22:49] GRAPH skip — rebuilt 28s ago
+[2026-04-16 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/BillboardSet广告牌.md — OK
+[2026-04-16 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/BillboardSet广告牌.md — indexed
+[2026-04-16 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Terrain地形系统.md — OK
+[2026-04-16 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Terrain地形系统.md — indexed
+[2026-04-16 22:49] GRAPH rebuild — OK
+[2026-04-16 22:49] GRAPH skip — rebuilt 15s ago
+[2026-04-16 22:49] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Octree八叉树.md — OK
+[2026-04-16 22:49] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/Octree八叉树.md — indexed
+[2026-04-16 22:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX IO系统API.md — OK
+[2026-04-16 22:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX IO系统API.md — indexed
+[2026-04-16 22:51] GRAPH rebuild — OK
+[2026-04-16 22:51] GRAPH skip — rebuilt 5s ago
+[2026-04-16 22:51] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX鼠标模式.md — OK
+[2026-04-16 22:51] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX鼠标模式.md — indexed
+[2026-04-16 22:52] GRAPH skip — rebuilt 23s ago
+[2026-04-16 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX序列化系统API.md — OK
+[2026-04-16 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX序列化系统API.md — indexed
+[2026-04-16 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX输入类API.md — OK
+[2026-04-16 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX输入类API.md — indexed
+[2026-04-16 22:52] GRAPH rebuild — OK
+[2026-04-16 22:52] GRAPH skip — rebuilt 14s ago
+[2026-04-16 22:52] LINT /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX数据格式API.md — OK
+[2026-04-16 22:52] BM25 /Users/xd/Desktop/codes/mygithubs/llm-wiki-plugin/vault/wiki/concepts/UrhoX数据格式API.md — indexed

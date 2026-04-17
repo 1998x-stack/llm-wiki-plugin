@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="aci">ACI 设计原则</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Agent计算机接口.html">ACI</a> 设计原则是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文在 <a href="Agent计算机接口.html">Agent计算机接口</a> 研究中总结的一组方法论，包括四条核心原则：动作简单明确、反馈简洁高密度、状态可见性、护栏机制。这些原则是论文最有方法论价值的贡献。</p>
+<p><a href="Agent计算机接口.html">ACI</a> 设计原则是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文在 <a href="Agent计算机接口.html">Agent计算机接口</a> 研究中总结的一组方法论，包括四条核心原则：动作简单明确、反馈简洁高密度、<a href="状态变化感知.html">状态可见性</a>、<a href="Guardrails.html">护栏机制</a>。这些原则是论文最有方法论价值的贡献。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">原则一：动作要简单、容易理解</h3>
 <blockquote>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">原则三：帮助模型感知状态变化</h3>
 <ul>
 <li>好的 <a href="Agent计算机接口.html">ACI</a> 应该帮助 agent 理解当前状态、此前改动的后果、以及最近动作的结果</li>
-<li>编辑后给出更新后的文件片段，就是"状态可见性"的例子</li>
+<li>编辑后给出更新后的文件片段，就是"<a href="状态变化感知.html">状态可见性</a>"的例子</li>
 <li>本质：把软件工程从"token continuation"变成"stateful control"</li>
 </ul>
 <h3 id="guardrails">原则四：要有 Guardrails（护栏）</h3>

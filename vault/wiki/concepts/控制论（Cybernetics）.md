@@ -40,7 +40,7 @@ supersedes: null
    - **信息**：与物质和能量并列的第三基本量，可度量、可传输、可存储
    - **熵**：[[信息论]]熵与热力学熵的深刻联系
 
-4. **梅西会议**：1946-1953 年间由 Josiah Macy Jr. 基金会资助的跨学科会议，汇集了 Wiener、von Neumann、McCulloch、Pitts、Shannon、Bateson、Mead 等领军人物。
+4. **梅西会议**：1946-1953 年间由 Josiah Macy Jr. 基金会资助的跨学科会议，汇集了 Wiener、von Neumann、McCulloch、[[Pi-Agent|Pi]]tts、Shannon、Bateson、Mead 等领军人物。
 
 5. **社会影响**：Wiener 对自动化社会发出深远预警，担忧科技毁灭性力量和大规模失业。《控制论》出版后引起轰动，迅速售罄并成为战后最具影响力的科学著作之一。
 

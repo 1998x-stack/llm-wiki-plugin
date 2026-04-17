@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">操作空间控制</h1>
 <h2 id="_2">概述</h2>
-<p>操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 在 1980 年代系统提出并完善。该方法的核心思想是直接在机器人的任务空间（通常是末端执行器的笛卡尔空间）中定义和控制动力学行为，而不是传统的在关节空间中进行控制。通过利用雅可比<a href="矩阵.html">矩阵</a>及其动力学扩展，OSC 能够将任务空间中指定的虚拟力或阻抗特性精确映射为关节力矩，从而实现直观、解耦且高性能的运动控制。它是连接高层<a href="运动规划.html">运动规划</a>（如<a href="人工势场法.html">人工势场法</a>）与底层电机驱动的数学桥梁。</p>
+<p>操作空间控制（Operational Space Control, OSC）是一种先进的机器人控制框架，由 <a href="../entities/Oussama Khatib.html">Oussama Khatib</a> 在 1980 年代系统提出并完善。该方法的核心思想是直接在机器人的任务空间（通常是<a href="IKEffector.html">末端执行器</a>的笛卡尔空间）中定义和控制动力学行为，而不是传统的在关节空间中进行控制。通过利用雅可比<a href="矩阵.html">矩阵</a>及其动力学扩展，OSC 能够将任务空间中指定的虚拟力或阻抗特性精确映射为关节力矩，从而实现直观、解耦且高性能的运动控制。它是连接高层<a href="运动规划.html">运动规划</a>（如<a href="人工势场法.html">人工势场法</a>）与底层电机驱动的数学桥梁。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">基本原理与数学基础</h3>
 <p>在传统控制中，工程师需要在关节空间设计控制器，这往往导致任务空间的行为难以直观预测，尤其是在多自由度冗余机器人中。操作空间控制通过建立任务空间变量 $x$（如位置、姿态）与关节变量 $q$ 之间的动力学关系来解决这一问题。</p>
@@ -159,7 +159,7 @@ $$\tau = J^T(q) F + (I - J^T(q) \bar{J}^T(q)) \tau_{null}$$
 </ul>
   </div>
   <div class="page-nav">
-    <a href="提示词缓存.html">&larr; 提示词缓存</a>
+    <a href="搜索引擎架构.html">&larr; 搜索引擎架构</a>
     <a href="收敛假说.html">收敛假说 &rarr;</a>
   </div>
 </div>

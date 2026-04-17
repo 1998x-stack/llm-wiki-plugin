@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>排序损失函数</strong>：提出 <span style="color:#e74c3c" title="broken link">BPR Loss</span> 和 <a href="../concepts/TOP1 Loss.html">TOP1 Loss</a> 两种 pairwise 排序损失，显著优于<a href="../concepts/交叉熵.html">交叉熵</a>（<a href="../concepts/交叉熵.html">交叉熵</a>在100次随机实验中仅10次收敛）。<a href="../concepts/TOP1 Loss.html">TOP1</a> 内置正则化项使其在更大隐藏层尺寸下表现更稳定。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 RSC15（YOOCHOOSE）数据集上，<a href="../concepts/候选生成.html">Recall</a>@20 达 0.5196，<a href="../concepts/MRR.html">MRR</a>@20 达 0.2164，相比 <a href="../concepts/基于物品的协同过滤.html">Item-KNN</a> 提升约 20-30%。后续 <a href="../concepts/生成式推荐.html">GR</a>U4Rec v2（CIKM 2018）提出 <a href="../concepts/BPR.html">BPR</a>-max 和 <a href="../concepts/TOP1 Loss.html">TOP1</a>-max，性能再提升 35%。</p>
+<p><strong>实验结果</strong>：在 RSC15（YOOCHOOSE）数据集上，<a href="../concepts/候选生成.html">Recall</a>@20 达 0.5196，<a href="../concepts/MRR.html">MRR</a>@20 达 0.2164，相比 <a href="../concepts/基于物品的协同过滤.html">Item-KNN</a> 提升约 20-30%。后续 <a href="../concepts/生成式推荐.html">GR</a>U4Rec v2（C<a href="../concepts/逆向运动学.html">IK</a>M 2018）提出 <a href="../concepts/BPR.html">BPR</a>-max 和 <a href="../concepts/TOP1 Loss.html">TOP1</a>-max，性能再提升 35%。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：开创了基于深度学习的<a href="../concepts/序列推荐.html">序列推荐</a>研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, 注意力机制）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯注意力）、<a href="SASRec.html">SASRec</a>（2018, <a href="../concepts/Self-Attention机制.html">自注意力</a>）、<a href="BERT4Rec.html">BERT4Rec</a>（2019, 双向 <a href="../concepts/Transformer架构.html">Transformer</a>）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（2019, 图神经网络）等一系列后续工作。</p>

@@ -39,7 +39,7 @@ LM 不是外部记忆无限的系统。每条历史都占用上下文预算，�
 
 ### 论文发现
 
-在 [[SWE-bench]] Lite 的消融实验中：
+在 [[SWE-bench]] Lite 的[[Ablation Study|消融实验]]中：
 - **Last 5 observations** 的效果优于 **Full history**
 - 去掉 demonstration 后也会略有下降
 
