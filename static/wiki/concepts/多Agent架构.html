@@ -138,14 +138,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong>子 Agent 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="agent_1">多 Agent 系统的适用条件</h3>
-<p>Anthropic 研究表明，多 Agent 架构在以下场景最有价值：
+<p><a href="../entities/Anthropic.html">Anthropic</a> 研究表明，多 Agent 架构在以下场景最有价值：
 - <strong>重度并行化</strong>的任务（如广度优先研究：同时探索多个独立方向）
 - <strong>信息量超过单个<a href="上下文窗口.html">上下文窗口</a></strong>的任务
 - <strong>连接大量复杂工具</strong>的任务
 - 任务价值足以支付 <strong>~15× 于聊天的 token 成本</strong></p>
 <p><strong>不适合</strong>：大多数编码任务（真正可并行的子任务较少）、Agent 间需要实时协调的场景。</p>
 <h3 id="token">Token 消耗与性能的关系</h3>
-<p>Anthropic 在 BrowseComp 基准测试上的分析显示，<strong>三个因素解释了 95% 的性能方差</strong>：</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 在 BrowseComp 基准测试上的分析显示，<strong>三个因素解释了 95% 的性能方差</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p><strong>关键结论</strong>：多 Agent 架构的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。多 Agent 系统 vs 单 Agent Claude Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
 <h3 id="-">编排者-工人模式（研究系统实现）</h3>
-<p>Anthropic Research 系统的具体架构：</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> Research 系统的具体架构：</p>
 <pre><code>用户查询
    ↓
 LeadResearcher（编排者）
@@ -225,7 +225,7 @@ LeadResearcher 综合结果
 </ul>
   </div>
   <div class="page-nav">
-    <a href="基于用户的协同过滤.html">&larr; 基于用户的协同过滤</a>
+    <a href="增量挖掘.html">&larr; 增量挖掘</a>
     <a href="多任务学习.html">多任务学习 &rarr;</a>
   </div>
 </div>

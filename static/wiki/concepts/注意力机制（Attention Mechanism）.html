@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注意力机制（Attention Mechanism） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 注意力机制（Attention Mechanism）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">注意力机制</span><span class="tag">NLP</span><span class="tag">机器翻译</span><span class="tag">LLM基础</span></div>
+</div>
+  <div class="content">
+    <h1 id="attention-mechanism">注意力机制（Attention Mechanism）</h1>
+<h2 id="_1">概述</h2>
+<p>注意力机制使解码器在生成每个目标词时，能动态加权聚焦源序列的不同位置，彻底解决了 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 的固定长度瓶颈问题，是现代 LLM 的核心之源。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">历史背景：固定长度瓶颈</h3>
+<p>2014 年 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 将整个源句子压缩为<strong>单一固定向量 c</strong>，导致长句信息严重丢失。实验表明 BLEU 分数随源句长度增加急剧下降。<span style="color:#e74c3c" title="broken link">Dzmitry Bahdanau</span> 等人提出核心问题：翻译每个目标词时，Decoder 能否"回头看"原文的不同位置？</p>
+<h3 id="_4">核心计算流程</h3>
+<p>设源编码 $h_1, h_2, ..., h_n$（双向 RNN 隐藏状态），Decoder 当前状态 $s_{t-1}$：</p>
+<ol>
+<li><strong>对齐分数</strong>：$e_{it} = a(s_{t-1}, h_i) = v^\top \tanh(W_a s_{t-1} + U_a h_i)$，学习源位置与当前解码的相关性</li>
+<li><strong>Softmax 归一化</strong>：$\alpha_{it} = \frac{\exp(e_{it})}{\sum_j \exp(e_{jt})}$，得到注意力权重 $\alpha_{it} \in [0,1]$，$\sum_i \alpha_{it} = 1$</li>
+<li><strong>加权上下文向量</strong>：$c_t = \sum_i \alpha_{it} h_i$，每个解码时刻专属的动态上下文</li>
+<li><strong>Decoder 生成</strong>：$s_t = f(s_{t-1}, y_{t-1}, c_t)$，融合注意力上下文生成目标词</li>
+</ol>
+<h3 id="_5">可解释性突破：对齐矩阵</h3>
+<p>注意力权重 $\alpha$ 构成<strong>对齐<a href="矩阵.html">矩阵</a></strong>，使机器翻译首次可视化。英法等语序相近语言呈现对角线模式，语序调换场景（如英语→法语"European Economic Area"）呈现反对角线模式。</p>
+<h3 id="_6">三种主要变体</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>对齐函数</th>
+<th>特点</th>
+<th>提出者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**<span style="color:#e74c3c" title="broken link">Bahdanau注意力&lt;/td&gt;
+&lt;td&gt;加性注意力</span>**</td>
+<td>$v^\top \tanh(W_a s + U_a h)$</td>
+<td>参数灵活，效果好</td>
+</tr>
+<tr>
+<td>**<span style="color:#e74c3c" title="broken link">Luong注意力&lt;/td&gt;
+&lt;td&gt;点积注意力</span>**</td>
+<td>$s^\top h$</td>
+<td>无额外参数，速度快</td>
+</tr>
+<tr>
+<td><strong>缩放点积</strong></td>
+<td>$s^\top h / \sqrt{d}$</td>
+<td>防止高维点积过大</td>
+<td>Vaswani (2017)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">演化路径</h3>
+<p><a href="Bahdanau注意力.html">Bahdanau注意力</a>（2015，加性，解决固定瓶颈）→ <a href="Luong注意力.html">Luong注意力</a>（2015，点积，更简洁）→ <a href="自注意力机制.html">自注意力机制</a>（2017，序列内部互相关，去掉 RNN）→ <a href="多头注意力.html">多头注意力</a>（2017，并行多子空间）→ Cross-Attention（<a href="Transformer 架构.html">Transformer</a> Decoder，Q 来自 Decoder，K/V 来自 Encoder）→ Flash Attention（2022，IO 感知加速 10 倍）。</p>
+<h2 id="_8">来源</h2>
+<ul>
+<li><a href="../entities/Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文).html">Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文)</a> — 提出加性注意力机制，首次实现动态上下文向量</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="Bahdanau注意力.html">Bahdanau注意力</a> — implements（加性注意力的具体实现）</li>
+<li><a href="Luong注意力.html">Luong注意力</a> — implements（点积/乘性注意力的具体实现）</li>
+<li><a href="自注意力机制.html">自注意力机制</a> — extends（序列内部位置相互关注，去除 RNN 依赖）</li>
+<li><a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> — extends（在 seq2seq 基础上引入动态上下文）</li>
+<li><a href="缩放点积注意力.html">缩放点积注意力</a> — extends（高维场景下的点积注意力改进）</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — extends（注意力机制的终极形态，完全基于注意力）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="泊松分布.html">&larr; 泊松分布</a>
+    <a href="注意力预算.html">注意力预算 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

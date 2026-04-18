@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Krizhevsky — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Alex Krizhevsky</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">person</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">人物</span><span class="tag">人工智能</span><span class="tag">深度学习</span><span class="tag">计算机视觉</span></div>
+</div>
+  <div class="content">
+    <h1 id="alex-krizhevsky">Alex Krizhevsky</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>Alex Krizhevsky 是加拿大计算机科学家，2012 年提出 <a href="../concepts/AlexNet.html">AlexNet</a>——在 <a href="../concepts/ImageNet.html">ImageNet</a> 竞赛中以压倒性优势夺冠的深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>，开启了深度学习革命。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong><a href="../concepts/AlexNet.html">AlexNet</a> 的诞生</strong>：2012 年，Krizhevsky 作为<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>的博士生，设计了 <a href="../concepts/AlexNet.html">AlexNet</a> 参加 <a href="../concepts/ImageNet.html">ImageNet 大规模视觉识别挑战赛</a>（<a href="../concepts/ImageNet.html">ILSVRC</a>）。该网络包含 5 层卷积和 3 层全连接，总参数量约 6200 万，使用<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>、<a href="../concepts/Dropout.html">Dropout</a>、<a href="../concepts/数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>和双 GPU 并行训练，将 Top-5 错误率从 25.8% 降至 15.3%，领先第二名 10 个百分点。</li>
+<li><strong>技术创新</strong>：Krizhevsky 的关键贡献在于将多项技术有效整合：首次在大规模视觉任务中系统使用 ReLU（比 Sigmoid 快 6 倍）、引入 <a href="../concepts/Dropout.html">Dropout</a> 防止<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>、设计数据增强策略（随机裁剪、翻转、PCA 色彩扰动）、以及创造性地将网络分布在两块 GTX 580 GPU 上并行训练（将训练时间从数月缩短至 5-6 天）。</li>
+<li><strong>历史影响</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 被广泛认为是深度学习革命的起点。它证明了深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>在大规模视觉任务中的压倒性优势，直接推动了 AI 产业的投资浪潮——NVIDIA GPU 从游戏显卡变为 AI 芯片，<a href="Google.html">Google</a>/<a href="DeepMind.html">DeepMind</a> 等公司大举投入深度学习研究。</li>
+<li><strong><a href="../concepts/Dropout.html">Dropout</a> 共同作者</strong>：2014 年，Krizhevsky 作为共同作者参与了 <a href="../concepts/Dropout.html">Dropout 正则化</a>论文的发表。他在 <a href="../concepts/AlexNet.html">AlexNet</a> 中率先使用 <a href="../concepts/Dropout.html">Dropout</a>（全连接层 p=0.5），是这一技术最早的实践验证者之一。</li>
+<li><strong>后续发展</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 之后，Krizhevsky 继续在深度学习领域工作，但相对低调。他与<a href="Ilya Sutskever.html">Ilya Sutskever</a>（同为 <a href="Geoffrey E. Hinton.html">Hinton</a> 学生）后来共同创立了 <a href="OpenAI.html">OpenAI</a>（2015 年），推动了 GPT 系列语言模型的发展。</li>
+</ol>
+<h2 id="_1">来源</h2>
+<ul>
+<li>[Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — 原始论文</li>
+<li>[Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., &amp; Salakhutdinov, R. (2014). JMLR, 15(1), 1929–1958.] — Dropout 论文</li>
+<li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
+<li>[raw/articles/ai-papers/machine-learning/09_dropout_2014.md] — 源文件</li>
+</ul>
+<h2 id="_2">相关</h2>
+<ul>
+<li><a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — advised_by</li>
+<li><a href="Ilya Sutskever.html">Ilya Sutskever</a> — collaborated_with</li>
+<li><a href="../concepts/AlexNet.html">AlexNet</a> — created</li>
+<li><a href="ImageNet Classification with Deep Convolutional Neural Networks (2012 论文).html">ImageNet Classification with Deep Convolutional Neural Networks (2012 论文)</a> — authored</li>
+<li><a href="../concepts/ImageNet.html">ImageNet</a> — competed_in</li>
+<li><a href="Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文).html">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</a> — co_author</li>
+<li><a href="../concepts/Dropout（随机失活）.html">Dropout（随机失活）</a> — early_adopter</li>
+<li><a href="Nitish Srivastava.html">Nitish Srivastava</a> — collaborated_with</li>
+<li><a href="Ruslan Salakhutdinov.html">Ruslan Salakhutdinov</a> — collaborated_with</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Aider.html">&larr; Aider</a>
+    <a href="Alex-Newman.html">Alex-Newman &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

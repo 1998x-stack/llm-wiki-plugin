@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ralph Loop — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Ralph Loop</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">project</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">autonomous-coding</span><span class="tag">agent-loop</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="ralph-loop">Ralph Loop</h1>
+<h2 id="_1">概述</h2>
+<p>Ralph Loop 是一种自主编码代理系统，通过 CLAUDE.md 提示词模板驱动 <a href="Claude Code.html">Claude Code</a> 实例按迭代循环逐个实现 PRD 中的 User Story，利用 prd.json、progress.txt 和 AGENTS.md 三个核心文件实现跨会话进度继承与知识积累。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>起源与核心哲学</strong>：Ralph Loop 基于 <a href="Geoffrey Huntley.html">Geoffrey Huntley</a> 的 Ralph Wiggum 技术，核心哲学是 <strong>"The technique is deterministically bad in an undeterministic world."</strong> ——不试图让单个 Agent 记住一切，而是把状态全部写进文件，让每一个新鲜的 Agent 从文件中快速定位，继续上一个 Agent 中断的工作。这一理念具体化为 <a href="../concepts/工作台 vs 长期记忆.html">工作台 vs 长期记忆</a> 心智模型：<a href="../concepts/上下文窗口.html">上下文窗口</a>是用完就扔的工作台，文件系统是永久存储的长期记忆。</p>
+</li>
+<li>
+<p><strong>触发短语</strong>：系统可通过以下短语激活——"run ralph"、"ralph loop"、"autonomous coding loop"、"set up ralph for"、"run until complete"、"AFK agent"、"continuous agent"、"让 AI 自动跑"。</p>
+</li>
+<li>
+<p><strong>核心架构</strong>：每次迭代启动一个全新的 <a href="Claude Code.html">Claude Code</a> 实例，通过 <code>cat CLAUDE.md | claude --dangerously-skip-permissions</code> 注入完整提示词模板。Agent 从文件系统中读取进度状态，继续未完成任务，而非依赖上下文记忆。</p>
+</li>
+<li>
+<p><strong>强制启动序列</strong>：每个 Agent 实例启动时必须按顺序执行 7 步确认仪式——确认工作目录、查看 Git 历史、读取 progress.txt（交班日记）、读取 AGENTS.md（经验手册）、解析 prd.json 查找最高优先级未完成任务、启动开发环境、执行 Smoke Test 验证代码可运行。</p>
+</li>
+<li>
+<p><strong>单次迭代约束</strong>：每次迭代只实现 ONE 个 User Story，禁止跨 Story 并行。前端变更必须通过 <a href="Puppeteer MCP.html">Puppeteer MCP</a> <a href="../concepts/浏览器自动化验证.html">浏览器自动化验证</a>（截图、填表、点击、验证 DOM），验证通过后方可设置 <code>passes: true</code>。</p>
+</li>
+<li>
+<p><strong>进度追踪三文件</strong>：</p>
+</li>
+<li><strong>prd.json</strong>：产品需求文档，包含 User Story 列表、优先级、依赖关系、<code>passes</code> 状态</li>
+<li><strong>progress.txt</strong>：交班日记，记录每轮 Session 的完成状态、变更点、阻塞信息</li>
+<li>
+<p><strong>AGENTS.md</strong>：项目约定手册，由 Agent 维护，积累 Learnings、Gotchas、依赖映射</p>
+</li>
+<li>
+<p><strong>Bug 处理策略</strong>：尝试 2 次失败后执行回退流程——<code>git stash</code> 或 <code>git revert HEAD</code>，在 progress.txt 中标记 BLOCKED，在 AGENTS.md 中记录坑点，将该 Story priority 改为 99 并移动到下一个 Story。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/Context Management.html">上下文管理</a></strong>：当上下文快满时不强行完成任务，而是 <code>git stash</code> 保存未完成工作，在 progress.txt 中标注 Early exit，提交干净状态后输出 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code>，由外循环决定是否继续迭代。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/完成信号机制（Completion Signal）.html">完成信号</a></strong>：无论是否还有未完成的 Story，每次迭代结束必须输出 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code>，Ralph 外循环检查 prd.json 决定是否启动下一个 Agent 实例。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/SKILL.md</span> — Ralph Loop Skill 完整定义（核心哲学、五组件、快速启动流程、关键约束、文件结构）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/CLAUDE.md</span> — Ralph Coding Agent 固定提示词模板</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/AGENTS.md</span> — 项目约定模板（文件结构、命名规范、代码约定、NEVER DO 规则）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/coding-agent.md</span> — Coding Agent 完整协议（启动序列、铁规则、实现流程、Bug 处理、progress.txt 格式、特殊情况处理）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/initializer-agent.md</span> — Initializer Agent 完整提示词、init.sh 模板、AGENTS.md 模板、progress.txt 模板</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/how-the-loop-works.md</span> — Ralph Loop 核心原理深度解析（上下文内存模型、愚钝区、完成信号、状态持久化、固定提示栈、子 Agent 模式）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/context-strategies.md</span> — Context Strategies 完整文档（六大策略、模型对比、预算估算）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/testing-patterns.md</span> — Testing Patterns 完整文档（四种验证模式、失败处理树、命令速查表）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/prd-generator-prompt.md</span> — PRD 生成提示词模板（Ralph Loop 前置技能、Story 粒度原则、验证脚本、专项场景模板）</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Claude Code.html">Claude Code</a> — uses（底层编码代理）</li>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> — implements（自主编码 Harness 的具体实现）</li>
+<li><a href="../concepts/PRD 驱动开发.html">PRD 驱动开发</a> — implements（以 prd.json 为进度驱动核心）</li>
+<li><a href="../concepts/Agent 迭代循环.html">Agent 迭代循环</a> — implements（单次迭代一个 Story 的循环模式）</li>
+<li><a href="../concepts/Session 交接机制.html">Session 交接机制</a> — implements（三文件跨会话状态传递）</li>
+<li><a href="Puppeteer MCP.html">Puppeteer MCP</a> — uses（前端 E2E 验证工具）</li>
+<li><a href="../concepts/Context Engineering.html">Context Engineering</a> — depends_on（上下文窗口管理与交接）</li>
+<li><a href="../concepts/E2E 验证模式.html">E2E 验证模式</a> — implements（外部运行时验证方法论）</li>
+<li><a href="../concepts/PRD 生成提示词.html">PRD 生成提示词</a> — uses（Ralph Loop 启动前必须通过 PRD 生成提示词生成 prd.json）</li>
+<li><a href="../concepts/User Story 粒度原则.html">User Story 粒度原则</a> — implements（每个 Story 必须足够小，能在单个上下文窗口内完成）</li>
+<li><a href="../concepts/prd.json 格式规范.html">prd.json 格式规范</a> — uses（prd.json 是 Ralph Loop 的权威任务源）</li>
+<li><a href="Geoffrey Huntley.html">Geoffrey Huntley</a> — depends_on（Ralph Wiggum 技术原创者）</li>
+<li><a href="../concepts/工作台 vs 长期记忆.html">工作台 vs 长期记忆</a> — implements（核心架构心智模型）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="PyMuPDF.html">&larr; PyMuPDF</a>
+    <a href="Randal E. Bryant.html">Randal E. Bryant &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

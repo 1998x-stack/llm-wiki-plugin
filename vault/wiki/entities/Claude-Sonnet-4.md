@@ -27,7 +27,7 @@ supersedes: null
 
 ## 概述
 
-Claude Sonnet 4 是 Anthropic 已弃用的 Claude Sonnet 系列模型，[[上下文窗口]]为 200k tokens。已被 [[Claude-Sonnet-4-5]] 及后续版本取代。
+Claude Sonnet 4 是 [[Anthropic]] 已弃用的 Claude Sonnet 系列模型，[[上下文窗口]]为 200k tokens。已被 [[Claude-Sonnet-4-5]] 及后续版本取代。
 
 ## 关键内容
 
@@ -38,7 +38,7 @@ Claude Sonnet 4 是 Anthropic 已弃用的 Claude Sonnet 系列模型，[[上下
 - **版本**：4
 - **[[上下文窗口]]**：200k tokens
 - **状态**：已弃用（deprecated）
-- **发布方**：Anthropic
+- **发布方**：[[Anthropic]]
 
 ### 弃用说明
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>精质 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 精质</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">宇宙学</span><span class="tag">理论物理</span><span class="tag">AI工程</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">精质</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>一种随时间缓慢演化的动力学标量场假说，作为<a href="暗能量.html">暗能量</a>的替代解释，区别于恒定的<a href="宇宙学常数.html">宇宙学常数</a>。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>基本概念</strong>：精质（Quintessence，源自古希腊哲学中的"第五元素"）是一种假设的动力学标量场，其能量密度随时间和空间缓慢演化。与<a href="宇宙学常数.html">宇宙学常数</a>不同，精质的能量密度不是恒定不变的，而是由场的势能函数决定，可以随宇宙演化而变化。</li>
+<li><strong>与<a href="暗能量.html">暗能量</a>的关系</strong>：精质是解释<a href="暗能量.html">暗能量</a>驱动<a href="宇宙加速膨胀.html">宇宙加速膨胀</a>的主要替代理论之一。如果<a href="暗能量.html">暗能量</a>是精质而非<a href="宇宙学常数.html">宇宙学常数</a>，那么其状态方程参数 $w$ 将偏离-1且可能随时间变化，这为未来的观测检验提供了可<a href="../entities/区分.html">区分</a>的预言。</li>
+<li><strong>理论动机与挑战</strong>：精质模型试图缓解<a href="宇宙学常数问题.html">宇宙学常数问题</a>中120个数量级的巨大矛盾，因为动力学场的能量密度可以通过合适的势能函数调整到观测值。然而，精质模型引入了新的自由参数和精细调节问题，目前观测数据尚无法明确<a href="../entities/区分.html">区分</a>精质与简单的<a href="宇宙学常数.html">宇宙学常数</a>。</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">10-riess-perlmutter-dark-energy</span> — 提及精质作为暗能量的替代解释</li>
+<li>Peebles, P. J. E. &amp; Ratra, B. (2003). "The Cosmological Constant and Dark Energy." <em>Reviews of Modern Physics</em>, 75, 559.</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="暗能量.html">暗能量</a> — compares_to</li>
+<li><a href="宇宙学常数.html">宇宙学常数</a> — compares_to</li>
+<li><a href="宇宙学常数问题.html">宇宙学常数问题</a> — relates_to</li>
+<li><a href="广义相对论.html">广义相对论</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="精确短语引号提取.html">&larr; 精确短语引号提取</a>
+    <a href="系统与生活世界.html">系统与生活世界 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 语言学
   - 失语症
+  - 脑科学
 aliases:
   - "Pierre Paul Broca"
   - "保罗·布罗卡"

@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>双区存储</strong>：实现层将连续正整数键放入 array part，其余键放入 hash part。连续整数索引访问性能最优，惯例下标从 1 开始。</li>
 <li><strong>引用语义</strong>：赋值与传参传递的是引用，不会复制内容。浅拷贝需手动 <code>for k,v in pairs(src) do dst[k]=v end</code>；深拷贝需递归处理。</li>
-<li><strong>nil 即删除</strong>：给字段赋 <code>nil</code> 等同于删除该键，无法区分"字段不存在"与"值为 nil"。需要空值语义时使用哨兵对象 <code>local NULL = {}</code>。</li>
+<li><strong>nil 即删除</strong>：给字段赋 <code>nil</code> 等同于删除该键，无法<a href="../entities/区分.html">区分</a>"字段不存在"与"值为 nil"。需要空值语义时使用哨兵对象 <code>local NULL = {}</code>。</li>
 <li><strong># 运算符限制</strong>：<code>#t</code> 仅对无洞连续整数序列有确定结果。稀疏数组或有洞数组不可依赖 <code>#</code>。</li>
 <li><strong>遍历</strong>：<code>pairs</code> 遍历全部键值，顺序不保证；<code>ipairs</code> 从 1 开始按整数顺序遍历，遇首个 nil 停止。<code>next(t, key)</code> 是底层原语，<code>pairs</code> 依赖它实现。</li>
 <li><strong>点语法糖</strong>：<code>t.name</code> 等价于 <code>t["name"]</code>，但 <code>t.key</code> 与 <code>t[key]</code> 语义不同——前者取字面字段 "key"，后者取变量 key 的值对应的字段。</li>

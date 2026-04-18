@@ -127,39 +127,51 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / LSTM（长短期记忆网络）</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">概率论</span><span class="tag">深度学习</span><span class="tag">时间序列</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">序列建模</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="lstm">LSTM（长短期记忆网络）</h1>
-<h2 id="_1">概述</h2>
-<p>LSTM 由 Sepp Hochreiter 和 Jürgen Schmidhuber 于 1997 年提出，通过门控机制解决传统 RNN 的梯度消失问题，使神经网络能够学习跨越数百个时间步的长期依赖关系，是深度学习序列建模的里程碑。</p>
-<h2 id="_2">关键内容</h2>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>由 <a href="../entities/Sepp Hochreiter.html">Sepp Hochreiter</a> 和 <a href="../entities/Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> 于 1997 年提出，通过<a href="细胞状态（Cell State）.html">细胞状态</a>和<a href="门控机制（Gating Mechanism）.html">门控</a>机制（<a href="遗忘门（Forget Gate）.html">遗忘门</a>、<a href="输入门（Input Gate）.html">输入门</a>、<a href="输出门（Output Gate）.html">输出门</a>）解决 RNN <a href="梯度消失.html">梯度消失</a>问题，使神经网络能够学习跨越数百时间步的长期依赖，是序列建模的里程碑。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li>
-<p><strong>历史背景</strong>：1990 年代 RNN 理论上拥有无限记忆能力，但实践中无法学习超过 10-20 个时间步的依赖。Hochreiter 1991 年本科论文首次系统分析此问题，1997 年与 Schmidhuber 发表划时代论文。</p>
+<p><strong>历史背景</strong>：<a href="../entities/Sepp Hochreiter.html">Sepp Hochreiter</a> 在 1991 年硕士论文中首次从数学上证明标准 <a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> 在 BPTT 训练时，梯度因连乘权重<a href="矩阵.html">矩阵</a>和 tanh'（∈(0,1)）而指数级衰减，网络无法记住 10 步以前的信息。1997 年与导师 <a href="../entities/Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> 在 <em>Neural Computation</em> 发表划时代论文《<a href="../entities/Long Short-Term Memory (1997 论文).html">Long Short-Term Memory</a>》。</p>
 </li>
 <li>
-<p><strong>梯度消失根源</strong>：RNN 训练通过 BPTT（时间反向传播），梯度沿时间步连乘传递，每经过一步就被"打折"，导致远距离信息被稀释殆尽。</p>
+<p><strong><a href="细胞状态（Cell State）.html">细胞状态</a>与<a href="门控机制（Gating Mechanism）.html">门控</a></strong>：LSTM 引入一条贯穿序列的"信息高速公路"——<a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a> Cₜ，通过三个门精确控制信息流动：<a href="遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>（fₜ = σ(Wf·[hₜ₋₁, xₜ] + bf)，决定丢弃什么）、<a href="输入门（Input Gate）.html">输入门（Input Gate）</a>（iₜ 控制更新量，C̃ₜ = tanh(Wc·[hₜ₋₁, xₜ] + bc) 为候选值）、<a href="输出门（Output Gate）.html">输出门（Output Gate）</a>（oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)，决定输出什么）。<a href="细胞状态（Cell State）.html">细胞状态</a>更新：Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ。</p>
 </li>
 <li>
-<p><strong>核心创新</strong>：引入细胞状态（cell state）和三个门控机制——遗忘门（决定丢弃什么信息）、输入门（决定存储什么新信息）、输出门（决定输出什么信息）。细胞状态像一条"信息高速公路"，梯度可以无损流过。</p>
+<p><strong>解决<a href="梯度消失.html">梯度消失</a>的数学本质</strong>：<a href="细胞状态（Cell State）.html">细胞状态</a>的梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当<a href="遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时，梯度通过加法直接传递而不衰减。对比 RNN：∂hₜ/∂hₜ₋₁ = Wₕᵀ · diag(tanh'(·))，需要乘以小于 1 的数，连乘后指数衰减。类比：RNN 像用粉笔写黑板（每次覆盖），LSTM <a href="细胞状态（Cell State）.html">细胞状态</a>像一本可精确"写入"、"擦除"、"读取"的日记本。</p>
 </li>
 <li>
-<p><strong>影响</strong>：98,000+ 次引用，成为语音识别、机器翻译、时间序列预测等领域的标准架构，直到 <a href="Transformer架构.html">Transformer</a> 出现后才逐渐被取代。</p>
+<p><strong>实际应用与退出</strong>：LSTM 统治序列学习领域近 20 年，在语音识别（<a href="../entities/Google.html">Google</a> Voice 2015）、机器翻译（<a href="../entities/Google.html">Google</a> 翻译 2016）、文本生成、时间序列预测等领域大规模部署。2017 年 <a href="Transformer架构.html">Transformer架构</a> 问世后逐步退场，但在时间序列、嵌入式/边缘设备、<a href="强化学习.html">强化学习</a>等场景仍广泛使用（2024 年仍活跃）。</p>
+</li>
+<li>
+<p><strong>代码实现</strong>：PyTorch 中通过 <code>nn.LSTM(input_size, hidden_size, num_layers, bidirectional=True)</code> 实现。支持多层堆叠、双向处理、dropout 正则化。权重绑定（embedding 与输出层共享权重）可节省参数。</p>
 </li>
 </ol>
-<h2 id="_3">来源</h2>
+<h2 id="_1">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">12-hochreiter-1997-lstm</span> — LSTM：一座让神经网络学会"记忆"的里程碑</li>
+<li><a href="../entities/Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — Hochreiter, S., &amp; Schmidhuber, J. (1997). Neural Computation, 9(8), 1735–1780</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/04_lstm_1997.md</span> — LSTM 核心原理、数学推导与 PyTorch 代码实现</li>
 </ul>
-<h2 id="_4">相关</h2>
+<h2 id="_2">相关</h2>
 <ul>
-<li><a href="Transformer架构.html">Transformer架构</a> — compares_to</li>
-<li><span style="color:#e74c3c" title="broken link">梯度消失问题</span> — caused</li>
-<li><span style="color:#e74c3c" title="broken link">门控机制</span> — implements</li>
+<li><a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> — extends（解决 RNN 梯度消失）</li>
+<li><a href="梯度消失.html">梯度消失</a> — caused（LSTM 解决的核心问题）</li>
+<li><a href="门控机制（Gating Mechanism）.html">门控机制（Gating Mechanism）</a> — implements（核心设计模式）</li>
+<li><a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a> — implements（核心创新）</li>
+<li><a href="遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a> — implements（门控组件）</li>
+<li><a href="输入门（Input Gate）.html">输入门（Input Gate）</a> — implements（门控组件）</li>
+<li><a href="输出门（Output Gate）.html">输出门（Output Gate）</a> — implements（门控组件）</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — compares_to（后续替代方案）</li>
+<li><a href="双向 LSTM（Bi-LSTM）.html">双向 LSTM（Bi-LSTM）</a> — extends（双向扩展）</li>
+<li><a href="../entities/Sepp Hochreiter.html">Sepp Hochreiter</a> — relates_to（共同发明人）</li>
+<li><a href="../entities/Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> — relates_to（共同发明人）</li>
 </ul>
   </div>
   <div class="page-nav">

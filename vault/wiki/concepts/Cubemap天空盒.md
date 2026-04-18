@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [3D渲染, 天空盒, 贴图, 游戏引擎]
+tags: ["3D渲染", "天空盒", "贴图", "游戏引擎", "游戏开发"]
 aliases: [Cubemap, Skybox, 天空球, 立方体贴图]
 relates_to: [等距柱状投影, UrhoXCLI]
 supersedes: null

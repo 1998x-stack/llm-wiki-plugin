@@ -9,6 +9,7 @@ source_count: 1
 tags:
   - AI
   - 架构
+  - Agent系统
 aliases:
   - "Agent Teams Pattern"
   - "智能体团队模式"
@@ -30,7 +31,7 @@ supersedes: null
 1. **协调器生成** → 多个工作智能体作为独立进程
 2. **任务认领** → 团队成员从共享队列中认领任务
 3. **自主执行** → 在多个步骤中自主完成任务
-4. **完成信号** → 发出完成信号
+4. **[[完成信号机制（Completion Signal）|完成信号]]** → 发出[[完成信号机制（Completion Signal）|完成信号]]
 5. **持续运行** → 不重置，积累上下文和领域知识
 
 ### 与 Orchestrator-Subagent 的区别

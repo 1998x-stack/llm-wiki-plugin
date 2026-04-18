@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code-tool">Claude Code TOOL 设计七维分析</h1>
 <h2 id="_1">概述</h2>
-<p>本分析综合了 8 个知识库页面，从七个维度系统拆解 Claude Code 的 TOOL 设计为何被视为业界标杆。核心洞见：<strong>Claude Code 不是把工具当 API 包装，而是把工具当 Agent 的"<a href="../concepts/操作系统.html">操作系统</a>接口"</strong>。</p>
+<p>本分析综合了 8 个知识库页面，从七个维度系统拆解 <a href="../entities/Claude Code.html">Claude Code</a> 的 TOOL 设计为何被视为业界标杆。核心洞见：<strong><a href="../entities/Claude Code.html">Claude Code</a> 不是把工具当 API 包装，而是把工具当 Agent 的"<a href="../concepts/操作系统.html">操作系统</a>接口"</strong>。</p>
 <h2 id="_2">七维分析框架</h2>
 <h3 id="aci">维度一：ACI 设计哲学</h3>
-<p>工具设计遵循 Anthropic 的 ACI（<a href="../concepts/Agent计算机接口.html">Agent-Computer Interface</a>）理念，将工具优化置于提示词优化之上。五大原则：少而精、命名空间、语义化响应、Token 效率、工具描述即提示工程。</p>
+<p>工具设计遵循 <a href="../entities/Anthropic.html">Anthropic</a> 的 ACI（<a href="../concepts/Agent计算机接口.html">Agent-Computer Interface</a>）理念，将工具优化置于提示词优化之上。五大原则：少而精、命名空间、语义化响应、Token 效率、工具描述即提示工程。</p>
 <p>来源：<a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></p>
 <h3 id="tool-use-examples">维度二：Tool Use Examples 模式</h3>
 <p>JSON Schema + 示例的双重定义方式，将复杂参数处理准确率从 72% 提升至 90%。Schema 定义结构有效性，示例表达使用模式。</p>
@@ -147,27 +147,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>五层容错：失败反馈自我修正、参数验证防崩溃、实时进度推送、消息队列化、AbortSignal 中断。工具执行不是"调用→返回"，而是"调用→验证→执行→反馈→修正"的闭环。</p>
 <p>来源：<a href="../concepts/Agent循环.html">Agent循环</a></p>
 <h3 id="hook">维度四：Hook 系统可编程性</h3>
-<p>覆盖会话全生命周期的钩子（Context/New/Save/Summary/Cleanup），采用即发即忘模式不阻塞主进程。使 Claude Code 从聊天机器人升级为可编程开发平台。</p>
+<p>覆盖会话全生命周期的钩子（Context/New/Save/Summary/Cleanup），采用即发即忘模式不阻塞主进程。使 <a href="../entities/Claude Code.html">Claude Code</a> 从聊天机器人升级为可编程开发平台。</p>
 <p>来源：<span style="color:#e74c3c" title="broken link">Claude Code Hook System</span></p>
 <h3 id="mcp">维度五：MCP 可组合性</h3>
 <p>同时扮演 MCP 客户端和服务端，实现 Agent 的"可组合性"——任何实例都可成为更大系统的工具节点。工具集成从编程问题变成配置问题。</p>
 <p>来源：<a href="../concepts/MCP协议层.html">MCP协议层</a></p>
 <h3 id="_3">维度六：上下文工程驱动</h3>
-<p>工具响应深度融入 Context Engineering：<a href="../concepts/即时上下文检索.html">即时上下文检索</a>、<a href="../concepts/上下文腐烂.html">上下文腐烂</a>意识、<a href="../concepts/注意力预算.html">注意力预算</a>约束。工具响应必须高<a href="../concepts/信噪比.html">信噪比</a>，因为 <a href="../concepts/Transformer架构.html">Transformer</a> 的<a href="../concepts/注意力预算.html">注意力资源</a>有限。</p>
-<p>来源：<span style="color:#e74c3c" title="broken link">Context Engineering</span></p>
+<p>工具响应深度融入 <a href="../concepts/Context Engineering.html">Context Engineering</a>：<a href="../concepts/即时上下文检索.html">即时上下文检索</a>、<a href="../concepts/上下文腐烂.html">上下文腐烂</a>意识、<a href="../concepts/注意力预算.html">注意力预算</a>约束。工具响应必须高<a href="../concepts/信噪比.html">信噪比</a>，因为 <a href="../concepts/Transformer架构.html">Transformer</a> 的<a href="../concepts/注意力预算.html">注意力资源</a>有限。</p>
+<p>来源：<a href="../concepts/Context Engineering.html">Context Engineering</a></p>
 <h3 id="_4">维度七：评估驱动开发</h3>
 <p>工具开发不是"写完就上线"，而是原型→评估→分析→改进的循环。实验显示 Claude 优化后的工具性能高于人工编写版本。</p>
 <p>来源：<a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></p>
 <h2 id="_5">核心结论</h2>
-<p>Claude Code TOOL 设计的本质突破在于：<strong>Agent 的上限不再仅由模型参数规模决定，而是由"模型 × 工具 × 界面"的系统乘积决定</strong>。</p>
-<p>这与 <a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> 中的 Anthropic 任务 Harness 路线一致：从最小 Harness 出发，随模型能力迭代减复杂度。也与 <a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a> 的分离评估思想呼应——工具设计需要独立的评估循环，而非依赖模型自我评估。</p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> TOOL 设计的本质突破在于：<strong>Agent 的上限不再仅由模型参数规模决定，而是由"模型 × 工具 × 界面"的系统乘积决定</strong>。</p>
+<p>这与 <a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> 中的 <a href="../entities/Anthropic.html">Anthropic</a> 任务 Harness 路线一致：从最小 Harness 出发，随模型能力迭代减复杂度。也与 <a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a> 的分离评估思想呼应——工具设计需要独立的评估循环，而非依赖模型自我评估。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><a href="../entities/Claude-Code.html">Claude-Code</a></li>
 <li><a href="../concepts/Agent计算机接口.html">Agent计算机接口</a></li>
 <li><a href="../concepts/Agent循环.html">Agent循环</a></li>
 <li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a></li>
-<li><span style="color:#e74c3c" title="broken link">Context Engineering</span></li>
+<li><a href="../concepts/Context Engineering.html">Context Engineering</a></li>
 <li><a href="../concepts/Claude-Code-Hook-System.html">Claude Code Hook System</a></li>
 <li><a href="../concepts/MCP协议层.html">MCP协议层</a></li>
 <li><a href="../concepts/生成器-评估器架构.html">生成器-评估器架构</a></li>

@@ -135,16 +135,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code 上下文工程全景</h1>
 <h2 id="_1">综合洞见</h2>
-<p>Claude Code 的<a href="../concepts/Context-Engineering.html">上下文工程</a>本质是：<strong>在 <a href="../concepts/LLM-Statelessness.html">LLM 无状态性</a>约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。</strong> 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。</p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> 的<a href="../concepts/Context-Engineering.html">上下文工程</a>本质是：<strong>在 <a href="../concepts/LLM-Statelessness.html">LLM 无状态性</a>约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。</strong> 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。</p>
 <h2 id="llm">问题层：LLM 无状态性</h2>
-<p>LLM 的每次调用都从零状态开始。Claude Code 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。</p>
+<p>LLM 的每次调用都从零状态开始。<a href="../entities/Claude Code.html">Claude Code</a> 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。</p>
 <p>根本问题：<strong>"说过一次的话"和"已确认的约束"在系统里拥有相同地位</strong>——都在下一次会话后消失。</p>
 <h2 id="l0l4">架构层：L0–L4 五层记忆</h2>
 <table>
 <thead>
 <tr>
 <th>层</th>
-<th>Claude Code 中的内容</th>
+<th><a href="../entities/Claude Code.html">Claude Code</a> 中的内容</th>
 <th>对应 Hook</th>
 </tr>
 </thead>
@@ -160,14 +160,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>Context Hook 注入</td>
 </tr>
 <tr>
-<td>L2 Episodic Memory</td>
+<td>L2 <span style="color:#e74c3c" title="broken link">情节记忆&lt;/td&gt;
+&lt;td&gt;Episodic Memory</span></td>
 <td>决策+结论+pending items</td>
-<td>Summary Hook 压缩</td>
 </tr>
 <tr>
-<td>L3 Semantic Memory</td>
+<td>L3 <span style="color:#e74c3c" title="broken link">语义记忆&lt;/td&gt;
+&lt;td&gt;Semantic Memory</span></td>
 <td>项目知识、架构惯例</td>
-<td>Cleanup Hook 晋升</td>
 </tr>
 <tr>
 <td>L4 Raw Archive</td>
@@ -235,7 +235,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>⚠️ 禁止压缩数字/合同/代码逻辑。</p>
 <h2 id="_4">关键结论</h2>
 <blockquote>
-<p><strong>不要让 Claude Code 会话变成"一次性消耗品"。</strong> 通过 Hook + 分层记忆 + 渐进检索，可以让每次会话的产出（决策、约定、洞见）晋升为下一次会话的 L3 背景知识，实现知识的滚雪球式积累。</p>
+<p><strong>不要让 <a href="../entities/Claude Code.html">Claude Code</a> 会话变成"一次性消耗品"。</strong> 通过 Hook + 分层记忆 + 渐进检索，可以让每次会话的产出（决策、约定、洞见）晋升为下一次会话的 L3 背景知识，实现知识的滚雪球式积累。</p>
 </blockquote>
 <h2 id="_5">来源</h2>
 <ul>

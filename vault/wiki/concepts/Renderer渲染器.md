@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 渲染管线, 3D引擎, UrhoX]
+tags: ["渲染", "渲染管线", "3D引擎", "UrhoX", "游戏开发"]
 aliases: [Renderer, 渲染器配置, 全局渲染器]
 relates_to: [UrhoX引擎, RenderPath渲染管线, Viewport渲染视口, Light光照系统]
 supersedes: null

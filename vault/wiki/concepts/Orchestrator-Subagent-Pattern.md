@@ -9,6 +9,7 @@ source_count: 1
 tags:
   - AI
   - 架构
+  - Agent系统
 aliases:
   - "Orchestrator-Subagent Pattern"
   - "协调器 - 子智能体模式"

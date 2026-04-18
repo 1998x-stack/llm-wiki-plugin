@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [3D, 文件格式, 游戏引擎, 模型]
+tags: ["3D", "文件格式", "游戏引擎", "模型", "游戏开发"]
 aliases: [FBX, Filmbox]
 relates_to: [UrhoXCLI, LOD（细节层次）]
 supersedes: null

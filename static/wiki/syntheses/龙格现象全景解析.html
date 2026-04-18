@@ -158,20 +158,7 @@ $$|f-P_n|_\infty \leq (1+\Lambda_n)\cdot E_n(f)$$
 <tbody>
 <tr>
 <td>等距节点插值（零插值误差）→ 端点发散</td>
-<td>过拟合（零训练误差）→ 泛化差</td>
-</tr>
-<tr>
-<td>更多等距节点 → 更坏</td>
-<td>更多参数但无正则化 → 更坏</td>
-</tr>
-<tr>
-<td>全局多项式牵一发动全身</td>
-<td>深层耦合导致难以局部修正</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_5">两条解决路线</h2>
-<p><strong>切比雪夫节点</strong>：$\xi_k = \cos!\left(\frac{2k-1}{2(n+1)}\pi\right)$，端点加密，$\max|\omega_{n+1}|=1/2^n$（最小），$\Lambda_n$ 对数增长。适用：<a href="../concepts/谱方法.html">谱方法</a>、高精度函数逼近。</p>
+<td><span style="color:#e74c3c" title="broken link">\omega_{n+1}|=1/2^n$（最小），$\Lambda_n$ 对数增长。适用：[[谱方法</span>、高精度函数逼近。</p>
 <p><strong><a href="../concepts/样条方法.html">样条方法</a></strong>：分段三次多项式，$C^2$ 连续，系数由三对角方程组确定。适用：CAD/工程插值，函数不要求光滑。</p>
 <h2 id="_6">来源</h2>
 <ul>

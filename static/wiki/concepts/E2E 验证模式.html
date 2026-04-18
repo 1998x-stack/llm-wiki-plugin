@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E2E 验证模式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / E2E 验证模式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">e2e-testing</span><span class="tag">verification</span><span class="tag">agent-pattern</span><span class="tag">ralph-loop</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="e2e">E2E 验证模式</h1>
+<h2 id="_1">概述</h2>
+<p>E2E 验证模式是一组面向 Agent 开发循环的外部运行时验证方法，核心原则是"外部验证，不信任自评估"——LLM 在查看自己写的代码时极易产生确认偏误，唯一可靠的验证是启动真实运行时、执行真实操作、验证真实结果。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心原则：外部验证，不信任自评估</strong>：</li>
+<li>❌ 错误：让 Agent 阅读自己写的代码并判断"应该能用"</li>
+<li>✅ 正确：启动真实浏览器/服务器，执行真实操作，验证真实结果</li>
+<li>
+<p>LLM 极容易在查看自己写的代码时产生确认偏误，必须通过外部运行时验证打破这一循环</p>
+</li>
+<li>
+<p><strong>模式一：<a href="浏览器自动化验证.html">浏览器自动化验证</a>（Dev-Browser Skill / <a href="../entities/Puppeteer MCP.html">Puppeteer MCP</a>）</strong>：</p>
+</li>
+<li>最重要的验证手段，适用于所有前端 UI Story</li>
+<li>在 CLAUDE.md 中声明 Skill，引导 Agent 使用 dev-browser 或 <a href="../entities/Puppeteer MCP.html">Puppeteer MCP</a></li>
+<li>标准流程：打开 localhost:3000 → 模拟用户操作（点击、输入、提交）→ 截图检查 → 验证 acceptanceCriteria</li>
+<li>
+<p><a href="../entities/Puppeteer MCP.html">Puppeteer MCP</a> 工具链：<code>puppeteer_navigate</code>、<code>puppeteer_screenshot</code>、<code>puppeteer_fill</code>、<code>puppeteer_click</code>、<code>puppeteer_evaluate</code></p>
+</li>
+<li>
+<p><strong>模式一替代方案：Playwright 独立脚本验证</strong>：</p>
+</li>
+<li>使用 Python Playwright async API 编写独立验证脚本（如 <code>scripts/verify-story.py</code>）</li>
+<li>按 story-id 索引测试函数，支持单 Story 验证</li>
+<li>验证失败时自动保存截图（<code>debug-{story_id}.png</code>）辅助调试</li>
+<li>
+<p>输出标准化结果：<code>RESULT: PASS</code> 或 <code>RESULT: FAIL — {error}</code></p>
+</li>
+<li>
+<p><strong>模式二：API 测试（curl 脚本链）</strong>：</p>
+</li>
+<li>对于 API Story，使用 curl 链验证（如 <code>scripts/verify-api.sh</code>）</li>
+<li>支持认证流程：先登录获取 token，再用 Bearer token 请求受保护端点</li>
+<li>响应验证：用 Python 一行脚本解析 JSON 并断言关键字段（如 <code>assert 'token' in d</code>）</li>
+<li>
+<p>环境变量支持：<code>BASE_URL</code> 可配置，适配不同环境</p>
+</li>
+<li>
+<p><strong>模式三：自动测试套件集成</strong>：</p>
+</li>
+<li>在 AGENTS.md 中记录测试命令，Agent 每次迭代后运行</li>
+<li>全量测试（迭代结束前）：<code>npm test</code>、<code>pytest -v</code>、<code>go test ./... -v</code>、<code>cargo test</code></li>
+<li>单文件测试（开发过程中）：针对特定测试文件运行</li>
+<li>
+<p>关键约束：完成 Story 后运行相关测试；破坏已有测试必须提交前修复；2 次尝试内无法修复则 <code>git revert</code></p>
+</li>
+<li>
+<p><strong>模式四：截图回归测试（Screenshot-Based Regression）</strong>：</p>
+</li>
+<li>保存截图作为回归基准，路径约定：<code>screenshots/[story-id]-[step].png</code></li>
+<li>命名规范：<code>auth-001-register-form.png</code>、<code>auth-001-dashboard.png</code></li>
+<li>用途：调试 + 未来回归对比</li>
+<li>
+<p>清理策略：每次 PR 合并后清理 screenshots/ 目录</p>
+</li>
+<li>
+<p><strong>验证失败处理树</strong>：</p>
+</li>
+<li>功能实现问题 → Attempt 2 修复 → 重新验证 → 2 次都失败 → <code>git revert</code> + 记录 BLOCKED + 下一个 Story</li>
+<li>环境问题（数据库连接失败、端口占用等）→ 修复环境 → <code>bash init.sh</code> → 重新验证</li>
+<li>
+<p>测试脚本问题（测试本身有 bug）→ 修复测试脚本 → 记录到 AGENTS.md → 重新验证</p>
+</li>
+<li>
+<p><strong>验证命令速查表</strong>：</p>
+</li>
+<li>前端 Story：<code>puppeteer_navigate</code> + <code>puppeteer_fill</code> + <code>puppeteer_click</code> + <code>puppeteer_screenshot</code></li>
+<li>API Story：<code>curl -X POST/GET/PUT/DELETE ... | python3 -c "import json,sys; ..."</code></li>
+<li>数据库验证：Python 直接查询 session 计数</li>
+<li>完整测试套件：<code>npm test -- --passWithNoTests 2&gt;&amp;1 | tail -20</code></li>
+<li>服务器健康检查：<code>curl -s http://localhost:3000 -o /dev/null -w "%{http_code}"</code>（期望 200）</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/testing-patterns.md</span> — Testing Patterns 完整文档（四种验证模式、失败处理树、命令速查表）</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — part_of（Ralph 系统的核心验证方法论）</li>
+<li><a href="浏览器自动化验证.html">浏览器自动化验证</a> — extends（本文是其上位概念，涵盖更多验证模式）</li>
+<li><a href="../entities/Puppeteer MCP.html">Puppeteer MCP</a> — uses（前端验证的底层工具）</li>
+<li><a href="AGENTS.html 项目约定文件.html">AGENTS.md 项目约定文件</a> — uses（测试命令和规则记录载体）</li>
+<li><a href="PRD 驱动开发.html">PRD 驱动开发</a> — enables（验证通过是更新 passes 的前提条件）</li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — part_of（Harness 的验证层设计）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Dumb Zone.html">&larr; Dumb Zone</a>
+    <a href="ECS架构.html">ECS架构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

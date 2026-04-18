@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 电生理学
   - 生物电
+  - 脑科学
 aliases:
   - "Luigi Galvani"
   - "路易吉·伽伐尼"

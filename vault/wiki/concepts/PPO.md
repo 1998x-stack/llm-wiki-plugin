@@ -33,7 +33,7 @@ supersedes: null
 # PPO
 
 ## 概述
-Schulman et al. (OpenAI, 2017) 提出的近端策略优化算法。通过 Clip 目标函数近似 TRPO 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 RL 算法，也是 RLHF（InstructGPT/ChatGPT）的核心组件。
+Schulman et al. ([[OpenAI]], 2017) 提出的近端策略优化算法。通过 Clip 目标函数近似 TRPO 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 RL 算法，也是 RLHF（InstructGPT/ChatGPT）的核心组件。
 
 ## 关键内容
 
@@ -51,7 +51,7 @@ Schulman et al. (OpenAI, 2017) 提出的近端策略优化算法。通过 Clip �
 
 5. **工程细节**：优势归一化 (Â-mean)/std；梯度裁剪 max norm 0.5；Adam 学习率 3e-4；并行环境数据收集（N×T transitions）。
 
-6. **广泛应用**：OpenAI Dactyl（机器人）、OpenAI Five（Dota2）、InstructGPT/ChatGPT（RLHF）、AlphaStar，是 RLHF 标准算法选择。
+6. **广泛应用**：[[OpenAI]] Dactyl（机器人）、[[OpenAI]] Five（Dota2）、InstructGPT/ChatGPT（RLHF）、AlphaStar，是 RLHF 标准算法选择。
 
 ## 来源
 - [[raw/assets/RL-Analysis/rl_04_reinforce_trpo_ppo]] — P-03：PPO 完整分析（Schulman et al. OpenAI 2017）

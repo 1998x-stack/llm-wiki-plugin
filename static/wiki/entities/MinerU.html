@@ -129,8 +129,8 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">PDF处理</span><span class="tag">开源工具</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="mineru">MinerU</h1>
@@ -187,7 +187,41 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="pdfpageinfo">核心数据结构：PDFPageInfo</h3>
 <p>贯穿整个管道的核心数据结构，包含 page_no、width、height、raw_spans、layout_bboxes、para_blocks、table_blocks、formula_blocks、figure_blocks、sorted_blocks 等字段。每一层往其中填充不同字段，最终 <code>sorted_blocks</code> 就是生成 Markdown 的直接来源。</p>
-<h3 id="_6">与同类工具对比</h3>
+<h3 id="7">内容生成器（第 7 层）</h3>
+<p>经过前六层处理后，MinerU 拥有<strong>有序的内容块列表</strong>，每个块包含 type、content、bbox、page_no 及关联的图片/表格结构。<a href="../concepts/内容生成器.html">内容生成器</a>将这些块序列化为人类可读、机器可用的格式。</p>
+<p><strong>支持的输出格式</strong>：
+- <strong>Markdown</strong>（<code>.md</code>）：主要格式，可直接用于 RAG/LLM 输入
+- <strong>JSON</strong>（<code>.json</code>）：完整结构化数据，带坐标信息
+- <strong>内容目录</strong>（<code>.md</code> 附录）：自动提取的标题层级树
+- <strong>图片资源</strong>（<code>images/</code> 目录）：提取的嵌入图像</p>
+<p><strong>块类型到 Markdown 的映射</strong>：
+| 块类型 | Markdown 输出 |
+|--------|-------------|
+| title | <code>#</code>~<code>####</code> 标题（由<a href="../concepts/标题层级推断.html">标题层级推断</a>决定） |
+| text | 直接输出段落文字 |
+| equation | <code>$$...$$</code> 独立公式块 |
+| table | Markdown 表格或 HTML（复杂跨单元格时） |
+| figure | <code>![caption](path)</code> 图片引用 + 图注 |
+| header/footer | 跳过 |
+| reference | 无序列表 <code>-</code> |</p>
+<p><strong>行内格式处理</strong>：行内公式通过 <code>{{FORMULA:N}}</code> 占位符替换为 <code>$...$</code>；粗体/斜体/等宽字体从 <a href="PyMuPDF.html">PyMuPDF</a> 的字体信息转换为 <code>**</code>/<code>*</code>/<code>`</code> 标记。</p>
+<p><strong>跨页段落合并</strong>：检测前页末尾是否以完整句子结束（句号/问号/叹号），且当前页开头是否为小写字母或中文字符，若是则移除换行直接拼接。</p>
+<p><strong>图片去重</strong>：通过 MD5 哈希前 8 位作为文件名，避免重复保存相同图片。</p>
+<p><strong>标题层级推断</strong>：通过字号相对大小（<code>size_ratio = font_size / body_font_size</code>）推断 H1~H4，同时检测编号模式（如 Section 1.2.3）辅助判断。</p>
+<h3 id="python-api">命令行与 Python API</h3>
+<pre><code class="language-bash">magic-pdf -p paper.pdf -o output_dir/           # 基本使用
+magic-pdf -p scanned.pdf -o output_dir/ --backend ocr  # 强制 OCR
+magic-pdf -p papers/ -o output_dir/ --workers 4  # 批量处理
+</code></pre>
+<p>Python API 通过 <code>UNIPipe</code> 实现 auto 模式，自动判断文字型/扫描件，依次调用 <code>pipe_classify()</code> → <code>pipe_analyze()</code> → <code>pipe_parse()</code>。</p>
+<h3 id="_6">局限性</h3>
+<ul>
+<li>跨页内容关联（如跨页表格）支持有限</li>
+<li>复杂手写内容识别精度低</li>
+<li>特殊排版（竖排中文、RTL 阿拉伯文）支持不完整</li>
+<li>大型 PDF（500页+）处理速度有优化空间</li>
+</ul>
+<h3 id="_7">与同类工具对比</h3>
 <table>
 <thead>
 <tr>
@@ -251,7 +285,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <p>最大差异化优势：<strong>中文文档支持</strong>（<a href="PaddleOCR.html">PaddleOCR</a> 中文能力）+ <strong>公式/表格专项识别</strong>的组合。</p>
-<h3 id="_7">项目代码结构</h3>
+<h3 id="_8">项目代码结构</h3>
 <pre><code>magic-pdf/
 ├── magic_pdf/
 │   ├── pipe/                    # 管道入口（TextPipe, OCRPipe, UnionPipe）
@@ -262,12 +296,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 │   ├── para/                    # 段落重建
 │   └── operators/               # 内容块操作算子
 </code></pre>
-<h2 id="_8">来源</h2>
+<h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_02_pdf_parsing.md</span> — MinerU 深度解析系列 · 第二篇：底层 PDF 解析引擎</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_04_ocr.md</span> — MinerU 深度解析系列 · 第四篇：OCR 引擎</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_08_output.md</span> — MinerU 深度解析系列 · 第八篇：内容生成器与输出管道</li>
 <li><a href="https://github.com/opendatalab/MinerU">magic-pdf GitHub</a></li>
 </ul>
-<h2 id="_9">相关</h2>
+<h2 id="_10">相关</h2>
 <ul>
 <li><a href="上海人工智能实验室.html">上海人工智能实验室</a> — 开发组织</li>
 <li><a href="PyMuPDF.html">PyMuPDF</a> — 底层 PDF 解析引擎</li>
@@ -279,11 +316,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/文档布局检测.html">文档布局检测</a> — 第三层流水线</li>
 <li><a href="../concepts/光学字符识别.html">光学字符识别</a> — 第四层 OCR 管道</li>
 <li><a href="../concepts/公式识别.html">公式识别</a> — 第四层公式识别</li>
+<li><a href="../concepts/PDF内容流.html">PDF内容流</a> — PDF 内部数据结构</li>
+<li><a href="../concepts/PDF坐标系.html">PDF坐标系</a> — 坐标参照系统</li>
+<li><a href="../concepts/Span层级结构.html">Span层级结构</a> — 文字提取嵌套结构</li>
+<li><a href="../concepts/MinerUSpan格式.html">MinerUSpan格式</a> — 内部数据格式</li>
+<li><a href="../concepts/内容生成器.html">内容生成器</a> — 第七层：有序块到 Markdown/JSON 的序列化</li>
+<li><a href="../concepts/标题层级推断.html">标题层级推断</a> — 基于字号比例推断 H1~H4</li>
+<li><a href="../concepts/跨页段落合并.html">跨页段落合并</a> — 跨页段落连续性检测与拼接</li>
+<li><a href="../concepts/输出质量控制.html">输出质量控制</a> — 输出完整性自检与空白页过滤</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MetaFind.html">&larr; MetaFind</a>
-    <a href="MoonSharp.html">MoonSharp &rarr;</a>
+    <a href="Milla Jovovich.html">&larr; Milla Jovovich</a>
+    <a href="Ming-Wei Chang.html">Ming-Wei Chang &rarr;</a>
   </div>
 </div>
 </body>

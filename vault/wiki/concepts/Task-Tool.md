@@ -40,7 +40,7 @@ supersedes:
 
 ## 概述
 
-Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 [[TodoWrite-Tool|TodoWrite]] 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。
+[[Claude Code]] 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 [[TodoWrite-Tool|TodoWrite]] 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。
 
 ## 关键内容
 
@@ -132,14 +132,14 @@ Claude Code 推出的任务协调工具，用于替代 [[TodoWrite-Tool]]。与 
 - 识别关键路径 → 优化执行
 
 **长时任务跟踪**：
-- 跨会话持久化
+- 跨[[会话持久化]]
 - 支持暂停和恢复
 - 上下文传递
 
 ### 在 Claude Code 生态中的位置
 
 **工具集合**：
-- Claude Code 目前拥有约 20 个工具
+- [[Claude Code]] 目前拥有约 20 个工具
 - Task Tool 是核心协调工具之一
 - 与 [[AskUserQuestion-Tool]]、[[ExitPlanTool]] 等协同工作
 

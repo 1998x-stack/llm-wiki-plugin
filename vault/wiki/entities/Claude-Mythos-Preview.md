@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Claude Mythos Preview 是 Anthropic 发布的预览版 Claude 模型，是支持 [[上下文压缩]] 功能的模型之一。该模型通过 Anthropic 官方 glasswing 页面发布。
+Claude Mythos Preview 是 [[Anthropic]] 发布的预览版 Claude 模型，是支持 [[上下文压缩]] 功能的模型之一。该模型通过 [[Anthropic]] 官方 glasswing 页面发布。
 
 ## 关键内容
 
@@ -38,7 +38,7 @@ Claude Mythos Preview 是 Anthropic 发布的预览版 Claude 模型，是支持
 - **模型 ID**：`claude-mythos-preview`
 - **状态**：Preview（预览版）
 - **[[上下文窗口]]**：1M tokens
-- **发布方**：Anthropic
+- **发布方**：[[Anthropic]]
 - **发布页面**：https://anthropic.com/glasswing
 
 ### 支持的功能
@@ -50,7 +50,7 @@ Claude Mythos Preview 是 Anthropic 发布的预览版 Claude 模型，是支持
 
 ### 模型系列定位
 
-Mythos 作为预览版模型，通常用于测试 Anthropic 的最新功能和 API 特性。与 [[Claude-Opus-4-6]] 和 [[Claude-Sonnet-4-6]] 同为支持压缩功能的模型家族成员。
+Mythos 作为预览版模型，通常用于测试 [[Anthropic]] 的最新功能和 API 特性。与 [[Claude-Opus-4-6]] 和 [[Claude-Sonnet-4-6]] 同为支持压缩功能的模型家族成员。
 
 ## 来源
 

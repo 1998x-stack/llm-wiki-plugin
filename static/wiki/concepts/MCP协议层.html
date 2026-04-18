@@ -134,7 +134,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="mcp">MCP协议层</h1>
-<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。<a href="../entities/Codex CLI.html">Codex</a> 同时扮演 <strong>MCP 客户端</strong>（连接外部工具）和 <strong>MCP 服务端</strong>（将自身暴露给其他 Agent）两个角色。</p>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的工具连接协议层。MCP（<a href="MCP.html">Model Context Protocol</a>）是 <a href="../entities/Anthropic.html">Anthropic</a> 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。<a href="../entities/Codex CLI.html">Codex</a> 同时扮演 <strong>MCP 客户端</strong>（连接外部工具）和 <strong>MCP 服务端</strong>（将自身暴露给其他 Agent）两个角色。</p>
 <h2 id="_1">核心价值</h2>
 <p>传统方式每个工具都需要定制集成代码。MCP 方式：Agent 通过统一协议连接任意 MCP 兼容工具，工具复用，无需定制。</p>
 <h2 id="codex">Codex 双重身份</h2>
@@ -199,8 +199,8 @@ env = { GITHUB_TOKEN = &quot;$GITHUB_TOKEN&quot; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MCAR.html">&larr; MCAR</a>
-    <a href="MDL格式.html">MDL格式 &rarr;</a>
+    <a href="MCP 工具集成.html">&larr; MCP 工具集成</a>
+    <a href="MD5 去重.html">MD5 去重 &rarr;</a>
   </div>
 </div>
 </body>

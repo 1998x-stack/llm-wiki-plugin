@@ -32,7 +32,7 @@ supersedes: null
 
 3. **与 NCF 的关系**：NGCF 是 [[Neural Collaborative Filtering]] 的后续工作，从"用神经网络建模用户-物品交互"推进到"用图结构传播协同信号"。NCF 关注交互函数的表达能力，NGCF 关注高阶连通性（high-order connectivity）的利用。
 
-4. **[[Ablation Study|消融实验]]的教训**：[[LightGCN]] 论文对 NGCF 进行了细致的消融分析，发现：（a）移除特征变换（NGCF-f）带来一致性提升；（b）单独移除非线性激活（NGCF-n）效果略有下降；（c）同时移除两者（NGCF-fn）效果最好。NGCF 的问题在于训练困难而非过拟合——训练损失始终高于简化版本。
+4. **[[Ablation Study|消融实验]]的教训**：[[LightGCN]] 论文对 NGCF 进行了细致的消融分析，发现：（a）移除特征变换（NGCF-f）带来一致性提升；（b）单独移除非线性激活（NGCF-n）效果略有下降；（c）同时移除两者（NGCF-fn）效果最好。NGCF 的问题在于训练困难而非[[过拟合（Overfitting）|过拟合]]——训练损失始终高于简化版本。
 
 5. **历史地位**：NGCF 掀起了 GCN 在推荐系统中的[[规范化理论|范式]]变革，与 [[PinSage]]（KDD 2018）、GC-MC（KDD 2018）等标志性工作共同奠定了图推荐方向。后被 [[LightGCN]] 取代成为新的基线标准。
 

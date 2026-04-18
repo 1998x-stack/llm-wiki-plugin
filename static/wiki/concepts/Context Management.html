@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Context Management（上下文管理）是 Agent 系统中决定哪些历史保留、哪些删除、错误格式如何处理、哪些 observation 更值得进入 prompt 的机制。它本质上是 agent 的"工作记忆管理"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心问题</h3>
-<p>LM 不是外部记忆无限的系统。每条历史都占用上下文预算，而且错误、冗余、过时信息会污染后续决策。</p>
+<p>LM 不是外部记忆无限的系统。每条历史都占用<a href="上下文预算管理.html">上下文预算</a>，而且错误、冗余、过时信息会污染后续决策。</p>
 <h3 id="_4">论文发现</h3>
 <p>在 <a href="SWE-bench.html">SWE-bench</a> Lite 的<a href="Ablation Study.html">消融实验</a>中：
 - <strong>Last 5 observations</strong> 的效果优于 <strong>Full history</strong>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 决定了哪些历史要保留、哪些要删
 - 错误格式怎么处理
 - 哪些 observation 更值得进入 prompt</p>
-<p>这与 Context Engineering 中的"分层记忆（hot/warm/cold）"和"按需检索"理念一致。</p>
+<p>这与 <a href="Context Engineering.html">Context Engineering</a> 中的"分层记忆（hot/warm/cold）"和"按需检索"理念一致。</p>
 <h3 id="_6">设计原则</h3>
 <table>
 <thead>
@@ -192,8 +192,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="CollisionShape直径参数陷阱.html">&larr; CollisionShape直径参数陷阱</a>
-    <a href="Context-Engineering.html">Context-Engineering &rarr;</a>
+    <a href="Context Engineering.html">&larr; Context Engineering</a>
+    <a href="Context Rot.html">Context Rot &rarr;</a>
   </div>
 </div>
 </body>

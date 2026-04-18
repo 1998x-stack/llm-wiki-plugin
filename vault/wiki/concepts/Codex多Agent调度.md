@@ -21,6 +21,9 @@ relates_to:
   - target: "[[Codex沙箱系统]]"
     type: uses
     confidence: 0.8
+  - target: "[[Agent角色系统]]"
+    type: uses
+    confidence: 0.85
 supersedes: null
 ---
 
@@ -90,11 +93,22 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 2. 每个 Worker Agent 独立上下文、独立沙箱
 3. 主 Agent wait 所有 worker → 汇总报告
 
-**DevDay 2025 案例**：7 个终端同时跑 7 个 [[Codex CLI|Codex]] 实例，各自开发一款 Phaser.js 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。
+**DevDay 2025 案例**：7 个终端同时跑 7 个 [[Codex CLI|Codex]] 实例，各自开发一款 [[Phaser.js]] 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。
+
+## 降低不确定性的机制
+
+| 不确定性场景 | Multi-Agent 的应对 |
+|------------|------------------|
+| 单个 Agent 上下文不够 | 分解任务，每个 subagent 专注小上下文 |
+| 任务相互依赖导致顺序问题 | wait_agent 显式依赖同步 |
+| 某个子任务 Agent 出错 | 局部失败隔离，不影响其他 subagent |
+| Agent 角色不专业，泛化处理 | [[Agent角色系统|Role System]] 注入专业 guidance |
+| 资源失控，Token 爆炸 | max_concurrent_agents + timeout 硬限制 |
+| 不知道 subagent 在做什么 | 路径地址系统 + TUI agent 树展示 |
 
 ## 工程哲学
 
-> **Multi-Agent 把"人类团队的分工协作"映射到 AI Agent 层面**。好的团队有架构师、工程师、Review 者各司其职。Role 系统让不同 subagent 各自专注，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。
+> **Multi-Agent 把"人类团队的分工协作"映射到 AI Agent 层面**。好的团队有架构师、工程师、Review 者各司其职。Role 系统让不同 subagent 各自专注，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。最重要的工程决策：**嵌套深度限制为 1**——简单、可预测、易调试，比理论上的无限灵活更重要。
 
 ## 来源
 

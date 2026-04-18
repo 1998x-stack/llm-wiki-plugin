@@ -37,7 +37,7 @@ HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表�
 3. **HSTU 架构改造**（与标准 [[Transformer架构|Transformer]] 的关键区别）：
    - **SiLU 注意力替代 Softmax**：注意力分数计算使用 $\phi_2(QK^\top + \text{relative\_attention\_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。[[Ablation Study|消融实验]]证实 Softmax 替换导致性能下降。
    - **相对注意力偏置替代[[绝对位置编码]]**：将位置信息和时间间隔作为相对偏置直接注入注意力分数，同时编码序列顺序和交互时间距离。
-   - **门控机制（U [[矩阵]]）**：在 QKV 之外引入 U [[矩阵]]作为门控信号，通过 Hadamard 乘积控制[[特征交叉|特征交互]]贡献，类似 LSTM 门控。
+   - **[[门控机制（Gating Mechanism）|门控]]机制（U [[矩阵]]）**：在 QKV 之外引入 U [[矩阵]]作为[[门控机制（Gating Mechanism）|门控]]信号，通过 Hadamard 乘积控制[[特征交叉|特征交互]]贡献，类似 LSTM [[门控机制（Gating Mechanism）|门控]]。
    - **精简架构**：注意力外线性层从 6 个减少到 2 个，激进融合计算操作，降低激活内存。
    - **[[因果掩码]]**：单向注意力，确保[[AR 模型（自回归模型）|自回归]]生成合法性。
 

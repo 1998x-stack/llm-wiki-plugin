@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 3D模型, 网格体, UrhoX]
+tags: ["渲染", "3D模型", "网格体", "UrhoX", "游戏开发"]
 aliases: [StaticModel, 静态模型组件, 静态网格]
 relates_to: [UrhoX引擎, PBR材质系统, LOD（细节层次）, AnimatedModel骨骼动画模型]
 supersedes: null

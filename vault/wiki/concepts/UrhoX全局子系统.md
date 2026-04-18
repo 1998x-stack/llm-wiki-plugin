@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 游戏引擎, API]
+tags: ["UrhoX", "Lua", "游戏引擎", "API", "游戏开发"]
 aliases: [全局单例, UrhoX全局对象, global subsystems]
 relates_to: [UrhoX引擎, UrhoX Lua开发准则, UrhoX音频系统API]
 supersedes: null

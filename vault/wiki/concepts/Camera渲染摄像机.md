@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 摄像机, 3D引擎, UrhoX]
+tags: ["渲染", "摄像机", "3D引擎", "UrhoX", "游戏开发"]
 aliases: [Camera组件, 摄像机组件, 正交摄像机, 透视摄像机]
 relates_to: [UrhoX引擎, Viewport渲染视口, StaticModel静态网格体]
 supersedes: null

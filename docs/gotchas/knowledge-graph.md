@@ -29,3 +29,15 @@
 | 中 | 修复断链 `[[切比雪夫不等式]]` -> 已创建的同名页面 |
 | 低 | 创建 `[[离散傅里叶变换]]` concept 页面 |
 | 低 | 标准化来源节格式（bare string -> `[[raw/...]]`）|
+
+---
+
+## #2 — M2: 1552 wiki 页面未映射到任何 topic map
+
+**Status**: New (2026-04-18)
+
+`.claude/topic-to-wiki.json` 仅覆盖 35 个页面，而 wiki 实际有 1566 个页面。`maps/*.md` 虽然列出了更多页面（通过 `[[wikilink]]`），但 `topic-to-wiki.json` 是权威映射源，导致 M2 检查报告 872+ 页面"不属于任何 map"。
+
+**When it bites**: 每次批量 ingest 创建新页面后，新页面自动不被映射。`wiki:reindex` 的 subagent 只分析部分页面生成 topic 映射，覆盖度极低。
+
+**Workaround/Fix**: 运行 `wiki:reindex` 重建 topic-to-wiki.json（但 subagent 覆盖度仍然有限）。或将 M2 检查改为基于 `maps/*.md` 文件中的 `[[wikilink]]` 而非仅依赖 `topic-to-wiki.json`。

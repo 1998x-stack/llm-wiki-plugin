@@ -46,7 +46,7 @@ Lance Martin（@RLanceMartin）是 AI Agent 和 Claude 生态系统的技术专�
 **技术布道者**：
 - 通过 X 文章和社交媒体分享 Claude 技术洞察
 - 帮助开发者理解和使用 Claude 新能力
-- 连接 Anthropic 官方文档和实际应用场景
+- 连接 [[Anthropic]] 官方文档和实际应用场景
 
 **实践者**：
 - 实际使用 Claude API 构建 Agent 应用

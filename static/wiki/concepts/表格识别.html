@@ -127,28 +127,88 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 表格识别</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">AI</span><span class="tag">表格处理</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="_1">表格识别</h1>
 <h2 id="_2">概述</h2>
-<p>表格识别（Table Recognition）是将 PDF 中的表格还原为结构化数据（如 Markdown 表格）的技术，核心挑战在于从仅靠线条暗示的单元格边界中还原完整表格结构。</p>
+<p>表格识别（Table Recognition）是将 PDF 中的表格图像还原为结构化数据的技术。核心挑战在于表格变体极多（边框表、<a href="三线表.html">三线表</a>、跨行/跨列单元格），且 PDF 中表格以矢量线条或光栅图像两种形式存储。</p>
 <h2 id="_3">关键内容</h2>
-<h3 id="pdf">在 PDF 解析中的挑战</h3>
-<ul>
-<li>PDF 表格的单元格边界仅靠线条暗示，没有语义结构信息</li>
-<li>复杂表格包含合并单元格、嵌套表头、跨行跨列等结构</li>
-<li>需要检测表格位置（布局检测）→ 识别表格结构（表格识别）→ 输出结构化表格</li>
-</ul>
-<h3 id="tablemaster">TableMaster 方案</h3>
-<p><a href="../entities/TableMaster.html">TableMaster</a> 是 <a href="../entities/MinerU.html">MinerU</a> 第四层流水线中的表格识别引擎：
-- 接收布局检测输出的表格检测框
-- 输出结构化的 Markdown 表格
-- 支持复杂表格结构（合并单元格、嵌套表头等）</p>
-<h3 id="_4">与同类工具对比</h3>
+<h3 id="_4">表格的多样性</h3>
+<p>表格识别远比看起来困难，主要变体包括：</p>
+<ol>
+<li><strong>简单边框表格</strong>：有完整横竖边框线，结构清晰</li>
+<li><strong><a href="三线表.html">三线表</a></strong>：学术论文常见，仅顶线、表头分隔线、底线，无竖线，列边界靠文字对齐推断</li>
+<li><strong>跨单元格表格</strong>：包含 rowspan/colspan 合并单元格，将复杂度再上一个台阶</li>
+</ol>
+<h3 id="pdf">PDF 中表格的两种存储方式</h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>来源</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>矢量线条 + 文字</strong></td>
+<td>文字型 PDF</td>
+<td>边框是 PDF 路径命令，文字可用 <a href="../entities/PyMuPDF.html">PyMuPDF</a> 提取，但"哪个字属于哪个单元格"未知</td>
+</tr>
+<tr>
+<td><strong>光栅图像</strong></td>
+<td>扫描件</td>
+<td>整个表格是一张图，必须用视觉方法识别</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mineru">MinerU 双阶段表格识别框架</h3>
+<p><a href="../entities/MinerU.html">MinerU</a> 的表格识别分为两个阶段：</p>
+<p><strong>阶段一：表格结构识别</strong>
+- 模型：<a href="../entities/TableMaster.html">TableMaster</a> / RapidTable
+- 输入：<a href="文档布局检测.html">文档布局检测</a>输出的 table 框裁剪图像
+- 输出：HTML 格式的表格结构（含空 <code>&lt;td&gt;&lt;/td&gt;</code> 占位）+ 每个单元格的 bbox</p>
+<p><strong>阶段二：<a href="表格单元格填充.html">表格单元格填充</a></strong>
+- 文字型 PDF：<a href="../entities/PyMuPDF.html">PyMuPDF</a> Span 坐标对应，找到中心点落在单元格内的 Span
+- 扫描件：OCR 逐单元格识别（加 padding 避免裁剪到边框线）
+- 输出：含文字的完整表格</p>
+<h3 id="_5">跨单元格处理</h3>
+<p>合并单元格（merged cells）是表格识别最复杂的部分。<a href="../entities/TableMaster.html">TableMaster</a> 通过 <code>colspan</code> / <code>rowspan</code> token 表达这种关系。由于 <strong>Markdown 不支持跨单元格</strong>，<a href="../entities/MinerU.html">MinerU</a> 做降级处理：
+- 跨列单元格：复制内容到多个列，用 <code>↑</code> 标记重复
+- JSON 输出：保留完整 HTML 结构
+- 附注：<code>&lt;!-- complex table, see JSON for full structure --&gt;</code></p>
+<h3 id="_6">输出格式</h3>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Markdown</strong></td>
+<td>通用展示</td>
+<td>跨单元格降级处理</td>
+</tr>
+<tr>
+<td><strong>HTML</strong></td>
+<td>完整结构</td>
+<td>保留 colspan/rowspan</td>
+</tr>
+<tr>
+<td><strong>JSON</strong></td>
+<td>机器可读</td>
+<td>含 bbox、cell_data、page_no、html、markdown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">与同类工具对比</h3>
 <table>
 <thead>
 <tr>
@@ -175,21 +235,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<h2 id="_5">来源</h2>
+<h2 id="_8">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_06_table.md</span> — MinerU 深度解析系列 · 第六篇：表格识别系统</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_9">相关</h2>
 <ul>
-<li><a href="../entities/MinerU.html">MinerU</a> — 第四层流水线</li>
-<li><a href="../entities/TableMaster.html">TableMaster</a> — 表格识别引擎</li>
+<li><a href="../entities/MinerU.html">MinerU</a> — 双阶段表格识别框架</li>
+<li><a href="../entities/TableMaster.html">TableMaster</a> — 核心结构识别模型</li>
+<li><a href="表格单元格填充.html">表格单元格填充</a> — 第二阶段内容填充</li>
+<li><a href="三线表.html">三线表</a> — 学术论文常见特殊表格</li>
 <li><a href="PDF解析.html">PDF解析</a> — 所属问题域</li>
-<li><a href="文档布局检测.html">文档布局检测</a> — 前置环节</li>
+<li><a href="文档布局检测.html">文档布局检测</a> — 前置环节，提供 table 检测框</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="行为机器人学.html">&larr; 行为机器人学</a>
-    <a href="被动单身.html">被动单身 &rarr;</a>
+    <a href="表格单元格填充.html">&larr; 表格单元格填充</a>
+    <a href="袋外误差（Out-of-Bag Error）.html">袋外误差（Out-of-Bag Error） &rarr;</a>
   </div>
 </div>
 </body>

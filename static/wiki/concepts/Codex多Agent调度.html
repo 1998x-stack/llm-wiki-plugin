@@ -207,14 +207,49 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 1. 主 Agent 枚举任务目标 → 生成 CSV → 调用 spawn_agents_on_csv
 2. 每个 Worker Agent 独立上下文、独立沙箱
 3. 主 Agent wait 所有 worker → 汇总报告</p>
-<p><strong>DevDay 2025 案例</strong>：7 个终端同时跑 7 个 <a href="../entities/Codex CLI.html">Codex</a> 实例，各自开发一款 Phaser.js 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。</p>
-<h2 id="_4">工程哲学</h2>
-<blockquote>
-<p><strong>Multi-Agent 把"人类团队的分工协作"映射到 AI Agent 层面</strong>。好的团队有架构师、工程师、Review 者各司其职。Role 系统让不同 subagent 各自专注，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。</p>
-</blockquote>
-<h2 id="_5">来源</h2>
-<ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/07_codex_multi_agent.md</span></li>
+<p><strong>DevDay 2025 案例</strong>：7 个终端同时跑 7 个 <a href="../entities/Codex CLI.html">Codex</a> 实例，各自开发一款 <a href="../entities/Phaser.js.html">Phaser.js</a> 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。</p>
+<h2 id="_4">降低不确定性的机制</h2>
+<table>
+<thead>
+<tr>
+<th>不确定性场景</th>
+<th>Multi-Agent 的应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单个 Agent 上下文不够</td>
+<td>分解任务，每个 subagent 专注小上下文</td>
+</tr>
+<tr>
+<td>任务相互依赖导致顺序问题</td>
+<td>wait_agent 显式依赖同步</td>
+</tr>
+<tr>
+<td>某个子任务 Agent 出错</td>
+<td>局部失败隔离，不影响其他 subagent</td>
+</tr>
+<tr>
+<td>Agent 角色不专业，泛化处理</td>
+<td><span style="color:#e74c3c" title="broken link">Agent角色系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;资源失控，Token 爆炸&lt;/td&gt;
+&lt;td&gt;max_concurrent_agents + timeout 硬限制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;不知道 subagent 在做什么&lt;/td&gt;
+&lt;td&gt;路径地址系统 + TUI agent 树展示&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;_5&quot;&gt;工程哲学&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Multi-Agent 把&quot;人类团队的分工协作&quot;映射到 AI Agent 层面&lt;/strong&gt;。好的团队有架构师、工程师、Review 者各司其职。Role 系统让不同 subagent 各自专注，用结构化分工取代&quot;一个 Agent 包揽一切&quot;的脆弱模式。最重要的工程决策：&lt;strong&gt;嵌套深度限制为 1&lt;/strong&gt;——简单、可预测、易调试，比理论上的无限灵活更重要。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;_6&quot;&gt;来源&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[[raw/articles/ai-tools/codex/07_codex_multi_agent.md</span></li>
 </ul>
   </div>
   <div class="page-nav">

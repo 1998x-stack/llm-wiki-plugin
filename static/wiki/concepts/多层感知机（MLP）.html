@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多层感知机（MLP） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 多层感知机（MLP）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">神经网络</span></div>
+</div>
+  <div class="content">
+    <h1 id="mlp">多层感知机（MLP）</h1>
+<h2 id="_1">概述</h2>
+<p><a href="多层感知机.html">多层感知机</a>（Multi-Layer <a href="感知机（Perceptron）.html">Perceptron</a>, MLP）在单层感知机基础上添加一个或多个隐藏层并引入非线性激活函数，能够学习任意非线性决策边界，解决了 XOR 等线性不可分问题。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>结构演进</strong>：从单层感知机（输入→输出）到<a href="多层感知机.html">多层感知机</a>（输入→隐藏层→输出），每个隐藏层包含多个神经元，层与层之间全连接。关键改进是引入非线性激活函数（sigmoid、tanh、ReLU 等），替代感知机的 sign 函数。</p>
+</li>
+<li>
+<p><strong>解决 <a href="XOR 问题.html">XOR 问题</a></strong>：单层感知机无法用一条直线分开 XOR 的四类样本。MLP 通过隐藏层将输入映射到新的特征空间，在该空间中样本变为线性可分，从而解决了这一经典难题。</p>
+</li>
+<li>
+<p><strong>训练方法</strong>：MLP 的训练依赖<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a>算法——通过<a href="链式法则.html">链式法则</a>将输出误差逆向传播到每个隐藏层神经元，实现梯度下降优化。这解决了困扰 AI 领域十余年的"信用<a href="点数问题.html">分配问题</a>"。</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：MLP 是结束<a href="AI 寒冬.html">AI 寒冬</a>的关键技术之一。1980 年代 MLP + <a href="反向传播.html">反向传播</a>的组合重新点燃了神经网络研究的热情，为后续深度神经网络的发展奠定了基础。</p>
+</li>
+<li>
+<p><strong>现代演化</strong>：MLP 是现代深度学习架构的基础组件。从 MLP 出发，加上卷积操作得到 CNN，加上<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>得到 <a href="Transformer 架构.html">Transformer</a>，加上循环结构得到 RNN/LSTM。现代大模型（GPT、Claude、BERT）的每个神经元本质上仍是感知机的变体。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">01_perceptron_1958</span> — 感知机原始论文解读</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="感知机（Perceptron）.html">感知机（Perceptron）</a> — extends</li>
+<li><a href="XOR 问题.html">XOR 问题</a> — supersedes</li>
+<li><a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a> — implements</li>
+<li><a href="AI 寒冬.html">AI 寒冬</a> — supersedes</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — extends</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="多层感知机.html">&larr; 多层感知机</a>
+    <a href="多模态检索.html">多模态检索 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>定义（Itô 等距）</strong>：对适应过程（adapted process）$f(t, \omega)$，通过简单过程逼近定义 $\int_0^T f \, dB$，并使用 Itô 等距保证极限存在：$$\mathbb{E}!\left[\left(\int_0^T f \, dB\right)^2\right] = \mathbb{E}!\left[\int_0^T f^2 \, dt\right]$$</p>
 </li>
 <li>
-<p><strong>Itô 公式（随机链式法则）</strong>：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通链式法则多出 $\frac{1}{2}F'' dt$ 项——来源于<a href="Wiener过程.html">布朗运动</a>的二次变差 $d[B,B]_t = dt$。这是<a href="Wiener过程.html">Wiener过程</a>路径不可微性在微积分中的体现。</p>
+<p><strong>Itô 公式（随机<a href="链式法则.html">链式法则</a>）</strong>：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通<a href="链式法则.html">链式法则</a>多出 $\frac{1}{2}F'' dt$ 项——来源于<a href="Wiener过程.html">布朗运动</a>的二次变差 $d[B,B]_t = dt$。这是<a href="Wiener过程.html">Wiener过程</a>路径不可微性在微积分中的体现。</p>
 </li>
 <li>
 <p><strong>鞅性质</strong>：若 $\mathbb{E}\int_0^T f^2 \, dt &lt; \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与<a href="../maps/概率论.html">概率论</a>中的鞅理论深度融合。</p>
@@ -169,8 +169,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Informer.html">&larr; Informer</a>
-    <a href="Jacobi迭代法.html">Jacobi迭代法 &rarr;</a>
+    <a href="Initializer Agent.html">&larr; Initializer Agent</a>
+    <a href="JSONL格式.html">JSONL格式 &rarr;</a>
   </div>
 </div>
 </body>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>支持向量机 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 支持向量机</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">分类算法</span><span class="tag">统计学习理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">支持向量机</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>支持向量机（SVM）是一种基于统计学习理论的监督学习分类器，通过最大化分类间隔实现最优决策边界。1995年由<a href="../entities/Corinna Cortes.html">Corinna Cortes</a>和<a href="../entities/Vladimir Vapnik.html">Vladimir Vapnik</a>提出，深度学习崛起前（1995-2012）统治机器学习领域。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>核心哲学</strong>：SVM不寻找任意分割线，而是<strong>最大化分类间隔（Margin）</strong>——距两类最近样本点距离之和最大的超平面。由<span style="color:#e74c3c" title="broken link">VC维理论</span>保证泛化能力最强。落在边界上的训练样本称为<strong>支持向量</strong>，SVM由此得名。</li>
+<li><strong>硬间隔与软间隔</strong>：线性可分时用硬间隔SVM，最小化½‖w‖²；实际数据含噪声时用软间隔SVM，引入松弛变量ξᵢ和正则化参数C。C大→严格边界（低偏差高方差），C小→宽松边界（高偏差低方差）。</li>
+<li><strong><a href="核技巧.html">核技巧</a></strong>：将低维非线性数据映射到高维空间实现线性可分，无需显式计算φ(x)，只需计算内积K(xᵢ,xⱼ)。常用核函数：线性核（文本分类）、多项式核（图像/NLP）、RBF/高斯核（通用最常用）、Sigmoid核（类神经网络）。</li>
+<li><strong>与神经网络对比</strong>：SVM基于<span style="color:#e74c3c" title="broken link">VC维理论</span>有界泛化误差，凸优化保证全局最优，小数据效果好；神经网络经验主义驱动，非凸优化易陷局部最优，需大数据但GPU并行强。</li>
+<li><strong>求解算法</strong>：通过拉格朗日对偶转化为对偶问题，用<span style="color:#e74c3c" title="broken link">SMO算法</span>（Sequential Minimal Optimization）求解。最优解满足KKT条件：αᵢ&gt;0的样本即为支持向量，决定决策边界。</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li><a href="../entities/Support-Vector Networks.html">Support-Vector Networks</a> — Cortes &amp; Vapnik (1995), Machine Learning 20(3), 273-297</li>
+<li>raw/articles/ai-papers/machine-learning/03_svm_1995.md — 详细解读与Python实现</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="核技巧.html">核技巧</a> — extends</li>
+<li><a href="最大间隔分类器.html">最大间隔分类器</a> — part_of</li>
+<li><span style="color:#e74c3c" title="broken link">VC维理论</span> — depends_on</li>
+<li><span style="color:#e74c3c" title="broken link">SMO算法</span> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">神经网络</span> — compares_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="操作系统.html">&larr; 操作系统</a>
+    <a href="收敛假说.html">收敛假说 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

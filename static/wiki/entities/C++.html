@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>C++ 是静态强类型、支持多<a href="../concepts/规范化理论.html">范式</a>（面向对象、泛型、过程式）的系统级编程语言，以手动内存管理、零开销抽象和丰富的类型语义（指针、引用、const 修饰）著称。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>类型系统</strong>：区分值语义（<code>T</code>）、引用语义（<code>T&amp;</code>、<code>const T&amp;</code>）和指针语义（<code>T*</code>、<code>const T*</code> 等），每种对应不同的所有权与可变性语义。</li>
+<li><strong>类型系统</strong>：<a href="区分.html">区分</a>值语义（<code>T</code>）、引用语义（<code>T&amp;</code>、<code>const T&amp;</code>）和指针语义（<code>T*</code>、<code>const T*</code> 等），每种对应不同的所有权与可变性语义。</li>
 <li><strong>const 正确性</strong>（const-correctness）：通过 <code>const</code> 修饰符在编译期约束对象可变性，是 C++ 设计的核心习惯用法。</li>
 <li><strong>零开销抽象</strong>：引用、内联函数、模板等高层抽象不引入运行时开销，编译期展开。</li>
 <li><strong>多<a href="../concepts/规范化理论.html">范式</a>支持</strong>：面向过程（函数 + 数组）、面向对象（class + 继承 + 多态）、泛型（模板 + STL 容器如 vector/map）共存。</li>

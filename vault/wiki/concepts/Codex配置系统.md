@@ -1,11 +1,11 @@
 ---
 type: concept
 status: active
-confidence: 0.9
+confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 1
+updated: 2026-04-18
+last_accessed: 2026-04-18
+source_count: 3
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Config System, Codex配置]
 relates_to:
@@ -19,6 +19,15 @@ relates_to:
     type: uses
     confidence: 0.8
   - target: "[[MCP协议层]]"
+    type: uses
+    confidence: 0.75
+  - target: "[[Agent可组合性]]"
+    type: enables
+    confidence: 0.7
+  - target: "[[Ollama]]"
+    type: uses
+    confidence: 0.7
+  - target: "[[OpenTelemetry]]"
     type: uses
     confidence: 0.75
 supersedes: null
@@ -48,7 +57,11 @@ supersedes: null
 
 ## 核心配置项
 
-**模型**：`model = "gpt-5.4"` / `model_provider = "openai"` 或 `"oss"`（本地 Ollama）
+**模型**：`model = "gpt-5.4"` / `model_provider = "openai"` 或 `"oss"`（本地 [[Ollama]]）
+
+**Review 独立模型**：`[review]` 段可指定独立模型（如 `gpt-5.4-mini`），review 作为独立 Agent 可用更便宜的模型。
+
+**环境变量覆盖**：`CODEX_CONFIG_PATH` 可指定配置文件路径，`CODEX_MODEL` 等部分配置支持 env 直接覆盖。
 
 **沙箱与审批**：
 ```toml
@@ -90,7 +103,38 @@ codex -c 'shell_environment_policy.include_only=["PATH"]' "隔离执行"
 
 ## Feature Flags
 
-管理实验性功能：`unified_exec`（Stable）、`shell_snapshot`（Beta）、`multi_agents`（Stable）、`lifecycle_hooks`（Dev）。通过 `codex features enable/disable` 控制，持久化到 config.toml。
+管理实验性功能，通过 `codex features enable/disable` 控制，持久化到 config.toml：
+
+| Flag | 状态 | 功能 |
+|------|------|------|
+| `unified_exec` | Stable | 统一执行引擎 |
+| `shell_snapshot` | Beta | 执行前 shell 状态快照 |
+| `multi_agents` | Stable | subagent 工具集 |
+| `lifecycle_hooks` | Dev | hooks.json 生命周期钩子 |
+| `chatgpt_apps` | Experimental | ChatGPT Apps/connectors 支持 |
+
+## 可观测性配置（Telemetry）
+
+```toml
+[telemetry]
+exporter = "otlp"   # none | otlp（[[OpenTelemetry]]）| console
+endpoint = "http://localhost:4317"
+service_name = "codex-cli"
+env_tag = "dev"
+```
+
+自动记录事件：每次 run 的 session_id/model/sandbox/approval 设置、每次 tool call 及耗时、approval 决策记录。
+
+## 不确定性应对机制
+
+| 不确定性场景 | Config System 的应对 |
+|------------|---------------------|
+| 不同团队成员配置不一致 | 项目级 config.toml 提交 Git |
+| 切换环境忘记调整设置 | Profile 系统：一条命令切换完整配置集 |
+| 临时测试破坏了配置 | 命令行 -c 只影响单次执行，不修改文件 |
+| 密钥被意外传给子进程 | shell_environment_policy 过滤 |
+| 不知道当前生效的配置 | `/status` 命令展示生效配置摘要 |
+| 新功能行为不可预期 | Feature flags 逐步启用，控制暴露范围 |
 
 ## 工程哲学
 
@@ -98,4 +142,5 @@ codex -c 'shell_environment_policy.include_only=["PATH"]' "隔离执行"
 
 ## 来源
 
-- [[raw/articles/ai-tools/codex/08_codex_config_system.md]]
+- [[raw/articles/ai-tools/codex/08_codex_config_system.md]] — Codex CLI 深度解析 Vol.8：Config System（分层配置、Telemetry、不确定性应对）
+- [[raw/articles/ai-tools/codex/06_codex_mcp_layer.md]] — MCP 配置与 Shell Environment Policy

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">上下文腐烂</h1>
 <h2 id="_2">概述</h2>
-<p>上下文腐烂（Context Rot）是指随着 LLM <a href="上下文窗口.html">上下文窗口</a>中 token 数量增加，模型从上下文中<strong>准确召回和推理信息的能力非均匀下降</strong>的现象。由 <a href="../entities/ChromaDB.html">Chroma</a> Research（<a href="../entities/ChromaDB.html">ChromaDB</a> 母公司）于 2025 年 7 月通过系统性跨模型实验命名、量化和分类，覆盖 18 个主流 LLM。</p>
+<p>上下文腐烂（<a href="Context Rot.html">Context Rot</a>）是指随着 LLM <a href="上下文窗口.html">上下文窗口</a>中 token 数量增加，模型从上下文中<strong>准确召回和推理信息的能力非均匀下降</strong>的现象。由 <a href="../entities/ChromaDB.html">Chroma</a> Research（<a href="../entities/ChromaDB.html">ChromaDB</a> 母公司）于 2025 年 7 月通过系统性跨模型实验命名、量化和分类，覆盖 18 个主流 LLM。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="niah">为何 NIAH 基准不够充分</h3>
 <p>针刺干草堆（Needle In A Haystack, NIAH）是最广泛使用的长上下文基准测试，但存在根本局限：
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 低相似度（需要语义推断）：反映真实场景——用户很少使用精确关键词</p>
 <p><strong>意义</strong>：真实应用中退化程度比 NIAH 测量的更严重，因为实际查询与答案的词汇相似度通常较低。</p>
 <h4 id="impact-of-distractors">实验二：干扰项影响（Impact of Distractors）</h4>
-<p><strong>关键区分</strong>：
+<p><strong>关键<a href="../entities/区分.html">区分</a></strong>：
 - <strong>干扰项（Distractor）</strong>：与针话题相关，但不能回答问题（如"我从大学同学那里得到的最糟糕写作建议是……"）
 - <strong>无关内容（Irrelevant Content）</strong>：与针和问题均无关</p>
 <p><strong>发现</strong>：
@@ -171,7 +171,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>打乱句序的干草堆（保留话题但无逻辑连贯性）→ 性能更好</li>
 <li>此规律在全部 18 个模型和所有配置中一致出现</li>
 </ul>
-<p><strong>推测</strong>：结构化文本的连贯逻辑流可能以某种方式影响注意力机制的应用方式，在长上下文中尤为明显——具体机制超出本报告范围，指向可解释性研究方向。</p>
+<p><strong>推测</strong>：结构化文本的连贯逻辑流可能以某种方式影响<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的应用方式，在长上下文中尤为明显——具体机制超出本报告范围，指向可解释性研究方向。</p>
 <h3 id="longmemeval-vs">LongMemEval：聚焦 vs. 全量输入</h3>
 <p>对比两种输入：
 | | 聚焦输入 | 全量输入 |
@@ -196,7 +196,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 <ul>
 <li>上下文腐烂不是崖式崩溃，而是<strong>性能梯度下降</strong>，且降速因语义相似度、干扰项数量、内容结构而非均匀</li>
-<li>所有 18 个主流 LLM 均表现出此现象，包括 GPT-4.1、Claude 4、Gemini 2.5、Qwen3</li>
+<li>所有 18 个主流 LLM 均表现出此现象，包括 GPT-4.1、Claude 4、<a href="../entities/Gemini CLI.html">Gemini</a> 2.5、Qwen3</li>
 <li>等待更大的<a href="上下文窗口.html">上下文窗口</a>不能解决此问题——即使窗口扩大，退化仍然发生</li>
 <li>这是<a href="Context-Engineering.html">Context-Engineering</a>存在的核心动机：<strong>精心策划呈现给模型的信息，而非简单堆砌</strong></li>
 </ul>

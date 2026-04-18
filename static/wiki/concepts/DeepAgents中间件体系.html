@@ -161,13 +161,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>手动</strong>：提供工具让模型主动压缩上下文
 大型工具输出落盘（写入 backend 文件），减少上下文占用。</p>
 <h4 id="memorymiddleware">MemoryMiddleware</h4>
-<p>在 <code>memory=</code> 参数有值时启用。将指定记忆文件（如 <code>AGENTS.md</code>）内容注入系统提示，使 Agent 持有持久化指令/偏好知识。<strong>放在<a href="ROS (Robot Operating System).html">中间件</a>栈尾部</strong>（缓存之后），避免记忆更新破坏 Anthropic prompt cache 前缀。</p>
+<p>在 <code>memory=</code> 参数有值时启用。将指定记忆文件（如 <code>AGENTS.md</code>）内容注入系统提示，使 Agent 持有持久化指令/偏好知识。<strong>放在<a href="ROS (Robot Operating System).html">中间件</a>栈尾部</strong>（缓存之后），避免记忆更新破坏 <a href="../entities/Anthropic.html">Anthropic</a> prompt cache 前缀。</p>
 <h4 id="skillsmiddleware">SkillsMiddleware</h4>
 <p>在 <code>skills=</code> 参数有值时启用。从 backend 路径加载技能描述，注入系统提示，实现技能的<strong>渐进式披露</strong>（按需暴露，控制上下文长度）。</p>
 <h4 id="patchtoolcallsmiddleware">PatchToolCallsMiddleware</h4>
 <p>修正/规范化模型输出中格式异常的工具调用（悬空工具调用修复），提升与不同模型输出格式的兼容性。</p>
 <h4 id="anthropicpromptcachingmiddleware">AnthropicPromptCachingMiddleware</h4>
-<p>为 Anthropic 模型注入 prompt cache 头；非 Anthropic 模型时 <code>unsupported_model_behavior="ignore"</code> 静默跳过。<strong>放在尾部靠前</strong>，记忆/人机协同之前。</p>
+<p>为 <a href="../entities/Anthropic.html">Anthropic</a> 模型注入 prompt cache 头；非 <a href="../entities/Anthropic.html">Anthropic</a> 模型时 <code>unsupported_model_behavior="ignore"</code> 静默跳过。<strong>放在尾部靠前</strong>，记忆/人机协同之前。</p>
 <h4 id="humanintheloopmiddleware">HumanInTheLoopMiddleware</h4>
 <p>在 <code>interrupt_on=</code> 参数有值时启用。配置哪些条件下暂停执行等待人工审批。放在栈最末尾。</p>
 <h4 id="todolistmiddleware-langchain">TodoListMiddleware（来自 LangChain）</h4>

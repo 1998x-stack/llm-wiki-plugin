@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>如果 a -/-&gt; b 且 b -/-&gt; a（不存在 happened-before 关系），则 a 和 b 是<strong>并发的</strong>。</p>
 <p><strong>关键洞察</strong>：并发不等于同时。两个并发事件之间没有因果关系，它们可能在物理时间上相隔很远。</p>
 <h3 id="_4">偏序性质</h3>
-<p>happened-before 是一个<strong>严格偏序</strong>——具有不可反身性和传递性。之所以是"偏"序，是因为并非所有事件对之间都存在 --&gt; 关系。</p>
+<p>happened-before 是一个<strong>严格偏序</strong>——具有不可<a href="反身性.html">反身性</a>和传递性。之所以是"偏"序，是因为并非所有事件对之间都存在 --&gt; 关系。</p>
 <h3 id="_5">核心意义</h3>
 <p>Lamport 将<a href="分布式系统.html">分布式系统</a>中的"时间"问题还原为"因果关系"问题——我们不需要知道事件的绝对时间，只需要知道它们之间的因果关系。时间只是因果关系的一种不完美的近似。</p>
 <h3 id="_6">应用</h3>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="eval 函数.html">&larr; eval 函数</a>
+    <a href="frontend-design Skill.html">&larr; frontend-design Skill</a>
     <a href="modern-cli-tools.html">modern-cli-tools &rarr;</a>
   </div>
 </div>

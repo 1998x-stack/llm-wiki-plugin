@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广义相对论 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 广义相对论</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">物理学</span><span class="tag">相对论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">广义相对论</h1>
+<h2 id="_2">概述</h2>
+<p><a href="../entities/阿尔伯特·爱因斯坦.html">爱因斯坦</a>于1915年提出的引力理论，将引力解释为时空弯曲的几何效应而非传统意义上的力，彻底革新了人类对宇宙的理解。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong><a href="等效原理.html">等效原理</a></strong>：引力质量与惯性质量严格相等，引力效应与加速运动在局部完全等价。<a href="../entities/阿尔伯特·爱因斯坦.html">爱因斯坦</a>在1907年顿悟了这一原理，称其为"一生中最幸福的想法"。在自由下落的参考系中，所有物理实验结果与无引力太空中一致。</p>
+</li>
+<li>
+<p><strong>引力即时空弯曲</strong>：<span style="color:#e74c3c" title="broken link">牛顿万有引力定律</span>将引力描述为质量间的吸引力，而<a href="../entities/阿尔伯特·爱因斯坦.html">阿尔伯特·爱因斯坦</a>彻底颠覆了这一图景。质量和能量的存在使其周围时空发生弯曲，物体在弯曲时空中沿最自然路径（<span style="color:#e74c3c" title="broken link">测地线</span>）运动，这种运动表现为我们感知到的"引力"。</p>
+</li>
+<li>
+<p><strong><a href="爱因斯坦场方程.html">爱因斯坦场方程</a></strong>：理论的核心是一组张量方程 $G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$，包含十个耦合的非线性偏微分方程。<a href="../entities/大卫·希尔伯特.html">大卫·希尔伯特</a>几乎同时在独立推导，但<a href="../entities/阿尔伯特·爱因斯坦.html">爱因斯坦</a>略早数日提交。物理学家<span style="color:#e74c3c" title="broken link">约翰·惠勒</span>精辟总结："物质告诉时空如何弯曲，时空告诉物质如何运动。"</p>
+</li>
+<li>
+<p><strong>经典验证</strong>：</p>
+</li>
+<li><strong>水星近日点进动</strong>：精确解释每世纪43角秒的异常进动</li>
+<li><strong>光线弯曲</strong>：1919年<span style="color:#e74c3c" title="broken link">亚瑟·爱丁顿</span>日全食观测证实，偏折角度为牛顿理论的两倍</li>
+<li><strong>引力红移</strong>：1959年庞德-雷布卡实验精确验证</li>
+<li>
+<p><strong>夏皮罗延迟</strong>：1964年提出，雷达信号经太阳附近时时间延长</p>
+</li>
+<li>
+<p><strong>天文学预言</strong>：</p>
+</li>
+<li><strong><a href="黑洞.html">黑洞</a></strong>：1916年<span style="color:#e74c3c" title="broken link">卡尔·史瓦西</span>找到第一个精确解</li>
+<li><strong><a href="引力波.html">引力波</a></strong>：2015年LIGO首次直接探测，获2017年诺贝尔奖</li>
+<li><strong>引力透镜</strong>：用于探测<a href="暗物质.html">暗物质</a>分布</li>
+<li>
+<p><strong>膨胀宇宙</strong>：<span style="color:#e74c3c" title="broken link">弗里德曼</span>从场方程导出膨胀解，后被<span style="color:#e74c3c" title="broken link">哈勃</span>证实</p>
+</li>
+<li>
+<p><strong>极端引力场验证</strong>：2019年，<a href="../entities/事件视界望远镜.html">事件视界望远镜</a>发布了首张<span style="color:#e74c3c" title="broken link">M87* 黑洞照片</span>，这是广义相对论在极端引力场条件下最直观、最有力的验证之一。图像中环状结构的大小、形状和亮度分布，与广义相对论对旋转克尔<a href="黑洞.html">黑洞</a>的理论预测高度一致。研究团队通过大量数值模拟，生成数千张不同参数下的理论预测图像，与实际观测系统比较，确认即使在引力最极端的环境中，广义相对论依然精确成立。</p>
+</li>
+<li>
+<p><strong>现代评价</strong>：被狄拉克称为"有史以来最伟大的科学发现"，朗道称为"最美的物理理论"。与<span style="color:#e74c3c" title="broken link">量子力学</span>的统一仍是物理学最大未解难题之一。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">06-einstein-general-relativity</span> — 源文件：爱因斯坦广义相对论 -- 重塑时空与引力的革命</li>
+<li>《相对论的意义》(爱因斯坦 著) — 爱因斯坦本人面向普通读者的通俗解说</li>
+<li>《引力论和宇宙论》(温伯格 著) — 诺贝尔奖得主的系统阐述</li>
+<li><em>Spacetime and Geometry</em> (Sean Carroll) — 当代最受欢迎的广义相对论教科书</li>
+<li>《爱因斯坦传》(沃尔特·艾萨克森 著) — 详尽记录广义相对论诞生的思想历程</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="狭义相对论.html">狭义相对论</a> — extends (广义相对论是狭义相对论的推广)</li>
+<li><a href="爱因斯坦场方程.html">爱因斯坦场方程</a> — implements (数学核心)</li>
+<li><a href="等效原理.html">等效原理</a> — depends_on (理论基础)</li>
+<li><a href="黑洞.html">黑洞</a> — caused (预言)</li>
+<li><a href="引力波.html">引力波</a> — caused (预言)</li>
+<li><a href="宇宙学常数.html">宇宙学常数</a> — relates_to (场方程中的项)</li>
+<li><span style="color:#e74c3c" title="broken link">牛顿万有引力定律</span> — supersedes (取代)</li>
+<li><a href="../entities/事件视界望远镜.html">事件视界望远镜</a> — validates_by (极端引力场验证)</li>
+<li><a href="../entities/M87*.html">M87*</a> — validates_by (黑洞照片验证)</li>
+<li><a href="../entities/人马座A*.html">人马座A*</a> — validates_by (第二张黑洞照片验证)</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="广义优势估计.html">&larr; 广义优势估计</a>
+    <a href="序列推荐.html">序列推荐 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

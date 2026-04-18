@@ -28,7 +28,7 @@ supersedes: null
 
 ## 概述
 
-针对跨多个[[上下文窗口]]的长时自主任务（数小时至数日）的 [[Agent Harness模式|Agent Harness]] 设计模式：**初始化 Agent**（建立环境和功能列表）+ **编码 Agent**（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。
+针对跨多个[[上下文窗口]]的长时自主任务（数小时至数日）的 [[Agent Harness模式|Agent Harness]] 设计模式：**[[Initializer Agent|初始化 Agent]]**（建立环境和功能列表）+ **编码 Agent**（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。
 
 ## 关键内容
 
@@ -38,7 +38,7 @@ supersedes: null
 
 ### 两阶段解决方案
 
-**第一阶段：初始化 Agent**
+**第一阶段：[[Initializer Agent|初始化 Agent]]**
 
 首次会话使用专门提示，负责搭建环境：
 1. 创建 `init.sh` 脚本（启动开发服务器）
@@ -90,7 +90,7 @@ supersedes: null
 
 ### 与多 Agent 架构的关系
 
-两阶段设计是 Anthropic 早期长时 Harness 的探索。后续研究（见[[生成器-评估器架构]]）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + Generator + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。
+两阶段设计是 [[Anthropic]] 早期长时 Harness 的探索。后续研究（见[[生成器-评估器架构]]）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + [[生成器|Generator]] + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。
 
 ## 来源
 

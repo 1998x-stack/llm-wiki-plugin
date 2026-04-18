@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [3D, 游戏引擎, 性能优化, 渲染]
+tags: ["3D", "游戏引擎", "性能优化", "渲染", "游戏开发"]
 aliases: [LOD, Level of Detail, 细节层次]
 relates_to: [UrhoXCLI, FBX格式]
 supersedes: null

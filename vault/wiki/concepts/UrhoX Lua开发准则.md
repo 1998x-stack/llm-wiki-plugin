@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, Lua, 开发准则, UrhoX, 最佳实践]
+tags: ["游戏引擎", "Lua", "开发准则", "UrhoX", "最佳实践", "游戏开发"]
 aliases: [UrhoX开发规则, UrhoX Lua规范]
 relates_to: [UrhoX引擎, NanoVG, Lua基础语法, PBR材质系统]
 supersedes: null

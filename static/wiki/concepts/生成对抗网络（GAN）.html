@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生成对抗网络（GAN） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 生成对抗网络（GAN）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">生成模型</span></div>
+</div>
+  <div class="content">
+    <h1 id="gan">生成对抗网络（GAN）</h1>
+<h2 id="_1">概述</h2>
+<p>一种通过<a href="生成器.html">生成器</a>与<a href="判别器.html">判别器</a><a href="零和博弈.html">零和博弈</a>学习数据分布的生成模型框架，由 <a href="../entities/Ian Goodfellow.html">Ian Goodfellow</a> 于 2014 年提出，开创了<a href="对抗训练.html">对抗训练</a><a href="规范化理论.html">范式</a>。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心思想</strong>：GAN 将生成建模转化为两个神经网络的博弈问题。<a href="生成器.html">生成器</a>（造假者）从随机噪声 z ~ N(0, I) 生成伪造数据 G(z)，目标是欺骗<a href="判别器.html">判别器</a>；<a href="判别器.html">判别器</a>（鉴别专家）接收真实数据 x 或生成数据 G(z)，输出其为真实数据的概率 D(·) ∈ [0, 1]，目标是正确<a href="../entities/区分.html">区分</a>真假。两者通过<a href="对抗训练.html">对抗训练</a>不断提升，最终达到 <a href="纳什均衡.html">纳什均衡</a>。</li>
+<li><strong>数学目标函数</strong>：min_G max_D V(D, G) = E_{x~p_data}[log D(x)] + E_{z~p_z}[log(1 - D(G(z)))]。这是一个 <a href="零和博弈.html">零和博弈</a>（Minimax Game）。实践中<a href="生成器.html">生成器</a>的目标改为最大化 log D(G(z)) 而非最小化 log(1-D(G(z)))，以避免早期训练时的梯度饱和问题。</li>
+<li><strong>理论保证</strong>：Goodfellow 严格证明了给定 G 时最优<a href="判别器.html">判别器</a>为 D<em>_G(x) = p_data(x) / (p_data(x) + p_g(x))，全局最优点为 p_g = p_data，此时 D</em>(x) = 1/2（无法<a href="../entities/区分.html">区分</a>真假）。但现实中此条件无法满足，GAN 训练极不稳定。</li>
+<li><strong>常见训练问题</strong>：<a href="模式崩塌.html">模式崩塌</a>（<a href="生成器.html">生成器</a>只生成几种样本）、训练不稳定（损失震荡不收敛）、<a href="梯度消失.html">梯度消失</a>（<a href="判别器.html">判别器</a>太强时<a href="生成器.html">生成器</a>梯度为零）、超参数敏感。解决方案包括 <a href="Wasserstein距离.html">Wasserstein距离</a>（WGAN）、谱归一化、非饱和损失、Adam β₁=0.5 等。</li>
+<li><strong>演化谱系</strong>：原版 GAN（2014）→ DCGAN（2015，卷积化）→ WGAN（2017，Wasserstein 距离）→ Pix2Pix / CycleGAN（2017，条件控制）→ PGGAN（2018，渐进式训练）→ StyleGAN 系列（2019-2020，风格解耦）→ 最终被 <span style="color:#e74c3c" title="broken link">扩散模型（Diffusion Model）</span>（2020+）超越。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="../entities/Generative Adversarial Nets (2014 论文).html">Generative Adversarial Nets (2014 论文)</a> — 原始论文，NeurIPS 2014</li>
+<li>10_gan_2014.md — 源文件，含完整 PyTorch 代码实现</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Generative Adversarial Nets (2014 论文).html">Generative Adversarial Nets (2014 论文)</a> — implements</li>
+<li><a href="../entities/Ian Goodfellow.html">Ian Goodfellow</a> — proposes</li>
+<li><a href="对抗训练.html">对抗训练</a> — part_of</li>
+<li><a href="模式崩塌.html">模式崩塌</a> — relates_to</li>
+<li><a href="纳什均衡.html">纳什均衡</a> — relates_to</li>
+<li><a href="零和博弈.html">零和博弈</a> — relates_to</li>
+<li><a href="生成器.html">生成器</a> — part_of</li>
+<li><a href="判别器.html">判别器</a> — part_of</li>
+<li><a href="Wasserstein距离.html">Wasserstein距离</a> — extends</li>
+<li><span style="color:#e74c3c" title="broken link">VAE（变分自编码器）</span> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">扩散模型（Diffusion Model）</span> — supersedes</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="生成器-评估器架构.html">&larr; 生成器-评估器架构</a>
+    <a href="生成式 LLM 推荐.html">生成式 LLM 推荐 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

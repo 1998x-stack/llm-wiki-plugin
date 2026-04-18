@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, IO, 文件系统, 游戏引擎]
+tags: ["UrhoX", "Lua", "IO", "文件系统", "游戏引擎", "游戏开发"]
 aliases: [UrhoX文件IO, UrhoX FileSystem, UrhoX File API]
 relates_to: [UrhoX引擎, UrhoX Lua开发准则, UrhoX全局子系统, UrhoX序列化系统API, UrhoX数据格式API]
 supersedes: null

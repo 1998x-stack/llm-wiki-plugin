@@ -127,36 +127,123 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / PaddleOCR</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">工具</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">工具</span><span class="tag">文档处理</span><span class="tag">OCR</span></div>
 </div>
   <div class="content">
     <h1 id="paddleocr">PaddleOCR</h1>
 <h2 id="_1">概述</h2>
-<p>PaddleOCR 是百度飞桨（PaddlePaddle）开源的 OCR（<a href="../concepts/光学字符识别.html">光学字符识别</a>）工具，以强大的中文识别能力著称，是 <a href="MinerU.html">MinerU</a> OCRBased 管道的核心文字识别引擎。</p>
+<p>PaddleOCR 是百度飞桨（PaddlePaddle）开源的 OCR（<a href="../concepts/光学字符识别.html">光学字符识别</a>）工具，以强大的中文识别能力著称，是 <a href="MinerU.html">MinerU</a> OCRBased 管道的核心文字识别引擎。Apache-2.0 许可。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="mineru">在 MinerU 中的角色</h3>
+<p>OCR 在 <a href="MinerU.html">MinerU</a> 里<strong>按需激活</strong>，而非全程使用：</p>
 <ul>
-<li><strong>OCRBased 管道</strong>：页面渲染为图像后，PaddleOCR 负责全量文字识别</li>
-<li><strong>中文优势</strong>：PaddleOCR 的中文识别能力是 <a href="MinerU.html">MinerU</a> 相比同类工具（<a href="Marker.html">Marker</a>、<a href="Nougat.html">Nougat</a>）的核心差异化优势之一</li>
-<li><strong>适用场景</strong>：扫描件、图像型 PDF 等没有任何文字层的文档</li>
+<li><strong>文字型 PDF（TextBased 管道）</strong>：<a href="PyMuPDF.html">PyMuPDF</a> 直接提取文字 Span，OCR 仅用于图注区域、表格内文字、公式周边等特殊区域</li>
+<li><strong>扫描件 PDF（OCRBased 管道）</strong>：整页 OCR，所有文字都靠识别，<a href="PyMuPDF.html">PyMuPDF</a> 只提供图像</li>
+<li><strong>混合 PDF（Mixed 管道）</strong>：逐个布局框判断，有文字层直接提取，无文字层走 OCR</li>
 </ul>
-<h3 id="_3">技术特点</h3>
+<p>这个设计非常精明：对于文字型 PDF，<a href="PyMuPDF.html">PyMuPDF</a> 的精确坐标远优于 OCR 识别结果，没有必要浪费计算资源。</p>
+<h3 id="_3">技术优势对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>PaddleOCR</th>
+<th>Tesseract</th>
+<th>EasyOCR</th>
+<th>TrOCR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中文识别</strong></td>
+<td>✅ 极强，专门优化</td>
+<td>⚠️ 一般</td>
+<td>✅ 较好</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td><strong>速度</strong></td>
+<td>✅ 快（PP-OCR 轻量级）</td>
+<td>中</td>
+<td>慢</td>
+<td>极慢</td>
+</tr>
+<tr>
+<td><strong>检测+识别一体</strong></td>
+<td>✅</td>
+<td>⚠️</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>版式理解</strong></td>
+<td>✅ PP-Structure</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Apache-2.0</td>
+<td>Apache-2.0</td>
+<td>Apache-2.0</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><strong>工业验证</strong></td>
+<td>✅ 阿里/京东等</td>
+<td>✅</td>
+<td>⚠️</td>
+<td>⚠️</td>
+</tr>
+</tbody>
+</table>
+<p>对于 <a href="MinerU.html">MinerU</a> 最重要的场景——<strong>中文学术论文/教材扫描件</strong>，PaddleOCR 有无可比拟的优势。</p>
+<h3 id="pp-ocrv4">PP-OCRv4 系统组件</h3>
+<p><a href="MinerU.html">MinerU</a> 主要使用 PaddleOCR 的 <strong><a href="PP-OCRv4.html">PP-OCRv4</a></strong> 系列，包含三个子模块：</p>
+<ol>
+<li><strong>文字检测（Detection）</strong>：<a href="../concepts/DBNet++.html">DBNet++</a> 变体，输入图像，输出文字区域的多边形轮廓</li>
+<li><strong>文字方向分类（Direction Classification）</strong>：输入检测到的文字图像块，输出 0°/90°/180°/270°</li>
+<li><strong>文字识别（Recognition）</strong>：<a href="../concepts/SVTR.html">SVTR</a>（<a href="../concepts/SVTR.html">Scene Text Recognizer</a>），输入矫正后的文字行图像，输出文字字符串 + 置信度</li>
+</ol>
+<h3 id="ocr">OCR 流水线</h3>
+<p>完整的 OCR 处理流程：</p>
+<ol>
+<li><strong>文字区域检测（<a href="../concepts/DBNet++.html">DBNet++</a>）</strong>：基于可微分二值化，输出概率图 → 自适应阈值二值化 → 轮廓提取 → 多边形文字框。多边形而非矩形框能更精确地框定倾斜的文字行</li>
+<li><strong><a href="../concepts/透视变换.html">透视变换</a>矫正</strong>：将检测到的文字多边形通过<a href="../concepts/透视变换.html">透视变换</a>矫正为水平的矩形图像（高度固定 48px）</li>
+<li><strong>文字识别（<a href="../concepts/SVTR.html">SVTR</a>）</strong>：CNN + <a href="../concepts/Transformer 架构.html">Transformer</a> 混合特征提取 → 序列特征 → <a href="../concepts/CTC解码.html">CTC解码</a> → 文字字符串</li>
+</ol>
+<h3 id="ocr_1">中文 OCR 的特殊挑战与解法</h3>
 <ul>
-<li>支持多语言，中文识别精度业界领先</li>
-<li>轻量级模型，适合工业级部署</li>
-<li>支持文本检测 + 文字识别两阶段流水线</li>
+<li><strong>字符集规模</strong>：中文常用字 3500+，完整字符集 70000+。PaddleOCR 使用包含 <strong>6763 个常用汉字</strong>的字符集（GB2312 标准），覆盖 99% 以上常用场景</li>
+<li><strong>字形相似度</strong>：大量形近字（己/已/巳，戊/戌/戍）。通过大规模训练数据、形近字混淆样本、语言模型后处理解决</li>
+<li><strong>中英混排</strong>：使用统一字符集，同时包含中文和英文字符，不需要先判断语言再切换模型</li>
+<li><strong>垂直排版</strong>：方向分类器先识别文字方向，再旋转 90° 送入识别模型</li>
+</ul>
+<h3 id="mineru_1">MinerU 中的关键优化</h3>
+<ul>
+<li><strong>区域裁剪 OCR</strong>：不对整页做 OCR，只对特定布局框内的区域做 OCR，速度从 2~5 秒/页降至 0.1~0.5 秒/区域，提升 10×+</li>
+<li><strong>两路 Span 融合</strong>：优先使用 <a href="PyMuPDF.html">PyMuPDF</a> native spans（精度更高），OCR spans 仅用于未覆盖的区域，通过 IoU &gt; 0.3 判断重叠</li>
+<li><strong>质量过滤</strong>：置信度阈值（默认 0.5）、乱码检测（特殊字符比例 &gt; 0.3）、空白行和极短文本过滤</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_04_ocr.md</span> — MinerU 深度解析系列 · 第四篇：OCR 引擎</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
 <li><a href="MinerU.html">MinerU</a> — 使用 PaddleOCR 作为 OCR 引擎</li>
 <li><a href="../concepts/光学字符识别.html">光学字符识别</a> — 所属技术领域</li>
+<li><a href="PP-OCRv4.html">PP-OCRv4</a> — PaddleOCR 的模型系列</li>
+<li><a href="../concepts/DBNet++.html">DBNet++</a> — 文字检测子模块</li>
+<li><a href="../concepts/SVTR.html">SVTR</a> — 文字识别子模块</li>
+<li><a href="../concepts/CTC解码.html">CTC解码</a> — 识别解码方法</li>
+<li><a href="../concepts/透视变换.html">透视变换</a> — 文字矫正技术</li>
+<li><a href="PyMuPDF.html">PyMuPDF</a> — 在 MinerU 中与 OCR 互补使用</li>
 </ul>
   </div>
   <div class="page-nav">

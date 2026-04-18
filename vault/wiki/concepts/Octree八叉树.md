@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 空间分区, 射线检测, UrhoX]
+tags: ["渲染", "空间分区", "射线检测", "UrhoX", "游戏开发"]
 aliases: [Octree, 八叉树场景管理, 空间索引]
 relates_to: [UrhoX引擎, Camera渲染摄像机, StaticModel静态网格体]
 supersedes: null

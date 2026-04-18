@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="provider">跨 Provider 上下文迁移</h1>
 <h2 id="_1">概述</h2>
-<p>Context Handoff 是 <a href="../entities/Pi-Agent.html">Pi-Agent</a> pi-ai 层最独特的能力：一个会话可以在 Anthropic → OpenAI → <a href="../entities/Google.html">Google</a> 等不同 Provider 之间无缝延续，历史对话、思维链、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。</p>
+<p>Context Handoff 是 <a href="../entities/Pi-Agent.html">Pi-Agent</a> pi-ai 层最独特的能力：一个会话可以在 <a href="../entities/Anthropic.html">Anthropic</a> → <a href="../entities/OpenAI.html">OpenAI</a> → <a href="../entities/Google.html">Google</a> 等不同 Provider 之间无缝延续，历史对话、思维链、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 核心机制</h3>
 <p>pi-ai 维护 Provider 无关的 <code>Context</code> 对象（消息数组），在切换 Provider 时自动执行转换管道：
-- Anthropic thinking traces → <code>&lt;thinking&gt;&lt;/thinking&gt;</code> 标签文本
-- OpenAI reasoning → 文本块
+- <a href="../entities/Anthropic.html">Anthropic</a> thinking traces → <code>&lt;thinking&gt;&lt;/thinking&gt;</code> 标签文本
+- <a href="../entities/OpenAI.html">OpenAI</a> reasoning → 文本块
 - Provider 特有的签名 blob → 重放或转换</p>
 <h3 id="2">2. 工程挑战</h3>
-<p>各 Provider 在流式事件中插入的<strong>签名 blob</strong>（如 Anthropic 的 cache 标记、OpenAI 的 reasoning 元数据）在切换模型时必须正确重放。pi-ai 采用"尽力而为"（best-effort）策略，不保证 100% 精确互操作，但对绝大多数场景足够。</p>
+<p>各 Provider 在流式事件中插入的<strong>签名 blob</strong>（如 <a href="../entities/Anthropic.html">Anthropic</a> 的 cache 标记、<a href="../entities/OpenAI.html">OpenAI</a> 的 reasoning 元数据）在切换模型时必须正确重放。pi-ai 采用"尽力而为"（best-effort）策略，不保证 100% 精确互操作，但对绝大多数场景足够。</p>
 <h3 id="3">3. 实际应用</h3>
 <p><a href="../entities/OpenClaw.html">OpenClaw</a> 利用此能力实现跨渠道会话共享——WhatsApp 上发起的对话可以在 Telegram 上继续，背后可能使用不同的 LLM Provider。</p>
 <h3 id="4-jsonl">4. 依赖 JSONL 会话格式</h3>
-<p>Context Handoff 的前提是 Pi 的 JSONL 会话持久化——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 Pi "会话 JSONL 第一公民"哲学的直接产物。</p>
+<p>Context Handoff 的前提是 Pi 的 <a href="JSONL格式.html">JSONL</a> <a href="会话持久化.html">会话持久化</a>——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 Pi "会话 <a href="JSONL格式.html">JSONL</a> 第一公民"哲学的直接产物。</p>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/pi-agent/02-pi-ai.md</span></li>
@@ -161,8 +161,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="超稳定系统（Design for a Brain）.html">&larr; 超稳定系统（Design for a Brain）</a>
-    <a href="软件危机.html">软件危机 &rarr;</a>
+    <a href="距离缩减.html">&larr; 距离缩减</a>
+    <a href="跨会话记忆.html">跨会话记忆 &rarr;</a>
   </div>
 </div>
 </body>

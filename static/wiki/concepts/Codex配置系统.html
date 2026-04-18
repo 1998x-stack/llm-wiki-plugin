@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Codex配置系统</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
@@ -185,7 +185,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h2 id="_2">核心配置项</h2>
-<p><strong>模型</strong>：<code>model = "gpt-5.4"</code> / <code>model_provider = "openai"</code> 或 <code>"oss"</code>（本地 Ollama）</p>
+<p><strong>模型</strong>：<code>model = "gpt-5.4"</code> / <code>model_provider = "openai"</code> 或 <code>"oss"</code>（本地 <a href="../entities/Ollama.html">Ollama</a>）</p>
+<p><strong>Review 独立模型</strong>：<code>[review]</code> 段可指定独立模型（如 <code>gpt-5.4-mini</code>），review 作为独立 Agent 可用更便宜的模型。</p>
+<p><strong>环境变量覆盖</strong>：<code>CODEX_CONFIG_PATH</code> 可指定配置文件路径，<code>CODEX_MODEL</code> 等部分配置支持 env 直接覆盖。</p>
 <p><strong>沙箱与审批</strong>：</p>
 <pre><code class="language-toml">sandbox_mode = &quot;workspace-write&quot;
 approval_policy = &quot;on-request&quot;
@@ -214,14 +216,94 @@ codex -c sandbox_workspace_write.network_access=true &quot;需要网络&quot;
 codex -c 'shell_environment_policy.include_only=[&quot;PATH&quot;]' &quot;隔离执行&quot;
 </code></pre>
 <h2 id="feature-flags">Feature Flags</h2>
-<p>管理实验性功能：<code>unified_exec</code>（Stable）、<code>shell_snapshot</code>（Beta）、<code>multi_agents</code>（Stable）、<code>lifecycle_hooks</code>（Dev）。通过 <code>codex features enable/disable</code> 控制，持久化到 config.toml。</p>
-<h2 id="_4">工程哲学</h2>
+<p>管理实验性功能，通过 <code>codex features enable/disable</code> 控制，持久化到 config.toml：</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>状态</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>unified_exec</code></td>
+<td>Stable</td>
+<td>统一执行引擎</td>
+</tr>
+<tr>
+<td><code>shell_snapshot</code></td>
+<td>Beta</td>
+<td>执行前 shell 状态快照</td>
+</tr>
+<tr>
+<td><code>multi_agents</code></td>
+<td>Stable</td>
+<td>subagent 工具集</td>
+</tr>
+<tr>
+<td><code>lifecycle_hooks</code></td>
+<td>Dev</td>
+<td>hooks.json 生命周期钩子</td>
+</tr>
+<tr>
+<td><code>chatgpt_apps</code></td>
+<td>Experimental</td>
+<td>ChatGPT Apps/connectors 支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="telemetry">可观测性配置（Telemetry）</h2>
+<pre><code class="language-toml">[telemetry]
+exporter = &quot;otlp&quot;   # none | otlp（<a href="../entities/OpenTelemetry.html">OpenTelemetry</a>）| console
+endpoint = &quot;http://localhost:4317&quot;
+service_name = &quot;codex-cli&quot;
+env_tag = &quot;dev&quot;
+</code></pre>
+<p>自动记录事件：每次 run 的 session_id/model/sandbox/approval 设置、每次 tool call 及耗时、approval 决策记录。</p>
+<h2 id="_4">不确定性应对机制</h2>
+<table>
+<thead>
+<tr>
+<th>不确定性场景</th>
+<th>Config System 的应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不同团队成员配置不一致</td>
+<td>项目级 config.toml 提交 Git</td>
+</tr>
+<tr>
+<td>切换环境忘记调整设置</td>
+<td>Profile 系统：一条命令切换完整配置集</td>
+</tr>
+<tr>
+<td>临时测试破坏了配置</td>
+<td>命令行 -c 只影响单次执行，不修改文件</td>
+</tr>
+<tr>
+<td>密钥被意外传给子进程</td>
+<td>shell_environment_policy 过滤</td>
+</tr>
+<tr>
+<td>不知道当前生效的配置</td>
+<td><code>/status</code> 命令展示生效配置摘要</td>
+</tr>
+<tr>
+<td>新功能行为不可预期</td>
+<td>Feature flags 逐步启用，控制暴露范围</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">工程哲学</h2>
 <blockquote>
 <p><strong>"约定优于配置"和"显式优于隐式"的平衡点</strong>。大多数情况有合理默认值，安全关键决策强制显式声明。分层设计让个人、团队、企业在同一套体系上各取所需。</p>
 </blockquote>
-<h2 id="_5">来源</h2>
+<h2 id="_6">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/08_codex_config_system.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/08_codex_config_system.md</span> — Codex CLI 深度解析 Vol.8：Config System（分层配置、Telemetry、不确定性应对）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/06_codex_mcp_layer.md</span> — MCP 配置与 Shell Environment Policy</li>
 </ul>
   </div>
   <div class="page-nav">

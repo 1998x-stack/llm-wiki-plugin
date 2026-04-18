@@ -7,9 +7,10 @@ updated: 2026-04-17
 last_accessed: 2026-04-17
 source_count: 1
 tags:
-- 技术
-- 研究
-- 计算理论
+  - 技术
+  - 研究
+  - 计算理论
+  - 深度学习
 aliases:
 - Transformer
 - Transformer 架构
@@ -38,7 +39,7 @@ supersedes: null
 
 ## 概述
 
-Transformer 是一种完全基于注意力机制的序列转换架构，由 Vaswani 等人于2017年提出，彻底摆脱了对循环和卷积的依赖。
+[[Transformer架构|Transformer]] 是一种完全基于[[注意力机制（Attention Mechanism）|注意力机制]]的序列转换架构，由 Vaswani 等人于2017年提出，彻底摆脱了对循环和卷积的依赖。
 
 ## 关键内容
 
@@ -59,7 +60,7 @@ Transformer 是一种完全基于注意力机制的序列转换架构，由 Vasw
 
 1. **编码器[[Self-Attention机制|自注意力]]**：每个位置关注所有输入位置
 2. **解码器掩码[[Self-Attention机制|自注意力]]**：每个位置只能关注之前的位置
-3. **编码器-解码器交叉注意力**：解码器回看整个输入序列
+3. **[[编码器-解码器架构（Seq2Seq）|编码器-解码器]]交叉注意力**：解码器回看整个输入序列
 
 ### 历史影响
 
@@ -71,6 +72,7 @@ Transformer 是一种完全基于注意力机制的序列转换架构，由 Vasw
 ## 来源
 
 - [[raw/books/计算机科学/20-vaswani-transformer.md]]
+- [[raw/articles/ai-papers/machine-learning/14_transformer_2017.md]] — 完整代码实现 + RNN并行化困境 + 架构演变
 
 ## 相关
 
@@ -78,3 +80,4 @@ Transformer 是一种完全基于注意力机制的序列转换架构，由 Vasw
 - [[自注意力机制]] — 核心计算
 - [[函数式编程]] — 计算的组合性
 - [[MapReduce]] — 并行化计算
+- [[Pre-LN架构]] — 现代变体（更稳定的归一化顺序）

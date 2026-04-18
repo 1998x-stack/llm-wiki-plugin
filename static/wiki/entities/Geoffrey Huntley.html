@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geoffrey Huntley — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Geoffrey Huntley</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">person</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">autonomous-coding</span><span class="tag">developer</span></div>
+</div>
+  <div class="content">
+    <h1 id="geoffrey-huntley">Geoffrey Huntley</h1>
+<h2 id="_1">概述</h2>
+<p>Geoffrey Huntley 是 Ralph Wiggum 技术的原创者，该技术构成了 <a href="Ralph Loop.html">Ralph Loop</a> 自主编码系统的核心哲学——通过 Bash 外循环 + 新鲜 Agent 实例 + 文件持久化状态实现跨<a href="../concepts/上下文窗口.html">上下文窗口</a>的自主开发。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>Ralph Wiggum 技术</strong>：Geoffrey Huntley 提出的自主编码方法论，核心理念是"不试图让单个 Agent 记住一切，而是把状态全部写进文件，让每一个新鲜的 Agent 从文件中快速定位，继续上一个 Agent 中断的工作"。这一技术名称来源于《<a href="托马斯·辛普森.html">辛普森</a>一家》中的角色 Ralph Wiggum。</p>
+</li>
+<li>
+<p><strong>核心哲学名言</strong>：</p>
+<blockquote>
+<p>"The technique is deterministically bad in an undeterministic world."</p>
+</blockquote>
+</li>
+</ol>
+<p>这句话体现了 <a href="Ralph Loop.html">Ralph Loop</a> 的设计哲学——接受 LLM 的不确定性，通过确定性的外循环和文件状态管理来约束不可预测的 Agent 行为。</p>
+<ol>
+<li><strong>公开资源</strong>：</li>
+<li>个人网站：https://ghuntley.com/ralph/</li>
+<li>GitHub 仓库：https://github.com/snarktank/ralph</li>
+<li>
+<p><a href="Vercel.html">Vercel Labs</a> 实现：https://github.com/vercel-labs/ralph-loop-agent</p>
+</li>
+<li>
+<p><strong>与 <a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> 的关系</strong>：Geoffrey Huntley 的 Ralph Wiggum 技术代表了 <a href="../concepts/Agent Harness模式.html">Agent Harness</a> 设计谱系中的一个独特分支——<strong>极简外循环 + 文件状态持久化</strong>，与 <a href="DeepAgents.html">DeepAgents</a> 的 batteries-included <a href="../concepts/ROS (Robot Operating System).html">中间件</a>栈和 <a href="Anthropic.html">Anthropic</a> 的三 Agent 任务 Harness 形成对比。其核心创新在于用 Bash 脚本而非复杂框架来驱动 Agent 循环。</p>
+</li>
+<li>
+<p><strong>对 AI 编码工具的影响</strong>：Ralph Wiggum 技术直接启发了多个开源和商业自主编码工具的实现，包括基于 <a href="Claude Code.html">Claude Code</a>、Amp 等 AI 编码代理的连续迭代系统。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="https://ghuntley.com/ralph/">ghuntley.com/ralph/</a> — Geoffrey Huntley 的 Ralph 技术介绍</li>
+<li><a href="https://github.com/snarktank/ralph">github.com/snarktank/ralph</a> — Ralph 原始实现仓库</li>
+<li><a href="https://github.com/vercel-labs/ralph-loop-agent">github.com/vercel-labs/ralph-loop-agent</a> — Vercel Labs 的 Ralph Loop Agent 实现</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Ralph Loop.html">Ralph Loop</a> — created（原创 Ralph Wiggum 技术，Ralph Loop 系统的灵感来源）</li>
+<li><a href="../concepts/Agent Harness模式.html">Agent Harness模式</a> — relates_to（Harness 设计谱系中的极简外循环分支）</li>
+<li><a href="Claude Code.html">Claude Code</a> — relates_to（Ralph Loop 底层使用的编码代理）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Geoffrey E. Hinton.html">&larr; Geoffrey E. Hinton</a>
+    <a href="Go To Statement Considered Harmful 论文.html">Go To Statement Considered Harmful 论文 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

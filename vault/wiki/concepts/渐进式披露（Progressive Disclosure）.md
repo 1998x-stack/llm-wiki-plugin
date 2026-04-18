@@ -24,7 +24,7 @@ supersedes: null
 # 渐进式披露（Progressive Disclosure）
 
 ## 概述
-Claude Code [[Agent Skills|Skills]] 的[[Context Management|上下文管理]]策略——不一次性把所有内容塞进上下文，而是按需分三层加载：先看描述判断相关性，再加载 [[Agent Skills|SKILL.md]] 核心说明，最后按需加载脚本和辅助文件。
+[[Claude Code]] [[Agent Skills|Skills]] 的[[Context Management|上下文管理]]策略——不一次性把所有内容塞进上下文，而是按需分三层加载：先看描述判断相关性，再加载 [[Agent Skills|SKILL.md]] 核心说明，最后按需加载脚本和辅助文件。
 
 ## 关键内容
 

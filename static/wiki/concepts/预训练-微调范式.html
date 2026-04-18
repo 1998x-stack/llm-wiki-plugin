@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>预训练-微调范式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 预训练-微调范式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">NLP</span><span class="tag">迁移学习</span><span class="tag">LLM基础</span><span class="tag">方法论</span><span class="tag">机器学习</span></div>
+</div>
+  <div class="content">
+    <h1 id="-">预训练-微调范式</h1>
+<h2 id="_1">概述</h2>
+<p>预训练-微调<a href="规范化理论.html">范式</a>（Pre-training and Fine-tuning）是 BERT 确立的 NLP 标准方法论：先在大规模无标注语料上通过自监督任务学习通用语言表示，再在下游任务上用少量标注数据进行参数微调，彻底改变了 NLP 的开发模式。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">两阶段流程</h3>
+<p><strong>第一阶段：大规模无监督预训练</strong></p>
+<ul>
+<li><strong>语料</strong>：33 亿词（Wikipedia 25 亿 + BooksCorpus 8 亿），无需人工标注</li>
+<li><strong>任务</strong>：<a href="掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> + <a href="下一句预测（NSP）.html">下一句预测（NSP）</a>（自监督）</li>
+<li><strong>产物</strong>：预训练模型权重（通用语言表示）</li>
+<li><strong>计算规模</strong>：64 块 TPU v2，训练 4 天（<a href="BERT.html">BERT</a>-Large）</li>
+</ul>
+<p><strong>第二阶段：小规模有监督微调</strong></p>
+<ul>
+<li><strong>数据</strong>：只需少量标注数据（几百到几万条）</li>
+<li><strong>方法</strong>：添加一个简单的任务特定输出层，在下游任务上 fine-tune 几个 epoch</li>
+<li><strong>成本</strong>：单 GPU 数小时即可完成</li>
+</ul>
+<pre><code>第一阶段：大规模无监督预训练
+  ─────────────────────────────────────
+  语料：33 亿词（无需人工标注！）
+  任务：MLM + NSP（自监督）
+  产物：预训练模型权重（通用语言表示）
+
+            ↓ 迁移（参数初始化）
+
+第二阶段：小规模有监督微调
+  ─────────────────────────────────────
+  只需少量标注数据（几百到几万条）
+  添加一个简单的任务特定输出层
+  在下游任务上 fine-tune 几个 epoch
+</code></pre>
+<h3 id="_4">下游任务适配方式</h3>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>适配方式</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>单句分类</strong></td>
+<td>[CLS] → Linear → 类别</td>
+<td>情感分析、垃圾邮件检测</td>
+</tr>
+<tr>
+<td><strong>句对分类</strong></td>
+<td>[CLS] 句子A [SEP] 句子B → Linear → 关系</td>
+<td>NLI、文本蕴含</td>
+</tr>
+<tr>
+<td><strong>序列标注</strong></td>
+<td>每个 Token 位置 → Linear → 标签</td>
+<td>NER、词性标注</td>
+</tr>
+<tr>
+<td><strong>阅读理解</strong></td>
+<td>两个线性层分别预测答案的起止位置</td>
+<td>SQuAD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">与传统方法的对比</h3>
+<p>| 维度 | 传统方法 | 预训练-微调<a href="规范化理论.html">范式</a> |
+|------|---------|----------------|
+| 数据需求 | 大量标注数据 | 少量标注数据 + 大量无标注数据 |
+| 模型训练 | 每个任务从头训练 | 共享预训练权重 |
+| 特征工程 | 手工设计特征 | 自动学习表示 |
+| 泛化能力 | 任务特定 | 跨任务迁移 |</p>
+<h3 id="_6">与 <span style="color:#e74c3c" title="broken link">迁移学习</span> 的关系</h3>
+<p>预训练-微调<a href="规范化理论.html">范式</a>是 <span style="color:#e74c3c" title="broken link">迁移学习</span> 在 NLP 领域的具体实现：
+- <strong>源任务</strong>：大规模自监督语言建模（MLM + NSP）
+- <strong>目标任务</strong>：各种下游 NLP 任务
+- <strong>迁移方式</strong>：参数初始化（预训练权重作为微调的起点）</p>
+<h3 id="_7">范式的确立与演进</h3>
+<p><a href="BERT.html">BERT</a>（2018）首次系统性展示了这一<a href="规范化理论.html">范式</a>的威力，一次性刷新 11 项 NLP 基准。后续模型沿此路径持续演进：</p>
+<ul>
+<li><strong>RoBERTa</strong>（2019）：更大的数据、更长的训练、动态掩码</li>
+<li><strong>DistilBERT</strong>（2019）：知识蒸馏压缩，66% 参数量保持 97% 性能</li>
+<li><strong>GPT 系列</strong>：将<a href="规范化理论.html">范式</a>应用于 Decoder-only 架构，侧重生成能力</li>
+<li><strong>T5</strong>（2020）：统一框架，所有 NLP 任务都转化为文本到文本</li>
+</ul>
+<h3 id="_8">为什么有效？</h3>
+<ol>
+<li><strong>表示学习</strong>：预训练学到的是通用的语言结构知识（语法、语义、世界知识）</li>
+<li><strong>参数初始化</strong>：预训练权重提供了远优于随机初始化的起点</li>
+<li><strong>数据效率</strong>：无标注数据远多于标注数据，预训练充分利用了这一优势</li>
+<li><strong>任务无关性</strong>：同一套预训练权重可适配多种下游任务</li>
+</ol>
+<h2 id="_9">来源</h2>
+<ul>
+<li><a href="../entities/BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文).html">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)</a> — 首次系统性提出并验证</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/15_bert_2018.md</span> — 范式详解与下游任务适配模板</li>
+</ul>
+<h2 id="_10">相关</h2>
+<ul>
+<li><a href="BERT.html">BERT</a> — caused（BERT 确立并推广了这一范式）</li>
+<li><a href="掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> — depends_on（预训练阶段的核心任务之一）</li>
+<li><a href="词嵌入（Word Embedding）.html">词嵌入（Word Embedding）</a> — extends（从静态词向量到上下文相关的预训练表示）</li>
+<li><a href="Word2Vec.html">Word2Vec</a> — extends（预训练思想的早期探索）</li>
+<li><span style="color:#e74c3c" title="broken link">GPT</span> — relates_to（GPT 将同一范式应用于 Decoder-only 架构）</li>
+<li><span style="color:#e74c3c" title="broken link">迁移学习</span> — part_of（预训练-微调是迁移学习在 NLP 的具体实现）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="预定论.html">&larr; 预定论</a>
+    <a href="风险社会.html">风险社会 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

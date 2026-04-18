@@ -24,7 +24,7 @@ supersedes: null
 # Advisor Tool（顾问工具）
 
 ## 概述
-Anthropic Claude API 的 Advisor 模式是一种服务端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/Haiku）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。
+[[Anthropic]] Claude API 的 Advisor 模式是一种服务端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/Haiku）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。
 
 ## 关键内容
 

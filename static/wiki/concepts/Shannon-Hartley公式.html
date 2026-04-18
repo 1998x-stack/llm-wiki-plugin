@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="shannon-hartley">Shannon-Hartley公式</h1>
 <h2 id="_1">概述</h2>
-<p>Shannon-Hartley 公式是 Shannon (1949) 给出的连续<a href="信道容量.html">信道容量</a>公式：C = W log₂(1 + S/N)，精确量化了带宽 W、<a href="信噪比.html">信噪比</a> S/N 与可靠传输速率上限之间的关系，是通信工程的"万有引力公式"。</p>
+<p>Shannon-Hartley 公式是 Shannon (1949) 给出的连续<a href="信道容量.html">信道容量</a>公式：C = W log₂(1 + S/N)，精确量化了带宽 W、<a href="信噪比.html">信噪比</a> S/N 与可靠传输速率上限之间的关系，是通信工程的"<a href="万有引力定律.html">万有引力</a>公式"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">公式</h3>
 <p>$$C = W \log_2\left(1 + \frac{S}{N}\right) \quad \text{(bit/s)}$$</p>
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">三种直觉解释</h3>
 <ol>
 <li>
-<p><strong>信号分辨率</strong>：<a href="信噪比.html">信噪比</a> S/N 决定了可区分的信号电平数，约 √(1 + S/N) 个。每秒 2W 个独立样本，每个样本 log₂ √(1 + S/N) bit，总计 W · log₂(1 + S/N)</p>
+<p><strong>信号分辨率</strong>：<a href="信噪比.html">信噪比</a> S/N 决定了可<a href="../entities/区分.html">区分</a>的信号电平数，约 √(1 + S/N) 个。每秒 2W 个独立样本，每个样本 log₂ √(1 + S/N) bit，总计 W · log₂(1 + S/N)</p>
 </li>
 <li>
 <p><strong>球填充</strong>：高维空间中，大球（信号+噪声）体积除以小球（噪声）体积给出最大消息数。体积比为 ((S+N)/N)^(n/2)，取对数得到信息量</p>

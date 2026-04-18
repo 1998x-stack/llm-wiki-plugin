@@ -164,13 +164,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="macos-apple-sandbox-seatbelt">macOS — Apple Sandbox (Seatbelt)</h3>
 <p>基于 Scheme 描述语言的访问控制策略（<code>sandbox-exec</code>），动态生成：全盘可读、只写工作区、禁止网络出站。支持 <code>--log-denials</code> 调试模式。</p>
 <h3 id="linux-landlock-seccomp">Linux — Landlock + seccomp（双层）</h3>
-<p><strong>层 1：Landlock</strong>（Linux 5.13+ 引入）</p>
+<p><strong>层 1：<a href="../entities/Landlock.html">Landlock</a></strong>（Linux 5.13+ 引入）</p>
 <p>基于 eBPF/LSM 的不可绕过文件系统沙箱：
 - 进程设置后<strong>无法提权取消</strong>（不可逆）
 - 规则自动继承到所有子进程（<code>cargo build</code>、<code>npm install</code> 等也受限）
 - 在 VFS 层拦截，无法被 <code>LD_PRELOAD</code> 或 ptrace 绕过</p>
-<p><strong>层 2：seccomp</strong>（系统调用过滤）</p>
-<p>在 Landlock 之上额外限制可用系统调用集：允许 <code>read/write/openat/execve</code>，拒绝 <code>socket/ptrace/mount</code> 等。两层叠加形成纵深防御，单层突破不等于完全逃逸。</p>
+<p><strong>层 2：<a href="../entities/seccomp.html">seccomp</a></strong>（系统调用过滤）</p>
+<p>在 <a href="../entities/Landlock.html">Landlock</a> 之上额外限制可用系统调用集：允许 <code>read/write/openat/execve</code>，拒绝 <code>socket/ptrace/mount</code> 等。两层叠加形成<a href="纵深防御.html">纵深防御</a>，单层突破不等于完全逃逸。</p>
 <h3 id="windows">Windows</h3>
 <p>实验性支持（Job Objects + AppContainer），建议在 WSL 中使用 Linux 沙箱。</p>
 <h2 id="sandbox_mode">沙箱模式（sandbox_mode）</h2>
@@ -229,6 +229,7 @@ codex execpolicy check --rules ~/.codex/rules.toml git push --force
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/03_codex_sandbox_system.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/04_codex_execpolicy.md</span> — ExecPolicy 与 Sandbox 协同：意图过滤器 vs 能力约束器</li>
 </ul>
   </div>
   <div class="page-nav">

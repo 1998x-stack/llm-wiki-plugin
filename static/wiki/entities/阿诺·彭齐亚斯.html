@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿诺·彭齐亚斯 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 阿诺·彭齐亚斯</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">人物</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">阿诺·彭齐亚斯</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>阿诺·彭齐亚斯（Arno Penzias, 1933-2024），德裔美国射电天文学家。1965年与<a href="罗伯特·威尔逊.html">罗伯特·威尔逊</a>共同发现<a href="../concepts/宇宙微波背景辐射.html">宇宙微波背景辐射</a>，获1978年诺贝尔物理学奖。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>发现CMB</strong>：1965年，彭齐亚斯与<a href="罗伯特·威尔逊.html">罗伯特·威尔逊</a>在新泽西州<a href="贝尔实验室.html">贝尔实验室</a>霍姆德尔站点，使用一台为"回声"卫星通信计划建造的20英尺喇叭形天线进行射电天文观测校准时，发现了一个持续存在的、约3.5开尔文的各向同性微波噪声信号。</li>
+<li><strong>严谨排查</strong>：面对这个无法解释的"多余噪声"，彭齐亚斯和威尔逊进行了极其细致的排查工作。他们检查了天线的每一个部件，排除了大气辐射、地面辐射、电子设备热噪声等所有已知噪声来源。他们甚至发现并清理了在天线内筑巢的鸽子及其粪便，但信号依然顽固存在。</li>
+<li><strong>命运的电话</strong>：麻省理工学院天文学家伯纳德·伯克建议彭齐亚斯给普林斯顿大学的<a href="罗伯特·迪克.html">罗伯特·迪克</a>打电话。迪克接完电话后对同事说："伙计们，我们被人抢先了。"这通电话确认了他们发现的正是宇宙大爆炸的余辉——<a href="../concepts/宇宙微波背景辐射.html">宇宙微波背景辐射</a>。</li>
+<li><strong>克制的论文</strong>：彭齐亚斯和威尔逊的论文《在4080兆赫频率上测得的天线温度超额》全文仅约600个英语单词，通篇未出现"大爆炸"三字。论文只在最后一段轻描淡写地提到迪克等人的理论解释。这种极度冷静克制的风格成为科学史上的经典。</li>
+<li><strong>荣誉</strong>：因发现<a href="../concepts/宇宙微波背景辐射.html">宇宙微波背景辐射</a>，彭齐亚斯与威尔逊共同获得1978年诺贝尔物理学奖。该发现被广泛认为是"二十世纪最重要的科学发现之一"。</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li>Penzias, A. A. &amp; Wilson, R. W. — "A Measurement of Excess Antenna Temperature at 4080 Mc/s," <em>Astrophysical Journal</em>, 142, 419-421 (1965)</li>
+<li>Singh, S. — <em>Big Bang: The Origin of the Universe</em>, 2004</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="罗伯特·威尔逊.html">罗伯特·威尔逊</a> — CMB共同发现者</li>
+<li><a href="../concepts/宇宙微波背景辐射.html">宇宙微波背景辐射</a> — 彭齐亚斯最重要的科学发现</li>
+<li><a href="贝尔实验室.html">贝尔实验室</a> — 发现CMB的工作单位</li>
+<li><a href="罗伯特·迪克.html">罗伯特·迪克</a> — 提供理论解释的普林斯顿物理学家</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="阿瑟·凯莱.html">&larr; 阿瑟·凯莱</a>
+    <a href="阿隆佐·邱奇.html">阿隆佐·邱奇 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

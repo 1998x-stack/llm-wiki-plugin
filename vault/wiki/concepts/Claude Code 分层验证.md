@@ -31,7 +31,7 @@ supersedes: null
 
 ## 概述
 
-Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个层面（tool description、CLAUDE.md、hooks/settings.json、LSP）的架构设计，确保验证既"会被正确调用"又"必定会执行"。
+[[Claude Code]] 分层验证是将 edit 后 validate/linting 逻辑分散到四个层面（tool description、CLAUDE.md、hooks/settings.json、LSP）的架构设计，确保验证既"会被正确调用"又"必定会执行"。
 
 ## 关键内容
 
@@ -57,7 +57,7 @@ Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个�
 - 什么时候先用 LSP，什么时候再用 Bash lint
 - 失败输出如何阅读
 
-**特点：** 不是硬约束，而是 Anthropic 强调的 **usage patterns from examples**。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。
+**特点：** 不是硬约束，而是 [[Anthropic]] 强调的 **usage patterns from examples**。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。
 
 #### 第 2 层：CLAUDE.md — 负责"想这么做"
 
@@ -108,7 +108,7 @@ Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个�
 
 很多人把所有规则都写进 CLAUDE.md，期待 Claude 记住"写完就 lint → lint 失败就修 → 再跑 test → 再检查 changed files"。这在简单项目里可行，但一旦任务变长，就容易退化成"知道规则，但执行不稳定"。
 
-Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：**重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。**
+[[Claude Code]] 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：**重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。**
 
 ### 落地四步
 
@@ -119,7 +119,7 @@ Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上�
 
 ### 与 SWE-agent 的对比
 
-| 维度 | [[SWE-agent]] | Claude Code 分层验证 |
+| 维度 | [[SWE-agent]] | [[Claude Code]] 分层验证 |
 |------|-----------|-------------------|
 | 验证位置 | 编辑器内部（USE_LINTER + flake8） | 四层分散（LSP + hooks + CLAUDE.md + tool description） |
 | 执行机制 | 内置于 edit function | 通过 PostToolUse 钩子自动化 |

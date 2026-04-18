@@ -127,28 +127,47 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 公式识别</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">AI</span><span class="tag">公式识别</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="_1">公式识别</h1>
 <h2 id="_2">概述</h2>
-<p>公式识别（Formula Recognition）是将 PDF 中以图像形式存储的数学公式转换为 LaTeX 代码的技术，是高质量学术文档解析的关键环节。</p>
+<p>公式识别（Formula Recognition）将数学公式图像映射为 LaTeX 字符串——一种包含嵌套结构的领域特定语言（DSL），比普通 OCR 困难得多。</p>
 <h2 id="_3">关键内容</h2>
-<h3 id="pdf">在 PDF 解析中的挑战</h3>
-<ul>
-<li>PDF 中公式以图像形式存储，无法直接提取为可编辑文本</li>
-<li>需要检测公式位置（布局检测）→ 识别公式内容（公式识别）→ 输出 LaTeX</li>
-<li>复杂公式包含分式、积分、<a href="矩阵.html">矩阵</a>、上下标等多层嵌套结构</li>
-</ul>
+<h3 id="ocr">为什么公式识别比 OCR 难得多？</h3>
+<p>普通文字是<strong>一维序列</strong>：字符从左到右线性排列，OCR 的 CTC 解码天然适合。</p>
+<p>数学公式是<strong>二维树状结构</strong>：
+- <strong>上标/下标关系</strong>（非线性）：<code>a²</code>、<code>∫₀^∞</code>
+- <strong>二维网格结构</strong>：<a href="矩阵.html">矩阵</a> <code>⎛a b⎞⎝c d⎠</code>
+- <strong>竖直排列关系</strong>：分数 <code>n! / k!(n-k)!</code></p>
+<p>普通文字识别模型把图像映射为<strong>字符序列</strong>，而公式识别需要把图像映射为 <strong>LaTeX 字符串</strong>，包含希腊字母命令（<code>\frac</code>、<code>\cdot</code>）、嵌套结构（分子嵌套在 <code>\frac</code> 内）、特殊符号和精确的括号匹配。这需要<strong>序列到序列（<a href="编码器-解码器架构（Seq2Seq）.html">Seq2Seq</a>）</strong>的生成模型，而非简单的 CTC 解码。</p>
+<h3 id="vs">行内公式 vs 独立公式</h3>
+<p><a href="../entities/MinerU.html">MinerU</a> <a href="../entities/区分.html">区分</a>两种公式类型：</p>
+<p><strong>独立公式（Display Equation）</strong>：
+- 单独占一行（或多行），通常有编号 "(1)"
+- <a href="../entities/DocLayout-YOLO.html">DocLayout-YOLO</a> 检测为 <code>equation</code> 类别
+- 处理：裁剪整个 <code>equation</code> 框区域 → <a href="../entities/UniMERNet.html">UniMERNet</a> 识别 → 输出 <code>$$...$$</code></p>
+<p><strong>行内公式（Inline Equation）</strong>：
+- 嵌入在文字段落内部，通常比较短
+- 布局检测<strong>不会</strong>单独标出（包含在 <code>text</code> 框内）
+- 处理更复杂，需要先检测行内公式的位置</p>
+<h3 id="_4">行内公式检测：一个更难的子问题</h3>
+<p><strong>文字型 PDF</strong>：行内公式通常以<strong>特殊数学字体</strong>出现（CMMI、CMSY、Symbol 字体）。<a href="../entities/MinerU.html">MinerU</a> 通过字体名称检测：</p>
+<pre><code>MATH_FONT_KEYWORDS = [&quot;CMMI&quot;, &quot;CMSY&quot;, &quot;CMR&quot;, &quot;MSAM&quot;, &quot;MSBM&quot;, &quot;mtmi&quot;, &quot;Symbol&quot;, &quot;MT-Symbol&quot;]
+</code></pre>
+<p>检测到数学字体 Span 后，标记为行内公式候选，裁剪该区域送入 <a href="../entities/UniMERNet.html">UniMERNet</a>。</p>
+<p><strong>扫描件</strong>：无字体信息。MinerU 使用一个<strong>行内公式检测模型</strong>（基于轻量 YOLO 变体）对文字行图像进行逐行扫描，检测公式区域的边界框。</p>
 <h3 id="unimernet">UniMERNet 方案</h3>
 <p><a href="../entities/UniMERNet.html">UniMERNet</a> 是 <a href="../entities/MinerU.html">MinerU</a> 第四层流水线中的公式识别引擎：
-- 接收布局检测输出的公式检测框
-- 输出对应的 LaTeX 代码
-- 支持复杂公式结构的端到端识别</p>
-<h3 id="_4">与同类工具对比</h3>
+- 采用 Swin Transformer 编码器 + Transformer 解码器的 Image-to-Sequence 架构
+- 自回归逐 token 生成 LaTeX，Beam Search（Beam Size = 4）提升质量
+- 命令级词表（约 600 个 token）：<code>\frac</code> 作为单一 token，大幅提升效率
+- LaTeX 后处理：语法修复 + sympy 渲染验证
+- 输出标准 Markdown 格式：行内 <code>$...$</code>，独立 <code>$$...$$</code></p>
+<h3 id="_5">与同类工具对比</h3>
 <table>
 <thead>
 <tr>
@@ -175,20 +194,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<h2 id="_5">来源</h2>
+<h2 id="_6">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_05_formula.md</span> — MinerU 深度解析系列 · 第五篇：公式识别系统</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_7">相关</h2>
 <ul>
-<li><a href="../entities/MinerU.html">MinerU</a> — 第四层流水线</li>
-<li><a href="../entities/UniMERNet.html">UniMERNet</a> — 公式识别引擎</li>
+<li><a href="../entities/MinerU.html">MinerU</a> — 第四层流水线使用公式识别</li>
+<li><a href="../entities/UniMERNet.html">UniMERNet</a> — 公式识别引擎实现</li>
 <li><a href="PDF解析.html">PDF解析</a> — 所属问题域</li>
-<li><a href="文档布局检测.html">文档布局检测</a> — 前置环节</li>
+<li><a href="文档布局检测.html">文档布局检测</a> — 前置环节（检测公式区域）</li>
+<li><a href="光学字符识别.html">光学字符识别</a> — 对比：一维序列 vs 二维树状结构</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="全维度漏洞扫描法.html">&larr; 全维度漏洞扫描法</a>
+    <a href="公共领域.html">&larr; 公共领域</a>
     <a href="公钥密码学.html">公钥密码学 &rarr;</a>
   </div>
 </div>

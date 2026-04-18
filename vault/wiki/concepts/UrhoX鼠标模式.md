@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 输入处理, 鼠标, Web平台]
+tags: ["UrhoX", "Lua", "输入处理", "鼠标", "Web平台", "游戏开发"]
 aliases: [鼠标模式, MouseMode, MM_RELATIVE, MM_ABSOLUTE, Pointer Lock]
 relates_to: [UrhoX引擎, UrhoX Lua开发准则, 鼠标滚轮输入API陷阱]
 supersedes: null

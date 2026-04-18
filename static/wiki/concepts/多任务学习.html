@@ -146,8 +146,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">常见架构</h3>
 <ul>
 <li><strong>Shared-Bottom</strong>：所有任务共享底层表征网络，顶部接任务特定塔网络；假设所有任务共享同一组底层特征表示</li>
-<li><strong>OMoE</strong>(One-gate MoE)：多专家网络替代共享底层，所有任务共享同一门控网络</li>
-<li><strong>MMoE</strong>：为每任务配备独立门控网络，自适应选择专家组合</li>
+<li><strong>OMoE</strong>(One-gate MoE)：多专家网络替代共享底层，所有任务共享同一<a href="门控机制（Gating Mechanism）.html">门控</a>网络</li>
+<li><strong>MMoE</strong>：为每任务配备独立<a href="门控机制（Gating Mechanism）.html">门控</a>网络，自适应选择专家组合</li>
 <li><strong>Cross-Stitch</strong>：通过可学习参数控制任务间信息流动</li>
 <li><strong>L2-Constrained</strong>：通过 L2 正则约束任务间参数差异</li>
 </ul>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="多Agent架构.html">&larr; 多Agent架构</a>
-    <a href="多头注意力.html">多头注意力 &rarr;</a>
+    <a href="多信使天文学.html">多信使天文学 &rarr;</a>
   </div>
 </div>
 </body>

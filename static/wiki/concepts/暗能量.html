@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暗能量 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 暗能量</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">宇宙学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">暗能量</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>驱动<a href="宇宙加速膨胀.html">宇宙加速膨胀</a>的神秘能量形式，约占宇宙总能量密度的68%，产生负压强效应，在大尺度上表现为排斥力。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>发现历程</strong>：1998年，<a href="../entities/亚当·里斯.html">亚当·里斯</a>领导的<a href="../entities/高红移超新星搜索团队.html">高红移超新星搜索团队</a>与<a href="../entities/索尔·珀尔马特.html">索尔·珀尔马特</a>领导的<a href="../entities/超新星宇宙学项目.html">超新星宇宙学项目</a>分别独立发现，遥远的<a href="Ia型超新星.html">Ia型超新星</a>比减速膨胀模型预言的暗淡10%-15%，表明宇宙正在加速膨胀而非减速。这一发现通过<a href="标准烛光.html">标准烛光</a>方法实现，利用<a href="Ia型超新星.html">Ia型超新星</a>高度一致的峰值光度精确测量宇宙距离。</li>
+<li><strong>物理本质</strong>：最简单的解释是<span style="color:#e74c3c" title="broken link">爱因斯坦</span>在<a href="广义相对论.html">广义相对论</a>中引入的<a href="宇宙学常数.html">宇宙学常数</a>，即真空本身具有固有的能量密度。但量子场论计算出的真空能量与观测值相差120个数量级，构成<a href="宇宙学常数问题.html">宇宙学常数问题</a>——理论物理中最严重的数值矛盾。另一种可能是<a href="精质.html">精质</a>（<a href="精质.html">Quintessence</a>），一种随时间缓慢演化的标量场。</li>
+<li><strong>宇宙组成</strong>：暗能量占宇宙总能量密度约68%，<a href="暗物质.html">暗物质</a>约占27%，而人类能直接研究的普通物质仅占约5%。暗能量的本质关系到时空的基本结构、量子力学与<a href="广义相对论.html">广义相对论</a>的统一，以及宇宙的最终命运。若暗能量确为<a href="宇宙学常数.html">宇宙学常数</a>，宇宙将永远加速膨胀，走向冰冷、空旷的结局。</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">10-riess-perlmutter-dark-energy</span> — 暗能量发现的核心源文件，详述两支团队的竞争与发现历程</li>
+<li>Riess, A. G. et al. (1998). "Observational Evidence from Supernovae for an Accelerating Universe and a Cosmological Constant." <em>Astronomical Journal</em>, 116, 1009.</li>
+<li>Perlmutter, S. et al. (1999). "Measurements of Omega and Lambda from 42 High-Redshift Supernovae." <em>Astrophysical Journal</em>, 517, 565.</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="宇宙加速膨胀.html">宇宙加速膨胀</a> — caused</li>
+<li><a href="宇宙学常数.html">宇宙学常数</a> — extends</li>
+<li><a href="暗物质.html">暗物质</a> — compares_to</li>
+<li><a href="精质.html">精质</a> — compares_to</li>
+<li><a href="宇宙学常数问题.html">宇宙学常数问题</a> — relates_to</li>
+<li><a href="Ia型超新星.html">Ia型超新星</a> — depends_on</li>
+<li><a href="标准烛光.html">标准烛光</a> — depends_on</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="暗物质晕.html">&larr; 暗物质晕</a>
+    <a href="最大似然原理.html">最大似然原理 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 诺贝尔奖
   - 视觉皮层
+  - 脑科学
 aliases:
   - "David H. Hubel"
   - "大卫·休伯尔"
@@ -23,7 +24,7 @@ supersedes: null
 
 ## 概述
 
-David H. Hubel（1926-2013）是加拿大裔美国神经科学家，与 Torsten [[Torsten N. Wiesel|Wiesel]] 合作研究[[视觉皮层]]，发现方向选择性和皮层柱状结构，1981 年共同获得诺贝尔生理学或医学奖。他们的工作直接启发了卷积神经网络（CNN）的设计。
+David H. Hubel（1926-2013）是加拿大裔美国神经科学家，与 Torsten [[Torsten N. Wiesel|Wiesel]] 合作研究[[视觉皮层]]，发现方向选择性和皮层柱状结构，1981 年共同获得诺贝尔生理学或医学奖。他们的工作直接启发了[[卷积神经网络（CNN）]]的设计。
 
 ## 关键内容
 
@@ -31,7 +32,7 @@ David H. Hubel（1926-2013）是加拿大裔美国神经科学家，与 Torsten 
 
 **[[视觉皮层]]研究**：
 - 发现 V1 神经元对特定朝向的线条或边缘刺激有最强响应
-- 区分简单细胞（Simple Cells）和复杂细胞（Complex Cells）
+- [[区分]]简单细胞（Simple Cells）和复杂细胞（Complex Cells）
 - 揭示皮层柱状结构（Cortical Columns）和朝向柱（orientation column）
 - 发现眼优势（Ocular Dominance）和关键期（critical period）
 
@@ -59,7 +60,7 @@ David H. Hubel（1926-2013）是加拿大裔美国神经科学家，与 Torsten 
 - 获奖理由：视觉系统中信息处理的发现
 
 **深远影响**：
-- 直接启发了卷积神经网络（CNN）的设计
+- 直接启发了[[卷积神经网络（CNN）]]的设计
 - 简单细胞→复杂细胞的层级加工模型对应 CNN 的卷积层→池化层
 - 深度学习革命的底层逻辑
 

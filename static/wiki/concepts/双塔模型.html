@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>训练与服务的不对称</strong>：训练时两塔共同参与 softmax 分类器的训练，通过 <a href="采样 Softmax.html">采样 Softmax</a> 降低计算开销。服务时用户 embedding 通过前向传播实时计算，物品 embedding 预先存储，推荐问题转化为在物品 embedding 空间中寻找与用户 embedding 最近的 Top-N 个物品——即 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
 </li>
 <li>
-<p><strong>特征处理方式</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中，用户的观看历史（视频 ID 序列）每个 ID 映射为 embedding 后取<strong>平均值</strong>得到固定长度稠密向量，借鉴了 Word2Vec 中 CBOW 的思想。搜索历史同样 tokenize 后取平均。这些特征拼接后输入 MLP。</p>
+<p><strong>特征处理方式</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中，用户的观看历史（视频 ID 序列）每个 ID 映射为 embedding 后取<strong>平均值</strong>得到固定长度稠密向量，借鉴了 <a href="Word2Vec.html">Word2Vec</a> 中 CBOW 的思想。搜索历史同样 tokenize 后取平均。这些特征拼接后输入 MLP。</p>
 </li>
 <li>
-<p><strong>后续发展</strong>：双塔模型成为推荐系统中最基础的模型架构之一。后续的 DSSM（微软）、MIND（阿里）等模型都是这一思路的延伸。现代双塔模型在特征处理上更加精细，引入了注意力机制、序列建模、多模态特征等。</p>
+<p><strong>后续发展</strong>：双塔模型成为推荐系统中最基础的模型架构之一。后续的 DSSM（微软）、MIND（阿里）等模型都是这一思路的延伸。现代双塔模型在特征处理上更加精细，引入了<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>、序列建模、多模态特征等。</p>
 </li>
 <li>
 <p><strong>优势</strong>：（1）计算高效——用户和物品 embedding 可独立预计算，服务时只需内积运算；（2）支持 ANN 检索——embedding 空间中的最近邻搜索可在亚线性时间内完成；（3）泛化能力强——embedding 可被下游任务复用。</p>
@@ -176,8 +176,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="县域体制内剩女.html">&larr; 县域体制内剩女</a>
-    <a href="双重鲁棒估计器.html">双重鲁棒估计器 &rarr;</a>
+    <a href="双向 LSTM（Bi-LSTM）.html">&larr; 双向 LSTM（Bi-LSTM）</a>
+    <a href="双重意识.html">双重意识 &rarr;</a>
   </div>
 </div>
 </body>

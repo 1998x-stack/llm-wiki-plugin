@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 2
-tags: [图形库, 矢量图形, 2D渲染, NanoVG, 游戏引擎]
+tags: ["图形库", "矢量图形", "2D渲染", "NanoVG", "游戏引擎", "游戏开发"]
 aliases: [NanoVG矢量图形, nanovg]
 relates_to: [UrhoX引擎, PBR材质系统]
 supersedes: null

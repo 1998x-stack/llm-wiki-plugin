@@ -29,11 +29,14 @@ ChromaDB 是一个开源的向量数据库（Vector Database），专为 AI/LLM 
 - **部署模式**：本地内存模式（测试）、持久化磁盘模式（生产）、HTTP 客户端/服务端模式
 - **与传统数据库对比**：[[SQLite]]/FTS5 适合精确关键词匹配；ChromaDB 适合语义相似度检索（"找意思相近的记忆"）
 - **生态**：与 LangChain、LlamaIndex 等 RAG 框架深度集成
+- **在 [[MemPalace]] 中的应用**：作为 [[MemPalace]] 的唯一数据库依赖，负责[[原文逐字存储]]的嵌入存储与语义检索。[[MemPalace]] 将对话切块后存入 ChromaDB，检索时通过向量语义搜索找到最相关的原始片段
 
 ## 来源
 - 综合自内部引用：[[Claude-Mem]] 等
+- [[raw/articles/ai-tools/mempalace/mempalace_01_overview.md]] — MemPalace 系列总览篇
 
 ## 相关
 - [[Claude-Mem]]
 - [[SQLite]]
 - FTS5
+- [[MemPalace]] — used_by

@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [PBR, 材质, 渲染, 3D图形, 物理渲染]
+tags: ["PBR", "材质", "渲染", "3D图形", "物理渲染", "游戏开发"]
 aliases: [PBR渲染, 基于物理的渲染, Physically Based Rendering]
 relates_to: [UrhoX材质库, UrhoXCLI]
 supersedes: null

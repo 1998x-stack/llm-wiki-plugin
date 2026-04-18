@@ -19,7 +19,7 @@ supersedes: null
 
 ## 概述
 
-Programmatic Tool Calling（PTC，程序化工具调用）是 [[Claude-Opus-4-6|Claude Opus 4.6]] 和 [[Claude-Sonnet-4|Sonnet 4]].6 模型中引入的新能力。允许通过编程方式动态调用工具，而非仅依赖预定义的工具描述。这一能力使得工具调用更加灵活，支持运行时决策和动态参数构造。
+Programmatic Tool [[天职|Calling]]（PTC，程序化工具调用）是 [[Claude-Opus-4-6|Claude Opus 4.6]] 和 [[Claude-Sonnet-4|Sonnet 4]].6 模型中引入的新能力。允许通过编程方式动态调用工具，而非仅依赖预定义的工具描述。这一能力使得工具调用更加灵活，支持运行时决策和动态参数构造。
 
 ## 关键内容
 
@@ -82,8 +82,8 @@ Programmatic Tool Calling（PTC，程序化工具调用）是 [[Claude-Opus-4-6|
 - PTC：提供动态工具调用能力
 - 可能协同：[[Agent Skills|Skills]] 可以包含 PTC 的最佳实践和模式
 
-**与 Claude Code 的关系**：
-- Claude Code 目前使用约 20 个预定义工具
+**与 [[Claude Code]] 的关系**：
+- [[Claude Code]] 目前使用约 20 个预定义工具
 - PTC 可能影响未来工具设计策略
 - 需要持续实验验证 PTC 在实际工作流中的价值
 

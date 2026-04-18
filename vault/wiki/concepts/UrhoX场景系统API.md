@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, UrhoX, Lua, API, 场景管理]
+tags: ["游戏引擎", "UrhoX", "Lua", "API", "场景管理", "游戏开发"]
 aliases: [UrhoX Scene, 场景API, Scene API]
 relates_to: [UrhoX引擎, UrhoX节点系统API, UrhoX组件系统API, 场景树]
 supersedes: null

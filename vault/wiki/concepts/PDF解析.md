@@ -5,7 +5,7 @@ confidence: 0.85
 created: 2026-04-16
 updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 1
+source_count: 2
 tags:
 - 技术
 - AI
@@ -31,6 +31,18 @@ relates_to:
   confidence: 0.8
 - target: '[[检索增强生成]]'
   type: depends_on
+  confidence: 0.85
+- target: '[[PDF内容流]]'
+  type: part_of
+  confidence: 0.95
+- target: '[[PDF坐标系]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[Span层级结构]]'
+  type: part_of
+  confidence: 0.9
+- target: '[[MinerUSpan格式]]'
+  type: relates_to
   confidence: 0.85
 supersedes: null
 ---
@@ -70,9 +82,31 @@ RAG 系统、知识库构建、文档问答，全都依赖**精准的文本提�
 
 现代高质量 PDF 解析采用**多模型协同流水线**：布局检测 → 内容专项识别（OCR/公式/表格）→ [[阅读顺序重建]] → 结构化输出。
 
+### 渲染参数选择
+
+PDF 页面渲染为图像时，分辨率直接影响准确率与速度：
+
+| DPI | 分辨率（A4） | 适用场景 | 显存占用 |
+|-----|------------|---------|---------|
+| 72 | 595×842 | 仅预览 | 低 |
+| 150 | 1240×1754 | 基础 OCR | 中 |
+| **200** | **1654×2339** | **[[MinerU]] 默认** | 中 |
+| 300 | 2480×3508 | 高精度 OCR | 高 |
+
+200 DPI 是准确率与速度的平衡点。
+
+### 原始数据噪声
+
+从 PDF 提取的原始数据存在多种噪声：
+1. **超短碎片**：单字符/空格级别的过度分割，需同行合并
+2. **水印文字**：旋转、半透明、大面积覆盖，通过颜色和旋转角度检测
+3. **页眉页脚**：固定区域重复出现，在布局检测阶段标记过滤
+4. **重叠 Span**：PDF 生成工具产生的内容重复，需去重
+
 ## 来源
 
 - [[raw/assets/MinerU/minerU_01_architecture.md]] — MinerU 深度解析系列 · 第一篇
+- [[raw/assets/MinerU/minerU_02_pdf_parsing.md]] — MinerU 深度解析系列 · 第二篇：底层 PDF 解析引擎
 
 ## 相关
 
@@ -83,3 +117,7 @@ RAG 系统、知识库构建、文档问答，全都依赖**精准的文本提�
 - [[表格识别]] — 表格结构还原技术
 - [[阅读顺序重建]] — 多栏文档的序列重建
 - [[检索增强生成]] — PDF 解析的主要下游应用
+- [[PDF内容流]] — PDF 内部的数据结构本质
+- [[PDF坐标系]] — 坐标参照系统
+- [[Span层级结构]] — 文字提取的嵌套结构
+- [[MinerUSpan格式]] — MinerU 的内部数据格式

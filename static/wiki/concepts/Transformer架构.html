@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 1. <strong><a href="多头注意力.html">多头注意力</a>（<a href="多头注意力.html">Multi-Head Attention</a>）</strong>：并行多子空间注意力
 2. <strong>前馈网络（FFN）</strong>：逐位置的非线性变换
 3. <strong><a href="Layer Normalization.html">层归一化</a>（<a href="Layer Normalization.html">LayerNorm</a>）</strong>：稳定训练
-4. <strong><a href="残差连接.html">残差连接</a></strong>：缓解梯度消失</p>
+4. <strong><a href="残差连接.html">残差连接</a></strong>：缓解<a href="梯度消失.html">梯度消失</a></p>
 <h3 id="_4">计算瓶颈</h3>
 <p><a href="Self-Attention机制.html">Self-Attention</a> 的注意力<a href="矩阵.html">矩阵</a>大小为 $n \times n$（n 为序列长度），导致：</p>
 <ul>
@@ -165,17 +165,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/01-解释Transformer架构中的Self-Attention机制，并说明其计算复杂度.md</span> — 架构概述与复杂度对比</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/14_transformer_2017.md</span> — 完整代码实现 + RNN vs Transformer 对比表</li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
 <li><a href="Self-Attention机制.html">Self-Attention机制</a> — depends_on（Self-Attention 是 Transformer 的核心）</li>
 <li><a href="多头注意力.html">多头注意力</a> — depends_on（MHA 是 Transformer 的标准注意力形式）</li>
 <li><a href="注意力预算.html">注意力预算</a> — relates_to（n² 复杂度是注意力预算有限的架构根因）</li>
+<li><a href="Pre-LN架构.html">Pre-LN架构</a> — relates_to（现代 Transformer 的标准归一化顺序）</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Transformer 架构.html">&larr; Transformer 架构</a>
-    <a href="UNIX.html">UNIX &rarr;</a>
+    <a href="UI Design Contract.html">UI Design Contract &rarr;</a>
   </div>
 </div>
 </body>

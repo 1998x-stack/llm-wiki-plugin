@@ -1,10 +1,17 @@
 ---
 type: qa-insight
-source_file: "qa/2026-04-15.md"
-source_lines: [10, 65]
-topics: ["数值PDE", "稳定性分析", "收敛理论", "CFL条件", "冯·诺依曼分析"]
+source_file: qa/2026-04-15.md
+source_lines:
+- 10
+- 65
+topics:
+- 数值PDE
+- 稳定性分析
+- 收敛理论
+- CFL条件
+- 冯·诺依曼分析
 confidence: 0.95
-created: 2026-04-15
+created: &id001 2026-04-15
 updated: 2026-04-15
 status: active
 tags:
@@ -15,6 +22,8 @@ relates_to:
 - '[[CFL条件]]'
 - '[[冯·诺依曼稳定性分析]]'
 - '[[Lax-Richtmyer等价定理]]'
+last_accessed: *id001
+source_count: 1
 ---
 
 # 数值 PDE 稳定-收敛三角

@@ -149,23 +149,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="_4">核心贡献</h3>
 <ul>
-<li>提出 MMoE 架构：为每个任务配备独立门控网络，自适应选择共享专家组合</li>
+<li>提出 MMoE 架构：为每个任务配备独立<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>网络，自适应选择共享专家组合</li>
 <li>建立研究<a href="../concepts/多任务学习.html">多任务学习</a>任务关系的实验<a href="../concepts/规范化理论.html">范式</a>：通过合成数据精确控制任务相关性</li>
 <li>在 <a href="YouTube.html">YouTube</a> 大规模推荐系统中进行工业验证，离线和在线 A/B 测试均取得正向收益</li>
-<li>证明当任务相关性降低时，独立门控的价值愈发凸显</li>
+<li>证明当任务相关性降低时，独立<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>的价值愈发凸显</li>
 </ul>
 <h3 id="_5">实验验证</h3>
 <ul>
 <li><strong>合成数据实验</strong>：通过正交<a href="../concepts/矩阵.html">矩阵</a>旋转变换精确控制任务相关性，验证 MMoE 在低相关性场景下的显著优势</li>
 <li><strong>UCI Census-Income 数据集</strong>：在多任务分类任务中对比 L2-Constrained 和 Cross-Stitch 等方法</li>
 <li><strong><a href="YouTube.html">YouTube</a> 推荐系统</strong>：同时优化参与度预测和满意度预测，MMoE 在两任务上均优于 Shared-Bottom 基线</li>
-<li><strong>门控网络可视化</strong>：发现满意度任务门控权重集中在少数专家，参与度任务分布更均匀</li>
+<li><strong><a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>网络可视化</strong>：发现满意度任务<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>权重集中在少数专家，参与度任务分布更均匀</li>
 </ul>
 <h3 id="_6">关键洞察</h3>
 <ul>
 <li>"The prediction quality of commonly used multi-task models is often sensitive to the relationships between tasks."</li>
 <li>"The key insight is to use separate gating networks for each task."</li>
-<li>MMoE 以几乎零成本的门控网络换来显著效果提升，体现工程美学</li>
+<li>MMoE 以几乎零成本的<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>网络换来显著效果提升，体现工程美学</li>
 </ul>
 <h3 id="_7">影响与后续工作</h3>
 <ul>

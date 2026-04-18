@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent-aci">Agent 计算机接口（ACI）</h1>
 <h2 id="_1">概述</h2>
-<p>Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L<a href="LM Agent.html">LM Agent</a> 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——Anthropic 在 <a href="SWE-bench.html">SWE-bench</a> 中花费在工具优化上的时间多于整体提示词优化。</p>
+<p>Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L<a href="LM Agent.html">LM Agent</a> 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="SWE-bench.html">SWE-bench</a> 中花费在工具优化上的时间多于整体提示词优化。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="swe-agent-aci">SWE-agent 论文的 ACI 贡献</h3>
 <p>Princeton 的 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文（"<a href="../entities/SWE-agent.html">SWE-agent</a>: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：</p>
@@ -198,7 +198,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>✅ <code>get_customer_context(id)</code> 合并历史、交易、备注</li>
 </ul>
 <p><strong>2. 工具命名空间（Namespacing）</strong></p>
-<p>使用前缀或后缀区分不同来源的工具，避免 Agent 混淆类似工具：
+<p>使用前缀或后缀<a href="../entities/区分.html">区分</a>不同来源的工具，避免 Agent 混淆类似工具：
 - 按服务：<code>asana_search</code>, <code>jira_search</code>
 - 按资源：<code>asana_projects_search</code>, <code>asana_users_search</code></p>
 <p><strong>3. 返回有意义的上下文</strong></p>
@@ -207,20 +207,20 @@ nav a.active { color: var(--link); font-weight: 600; }
 - ❌ <code>uuid</code>, <code>256px_image_url</code>, <code>mime_type</code>
 - 将任意字母数字 UUID 解析为语义化标识符（或简单的 0-indexed ID）可显著减少幻觉</p>
 <p><strong>4. 优化 Token 效率</strong></p>
-<p>长响应使用分页/范围选择/过滤/截断。Claude Code 默认将工具响应限制在 25,000 tokens。截断时应给出明确指导，引导 Agent 使用更精准的查询，而非盲目依赖截断。</p>
+<p>长响应使用分页/范围选择/过滤/截断。<a href="../entities/Claude Code.html">Claude Code</a> 默认将工具响应限制在 25,000 tokens。截断时应给出明确指导，引导 Agent 使用更精准的查询，而非盲目依赖截断。</p>
 <p><strong>5. 工具描述的提示工程</strong></p>
 <p>工具描述是最高效的 Agent 调优手段之一：
 - 像给新团队成员写文档一样编写：包含专业查询格式、领域术语定义、资源间关系
 - 参数名应无歧义（<code>user_id</code> 优于 <code>user</code>）
 - 细微的描述改进可带来显著性能变化——<a href="SWE-bench.html">SWE-bench</a> 中仅改工具描述就达到 SOTA</p>
 <h3 id="_4">工具开发的评估驱动循环</h3>
-<p>Anthropic 推荐的工具开发流程：</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 推荐的工具开发流程：</p>
 <ol>
-<li><strong>构建原型</strong> — 快速实现，用 Claude Code 测试基础功能</li>
+<li><strong>构建原型</strong> — 快速实现，用 <a href="../entities/Claude Code.html">Claude Code</a> 测试基础功能</li>
 <li><strong>生成评估任务</strong> — 基于真实使用场景的 prompt-response 对（包含需要多步工具调用的复杂任务）</li>
 <li><strong>运行评估</strong> — 使用简单 agentic 循环程序化运行；收集精度、运行时间、工具调用次数、Token 消耗等指标</li>
 <li><strong>分析结果</strong> — 阅读 transcript 和工具调用；让 Agent 分析自身的 transcript 找出改进点</li>
-<li><strong>让 Agent 改进工具</strong> — 将评估 transcript 粘贴给 Claude Code，让它重构工具；对 Slack MCP 服务器的实验显示 Claude 优化后的工具性能高于人工编写版本</li>
+<li><strong>让 Agent 改进工具</strong> — 将评估 transcript 粘贴给 <a href="../entities/Claude Code.html">Claude Code</a>，让它重构工具；对 Slack MCP 服务器的实验显示 Claude 优化后的工具性能高于人工编写版本</li>
 </ol>
 <h3 id="tool-use-examples-schema">使用 Tool Use Examples 补充 Schema</h3>
 <p>JSON Schema 定义什么是<strong>结构上有效</strong>的，但无法表达<strong>使用模式</strong>。通过在工具定义中提供示例，直接展示：
@@ -228,7 +228,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - ID 格式约定（"USR-12345" vs 整数）
 - 嵌套对象何时填写（critical bug vs feature request 的不同处理）
 - 可选参数的关联规则</p>
-<p>Anthropic 内部测试显示，添加 Tool Use Examples 将复杂参数处理准确率从 72% 提升至 <strong>90%</strong>。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 内部测试显示，添加 Tool Use Examples 将复杂参数处理准确率从 72% 提升至 <strong>90%</strong>。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Building Effective AI Agents.md</span></li>
@@ -259,7 +259,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Agent循环.html">&larr; Agent循环</a>
+    <a href="Agent角色系统.html">&larr; Agent角色系统</a>
     <a href="Agent评估方法论.html">Agent评估方法论 &rarr;</a>
   </div>
 </div>

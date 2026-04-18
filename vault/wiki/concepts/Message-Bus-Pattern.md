@@ -9,6 +9,7 @@ source_count: 1
 tags:
   - AI
   - 架构
+  - Agent系统
 aliases:
   - "Message Bus Pattern"
   - "消息总线模式"

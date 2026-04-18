@@ -21,14 +21,14 @@ supersedes: null
 # AI 产品积分系统设计
 
 ## 概述
-AI 产品（[[Manus]]、v0.dev、Lovable、Bolt、Cursor、Replit、Builder.io 等）采用的积分/Credits 定价体系深度分析，涵盖五种定价模式、核心设计原则、工程架构实现及行业共性痛点。
+AI 产品（[[Manus]]、v0.dev、Lovable、Bolt、[[Cursor]]、Replit、Builder.io 等）采用的积分/Credits 定价体系深度分析，涵盖五种定价模式、核心设计原则、工程架构实现及行业共性痛点。
 
 ## 关键内容
 
 1. **五种定价模式**：
    - 纯订阅（Flat Fee）：ChatGPT Plus $20/月，成本可预期但厂商难控重度用户
-   - 按用量计费（Usage-Based）：OpenAI API，线性公平但用户焦虑
-   - 订阅+积分混合（Hybrid）：v0.dev、Lovable、Cursor，保底收入+控制超量
+   - 按用量计费（Usage-Based）：[[OpenAI]] API，线性公平但用户焦虑
+   - 订阅+积分混合（Hybrid）：v0.dev、Lovable、[[Cursor]]，保底收入+控制超量
    - 结果导向（Outcome-Based）：Intercom Fin $0.99/成功解决，价值对齐但"成功"定义复杂
    - 分层积分+每日刷新（Tiered+Daily Refresh）：[[Manus]]，保持日活但 Agent 任务成本黑盒
 
@@ -40,7 +40,7 @@ AI 产品（[[Manus]]、v0.dev、Lovable、Bolt、Cursor、Replit、Builder.io �
 
 5. **v0 迁移教训**：2025 年 5 月从固定月费（近乎无限使用）切换至 token 计费体系，引发社区强烈反弹。核心教训：从旧模式迁移需提前 30 天通知、提供对比说明、给老用户过渡期额外积分、提供使用量估算器、开放 30 天双模式。
 
-6. **Builder.io 最佳实践**：统一货币（所有 AI 操作共用一套积分）、Rollover with Cap（滚存上限为月度额度 2×）、差异化推理（简单请求消耗少，复杂任务消耗多）、实时状态指示器。
+6. **Builder.io 最佳实践**：统一货币（所有 AI 操作共用一套积分）、Rollover with Cap（滚存上限为月度额度 2×）、差[[异化]]推理（简单请求消耗少，复杂任务消耗多）、实时状态指示器。
 
 7. **十大设计原则**：
    - 积分≠Token，需要抽象层（用户看到 50 积分，内部 150K input + 80K output tokens）

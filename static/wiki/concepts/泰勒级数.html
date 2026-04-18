@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">泰勒级数</h1>
 <h2 id="_2">概述</h2>
-<p>泰勒级数（Taylor Series）是将光滑函数在某点附近展开为幂级数的方法，由<a href="../entities/布鲁克·泰勒.html">布鲁克·泰勒</a>（1715）系统提出。若函数 $f$ 在点 $a$ 处无穷次可微，则 $f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$。当 $a=0$ 时称麦克劳林级数。泰勒级数是<a href="../maps/数值分析.html">数值分析</a>中误差估计和算法推导（如<a href="欧拉方法.html">欧拉方法</a>、<a href="龙格-库塔方法.html">龙格-库塔方法</a>）的理论基础。</p>
+<p><a href="../entities/赫尔斯-泰勒脉冲双星.html">泰勒</a>级数（Taylor Series）是将光滑函数在某点附近展开为幂级数的方法，由<a href="../entities/布鲁克·泰勒.html">布鲁克·泰勒</a>（1715）系统提出。若函数 $f$ 在点 $a$ 处无穷次可微，则 $f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$。当 $a=0$ 时称麦克劳林级数。<a href="../entities/赫尔斯-泰勒脉冲双星.html">泰勒</a>级数是<a href="../maps/数值分析.html">数值分析</a>中误差估计和算法推导（如<a href="欧拉方法.html">欧拉方法</a>、<a href="龙格-库塔方法.html">龙格-库塔方法</a>）的理论基础。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>重要展开</strong>：$e^x = 1+x+x^2/2!+\cdots$，$\sin x = x-x^3/3!+\cdots$，$\ln(1+x) = x-x^2/2+\cdots$（$|x|&lt;1$）</li>
 <li><strong>余项估计</strong>：截断至 $n$ 阶的误差为 $O((x-a)^{n+1})$，用于分析数值算法的截断误差阶</li>
 <li><strong>收敛半径</strong>：级数收敛域由收敛半径 $R$ 决定（复分析视角：与最近奇点的距离）</li>
-<li><strong>数值应用</strong>：ODE 数值方法推导（<a href="欧拉方法.html">欧拉方法</a>即一阶泰勒展开）、函数近似计算、误差分析</li>
+<li><strong>数值应用</strong>：ODE 数值方法推导（<a href="欧拉方法.html">欧拉方法</a>即一阶<a href="../entities/赫尔斯-泰勒脉冲双星.html">泰勒</a>展开）、函数近似计算、误差分析</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent角色系统 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Agent角色系统</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent系统</span><span class="tag">设计模式</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent">Agent角色系统</h1>
+<p>为多 Agent 系统中的每个子 Agent 定义专业化角色，通过注入不同的 guidance（行为指引）和约束，使 Agent 从"通用型"转变为"专业型"，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。</p>
+<h2 id="_1">概述</h2>
+<p>Agent 角色系统通过配置文件定义不同角色的行为边界、关注点和输出格式，让多 Agent 协作模拟人类团队的分工协作——架构师、工程师、审查者各司其职。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>角色定义结构</strong>：每个角色包含 <code>config_path</code>（独立配置路径）、<code>guidance</code>（行为指引文本）、<code>display_names</code>（多实例时的随机昵称）。角色在配置文件中声明，运行时动态加载。</li>
+<li><strong>专业分工机制</strong>：不同角色注入不同的 system prompt，限制其行为边界。例如 coder 角色"专注实现，不跨模块边界"；reviewer 角色"只提建议不改代码"；documenter 角色"负责技术文档生成"。</li>
+<li><strong>角色与工具的绑定</strong>：不同角色可配备不同的工具集——coder 拥有文件读写和执行权限，reviewer 仅有只读访问和建议输出权限。</li>
+<li><strong>降低不确定性的核心机制</strong>：当 Agent 角色不专业、泛化处理时，Role System 通过注入专业 guidance 约束输出范围，减少"万金油"式低质量响应。</li>
+<li><strong>工程哲学</strong>：Multi-Agent 的本质是把"人类团队的分工协作"映射到 AI Agent 层面。好的团队有架构师、工程师、Review 者各司其职，Role 系统让不同 subagent 扮演不同角色。</li>
+</ol>
+<h2 id="_3">典型角色类型</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>关注点</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coder</td>
+<td>代码质量、测试覆盖、边界情况</td>
+<td>不修改架构、不跨模块边界</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>安全漏洞、性能问题、API 设计</td>
+<td>不直接改代码，只提建议</td>
+</tr>
+<tr>
+<td>Documenter</td>
+<td>API 文档、README、架构决策记录</td>
+<td>专注于文档生成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/07_codex_multi_agent.md</span> — Codex CLI 深度解析 Vol.7：Multi-Agent 并行编码的调度与协同</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="Codex多Agent调度.html">Codex多Agent调度</a> — 在 Codex 中通过 config.toml 实现角色系统 (implements)</li>
+<li><a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> — 角色系统是协调器-子智能体模式的专业化扩展 (part_of)</li>
+<li><a href="Multi-Agent Orchestration.html">Multi-Agent Orchestration</a> — 多 Agent 编排中的角色分工维度 (part_of)</li>
+<li><a href="纵深防御.html">纵深防御</a> — 角色分工是不确定性降低的软层防线 (relates_to)</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Agent循环.html">&larr; Agent循环</a>
+    <a href="Agent计算机接口.html">Agent计算机接口 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -149,10 +149,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>极速搜索 (<code>grep</code> → <code>rg</code>, <code>find</code> → <code>fd</code>)</strong>：<code>ripgrep</code> (rg) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（<code>-A/-B</code>）和 JSON 输出，便于管道处理。<code>fd</code> 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。</li>
 <li><strong>增强查看 (<code>cat</code> → <code>bat</code>, <code>ls</code> → <code>eza</code>)</strong>：<code>bat</code> 集成了语法高亮、Git 变更标注（显示哪些行被修改过）和自动分页功能，使<a href="Code-Review-for-Claude-Code.html">代码审查</a>更清晰。<code>eza</code> 作为 <code>ls</code> 的现代继承者，支持图标显示、树状视图（替代 <code>tree</code>）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。</li>
 <li><strong>现代化编辑与构建 (<code>sed</code> → <code>sd</code>, <code>make</code> → <code>just</code>)</strong>：<code>sd</code> 简化了流编辑器的正则捕获组语法，减少转义错误。<code>just</code> 作为任务运行器，解决了 <code>make</code> 依赖文件时间戳的局限，支持参数传递和更清晰的语法，成为管理开发任务（如测试、构建、部署）的首选。</li>
-<li><strong>可视化与分析 (<code>du</code> → <code>dust</code>, <code>df</code> → <code>duf</code>)</strong>：<code>dust</code> 以交互式树形图展示磁盘占用，直观定位大文件；<code>duf</code> 则以彩色分组形式呈现磁盘使用情况，区分本地、网络和特殊挂载点。</li>
+<li><strong>可视化与分析 (<code>du</code> → <code>dust</code>, <code>df</code> → <code>duf</code>)</strong>：<code>dust</code> 以交互式树形图展示磁盘占用，直观定位大文件；<code>duf</code> 则以彩色分组形式呈现磁盘使用情况，<a href="../entities/区分.html">区分</a>本地、网络和特殊挂载点。</li>
 </ul>
 <h3 id="ai-agent">AI Agent 协同效应</h3>
-<p>在现代软件开发流程中，<strong>AI Agent</strong>（如 Claude Code, Cursor）频繁执行文件读写与代码分析任务。现代 CLI 工具对此具有特殊价值：
+<p>在现代软件开发流程中，<strong>AI Agent</strong>（如 <a href="../entities/Claude Code.html">Claude Code</a>, <a href="../entities/Cursor.html">Cursor</a>）频繁执行文件读写与代码分析任务。现代 CLI 工具对此具有特殊价值：
 *   <strong>精确性</strong>：<code>rg</code> 和 <code>fd</code> 的 Git 感知能力确保 Agent 不会在生成的上下文中包含无关的依赖包或构建产物，从而提高代码生成的准确度。
 *   <strong>可解释性</strong>：<code>bat</code> 的行号和 <code>eza</code> 的树状结构帮助 Agent 更精准地引用代码位置，减少幻觉。
 *   <strong>容错性</strong>：配置 <code>trash</code> 作为默认删除命令，为 Agent 的自主操作增加了回滚机制，符合“人机协作”的安全原则。

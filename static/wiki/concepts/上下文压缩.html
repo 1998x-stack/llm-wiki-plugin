@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="compaction">上下文压缩（Compaction）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文压缩是 Anthropic 官方推出的服务端<a href="Context Management.html">上下文管理</a>策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始历史记录，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（<a href="上下文压缩（Context Compaction）.html">Compact</a>ion / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
+<p>上下文压缩是 <a href="../entities/Anthropic.html">Anthropic</a> 官方推出的服务端<a href="Context Management.html">上下文管理</a>策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始历史记录，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（<a href="上下文压缩（Context Compaction）.html">Compact</a>ion / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心机制</h3>
 <p>启用压缩后，Claude 自动执行四步流程：
@@ -256,9 +256,19 @@ solving the task in a future context...
 </tbody>
 </table>
 <p><a href="上下文压缩（Context Compaction）.html">Compact</a>ion 是最"开箱即用"的方案，但牺牲了对压缩内容的精细控制。<a href="结构化笔记法.html">结构化笔记法</a> 和 <a href="分层记忆架构.html">分层记忆架构</a> 提供更多控制权，但需要更多集成工作。</p>
+<h3 id="hermes-agent">Hermes Agent 客户端压缩</h3>
+<p>Hermes Agent 实现了客户端侧的上下文压缩策略，与服务端 Compaction 形成对比：</p>
+<ul>
+<li><strong>触发条件</strong>：会话历史接近模型上下文窗口上限时，<code>context_compressor.py</code> 自动触发</li>
+<li><strong>压缩策略</strong>：识别可压缩的工具输出（通常最冗长）→ 辅助 LLM 摘要压缩 → 压缩后历史继续会话</li>
+<li><strong>递增压缩</strong>：优先压缩最早和最冗余的工具输出，保留最近消息完整</li>
+<li><strong>辅助 LLM</strong>：通过 <code>auxiliary_client.py</code> 使用独立辅助 LLM 执行压缩，不阻塞主流程</li>
+<li><strong>与<a href="迭代预算.html">迭代预算</a>协同</strong>：Token 消耗跟踪与压缩触发阈值配合，共同管理会话资源</li>
+</ul>
 <h2 id="_12">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic 官方文档</li>
+<li><a href="/raw/articles/ai-tools/hermes/02_hermes_architecture.md">02_hermes_architecture.md</a> — Hermes Agent 深度解析系列第二篇，2026 年 4 月版本</li>
 </ul>
 <h2 id="_13">相关</h2>
 <ul>
@@ -268,10 +278,13 @@ solving the task in a future context...
 <li><a href="注意力预算.html">注意力预算</a> — related_to（压缩优化注意力资源分配）</li>
 <li><a href="结构化笔记法.html">结构化笔记法</a> — compares_to（替代方案）</li>
 <li><a href="分层记忆架构.html">分层记忆架构</a> — compares_to（替代方案）</li>
+<li><a href="../entities/Hermes Agent.html">Hermes Agent</a> — implements（客户端压缩实现）</li>
+<li><a href="迭代预算.html">迭代预算</a> — extends（Token 跟踪协同）</li>
+<li><a href="同步编排引擎.html">同步编排引擎</a> — part_of</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="三角形绕序与面朝向.html">&larr; 三角形绕序与面朝向</a>
+    <a href="三阶段定律.html">&larr; 三阶段定律</a>
     <a href="上下文压缩（Context Compaction）.html">上下文压缩（Context Compaction） &rarr;</a>
   </div>
 </div>

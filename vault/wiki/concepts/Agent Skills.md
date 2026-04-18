@@ -1,12 +1,12 @@
 ---
 type: concept
 status: active
-confidence: 0.92
+confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 2
-tags: [技术, AI, 方法论, AI工程]
+updated: 2026-04-18
+last_accessed: 2026-04-18
+source_count: 3
+tags: [技术, AI, 方法论, AI工程, claude-code, plugin-system, extensibility]
 aliases: ["Agent Skills", "SKILL.md", "技能系统", "Agent技能", "Skills"]
 relates_to:
   - target: "[[渐进式披露-Progressive-Disclosure]]"
@@ -21,6 +21,18 @@ relates_to:
   - target: "[[Claude-Code]]"
     type: implemented_by
     confidence: 0.9
+  - target: "[[MCP协议层]]"
+    type: related_to
+  - target: "[[Custom Slash Commands]]"
+    type: supersedes
+  - target: "[[Claude Code]]"
+    type: part_of
+  - target: "[[OpenAI Codex]]"
+    type: uses
+  - target: "[[Cursor]]"
+    type: uses
+  - target: "[[Gemini CLI]]"
+    type: uses
 supersedes: null
 ---
 
@@ -28,7 +40,7 @@ supersedes: null
 
 ## 概述
 
-Agent Skills（代理技能）是 Anthropic 提出的开放标准：**一个含 SKILL.md 文件的目录**，通过渐进式披露机制为 Agent 提供可组合、可共享的领域专业知识。本质是把"给新员工的入职指南"包装成 Agent 可动态加载的模块化资源。
+Agent Skills（代理技能）是 [[Anthropic]] 提出的开放标准：**一个含 [[SKILL.md 格式规范|SKILL.md]] 文件的目录**，通过渐进式披露机制为 Agent 提供可组合、可共享的领域专业知识。本质是把"给新员工的入职指南"包装成 Agent 可动态加载的模块化资源。
 
 ## 关键内容
 
@@ -44,7 +56,7 @@ skill-name/
 └── scripts/          ← 可选，可执行代码（工具脚本）
 ```
 
-`SKILL.md` 必须以 YAML 前置元数据开头，含 `name` 和 `description`：
+`[[SKILL.md 格式规范|SKILL.md]]` 必须以 YAML 前置元数据开头，含 `name` 和 `description`：
 
 ```yaml
 ---
@@ -61,7 +73,7 @@ Agent Skills 的设计核心是[[渐进式披露-Progressive-Disclosure]]原则�
 | 层次 | 内容 | 何时加载 |
 |------|------|---------|
 | **第一层** | 所有 Skill 的 `name` 和 `description` | 启动时自动注入系统提示 |
-| **第二层** | 某 Skill 的完整 `SKILL.md` | Claude 判断该 Skill 与当前任务相关时 |
+| **第二层** | 某 Skill 的完整 `[[SKILL.md 格式规范|SKILL.md]]` | Claude 判断该 Skill 与当前任务相关时 |
 | **第三层（及以上）** | 额外引用文件（如 forms.md、reference.md） | Claude 根据具体子任务按需读取 |
 
 **关键洞见**：Skills 可捆绑的上下文量实际上**无上限**——Agent 有文件系统和代码执行工具，无需一次性将整个 Skill 加载入上下文。
@@ -77,7 +89,7 @@ Skills 可包含预写的 Python/Bash 脚本供 Claude 运行，而无需将脚�
 
 触发 Skill 时的上下文变化序列：
 1. 初始上下文 = 核心系统提示 + 所有 Skill 的 name/description + 用户消息
-2. Claude 判断 PDF Skill 相关 → bash 读取 `pdf/SKILL.md` → 加载到上下文
+2. Claude 判断 PDF Skill 相关 → bash 读取 `pdf/[[SKILL.md 格式规范|SKILL.md]]` → 加载到上下文
 3. 用户要填表单 → Claude 读取 `forms.md` → 加载到上下文
 4. Claude 执行任务（可运行 Skill 中的 Python 脚本）
 
@@ -85,7 +97,7 @@ Skills 可包含预写的 Python/Bash 脚本供 Claude 运行，而无需将脚�
 
 **从评估出发**：先识别 Agent 能力差距，再构建针对性 Skill；而非先构建再寻找用途。
 
-**结构化扩展**：当 `SKILL.md` 变得庞杂时，将互斥或低频内容拆分到独立文件并引用。
+**结构化扩展**：当 `[[SKILL.md 格式规范|SKILL.md]]` 变得庞杂时，将互斥或低频内容拆分到独立文件并引用。
 
 **从 Claude 视角思考**：监控 Claude 实际使用 Skill 的轨迹；若偏离预期，要求 Claude 自我反思；特别关注 `name` 和 `description` 的措辞——这决定触发时机。
 
@@ -100,7 +112,7 @@ Skills 为 Claude 提供了新能力，恶意 Skill 可能引入漏洞或指导 
 
 ### 两种技能类型
 
-Anthropic 将 Agent Skills 分为两类，这一区分对测试策略有重要含义：
+[[Anthropic]] 将 Agent Skills 分为两类，这一[[区分]]对测试策略有重要含义：
 
 | 类型 | 定义 | 示例 | 测试关注点 |
 |------|------|------|-----------|
@@ -111,7 +123,7 @@ Anthropic 将 Agent Skills 分为两类，这一区分对测试策略有重要�
 
 ### Skill-Creator 评估框架
 
-Anthropic 推出的 skill-creator 增强功能将软件开发的严谨流程（测试、基准测试、迭代优化）引入技能创作，无需编写代码。
+[[Anthropic]] 推出的 skill-creator 增强功能将软件开发的严谨流程（测试、基准测试、迭代优化）引入技能创作，无需编写代码。
 
 **Evals（评估脚本）**：定义测试提示词（必要时加文件），描述合格标准，skill-creator 验证技能是否符合要求。两个重要用途：
 1. **捕捉质量回归**：模型和基础设施演进时，上个月有效的技能今天可能表现不同。针对新模型运行 evals 能提前发现变化信号。
@@ -128,15 +140,15 @@ Anthropic 推出的 skill-creator 增强功能将软件开发的严谨流程（�
 随着技能数量增长，描述精度变得至关重要：太宽导致误触发，太窄导致不触发。Skill-creator 能：
 - 对照示例提示词分析当前描述
 - 提出修改建议，同时减少误触发（false positives）和漏触发（false negatives）
-- Anthropic 在 6 项公开文档创建技能中测试，5 项触发效果得到提升
+- [[Anthropic]] 在 6 项公开文档创建技能中测试，5 项触发效果得到提升
 
 ### 展望未来：从"如何做"到"做什么"
 
-SKILL.md 文件本质上是实施计划，告诉 Claude *如何* 做某事。随模型能力提升，仅用自然语言描述*该技能应实现什么*可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为技能本身。
+[[SKILL.md 格式规范|SKILL.md]] 文件本质上是实施计划，告诉 Claude *如何* 做某事。随模型能力提升，仅用自然语言描述*该技能应实现什么*可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为技能本身。
 
 ### 在 Anthropic 生态中的位置
 
-Agent Skills 是开放标准，支持：Claude.ai、Claude Code、Claude Agent SDK、Claude Developer Platform。
+Agent Skills 是开放标准，支持：Claude.ai、[[Claude Code]]、Claude Agent SDK、Claude Developer Platform。
 
 与 [[MCP协议层]] 的互补关系：MCP 连接工具和服务，Skills 教导 Agent 如何使用这些工具和服务的复杂工作流。
 

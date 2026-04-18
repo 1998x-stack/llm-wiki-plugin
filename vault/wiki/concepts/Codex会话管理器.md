@@ -1,11 +1,11 @@
 ---
 type: concept
 status: active
-confidence: 0.9
+confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 1
+updated: 2026-04-18
+last_accessed: 2026-04-18
+source_count: 2
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Session Manager, Codex Session]
 relates_to:
@@ -18,6 +18,15 @@ relates_to:
   - target: "[[Codex沙箱系统]]"
     type: uses
     confidence: 0.75
+  - target: "[[JSONL格式]]"
+    type: uses
+    confidence: 0.9
+  - target: "[[LLM-Statelessness]]"
+    type: extends
+    confidence: 0.85
+  - target: "[[会话分支（Branching）]]"
+    type: implements
+    confidence: 0.8
 supersedes: null
 ---
 
@@ -35,12 +44,12 @@ LLM 每次 API 调用独立，没有内置记忆，[[上下文窗口]]有限。�
 
 | 文件 | 内容 |
 |------|------|
-| `transcript.jsonl` | 完整对话记录（JSONL 格式，流式追加） |
-| `metadata.json` | Session ID、模型、workspace、sandbox 配置、git HEAD |
+| `transcript.jsonl` | 完整对话记录（[[JSONL格式|JSONL]] 格式，流式追加） |
+| `metadata.json` | Session ID、模型、workspace、sandbox 配置、approval_policy、title、**parent_session_id**（Fork 来源）、**git_commit**（启动时 HEAD） |
 | `plan.json` | Agent 任务计划快照 |
 | `approvals.log` | 人类审批记录 |
 
-**JSONL 格式选择原因**：流式追加、崩溃安全（中断只丢当前行）、可用 `jq` 直接分析。
+**[[JSONL格式|JSONL]] 格式选择原因**：流式追加、崩溃安全（中断只丢当前行）、可用 `jq` 直接分析。
 
 ## Resume 机制
 
@@ -82,6 +91,17 @@ codex exec --ephemeral "快速问答"   # 不持久化（CI/CD 环境使用）
 
 CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → 新 ACTIVE
 
+## 减少不确定性的方式
+
+| 不确定性场景 | Session Manager 的应对 |
+|------------|----------------------|
+| 任务中途崩溃，进度丢失 | [[JSONL格式]] 流式写入，崩溃安全 |
+| [[上下文窗口]]超出限制 | 自动压缩，保留关键决策节点 |
+| 不同方案需要并行探索 | Fork 机制创建分支 session |
+| 重复告知 Agent 项目背景 | Resume 恢复完整上下文 |
+| Agent "忘了"上次审批的决定 | approvals.log 持久化，resume 后有效 |
+| 不知道 Agent 上次做了什么 | transcript 完整记录，可审计 |
+
 ## 工程哲学
 
 > **Transcript 只追加，不修改**——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断工作记忆"能力。
@@ -89,3 +109,4 @@ CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → �
 ## 来源
 
 - [[raw/articles/ai-tools/codex/05_codex_session_manager.md]]
+- [[raw/articles/ai-tools/codex/05_codex_session_manager.md]] — Codex CLI 深度解析 Vol.5：Session Manager（详细版）

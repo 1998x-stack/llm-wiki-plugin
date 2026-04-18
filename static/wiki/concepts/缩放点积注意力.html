@@ -135,32 +135,34 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">缩放点积注意力</h1>
 <h2 id="_2">概述</h2>
-<p>缩放点积注意力（Scaled Dot-Product Attention）是 <a href="Transformer架构.html">Transformer</a> 的核心计算单元，通过 Query-Key 点积计算注意力权重，除以 $\sqrt{d}$ 防止大维度下梯度消失。</p>
+<p>缩放<a href="Luong注意力.html">点积注意力</a>（Scaled Dot-Product Attention）是 <a href="Transformer架构.html">Transformer</a> 的核心计算单元，通过 Query-Key 点积计算注意力权重，除以 $\sqrt{d}$ 防止大维度下<a href="梯度消失.html">梯度消失</a>。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>数学定义</strong>：$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d}}\right) \mathbf{V}$，其中 $\mathbf{Q}, \mathbf{K}, \mathbf{V}$ 分别是查询、键、值<a href="矩阵.html">矩阵</a>，$d$ 是嵌入维度。</p>
 </li>
 <li>
-<p><strong>缩放因子的作用</strong>：除以 $\sqrt{d}$ 防止当嵌入维度较大时点积值过大，导致 softmax 的梯度消失。当 $d$ 较大时，未缩放的点积方差为 $d$，值域过大使 softmax 进入饱和区，梯度接近零。</p>
+<p><strong>缩放因子的作用</strong>：除以 $\sqrt{d}$ 防止当嵌入维度较大时点积值过大，导致 softmax 的<a href="梯度消失.html">梯度消失</a>。当 $d$ 较大时，未缩放的点积方差为 $d$，值域过大使 softmax 进入饱和区，梯度接近零。</p>
 </li>
 <li>
-<p><strong>在 <a href="../entities/SASRec.html">SASRec</a> 中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a> 使用缩放点积注意力作为核心计算机制，结合 <a href="因果掩码.html">因果掩码</a> 实现单向序列建模。三个线性变换 $\mathbf{W}^Q, \mathbf{W}^K, \mathbf{W}^V \in \mathbb{R}^{d \times d}$ 将输入嵌入映射为 Q/K/V。</p>
+<p><strong>在 <a href="../entities/SASRec.html">SASRec</a> 中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a> 使用缩放<a href="Luong注意力.html">点积注意力</a>作为核心计算机制，结合 <a href="因果掩码.html">因果掩码</a> 实现单向序列建模。三个线性变换 $\mathbf{W}^Q, \mathbf{W}^K, \mathbf{W}^V \in \mathbb{R}^{d \times d}$ 将输入嵌入映射为 Q/K/V。</p>
 </li>
 <li>
-<p><strong>与加性注意力的对比</strong>：原始 <a href="Transformer架构.html">Transformer</a> 论文比较了缩放点积注意力和加性注意力（Additive Attention），发现点积注意力在速度和空间效率上更优，尤其在使用<a href="矩阵.html">矩阵</a>乘法库时。</p>
+<p><strong>与<a href="Bahdanau注意力.html">加性注意力</a>的对比</strong>：原始 <a href="Transformer架构.html">Transformer</a> 论文比较了缩放<a href="Luong注意力.html">点积注意力</a>和<a href="Bahdanau注意力.html">加性注意力</a>（<a href="Bahdanau注意力.html">Additive Attention</a>），发现<a href="Luong注意力.html">点积注意力</a>在速度和空间效率上更优，尤其在使用<a href="矩阵.html">矩阵</a>乘法库时。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
 <li><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need (NeurIPS 2017)</a></li>
 <li><a href="https://ieeexplore.ieee.org/document/8594844">SASRec 原始论文 (ICDM 2018)</a></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/14_transformer_2017.md</span> — √d_k 缩放原理详解</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
 <li><a href="自注意力机制.html">自注意力机制</a> — 缩放点积注意力是其核心计算方式</li>
 <li><a href="../entities/SASRec.html">SASRec</a> — 使用缩放点积注意力 + 因果掩码</li>
 <li><a href="位置编码.html">位置编码</a> — 与缩放点积注意力配合实现时序建模</li>
+<li><a href="多头注意力.html">多头注意力</a> — 每个头内部使用缩放点积注意力</li>
 </ul>
   </div>
   <div class="page-nav">

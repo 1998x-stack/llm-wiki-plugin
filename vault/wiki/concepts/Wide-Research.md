@@ -10,6 +10,7 @@ tags:
   - AI
   - 架构
   - 方法论
+  - AI工程
 aliases:
   - "Wide Research"
   - "广泛研究"
@@ -61,7 +62,7 @@ Wide Research（广泛研究）是 [[Manus]] 推出的架构[[规范化理论|�
 
 ### 与 Subagents 的对比
 
-| 维度 | Wide Research | Claude Code [[Subagents-in-Claude-Code|Subagents]] |
+| 维度 | Wide Research | [[Claude Code]] [[Subagents-in-Claude-Code|Subagents]] |
 |------|--------------|---------------------|
 | **目标** | 解决上下文限制 | 并行处理独立任务 |
 | **范围** | 研究密集型任务 | 通用任务（研究/实施/验证） |

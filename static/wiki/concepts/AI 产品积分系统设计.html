@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ai">AI 产品积分系统设计</h1>
 <h2 id="_1">概述</h2>
-<p>AI 产品（<a href="../entities/Manus.html">Manus</a>、v0.dev、Lovable、Bolt、Cursor、Replit、Builder.io 等）采用的积分/Credits 定价体系深度分析，涵盖五种定价模式、核心设计原则、工程架构实现及行业共性痛点。</p>
+<p>AI 产品（<a href="../entities/Manus.html">Manus</a>、v0.dev、Lovable、Bolt、<a href="../entities/Cursor.html">Cursor</a>、Replit、Builder.io 等）采用的积分/Credits 定价体系深度分析，涵盖五种定价模式、核心设计原则、工程架构实现及行业共性痛点。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>五种定价模式</strong>：</li>
 <li>纯订阅（Flat Fee）：ChatGPT Plus $20/月，成本可预期但厂商难控重度用户</li>
-<li>按用量计费（Usage-Based）：OpenAI API，线性公平但用户焦虑</li>
-<li>订阅+积分混合（Hybrid）：v0.dev、Lovable、Cursor，保底收入+控制超量</li>
+<li>按用量计费（Usage-Based）：<a href="../entities/OpenAI.html">OpenAI</a> API，线性公平但用户焦虑</li>
+<li>订阅+积分混合（Hybrid）：v0.dev、Lovable、<a href="../entities/Cursor.html">Cursor</a>，保底收入+控制超量</li>
 <li>结果导向（Outcome-Based）：Intercom Fin $0.99/成功解决，价值对齐但"成功"定义复杂</li>
 <li>
 <p>分层积分+每日刷新（Tiered+Daily Refresh）：<a href="../entities/Manus.html">Manus</a>，保持日活但 Agent 任务成本黑盒</p>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>v0 迁移教训</strong>：2025 年 5 月从固定月费（近乎无限使用）切换至 token 计费体系，引发社区强烈反弹。核心教训：从旧模式迁移需提前 30 天通知、提供对比说明、给老用户过渡期额外积分、提供使用量估算器、开放 30 天双模式。</p>
 </li>
 <li>
-<p><strong>Builder.io 最佳实践</strong>：统一货币（所有 AI 操作共用一套积分）、Rollover with Cap（滚存上限为月度额度 2×）、差异化推理（简单请求消耗少，复杂任务消耗多）、实时状态指示器。</p>
+<p><strong>Builder.io 最佳实践</strong>：统一货币（所有 AI 操作共用一套积分）、Rollover with Cap（滚存上限为月度额度 2×）、差<a href="异化.html">异化</a>推理（简单请求消耗少，复杂任务消耗多）、实时状态指示器。</p>
 </li>
 <li>
 <p><strong>十大设计原则</strong>：</p>
@@ -191,7 +191,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ACP协议.html">&larr; ACP协议</a>
+    <a href="AI Slop.html">&larr; AI Slop</a>
     <a href="AI 原生架构.html">AI 原生架构 &rarr;</a>
   </div>
 </div>

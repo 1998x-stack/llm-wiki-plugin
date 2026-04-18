@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Codex会话管理器</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
@@ -149,23 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>transcript.jsonl</code></td>
-<td>完整对话记录（JSONL 格式，流式追加）</td>
-</tr>
-<tr>
-<td><code>metadata.json</code></td>
-<td>Session ID、模型、workspace、sandbox 配置、git HEAD</td>
-</tr>
-<tr>
-<td><code>plan.json</code></td>
-<td>Agent 任务计划快照</td>
-</tr>
-<tr>
-<td><code>approvals.log</code></td>
-<td>人类审批记录</td>
-</tr>
-</tbody>
-</table>
-<p><strong>JSONL 格式选择原因</strong>：流式追加、崩溃安全（中断只丢当前行）、可用 <code>jq</code> 直接分析。</p>
+<td>完整对话记录（<span style="color:#e74c3c" title="broken link">JSONL</span> 格式选择原因</strong>：流式追加、崩溃安全（中断只丢当前行）、可用 <code>jq</code> 直接分析。</p>
 <h2 id="resume">Resume 机制</h2>
 <pre><code class="language-bash">codex resume          # 交互选择最近会话列表
 codex resume --last   # 直接跳最近会话
@@ -190,13 +174,49 @@ codex exec --ephemeral &quot;快速问答&quot;   # 不持久化（CI/CD 环境�
 </code></pre>
 <h2 id="session_1">Session 生命周期</h2>
 <p>CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → 新 ACTIVE</p>
-<h2 id="_2">工程哲学</h2>
+<h2 id="_2">减少不确定性的方式</h2>
+<table>
+<thead>
+<tr>
+<th>不确定性场景</th>
+<th>Session Manager 的应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务中途崩溃，进度丢失</td>
+<td><a href="JSONL格式.html">JSONL格式</a> 流式写入，崩溃安全</td>
+</tr>
+<tr>
+<td><a href="上下文窗口.html">上下文窗口</a>超出限制</td>
+<td>自动压缩，保留关键决策节点</td>
+</tr>
+<tr>
+<td>不同方案需要并行探索</td>
+<td>Fork 机制创建分支 session</td>
+</tr>
+<tr>
+<td>重复告知 Agent 项目背景</td>
+<td>Resume 恢复完整上下文</td>
+</tr>
+<tr>
+<td>Agent "忘了"上次审批的决定</td>
+<td>approvals.log 持久化，resume 后有效</td>
+</tr>
+<tr>
+<td>不知道 Agent 上次做了什么</td>
+<td>transcript 完整记录，可审计</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">工程哲学</h2>
 <blockquote>
 <p><strong>Transcript 只追加，不修改</strong>——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断工作记忆"能力。</p>
 </blockquote>
-<h2 id="_3">来源</h2>
+<h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/05_codex_session_manager.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/05_codex_session_manager.md</span> — Codex CLI 深度解析 Vol.5：Session Manager（详细版）</li>
 </ul>
   </div>
   <div class="page-nav">

@@ -18,7 +18,7 @@ updated: 2026-04-16
 | 最近 ingest | 2026-04-15（Wiener 过程与布朗运动） |
 | 最近 crystallize | 2026-04-15 18:42 |
 | 最近 consolidate | 2026-04-15 18:35 |
-| 最近 lint | 2026-04-17 10:43（2009 warnings, 0 errors → 自动修复4项：index重建+BM25清理+frontmatter补全+gotcha#44；需人工：reindex+Codex章节） |
+| 最近 lint (2026-04-18 22:59) | 2026-04-17 10:43（2009 warnings, 0 errors → 自动修复4项：index重建+BM25清理+frontmatter补全+gotcha#44；需人工：reindex+Codex章节） |
 
 ## 最近活动
 

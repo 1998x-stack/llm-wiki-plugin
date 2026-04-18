@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wasserstein距离 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Wasserstein距离</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">生成模型</span><span class="tag">GAN</span><span class="tag">度量理论</span></div>
+</div>
+  <div class="content">
+    <h1 id="wasserstein">Wasserstein距离</h1>
+<h2 id="_1">概述</h2>
+<p>一种衡量两个概率分布差异的度量，在 WGAN 中替代 JS 散度作为 GAN 的损失函数，显著改善训练稳定性。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>定义</strong>：<a href="Wasserstein距离.html">Wasserstein距离</a>（又称 Earth Mover's Distance，推土机距离）衡量将一个概率分布"搬运"到另一个分布所需的最小工作量（质量 × 距离）。形式上，W(P, Q) = inf_{γ∈Π(P,Q)} E_{(x,y)~γ}[||x - y||]，其中 Π(P, Q) 是所有边缘分布为 P 和 Q 的联合分布的集合。</li>
+<li><strong>在 GAN 中的应用</strong>：原始 GAN 使用 JS 散度作为隐式度量，当两个分布不重叠时 JS 散度恒为 log 2，导致 <a href="梯度消失.html">梯度消失</a>。<a href="Wasserstein距离.html">Wasserstein距离</a> 即使在分布不重叠时也能提供有意义的梯度，使训练更加稳定。WGAN（2017）用 Wasserstein 距离替代原始 GAN 的损失函数。</li>
+<li><strong>实现方式</strong>：WGAN 通过限制<a href="判别器.html">判别器</a>（称为 critic）的 1-Lipschitz 连续性来近似 Wasserstein 距离。实现方法包括权重裁剪（原始 WGAN）、<span style="color:#e74c3c" title="broken link">梯度惩罚</span>（WGAN-GP）、谱归一化（SNGAN）等。这些方法确保<a href="判别器.html">判别器</a>不会过强，从而避免 <a href="模式崩塌.html">模式崩塌</a> 和<a href="梯度消失.html">梯度消失</a>。</li>
+<li><strong>效果</strong>：使用 Wasserstein 距离的 GAN 训练更稳定、超参数更不敏感、生成的样本质量更高。WGAN 的理论分析表明 Wasserstein 距离与生成样本质量有更好的相关性，提供了更有意义的训练指标。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li>10_gan_2014.md — 源文件，GAN 演化谱系中提及 WGAN</li>
+<li>Arjovsky, M., Chintala, S., &amp; Bottou, L. (2017). Wasserstein GAN. arXiv:1701.07875.</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="生成对抗网络（GAN）.html">生成对抗网络（GAN）</a> — extends</li>
+<li><a href="模式崩塌.html">模式崩塌</a> — extends</li>
+<li><a href="对抗训练.html">对抗训练</a> — extends</li>
+<li><a href="纳什均衡.html">纳什均衡</a> — relates_to</li>
+<li><a href="梯度消失.html">梯度消失</a> — resolves</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="WAND算法.html">&larr; WAND算法</a>
+    <a href="Wave Execution.html">Wave Execution &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

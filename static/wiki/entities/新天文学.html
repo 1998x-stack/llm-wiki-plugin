@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新天文学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 新天文学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">科学革命</span><span class="tag">经典著作</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">新天文学</h1>
+<h2 id="_2">概述</h2>
+<p>《新天文学》（<em>Astronomia Nova</em>，1609），<a href="开普勒.html">开普勒</a>著，全名《基于原因的新天文学，或<a href="../concepts/天体物理学.html">天体物理学</a>——根据火星运动的观测进行的研究》，发表行星运动前两条定律，被誉为"第一部真正的<a href="../concepts/天体物理学.html">天体物理学</a>著作"。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>完整标题的含义</strong>：全名为《基于原因的新天文学，或<a href="../concepts/天体物理学.html">天体物理学</a>——根据火星运动的观测进行的研究》(<em>Astronomia Nova AITIOLOETOS, seu <a href="../concepts/天体物理学.html">Physica Coelestis</a>, tradita commentariis de Motibus Stellae Martis</em>)。书名中特意加入"基于原因的"和"<a href="../concepts/天体物理学.html">天体物理学</a>"字样，表明其目标不仅是描述运动轨迹，更是探寻驱动行星运动的物理原因。</li>
+<li><strong>"战火星"的记录</strong>：<a href="开普勒.html">开普勒</a>以罕见的坦诚记录了自己的研究过程，包括所有弯路与失败。先后尝试超过70种不同轨道模型，每一种都力图在圆形轨道框架内解释火星运动。最终因拒绝忽略8角分的偏差而抛弃圆形轨道假说。</li>
+<li><strong>第一定律（椭圆轨道定律）</strong>：行星沿椭圆轨道运行，太阳位于椭圆的一个焦点上。彻底终结了天体做完美圆周运动的古老教条，从毕达哥拉斯到亚里士多德、从<a href="克劳狄乌斯·托勒密.html">克劳狄乌斯·托勒密</a>到<a href="哥白尼.html">哥白尼</a>，所有人都坚信天体运动必须是圆形的。</li>
+<li><strong>第二定律（面积定律）</strong>：行星与太阳的连线在相等时间内扫过相等的面积。行星靠近太阳时速度更快，远离时更慢。取代了匀速运动的假设，揭示行星速度随轨道位置的变化规律。</li>
+<li><strong>方法论革新</strong>：开创"假说——演绎——检验"研究<a href="../concepts/规范化理论.html">范式</a>，提出太阳可能通过某种类似磁力的作用力驱动行星运转。虽然具体机制后来被证明错误，但"天体运动受物理定律支配"这一核心思想具有划时代意义。</li>
+<li><strong>历史影响</strong>：为<a href="艾萨克·牛顿.html">艾萨克·牛顿</a>的<a href="../concepts/万有引力定律.html">万有引力</a>理论奠定关键基础。1687年牛顿在《<a href="自然哲学的数学原理.html">自然哲学的数学原理</a>》中证明，<a href="开普勒.html">开普勒</a>三定律可从<a href="../concepts/万有引力定律.html">万有引力定律</a>和运动定律中严格推导。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li>Kepler, <em>Astronomia Nova</em>, 1609</li>
+<li>柯瓦雷，《从封闭世界到无限宇宙》</li>
+<li>爱因斯坦对开普勒的评价</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="约翰内斯·开普勒.html">约翰内斯·开普勒</a> — authored</li>
+<li><a href="../concepts/开普勒行星运动定律.html">开普勒行星运动定律</a> — caused</li>
+<li><a href="第谷·布拉赫.html">第谷·布拉赫</a> — depends_on</li>
+<li><a href="天体运行论.html">天体运行论</a> — contradicts</li>
+<li><a href="../concepts/天体物理学.html">天体物理学</a> — implements</li>
+<li><a href="世界的和谐.html">世界的和谐</a> — extends</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="斯宾塞.html">&larr; 斯宾塞</a>
+    <a href="新教伦理与资本主义精神.html">新教伦理与资本主义精神 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

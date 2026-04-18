@@ -35,7 +35,7 @@ Context Management（上下文管理）是 Agent 系统中决定哪些历史保�
 
 ### 核心问题
 
-LM 不是外部记忆无限的系统。每条历史都占用上下文预算，而且错误、冗余、过时信息会污染后续决策。
+LM 不是外部记忆无限的系统。每条历史都占用[[上下文预算管理|上下文预算]]，而且错误、冗余、过时信息会污染后续决策。
 
 ### 论文发现
 
@@ -54,7 +54,7 @@ Context Management 是 [[Context-Engineering]] 在 Agent 层面的具体实现�
 - 错误格式怎么处理
 - 哪些 observation 更值得进入 prompt
 
-这与 Context Engineering 中的"分层记忆（hot/warm/cold）"和"按需检索"理念一致。
+这与 [[Context Engineering]] 中的"分层记忆（hot/warm/cold）"和"按需检索"理念一致。
 
 ### 设计原则
 

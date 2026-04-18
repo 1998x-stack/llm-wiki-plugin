@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实验结果</strong>：在 Gowalla、Yelp2018、<a href="Amazon.html">Amazon</a>-Book 三个数据集上全面超越 MF、NGCF、Mult-VAE、GRMF 等基线。K=3 层在大多数情况下即可达到满意效果，从 K=0（纯 MF）到 K=1 的提升最大。</p>
 </li>
 <li>
-<p><strong>训练动态分析</strong>：LightGCN 在整个训练过程中始终保持更低的训练损失，且成功转化为更高的测试准确率。NGCF 的问题在于训练困难而非过拟合——多余组件使优化景观变崎岖。</p>
+<p><strong>训练动态分析</strong>：LightGCN 在整个训练过程中始终保持更低的训练损失，且成功转化为更高的测试准确率。NGCF 的问题在于训练困难而非<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>——多余组件使优化景观变崎岖。</p>
 </li>
 <li>
 <p><strong>嵌入平滑直觉</strong>：经过 2 层 LightGCN 传播后，品味相似的用户的嵌入会自然变得更接近。这种基于协同信号的嵌入平滑被认为是有效性的核心原因。</p>

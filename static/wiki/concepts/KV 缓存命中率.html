@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>在 Agent 系统中，工具定义通常位于上下文前部（系统提示之前或之后）。<strong>任何工具定义的更改都会使后续所有动作和观察的 KV 缓存失效</strong>。</p>
 <p>这是 <a href="../entities/Manus.html">Manus</a> 选择"遮蔽而非移除"工具策略的重要原因之一——通过 logits 掩码约束动作选择，而非动态增删工具定义，从而保持缓存稳定。</p>
 <h3 id="_6">与提示词缓存的关系</h3>
-<p><a href="提示词缓存.html">提示词缓存</a>（<a href="提示词缓存.html">Prompt Caching</a>）是 Anthropic API 层面的缓存机制，通过 <code>cache_control</code> 断点实现。KV 缓存是更底层的推理引擎优化。两者协同工作：
+<p><a href="提示词缓存.html">提示词缓存</a>（<a href="提示词缓存.html">Prompt Caching</a>）是 <a href="../entities/Anthropic.html">Anthropic</a> API 层面的缓存机制，通过 <code>cache_control</code> 断点实现。KV 缓存是更底层的推理引擎优化。两者协同工作：
 - KV 缓存优化相同前缀的复用
 - <a href="提示词缓存.html">提示词缓存</a>标记哪些部分应该被缓存
 - 在系统提示末尾添加 <code>cache_control</code> 断点，将系统提示与对话内容分开缓存</p>

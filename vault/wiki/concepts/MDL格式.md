@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [3D, 游戏引擎, 模型格式, UrhoX]
+tags: ["3D", "游戏引擎", "模型格式", "UrhoX", "游戏开发"]
 aliases: [MDL, .mdl, UrhoX模型格式]
 relates_to: [UrhoXCLI, LOD（细节层次）, FBX格式, 动画重定向]
 supersedes: null

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三线表 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 三线表</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">表格处理</span><span class="tag">学术出版</span><span class="tag">文档处理</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">三线表</h1>
+<h2 id="_2">概述</h2>
+<p>三线表是学术论文中最常见的表格格式，仅有顶线、表头分隔线、底线三条横线，无竖线。列边界不靠线条而靠"列内文字的水平对齐"来推断，对<a href="表格识别.html">表格识别</a>算法是极大挑战。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">结构特征</h3>
+<p>三线表仅有三条线：</p>
+<pre><code>指标     方法A   方法B   方法C
+────────────────────────────
+准确率   90.1   88.3   92.5
+召回率   87.6   91.2   89.0
+F1       88.8   89.7   90.7
+</code></pre>
+<ul>
+<li><strong>顶线</strong>：表格顶部边界</li>
+<li><strong>表头分隔线</strong>：区分表头与数据行</li>
+<li><strong>底线</strong>：表格底部边界</li>
+<li><strong>无竖线</strong>：列边界完全不可见</li>
+</ul>
+<h3 id="_5">识别挑战</h3>
+<ol>
+<li><strong>无垂直参考线</strong>：列边界无法直接检测，需靠文字水平对齐推断</li>
+<li><strong>列宽不均</strong>：各列宽度可能差异很大</li>
+<li><strong>表头识别</strong>：第一行通常是粗体，是确定列数的关键线索</li>
+<li><strong>对齐方式多样</strong>：左对齐、右对齐、居中对齐混合出现</li>
+</ol>
+<h3 id="mineru">MinerU 处理策略</h3>
+<p><a href="../entities/MinerU.html">MinerU</a> 通过以下方式处理三线表：</p>
+<ol>
+<li><strong><a href="文档布局检测.html">文档布局检测</a></strong>（<a href="../entities/DocLayout-YOLO.html">DocLayout-YOLO</a>）识别出 <code>table</code> 框区域</li>
+<li><strong><a href="../entities/TableMaster.html">TableMaster</a></strong> 通过学习到的特征理解"列对齐"，即使无竖线也能识别列边界</li>
+<li><strong>表头行特征</strong>：第一行通常为粗体，用来确定列数和表格结构</li>
+<li><strong>文字型 PDF</strong>：<a href="../entities/PyMuPDF.html">PyMuPDF</a> 提取的 Span 坐标帮助验证列对齐</li>
+</ol>
+<h3 id="_6">在学术出版中的地位</h3>
+<p>三线表在学术论文中极为常见，是科技期刊的标准表格格式。其简洁的设计避免了多余线条对阅读的干扰，但对自动化解析提出了更高的算法要求。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_06_table.md</span> — MinerU 深度解析系列 · 第六篇：表格识别系统</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="表格识别.html">表格识别</a> — 所属技术领域</li>
+<li><a href="../entities/TableMaster.html">TableMaster</a> — 处理三线表的核心模型</li>
+<li><a href="../entities/MinerU.html">MinerU</a> — 支持三线表识别的文档解析工具</li>
+<li><a href="文档布局检测.html">文档布局检测</a> — 前置检测环节</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="三种 API 模式.html">&larr; 三种 API 模式</a>
+    <a href="三角形绕序与面朝向.html">三角形绕序与面朝向 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

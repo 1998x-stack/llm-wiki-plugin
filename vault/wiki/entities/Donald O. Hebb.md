@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 心理学
   - 学习理论
+  - 脑科学
 aliases:
   - "Donald O. Hebb"
   - "唐纳德·赫布"

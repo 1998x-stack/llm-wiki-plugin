@@ -10,6 +10,7 @@ tags:
   - 神经科学
   - 记忆
   - 分子生物学
+  - 脑科学
 aliases:
   - "CREB"
   - "cAMP Response Element Binding protein"

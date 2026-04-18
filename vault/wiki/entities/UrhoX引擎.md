@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 2
-tags: [游戏引擎, Lua, 3D, 2D, UrhoX, Urho3D, NanoVG, Box2D]
+tags: ["游戏引擎", "Lua", "3D", "2D", "UrhoX", "Urho3D", "NanoVG", "Box2D", "游戏开发"]
 aliases: [UrhoX, UrhoX Lua, UrhoX游戏引擎]
 relates_to: [UrhoXCLI, UrhoX材质库, NanoVG, PBR材质系统, Lua基础语法, 游戏脚手架模式]
 supersedes: null

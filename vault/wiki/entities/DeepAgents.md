@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 Claude Code 一样能干活"的智能体，再按需裁剪扩展。
+LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 [[Claude Code]] 一样能干活"的智能体，再按需裁剪扩展。
 
 ## 关键内容
 

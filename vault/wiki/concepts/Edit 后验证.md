@@ -79,7 +79,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 2. **全量检查对 agent 不友好**：
    - 慢：每次 edit 后跑全仓太耗时
    - 噪声大：容易把 agent 淹没
-   - 历史问题混入：很难区分"这次 edit 导致的新问题"和"仓库本来就有的问题"
+   - 历史问题混入：很难[[区分]]"这次 edit 导致的新问题"和"仓库本来就有的问题"
 3. **Python-first 导向**：核心 validate 抽象更偏 Python，linter 路径明确只对 .py 生效
 4. **复杂度收缩**：官方已将 [[SWE-agent]] 转向 maintenance-only，建议用 mini-[[SWE-agent]]
 
@@ -144,7 +144,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 
 ### Claude Code 分层验证方案
 
-在 Claude Code 平台中，edit 后验证被设计为**四层架构**（详见 [[Claude Code 分层验证]]）：
+在 [[Claude Code]] 平台中，edit 后验证被设计为**四层架构**（详见 [[Claude Code 分层验证]]）：
 
 | 层级 | 职责 | 机制 |
 |------|------|------|

@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 数学, API, 向量]
+tags: ["UrhoX", "Lua", "数学", "API", "向量", "游戏开发"]
 aliases: [UrhoX数学API, Lua数学工具函数, vector math utilities]
 relates_to: [UrhoX全局子系统, UrhoX Lua开发准则]
 supersedes: null

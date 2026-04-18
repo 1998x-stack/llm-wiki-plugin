@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="exitplantool">ExitPlanTool</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code 早期工具之一，用于生成执行计划。在 <a href="AskUserQuestion-Tool.html">AskUserQuestion Tool</a> 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 Claude Code 工具演进历史的重要案例。</p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> 早期工具之一，用于生成执行计划。在 <a href="AskUserQuestion-Tool.html">AskUserQuestion Tool</a> 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 <a href="../entities/Claude Code.html">Claude Code</a> 工具演进历史的重要案例。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心功能</h3>
 <p><strong>计划生成</strong>：
 - 输出任务执行的详细计划
 - 可能包含步骤分解、依赖关系、资源需求等信息
-- 作为 Claude Code 工作流的起点</p>
+- 作为 <a href="../entities/Claude Code.html">Claude Code</a> 工作流的起点</p>
 <h3 id="_4">设计演进中的角色</h3>
 <p><strong>尝试扩展：添加提问参数</strong></p>
 <p>在开发 <a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a> 时，曾尝试修改 ExitPlanTool：</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <a href="AskUserQuestion-Tool.html">AskUserQuestion Tool</a>：独立的提问工具，解决了 ExitPlanTool 无法处理的需求
 - <a href="TodoWrite-Tool.html">TodoWrite</a>/Task：任务跟踪工具，可能与 ExitPlanTool 协同使用</p>
 <h3 id="_7">相关设计文档</h3>
-<p>关于 ExitPlanTool 的更多设计原因，可参考 Anthropic 关于<a href="提示词缓存.html">提示词缓存</a>的文章（<span style="color:#e74c3c" title="broken link">trq212/status/2024574133011673516</span>）。</p>
+<p>关于 ExitPlanTool 的更多设计原因，可参考 <a href="../entities/Anthropic.html">Anthropic</a> 关于<a href="提示词缓存.html">提示词缓存</a>的文章（<span style="color:#e74c3c" title="broken link">trq212/status/2024574133011673516</span>）。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Seeing like an agent_ how we design tools in Claude Code.md</span> — 提及 ExitPlanTool 在 AskUserQuestion 演进中的尝试</li>

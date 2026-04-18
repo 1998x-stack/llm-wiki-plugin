@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [graphics, geometry, urho3d, urhox, lua, rendering]
+tags: ["graphics", "geometry", "urho3d", "urhox", "lua", "rendering", "游戏开发"]
 aliases: [CustomGeometry, 程序化几何体, 缺失图元替代方案]
 relates_to: [UrhoX引擎, PBR材质系统, 三角形绕序与面朝向]
 supersedes: null

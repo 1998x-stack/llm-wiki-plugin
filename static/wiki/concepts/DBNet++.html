@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBNet++ — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / DBNet++</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">OCR</span><span class="tag">文字检测</span><span class="tag">深度学习</span><span class="tag">文档处理</span></div>
+</div>
+  <div class="content">
+    <h1 id="dbnet">DBNet++</h1>
+<h2 id="_1">概述</h2>
+<p>DBNet++（Differentiable Binarization Network++）是一种基于可微分二值化的文字检测模型，是 <a href="../entities/PaddleOCR.html">PaddleOCR</a> <a href="../entities/PP-OCRv4.html">PP-OCRv4</a> 系统中的文字检测骨干。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">工作原理</h3>
+<ol>
+<li>输入整个页面图像（或布局框内的裁剪区域）</li>
+<li>输出与输入同尺寸的<strong>概率图</strong>，每个像素值表示"属于文字的概率"</li>
+<li>通过自适应阈值二值化，生成文字区域的二值蒙版</li>
+<li>轮廓提取 + 多边形拟合，得到文字区域的多边形框</li>
+</ol>
+<pre><code>原始图像 → ResNet/MobileNet 特征提取 → FPN 多尺度融合 
+→ 概率图 + 阈值图 → 二值化蒙版 → 多边形文字框
+</code></pre>
+<h3 id="_4">为什么用多边形而不是矩形框？</h3>
+<p>文字行可能稍有倾斜（扫描件常见），多边形（通常是四边形）能更精确地框定文字区域，后续<a href="透视变换.html">透视变换</a>矫正更准确。</p>
+<h3 id="ocr">在 OCR 流水线中的位置</h3>
+<p>DBNet++ 是 OCR 三阶段流水线的第一阶段——文字区域检测。它接收原始图像，输出文字区域的多边形坐标，供后续的<a href="透视变换.html">透视变换</a>和文字识别使用。</p>
+<h3 id="mineru">在 MinerU 中的应用</h3>
+<p>在 <a href="../entities/MinerU.html">MinerU</a> 中，DBNet++ 用于：
+- <strong>OCRBased 管道</strong>：对整页图像进行文字区域检测
+- <strong>Mixed 管道</strong>：对无文字层的布局框区域进行文字检测
+- <strong>区域裁剪优化</strong>：只对特定布局框内的区域做检测，大幅减少计算量</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_04_ocr.md</span> — MinerU 深度解析系列 · 第四篇：OCR 引擎</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../entities/PaddleOCR.html">PaddleOCR</a> — 使用 DBNet++ 作为文字检测模块</li>
+<li><a href="光学字符识别.html">光学字符识别</a> — 所属技术领域</li>
+<li><a href="../entities/PP-OCRv4.html">PP-OCRv4</a> — DBNet++ 是其中的检测组件</li>
+<li><a href="SVTR.html">SVTR</a> — 检测后的文字识别模型</li>
+<li><a href="透视变换.html">透视变换</a> — 检测后的文字矫正步骤</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="CustomGeometry程序化几何体.html">&larr; CustomGeometry程序化几何体</a>
+    <a href="DDPG.html">DDPG &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -53,7 +53,7 @@ supersedes: null
 
 ## 概述
 
-ARPANET（Advanced Research Projects Agency Network）是美国国防部高级研究计划局资助建设的[[分组交换]]网络，1969年投入运行，是互联网的前身。
+ARPANET（Advanced Research Projects [[能动性|Agency]] Network）是美国国防部高级研究计划局资助建设的[[分组交换]]网络，1969年投入运行，是互联网的前身。
 
 ## 关键内容
 

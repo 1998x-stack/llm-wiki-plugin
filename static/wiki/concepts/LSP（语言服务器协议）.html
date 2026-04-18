@@ -157,10 +157,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>LSIF（<a href="LSIF（语言服务器索引格式）.html">Language Server Index Format</a>）</strong>：LSP 的"离线版本"，用于代码搜索和代码导航（GitHub、Sourcegraph 使用）。将语言服务器的分析结果序列化为图结构（vertex:document → contains → vertex:range → resultSet）。</p>
 </li>
 <li>
-<p><strong>主流语言服务器</strong>：<a href="../entities/gopls.html">gopls</a>（Go）、<a href="../entities/hls（Haskell Language Server）.html">hls（Haskell Language Server）</a>（Haskell）、<a href="../entities/lua-language-server.html">lua-language-server</a>（Lua）、<a href="../entities/vtsls.html">vtsls</a>（TypeScript）、<a href="../entities/rust-analyzer.html">rust-analyzer</a>（Rust）、<a href="../entities/pylsp.html">pylsp</a>（Python）、<a href="../entities/clangd.html">clangd</a>（C/C++）、intelephense（PHP）、solargraph（Ruby）等。</p>
+<p><strong>主流语言服务器</strong>：<a href="../entities/gopls.html">gopls</a>（Go）、<a href="../entities/hls（Haskell Language Server）.html">hls（Haskell Language Server）</a>（Haskell）、<a href="../entities/lua-language-server.html">lua-language-server</a>（Lua）、<a href="../entities/vtsls.html">vtsls</a>（<a href="../entities/TypeScript.html">TypeScript</a>）、<a href="../entities/rust-analyzer.html">rust-analyzer</a>（Rust）、<a href="../entities/pylsp.html">pylsp</a>（Python）、<a href="../entities/clangd.html">clangd</a>（C/C++）、intelephense（PHP）、solargraph（Ruby）等。</p>
 </li>
 <li>
-<p><strong>编辑器集成</strong>：Neovim（nvim-lspconfig）、VS Code（LanguageClient）、Emacs（eglot/lsp-mode）、Helix（languages.toml）均支持 LSP 客户端。</p>
+<p><strong><a href="ACP 编辑器集成.html">编辑器集成</a></strong>：Neovim（nvim-lspconfig）、VS Code（LanguageClient）、Emacs（eglot/lsp-mode）、Helix（languages.toml）均支持 LSP 客户端。</p>
 </li>
 <li>
 <p><strong>调试工具</strong>：<code>lsp-devtools</code>（record/tui）、Neovim <code>vim.lsp.set_log_level("debug")</code>、netcat 手动发送 JSON-RPC 请求。</p>

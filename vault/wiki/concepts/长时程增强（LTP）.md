@@ -11,6 +11,7 @@ tags:
   - 学习
   - 记忆
   - 突触
+  - 脑科学
 aliases:
   - "Long-Term Potentiation"
   - "LTP"

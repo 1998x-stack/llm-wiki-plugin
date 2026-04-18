@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 诺贝尔奖
   - 组织学
+  - 脑科学
 aliases:
   - "Santiago Ramón y Cajal"
   - "圣地亚哥·拉蒙 - 卡哈尔"

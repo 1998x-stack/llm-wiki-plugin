@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="afm">AFM</h1>
 <h2 id="_1">概述</h2>
-<p>引入注意力机制的<a href="Factorization Machines.html">因子分解机</a>变体，为不同<a href="../concepts/特征交叉.html">特征交互</a>赋予不同权重，解决 FM 暴力枚举所有特征对缺乏选择性的问题。</p>
+<p>引入<a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>的<a href="Factorization Machines.html">因子分解机</a>变体，为不同<a href="../concepts/特征交叉.html">特征交互</a>赋予不同权重，解决 FM 暴力枚举所有特征对缺乏选择性的问题。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>注意力加权<a href="../concepts/特征交叉.html">特征交互</a></strong>：FM 组件会计算所有特征对之间的交互，没有选择性地关注更重要的交互。AFM 通过引入注意力机制来为不同的<a href="../concepts/特征交叉.html">特征交互</a>赋予不同的权重。</li>
-<li><strong>解决 <a href="DeepFM.html">DeepFM</a> 局限</strong>：<a href="DeepFM.html">DeepFM</a> 的 FM 部分暴力枚举所有特征对，在特征数量很大时大量不相关的特征对交互实际上是噪声。AFM 的注意力机制可以自动筛选重要交互。</li>
+<li><strong>注意力加权<a href="../concepts/特征交叉.html">特征交互</a></strong>：FM 组件会计算所有特征对之间的交互，没有选择性地关注更重要的交互。AFM 通过引入<a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>来为不同的<a href="../concepts/特征交叉.html">特征交互</a>赋予不同的权重。</li>
+<li><strong>解决 <a href="DeepFM.html">DeepFM</a> 局限</strong>：<a href="DeepFM.html">DeepFM</a> 的 FM 部分暴力枚举所有特征对，在特征数量很大时大量不相关的特征对交互实际上是噪声。AFM 的<a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>可以自动筛选重要交互。</li>
 <li><strong>与 <a href="DeepFM.html">DeepFM</a> 的关系</strong>：AFM 是对 FM 本身的改进，可以视为 <a href="DeepFM.html">DeepFM</a> FM 组件的潜在替换方案。将 AFM 替代 FM 集成到 <a href="DeepFM.html">DeepFM</a> 架构中是一个自然的研究方向。</li>
 </ol>
 <h2 id="_3">来源</h2>

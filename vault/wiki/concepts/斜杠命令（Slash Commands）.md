@@ -24,12 +24,12 @@ supersedes: null
 # 斜杠命令（Slash Commands）
 
 ## 概述
-Claude Code 中用户手动触发的快捷操作，分为四类：内置命令（55+ 个）、[[Agent Skills|Skills]]（自定义命令）、插件命令（来自已安装插件）和 MCP prompts（来自 MCP server）。
+[[Claude Code]] 中用户手动触发的快捷操作，分为四类：内置命令（55+ 个）、[[Agent Skills|Skills]]（自定义命令）、插件命令（来自已安装插件）和 MCP prompts（来自 MCP server）。
 
 ## 关键内容
 
 1. **四类命令**：
-   - **内置命令**：Claude Code 自带，如 `/help`、`/clear`、`/model`、`/compact`、`/context`、`/cost`
+   - **内置命令**：[[Claude Code]] 自带，如 `/help`、`/clear`、`/model`、`/compact`、`/context`、`/cost`
    - **[[Agent Skills|Skills]]**：用户自定义命令，基于 `SKILL.md` 文件，如 `/optimize`、`/pr`
    - **插件命令**：来自已安装插件，如 `/frontend-design:frontend-design`
    - **MCP prompts**：来自 MCP server，如 `/mcp__github__list_prs`

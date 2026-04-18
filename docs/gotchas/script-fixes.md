@@ -87,3 +87,15 @@ Hook 仅在 Write/Edit 到 `wiki/**/*.md` 时触发，但新创建的页面需�
 **When it bites**: 每次运行 `wiki:check` / `wiki:lint` 时必然触发，导致 953 条 I1 + 23 条 I2 噪声警告，掩盖真实问题。
 
 **Workaround/Fix**: 忽略 I1/I2 报告，或将 index.md 的 `## 全部页面` 节改为 `[[wikilink]]` 格式（与 `load_index_links()` 匹配）。根本修复可选：在 `build_statistics.py` / `lint_wiki.py` 中同时支持纯文本格式的页面检测。
+
+---
+
+## #45 — M1/B1: maps/*.md 截断 wikilink 导致 2000+ 断链误报
+
+**Status**: New (2026-04-18)
+
+`lint_wiki.py` 扫描所有 `.md` 文件（含 `maps/*.md`）中的 `[[wikilink]]` 模式。Map 文件使用 `[[页面名]]` 语法列举 wiki 页面，但当页面名过长或 map 文件换行时，链接被截断（如 `[[Steven M. LaV` 而非 `[[Steven M. LaValle]]`）。Lint 解析器将这些截断名当作断链，产生 2000+ B1 误报。同时 M1 检查也报告"引用不存在的页面"，但显示的是截断后的名字。
+
+**When it bites**: `wiki:reindex` 生成新 map 文件后必然触发。受影响的 map 文件：机器人学.md（50+ 截断）、推荐系统.md（215 页面多数截断）、数值分析.md（62 页面）、工具与框架.md（30+ 截断）。
+
+**Workaround/Fix**: 在 `lint_wiki.py` 的 B1 检查中排除 `maps/` 目录，或 map 文件改用无 `[[ ]]` 的纯文本列表格式。根本修复需在 map 生成时确保每个 `[[wikilink]]` 完整不换行。

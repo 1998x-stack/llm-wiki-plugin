@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code-hook-system">Claude Code Hook System</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code Hook System 是 Claude Code 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事件。该系统包含一组预定义的钩子（Hooks），覆盖从会话初始化、用户输入、工具调用到会话结束的全过程。通过这一系统，第三方插件（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）能够实现深度集成，捕获原始交互数据、修改上下文或执行后台任务，从而扩展 Claude Code 的原生能力。</p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> Hook System 是 <a href="../entities/Claude Code.html">Claude Code</a> 编程助手提供的一种扩展机制，允许开发者通过编写脚本拦截和响应 AI 会话的生命周期事件。该系统包含一组预定义的钩子（Hooks），覆盖从会话初始化、用户输入、工具调用到会话结束的全过程。通过这一系统，第三方插件（如 <a href="../entities/Claude-Mem.html">Claude-Mem</a>）能够实现深度集成，捕获原始交互数据、修改上下文或执行后台任务，从而扩展 <a href="../entities/Claude Code.html">Claude Code</a> 的原生能力。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">钩子生命周期</h3>
-<p>Claude Code 的钩子系统定义了五个关键阶段的触发点，每个阶段对应特定的 JS/TS 脚本：
+<p><a href="../entities/Claude Code.html">Claude Code</a> 的钩子系统定义了五个关键阶段的触发点，每个阶段对应特定的 JS/TS 脚本：
 1. <strong>Context Hook (<code>context-hook</code>)</strong>：在会话启动时触发。用于读取外部数据（如历史记忆）并注入到初始上下文中，为 AI 提供前置知识。
 2. <strong>New Hook (<code>new-hook</code>)</strong>：当用户发起新的对话或提示词时触发。负责创建会话记录、保存用户意图（经脱敏处理后）。
 3. <strong>Save Hook (<code>save-hook</code>)</strong>：在每次工具调用（Tool Call）完成后触发。这是最频繁的钩子，用于捕获工具名称、输入参数及响应结果，是构建行为记忆的关键入口。
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>合规性检查</strong>：在代码写入前自动扫描敏感信息或违规模式。
 - <strong>自定义工作流</strong>：根据特定工具调用触发外部 CI/CD 流水线。
 - <strong>遥测与分析</strong>：收集匿名化的使用数据以优化模型表现。</p>
-<p>该系统的灵活性使得 Claude Code 不仅仅是一个聊天机器人，而是一个可编程的、具备扩展性的开发平台。</p>
+<p>该系统的灵活性使得 <a href="../entities/Claude Code.html">Claude Code</a> 不仅仅是一个聊天机器人，而是一个可编程的、具备扩展性的开发平台。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-mem/blog_01_overview.md</span></li>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Claude Code 记忆系统.html">&larr; Claude Code 记忆系统</a>
-    <a href="Code-Review-for-Claude-Code.html">Code-Review-for-Claude-Code &rarr;</a>
+    <a href="Clean State Protocol.html">Clean State Protocol &rarr;</a>
   </div>
 </div>
 </body>

@@ -29,7 +29,7 @@ TD3（Twin Delayed [[DDPG|Deep Deterministic Policy Gradient]]）由 McGill Univ
 ## 关键内容
 
 1. **双 Critic（Clipped Double Q-learning）**：维护两个独立 Critic Q_φ₁、Q_φ₂，目标值取 min：y = r + γ·min(Q_φ̄₁(s',ã), Q_φ̄₂(s',ã))。悲观估计宁可低估也不过估计，防止 Actor 利用 Critic 错误高点；两个 Critic 独立用相同目标更新，Actor 梯度仅用第一个 Critic。
-2. **目标策略平滑化**：目标动作加截断噪声 ã = clip(μ_θ̄(s') + clip(ε,-c,c), a_min, a_max)，ε~N(0,σ)，c=0.5。对 Q 函数进行隐式正则化，类似 Label Smoothing，防止 Q 函数在动作尖峰处过拟合。
+2. **目标策略平滑化**：目标动作加截断噪声 ã = clip(μ_θ̄(s') + clip(ε,-c,c), a_min, a_max)，ε~N(0,σ)，c=0.5。对 Q 函数进行隐式正则化，类似 Label Smoothing，防止 Q 函数在动作尖峰处[[过拟合（Overfitting）|过拟合]]。
 3. **延迟策略更新**：Critic 每步更新，Actor 和[[目标网络]]每 d=2 步才更新一次。让 Critic 有足够时间收敛后再指导 Actor，打破过估计→Actor利用→Critic恶化的循环。
 
 ## 来源

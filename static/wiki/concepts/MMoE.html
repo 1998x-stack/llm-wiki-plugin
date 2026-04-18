@@ -135,32 +135,32 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mmoe">MMoE</h1>
 <h2 id="_1">概述</h2>
-<p>MMoE(Multi-gate <a href="Mixture-of-Experts.html">Mixture-of-Experts</a>)是一种<a href="多任务学习.html">多任务学习</a>架构，通过为每个任务配备独立门控网络，让任务自适应地选择和组合共享专家子网络，有效缓解<a href="负迁移.html">负迁移</a>问题。</p>
+<p>MMoE(Multi-gate <a href="Mixture-of-Experts.html">Mixture-of-Experts</a>)是一种<a href="多任务学习.html">多任务学习</a>架构，通过为每个任务配备独立<a href="门控机制（Gating Mechanism）.html">门控</a>网络，让任务自适应地选择和组合共享专家子网络，有效缓解<a href="负迁移.html">负迁移</a>问题。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心架构</h3>
 <ul>
 <li><strong>Expert 层</strong>：多个共享的专家网络(通常为 MLP)，各自独立处理输入特征</li>
-<li><strong>Multi-gate 层</strong>：每个任务拥有专属门控网络，通过 softmax 产生专家权重分配</li>
+<li><strong>Multi-gate 层</strong>：每个任务拥有专属<a href="门控机制（Gating Mechanism）.html">门控</a>网络，通过 softmax 产生专家权重分配</li>
 <li><strong>Tower 层</strong>：任务特定的塔网络，接收加权融合后的专家输出产生最终预测</li>
 <li>前向传播：<code>f^k(x) = Σ g^k(x)_i * f_i(x)</code>，其中 <code>g^k(x) = softmax(W_gk * x)</code></li>
 </ul>
 <h3 id="_4">与相关架构的对比</h3>
 <ul>
 <li><strong>vs <span style="color:#e74c3c" title="broken link">Shared-Bottom</span></strong>：Shared-Bottom 强制所有任务共享同一底层表示，MMoE 允许任务自主选择专家组合，在任务相关性低时优势显著</li>
-<li><strong>vs OMoE</strong>：OMoE 所有任务共享同一门控，MMoE 为每任务配备独立门控，实现任务特定的专家选择</li>
+<li><strong>vs OMoE</strong>：OMoE 所有任务共享同一<a href="门控机制（Gating Mechanism）.html">门控</a>，MMoE 为每任务配备独立<a href="门控机制（Gating Mechanism）.html">门控</a>，实现任务特定的专家选择</li>
 <li>MMoE 可视为 Shared-Bottom 与完全独立模型之间的连续体，根据数据自动找到最优共享程度</li>
 </ul>
 <h3 id="_5">关键优势</h3>
 <ul>
 <li><strong><a href="负迁移.html">负迁移</a>抵抗</strong>：通过梯度隔离和专家特化机制，当任务信号冲突时可调低相关专家权重</li>
 <li><strong>训练稳定性</strong>：相比 Shared-Bottom 和 OMoE 具有更小的性能方差，对初始化更鲁棒</li>
-<li><strong>计算效率</strong>：门控网络极轻量，几乎不增加推理开销，适合工业级部署</li>
-<li><strong>可解释性</strong>：门控权重可可视化，揭示不同任务如何利用不同专家</li>
+<li><strong>计算效率</strong>：<a href="门控机制（Gating Mechanism）.html">门控</a>网络极轻量，几乎不增加推理开销，适合工业级部署</li>
+<li><strong>可解释性</strong>：<a href="门控机制（Gating Mechanism）.html">门控</a>权重可可视化，揭示不同任务如何利用不同专家</li>
 </ul>
 <h3 id="_6">局限性</h3>
 <ul>
 <li><strong>Expert 数量选择困难</strong>：缺乏系统选择准则，依赖经验和网格搜索</li>
-<li><strong>Expert Collapse</strong>：可能出现所有门控收敛到同一专家的现象，退化为 Shared-Bottom</li>
+<li><strong>Expert Collapse</strong>：可能出现所有<a href="门控机制（Gating Mechanism）.html">门控</a>收敛到同一专家的现象，退化为 Shared-Bottom</li>
 <li><strong>跷跷板现象</strong>：优化一任务时另一任务性能仍可能下降(后续 PLE 解决)</li>
 <li><strong>缺乏显式任务交互</strong>：任务间信息流仅通过共享专家间接传递(后续 ESMM 补充)</li>
 </ul>

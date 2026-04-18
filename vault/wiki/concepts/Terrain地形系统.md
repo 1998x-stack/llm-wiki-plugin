@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 地形, 高度图, UrhoX]
+tags: ["渲染", "地形", "高度图", "UrhoX", "游戏开发"]
 aliases: [Terrain, 地形组件, 高度场地形]
 relates_to: [UrhoX引擎, LOD（细节层次）, PBR材质系统, StaticModel静态网格体]
 supersedes: null

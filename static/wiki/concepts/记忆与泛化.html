@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>推荐系统设计的核心概念框架，由 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 论文（2016）提出，将推荐挑战抽象为"记忆已知模式"与"泛化未知组合"的统一问题，影响后续所有主流推荐模型设计。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>Memorization（记忆）定义</strong>：学习训练数据中频繁共现的特征或物品之间的相关性，并利用历史关联进行推荐。本质是"利用已知"，通过<a href="特征交叉.html">特征交叉</a>（如<a href="交叉积变换.html">交叉积变换</a>）精确捕捉历史验证有效的模式。例如"安装微信的用户大概率也下载QQ"，模型通过交叉特征记住这一规律。</li>
+<li><strong><a href="../entities/Memori.html">Memori</a>zation（记忆）定义</strong>：学习训练数据中频繁共现的特征或物品之间的相关性，并利用历史关联进行推荐。本质是"利用已知"，通过<a href="特征交叉.html">特征交叉</a>（如<a href="交叉积变换.html">交叉积变换</a>）精确捕捉历史验证有效的模式。例如"安装微信的用户大概率也下载QQ"，模型通过交叉特征记住这一规律。</li>
 <li><strong>Generalization（泛化）定义</strong>：基于特征之间的传递性和相关性，探索训练数据中很少出现或从未出现的新特征组合。本质是"推断未知"，通过<a href="嵌入表示.html">嵌入表示</a>将高维稀疏特征映射为低维稠密向量，在嵌入空间中通过相似性推断潜在关联。</li>
 <li><strong>记忆的优势与局限</strong>：优势在于对已知模式的高精度复现；局限在于无法泛化到未见过的特征组合——<a href="交叉积变换.html">交叉积变换</a>对训练数据中未出现的特征对恒为 0，完全无法提供信息。</li>
 <li><strong>泛化的优势与局限</strong>：优势在于处理新情况和长尾物品；局限在于当用户-物品交互<a href="矩阵.html">矩阵</a>非常稀疏且高秩时，可能"过度泛化"（over-generalize），推荐出相关性不高的物品。</li>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="计算复杂度理论.html">&larr; 计算复杂度理论</a>
-    <a href="设备像素比.html">设备像素比 &rarr;</a>
+    <a href="记忆安全扫描.html">记忆安全扫描 &rarr;</a>
   </div>
 </div>
 </body>

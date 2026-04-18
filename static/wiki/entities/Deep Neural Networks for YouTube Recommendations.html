@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>极端多分类建模</strong>：将推荐问题形式化为超大规模多分类问题，类别数等于视频语料库大小。使用 <a href="../concepts/采样 Softmax.html">采样 Softmax</a> 技术，每次只采样数千个负样本来近似完整 softmax，大幅降低计算开销。训练时每个视频对应一个 embedding（softmax 层权重），用户通过神经网络前向计算得到 embedding。</p>
 </li>
 <li>
-<p><strong><a href="../concepts/双塔模型.html">双塔模型</a> 原型</strong>：<a href="../concepts/候选生成.html">候选生成</a>模型中"用户塔"和"物品塔"分别产生 embedding，然后通过内积计算相似度。用户侧输入包括观看历史（取平均，借鉴 Word2Vec CBOW 思想）、搜索历史、人口统计学特征等。服务时转化为 <a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> 问题，用 ANN 在亚线性时间内找到 Top-N 视频。</p>
+<p><strong><a href="../concepts/双塔模型.html">双塔模型</a> 原型</strong>：<a href="../concepts/候选生成.html">候选生成</a>模型中"用户塔"和"物品塔"分别产生 embedding，然后通过内积计算相似度。用户侧输入包括观看历史（取平均，借鉴 <a href="../concepts/Word2Vec.html">Word2Vec</a> CBOW 思想）、搜索历史、人口统计学特征等。服务时转化为 <a href="../concepts/近似最近邻检索.html">近似最近邻检索</a> 问题，用 ANN 在亚线性时间内找到 Top-N 视频。</p>
 </li>
 <li>
 <p><strong><a href="../concepts/Example Age.html">Example Age</a> 特征</strong>：解决新鲜度偏差（Freshness Bias）的精巧设计。将训练样本的"年龄"作为显式输入特征，让模型学到用户偏好新鲜内容的倾向。推理时将 <a href="../concepts/Example Age.html">Example Age</a> 设为零，等价于告诉模型"预测当前时刻用户最可能观看什么"。这种"训练时暴露偏差，推理时消除偏差"的思路是 <a href="../concepts/因果推断.html">因果推断</a> 和去偏研究的先驱。</p>
@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Dear ImGui.html">&larr; Dear ImGui</a>
-    <a href="DeepAgents.html">DeepAgents &rarr;</a>
+    <a href="Deep Residual Learning for Image Recognition (2016 论文).html">Deep Residual Learning for Image Recognition (2016 论文) &rarr;</a>
   </div>
 </div>
 </body>

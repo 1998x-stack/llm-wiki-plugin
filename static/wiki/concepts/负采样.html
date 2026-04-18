@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>BPR 中的均匀负采样</strong>：原始 BPR 从用户未交互物品集合 I \ I_u^+ 中均匀随机采样负样本 j，构建三元组 (u, i, j)。这种策略简单但信息量低，大多数随机负样本与正样本差距悬殊，模型可轻松区分，梯度趋近于零。</p>
+<p><strong>BPR 中的均匀负采样</strong>：原始 BPR 从用户未交互物品集合 I \ I_u^+ 中均匀随机采样负样本 j，构建三元组 (u, i, j)。这种策略简单但信息量低，大多数随机负样本与正样本差距悬殊，模型可轻松<a href="../entities/区分.html">区分</a>，梯度趋近于零。</p>
 </li>
 <li>
 <p><strong>假负样本问题</strong>：用户未交互的物品中有些实际是用户会喜欢的，将其作为负样本训练可能误导模型。这是<a href="隐式反馈.html">隐式反馈</a>场景固有的挑战。</p>
@@ -147,9 +147,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>改进策略</strong>：</p>
 </li>
-<li><strong>DNS (Dynamic Negative Sampling)</strong>：动态选择当前模型打分较高的未交互物品作为负样本，提供更有梯度的学习信号</li>
-<li><strong>Adversarial Negative Sampling</strong>：对抗式负采样，生成器学习选择难负样本，判别器学习区分</li>
-<li><strong>IRGAN</strong>：结合生成对抗网络的负采样框架</li>
+<li><strong>DNS (Dynamic <a href="负采样（Negative Sampling）.html">Negative Sampling</a>)</strong>：动态选择当前模型打分较高的未交互物品作为负样本，提供更有梯度的学习信号</li>
+<li><strong>Adversarial <a href="负采样（Negative Sampling）.html">Negative Sampling</a></strong>：对抗式负采样，<a href="生成器.html">生成器</a>学习选择难负样本，<a href="判别器.html">判别器</a>学习<a href="../entities/区分.html">区分</a></li>
+<li><strong>IRGAN</strong>：结合<a href="生成对抗网络（GAN）.html">生成对抗网络</a>的负采样框架</li>
 <li>
 <p><strong>ANCE</strong>：<a href="近似最近邻检索.html">近似最近邻</a>负采样，从稠密检索中选择难负样本</p>
 </li>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="负迁移.html">&larr; 负迁移</a>
-    <a href="资源与能力差异.html">资源与能力差异 &rarr;</a>
+    <a href="负采样（Negative Sampling）.html">负采样（Negative Sampling） &rarr;</a>
   </div>
 </div>
 </body>

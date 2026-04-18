@@ -44,9 +44,9 @@ Agentic Search（智能体搜索）将搜索/检索行为嵌入 AI Agent 决策�
    - **RAISE 模式**：ReAct + 短期记忆 + 长期记忆
    - **CRAG（Corrective RAG）**：检索后自动评估质量，质量差则重新搜索
    - **Self-RAG**：模型本身输出"是否需要检索"的判断令牌
-   - **Deep Research**：多轮搜索 + 规划 + 报告生成（Perplexity/Gemini Deep Research）
+   - **Deep Research**：多轮搜索 + 规划 + 报告生成（Perplexity/[[Gemini CLI|Gemini]] Deep Research）
 
-4. **代码领域的 Agentic Search**：RAG 在代码域的核心问题是 Chunking 破坏代码结构、静态索引快速过期、符号导航需要动态追踪依赖链。Boris Cherny（Claude Code 负责人）："早期版本用了 RAG + 向量数据库，但很快发现 Agentic Search 通常效果更好——更简单，没有安全、隐私、数据过期和可靠性问题。"最优解是"像资深工程师一样探索"（查看目录结构、追踪 import、读整个文件建立心智模型），工具集：Glob/Grep/Read/LSP/Bash。
+4. **代码领域的 Agentic Search**：RAG 在代码域的核心问题是 Chunking 破坏代码结构、静态索引快速过期、符号导航需要动态追踪依赖链。Boris Cherny（[[Claude Code]] 负责人）："早期版本用了 RAG + 向量数据库，但很快发现 Agentic Search 通常效果更好——更简单，没有安全、隐私、数据过期和可靠性问题。"最优解是"像资深工程师一样探索"（查看目录结构、追踪 import、读整个文件建立心智模型），工具集：Glob/Grep/Read/LSP/Bash。
 
 5. **技术栈**：编排层 LangGraph/AutoGen/CrewAI/Agno；工具层 MCP 工具集；检索工具 向量库+grep+LSP+文件系统；记忆层 [[上下文窗口]]+外部存储；评估层 [[LLM-as-Judge]]。
 

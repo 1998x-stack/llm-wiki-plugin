@@ -157,11 +157,57 @@ nav a.active { color: var(--link); font-weight: 600; }
 | <a href="../entities/MinerU.html">MinerU</a> | ✅ 高质量 | ✅ OCR | ✅ <a href="../entities/UniMERNet.html">UniMERNet</a> | ✅ <a href="../entities/TableMaster.html">TableMaster</a> | ✅ 多栏 | ✅ 极佳 |</p>
 <h3 id="_6">解决路径</h3>
 <p>现代高质量 PDF 解析采用<strong>多模型协同流水线</strong>：布局检测 → 内容专项识别（OCR/公式/表格）→ <a href="阅读顺序重建.html">阅读顺序重建</a> → 结构化输出。</p>
-<h2 id="_7">来源</h2>
+<h3 id="_7">渲染参数选择</h3>
+<p>PDF 页面渲染为图像时，分辨率直接影响准确率与速度：</p>
+<table>
+<thead>
+<tr>
+<th>DPI</th>
+<th>分辨率（A4）</th>
+<th>适用场景</th>
+<th>显存占用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>72</td>
+<td>595×842</td>
+<td>仅预览</td>
+<td>低</td>
+</tr>
+<tr>
+<td>150</td>
+<td>1240×1754</td>
+<td>基础 OCR</td>
+<td>中</td>
+</tr>
+<tr>
+<td><strong>200</strong></td>
+<td><strong>1654×2339</strong></td>
+<td><strong><a href="../entities/MinerU.html">MinerU</a> 默认</strong></td>
+<td>中</td>
+</tr>
+<tr>
+<td>300</td>
+<td>2480×3508</td>
+<td>高精度 OCR</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<p>200 DPI 是准确率与速度的平衡点。</p>
+<h3 id="_8">原始数据噪声</h3>
+<p>从 PDF 提取的原始数据存在多种噪声：
+1. <strong>超短碎片</strong>：单字符/空格级别的过度分割，需同行合并
+2. <strong>水印文字</strong>：旋转、半透明、大面积覆盖，通过颜色和旋转角度检测
+3. <strong>页眉页脚</strong>：固定区域重复出现，在布局检测阶段标记过滤
+4. <strong>重叠 Span</strong>：PDF 生成工具产生的内容重复，需去重</p>
+<h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_02_pdf_parsing.md</span> — MinerU 深度解析系列 · 第二篇：底层 PDF 解析引擎</li>
 </ul>
-<h2 id="_8">相关</h2>
+<h2 id="_10">相关</h2>
 <ul>
 <li><a href="../entities/MinerU.html">MinerU</a> — 高质量 PDF 解析工具</li>
 <li><a href="文档布局检测.html">文档布局检测</a> — PDF 解析的关键环节</li>
@@ -170,10 +216,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="表格识别.html">表格识别</a> — 表格结构还原技术</li>
 <li><a href="阅读顺序重建.html">阅读顺序重建</a> — 多栏文档的序列重建</li>
 <li><a href="检索增强生成.html">检索增强生成</a> — PDF 解析的主要下游应用</li>
+<li><a href="PDF内容流.html">PDF内容流</a> — PDF 内部的数据结构本质</li>
+<li><a href="PDF坐标系.html">PDF坐标系</a> — 坐标参照系统</li>
+<li><a href="Span层级结构.html">Span层级结构</a> — 文字提取的嵌套结构</li>
+<li><a href="MinerUSpan格式.html">MinerUSpan格式</a> — MinerU 的内部数据格式</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="PDDL.html">&larr; PDDL</a>
+    <a href="PDF文档解析流水线.html">&larr; PDF文档解析流水线</a>
     <a href="PPO.html">PPO &rarr;</a>
   </div>
 </div>

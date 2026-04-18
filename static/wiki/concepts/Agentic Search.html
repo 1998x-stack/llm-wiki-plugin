@@ -152,10 +152,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>CRAG（Corrective RAG）</strong>：检索后自动评估质量，质量差则重新搜索</li>
 <li><strong>Self-RAG</strong>：模型本身输出"是否需要检索"的判断令牌</li>
 <li>
-<p><strong>Deep Research</strong>：多轮搜索 + 规划 + 报告生成（Perplexity/Gemini Deep Research）</p>
+<p><strong>Deep Research</strong>：多轮搜索 + 规划 + 报告生成（Perplexity/<a href="../entities/Gemini CLI.html">Gemini</a> Deep Research）</p>
 </li>
 <li>
-<p><strong>代码领域的 Agentic Search</strong>：RAG 在代码域的核心问题是 Chunking 破坏代码结构、静态索引快速过期、符号导航需要动态追踪依赖链。Boris Cherny（Claude Code 负责人）："早期版本用了 RAG + 向量数据库，但很快发现 Agentic Search 通常效果更好——更简单，没有安全、隐私、数据过期和可靠性问题。"最优解是"像资深工程师一样探索"（查看目录结构、追踪 import、读整个文件建立心智模型），工具集：Glob/Grep/Read/LSP/Bash。</p>
+<p><strong>代码领域的 Agentic Search</strong>：RAG 在代码域的核心问题是 Chunking 破坏代码结构、静态索引快速过期、符号导航需要动态追踪依赖链。Boris Cherny（<a href="../entities/Claude Code.html">Claude Code</a> 负责人）："早期版本用了 RAG + 向量数据库，但很快发现 Agentic Search 通常效果更好——更简单，没有安全、隐私、数据过期和可靠性问题。"最优解是"像资深工程师一样探索"（查看目录结构、追踪 import、读整个文件建立心智模型），工具集：Glob/Grep/Read/LSP/Bash。</p>
 </li>
 <li>
 <p><strong>技术栈</strong>：编排层 LangGraph/AutoGen/CrewAI/Agno；工具层 MCP 工具集；检索工具 向量库+grep+LSP+文件系统；记忆层 <a href="上下文窗口.html">上下文窗口</a>+外部存储；评估层 <a href="LLM-as-Judge.html">LLM-as-Judge</a>。</p>
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Agent-Teams-Pattern.html">&larr; Agent-Teams-Pattern</a>
-    <a href="Agent工作流模式.html">Agent工作流模式 &rarr;</a>
+    <a href="Agent可组合性.html">Agent可组合性 &rarr;</a>
   </div>
 </div>
 </body>

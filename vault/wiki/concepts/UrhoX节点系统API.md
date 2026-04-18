@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, UrhoX, Lua, API, 节点, 变换]
+tags: ["游戏引擎", "UrhoX", "Lua", "API", "节点", "变换", "游戏开发"]
 aliases: [UrhoX Node, 节点API, Node API]
 relates_to: [UrhoX引擎, UrhoX场景系统API, UrhoX组件系统API, 场景树]
 supersedes: null
@@ -17,7 +17,7 @@ supersedes: null
 [[UrhoX引擎|UrhoX]] `Node` 继承自 `Animatable`，是[[场景树]]的基本单元，封装了 3D/2D 变换（位置/旋转/缩放）、父子层级管理和组件容器，坐标系为 Y-up 左手系，单位为米。
 
 ## 关键内容
-1. **变换体系**：区分 Local（父节点相对）和 World（世界绝对）两套接口——`SetPosition/SetWorldPosition`、`GetTransform/GetWorldTransform`；2D 游戏使用 `SetPosition2D/SetRotation2D/SetScale2D` 对应接口。
+1. **变换体系**：[[区分]] Local（父节点相对）和 World（世界绝对）两套接口——`SetPosition/SetWorldPosition`、`GetTransform/GetWorldTransform`；2D 游戏使用 `SetPosition2D/SetRotation2D/SetScale2D` 对应接口。
 2. **旋转操作**：`Translate/Rotate` 支持 `TransformSpace`（TS_LOCAL / TS_WORLD / TS_PARENT）指定参考系；`Pitch/Yaw/Roll` 分别绕 X/Y/Z 轴旋转；`LookAt(target, upAxis, space)` 使节点朝向目标。
 3. **坐标转换**：`LocalToWorld/WorldToLocal`（支持 Vector3 和 Vector4 齐次坐标）实现空间转换，是射线投射和相机映射的基础。
 4. **父子管理**：`CreateChild(name, mode, id)` 创建子节点；`AddChild/RemoveChild/RemoveAllChildren`；`Clone(mode)` 深拷贝子树；`SetParent` 重挂父节点；`GetChild(name/hash/index, recursive)` 递归查找。

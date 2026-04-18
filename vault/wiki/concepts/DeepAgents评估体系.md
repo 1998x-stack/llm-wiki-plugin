@@ -23,7 +23,7 @@ supersedes: null
 
 ## 概述
 
-[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**区分"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
+[[DeepAgents]] 的评估框架（`libs/evals/`），基于 pytest + LangSmith，将 Agent 一次运行表示为结构化"轨迹"（trajectory），用**两层断言模型**[[区分]]"对错"（成功断言，硬性失败）与"形态"（效率断言，仅记录不报红）。内置 7 个评估维度、外部基准测试集成（FRAMES/Nexus/BFCL v3/tau2-bench）、Harbor 框架和 Terminal Bench 2.0。
 
 ## 关键内容
 

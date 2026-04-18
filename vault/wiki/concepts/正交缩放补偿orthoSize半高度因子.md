@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, 正交投影, 相机, 数学, UrhoX, 陷阱]
+tags: ["游戏引擎", "正交投影", "相机", "数学", "UrhoX", "陷阱", "游戏开发"]
 aliases: [orthoSize 2x因子, 正交相机缩放补偿, orthoSize半高度陷阱]
 relates_to: [UrhoX引擎, 鼠标滚轮输入API陷阱, 设备像素比, NanoVG分辨率模式]
 supersedes: null

@@ -27,14 +27,14 @@ supersedes: null
 # Claude Code 插件系统
 
 ## 概述
-插件是 Claude Code 最高级别的扩展方式，将 slash commands、subagents、MCP servers 和 hooks 打包成可安装的一体化方案，通过一条命令即可安装，代表完整的工作流解决方案。
+插件是 [[Claude Code]] 最高级别的扩展方式，将 slash commands、subagents、MCP servers 和 hooks 打包成可安装的一体化方案，通过一条命令即可安装，代表完整的工作流解决方案。
 
 ## 关键内容
 
 1. **插件架构**：一个插件通常打包以下能力——slash commands、subagents、MCP servers、hooks、configuration。好处是一次安装即可使用完整工作流，团队共享更容易，配置统一，便于版本控制和分发。
 
 2. **插件类型**：
-   - **官方**：全局范围，所有用户可用，Anthropic 维护（如 PR 审查、安全指导）
+   - **官方**：全局范围，所有用户可用，[[Anthropic]] 维护（如 PR 审查、安全指导）
    - **社区**：公开范围，社区维护（如 DevOps、数据科学）
    - **组织**：内部范围，团队成员可用，公司维护
    - **个人**：个人范围，单个用户可用，开发者自定义工作流

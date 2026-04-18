@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">游戏引擎</span><span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">API</span><span class="tag">节点</span><span class="tag">变换</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">游戏引擎</span><span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">API</span><span class="tag">节点</span><span class="tag">变换</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="urhoxapi">UrhoX节点系统API</h1>
@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/UrhoX引擎.html">UrhoX</a> <code>Node</code> 继承自 <code>Animatable</code>，是<a href="场景树.html">场景树</a>的基本单元，封装了 3D/2D 变换（位置/旋转/缩放）、父子层级管理和组件容器，坐标系为 Y-up 左手系，单位为米。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>变换体系</strong>：区分 Local（父节点相对）和 World（世界绝对）两套接口——<code>SetPosition/SetWorldPosition</code>、<code>GetTransform/GetWorldTransform</code>；2D 游戏使用 <code>SetPosition2D/SetRotation2D/SetScale2D</code> 对应接口。</li>
+<li><strong>变换体系</strong>：<a href="../entities/区分.html">区分</a> Local（父节点相对）和 World（世界绝对）两套接口——<code>SetPosition/SetWorldPosition</code>、<code>GetTransform/GetWorldTransform</code>；2D 游戏使用 <code>SetPosition2D/SetRotation2D/SetScale2D</code> 对应接口。</li>
 <li><strong>旋转操作</strong>：<code>Translate/Rotate</code> 支持 <code>TransformSpace</code>（TS_LOCAL / TS_WORLD / TS_PARENT）指定参考系；<code>Pitch/Yaw/Roll</code> 分别绕 X/Y/Z 轴旋转；<code>LookAt(target, upAxis, space)</code> 使节点朝向目标。</li>
 <li><strong>坐标转换</strong>：<code>LocalToWorld/WorldToLocal</code>（支持 Vector3 和 Vector4 齐次坐标）实现空间转换，是射线投射和相机映射的基础。</li>
 <li><strong>父子管理</strong>：<code>CreateChild(name, mode, id)</code> 创建子节点；<code>AddChild/RemoveChild/RemoveAllChildren</code>；<code>Clone(mode)</code> 深拷贝子树；<code>SetParent</code> 重挂父节点；<code>GetChild(name/hash/index, recursive)</code> 递归查找。</li>

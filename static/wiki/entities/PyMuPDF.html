@@ -137,27 +137,33 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_1">概述</h2>
 <p>PyMuPDF 是 MuPDF 引擎的 Python 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 <a href="MinerU.html">MinerU</a> TextBased 管道的核心解析引擎。</p>
 <h2 id="_2">关键内容</h2>
-<h3 id="mineru">在 MinerU 中的角色</h3>
+<h3 id="pymupdf_1">为什么是 PyMuPDF</h3>
+<p>PyMuPDF 底层是 <strong>MuPDF</strong>——业界最优秀的 PDF 渲染引擎之一（Foxit 阅读器也基于它）。相比 <code>pdfminer</code>（纯 Python，慢）和 <code>pypdf</code>（精度有限），PyMuPDF 在速度（C++ 内核）、字符精度（亚像素级）、图像渲染、字体信息、嵌入图片提取、中文 PDF 支持上全面领先。</p>
+<h3 id="mineru-pymupdf">MinerU 使用 PyMuPDF 的三个核心操作</h3>
+<p><strong>操作一：页面渲染为图像</strong>
+将每页渲染为高分辨率图像（默认 <a href="../concepts/PDF坐标系.html">200 DPI</a>），供<a href="../concepts/文档布局检测.html">文档布局检测</a>模型和<a href="../concepts/光学字符识别.html">光学字符识别</a>模型推理使用。通过 <code>fitz.Matrix(scale, scale)</code> 控制缩放比例。</p>
+<p><strong>操作二：提取文字 Span（带坐标）</strong>
+使用 <code>page.get_text("rawdict")</code> 提取四级嵌套结构（Page → Block → Line → Span → Char），每个 Span 携带 bbox、字体名、字号、flags 位掩码、颜色、基线坐标等完整元信息。详见<a href="../concepts/Span层级结构.html">Span层级结构</a>。</p>
+<p><strong>操作三：提取嵌入图像</strong>
+通过 <code>page.get_images(full=True)</code> 获取页面上的嵌入图像列表，可用于提取 PDF 中内嵌的图表。</p>
+<h3 id="pdf">PDF 类型判断</h3>
+<p>在解析前，PyMuPDF 支持判断 PDF 类型以选择处理管道：
+- <strong>text_based</strong>：&gt;80% 页面有足够文字（&gt;100 字符）
+- <strong>ocr_based</strong>：&lt;20% 页面有文字，且有大图覆盖
+- <strong>mixed</strong>：介于两者之间</p>
+<p>同时处理加密 PDF（<code>doc.authenticate()</code>）和损坏 PDF（异常捕获降级到图像模式）等特殊情况。</p>
+<h3 id="_3">局限性</h3>
 <ul>
-<li><strong>TextBased 管道</strong>：PyMuPDF 直接从 PDF 中提取原始 Span/Block，包含精确到亚像素的字符坐标，不需要 OCR</li>
-<li><strong>页面渲染</strong>：将 PDF 页面渲染为图像，供后续布局检测和 OCR 使用</li>
-<li><strong>原始数据提取</strong>：提供 raw_spans（原始字符组）、images（嵌入图像）等底层数据结构</li>
-</ul>
-<h3 id="_3">与直接文本提取工具的对比</h3>
-<p>相比 <code>pdfminer</code>、<code>pypdf</code> 等工具，PyMuPDF 的优势在于：
-- 提供更精确的字符位置信息（亚像素级）
-- 支持页面渲染为高质量图像
-- 能处理嵌入图像和复杂排版</p>
-<h3 id="_4">局限性</h3>
-<ul>
-<li>对扫描件（无文字层 PDF）无法直接提取文本</li>
+<li>对扫描件（无文字层 PDF）无法直接提取文本，需走 OCR 管道</li>
 <li>多栏布局下提取的字符流仍然是乱序的，需要后续<a href="../concepts/阅读顺序重建.html">阅读顺序重建</a></li>
+<li>原始 Span 存在噪声（碎片化、水印、页眉页脚、重叠），需<a href="MinerU.html">MinerU</a>清洗</li>
 </ul>
-<h2 id="_5">来源</h2>
+<h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_02_pdf_parsing.md</span> — MinerU 深度解析系列 · 第二篇：底层 PDF 解析引擎</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_5">相关</h2>
 <ul>
 <li><a href="MinerU.html">MinerU</a> — 使用 PyMuPDF 作为底层解析引擎</li>
 <li><a href="../concepts/PDF解析.html">PDF解析</a> — 解决的问题域</li>
@@ -165,8 +171,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Prithvi-Rajasekaran.html">&larr; Prithvi-Rajasekaran</a>
-    <a href="Randal E. Bryant.html">Randal E. Bryant &rarr;</a>
+    <a href="Puppeteer MCP.html">&larr; Puppeteer MCP</a>
+    <a href="Ralph Loop.html">Ralph Loop &rarr;</a>
   </div>
 </div>
 </body>

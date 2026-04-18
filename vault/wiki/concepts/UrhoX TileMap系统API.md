@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, 2D图形, TileMap, 瓦片地图, Lua, API]
+tags: ["UrhoX", "2D图形", "TileMap", "瓦片地图", "Lua", "API", "游戏开发"]
 aliases: [TileMap2D, TileMapLayer2D, TmxFile2D]
 relates_to: [UrhoX 2D精灵系统API, UrhoX组件系统API, UrhoX场景系统API]
 supersedes: null

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印象管理 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 印象管理</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">社会学</span><span class="tag">微观社会学</span><span class="tag">互动理论</span><span class="tag">社会科学</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">印象管理</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>戈夫曼<a href="拟剧论.html">拟剧论</a>核心概念，指社会互动中个体有意识或无意识地管理他人对自己印象的过程，通过外表、举止、道具等工具维持特定角色形象。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链接</span>)</h2>
+<ol>
+<li><strong>定义与本质</strong>：<a href="../entities/欧文·戈夫曼.html">欧文·戈夫曼</a>在《<a href="../entities/日常生活中的自我呈现.html">日常生活中的自我呈现</a>》中将印象管理定义为个体在社会互动中管理他人对自己印象的过程。这不是虚伪或不诚实，而是社会互动本身的表演性秩序维护——没有印象管理，社会互动无法顺畅进行。</li>
+<li><strong>管理工具</strong>：演员使用五类工具进行印象管理——外表（appearance：服装化妆发型传达社会地位）、举止（manner：说话方式姿态表情传达角色性格）、舞台布置（setting：办公室装修家摆设作为表演道具）、道具（props：名片手机手提包强化身份）、团队合作（team：多人协作维持同一形象）。</li>
+<li><strong><a href="前台与后台.html">前台后台</a>切换</strong>：印象管理的核心机制是<a href="前台与后台.html">前台与后台</a>的区隔。前台面对观众时维持符合社会期待的形象；后台观众不在场时可以放松、"出戏"、准备下次表演。高档餐厅服务员在大厅（前台）彬彬有礼，在厨房（后台）可能抱怨客人——这是角色切换而非虚伪。</li>
+<li><strong>面子与失态</strong>：印象管理的目标是维持"面子"（face）——个人在互动中的正面形象。失态（embarrassment）发生在表演出错时：后台内容意外闯入前台、角色冲突（同一场合面对不同观众群）、道具失效（PPT崩溃）。旁观者往往自发配合遮掩，形成"互助面子保全"。</li>
+<li><strong>后续影响</strong>：印象管理概念深刻影响符号互动论、组织行为学、社交媒体研究（线上<a href="../entities/日常生活中的自我呈现.html">自我呈现</a>）、职场研究等领域，成为理解日常社会互动的基础分析工具。</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">paper_05_goffman_mills</span> — 戈夫曼《日常生活中的自我呈现》（1959）与米尔斯《社会学的想象力》（1959）</li>
+<li>Goffman, E. (1959). <em>The Presentation of Self in Everyday Life</em>. Doubleday.</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="../entities/欧文·戈夫曼.html">欧文·戈夫曼</a> — created</li>
+<li><a href="拟剧论.html">拟剧论</a> — part_of</li>
+<li><a href="前台与后台.html">前台与后台</a> — implements</li>
+<li><a href="../entities/日常生活中的自我呈现.html">日常生活中的自我呈现</a> — implements</li>
+<li><a href="社会学.html">社会学</a> — part_of</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="卡尔曼滤波.html">&larr; 卡尔曼滤波</a>
+    <a href="即时上下文检索.html">即时上下文检索 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

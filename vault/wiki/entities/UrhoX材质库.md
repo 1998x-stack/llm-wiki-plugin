@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, 材质库, 3D渲染, PBR, UrhoX]
+tags: ["游戏引擎", "材质库", "3D渲染", "PBR", "UrhoX", "游戏开发"]
 aliases: [UrhoX预制材质, UrhoX Material Library]
 relates_to: [PBR材质系统, UrhoXCLI]
 supersedes: null

@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 诺贝尔奖
   - 视觉皮层
+  - 脑科学
 aliases:
   - "Torsten N. Wiesel"
   - "托尔斯滕·维泽尔"

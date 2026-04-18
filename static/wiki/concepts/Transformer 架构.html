@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span><span class="tag">深度学习</span></div>
 </div>
   <div class="content">
     <h1 id="transformer">Transformer 架构</h1>
 <h2 id="_1">概述</h2>
-<p>Transformer 是一种完全基于注意力机制的序列转换架构，由 Vaswani 等人于2017年提出，彻底摆脱了对循环和卷积的依赖。</p>
+<p><a href="Transformer架构.html">Transformer</a> 是一种完全基于<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的序列转换架构，由 Vaswani 等人于2017年提出，彻底摆脱了对循环和卷积的依赖。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">整体架构</h3>
 <ul>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>编码器<a href="Self-Attention机制.html">自注意力</a></strong>：每个位置关注所有输入位置</li>
 <li><strong>解码器掩码<a href="Self-Attention机制.html">自注意力</a></strong>：每个位置只能关注之前的位置</li>
-<li><strong>编码器-解码器交叉注意力</strong>：解码器回看整个输入序列</li>
+<li><strong><a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器</a>交叉注意力</strong>：解码器回看整个输入序列</li>
 </ol>
 <h3 id="_6">历史影响</h3>
 <ul>
@@ -166,6 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/20-vaswani-transformer.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/14_transformer_2017.md</span> — 完整代码实现 + RNN并行化困境 + 架构演变</li>
 </ul>
 <h2 id="_8">相关</h2>
 <ul>
@@ -173,6 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="自注意力机制.html">自注意力机制</a> — 核心计算</li>
 <li><a href="函数式编程.html">函数式编程</a> — 计算的组合性</li>
 <li><a href="MapReduce.html">MapReduce</a> — 并行化计算</li>
+<li><a href="Pre-LN架构.html">Pre-LN架构</a> — 现代变体（更稳定的归一化顺序）</li>
 </ul>
   </div>
   <div class="page-nav">

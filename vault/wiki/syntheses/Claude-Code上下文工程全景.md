@@ -7,6 +7,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 6
+aliases: []
 tags: [AI, 方法论, 技术, AI工程]
 synthesizes:
   - "[[Context-Engineering]]"
@@ -38,22 +39,22 @@ supersedes: null
 
 ## 综合洞见
 
-Claude Code 的[[Context-Engineering|上下文工程]]本质是：**在 [[LLM-Statelessness|LLM 无状态性]]约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。** 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。
+[[Claude Code]] 的[[Context-Engineering|上下文工程]]本质是：**在 [[LLM-Statelessness|LLM 无状态性]]约束下，把有限的 token 窗口从"聊天历史容器"重构为"可计算状态机"。** 这需要三件事同时发生：结构化记忆分层（L0–L4）、渐进式检索（三层按需展开）、和生命周期钩子（Hook 系统捕获与压缩）。
 
 ## 问题层：LLM 无状态性
 
-LLM 的每次调用都从零状态开始。Claude Code 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。
+LLM 的每次调用都从零状态开始。[[Claude Code]] 中这表现为：跨会话失去项目记忆、重复解释架构决策、无法追踪历史 bug 决策。
 
 根本问题：**"说过一次的话"和"已确认的约束"在系统里拥有相同地位**——都在下一次会话后消失。
 
 ## 架构层：L0–L4 五层记忆
 
-| 层 | Claude Code 中的内容 | 对应 Hook |
+| 层 | [[Claude Code]] 中的内容 | 对应 Hook |
 |----|---------------------|----------|
 | L0 Cached Prefix | CLAUDE.md、工具 schema | — (静态) |
 | L1 Working Memory | 当前任务、约束、打开的文件 | Context Hook 注入 |
-| L2 Episodic Memory | 决策+结论+pending items | Summary Hook 压缩 |
-| L3 Semantic Memory | 项目知识、架构惯例 | Cleanup Hook 晋升 |
+| L2 [[情节记忆|Episodic Memory]] | 决策+结论+pending items | Summary Hook 压缩 |
+| L3 [[语义记忆|Semantic Memory]] | 项目知识、架构惯例 | Cleanup Hook 晋升 |
 | L4 Raw Archive | 原始 transcript、工具输出 | Save Hook 捕获 |
 
 Hook 采用即发即忘模式（Fire-and-Forget）避免阻塞主进程。
@@ -108,7 +109,7 @@ Hook 采用即发即忘模式（Fire-and-Forget）避免阻塞主进程。
 
 ## 关键结论
 
-> **不要让 Claude Code 会话变成"一次性消耗品"。** 通过 Hook + 分层记忆 + 渐进检索，可以让每次会话的产出（决策、约定、洞见）晋升为下一次会话的 L3 背景知识，实现知识的滚雪球式积累。
+> **不要让 [[Claude Code]] 会话变成"一次性消耗品"。** 通过 Hook + 分层记忆 + 渐进检索，可以让每次会话的产出（决策、约定、洞见）晋升为下一次会话的 L3 背景知识，实现知识的滚雪球式积累。
 
 ## 来源
 

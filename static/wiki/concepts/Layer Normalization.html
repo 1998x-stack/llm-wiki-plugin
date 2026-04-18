@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>计算方式</strong>：对每个样本自身隐藏维度求均值 $\mu$ 和方差 $\sigma^2$，标准化后乘以可学习参数 $\gamma$（缩放）和 $\beta$（平移）。公式：$y_i = \gamma \hat{x}_i + \beta$，其中 $\hat{x}_i = (x_i - \mu)/\sqrt{\sigma^2 + \epsilon}$</p>
 </li>
 <li>
-<p><strong>两种放置方式</strong>：Post-LN（原始 <a href="Transformer架构.html">Transformer</a>）将 LayerNorm 放在子层输出之后：$\text{LN}(x + \text{Sublayer}(x))$；Pre-LN（现代大模型更常用）放在子层输入之前：$x + \text{Sublayer}(\text{LN}(x))$，深层网络训练更稳定</p>
+<p><strong>两种放置方式</strong>：Post-LN（原始 <a href="Transformer架构.html">Transformer</a>）将 LayerNorm 放在子层输出之后：$\text{LN}(x + \text{Sublayer}(x))$；<a href="Pre-LN架构.html">Pre-LN</a>（现代大模型更常用）放在子层输入之前：$x + \text{Sublayer}(\text{LN}(x))$，深层网络训练更稳定</p>
 </li>
 <li>
 <p><strong>核心优势</strong>：不依赖 batch size，训练与推理行为一致，适合可变长度序列，适合<a href="AR 模型（自回归模型）.html">自回归</a>生成（每次只处理一个样本/位置）；相比 <a href="Batch Normalization.html">Batch Normalization</a> 不会混合不同样本的统计量</p>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Lax-Richtmyer等价定理.html">&larr; Lax-Richtmyer等价定理</a>
-    <a href="Legged Robots That Balance.html">Legged Robots That Balance &rarr;</a>
+    <a href="LeNet-5.html">LeNet-5 &rarr;</a>
   </div>
 </div>
 </body>

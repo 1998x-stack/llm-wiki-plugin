@@ -135,20 +135,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="backpropagation">反向传播（Backpropagation）</h1>
 <h2 id="_1">概述</h2>
-<p>Rumelhart、Hinton 和 Williams 于 1986 年在 <em>Nature</em> 发表论文，系统展示了反向传播算法如何通过链式法则将输出误差逆向传播到隐藏层，使多层神经网络能够自动学习有用的内部表示，解决了困扰 AI 领域十余年的"信用<a href="点数问题.html">分配问题</a>"。</p>
+<p>Rumelhart、<a href="../entities/Geoffrey E. Hinton.html">Hinton</a> 和 Williams 于 1986 年在 <em>Nature</em> 发表论文，系统展示了<a href="反向传播.html">反向传播</a>算法如何通过<a href="链式法则.html">链式法则</a>将输出误差逆向传播到隐藏层，使多层神经网络能够自动学习有用的内部表示，解决了困扰 AI 领域十余年的"信用<a href="点数问题.html">分配问题</a>"。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>历史背景</strong>：1969 年 Minsky-Papert《感知器》证明单层感知器无法解决 XOR 问题，导致神经网络研究陷入"AI 寒冬"。出路是添加隐藏层，但如何训练隐藏层成为核心难题。</p>
+<p><strong>历史背景</strong>：1969 年 Minsky-Papert《<a href="感知机（Perceptron）.html">感知器</a>》证明单层<a href="感知机（Perceptron）.html">感知器</a>无法解决 <a href="XOR 问题.html">XOR 问题</a>，导致神经网络研究陷入"<a href="AI 寒冬.html">AI 寒冬</a>"。出路是添加隐藏层，但如何训练隐藏层成为核心难题。</p>
 </li>
 <li>
 <p><strong>信用<a href="点数问题.html">分配问题</a></strong>：当系统整体犯错时，如何将责任分配给每个组件？输出层误差可直接计算，但隐藏层没有"期望输出"可供参考。</p>
 </li>
 <li>
-<p><strong>核心算法</strong>：通过链式法则逐层计算复合函数导数，将误差从输出层逆向传播到每个隐藏层神经元，实现梯度下降优化。</p>
+<p><strong>核心算法</strong>：通过<a href="链式法则.html">链式法则</a>逐层计算复合函数导数，将误差从输出层逆向传播到每个隐藏层神经元，实现梯度下降优化。</p>
 </li>
 <li>
-<p><strong>历史优先权</strong>：Werbos（1974 博士论文）最早提出，Linnainmaa（1970）描述自动微分反向模式，Parker（1985）独立再发现。但 Rumelhart 等人的论文通过令人信服的实验展示了隐藏层自动学习有意义内部表示的能力。</p>
+<p><strong>历史优先权</strong>：Werbos（1974 博士论文）最早提出，Linnainmaa（1970）描述<a href="自动微分.html">自动微分</a>反向模式，Parker（1985）独立再发现。但 Rumelhart 等人的论文通过令人信服的实验展示了隐藏层自动学习有意义内部表示的能力。</p>
 </li>
 <li>
 <p><strong><a href="规范化理论.html">范式</a>意义</strong>：标志着连接主义对符号主义的强势回归，证明了多层网络的理论和实践可行性。</p>
@@ -166,8 +166,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="反事实学习.html">&larr; 反事实学习</a>
-    <a href="古典概率定义.html">古典概率定义 &rarr;</a>
+    <a href="反向传播.html">&larr; 反向传播</a>
+    <a href="反身性.html">反身性 &rarr;</a>
   </div>
 </div>
 </body>

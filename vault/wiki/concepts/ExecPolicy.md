@@ -3,21 +3,30 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-18
 last_accessed: 2026-04-15
-source_count: 1
+source_count: 3
 tags: [技术, 工具, Agent系统]
 aliases: [Codex ExecPolicy, 策略即代码, Policy as Code]
 relates_to:
   - target: "[[Codex CLI]]"
-    type: implements
+    type: part_of
     confidence: 0.95
   - target: "[[Codex沙箱系统]]"
-    type: extends
+    type: compares_to
     confidence: 0.9
   - target: "[[Codex TUI]]"
     type: uses
     confidence: 0.8
+  - target: "[[纵深防御]]"
+    type: implements
+    confidence: 0.85
+  - target: "[[Policy-First 设计]]"
+    type: implements
+    confidence: 0.95
+  - target: "[[三道防线模式]]"
+    type: part_of
+    confidence: 0.9
 supersedes: null
 ---
 
@@ -84,10 +93,22 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 
 规则文件加载时 `match/not_match` 示例自动运行——规则错误在启动时就被捕获。
 
+## 降低不确定性的机制
+
+| 不确定性场景 | ExecPolicy 的应对 |
+|------------|-----------------|
+| LLM 生成不安全命令 | `forbidden` 规则直接拒绝 + 返回替代建议 |
+| 不知道某命令是否安全 | `prompt` 规则让人类在执行前决策 |
+| 团队成员安全策略不一致 | 项目级规则文件提交 Git，统一策略 |
+| 新加的规则引入了 bug | `match/not_match` 单元测试在 load time 捕获 |
+| 规则被 PATH 欺骗绕过 | host_executable 解析绑定绝对路径 |
+| Agent 绕过策略重复尝试 | forbidden + justification 引导 LLM 走正确路径 |
+
 ## 工程哲学
 
 > **ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"**。规则在加载时验证，在执行时机械应用。没有临时判断，没有模糊地带。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。
 
 ## 来源
 
-- [[raw/articles/ai-tools/codex/04_codex_execpolicy.md]]
+- [[raw/articles/ai-tools/codex/04_codex_execpolicy.md]] — Codex CLI 深度解析 Vol.4：ExecPolicy — 策略即代码的命令审批引擎
+- [[raw/articles/ai-tools/codex/03_codex_sandbox_system.md]] — 第 7 节：Sandbox ↔ ExecPolicy 协同

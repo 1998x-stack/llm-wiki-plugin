@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, 动画, 文件格式, UrhoX]
+tags: ["游戏引擎", "动画", "文件格式", "UrhoX", "游戏开发"]
 aliases: [ANI文件, ANI格式]
 relates_to: [UrhoXCLI, 动画重定向]
 supersedes: null

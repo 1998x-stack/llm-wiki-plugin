@@ -135,40 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-engineering">Context Engineering</h1>
 <h2 id="_1">概述</h2>
-<p>Context Engineering（上下文工程）是指对 LLM 的有限<a href="上下文窗口.html">上下文窗口</a>进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作<strong>有限缓存</strong>（Cache）和<strong>工作集</strong>（Working Set），而非日志记录器。</p>
+<p><a href="Context Engineering.html">Context Engineering</a>（<a href="Context Engineering.html">上下文工程</a>）是指对 LLM 的有限<a href="上下文窗口.html">上下文窗口</a>进行策展与管理的系统化方法。<a href="../entities/Anthropic.html">Anthropic</a> 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作<strong>有限缓存</strong>（Cache）和<strong>工作集</strong>（Working Set），而非日志记录器。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">四条经验规律驱动的设计原则</h3>
-<table>
-<thead>
-<tr>
-<th>规律</th>
-<th>上下文工程含义</th>
-<th>工程手段</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Zipf / Pareto</strong></td>
-<td>绝大多数价值来自少数热点上下文</td>
-<td>热/温/冷分层，优先权加权</td>
-</tr>
-<tr>
-<td><strong>Bradford / Lotka</strong></td>
-<td>少数核心来源覆盖大多数高价值信息</td>
-<td>source prior、每源上限（per-source cap）</td>
-</tr>
-<tr>
-<td><strong>Matthew Effect</strong></td>
-<td>早进入上下文的材料放大后续推理偏向</td>
-<td>强制多源检索、反证位（counter-evidence lane）</td>
-</tr>
-<tr>
-<td><strong>Benford 式思路</strong></td>
-<td>用分布基线发现异常</td>
-<td>监控 source share、stale fact rate、retrieval drift</td>
-</tr>
-</tbody>
-</table>
+<p>| 规律 | <a href="Context Engineering.html">上下文工程</a>含义 | 工程手段 |
+|------|--------------|---------|
+| <strong>Zipf / Pareto</strong> | 绝大多数价值来自少数热点上下文 | 热/温/冷分层，优先权加权 |
+| <strong>Bradford / Lotka</strong> | 少数核心来源覆盖大多数高价值信息 | source prior、每源上限（per-source cap） |
+| <strong>Matthew Effect</strong> | 早进入上下文的材料放大后续推理偏向 | 强制多源检索、反证位（counter-evidence lane） |
+| <strong>Benford 式思路</strong> | 用分布基线发现异常 | 监控 source share、stale fact rate、retrieval drift |</p>
 <h3 id="router-first">请求路由（Router-first）</h3>
 <p>第一层不是检索，而是<strong>路由判断</strong>：</p>
 <pre><code>if kb_size &lt; 200k and low_churn and low_tooling:
@@ -314,9 +289,9 @@ $$</p>
 - 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
 - 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少</p>
 <h3 id="_7">来源作者</h3>
-<p>本文由 Anthropic Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
+<p>本文由 <a href="../entities/Anthropic.html">Anthropic</a> Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
 <h3 id="manus-2025">Manus 的上下文工程六原则（2025）</h3>
-<p><a href="../entities/Manus.html">Manus</a> 团队通过四次框架重建总结出六条核心原则，是上下文工程在生产环境的重要实践补充：</p>
+<p><a href="../entities/Manus.html">Manus</a> 团队通过四次框架重建总结出六条核心原则，是<a href="Context Engineering.html">上下文工程</a>在生产环境的重要实践补充：</p>
 <ol>
 <li><strong>围绕 <a href="KV 缓存命中率.html">KV 缓存命中率</a> 进行设计</strong>：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍</li>
 <li><strong>遮蔽，而非移除</strong>：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效</li>
@@ -325,7 +300,7 @@ $$</p>
 <li><strong>保留错误的内容</strong>：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率</li>
 <li><strong>不要被少样本示例所困</strong>：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏</li>
 </ol>
-<p><strong>核心哲学</strong>：上下文工程仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。</p>
+<p><strong>核心哲学</strong>：<a href="Context Engineering.html">上下文工程</a>仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span></li>
@@ -351,10 +326,12 @@ $$</p>
 <li><a href="情境化检索.html">情境化检索</a> — 解决 RAG 上下文破坏的增强方案</li>
 <li><a href="上下文压缩.html">上下文压缩</a> — 长时任务 Compaction 技术的官方 API 实现</li>
 <li><a href="提示词缓存.html">提示词缓存</a> — 缓存优化与压缩协同工作</li>
+<li><a href="工作台 vs 长期记忆.html">工作台 vs 长期记忆</a> — implements（上下文外部化的极端实践：工作台用完即扔，状态全存文件）</li>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — implemented_by（工作台 vs 长期记忆模型的具体实现系统）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Context Management.html">&larr; Context Management</a>
+    <a href="Context Rot.html">&larr; Context Rot</a>
     <a href="Cook-Levin 定理.html">Cook-Levin 定理 &rarr;</a>
   </div>
 </div>

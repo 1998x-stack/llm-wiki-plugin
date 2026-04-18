@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pi-agent">Pi Agent</h1>
 <h2 id="_1">概述</h2>
-<p>Pi Agent 是由 <a href="Mario-Zechner.html">Mario-Zechner</a> 创建的极简 AI 编程代理工具包（TypeScript Monorepo），以 4 个工具 + &lt; 1000 token 系统提示实现了与重型 Agent 可比的编程能力。核心理念：投资于 <a href="../concepts/Agent Harness模式.html">Harness</a> 的简洁性和可控性，而非堆砌功能。</p>
+<p>Pi Agent 是由 <a href="Mario-Zechner.html">Mario-Zechner</a> 创建的极简 AI 编程代理工具包（<a href="TypeScript.html">TypeScript</a> Monorepo），以 4 个工具 + &lt; 1000 token 系统提示实现了与重型 Agent 可比的编程能力。核心理念：投资于 <a href="../concepts/Agent Harness模式.html">Harness</a> 的简洁性和可控性，而非堆砌功能。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 四层架构</h3>
 <p>Pi 由四个严格单向分层的包组成：</p>
@@ -176,14 +176,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>「不需要就不构建」</strong>——子代理、计划模式、权限弹窗等均通过扩展系统实现而非内置</li>
 <li><strong>严格单向分层</strong>——构建系统强制，L0 零依赖向上到 L2</li>
 <li><strong><a href="../concepts/Context-Engineering.html">Context-Engineering</a> 第一公民</strong>——每个进入 LLM 的 token 均可见可控，系统提示 &lt; 1000 token，无"秘密注入"</li>
-<li><strong>会话 JSONL 第一公民</strong>——JSONL 格式持久化，可序列化、可后处理、可跨 Provider 迁移</li>
+<li><strong>会话 <a href="../concepts/JSONL格式.html">JSONL</a> 第一公民</strong>——<a href="../concepts/JSONL格式.html">JSONL</a> 格式持久化，可序列化、可后处理、可跨 Provider 迁移</li>
 </ol>
 <h3 id="3">3. 与竞品的关键差异</h3>
 <table>
 <thead>
 <tr>
 <th>维度</th>
-<th>Claude Code</th>
+<th><a href="Claude Code.html">Claude Code</a></th>
 <th>Pi</th>
 </tr>
 </thead>
@@ -206,23 +206,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>会话格式</td>
 <td>私有</td>
-<td>开放 JSONL</td>
-</tr>
-<tr>
-<td>可自托管</td>
-<td>否</td>
-<td>是</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-pi-agent-coreagent">3. pi-agent-core：Agent 循环的最简实现</h3>
-<p><code>pi-agent-core</code>（L1 层）是 Pi 工具包的核心传动系统，将一次性 LLM 调用组装成能持续运转的 <a href="../concepts/Agent循环.html">Agent循环</a>：</p>
+<td>开放 <span style="color:#e74c3c" title="broken link">JSONL格式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;可自托管&lt;/td&gt;
+&lt;td&gt;否&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;3-pi-agent-coreagent&quot;&gt;3. pi-agent-core：Agent 循环的最简实现&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;pi-agent-core&lt;/code&gt;（L1 层）是 Pi 工具包的核心传动系统，将一次性 LLM 调用组装成能持续运转的 [[Agent循环</span>：</p>
 <ul>
 <li><strong><a href="../concepts/事件驱动Agent架构.html">事件驱动Agent架构</a></strong>：所有状态变化（text_delta、tool_call_start、tool_result 等）通过 <code>subscribe/emit</code> 模式发射，支持多订阅者——同一 Agent 核心可驱动终端 UI、Web UI、IM 机器人，零修改</li>
 <li><strong>双通道设计</strong>：工具结果分为 <code>output</code>（LLM 可见，计入 token）和 <code>details</code>（UI 可见，结构化数据，不占 LLM token）</li>
 <li><strong>工具参数验证</strong>：执行前用 TypeBox + AJV 校验，失败时生成详细错误消息反馈给 LLM，允许模型<strong>自我修正</strong></li>
 <li><strong>消息队列</strong>：用户在 Agent 执行中发出的新消息被队列化为"转向消息"（下次 LLM 调用前注入）或"跟进消息"（session_end 后执行）</li>
-<li><strong>会话持久化</strong>：<code>session.serialize()</code> 序列化完整状态，<code>restoreAgentSession()</code> 在新进程中恢复</li>
+<li><strong><a href="../concepts/会话持久化.html">会话持久化</a></strong>：<code>session.serialize()</code> 序列化完整状态，<code>restoreAgentSession()</code> 在新进程中恢复</li>
 </ul>
 <h3 id="4-terminal-bench">4. Terminal-Bench 验证</h3>
 <p>Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：<strong>Agent 性能瓶颈在于 Harness 设计质量和上下文精确性，而非工具数量。</strong></p>
@@ -246,7 +246,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Petr Švestka.html">&larr; Petr Švestka</a>
+    <a href="Phaser.js.html">&larr; Phaser.js</a>
     <a href="Pierre Paul Broca.html">Pierre Paul Broca &rarr;</a>
   </div>
 </div>

@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心机制</strong>：将多个会话并排放置，每个 mini-batch 包含来自不同会话的同一"步骤"的事件；每步取各会话的当前事件作为输入、下一个事件作为目标；当某会话结束时，替换为新会话并重置对应位置的 GRU 隐藏状态；权重在每步都更新，而非等待整个会话完成。</p>
 </li>
 <li>
-<p><strong>与传统 BPTT 的对比</strong>：传统方式将一个会话作为一个样本，对会话内所有时间步做反向传播（BPTT）。但会话长度差异巨大（2 次到几十次点击不等），导致效率低下且实现复杂。Session-Parallel Mini-Batch 提供了一种优雅的折中方案。</p>
+<p><strong>与传统 BPTT 的对比</strong>：传统方式将一个会话作为一个样本，对会话内所有时间步做<a href="反向传播.html">反向传播</a>（BPTT）。但会话长度差异巨大（2 次到几十次点击不等），导致效率低下且实现复杂。Session-Parallel Mini-Batch 提供了一种优雅的折中方案。</p>
 </li>
 <li>
 <p><strong>关键优势</strong>：</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Semantic Tokens（语义标记）.html">&larr; Semantic Tokens（语义标记）</a>
+    <a href="Session 交接机制.html">&larr; Session 交接机制</a>
     <a href="Shannon-Hartley公式.html">Shannon-Hartley公式 &rarr;</a>
   </div>
 </div>

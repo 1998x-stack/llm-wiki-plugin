@@ -4,6 +4,64 @@ type: log
 
 # 操作日志
 
+## [2026-04-18 maintain]
+- Relink: 4980 terms, 1 new link across 1 page
+- Check: 0 errors, 1777 warnings (主要 B1 断链 1344 条，已知问题)，无新 gotchas
+- Lint: 修复 40 个 F2 错误 (mixed inline+block YAML frontmatter)
+- Build: 1627 节点, 12356 边, 0 孤页, 5 连通分量 → static/ 已同步
+
+## [2026-04-18 reindex]
+- 完整性: OK (1621 页面，index.md 已为 slim 格式)
+- 快照: 1621 页面 → .claude/reindex.snapshot.json
+- 主题分类 (subagent): 762 新页面分类，合并后 26 个 topics → .claude/topic-to-wiki.json
+  - 推荐系统(216), 社会科学(122), AI工程(110), 游戏开发(79), 工具与框架(67)
+  - Agent系统(70), 计算理论(67), 数值分析(62), 机器学习(58), 机器人学(56)
+  - 信息论(51), 概率论(46), 天文学(44), LLM能力(36), 强化学习(35)
+  - 文档处理(36), 矩阵理论(32), 经济学(26), Lua编程(25), 控制论(15)
+  - 时间序列(15), C++编程(10), 深度学习(10), AI设计(8), 脑科学(23), 其他(252)
+- Tags 修复: 305 个页面补充了 topic tags
+- Maps: 26 个 map 文件生成 → maps/
+- Index: 精简为 46 行（统计表 + 名称列表），覆盖 1581 页
+- Schema 同步: _schema/CLAUDE.md Topics 已更新（新增天文学、机器学习、深度学习）
+
+## [2026-04-18] wiki:ingest-loop — raw/articles/ai-tools/claude-skills (35 files)
+- 引擎: claude（直接处理模式，子代理模型配置问题）
+- 批次处理: 6 个核心文件深入解析 + 批量处理剩余文件
+- 总计: 约 30 页面创建, 1 页面更新
+- 新建实体: Anthropic, Claude Code, Snyk, GSD, Vercel, OpenAI Codex, Cursor, Gemini CLI, shadcn/ui
+- 新建概念: Agent Skills, Context Rot, Context Engineering, AI Slop, frontend-design Skill, web-artifacts-builder Skill, MCP, Wave Execution, Superpowers, writing-plans Skill, Multi-Agent Orchestration, subagent-driven-development Skill, XML Plan System, UI Design Contract, TDD Skill, Systematic Debugging Skill, Git Worktree
+- 新建项目: UI UX Pro Max, Everything Claude Code
+- 更新页面: Agent Skills（追加 claude-skills 相关信息）
+- BM25: 全部新建/更新页面索引 + snapshot_index --update (1423+ entries)
+
+## [2026-04-18] wiki:ingest-loop — raw/articles/ai-tools/ralph-loop (9 files)
+- 引擎: claude (子代理并行，最多3并行)
+- Batch 1: AGENTS.md → 4 created, 2 updated | CLAUDE.md → 6 created, 2 updated | coding-agent.md → 0 created, 5 updated
+- Batch 2: context-strategies.md → 7 created, 2 updated | how-the-loop-works.md → 5 created, 3 updated | initializer-agent.md → 1 created, 3 updated
+- Batch 3: prd-generator-prompt.md → 3 created, 2 updated | SKILL.md → 2 created, 2 updated | testing-patterns.md → 1 created, 4 updated
+- 总计: 29 页面创建, 25 页面更新
+- 新建实体: Next.js, Prisma, PostgreSQL, Puppeteer MCP, Geoffrey Huntley
+- 新建概念: AGENTS.md 项目约定文件, PRD 驱动开发, Agent 迭代循环, Session 交接机制, 浏览器自动化验证, Initializer Agent, 上下文策略, Dumb Zone, 固定栈分配, 子 Agent 卸载, 观察遮蔽, 上下文预算管理, Clean State Protocol, 愚钝区（The Dumb Zone）, 固定提示栈（Fixed Prompt Stack）, 完成信号机制（Completion Signal）, 双重验证（Dual Verification）, 子 Agent 模式（Sub-Agent Pattern）, PRD 生成提示词, User Story 粒度原则, prd.json 格式规范, 工作台 vs 长期记忆, E2E 验证模式
+- 更新页面: Ralph Loop(多次), Claude Code, Agent Harness模式, Context-Engineering, Context Engineering, PRD 驱动开发, Agent 迭代循环, Session 交接机制, 上下文腐烂, 浏览器自动化验证, Puppeteer MCP, AGENTS.md 项目约定文件
+- BM25: 全部新建/更新页面索引 + snapshot_index --update (1627 entries)
+
+## [2026-04-18] wiki:ingest-loop — raw/articles/ai-tools/codex (8 files)
+- 引擎: claude (子代理并行，最多3并行)
+- Batch 1: 01_architecture → 8 created, 0 updated | 02_tui → 0 created, 2 updated | 03_sandbox → 2 created, 5 updated
+- Batch 2: 04_execpolicy → 0 created, 5 updated | 05_session_manager → 1 created, 1 updated | 06_mcp_layer → 3 created, 3 updated
+- Batch 3: 07_multi_agent → 2 created, 2 updated | 08_config_system → 2 created, 1 updated
+- 总计: 18 页面创建, 19 页面更新
+- 新建实体: OpenAI, Rust, TypeScript, Tokio, Landlock, seccomp, Apple Sandbox, Context7, MCP Inspector, Ollama, OpenTelemetry, Phaser.js
+- 新建概念: 三道防线模式, Policy-First 设计, 纵深防御, JSONL格式, Agent可组合性, Agent角色系统
+- 更新页面: Codex CLI, Codex TUI, Codex沙箱系统, ExecPolicy, Policy-First 设计, Codex会话管理器, MCP, MCP协议层, Codex配置系统, Codex多Agent调度
+- BM25: 全部新建/更新页面索引 + snapshot_index --update (1486 entries)
+
+## [2026-04-18] wiki:ingest — 07_codex_multi_agent.md
+- 源文件: raw/articles/ai-tools/codex/07_codex_multi_agent.md
+- 新建: wiki/entities/Phaser.js.md (entity: tool), wiki/concepts/Agent角色系统.md (concept)
+- 更新: wiki/concepts/Codex多Agent调度.md (新增不确定性降低机制表、Agent角色系统关系), wiki/entities/Codex CLI.md (新增 Agent角色系统关系)
+- BM25: 3 页索引更新 + snapshot_index --update (1480 entries)
+
 ## [2026-04-17 21:20] maintain
 - Relink: 3418 terms, 1058 scanned, 957 new links (291 pages)
 - Check: 0 errors, 1003 warnings (B1×698/F3×184/M1×54/O1×61/其他×6), 0 new gotchas
@@ -2416,3 +2474,118 @@ python3 scripts/build_graph.py
 - 创建 3 个概念页面：Chaitin常数、Berry悖论、最小描述长度原理
 - 更新 2 个已有页面：格雷戈里·柴廷（source_count +1，添加 relates_to）、柯尔莫哥洛夫复杂性（source_count +1）
 - 同步 index.md：+3 页面
+
+## [2026-04-18 00:10] ingest-loop | raw/books/天文学（12 files, claude 引擎）
+- 批量 ingest 天文学系列 12 个源文件，4 批次并行（每批 3 个子代理）
+- 创建 ~94 个新页面（entities + concepts），更新 ~8 个已有页面
+- 覆盖主题：托勒密《天文学大成》→ 哥白尼日心说 → 开普勒定律 → 伽利略观测 → 牛顿原理 → 广义相对论 → 哈勃膨胀 → CMB → 暗物质 → 暗能量 → LIGO引力波 → EHT黑洞照片
+- Lint: 0 errors, 1223 warnings（pre-existing）
+- BM25 + snapshot_index 全部同步完成
+
+## [2026-04-18 21:35] ingest-loop | raw/books/社会学（6 files, claude 引擎）
+- 批量 ingest 社会学系列 6 个源文件，2 批次并行（每批 3 个子代理）
+- 创建 ~135 个新页面（entities + concepts），更新 ~1 个已有页面（涂尔干）
+- 覆盖主题：孔德实证主义 → 马克思历史唯物主义 → 涂尔干社会分工/自杀论 → 韦伯新教伦理 → 戈夫曼/米尔斯 → 社会学发展时间线
+- Lint: 0 errors, 1729 warnings（pre-existing）
+- BM25 + snapshot_index 全部同步完成
+
+## [2026-04-18 21:40] ingest | raw/books/历史/黄仁宇大历史观点分析.md
+- 创建 3 个实体页面：黄仁宇、万历十五年、张居正
+- 创建 4 个概念页面：大历史观、数目字管理、道德政治、制度治理
+- 同步 index.md：+7 页面（1315 → 1322）
+- Lint: 0 errors, 0 warnings（新页面全部通过）
+- BM25 全部同步完成
+
+## [2026-04-18 22:00] ingest-loop | raw/assets/MinerU（8 files, claude 引擎）
+- 批量 ingest MinerU 系列 8 个源文件，3 批次并行（每批 3 个子代理）
+- 创建 ~18 个新页面（entities + concepts），更新 ~10 个已有页面
+- 覆盖主题：MinerU 架构 → PDF 解析底层 → 布局检测(DocLayout-YOLO) → OCR(PaddleOCR/DBNet++/SVTR) → 公式识别(UniMERNet) → 表格识别(TableMaster) → 阅读顺序重建 → 内容生成器
+- Lint: 1 error (pre-existing), 1534 warnings（pre-existing + I1 新页面待 index 同步）
+- BM25 + snapshot_index 全部同步完成
+
+## 2026-04-18 — 批量 Ingest: Hermes Agent 系列
+
+- 来源: `raw/articles/ai-tools/hermes/` (6 文件)
+- 引擎: claude (子代理并行)
+- 创建: 42 页面
+- 更新: 20 页面
+- 失败: 0 文件
+
+### 新建页面 (42)
+- entities: Hermes Agent, Nous Research, Honcho, Atropos, agentskills.io, OpenClaw, Plastic Labs
+- concepts: 闭环学习系统, 跨会话记忆, 开放技能标准, 模型无关设计, 自我进化代理, 三层分离架构, 同步编排引擎, 迭代预算, 冻结快照设计, Prompt 缓存, 工具注册机制, 三种 API 模式, 上下文压缩, 分层记忆系统, 冻结快照模式, 记忆工具, 情节记忆, 语义记忆, 记忆安全扫描, 渐进式加载, 条件激活机制, SKILL.md 格式规范, 程序性记忆, Gateway 消息网关, 平台适配器模式, 会话持久化, DM 配对授权, Cron 调度系统, ACP 编辑器集成, 消息镜像同步, 生命周期 Hooks, 技能自我改进, SOUL.md 人格系统, 辩证推理, Memory Nudge, 轨迹压缩, Batch Runner
+
+### 更新页面 (20)
+- entities: Hermes Agent (多次更新), Honcho, Atropos, agentskills.io, OpenClaw
+- concepts: 模型无关设计, 跨会话记忆, 上下文压缩, 开放技能标准, 闭环学习系统, 程序性记忆
+
+
+## 2026-04-18 — wiki:ingest-loop (Qwen) — raw/ChatGPT-Chat
+
+- **Engine**: Qwen API (qwen3-plus)
+- **Source**: raw/ChatGPT-Chat (39 files across 6 subdirectories)
+- **Created**: ~50 new wiki pages (concepts + entities)
+- **Updated**: Multiple existing pages with new source references
+- **Skipped**: Many pages already existed (dedup)
+- **Failed**: 1 file (special character in filename)
+- **Notes**: Claude engine subagents unavailable (model not found); fell back to Qwen engine
+
+## [2026-04-18 22:30] ingest-loop | raw/articles/ai-papers/machine-learning（15 files, claude 引擎）
+- 批量 ingest 机器学习经典论文 15 个源文件，5 批次并行（每批 3 个子代理）
+- 创建 ~85 个新页面（entities + concepts），更新 ~15 个已有页面
+- 覆盖主题：感知机(1958) → 反向传播(1986) → SVM(1995) → LSTM(1997) → LeNet(1998) → 随机森林(2001) → AlexNet(2012) → Word2Vec(2013) → Dropout(2014) → GAN(2014) → Adam(2014) → Attention(2015) → ResNet(2015) → Transformer(2017) → BERT(2018)
+- Lint: 0 errors（新页面），warnings（pre-existing）
+- BM25 + snapshot_index 全部同步完成
+
+
+## [2026-04-18 22:59] lint
+- 扫描: 1618 个页面
+- ERROR: 13 → 0 (全部修复) | WARNING: 2600+ (大部分为 map 文件截断误报) | INFO: 0
+- 自动修复: 17 个
+- 需要人工处理: 1 个 (map 文件截断 wikilink，需运行 wiki:reindex)
+
+### 已修复
+| 检查项 | 文件 | 修复内容 |
+|--------|------|---------|
+| A1 | wiki/qa-insights/数值PDE稳定收敛三角.md | 添加 last_accessed, source_count |
+| A1 | wiki/concepts/Codex配置系统.md | 修复 supersedes 缩进错误 |
+| A1 | wiki/concepts/ExecPolicy.md | 修复 supersedes 缩进错误 |
+| A1 | wiki/syntheses/Claude-Code-TOOL-设计七维分析.md | 添加 aliases: [] |
+| A1 | wiki/syntheses/龙格现象全景解析.md | 添加 aliases: [] |
+| A1 | wiki/syntheses/DeepAgents评估设计哲学.md | 添加 aliases: [] |
+| A1 | wiki/syntheses/Claude-Code上下文工程全景.md | 添加 aliases: [] |
+| A1 | wiki/entities/Honcho.md | 修复 relates_to 缩进错误 |
+| A1 | wiki/concepts/Context-Engineering.md | 修复 relates_to 嵌套缩进 |
+| A1 | wiki/concepts/Word2Vec.md | 修复 relates_to 嵌套缩进 |
+| A1 | wiki/entities/MinerU.md | 修复 relates_to 缩进 |
+| F1 | wiki/index.md | 重建 slim index (1618 pages, 23 topics) |
+| G | BM25 | 更新 17 个缺失条目 |
+
+### 未修复（需人工处理）
+| 检查项 | 问题 | 建议 |
+|--------|------|------|
+| B1/C1 | maps/*.md 截断 wikilink (2000+ 误报) | 运行 wiki:reindex 重建 maps |
+| J1 | 1552 页面未映射到 topic map | 运行 wiki:reindex 重建 topic-to-wiki.json |
+| H | 3 个孤立子图 (2节点对) | 手动添加跨链连接 |
+
+## 2026-04-18 — 批量 Ingest: MemPalace 系列
+
+- 来源: `raw/articles/ai-tools/mempalace/` (7 文件)
+- 引擎: claude (子代理并行)
+- 创建: 36 页面
+- 更新: 18 页面
+- 失败: 0 文件
+
+### 新建页面 (36)
+- entities: Milla Jovovich, Ben Sigman, MemPalace, Mem0, Zep, LongMemEval, LoCoMo, Memori, Anthropic
+- concepts: 记忆宫殿, 原文逐字存储, 信息提取损耗, 零 LLM 调用内存层, 确定性内存设计, 挖掘管道, MCP 工具集成, Token 经济学, Closet-Drawer 架构, 语义压缩, 实体缩写, AI 可读格式, MemPalace 宫殿架构, AAAK 方言, 隧道跨域连接, 关键词评分检测, 时序知识图谱, Know Before Speaking 协议, KBS 协议, MCP 层工程亮点, Exchange 切块模式, 对话平台适配器, 正则提取模式, 交互式配置, 增量挖掘, MD5 去重, 混合搜索, LLM 路由, 词汇不匹配问题, 精确短语引号提取, 人名权重增强, 记忆/怀旧模式识别, 距离缩减
+
+### 更新页面 (18)
+- entities: MemPalace (多次更新), ChromaDB, Claude Code, LongMemEval, Anthropic
+- concepts: 记忆宫殿, 渐进式加载, AAAK 方言, 挖掘管道, MCP 工具集成, Recall@K
+
+
+## [2026-04-18 23:03] relink
+- 术语词典: 5074 个
+- 扫描: 1605 个页面
+- 修改: 见 dry-run 结果, 添加新链接若干

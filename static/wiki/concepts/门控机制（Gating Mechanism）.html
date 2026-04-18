@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>门控机制（Gating Mechanism） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 门控机制（Gating Mechanism）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">序列建模</span></div>
+</div>
+  <div class="content">
+    <h1 id="gating-mechanism">门控机制（Gating Mechanism）</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>通过 sigmoid 门控信号（∈[0,1]）精确控制信息流动的神经网络设计模式。LSTM 首次系统应用，包含<a href="遗忘门（Forget Gate）.html">遗忘门</a>、<a href="输入门（Input Gate）.html">输入门</a>、<a href="输出门（Output Gate）.html">输出门</a>，解决 RNN <a href="梯度消失.html">梯度消失</a>问题，成为序列建模标准<a href="规范化理论.html">范式</a>。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>核心思想</strong>：门控机制使用 <a href="Sigmoid激活函数.html">Sigmoid激活函数</a> 产生 [0, 1] 范围的控制信号，通过逐元素乘法（⊙）调节信息流的通过比例。0 表示完全阻断，1 表示完全通过，实现精确的"软开关"控制。</li>
+<li><strong>LSTM 三門体系</strong>：<a href="遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>（fₜ = σ(Wf·[hₜ₋₁, xₜ] + bf)）决定丢弃什么；<a href="输入门（Input Gate）.html">输入门（Input Gate）</a>（iₜ 控制更新量，C̃ₜ 为候选值）决定写入什么；<a href="输出门（Output Gate）.html">输出门（Output Gate）</a>（oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)）决定输出什么。三者共同调控 <a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a>。</li>
+<li><strong>解决<a href="梯度消失.html">梯度消失</a></strong>：门控机制使 LSTM 的<a href="细胞状态（Cell State）.html">细胞状态</a>梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当<a href="遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时梯度无损传递。对比标准 <a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> 需要连乘小于 1 的数导致指数衰减，门控设计从根本上解决了 <a href="梯度消失.html">梯度消失</a> 问题。</li>
+<li><strong>历史影响</strong>：门控设计成为序列建模的标准<a href="规范化理论.html">范式</a>，后续 GRU（门控循环单元）、Attention 机制等都受到门控思想的影响。Hochreiter &amp; Schmidhuber (1997) 的门控设计被评为 ⭐⭐⭐⭐⭐ 的历史贡献。</li>
+</ol>
+<h2 id="_1">来源</h2>
+<ul>
+<li><a href="../entities/Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — Hochreiter &amp; Schmidhuber (1997) 首次系统应用门控机制</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/04_lstm_1997.md</span> — 门控机制的数学公式与直觉解释</li>
+</ul>
+<h2 id="_2">相关</h2>
+<ul>
+<li><a href="LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> — implements（LSTM 的核心设计）</li>
+<li><a href="遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a> — part_of（门控组件之一）</li>
+<li><a href="输入门（Input Gate）.html">输入门（Input Gate）</a> — part_of（门控组件之一）</li>
+<li><a href="输出门（Output Gate）.html">输出门（Output Gate）</a> — part_of（门控组件之一）</li>
+<li><a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a> — relates_to（门控调控的对象）</li>
+<li><a href="Sigmoid激活函数.html">Sigmoid激活函数</a> — uses（门控信号的生成函数）</li>
+<li><a href="梯度消失.html">梯度消失</a> — relates_to（门控解决的核心问题）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="长时程增强（LTP）.html">&larr; 长时程增强（LTP）</a>
+    <a href="闭环学习系统.html">闭环学习系统 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

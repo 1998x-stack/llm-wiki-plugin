@@ -6,7 +6,7 @@ confidence: 0.92
 created: 2026-04-15
 updated: 2026-04-16
 last_accessed: '2026-04-16'
-source_count: 5
+source_count: 6
 tags:
 - 技术
 - 方法论
@@ -41,6 +41,15 @@ relates_to:
 - target: '[[提示词缓存]]'
   type: uses
   confidence: 0.9
+- target: '[[上下文策略]]'
+  type: part_of
+  confidence: 0.85
+- target: '[[子 Agent 卸载]]'
+  type: implements
+  confidence: 0.8
+- target: '[[上下文预算管理]]'
+  type: implements
+  confidence: 0.85
 supersedes: null
 ---
 
@@ -48,13 +57,13 @@ supersedes: null
 
 ## 概述
 
-Context Engineering（上下文工程）是指对 LLM 的有限[[上下文窗口]]进行策展与管理的系统化方法。Anthropic 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
+[[Context Engineering]]（[[Context Engineering|上下文工程]]）是指对 LLM 的有限[[上下文窗口]]进行策展与管理的系统化方法。[[Anthropic]] 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
 
 ## 关键内容
 
 ### 四条经验规律驱动的设计原则
 
-| 规律 | 上下文工程含义 | 工程手段 |
+| 规律 | [[Context Engineering|上下文工程]]含义 | 工程手段 |
 |------|--------------|---------|
 | **Zipf / Pareto** | 绝大多数价值来自少数热点上下文 | 热/温/冷分层，优先权加权 |
 | **Bradford / Lotka** | 少数核心来源覆盖大多数高价值信息 | source prior、每源上限（per-source cap） |
@@ -211,11 +220,11 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 
 ### 来源作者
 
-本文由 Anthropic Applied AI 团队撰写：[[Prithvi-Rajasekaran|Prithvi Rajasekaran]], Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。
+本文由 [[Anthropic]] Applied AI 团队撰写：[[Prithvi-Rajasekaran|Prithvi Rajasekaran]], Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。
 
 ### Manus 的上下文工程六原则（2025）
 
-[[Manus]] 团队通过四次框架重建总结出六条核心原则，是上下文工程在生产环境的重要实践补充：
+[[Manus]] 团队通过四次框架重建总结出六条核心原则，是[[Context Engineering|上下文工程]]在生产环境的重要实践补充：
 
 1. **围绕 [[KV 缓存命中率]] 进行设计**：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍
 2. **遮蔽，而非移除**：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效
@@ -224,7 +233,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 5. **保留错误的内容**：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率
 6. **不要被少样本示例所困**：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏
 
-**核心哲学**：上下文工程仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。
+**核心哲学**：[[Context Engineering|上下文工程]]仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。
 
 ## 来源
 
@@ -251,3 +260,5 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 - [[情境化检索]] — 解决 RAG 上下文破坏的增强方案
 - [[上下文压缩]] — 长时任务 Compaction 技术的官方 API 实现
 - [[提示词缓存]] — 缓存优化与压缩协同工作
+- [[工作台 vs 长期记忆]] — implements（上下文外部化的极端实践：工作台用完即扔，状态全存文件）
+- [[Ralph Loop]] — implemented_by（工作台 vs 长期记忆模型的具体实现系统）

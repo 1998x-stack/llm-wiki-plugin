@@ -200,7 +200,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>全量检查对 agent 不友好</strong>：</li>
 <li>慢：每次 edit 后跑全仓太耗时</li>
 <li>噪声大：容易把 agent 淹没</li>
-<li>历史问题混入：很难区分"这次 edit 导致的新问题"和"仓库本来就有的问题"</li>
+<li>历史问题混入：很难<a href="../entities/区分.html">区分</a>"这次 edit 导致的新问题"和"仓库本来就有的问题"</li>
 <li><strong>Python-first 导向</strong>：核心 validate 抽象更偏 Python，linter 路径明确只对 .py 生效</li>
 <li><strong>复杂度收缩</strong>：官方已将 <a href="../entities/SWE-agent.html">SWE-agent</a> 转向 maintenance-only，建议用 mini-<a href="../entities/SWE-agent.html">SWE-agent</a></li>
 </ol>
@@ -290,7 +290,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 2. <strong>edit 后做 validate / linting 进一步显著有益</strong>：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少错误传播。</p>
 <p><strong>准确表述</strong>：论文这里验证的主要是 linting / syntax-level guardrail，不是完整的 LSP/全仓语义检查。它证明的是"edit 后做轻量、即时的有效性校验有帮助"，而非"必须上完整 LSP 才有效"。</p>
 <h3 id="claude-code">Claude Code 分层验证方案</h3>
-<p>在 Claude Code 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
+<p>在 <a href="../entities/Claude Code.html">Claude Code</a> 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
 <table>
 <thead>
 <tr>

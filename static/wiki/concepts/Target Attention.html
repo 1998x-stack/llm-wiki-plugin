@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="target-attention">Target Attention</h1>
 <h2 id="_1">概述</h2>
-<p>以候选物品为 Query、用户历史行为为 Key 和 Value 的注意力机制，使同一用户面对不同候选时展现不同的兴趣侧面。</p>
+<p>以候选物品为 Query、用户历史行为为 Key 和 Value 的<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>，使同一用户面对不同候选时展现不同的兴趣侧面。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心思想</strong> — 在推荐场景中，用户兴趣不是固定不变的，而是随候选物品动态变化的。Target Attention 以候选物品的 <a href="Embedding.html">Embedding</a> 作为 Query，以用户历史行为的 <a href="Embedding.html">Embedding</a> 作为 Key 和 Value，计算每个历史行为与候选物品的相关性权重。</li>

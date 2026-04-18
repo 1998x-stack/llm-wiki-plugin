@@ -21,7 +21,7 @@ supersedes: null
 # Claude Code 权限模式
 
 ## 概述
-权限模式控制 Claude Code 可以执行哪些操作，从完全交互式到完全自动化，提供 6 种权限级别：default、acceptEdits、plan、auto、dontAsk、bypassPermissions。
+权限模式控制 [[Claude Code]] 可以执行哪些操作，从完全交互式到完全自动化，提供 6 种权限级别：default、acceptEdits、plan、auto、dontAsk、bypassPermissions。
 
 ## 关键内容
 
@@ -39,7 +39,7 @@ supersedes: null
    - 自动化脚本用 `auto` 或 `dontAsk`
    - 信任 Claude 的复杂任务用 `bypassPermissions`
 
-3. **安全考量**：权限模式是 Claude Code 安全模型的核心。`auto` 模式虽然方便，但由后台安全分类器审查，仍属于 Research Preview 阶段。`bypassPermissions` 应仅在完全信任的场景下使用。
+3. **安全考量**：权限模式是 [[Claude Code]] 安全模型的核心。`auto` 模式虽然方便，但由后台安全分类器审查，仍属于 Research Preview 阶段。`bypassPermissions` 应仅在完全信任的场景下使用。
 
 ## 来源
 - [[09-advanced-features/README.md]] — Claude HowTo 高级功能指南

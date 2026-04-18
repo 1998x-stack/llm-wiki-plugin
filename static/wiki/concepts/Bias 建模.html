@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>设计精妙性</strong>：将评分信号分解为"与交互无关的部分"（bias）和"真正的交互部分"（$q_i^T p_u$），使得隐因子只需要建模最本质的用户-物品匹配，大大降低了学习难度。</li>
 <li><strong>生动例子</strong>：预测用户 Tom 对电影 Batman 的评分。全局均分 3.5，Tom 倾向于低 0.3（挑剔），Batman 倾向于高 0.2（好评）。仅用基线预测就能得到 $3.5 - 0.3 + 0.2 = 3.4$。</li>
 <li><strong>实践意义</strong>：在很多实际推荐系统中，仅用 $\mu + b_u + b_i$ 这个简单的基线模型就能解释 80% 以上的评分变异。先把简单的偏置项调好，往往能获得事半功倍的效果。</li>
-<li><strong>正则化</strong>：Bias 项也纳入正则化：$\lambda(|p_u|^2 + |q_i|^2 + b_u^2 + b_i^2)$，防止过拟合。</li>
+<li><strong>正则化</strong>：Bias 项也纳入正则化：$\lambda(|p_u|^2 + |q_i|^2 + b_u^2 + b_i^2)$，防止<a href="过拟合（Overfitting）.html">过拟合</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

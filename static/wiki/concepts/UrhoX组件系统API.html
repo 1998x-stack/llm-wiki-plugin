@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">游戏引擎</span><span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">API</span><span class="tag">组件</span><span class="tag">序列化</span><span class="tag">动画</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">游戏引擎</span><span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">API</span><span class="tag">组件</span><span class="tag">序列化</span><span class="tag">动画</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="urhoxapi">UrhoX组件系统API</h1>
@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Serializable 层（属性系统）</strong>：<code>SetTemporary(true)</code> 标记为临时对象（不参与序列化）；<code>SetInterceptNetworkUpdate(attrName, enable)</code> 拦截指定属性的网络同步，适用于需要客户端预测的属性。</li>
 <li><strong>Animatable 层（<a href="属性动画.html">属性动画</a>）</strong>：<code>SetObjectAnimation(ObjectAnimation*)</code> 应用整体动画资源；<code>SetAttributeAnimation(name, ValueAnimation*, wrapMode, speed)</code> 对单个属性（如颜色、位置）做关键帧动画；<code>wrapMode</code> 可选 WM_LOOP / WM_ONCE / WM_CLAMP；<code>SetAnimationEnabled/SetAnimationTime</code> 控制播放。</li>
 <li><strong>Component 核心接口</strong>：<code>GetNode()</code> 返回所属节点；<code>GetScene()</code> 直达场景根；<code>GetComponent(type)</code> 获取同节点上的兄弟组件；<code>DrawDebugGeometry(debug, depthTest)</code> 绘制调试辅助图形；<code>enabledEffective</code> 综合考虑节点启用状态的最终有效值。</li>
-<li><strong>CreateMode 语义</strong>：REPLICATED（跟随网络同步）vs LOCAL（纯本地，不参与网络）；在单机场景中两者无区别，多人游戏中关键区分。</li>
+<li><strong>CreateMode 语义</strong>：REPLICATED（跟随网络同步）vs LOCAL（纯本地，不参与网络）；在单机场景中两者无区别，多人游戏中关键<a href="../entities/区分.html">区分</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

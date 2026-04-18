@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code 分层验证</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code 分层验证是将 edit 后 validate/linting 逻辑分散到四个层面（tool description、CLAUDE.md、hooks/settings.json、LSP）的架构设计，确保验证既"会被正确调用"又"必定会执行"。</p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> 分层验证是将 edit 后 validate/linting 逻辑分散到四个层面（tool description、CLAUDE.md、hooks/settings.json、LSP）的架构设计，确保验证既"会被正确调用"又"必定会执行"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">为什么不能只靠单一层面</h3>
 <p><strong>只靠 CLAUDE.md 的三个问题：</strong>
@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <code>scope=changed</code> 和 <code>scope=workspace</code> 的区别
 - 什么时候先用 LSP，什么时候再用 Bash lint
 - 失败输出如何阅读</p>
-<p><strong>特点：</strong> 不是硬约束，而是 Anthropic 强调的 <strong>usage patterns from examples</strong>。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。</p>
+<p><strong>特点：</strong> 不是硬约束，而是 <a href="../entities/Anthropic.html">Anthropic</a> 强调的 <strong>usage patterns from examples</strong>。JSON schema 只能表达结构合法性，表达不了"什么时候该用、哪些参数组合有意义、约定的使用惯例"。</p>
 <h4 id="2-claudemd">第 2 层：CLAUDE.md — 负责"想这么做"</h4>
 <p><strong>放什么：</strong>
 - 项目验证策略
@@ -190,7 +190,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 <h3 id="_6">常见误区</h3>
 <p>很多人把所有规则都写进 CLAUDE.md，期待 Claude 记住"写完就 lint → lint 失败就修 → 再跑 test → 再检查 changed files"。这在简单项目里可行，但一旦任务变长，就容易退化成"知道规则，但执行不稳定"。</p>
-<p>Claude Code 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：<strong>重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。</strong></p>
+<p><a href="../entities/Claude Code.html">Claude Code</a> 官方把 hooks 单独做成生命周期自动化机制，本质上就是在告诉你：<strong>重复、机械、必须执行的流程，不要只靠模型记忆，要下沉到生命周期自动化。</strong></p>
 <h3 id="_7">落地四步</h3>
 <ol>
 <li><strong>先写 CLAUDE.md</strong>：定义"先 LSP、后 targeted lint、提交前再 widened checks"的策略</li>
@@ -204,7 +204,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <th>维度</th>
 <th><a href="../entities/SWE-agent.html">SWE-agent</a></th>
-<th>Claude Code 分层验证</th>
+<th><a href="../entities/Claude Code.html">Claude Code</a> 分层验证</th>
 </tr>
 </thead>
 <tbody>

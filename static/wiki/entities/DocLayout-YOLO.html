@@ -127,36 +127,185 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / DocLayout-YOLO</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.65</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span><span class="tag">目标检测</span></div>
 </div>
   <div class="content">
     <h1 id="doclayout-yolo">DocLayout-YOLO</h1>
 <h2 id="_1">概述</h2>
-<p>DocLayout-YOLO 是面向<a href="../concepts/文档布局检测.html">文档布局检测</a>的 YOLO 系列模型变体，可检测 PDF 页面中的文本区、图像、表格、公式框等布局区域，是 <a href="MinerU.html">MinerU</a> 第三层流水线的核心布局检测模型之一。</p>
+<p>DocLayout-YOLO 是上海 AI Lab 团队基于标准 YOLO 目标检测框架、针对文档页面专门优化的 One-Stage 检测器变体，专为<a href="../concepts/文档布局检测.html">文档布局检测</a>设计，一次前向推理即可输出所有语义区域的类别和边界框。</p>
 <h2 id="_2">关键内容</h2>
-<h3 id="mineru">在 MinerU 中的角色</h3>
+<h3 id="_3">模型架构</h3>
+<p>DocLayout-YOLO 继承标准 YOLO 的三段式架构：</p>
+<pre><code>输入图像
+    ↓
+Backbone（特征提取，如 CSPDarknet）
+    ↓
+Neck（多尺度特征融合，FPN/PAN）
+    ↓
+Head（三个尺度的检测头）
+    ↓
+NMS（非极大值抑制）→ 最终检测框
+</code></pre>
+<p>作为 <strong>One-Stage 目标检测器</strong>，相比两阶段检测器（如 Faster R-CNN）推理速度显著更快。</p>
+<h3 id="11">11 类检测类别体系</h3>
+<table>
+<thead>
+<tr>
+<th>类别标签</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>普通文本段落</td>
+<td>正文、引言、结论等连续文字区</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>标题</td>
+<td>各级标题（Section/Subsection 等）</td>
+</tr>
+<tr>
+<td><code>figure</code></td>
+<td>图像</td>
+<td>插图、照片、示意图</td>
+</tr>
+<tr>
+<td><code>figure_caption</code></td>
+<td>图注</td>
+<td>"Figure 1: ..." 这类说明文字</td>
+</tr>
+<tr>
+<td><code>table</code></td>
+<td>表格</td>
+<td>表格的完整区域</td>
+</tr>
+<tr>
+<td><code>table_caption</code></td>
+<td>表注</td>
+<td>"Table 1: ..."</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>页眉</td>
+<td>页面顶部重复出现的信息</td>
+</tr>
+<tr>
+<td><code>footer</code></td>
+<td>页脚</td>
+<td>页面底部（含页码）</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>参考文献</td>
+<td>文献列表区域</td>
+</tr>
+<tr>
+<td><code>equation</code></td>
+<td>独立公式</td>
+<td>单独成行的数学公式（非行内）</td>
+</tr>
+<tr>
+<td><code>equation_caption</code></td>
+<td>公式编号</td>
+<td>如 "(1)"、"(2)"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">文档场景的四大特殊挑战</h3>
+<p><strong>挑战1：极端长宽比</strong>
+表格可能很宽（宽/高 = 5:1），图注可能很窄（宽/高 = 20:1）。标准 YOLO 的 Anchor 设计为自然场景优化，需要专门针对文档调整 Anchor 比例。</p>
+<p><strong>挑战2：密集重叠</strong>
+一列文字中，多个段落的 bbox 在竖直方向紧密排列，传统 NMS 容易错误合并。</p>
+<p><strong>挑战3：小目标</strong>
+行内公式、上标、脚注序号等都是极小的文字区域，需要更高分辨率的特征图。</p>
+<p><strong>挑战4：无纹理区域</strong>
+大段均匀文字区域的纹理特征很弱，模型需要理解"一大块字就是段落"这种语义。</p>
+<h3 id="_5">针对性改进</h3>
+<ol>
+<li><strong>专用 Anchor 设计</strong>：重新聚类文档数据集的 bbox 尺寸分布，生成适合文档的 9 个 Anchor</li>
+<li><strong>高分辨率推理</strong>：推理时保持较大的输入分辨率（如 1280×1280），保留文字细节</li>
+<li><strong>文档专用训练集</strong>：在 <span style="color:#e74c3c" title="broken link">DocLayNet</span>、<span style="color:#e74c3c" title="broken link">PubLayNet</span>、<span style="color:#e74c3c" title="broken link">D4LA</span> 等大规模文档数据集上预训练</li>
+<li><strong>后处理调整</strong>：NMS 阈值针对文档的密集布局重新调优</li>
+</ol>
+<h3 id="_6">推理流程</h3>
+<h4 id="_7">输入输出规格</h4>
+<pre><code>输入：PDF 页面图像（numpy array，RGB，约 1654×2339 @ 200 DPI A4）
+
+输出：N 个检测框，每个包含：
+{
+    &quot;bbox&quot;: [x0, y0, x1, y1],   # 像素坐标
+    &quot;label&quot;: &quot;text&quot;,             # 类别标签
+    &quot;score&quot;: 0.97                # 置信度
+}
+</code></pre>
+<h4 id="_8">预处理</h4>
+<p>等比例缩放（长边对齐 target_size，通常 1280）→ Padding 到正方形（灰色填充 114）→ 归一化（减均值除标准差）。</p>
+<h4 id="_9">推理引擎</h4>
+<p>使用 <a href="ONNX Runtime.html">ONNX Runtime</a> 进行推理，支持 GPU/CPU 自动选择：</p>
+<pre><code class="language-python">import onnxruntime as ort
+
+session = ort.InferenceSession(
+    &quot;doclayout_yolo.onnx&quot;,
+    providers=[&quot;CUDAExecutionProvider&quot;, &quot;CPUExecutionProvider&quot;]
+)
+</code></pre>
+<h4 id="_10">后处理</h4>
 <ul>
-<li><strong>布局检测</strong>：接收 PDF 页面（原始或渲染为图像），输出带类别标签的布局框列表（layout_bboxes）</li>
-<li><strong>检测类别</strong>：文本区、图像区域、表格区域、公式框等</li>
-<li><strong>与 <a href="LayoutLMv3.html">LayoutLMv3</a> 的关系</strong>：<a href="MinerU.html">MinerU</a> 支持 DocLayout-YOLO 和 <a href="LayoutLMv3.html">LayoutLMv3</a> 两种布局检测模型，可根据场景选择</li>
+<li>坐标还原：将推理坐标按缩放比例反算回原始图像坐标</li>
+<li>NMS 去重：conf_threshold 默认 0.25，iou_threshold 默认 0.45</li>
+<li>中心坐标格式 → 角点坐标格式转换</li>
 </ul>
-<h3 id="_3">技术特点</h3>
+<h3 id="_11">置信度阈值策略</h3>
+<table>
+<thead>
+<tr>
+<th>阈值</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过低（&lt; 0.15）</td>
+<td>大量误检，噪声框增多</td>
+</tr>
+<tr>
+<td><strong>默认（0.25）</strong></td>
+<td><strong>平衡准确率和召回率</strong></td>
+</tr>
+<tr>
+<td>过高（&gt; 0.6）</td>
+<td>漏检增多，小区域（图注、公式编号）大量丢失</td>
+</tr>
+</tbody>
+</table>
+<p>对不同类别使用不同阈值：公式/表格（类别重要，宁可误检不可漏检）使用较低阈值，页眉/页脚使用较高阈值。</p>
+<h3 id="mineru">在 MinerU 中的后处理</h3>
 <ul>
-<li>基于 YOLO 架构，推理速度快</li>
-<li>专为文档布局场景优化</li>
-<li>输出带类别标签的边界框，供后续内容专项识别使用</li>
+<li><strong>Span 对齐</strong>：将 <a href="PyMuPDF.html">PyMuPDF</a> 提取的 Span 通过中心点 + IoU 分配到对应布局框</li>
+<li><strong>孤儿 Span 处理</strong>：未落入任何布局框的 Span 通过就近原则分配或丢弃</li>
+<li><strong>布局框合并与拆分</strong>：相邻 text 框水平对齐且间距小于行高 → 合并；text 框内存在明显分栏 → 拆分</li>
+<li><strong>分栏检测</strong>：通过 text 框 x 中心分布推断单栏/双栏，以页面中线为分界</li>
 </ul>
-<h2 id="_4">来源</h2>
+<h2 id="_12">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_03_layout.md</span> — MinerU 深度解析系列 · 第三篇：布局检测系统</li>
 </ul>
-<h2 id="_5">相关</h2>
+<h2 id="_13">相关</h2>
 <ul>
-<li><a href="MinerU.html">MinerU</a> — 使用 DocLayout-YOLO 作为布局检测模型</li>
+<li><a href="MinerU.html">MinerU</a> — 使用 DocLayout-YOLO 作为核心布局检测模型</li>
 <li><a href="../concepts/文档布局检测.html">文档布局检测</a> — 所属技术领域</li>
+<li><a href="../concepts/YOLO.html">YOLO</a> — 基础架构</li>
+<li><a href="ONNX Runtime.html">ONNX Runtime</a> — 推理引擎</li>
+<li><span style="color:#e74c3c" title="broken link">DocLayNet</span> — 训练数据集之一</li>
+<li><span style="color:#e74c3c" title="broken link">PubLayNet</span> — 训练数据集之一</li>
+<li><span style="color:#e74c3c" title="broken link">D4LA</span> — 训练数据集之一</li>
 <li><a href="LayoutLMv3.html">LayoutLMv3</a> — 可替代的布局检测模型</li>
 </ul>
   </div>

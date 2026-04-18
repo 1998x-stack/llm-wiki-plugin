@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>性能基准</strong>：JupyterLab 全量安装冷缓存比 pip 快 8-10x（2.6s vs 21.4s）；有缓存时快 80-115x（~0.2s）；<code>uv venv</code> 比 <code>python -m venv</code> 快 80x。</li>
 <li><strong>功能覆盖</strong>：包安装（替代 pip）、虚拟环境管理（<code>uv venv</code>）、跨平台依赖锁定（<code>uv.lock</code> TOML格式）、Python 版本管理（内置，无需 pyenv）、全局工具安装（<code>uv tool install</code> / <code>uvx</code>，替代 pipx）、项目初始化（<code>uv init</code>）、PEP 723 单文件脚本内联依赖、发布到 PyPI（<code>uv publish</code>）、Cargo-style Workspaces。</li>
 <li><strong>架构设计</strong>：全局 wheel 缓存 + CoW/硬链接；PubGrub 解析算法（确定性，跨平台）；人类可读 <code>uv.lock</code>（TOML）；内置 Python 安装管理。</li>
-<li><strong>适用场景</strong>：新建 Python 项目彻底告别碎片化工具链、CI/CD pip 安装成为瓶颈、AI/ML 工程（LangChain/FastAPI/LLM 管线）、多 Python 版本并存、Claude Code/AI agent 自动化 Python 项目。</li>
+<li><strong>适用场景</strong>：新建 Python 项目彻底告别碎片化工具链、CI/CD pip 安装成为瓶颈、AI/ML 工程（LangChain/FastAPI/LLM 管线）、多 Python 版本并存、<a href="Claude Code.html">Claude Code</a>/AI agent 自动化 Python 项目。</li>
 <li><strong>局限</strong>：不处理系统级非 Python 依赖（CUDA/cuDNN 等仍需 Conda）；相比 Poetry 在 PyPI 发布语义版本管理上略弱；v0.9.x 仍在快速迭代阶段。</li>
 </ol>
 <h2 id="_3">来源</h2>

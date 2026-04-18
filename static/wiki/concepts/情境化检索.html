@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">情境化检索</h1>
 <h2 id="_2">概述</h2>
-<p>情境化检索（Contextual Retrieval）是 Anthropic 提出的 RAG 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
+<p>情境化检索（Contextual Retrieval）是 <a href="../entities/Anthropic.html">Anthropic</a> 提出的 RAG 增强方案：在将文档 Chunk 建立<a href="Embedding.html">嵌入向量</a>和 BM25 索引<strong>之前</strong>，用 LLM 为每个 Chunk 自动生成 50–100 token 的情境说明并前置，从而保留文档上下文信息，大幅提升检索精度。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心问题：切块破坏上下文</h3>
 <p>传统 RAG 将文档切成独立 Chunk 时，每个 Chunk 会失去来自原文档的上下文信息：</p>
@@ -175,14 +175,14 @@ Answer only with the succinct context and nothing else.
 - 取 Top-20 注入模型
 - 联合效果：失败率 <strong>-67%</strong>（5.7% → 1.9%）</p>
 <h3 id="_8">成本与实现</h3>
-<p><strong>为什么成本可控</strong>：配合 Anthropic 的 <a href="提示词缓存.html">Prompt Caching</a> 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
+<p><strong>为什么成本可控</strong>：配合 <a href="../entities/Anthropic.html">Anthropic</a> 的 <a href="提示词缓存.html">Prompt Caching</a> 功能——整个文档只需载入缓存一次，对该文档的每个 Chunk 做情境化时直接引用缓存，无需重复传输。估算成本约 <strong>$1.02 / 百万文档 token</strong>。</p>
 <p><strong>实现注意事项</strong>：
 1. <strong>Chunk 边界</strong>：切块大小、边界策略和重叠影响检索效果，需实验调优
-2. <strong>嵌入模型选择</strong>：实验中 Gemini Text 004 和 Voyage 表现最佳
+2. <strong>嵌入模型选择</strong>：实验中 <a href="../entities/Gemini CLI.html">Gemini</a> Text 004 和 Voyage 表现最佳
 3. <strong>情境化 Prompt 定制</strong>：可针对特定领域定制（如加入领域词汇表），比通用 Prompt 效果更好
 4. <strong>Chunk 数量</strong>：Top-20 优于 Top-10 和 Top-5，但存在上限——注意 <a href="注意力预算.html">注意力预算</a> 的影响</p>
 <h3 id="_9">实验范围</h3>
-<p>跨代码库、小说、ArXiv 论文、科学论文四类知识域，多种嵌入模型（Gemini、Voyage、OpenAI 等），多种检索策略的系统性评测，情境化在所有配置下均改善检索性能。</p>
+<p>跨代码库、小说、ArXiv 论文、科学论文四类知识域，多种嵌入模型（<a href="../entities/Gemini CLI.html">Gemini</a>、Voyage、<a href="../entities/OpenAI.html">OpenAI</a> 等），多种检索策略的系统性评测，情境化在所有配置下均改善检索性能。</p>
 <h3 id="_10">效果堆叠总结</h3>
 <table>
 <thead>
@@ -234,7 +234,7 @@ Answer only with the succinct context and nothing else.
   </div>
   <div class="page-nav">
     <a href="恢复机制.html">&larr; 恢复机制</a>
-    <a href="惯性律.html">惯性律 &rarr;</a>
+    <a href="情感社会学.html">情感社会学 &rarr;</a>
   </div>
 </div>
 </body>

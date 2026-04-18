@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">架构</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">架构</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="multi-agent-coordination-patterns">Multi-Agent Coordination Patterns</h1>
@@ -140,9 +140,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_3">五种协调模式</h3>
 <h4 id="1-generator-verifier">模式 1：生成器 - 验证器（Generator-Verifier）</h4>
 <p><strong>工作原理</strong>：
-- 生成器接收任务并生成初始输出
+- <a href="生成器.html">生成器</a>接收任务并生成初始输出
 - 验证器检查输出是否符合标准
-- 若未通过，反馈回传给生成器进行修改
+- 若未通过，反馈回传给<a href="生成器.html">生成器</a>进行修改
 - 循环持续直到验证通过或达到最大迭代次数</p>
 <p><strong>适用场景</strong>：
 - 输出质量至关重要且评估标准可以明确制定
@@ -264,7 +264,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>对质量要求高的输出，有明确的评估标准</td>
-<td>生成器 - 验证器</td>
+<td><a href="生成器.html">生成器</a> - 验证器</td>
 </tr>
 <tr>
 <td>清晰的任务分解、有边界的子任务</td>
@@ -291,7 +291,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MoonSharp与NLua.html">&larr; MoonSharp与NLua</a>
+    <a href="Multi-Agent Orchestration.html">&larr; Multi-Agent Orchestration</a>
     <a href="Multics.html">Multics &rarr;</a>
   </div>
 </div>

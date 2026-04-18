@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">前缀复杂性</h1>
 <h2 id="_2">概述</h2>
-<p>前缀 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 K_prefix(x) 要求合法程序集构成<a href="前缀码.html">前缀码</a>，修复了原始 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的技术问题，使链式法则 K(x,y) = K(x) + K(y|x) + O(1) 精确成立。</p>
+<p>前缀 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 K_prefix(x) 要求合法程序集构成<a href="前缀码.html">前缀码</a>，修复了原始 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的技术问题，使<a href="链式法则.html">链式法则</a> K(x,y) = K(x) + K(y|x) + O(1) 精确成立。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">技术问题</h3>
-<p><a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 的原始定义使用"普通"（非前缀）程序，导致链式法则 K(x,y) = K(x) + K(y|x) + O(1) 不能精确成立——存在 O(log K(x)) 的额外开销。</p>
+<p><a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 的原始定义使用"普通"（非前缀）程序，导致<a href="链式法则.html">链式法则</a> K(x,y) = K(x) + K(y|x) + O(1) 不能精确成立——存在 O(log K(x)) 的额外开销。</p>
 <h3 id="levin-chaitin">Levin 和 Chaitin 的修复</h3>
 <p>Levin (1974) 和 Chaitin (1975) 独立引入了<strong>前缀 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性</strong>：要求合法程序集构成<a href="前缀码.html">前缀码</a>（没有任何程序是另一个程序的前缀）。</p>
 <h3 id="_5">关键性质</h3>
-<p>前缀复杂性满足完美的链式法则：</p>
+<p>前缀复杂性满足完美的<a href="链式法则.html">链式法则</a>：</p>
 <p>$$K(x,y) = K(x) + K(y|x) + O(1)$$</p>
 <p>这使得 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的代数性质与 Shannon 熵完美对应：
 - H(X,Y) = H(X) + H(Y|X)
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="判定问题 (Entscheidungsproblem).html">&larr; 判定问题 (Entscheidungsproblem)</a>
+    <a href="前台与后台.html">&larr; 前台与后台</a>
     <a href="前缀码.html">前缀码 &rarr;</a>
   </div>
 </div>

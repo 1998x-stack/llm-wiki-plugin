@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "aee3e2a4b93afca4",
+            "id": "5e86ce1a57541834",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/concepts/MCP协议层.md",
+                "file": "wiki/concepts/上下文腐烂.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MCP协议层"
+              "title": "上下文腐烂"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "subagent",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "293db15df12be54e",
@@ -94,17 +95,17 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/concepts/MCP协议层.md",
+                "file": "wiki/concepts/上下文腐烂.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "MCP协议层 的反向链接列表"
+              "title": "上下文腐烂 的反向链接列表"
             }
           },
           {
@@ -113,12 +114,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "wiki/concepts/MCP协议层.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "MCP协议层 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -156,17 +156,15 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/concepts/Claude-Code-Hook-System.md",
-                "followCursor": true,
-                "showSearch": true,
+                "followCursor": false,
+                "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Claude-Code-Hook-System 的大纲"
+              "title": "大纲"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -183,43 +181,43 @@
       "bases:新建数据库": false
     }
   },
-  "active": "aee3e2a4b93afca4",
+  "active": "5e86ce1a57541834",
   "lastOpenFiles": [
-    "wiki/concepts/Transformer 架构.md",
-    "wiki/entities/Ashish Vaswani.md",
-    "wiki/entities/Transformer 论文.md",
-    "wiki/concepts/MapReduce.md",
-    "wiki/entities/Sanjay Ghemawat.md",
-    "wiki/entities/Jeffrey Dean.md",
-    "wiki/entities/MapReduce 论文.md",
-    "wiki/concepts/FLP 不可能性定理.md",
-    "wiki/concepts/Paxos 算法.md",
-    "wiki/entities/Paxos 论文.md",
-    "wiki/concepts/HTML.md",
-    "wiki/concepts/HTTP.md",
-    "wiki/concepts/URL.md",
-    "wiki/concepts/万维网.md",
-    "wiki/entities/Tim Berners-Lee.md",
-    "wiki/entities/万维网提案.md",
-    "wiki/entities/Frederick Brooks.md",
-    "wiki/entities/No Silver Bullet 论文.md",
-    "wiki/concepts/可重现构建.md",
-    "wiki/concepts/供应链安全.md",
-    "wiki/entities/Thompson 信任信任论文.md",
-    "wiki/concepts/CSP 模型.md",
-    "wiki/entities/Tony Hoare.md",
-    "wiki/entities/Hoare CSP 论文.md",
-    "wiki/concepts/向量时钟.md",
-    "wiki/concepts/分布式系统.md",
-    "scripts/relink_cleanup.py",
-    "raw/articles/personal/ai-dev-kit/prompts",
-    "raw/articles/personal/ai-dev-kit/examples",
-    "raw/articles/personal/ai-dev-kit/engine-docs/recipes",
-    "raw/articles/personal/ai-dev-kit/engine-docs/gotchas",
-    "raw/articles/personal/ai-dev-kit/engine-docs/api",
-    "raw/articles/personal/ai-dev-kit/engine-docs",
-    "raw/articles/personal/ai-dev-kit/config/examples-config.yaml",
-    "raw/articles/personal/ai-dev-kit/config",
-    "raw/articles/personal/ai-dev-kit/coding-insights/Math-Algorithm"
+    "maps/计算理论.md",
+    "maps/脑科学.md",
+    "maps/经济学.md",
+    "maps/社会科学.md",
+    "maps/矩阵理论.md",
+    "maps/游戏开发.md",
+    "maps/深度学习.md",
+    "maps/概率论.md",
+    "maps/机器学习.md",
+    "maps/机器人学.md",
+    "maps/时间序列.md",
+    "maps/文档处理.md",
+    "maps/数值分析.md",
+    "maps/推荐系统.md",
+    "maps/控制论.md",
+    "maps/工具与框架.md",
+    "maps/天文学.md",
+    "maps/其他.md",
+    "maps/Lua编程.md",
+    "maps/LLM能力.md",
+    "maps/C++编程.md",
+    "wiki/concepts/prd.json 格式规范.md",
+    "wiki/concepts/工作台 vs 长期记忆.md",
+    "wiki/concepts/User Story 粒度原则.md",
+    "wiki/concepts/PRD 生成提示词.md",
+    "wiki/entities/Geoffrey Huntley.md",
+    "wiki/concepts/记忆",
+    "wiki/papers",
+    "docs/gotchas",
+    "docs",
+    "wiki/projects",
+    "wiki/entities/shadcn",
+    "scripts/__pycache__/snapshot_index.cpython-314.pyc",
+    "scripts/__pycache__/snapshot_index.cpython-311.pyc",
+    "wiki/concepts/权力",
+    "scripts/relink_cleanup.py"
   ]
 }

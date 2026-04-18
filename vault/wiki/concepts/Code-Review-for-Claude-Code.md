@@ -10,6 +10,7 @@ tags:
   - AI
   - 工具
   - 方法论
+  - AI工程
 aliases:
   - "Code Review"
   - "Claude Code Code Review"
@@ -23,14 +24,14 @@ supersedes: null
 
 ## 概述
 
-Code Review 是 Claude Code 推出的多智能体代码审查系统，为每个 PR 派遣一组智能体进行深度审查，捕捉人类审核者容易遗漏的漏洞。目前面向 Team 和 Enterprise 计划提供研究预览版。这是 Anthropic 内部几乎每个 PR 都采用的系统，审查深度优先于速度。
+Code Review 是 [[Claude Code]] 推出的多智能体代码审查系统，为每个 PR 派遣一组智能体进行深度审查，捕捉人类审核者容易遗漏的漏洞。目前面向 Team 和 Enterprise 计划提供研究预览版。这是 [[Anthropic]] 内部几乎每个 PR 都采用的系统，审查深度优先于速度。
 
 ## 关键内容
 
 ### 设计动机
 
 **解决代码审查瓶颈**：
-- Anthropic 工程师的代码输出量在过去一年增长了 200%
+- [[Anthropic]] 工程师的代码输出量在过去一年增长了 200%
 - 代码审查成为瓶颈，开发人员人手紧张
 - 许多 PR 只被快速浏览，而非深入审阅
 - 需要值得信赖的审查者，对每个 PR 进行深度审查
@@ -54,7 +55,7 @@ Code Review 是 Claude Code 推出的多智能体代码审查系统，为每个 
 
 ### 实际效果
 
-**Anthropic 内部数据**：
+**[[Anthropic]] 内部数据**：
 - **之前**：16% 的 PR 收到实质性审查意见
 - **现在**：54% 的 PR 收到实质性审查意见
 - **不会自动批准**：仍需要人工判断，但缩小了审查范围
@@ -84,7 +85,7 @@ Code Review 是 Claude Code 推出的多智能体代码审查系统，为每个 
 - 按令牌使用量计费
 - 平均费用：$15-25/次审查
 - 随 PR 规模和复杂度浮动
-- 比 Claude Code GitHub Action 更昂贵（但更全面）
+- 比 [[Claude Code]] GitHub Action 更昂贵（但更全面）
 
 **管理员控制**：
 1. **每月组织上限**：定义所有审查的总月度支出

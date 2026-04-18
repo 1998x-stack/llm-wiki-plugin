@@ -21,12 +21,12 @@ supersedes: null
 # Claude Code 记忆系统
 
 ## 概述
-Memory 系统让 Claude Code 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 `CLAUDE.md`，Claude 在合适场景下自动加载。
+Memory 系统让 [[Claude Code]] 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 `CLAUDE.md`，Claude 在合适场景下自动加载。
 
 ## 关键内容
 
 1. **记忆范围分层**：
-   - **受管策略记忆**：Claude Code 内置策略
+   - **受管策略记忆**：[[Claude Code]] 内置策略
    - **项目记忆**（`./CLAUDE.md`）：项目级规范
    - **用户记忆**（`~/.claude/CLAUDE.md`）：用户级偏好
    - **本地项目记忆**：目录级约束

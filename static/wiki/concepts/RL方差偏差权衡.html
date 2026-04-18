@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><a href="REINFORCE算法.html">REINFORCE</a>：<code>ĝ = (1/N) Σ_τ [ Σ_t ∇_θ log π_θ(a_t|s_t) · G_t ]</code>，MC 回报 G_t 高方差</li>
 <li><a href="强化学习三大范式.html">Actor-Critic</a>（A3C/PPO）：<code>ĝ = (1/N) Σ_t [ ∇_θ log π_θ(a_t|s_t) · Â_t^GAE ]</code>，GAE 优势降方差</li>
-<li>DDPG/TD3（确定性）：<code>ĝ = (1/N) Σ_s [ ∇_θ μ_θ(s) · ∇_a Q_φ(s,a) ]</code>，无随机采样，链式法则</li>
+<li>DDPG/TD3（确定性）：<code>ĝ = (1/N) Σ_s [ ∇_θ μ_θ(s) · ∇_a Q_φ(s,a) ]</code>，无随机采样，<a href="链式法则.html">链式法则</a></li>
 <li>
 <p>SAC（随机+重参数化）：<code>ĝ = (1/N) Σ_{s,ε} [ ∇_θ(α log π_θ(ã|s) - Q_φ(s,ã)) ]</code>，重参数化消除采样方差</p>
 </li>

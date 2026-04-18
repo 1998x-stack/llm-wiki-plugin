@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心洞察</strong>：<a href="../concepts/矩阵分解.html">矩阵分解</a>的内积是线性函数，表达能力有限。NCF 用可学习的神经网络 $f$ 替代固定内积，由于神经网络是通用函数逼近器，NCF 在表达能力上严格优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>。论文从理论上证明了<a href="../concepts/矩阵分解.html">矩阵分解</a>是 NCF 的一个特例（当 GMF 的激活函数为恒等函数、权重向量为全1时）。</li>
 <li><strong>NCF 四层架构</strong>：输入层（one-hot 表示）→ <a href="../concepts/Embedding.html">Embedding</a> 层（稀疏→稠密映射）→ 神经<a href="../concepts/协同过滤.html">协同过滤</a>层（多层神经网络学习交互函数）→ 输出层（预测分数 $\hat{y}_{ui} \in [0, 1]$）。</li>
 <li><strong>GMF（广义<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：NCF 的第一个实例化，交互函数为 $\hat{y}<em>{ui} = a</em>{out}(\mathbf{h}^T (\mathbf{p}<em>u \odot \mathbf{q}_i))$，其中 $\odot$ 为逐元素乘积，$\mathbf{h}$ 为可学习权重向量。当 $a</em>{out}$ 为恒等函数且 $\mathbf{h}$ 为全1时退化为标准 MF。</li>
-<li><strong>MLP（多层感知机）</strong>：NCF 的第二个实例化，用户和物品嵌入先拼接（concatenation），再通过塔式全连接层（如 $256 \to 128 \to 64 \to 32$），ReLU 激活。与 GMF 的逐元素乘积不同，MLP 能学习任意复杂的交叉模式。</li>
+<li><strong>MLP（<a href="../concepts/多层感知机.html">多层感知机</a>）</strong>：NCF 的第二个实例化，用户和物品嵌入先拼接（concatenation），再通过塔式全连接层（如 $256 \to 128 \to 64 \to 32$），ReLU 激活。与 GMF 的逐元素乘积不同，MLP 能学习任意复杂的交叉模式。</li>
 <li><strong><a href="../concepts/NeuMF.html">NeuMF</a>（神经<a href="../concepts/矩阵分解.html">矩阵分解</a>）</strong>：最终融合模型，GMF 和 MLP 使用<strong>独立嵌入空间</strong>（不共享），在倒数第二层拼接输出后通过线性层 + sigmoid 预测。体现"线性与非线性各有所长，融合比替代更好"的设计哲学。</li>
 <li><strong>预训练策略</strong>：由于 <a href="../concepts/NeuMF.html">NeuMF</a> 目标函数非凸，先分别训练 GMF 和 MLP 至收敛，再用其参数初始化 <a href="../concepts/NeuMF.html">NeuMF</a> 对应部分，融合层权重初始化为 $[\alpha \mathbf{h}^{GMF}; (1-\alpha) \mathbf{h}^{MLP}]$（$\alpha = 0.5$），最后用 Adam 端到端微调。</li>
 <li><strong>损失函数</strong>：将<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐建模为<strong>二分类问题</strong>，采用<a href="../concepts/二元交叉熵.html">二元交叉熵</a>替代传统 MSE。<a href="../concepts/负采样.html">负采样</a>比例为每个正样本 4-5 个负样本。<a href="../concepts/交叉熵.html">交叉熵</a>在概率意义上对 0/1 二值数据更加合理。</li>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Netflix Prize.html">&larr; Netflix Prize</a>
-    <a href="Nils J. Nilsson.html">Nils J. Nilsson &rarr;</a>
+    <a href="Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文).html">Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文) &rarr;</a>
   </div>
 </div>
 </body>

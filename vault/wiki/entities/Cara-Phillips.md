@@ -10,6 +10,7 @@ source_count: 1
 tags:
   - AI
   - 写作
+  - AI工程
 aliases:
   - "Cara Phillips"
   - "卡拉·菲利普斯"
@@ -21,7 +22,7 @@ supersedes: null
 
 ## 概述
 
-Cara Phillips 是 Anthropic 的技术作家，专注于多智能体系统架构和协调模式的研究和撰写。2026 年发表《Multi-agent coordination patterns: Five approaches and when to use them》一文，系统阐述了五种[[Multi-Agent-Coordination-Patterns|多智能体协调模式]]的 mechanics 和 limitations。
+Cara Phillips 是 [[Anthropic]] 的技术作家，专注于多智能体系统架构和协调模式的研究和撰写。2026 年发表《Multi-agent coordination patterns: Five approaches and when to use them》一文，系统阐述了五种[[Multi-Agent-Coordination-Patterns|多智能体协调模式]]的 mechanics 和 limitations。
 
 ## 关键内容
 
@@ -33,7 +34,7 @@ Cara Phillips 是 Anthropic 的技术作家，专注于多智能体系统架构�
 - 强调了从简单模式开始、逐步演进的建议
 
 **五种模式**：
-1. 生成器 - 验证器（Generator-Verifier）
+1. [[生成器]] - 验证器（[[生成器|Generator]]-Verifier）
 2. 协调器 - [[Subagents-in-Claude-Code|子智能体]]（Orchestrator-Subagent）
 3. 智能体团队（Agent Teams）
 4. 消息总线（Message Bus）
@@ -41,7 +42,7 @@ Cara Phillips 是 Anthropic 的技术作家，专注于多智能体系统架构�
 
 ### 发表作品
 
-- "Multi-agent coordination patterns: Five approaches and when to use them" (2026) — Anthropic 官方博客
+- "Multi-agent coordination patterns: Five approaches and when to use them" (2026) — [[Anthropic]] 官方博客
 - 与 Eugene Yan, Jiri De Jonghe, Samuel Weller, Erik S. 共同撰写
 
 ### 写作风格

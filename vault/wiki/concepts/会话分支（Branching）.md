@@ -21,7 +21,7 @@ supersedes: null
 # 会话分支（Branching）
 
 ## 概述
-Claude Code 的会话分支功能允许从当前对话创建新会话分支（`/branch`，v2.1.77 中 `/fork` 更名为 `/branch`），保留完整对话历史，探索替代方案而不丢失原始上下文。
+[[Claude Code]] 的会话分支功能允许从当前对话创建新会话分支（`/branch`，v2.1.77 中 `/fork` 更名为 `/branch`），保留完整对话历史，探索替代方案而不丢失原始上下文。
 
 ## 关键内容
 

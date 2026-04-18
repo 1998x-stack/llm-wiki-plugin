@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent">长时任务 Agent 设计</h1>
 <h2 id="_1">概述</h2>
-<p>针对跨多个<a href="上下文窗口.html">上下文窗口</a>的长时自主任务（数小时至数日）的 <a href="Agent Harness模式.html">Agent Harness</a> 设计模式：<strong>初始化 Agent</strong>（建立环境和功能列表）+ <strong>编码 Agent</strong>（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。</p>
+<p>针对跨多个<a href="上下文窗口.html">上下文窗口</a>的长时自主任务（数小时至数日）的 <a href="Agent Harness模式.html">Agent Harness</a> 设计模式：<strong><a href="Initializer Agent.html">初始化 Agent</a></strong>（建立环境和功能列表）+ <strong>编码 Agent</strong>（增量推进并留清晰交接产物）两阶段架构，解决 Agent 过早宣告完成、中途失去方向等失败模式。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心问题：无记忆的交接</h3>
 <p>长时任务必须在多个 <a href="上下文窗口.html">Context Window</a> 中进行，每个新会话从零记忆开始——类似"每班交接时上一班的记忆全部清空的工程师团队"。单纯依赖压缩（<a href="上下文压缩.html">Compaction</a>）不足以解决此问题：Agent 仍会尝试一次性完成全部工作（"一枪打"），或误判任务已完成。</p>
 <h3 id="_4">两阶段解决方案</h3>
-<p><strong>第一阶段：初始化 Agent</strong></p>
+<p><strong>第一阶段：<a href="Initializer Agent.html">初始化 Agent</a></strong></p>
 <p>首次会话使用专门提示，负责搭建环境：
 1. 创建 <code>init.sh</code> 脚本（启动开发服务器）
 2. 创建 <code>claude-progress.txt</code>（会话间状态传递文件）
@@ -203,7 +203,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>浏览器自动化测试的必要性</strong>：代码层面测试（单元测试、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。</p>
 <p><strong>视觉局限</strong>：Claude 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。</p>
 <h3 id="agent_1">与多 Agent 架构的关系</h3>
-<p>两阶段设计是 Anthropic 早期长时 Harness 的探索。后续研究（见<a href="生成器-评估器架构.html">生成器-评估器架构</a>）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + Generator + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。</p>
+<p>两阶段设计是 <a href="../entities/Anthropic.html">Anthropic</a> 早期长时 Harness 的探索。后续研究（见<a href="生成器-评估器架构.html">生成器-评估器架构</a>）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + <a href="生成器.html">Generator</a> + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective harnesses for long-running agents.md</span></li>

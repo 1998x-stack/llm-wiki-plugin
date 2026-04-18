@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-[[Claude-Sonnet-4|Claude Sonnet 4]].5 是 Anthropic 发布的 Claude Sonnet 系列模型，[[上下文窗口]]为 200k tokens，支持 [[上下文感知]] 功能。
+[[Claude-Sonnet-4|Claude Sonnet 4]].5 是 [[Anthropic]] 发布的 Claude Sonnet 系列模型，[[上下文窗口]]为 200k tokens，支持 [[上下文感知]] 功能。
 
 ## 关键内容
 
@@ -39,7 +39,7 @@ supersedes: null
 - **系列**：Claude Sonnet
 - **版本**：4.5
 - **[[上下文窗口]]**：200k tokens
-- **发布方**：Anthropic
+- **发布方**：[[Anthropic]]
 
 ### 支持的功能
 

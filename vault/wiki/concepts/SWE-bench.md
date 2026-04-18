@@ -56,7 +56,7 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 ### 在 ACI 研究中的角色
 
 [[Agent计算机接口]] 研究中，SWE-bench 被用作工具设计质量的验证平台：
-- Anthropic 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化
+- [[Anthropic]] 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化
 - 仅改工具描述就在 SWE-bench 上达到 SOTA
 - 证明了"接口设计质量直接决定 Agent 成功率"的核心假设
 

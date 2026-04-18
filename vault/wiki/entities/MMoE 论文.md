@@ -30,21 +30,21 @@ KDD 2018 发表的奠基性论文，提出 MMoE 架构解决[[多任务学习]]�
 - 至今被引用数千次，是[[多任务学习]]在推荐系统领域的奠基性工作之一
 
 ### 核心贡献
-- 提出 MMoE 架构：为每个任务配备独立门控网络，自适应选择共享专家组合
+- 提出 MMoE 架构：为每个任务配备独立[[门控机制（Gating Mechanism）|门控]]网络，自适应选择共享专家组合
 - 建立研究[[多任务学习]]任务关系的实验[[规范化理论|范式]]：通过合成数据精确控制任务相关性
 - 在 [[YouTube]] 大规模推荐系统中进行工业验证，离线和在线 A/B 测试均取得正向收益
-- 证明当任务相关性降低时，独立门控的价值愈发凸显
+- 证明当任务相关性降低时，独立[[门控机制（Gating Mechanism）|门控]]的价值愈发凸显
 
 ### 实验验证
 - **合成数据实验**：通过正交[[矩阵]]旋转变换精确控制任务相关性，验证 MMoE 在低相关性场景下的显著优势
 - **UCI Census-Income 数据集**：在多任务分类任务中对比 L2-Constrained 和 Cross-Stitch 等方法
 - **[[YouTube]] 推荐系统**：同时优化参与度预测和满意度预测，MMoE 在两任务上均优于 Shared-Bottom 基线
-- **门控网络可视化**：发现满意度任务门控权重集中在少数专家，参与度任务分布更均匀
+- **[[门控机制（Gating Mechanism）|门控]]网络可视化**：发现满意度任务[[门控机制（Gating Mechanism）|门控]]权重集中在少数专家，参与度任务分布更均匀
 
 ### 关键洞察
 - "The prediction quality of commonly used multi-task models is often sensitive to the relationships between tasks."
 - "The key insight is to use separate gating networks for each task."
-- MMoE 以几乎零成本的门控网络换来显著效果提升，体现工程美学
+- MMoE 以几乎零成本的[[门控机制（Gating Mechanism）|门控]]网络换来显著效果提升，体现工程美学
 
 ### 影响与后续工作
 - 催生 PLE(腾讯, 2020)、ESMM(阿里巴巴, 2018)、DBMTL(2020)、AC-MMoE(2023)、BEnet(2024) 等工作

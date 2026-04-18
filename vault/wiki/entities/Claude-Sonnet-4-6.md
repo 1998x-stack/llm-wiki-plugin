@@ -38,7 +38,7 @@ supersedes: null
 
 ## 概述
 
-[[Claude-Sonnet-4|Claude Sonnet 4]].6 是 Anthropic 发布的 Claude Sonnet 系列模型，在性能与成本之间取得平衡，支持 [[上下文压缩]] 等高级[[Context Management|上下文管理]]功能。
+[[Claude-Sonnet-4|Claude Sonnet 4]].6 是 [[Anthropic]] 发布的 Claude Sonnet 系列模型，在性能与成本之间取得平衡，支持 [[上下文压缩]] 等高级[[Context Management|上下文管理]]功能。
 
 ## 关键内容
 
@@ -48,7 +48,7 @@ supersedes: null
 - **系列**：Claude Sonnet
 - **版本**：4.6
 - **[[上下文窗口]]**：1M tokens
-- **发布方**：Anthropic
+- **发布方**：[[Anthropic]]
 
 ### 支持的功能
 

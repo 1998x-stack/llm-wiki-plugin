@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Initializer Agent — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Initializer Agent</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">ralph-loop</span><span class="tag">agent-pattern</span><span class="tag">bootstrap</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="initializer-agent">Initializer Agent</h1>
+<h2 id="_1">概述</h2>
+<p>Initializer Agent 是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 系统中仅运行一次的项目初始化代理，负责在首个 context window 内建立完整的<a href="游戏脚手架模式.html">项目脚手架</a>（init.sh、prd.json、progress.txt、AGENTS.md 和初始 git commit），不实现任何业务功能。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>职责边界</strong>：Initializer Agent 的唯一职责是"设置，不开发"。它创建五样产物——<code>init.sh</code> 环境启动脚本、<code>prd.json</code> 任务清单（50-200 个 User Story）、<code>progress.txt</code> 交班日记模板、<code>AGENTS.md</code> 项目约定手册、以及初始 git commit。严禁写业务代码、运行应用或安装不必要的依赖。</p>
+</li>
+<li>
+<p><strong>init.sh 设计规范</strong>：幂等性（多次运行结果相同）、安装依赖、启动开发服务器、健康检查等待就绪、成功打印 "=== READY ==="、失败 exit 1。支持多技术栈模板（Node.js/<a href="../entities/Next.js.html">Next.js</a>、Python/FastAPI），每种都包含依赖安装、环境变量检查、数据库初始化、进程管理和健康检查循环。</p>
+</li>
+<li>
+<p><strong>prd.json 生成规范</strong>：每个 User Story 包含 <code>id</code>（category-NNN 格式）、<code>category</code>、<code>title</code>、<code>description</code>（"用户可以..."格式）、<code>acceptanceCriteria</code>、<code>passes</code>（初始 false）、<code>priority</code>（1=最高）、<code>estimatedMinutes</code>、<code>dependencies</code>。前端 Story 的 acceptanceCriteria 必须包含 "Verify in browser using dev-browser skill"。</p>
+</li>
+<li>
+<p><strong>AGENTS.md 初始模板</strong>：包含 Project Overview、Running Commands、File Structure、Naming Conventions、NEVER DO 规则清单、Known Gotchas（运行时填充）、Learnings from Previous Sessions（运行时维护）。这是 <a href="AGENTS.html 项目约定文件.html">AGENTS.md 项目约定文件</a> 的初始种子。</p>
+</li>
+<li>
+<p><strong>progress.txt 初始模板</strong>：记录 Session 日志格式——角色、行动、详情、完成特性数、下一轮建议。Initializer Agent 写入第一条 Session 记录并标注 "Next session should" 指向最高优先级 Story。</p>
+</li>
+<li>
+<p><strong>完成后验证</strong>：运行 <code>bash init.sh</code> 确认 READY、用 Python 验证 prd.json Story 数量、<code>git log --oneline -1</code> 确认 commit 存在。输出标准化完成信息：Stories 数量、init.sh 测试结果、git commit 状态。</p>
+</li>
+<li>
+<p><strong>与 <a href="Agent Harness模式.html">Agent Harness模式</a> 的关系</strong>：Initializer Agent 是 Harness 模式的"准备阶段"——在 Coding Agent 开始工作前，确保环境、任务清单、约定文件全部就位。它体现了 Harness 设计中"环境先于执行"的原则。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/initializer-agent.md</span> — Initializer Agent 完整提示词、init.sh 模板（Node.js/Python）、AGENTS.md 模板、progress.txt 模板</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — part_of（Ralph 系统的初始化阶段）</li>
+<li><a href="Agent Harness模式.html">Agent Harness模式</a> — implements（Harness 的准备阶段模式）</li>
+<li><a href="AGENTS.html 项目约定文件.html">AGENTS.md 项目约定文件</a> — creates（生成初始约定文件种子）</li>
+<li><a href="PRD 驱动开发.html">PRD 驱动开发</a> — enables（生成 prd.json 任务清单驱动后续开发）</li>
+<li><a href="Session 交接机制.html">Session 交接机制</a> — relates_to（创建 progress.txt 交班日记模板）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Informer.html">&larr; Informer</a>
+    <a href="Itô随机积分.html">Itô随机积分 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

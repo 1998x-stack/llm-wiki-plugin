@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>程序性记忆 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 程序性记忆</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">procedural-memory</span><span class="tag">knowledge-representation</span><span class="tag">ai-agent</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">程序性记忆</h1>
+<h2 id="_2">概述</h2>
+<p>AI Agent 记住"怎么做"的能力，与陈述性记忆（记住事实）相对，通过结构化技能文档实现可修改、可增长的工作流知识库。</p>
+<h2 id="_3">关键内容</h2>
+<ul>
+<li><strong>与陈述性记忆的对比</strong>：<a href="语义记忆.html">MEMORY.md</a> 存储事实、偏好、环境信息（陈述性），始终在 System Prompt 中固定消耗；<a href="Agent Skills.html">Skills</a> 存储工作流、步骤、方法（程序性），通过<a href="渐进式加载.html">渐进式加载</a>按需消耗</li>
+<li><strong>外化设计</strong>：把"怎么做"从模型的参数（无法修改）变成文件系统上的文档（可以修改、可以增长），实现程序性记忆的可编辑性</li>
+<li><strong>生成方式</strong>：Agent 从成功经验中主动创建，成功完成 4 步以上工作流、感知到任务会重复、工作流中有易出错步骤、或用户说"把这个记下来"时触发</li>
+<li><strong>存储位置</strong>：Agent 创建的技能默认存入 <code>~/.hermes/skills/personal/</code> 子目录，与社区技能和系统技能分开管理</li>
+<li><strong>自我改进</strong>：Agent 发现步骤有误时自动更新技能，版本号递增（1.0.0 → 1.1.0），用户也可显式编辑</li>
+<li><strong>完整生命周期</strong>：创建 → 首次使用 → 自我改进 → 共享/迁移 → 弃用删除，Agent 可从经验中自动创建形成闭环</li>
+<li><strong><a href="技能自我改进.html">技能自我改进</a>机制</strong>：技能在使用过程中持续改进——步骤出错时修复并添加 Pitfalls，发现更好方法时简化流程，用户纠正时记录正确做法；版本号遵循语义化版本（小修正 1.0.1、功能改进 1.1.0、重大重构 2.0.0）</li>
+<li><strong>description 字段的关键性</strong>：Level 0 目录中 Agent 看到的唯一信息，决定下次是否会调用该技能；好的 description 应精确描述触发条件和使用场景，而非泛泛的"Docker 部署配置"</li>
+<li><strong>核心价值主张</strong>：技能是程序性记忆的外化——把"怎么做"从模型参数（不可修改）迁移到文件系统（可修改、可版本化、可共享），是 Agent 持续改进的正确路径</li>
+</ul>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="https://github.com/NousResearch/hermes-agent">NousResearch/hermes-agent</a> — 2026 年 4 月版本，Hermes Agent 深度解析第四篇</li>
+<li><a href="/raw/articles/ai-tools/hermes/06_hermes_learning_loop.md">06_hermes_learning_loop.md</a> — Hermes Agent 深度解析第六篇：闭环学习引擎，技能自我改进、description 字段关键性</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/Hermes Agent.html">Hermes Agent</a> — implements</li>
+<li><a href="跨会话记忆.html">跨会话记忆</a> — compares_to</li>
+<li><a href="渐进式加载.html">渐进式加载</a> — part_of</li>
+<li><a href="闭环学习系统.html">闭环学习系统</a> — part_of</li>
+<li><a href="技能自我改进.html">技能自我改进</a> — extends</li>
+<li><a href="SOUL.html 人格系统.html">SOUL.md 人格系统</a> — part_of</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="科学等级体系.html">&larr; 科学等级体系</a>
+    <a href="端到端原则.html">端到端原则 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

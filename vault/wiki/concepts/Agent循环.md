@@ -87,7 +87,7 @@ while (true):
 
 ## 代表实现
 
-- [[Pi-Agent]] 的 `pi-agent-core` 包：最简实现，约 < 500 行 TypeScript
+- [[Pi-Agent]] 的 `pi-agent-core` 包：最简实现，约 < 500 行 [[TypeScript]]
 - [[DeepAgents]]：LangGraph 实现，以[[ROS (Robot Operating System)|中间件]]链增强循环能力
 
 ## 来源

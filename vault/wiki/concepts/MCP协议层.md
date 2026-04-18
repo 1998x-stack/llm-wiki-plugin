@@ -18,12 +18,21 @@ relates_to:
   - target: "[[Codex多Agent调度]]"
     type: uses
     confidence: 0.8
+  - target: "[[Agent可组合性]]"
+    type: enables
+    confidence: 0.85
+  - target: "[[Context7]]"
+    type: used_by
+    confidence: 0.8
+  - target: "[[MCP Inspector]]"
+    type: used_by
+    confidence: 0.75
 supersedes: null
 ---
 
 # MCP协议层
 
-[[Codex CLI]] 的工具连接协议层。MCP（Model Context Protocol）是 Anthropic 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。[[Codex CLI|Codex]] 同时扮演 **MCP 客户端**（连接外部工具）和 **MCP 服务端**（将自身暴露给其他 Agent）两个角色。
+[[Codex CLI]] 的工具连接协议层。MCP（[[MCP|Model Context Protocol]]）是 [[Anthropic]] 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。[[Codex CLI|Codex]] 同时扮演 **MCP 客户端**（连接外部工具）和 **MCP 服务端**（将自身暴露给其他 Agent）两个角色。
 
 ## 核心价值
 

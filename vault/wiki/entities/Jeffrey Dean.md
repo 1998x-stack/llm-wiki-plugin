@@ -30,6 +30,18 @@ relates_to:
   type: caused
   confidence: 0.85
   note: 后来主导了 TensorFlow 研发
+- target: "[[Efficient Estimation of Word Representations in Vector Space (2013 论文)]]"
+  type: caused
+  confidence: 0.9
+  note: Word2Vec 论文合著者
+- target: "[[Tomas Mikolov]]"
+  type: compares_to
+  confidence: 0.7
+  note: Word2Vec 论文合著者
+- target: "[[Word2Vec]]"
+  type: caused
+  confidence: 0.8
+  note: 贡献者
 supersedes: null
 ---
 
@@ -56,6 +68,7 @@ supersedes: null
 ## 来源
 
 - [[raw/books/计算机科学/19-dean-ghemawat-mapreduce.md]]
+- [[raw/articles/ai-papers/machine-learning/08_word2vec_2013.md]]
 
 ## 相关
 
@@ -63,3 +76,6 @@ supersedes: null
 - [[MapReduce 论文]] — 2004年共同发表
 - [[MapReduce]] — 共同发明
 - [[TensorFlow]] — 主导研发
+- [[Efficient Estimation of Word Representations in Vector Space (2013 论文)]] — Word2Vec 论文合著者
+- [[Tomas Mikolov]] — Word2Vec 论文合著者
+- [[Word2Vec]] — 贡献者

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 交接机制 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Session 交接机制</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">context-transfer</span><span class="tag">session-management</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="session">Session 交接机制</h1>
+<h2 id="_1">概述</h2>
+<p>Session 交接机制是一种跨 Agent 会话的状态传递模式，通过 prd.json（进度）、progress.txt（日记）和 AGENTS.md（经验）三个核心文件实现知识的持久化和继承，使每个新 Agent 实例无需依赖前一个实例的上下文记忆即可无缝继续工作。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>三文件架构</strong>：</li>
+<li><strong>prd.json</strong>：权威进度源，包含所有 User Story 的状态（passes/未完成）、优先级、依赖关系。新 Agent 启动时首先解析此文件确定当前任务。</li>
+<li><strong>progress.txt</strong>：交班日记，按 Session 编号追加记录，包含完成的 Story、变更点列表、测试结果、阻塞信息、下一步计划。提供操作级别的上下文。</li>
+<li>
+<p><strong>AGENTS.md</strong>：项目约定手册，包含项目概览、运行方式、文件结构、命名规范、代码约定、环境变量、已知坑点（Gotchas）和 Learnings。由 Agent 在运行过程中持续维护。</p>
+</li>
+<li>
+<p><strong>启动读取顺序</strong>：新 Agent 实例的强制启动序列中，第 3 步读取 progress.txt（交班日记），第 4 步读取 AGENTS.md（经验手册），第 5 步解析 prd.json（任务源）。这个顺序确保 Agent 先了解历史背景，再确定当前任务。</p>
+</li>
+<li>
+<p><strong>结束写入规范</strong>：</p>
+</li>
+<li>progress.txt 追加 Session 记录：Story ID、状态（COMPLETED/BLOCKED/Early exit）、变更点、测试结果、下一个 Story、剩余数量</li>
+<li>AGENTS.md 在 Learnings 部分追加新发现的规律、坑点、约定</li>
+<li>
+<p>prd.json 更新已完成 Story 的 <code>passes: true</code></p>
+</li>
+<li>
+<p><strong>与 <a href="上下文窗口.html">上下文窗口</a> 的关系</strong>：Session 交接机制本质上是 <a href="Context Engineering.html">Context Engineering</a> 的一种实践——将有限的<a href="上下文窗口.html">上下文窗口</a>内的关键信息外部化到持久文件中，突破<a href="上下文窗口.html">上下文窗口</a>的限制。每个新 Agent 实例通过读取这些文件"恢复"前一个实例的知识状态。</p>
+</li>
+<li>
+<p><strong>与 <a href="PRD 驱动开发.html">PRD 驱动开发</a> 的关系</strong>：prd.json 作为三文件之一，同时是 <a href="PRD 驱动开发.html">PRD 驱动开发</a>的核心数据源。Session 交接机制确保 prd.json 的状态在 Agent 实例之间一致传递。</p>
+</li>
+<li>
+<p><strong>设计优势</strong>：</p>
+</li>
+<li><strong>抗上下文丢失</strong>：不依赖 Agent 的上下文记忆，所有关键状态持久化到文件</li>
+<li><strong>可审计</strong>：progress.txt 提供完整的操作历史日志</li>
+<li><strong>可回退</strong>：Git 历史 + progress.txt 可追溯到任意时间点的状态</li>
+<li><strong>可扩展</strong>：新 Agent 实例可以来自不同的<a href="上下文窗口.html">上下文窗口</a>，只要读取相同文件即可继续</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/CLAUDE.md</span> — Ralph Coding Agent 提示词模板中的启动序列和结束流程</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/AGENTS.md</span> — AGENTS.md 项目约定模板</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/coding-agent.md</span> — Coding Agent 完整协议中的 progress.txt 更新格式规范</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — implemented_by（Session 交接机制的具体实现系统）</li>
+<li><a href="PRD 驱动开发.html">PRD 驱动开发</a> — enables（prd.json 作为进度源在会话间传递）</li>
+<li><a href="Context Engineering.html">Context Engineering</a> — part_of（上下文外部化的核心实践）</li>
+<li><a href="上下文窗口.html">上下文窗口</a> — relates_to（突破上下文窗口限制的解决方案）</li>
+<li><a href="Agent 迭代循环.html">Agent 迭代循环</a> — relates_to（每次迭代结束时执行交接写入）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Semantic Tokens（语义标记）.html">&larr; Semantic Tokens（语义标记）</a>
+    <a href="Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

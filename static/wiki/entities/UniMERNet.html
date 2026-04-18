@@ -127,36 +127,104 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / UniMERNet</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.65</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">AI模型</span><span class="tag">公式识别</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="unimernet">UniMERNet</h1>
 <h2 id="_1">概述</h2>
-<p>UniMERNet 是用于<a href="../concepts/公式识别.html">数学公式识别</a>的深度学习模型，可将图像中的公式检测框转换为 LaTeX 代码，是 <a href="MinerU.html">MinerU</a> 第四层流水线中的<a href="../concepts/公式识别.html">公式识别</a>引擎。</p>
+<p>UniMERNet（Unified Mathematical Expression Recognition Network）是上海 AI Lab 开发的<a href="../concepts/公式识别.html">公式识别</a>模型，采用 Swin <a href="../concepts/Transformer 架构.html">Transformer</a> 编码器 + <a href="../concepts/Transformer 架构.html">Transformer</a> 解码器的 Image-to-Sequence 架构，<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>生成 LaTeX 字符串。</p>
 <h2 id="_2">关键内容</h2>
+<h3 id="_3">设计哲学：统一</h3>
+<ul>
+<li><strong>统一行内公式和独立公式</strong>：两种公式用同一模型处理</li>
+<li><strong>统一印刷体和手写体</strong>：虽然 <a href="MinerU.html">MinerU</a> 主要处理印刷 PDF</li>
+<li><strong>统一简单和复杂公式</strong>：从 <code>x + y = z</code> 到多行大型<a href="../concepts/矩阵.html">矩阵</a></li>
+</ul>
+<h3 id="latex-encoder-decoder">整体架构：图像 → LaTeX 的 Encoder-Decoder</h3>
+<pre><code>公式区域图像 → 图像编码器（Swin Transformer/ViT）→ 特征序列
+           → 文本解码器（Transformer Decoder）→ 自回归生成 LaTeX token
+           → LaTeX 字符串
+</code></pre>
+<p>这是一个标准的 <strong>Image-to-Sequence</strong> 架构，类似于图像描述（Image Captioning）任务。</p>
+<h3 id="swin-transformer">视觉编码器：Swin Transformer</h3>
+<p>选择 Swin Transformer 而非 CNN 的原因：
+1. <strong>局部笔画特征</strong>：字符的具体形状（∫ vs ∮）
+2. <strong>全局位置关系</strong>：上下标的相对位置、分数线的高度
+3. <strong>长距离依赖</strong>：公式开头的 <code>\sum_</code> 和结尾的 <code>n=1</code> 之间的关联</p>
+<p>Swin Transformer 的层级窗口注意力机制兼顾了这三点，且比纯 ViT 对小尺寸输入更友好。</p>
+<h3 id="_4">图像预处理</h3>
+<ul>
+<li>灰度化（公式通常是黑白的）</li>
+<li>归一化高度（默认 target_height=96），宽度等比缩放</li>
+<li>白底黑字标准化（检测背景色，深色背景则反转）</li>
+<li>限制最大宽度（1200px）</li>
+</ul>
+<h3 id="latex">文本解码器：自回归 LaTeX 生成</h3>
+<p>解码器按照<strong>自回归</strong>方式逐 token 生成 LaTeX，每一步基于<strong>当前已生成序列</strong>和<strong>图像特征</strong>预测下一个 token。</p>
+<p><strong>Beam Search 解码</strong>：使用 Beam Size = 4（保留 4 条候选序列），在质量和速度间取得平衡，优于贪心解码。</p>
+<p><strong>LaTeX Token 词表设计</strong>：使用<strong>命令级词表</strong>而非字符级——<code>\frac</code> 作为一个 token 而非 <code>\</code>, <code>f</code>, <code>r</code>, <code>a</code>, <code>c</code> 五个 token。词表约 600 个 token，包含 LaTeX 命令（<code>\frac</code>, <code>\sum</code>, <code>\int</code>）、希腊字母（<code>\alpha</code>, <code>\beta</code>）、结构标记（<code>_{</code>, <code>^{</code>, <code>}</code>）和普通字符。这大大缩短了序列长度，提升了识别速度和准确率。</p>
+<h3 id="latex_1">LaTeX 后处理</h3>
+<ul>
+<li><strong>语法修复</strong>：修复未闭合的花括号、常见识别错误（如 <code>\operaorname</code> → <code>\operatorname</code>）、移除多余空格</li>
+<li><strong>LaTeX 渲染验证</strong>：可选使用 <code>sympy</code> 或 <code>latex2sympy</code> 解析生成的 LaTeX，解析失败则标记为低置信度</li>
+<li><strong>输出格式</strong>：行内公式 <code>$...$</code>，独立公式 <code>$$...$$</code></li>
+</ul>
+<h3 id="_5">识别能力边界</h3>
+<table>
+<thead>
+<tr>
+<th>公式类型</th>
+<th>识别准确率</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准单行公式</td>
+<td>高（&gt;90%）</td>
+<td>LaTeX 生成的标准印刷体</td>
+</tr>
+<tr>
+<td>多行对齐公式（align）</td>
+<td>中（60~80%）</td>
+<td>结构复杂，容易出错</td>
+</tr>
+<tr>
+<td>大型<a href="../concepts/矩阵.html">矩阵</a></td>
+<td>中（50~70%）</td>
+<td>维度高时出错率增加</td>
+</tr>
+<tr>
+<td>化学结构式</td>
+<td>低（&lt;30%）</td>
+<td>非训练目标</td>
+</tr>
+<tr>
+<td>手写公式</td>
+<td>低（40~60%）</td>
+<td>扫描件中的手写标注</td>
+</tr>
+</tbody>
+</table>
 <h3 id="mineru">在 MinerU 中的角色</h3>
 <ul>
 <li><strong><a href="../concepts/公式识别.html">公式识别</a></strong>：接收布局检测输出的公式检测框，输出对应的 LaTeX 代码</li>
 <li><strong>高保真还原</strong>：使 <a href="MinerU.html">MinerU</a> 能够将 PDF 中以图像形式存储的公式精确转换为可编辑的 LaTeX 格式</li>
-<li><strong>与同类工具对比</strong>：相比 <a href="Marker.html">Marker</a>（公式支持有限）和 <a href="Nougat.html">Nougat</a>（支持但不擅长中文），UniMERNet 提供了专项的<a href="../concepts/公式识别.html">公式识别</a>能力</li>
+<li>与同类工具对比：相比 <a href="Marker.html">Marker</a>（公式支持有限）和 <a href="Nougat.html">Nougat</a>（支持但不擅长中文），UniMERNet 提供了专项的<a href="../concepts/公式识别.html">公式识别</a>能力</li>
 </ul>
-<h3 id="_3">技术特点</h3>
+<h2 id="_6">来源</h2>
 <ul>
-<li>端到端<a href="../concepts/公式识别.html">公式识别</a>：检测框 → LaTeX</li>
-<li>支持复杂公式结构（分式、积分、<a href="../concepts/矩阵.html">矩阵</a>等）</li>
-<li>与 <a href="MinerU.html">MinerU</a> 的布局检测和内容块分类协同工作</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_05_formula.md</span> — MinerU 深度解析系列 · 第五篇：公式识别系统</li>
 </ul>
-<h2 id="_4">来源</h2>
-<ul>
-<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
-</ul>
-<h2 id="_5">相关</h2>
+<h2 id="_7">相关</h2>
 <ul>
 <li><a href="MinerU.html">MinerU</a> — 使用 UniMERNet 作为公式识别引擎</li>
 <li><a href="../concepts/公式识别.html">公式识别</a> — 所属技术领域</li>
+<li><a href="上海人工智能实验室.html">上海人工智能实验室</a> — 开发组织</li>
 </ul>
   </div>
   <div class="page-nav">

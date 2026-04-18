@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bun-runtime">Bun Runtime</h1>
 <h2 id="_1">概述</h2>
-<p>Bun 是 JavaScript/TypeScript 生态的全能工具链（运行时 + 包管理器 + 打包器 + 测试框架），用 Zig 实现，由 Oven（Bun Inc.）开发，2022 年首发。定位为”Cargo for JS”，以极速替代 node+npm+jest+ts-node 整套工具链。</p>
+<p>Bun 是 JavaScript/<a href="TypeScript.html">TypeScript</a> 生态的全能工具链（运行时 + 包管理器 + 打包器 + 测试框架），用 Zig 实现，由 Oven（Bun Inc.）开发，2022 年首发。定位为”Cargo for JS”，以极速替代 node+npm+jest+ts-node 整套工具链。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>性能基准</strong>：冷缓存包安装比 npm 快约 16x（3s vs 48s），Docker 多阶段构建无缓存约快 8-10x（6s vs 52s）。缓存命中时约快 12x。</li>
-<li><strong>功能覆盖</strong>：内置包管理器（兼容 npm registry）、TypeScript 原生执行（无需 tsc）、打包器（替代 esbuild/rollup）、测试框架（Jest 兼容）、<a href="SQLite.html">SQLite</a>（<code>bun:sqlite</code>）、Workspaces、热重载（<code>bun --hot</code>）。</li>
+<li><strong>功能覆盖</strong>：内置包管理器（兼容 npm registry）、<a href="TypeScript.html">TypeScript</a> 原生执行（无需 tsc）、打包器（替代 esbuild/rollup）、测试框架（Jest 兼容）、<a href="SQLite.html">SQLite</a>（<code>bun:sqlite</code>）、Workspaces、热重载（<code>bun --hot</code>）。</li>
 <li><strong>架构设计</strong>：全局缓存 + 硬链接（类 pnpm）；二进制 lockfile <code>bun.lockb</code>；底层用 Zig + JavaScriptCore；Node.js API 兼容率约 95%+。</li>
-<li><strong>适用场景</strong>：新建 JS/TS 项目、对 CI 安装速度极度敏感、API 服务/工具库/全栈 Web 应用、AI Agent 工具链（Claude Code 等工具首选）。</li>
+<li><strong>适用场景</strong>：新建 JS/TS 项目、对 CI 安装速度极度敏感、API 服务/工具库/全栈 Web 应用、AI Agent 工具链（<a href="Claude Code.html">Claude Code</a> 等工具首选）。</li>
 <li><strong>局限</strong>：不管理 Node 版本（需配合 fnm/nvm）；Node.js 兼容性 95% 而非 100%；企业环境对工具链稳定性要求极高时建议观望。</li>
 </ol>
 <h2 id="_3">来源</h2>

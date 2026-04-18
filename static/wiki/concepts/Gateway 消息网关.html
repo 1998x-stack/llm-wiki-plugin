@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gateway 消息网关 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Gateway 消息网关</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">gateway</span><span class="tag">messaging</span><span class="tag">integration</span><span class="tag">ai-agent</span><span class="tag">工具与框架</span></div>
+</div>
+  <div class="content">
+    <h1 id="gateway">Gateway 消息网关</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的入口层组件，将 Agent 能力暴露到 15+ 消息平台的统一通信总线，实现"随时随地可达"的持续在线 AI 体验。</p>
+<h2 id="_2">关键内容</h2>
+<ul>
+<li><strong>核心价值</strong>：打破"必须坐到电脑前打开终端"的使用限制，让用户通过 Telegram、WhatsApp、Slack、Discord 等任意平台与 Agent 交互</li>
+<li><strong>架构定位</strong>：在<a href="三层分离架构.html">三层分离架构</a>的入口层中，与 CLI、ACP、<a href="Batch Runner.html">Batch Runner</a> 并列，最终都调用 <code>AIAgent.run_conversation()</code></li>
+<li><strong>与 <a href="../entities/OpenClaw.html">OpenClaw</a> 的根本差异</strong>：<a href="../entities/OpenClaw.html">OpenClaw</a> 把 <a href="网关与路由器.html">Gateway</a> 作为控制平面（单一长期进程，所有东西流过它）；<a href="../entities/Hermes Agent.html">Hermes</a> 的 <a href="网关与路由器.html">Gateway</a> 更轻，只做消息路由，核心逻辑在 AIAgent 循环里</li>
+<li><strong>五大职责</strong>：接收各平台消息 → 标准化为 MessageEvent → 管理会话状态 → 调用 AIAgent 处理 → 将结果发回原平台</li>
+<li><strong>消息处理链路</strong>：平台事件到达 → Adapter.on_message() 解析 → 转换为 MessageEvent → 授权验证 → 解析 session_key → 加载历史 → 创建 AIAgent → 执行对话 → 投递响应 → 持久化会话 → 触发 hooks</li>
+<li><strong>双模式支持</strong>：<a href="网关与路由器.html">Gateway</a> 处理被动响应（用户发消息→Agent 回复），<a href="Cron 调度系统.html">Cron 调度系统</a>处理主动触发（定时任务→Agent 执行→投递结果），两者共用相同的 AIAgent 执行引擎</li>
+<li><strong>配置方式</strong>：通过 <code>hermes gateway setup</code> <a href="交互式配置.html">交互式配置</a>，<code>hermes gateway start [--daemon]</code> 启动，支持 webhook 和 polling 两种模式</li>
+<li><strong>平台无关性设计</strong>：新增一个平台只需实现适配器接口，不改变 AIAgent 核心逻辑，15 个适配器统一接口</li>
+</ul>
+<h2 id="_3">来源</h2>
+<ul>
+<li><a href="/raw/articles/ai-tools/hermes/05_hermes_gateway.md">05_hermes_gateway.md</a> — Hermes Agent 深度解析第五篇：Gateway 消息网关，2026 年 4 月版本</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Hermes Agent.html">Hermes Agent</a> — part_of</li>
+<li><a href="平台适配器模式.html">平台适配器模式</a> — uses</li>
+<li><a href="会话持久化.html">会话持久化</a> — uses</li>
+<li><a href="DM 配对授权.html">DM 配对授权</a> — uses</li>
+<li><a href="Cron 调度系统.html">Cron 调度系统</a> — extends</li>
+<li><a href="ACP 编辑器集成.html">ACP 编辑器集成</a> — compares_to</li>
+<li><a href="消息镜像同步.html">消息镜像同步</a> — uses</li>
+<li><a href="生命周期 Hooks.html">生命周期 Hooks</a> — uses</li>
+<li><a href="../entities/OpenClaw.html">OpenClaw</a> — compares_to</li>
+<li><a href="跨会话记忆.html">跨会话记忆</a> — extends</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="GSD Planning Directory.html">&larr; GSD Planning Directory</a>
+    <a href="Gauss-Seidel方法.html">Gauss-Seidel方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

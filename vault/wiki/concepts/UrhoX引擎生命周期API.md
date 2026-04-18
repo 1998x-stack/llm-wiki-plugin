@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [游戏引擎, UrhoX, Lua, API, 生命周期, 时间]
+tags: ["游戏引擎", "UrhoX", "Lua", "API", "生命周期", "时间", "游戏开发"]
 aliases: [UrhoX Engine API, UrhoX Time API, 引擎生命周期]
 relates_to: [UrhoX引擎, UrhoX Lua开发准则, Delta-time运动模式]
 supersedes: null

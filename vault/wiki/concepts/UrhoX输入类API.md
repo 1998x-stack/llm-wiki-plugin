@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 输入处理, API, 键盘, 鼠标, 触摸, 手柄]
+tags: ["UrhoX", "Lua", "输入处理", "API", "键盘", "鼠标", "触摸", "手柄", "游戏开发"]
 aliases: [Input类, Controls类, TouchState, JoystickState, UrhoX输入系统]
 relates_to: [UrhoX引擎, UrhoX鼠标模式, 鼠标滚轮输入API陷阱]
 supersedes: null

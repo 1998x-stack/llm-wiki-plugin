@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, XML, JSON, 数据格式, 游戏引擎]
+tags: ["UrhoX", "Lua", "XML", "JSON", "数据格式", "游戏引擎", "游戏开发"]
 aliases: [UrhoX XMLFile, UrhoX JSONFile, UrhoX XML JSON API]
 relates_to: [UrhoX引擎, UrhoX IO系统API, UrhoX序列化系统API, UrhoX全局子系统]
 supersedes: null

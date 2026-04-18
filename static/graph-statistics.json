@@ -1,31 +1,33 @@
 {
-  "generated": "2026-04-17T15:42:44+00:00",
+  "generated": "2026-04-18T15:32:34+00:00",
   "summary": {
-    "total_nodes": 1073,
-    "total_edges": 8520,
+    "total_nodes": 1627,
+    "total_edges": 12356,
     "orphan_count": 0,
-    "component_count": 7,
-    "avg_degree": 10.02,
-    "density": 0.0093,
-    "diameter": 9,
-    "avg_clustering": 0.5215,
-    "bridge_count": 17
+    "component_count": 5,
+    "avg_degree": 10.44,
+    "density": 0.0064,
+    "diameter": 10,
+    "avg_clustering": 0.5223,
+    "bridge_count": 14
   },
   "type_distribution": {
-    "concept": 676,
-    "entity": 383,
+    "concept": 1016,
+    "entity": 567,
+    "person": 10,
+    "paper": 9,
+    "tool": 7,
     "synthesis": 7,
-    "tool": 3,
-    "qa-insight": 2,
-    "unknown": 1,
-    "paper": 1
+    "project": 6,
+    "company": 3,
+    "qa-insight": 2
   },
   "confidence_distribution": {
     "0.0-0.3": 0,
     "0.3-0.5": 0,
-    "0.5-0.7": 47,
-    "0.7-0.9": 449,
-    "0.9-1.0": 575
+    "0.5-0.7": 101,
+    "0.7-0.9": 601,
+    "0.9-1.0": 924
   },
   "top_connected": [
     {
@@ -36,17 +38,17 @@
     {
       "label": "规范化理论",
       "type": "concept",
-      "edge_count": 172
+      "edge_count": 206
     },
     {
       "label": "矩阵",
       "type": "concept",
-      "edge_count": 119
+      "edge_count": 132
     },
     {
       "label": "矩阵分解",
       "type": "concept",
-      "edge_count": 118
+      "edge_count": 122
     },
     {
       "label": "信息论",
@@ -54,29 +56,54 @@
       "edge_count": 113
     },
     {
+      "label": "Google",
+      "type": "entity",
+      "edge_count": 104
+    },
+    {
+      "label": "上下文窗口",
+      "type": "concept",
+      "edge_count": 102
+    },
+    {
+      "label": "社会学",
+      "type": "concept",
+      "edge_count": 98
+    },
+    {
       "label": "协同过滤",
       "type": "concept",
       "edge_count": 92
     },
     {
+      "label": "区分",
+      "type": "entity",
+      "edge_count": 91
+    },
+    {
       "label": "数值分析",
+      "type": "concept",
+      "edge_count": 89
+    },
+    {
+      "label": "Context-Engineering",
       "type": "concept",
       "edge_count": 88
     },
     {
-      "label": "Google",
-      "type": "entity",
-      "edge_count": 81
+      "label": "Claude Code",
+      "type": "project",
+      "edge_count": 88
     },
     {
       "label": "阿兰·图灵",
       "type": "entity",
-      "edge_count": 81
+      "edge_count": 85
     },
     {
       "label": "SASRec",
       "type": "entity",
-      "edge_count": 78
+      "edge_count": 79
     },
     {
       "label": "概率论",
@@ -84,209 +111,189 @@
       "edge_count": 78
     },
     {
+      "label": "Anthropic",
+      "type": "company",
+      "edge_count": 77
+    },
+    {
+      "label": "MemPalace",
+      "type": "entity",
+      "edge_count": 77
+    },
+    {
       "label": "P5 论文",
       "type": "entity",
-      "edge_count": 76
-    },
-    {
-      "label": "序列推荐",
-      "type": "concept",
-      "edge_count": 74
-    },
-    {
-      "label": "Context-Engineering",
-      "type": "concept",
-      "edge_count": 73
+      "edge_count": 77
     },
     {
       "label": "强化学习",
       "type": "concept",
-      "edge_count": 69
-    },
-    {
-      "label": "DeepFM",
-      "type": "entity",
-      "edge_count": 67
-    },
-    {
-      "label": "Embedding",
-      "type": "concept",
-      "edge_count": 62
-    },
-    {
-      "label": "Claude-Code",
-      "type": "entity",
-      "edge_count": 62
-    },
-    {
-      "label": "矩阵理论",
-      "type": "concept",
-      "edge_count": 62
-    },
-    {
-      "label": "上下文窗口",
-      "type": "concept",
-      "edge_count": 60
+      "edge_count": 76
     }
   ],
   "top_betweenness": [
     {
       "id": "wiki/concepts/规范化理论.md",
       "label": "规范化理论",
-      "betweenness": 0.2967
+      "betweenness": 0.2709
+    },
+    {
+      "id": "wiki/entities/区分.md",
+      "label": "区分",
+      "betweenness": 0.1861
     },
     {
       "id": "wiki/concepts/矩阵.md",
       "label": "矩阵",
-      "betweenness": 0.165
+      "betweenness": 0.0995
     },
     {
       "id": "wiki/maps/推荐系统.md",
       "label": "推荐系统",
-      "betweenness": 0.12
+      "betweenness": 0.0704
     },
     {
-      "id": "wiki/maps/信息论.md",
-      "label": "信息论",
-      "betweenness": 0.0697
+      "id": "wiki/concepts/社会学.md",
+      "label": "社会学",
+      "betweenness": 0.06
     },
     {
       "id": "wiki/entities/Google.md",
       "label": "Google",
-      "betweenness": 0.058
+      "betweenness": 0.0559
     },
     {
-      "id": "wiki/entities/UrhoX引擎.md",
-      "label": "UrhoX引擎",
-      "betweenness": 0.0578
+      "id": "wiki/entities/阿兰·图灵.md",
+      "label": "阿兰·图灵",
+      "betweenness": 0.0429
+    },
+    {
+      "id": "wiki/maps/数值分析.md",
+      "label": "数值分析",
+      "betweenness": 0.0418
+    },
+    {
+      "id": "wiki/maps/信息论.md",
+      "label": "信息论",
+      "betweenness": 0.0412
     },
     {
       "id": "wiki/concepts/Lua脚本宿主模式.md",
       "label": "Lua脚本宿主模式",
-      "betweenness": 0.0577
-    },
-    {
-      "id": "wiki/maps/数值分析.md",
-      "label": "数值分析",
-      "betweenness": 0.0557
+      "betweenness": 0.0315
     },
     {
       "id": "wiki/maps/工具与框架.md",
       "label": "工具与框架",
-      "betweenness": 0.0531
-    },
-    {
-      "id": "wiki/entities/阿兰·图灵.md",
-      "label": "阿兰·图灵",
-      "betweenness": 0.0454
-    },
-    {
-      "id": "wiki/concepts/骨骼系统.md",
-      "label": "骨骼系统",
-      "betweenness": 0.0413
-    },
-    {
-      "id": "wiki/concepts/Transformer架构.md",
-      "label": "Transformer架构",
-      "betweenness": 0.0262
-    },
-    {
-      "id": "wiki/maps/概率论.md",
-      "label": "概率论",
-      "betweenness": 0.0259
-    },
-    {
-      "id": "wiki/concepts/LSP（语言服务器协议）.md",
-      "label": "LSP（语言服务器协议）",
-      "betweenness": 0.0246
-    },
-    {
-      "id": "wiki/concepts/上下文窗口.md",
-      "label": "上下文窗口",
-      "betweenness": 0.0234
-    }
-  ],
-  "top_pagerank": [
-    {
-      "id": "wiki/maps/推荐系统.md",
-      "label": "推荐系统",
-      "pagerank": 0.0135
-    },
-    {
-      "id": "wiki/concepts/规范化理论.md",
-      "label": "规范化理论",
-      "pagerank": 0.0127
-    },
-    {
-      "id": "wiki/concepts/矩阵.md",
-      "label": "矩阵",
-      "pagerank": 0.0079
+      "betweenness": 0.0303
     },
     {
       "id": "wiki/entities/UrhoX引擎.md",
       "label": "UrhoX引擎",
-      "pagerank": 0.0072
+      "betweenness": 0.0294
     },
     {
-      "id": "wiki/maps/数值分析.md",
-      "label": "数值分析",
-      "pagerank": 0.0062
-    },
-    {
-      "id": "wiki/maps/信息论.md",
-      "label": "信息论",
-      "pagerank": 0.0058
-    },
-    {
-      "id": "wiki/entities/Google.md",
-      "label": "Google",
-      "pagerank": 0.0056
-    },
-    {
-      "id": "wiki/maps/工具与框架.md",
-      "label": "工具与框架",
-      "pagerank": 0.0048
-    },
-    {
-      "id": "wiki/entities/阿兰·图灵.md",
-      "label": "阿兰·图灵",
-      "pagerank": 0.0046
-    },
-    {
-      "id": "wiki/concepts/矩阵分解.md",
-      "label": "矩阵分解",
-      "pagerank": 0.0044
-    },
-    {
-      "id": "wiki/maps/概率论.md",
-      "label": "概率论",
-      "pagerank": 0.0042
-    },
-    {
-      "id": "wiki/concepts/协同过滤.md",
-      "label": "协同过滤",
-      "pagerank": 0.0036
-    },
-    {
-      "id": "wiki/concepts/强化学习.md",
-      "label": "强化学习",
-      "pagerank": 0.0036
-    },
-    {
-      "id": "wiki/concepts/LSP（语言服务器协议）.md",
-      "label": "LSP（语言服务器协议）",
-      "pagerank": 0.0035
+      "id": "wiki/entities/Claude Code.md",
+      "label": "Claude Code",
+      "betweenness": 0.0249
     },
     {
       "id": "wiki/concepts/上下文窗口.md",
       "label": "上下文窗口",
-      "pagerank": 0.0034
+      "betweenness": 0.0221
+    },
+    {
+      "id": "wiki/entities/望远镜.md",
+      "label": "望远镜",
+      "betweenness": 0.0201
+    }
+  ],
+  "top_pagerank": [
+    {
+      "id": "wiki/concepts/规范化理论.md",
+      "label": "规范化理论",
+      "pagerank": 0.0097
+    },
+    {
+      "id": "wiki/maps/推荐系统.md",
+      "label": "推荐系统",
+      "pagerank": 0.0086
+    },
+    {
+      "id": "wiki/concepts/社会学.md",
+      "label": "社会学",
+      "pagerank": 0.0057
+    },
+    {
+      "id": "wiki/concepts/矩阵.md",
+      "label": "矩阵",
+      "pagerank": 0.0056
+    },
+    {
+      "id": "wiki/entities/区分.md",
+      "label": "区分",
+      "pagerank": 0.005
+    },
+    {
+      "id": "wiki/entities/UrhoX引擎.md",
+      "label": "UrhoX引擎",
+      "pagerank": 0.0046
+    },
+    {
+      "id": "wiki/entities/Google.md",
+      "label": "Google",
+      "pagerank": 0.0044
+    },
+    {
+      "id": "wiki/maps/数值分析.md",
+      "label": "数值分析",
+      "pagerank": 0.004
+    },
+    {
+      "id": "wiki/entities/Claude Code.md",
+      "label": "Claude Code",
+      "pagerank": 0.0038
+    },
+    {
+      "id": "wiki/maps/信息论.md",
+      "label": "信息论",
+      "pagerank": 0.0037
+    },
+    {
+      "id": "wiki/entities/Anthropic.md",
+      "label": "Anthropic",
+      "pagerank": 0.0036
+    },
+    {
+      "id": "wiki/concepts/上下文窗口.md",
+      "label": "上下文窗口",
+      "pagerank": 0.0035
+    },
+    {
+      "id": "wiki/entities/阿兰·图灵.md",
+      "label": "阿兰·图灵",
+      "pagerank": 0.0031
+    },
+    {
+      "id": "wiki/concepts/矩阵分解.md",
+      "label": "矩阵分解",
+      "pagerank": 0.0029
+    },
+    {
+      "id": "wiki/maps/工具与框架.md",
+      "label": "工具与框架",
+      "pagerank": 0.0029
     }
   ],
   "top_clustering": [
     {
       "id": "wiki/concepts/ACP协议.md",
       "label": "ACP协议",
+      "clustering": 1.0
+    },
+    {
+      "id": "wiki/concepts/AI Slop.md",
+      "label": "AI Slop",
       "clustering": 1.0
     },
     {
@@ -320,149 +327,169 @@
       "clustering": 1.0
     },
     {
+      "id": "wiki/concepts/CBOW（连续词袋模型）.md",
+      "label": "CBOW（连续词袋模型）",
+      "clustering": 1.0
+    },
+    {
       "id": "wiki/concepts/CREB.md",
       "label": "CREB",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/Claude Code 权限模式.md",
-      "label": "Claude Code 权限模式",
-      "clustering": 1.0
-    },
-    {
-      "id": "wiki/concepts/CollisionShape直径参数陷阱.md",
-      "label": "CollisionShape直径参数陷阱",
       "clustering": 1.0
     }
   ],
   "degree_distribution": {
-    "1": 14,
-    "2": 38,
-    "3": 89,
-    "4": 102,
-    "5": 92,
-    "6": 103,
-    "7": 97,
-    "8": 90,
-    "9": 78,
-    "10": 55,
-    "11": 49,
-    "12": 33,
-    "13": 34,
-    "14": 31,
-    "15": 23,
-    "16": 17,
-    "17": 15,
-    "18": 7,
-    "19": 9,
-    "20": 14,
-    "21": 6,
+    "1": 13,
+    "2": 37,
+    "3": 104,
+    "4": 144,
+    "5": 144,
+    "6": 163,
+    "7": 165,
+    "8": 147,
+    "9": 118,
+    "10": 98,
+    "11": 68,
+    "12": 44,
+    "13": 51,
+    "14": 47,
+    "15": 44,
+    "16": 32,
+    "17": 23,
+    "18": 18,
+    "19": 18,
+    "20": 22,
+    "21": 9,
     "22": 12,
-    "23": 3,
-    "24": 7,
-    "25": 7,
-    "26": 7,
-    "27": 6,
-    "28": 6,
+    "23": 8,
+    "24": 11,
+    "25": 8,
+    "26": 11,
+    "27": 8,
+    "28": 4,
+    "29": 4,
     "30": 3,
-    "31": 1,
-    "32": 1,
-    "33": 1,
-    "35": 1,
+    "31": 4,
+    "32": 4,
+    "33": 4,
+    "34": 1,
+    "35": 3,
     "37": 1,
     "38": 1,
-    "39": 2,
+    "39": 3,
     "40": 1,
     "42": 1,
-    "43": 2,
-    "44": 1,
-    "45": 1,
+    "44": 3,
+    "46": 2,
+    "47": 1,
+    "49": 1,
+    "52": 1,
     "55": 2,
     "56": 2,
     "57": 1,
+    "60": 1,
     "66": 1,
+    "68": 1,
+    "69": 1,
     "70": 1,
-    "76": 1,
-    "78": 1,
-    "111": 1,
-    "165": 1,
+    "73": 1,
+    "79": 1,
+    "91": 1,
+    "98": 2,
+    "124": 1,
+    "199": 1,
     "210": 1
   },
   "center_nodes": [
-    "规范化理论"
+    "结构功能主义",
+    "范式批判",
+    "W.E.B. 杜波依斯",
+    "望远镜",
+    "欧内斯特·伯吉斯"
   ],
   "tag_frequency": {
-    "技术": 386,
-    "研究": 337,
-    "推荐系统": 221,
-    "AI": 166,
-    "数学": 140,
-    "历史": 121,
-    "方法论": 112,
-    "AI工程": 100,
-    "计算理论": 88,
+    "技术": 394,
+    "研究": 344,
+    "推荐系统": 223,
+    "AI": 185,
+    "社会学": 171,
+    "深度学习": 147,
+    "数学": 145,
+    "历史": 129,
+    "方法论": 126,
+    "机器学习": 118,
+    "AI工程": 116,
+    "社会科学": 109,
+    "天文学": 95,
+    "计算理论": 91,
+    "游戏开发": 90,
     "概率论": 85,
-    "工具": 65,
-    "数值分析": 65,
-    "深度学习": 58,
+    "工具与框架": 81,
+    "工具": 77,
+    "Agent系统": 73,
+    "数值分析": 66,
     "机器人学": 58,
-    "信息论": 55,
-    "工具与框架": 54,
+    "信息论": 57,
     "Lua": 53,
+    "人物": 49,
     "UrhoX": 44,
-    "游戏开发": 38,
-    "矩阵理论": 36,
-    "强化学习": 33,
-    "经济学": 29,
-    "CTR预估": 29,
-    "Agent系统": 27,
-    "LLM": 27,
-    "宏观经济学": 26,
-    "游戏引擎": 25,
-    "Lua编程": 25,
-    "机器学习": 23,
-    "协同过滤": 23
+    "强化学习": 38,
+    "矩阵理论": 37,
+    "LLM能力": 36,
+    "文档处理": 36,
+    "经济学": 33
   },
   "growth_timeline": {
     "2026-04-15": 291,
     "2026-04-16": 953,
-    "2026-04-17": 1073
+    "2026-04-17": 1073,
+    "2026-04-18": 1627
   },
   "relationship_types": {
-    "wikilink": 5235,
-    "implements": 515,
-    "extends": 436,
-    "uses": 433,
-    "caused": 418,
-    "related_to": 369,
-    "part_of": 342,
-    "compares_to": 249,
-    "depends_on": 191,
-    "caused_by": 121,
-    "relates_to": 94,
-    "supersedes": 37,
-    "contradicts": 32,
-    "implemented_by": 13,
+    "wikilink": 8342,
+    "implements": 644,
+    "extends": 529,
+    "uses": 528,
+    "caused": 462,
+    "part_of": 461,
+    "related_to": 373,
+    "compares_to": 296,
+    "depends_on": 224,
+    "relates_to": 156,
+    "caused_by": 132,
+    "contradicts": 49,
+    "supersedes": 46,
+    "used_by": 32,
+    "implemented_by": 19,
+    "enables": 13,
     "synthesizes": 11,
-    "used_by": 5,
+    "causes": 7,
     "influenced": 5,
-    "causes": 3,
+    "optimizes": 3,
+    "contains": 3,
     "originated_from": 3,
     "employs": 3,
-    "enables": 2,
+    "created_by": 2,
+    "solved_by": 2,
+    "created": 2,
+    "requires": 1,
     "used_in": 1,
+    "creates": 1,
+    "optimized_by": 1,
+    "combines_with": 1,
     "collaborated_with": 1,
+    "published_by": 1,
+    "authored_by": 1,
     "analyzes": 1
   },
   "orphans": [],
   "components": [
     {
       "id": 0,
-      "size": 1047
+      "size": 1613
     },
     {
       "id": 1,
-      "size": 13
+      "size": 6
     },
     {
       "id": 2,
@@ -470,18 +497,10 @@
     },
     {
       "id": 3,
-      "size": 3
+      "size": 2
     },
     {
       "id": 4,
-      "size": 2
-    },
-    {
-      "id": 5,
-      "size": 2
-    },
-    {
-      "id": 6,
       "size": 2
     }
   ]

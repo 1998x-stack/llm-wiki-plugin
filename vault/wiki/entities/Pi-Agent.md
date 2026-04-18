@@ -47,7 +47,7 @@ supersedes: null
 
 ## 概述
 
-Pi Agent 是由 [[Mario-Zechner]] 创建的极简 AI 编程代理工具包（TypeScript Monorepo），以 4 个工具 + < 1000 token 系统提示实现了与重型 Agent 可比的编程能力。核心理念：投资于 [[Agent Harness模式|Harness]] 的简洁性和可控性，而非堆砌功能。
+Pi Agent 是由 [[Mario-Zechner]] 创建的极简 AI 编程代理工具包（[[TypeScript]] Monorepo），以 4 个工具 + < 1000 token 系统提示实现了与重型 Agent 可比的编程能力。核心理念：投资于 [[Agent Harness模式|Harness]] 的简洁性和可控性，而非堆砌功能。
 
 ## 关键内容
 
@@ -69,16 +69,16 @@ Pi 由四个严格单向分层的包组成：
 1. **「不需要就不构建」**——子代理、计划模式、权限弹窗等均通过扩展系统实现而非内置
 2. **严格单向分层**——构建系统强制，L0 零依赖向上到 L2
 3. **[[Context-Engineering]] 第一公民**——每个进入 LLM 的 token 均可见可控，系统提示 < 1000 token，无"秘密注入"
-4. **会话 JSONL 第一公民**——JSONL 格式持久化，可序列化、可后处理、可跨 Provider 迁移
+4. **会话 [[JSONL格式|JSONL]] 第一公民**——[[JSONL格式|JSONL]] 格式持久化，可序列化、可后处理、可跨 Provider 迁移
 
 ### 3. 与竞品的关键差异
 
-| 维度 | Claude Code | Pi |
+| 维度 | [[Claude Code]] | Pi |
 |------|------------|-----|
 | 系统提示 | 数千 token | < 1000 token |
 | 内置工具 | 20+ | 4 |
 | 多 Provider | 否 | 300+ 模型 |
-| 会话格式 | 私有 | 开放 JSONL |
+| 会话格式 | 私有 | 开放 [[JSONL格式|JSONL]] |
 | 可自托管 | 否 | 是 |
 
 ### 3. pi-agent-core：Agent 循环的最简实现
@@ -89,7 +89,7 @@ Pi 由四个严格单向分层的包组成：
 - **双通道设计**：工具结果分为 `output`（LLM 可见，计入 token）和 `details`（UI 可见，结构化数据，不占 LLM token）
 - **工具参数验证**：执行前用 TypeBox + AJV 校验，失败时生成详细错误消息反馈给 LLM，允许模型**自我修正**
 - **消息队列**：用户在 Agent 执行中发出的新消息被队列化为"转向消息"（下次 LLM 调用前注入）或"跟进消息"（session_end 后执行）
-- **会话持久化**：`session.serialize()` 序列化完整状态，`restoreAgentSession()` 在新进程中恢复
+- **[[会话持久化]]**：`session.serialize()` 序列化完整状态，`restoreAgentSession()` 在新进程中恢复
 
 ### 4. Terminal-Bench 验证
 

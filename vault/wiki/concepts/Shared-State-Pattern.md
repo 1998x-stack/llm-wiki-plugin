@@ -9,6 +9,7 @@ source_count: 1
 tags:
   - AI
   - 架构
+  - Agent系统
 aliases:
   - "Shared State Pattern"
   - "共享状态模式"

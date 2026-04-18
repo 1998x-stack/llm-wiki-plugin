@@ -21,7 +21,7 @@ supersedes: null
 # Checkpoints 与 Rewind
 
 ## 概述
-Checkpoints 保存 Claude Code 对话状态快照（消息、文件修改、工具使用历史、会话上下文），让用户可以回退到之前的时间点，安全地试验和探索多种方案。
+Checkpoints 保存 [[Claude Code]] 对话状态快照（消息、文件修改、工具使用历史、会话上下文），让用户可以回退到之前的时间点，安全地试验和探索多种方案。
 
 ## 关键内容
 
@@ -41,7 +41,7 @@ Checkpoints 保存 Claude Code 对话状态快照（消息、文件修改、工�
    - **从这里开始总结**：把从这里往后的[[上下文压缩（Context Compaction）|对话压缩]]成 AI 生成的摘要，而非直接丢弃
    - **算了**：取消并返回当前状态
 
-4. **自动 Checkpoints**：Claude Code 会自动在关键操作前后创建 checkpoints，如文件写入、命令执行等，确保用户可以随时回退。
+4. **自动 Checkpoints**：[[Claude Code]] 会自动在关键操作前后创建 checkpoints，如文件写入、命令执行等，确保用户可以随时回退。
 
 ## 来源
 - [[08-checkpoints/README.md]] — Claude HowTo Checkpoints 与 Rewind 指南

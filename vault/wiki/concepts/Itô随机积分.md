@@ -40,7 +40,7 @@ Itô 随机积分由伊藤清（Kiyoshi Itô）于1944年提出，将[[Wiener积
 
 2. **定义（Itô 等距）**：对适应过程（adapted process）$f(t, \omega)$，通过简单过程逼近定义 $\int_0^T f \, dB$，并使用 Itô 等距保证极限存在：$$\mathbb{E}\!\left[\left(\int_0^T f \, dB\right)^2\right] = \mathbb{E}\!\left[\int_0^T f^2 \, dt\right]$$
 
-3. **Itô 公式（随机链式法则）**：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通链式法则多出 $\frac{1}{2}F'' dt$ 项——来源于[[Wiener过程|布朗运动]]的二次变差 $d[B,B]_t = dt$。这是[[Wiener过程]]路径不可微性在微积分中的体现。
+3. **Itô 公式（随机[[链式法则]]）**：若 $X_t = \int_0^t \sigma \, dB + \int_0^t \mu \, dt$，则对光滑函数 $F$：$$dF(X_t) = F'(X_t) \, dX_t + \frac{1}{2} F''(X_t) \, dt$$相比普通[[链式法则]]多出 $\frac{1}{2}F'' dt$ 项——来源于[[Wiener过程|布朗运动]]的二次变差 $d[B,B]_t = dt$。这是[[Wiener过程]]路径不可微性在微积分中的体现。
 
 4. **鞅性质**：若 $\mathbb{E}\int_0^T f^2 \, dt < \infty$，则 $M_t = \int_0^t f \, dB$ 是一个均方连续鞅。这一性质使 Itô 积分与[[概率论]]中的鞅理论深度融合。
 

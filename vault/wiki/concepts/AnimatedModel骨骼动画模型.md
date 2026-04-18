@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 动画, 骨骼动画, 3D引擎, UrhoX]
+tags: ["渲染", "动画", "骨骼动画", "3D引擎", "UrhoX", "游戏开发"]
 aliases: [AnimatedModel, 骨骼模型, 蒙皮动画]
 relates_to: [StaticModel静态网格体, UrhoX引擎]
 supersedes: null

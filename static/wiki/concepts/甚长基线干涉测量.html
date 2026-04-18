@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>甚长基线干涉测量 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 甚长基线干涉测量</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">射电天文学</span><span class="tag">观测技术</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">甚长基线干涉测量</h1>
+<h2 id="_2">概述</h2>
+<p>射电天文观测技术，将分布在全球的多台射电<a href="../entities/望远镜.html">望远镜</a>信号合成，等效于一台口径等于<a href="../entities/望远镜.html">望远镜</a>间最大距离的巨型<a href="../entities/望远镜.html">望远镜</a>。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>基本原理</strong>：多台相距遥远的<a href="../entities/望远镜.html">望远镜</a>同时观测同一天体，记录电磁波信号及其精确到达时间，再通过后期相关处理将这些信号合成。等效<a href="../entities/望远镜.html">望远镜</a>口径等于各<a href="../entities/望远镜.html">望远镜</a>之间的最大距离，从而获得极高的角分辨率。</p>
+</li>
+<li>
+<p><strong>技术要求</strong>：VLBI需要极高精度的时间同步系统，确保分布在全球各地的<a href="../entities/望远镜.html">望远镜</a>能够精确记录信号到达时间。同时需要海量数据处理能力和全球协调机制。</p>
+</li>
+<li>
+<p><strong>EHT应用</strong>：<a href="../entities/事件视界望远镜.html">事件视界望远镜</a>项目将VLBI技术推向极致。2017年观测中，8台分布在四大洲的射电<a href="../entities/望远镜.html">望远镜</a>在1.3毫米波长 (230 GHz) 上联合工作，达到约20微角秒的角分辨率——这是人类目前达到的最高角分辨率，相当于从地球分辨月球表面的一个橘子。</p>
+</li>
+<li>
+<p><strong>波长选择</strong>：EHT选择1.3毫米波长是因为它足以穿透星际尘埃和气体，同时能提供足够的角分辨率来分辨<a href="黑洞.html">黑洞</a>事件视界的尺度。更高频率的观测将进一步提升分辨率。</p>
+</li>
+<li>
+<p><strong>数据处理挑战</strong>：2017年EHT观测产生约3.5拍字节 (PB) 原始数据，数据量之大无法通过网络传输，必须将存储数据的硬盘从各观测站物理运送到处理中心。南极<a href="../entities/望远镜.html">望远镜</a>的数据甚至要等到南极冬季结束后才能运出，整个数据汇集耗时数月。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li>Event Horizon Telescope Collaboration, "First M87 Event Horizon Telescope Results", <em>The Astrophysical Journal Letters</em>, 875, L1 (2019)</li>
+<li>K. Akiyama et al., "First M87 EHT Results. IV. Imaging the Central Supermassive Black Hole", <em>The Astrophysical Journal Letters</em>, 875, L4 (2019)</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/事件视界望远镜.html">事件视界望远镜</a> — used_by (核心观测技术)</li>
+<li><span style="color:#e74c3c" title="broken link">射电望远镜</span> — depends_on (基础设备)</li>
+<li><a href="黑洞.html">黑洞</a> — enables_observation (实现直接成像)</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="理解社会学.html">&larr; 理解社会学</a>
+    <a href="生命史方法.html">生命史方法 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

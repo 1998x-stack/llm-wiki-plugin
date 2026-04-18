@@ -18,7 +18,7 @@ supersedes: null
 # Target Attention
 
 ## 概述
-以候选物品为 Query、用户历史行为为 Key 和 Value 的注意力机制，使同一用户面对不同候选时展现不同的兴趣侧面。
+以候选物品为 Query、用户历史行为为 Key 和 Value 的[[注意力机制（Attention Mechanism）|注意力机制]]，使同一用户面对不同候选时展现不同的兴趣侧面。
 
 ## 关键内容
 

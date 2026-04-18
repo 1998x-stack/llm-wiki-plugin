@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-Claude Managed Agents 是 Anthropic 在 Claude Platform 中提供的托管服务，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、沙箱）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。
+Claude Managed Agents 是 [[Anthropic]] 在 Claude Platform 中提供的托管服务，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、沙箱）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。
 
 ## 关键内容
 
@@ -43,7 +43,7 @@ Claude Managed Agents 是 Anthropic 在 Claude Platform 中提供的托管服务
 
 [[Agent Harness模式]] 编码了关于"Claude 不能独立做什么"的假设，但这些假设会随模型进步而**过时**。例如：[[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入了[[上下文重置]]；但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重。
 
-Managed Agents 的目标是设计一组**能超越任何特定实现的接口**，包括 Anthropic 今天运行的那些实现。
+Managed Agents 的目标是设计一组**能超越任何特定实现的接口**，包括 [[Anthropic]] 今天运行的那些实现。
 
 ### 三大抽象组件
 

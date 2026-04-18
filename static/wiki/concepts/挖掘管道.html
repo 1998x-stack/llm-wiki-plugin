@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>挖掘管道 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 挖掘管道</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">记忆系统</span><span class="tag">数据处理</span><span class="tag">MemPalace</span><span class="tag">mining</span><span class="tag">chunking</span><span class="tag">deduplication</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">挖掘管道</h1>
+<h2 id="_2">概述</h2>
+<p><a href="../entities/MemPalace.html">MemPalace</a> 系统中将源代码、文档、对话记录等原始数据自动分析并导入<a href="记忆宫殿.html">记忆宫殿</a>的数据处理管道。包含三种模式：Projects、Convos、General。核心工作流分两个阶段：Mine（挖掘）和 Search（检索）。</p>
+<h2 id="_3">关键内容</h2>
+<ul>
+<li><strong>两种模式</strong>：</li>
+<li><strong>Phase 1: Mine（挖掘）</strong>：文件/对话 → 切块 → 分类 → 存入宫殿</li>
+<li><strong>Phase 2: Search（检索）</strong>：问题 → 定位 Wing/Room → 语义搜索 → 返回相关 Drawer</li>
+<li><strong>三种挖掘模式</strong>：</li>
+<li><strong>Projects</strong>（默认）：<code>mempalace mine ~/projects/myapp</code> — 挖掘代码库、文档、笔记</li>
+<li><strong>Convos</strong>：<code>mempalace mine ~/chats/ --mode convos</code> — 挖掘 AI 对话导出文件</li>
+<li><strong>General</strong>：<code>mempalace mine ~/docs/ --mode convos --extract general</code> — 任意文本，自动分类</li>
+<li><strong>Projects 模式详情</strong>：</li>
+<li>递归遍历目录，跳过 <code>.git</code>、<code>node_modules</code>、<code>__pycache__</code> 等目录和二进制文件</li>
+<li>支持 20 种扩展名：<code>.py</code>、<code>.js</code>、<code>.ts</code>、<code>.md</code>、<code>.json</code>、<code>.yaml</code>、<code>.html</code>、<code>.css</code>、<code>.sql</code> 等</li>
+<li>Room 检测四级级联：路径匹配 → 文件名匹配 → 内容关键词评分 → 兜底 general</li>
+<li>切块策略：800 字符 + 100 重叠，优先段落边界（<code>\n\n</code>），其次句子边界（<code>. ? !</code>），最后硬截断</li>
+<li><strong>Convos 模式详情</strong>：</li>
+<li>支持<a href="平台适配器模式.html">多平台适配器</a>：<a href="../entities/Claude Code.html">Claude Code</a>（<code>.jsonl</code>）、Claude.ai（<code>.json</code>）、ChatGPT（<code>conversations.json</code>）、Slack（频道 <code>.json</code>）</li>
+<li>统一格式化为 <code>&gt;</code> 标记的用户输入 + AI 回复</li>
+<li>Exchange 切块：以"用户提问 + AI 回答"问答对为单元，确保语义完整性</li>
+<li>Room 检测：5 类关键词评分（technical、architecture、planning、decisions、problems），扫描前 2000 字符</li>
+<li><strong>General 模式详情</strong>：</li>
+<li>用约 100 个正则模式从任意文本中提取 5 类记忆：decisions（20 模式）、preferences（16 模式）、milestones（33 模式）、problems、emotional_context</li>
+<li>提取结果映射到对应 Hall：decisions → decisions、preferences → preferences、milestones → events、problems → discoveries、emotional_context → facts</li>
+<li><strong>去重机制</strong>：MD5 哈希去重，每次挖掘前从 <a href="../entities/ChromaDB.html">ChromaDB</a> 加载现有哈希，只存储不重复的块</li>
+<li><strong>零 LLM 调用</strong>：整个挖掘管道没有任何 LLM API 调用，所有决策都是确定性规则运算</li>
+<li><strong><a href="增量挖掘.html">增量挖掘</a></strong>：支持随时<a href="增量挖掘.html">追加挖掘</a>，<a href="MD5 去重.html">MD5 去重</a>保证幂等性，可设置 cron job 自动同步</li>
+</ul>
+<h3 id="_4">三种模式全流程对比</h3>
+<pre><code>Projects 模式：
+  目录树遍历 → 过滤扩展名 → 读取文件
+      ↓
+  Room 检测（路径→文件名→内容评分→general）
+      ↓
+  字符切块（800c + 100 overlap，段落优先）
+      ↓
+  MD5 去重 → ChromaDB 写入
+
+Convos 模式：
+  多平台导出 → 统一格式（&gt; 标记）
+      ↓
+  Room 检测（5 类关键词评分，扫前 2000 字符）
+      ↓
+  Exchange 切块（问答对为单元）/ 段落兜底
+      ↓
+  MD5 去重 → ChromaDB 写入
+
+General 模式（在 Convos 基础上）：
+  正则提取（5 类记忆类型，合计 ~100 个模式）
+      ↓
+  按类型映射到对应 Hall
+      ↓
+  MD5 去重 → ChromaDB 写入
+</code></pre>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/mempalace/mempalace_01_overview.md</span> — MemPalace 系列总览篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/mempalace/mempalace_05_mining_pipelines.md</span> — MemPalace 深度解析第五篇：三种挖掘管道</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="../entities/MemPalace.html">MemPalace</a> — part_of</li>
+<li><a href="记忆宫殿.html">记忆宫殿</a> — implements</li>
+<li><a href="关键词评分检测.html">关键词评分检测</a> — implements</li>
+<li><a href="MD5 去重.html">MD5 去重</a> — implements</li>
+<li><a href="Exchange 切块模式.html">Exchange 切块模式</a> — implements</li>
+<li><a href="对话平台适配器.html">对话平台适配器</a> — implements</li>
+<li><a href="正则提取模式.html">正则提取模式</a> — implements</li>
+<li><a href="增量挖掘.html">增量挖掘</a> — implements</li>
+<li><a href="交互式配置.html">交互式配置</a> — implements</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="指数平滑.html">&larr; 指数平滑</a>
+    <a href="排列重要性（Permutation Importance）.html">排列重要性（Permutation Importance） &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

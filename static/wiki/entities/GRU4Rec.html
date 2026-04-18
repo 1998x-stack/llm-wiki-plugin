@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "<a href="../concepts/会话推荐.html">Session-based Recommendations</a> with Recurrent Neural Networks"，作者 <a href="Balazs Hidasi.html">Balazs Hidasi</a>, Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&amp;D（匈牙利）/ Telefonica Research（西班牙），发表于 <span style="color:#e74c3c" title="broken link">ICLR 2016</span>，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。</p>
+<p><strong>论文信息</strong>：标题 "<a href="../concepts/会话推荐.html">Session-based Recommendations</a> with <a href="../concepts/循环神经网络（RNN）.html">Recurrent Neural Network</a>s"，作者 <a href="Balazs Hidasi.html">Balazs Hidasi</a>, Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&amp;D（匈牙利）/ Telefonica Research（西班牙），发表于 <span style="color:#e74c3c" title="broken link">ICLR 2016</span>，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。</p>
 </li>
 <li>
 <p><strong>核心问题</strong>：给定匿名用户在当前会话中的点击序列 $[x_1, x_2, ..., x_t]$，预测下一次最可能点击的物品 $x_{t+1}$。不使用任何跨会话的用户信息，不依赖显式用户画像，本质上是一个序列到一的预测问题。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实验结果</strong>：在 RSC15（YOOCHOOSE）数据集上，<a href="../concepts/候选生成.html">Recall</a>@20 达 0.5196，MRR@20 达 0.2164，相比 <a href="../concepts/基于物品的协同过滤.html">Item-KNN</a> 提升约 20-30%。后续 GRU4Rec v2（CIKM 2018）提出 BPR-max 和 TOP1-max，性能再提升 35%。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：开创了基于深度学习的<a href="../concepts/序列推荐.html">序列推荐</a>研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, 注意力机制）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯注意力）、<a href="SASRec.html">SASRec</a>（2018, <a href="../concepts/Self-Attention机制.html">自注意力</a>）、<a href="BERT4Rec.html">BERT4Rec</a>（2019, 双向 <a href="../concepts/Transformer架构.html">Transformer</a>）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（2019, 图神经网络）等一系列后续工作。</p>
+<p><strong>历史地位</strong>：开创了基于深度学习的<a href="../concepts/序列推荐.html">序列推荐</a>研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, <a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯注意力）、<a href="SASRec.html">SASRec</a>（2018, <a href="../concepts/Self-Attention机制.html">自注意力</a>）、<a href="BERT4Rec.html">BERT4Rec</a>（2019, 双向 <a href="../concepts/Transformer架构.html">Transformer</a>）、<span style="color:#e74c3c" title="broken link">SR-GNN</span>（2019, 图神经网络）等一系列后续工作。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：RNN 单向顺序处理无法并行化；完全丢失会话间信息；无法捕获全局物品关系；使用简单 one-hot 编码未利用物品侧信息；在某些场景下被精心设计的会话 KNN 方法超越。</p>
@@ -197,7 +197,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="GLoSS.html">&larr; GLoSS</a>
-    <a href="Go To Statement Considered Harmful 论文.html">Go To Statement Considered Harmful 论文 &rarr;</a>
+    <a href="GSD.html">GSD &rarr;</a>
   </div>
 </div>
 </body>

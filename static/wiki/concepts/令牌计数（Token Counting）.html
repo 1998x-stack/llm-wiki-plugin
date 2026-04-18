@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="token-counting">令牌计数（Token Counting）</h1>
 <h2 id="_1">概述</h2>
-<p>Anthropic API 的 <code>/v1/messages/count_tokens</code> 端点，用于在发送消息给 Claude 前估算输入令牌数量，帮助主动管理速率限制、成本和模型路由决策。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> API 的 <code>/v1/messages/count_tokens</code> 端点，用于在发送消息给 Claude 前估算输入令牌数量，帮助主动管理速率限制、成本和<a href="LLM 路由.html">模型路由</a>决策。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>工作原理</strong>：令牌计数端点接受与创建消息相同的结构化输入（包括系统提示、工具、图片、PDF），返回 <code>input_tokens</code> 总数。该数值为估算值，实际使用时可能有少量偏差。</p>
 </li>
 <li>
-<p><strong>计费说明</strong>：Token 计数可能包含 Anthropic 为系统优化自动添加的令牌，但系统添加的令牌不会计费，计费仅针对用户内容。</p>
+<p><strong>计费说明</strong>：Token 计数可能包含 <a href="../entities/Anthropic.html">Anthropic</a> 为系统优化自动添加的令牌，但系统添加的令牌不会计费，计费仅针对用户内容。</p>
 </li>
 <li>
 <p><strong>支持模型</strong>：所有活跃模型均支持令牌计数功能。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>使用场景</strong>：</p>
 </li>
 <li>主动管理速率限制和成本</li>
-<li>做出智能模型路由决策（如判断是否可以使用更便宜的模型）</li>
+<li>做出智能<a href="LLM 路由.html">模型路由</a>决策（如判断是否可以使用更便宜的模型）</li>
 <li>将提示词优化为特定长度</li>
 <li>调试<a href="上下文窗口.html">上下文窗口</a>溢出问题</li>
 </ol>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="人性套利.html">&larr; 人性套利</a>
+    <a href="人道主义宗教.html">&larr; 人道主义宗教</a>
     <a href="价值函数.html">价值函数 &rarr;</a>
   </div>
 </div>

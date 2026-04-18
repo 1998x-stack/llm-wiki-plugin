@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, 2D图形, 精灵, Lua, API]
+tags: ["UrhoX", "2D图形", "精灵", "Lua", "API", "游戏开发"]
 aliases: [Sprite2D系统, StaticSprite2D, SpriteSheet2D]
 relates_to: [UrhoX组件系统API, UrhoX场景系统API, UrhoX 2D动画系统API]
 supersedes: null

@@ -130,21 +130,21 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">架构</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">架构</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="generator-verifier-pattern">Generator-Verifier Pattern</h1>
 <h2 id="_1">概述</h2>
-<p>生成器 - 验证器（Generator-Verifier）是最简单的多智能体模式，也是应用最广泛的模式。生成器接收任务并生成初始输出，验证器检查输出是否符合标准，若未通过则反馈回传给生成器进行修改，循环持续直到验证通过或达到最大迭代次数。</p>
+<p><a href="生成器.html">生成器</a> - 验证器（<a href="生成器.html">Generator</a>-Verifier）是最简单的多智能体模式，也是应用最广泛的模式。<a href="生成器.html">生成器</a>接收任务并生成初始输出，验证器检查输出是否符合标准，若未通过则反馈回传给<a href="生成器.html">生成器</a>进行修改，循环持续直到验证通过或达到最大迭代次数。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
 <ol>
-<li><strong>生成器接收任务</strong> → 生成初始输出</li>
+<li><strong><a href="生成器.html">生成器</a>接收任务</strong> → 生成初始输出</li>
 <li><strong>验证器评估</strong> → 检查是否符合标准</li>
 <li><strong>决策</strong>：</li>
 <li>通过 → 输出完成</li>
 <li>未通过 → 返回具体反馈</li>
-<li><strong>生成器修改</strong> → 使用反馈生成修订版本</li>
+<li><strong><a href="生成器.html">生成器</a>修改</strong> → 使用反馈生成修订版本</li>
 <li><strong>循环</strong> → 直到通过或达到最大迭代次数</li>
 </ol>
 <h3 id="_4">适用场景</h3>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 客户支持邮件生成（检查准确性/语气/完整性）</p>
 <h3 id="_5">实际案例</h3>
 <p><strong>客户支持邮件生成系统</strong>：
-- <strong>生成器</strong>：使用产品文档和工单上下文生成初始回复
+- <strong><a href="生成器.html">生成器</a></strong>：使用产品文档和工单上下文生成初始回复
 - <strong>验证器检查</strong>：
   - 对照知识库核查准确性
   - 依据品牌准则评估语气
@@ -182,7 +182,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 假设生成与验证是可分离的技能
 - 如果评估创意方法的难度与生成该方法相当，验证器可能无法可靠发现问题</p>
 <p><strong>迭代停滞风险</strong>：
-- 生成器无法回应验证者反馈时，系统反复循环而无法收敛
+- <a href="生成器.html">生成器</a>无法回应验证者反馈时，系统反复循环而无法收敛
 - 需要设置最大迭代次数和后备策略</p>
 <h3 id="_8">设计建议</h3>
 <p><strong>明确验证标准</strong>：
@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Gauss-Seidel方法.html">&larr; Gauss-Seidel方法</a>
-    <a href="Guardrails.html">Guardrails &rarr;</a>
+    <a href="Git Worktree.html">Git Worktree &rarr;</a>
   </div>
 </div>
 </body>

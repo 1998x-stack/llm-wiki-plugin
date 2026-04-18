@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工作台 vs 长期记忆 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 工作台 vs 长期记忆</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-architecture</span><span class="tag">context-management</span><span class="tag">mental-model</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="vs">工作台 vs 长期记忆</h1>
+<h2 id="_1">概述</h2>
+<p>一种 AI Agent 架构心智模型：将<a href="上下文窗口.html">上下文窗口</a>视为用完即扔的临时工作台（Working Memory），将文件系统视为永久存储的长期记忆（Persistent Memory），每次迭代使用全新的<a href="上下文窗口.html">上下文窗口</a>，从文件读取状态继续工作。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心隐喻</strong>：
+   ```
+   上下文窗口的本质：工作台（working memory）
+   文件系统的本质：  长期记忆（persistent memory）</li>
+</ol>
+<p>Ralph 的核心原则：
+     工作台用完就扔，换一张新的
+     所有重要东西只放在文件系统里
+   ```
+   这一模型由 <a href="../entities/Geoffrey Huntley.html">Geoffrey Huntley</a> 在 Ralph Wiggum 技术中提出，是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 系统的架构基石。</p>
+<ol>
+<li>
+<p><strong>与 <a href="LLM-Statelessness.html">LLM 无状态性</a>的关系</strong>：LLM 本质上是无状态的——每次推理调用都是独立的，不保留任何历史。"工作台 vs 长期记忆"模型正视这一本质，而非试图通过技巧让 Agent"记住"之前的对话。所有需要跨迭代保留的信息都必须写入文件。</p>
+</li>
+<li>
+<p><strong>工作台（<a href="上下文窗口.html">上下文窗口</a>）的特征</strong>：</p>
+</li>
+<li><strong>容量有限</strong>：受限于模型的 context window（如 200k tokens）</li>
+<li><strong>高速访问</strong>：Agent 可以直接"看到"上下文中的所有内容</li>
+<li><strong>用完即弃</strong>：每次迭代结束后整个工作台被清空</li>
+<li>
+<p><strong>不适合持久化</strong>：依赖上下文记忆会导致信息丢失和<a href="上下文腐烂.html">上下文腐烂</a></p>
+</li>
+<li>
+<p><strong>长期记忆（文件系统）的特征</strong>：</p>
+</li>
+<li><strong>容量无限</strong>：文件系统大小仅受磁盘限制</li>
+<li><strong>持久化</strong>：写入后永久保留，跨会话、跨 Agent 实例共享</li>
+<li><strong><a href="渐进式披露（Progressive Disclosure）.html">按需加载</a></strong>：新 Agent 通过读取特定文件获取所需信息</li>
+<li>
+<p><strong>可审计</strong>：所有状态变更都有文件记录，可追溯</p>
+</li>
+<li>
+<p><strong>在 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 中的实现</strong>：</p>
+</li>
+<li><strong>prd.json</strong>：任务清单——"要做什么"的权威源</li>
+<li><strong>progress.txt</strong>：交班日记——"做了什么"的操作日志</li>
+<li><strong>AGENTS.md</strong>：经验手册——"学到了什么"的知识积累</li>
+<li>
+<p><strong>Git 历史</strong>：代码变更——"怎么做的"的完整记录</p>
+</li>
+<li>
+<p><strong>与 <a href="Context Engineering.html">Context Engineering</a> 的关系</strong>：这一模型是<a href="Context Engineering.html">上下文工程</a>的一种极端实践——<strong>完全外部化状态</strong>。不同于分层记忆或按需检索策略，它选择将所有状态写入文件，每次从零开始重建上下文。这种设计的代价是每次迭代需要重新读取文件，但收益是完全免疫<a href="上下文腐烂.html">上下文腐烂</a>和<a href="上下文焦虑.html">上下文焦虑</a>。</p>
+</li>
+<li>
+<p><strong>设计权衡</strong>：</p>
+</li>
+<li><strong>优势</strong>：简单、可靠、可审计、不受<a href="上下文窗口.html">上下文窗口</a>限制</li>
+<li><strong>代价</strong>：每次迭代有文件读取开销，Agent 需要重新"理解"项目状态</li>
+<li><strong>适用场景</strong>：长时自主编码任务、跨多天的开发项目、需要严格进度追踪的场景</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/SKILL.md</span> — Ralph Loop Skill 核心哲学章节</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — implements（Ralph Loop 系统的架构基石）</li>
+<li><a href="Context Engineering.html">Context Engineering</a> — part_of（上下文外部化的极端实践）</li>
+<li><a href="Session 交接机制.html">Session 交接机制</a> — enables（三文件架构是长期记忆的具体实现）</li>
+<li><a href="上下文窗口.html">上下文窗口</a> — relates_to（上下文窗口作为工作台的本质理解）</li>
+<li><a href="LLM-Statelessness.html">LLM-Statelessness</a> — extends（正视 LLM 无状态性的架构设计）</li>
+<li><a href="../entities/Geoffrey Huntley.html">Geoffrey Huntley</a> — relates_to（原创提出者）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="嵌入表示.html">&larr; 嵌入表示</a>
+    <a href="工具注册机制.html">工具注册机制 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

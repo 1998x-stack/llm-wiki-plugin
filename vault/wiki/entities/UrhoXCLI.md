@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 3
-tags: [游戏引擎, CLI工具, 3D渲染, 天空盒, 模型导入, glTF, GLB]
+tags: ["游戏引擎", "CLI工具", "3D渲染", "天空盒", "模型导入", "glTF", "GLB", "游戏开发"]
 aliases: [UrhoX CLI, urhoxcli]
 relates_to: [Cubemap天空盒, 等距柱状投影, FBX格式, LOD（细节层次）, GLB/glTF格式, MDL格式]
 supersedes: null

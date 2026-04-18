@@ -5,19 +5,28 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
-source_count: 1
+source_count: 2
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Sandbox, Codex Sandbox System]
 relates_to:
   - target: "[[Codex CLI]]"
-    type: implements
+    type: part_of
     confidence: 0.95
   - target: "[[ExecPolicy]]"
-    type: extends
+    type: compares_to
     confidence: 0.9
   - target: "[[Landlock]]"
     type: uses
     confidence: 0.85
+  - target: "[[seccomp]]"
+    type: uses
+    confidence: 0.85
+  - target: "[[Apple Sandbox]]"
+    type: uses
+    confidence: 0.85
+  - target: "[[纵深防御]]"
+    type: implements
+    confidence: 0.9
 supersedes: null
 ---
 
@@ -45,16 +54,16 @@ OS 级沙箱提供**执行层面的强制约束**。
 
 ### Linux — Landlock + seccomp（双层）
 
-**层 1：Landlock**（Linux 5.13+ 引入）
+**层 1：[[Landlock]]**（Linux 5.13+ 引入）
 
 基于 eBPF/LSM 的不可绕过文件系统沙箱：
 - 进程设置后**无法提权取消**（不可逆）
 - 规则自动继承到所有子进程（`cargo build`、`npm install` 等也受限）
 - 在 VFS 层拦截，无法被 `LD_PRELOAD` 或 ptrace 绕过
 
-**层 2：seccomp**（系统调用过滤）
+**层 2：[[seccomp]]**（系统调用过滤）
 
-在 Landlock 之上额外限制可用系统调用集：允许 `read/write/openat/execve`，拒绝 `socket/ptrace/mount` 等。两层叠加形成纵深防御，单层突破不等于完全逃逸。
+在 [[Landlock]] 之上额外限制可用系统调用集：允许 `read/write/openat/execve`，拒绝 `socket/ptrace/mount` 等。两层叠加形成[[纵深防御]]，单层突破不等于完全逃逸。
 
 ### Windows
 
@@ -105,3 +114,4 @@ codex execpolicy check --rules ~/.codex/rules.toml git push --force
 ## 来源
 
 - [[raw/articles/ai-tools/codex/03_codex_sandbox_system.md]]
+- [[raw/articles/ai-tools/codex/04_codex_execpolicy.md]] — ExecPolicy 与 Sandbox 协同：意图过滤器 vs 能力约束器

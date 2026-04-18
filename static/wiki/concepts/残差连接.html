@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">残差连接</h1>
 <h2 id="_2">概述</h2>
-<p>将子层输入直接加到子层输出上：$x + \text{Sublayer}(x)$，缓解深层网络梯度消失问题，是 <a href="Transformer架构.html">Transformer</a> 每层的基础结构之一。</p>
+<p>将子层输入直接加到子层输出上：$x + \text{Sublayer}(x)$，缓解深层网络<a href="梯度消失.html">梯度消失</a>问题，是 <a href="Transformer架构.html">Transformer</a> 每层的基础结构之一。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>基本形式</strong>：$\text{output} = x + \text{Sublayer}(x)$，子层可以是 <a href="Self-Attention机制.html">Self-Attention</a> 或 Feed-Forward Network，原始输入通过跳跃路径直接传递到后续层</p>
 </li>
 <li>
-<p><strong>作用</strong>：允许梯度直接回传，缓解深层网络梯度消失；让网络学习"残差"（增量）而非完整映射，更易优化；<a href="Transformer架构.html">Transformer</a> 中每个子层（Attention、FFN）都使用残差连接</p>
+<p><strong>作用</strong>：允许梯度直接回传，缓解深层网络<a href="梯度消失.html">梯度消失</a>；让网络学习"残差"（增量）而非完整映射，更易优化；<a href="Transformer架构.html">Transformer</a> 中每个子层（Attention、FFN）都使用残差连接</p>
 </li>
 <li>
-<p><strong>与归一化的配合</strong>：残差路径将原始输入与子层输出相加，若两者数值尺度差异大会导致不稳定，因此需要 <a href="Layer Normalization.html">Layer Normalization</a> 来控制数值范围。Pre-LN 和 Post-LN 两种方案均在残差结构基础上放置 <a href="Layer Normalization.html">LayerNorm</a></p>
+<p><strong>与归一化的配合</strong>：残差路径将原始输入与子层输出相加，若两者数值尺度差异大会导致不稳定，因此需要 <a href="Layer Normalization.html">Layer Normalization</a> 来控制数值范围。<a href="Pre-LN架构.html">Pre-LN</a> 和 Post-LN 两种方案均在残差结构基础上放置 <a href="Layer Normalization.html">LayerNorm</a></p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -159,8 +159,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="正规矩阵.html">&larr; 正规矩阵</a>
-    <a href="泊松分布.html">泊松分布 &rarr;</a>
+    <a href="残差网络（ResNet）.html">&larr; 残差网络（ResNet）</a>
+    <a href="残差连接（Residual Connection）.html">残差连接（Residual Connection） &rarr;</a>
   </div>
 </div>
 </body>

@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.92</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">工具</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="subagents-in-claude-code">Subagents in Claude Code</h1>
 <h2 id="_1">概述</h2>
-<p>Subagents（子智能体）是 Claude Code 中的独立代理实例，拥有自己的<a href="上下文窗口.html">上下文窗口</a>。主代理可以派遣子智能体处理独立任务，子智能体完成后仅返回相关结果。子智能体如同 Claude Code 会话中的浏览器标签页，允许探索旁支思路而不中断主线。</p>
+<p>Subagents（子智能体）是 <a href="../entities/Claude Code.html">Claude Code</a> 中的独立代理实例，拥有自己的<a href="上下文窗口.html">上下文窗口</a>。主代理可以派遣子智能体处理独立任务，子智能体完成后仅返回相关结果。子智能体如同 <a href="../entities/Claude Code.html">Claude Code</a> 会话中的浏览器标签页，允许探索旁支思路而不中断主线。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">什么是子智能体</h3>
 <p><strong>核心特性</strong>：
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>2. 多个独立任务</strong>
 - <strong>信号</strong>：子任务之间没有依赖关系
 - <strong>好处</strong>：三个子智能体同时工作通常能在更短的时间内完成任务
-- <strong>示例</strong>：并行修复多个包中的 TypeScript 错误</p>
+- <strong>示例</strong>：并行修复多个包中的 <a href="../entities/TypeScript.html">TypeScript</a> 错误</p>
 <p><strong>3. 需要全新视角</strong>
 - <strong>信号</strong>：需要在不将对话历史纳入分析的情况下进行验证
 - <strong>好处</strong>：更清晰、更客观的反馈
@@ -171,7 +171,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>专业提示</strong>：当任务需要浏览 10+ 文件，或涉及 3+ 独立工作内容时，是引导 Claude 使用子智能体的强烈信号。</p>
 <h3 id="_5">调用子智能体的方法</h3>
 <p><strong>1. 对话式调用（最灵活）</strong>
-- 适用于所有 Claude Code 界面（终端/VS Code/JetBrains/网页/桌面）
+- 适用于所有 <a href="../entities/Claude Code.html">Claude Code</a> 界面（终端/VS Code/JetBrains/网页/桌面）
 - 自然语言模式示例：
   - "使用子代理探索此代码库中的身份验证工作原理"
   - "让一个独立的智能体检查这段代码是否存在安全问题"
@@ -304,7 +304,7 @@ model: sonnet
   </div>
   <div class="page-nav">
     <a href="StaticModel静态网格体.html">&larr; StaticModel静态网格体</a>
-    <a href="TCP-IP.html">TCP-IP &rarr;</a>
+    <a href="Superpowers.html">Superpowers &rarr;</a>
   </div>
 </div>
 </body>

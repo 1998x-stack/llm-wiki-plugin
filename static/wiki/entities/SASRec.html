@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>自适应依赖距离</strong>：最优雅的特性——在稀疏数据集（如 <a href="Amazon.html">Amazon</a> Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶<a href="../concepts/马尔可夫链.html">马尔可夫链</a>）；在密集数据集（如 <a href="MovieLens.html">MovieLens</a>-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。</p>
 </li>
 <li>
-<p><strong>正则化</strong>：<a href="../concepts/残差连接.html">残差连接</a> + <a href="../concepts/Layer Normalization.html">层归一化</a>（Post-norm）+ Dropout（密集数据集 0.2，稀疏数据集 0.5）。</p>
+<p><strong>正则化</strong>：<a href="../concepts/残差连接.html">残差连接</a> + <a href="../concepts/Layer Normalization.html">层归一化</a>（Post-norm）+ <a href="../concepts/Dropout.html">Dropout</a>（密集数据集 0.2，稀疏数据集 0.5）。</p>
 </li>
 <li>
 <p><strong>训练目标</strong>：<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。</p>

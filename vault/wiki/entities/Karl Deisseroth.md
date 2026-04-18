@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 光遗传学
   - 斯坦福
+  - 脑科学
 aliases:
   - "Karl Deisseroth"
   - "卡尔·戴瑟罗斯"

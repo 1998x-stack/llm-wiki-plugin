@@ -40,7 +40,7 @@ supersedes: null
 1. **[[多头注意力]]（[[多头注意力|Multi-Head Attention]]）**：并行多子空间注意力
 2. **前馈网络（FFN）**：逐位置的非线性变换
 3. **[[Layer Normalization|层归一化]]（[[Layer Normalization|LayerNorm]]）**：稳定训练
-4. **[[残差连接]]**：缓解梯度消失
+4. **[[残差连接]]**：缓解[[梯度消失]]
 
 ### 计算瓶颈
 
@@ -63,9 +63,11 @@ supersedes: null
 ## 来源
 
 - [[raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/01-解释Transformer架构中的Self-Attention机制，并说明其计算复杂度.md]] — 架构概述与复杂度对比
+- [[raw/articles/ai-papers/machine-learning/14_transformer_2017.md]] — 完整代码实现 + RNN vs Transformer 对比表
 
 ## 相关
 
 - [[Self-Attention机制]] — depends_on（Self-Attention 是 Transformer 的核心）
 - [[多头注意力]] — depends_on（MHA 是 Transformer 的标准注意力形式）
 - [[注意力预算]] — relates_to（n² 复杂度是注意力预算有限的架构根因）
+- [[Pre-LN架构]] — relates_to（现代 Transformer 的标准归一化顺序）

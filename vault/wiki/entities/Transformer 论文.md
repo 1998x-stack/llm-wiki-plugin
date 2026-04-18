@@ -8,10 +8,11 @@ updated: 2026-04-17
 last_accessed: 2026-04-17
 source_count: 1
 tags:
-- 技术
-- 研究
-- 历史
-- 计算理论
+  - 技术
+  - 研究
+  - 历史
+  - 计算理论
+  - 深度学习
 aliases:
 - Attention Is All You Need
 - Transformer 论文
@@ -44,7 +45,7 @@ supersedes: null
 
 ## 概述
 
-Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完全基于注意力机制的 [[Transformer 架构]]，开启了大语言模型与通用人工智能的新纪元。
+Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完全基于[[注意力机制（Attention Mechanism）|注意力机制]]的 [[Transformer 架构]]，开启了大语言模型与通用人工智能的新纪元。
 
 ## 关键内容
 
@@ -53,14 +54,14 @@ Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完�
 | 条目 | 内容 |
 |------|------|
 | **标题** | Attention Is All You Need |
-| **作者** | [[Ashish Vaswani]], Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin |
+| **作者** | [[Ashish Vaswani]], [[Noam Shazeer]], Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin |
 | **发表时间** | 2017年 |
 | **会议** | NeurIPS 2017 |
 | **引用量** | 超过13万次 |
 
 ### 核心创新
 
-- **完全抛弃循环和卷积**：仅用注意力机制完成序列建模
+- **完全抛弃循环和卷积**：仅用[[注意力机制（Attention Mechanism）|注意力机制]]完成序列建模
 - **[[自注意力机制]]**：O(1) 路径长度，任意位置直接连接
 - **[[多头注意力]]**：8个头同时学习不同的关注模式
 - **[[位置编码]]**：用正弦/余弦函数补偿位置信息
@@ -80,6 +81,7 @@ Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完�
 ## 来源
 
 - [[raw/books/计算机科学/20-vaswani-transformer.md]]
+- [[raw/articles/ai-papers/machine-learning/14_transformer_2017.md]] — 完整代码实现 + RNN并行化困境分析 + 架构演变图
 
 ## 相关
 

@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
@@ -191,17 +191,53 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 # → {&quot;decision&quot;: &quot;forbidden&quot;, &quot;matched_rule&quot;: &quot;...&quot;, &quot;justification&quot;: &quot;...&quot;}
 </code></pre>
 <p>规则文件加载时 <code>match/not_match</code> 示例自动运行——规则错误在启动时就被捕获。</p>
-<h2 id="_7">工程哲学</h2>
+<h2 id="_7">降低不确定性的机制</h2>
+<table>
+<thead>
+<tr>
+<th>不确定性场景</th>
+<th>ExecPolicy 的应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM 生成不安全命令</td>
+<td><code>forbidden</code> 规则直接拒绝 + 返回替代建议</td>
+</tr>
+<tr>
+<td>不知道某命令是否安全</td>
+<td><code>prompt</code> 规则让人类在执行前决策</td>
+</tr>
+<tr>
+<td>团队成员安全策略不一致</td>
+<td>项目级规则文件提交 Git，统一策略</td>
+</tr>
+<tr>
+<td>新加的规则引入了 bug</td>
+<td><code>match/not_match</code> 单元测试在 load time 捕获</td>
+</tr>
+<tr>
+<td>规则被 PATH 欺骗绕过</td>
+<td>host_executable 解析绑定绝对路径</td>
+</tr>
+<tr>
+<td>Agent 绕过策略重复尝试</td>
+<td>forbidden + justification 引导 LLM 走正确路径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">工程哲学</h2>
 <blockquote>
 <p><strong>ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"</strong>。规则在加载时验证，在执行时机械应用。没有临时判断，没有模糊地带。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。</p>
 </blockquote>
-<h2 id="_8">来源</h2>
+<h2 id="_9">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/04_codex_execpolicy.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/04_codex_execpolicy.md</span> — Codex CLI 深度解析 Vol.4：ExecPolicy — 策略即代码的命令审批引擎</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/03_codex_sandbox_system.md</span> — 第 7 节：Sandbox ↔ ExecPolicy 协同</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Example Age.html">&larr; Example Age</a>
+    <a href="Exchange 切块模式.html">&larr; Exchange 切块模式</a>
     <a href="ExitPlanTool.html">ExitPlanTool &rarr;</a>
   </div>
 </div>

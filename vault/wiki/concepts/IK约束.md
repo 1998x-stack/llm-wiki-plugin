@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [动画, 运动学, UrhoX, 组件]
+tags: ["动画", "运动学", "UrhoX", "组件", "游戏开发"]
 aliases: [IKConstraint, IK关节约束]
 relates_to: [逆向运动学, IKSolver, IKEffector, 骨骼系统, UrhoX引擎]
 supersedes: null

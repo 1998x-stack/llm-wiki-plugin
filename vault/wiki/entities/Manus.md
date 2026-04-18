@@ -59,7 +59,7 @@ Manus 通过四次框架重建（他们戏称为"随机研究生下降"）总结
 
 ### 在 Anthropic 生态中的位置
 
-Manus 是 Claude [[Context-Engineering|上下文工程]]实践的重要案例研究，其经验被 Anthropic 官方博客转载分享。
+Manus 是 Claude [[Context-Engineering|上下文工程]]实践的重要案例研究，其经验被 [[Anthropic]] 官方博客转载分享。
 
 ## 来源
 

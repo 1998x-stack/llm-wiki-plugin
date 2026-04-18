@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 序列化, 二进制IO, 游戏引擎]
+tags: ["UrhoX", "Lua", "序列化", "二进制IO", "游戏引擎", "游戏开发"]
 aliases: [UrhoX Serializer, UrhoX Deserializer, UrhoX二进制序列化]
 relates_to: [UrhoX引擎, UrhoX IO系统API, UrhoX数据格式API, UrhoX全局子系统]
 supersedes: null

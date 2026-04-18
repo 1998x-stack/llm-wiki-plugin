@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 渲染管线, 前向渲染, 延迟渲染, UrhoX]
+tags: ["渲染", "渲染管线", "前向渲染", "延迟渲染", "UrhoX", "游戏开发"]
 aliases: [RenderPath, 渲染路径, Forward渲染, Deferred渲染]
 relates_to: [Renderer渲染器, Viewport渲染视口, UrhoX引擎]
 supersedes: null

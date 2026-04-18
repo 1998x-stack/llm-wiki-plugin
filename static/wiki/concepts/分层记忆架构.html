@@ -162,27 +162,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;L2&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Episodic Memory&lt;/td&gt;
-&lt;td&gt;按阶段压缩的&quot;回合摘要&quot;：决策、证据、结论、pending items&lt;/td&gt;
-&lt;td&gt;把&quot;过去发生过什么&quot;变成结构化 checkpoints&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;L3&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Semantic Memory&lt;/td&gt;
-&lt;td&gt;[[近似最近邻检索&lt;/td&gt;
-&lt;td&gt;向量检索</span> + 关键词检索 + 元数据过滤的长期知识层</td>
+&lt;td&gt;[[情节记忆&lt;/td&gt;
+&lt;td&gt;Episodic Memory</span></td>
+<td>按阶段压缩的"回合摘要"：决策、证据、结论、pending items</td>
 </tr>
 <tr>
-<td><strong>L4</strong></td>
-<td>Raw Archive</td>
-<td>原始会话、原始文档、原始工具输出</td>
-<td>只做审计和回源，不进 prompt</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_5">各层分工原则</h3>
-<ul>
-<li><strong>L0</strong>：稳定 + 高复用 → 最适合被 <span style="color:#e74c3c" title="broken link">Prompt缓存</span> 命中</li>
+<td><strong>L3</strong></td>
+<td><span style="color:#e74c3c" title="broken link">语义记忆&lt;/td&gt;
+&lt;td&gt;Semantic Memory</span></td>
+<td><span style="color:#e74c3c" title="broken link">近似最近邻检索&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;L4&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Raw Archive&lt;/td&gt;
+&lt;td&gt;原始会话、原始文档、原始工具输出&lt;/td&gt;
+&lt;td&gt;只做审计和回源，不进 prompt&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_5&quot;&gt;各层分工原则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;L0&lt;/strong&gt;：稳定 + 高复用 → 最适合被 [[Prompt缓存</span> 命中</li>
 <li><strong>L1</strong>：当前轮最关键信息 → token 成本最高，严格筛选</li>
 <li><strong>L2</strong>：过去的结构化 checkpoint → 压缩后仍可计算</li>
 <li><strong>L3</strong>：按需检索 → hybrid retrieve（dense + BM25 + graph）</li>
@@ -205,7 +205,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>关键设计：<strong>"说过一次的话"不应和"已确认的约束"拥有相同地位</strong>。</p>
 <h3 id="_6">层间晋升规则</h3>
 <ul>
-<li><strong>L4 → L3</strong>：多次检索命中的片段 → 晋升为语义记忆条目</li>
+<li><strong>L4 → L3</strong>：多次检索命中的片段 → 晋升为<a href="语义记忆.html">语义记忆</a>条目</li>
 <li><strong>L2 → L1</strong>：当前轮用到的 episode checkpoint → 临时注入工作记忆</li>
 <li><strong>L1 → L2</strong>：任务阶段切换时 → 压缩为 episode 条目</li>
 <li>压缩产出物：durable facts / decisions / open loops / source anchors</li>
@@ -222,8 +222,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>MemGPT (2023) 将 LLM 上下文类比为<a href="操作系统.html">操作系统</a>的主存，外部存储类比为磁盘。本架构在此基础上增加了：
 - 明确的五层语义定义
 - memory object 结构化模型
-- 与 Prompt 缓存的协同（L0 exact-prefix match）
-- 与混合检索的协同（L3 hybrid retrieve）</p>
+- 与 <a href="Prompt 缓存.html">Prompt 缓存</a>的协同（L0 exact-prefix match）
+- 与<a href="混合搜索.html">混合检索</a>的协同（L3 hybrid retrieve）</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span></li>
@@ -239,7 +239,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="函数式编程.html">&larr; 函数式编程</a>
-    <a href="分布式系统.html">分布式系统 &rarr;</a>
+    <a href="分层记忆系统.html">分层记忆系统 &rarr;</a>
   </div>
 </div>
 </body>

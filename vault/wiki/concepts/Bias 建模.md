@@ -26,7 +26,7 @@ supersedes: null
 2. **设计精妙性**：将评分信号分解为"与交互无关的部分"（bias）和"真正的交互部分"（$q_i^T p_u$），使得隐因子只需要建模最本质的用户-物品匹配，大大降低了学习难度。
 3. **生动例子**：预测用户 Tom 对电影 Batman 的评分。全局均分 3.5，Tom 倾向于低 0.3（挑剔），Batman 倾向于高 0.2（好评）。仅用基线预测就能得到 $3.5 - 0.3 + 0.2 = 3.4$。
 4. **实践意义**：在很多实际推荐系统中，仅用 $\mu + b_u + b_i$ 这个简单的基线模型就能解释 80% 以上的评分变异。先把简单的偏置项调好，往往能获得事半功倍的效果。
-5. **正则化**：Bias 项也纳入正则化：$\lambda(\|p_u\|^2 + \|q_i\|^2 + b_u^2 + b_i^2)$，防止过拟合。
+5. **正则化**：Bias 项也纳入正则化：$\lambda(\|p_u\|^2 + \|q_i\|^2 + b_u^2 + b_i^2)$，防止[[过拟合（Overfitting）|过拟合]]。
 
 ## 来源
 - [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems

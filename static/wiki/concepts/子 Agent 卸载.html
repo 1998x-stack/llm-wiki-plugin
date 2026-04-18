@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>子 Agent 卸载 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 子 Agent 卸载</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">context-management</span><span class="tag">agent-pattern</span><span class="tag">ralph-loop</span><span class="tag">subagent</span><span class="tag">Agent系统</span></div>
+</div>
+  <div class="content">
+    <h1 id="agent-subagent-offloading">子 Agent 卸载（Subagent Offloading）</h1>
+<h2 id="_1">概述</h2>
+<p>子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是<a href="上下文策略.html">上下文策略</a>之一，将消耗大量 tokens 但只需要结论的操作（如运行测试套件、编译、截图分析）卸载给子 Agent 执行，主 Agent 仅接收精简的结论摘要，从而将主上下文的增长从数万 tokens 压缩到数十 tokens。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心机制</strong>：主 Agent 作为调度层保持精简，将 token 密集型操作 spawn 给子 Agent 执行。子 Agent 在执行层消耗大量 tokens 但不污染主上下文，最终返回简洁结论。例如：</li>
+<li>主 Agent："请用子 Agent 运行完整测试套件，告诉我哪些通过，哪些失败"</li>
+<li>子 Agent：执行 <code>npm test</code> → 生成 50,000 字符测试输出 → 总结为 "3 pass, 1 fail: auth.test.js line 45"</li>
+<li>
+<p>主上下文增加：~20 tokens（而非 50,000）</p>
+</li>
+<li>
+<p><strong>适合卸载的操作及 token 节省</strong>：
+   | 操作 | 原始 tokens | 卸载后 tokens | 压缩比 |
+   |------|------------|-------------|--------|
+   | 运行完整测试套件 | ~50,000 | ~100 | 500:1 |
+   | 编译大型项目 | ~20,000 | ~50 | 400:1 |
+   | 截图分析 | ~8,000 | ~50 | 160:1 |
+   | 文件树扫描 | ~10,000 | ~100 | 100:1 |
+   | Git diff 大型变更 | ~30,000 | ~100 | 300:1 |</p>
+</li>
+<li>
+<p><strong>与 <a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> 的关系</strong>：子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是 Orchestrator-Subagent 模式在<a href="Context Management.html">上下文管理</a>场景的具体应用。调度层（Orchestrator）负责决策和协调，执行层（Subagent）负责消耗性操作，两者通过精简的结论摘要通信。</p>
+</li>
+<li>
+<p><strong>设计原则</strong>：适合卸载的操作满足"消耗大量 tokens 但只需要结论"的特征。如果操作需要主 Agent 持续参与中间过程，则不适合卸载。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/context-strategies.md</span> — Context Strategies 文档中的策略二</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="上下文策略.html">上下文策略</a> — part_of（子 Agent 卸载是六大上下文策略之一）</li>
+<li><a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> — implements（调度-执行分离模式的具体应用）</li>
+<li><a href="Context-Engineering.html">Context-Engineering</a> — implements（通过架构设计减少主上下文 token 消耗）</li>
+<li><a href="../entities/Ralph Loop.html">Ralph Loop</a> — implemented_by（Ralph Loop 使用子 Agent 执行测试和验证）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="婚姻挤压理论.html">&larr; 婚姻挤压理论</a>
+    <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern） &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

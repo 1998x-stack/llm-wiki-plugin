@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>核心创新</strong>：传统 SVD（如 LSA/LSI）需要对完整<a href="../concepts/矩阵.html">矩阵</a>进行分解（$A = U \Sigma V^T$），但推荐系统中评分<a href="../concepts/矩阵.html">矩阵</a>高度不完整。FunkSVD 仅在已知评分上进行梯度优化，避免了缺失值处理的难题。</li>
 <li><strong>性能表现</strong>：在 <a href="Netflix Prize.html">Netflix Prize</a> 数据集上，FunkSVD 迅速将 RMSE 从基线 0.9514 降至约 0.896（约 5.9% 的提升），一举跃居排行榜第三位。</li>
-<li><strong>优化方法</strong>：使用随机梯度下降（SGD）进行优化，实现简单、收敛速度快、内存占用小。</li>
+<li><strong>优化方法</strong>：使用<a href="../concepts/随机梯度下降（SGD）.html">随机梯度下降（SGD）</a>进行优化，实现简单、收敛速度快、内存占用小。</li>
 <li><strong>历史地位</strong>：FunkSVD 点燃了推荐系统领域的方法论革命，是后续 <a href="SVD++.html">SVD++</a>、<a href="timeSVD++.html">timeSVD++</a> 等进阶模型的基础。</li>
 </ol>
 <h2 id="_3">来源</h2>

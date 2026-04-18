@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>四步流程：</strong></p>
 <ol>
 <li><strong>计算注意力分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
-<li><strong>缩放</strong>：除以 $\sqrt{d_k}$，防止点积值过大导致 softmax 梯度消失</li>
+<li><strong>缩放</strong>：除以 $\sqrt{d_k}$，防止点积值过大导致 softmax <a href="梯度消失.html">梯度消失</a></li>
 <li><strong>Softmax 归一化</strong>：对每行归一化，使权重之和为 1</li>
 <li><strong>加权求和</strong>：用注意力权重对 V 加权聚合，得到输出表示</li>
 </ol>
@@ -209,7 +209,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>长距依赖</td>
-<td>困难（梯度消失）</td>
+<td>困难（<a href="梯度消失.html">梯度消失</a>）</td>
 <td>困难</td>
 <td>直接</td>
 </tr>

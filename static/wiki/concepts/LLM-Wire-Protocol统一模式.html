@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm-wire-protocol">LLM Wire Protocol 统一模式</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Mario-Zechner.html">Mario-Zechner</a> 在构建 <a href="../entities/Pi-Agent.html">Pi-Agent</a> 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire Protocol（OpenAI Completions、OpenAI Responses、Anthropic Messages、<a href="../entities/Google.html">Google</a> Gen AI）。只需四个适配器即可统一覆盖所有 Provider。</p>
+<p><a href="../entities/Mario-Zechner.html">Mario-Zechner</a> 在构建 <a href="../entities/Pi-Agent.html">Pi-Agent</a> 的 pi-ai 层时发现：市面上 300+ LLM 模型归根结底只实现了四种 Wire Protocol（<a href="../entities/OpenAI.html">OpenAI</a> Completions、<a href="../entities/OpenAI.html">OpenAI</a> Responses、<a href="../entities/Anthropic.html">Anthropic</a> Messages、<a href="../entities/Google.html">Google</a> Gen AI）。只需四个适配器即可统一覆盖所有 Provider。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 四种协议全景</h3>
 <table>
@@ -147,27 +147,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td>OpenAI Completions API</td>
-<td>OpenAI、Groq、Mistral、Cerebras、xAI、Ollama、vLLM、LM Studio、llama.cpp</td>
+<td><a href="../entities/OpenAI.html">OpenAI</a> Completions API</td>
+<td><a href="../entities/OpenAI.html">OpenAI</a>、Groq、Mistral、Cerebras、xAI、<a href="../entities/Ollama.html">Ollama</a>、vLLM、LM Studio、llama.cpp</td>
 </tr>
 <tr>
-<td>OpenAI Responses API</td>
-<td>OpenAI（新版）</td>
+<td><a href="../entities/OpenAI.html">OpenAI</a> Responses API</td>
+<td><a href="../entities/OpenAI.html">OpenAI</a>（新版）</td>
 </tr>
 <tr>
-<td>Anthropic Messages API</td>
-<td>Anthropic、AWS Bedrock</td>
+<td><a href="../entities/Anthropic.html">Anthropic</a> Messages API</td>
+<td><a href="../entities/Anthropic.html">Anthropic</a>、AWS Bedrock</td>
 </tr>
 <tr>
 <td><a href="../entities/Google.html">Google</a> Generative AI</td>
-<td><a href="../entities/Google.html">Google</a> Gemini 全系列</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-provider">2. Provider 差异的实际痛点</h3>
-<p>即使号称"OpenAI 兼容"的端点也各有怪癖：Cerebras/xAI 不接受 <code>store</code> 字段、Mistral 用 <code>max_tokens</code> 而非 <code>max_completion_tokens</code>、各家推理模型的 reasoning 内容字段名各不相同（<code>reasoning_content</code> / <code>reasoning</code> / <code>thinking</code>）。</p>
+<td><a href="../entities/Google.html">Google</a> <span style="color:#e74c3c" title="broken link">Gemini CLI&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;2-provider&quot;&gt;2. Provider 差异的实际痛点&lt;/h3&gt;
+&lt;p&gt;即使号称&quot;[[OpenAI</span> 兼容"的端点也各有怪癖：Cerebras/xAI 不接受 <code>store</code> 字段、Mistral 用 <code>max_tokens</code> 而非 <code>max_completion_tokens</code>、各家推理模型的 reasoning 内容字段名各不相同（<code>reasoning_content</code> / <code>reasoning</code> / <code>thinking</code>）。</p>
 <h3 id="3">3. 适配器路由机制</h3>
-<p>pi-ai 的 Model 对象包含 <code>api</code> 字段决定路由到哪个适配器，与 <code>provider</code> 字段无关。这意味着任何 OpenAI 兼容端点只需声明 <code>api: 'openai-completions'</code> + <code>baseUrl</code> 即可接入，无需编写新的适配代码。</p>
+<p>pi-ai 的 Model 对象包含 <code>api</code> 字段决定路由到哪个适配器，与 <code>provider</code> 字段无关。这意味着任何 <a href="../entities/OpenAI.html">OpenAI</a> 兼容端点只需声明 <code>api: 'openai-completions'</code> + <code>baseUrl</code> 即可接入，无需编写新的适配代码。</p>
 <h3 id="4">4. 统一事件流</h3>
 <p>所有 Provider 的流式输出标准化为五种事件：<code>text_delta</code>、<code>thinking_delta</code>、<code>toolcall_delta</code>、<code>done</code>、<code>error</code>。切换 Provider 只需改 <code>getModel()</code> 的一个参数，流式处理代码完全不变。</p>
 <h2 id="_3">来源</h2>

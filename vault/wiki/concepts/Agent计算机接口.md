@@ -52,7 +52,7 @@ supersedes: null
 
 ## 概述
 
-Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——Anthropic 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
+Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——[[Anthropic]] 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
 
 ## 关键内容
 
@@ -103,7 +103,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 
 **2. 工具命名空间（Namespacing）**
 
-使用前缀或后缀区分不同来源的工具，避免 Agent 混淆类似工具：
+使用前缀或后缀[[区分]]不同来源的工具，避免 Agent 混淆类似工具：
 - 按服务：`asana_search`, `jira_search`
 - 按资源：`asana_projects_search`, `asana_users_search`
 
@@ -116,7 +116,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 
 **4. 优化 Token 效率**
 
-长响应使用分页/范围选择/过滤/截断。Claude Code 默认将工具响应限制在 25,000 tokens。截断时应给出明确指导，引导 Agent 使用更精准的查询，而非盲目依赖截断。
+长响应使用分页/范围选择/过滤/截断。[[Claude Code]] 默认将工具响应限制在 25,000 tokens。截断时应给出明确指导，引导 Agent 使用更精准的查询，而非盲目依赖截断。
 
 **5. 工具描述的提示工程**
 
@@ -127,13 +127,13 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 
 ### 工具开发的评估驱动循环
 
-Anthropic 推荐的工具开发流程：
+[[Anthropic]] 推荐的工具开发流程：
 
-1. **构建原型** — 快速实现，用 Claude Code 测试基础功能
+1. **构建原型** — 快速实现，用 [[Claude Code]] 测试基础功能
 2. **生成评估任务** — 基于真实使用场景的 prompt-response 对（包含需要多步工具调用的复杂任务）
 3. **运行评估** — 使用简单 agentic 循环程序化运行；收集精度、运行时间、工具调用次数、Token 消耗等指标
 4. **分析结果** — 阅读 transcript 和工具调用；让 Agent 分析自身的 transcript 找出改进点
-5. **让 Agent 改进工具** — 将评估 transcript 粘贴给 Claude Code，让它重构工具；对 Slack MCP 服务器的实验显示 Claude 优化后的工具性能高于人工编写版本
+5. **让 Agent 改进工具** — 将评估 transcript 粘贴给 [[Claude Code]]，让它重构工具；对 Slack MCP 服务器的实验显示 Claude 优化后的工具性能高于人工编写版本
 
 ### 使用 Tool Use Examples 补充 Schema
 
@@ -143,7 +143,7 @@ JSON Schema 定义什么是**结构上有效**的，但无法表达**使用模�
 - 嵌套对象何时填写（critical bug vs feature request 的不同处理）
 - 可选参数的关联规则
 
-Anthropic 内部测试显示，添加 Tool Use Examples 将复杂参数处理准确率从 72% 提升至 **90%**。
+[[Anthropic]] 内部测试显示，添加 Tool Use Examples 将复杂参数处理准确率从 72% 提升至 **90%**。
 
 ## 来源
 

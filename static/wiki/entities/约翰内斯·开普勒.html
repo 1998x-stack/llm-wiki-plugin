@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>约翰内斯·开普勒 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 约翰内斯·开普勒</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">数学家</span><span class="tag">科学革命</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">约翰内斯·开普勒</h1>
+<h2 id="_2">概述</h2>
+<p>约翰内斯·<a href="开普勒.html">开普勒</a>（<a href="开普勒.html">Johannes Kepler</a>，1571-1630），德意志天文学家、数学家，发现行星运动三大定律，终结了两千年的天体匀速圆周运动教条，被誉为"第一部真正的<a href="../concepts/天体物理学.html">天体物理学</a>著作"的作者。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>早年与学术启蒙</strong>：出生于德意志南部符腾堡，早年在图宾根大学学习神学与数学，深受<a href="哥白尼.html">哥白尼</a><a href="../concepts/日心说.html">日心说</a>吸引。1596年出版首部著作《<a href="宇宙的奥秘.html">宇宙的奥秘</a>》，尝试用正多面体解释行星轨道间距，展现了非凡的几何直觉。</li>
+<li><strong>与<a href="第谷·布拉赫.html">第谷</a>的合作</strong>：1600年赴布拉格成为<a href="第谷·布拉赫.html">第谷·布拉赫</a>的助手，继承其精密观测数据（角度精度约2角分）。<a href="第谷·布拉赫.html">第谷</a>指派他解决火星轨道计算难题——火星因轨道离心率最大，成为突破圆形轨道假设的关键。</li>
+<li><strong>"战火星"六年苦算</strong>：1601年<a href="第谷·布拉赫.html">第谷</a>去世后，<a href="开普勒.html">开普勒</a>继承帝国数学家职位，获得全部观测数据使用权。先后尝试超过70种轨道模型，最终因拒绝忽略8角分的偏差而抛弃圆形轨道假说，发现行星轨道为椭圆。</li>
+<li><strong>三大定律的发现</strong>：在《<a href="新天文学.html">新天文学</a>》（1609）中发表前两条定律——椭圆轨道定律和面积定律；第三条调和定律发表于《<a href="世界的和谐.html">世界的和谐</a>》（1619）。三定律共同构成描述行星运动的完整数学框架。</li>
+<li><strong>方法论革命</strong>：首创"假说——演绎——检验"研究<a href="../concepts/规范化理论.html">范式</a>，在书名中加入"基于原因的"和"<a href="../concepts/天体物理学.html">天体物理学</a>"字样，主张天体运动受物理定律支配，而非仅做数学拟合。这一思想直接启发了<a href="艾萨克·牛顿.html">艾萨克·牛顿</a>的<a href="../concepts/万有引力定律.html">万有引力</a>理论。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="新天文学.html">新天文学</a> — Kepler, <em>Astronomia Nova</em>, 1609</li>
+<li>《世界的和谐》 — Kepler, <em>Harmonices Mundi</em>, 1619</li>
+<li>金格里奇，《无人读过的书》(<em>The Book Nobody Read</em>, 2004)</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="新天文学.html">新天文学</a> — authored</li>
+<li><a href="宇宙的奥秘.html">宇宙的奥秘</a> — authored</li>
+<li><a href="世界的和谐.html">世界的和谐</a> — authored</li>
+<li><a href="第谷·布拉赫.html">第谷·布拉赫</a> — extends</li>
+<li><a href="哥白尼.html">哥白尼</a> — extends</li>
+<li><a href="../concepts/开普勒行星运动定律.html">开普勒行星运动定律</a> — caused</li>
+<li><a href="艾萨克·牛顿.html">艾萨克·牛顿</a> — extends</li>
+<li><a href="克劳狄乌斯·托勒密.html">克劳狄乌斯·托勒密</a> — supersedes</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="约翰·理查德·希克斯.html">&larr; 约翰·理查德·希克斯</a>
+    <a href="维斯托·斯里弗.html">维斯托·斯里弗 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

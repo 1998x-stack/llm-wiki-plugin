@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 3
-tags: [UrhoX, Lua, 示例系统, YAML, 代码生成, 文档生成]
+tags: ["UrhoX", "Lua", "示例系统", "YAML", "代码生成", "文档生成", "游戏开发"]
 aliases: [示例系统, examples system, UrhoX示例库]
 relates_to: [UrhoX引擎, UrhoX Lua开发准则, 游戏脚手架模式]
 supersedes: null

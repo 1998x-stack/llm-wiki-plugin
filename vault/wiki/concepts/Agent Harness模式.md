@@ -5,7 +5,7 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-16
 last_accessed: 2026-04-16
-source_count: 5
+source_count: 6
 tags: [AI, Agent, 架构, 设计模式, LLM, Agent系统]
 aliases: [Harness模式, Agent Harness, batteries-included agent harness]
 relates_to:
@@ -122,11 +122,11 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 
 这与 [[DeepAgents]] 的"batteries-included"路线形成对比：
 - **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
-- **Anthropic 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
+- **[[Anthropic]] 任务 Harness 路线**：从最小 Harness 出发，随模型能力迭代减复杂度
 
 ### Harness 假设的过时风险
 
-Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而**过时**。Anthropic 发现：
+Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而**过时**。[[Anthropic]] 发现：
 
 - [[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入[[上下文重置]]
 - 但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重
@@ -147,6 +147,7 @@ Harness 编码了关于"模型不能独立做什么"的假设，但这些假设�
 - [[raw/articles/ai-tools/pi-agent/01-overview-philosophy.md]]
 - [[raw/articles/ai-engineering/anthropic-engineering/Harness design for long-running application development.md]]
 - [[raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md]] — Meta-harness 与脑手分离
+- [[raw/articles/ai-tools/ralph-loop/testing-patterns.md]] — Testing Patterns（外部验证原则、四种验证模式、验证失败处理树）
 
 ## 相关
 - [[DeepAgents]] — batteries-included 代表
@@ -160,3 +161,6 @@ Harness 编码了关于"模型不能独立做什么"的假设，但这些假设�
 - [[元控制框架]] — extends（Harness 模式的抽象演进）
 - [[脑手分离架构]] — related_to（Harness 组件的解耦模式）
 - [[Managed-Agents]] — implemented_by（Harness 模式的托管服务实现）
+- [[Ralph Loop]] — implemented_by（面向自主编码的迭代循环 Harness 变体）
+- [[Initializer Agent]] — related_to（Harness 的准备阶段模式）
+- [[E2E 验证模式]] — related_to（Harness 的验证层设计模式）

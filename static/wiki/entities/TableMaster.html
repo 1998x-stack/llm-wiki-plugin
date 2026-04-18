@@ -127,36 +127,121 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / TableMaster</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.65</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">文档解析</span><span class="tag">AI</span><span class="tag">表格识别</span><span class="tag">深度学习</span><span class="tag">文档处理</span></div>
 </div>
   <div class="content">
     <h1 id="tablemaster">TableMaster</h1>
 <h2 id="_1">概述</h2>
-<p>TableMaster 是用于<a href="../concepts/表格识别.html">表格结构识别</a>的深度学习模型，可将 PDF 中的表格检测框还原为结构化表格数据，是 <a href="MinerU.html">MinerU</a> 第四层流水线中的<a href="../concepts/表格识别.html">表格识别</a>引擎。</p>
+<p>TableMaster 是 <a href="PaddleOCR.html">PaddleOCR</a> PP-Structure 模块中的<a href="../concepts/表格识别.html">表格结构识别</a>模型，将<a href="../concepts/表格识别.html">表格识别</a>转化为<strong>序列生成问题</strong>：输入表格图像，<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>生成 HTML token 序列 + 预测每个单元格的边界框（bbox）。是 <a href="MinerU.html">MinerU</a> 第四层流水线的核心表格引擎。</p>
 <h2 id="_2">关键内容</h2>
-<h3 id="mineru">在 MinerU 中的角色</h3>
+<h3 id="_3">架构设计</h3>
+<p>TableMaster 采用 <strong><a href="../concepts/残差网络（ResNet）.html">ResNet</a> + FPN（特征提取）→ <a href="../concepts/Transformer 架构.html">Transformer</a> Decoder（<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>生成）</strong> 的架构：</p>
+<ol>
+<li><strong>特征提取</strong>：<a href="../concepts/残差网络（ResNet）.html">ResNet</a> + FPN 从表格图像中提取多尺度特征图，加入<a href="../concepts/位置编码.html">位置编码</a></li>
+<li><strong><a href="../concepts/Transformer 架构.html">Transformer</a> Decoder</strong>：<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>地生成 HTML token 序列</li>
+<li><strong>双任务输出头</strong>：</li>
+<li><strong>Token 分类头</strong>：<code>nn.Linear(hidden_dim, vocab_size)</code> — 预测每个位置的 HTML token</li>
+<li><strong>Bbox 回归头</strong>：<code>nn.Linear(hidden_dim, 4)</code> — 预测每个单元格的边界框 <code>(x0, y0, x1, y1)</code></li>
+</ol>
+<h3 id="html">HTML 词表设计</h3>
+<p>TableMaster 的词表包含 HTML 相关的特殊 token，覆盖表格结构的各种情况：</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;BOS&gt;</code> / <code>&lt;EOS&gt;</code></td>
+<td>序列起止标记</td>
+</tr>
+<tr>
+<td><code>&lt;td&gt;</code> / <code>&lt;/td&gt;</code></td>
+<td>单元格起止</td>
+</tr>
+<tr>
+<td><code>&lt;tr&gt;</code> / <code>&lt;/tr&gt;</code></td>
+<td>行列起止</td>
+</tr>
+<tr>
+<td><code>&lt;td colspan="2"&gt;</code> / <code>&lt;td colspan="3"&gt;</code></td>
+<td>跨列单元格</td>
+</tr>
+<tr>
+<td><code>&lt;td rowspan="2"&gt;</code> / <code>&lt;td rowspan="2" colspan="2"&gt;</code></td>
+<td>跨行/跨行+跨列</td>
+</tr>
+<tr>
+<td><code>&lt;b&gt;</code> / <code>&lt;i&gt;</code></td>
+<td>粗体/斜体（表头常见）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">双阶段表格识别</h3>
+<p>TableMaster 在 <a href="MinerU.html">MinerU</a> 中是<strong>第一阶段（结构识别）</strong>的核心：</p>
+<pre><code>阶段一：表格结构识别（TableMaster）
+  输入：表格图像
+  输出：HTML 格式的表格结构（含空 &lt;td&gt;&lt;/td&gt; 占位）+ 每个单元格的 bbox
+
+阶段二：<a href="../concepts/表格单元格填充.html">表格单元格填充</a>
+  文字型 PDF：<a href="PyMuPDF.html">PyMuPDF</a> Span 坐标对应
+  扫描件：OCR 逐单元格识别
+  输出：含文字的完整表格
+</code></pre>
+<h3 id="_5">跨单元格处理</h3>
+<p>TableMaster 通过 <code>colspan</code> / <code>rowspan</code> token 表达合并单元格关系。<a href="MinerU.html">MinerU</a> 在转换为 Markdown 时做<strong>降级处理</strong>（Markdown 不支持跨单元格）：跨列单元格复制内容到多个列，用 <code>↑</code> 标记重复，并在 JSON 输出中保留完整 HTML 结构。</p>
+<h3 id="_6">三线表支持</h3>
+<p>学术论文常见的<strong><a href="../concepts/三线表.html">三线表</a></strong>（无竖线，仅顶线、表头分隔线、底线）对算法是极大挑战。TableMaster 通过学习到的特征理解"列对齐"，即使无竖线也能识别列边界，表头行粗体特征帮助确定列数。</p>
+<h3 id="_7">输出格式</h3>
+<p>TableMaster 经 <a href="MinerU.html">MinerU</a> 管道后输出三种格式：
+- <strong>Markdown</strong>：通用表格格式，跨单元格做降级处理
+- <strong>HTML</strong>：完整结构，保留 colspan/rowspan
+- <strong>JSON</strong>：机器可读，含 bbox、cell_data、page_no 等元信息</p>
+<h3 id="_8">与同类工具对比</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>表格结构还原</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="pypdf.html">pypdf</a>/<a href="pdfminer.html">pdfminer</a></td>
+<td>❌</td>
+</tr>
+<tr>
+<td><a href="Marker.html">Marker</a></td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td><a href="Nougat.html">Nougat</a></td>
+<td>❌</td>
+</tr>
+<tr>
+<td>TableMaster（<a href="MinerU.html">MinerU</a>）</td>
+<td>✅ 专项优化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">来源</h2>
 <ul>
-<li><strong><a href="../concepts/表格识别.html">表格识别</a></strong>：接收布局检测输出的表格检测框，输出结构化的表格数据（Markdown 表格格式）</li>
-<li><strong>单元格还原</strong>：PDF 表格的单元格边界仅靠线条暗示，TableMaster 负责还原完整的表格结构</li>
-<li><strong>差异化优势</strong>：相比 <a href="pypdf.html">pypdf</a>/<a href="pdfminer.html">pdfminer</a>（完全不支持）、<a href="Marker.html">Marker</a>（有限支持）和 <a href="Nougat.html">Nougat</a>（不支持），TableMaster 提供了专项的表格结构还原能力</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_06_table.md</span> — MinerU 深度解析系列 · 第六篇：表格识别系统</li>
 </ul>
-<h3 id="_3">技术特点</h3>
+<h2 id="_10">相关</h2>
 <ul>
-<li>检测框 → 结构化表格</li>
-<li>支持复杂表格（合并单元格、嵌套表头等）</li>
-<li>输出为 Markdown 表格格式，可直接用于下游应用</li>
-</ul>
-<h2 id="_4">来源</h2>
-<ul>
-<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
-</ul>
-<h2 id="_5">相关</h2>
-<ul>
-<li><a href="MinerU.html">MinerU</a> — 使用 TableMaster 作为表格识别引擎</li>
+<li><a href="MinerU.html">MinerU</a> — 使用 TableMaster 作为第四层表格识别引擎</li>
 <li><a href="../concepts/表格识别.html">表格识别</a> — 所属技术领域</li>
+<li><a href="PaddleOCR.html">PaddleOCR</a> — TableMaster 来源框架</li>
+<li><a href="../concepts/表格单元格填充.html">表格单元格填充</a> — TableMaster 结构识别后的第二阶段</li>
+<li><a href="../concepts/三线表.html">三线表</a> — TableMaster 支持的特殊表格类型</li>
+<li><a href="../concepts/文档布局检测.html">文档布局检测</a> — 提供表格检测框作为 TableMaster 输入</li>
 </ul>
   </div>
   <div class="page-nav">

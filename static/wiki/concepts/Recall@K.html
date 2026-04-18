@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">评估指标</span><span class="tag">召回率</span><span class="tag">排序质量</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">评估指标</span><span class="tag">召回率</span><span class="tag">排序质量</span><span class="tag">AI记忆</span><span class="tag">RAG</span></div>
 </div>
   <div class="content">
     <h1 id="recallk">Recall@K</h1>
@@ -157,9 +157,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>K 值选择</strong>：K 的选择取决于业务场景。电商推荐通常 K=20~50，信息流推荐 K=10~20，搜索推荐 K=5~10。K 越大 <a href="候选生成.html">Recall</a> 越高，但用户体验可能因推荐列表过长而下降。</p>
 </li>
 </ol>
+<h3 id="ai-recallk">AI 记忆系统中的 Recall@K</h3>
+<p>在 AI 长期记忆系统中，<a href="候选生成.html">Recall</a>@K 衡量记忆检索的可靠性——前 K 个候选记忆中包含正确答案的比例。</p>
+<ul>
+<li><strong><a href="候选生成.html">Recall</a>@5 含义</strong>：返回 5 个候选 Drawer，正确答案在其中的概率</li>
+<li><strong><a href="../entities/MemPalace.html">MemPalace</a> 成绩</strong>：<a href="../entities/LongMemEval.html">LongMemEval</a> R@5 = 96.6%（原文模式），对比 Mem0/Zep 的 ~85%</li>
+<li><strong><a href="../entities/LoCoMo.html">LoCoMo</a> 成绩</strong>：<a href="../entities/MemPalace.html">MemPalace</a> R@10 = 88.9%，超过 <a href="../entities/Memori.html">Memori</a> 的 81.95%（+7pp）</li>
+<li><strong>架构迭代对比</strong>：</li>
+<li>朴素向量搜索：R@5 = 60.9%</li>
+<li><a href="LLM 路由.html">LLM 路由</a> v1：R@5 = 34.2%（灾难性失败，比基线低 26pp）</li>
+<li>关键词路由 v2：R@5 = 75.6%</li>
+<li>宫殿结构 + <a href="混合搜索.html">混合搜索</a> v3：R@10 = 88.9%</li>
+<li>最终 Hybrid v5：R@5 = 96.6%</li>
+</ul>
 <h2 id="_3">来源</h2>
 <ul>
 <li><a href="https://arxiv.org/abs/1511.06939">GRU4Rec 原始论文 (arXiv)</a></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/mempalace/mempalace_07_benchmarks.md</span> — MemPalace 深度解析第七篇：Benchmark 深度解析</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
@@ -167,10 +181,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>NDCG — 更细粒度的排序指标</li>
 <li><a href="序列推荐.html">序列推荐</a> — 主要应用场景</li>
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — 候选生成阶段的核心指标</li>
+<li><a href="../entities/LongMemEval.html">LongMemEval</a> — used_by</li>
+<li><a href="混合搜索.html">混合搜索</a> — optimized_by</li>
+<li><a href="../entities/MemPalace.html">MemPalace</a> — used_by</li>
+<li><a href="近似最近邻检索.html">近似最近邻检索</a> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ReAct 风格循环.html">&larr; ReAct 风格循环</a>
+    <a href="ReLU激活函数.html">&larr; ReLU激活函数</a>
     <a href="RenderPath渲染管线.html">RenderPath渲染管线 &rarr;</a>
   </div>
 </div>

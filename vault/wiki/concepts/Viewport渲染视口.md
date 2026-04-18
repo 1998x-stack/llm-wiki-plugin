@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 视口, 3D引擎, UrhoX]
+tags: ["渲染", "视口", "3D引擎", "UrhoX", "游戏开发"]
 aliases: [Viewport, 视口配置, 渲染区域]
 relates_to: [Renderer渲染器, Camera渲染摄像机, RenderPath渲染管线]
 supersedes: null

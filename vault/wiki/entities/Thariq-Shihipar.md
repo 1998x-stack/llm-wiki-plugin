@@ -28,17 +28,17 @@ supersedes: null
 
 ## 概述
 
-Anthropic 技术人员，Claude Code 项目核心成员。2025 年发表官方博客文章《Seeing like an agent: how we design tools in Claude Code》，系统阐述了 Claude Code 的工具设计哲学和演进历程。
+[[Anthropic]] 技术人员，[[Claude Code]] 项目核心成员。2025 年发表官方博客文章《Seeing like an agent: how we design tools in [[Claude Code]]》，系统阐述了 [[Claude Code]] 的工具设计哲学和演进历程。
 
 ## 关键内容
 
 ### 在 Anthropic 的角色
 
-Thariq Shihipar 是 Anthropic 的技术团队成员（member of technical staff），主要负责 Claude Code 项目的开发和工具设计工作。
+Thariq Shihipar 是 [[Anthropic]] 的技术团队成员（member of technical staff），主要负责 [[Claude Code]] 项目的开发和工具设计工作。
 
 ### 核心贡献
 
-**Claude Code 工具设计哲学**：
+**[[Claude Code]] 工具设计哲学**：
 - 提出"像智能体一样观察"（See like an agent）的设计理念
 - 强调工具设计需要契合模型自身能力，而非人类直觉
 - 记录了 [[AskUserQuestion-Tool|AskUserQuestion]]、[[ExitPlanTool]]、[[TodoWrite-Tool|TodoWrite]]、Task 等核心工具的演进历程
@@ -51,7 +51,7 @@ Thariq Shihipar 是 Anthropic 的技术团队成员（member of technical staff�
 
 ### 发表作品
 
-- "Seeing like an agent: how we design tools in Claude Code" (2025) — Anthropic 官方博客
+- "Seeing like an agent: how we design tools in [[Claude Code]]" (2025) — [[Anthropic]] 官方博客
 
 ## 来源
 

@@ -40,9 +40,9 @@ Language Server Protocol 是 Microsoft 制定的开放协议，通过 JSON-RPC 2
 
 6. **LSIF（[[LSIF（语言服务器索引格式）|Language Server Index Format]]）**：LSP 的"离线版本"，用于代码搜索和代码导航（GitHub、Sourcegraph 使用）。将语言服务器的分析结果序列化为图结构（vertex:document → contains → vertex:range → resultSet）。
 
-7. **主流语言服务器**：[[gopls]]（Go）、[[hls（Haskell Language Server）]]（Haskell）、[[lua-language-server]]（Lua）、[[vtsls]]（TypeScript）、[[rust-analyzer]]（Rust）、[[pylsp]]（Python）、[[clangd]]（C/C++）、intelephense（PHP）、solargraph（Ruby）等。
+7. **主流语言服务器**：[[gopls]]（Go）、[[hls（Haskell Language Server）]]（Haskell）、[[lua-language-server]]（Lua）、[[vtsls]]（[[TypeScript]]）、[[rust-analyzer]]（Rust）、[[pylsp]]（Python）、[[clangd]]（C/C++）、intelephense（PHP）、solargraph（Ruby）等。
 
-8. **编辑器集成**：Neovim（nvim-lspconfig）、VS Code（LanguageClient）、Emacs（eglot/lsp-mode）、Helix（languages.toml）均支持 LSP 客户端。
+8. **[[ACP 编辑器集成|编辑器集成]]**：Neovim（nvim-lspconfig）、VS Code（LanguageClient）、Emacs（eglot/lsp-mode）、Helix（languages.toml）均支持 LSP 客户端。
 
 9. **调试工具**：`lsp-devtools`（record/tui）、Neovim `vim.lsp.set_log_level("debug")`、netcat 手动发送 JSON-RPC 请求。
 

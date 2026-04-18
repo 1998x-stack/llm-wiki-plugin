@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 光照, 阴影, 3D引擎, UrhoX]
+tags: ["渲染", "光照", "阴影", "3D引擎", "UrhoX", "游戏开发"]
 aliases: [Light组件, 灯光系统, 动态光照, 阴影贴图]
 relates_to: [UrhoX引擎, PBR材质系统, Renderer渲染器]
 supersedes: null

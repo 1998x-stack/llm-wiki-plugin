@@ -22,11 +22,11 @@ entity_type: tool
 # typescript-language-server
 
 ## 概述
-TypeScript 最主流的 LSP 实现，由 TypeFox 维护，作为 TypeScript 内置 tsserver 的 LSP 适配层，将 tsserver 的内部协议包装为标准 LSP 协议。
+[[TypeScript]] 最主流的 LSP 实现，由 TypeFox 维护，作为 [[TypeScript]] 内置 tsserver 的 LSP 适配层，将 tsserver 的内部协议包装为标准 LSP 协议。
 
 ## 关键内容
 
-1. **架构**：编辑器 (LSP Client) → JSON-RPC (stdio) → typescript-language-server (Node.js) → TypeScript TSServer Protocol (IPC/pipe) → tsserver（TypeScript 内置语言服务）。
+1. **架构**：编辑器 (LSP Client) → JSON-RPC (stdio) → typescript-language-server (Node.js) → [[TypeScript]] TSServer Protocol (IPC/pipe) → tsserver（[[TypeScript]] 内置语言服务）。
 
 2. **版本演进**：2016-2019 早期 theia-ide 版本，2021-03 重写为 1.0.0（完善 LSP 3.16 支持），2022-06 3.0.0（Inlay Hints），2024-09 4.3.3（TS 5.6 支持）。
 

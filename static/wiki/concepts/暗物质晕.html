@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暗物质晕 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 暗物质晕</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">天文学</span><span class="tag">暗物质</span><span class="tag">星系结构</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">暗物质晕</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p><a href="暗物质.html">暗物质</a>晕是包裹在星系可见结构之外的巨大弥散<a href="暗物质.html">暗物质</a>分布，其质量约为可见物质的5到10倍，是维持<a href="星系旋转曲线.html">星系旋转曲线</a>平坦的引力来源。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li>
+<p><strong>推断依据</strong>：对于一个绕中心旋转的天体，其轨道速度由内部包含的总质量决定。如果星系质量主要集中在明亮的核球和盘面区域，超出可见物质范围后旋转速度必然随距离下降，呈现 v ∝ r^(-1/2) 的<a href="../entities/开普勒.html">开普勒</a>衰减。但观测到的平坦<a href="星系旋转曲线.html">星系旋转曲线</a>意味着即使在远离可见盘面的区域，被轨道包围的总质量 M(r) 仍在与半径 r 成正比地线性增长。</p>
+</li>
+<li>
+<p><strong>物理特性</strong>：<a href="暗物质.html">暗物质</a>晕是一个巨大的、弥散的、不可见的质量分布，包裹在星系的可见结构之外。<a href="../entities/薇拉·鲁宾.html">薇拉·鲁宾</a>的数据表明，星系中<a href="暗物质.html">暗物质</a>的总量大约是可见物质的5到10倍。换言之，我们肉眼所见的璀璨星光，不过是宇宙质量的冰山一角。</p>
+</li>
+<li>
+<p><strong>宇宙学意义</strong>：<a href="暗物质.html">暗物质</a>晕的存在随后得到了多条独立证据的验证：<a href="广义相对论.html">广义相对论</a>预言的引力透镜效应、<a href="宇宙微波背景辐射.html">宇宙微波背景辐射</a>的各向异性功率谱、大尺度结构的形成模拟，无一不指向同一结论——宇宙中约27%的能量密度由<a href="暗物质.html">暗物质</a>贡献，而普通物质仅占不到5%。<a href="暗物质.html">暗物质</a>晕不仅是星系形成的引力"种子"，也是宇宙大尺度结构的基本构建单元。</p>
+</li>
+</ol>
+<h2 id="_2">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">09-rubin-dark-matter</span> — 详述暗物质晕的推断逻辑与物理含义</li>
+</ul>
+<h2 id="_3">相关</h2>
+<ul>
+<li><a href="暗物质.html">暗物质</a> — part_of（暗物质晕是暗物质在星系尺度的具体分布形式）</li>
+<li><a href="星系旋转曲线.html">星系旋转曲线</a> — caused（平坦旋转曲线推断出暗物质晕的存在）</li>
+<li><a href="../entities/薇拉·鲁宾.html">薇拉·鲁宾</a> — caused（鲁宾的观测数据首次揭示了暗物质晕）</li>
+<li><a href="广义相对论.html">广义相对论</a> — relates_to（引力透镜效应为暗物质晕提供独立验证）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="暗物质.html">&larr; 暗物质</a>
+    <a href="暗能量.html">暗能量 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

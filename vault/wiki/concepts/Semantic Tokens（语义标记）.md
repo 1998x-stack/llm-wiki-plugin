@@ -31,7 +31,7 @@ LSP 3.16 引入的语义标记机制，通过语言服务器分析代码语义�
 
 3. **Token 修饰符**：使用位掩码表示多个修饰符，如 declaration、definition、readonly、static、deprecated、abstract、async 等。
 
-4. **优势**：相比 TextMate 语法（基于正则表达式的文本匹配），Semantic Tokens 能区分同名不同义的标识符（如局部变量 vs 全局变量、函数声明 vs 函数调用），提供更精确的着色。
+4. **优势**：相比 TextMate 语法（基于正则表达式的文本匹配），Semantic Tokens 能[[区分]]同名不同义的标识符（如局部变量 vs 全局变量、函数声明 vs 函数调用），提供更精确的着色。
 
 5. **客户端支持**：Neovim、VS Code、Emacs 等主流编辑器均支持 Semantic Tokens 渲染。
 

@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="n-beats">N-BEATS</h1>
 <h2 id="_1">概述</h2>
-<p>N-BEATS（Neural Basis Expansion Analysis for Interpretable Time Series Forecasting）由 Boris Oreshkin 等（Yoshua Bengio 团队）于 2019 年提出，用纯全连接网络在 M4 竞赛中击败了所有统计方法，证明深度学习可独立称霸时间序列预测。</p>
+<p>N-BEATS（Neural Basis Expansion Analysis for Interpretable Time Series Forecasting）由 Boris Oreshkin 等（<a href="../entities/Yoshua Bengio.html">Yoshua Bengio</a> 团队）于 2019 年提出，用纯全连接网络在 M4 竞赛中击败了所有统计方法，证明深度学习可独立称霸时间序列预测。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>历史背景</strong>：2018 年 M4 竞赛冠军 ES-RNN 是<a href="指数平滑.html">指数平滑</a>+RNN 的混合方法，纯深度学习方法甚至不如简单统计基线。学术界流传"时间序列预测天然属于统计方法"的观点。</p>
 </li>
 <li>
-<p><strong>核心创新</strong>：抛弃 RNN/LSTM/CNN/<a href="Transformer架构.html">Transformer</a> 等所有花哨结构，回归最朴素的全连接层。通过堆叠多层感知机 + 双重<a href="残差连接.html">残差连接</a>（前向残差 + 后向残差），实现基函数展开。</p>
+<p><strong>核心创新</strong>：抛弃 RNN/LSTM/CNN/<a href="Transformer架构.html">Transformer</a> 等所有花哨结构，回归最朴素的全连接层。通过堆叠<a href="多层感知机.html">多层感知机</a> + 双重<a href="残差连接.html">残差连接</a>（前向残差 + 后向残差），实现基函数展开。</p>
 </li>
 <li>
 <p><strong>双重分支</strong>：趋势分支（拟合多项式基函数）+ 季节分支（拟合傅里叶基函数），两种分支的预测结果相加得到最终预测。这种设计既保证预测精度，又提供可解释性。</p>

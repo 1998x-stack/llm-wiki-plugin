@@ -127,23 +127,33 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 光学字符识别</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">文档处理</span><span class="tag">OCR</span></div>
 </div>
   <div class="content">
     <h1 id="_1">光学字符识别</h1>
 <h2 id="_2">概述</h2>
-<p>光学字符识别（OCR）是将图像中的文字转换为机器可读文本的技术，是扫描件 PDF 解析的核心手段。</p>
+<p>光学字符识别（OCR，Optical Character Recognition）是将图像中的文字转换为机器可读文本的技术，是扫描件 PDF 解析的核心手段。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="pdf">在 PDF 解析中的角色</h3>
+<p>OCR 在 <a href="../entities/MinerU.html">MinerU</a> 中不是全程使用，而是<strong>按需激活</strong>：</p>
 <ul>
-<li><strong>OCRBased 管道</strong>：扫描件 PDF 没有任何文字层，必须先将页面渲染为图像，再通过 OCR 全量识别文字</li>
-<li><strong>TextBased 管道可选增强</strong>：即使文字型 PDF 已有文字层，OCR 也可作为补充识别手段</li>
+<li><strong>文字型 PDF（TextBased 管道）</strong>：<a href="../entities/PyMuPDF.html">PyMuPDF</a> 直接提取文字 Span（精确坐标），OCR 仅用于图注区域、表格内文字、公式周边等特殊区域</li>
+<li><strong>扫描件 PDF（OCRBased 管道）</strong>：整页 OCR，所有文字都靠识别，<a href="../entities/PyMuPDF.html">PyMuPDF</a> 只提供图像不提供文字</li>
+<li><strong>混合 PDF（Mixed 管道）</strong>：逐个布局框判断，有文字层直接提取，无文字层走 OCR</li>
 </ul>
+<p>这个设计的核心思想：对于文字型 PDF，<a href="../entities/PyMuPDF.html">PyMuPDF</a> 的精确坐标远优于 OCR 识别结果，没有必要浪费计算资源。</p>
+<h3 id="ocr">OCR 三阶段流水线</h3>
+<p>现代 OCR 系统（如 <a href="../entities/PaddleOCR.html">PaddleOCR</a>）的完整处理流程：</p>
+<ol>
+<li><strong>文字区域检测</strong>：使用 <a href="DBNet++.html">DBNet++</a> 等检测模型，输出文字区域的多边形轮廓（而非简单矩形框，能更精确框定倾斜文字行）</li>
+<li><strong><a href="透视变换.html">透视变换</a>矫正</strong>：将检测到的多边形文字区域通过<a href="透视变换.html">透视变换</a>矫正为水平矩形图像</li>
+<li><strong>文字识别</strong>：使用 <a href="SVTR.html">SVTR</a> 等识别模型，基于 Vision <a href="Transformer 架构.html">Transformer 架构</a>，通过 <a href="CTC解码.html">CTC解码</a> 输出文字字符串</li>
+</ol>
 <h3 id="paddleocr">PaddleOCR 的中文优势</h3>
-<p><a href="../entities/PaddleOCR.html">PaddleOCR</a> 的中文识别能力是 <a href="../entities/MinerU.html">MinerU</a> 相比同类工具（<a href="../entities/Marker.html">Marker</a>、<a href="../entities/Nougat.html">Nougat</a>）的核心差异化优势：</p>
+<p><a href="../entities/PaddleOCR.html">PaddleOCR</a> 的中文识别能力是 <a href="../entities/MinerU.html">MinerU</a> 相比同类工具（<a href="../entities/Marker.html">Marker</a>、<a href="../entities/Nougat.html">Nougat</a>）的核心差<a href="异化.html">异化</a>优势：</p>
 <table>
 <thead>
 <tr>
@@ -166,26 +176,37 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<h3 id="_4">技术流程</h3>
-<ol>
-<li>文本区域检测（由布局检测提供）</li>
-<li>文本行检测与分割</li>
-<li>字符识别</li>
-<li>后处理（语言模型校正）</li>
-</ol>
-<h2 id="_5">来源</h2>
+<h3 id="ocr_1">中文 OCR 的特殊挑战</h3>
+<ul>
+<li><strong>字符集规模</strong>：英文约 100 个字符，中文常用字 3500+，完整字符集 70000+。<a href="../entities/PaddleOCR.html">PaddleOCR</a> 使用 GB2312 标准的 6763 个常用汉字</li>
+<li><strong>字形相似度</strong>：大量形近字（己/已/巳，戊/戌/戍），需要通过大规模训练数据和语言模型后处理</li>
+<li><strong>中英混排</strong>：学术论文中大量存在中英文混排，需要统一字符集</li>
+<li><strong>垂直排版</strong>：古籍、传统排版使用竖排，需要方向分类器先识别文字方向</li>
+</ul>
+<h3 id="ocr_2">OCR 结果质量过滤</h3>
+<p>OCR 原始输出需要多层过滤：
+- <strong>置信度过滤</strong>：默认阈值 0.5
+- <strong>乱码检测</strong>：特殊字符比例 &gt; 0.3 视为乱码
+- <strong>空白行和极短文本过滤</strong>：长度 &lt; 2 或仅有标点的行过滤掉</p>
+<h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_04_ocr.md</span> — MinerU 深度解析系列 · 第四篇：OCR 引擎</li>
 </ul>
-<h2 id="_6">相关</h2>
+<h2 id="_5">相关</h2>
 <ul>
 <li><a href="../entities/MinerU.html">MinerU</a> — OCRBased 管道的核心环节</li>
 <li><a href="../entities/PaddleOCR.html">PaddleOCR</a> — OCR 引擎实现</li>
 <li><a href="PDF解析.html">PDF解析</a> — 所属问题域</li>
+<li><a href="DBNet++.html">DBNet++</a> — 文字区域检测模型</li>
+<li><a href="SVTR.html">SVTR</a> — 文字识别模型</li>
+<li><a href="../entities/PP-OCRv4.html">PP-OCRv4</a> — PaddleOCR 的模型系列</li>
+<li><a href="CTC解码.html">CTC解码</a> — 序列解码方法</li>
+<li><a href="透视变换.html">透视变换</a> — 文字矫正技术</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="元控制框架.html">&larr; 元控制框架</a>
+    <a href="元社会学.html">&larr; 元社会学</a>
     <a href="光遗传学.html">光遗传学 &rarr;</a>
   </div>
 </div>

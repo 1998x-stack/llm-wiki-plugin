@@ -11,6 +11,7 @@ tags:
   - 神经科学
   - 诺贝尔奖
   - 记忆
+  - 脑科学
 aliases:
   - "Eric Kandel"
   - "埃里克·坎德尔"

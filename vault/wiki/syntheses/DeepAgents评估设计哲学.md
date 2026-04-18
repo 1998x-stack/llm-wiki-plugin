@@ -6,6 +6,7 @@ created: 2026-04-15
 updated: 2026-04-15
 last_accessed: 2026-04-15
 source_count: 3
+aliases: []
 tags: [AI, Agent, 评估, 设计哲学, 软件工程, Agent系统]
 synthesizes:
   - "[[DeepAgents评估体系]]"
