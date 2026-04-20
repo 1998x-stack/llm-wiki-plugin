@@ -1,18 +1,24 @@
 ---
 type: concept
 status: active
-confidence: 0.9
+confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 1
-tags: [AI, 评估, LLM, 测试, 机器学习, AI工程]
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 3
+tags: [AI, 评估, LLM, 测试, 机器学习, AI工程, 评分器]
 aliases: [LLM评判器, LLM Judge, LLM as Judge]
 relates_to:
   - target: "[[DeepAgents评估体系]]"
     type: related_to
     note: DeepAgents 通过 LLMJudge 将其接入 SuccessAssertion 体系
     confidence: 0.9
+  - target: "[[Agent 评测体系]]"
+    type: part_of
+  - target: "[[评测驱动开发]]"
+    type: uses
+  - target: "[[评分器设计]]"
+    type: implements
 supersedes: null
 ---
 
@@ -44,6 +50,10 @@ supersedes: null
 - 每条准则应**单条可判定**、无歧义，不在一条内堆砌多个要求
 - 准则涉及工具调用行为（如"必须调用 `edit_file`"）时，需将完整轨迹送入评判上下文（[[DeepAgents]] 中用 `include_tool_calls=True`）
 - 固定 `judge_model` 版本，保证跨次运行可横向对比
+- **给 LLM 评分器"退路"**：当信息不足时允许返回 "Unknown"
+- **为每个评测维度创建独立的 LLM-as-judge**（而非一个模型评测所有维度）
+- 使用清晰的结构化评分标准（Rubric），而非模糊指令
+- **定期与人类专家进行校准验证**以确保评分一致性
 
 ### DeepAgents 实现（`LLMJudge`）
 
@@ -72,6 +82,13 @@ scorer = TrajectoryScorer().success(
 
 ## 来源
 - [[raw/books/deepagents-book-main/21-LLM-as-Judge评估模式.md]]
+- [[05_multi_agent_research]] — 第四节：评估体系（LLM-as-Judge 的最佳实践）
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/12_demystifying_evals.md]] — 基于模型的评分器章节
+
+### Anthropic Research 系统的 LLM-as-Judge 实践
+- 单次 LLM 调用 + 单一 prompt 输出 0.0-1.0 评分 + 通过/失败等级
+- 比多评判器方案**更一致**，且与人工判断更对齐
+- 评估维度：事实准确性、引用准确性、完整性、信源质量、工具效率
 
 ## 相关
 - [[DeepAgents评估体系]]

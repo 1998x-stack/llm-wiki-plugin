@@ -2,12 +2,12 @@
 type: concept
 title: SWE-bench
 status: active
-confidence: 0.85
+confidence: 0.9
 created: 2026-04-16
-updated: 2026-04-16
-last_accessed: '2026-04-16'
-source_count: 4
-tags: [AI, 方法论, AI工程]
+updated: 2026-04-20
+last_accessed: '2026-04-20'
+source_count: 8
+tags: [AI, 方法论, AI工程, 评测]
 aliases:
 - SWE-bench
 - Software Engineering Benchmark
@@ -24,6 +24,11 @@ relates_to:
 - target: '[[HumanEvalFix]]'
   type: compares_to
   confidence: 0.9
+- target: '[[Think 工具]]'
+  type: uses
+  confidence: 0.85
+- target: '[[评测驱动开发]]'
+  type: part_of
 supersedes: null
 ---
 
@@ -60,6 +65,15 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 - 仅改工具描述就在 SWE-bench 上达到 SOTA
 - 证明了"接口设计质量直接决定 Agent 成功率"的核心假设
 
+### Claude 3.5 Sonnet 的 SOTA 成绩
+
+[[Claude 3.5 Sonnet]] 在 SWE-bench Verified 上实现 **49%** 解决率（当时 SOTA，后续迭代达到更高）：
+- 采用简单单 Agent 架构（无复杂多 Agent 编排）
+- 核心发现：工具优化比 prompt 优化花更多时间
+- 关键工具改进：要求绝对路径解决相对路径错误
+- [[Think 工具]] 集成：实验提升 1.6%（Welch t 检验 p < 0.001，d=1.47）
+- 测试驱动反馈循环：生成补丁 → 运行测试 → 分析失败 → 修改策略 → 重试
+
 ### 与其他评估体系的对比
 
 | 维度 | SWE-bench | [[HumanEvalFix]] | [[DeepAgents评估体系]] |
@@ -72,12 +86,30 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 
 [[SWE-agent]] 在 [[HumanEvalFix]] 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到仓库级时，好的交互界面带来的优势更加显著。
 
+### Eval 饱和问题
+
+SWE-bench 是评测饱和（eval saturation）的典型案例：
+- 从 30% 开始，顶级模型现在接近 80%，差距越来越难推动
+- 100% 通过率只能追踪回退，不能推动改进
+- 当 eval 饱和时，需要构建更难的新 eval
+- 这是 Anthropic 工程博客中强调的评测维护重要教训
+
 ## 来源
 
 - [[raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md]] — ChatGPT 对话总结
 - [[raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版".md]] — SWE-agent 论文 5 页读书笔记
 - [[raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md]] — SWE-agent 24 个核心概念词条分析
 - [[raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md]] — SWE-agent 论文图表分析
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/00_INDEX.md]] — SWE-bench Verified 新标杆、工具优化优于 Prompt 优化
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/03_think_tool.md]] — Think 工具在 SWE-bench 上的表现（平均提升 1.6%，效应量 d=1.47）
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/07_swe_bench_sonnet.md]] — Claude 3.5 Sonnet 在 SWE-bench Verified 上实现 49% SOTA 成绩
+
+### Think 工具在 SWE-bench 上的表现
+
+[[Think 工具]] 被集成到 SWE-bench 评估中：
+- 实验规模：n=30（有 think 工具） vs n=144（无 think 工具）
+- 性能提升：**平均提升 1.6%**（Welch t 检验：p < 0.001，效应量 d=1.47）
+- 效应量相当大但平均提升仅 1.6%，说明 think 工具在编码场景中**改善了稳定性**（减少极端失败），而非系统性提升所有任务
 
 ## 相关
 
@@ -85,3 +117,7 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 - [[Agent评估方法论]] — implements（软件工程 Agent 的标准基准）
 - [[DeepAgents评估体系]] — compares_to（不同的评估范式）
 - [[HumanEvalFix]] — compares_to（不同粒度的代码修复基准，SWE-agent 87.7% vs 12.5%）
+- [[Think 工具]] — uses（Think 工具在 SWE-bench 上验证了稳定性提升，平均 +1.6%，效应量 d=1.47）
+- [[Claude 3.5 Sonnet]] — implements（Claude 3.5 Sonnet 在 SWE-bench Verified 上实现 49% SOTA）
+- [[测试驱动的 Agent 工程]] — implements（SWE-bench 是测试驱动 Agent 工程的典型场景）
+- [[单 Agent 架构]] — implements（Claude 3.5 Sonnet 的 SWE-bench Agent 采用单 Agent 架构）

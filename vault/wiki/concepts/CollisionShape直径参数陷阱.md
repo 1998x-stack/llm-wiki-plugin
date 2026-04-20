@@ -3,8 +3,8 @@ type: concept
 status: active
 confidence: 0.95
 created: 2026-04-16
-updated: 2026-04-16
-last_accessed: 2026-04-16
+updated: 2026-04-20
+last_accessed: 2026-04-20
 source_count: 1
 tags: ["UrhoX", "物理引擎", "API陷阱", "Lua", "CollisionShape", "游戏开发"]
 aliases: [CollisionShape直径, 碰撞体尺寸陷阱, SetSphere直径]

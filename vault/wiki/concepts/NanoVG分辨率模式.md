@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-20
 last_accessed: 2026-04-16
-source_count: 1
+source_count: 2
 tags: [NanoVG, 分辨率, DPI, UrhoX, 渲染, 游戏开发]
 aliases: [nvg分辨率模式, NanoVG分辨率适配, nvgBeginFrame分辨率]
 relates_to: [设备像素比, PBR材质系统, UrhoX材质库]
@@ -23,6 +23,7 @@ supersedes: null
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/.claude/skills/nvg-resolution-mode/SKILL.md]] — NanoVG 分辨率模式编写范式，UrhoX Lua AI 开发指南
+- [[raw/articles/personal/ai-dev-kit/CLAUDE.md]] — UrhoX Lua AI 开发指南，规则 #0.8（分辨率模式选择表）
 
 ## 相关
 - [[设备像素比]] — relates_to，DPR 是三种模式的核心变量

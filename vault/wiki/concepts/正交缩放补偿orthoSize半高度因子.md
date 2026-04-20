@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.95
 created: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-20
 last_accessed: 2026-04-16
-source_count: 1
+source_count: 2
 tags: ["游戏引擎", "正交投影", "相机", "数学", "UrhoX", "陷阱", "游戏开发"]
 aliases: [orthoSize 2x因子, 正交相机缩放补偿, orthoSize半高度陷阱]
 relates_to: [UrhoX引擎, 鼠标滚轮输入API陷阱, 设备像素比, NanoVG分辨率模式]
@@ -93,6 +93,7 @@ end
 ## 来源
 
 - [[raw/articles/personal/ai-dev-kit/coding-insights/Math-Algorithm/orthographic-zoom-compensation.md]] — 正交相机缩放补偿：orthoSize 参数的 2x 因子陷阱（2026-02-05，等距视角游戏实战记录）
+- [[raw/articles/personal/ai-dev-kit/CLAUDE.md]] — UrhoX Lua AI 开发指南，规则 #9.5（正交相机 orthoSize 的 0.5 因子）
 
 ## 相关
 

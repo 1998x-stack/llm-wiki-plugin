@@ -4,6 +4,54 @@ type: log
 
 # 操作日志
 
+## [2026-04-20 ingest: 18_postmortem.md]
+- Source: raw/articles/ai-engineering/anthropic-engineering/claude-engineering/18_postmortem.md
+- Created: wiki/concepts/Postmortem 文化.md (Postmortem Culture)
+- Created: wiki/concepts/配置漂移.md (Configuration Drift)
+- Created: wiki/concepts/提示更新副作用.md (Prompt Update Side Effects)
+- Created: wiki/concepts/上游依赖变更.md (Upstream Dependency Changes)
+- Created: wiki/concepts/行为回归测试.md (Behavioral Regression Testing)
+- Created: wiki/entities/SRE.md (Site Reliability Engineering)
+- BM25: 6 pages updated
+- Snapshot index: updated (+1746 entries)
+
+## [2026-04-20 ingest: 09_effective_harnesses.md]
+- Source: raw/articles/ai-engineering/anthropic-engineering/claude-engineering/09_effective_harnesses.md
+- Created: wiki/concepts/Agent Harness 运行框架.md (Agent Harness Framework)
+- Created: wiki/concepts/初始化-编码循环模式.md (Initializer/Coding-agent Pattern)
+- Created: wiki/concepts/外化进度追踪.md (Externalized Progress Tracking)
+- Created: wiki/concepts/检查点策略.md (Checkpoint Strategy)
+- Created: wiki/concepts/Saga 模式.md (Saga Pattern)
+- Updated: wiki/concepts/错误复合.md (source_count 1→2, 新增 Harness 防止错误复合的关系)
+- Updated: wiki/concepts/外化工作记忆.md (source_count 1→2, 新增 relates_to Harness/外化进度追踪)
+- Updated: wiki/concepts/上下文压缩.md (source_count 3→4, 新增 relates_to Harness/Session 交接机制)
+- BM25: 8 pages updated
+- Snapshot index: updated (+1695 entries)
+
+## [2026-04-20 ingest: 08_claude_code_best_practices.md]
+- Source: raw/articles/ai-engineering/anthropic-engineering/claude-engineering/08_claude_code_best_practices.md
+- Created: wiki/concepts/探索-规划-编码工作流.md (Explore-Plan-Code Workflow)
+- Created: wiki/entities/CLAUDE.md.md (CLAUDE.md 持久化上下文文件)
+- Created: wiki/concepts/Writer-Reviewer 模式.md (Writer/Reviewer Pattern)
+- Created: wiki/concepts/非交互模式.md (Non-interactive Mode)
+- Created: wiki/concepts/上下文经济学.md (Context Economics)
+- Created: wiki/concepts/上下文管理策略.md (Context Management Strategy: /clear, /compact, /rewind, /btw)
+- Updated: wiki/concepts/上下文窗口.md (source_count 1→2, 新增 relates_to 上下文经济学/上下文管理策略)
+- Updated: wiki/concepts/子 Agent 模式（Sub-Agent Pattern）.md (source_count 2→3)
+- BM25: 8 pages updated
+- Snapshot index: updated (+1687 entries)
+
+## [2026-04-20 ingest: 04_context_engineering.md]
+- Source: raw/articles/ai-engineering/anthropic-engineering/claude-engineering/04_context_engineering.md
+- Created: wiki/concepts/提示工程.md (Prompt Engineering)
+- Updated: wiki/concepts/上下文工程.md (confidence 0.95→0.97, source_count 1→2, 大幅扩充内容)
+- Updated: wiki/concepts/上下文压缩.md (source_count 2→3)
+- Updated: wiki/concepts/结构化笔记法.md (source_count 1→2)
+- Updated: wiki/concepts/即时上下文检索.md (source_count 1→2)
+- Updated: wiki/concepts/子 Agent 模式（Sub-Agent Pattern）.md (source_count 1→2)
+- BM25: 6 pages updated
+- Snapshot index: updated (+1667 entries)
+
 ## [2026-04-18 maintain]
 - Relink: 4980 terms, 1 new link across 1 page
 - Check: 0 errors, 1777 warnings (主要 B1 断链 1344 条，已知问题)，无新 gotchas
@@ -2589,3 +2637,13 @@ python3 scripts/build_graph.py
 - 术语词典: 5074 个
 - 扫描: 1605 个页面
 - 修改: 见 dry-run 结果, 添加新链接若干
+
+## 2026-04-20 — 批量 Ingest: Anthropic Claude Engineering 系列
+
+- **来源**: raw/articles/ai-engineering/anthropic-engineering/claude-engineering/
+- **引擎**: Claude (subagent)
+- **处理文件数**: 24
+- **新建页面**: 约 80+ 个（entities/concepts）
+- **更新页面**: 约 10+ 个（已有页面追加内容）
+- **主题**: AI Engineering — Agent 架构、Context Engineering、评测体系、Claude Code 最佳实践
+

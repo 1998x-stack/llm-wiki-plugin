@@ -3,12 +3,12 @@ type: entity
 status: active
 confidence: 0.9
 created: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-20
 last_accessed: 2026-04-16
-source_count: 2
+source_count: 3
 tags: ["游戏引擎", "Lua", "3D", "2D", "UrhoX", "Urho3D", "NanoVG", "Box2D", "游戏开发"]
 aliases: [UrhoX, UrhoX Lua, UrhoX游戏引擎]
-relates_to: [UrhoXCLI, UrhoX材质库, NanoVG, PBR材质系统, Lua基础语法, 游戏脚手架模式]
+relates_to: [UrhoXCLI, UrhoX材质库, NanoVG, PBR材质系统, Lua基础语法, 游戏脚手架模式, 米制单位系统, Y-up左手坐标系, 资源路径引用规范, Lua-eventData访问模式, Lua数组索引从1开始, table-unpack表构造器陷阱, NanoVG渲染事件模式, NanoVG字体创建规范, Emoji自动Fallback, UI系统选择规范, Lua类型标注规范, 枚举值使用规范, 代码模块化阈值, 第三人称相机库模式, 多人游戏模式判断, manifest-json检查规范, Urho3D, EmmyLua, Yoga-Flexbox, Box2D, tolua++, cjson]
 supersedes: null
 entity_type: project
 ---
@@ -27,8 +27,8 @@ UrhoX 是基于 Urho3D 1.8 扩展的游戏引擎，使用 Lua 5.4 作为脚本�
 6. **多人/单机判断**：通过 `.project/settings.json` 的 `@runtime.multiplayer.enabled` 字段决定代码放置位置（Client.lua / Server.lua / Standalone.lua）。
 
 ## 来源
-- [[raw/articles/personal/ai-dev-kit/CLAUDE]] — UrhoX Lua AI 开发指南入口，包含完整开发规则与文档映射
-- [[raw/articles/personal/ai-dev-kit/README]] — UrhoX AI Dev Kit 项目说明，含目录结构、NanoVG 特性、设计理念与示例统计
+- [[raw/articles/personal/ai-dev-kit/CLAUDE.md]] — UrhoX Lua AI 开发指南入口，包含完整开发规则与文档映射
+- [[raw/articles/personal/ai-dev-kit/README]] — UrhoX AI Dev Kit 项目说明，含目录结构、NanoVG 特性、设计理念与示例统计I Dev Kit 项目说明，含目录结构、NanoVG 特性、设计理念与示例统计
 
 ## 相关
 - [[UrhoXCLI]] — part_of
