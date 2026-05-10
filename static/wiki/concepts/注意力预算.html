@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">注意力预算</h1>
 <h2 id="_2">概述</h2>
-<p>注意力预算（Attention Budget）是对 <a href="Transformer架构.html">Transformer</a> 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类工作记忆的有限容量。</p>
+<p>注意力预算（Attention Budget）是对 <a href="Transformer架构.html">Transformer</a> 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类<a href="工作记忆.html">工作记忆</a>的有限容量。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="n2">架构根因：n² 注意力计算</h3>
-<p><a href="Transformer架构.html">Transformer</a> 架构的<a href="自注意力机制.html">自注意力机制</a>要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力计算，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
+<p><a href="Transformer架构.html">Transformer</a> 架构的<a href="自注意力机制.html">自注意力机制</a>要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力<a href="计算.html">计算</a>，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
 <pre><code>n=1000  →  1,000,000 对位关系
 n=10000 →  100,000,000 对位关系
 n=100k  →  10^10 对位关系（理论极值）
 </code></pre>
-<p>计算量虽可通过 Flash Attention 等技术优化，但模型<strong>理解</strong>这些关系的能力随 n 增大而被稀释——每一对关系分配到的"有效参数容量"减少。</p>
+<p><a href="计算.html">计算</a>量虽可通过 Flash Attention 等技术优化，但模型<strong>理解</strong>这些关系的能力随 n 增大而被稀释——每一对关系分配到的"有效参数容量"减少。</p>
 <h3 id="_4">与人类工作记忆的类比</h3>
-<p>人类的工作记忆容量有限（Miller's Law：约 7±2 个独立 chunk），超出容量时信息处理质量下降。LLM 的注意力预算扮演相同角色：</p>
+<p>人类的<a href="工作记忆.html">工作记忆</a>容量有限（Miller's Law：约 7±2 个独立 chunk），超出容量时信息处理质量下降。LLM 的注意力预算扮演相同角色：</p>
 <table>
 <thead>
 <tr>
@@ -157,7 +157,7 @@ n=100k  →  10^10 对位关系（理论极值）
 <tbody>
 <tr>
 <td>有限资源</td>
-<td>工作记忆 chunk 数</td>
+<td><a href="工作记忆.html">工作记忆</a> chunk 数</td>
 <td>注意力预算（context tokens）</td>
 </tr>
 <tr>
@@ -219,8 +219,8 @@ n=100k  →  10^10 对位关系（理论极值）
 </ul>
   </div>
   <div class="page-nav">
-    <a href="注意力机制（Attention Mechanism）.html">&larr; 注意力机制（Attention Mechanism）</a>
-    <a href="泰勒级数.html">泰勒级数 &rarr;</a>
+    <a href="注意力经济.html">&larr; 注意力经济</a>
+    <a href="注释过多.html">注释过多 &rarr;</a>
   </div>
 </div>
 </body>

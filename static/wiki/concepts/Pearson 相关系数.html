@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pearson">Pearson 相关系数</h1>
 <h2 id="_1">概述</h2>
-<p>Pearson 相关系数（Pearson Correlation Coefficient）是衡量两个变量之间线性相关程度的统计量，取值范围 [-1, 1]，在推荐系统中被 <a href="../entities/GroupLens.html">GroupLens</a> 系统首次用于计算用户间评分模式的相似度，成为 <a href="User-Based 协同过滤.html">User-Based 协同过滤</a>的默认相似度度量。</p>
+<p>Pearson 相关系数（Pearson Correlation Coefficient）是衡量两个变量之间线性相关程度的统计量，取值范围 [-1, 1]，在推荐系统中被 <a href="../entities/GroupLens.html">GroupLens</a> 系统首次用于<a href="计算.html">计算</a>用户间评分模式的相似度，成为 <a href="User-Based 协同过滤.html">User-Based 协同过滤</a>的默认相似度度量。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -159,12 +159,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>方向鲁棒性</strong>：若两用户品味完全相反，Pearson 系数产生负相关，系统可将对方的高分"翻译"为低分预测</p>
 </li>
 <li>
-<p><strong>在 <a href="../entities/GroupLens.html">GroupLens</a> 中的应用</strong>：<a href="../entities/GroupLens.html">GroupLens</a> 论文（1994）首次将 Pearson 相关系数引入<a href="协同过滤.html">协同过滤</a>，用于计算 Usenet 新闻组用户间的相似度。此后十余年间，Pearson 相关系数一直是 <a href="User-Based 协同过滤.html">User-Based 协同过滤</a> 的默认相似度度量。</p>
+<p><strong>在 <a href="../entities/GroupLens.html">GroupLens</a> 中的应用</strong>：<a href="../entities/GroupLens.html">GroupLens</a> 论文（1994）首次将 Pearson 相关系数引入<a href="协同过滤.html">协同过滤</a>，用于<a href="计算.html">计算</a> <a href="../entities/Usenet.html">Usenet</a> <a href="../entities/Usenet.html">新闻组</a>用户间的相似度。此后十余年间，Pearson 相关系数一直是 <a href="User-Based 协同过滤.html">User-Based 协同过滤</a> 的默认相似度度量。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：</p>
 </li>
-<li>需要至少两篇共同评分的物品才能计算，实际中需要远多于此才能获得稳定估计</li>
+<li>需要至少两篇共同评分的物品才能<a href="计算.html">计算</a>，实际中需要远多于此才能获得稳定估计</li>
 <li>只捕捉线性相关，无法检测非线性关系</li>
 <li>对异常值敏感</li>
 <li>
@@ -190,8 +190,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Paxos 算法.html">&larr; Paxos 算法</a>
-    <a href="Perron-Frobenius定理.html">Perron-Frobenius定理 &rarr;</a>
+    <a href="Payment Tokenization.html">&larr; Payment Tokenization</a>
+    <a href="Permissions.html">Permissions &rarr;</a>
   </div>
 </div>
 </body>

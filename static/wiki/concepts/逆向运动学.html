@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>逆向运动学（IK）根据<a href="IKEffector.html">末端执行器</a>的目标位置反向推算关节角度，是骨骼动画中实现自然肢体定位的核心技术。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">基本原理</h3>
-<p>正向运动学（FK）从根节点出发依次计算各关节位姿；逆向运动学则反过来，给定末端目标，求解各关节的旋转，使末端尽量到达目标位置。</p>
+<p>正向运动学（FK）从根节点出发依次<a href="计算.html">计算</a>各关节位姿；逆向运动学则反过来，给定末端目标，求解各关节的旋转，使末端尽量到达目标位置。</p>
 <h3 id="urhox-ik">UrhoX IK 系统组件</h3>
 <p><a href="../entities/UrhoX引擎.html">UrhoX</a> 通过三个组件实现 IK，均继承自 Component：</p>
 <table>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><a href="IKSolver.html">IKSolver</a></td>
-<td>IK 求解器，挂载于骨骼根节点，驱动整条 IK 链的计算</td>
+<td>IK 求解器，挂载于骨骼根节点，驱动整条 IK 链的<a href="计算.html">计算</a></td>
 </tr>
 <tr>
 <td><a href="IKEffector.html">IKEffector</a></td>
@@ -166,8 +166,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">求解流程</h3>
 <ol>
 <li><code>IKSolver.RebuildChainTrees()</code> — 根据场景节点重建 IK 链树</li>
-<li><code>IKSolver.RecalculateSegmentLengths()</code> — 重新计算各段骨骼长度</li>
-<li><code>IKSolver.CalculateJointRotations()</code> — 计算关节旋转</li>
+<li><code>IKSolver.RecalculateSegmentLengths()</code> — 重新<a href="计算.html">计算</a>各段骨骼长度</li>
+<li><code>IKSolver.CalculateJointRotations()</code> — <a href="计算.html">计算</a>关节旋转</li>
 <li><code>IKSolver.Solve()</code> — 执行 IK 求解迭代</li>
 <li><code>IKSolver.ApplyActivePoseToScene()</code> — 将求解结果应用到场景</li>
 </ol>
@@ -179,7 +179,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="_7">关键参数</h3>
 <ul>
-<li><code>algorithm</code>：IK 算法选择（如 FABRIK 等）</li>
+<li><code>algorithm</code>：IK <a href="算法.html">算法</a>选择（如 FABRIK 等）</li>
 <li><code>maximumIterations</code>：最大迭代次数，控制精度与性能权衡</li>
 <li><code>tolerance</code>：收敛阈值，误差小于此值视为已解</li>
 <li><code>AUTO_SOLVE</code>：每帧自动求解，无需手动调用 <code>Solve()</code></li>

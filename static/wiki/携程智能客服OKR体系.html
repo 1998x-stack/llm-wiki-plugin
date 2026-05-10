@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>携程智能客服OKR体系 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / 携程智能客服OKR体系</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-21</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-21</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工作</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="okr">携程智能客服OKR体系</h1>
+<h2 id="_1">概述</h2>
+<p>携程智能客服OKR体系是一套从集团战略到一线执行的五级目标管理框架，通过"纵向对齐、横向协同"原则，将AI技术成功落地于客服业务。体系覆盖"体验标杆"与"生态赋能"两大战略目标，构建C端用户、内部坐席、B端生态三位一体的智能服务生态，实现体验升级与降本增效的双重目标。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>两大核心战略目标</strong>：体验标杆目标（AI服务能力向人工对齐，打造标准化高确定性体验）与生态赋能目标（整合全栈智能化产品能力，打造统一服务智能体，对内提效对外赋能实现商业化输出）。</li>
+<li><strong>三大核心业务板块</strong>：C端用户智能服务（覆盖酒店、机票、度假等全流程售前售后）、内部客服提效赋能（服务1.6万+人工客服坐席，智能推荐/话术指引/工单生成/智能质检）、B端生态开放服务（向合作平台/供应商/商家开放，商家IM回复/订单自动处理/标准API）。</li>
+<li><strong>矩阵式组织架构</strong>：六大部门协同——算法研发中心（30人，全栈算法能力）、产品与工程研发部、业务线算法小组（10人/业务线）、数据分析部、运营与服务管理部、商家与生态合作部。算法中心下设NLP/对话系统/语音算法/数据智能/大模型研发五个专项小组。</li>
+<li><strong>五级OKR拆解逻辑</strong>：集团级（体验/效率/生态三大KR）→ 事业群级（自助服务体系+统一智能体）→ 部门级（算法迭代+能力中台）→ 业务线级（差异化目标，拒绝一刀切）→ 个人级（直接与上级KR挂钩）。</li>
+<li><strong>业务线差异化OKR</strong>：酒店（自助率≥88%）、机票（自助率≥90%，退改自动化≥95%）、度假（自助率≥75%，注重多轮对话）、商旅（自助率≥80%，审批自动化≥90%），根据场景特性和成熟度制定差异化目标。</li>
+<li><strong>三大落地保障机制</strong>：纵向对齐+横向协同机制（五级对齐，明确跨部门协作主责）、全周期复盘迭代机制（周/月/季/年度复盘节奏）、A/B实验与数据驱动机制（策略迭代需经A/B验证，全链路监控实时追踪）。</li>
+<li><strong>核心洞察</strong>：AI落地的瓶颈从来不是技术，而是目标管理。OKR是让团队每个人与公司战略对齐的管理体系，清晰的目标、明确的分工、有效的保障机制是成功关键。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/携程智能客服OKR体系深度拆解</span> — 全文</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="OKR.html">OKR</a> — implements</li>
+<li><a href="携程.html">携程</a> — part_of</li>
+<li><span style="color:#e74c3c" title="broken link">A/B实验</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">知识图谱</span> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="携程.html">&larr; 携程</a>
+    <a href="摇一摇.html">摇一摇 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

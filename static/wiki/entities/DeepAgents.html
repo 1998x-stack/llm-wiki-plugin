@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepagents">DeepAgents</h1>
 <h2 id="_1">概述</h2>
-<p>LangChain 官方开源的 <strong>生产级 <a href="../concepts/Agent Harness模式.html">Agent Harness</a></strong>（<code>langchain-ai/deepagents</code>），基于 <span style="color:#e74c3c" title="broken link">LangGraph</span> 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的<a href="../concepts/ROS (Robot Operating System).html">中间件</a>、后端协议和默认系统提示，快速得到"像 <a href="Claude Code.html">Claude Code</a> 一样能干活"的智能体，再按需裁剪扩展。</p>
+<p>LangChain 官方开源的 <strong>生产级 <a href="../concepts/Agent Harness模式.html">Agent Harness</a></strong>（<code>langchain-ai/deepagents</code>），基于 <span style="color:#e74c3c" title="broken link">LangGraph</span> 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的<a href="../concepts/ROS (Robot Operating System).html">中间件</a>、后端协议和默认系统提示，快速得到"像 <a href="../projects/Claude Code.html">Claude Code</a> 一样能干活"的智能体，再按需裁剪扩展。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="monorepo">仓库结构（Monorepo）</h3>
 <table>
@@ -148,62 +148,32 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>libs/deepagents/</code></td>
-<td>核心 SDK：<code>create_deep_agent</code>、<span style="color:#e74c3c" title="broken link">ROS (Robot Operating System)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;libs/cli/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;基于 Textual 的终端 TUI，延迟加载重型依赖&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;libs/acp/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;[[ACP协议&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;libs/evals/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;评估套件，含 Harbor、Terminal Bench 集成&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;libs/repl/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;REPL [[ROS (Robot Operating System)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;libs/partners/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;合作方沙箱：Daytona、Modal、QuickJS、Runloop&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;examples/&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;示例项目（各自独立 pyproject.toml）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;各包&lt;strong&gt;独立版本、独立锁文件&lt;/strong&gt;，无根级 uv workspace。工具链：uv（包管理）、make（任务聚合）、ruff（lint/format）、ty（类型检查）、pytest（测试）。&lt;/p&gt;
-&lt;h3 id=&quot;api&quot;&gt;核心 API&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;create_deep_agent()&lt;/code&gt;&lt;/strong&gt;（&lt;code&gt;libs/deepagents/deepagents/graph.py&lt;/code&gt;）：唯一公共装配入口，声明式配置返回 &lt;code&gt;CompiledStateGraph&lt;/code&gt;。关键参数：
-- &lt;code&gt;model&lt;/code&gt;：默认 &lt;code&gt;claude-sonnet-4-6&lt;/code&gt;（需 &lt;code&gt;ANTHROPIC_API_KEY&lt;/code&gt;）
-- &lt;code&gt;tools&lt;/code&gt;、&lt;code&gt;middleware&lt;/code&gt;、&lt;code&gt;backend&lt;/code&gt;、&lt;code&gt;subagents&lt;/code&gt;、&lt;code&gt;skills&lt;/code&gt;、&lt;code&gt;memory&lt;/code&gt;、&lt;code&gt;interrupt_on&lt;/code&gt;
-- &lt;code&gt;recursion_limit=9999&lt;/code&gt;（避免复杂任务被 LangGraph 截断）
-- &lt;code&gt;BASE_AGENT_PROMPT&lt;/code&gt; 始终附加在系统提示末尾（不可省略的行为基线）&lt;/p&gt;
-&lt;h3 id=&quot;_3&quot;&gt;默认工具集&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;write_todos&lt;/code&gt;、&lt;code&gt;ls&lt;/code&gt;、&lt;code&gt;read_file&lt;/code&gt;、&lt;code&gt;write_file&lt;/code&gt;、&lt;code&gt;edit_file&lt;/code&gt;、&lt;code&gt;glob&lt;/code&gt;、&lt;code&gt;grep&lt;/code&gt;、&lt;code&gt;execute&lt;/code&gt;（需沙箱 backend）、&lt;code&gt;task&lt;/code&gt;（子代理分发）。&lt;/p&gt;
-&lt;h3 id=&quot;_4&quot;&gt;子代理分发&lt;/h3&gt;
-&lt;p&gt;三种子代理规格：同步 &lt;code&gt;SubAgent&lt;/code&gt;（内联执行）、&lt;code&gt;CompiledSubAgent&lt;/code&gt;（已编译图）、&lt;code&gt;AsyncSubAgent&lt;/code&gt;（异步/远程，含 &lt;code&gt;graph_id&lt;/code&gt;）。默认自动插入 &lt;code&gt;general-purpose&lt;/code&gt; 子代理，保证 &lt;code&gt;task&lt;/code&gt; 工具始终可用。&lt;/p&gt;
-&lt;h3 id=&quot;cli&quot;&gt;CLI 特点&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;启动链延迟导入 LangChain/LangGraph（轻量命令如 &lt;code&gt;-v&lt;/code&gt; 毫秒级）&lt;/li&gt;
-&lt;li&gt;SDK 版本精确 pin，与 CI 联动&lt;/li&gt;
-&lt;li&gt;Python 版本：&lt;code&gt;acp&lt;/code&gt; 包用 3.14，其余用 3.12&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;_5&quot;&gt;示例项目&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;deep_research&lt;/code&gt;（多步检索+反思）、&lt;code&gt;content-builder-agent&lt;/code&gt;（记忆+skills）、&lt;code&gt;text-to-sql-agent&lt;/code&gt;、&lt;code&gt;ralph_mode&lt;/code&gt;（循环自治）、&lt;code&gt;downloading_agents&lt;/code&gt;（智能体即文件夹）、&lt;code&gt;async-subagent-server&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;cicd&quot;&gt;CI/CD&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;GitHub Actions + release-please 自动版本化&lt;/li&gt;
-&lt;li&gt;pre-commit：格式化、换行检查，evals 数据目录受保护（字节级一致）&lt;/li&gt;
-&lt;li&gt;提交规范：Conventional Commits（feat/fix/refactor/docs/test/chore）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;_6&quot;&gt;来源&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[[raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>
+<td>核心 SDK：<code>create_deep_agent</code>、<span style="color:#e74c3c" title="broken link">配置</span>返回 <code>CompiledStateGraph</code>。关键参数：
+- <code>model</code>：默认 <code>claude-sonnet-4-6</code>（需 <code>ANTHROPIC_API_KEY</code>）
+- <code>tools</code>、<code>middleware</code>、<code>backend</code>、<code>subagents</code>、<code>skills</code>、<code>memory</code>、<code>interrupt_on</code>
+- <code>recursion_limit=9999</code>（避免复杂任务被 LangGraph 截断）
+- <code>BASE_AGENT_PROMPT</code> 始终附加在系统提示末尾（不可省略的行为基线）</p>
+<h3 id="_3">默认工具集</h3>
+<p><code>write_todos</code>、<code>ls</code>、<code>read_file</code>、<code>write_file</code>、<code>edit_file</code>、<code>glob</code>、<code>grep</code>、<code>execute</code>（需沙箱 backend）、<code>task</code>（子代理分发）。</p>
+<h3 id="_4">子代理分发</h3>
+<p>三种子代理规格：同步 <code>SubAgent</code>（内联执行）、<code>CompiledSubAgent</code>（已编译图）、<code>AsyncSubAgent</code>（异步/远程，含 <code>graph_id</code>）。默认自动插入 <code>general-purpose</code> 子代理，保证 <code>task</code> 工具始终可用。</p>
+<h3 id="cli">CLI 特点</h3>
+<ul>
+<li>启动链延迟导入 LangChain/LangGraph（轻量命令如 <code>-v</code> 毫秒级）</li>
+<li>SDK 版本精确 pin，与 CI 联动</li>
+<li><a href="../concepts/Python.html">Python</a> 版本：<code>acp</code> 包用 3.14，其余用 3.12</li>
+</ul>
+<h3 id="_5">示例项目</h3>
+<p><code>deep_research</code>（多步检索+反思）、<code>content-builder-agent</code>（记忆+skills）、<code>text-to-sql-agent</code>、<code>ralph_mode</code>（循环自治）、<code>downloading_agents</code>（智能体即文件夹）、<code>async-subagent-server</code>。</p>
+<h3 id="cicd">CI/CD</h3>
+<ul>
+<li><a href="GitHub.html">GitHub</a> Actions + release-please 自动版本化</li>
+<li>pre-<a href="commit.html">commit</a>：格式化、换行检查，evals 数据目录受保护（字节级一致）</li>
+<li>提交规范：<a href="../concepts/Conventional Commits.html">Conventional Commits</a>（feat/fix/refactor/docs/test/chore）</li>
+</ul>
+<h2 id="_6">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/01-项目概览与仓库结构.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/02-核心设计哲学与架构总览.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/03-入口函数-create_deep_agent.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/13-模型解析与Provider支持.md</span></li>

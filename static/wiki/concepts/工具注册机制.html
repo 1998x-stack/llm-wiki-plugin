@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">工具注册机制</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的工具发现和执行分发系统，利用 Python 模块加载机制实现工具在导入时自动注册，无需手工维护工具列表。</p>
+<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的工具发现和执行分发系统，利用 <a href="Python.html">Python</a> 模块加载机制实现工具在导入时自动注册，无需手工维护工具列表。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>注册原理</strong>：工具在导入时通过 <code>@register_tool</code> 装饰器自动注册到 <code>tools/registry.py</code>，利用 Python 模块加载机制实现自动发现</li>
+<li><strong>注册原理</strong>：工具在导入时通过 <code>@register_tool</code> 装饰器自动注册到 <code>tools/registry.py</code>，利用 <a href="Python.html">Python</a> 模块加载机制实现自动发现</li>
 <li><strong>核心功能</strong>：<code>model_tools.py</code> 提供 <code>get_tool_definitions()</code> 收集所有工具的 JSON Schema 传给 LLM，<code>handle_function_call(call)</code> 根据工具名分发执行</li>
-<li><strong>工具体系</strong>：48 个工具 + 40 个工具集（Toolset），覆盖终端执行 (6)、文件操作 (4)、网络搜索 (4)、浏览器自动化 (11)、代码执行沙盒 (1)、子 Agent 委派 (1)、记忆管理 (1)、<a href="Agent Skills.html">Skills</a> 管理 (3)、MCP 客户端 (动态)、视觉/图像、语音等</li>
+<li><strong>工具体系</strong>：48 个工具 + 40 个工具集（<a href="Tool System.html">Tools</a>et），覆盖终端执行 (6)、文件操作 (4)、网络搜索 (4)、浏览器自动化 (11)、代码执行沙盒 (1)、<span style="color:#e74c3c" title="broken link">子 Agent</span> 委派 (1)、<a href="Memory-Management.html">记忆管理</a> (1)、<a href="../entities/Agent Skills.html">Skills</a> 管理 (3)、MCP 客户端 (动态)、视觉/图像、语音等</li>
 <li><strong>工具集系统</strong>：工具集是工具的逻辑集合，支持按需启用/禁用（<code>hermes tools enable/disable</code>），在 chat 时通过 <code>--toolsets</code> 参数指定</li>
-<li><strong>典型配置</strong>：通用编程助手 (terminal+file+web)、网络研究 (web+browser)、数据分析 (terminal+file+execute_code)、消息平台 Agent (terminal+skills+memory)、最小化 (skills 仅)</li>
+<li><strong>典型<a href="Configuration.html">配置</a></strong>：通用编程助手 (terminal+file+web)、网络研究 (web+browser)、<a href="数据分析.html">数据分析</a> (terminal+file+execute_code)、消息平台 Agent (terminal+skills+memory)、最小化 (skills 仅)</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="工作台 vs 长期记忆.html">&larr; 工作台 vs 长期记忆</a>
+    <a href="工作记忆.html">&larr; 工作记忆</a>
     <a href="工程化UX规则体系.html">工程化UX规则体系 &rarr;</a>
   </div>
 </div>

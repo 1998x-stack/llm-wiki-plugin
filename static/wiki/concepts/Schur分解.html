@@ -165,16 +165,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 | 唯一性 | 唯一（块排列确定后） | 不唯一（特征值排列任意） |
 | 精细程度 | 最细（完整代数结构） | 较粗（丢失Jordan结构信息） |
 | 域要求 | 代数闭域 | 复数域 |</p>
-<p><strong>核心权衡</strong>：Jordan 形最精细但数值不稳定；<a href="../entities/伊赛·舒尔.html">Schur</a> 形数值稳定但信息略少。实际计算一律用 <a href="../entities/伊赛·舒尔.html">Schur</a> 分解。</p>
+<p><strong>核心权衡</strong>：Jordan 形最精细但数值不稳定；<a href="../entities/伊赛·舒尔.html">Schur</a> 形数值稳定但信息略少。实际<a href="计算.html">计算</a>一律用 <a href="../entities/伊赛·舒尔.html">Schur</a> 分解。</p>
 <h3 id="_6">关键应用</h3>
-<p><strong><a href="QR算法.html">QR算法</a></strong>（Francis &amp; Kublanovskaya, 1961）：反复执行 $A_k = Q_kR_k \to A_{k+1} = R_kQ_k$，序列 ${A_k}$ 在满足谱间隙条件时收敛到 <a href="../entities/伊赛·舒尔.html">Schur</a> 形式。被列为"20世纪十大最有影响力算法"。</p>
-<p><strong><a href="矩阵.html">矩阵</a>函数</strong>：若 $A = QTQ^<em>$，则 $f(A) = Qf(T)Q^</em>$，上三角<a href="矩阵.html">矩阵</a>的函数值由 Parlett 递推计算。<a href="矩阵.html">矩阵</a>指数 $e^A$、<a href="矩阵.html">矩阵</a>对数 $\ln A$、<a href="矩阵.html">矩阵</a>平方根 $A^{1/2}$ 等均通过此途径计算。</p>
+<p><strong><a href="QR算法.html">QR算法</a></strong>（Francis &amp; Kublanovskaya, 1961）：反复执行 $A_k = Q_kR_k \to A_{k+1} = R_kQ_k$，序列 ${A_k}$ 在满足谱间隙条件时收敛到 <a href="../entities/伊赛·舒尔.html">Schur</a> 形式。被列为"20世纪十大最有影响力<a href="算法.html">算法</a>"。</p>
+<p><strong><a href="矩阵.html">矩阵</a>函数</strong>：若 $A = QTQ^<em>$，则 $f(A) = Qf(T)Q^</em>$，上三角<a href="矩阵.html">矩阵</a>的函数值由 Parlett 递推<a href="计算.html">计算</a>。<a href="矩阵.html">矩阵</a>指数 $e^A$、<a href="矩阵.html">矩阵</a>对数 $\ln A$、<a href="矩阵.html">矩阵</a>平方根 $A^{1/2}$ 等均通过此途径<a href="计算.html">计算</a>。</p>
 <p><strong>控制理论</strong>：线性系统稳定性（特征值实部符号）、Riccati 方程求解、$H_\infty$ 控制均依赖 <a href="../entities/伊赛·舒尔.html">Schur</a> 形式。</p>
 <p><strong>特征值定位</strong>：<a href="../entities/伊赛·舒尔.html">Schur</a> 不等式 $\sum|\lambda_i|^2 \leq |A|_F^2$ 提供无需求解特征多项式的快速估计（特别是在 $n &gt; 4$ 时特征方程无根式解的情形）。</p>
 <h3 id="schur_2">Schur补</h3>
 <p>对分块<a href="矩阵.html">矩阵</a> $M = \begin{pmatrix} A &amp; B \ C &amp; D \end{pmatrix}$（$D$ 可逆），<a href="../entities/伊赛·舒尔.html">Schur</a> 补定义为</p>
 <p>$$M/D = A - BD^{-1}C$$</p>
-<p>由 Emilie Haynsworth（1968）以 <a href="../entities/伊赛·舒尔.html">Schur</a> 名字命名，用于高斯消元、正定性判别、条件分布计算和 Kron 网络约化。</p>
+<p>由 Emilie Haynsworth（1968）以 <a href="../entities/伊赛·舒尔.html">Schur</a> 名字命名，用于高斯消元、正定性判别、条件分布<a href="计算.html">计算</a>和 Kron 网络约化。</p>
 <h2 id="_7">局限性</h2>
 <ol>
 <li><strong>非唯一性</strong>：特征值排列顺序任意，存在重特征值时酉因子选择自由度更大</li>
@@ -197,8 +197,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="SWE-bench.html">&larr; SWE-bench</a>
-    <a href="Self-Attention机制.html">Self-Attention机制 &rarr;</a>
+    <a href="Sandbox Mode.html">&larr; Sandbox Mode</a>
+    <a href="Secure Code Reviewer.html">Secure Code Reviewer &rarr;</a>
   </div>
 </div>
 </body>

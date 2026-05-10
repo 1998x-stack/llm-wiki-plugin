@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="user-based">User-Based 协同过滤</h1>
 <h2 id="_1">概述</h2>
-<p>User-Based <a href="协同过滤.html">协同过滤</a>（<a href="基于用户的协同过滤.html">User-Based Collaborative Filtering</a>）是一种推荐算法<a href="规范化理论.html">范式</a>，通过计算用户之间的相似度，找到与目标用户品味相似的邻居用户，然后基于邻居用户的评分来预测目标用户对未交互物品的评分。</p>
+<p>User-Based <a href="协同过滤.html">协同过滤</a>（<a href="基于用户的协同过滤.html">User-Based Collaborative Filtering</a>）是一种推荐<a href="算法.html">算法</a><a href="规范化理论.html">范式</a>，通过<a href="计算.html">计算</a>用户之间的相似度，找到与目标用户品味相似的邻居用户，然后基于邻居用户的评分来预测目标用户对未交互物品的评分。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心思想</strong>：如果两个用户在过去对某些物品的评价上达成一致，那么他们在未来对其他物品的评价也很可能一致。这一假设由 <a href="../entities/GroupLens.html">GroupLens</a> 论文于 1994 年形式化，成为整个<a href="协同过滤.html">协同过滤</a>领域的理论基石。</p>
 </li>
 <li>
-<p><strong>用户相似度计算</strong>：采用 <a href="Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性：
+<p><strong>用户相似度<a href="计算.html">计算</a></strong>：采用 <a href="Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性：
    $$w(a, i) = \frac{\sum_{j \in J_{ai}} (v_{a,j} - \bar{v}<em>a)(v</em>{i,j} - \bar{v}<em>i)}{\sqrt{\sum</em>{j \in J_{ai}} (v_{a,j} - \bar{v}<em>a)^2 \cdot \sum</em>{j \in J_{ai}} (v_{i,j} - \bar{v}_i)^2}}$$
    取值范围 [-1, 1]，其中 1 表示完全正相关，-1 表示完全负相关，0 表示无关联。</p>
 </li>
@@ -159,14 +159,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>方向鲁棒性</strong>：若两用户品味完全相反，产生负相关，系统可将对方的高分"翻译"为低分预测</p>
 </li>
 <li>
-<p><strong>计算复杂度</strong>：计算所有用户对之间的相关系数需要 $O(n^2)$ 的时间和空间，其中 $n$ 是用户数量。这是 <a href="基于用户的协同过滤.html">User-Based CF</a> 的主要可扩展性瓶颈。</p>
+<p><strong><a href="计算.html">计算</a>复杂度</strong>：<a href="计算.html">计算</a>所有用户对之间的相关系数需要 $O(n^2)$ 的时间和空间，其中 $n$ 是用户数量。这是 <a href="基于用户的协同过滤.html">User-Based CF</a> 的主要可扩展性瓶颈。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：</p>
 </li>
-<li><a href="冷启动问题.html">冷启动问题</a>：新用户无历史评分时无法计算相似度</li>
+<li><a href="冷启动问题.html">冷启动问题</a>：新用户无历史评分时无法<a href="计算.html">计算</a>相似度</li>
 <li><span style="color:#e74c3c" title="broken link">数据稀疏性问题</span>：用户-物品评分<a href="矩阵.html">矩阵</a>极其稀疏，共同评分少时 Pearson 系数不可靠</li>
-<li>可扩展性瓶颈：用户数量增长时计算复杂度平方级增长</li>
+<li>可扩展性瓶颈：用户数量增长时<a href="计算.html">计算</a>复杂度平方级增长</li>
 <li>
 <p>后来 <a href="../entities/Amazon.html">Amazon</a> 等公司转向 <span style="color:#e74c3c" title="broken link">Item-Based 协同过滤</span> 正是为了解决这一瓶颈</p>
 </li>
@@ -190,7 +190,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="User Story 粒度原则.html">&larr; User Story 粒度原则</a>
-    <a href="Viewport渲染视口.html">Viewport渲染视口 &rarr;</a>
+    <a href="VGGNet.html">VGGNet &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">同步编排引擎</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的核心执行模型：AIAgent 是单线程同步循环而非异步事件驱动，简化状态管理，通过子 Agent 委派处理多任务。</p>
+<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的核心执行模型：AIAgent 是单线程同步循环而非异步事件驱动，简化状态管理，通过<span style="color:#e74c3c" title="broken link">子 Agent</span> 委派处理多任务。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>循环结构</strong>：组装 System Prompt → 解析 Provider → 主执行循环（含 IterationBudget）→ 工具执行 → 最终响应 → 持久化到 SessionDB</li>
 <li><strong>同步 vs 异步</strong>：选择同步而非异步事件驱动，代价是单任务阻塞，但大幅简化状态管理和调试</li>
-<li><strong>多任务处理</strong>：通过 <code>delegate_task</code> 子 Agent 委派解决单任务阻塞问题，而非并发执行</li>
+<li><strong>多任务处理</strong>：通过 <code>delegate_task</code> <span style="color:#e74c3c" title="broken link">子 Agent</span> 委派解决单任务阻塞问题，而非并发执行</li>
 <li><strong>核心文件</strong>：<code>run_agent.py</code> 中的 <code>AIAgent</code> 类，约 9,200 行，是整个系统的心脏</li>
 <li><strong>数据流</strong>：CLI/<a href="网关与路由器.html">Gateway</a>/Cron 三条数据流最终都汇入同一个 <code>AIAgent.run_conversation()</code>，保证行为一致性</li>
-<li><strong>工程权衡</strong>：同步设计使状态可预测、易于测试和调试，适合 Agent 场景而非高并发服务场景</li>
+<li><strong>工程权衡</strong>：同步设计使状态可预测、易于测试和调试，适合 Agent 场景而非高并发<a href="服务.html">服务</a>场景</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>
@@ -158,8 +158,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="同心圆模型.html">&larr; 同心圆模型</a>
-    <a href="后向误差分析.html">后向误差分析 &rarr;</a>
+    <a href="同步帧协议.html">&larr; 同步帧协议</a>
+    <a href="同质化内卷.html">同质化内卷 &rarr;</a>
   </div>
 </div>
 </body>

@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>三种信号类型</strong>：Traces（请求链路追踪）、Metrics（指标聚合）、Logs（结构化日志），统一采集框架</li>
 <li><strong>OTLP 协议</strong>：标准的遥测数据传输协议，默认 gRPC 端口 4317，HTTP 端口 4318</li>
-<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的集成</strong>：<a href="Codex CLI.html">Codex CLI</a> 通过 <code>[telemetry]</code> 配置段支持 OTLP exporter，自动记录 session_id、model、tool call 耗时、approval 决策等事件，便于审计和性能分析</li>
+<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的集成</strong>：<a href="Codex CLI.html">Codex CLI</a> 通过 <code>[telemetry]</code> <a href="../concepts/Configuration.html">配置</a>段支持 OTLP exporter，自动记录 session_id、model、tool call 耗时、approval 决策等事件，便于审计和<a href="../concepts/性能分析.html">性能分析</a></li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

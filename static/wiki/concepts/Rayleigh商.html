@@ -192,17 +192,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>在<a href="../maps/数值分析.html">数值计算</a>中，<a href="../entities/瑞利勋爵.html">Rayleigh</a> 商用于<strong>特征值的迭代估计</strong>：</p>
 <ol>
 <li>选取初始猜测向量 x₀</li>
-<li>计算 R(xₖ)（作为特征值近似）</li>
+<li><a href="计算.html">计算</a> R(xₖ)（作为特征值近似）</li>
 <li>更新 x：如 <a href="../entities/瑞利勋爵.html">Rayleigh</a> 商迭代（Rq = Axₖ - R(xₖ)xₖ 的法方程）</li>
 <li>收敛速度：<a href="../entities/瑞利勋爵.html">Rayleigh</a>商迭代对单纯特征值<strong>三次收敛</strong></li>
 </ol>
-<p><strong>Lanczos 算法</strong>正是在 Krylov 子空间上对 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商做约束极值，快速计算大稀疏<a href="矩阵.html">矩阵</a>的极端特征值。</p>
+<p><strong>Lanczos <a href="算法.html">算法</a></strong>正是在 Krylov 子空间上对 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商做约束极值，快速<a href="计算.html">计算</a>大稀疏<a href="矩阵.html">矩阵</a>的极端特征值。</p>
 <h3 id="rayleigh_2">广义 Rayleigh商与主成分分析</h3>
 <p>在主成分分析（PCA）中，协方差<a href="矩阵.html">矩阵</a> C 的 <a href="../entities/瑞利勋爵.html">Rayleigh</a>商 R(x) = xᵀCx / xᵀx 的最大值方向给出第一主成分。<a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 定理保证了最优 k 维投影子空间恰好是前 k 个特征向量张成的子空间，这是 PCA 最优性的数学根据。</p>
 <h2 id="_6">意义</h2>
 <p><a href="../entities/瑞利勋爵.html">Rayleigh</a>商是将<strong>"代数的"特征值</strong>与<strong>"几何的"子空间方向</strong>联系起来的核心桥梁。它使得：</p>
 <ul>
-<li>特征值可以通过优化（而非求多项式的根）来计算和估计</li>
+<li>特征值可以通过优化（而非求多项式的根）来<a href="计算.html">计算</a>和估计</li>
 <li>近似特征向量能给出特征值的近似（且误差阶高两级：方向误差 ε → 特征值误差 ε²）</li>
 <li>有限维结果可以自然地推广到无穷维函数空间</li>
 </ul>
@@ -219,8 +219,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Rainbow.html">&larr; Rainbow</a>
-    <a href="ReAct 风格循环.html">ReAct 风格循环 &rarr;</a>
+    <a href="Ralph Loop 系统.html">&larr; Ralph Loop 系统</a>
+    <a href="ReAct.html">ReAct &rarr;</a>
   </div>
 </div>
 </body>

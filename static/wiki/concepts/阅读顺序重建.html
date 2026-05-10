@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">阅读顺序重建</h1>
 <h2 id="_2">概述</h2>
-<p>阅读顺序重建（Reading Order Reconstruction）是从 PDF 页面元素的空间坐标中还原人类阅读序列的算法，解决多栏布局、脚注、跨栏元素、图注关联等复杂排版下的文本顺序问题。</p>
+<p>阅读顺序重建（Reading Order Reconstruction）是从 PDF 页面元素的空间坐标中还原人类阅读序列的<a href="算法.html">算法</a>，解决多栏布局、脚注、跨栏元素、图注关联等复杂排版下的文本顺序问题。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">问题定义</h3>
 <p>PDF 中的字符和元素仅带坐标信息，没有"先读什么后读什么"的语义。布局检测输出的内容块列表是<strong>空间无序</strong>的。阅读顺序重建需要解决四大挑战：</p>
@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>图/表的图注关系</strong>：图注物理上在图下方，但在 Markdown 中应紧跟图的引用位置</li>
 </ol>
 <h3 id="mineru">在 MinerU 流水线中的位置</h3>
-<p>阅读顺序重建是 <a href="../entities/MinerU.html">MinerU</a> <a href="PDF文档解析流水线.html">七层流水线</a>的<strong>第六层</strong>，承接内容块分类与属性标注，为最终的 Markdown/JSON 生成提供有序的内容块序列（<code>sorted_blocks</code>）。</p>
+<p>阅读顺序重建是 <a href="../entities/MinerU.html">MinerU</a> <a href="PDF文档解析流水线.html">七层流水线</a>的<strong>第六层</strong>，承接内容块分类与属性<a href="../entities/标注.html">标注</a>，为最终的 Markdown/JSON 生成提供有序的内容块序列（<code>sorted_blocks</code>）。</p>
 <h3 id="mineru_1">MinerU 三层架构算法</h3>
 <p><a href="../entities/MinerU.html">MinerU</a> 的阅读顺序排序分为三个子问题：</p>
 <pre><code>1. 分区（Zoning）：把页面划分为若干阅读区域
@@ -217,7 +217,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_12">与传统工具的对比</h3>
-<p>传统工具（<a href="../entities/pypdf.html">pypdf</a>、<a href="../entities/pdfminer.html">pdfminer</a>）直接按字符坐标排序，多栏内容完全混乱。<a href="../entities/MinerU.html">MinerU</a> 通过布局检测 + 分栏分析 + 阅读顺序算法，重建正确的阅读序列。</p>
+<p>传统工具（<a href="../entities/pypdf.html">pypdf</a>、<a href="../entities/pdfminer.html">pdfminer</a>）直接按字符坐标排序，多栏内容完全混乱。<a href="../entities/MinerU.html">MinerU</a> 通过布局检测 + 分栏分析 + 阅读顺序<a href="算法.html">算法</a>，重建正确的阅读序列。</p>
 <h2 id="_13">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/assets/MinerU/minerU_01_architecture.md</span> — MinerU 深度解析系列 · 第一篇：整体架构全景</li>
@@ -234,8 +234,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="闭环学习系统.html">&larr; 闭环学习系统</a>
-    <a href="阶级斗争.html">阶级斗争 &rarr;</a>
+    <a href="闭环断裂致命坑.html">&larr; 闭环断裂致命坑</a>
+    <a href="防御型信号.html">防御型信号 &rarr;</a>
   </div>
 </div>
 </body>

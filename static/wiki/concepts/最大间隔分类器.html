@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">最大间隔分类器</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>最大间隔分类器是<a href="支持向量机.html">支持向量机</a>的核心思想：对于线性可分数据，选择距两类最近样本点距离之和最大的超平面作为决策边界，由VC维理论保证泛化能力最强。</p>
+<p>最大间隔分类器是<a href="支持向量机.html">支持向量机</a>的核心思想：对于线性可分数据，选择距两类最近样本点距离之和最大的超平面作为<a href="决策边界.html">决策边界</a>，由VC维理论保证泛化能力最强。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>问题定义</strong>：线性可分数据存在无数条超平面可以分割两类——哪条最好？最大间隔分类器选择<strong>距两类最近点距离之和最大</strong>的那条超平面。间隔（Margin）定义为两个支持超平面（各类最近点所在超平面）之间的距离：间隔宽度=2/‖w‖。</li>
-<li><strong>支持向量</strong>：恰好落在间隔边界上的训练样本称为<strong>支持向量（Support Vectors）</strong>，<a href="支持向量机.html">支持向量机</a>由此得名。这些样本对决策边界有唯一贡献，非支持向量（αᵢ=0）对边界无影响。</li>
+<li><strong>支持向量</strong>：恰好落在间隔边界上的训练样本称为<strong>支持向量（Support Vectors）</strong>，<a href="支持向量机.html">支持向量机</a>由此得名。这些样本对<a href="决策边界.html">决策边界</a>有唯一贡献，非支持向量（αᵢ=0）对边界无影响。</li>
 <li><strong>最优化问题</strong>：硬间隔SVM的最小化目标：½‖w‖²（最大化间隔），约束：yᵢ(w·xᵢ+b)≥1（所有样本正确分类）。通过拉格朗日对偶转化为对偶问题求解。</li>
 <li><strong><span style="color:#e74c3c" title="broken link">VC维理论</span>保证</strong>：Vapnik证明，最大间隔分类器的泛化误差有严格上界，间隔越大泛化能力越强。这是SVM区别于神经网络经验主义路线的理论基础。</li>
 <li><strong>软间隔扩展</strong>：实际数据含噪声和异常点时，引入松弛变量ξᵢ和正则化参数C，允许部分误分类以换取更宽松的边界和更好的泛化。</li>

@@ -137,7 +137,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Linux 内核的系统调用过滤机制（Secure Computing Mode），通过 BPF 规则白名单/黑名单限制进程可调用的内核 API。</p>
 <h2 id="_1">关键内容</h2>
 <ol>
-<li><strong>系统调用级隔离</strong>：seccomp 在进程与内核之间设置过滤层，只允许预定义的系统调用通过，从根本上缩小攻击面。</li>
+<li><strong>系统调用级隔离</strong>：seccomp 在进程与内核之间<a href="../concepts/Settings.html">设置</a>过滤层，只允许预定义的系统调用通过，从根本上缩小攻击面。</li>
 <li><strong>在 <a href="Codex CLI.html">Codex</a> 中的角色</strong>：<a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a> 在 Linux 平台上将 seccomp 与 <a href="Landlock.html">Landlock</a> 组合使用——seccomp 管"能做什么操作"，<a href="Landlock.html">Landlock</a> 管"能访问什么文件"。</li>
 <li><strong>seccomp-bpf</strong>：现代版本基于 Berkeley Packet Filter 语法，支持复杂的过滤规则（参数匹配、位掩码等）。</li>
 <li><strong>Rust 绑定优势</strong>：Rust 可直接调用 seccomp syscall，无需 Node.js native addon 的桥接层。</li>

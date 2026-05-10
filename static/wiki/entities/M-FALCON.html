@@ -135,20 +135,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="m-falcon">M-FALCON</h1>
 <h2 id="_1">概述</h2>
-<p>M-FALCON（Microbatched-Fast Attention Leveraging Cacheable OperatioNs），Meta 提出的高效推理算法，使万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>模型在毫秒级延迟和相同推理预算下运行。</p>
+<p>M-FALCON（Microbatched-Fast Attention Leveraging Cacheable OperatioNs），Meta 提出的高效推理<a href="../concepts/算法.html">算法</a>，使万亿参数<a href="../concepts/生成式推荐.html">生成式推荐</a>模型在毫秒级延迟和相同推理预算下运行。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心问题</strong>：1.5 万亿参数的 HSTU 模型如何在生产环境中以毫秒级延迟运行？Meta 推荐系统每天处理数百亿次用户交互，推理延迟要求在毫秒级别。</p>
 </li>
 <li>
-<p><strong>KV 缓存复用</strong>：用户历史序列的 KV 缓存可在编码阶段完成后缓存下来，对所有候选物品共享复用。避免为每个候选重复计算历史序列的注意力。</p>
+<p><strong>KV 缓存复用</strong>：用户历史序列的 KV 缓存可在编码阶段完成后缓存下来，对所有候选物品共享复用。避免为每个候选重复<a href="../concepts/计算.html">计算</a>历史序列的注意力。</p>
 </li>
 <li>
-<p><strong>微批处理（Micro-batching）</strong>：将候选物品分成小批次，通过修改注意力掩码防止候选之间信息泄露，同时共享历史序列的计算。推理成本随候选数量线性增长而非二次增长。</p>
+<p><strong>微批处理（Micro-batching）</strong>：将候选物品分成小批次，通过修改注意力掩码防止候选之间信息泄露，同时共享历史序列的<a href="../concepts/计算.html">计算</a>。推理成本随候选数量线性增长而非二次增长。</p>
 </li>
 <li>
-<p><strong>计算摊销</strong>：通过 KV 缓存 + 微批处理，历史序列的计算被所有候选摊销。最终实现 <strong>285 倍复杂度的模型在相同推理预算下运行</strong>，同时获得 1.5x-2.99x 吞吐量提升。</p>
+<p><strong><a href="../concepts/计算.html">计算</a>摊销</strong>：通过 KV 缓存 + 微批处理，历史序列的<a href="../concepts/计算.html">计算</a>被所有候选摊销。最终实现 <strong>285 倍复杂度的模型在相同推理预算下运行</strong>，同时获得 1.5x-2.99x 吞吐量提升。</p>
 </li>
 <li>
 <p><strong>工程意义</strong>：M-FALCON 是<a href="../concepts/生成式推荐.html">生成式推荐</a>从理论走向工业部署的关键工程创新。没有它，万亿参数模型的推理成本在经济上不可行。</p>

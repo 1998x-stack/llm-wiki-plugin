@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心参数</strong>：<code>MatDiffColor</code>（漫反射颜色 RGBA）、<code>Metallic</code>（金属度 0-1，0=非金属，1=金属）、<code>Roughness</code>（粗糙度 0-1，0=光滑，1=粗糙）、<code>MatEmissiveColor</code>（自发光颜色）。</li>
 <li><strong>Technique 分类</strong>：程序化纯色材质只用 <code>PBRNoTexture.xml</code>（不透明）或 <code>PBRNoTextureAlpha.xml</code>（透明）；需要纹理贴图时使用 <code>PBRMetallicRough*</code> 或 <code>PBRDiff*</code> 系列。</li>
 <li><strong>常见效果参数组合</strong>：光滑金属（Metallic 0.9-1.0，Roughness 0.1-0.2）、磨砂金属（Metallic 0.9-1.0，Roughness 0.4-0.6）、光滑塑料（Metallic 0.0，Roughness 0.3-0.5）、陶瓷（Metallic 0.0，Roughness 0.1-0.3）。</li>
-<li><strong>自发光（Emissive）</strong>：在 PBRNoTexture 材质上设置 <code>MatEmissiveColor</code>，颜色值大于 1.0 可增强 HDR 发光强度；透明材质使用 <code>PBRNoTextureAlpha.xml</code> 并通过 Alpha 通道控制透明度。</li>
+<li><strong>自发光（Emissive）</strong>：在 PBRNoTexture 材质上<a href="Settings.html">设置</a> <code>MatEmissiveColor</code>，颜色值大于 1.0 可增强 HDR 发光强度；透明材质使用 <code>PBRNoTextureAlpha.xml</code> 并通过 Alpha 通道控制透明度。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="P vs NP.html">&larr; P vs NP</a>
-    <a href="PDDL.html">PDDL &rarr;</a>
+    <a href="PCA颜色增强.html">PCA颜色增强 &rarr;</a>
   </div>
 </div>
 </body>

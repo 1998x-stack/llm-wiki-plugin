@@ -138,8 +138,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>一种可靠的特征重要性量化方法，通过随机打乱某特征值后测量模型误差增量来评估该特征对预测的贡献程度。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>算法流程</strong>：对每个特征 j，(1) 计算原始 <a href="袋外误差（Out-of-Bag Error）.html">OOB 误差</a> E；(2) 随机打乱特征 j 的值以破坏其信息；(3) 计算打乱后的 <a href="袋外误差（Out-of-Bag Error）.html">OOB 误差</a> E'；(4) 重要性(j) = E' - E。误差增量越大，说明该特征越重要。</li>
-<li><strong>与基尼重要性的对比</strong>：随机森林提供两种特征重要性方法。基尼重要性（Mean Decrease Impurity）累计所有树中以该特征为分裂点时降低的基尼不纯度之和——计算快速但对高基数特征有偏。排列重要性更可靠，因为它直接测量特征对预测性能的实际影响。</li>
+<li><strong><a href="算法.html">算法</a>流程</strong>：对每个特征 j，(1) <a href="计算.html">计算</a>原始 <a href="袋外误差（Out-of-Bag Error）.html">OOB 误差</a> E；(2) 随机打乱特征 j 的值以破坏其信息；(3) <a href="计算.html">计算</a>打乱后的 <a href="袋外误差（Out-of-Bag Error）.html">OOB 误差</a> E'；(4) 重要性(j) = E' - E。误差增量越大，说明该特征越重要。</li>
+<li><strong>与基尼重要性的对比</strong>：<a href="随机森林.html">随机森林</a>提供两种特征重要性方法。基尼重要性（Mean Decrease Impurity）累计所有树中以该特征为分裂点时降低的基尼不纯度之和——<a href="计算.html">计算</a>快速但对高基数特征有偏。排列重要性更可靠，因为它直接测量特征对预测性能的实际影响。</li>
 <li><strong>直观解释</strong>：如果打乱某特征后模型误差显著增加，说明模型高度依赖该特征进行预测；如果误差几乎不变，说明该特征对预测贡献微弱。这种方法不依赖模型内部结构，可推广到任意黑盒模型。</li>
 <li><strong>应用价值</strong>：支持特征选择、模型可解释性分析和业务洞察。在表格数据任务中，特征重要性是 <a href="随机森林（Random Forests）.html">随机森林（Random Forests）</a> 相比深度学习模型的主要优势之一。</li>
 </ol>
@@ -155,8 +155,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="挖掘管道.html">&larr; 挖掘管道</a>
-    <a href="控制即推断.html">控制即推断 &rarr;</a>
+    <a href="损失曲面（Loss Landscape）.html">&larr; 损失曲面（Loss Landscape）</a>
+    <a href="探索性分析.html">探索性分析 &rarr;</a>
   </div>
 </div>
 </body>

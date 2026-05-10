@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="richardson">Richardson 外推法</h1>
 <h2 id="_1">概述</h2>
-<p>Richardson 外推法（Richardson Extrapolation）由<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>于 1911 年发表（1927 年系统阐述为"延迟趋近极限法"）。其核心思想是：数值方法的误差通常具有渐近展开式 $A(h) = A^<em> + a_1 h^p + O(h^{p+1})$，通过组合两个不同步长下的计算结果，可以</em><em>代数消去主导误差项 $a_1 h^p$</em>*，将精度从 $O(h^p)$ 提升到 $O(h^{p+1})$，同时无偿获得误差估计。外推法是<a href="../maps/数值分析.html">数值分析</a>中最通用的"元方法"——可叠加在几乎任何具有渐近误差展开的数值方法之上。</p>
+<p>Richardson 外推法（Richardson Extrapolation）由<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>于 1911 年发表（1927 年系统阐述为"延迟趋近极限法"）。其核心思想是：数值方法的误差通常具有渐近展开式 $A(h) = A^<em> + a_1 h^p + O(h^{p+1})$，通过组合两个不同步长下的<a href="计算.html">计算</a>结果，可以</em><em>代数消去主导误差项 $a_1 h^p$</em>*，将精度从 $O(h^p)$ 提升到 $O(h^{p+1})$，同时无偿获得误差估计。外推法是<a href="../maps/数值分析.html">数值分析</a>中最通用的"元方法"——可叠加在几乎任何具有渐近误差展开的数值方法之上。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心公式</h3>
 <p><strong>假设</strong>：误差渐近展开 $A(h) = A^* + a_1 h^p + O(h^{p+1})$（$p$ 是方法阶数，$a_1$ 与 $h$ 无关）</p>
@@ -200,7 +200,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">适用条件与局限性</h3>
 <p><strong>需要误差渐近展开成立</strong>：当 $h$ 太大（高阶项不可忽略）或解有奇异性时，标准展开可能不成立。</p>
 <p><strong>舍入误差限制</strong>：两结果相减可能发生数值抵消（cancellation），实际精度通常不超过机器精度的平方根。</p>
-<p><strong>计算成本</strong>：需要多个步长下的计算；高维 PDE 问题步长减半则计算量 $\sim 2^d$ 增长，需权衡收益。</p>
+<p><strong><a href="计算.html">计算</a>成本</strong>：需要多个步长下的<a href="计算.html">计算</a>；高维 PDE 问题步长减半则<a href="计算.html">计算</a>量 $\sim 2^d$ 增长，需权衡收益。</p>
 <p><strong>不稳定格式无效</strong>：无论多好的误差分析都无法挽救数值不稳定的格式（理查森自己的天气预报失败正是这一教训）。</p>
 <h3 id="_7">主要后续发展</h3>
 <table>
@@ -253,8 +253,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Renderer渲染器.html">&larr; Renderer渲染器</a>
-    <a href="Roblox API.html">Roblox API &rarr;</a>
+    <a href="Repo-as-System-of-Record.html">&larr; Repo-as-System-of-Record</a>
+    <a href="Risk Grading System.html">Risk Grading System &rarr;</a>
   </div>
 </div>
 </body>

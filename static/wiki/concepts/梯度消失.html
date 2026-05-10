@@ -138,8 +138,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>梯度消失是深度神经网络训练中的核心问题：在<a href="反向传播.html">反向传播</a>过程中，梯度信号从输出层向输入层逐层传递时因连乘效应指数级衰减，导致浅层权重几乎无法更新，深层网络无法有效训练。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>产生机制</strong>：<a href="反向传播.html">反向传播</a>计算某层梯度时，需要将上层传来的梯度与该层的局部导数相乘（<a href="链式法则.html">链式法则</a>）。当局部导数值小于 1 时，多层连乘后梯度趋近于 0。例如<a href="Sigmoid激活函数.html">Sigmoid激活函数</a>的导数 σ'(x) = σ(x)(1-σ(x)) 最大值仅 0.25，n 层后梯度约 0.25ⁿ → 0。</li>
-<li><strong>历史影响</strong>：梯度消失是 1986 年 Rumelhart 论文中已意识到的问题。Sigmoid 作为当时的标准激活函数，其导数特性使得超过 4-5 层的网络几乎无法训练。这限制了早期<a href="多层感知机.html">多层感知机</a>的深度，也是深度学习在 2000 年代前发展缓慢的重要原因之一。</li>
+<li><strong>产生机制</strong>：<a href="反向传播.html">反向传播</a><a href="计算.html">计算</a>某层梯度时，需要将上层传来的梯度与该层的局部导数相乘（<a href="链式法则.html">链式法则</a>）。当局部导数值小于 1 时，多层连乘后梯度趋近于 0。例如<a href="Sigmoid激活函数.html">Sigmoid激活函数</a>的导数 σ'(x) = σ(x)(1-σ(x)) 最大值仅 0.25，n 层后梯度约 0.25ⁿ → 0。</li>
+<li><strong>历史影响</strong>：梯度消失是 1986 年 Rumelhart 论文中已<a href="意识.html">意识</a>到的问题。Sigmoid 作为当时的标准激活函数，其导数特性使得超过 4-5 层的网络几乎无法训练。这限制了早期<a href="多层感知机.html">多层感知机</a>的深度，也是深度学习在 2000 年代前发展缓慢的重要原因之一。</li>
 <li><strong>解决方案</strong>：<a href="ReLU激活函数.html">ReLU激活函数</a>（2012 <a href="AlexNet.html">AlexNet</a>）是最根本的解决方案——正区间导数恒为 1，梯度不衰减。其他方法包括：Xavier/He 初始化（控制每层输出的方差）、<a href="Batch Normalization.html">Batch Normalization</a>（归一化激活值）、<a href="残差连接.html">残差连接</a>（<a href="残差网络（ResNet）.html">ResNet</a>，提供梯度捷径）、LSTM/GRU（RNN 中的<a href="门控机制（Gating Mechanism）.html">门控</a>机制）。</li>
 <li><strong>梯度爆炸</strong>：与梯度消失相对的另一极端是梯度爆炸——当局部导数大于 1 时，多层连乘后梯度指数级增长，导致权重更新过大、训练不稳定。梯度裁剪（Gradient Clipping）是常用的缓解方法。</li>
 </ol>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="格兰杰因果（Granger Causality）.html">&larr; 格兰杰因果（Granger Causality）</a>
+    <a href="梯度下降（Gradient Descent）.html">&larr; 梯度下降（Gradient Descent）</a>
     <a href="检索增强生成.html">检索增强生成 &rarr;</a>
   </div>
 </div>

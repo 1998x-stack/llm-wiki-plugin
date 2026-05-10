@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="krylov">Krylov 子空间方法</h1>
 <h2 id="_1">概述</h2>
-<p>Krylov 子空间方法（Krylov Subspace Methods）是现代大规模<a href="线性代数.html">线性代数</a>计算的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步<a href="矩阵.html">矩阵</a>-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$ 中寻找最优近似解，每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，能高效利用<a href="矩阵.html">矩阵</a>稀疏性。<a href="共轭梯度法.html">共轭梯度法</a>（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学计算不可或缺的工具集。</p>
+<p>Krylov 子空间方法（Krylov Subspace Methods）是现代大规模<a href="线性代数.html">线性代数</a><a href="计算.html">计算</a>的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步<a href="矩阵.html">矩阵</a>-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$ 中寻找最优近似解，每步只需一次<a href="矩阵.html">矩阵</a>-向量乘法，能高效利用<a href="矩阵.html">矩阵</a>稀疏性。<a href="共轭梯度法.html">共轭梯度法</a>（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学<a href="计算.html">计算</a>不可或缺的工具集。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="krylov_1">Krylov 子空间</h3>
 <p>$$K_k(A, v) = \text{span}{v, Av, A^2v, \ldots, A^{k-1}v}$$</p>
@@ -212,7 +212,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 收敛率由<a href="条件数.html">条件数</a><strong>平方根</strong>决定（CG），优于经典方法的<a href="条件数.html">条件数</a>本身
 - 对稀疏<a href="矩阵.html">矩阵</a>高效：每步 $O(\text{nnz})$ 次运算（nnz = 非零元素数）</p>
 <h3 id="cg-lanczos">CG-Lanczos 深层联系</h3>
-<p><a href="共轭梯度法.html">共轭梯度法</a>中产生的三项递推关系与 Lanczos 算法产生的三对角<a href="矩阵.html">矩阵</a>之间存在精确对应：</p>
+<p><a href="共轭梯度法.html">共轭梯度法</a>中产生的三项递推关系与 Lanczos <a href="算法.html">算法</a>产生的三对角<a href="矩阵.html">矩阵</a>之间存在精确对应：</p>
 <p>$$\text{Lanczos 三对角化} \iff \text{CG 递推关系}$$</p>
 <p>两者都在同一个 Krylov 子空间中工作，数学核心相同，只是"输出目标"不同（特征值 vs 线性方程组解）。这一深层联系在 1970 年代被完全阐明。</p>
 <h3 id="_5">预处理</h3>

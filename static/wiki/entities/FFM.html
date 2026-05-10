@@ -140,9 +140,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>场的概念</strong>：在 <a href="../concepts/CTR 预估.html">CTR 预估</a>中，特征可归入不同的"场"（Field），如用户性别、年龄、广告类别等。FM 中每个特征只有一个<a href="../concepts/嵌入表示.html">隐向量</a>，而 FFM 中每个特征针对不同的交互场使用不同的<a href="../concepts/嵌入表示.html">隐向量</a>。例如特征"男性"与"体育广告"交互时用向量 $\mathbf{v}<em>{男性,广告}$，与"年龄=25"交互时用向量 $\mathbf{v}</em>{男性,人口统计}$。</li>
 <li><strong>参数增加换取表达力</strong>：FFM 的参数量从 FM 的 $O(kn)$ 增至 $O(kn \cdot F)$（$F$ 为场数量），但获得了更精细的<a href="../concepts/特征交叉.html">特征交互</a>建模能力。</li>
-<li><strong>解决 FM 的等权交叉问题</strong>：FM 对所有 $\binom{n}{2}$ 个特征对一视同仁，无法<a href="区分.html">区分</a>有意义的交叉与噪声。FFM 通过场感知机制，让不同语义类别的<a href="../concepts/特征交叉.html">特征交互</a>使用专门的<a href="../concepts/嵌入表示.html">隐向量</a>，有效减少了无意义交叉带来的噪声。</li>
+<li><strong>解决 FM 的等权交叉问题</strong>：FM 对所有 $\binom{n}{2}$ 个特征对一视同仁，无法<a href="区分.html">区分</a>有意义的交叉与噪声。FFM 通过场<a href="感知机.html">感知机</a>制，让不同语义类别的<a href="../concepts/特征交叉.html">特征交互</a>使用专门的<a href="../concepts/嵌入表示.html">隐向量</a>，有效减少了无意义交叉带来的噪声。</li>
 <li><strong><a href="../concepts/CTR 预估.html">CTR 预估</a>效果</strong>：在 <a href="../concepts/CTR 预估.html">CTR 预估</a>任务上，FFM 相比 FM 取得了显著的精度提升，成为工业界 <a href="../concepts/CTR 预估.html">CTR 预估</a>的主流模型之一。</li>
-<li><strong>与 FM 的关系</strong>：FFM 是 FM 的直接扩展，继承了 FM 的线性复杂度计算和稀疏数据友好特性，仅在<a href="../concepts/嵌入表示.html">隐向量</a>的使用策略上做了场感知的改进。</li>
+<li><strong>与 FM 的关系</strong>：FFM 是 FM 的直接扩展，继承了 FM 的线性复杂度<a href="../concepts/计算.html">计算</a>和稀疏数据友好特性，仅在<a href="../concepts/嵌入表示.html">隐向量</a>的使用策略上做了场感知的改进。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Eric Kandel.html">&larr; Eric Kandel</a>
+    <a href="Evolver.html">&larr; Evolver</a>
     <a href="FNN.html">FNN &rarr;</a>
   </div>
 </div>

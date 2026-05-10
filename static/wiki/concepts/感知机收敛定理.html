@@ -135,28 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">感知机收敛定理</h1>
 <h2 id="_2">概述</h2>
-<p>Rosenblatt 严格证明的核心定理：若训练数据线性可分，感知机学习算法在有限步内必然收敛，更新次数上界为 T ≤ (R/γ)²。</p>
+<p>Rosenblatt 严格证明的核心定理：若训练数据线性可分，<a href="../entities/感知机.html">感知机</a>学习<a href="算法.html">算法</a>在有限步内必然收敛，更新次数上界为 T ≤ (R/γ)²。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>定理表述</strong>：若训练数据线性可分，则感知机学习算法在有限步内必然收敛到一个能将所有样本正确分类的权重向量。</p>
+<p><strong>定理表述</strong>：若训练数据线性可分，则<a href="../entities/感知机.html">感知机</a>学习<a href="算法.html">算法</a>在有限步内必然收敛到一个能将所有样本正确分类的权重向量。</p>
 </li>
 <li>
-<p><strong>收敛步数上界</strong>：T ≤ (R/γ)²。其中 R 为样本的最大范数（即样本到原点的最大距离），γ 为最近样本点到决策边界的距离（margin/间隔）。</p>
+<p><strong>收敛步数上界</strong>：T ≤ (R/γ)²。其中 R 为样本的最大范数（即样本到原点的最大距离），γ 为最近样本点到<a href="决策边界.html">决策边界</a>的距离（margin/间隔）。</p>
 </li>
 <li>
 <p><strong>直觉理解</strong>：数据越"容易分"（γ 越大，即两类样本之间的间隔越大），收敛越快。反之，如果两类样本非常接近（γ 很小），则需要更多次更新才能找到正确的分割超平面。</p>
 </li>
 <li>
-<p><strong>理论意义</strong>：这是机器学习史上第一个关于学习算法收敛性的严格数学证明，为"机器可以从经验中学习"这一信念提供了理论保证。</p>
+<p><strong>理论意义</strong>：这是机器学习史上第一个关于学习<a href="算法.html">算法</a>收敛性的严格数学证明，为"机器可以从经验中学习"这一信念提供了理论保证。</p>
 </li>
 <li>
-<p><strong>前提条件</strong>：定理的关键前提是"数据线性可分"。若数据不可分（如 <a href="XOR 问题.html">XOR 问题</a>），定理不适用，算法不会收敛。</p>
+<p><strong>前提条件</strong>：定理的关键前提是"数据线性可分"。若数据不可分（如 <a href="XOR 问题.html">XOR 问题</a>），定理不适用，<a href="算法.html">算法</a>不会收敛。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01_perceptron_1958</span> — 感知机原始论文解读</li>
+<li><span style="color:#e74c3c" title="broken link">paper_01_perceptron.md</span> — 感知机收敛定理章节</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>

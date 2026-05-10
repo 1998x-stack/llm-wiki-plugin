@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">向量空间模型</h1>
 <h2 id="_2">概述</h2>
-<p>向量空间模型（Vector Space Model, VSM）将文档和查询表示为高维词条权重向量，用余弦相似度（而非欧氏距离）计算相关性，是稀疏检索的经典框架，<a href="TF-IDF.html">TF-IDF</a> 是其最主流实现。</p>
+<p>向量空间模型（Vector Space Model, VSM）将文档和查询表示为高维词条权重向量，用余弦相似度（而非欧氏距离）<a href="计算.html">计算</a>相关性，是稀疏检索的经典框架，<a href="TF-IDF.html">TF-IDF</a> 是其最主流实现。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -145,10 +145,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>为什么用余弦不用欧氏距离</strong>：欧氏距离受文档长度影响（"cat cat cat" 和 "cat" 意义相同但距离不同）。余弦相似度 <code>cos(q,d) = q⃗·d⃗/(‖q‖‖d‖)</code> 只看向量方向，消除长度偏置。实践中对文档向量预先 L2 归一化，查询时退化为纯点积。</p>
 </li>
 <li>
-<p><strong>稀疏向量 vs 稠密向量</strong>：VSM 向量维度等于词典大小（10万+），大多数维度为 0，属于稀疏表示。<a href="Embedding.html">Embedding</a> 模型（BERT、BGE 等）生成 768/1024 维稠密向量，需要<a href="近似最近邻检索.html">近似最近邻检索</a>（<a href="../entities/Faiss.html">FAISS</a>/Milvus）。</p>
+<p><strong>稀疏向量 vs 稠密向量</strong>：VSM 向量维度等于词典大小（10万+），大多数维度为 0，属于<a href="稀疏激活.html">稀疏表示</a>。<a href="Embedding.html">Embedding</a> 模型（BERT、BGE 等）生成 768/1024 维稠密向量，需要<a href="近似最近邻检索.html">近似最近邻检索</a>（<a href="../entities/Faiss.html">FAISS</a>/Milvus）。</p>
 </li>
 <li>
-<p><strong>VSM 局限</strong>：词袋假设（忽略词序）；语义盲区（car ≠ automobile，无法跨语言）；高维空间计算相似度效率低（稠密向量需要 ANN）。</p>
+<p><strong>VSM 局限</strong>：词袋假设（忽略词序）；语义盲区（car ≠ automobile，无法跨语言）；高维空间<a href="计算.html">计算</a>相似度效率低（稠密向量需要 ANN）。</p>
 </li>
 <li>
 <p><strong>演进</strong>：VSM(<a href="TF-IDF.html">TF-IDF</a>) → BM25（概率框架，显式长度归一化）→ Dense Retrieval（稠密向量，语义理解）→ <a href="混合搜索.html">混合检索</a>（BM25 + Dense，两者互补）。</p>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="向量时钟.html">&larr; 向量时钟</a>
-    <a href="哈勃定律.html">哈勃定律 &rarr;</a>
+    <a href="告警分析器.html">告警分析器 &rarr;</a>
   </div>
 </div>
 </body>

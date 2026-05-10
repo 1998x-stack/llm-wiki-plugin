@@ -143,13 +143,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>私钥（Private Key）</strong>：必须严格保密，只有密钥持有者知道</p>
 <p>这对密钥满足：
 1. 用公钥加密的消息，只能用对应的私钥解密
-2. 从公钥推导出私钥在计算上不可行
+2. 从公钥推导出私钥在<a href="计算.html">计算</a>上不可行
 3. 用私钥生成的签名，任何人都可以用公钥验证</p>
 <h3 id="_5">数学基础</h3>
 <p><strong><a href="单向陷门函数.html">单向陷门函数</a>（<a href="单向陷门函数.html">One-Way Trapdoor Function</a>）</strong>：
-- 正向计算容易（给定 x，计算 f(x) 很快）
-- 逆向计算困难（给定 f(x)，找到 x 在计算上不可行）
-- 掌握"陷门"（私钥）后，逆向计算变得容易</p>
+- 正向<a href="计算.html">计算</a>容易（给定 x，<a href="计算.html">计算</a> f(x) 很快）
+- 逆向<a href="计算.html">计算</a>困难（给定 f(x)，找到 x 在<a href="计算.html">计算</a>上不可行）
+- 掌握"陷门"（私钥）后，逆向<a href="计算.html">计算</a>变得容易</p>
 <h3 id="_6">与对称密码学的对比</h3>
 <table>
 <thead>

@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="fixed-prompt-stack">固定提示栈（Fixed Prompt Stack）</h1>
 <h2 id="_1">概述</h2>
-<p>固定提示栈是一种 Agent 上下文分配模式，每次迭代向 Agent 注入完全相同的完整规范内容（CLAUDE.md），以"浪费性重复"为代价换取零 <a href="上下文压缩.html">上下文压缩</a> 风险和确定性良态起点。</p>
+<p>固定提示栈是一种 Agent 上下文分配模式，每次迭代向 Agent 注入完全相同的完整规范内容（<a href="../entities/CLAUDE.html.html">CLAUDE.md</a>），以"浪费性重复"为代价换取零 <a href="上下文压缩.html">上下文压缩</a> 风险和确定性良态起点。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>固定结构</strong>：每次迭代都向 Agent 分配完全相同的 CLAUDE.md 内容：</li>
+<li><strong>固定结构</strong>：每次迭代都向 Agent 分配完全相同的 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 内容：</li>
 <li><strong>项目背景</strong> — 每次都分配（"浪费"但必要）</li>
 <li><strong>核心约束</strong> — 每次都分配</li>
-<li><strong>强制启动序列</strong> — 每次都分配</li>
+<li><strong><a href="强制启动序列.html">强制启动序列</a></strong> — 每次都分配</li>
 <li>
-<p><strong>参考文件引用</strong> — @prd.json @progress.txt @AGENTS.md</p>
+<p><strong>参考文件引用</strong> — @prd.json @progress.txt @<a href="项目约定手册.html">AGENTS.md</a></p>
 </li>
 <li>
 <p><strong>为什么"浪费性重复"是必要的</strong>：</p>

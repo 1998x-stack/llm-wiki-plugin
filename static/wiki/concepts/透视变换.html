@@ -144,9 +144,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </code></pre>
 <p>具体步骤：
 1. 获取文字多边形的 4 个顶点（左上、右上、右下、左下顺序）
-2. 计算目标矩形的宽高（取多边形对边的最大长度）
+2. <a href="计算.html">计算</a>目标矩形的宽高（取多边形对边的最大长度）
 3. 构建目标矩形的 4 个顶点坐标
-4. 计算透视变换<a href="矩阵.html">矩阵</a> M（getPerspectiveTransform）
+4. <a href="计算.html">计算</a>透视变换<a href="矩阵.html">矩阵</a> M（getPerspectiveTransform）
 5. 应用透视变换（warpPerspective），输出矫正后的矩形图像</p>
 <h3 id="_5">为什么需要透视变换？</h3>
 <ul>

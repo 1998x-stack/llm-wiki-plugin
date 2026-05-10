@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扩大内需战略转向 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / 扩大内需战略转向</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">工作</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">扩大内需战略转向</h1>
+<h2 id="_2">概述</h2>
+<p>2026年中国宏观经济战略的核心议题：扩大内需从十五五规划的"第三顺位"跃升为经济工作"头等大事"。这一转向是对出口受阻（贸易保护主义、反补贴调查、单边制裁）和金融战线受阻（美元霸权阻击人民币国际化）的被动应对，同时也是对国内内需困局（AI替代焦虑、价格战压缩利润、房价下跌导致资产负债表衰退、财富幻觉破灭）的主动破局。国家通过"加减乘除"组合拳——财政杠杆乘法、增收为本加法、民生兜底减法、破除消费壁垒除法——全方位激活内需市场，以时间换空间，为高端制造技术突破和人民币国际化争取战略纵深。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>战略优先级跃升的信号</strong>：国家最初设想的"完美剧本"是依靠先进制造业驱动良性循环（技术创新→跨代际产品→自发消费→企业盈利→再投入研发），国产新能源汽车是成功实践。但外部环境剧变迫使战略转向。</p>
+</li>
+<li>
+<p><strong>外部双重阻击</strong>：</p>
+</li>
+<li><strong>外贸出口受阻</strong>：欧洲反补贴调查、美国单边制裁、全球贸易通道动荡，新质生产力出海之路被堵。</li>
+<li>
+<p><strong>金融战线受阻</strong>：美元霸权通过拉高美元指数制造全球美元荒，人民币国际化在"一带一路"推进中遭遇挑战。</p>
+</li>
+<li>
+<p><strong>内需困局的深层根源</strong>：</p>
+</li>
+<li><strong>未来不确定感</strong>：AI替代焦虑（文案、设计、基础数据处理岗位担忧被取代）+ 全民价格战（各行各业低价竞争压缩利润）。</li>
+<li><strong>资产负债表衰退</strong>：房价下跌导致家庭"纸面财富"缩水，"财富幻觉"破灭促使家庭放弃消费升级、转而增加储蓄，总需求萎缩。</li>
+<li>
+<p><strong>中美消费差异底层逻辑</strong>：美国是被动的"生存型"消费（缺乏社保、高昂住房医疗教育成本）；中国是主动的"安全型"储蓄（有基础保障兜底，环境变化时可降低消费回归生存）。</p>
+</li>
+<li>
+<p><strong>"加减乘除"组合拳</strong>：</p>
+</li>
+<li><strong>做乘法（财政杠杆）</strong>：1000亿专项资金通过贷款贴息、融资担保撬动万亿级信贷；2500亿超长期特别国债支持消费品以旧换新。</li>
+<li><strong>做加法（增收为本）</strong>：首次将"城乡居民增收计划"列为首要任务，从补贴生产转向补贴人，提高劳动报酬比重，拓宽农民财产性收入渠道。</li>
+<li><strong>做减法（民生兜底）</strong>：提高医保和养老金标准，全面实施育儿补贴制度，推行学前一年免费教育，降低预防性储蓄动机。</li>
+<li>
+<p><strong>做除法（破除壁垒）</strong>：推广中小学春秋假，严格落实带薪错峰休假，打破时间壁垒释放服务消费需求。</p>
+</li>
+<li>
+<p><strong>房地产稳基本盘</strong>：政策定调从"促进止跌回稳"升级为"着力稳定"，核心手段是"控增量、去库存"，探索收购存量商品房转为保障房。</p>
+</li>
+<li>
+<p><strong>战略本质——以时间换空间</strong>：扩大内需并非放弃长期目标，而是通过稳住国内基本盘应对短期外部压力，为高端制造技术突破和人民币国际化争取时间与稳定环境。14亿人口超大规模内需市场是中国最大的战略纵深和底气。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/009-扩大内需战略转向PPT</span> — 全文（2026宏观经济战略分析报告，20页PPT）</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="concepts/乘数效应.html">乘数效应</a> — relates_to（财政杠杆乘法效应的经济学基础）</li>
+<li><a href="concepts/有效需求.html">有效需求</a> — relates_to（扩大内需战略的核心目标）</li>
+<li><a href="concepts/流动性陷阱.html">流动性陷阱</a> — relates_to（内需不足时的货币政策困境）</li>
+<li><a href="concepts/消费社会.html">消费社会</a> — relates_to（消费意愿与消费行为的深层分析）</li>
+<li><a href="concepts/凯恩斯革命.html">凯恩斯革命</a> — relates_to（有效需求理论的宏观政策渊源）</li>
+<li><a href="entities/约翰·梅纳德·凯恩斯.html">约翰·梅纳德·凯恩斯</a> — relates_to（有效需求理论提出者）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="扩大内需.html">&larr; 扩大内需</a>
+    <a href="抵押贷款支持证券 MBS.html">抵押贷款支持证券 MBS &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

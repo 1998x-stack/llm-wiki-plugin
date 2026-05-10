@@ -135,22 +135,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">最小描述长度原理</h1>
 <h2 id="_2">概述</h2>
-<p>最小描述长度（MDL）原理是 Rissanen (1978) 提出的模型选择准则：最佳模型是使"模型描述长度 + 数据在模型下的编码长度"最小的那个，是 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的可计算近似。</p>
+<p>最小描述长度（MDL）原理是 Rissanen (1978) 提出的模型选择准则：最佳模型是使"模型描述长度 + 数据在模型下的编码长度"最小的那个，是 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的可<a href="计算.html">计算</a>近似。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">公式</h3>
 <p>$$\text{最佳模型} = \arg\min_M { |M| + |D \,|\, M| }$$</p>
 <p>其中 |M| 是模型复杂度（描述模型所需的比特数），|D|M| 是数据在模型下的编码长度。</p>
 <h3 id="_5">直觉</h3>
-<p>好的理论（模型）就是对数据的好的压缩。MDL 原理将 Occam 剃刀精确化为一个可计算的优化目标：
+<p>好的理论（模型）就是对数据的好的压缩。MDL 原理将 Occam 剃刀精确化为一个可<a href="计算.html">计算</a>的优化目标：
 - 模型太简单 → |M| 小但 |D|M| 大（数据无法被有效压缩）
 - 模型太复杂 → |M| 大但 |D|M| 小（<a href="过拟合（Overfitting）.html">过拟合</a>）
 - 最佳模型在两者之间取得平衡</p>
 <h3 id="kolmogorov">与 Kolmogorov 复杂性的关系</h3>
-<p>MDL 是 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的<strong>可计算近似</strong>：
-- <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 K(D) 是不可计算的"终极压缩下界"
-- MDL 在受限的模型族中搜索最短描述，是可计算的</p>
+<p>MDL 是 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的<strong>可<a href="计算.html">计算</a>近似</strong>：
+- <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 K(D) 是不可<a href="计算.html">计算</a>的"终极压缩下界"
+- MDL 在受限的模型族中搜索最短描述，是可<a href="计算.html">计算</a>的</p>
 <h3 id="huffman">与 Huffman 编码的关系</h3>
-<p>Huffman 编码是可计算的最优无损编码（在给定概率分布下）；<a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a>-Chaitin 复杂性是不可计算的"终极压缩下界"；MDL 介于两者之间——在有限模型族中寻找最优压缩。</p>
+<p>Huffman 编码是可<a href="计算.html">计算</a>的最优无损编码（在给定概率分布下）；<a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a>-Chaitin 复杂性是不可<a href="计算.html">计算</a>的"终极压缩下界"；MDL 介于两者之间——在有限模型族中寻找最优压缩。</p>
 <h3 id="_6">应用</h3>
 <ul>
 <li>统计学中的模型选择</li>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="最大间隔分类器.html">&larr; 最大间隔分类器</a>
-    <a href="有损压缩.html">有损压缩 &rarr;</a>
+    <a href="有噪信道编码定理.html">有噪信道编码定理 &rarr;</a>
   </div>
 </div>
 </body>

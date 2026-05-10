@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code 记忆系统</h1>
 <h2 id="_1">概述</h2>
-<p>Memory 系统让 <a href="../entities/Claude Code.html">Claude Code</a> 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 <code>CLAUDE.md</code>，Claude 在合适场景下自动加载。</p>
+<p>Memory 系统让 <a href="../projects/Claude Code.html">Claude Code</a> 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 <code>CLAUDE.md</code>，<a href="../entities/Claude_Code.html">Claude</a> 在合适场景下自动加载。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>记忆范围分层</strong>：</li>
-<li><strong>受管策略记忆</strong>：<a href="../entities/Claude Code.html">Claude Code</a> 内置策略</li>
+<li><strong>受管策略记忆</strong>：<a href="../projects/Claude Code.html">Claude Code</a> 内置策略</li>
 <li><strong>项目记忆</strong>（<code>./CLAUDE.md</code>）：项目级规范</li>
 <li><strong>用户记忆</strong>（<code>~/.claude/CLAUDE.md</code>）：用户级偏好</li>
 <li>
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><code>#</code> 前缀：快速把规则写入记忆（如 <code># 这个项目始终使用 TypeScript 严格模式</code>）</p>
 </li>
 <li>
-<p><strong>自动加载机制</strong>：Claude 会根据当前工作目录和任务上下文，自动判断加载哪些记忆文件，避免一次性把所有记忆塞进上下文。</p>
+<p><strong>自动加载机制</strong>：<a href="../entities/Claude_Code.html">Claude</a> 会根据当前工作目录和任务上下文，自动判断加载哪些记忆文件，避免一次性把所有记忆塞进上下文。</p>
 </li>
 <li>
-<p><strong>与 <a href="Agent Skills.html">Skills</a> 的区别</strong>：记忆是静态的规则和偏好，<a href="Agent Skills.html">Skills</a> 是可复用的能力包（含脚本、模板、参考文件）。记忆告诉 Claude"怎么做"，<a href="Agent Skills.html">Skills</a> 告诉 Claude"能做什么"。</p>
+<p><strong>与 <a href="../entities/Agent Skills.html">Skills</a> 的区别</strong>：记忆是静态的规则和偏好，<a href="../entities/Agent Skills.html">Skills</a> 是可复用的能力包（含脚本、模板、参考文件）。记忆告诉 <a href="../entities/Claude_Code.html">Claude</a>"怎么做"，<a href="../entities/Agent Skills.html">Skills</a> 告诉 <a href="../entities/Claude_Code.html">Claude</a>"能做什么"。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Claude Code 权限模式.html">&larr; Claude Code 权限模式</a>
-    <a href="Claude-Code-Hook-System.html">Claude-Code-Hook-System &rarr;</a>
+    <a href="Claude Code四大能力基元.html">Claude Code四大能力基元 &rarr;</a>
   </div>
 </div>
 </body>

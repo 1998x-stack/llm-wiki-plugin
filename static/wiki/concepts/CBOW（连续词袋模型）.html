@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="cbow">CBOW（连续词袋模型）</h1>
 <h2 id="_1">概述</h2>
-<p>CBOW（Continuous Bag-of-Words）是 <a href="Word2Vec.html">Word2Vec</a> 的核心架构之一，通过上下文词的平均向量预测中心词，训练速度较快但对低频词效果较差。</p>
+<p>CBOW（Continuous Bag-of-Words）是 <a href="../entities/Word2Vec.html">Word2Vec</a> 的核心架构之一，通过上下文词的平均向量预测中心词，训练速度较快但对低频词效果较差。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
 <pre><code>句子：我 爱 [?] 天安门
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </code></pre>
 <p>与 <a href="Skip-gram.html">Skip-gram</a> 相反，CBOW 用上下文预测中心词：
 1. 获取<a href="上下文窗口.html">上下文窗口</a>内所有词的<a href="词嵌入（Word Embedding）.html">词向量</a>
-2. 计算这些<a href="词嵌入（Word Embedding）.html">词向量</a>的平均值
+2. <a href="计算.html">计算</a>这些<a href="词嵌入（Word Embedding）.html">词向量</a>的平均值
 3. 用平均向量预测中心词</p>
 <h3 id="skip-gram">与 Skip-gram 的对比</h3>
 <table>
@@ -181,25 +181,25 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_4">特点</h3>
 <ul>
-<li><strong>训练更快</strong>：由于使用上下文平均向量，计算效率更高</li>
+<li><strong>训练更快</strong>：由于使用上下文平均向量，<a href="计算.html">计算</a>效率更高</li>
 <li><strong>对低频词效果较差</strong>：平均操作会稀释低频词的信息</li>
 <li><strong>适合大规模语料</strong>：在数据充足的情况下表现良好</li>
 </ul>
 <h3 id="word2vec">在 Word2Vec 中的地位</h3>
-<p>CBOW 和 <a href="Skip-gram.html">Skip-gram</a> 共同构成了 <a href="Word2Vec.html">Word2Vec</a> 的两种核心架构。《<a href="../entities/Efficient Estimation of Word Representations in Vector Space (2013 论文).html">Efficient Estimation of Word Representations in Vector Space</a>》论文中，<a href="Skip-gram.html">Skip-gram</a> 被作为重点推荐模型，但 CBOW 在训练速度上有优势。</p>
+<p>CBOW 和 <a href="Skip-gram.html">Skip-gram</a> 共同构成了 <a href="../entities/Word2Vec.html">Word2Vec</a> 的两种核心架构。《<a href="../entities/Efficient Estimation of Word Representations in Vector Space (2013 论文).html">Efficient Estimation of Word Representations in Vector Space</a>》论文中，<a href="Skip-gram.html">Skip-gram</a> 被作为重点推荐模型，但 CBOW 在训练速度上有优势。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/08_word2vec_2013.md</span></li>
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
-<li><a href="Word2Vec.html">Word2Vec</a> — 所属模型</li>
+<li><a href="../entities/Word2Vec.html">Word2Vec</a> — 所属模型</li>
 <li><a href="Skip-gram.html">Skip-gram</a> — 对比架构</li>
 <li><a href="../entities/Efficient Estimation of Word Representations in Vector Space (2013 论文).html">Efficient Estimation of Word Representations in Vector Space (2013 论文)</a> — 提出论文</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="C51.html">&larr; C51</a>
+    <a href="CBOW.html">&larr; CBOW</a>
     <a href="CFL条件.html">CFL条件 &rarr;</a>
   </div>
 </div>

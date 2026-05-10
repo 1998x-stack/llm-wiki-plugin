@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 <a href="Rainbow.html">Rainbow</a> 的协同</strong>：在训练初期价值估计尚不准确时，n 步回报减少了对精确 Q 值的依赖，提供更好的梯度信号，加速收敛。<a href="Rainbow.html">Rainbow</a> 消融显示 Multi-step 重要性仅次于 PER。</p>
 </li>
 <li>
-<p><strong>实现注意</strong>：<a href="经验回放.html">经验回放</a>中需存储 n 步的轨迹片段；与 PER 结合时优先级计算基于 n 步 TD 误差（<a href="Rainbow.html">Rainbow</a> 中改为 KL 散度）；与 off-policy 方法结合需处理<a href="重要性采样.html">重要性采样</a>修正（<a href="Rainbow.html">Rainbow</a> 中 n=3 较小，近似 on-policy，忽略 IS 修正）。</p>
+<p><strong>实现注意</strong>：<a href="经验回放.html">经验回放</a>中需存储 n 步的轨迹片段；与 PER 结合时优先级<a href="计算.html">计算</a>基于 n 步 TD 误差（<a href="Rainbow.html">Rainbow</a> 中改为 KL 散度）；与 off-policy 方法结合需处理<a href="重要性采样.html">重要性采样</a>修正（<a href="Rainbow.html">Rainbow</a> 中 n=3 较小，近似 on-policy，忽略 IS 修正）。</p>
 </li>
 <li>
 <p><strong>超参数</strong>：<a href="Rainbow.html">Rainbow</a> 中 n=3，折扣因子 γ^n=γ^3；n 选择需权衡偏差、方差与轨迹截断带来的复杂度。</p>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="多模态检索.html">&larr; 多模态检索</a>
+    <a href="多模态模型.html">&larr; 多模态模型</a>
     <a href="多项式时间归约.html">多项式时间归约 &rarr;</a>
   </div>
 </div>

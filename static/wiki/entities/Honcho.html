@@ -139,14 +139,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>核心功能</strong>：通过<a href="../concepts/辩证推理.html">辩证推理</a>（dialectical reasoning）跨会话构建动态用户画像</li>
-<li><strong>在 <a href="Hermes Agent.html">Hermes</a> 中的角色</strong>：<a href="../concepts/闭环学习系统.html">闭环学习系统</a>的关键组成部分，与记忆管理、Skill 创建、FTS5 召回协同工作；通过 <code>honcho-ai</code> 包集成，可用 <code>hermes honcho</code> 查看状态、<code>hermes honcho reset</code> 重置</li>
-<li><strong>工作方式</strong>：在 Agent 跨会话交互中持续收集用户偏好、环境信息、项目约定等，形成结构化的用户模型</li>
+<li><strong>在 <a href="Hermes Agent.html">Hermes</a> 中的角色</strong>：<a href="../concepts/闭环学习系统.html">闭环学习系统</a>的关键组成部分，与<a href="../concepts/Memory-Management.html">记忆管理</a>、<a href="../concepts/Skills.html">Skill</a> 创建、FTS5 召回协同工作；通过 <code>honcho-ai</code> 包集成，可用 <code>hermes honcho</code> 查看状态、<code>hermes honcho reset</code> 重置</li>
+<li><strong>工作方式</strong>：在 Agent 跨会话交互中持续收集用户偏好、环境信息、<a href="../concepts/项目约定手册.html">项目约定</a>等，形成结构化的用户模型</li>
 <li><strong>价值</strong>：使 Agent 能够"下次开口就认识你"，实现真正的个性化体验，而非依赖手动编写 System Prompt</li>
 <li><strong><a href="../concepts/辩证推理.html">辩证推理</a>机制</strong>：源自哲学的正题-反题-合题循环——观察"用户要求简洁"（正题），观察"用户对代码解释要求很详细"（反题），推断"用户对文字说明要简洁，对技术代码要详细"（合题），持续精炼认知</li>
 <li><strong>与 USER.md 区别</strong>：USER.md 存储用户告诉 Agent 的事实，静态添加/替换，简单键值式；Honcho 推断用户未明确表达的偏好，<a href="../concepts/辩证推理.html">辩证推理</a>动态更新，构建认知模型</li>
 <li><strong>数据结构</strong>：包含 preferences（明确偏好）、inferred_patterns（推断模式）、contradictions（已发现矛盾待辩证解决）、resolved_dialectics（已解决的辩证矛盾）、confidence_scores（每个推断的置信度）、update_history（模型更新历史）</li>
 <li><strong>CLI 命令</strong>：<code>hermes honcho status</code> 查看用户模型摘要、<code>hermes honcho show</code> 查看完整用户模型、<code>hermes honcho reset</code> 重置从零学习、<code>hermes honcho export</code> 导出用户模型可备份/迁移</li>
-<li><strong>创建者</strong>：由 <a href="Plastic Labs.html">Plastic Labs</a> 构建，<a href="Hermes Agent.html">Hermes</a> 通过 <code>honcho-ai</code> Python 包深度集成</li>
+<li><strong>创建者</strong>：由 <a href="Plastic Labs.html">Plastic Labs</a> 构建，<a href="Hermes Agent.html">Hermes</a> 通过 <code>honcho-ai</code> <a href="../concepts/Python.html">Python</a> 包深度集成</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Hoare CSP 论文.html">&larr; Hoare CSP 论文</a>
-    <a href="Huifeng Guo.html">Huifeng Guo &rarr;</a>
+    <a href="Hu Yifan.html">Hu Yifan &rarr;</a>
   </div>
 </div>
 </body>

@@ -127,47 +127,57 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 感知机学习规则</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">优化算法</span><span class="tag">神经网络</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">算法</span></div>
 </div>
   <div class="content">
     <h1 id="_1">感知机学习规则</h1>
 <h2 id="_2">概述</h2>
-<p>感知机学习规则（<a href="感知机（Perceptron）.html">Perceptron</a> Learning Rule）是 <a href="../entities/The Perceptron (1958 论文).html">Rosenblatt 1958</a> 年提出的权重更新算法：预测错误时 w ← w + η · yᵢ · xᵢ，正确时不更新。这是机器学习史上第一个自动学习算法。</p>
+<p><a href="../entities/Frank Rosenblatt.html">Frank Rosenblatt</a> 于 1958 年提出的<a href="../entities/感知机.html">感知机</a>学习规则是历史上第一个让机器能够从数据中自动学习权重的<a href="算法.html">算法</a>，其核心思想是"错误驱动权重更新"——当预测错误时才调整权重，预测正确则保持不变。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>算法描述</strong>：初始化 w=0, b=0。重复遍历训练集，对每个样本 (xᵢ, yᵢ)，计算 ŷ = sign(w · xᵢ + b)。若 ŷ ≠ yᵢ（预测错误），则更新 w ← w + η · yᵢ · xᵢ，b ← b + η · yᵢ。若预测正确则不做任何修改。</p>
+<p><strong><a href="算法.html">算法</a>原理</strong>：给定输入向量 x 和真实标签 y，当预测 ŷ 与真实值不匹配时，按照 w ← w + η·(y-ŷ)·x 的规则更新权重，其中 η 是学习率。这相当于沿着错误方向的小步长梯度更新。</p>
 </li>
 <li>
-<p><strong>更新直觉</strong>：误判为负（真实+1，预测-1）时，把 w 向 x 方向推，使该样本更可能被判为正；误判为正（真实-1，预测+1）时，把 w 远离 x 方向推。学习率 η 控制每次更新的步长。</p>
+<p><strong>更新规则详解</strong>：
+   ```
+   初始化：权重 w_i 设为小随机数或零
+   对每个训练样本 (x, y_真实)：</p>
+<ol>
+<li>计算预测：ŷ = sign(w · x)</li>
+<li>如果预测正确（ŷ = y_真实），权重不变</li>
+<li>如果预测错误，则更新权重：w_i ← w_i + η · (y_真实 - ŷ) · x_i
+   ```
+   其中 η 是学习率，控制每次调整的幅度。</li>
+</ol>
 </li>
 <li>
-<p><strong>与<a href="赫布学习律.html">赫布学习律</a>的关系</strong>：两者都描述了"同时激活的神经元之间连接增强"的思想，但感知机学习规则是带有监督信号的、有明确数学形式的更新公式，而<a href="赫布学习律.html">赫布学习律</a>是神经生物学的定性描述。</p>
+<p><strong>几何直观</strong>：权重更新相当于在特征空间中调整<a href="决策边界.html">决策边界</a>的方向，使错误分类的样本逐渐被正确分类。当所有样本都被正确分类时，<a href="算法.html">算法</a>收敛。</p>
 </li>
 <li>
-<p><strong>历史意义</strong>：这是人类第一次用数学公式描述"机器从错误中学习"的过程。直觉类比：考试做错题老师纠正你——错了就改，对了维持不动。</p>
+<p><strong>收敛保证</strong>：<a href="感知机收敛定理.html">感知机收敛定理</a>保证，如果训练数据是线性可分的，<a href="../entities/感知机.html">感知机</a>学习规则一定能在有限步内找到完美的分类超平面。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：仅适用于线性可分数据。若数据不可分，算法不会收敛，会无限循环。后续被<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a>等基于梯度的优化方法所超越。</p>
+<p><strong>与现代<a href="算法.html">算法</a>的关系</strong>：<a href="../entities/感知机.html">感知机</a>学习规则是现代机器学习优化<a href="算法.html">算法</a>的鼻祖，其错误驱动的更新策略体现了梯度下降的核心思想，只是用符号函数而非连续损失函数。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">01_perceptron_1958</span> — 感知机原始论文解读</li>
+<li><span style="color:#e74c3c" title="broken link">paper_01_perceptron</span> — 论文精读</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
 <li><a href="感知机（Perceptron）.html">感知机（Perceptron）</a> — implements</li>
 <li><a href="../entities/Frank Rosenblatt.html">Frank Rosenblatt</a> — implements</li>
-<li><a href="赫布学习律.html">赫布学习律</a> — compares_to</li>
-<li><a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a> — supersedes</li>
+<li><a href="../entities/The Perceptron (1958 论文).html">The Perceptron (1958 论文)</a> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">梯度下降</span> — compares_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="愚钝区（The Dumb Zone）.html">&larr; 愚钝区（The Dumb Zone）</a>
+    <a href="感受野.html">&larr; 感受野</a>
     <a href="感知机收敛定理.html">感知机收敛定理 &rarr;</a>
   </div>
 </div>

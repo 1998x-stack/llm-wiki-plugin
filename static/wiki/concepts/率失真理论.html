@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">核心问题</h3>
-<p>给定一个离散无记忆信源和一个失真度量 d(x,y)，当允许重构结果与原始数据之间的平均失真不超过 D 时，所需的最低比特率 R(D) 是多少？</p>
+<p>给定一个离散无记忆信源和一个失真度量 d(x,y)，当允许<a href="重构.html">重构</a>结果与原始数据之间的平均失真不超过 D 时，所需的最低比特率 R(D) 是多少？</p>
 <h3 id="_6">率失真定理</h3>
 <ul>
 <li><strong>正定理（可达性）</strong>：对于任何 R &gt; R(D)，存在码率为 R 的编码方案，使得平均失真不超过 D + ε</li>
@@ -192,7 +192,7 @@ $$R(D) = \frac{1}{2} \log_2 \frac{\sigma^2}{D} \quad (0 &lt; D \leq \sigma^2)$$<
 <h3 id="_7">与深度学习的交汇</h3>
 <ul>
 <li><strong>学习式图像压缩</strong>：直接优化率失真目标函数 R + λD</li>
-<li><strong>VAE</strong>：ELBO = -(R + D)，重构损失 = 失真，KL 散度 = 比特率</li>
+<li><strong>VAE</strong>：ELBO = -(R + D)，<a href="重构.html">重构</a>损失 = 失真，KL 散度 = 比特率</li>
 <li><strong>感知-失真权衡</strong>：率、失真、感知质量三目标之间存在不可避免的权衡</li>
 </ul>
 <h2 id="_8">来源</h2>

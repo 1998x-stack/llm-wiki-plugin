@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>定义</strong>：AUC 等于随机选取一个正样本和一个负样本时，模型给正样本打分高于负样本的概率。AUC = 0.5 表示随机排序，AUC = 1.0 表示完美排序。</p>
 </li>
 <li>
-<p><strong>在推荐系统中的计算</strong>：对用户 u，AUC(u) = (1/|I_u^+| · |I \ I_u^+|) Σ_(i,j) δ(x̂_uij &gt; 0)，其中 I_u^+ 为正样本集合，I \ I_u^+ 为负样本集合，δ 为指示函数。</p>
+<p><strong>在推荐系统中的<a href="计算.html">计算</a></strong>：对用户 u，AUC(u) = (1/|I_u^+| · |I \ I_u^+|) Σ_(i,j) δ(x̂_uij &gt; 0)，其中 I_u^+ 为正样本集合，I \ I_u^+ 为负样本集合，δ 为指示函数。</p>
 </li>
 <li>
 <p><strong>与 BPR 的关系</strong>：BPR-OPT 是 AUC 的可微光滑近似，用 ln σ(x) 替代不可微的 Heaviside 阶跃函数 δ(x &gt; 0)。优化 BPR-OPT 近似等价于直接优化 AUC。</p>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ARPANET.html">&larr; ARPANET</a>
+    <a href="AST差异解析.html">&larr; AST差异解析</a>
     <a href="Ablation Study.html">Ablation Study &rarr;</a>
   </div>
 </div>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="nextjs">Next.js</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Vercel.html">Vercel</a> 开发的基于 React 的全栈 Web 框架，支持服务端渲染（SSR）、静态生成（SSG）和 App <a href="../concepts/网关与路由器.html">Router</a> 架构。</p>
+<p><a href="Vercel.html">Vercel</a> 开发的基于 <a href="React.html">React</a> 的全栈 Web 框架，支持<a href="../concepts/服务.html">服务</a>端渲染（SSR）、静态生成（SSG）和 App <a href="../concepts/网关与路由器.html">Router</a> 架构。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,13 +145,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Server Components 优先</strong>：App <a href="../concepts/网关与路由器.html">Router</a> 中默认使用 Server Components，可直接使用 <code>async/await</code> 获取数据，无需 <code>useEffect</code> 或客户端数据获取库。仅在有交互需求时通过 <code>'use client'</code> 指令标记 Client Components。</p>
 </li>
 <li>
-<p><strong>Route Handlers</strong>：API 路由使用标准的 <code>GET</code>、<code>POST</code> 等导出函数处理 HTTP 请求，返回 <code>Response.json()</code> 对象，支持完整的错误处理和状态码控制。</p>
+<p><strong>Route Handlers</strong>：API 路由使用标准的 <code>GET</code>、<code>POST</code> 等导出函数处理 HTTP 请求，返回 <code>Response.json()</code> 对象，支持完整的<a href="../concepts/错误处理.html">错误处理</a>和状态码控制。</p>
 </li>
 <li>
 <p><strong>与 <a href="Prisma.html">Prisma</a> 集成</strong>：常搭配 <a href="Prisma.html">Prisma ORM</a> 使用，通过 <code>npx prisma migrate dev</code> 管理数据库迁移，<code>npx prisma studio</code> 提供 GUI 数据浏览，<code>npx prisma db seed</code> 导入测试数据。</p>
 </li>
 <li>
-<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：作为 AGENTS.md 模板中推荐的默认技术栈，配合 <a href="TypeScript.html">TypeScript</a>、<a href="Prisma.html">Prisma</a> 和 <a href="PostgreSQL.html">PostgreSQL</a> 构成全栈开发基线。</p>
+<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：作为 <a href="../concepts/项目约定手册.html">AGENTS.md</a> 模板中推荐的默认技术栈，配合 <a href="TypeScript.html">TypeScript</a>、<a href="Prisma.html">Prisma</a> 和 <a href="PostgreSQL.html">PostgreSQL</a> 构成全栈开发基线。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -162,13 +162,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="TypeScript.html">TypeScript</a> — uses（默认开发语言）</li>
 <li><a href="Prisma.html">Prisma</a> — compares_to（常搭配使用的 ORM）</li>
-<li><span style="color:#e74c3c" title="broken link">React</span> — depends_on（底层 UI 框架）</li>
+<li><a href="React.html">React</a> — depends_on（底层 UI 框架）</li>
 <li><a href="Vercel.html">Vercel</a> — part_of（开发与维护方）</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文).html">&larr; Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文)</a>
-    <a href="Nils J. Nilsson.html">Nils J. Nilsson &rarr;</a>
+    <a href="Nicholas-Carlini.html">Nicholas-Carlini &rarr;</a>
   </div>
 </div>
 </body>

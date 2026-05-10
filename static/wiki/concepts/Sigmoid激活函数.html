@@ -129,28 +129,41 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">激活函数</span></div>
 </div>
   <div class="content">
     <h1 id="sigmoid">Sigmoid激活函数</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>Sigmoid 函数 σ(x) = 1/(1+e⁻ˣ) 将任意实数映射到 (0,1) 区间，是神经网络中最经典的激活函数。其导数形式优雅 σ'(x) = σ(x)(1-σ(x))，但最大值仅 0.25，深层网络中多层相乘导致<a href="梯度消失.html">梯度消失</a>。</p>
+<p>Sigmoid 函数 σ(x) = 1/(1+e⁻ˣ) 将任意实数映射到 (0,1) 区间，是神经网络中最经典的激活函数。其导数形式优雅 σ'(x) = σ(x)(1-σ(x))，但最大值仅 0.25，深层网络中多层相乘导致<a href="梯度消失.html">梯度消失</a>。该函数是1986年<a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a>中推荐使用的激活函数。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>数学定义与性质</strong>：σ(x) = 1/(1+e⁻ˣ)，输出范围 (0,1)，单调递增，关于原点对称 σ(0)=0.5。导数 σ'(x) = σ(x)·(1-σ(x)) 可用函数自身表示，计算高效。这一优雅性质使其成为<a href="反向传播.html">反向传播</a>论文（Rumelhart et al., 1986）中的原始激活选择。</li>
-<li><strong>在<a href="反向传播.html">反向传播</a>中的角色</strong>：<a href="反向传播.html">反向传播</a>需要计算每层的局部梯度，Sigmoid 的导数可直接由前向传播的输出值计算（无需额外存储输入），节省了内存和计算。在两层网络演示中，隐藏层梯度 ∂L/∂z₁ = ∂L/∂h ⊙ σ'(z₁)。</li>
-<li><strong><a href="梯度消失.html">梯度消失</a>问题</strong>：σ'(x) 最大值仅为 0.25（在 x=0 处），当 |x| 增大时导数趋近于 0。在 n 层网络中，梯度连乘 0.25ⁿ → 0，导致深层网络训练极慢甚至无法训练。这是 Sigmoid 被淘汰的根本原因。</li>
-<li><strong>被 ReLU 取代</strong>：2012 年 <a href="AlexNet.html">AlexNet</a> 使用<a href="ReLU激活函数.html">ReLU激活函数</a> f(x) = max(0, x)，正区间导数恒为 1，彻底解决了<a href="梯度消失.html">梯度消失</a>问题。ReLU 计算更简单（无需指数运算），收敛速度显著快于 Sigmoid，成为现代深度学习的默认激活函数。</li>
+<li>
+<p><strong>数学定义与性质</strong>：σ(x) = 1/(1+e⁻ˣ)，输出范围 (0,1)，单调递增，关于原点对称 σ(0)=0.5。导数 σ'(x) = σ(x)·(1-σ(x)) 可用函数自身表示，<a href="计算.html">计算</a>高效。这一优雅性质使其成为<a href="反向传播.html">反向传播</a>论文（Rumelhart et al., 1986）中的原始激活选择。</p>
+</li>
+<li>
+<p><strong>在<a href="反向传播.html">反向传播</a>中的角色</strong>：<a href="反向传播.html">反向传播</a>需要<a href="计算.html">计算</a>每层的局部梯度，Sigmoid 的导数可直接由前向传播的输出值<a href="计算.html">计算</a>（无需额外存储输入），节省了内存和<a href="计算.html">计算</a>。在两层网络演示中，隐藏层梯度 ∂L/∂z₁ = ∂L/∂h ⊙ σ'(z₁)。</p>
+</li>
+<li>
+<p><strong><a href="梯度消失.html">梯度消失</a>问题</strong>：σ'(x) 最大值仅为 0.25（在 x=0 处），当 |x| 增大时导数趋近于 0。在 n 层网络中，梯度连乘 0.25ⁿ → 0，导致深层网络训练极慢甚至无法训练。这是 Sigmoid 被淘汰的根本原因。</p>
+</li>
+<li>
+<p><strong>被 ReLU 取代</strong>：2012 年 <a href="AlexNet.html">AlexNet</a> 使用<a href="ReLU激活函数.html">ReLU激活函数</a> f(x) = max(0, x)，正区间导数恒为 1，彻底解决了<a href="梯度消失.html">梯度消失</a>问题。ReLU <a href="计算.html">计算</a>更简单（无需指数运算），收敛速度显著快于 Sigmoid，成为现代深度学习的默认激活函数。</p>
+</li>
+<li>
+<p><strong>历史意义</strong>：1986年<a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a>选择了Sigmoid作为推荐的激活函数，因为它具有处处可导的优点，适合梯度<a href="计算.html">计算</a>。虽然该选择为后续<a href="梯度消失.html">梯度消失</a>问题埋下隐患，但在当时是合理的，因为解决了单层<a href="../entities/感知机.html">感知机</a>无法处理非线性问题的局限性。</p>
+</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Learning Representations by Back-propagating Errors] — Rumelhart, Hinton &amp; Williams, Nature 1986</li>
-<li>[raw/articles/ai-papers/machine-learning/02_backpropagation_1986.md] — 源文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_02_backpropagation.md</span> — 源文件</li>
+<li><span style="color:#e74c3c" title="broken link">ai_papers_timeline.md</span> — 1986年时间线条目</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
-<li><a href="反向传播.html">反向传播</a> — uses</li>
+<li><a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a> — uses</li>
+<li><a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a> — used_in</li>
 <li><a href="梯度消失.html">梯度消失</a> — caused</li>
 <li><a href="ReLU激活函数.html">ReLU激活函数</a> — supersedes</li>
 <li><a href="链式法则.html">链式法则</a> — uses</li>
@@ -158,7 +171,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Shared-State-Pattern.html">&larr; Shared-State-Pattern</a>
-    <a href="Skip-gram.html">Skip-gram &rarr;</a>
+    <a href="Skills.html">Skills &rarr;</a>
   </div>
 </div>
 </body>

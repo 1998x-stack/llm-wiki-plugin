@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孙正义投资生涯 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / 孙正义投资生涯</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">工作</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">孙正义投资生涯</h1>
+<h2 id="_2">概述</h2>
+<p>孙正义（Masayoshi Son），软银集团创始人，是当代最具争议的投资人物之一。其投资生涯以"赛道论"为核心哲学——只赌赛道方向，不纠结产品细节。从16岁赴日追寻机遇，到投资雅虎获400倍回报、投资阿里获3000倍回报，再到创立千亿美元愿景基金豪赌AI未来，其人生充满传奇与争议。既有"投资之神"的光环，也有清仓英伟达少赚2100亿、WeWork百亿亏损的惨痛教训。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">一、早年传奇：组合式创新与赛道思维萌芽</h3>
+<ol>
+<li><strong>16岁的疯狂</strong>：1973年，16岁的孙正义远赴东京，在公司门口苦等偶像藤田，最终获得三分钟交谈机会。藤田建议他赴美接触前沿计算机技术，让他领悟"顶级机会是抢来的"。</li>
+<li><strong>组合式创新</strong>：运用"随机组合法"，将计算机、牛津字典和声音合成器结合，发明袖珍版多国语言有声翻译机，以150万美元卖给夏普，获得第一桶金。核心逻辑：创新不是创造全新事物，而是对现有事物的重新排列组合。</li>
+<li><strong>23岁创办软银</strong>：1981年带着第一桶金回国创办软银，预判互联网兴起将带来软件市场爆发。确立"只赌赛道，不赌细节"的核心策略——采取粗犷但有效的海量批发软件策略，专注于占领正确赛道。软银于1994年成功上市。</li>
+</ol>
+<h3 id="_5">二、互联网封神：雅虎与阿里的世纪豪赌</h3>
+<ol>
+<li><strong>投资雅虎</strong>：1995年雅虎仅有15名员工时，孙正义果断投资200万美元，随后追加1亿美元获33%股份。雅虎上市后带来近400倍回报。在市值最高点时，个人财富短暂超越比尔·盖茨，成为世界首富（仅一天）。</li>
+<li><strong>投资阿里</strong>：仅与马云交谈半小时，便决定投资当时名不见经传的中国电商公司。初期投资2000万美元，2014年上市后价值近600亿美元，回报率超过3000倍，成为投资史上的经典案例。</li>
+</ol>
+<h3 id="_6">三、泡沫危机与翻盘：从世界首富到绝地求生</h3>
+<ol>
+<li><strong>泡沫破裂</strong>：2000年互联网泡沫破裂，软银市值一年内蒸发99%（从2000亿美元缩水至20亿美元），个人财富从800亿美元一夜清零。</li>
+<li><strong>绝地翻盘</strong>：在人生低谷做出两个关键决定——坚决不卖出阿里巴巴股份；果断押注电信行业。软银成为iPhone在日本的独家代理商，这一举措成为公司起死回生的关键转折点。</li>
+</ol>
+<h3 id="_7">四、愿景基金：豪赌未来与惨烈教训</h3>
+<ol>
+<li><strong>收购ARM</strong>：2016年以320亿美元收购英国芯片设计巨头ARM，确立软银在移动计算架构领域的核心地位。</li>
+<li><strong>千亿美元愿景基金</strong>：从中东等地区筹集千亿美元巨资，投资人工智能、机器人等前沿科技领域。</li>
+<li><strong>清仓英伟达</strong>：为填补WeWork财务窟窿，2019年清仓英伟达股票（当时获利30亿美元）。随着AI时代爆发，英伟达股价一飞冲天，这笔被抛售的投资如今价值超2100亿美元，成为投资生涯最惨烈的"卖飞"。</li>
+<li><strong>WeWork滑铁卢</strong>：通过愿景基金前后投入超过140亿美元，成为软银史上最大单笔投资之一。因商业模式根本缺陷和创始人管理失控，上市计划失败，估值大幅缩水，重创软银财务报表。</li>
+</ol>
+<h3 id="ai">五、AI新局：星际之门与机器人帝国</h3>
+<ol>
+<li><strong>战略调整</strong>：大规模抛售阿里巴巴股票筹集资金；推动ARM于2023年成功上市，市值一度接近1800亿美元。</li>
+<li><strong>5000亿"星际之门计划"</strong>：提出规模高达5000亿美元的宏大计划，投资颠覆性技术。</li>
+<li><strong>万亿美元机器人帝国</strong>：梦想打造万亿级机器人帝国，让智能机器人进入千家万户。</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/006-孙正义投资生涯PPT</span> — 全文</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="孙正义.html">孙正义</a> — about</li>
+<li><a href="软银.html">软银</a> — founded_by</li>
+<li><a href="愿景基金.html">愿景基金</a> — founded_by</li>
+<li><span style="color:#e74c3c" title="broken link">组合式创新</span> — concept_used</li>
+<li><span style="color:#e74c3c" title="broken link">赛道投资哲学</span> — core_philosophy</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="孙正义.html">&larr; 孙正义</a>
+    <a href="尼安德特人.html">尼安德特人 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

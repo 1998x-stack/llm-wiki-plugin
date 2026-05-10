@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>均方根误差，推荐系统评分预测任务的核心评估指标，<a href="../entities/Netflix Prize.html">Netflix Prize</a> 竞赛的官方评判标准。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>定义</strong>：RMSE（Root Mean Square Error）衡量预测评分与真实评分之间的偏差，计算公式为 $\sqrt{\frac{1}{N}\sum(r_{ui} - \hat{r}_{ui})^2}$。值越小表示预测越准确。</li>
+<li><strong>定义</strong>：RMSE（Root Mean Square Error）衡量预测评分与真实评分之间的偏差，<a href="计算.html">计算</a>公式为 $\sqrt{\frac{1}{N}\sum(r_{ui} - \hat{r}_{ui})^2}$。值越小表示预测越准确。</li>
 <li><strong><a href="../entities/Netflix Prize.html">Netflix Prize</a> 基线</strong>：<a href="../entities/Cinematch.html">Cinematch</a> 基线 RMSE 为 0.9514，竞赛目标为降至 0.8563 以下（10% 提升）。最终 <a href="../entities/BellKor&#x27;s Pragmatic Chaos.html">BellKor&#x27;s Pragmatic Chaos</a> 以 0.8567（10.06% 提升）获胜。</li>
 <li><strong>各方法 RMSE 对比</strong>：</li>
 <li><a href="../entities/FunkSVD.html">FunkSVD</a>: ~0.896（~5.9% 提升）</li>

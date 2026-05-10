@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>扫描件 PDF（OCRBased 管道）</strong>：整页 OCR，所有文字都靠识别，<a href="../entities/PyMuPDF.html">PyMuPDF</a> 只提供图像不提供文字</li>
 <li><strong>混合 PDF（Mixed 管道）</strong>：逐个布局框判断，有文字层直接提取，无文字层走 OCR</li>
 </ul>
-<p>这个设计的核心思想：对于文字型 PDF，<a href="../entities/PyMuPDF.html">PyMuPDF</a> 的精确坐标远优于 OCR 识别结果，没有必要浪费计算资源。</p>
+<p>这个设计的核心思想：对于文字型 PDF，<a href="../entities/PyMuPDF.html">PyMuPDF</a> 的精确坐标远优于 OCR 识别结果，没有必要浪费<a href="计算.html">计算</a>资源。</p>
 <h3 id="ocr">OCR 三阶段流水线</h3>
 <p>现代 OCR 系统（如 <a href="../entities/PaddleOCR.html">PaddleOCR</a>）的完整处理流程：</p>
 <ol>
@@ -179,7 +179,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="ocr_1">中文 OCR 的特殊挑战</h3>
 <ul>
 <li><strong>字符集规模</strong>：英文约 100 个字符，中文常用字 3500+，完整字符集 70000+。<a href="../entities/PaddleOCR.html">PaddleOCR</a> 使用 GB2312 标准的 6763 个常用汉字</li>
-<li><strong>字形相似度</strong>：大量形近字（己/已/巳，戊/戌/戍），需要通过大规模训练数据和语言模型后处理</li>
+<li><strong>字形相似度</strong>：大量形近字（己/已/巳，戊/戌/戍），需要通过大规模训练数据和<a href="Language-Model.html">语言模型</a>后处理</li>
 <li><strong>中英混排</strong>：学术论文中大量存在中英文混排，需要统一字符集</li>
 <li><strong>垂直排版</strong>：古籍、传统排版使用竖排，需要方向分类器先识别文字方向</li>
 </ul>
@@ -206,7 +206,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="元社会学.html">&larr; 元社会学</a>
+    <a href="元素心理学.html">&larr; 元素心理学</a>
     <a href="光遗传学.html">光遗传学 &rarr;</a>
   </div>
 </div>

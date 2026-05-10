@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的四层记忆体系，从快速事实到深度理解构成记忆梯度，每层解决不同的记忆问题且 Token 成本各异。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>Layer 1 — <a href="语义记忆.html">语义记忆</a>（<a href="语义记忆.html">MEMORY.md</a>）</strong>：存储环境客观事实（OS、工具、项目约定、经验教训），上限 2,200 字符（~800 tokens），会话开始时以冻结快照注入 System Prompt，典型 8-15 条</li>
+<li><strong>Layer 1 — <a href="语义记忆.html">语义记忆</a>（<a href="语义记忆.html">MEMORY.md</a>）</strong>：存储环境客观事实（OS、工具、<a href="项目约定手册.html">项目约定</a>、经验教训），上限 2,200 字符（~800 tokens），会话开始时以冻结快照注入 System Prompt，典型 8-15 条</li>
 <li><strong>Layer 2 — 用户模型（USER.md）</strong>：存储用户身份信息、沟通偏好、技术水平、工作习惯和禁忌，上限 1,375 字符（~500 tokens），与 <a href="语义记忆.html">MEMORY.md</a> 同为冻结快照注入，典型 5-10 条</li>
 <li><strong>Layer 3 — <a href="情节记忆.html">情节记忆</a>（<a href="FTS5.html">SQLite FTS5</a>）</strong>：存储历史会话全文，无容量上限，通过全文检索按需召回，经辅助 LLM 摘要精炼后注入当前上下文，避免 Token 爆炸</li>
 <li><strong>Layer 4 — <a href="辩证推理.html">辩证用户建模</a>（<a href="../entities/Honcho.html">Honcho</a>）</strong>：通过正题-反题-合题的<a href="辩证推理.html">辩证推理</a>循环，推断用户未明确表达的偏好，构建动态认知模型，跨会话持续更新</li>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="分层记忆架构.html">&larr; 分层记忆架构</a>
-    <a href="分布式系统.html">分布式系统 &rarr;</a>
+    <a href="分布式假说.html">分布式假说 &rarr;</a>
   </div>
 </div>
 </body>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私保护 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 隐私保护</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">隐私保护</span><span class="tag">推荐系统</span><span class="tag">信息安全</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">隐私保护</h1>
+<h2 id="_2">概述</h2>
+<p>隐私保护（Privacy Protection）是指在信息系统设计和运行过程中保护用户个人信息和行为数据不被未授权访问、泄露或滥用的安全措施和技术方法，在推荐系统领域尤为重要，<a href="../entities/GroupLens.html">GroupLens</a>早在1994年就将隐私保护纳入系统设计核心目标。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>早期设计理念</strong>：</li>
+<li><a href="../entities/GroupLens.html">GroupLens</a> 论文（1994年）明确指出："用户可以通过假名输入评分来保护隐私，而不会降低评分预测的有效性"</li>
+<li>将隐私保护作为系统设计的一等公民（first-class citizen），而非事后补丁</li>
+<li>
+<p>这种"隐私不是事后补丁，而是设计之初的一等约束"的思维方式在当时极为超前</p>
+</li>
+<li>
+<p><strong><a href="假名机制.html">假名机制</a></strong>：</p>
+</li>
+<li><a href="../entities/GroupLens.html">GroupLens</a> 采用假名评分机制，用户可以使用假名提交评分</li>
+<li>由于Pearson相关系数<a href="计算.html">计算</a>只依赖评分模式而非真实身份，假名不会降低预测质量</li>
+<li>
+<p>实现了"可用性"与"隐私"之间的平衡</p>
+</li>
+<li>
+<p><strong>现代发展</strong>：</p>
+</li>
+<li><a href="联邦学习.html">联邦学习</a> 继承并发展了隐私保护理念</li>
+<li><span style="color:#e74c3c" title="broken link">差分隐私</span>、安全多方<a href="计算.html">计算</a>等更强的隐私保护技术被广泛应用</li>
+<li>
+<p>2018年GDPR的实施进一步提升了隐私保护的重要性</p>
+</li>
+<li>
+<p><strong>推荐系统中的挑战</strong>：</p>
+</li>
+<li>用户评分数据直接反映个人兴趣和立场</li>
+<li>评分模式可能泄露敏感信息</li>
+<li>
+<p>如何在提供个性化推荐的同时保护用户隐私是核心挑战</p>
+</li>
+<li>
+<p><strong>技术演进</strong>：</p>
+</li>
+<li>朴素<a href="假名机制.html">假名机制</a> → 差分隐私 → 同态加密 → <a href="联邦学习.html">联邦学习</a></li>
+<li>从单一防护到多层次、全生命周期的隐私保护体系</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">GroupLens: 从新闻组到推荐系统帝国的奠基之作</span></li>
+<li><span style="color:#e74c3c" title="broken link">隐私保护法规汇编</span></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/GroupLens.html">GroupLens</a> — 1994年首次将隐私保护纳入推荐系统设计</li>
+<li><a href="联邦学习.html">联邦学习</a> — 现代隐私保护推荐系统的代表</li>
+<li><a href="假名机制.html">假名机制</a> — 隐私保护的基础技术手段</li>
+<li><span style="color:#e74c3c" title="broken link">差分隐私</span> — 更强的隐私保护技术</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="隐梦.html">&larr; 隐梦</a>
+    <a href="隧道跨域连接.html">隧道跨域连接 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

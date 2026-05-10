@@ -129,23 +129,23 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">历史</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">存储程序计算机</h1>
 <h2 id="_2">概述</h2>
-<p>存储程序计算机是一种将程序指令和数据存储在同一内存空间中的计算机架构，由<a href="../entities/约翰·冯·诺依曼.html">von Neumann</a>在1945年 <a href="../entities/EDVAC 报告.html">EDVAC 报告</a>中首次系统阐述。这一设计消除了物理重新接线的需要，使"编程"从硬件操作变为纯粹的智力活动。</p>
+<p>存储程序<a href="计算.html">计算</a>机是一种将程序指令和数据存储在同一内存空间中的<a href="计算.html">计算</a>机架构，由<a href="../entities/约翰·冯·诺依曼.html">von Neumann</a>在1945年 <a href="../entities/EDVAC 报告.html">EDVAC 报告</a>中首次系统阐述。这一设计消除了物理重新接线的需要，使"编程"从硬件操作变为纯粹的智力活动。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心思想</h3>
 <p><strong>指令与数据的统一存储</strong>：程序指令和数据存储在同一个内存空间中，使用相同的寻址方式。从内存的角度看，一个存储单元中的内容既可以被解释为数据，也可以被解释为指令——区别仅在于控制单元在何种上下文中读取它。</p>
 <h3 id="_5">五大组件</h3>
-<p><a href="../entities/EDVAC 报告.html">EDVAC 报告</a>将计算机分解为五个功能器官：
+<p><a href="../entities/EDVAC 报告.html">EDVAC 报告</a>将<a href="计算.html">计算</a>机分解为五个功能器官：
 1. <strong>中央算术单元（CA）</strong> — 执行算术和逻辑运算，对应现代 ALU
 2. <strong>中央控制单元（CC）</strong> — 取指、解码、执行，维护程序计数器
 3. <strong>内存（M）</strong> — 同时存储数据和指令
 4. <strong>输入设备（I）</strong> — 将外部数据和程序输入内存
-5. <strong>输出设备（O）</strong> — 将计算结果输出到外部</p>
+5. <strong>输出设备（O）</strong> — 将<a href="计算.html">计算</a>结果输出到外部</p>
 <h3 id="-">取指-解码-执行循环</h3>
 <p>Von Neumann 描述了处理器工作的基本<a href="规范化理论.html">范式</a>：
 1. CC 从内存中取出当前地址处的指令（fetch）
@@ -157,18 +157,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>由于指令本身就是内存中的数据，程序可以像数据一样被读取、修改、复制和生成：
 - <strong>自修改程序</strong>：程序可以在运行过程中修改自己的指令
 - <strong>子程序调用</strong>：一段程序可以"调用"另一段程序
-- <strong>条件分支</strong>：根据计算结果选择不同的执行路径</p>
+- <strong>条件分支</strong>：根据<a href="计算.html">计算</a>结果选择不同的执行路径</p>
 <h3 id="_7">与图灵机的关系</h3>
-<p>存储程序计算机本质上是<a href="图灵机.html">通用图灵机</a>的工程实现：
+<p>存储程序<a href="计算.html">计算</a>机本质上是<a href="图灵机.html">通用图灵机</a>的工程实现：
 - 内存 ↔ 纸带
 - CPU ↔ 读写头和状态转换规则
 - 程序 ↔ 纸带上的机器描述</p>
-<p>Von Neumann 在1930年代曾在普林斯顿与 Turing 有过交往，对<a href="图灵机.html">通用图灵机</a>的概念有着深刻理解。<a href="../entities/EDVAC 报告.html">EDVAC 报告</a>完成了从 Turing 的纯数学概念到可用当时电子技术建造的工程方案的关键转化。</p>
+<p>Von Neumann 在1930年代曾在普林斯顿与 <a href="../entities/Alan Turing.html">Turing</a> 有过交往，对<a href="图灵机.html">通用图灵机</a>的概念有着深刻理解。<a href="../entities/EDVAC 报告.html">EDVAC 报告</a>完成了从 <a href="../entities/Alan Turing.html">Turing</a> 的纯数学概念到可用当时电子技术建造的工程方案的关键转化。</p>
 <h3 id="_8">历史影响</h3>
-<p>几乎所有通用数字计算机——从最早的真空管计算机到今天的智能手机——在本质上都是存储程序架构的变体。这一术语"冯·诺依曼架构"已成为存储程序计算机的同义词。</p>
+<p>几乎所有通用数字<a href="计算.html">计算</a>机——从最早的真空管<a href="计算.html">计算</a>机到今天的智能手机——在本质上都是<a href="冯·诺依曼架构.html">存储程序架构</a>的变体。这一术语"<a href="冯·诺依曼架构.html">冯·诺依曼架构</a>"已成为存储程序<a href="计算.html">计算</a>机的同义词。</p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/03-von-neumann-edvac.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">01-turing-on-computable-numbers</span> — 通用图灵机概念的影响</li>
 </ul>
 <h2 id="_10">相关</h2>
 <ul>
@@ -177,11 +178,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="图灵机.html">图灵机</a> — 理论源头</li>
 <li>ENIAC — 被取代的前代架构（物理接线编程）</li>
 <li><a href="冯·诺依曼瓶颈.html">冯·诺依曼瓶颈</a> — 固有性能限制</li>
+<li><a href="通用图灵机.html">通用图灵机</a> — 理论前身</li>
+<li><span style="color:#e74c3c" title="broken link">论可计算数及其在判定问题上的应用</span> — 理论起源</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="子 Agent 模式（Sub-Agent Pattern）.html">&larr; 子 Agent 模式（Sub-Agent Pattern）</a>
-    <a href="学习排序.html">学习排序 &rarr;</a>
+    <a href="子 Agent 系统.html">&larr; 子 Agent 系统</a>
+    <a href="存内计算.html">存内计算 &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="hooks">生命周期 Hooks</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Gateway 消息网关.html">Hermes Gateway</a> 在关键事件点插入自定义逻辑的扩展机制，支持用户自定义和内置两种 Hooks。</p>
+<p><a href="Gateway 消息网关.html">Hermes Gateway</a> 在关键事件点插入自定义逻辑的扩展机制，支持用户自定义和内置两种 <a href="Hooks.html">Hooks</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>Hook 注册方式</strong>：通过 <code>@on_event("event_name")</code> 装饰器注册，在特定事件触发时执行自定义逻辑</li>
 <li><strong>关键事件点</strong>：<code>session_start</code>（会话开始）、<code>message_received</code>（消息接收）、<code>session_end</code>（会话结束）等</li>
 <li><strong>用户自定义示例</strong>：会话开始时记录日志、特定关键词（如 "URGENT"）触发高优先级处理、消息内容过滤或转换</li>
-<li><strong>内置 Hooks（builtin_hooks/）</strong>：心跳检测、日报日志、周报摘要、错误通知，开箱即用</li>
-<li><strong>与<a href="工具注册机制.html">工具注册机制</a>的对比</strong>：<a href="工具注册机制.html">工具注册机制</a>通过 <code>@register_tool</code> 在导入时自动注册工具函数；生命周期 Hooks 通过 <code>@on_event</code> 注册事件回调，两者都是声明式注册模式</li>
-<li><strong>扩展性价值</strong>：无需修改 <a href="网关与路由器.html">Gateway</a> 核心代码即可添加自定义行为，符合开闭原则，是 <a href="网关与路由器.html">Gateway</a> 平台化能力的重要组成部分</li>
+<li><strong>内置 <a href="Hooks.html">Hooks</a>（builtin_hooks/）</strong>：心跳检测、日报日志、周报摘要、错误通知，开箱即用</li>
+<li><strong>与<a href="工具注册机制.html">工具注册机制</a>的对比</strong>：<a href="工具注册机制.html">工具注册机制</a>通过 <code>@register_tool</code> 在导入时自动注册工具函数；生命周期 <a href="Hooks.html">Hooks</a> 通过 <code>@on_event</code> 注册事件回调，两者都是声明式注册模式</li>
+<li><strong>扩展性价值</strong>：无需修改 <a href="网关与路由器.html">Gateway</a> 核心代码即可添加自定义行为，符合<a href="SOLID原则.html">开闭原则</a>，是 <a href="网关与路由器.html">Gateway</a> 平台化能力的重要组成部分</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>

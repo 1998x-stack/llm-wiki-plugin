@@ -129,12 +129,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="codex">Codex沙箱系统</h1>
-<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong><a href="操作系统.html">操作系统</a>内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 <a href="../entities/Codex CLI.html">Codex CLI</a> 三道防线中的最后一道。</p>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的执行边界层，用<strong><a href="操作系统.html">操作系统</a>内核级机制</strong>限制 Agent 能触碰的文件系统范围和网络<a href="Permissions.html">权限</a>。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 <a href="../entities/Codex CLI.html">Codex CLI</a> 三道防线中的最后一道。</p>
 <h2 id="os">为什么需要 OS 级沙箱</h2>
 <p>应用层过滤（如 <a href="ExecPolicy.html">ExecPolicy</a>）是<strong>意图层面的拦截</strong>，无法处理所有边缘情况：</p>
 <table>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>提示词注入</td>
-<td>仓库文件包含恶意指令，诱导 LLM 执行危险操作</td>
+<td><a href="仓库.html">仓库</a>文件包含恶意指令，诱导 LLM 执行危险操作</td>
 </tr>
 <tr>
 <td>范围扩散</td>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="linux-landlock-seccomp">Linux — Landlock + seccomp（双层）</h3>
 <p><strong>层 1：<a href="../entities/Landlock.html">Landlock</a></strong>（Linux 5.13+ 引入）</p>
 <p>基于 eBPF/LSM 的不可绕过文件系统沙箱：
-- 进程设置后<strong>无法提权取消</strong>（不可逆）
+- 进程<a href="Settings.html">设置</a>后<strong>无法提权取消</strong>（不可逆）
 - 规则自动继承到所有子进程（<code>cargo build</code>、<code>npm install</code> 等也受限）
 - 在 VFS 层拦截，无法被 <code>LD_PRELOAD</code> 或 ptrace 绕过</p>
 <p><strong>层 2：<a href="../entities/seccomp.html">seccomp</a></strong>（系统调用过滤）</p>
@@ -204,10 +204,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><code>workspace-write</code> 模式启动时自动将当前工作目录 + <code>~/.codex/memories</code> 注入可写路径，无需手动配置。</p>
+<p><code>workspace-write</code> 模式启动时自动将当前工作目录 + <code>~/.codex/memories</code> 注入可写路径，无需手动<a href="Configuration.html">配置</a>。</p>
 <h2 id="_2">受保护路径</h2>
 <p>即使在 <code>workspace-write</code> 模式，以下路径强制只读：
-- <code>.git/</code> — 防止 Agent 修改 hooks 或 commit history
+- <code>.git/</code> — 防止 Agent 修改 hooks 或 <a href="../entities/commit.html">commit</a> history
 - <code>.codex/</code> — 防止 Agent 修改自己的执行规则（反射性攻击防护）
 - <code>/etc/</code>、<code>/usr/</code>、<code>/bin/</code>、<code>~/.ssh/</code> 等系统路径</p>
 <h2 id="_3">网络访问控制</h2>

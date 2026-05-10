@@ -217,7 +217,7 @@ Evaluator（Playwright MCP，点击测试运行中的应用 + 对照准则打分
    ↓
 Generator（修复 + 迭代，循环直到所有准则通过）
 </code></pre>
-<p>核心设计原则：<strong>每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。</strong> Opus 4.5 需要 Sprint 分解 + <a href="上下文重置.html">上下文重置</a> 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。</p>
+<p>核心设计原则：<strong>每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。</strong> Opus 4.5 需要 Sprint 分解 + <a href="上下文重置.html">上下文重置</a> 才能完成长时任务；<a href="../entities/Claude_Opus_4.6.html">Opus 4.6</a> 发布后，这两个组件被移除，Harness 大幅简化而性能不降。</p>
 <p>这与 <a href="../entities/DeepAgents.html">DeepAgents</a> 的"batteries-included"路线形成对比：
 - <strong><a href="../entities/DeepAgents.html">DeepAgents</a> 路线</strong>：预设丰富<a href="ROS (Robot Operating System).html">中间件</a>，适合企业多场景
 - <strong><a href="../entities/Anthropic.html">Anthropic</a> 任务 Harness 路线</strong>：从最小 Harness 出发，随模型能力迭代减复杂度</p>
@@ -225,14 +225,14 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 <p>Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而<strong>过时</strong>。<a href="../entities/Anthropic.html">Anthropic</a> 发现：</p>
 <ul>
 <li><a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 会在接近上下文限制时过早结束任务（<a href="上下文焦虑.html">上下文焦虑</a>），因此在 harness 中加入<a href="上下文重置.html">上下文重置</a></li>
-<li>但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重</li>
+<li>但同样的 harness 用于 <a href="../entities/Claude_Code.html">Claude</a> Opus 4.5 时，该行为消失了——重置变成了死重</li>
 </ul>
-<p>这引出了 <a href="元控制框架.html">元控制框架</a> 的设计哲学：不对具体 harness 有主见，而是对<strong>围绕 Claude 的接口</strong>有主见，使 harness 实现可随模型能力自由替换。</p>
+<p>这引出了 <a href="元控制框架.html">元控制框架</a> 的设计哲学：不对具体 harness 有主见，而是对<strong>围绕 <a href="../entities/Claude_Code.html">Claude</a> 的接口</strong>有主见，使 harness 实现可随模型能力自由替换。</p>
 <h3 id="harness-meta-harness">从 Harness 到 Meta-harness</h3>
 <p><a href="Managed-Agents.html">Managed-Agents</a> 代表了 Harness 模式的下一个演进阶段——<strong><a href="元控制框架.html">元控制框架</a></strong>（<a href="元控制框架.html">元控制框架</a>）：
 - 定义通用接口（会话、harness、沙箱）而非具体实现
 - 每个组件可独立失败和替换
-- 通过 <a href="脑手分离架构.html">脑手分离架构</a> 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
+- 通过 <a href="脑手分离架构.html">脑手分离架构</a> 实现弹性：大脑（<a href="../entities/Claude_Code.html">Claude</a> + harness）与手（沙箱）和会话（事件日志）解耦
 - 性能收益：p50 TTFT 下降 60%，p95 TTFT 下降 90%+</p>
 <h2 id="_6">来源</h2>
 <ul>

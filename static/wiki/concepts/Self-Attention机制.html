@@ -144,9 +144,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\text{Attention}(Q,K,V)=\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</p>
 <p><strong>四步流程：</strong></p>
 <ol>
-<li><strong>计算注意力分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
+<li><strong><a href="计算.html">计算</a>注意力分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
 <li><strong>缩放</strong>：除以 $\sqrt{d_k}$，防止点积值过大导致 softmax <a href="梯度消失.html">梯度消失</a></li>
-<li><strong>Softmax 归一化</strong>：对每行归一化，使权重之和为 1</li>
+<li><strong><a href="Softmax.html">Softmax</a> 归一化</strong>：对每行归一化，使权重之和为 1</li>
 <li><strong>加权求和</strong>：用注意力权重对 V 加权聚合，得到输出表示</li>
 </ol>
 <h3 id="_4">直觉理解</h3>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td>计算 $QK^T$：$(n \times d)(d \times n)$</td>
+<td><a href="计算.html">计算</a> $QK^T$：$(n \times d)(d \times n)$</td>
 <td>$O(n^2 d)$</td>
 </tr>
 <tr>
@@ -202,7 +202,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>全并行</td>
 </tr>
 <tr>
-<td>感受野</td>
+<td><a href="感受野.html">感受野</a></td>
 <td>全局（需多步传播）</td>
 <td>局部</td>
 <td>天然全局</td>
@@ -234,8 +234,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Schur分解.html">&larr; Schur分解</a>
-    <a href="Semantic Tokens（语义标记）.html">Semantic Tokens（语义标记） &rarr;</a>
+    <a href="Security Filter Layer.html">&larr; Security Filter Layer</a>
+    <a href="Self-Consistency.html">Self-Consistency &rarr;</a>
   </div>
 </div>
 </body>

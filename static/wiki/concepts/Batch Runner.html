@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心功能</strong>：并行启动 N 个 Agent 实例，每个实例独立执行同类型任务，记录完整轨迹（observation, action, reward）</li>
 <li><strong>在训练流程中的角色</strong>：训练数据生成的第一步——定义任务类型和评估标准后，Batch Runner 负责大规模并行执行以收集训练数据</li>
 <li><strong>命令行使用</strong>：<code>hermes batch run --task-file tasks/coding_tasks.jsonl --n-workers 8 --output-dir trajectories/ --model hermes-3.5</code></li>
-<li><strong>关键参数</strong>：<code>--task-file</code> 指定任务列表（<a href="JSONL格式.html">JSONL</a> 格式）、<code>--n-workers</code> 控制并行 Worker 数量、<code>--output-dir</code> 指定轨迹输出目录、<code>--model</code> 指定使用的模型版本</li>
+<li><strong>关键参数</strong>：<code>--task-file</code> 指定任务列表（<a href="JSONL格式.html">JSONL</a> 格式）、<code>--n-workers</code> 控制并行 <a href="Worker Agent.html">Worker</a> 数量、<code>--output-dir</code> 指定轨迹输出目录、<code>--model</code> 指定使用的模型版本</li>
 <li><strong>与<a href="轨迹压缩.html">轨迹压缩</a>的衔接</strong>：Batch Runner 输出的原始轨迹经 <code>hermes batch compress</code> 压缩后，再通过 <code>hermes batch export --format atropos</code> 导出为 <a href="../entities/Atropos.html">Atropos</a> RL 训练格式</li>
 <li><strong>研究价值</strong>：是 <a href="../entities/Hermes Agent.html">Hermes</a>"研究就绪"能力的核心组件，使 <a href="../entities/Nous Research.html">Nous Research</a> 能够大规模收集工具调用训练数据，驱动下一代模型改进</li>
 </ul>

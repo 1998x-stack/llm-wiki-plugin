@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
     def execute(command, timeout=None) -&gt; ExecuteResponse: ...
     async def aexecute(...): ...
 </code></pre>
-<p>仅当 backend 实现此协议，<code>execute</code> 工具才对 Agent 可见（FilesystemMiddleware 在运行时动态检查）。<code>ExecuteResponse</code> 含 <code>output</code>（stdout+stderr 合并）、<code>exit_code</code>、<code>truncated</code>。</p>
+<p>仅当 backend 实现此协议，<code>execute</code> 工具才对 Agent 可见（FilesystemMiddleware 在运行时动态检查）。<code><a href="Execute.html">Execute</a>Response</code> 含 <code>output</code>（stdout+stderr 合并）、<code>exit_code</code>、<code>truncated</code>。</p>
 <h3 id="_3">内置后端实现</h3>
 <table>
 <thead>

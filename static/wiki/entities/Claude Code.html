@@ -126,43 +126,108 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Claude Code</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">project</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">coding-assistant</span><span class="tag">anthropic</span><span class="tag">Agent系统</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">coding-assistant</span><span class="tag">anthropic</span><span class="tag">Agent系统</span><span class="tag">terminal-agent</span><span class="tag">tech-stack</span></div>
 </div>
   <div class="content">
     <h1 id="claude-code">Claude Code</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Anthropic.html">Anthropic</a> 推出的 AI 驱动代码编辑器，基于 Claude 模型，支持 <a href="../concepts/Agent Skills.html">Agent Skills</a>、<a href="../concepts/MCP.html">MCP Servers</a> 和 Plugins 扩展机制，提供多智能体协作和<a href="../concepts/Context Engineering.html">上下文工程</a>能力。</p>
+<p>运行在终端的自主编码智能体，采用极简 Harness 架构——LLM 大脑 + 真实世界身体（Shell / 文件系统 / 外部<a href="../concepts/服务.html">服务</a>）。<a href="Anthropic.html">Anthropic</a> 推出的 AI 驱动代码编辑器，基于 <a href="Claude_Code.html">Claude</a> 模型，支持 <a href="Agent Skills.html">Agent Skills</a>、<a href="MCP.html">MCP Servers</a> 和 <a href="../concepts/Plugins.html">Plugins</a> 扩展机制，提供多智能体协作和<a href="../concepts/Context Engineering.html">上下文工程</a>能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心定位</strong>：AI 原生代码编辑器，通过自然语言对话完成软件开发全流程</p>
+<p><strong>产品哲学</strong>："The product is the model"。不像其他编码产品把 LLM 层层包裹，<a href="Claude_Code.html">Claude</a> Code 让模型直接与系统交互，提供原始模型体验。强调最少业务逻辑原则：Client 端只负责 UI 渲染 + 工具路由，智能完全来自模型。</p>
+</li>
+<li>
+<p><strong>三代 LLM 应用演化</strong>：</p>
+</li>
+<li>第一代：聊天机器人（无状态问答，控制权归人）</li>
+<li>第二代：工作流（LangChain / n8n，代码驱动的 DAG 链，控制权归代码）</li>
+<li>
+<p>第三代：自主 Agent（<a href="Claude_Code.html">Claude</a> Code，模型驱动的循环，控制权归模型）</p>
+</li>
+<li>
+<p><strong>技术栈</strong>：</p>
+</li>
+<li>语言：<a href="TypeScript.html">TypeScript</a>（类型安全 + 模型自编率极高）</li>
+<li>UI 框架：<a href="React.html">React</a> + Ink（声明式终端 UI，模型可控）</li>
+<li>布局引擎：Yoga（Meta 开源，约束布局，适配任意终端宽度）</li>
+<li>构建工具：Bun（比 Webpack/Vite 显著更快）</li>
+<li>API：<a href="../tools/Anthropic Messages API.html">Anthropic Messages API</a>（直接暴露模型能力）</li>
+<li>协议：MCP（<a href="../concepts/Model Context Protocol.html">Model Context Protocol</a>，标准化外部<a href="../concepts/服务.html">服务</a>接入）</li>
+<li>
+<p>持久化：<code>~/.claude/sessions/&lt;id&gt;/transcript.jsonl</code>（会话历史，支持 /resume）</p>
+</li>
+<li>
+<p><strong>系统架构</strong>：</p>
+</li>
+<li>用户接口层：CLI、<a href="VS Code.html">VS Code</a> 插件、Web UI</li>
+<li>核心 Agent 层：<a href="../concepts/nO 主循环.html">nO 主循环</a>（<a href="../concepts/TAOR Loop.html">TAOR Loop</a> - Think → Act → Observe → Repeat）</li>
+<li><a href="../concepts/Context Management.html">上下文管理</a>器：<a href="../concepts/Compressor wU2.html">Compressor wU2</a>（触发阈值：92%）</li>
+<li>规划系统：<a href="../concepts/TodoWrite-Tool.html">TodoWrite</a>、Reminder 注入（目标锚定、防目标漂移）</li>
+<li>确定性控制层：<a href="../concepts/Hooks 系统.html">Hooks 系统</a>（21 个生命周期事件，4 种处理器类型）</li>
+<li><a href="../concepts/Tool Ecosystem.html">工具生态系统</a>：Read、<a href="../concepts/Write.html">Write</a>、<a href="../concepts/Execute.html">Execute</a>、<a href="../concepts/Connect.html">Connect</a> <a href="../concepts/Claude Code四大能力基元.html">四大能力基元</a></li>
+<li><a href="../concepts/Configuration.html">配置</a><a href="../concepts/Permissions.html">权限</a>层：settings.json 4 级层级，Permission 白名单/黑名单</li>
+<li>扩展层：MCP 外部<a href="../concepts/服务.html">服务</a>、<a href="../concepts/Skills.html">Skills</a>、<a href="../concepts/Plugins.html">Plugins</a></li>
+<li>委派层：<span style="color:#e74c3c" title="broken link">子 Agent</span>、<a href="../concepts/Git Worktree.html">Git Worktree</a> 隔离、并行 Agent Teams</li>
+<li>
+<p>持久化上下文层：<a href="CLAUDE.html.html">CLAUDE.md</a> 三级层级（全局/项目/子目录），跨会话架构记忆、编码规范、架构决策记录（ADR）</p>
+</li>
+<li>
+<p><strong>工具系统与安全机制</strong>：</p>
+</li>
+<li>内置40+工具：文件系统工具、代码执行工具、网络API工具、多智能体工具、Git版本控制工具、记忆状态工具</li>
+<li><a href="../concepts/BashTool.html">BashTool</a>安全机制：23项安全检查，包括命令黑名单、Zsh特有威胁防护、Unicode安全检查、管道与重定向分析</li>
+<li><a href="../concepts/Permissions.html">权限</a>三级体系：Level 3自动执行、Level 2单次确认、Level 1永久拒绝或特殊授权</li>
+<li>
+<p>85+<a href="../concepts/Slash Commands.html">斜杠命令</a>系统：Git工作流命令、记忆与项目管理命令、多智能体命令、调试诊断命令</p>
+</li>
+<li>
+<p><strong><a href="../concepts/Claude Code四大能力基元.html">四大能力基元</a></strong>：</p>
+</li>
+<li><strong>Read（读）</strong>：View、LS、Glob、<a href="../concepts/GrepTool.html">GrepTool</a> - 理解代码库、搜索文件</li>
+<li><strong><a href="../concepts/Write.html">Write</a>（写）</strong>：Edit、<a href="../concepts/Write.html">Write</a>/Replace、Create - patch、全文替换、新建文件</li>
+<li><strong><a href="../concepts/Execute.html">Execute</a>（执行）</strong>：Bash（持久 Shell 会话）- git、npm、docker、pytest</li>
+<li>
+<p><strong><a href="../concepts/Connect.html">Connect</a>（连接）</strong>：MCP 协议 - <a href="GitHub.html">GitHub</a>、DB、Sentry、<a href="Slack.html">Slack</a></p>
+</li>
+<li>
+<p><strong>运营指标</strong>：</p>
+</li>
+<li>代码自生率：90% 由 <a href="Claude_Code.html">Claude</a> Code 自己编写</li>
+<li>发布频率：每位工程师每天约 5 次</li>
+<li>年化收入：GA 后 3 个月突破 $500M ARR，增长 10×</li>
+<li>用户粘性：7×24 小时不间断运行，触发 <a href="Anthropic.html">Anthropic</a> 实施周用量限制</li>
+<li>迭代速度：每个新功能经历 10+ 个真实原型迭代</li>
+<li>
+<p>模型上下文：Sonnet：200k tokens，Opus 默认输出上限 64k tokens</p>
 </li>
 <li>
 <p><strong>扩展机制全家桶</strong>：</p>
 </li>
-<li><strong>CLAUDE.md</strong>：项目持久记忆文件</li>
-<li><strong><a href="../concepts/Agent Skills.html">Agent Skills</a> (<a href="../concepts/SKILL.html 格式规范.html">SKILL.md</a>)</strong>：目录级可复用能力包</li>
-<li><strong><a href="../concepts/MCP.html">MCP Servers</a></strong>：进程级工具服务</li>
-<li><strong>Claude Connectors</strong>：远程 MCP 服务（Slack、Figma 等）</li>
-<li><strong>Plugins</strong>：<a href="../concepts/Agent Skills.html">Skills</a> + Agents + Hooks + MCP Server 的发布单元</li>
-<li><strong>Agents</strong>：专用<a href="../concepts/Subagents-in-Claude-Code.html">子智能体</a></li>
+<li><strong><a href="CLAUDE.html.html">CLAUDE.md</a></strong>：项目持久记忆文件</li>
+<li><strong><a href="Agent Skills.html">Agent Skills</a> (<a href="../concepts/SKILL.html 格式规范.html">SKILL.md</a>)</strong>：目录级可复用能力包</li>
+<li><strong><a href="MCP.html">MCP Servers</a></strong>：进程级工具<a href="../concepts/服务.html">服务</a></li>
+<li><strong><a href="../concepts/Claude Connectors.html">Claude Connectors</a></strong>：远程 MCP <a href="../concepts/服务.html">服务</a>（<a href="Slack.html">Slack</a>、Figma 等）</li>
+<li><strong><a href="../concepts/Plugins.html">Plugins</a></strong>：<a href="Agent Skills.html">Skills</a> + <a href="../concepts/Agents.html">Agents</a> + <a href="../concepts/Hooks.html">Hooks</a> + <a href="../concepts/MCP Prompts.html">MCP Server</a> 的发布单元</li>
+<li><strong><a href="../concepts/Agents.html">Agents</a></strong>：专用<a href="../concepts/Subagents-in-Claude-Code.html">子智能体</a></li>
+<li><strong><a href="../concepts/Hooks.html">Hooks</a></strong>：生命周期钩子（PreTool、PostTool 等）</li>
 <li>
-<p><strong>Hooks</strong>：生命周期钩子（PreTool、PostTool 等）</p>
+<p><strong><a href="../concepts/Slash Commands.html">Slash Commands</a></strong>：<a href="../concepts/Slash Commands.html">斜杠命令</a>系统，包括内置命令、<a href="../concepts/Skills.html">Skills</a>、插件命令和 <a href="../concepts/MCP Prompts.html">MCP Prompts</a></p>
 </li>
 <li>
 <p><strong>三层<a href="../concepts/渐进式加载.html">渐进式加载</a>机制</strong>：</p>
 </li>
-<li>第 1 层：启动时加载所有 Skill 的 name + description（~100 tokens/skill）</li>
+<li>第 1 层：启动时加载所有 <a href="../concepts/Skills.html">Skill</a> 的 name + description（~100 tokens/skill）</li>
 <li>第 2 层：任务匹配后<a href="../concepts/渐进式披露（Progressive Disclosure）.html">按需加载</a>完整 <a href="../concepts/SKILL.html 格式规范.html">SKILL.md</a>（&lt;5,000 tokens）</li>
 <li>
 <p>第 3 层：执行过程中明确需要时加载 references/</p>
 </li>
 <li>
-<p><strong>跨工具兼容性</strong>：<a href="../concepts/Agent Skills.html">Agent Skills</a> 规范被 Claude Code、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Cursor.html">Cursor</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用</p>
+<p><strong>跨工具兼容性</strong>：<a href="Agent Skills.html">Agent Skills</a> 规范被 <a href="Claude_Code.html">Claude</a> Code、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Cursor.html">Cursor</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -171,23 +236,38 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><span style="color:#e74c3c" title="broken link">01-overview-context-rot</span> — Context Rot 与上下文工程</li>
 <li><span style="color:#e74c3c" title="broken link">02_anthropic_frontend_design_skill</span> — frontend-design Skill 解析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/mempalace/mempalace_01_overview.md</span> — MemPalace 协作开发案例</li>
+<li><span style="color:#e74c3c" title="broken link">01_system_overview.md</span> — Claude Code 系统总览 &amp; Tech Stack</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Anthropic.html">Anthropic</a> — part_of</li>
-<li><a href="../concepts/Agent Skills.html">Agent Skills</a> — implements</li>
-<li><span style="color:#e74c3c" title="broken link">SKILL.md</span> — uses</li>
-<li><a href="../concepts/MCP.html">MCP</a> — uses</li>
+<li><a href="Agent Skills.html">Agent Skills</a> — implements</li>
+<li><a href="../concepts/SKILL.html.html">SKILL.md</a> — uses</li>
+<li><a href="MCP.html">MCP</a> — uses</li>
 <li><a href="OpenAI Codex.html">OpenAI Codex</a> — compares_to</li>
 <li><a href="Cursor.html">Cursor</a> — compares_to</li>
 <li><a href="Gemini CLI.html">Gemini CLI</a> — compares_to</li>
 <li><a href="Ralph Loop.html">Ralph Loop</a> — used_by（作为底层编码代理驱动自主迭代循环）</li>
 <li><a href="MemPalace.html">MemPalace</a> — used_by（Milla Jovovich 与 Ben Sigman 用 Claude Code 协作开发）</li>
+<li><a href="TypeScript.html">TypeScript</a> — uses</li>
+<li><a href="Bun.html">Bun</a> — uses</li>
+<li><a href="../tools/Anthropic Messages API.html">Anthropic Messages API</a> — uses</li>
+<li><a href="../concepts/MCP（Model Context Protocol）.html">MCP（Model Context Protocol）</a> — uses</li>
+<li><a href="../concepts/外部工具集成.html">外部工具集成</a> — enables</li>
+<li><a href="React.html">React</a> — uses</li>
+<li><a href="Ink.html">Ink</a> — uses</li>
+<li><a href="Yoga.html">Yoga</a> — uses</li>
+<li><a href="../concepts/TAOR Loop.html">TAOR Loop</a> — core_pattern</li>
+<li><a href="../concepts/Hooks 系统.html">Hooks 系统</a> — core_component</li>
+<li><span style="color:#e74c3c" title="broken link">MCP Servers</span> — uses</li>
+<li><a href="../concepts/Skills.html">Skills</a> — implements</li>
+<li><a href="../concepts/Slash Commands.html">Slash Commands</a> — implements</li>
 </ul>
+<h2 id="_5">指令</h2>
   </div>
   <div class="page-nav">
     <a href="Cinematch.html">&larr; Cinematch</a>
-    <a href="Claude-Code.html">Claude-Code &rarr;</a>
+    <a href="Claude Shannon.html">Claude Shannon &rarr;</a>
   </div>
 </div>
 </body>

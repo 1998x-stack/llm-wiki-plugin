@@ -135,29 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code 权限模式</h1>
 <h2 id="_1">概述</h2>
-<p>权限模式控制 <a href="../entities/Claude Code.html">Claude Code</a> 可以执行哪些操作，从完全交互式到完全自动化，提供 6 种权限级别：default、acceptEdits、plan、auto、dontAsk、bypassPermissions。</p>
+<p><a href="Permissions.html">权限</a>模式控制 <a href="../projects/Claude Code.html">Claude Code</a> 可以执行哪些操作，从完全交互式到完全自动化，提供 6 种<a href="Permissions.html">权限</a>级别：default、acceptEdits、plan、auto、dontAsk、bypass<a href="Permissions.html">Permissions</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>六种权限模式</strong>：</li>
+<li><strong>六种<a href="Permissions.html">权限</a>模式</strong>：</li>
 <li><strong>default</strong>：默认模式，每步操作前确认</li>
 <li><strong>acceptEdits</strong>：自动接受文件编辑，但命令执行需确认</li>
 <li><strong>plan</strong>：仅规划模式，不执行任何文件修改或命令</li>
 <li><strong>auto</strong>：自动模式，由后台安全分类器在每一步执行前审查（Research Preview）</li>
 <li><strong>dontAsk</strong>：不询问模式，自动执行所有操作</li>
 <li>
-<p><strong>bypassPermissions</strong>：绕过所有权限检查，完全自动化</p>
+<p><strong>bypass<a href="Permissions.html">Permissions</a></strong>：绕过所有<a href="Permissions.html">权限</a>检查，完全自动化</p>
 </li>
 <li>
 <p><strong>使用场景</strong>：</p>
 </li>
-<li>探索性任务用 <code>plan</code> 模式先了解 Claude 打算做什么</li>
+<li>探索性任务用 <code>plan</code> 模式先了解 <a href="../entities/Claude_Code.html">Claude</a> 打算做什么</li>
 <li>常规开发用 <code>default</code> 或 <code>acceptEdits</code></li>
 <li>自动化脚本用 <code>auto</code> 或 <code>dontAsk</code></li>
 <li>
-<p>信任 Claude 的复杂任务用 <code>bypassPermissions</code></p>
+<p>信任 <a href="../entities/Claude_Code.html">Claude</a> 的复杂任务用 <code>bypassPermissions</code></p>
 </li>
 <li>
-<p><strong>安全考量</strong>：权限模式是 <a href="../entities/Claude Code.html">Claude Code</a> 安全模型的核心。<code>auto</code> 模式虽然方便，但由后台安全分类器审查，仍属于 Research Preview 阶段。<code>bypassPermissions</code> 应仅在完全信任的场景下使用。</p>
+<p><strong>安全考量</strong>：<a href="Permissions.html">权限</a>模式是 <a href="../projects/Claude Code.html">Claude Code</a> 安全模型的核心。<code>auto</code> 模式虽然方便，但由后台安全分类器审查，仍属于 Research Preview 阶段。<code>bypassPermissions</code> 应仅在完全信任的场景下使用。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

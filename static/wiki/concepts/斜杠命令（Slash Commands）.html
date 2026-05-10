@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="slash-commands">斜杠命令（Slash Commands）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Claude Code.html">Claude Code</a> 中用户手动触发的快捷操作，分为四类：内置命令（55+ 个）、<a href="Agent Skills.html">Skills</a>（自定义命令）、插件命令（来自已安装插件）和 MCP prompts（来自 MCP server）。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 中用户手动触发的快捷操作，分为四类：内置命令（55+ 个）、<a href="../entities/Agent Skills.html">Skills</a>（自定义命令）、插件命令（来自已安装插件）和 MCP prompts（来自 MCP server）。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>四类命令</strong>：</li>
-<li><strong>内置命令</strong>：<a href="../entities/Claude Code.html">Claude Code</a> 自带，如 <code>/help</code>、<code>/clear</code>、<code>/model</code>、<code>/compact</code>、<code>/context</code>、<code>/cost</code></li>
-<li><strong><a href="Agent Skills.html">Skills</a></strong>：用户自定义命令，基于 <code>SKILL.md</code> 文件，如 <code>/optimize</code>、<code>/pr</code></li>
+<li><strong>内置命令</strong>：<a href="../projects/Claude Code.html">Claude Code</a> 自带，如 <code>/help</code>、<code>/clear</code>、<code>/model</code>、<code>/compact</code>、<code>/context</code>、<code>/cost</code></li>
+<li><strong><a href="../entities/Agent Skills.html">Skills</a></strong>：用户自定义命令，基于 <code>SKILL.md</code> 文件，如 <code>/optimize</code>、<code>/pr</code></li>
 <li><strong>插件命令</strong>：来自已安装插件，如 <code>/frontend-design:frontend-design</code></li>
 <li>
 <p><strong>MCP prompts</strong>：来自 MCP server，如 <code>/mcp__github__list_prs</code></p>
@@ -151,16 +151,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><code>/compact [instructions]</code>：压缩对话，可附带聚焦指令</li>
 <li><code>/context</code>：用彩色网格可视化上下文占用</li>
 <li><code>/cost</code>：查看 token 使用统计</li>
-<li><code>/effort [low|medium|high|max|auto]</code>：设置推理强度，<code>max</code> 需要 Opus 4.6</li>
+<li><code>/effort [low|medium|high|max|auto]</code>：<a href="Settings.html">设置</a>推理强度，<code>max</code> 需要 <a href="../entities/Claude_Opus_4.6.html">Opus 4.6</a></li>
 <li><code>/fast [on|off]</code>：切换快速模式</li>
 <li><code>/branch [name]</code>：将当前<a href="会话分支（Branching）.html">对话分支</a>到新会话（v2.1.77 中 <code>/fork</code> 更名为 <code>/branch</code>）</li>
-<li><code>/sandbox</code>：切换沙箱模式</li>
+<li><code>/sandbox</code>：切换<a href="Sandbox Mode.html">沙箱模式</a></li>
 <li><code>/teleport</code>：将会话转移到另一台机器</li>
 <li>
 <p><code>/rewind</code>：回退到 checkpoint</p>
 </li>
 <li>
-<p><strong>自定义命令合并</strong>：自定义 slash command 已合并进 <a href="Agent Skills.html">Skills</a>。<code>.claude/commands/</code> 仍然可用，但更推荐使用 <code>.claude/skills/</code>。两者都会创建 <code>/command-name</code> 形式的快捷命令。</p>
+<p><strong>自定义命令合并</strong>：自定义 slash command 已合并进 <a href="../entities/Agent Skills.html">Skills</a>。<code>.claude/commands/</code> 仍然可用，但更推荐使用 <code>.claude/skills/</code>。两者都会创建 <code>/command-name</code> 形式的快捷命令。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -169,13 +169,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Agent Skills.html">Agent Skills</a> — extends</li>
+<li><a href="../entities/Agent Skills.html">Agent Skills</a> — extends</li>
 <li><a href="MCP协议层.html">MCP协议层</a> — extends</li>
 <li><a href="Claude Code 分层验证.html">Claude Code 分层验证</a> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="文档结构化提取.html">&larr; 文档结构化提取</a>
+    <a href="文档重构.html">&larr; 文档重构</a>
     <a href="新古典生产函数.html">新古典生产函数 &rarr;</a>
   </div>
 </div>

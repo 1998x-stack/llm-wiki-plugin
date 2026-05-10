@@ -139,9 +139,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心技术路线</strong>：</li>
-<li><strong><a href="Cross-encoder与Bi-encoder.html">双编码器</a>（<a href="Cross-encoder与Bi-encoder.html">Bi-encoder</a>）</strong>：图像编码器 + 文本编码器分别生成向量，离线预计算图像向量，查询时只需计算文本向量再做 ANN 检索，速度极快但受 <a href="Modality Gap.html">Modality Gap</a> 影响</li>
+<li><strong><a href="Cross-encoder与Bi-encoder.html">双编码器</a>（<a href="Cross-encoder与Bi-encoder.html">Bi-encoder</a>）</strong>：图像编码器 + 文本编码器分别生成向量，离线预<a href="计算.html">计算</a>图像向量，查询时只需<a href="计算.html">计算</a>文本向量再做 ANN 检索，速度极快但受 <a href="Modality Gap.html">Modality Gap</a> 影响</li>
 <li>
-<p><strong><a href="Cross-encoder与Bi-encoder.html">跨编码器</a>（<a href="Cross-encoder与Bi-encoder.html">Cross-encoder</a>）</strong>：图文拼接后联合编码，更精确但无法离线预计算，适合<a href="检索重排序.html">精排</a></p>
+<p><strong><a href="Cross-encoder与Bi-encoder.html">跨编码器</a>（<a href="Cross-encoder与Bi-encoder.html">Cross-encoder</a>）</strong>：图文拼接后联合编码，更精确但无法离线预<a href="计算.html">计算</a>，适合<a href="检索重排序.html">精排</a></p>
 </li>
 <li>
 <p><strong>三种检索<a href="规范化理论.html">范式</a></strong>：</p>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>图搜文本（Image-to-Text）：图像检索相关文档</p>
 </li>
 <li>
-<p><strong>游戏美术资产检索（实际场景）</strong>：CLIP 解决的核心问题：美术资产海量、多模态（图像/贴图/渲染图/草图）、需要自然语言检索。优势：零样本分类（无需标注）、模糊语义/风格检索（"帅/暗黑/二次元"）、3D 模型通过渲染多视角图间接检索。腾讯/网易/Unity/Epic 等游戏厂商均采用 CLIP 或其变体。</p>
+<p><strong>游戏美术资产检索（实际场景）</strong>：CLIP 解决的核心问题：美术资产海量、多模态（图像/贴图/渲染图/草图）、需要自然语言检索。优势：<a href="零样本学习.html">零样本</a>分类（无需<a href="../entities/标注.html">标注</a>）、模糊语义/风格检索（"帅/暗黑/二次元"）、3D 模型通过渲染多视角图间接检索。腾讯/网易/Unity/Epic 等游戏厂商均采用 CLIP 或其变体。</p>
 </li>
 <li>
 <p><strong>实验对比（<a href="Modality Gap.html">Modality Gap</a> 的影响）</strong>：</p>
@@ -185,8 +185,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="多层感知机（MLP）.html">&larr; 多层感知机（MLP）</a>
-    <a href="多步回报.html">多步回报 &rarr;</a>
+    <a href="多智能体编排.html">&larr; 多智能体编排</a>
+    <a href="多模态模型.html">多模态模型 &rarr;</a>
   </div>
 </div>
 </body>

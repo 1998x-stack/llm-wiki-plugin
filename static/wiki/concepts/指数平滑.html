@@ -128,40 +128,54 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">概率论</span><span class="tag">时间序列</span></div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列分析</span><span class="tag">预测方法</span><span class="tag">统计学</span></div>
 </div>
   <div class="content">
     <h1 id="_1">指数平滑</h1>
 <h2 id="_2">概述</h2>
-<p>指数平滑是一类通过指数衰减权重对历史数据加权平均的时间序列预测方法，由 Robert G. Brown（1956）和 Charles C. Holt（1957）奠基，后经 Peter Winters 扩展为 Holt-Winters 方法，并被 Hyndman 纳入统一的 ETS 状态空间框架。</p>
+<p>指数平滑是一种<a href="Time Series Analysis.html">时间序列</a>预测方法，通过对历史数据赋予指数衰减的权重来进行预测，特别适用于<a href="计算.html">计算</a>资源有限但需要实时更新预测的场景。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
+<li><strong>核心思想</strong>：</li>
+<li>新预测 = α × 最新观测值 + (1-α) × 上次预测值</li>
+<li>权重按指数速度衰减，近期数据比远期数据更重要</li>
 <li>
-<p><strong>历史背景</strong>：1950 年代冷战时期，美国海军需要高效的后勤库存预测方法。Brown 1956 年提出简单指数平滑，Holt 1957 年扩展到带趋势情形，Winters 1960 年加入季节性成分。Holt 的原始报告在抽屉里沉睡 47 年，直到 2004 年才正式发表。</p>
+<p>只需存储上次预测值即可隐含所有历史信息</p>
 </li>
 <li>
-<p><strong>核心思想</strong>：新预测 = α × 最新观测值 + (1-α) × 上次预测值。近期数据获得更高权重，权重按指数衰减，只需存储一个状态值即可实时更新。</p>
+<p><strong>发展层次</strong>：</p>
+</li>
+<li><a href="简单指数平滑.html">简单指数平滑</a>（Brown, 1956）：适用于无趋势、无季节性的平稳数据</li>
+<li><a href="Holt双参数指数平滑.html">Holt双参数指数平滑</a>（Holt, 1957）：增加趋势分量，适用于有趋势数据</li>
+<li>
+<p>Holt-Winters三参数指数平滑（Winters, 1960）：增加季节性分量，适用于完整的<a href="Time Series Analysis.html">时间序列</a></p>
 </li>
 <li>
-<p><strong>三位奠基人</strong>：Robert G. Brown（海军运筹学，简单指数平滑）、Charles C. Holt（经济学家，带趋势扩展）、Peter R. Winters（Holt 学生，季节性扩展）。</p>
+<p><strong>优势特点</strong>：</p>
 </li>
-<li>
-<p><strong>现代发展</strong>：Hyndman 等（2008）将指数平滑统一纳入 ETS（Error, Trend, Seasonal）状态空间框架，提供了统计推断和置信区间的理论基础。</p>
-</li>
-<li>
-<p><strong>工程优势</strong>：计算简单、存储极少、实时更新——完美契合资源受限环境，至今仍是工业界最广泛使用的预测技术之一。</p>
-</li>
+<li><a href="计算.html">计算</a>简单：只需一次加法和两次乘法</li>
+<li>存储极少：仅需保存上一次的预测值</li>
+<li>实时更新：每来一个新数据点即可更新预测</li>
+<li>在预测竞赛中表现优异，经常击败复杂机器学习模型</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">03-holt-1957-exponential-smoothing</span> — 指数平滑：一个被埋没 47 年的预测方法</li>
+<li><span style="color:#e74c3c" title="broken link">03-holt-1957-exponential-smoothing</span> — 核心概念介绍</li>
+<li><a href="Holt-Winters方法.html">Holt-Winters方法</a> — 方法扩展</li>
+<li><a href="Holt双参数指数平滑.html">Holt双参数指数平滑</a> — 相关概念</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="卡尔曼滤波.html">卡尔曼滤波</a> — compares_to</li>
-<li><a href="ARIMA 模型.html">ARIMA 模型</a> — compares_to</li>
+<li><a href="Holt-Winters方法.html">Holt-Winters方法</a> — extends</li>
+<li><a href="简单指数平滑.html">简单指数平滑</a> — part_of</li>
+<li><a href="Holt双参数指数平滑.html">Holt双参数指数平滑</a> — part_of</li>
+<li><a href="ARIMA.html">ARIMA</a> — compares_to</li>
+<li><a href="ETS框架.html">ETS框架</a> — extends</li>
+<li><span style="color:#e74c3c" title="broken link">Charles C. Holt</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Robert G. Brown</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Rob J. Hyndman</span> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">

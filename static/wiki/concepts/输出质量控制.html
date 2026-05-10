@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">输出质量控制</h1>
 <h2 id="_2">概述</h2>
-<p>输出质量控制是 <a href="../entities/MinerU.html">MinerU</a> <a href="内容生成器.html">内容生成器</a>中的自检机制，通过内容完整性检查和空白页过滤，确保生成的 Markdown 输出达到基本质量标准。</p>
+<p>输出<a href="质量保障.html">质量控制</a>是 <a href="../entities/MinerU.html">MinerU</a> <a href="内容生成器.html">内容生成器</a>中的自检机制，通过内容完整性检查和空白页过滤，确保生成的 Markdown 输出达到基本质量标准。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">内容完整性检查</h3>
 <p><code>quality_check()</code> 函数对生成的 Markdown 输出进行快速自检：</p>
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <thead>
 <tr>
 <th>检查项</th>
-<th>计算方法</th>
+<th><a href="计算.html">计算</a>方法</th>
 <th>告警条件</th>
 </tr>
 </thead>
@@ -181,7 +181,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 阈值：少于 50 个非空白字符视为空白页
 - 适用场景：纯图像页、版权页、空白分隔页</p>
 <h3 id="_6">在流水线中的位置</h3>
-<p>输出质量控制位于<a href="内容生成器.html">内容生成器</a>阶段的末端，在 Markdown 生成完成后、最终写入文件前执行。它是一个轻量级的后处理步骤，不修正错误，仅标记警告。</p>
+<p>输出<a href="质量保障.html">质量控制</a>位于<a href="内容生成器.html">内容生成器</a>阶段的末端，在 Markdown 生成完成后、最终写入文件前执行。它是一个轻量级的后处理步骤，不修正错误，仅标记警告。</p>
 <h3 id="_7">局限性</h3>
 <ul>
 <li>检查规则简单，仅基于字符统计，无法检测内容语义错误</li>

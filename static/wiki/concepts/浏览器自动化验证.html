@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 API 验证的对比</strong>：API Story 使用 <code>curl</code> 命令行验证响应状态和 JSON 内容，前端 Story 必须使用 <a href="../entities/Puppeteer MCP.html">Puppeteer MCP</a> 进行视觉和交互验证。两者都是 <code>passes: true</code> 的前置条件。</p>
 </li>
 <li>
-<p><strong>在 <a href="Agent 迭代循环.html">Agent 迭代循环</a> 中的位置</strong>：验证步骤位于实现功能之后、更新 prd.json 之前。验证通过 → 设置 passes: true → Git 提交 → 更新 progress.txt。验证失败 → 进入 Bug 处理流程。</p>
+<p><strong>在 <a href="Agent 迭代循环.html">Agent 迭代循环</a> 中的位置</strong>：验证步骤位于实现功能之后、更新 prd.json 之前。验证通过 → <a href="Settings.html">设置</a> passes: true → <a href="Git Commit.html">Git 提交</a> → 更新 progress.txt。验证失败 → 进入 Bug 处理流程。</p>
 </li>
 <li>
 <p><strong>截图的双重作用</strong>：</p>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>调试辅助</strong>：失败时截图帮助后续 Agent 实例理解问题所在</p>
 </li>
 <li>
-<p><strong>与 <a href="Session 交接机制.html">Session 交接机制</a> 的关系</strong>：验证结果（PASS/FAIL）记录在 progress.txt 中，截图作为 Git 提交的一部分持久化，供后续 Agent 实例参考。</p>
+<p><strong>与 <a href="Session 交接机制.html">Session 交接机制</a> 的关系</strong>：验证结果（PASS/FAIL）记录在 progress.txt 中，截图作为 <a href="Git Commit.html">Git 提交</a>的一部分持久化，供后续 Agent 实例参考。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -184,8 +184,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="流行度偏差.html">&larr; 流行度偏差</a>
-    <a href="消息镜像同步.html">消息镜像同步 &rarr;</a>
+    <a href="测试驱动开发.html">&larr; 测试驱动开发</a>
+    <a href="消息链.html">消息链 &rarr;</a>
   </div>
 </div>
 </body>

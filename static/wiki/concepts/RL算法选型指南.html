@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rl">RL算法选型指南</h1>
 <h2 id="_1">概述</h2>
-<p><a href="强化学习.html">强化学习</a>算法选型的核心维度是动作空间类型（离散/连续）与任务需求（稳定性/性能/样本效率）。连续动作首选 SAC（自动调参，稳定性最优）；离散动作+视觉输入首选 <a href="Rainbow.html">Rainbow</a>；RLHF 和多任务场景首选 PPO。选型需权衡超参数敏感性、计算资源与收敛保证。</p>
+<p><a href="强化学习.html">强化学习</a><a href="算法.html">算法</a>选型的核心维度是动作空间类型（离散/连续）与任务需求（稳定性/性能/样本效率）。连续动作首选 SAC（自动调参，稳定性最优）；离散动作+视觉输入首选 <a href="Rainbow.html">Rainbow</a>；RLHF 和多任务场景首选 PPO。选型需权衡超参数敏感性、<a href="计算.html">计算</a>资源与收敛保证。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>离散动作空间选型</strong>：</li>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>安全约束 RL（单调改进保证） → TRPO / CPO</li>
 <li>多智能体 / <a href="分布式系统.html">分布式计算</a> → A3C / IMPALA / MAPPO</li>
-<li>人类反馈（RLHF） → PPO（InstructGPT/ChatGPT 标准方案）</li>
+<li>人类反馈（RLHF） → PPO（<a href="../entities/InstructGPT.html">InstructGPT</a>/<a href="../entities/ChatGPT.html">ChatGPT</a> 标准方案）</li>
 <li>学术研究（方法论完备性） → SAC（软贝尔曼收敛保证）</li>
 <li>
 <p>分布式大规模训练 → IMPALA / Ape-X</p>
@@ -177,13 +177,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>DDPG：高（OU噪声 σ 极敏感）</p>
 </li>
 <li>
-<p><strong>计算资源需求</strong>：</p>
+<p><strong><a href="计算.html">计算</a>资源需求</strong>：</p>
 </li>
 <li>GPU 密集：DQN/<a href="Rainbow.html">Rainbow</a>（单GPU+大回放缓冲）</li>
 <li>CPU 并行：A3C（天然多核，无需 GPU）</li>
 <li>均衡：PPO（多环境并行，低-中 GPU）</li>
 <li>
-<p>二阶方法：TRPO（CG 计算，CPU 高需求）</p>
+<p>二阶方法：TRPO（CG <a href="计算.html">计算</a>，CPU 高需求）</p>
 </li>
 <li>
 <p><strong>MuJoCo 基准</strong>（参考分）：SAC HalfCheetah ~10100 &gt; TD3 ~9600 &gt; DDPG ~8600 &gt;&gt; PPO ~1800；Atari 基准：<a href="Rainbow.html">Rainbow</a> 223% &gt; SAC(离散) ~180% &gt; PPO ~100-150% &gt; DQN 79%。</p>

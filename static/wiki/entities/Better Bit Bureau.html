@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="better-bit-bureau">Better Bit Bureau</h1>
 <h2 id="_1">概述</h2>
-<p>Better Bit Bureau（BBB，更好的比特局）是 <a href="GroupLens.html">GroupLens</a> 系统引入的核心组件，作为评分服务器负责收集用户评分、跨服务器共享评分数据、计算用户间 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>，以及为目标用户生成个性化预测评分。</p>
+<p>Better Bit Bureau（BBB，更好的比特局）是 <a href="GroupLens.html">GroupLens</a> 系统引入的核心组件，作为评分<a href="../concepts/服务.html">服务</a>器负责收集用户评分、跨<a href="../concepts/服务.html">服务</a>器共享评分数据、<a href="../concepts/计算.html">计算</a>用户间 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>，以及为目标用户生成个性化预测评分。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,22 +145,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心职责</strong>：</p>
 </li>
 <li><strong>评分收集</strong>：从新闻客户端收集用户对文章的 1-5 分评分</li>
-<li><strong>评分共享</strong>：通过新闻服务器与其他 BBB 共享评分数据</li>
-<li><strong>相似度计算</strong>：计算用户间的 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a></li>
+<li><strong>评分共享</strong>：通过新闻<a href="../concepts/服务.html">服务</a>器与其他 BBB 共享评分数据</li>
+<li><strong>相似度<a href="../concepts/计算.html">计算</a></strong>：<a href="../concepts/计算.html">计算</a>用户间的 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a></li>
 <li>
 <p><strong>预测生成</strong>：基于加权预测公式为用户生成个性化评分预测</p>
 </li>
 <li>
-<p><strong>架构位置</strong>：BBB 是 <a href="GroupLens.html">GroupLens</a> 三类实体（新闻客户端、新闻服务器、BBB）中唯一的新增组件，巧妙复用了已有的 Usenet NNTP 基础设施，通过创建专用的"评分传输新闻组"来在服务器间同步评分信息。</p>
+<p><strong>架构位置</strong>：BBB 是 <a href="GroupLens.html">GroupLens</a> 三类实体（新闻客户端、新闻<a href="../concepts/服务.html">服务</a>器、BBB）中唯一的新增组件，巧妙复用了已有的 <a href="Usenet.html">Usenet</a> NNTP 基础设施，通过创建专用的"评分传输<a href="Usenet.html">新闻组</a>"来在<a href="../concepts/服务.html">服务</a>器间同步评分信息。</p>
 </li>
 <li>
-<p><strong>开放设计</strong>：<a href="GroupLens.html">GroupLens</a> 架构强调开放性——任何组织都可以独立部署 BBB 服务器，任何开发者都可以实现替代的 BBB，只要遵循开放的评分数据格式。这种设计理念预见了后来的联邦学习（Federated Learning）思想。</p>
+<p><strong>开放设计</strong>：<a href="GroupLens.html">GroupLens</a> 架构强调开放性——任何组织都可以独立部署 BBB <a href="../concepts/服务.html">服务</a>器，任何开发者都可以实现替代的 BBB，只要遵循开放的评分数据格式。这种设计理念预见了后来的<a href="../concepts/联邦学习.html">联邦学习</a>（<a href="../concepts/联邦学习.html">Federated Learning</a>）思想。</p>
 </li>
 <li>
-<p><strong>隐私保护</strong>：BBB 允许用户通过假名提交评分。由于相关系数计算只依赖评分模式而非真实身份，假名不会降低预测质量。</p>
+<p><strong><a href="../concepts/隐私保护.html">隐私保护</a></strong>：BBB 允许用户通过假名提交评分。由于相关系数<a href="../concepts/计算.html">计算</a>只依赖评分模式而非真实身份，假名不会降低预测质量。</p>
 </li>
 <li>
-<p><strong>分布式部署</strong>：在早期可行性测试中，研究团队在 MIT 和明尼苏达大学之间建立了共享的评分新闻组，部署了两个略有不同的 BBB 服务器，验证了系统的基本功能：评分收集、跨站共享、相关系数计算以及预测生成。</p>
+<p><strong>分布式部署</strong>：在早期可行性测试中，研究团队在 MIT 和<a href="University of Minnesota.html">明尼苏达大学</a>之间建立了共享的评分<a href="Usenet.html">新闻组</a>，部署了两个略有不同的 BBB <a href="../concepts/服务.html">服务</a>器，验证了系统的基本功能：评分收集、跨站共享、相关系数<a href="../concepts/计算.html">计算</a>以及预测生成。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -175,8 +175,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Ben Sigman.html">&larr; Ben Sigman</a>
-    <a href="Boston Dynamics.html">Boston Dynamics &rarr;</a>
+    <a href="Bernhard Boser.html">&larr; Bernhard Boser</a>
+    <a href="BigQuery.html">BigQuery &rarr;</a>
   </div>
 </div>
 </body>

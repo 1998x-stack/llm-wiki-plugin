@@ -139,8 +139,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>Engine 帧率控制</strong>：<code>minFps/maxFps</code> 设定帧率下限/上限（防止极低帧时步长过大）；<code>maxInactiveFps</code> 在后台/失焦时降低帧率节省资源；<code>timeStepSmoothing</code> 指定帧率平滑窗口（帧数），消除尖刺。</li>
-<li><strong>Engine 状态查询</strong>：<code>IsInitialized()/IsExiting()/IsHeadless()</code> 检查引擎状态；<code>headless</code> 用于服务端无渲染模式判断；<code>Exit()</code> 主动退出引擎。</li>
-<li><strong>Engine 调试工具</strong>：<code>DumpProfiler()</code> 打印性能分析数据；<code>DumpResources(dumpFileName)</code> 列出已加载资源；<code>DumpMemory()</code> 输出内存统计；<code>CreateConsole()/CreateDebugHud()</code> 动态创建调试界面。</li>
+<li><strong>Engine 状态查询</strong>：<code>IsInitialized()/IsExiting()/IsHeadless()</code> 检查引擎状态；<code>headless</code> 用于<a href="服务.html">服务</a>端无渲染模式判断；<code>Exit()</code> 主动退出引擎。</li>
+<li><strong>Engine 调试工具</strong>：<code>DumpProfiler()</code> 打印<a href="性能分析.html">性能分析</a>数据；<code>DumpResources(dumpFileName)</code> 列出已加载资源；<code>DumpMemory()</code> 输出内存统计；<code>CreateConsole()/CreateDebugHud()</code> 动态创建调试界面。</li>
 <li><strong>Engine 运行控制</strong>：<code>RunFrame()</code> 手动推进一帧（非标准用法，通常由引擎自动调用）；<code>pauseMinimized</code> 控制最小化时是否暂停；<code>autoExit</code> 控制关闭窗口时是否自动退出。</li>
 <li><strong>Time 时间采样</strong>：<code>timeStep</code>（当前帧 delta-time，秒）是驱动物理/动画/移动的核心值；<code>elapsedTime</code> 为引擎启动以来累计秒数；<code>frameNumber</code> 为帧计数器（uint）。</li>
 <li><strong>Time 工具方法</strong>：<code>GetSystemTime()</code> 返回 Unix 时间戳（毫秒）；<code>GetTimeStamp()</code> 返回格式化时间字符串；<code>Sleep(ms)</code> 阻塞当前线程（谨慎使用，会卡住<a href="游戏主循环模式.html">主循环</a>）；<code>timerPeriod</code> 为系统定时器精度（毫秒）。</li>

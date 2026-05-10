@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="memory-nudge">Memory Nudge</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 在长对话自然暂停点主动自我反思的机制，检查是否有值得保存的经验、偏好或技能，确保信息不流失。</p>
+<p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 在长对话自然暂停点主动自我反思的机制，检查是否有值得保存的经验、偏好或<a href="Skills.html">技能</a>，确保信息不流失。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>触发时机</strong>：完成一个完整任务后、用户说"谢谢就这些"等结束语时、对话出现较长暂停时、达到预设的消息计数阈值时</li>
@@ -143,11 +143,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>学到了关于环境的新事实吗？→ 保存到 <a href="语义记忆.html">MEMORY.md</a></li>
 <li>用户表达了新的偏好吗？→ 保存到 USER.md，更新 <a href="../entities/Honcho.html">Honcho</a> 模型</li>
 <li>刚完成了可复用的工作流吗？→ 创建 <a href="SKILL.html 格式规范.html">SKILL.md</a></li>
-<li>发现了现有技能的问题吗？→ 更新 <a href="SKILL.html 格式规范.html">SKILL.md</a></li>
+<li>发现了现有<a href="Skills.html">技能</a>的问题吗？→ 更新 <a href="SKILL.html 格式规范.html">SKILL.md</a></li>
 <li>纠正了之前的错误认知吗？→ 删除/替换旧记忆</li>
 <li><strong>设计哲学</strong>：即使用户没有主动要求"记住这个"，Agent 也会通过自我反思确保经验不流失，这是记忆卫生（Memory Hygiene）的核心实践</li>
 <li><strong>在 <a href="SOUL.html 人格系统.html">SOUL.md</a> 中的体现</strong>：默认 <a href="SOUL.html 人格系统.html">SOUL.md</a> 的 Self-Improvement Nudges 部分明确指示 Agent 在长会话自然暂停点检查是否有值得保存的内容</li>
-<li><strong>与闭环学习的关系</strong>：Nudge 是<a href="闭环学习系统.html">闭环学习系统</a>的驱动引擎——每次 Nudge 都可能触发记忆更新、技能创建或技能改进，推动学习飞轮持续运转</li>
+<li><strong>与闭环学习的关系</strong>：Nudge 是<a href="闭环学习系统.html">闭环学习系统</a>的驱动引擎——每次 Nudge 都可能触发记忆更新、<a href="Skills.html">技能</a>创建或<a href="Skills.html">技能</a>改进，推动学习飞轮持续运转</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -162,8 +162,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MemPalace 宫殿架构.html">&larr; MemPalace 宫殿架构</a>
-    <a href="Message-Bus-Pattern.html">Message-Bus-Pattern &rarr;</a>
+    <a href="Memory Consolidation.html">&larr; Memory Consolidation</a>
+    <a href="Memory-Management.html">Memory-Management &rarr;</a>
   </div>
 </div>
 </body>

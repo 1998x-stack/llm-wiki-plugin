@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">自注意力机制</h1>
 <h2 id="_2">概述</h2>
-<p><a href="Self-Attention机制.html">Self-Attention</a>（<a href="Self-Attention机制.html">自注意力</a>）是 <a href="Transformer架构.html">Transformer</a> 的核心计算单元，让每个 token 通过 Query-Key-Value 机制与序列中所有其他 token 计算相关性权重，从而动态聚合全局上下文信息。</p>
+<p><a href="Self-Attention机制.html">Self-Attention</a>（<a href="Self-Attention机制.html">自注意力</a>）是 <a href="Transformer架构.html">Transformer</a> 的核心<a href="计算.html">计算</a>单元，让每个 token 通过 Query-Key-Value 机制与序列中所有其他 token <a href="计算.html">计算</a>相关性权重，从而动态聚合全局上下文信息。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心限制</strong>：<a href="Self-Attention机制.html">Self-Attention</a> 只感知 token 间内容相关性，天然不包含顺序概念——对它来说输入是一个无序集合。因此必须配合<a href="位置编码.html">位置编码</a>才能感知序列顺序。</li>
-<li><strong>QKV 计算</strong>：每个 token 投影为 Query、Key、Value 三个向量，注意力权重由 Query 与所有 Key 的点积（经 softmax）确定，再对 Value 加权求和，得到<a href="上下文感知.html">上下文感知</a>的表示。</li>
-<li><strong>与<a href="位置编码.html">位置编码</a>的关系</strong>：<a href="绝对位置编码.html">绝对位置编码</a>在输入阶段叠加位置向量；<a href="相对位置编码.html">相对位置编码</a>则直接修改注意力分数计算，将相对距离 $i-j$ 纳入 $\text{AttentionScore}_{ij}$ 的计算函数中。</li>
-<li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a>（ICDM 2018）首次将 <a href="Self-Attention机制.html">Self-Attention</a> 完全应用于<a href="序列推荐.html">序列推荐</a>任务，通过 <a href="因果掩码.html">因果掩码</a> 实现单向<a href="AR 模型（自回归模型）.html">自回归</a>预测，开创了推荐系统的 <a href="Transformer架构.html">Transformer</a> 时代。其核心使用 <a href="缩放点积注意力.html">缩放点积注意力</a> 计算物品间的注意力权重。</li>
+<li><strong>QKV <a href="计算.html">计算</a></strong>：每个 token 投影为 Query、Key、Value 三个向量，注意力权重由 Query 与所有 Key 的点积（经 softmax）确定，再对 Value 加权求和，得到<a href="上下文感知.html">上下文感知</a>的表示。</li>
+<li><strong>与<a href="位置编码.html">位置编码</a>的关系</strong>：<a href="绝对位置编码.html">绝对位置编码</a>在输入阶段叠加位置向量；<a href="相对位置编码.html">相对位置编码</a>则直接修改注意力分数<a href="计算.html">计算</a>，将相对距离 $i-j$ 纳入 $\text{AttentionScore}_{ij}$ 的<a href="计算.html">计算</a>函数中。</li>
+<li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a>（ICDM 2018）首次将 <a href="Self-Attention机制.html">Self-Attention</a> 完全应用于<a href="序列推荐.html">序列推荐</a>任务，通过 <a href="因果掩码.html">因果掩码</a> 实现单向<a href="AR 模型（自回归模型）.html">自回归</a>预测，开创了推荐系统的 <a href="Transformer架构.html">Transformer</a> 时代。其核心使用 <a href="缩放点积注意力.html">缩放点积注意力</a> <a href="计算.html">计算</a>物品间的注意力权重。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="自我进化代理.html">&larr; 自我进化代理</a>
+    <a href="自我进化型 AI Agent 协议.html">&larr; 自我进化型 AI Agent 协议</a>
     <a href="自适应思考.html">自适应思考 &rarr;</a>
   </div>
 </div>

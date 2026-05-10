@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="multi-agent-coordination-patterns">Multi-Agent Coordination Patterns</h1>
 <h2 id="_1">概述</h2>
-<p>多智能体协调模式是构建多智能体系统时的五种核心架构模式。每种模式适用于不同的场景，具有各自的优劣。选择合适模式应基于问题的结构性特征，而非追求复杂性。建议从最简单的可行模式开始，观察其短板，再逐步演进。</p>
+<p>多智能体协调模式是构建多<a href="Agent Systems.html">智能体系统</a>时的五种核心架构模式。每种模式适用于不同的场景，具有各自的优劣。选择合适模式应基于问题的结构性特征，而非追求复杂性。建议从最简单的可行模式开始，观察其短板，再逐步演进。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">五种协调模式</h3>
 <h4 id="1-generator-verifier">模式 1：生成器 - 验证器（Generator-Verifier）</h4>
@@ -150,14 +150,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 事实核查、基于评分标准的评分、合规性验证</p>
 <p><strong>优势</strong>：
 - 最简单的多智能体模式，应用最广泛
-- 提供质量控制循环</p>
+- 提供<a href="质量保障.html">质量控制</a>循环</p>
 <p><strong>局限性</strong>：
 - 验证器的好坏取决于其标准（无明确标准的验证器会全盘认可）
-- 假设生成与验证是可分离的技能
+- 假设生成与验证是可分离的<a href="Skills.html">技能</a>
 - 迭代循环可能停滞（无法收敛时无限循环）</p>
 <p><strong>设计建议</strong>：
 - 明确定义验证标准
-- 设置最大迭代次数和后备策略（升级至人工、返回最佳尝试）</p>
+- <a href="Settings.html">设置</a>最大迭代次数和后备策略（升级至人工、返回最佳尝试）</p>
 <h4 id="2-orchestrator-subagent">模式 2：协调器 - 子智能体（Orchestrator-Subagent）</h4>
 <p><strong>工作原理</strong>：
 - 主智能体接收任务并确定处理方式
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 协调者将结果整合为最终输出</p>
 <p><strong>适用场景</strong>：
 - 任务分解清晰且子任务间相互依赖度极低
-- 自动化<a href="Code-Review-for-Claude-Code.html">代码审查</a>（安全检查/测试覆盖率/代码风格/架构一致性）
+- 自动化<a href="Code-Review-for-Claude-Code.html">代码审查</a>（安全检查/<a href="测试覆盖率.html">测试覆盖率</a>/代码风格/架构一致性）
 - <a href="../entities/Claude-Code.html">Claude-Code</a> 采用此模式</p>
 <p><strong>优势</strong>：
 - 层级结构清晰，协调者maintains 整体目标的连贯视图
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 关键细节在多次传递中可能丢失</p>
 <h4 id="3agent-teams">模式 3：智能体团队（Agent Teams）</h4>
 <p><strong>工作原理</strong>：
-- 协调器生成多个工作智能体作为独立进程
+- 协调器生成多个<a href="Worker Agent.html">工作智能体</a>作为独立进程
 - 团队成员从共享队列中认领任务，自主完成
 - 团队成员持续运行，积累上下文和领域专业知识
 - 协调器分配工作并收集结果，但不会在不同任务之间重置工作代理</p>
@@ -186,7 +186,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 团队成员：在多次任务分配中持续运行，积累上下文</p>
 <p><strong>适用场景</strong>：
 - 子任务相互独立且适合进行持续的多步骤工作
-- 代码库迁移（每个服务独立迁移）
+- 代码库迁移（每个<a href="服务.html">服务</a>独立迁移）
 - 需要长期运行的并行子任务</p>
 <p><strong>优势</strong>：
 - 每位团队成员积累领域相关知识
@@ -199,7 +199,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>工作原理</strong>：
 - 智能体通过发布和订阅两种原语进行交互
 - 智能体订阅其关注的主题，<a href="网关与路由器.html">路由器</a>传递匹配的消息
-- 新智能体可以开始接收相关任务，无需重新配置现有连接</p>
+- 新智能体可以开始接收相关任务，无需重新<a href="Configuration.html">配置</a>现有连接</p>
 <p><strong>适用场景</strong>：
 - 事件驱动型管道
 - 工作流由事件而非预设序列生成
@@ -217,7 +217,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>工作原理</strong>：
 - 智能体自主运行，可读写共享数据库、文件系统或文档
 - 不存在中央协调者
-- 智能体检索存储库中的相关信息，基于获取的内容执行操作
+- 智能体检索存储库中的相关信息，基于获取的内容<a href="Execute.html">执行操作</a>
 - 工作始于初始化步骤，终于终止条件（时间限制/收敛阈值/足够答案）</p>
 <p><strong>适用场景</strong>：
 - 智能体的工作具有协作性且研究结果需要实时流转

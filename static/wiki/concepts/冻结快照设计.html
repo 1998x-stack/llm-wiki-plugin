@@ -138,11 +138,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的 Prompt 组装策略：<a href="语义记忆.html">MEMORY.md</a> 和 USER.md 在会话开始时捕获一次，整个会话期间不变，以保护 LLM 的 KV Cache 命中率。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>核心机制</strong>：System Prompt 由 <a href="SOUL.html 人格系统.html">SOUL.md</a>、<a href="语义记忆.html">MEMORY.md</a>、USER.md、<a href="Agent Skills.html">Skills</a> Level 0、Context Files、Active Tools、时间、平台元数据按顺序注入组装</li>
+<li><strong>核心机制</strong>：System Prompt 由 <a href="SOUL.html 人格系统.html">SOUL.md</a>、<a href="语义记忆.html">MEMORY.md</a>、USER.md、<a href="../entities/Agent Skills.html">Skills</a> Level 0、Context Files、Active <a href="Tool System.html">Tools</a>、时间、平台元数据按顺序注入组装</li>
 <li><strong>冻结原因</strong>：<a href="语义记忆.html">MEMORY.md</a> 和 USER.md 在会话开始时捕获为冻结快照，会话期间不变 — 这不是疏忽，而是刻意权衡</li>
 <li><strong>KV Cache 保护</strong>：冻结快照保证 <a href="Prompt 缓存.html">Anthropic Prompt Caching</a> 的前缀稳定，大幅降低长期运行 Agent 的 Token 成本</li>
 <li><strong>记忆不一致性</strong>：记忆文件在磁盘上实时更新，但下一次会话才会进入 Prompt — 这种"不一致"是保护缓存命中率的有意设计</li>
-<li><strong>Prompt 组成顺序</strong>：<a href="SOUL.html 人格系统.html">SOUL.md</a> → <a href="语义记忆.html">MEMORY.md</a> → USER.md → <a href="Agent Skills.html">Skills</a> Level 0 (~3k tokens) → Context Files → Active Tools → Date/Time → Platform Metadata</li>
+<li><strong>Prompt 组成顺序</strong>：<a href="SOUL.html 人格系统.html">SOUL.md</a> → <a href="语义记忆.html">MEMORY.md</a> → USER.md → <a href="../entities/Agent Skills.html">Skills</a> Level 0 (~3k tokens) → Context Files → Active <a href="Tool System.html">Tools</a> → Date/Time → Platform Metadata</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

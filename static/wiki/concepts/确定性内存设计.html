@@ -138,12 +138,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>AI 记忆系统的设计原则：内存层的行为应该是确定性的、可预测的、可复现的，而非依赖 LLM 的概率性输出。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>三大原则</strong>：内存层应该是确定性的（相同输入产生相同输出）、免费的（无 API 调用成本）、离线的（不依赖云服务）</li>
+<li><strong>三大原则</strong>：内存层应该是确定性的（相同输入产生相同输出）、免费的（无 API 调用成本）、离线的（不依赖云<a href="服务.html">服务</a>）</li>
 <li><strong>实现方式</strong>：所有内存操作（Room 检测、内容分类、压缩）使用正则表达式和关键词评分，而非 LLM</li>
 <li><strong>与概率性方法的对比</strong>：</li>
 <li>概率性（Mem0/Zep）：LLM 提取信息，每次结果可能不同，依赖云 API，有调用成本</li>
 <li>确定性（<a href="../entities/MemPalace.html">MemPalace</a>）：规则驱动，结果可复现，完全本地，零成本</li>
-<li><strong>优势</strong>：可调试、可测试、可预测性能、无供应商锁定、数据隐私保障</li>
+<li><strong>优势</strong>：可调试、可测试、可预测性能、无供应商锁定、<a href="隐私保护.html">数据隐私</a>保障</li>
 <li><strong>适用场景</strong>：需要可靠、可控、可审计的记忆系统。不适合需要语义理解和创造性归纳的场景</li>
 </ul>
 <h2 id="_4">来源</h2>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="矩阵理论.html">&larr; 矩阵理论</a>
+    <a href="石油美元体系.html">&larr; 石油美元体系</a>
     <a href="社会事实.html">社会事实 &rarr;</a>
   </div>
 </div>

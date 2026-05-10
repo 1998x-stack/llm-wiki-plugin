@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="aixi">AIXI模型</h1>
 <h2 id="_1">概述</h2>
-<p>AIXI 是 Marcus Hutter (2000) 提出的通用人工智能理论模型，将 Solomonoff 归纳推理与 Bellman 最优控制结合，在任何可计算环境中都能做出最优决策（但本身不可计算）。</p>
+<p>AIXI 是 Marcus Hutter (2000) 提出的通用人工智能理论模型，将 Solomonoff 归纳推理与 Bellman 最优控制结合，在任何可<a href="计算.html">计算</a>环境中都能做出最优决策（但本身不可<a href="计算.html">计算</a>）。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心思想</h3>
 <p>AIXI = Solomonoff 归纳 + Bellman 最优方程</p>
@@ -145,11 +145,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>学习</strong>：通过与环境交互不断更新后验信念</li>
 </ul>
 <h3 id="_4">最优性</h3>
-<p>AIXI 在任何可计算的环境中都能做出最优决策——它的累积奖励与最优策略的差距有界，且上界仅取决于环境的 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性。</p>
+<p>AIXI 在任何可<a href="计算.html">计算</a>的环境中都能做出最优决策——它的累积奖励与最优策略的差距有界，且上界仅取决于环境的 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性。</p>
 <h3 id="_5">不可计算性</h3>
-<p>与 Solomonoff 先验一样，AIXI 是不可计算的。它提供了一个理论上限（gold standard），实际的<a href="强化学习.html">强化学习</a>算法可以视为 AIXI 的可计算近似。</p>
+<p>与 Solomonoff 先验一样，AIXI 是不可<a href="计算.html">计算</a>的。它提供了一个理论上限（gold standard），实际的<a href="强化学习.html">强化学习</a><a href="算法.html">算法</a>可以视为 AIXI 的可<a href="计算.html">计算</a>近似。</p>
 <h3 id="llm">与 LLM 的关系</h3>
-<p>大语言模型可以看作 AIXI 在纯文本环境中的某种近似：通过大规模预训练学习了一个"通用先验"，然后通过上下文学习（in-context learning）适应新任务——类似于 AIXI 的<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>更新机制。</p>
+<p>大<a href="Language-Model.html">语言模型</a>可以看作 AIXI 在纯文本环境中的某种近似：通过大规模预训练学习了一个"通用先验"，然后通过<a href="In-Context-Learning.html">上下文学习</a>（in-context learning）适应新任务——类似于 AIXI 的<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>更新机制。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/信息论/08_solomonoff_1964_formal_theory_of_inductive_inference.md</span> — Solomonoff (1964) 深度解析</li>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="AIC（赤池信息准则）.html">&larr; AIC（赤池信息准则）</a>
-    <a href="AI设计推理层.html">AI设计推理层 &rarr;</a>
+    <a href="AI_Slop.html">AI_Slop &rarr;</a>
   </div>
 </div>
 </body>

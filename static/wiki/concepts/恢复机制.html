@@ -160,54 +160,54 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>第三层：格式错误重试 + 历史去噪</strong></td>
 <td>固定错误模板要求重试，恢复后移除 malformed 历史</td>
-<td>防止错误上下文污染</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_5">实验数据</h3>
-<p>在已解决轨迹中：
+<td>防止错误<span style="color:#e74c3c" title="broken link">Context Window Pollution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_5&quot;&gt;实验数据&lt;/h3&gt;
+&lt;p&gt;在已解决轨迹中：
 - 出现过至少 1 次 failed edit 的情况并不少见
-- 在 <strong>135 次</strong>出现 1+ failed edit 的情形里，agent 成功恢复了 <strong>104 次</strong>（恢复率 ~77%）</p>
-<p>这说明恢复不是补充逻辑，而是<strong>主流程的一部分</strong>。</p>
-<h3 id="_6">恢复机制的设计哲学</h3>
-<blockquote>
-<p>"在每个高风险动作点建立局部回退与重试机制，把长轨迹错误限制在局部。"</p>
-</blockquote>
-<p>与传统 rollback system 的区别：
+- 在 &lt;strong&gt;135 次&lt;/strong&gt;出现 1+ failed edit 的情形里，agent 成功恢复了 &lt;strong&gt;104 次&lt;/strong&gt;（恢复率 ~77%）&lt;/p&gt;
+&lt;p&gt;这说明恢复不是补充逻辑，而是&lt;strong&gt;主流程的一部分&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;_6&quot;&gt;恢复机制的设计哲学&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&quot;在每个高风险动作点建立局部回退与重试机制，把长轨迹错误限制在局部。&quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;与传统 rollback system 的区别：
 - 不是全局回滚到某个检查点
 - 而是在每个动作点就地处理
-- 错误被限制在局部，不扩散到整个轨迹</p>
-<h3 id="guardrails">隐式 Guardrails 作为恢复机制</h3>
-<table>
-<thead>
-<tr>
-<th>机制</th>
-<th>恢复作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>小动作空间</td>
-<td>通过 interface restriction 降低错误率</td>
-</tr>
-<tr>
-<td>100-line viewer</td>
-<td>限制模型看到的窗口，防止上下文失控</td>
-</tr>
-<tr>
-<td>Summarized search</td>
-<td>限制 agent 不要在 next/prev 结果里机械穷举</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_7">终止条件</h3>
-<ul>
-<li>连续 3 次 malformed response → 提前终止</li>
-<li>这是一种"快速失败"策略，避免在不可恢复的轨迹上浪费资源</li>
-</ul>
-<h2 id="_8">来源</h2>
-<ul>
-<li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
+- 错误被限制在局部，不扩散到整个轨迹&lt;/p&gt;
+&lt;h3 id=&quot;guardrails&quot;&gt;隐式 Guardrails 作为恢复机制&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;机制&lt;/th&gt;
+&lt;th&gt;恢复作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;小动作空间&lt;/td&gt;
+&lt;td&gt;通过 interface restriction 降低错误率&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;100-line viewer&lt;/td&gt;
+&lt;td&gt;限制模型看到的窗口，防止上下文失控&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Summarized search&lt;/td&gt;
+&lt;td&gt;限制 agent 不要在 next/prev 结果里机械穷举&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_7&quot;&gt;终止条件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;连续 3 次 malformed response → 提前终止&lt;/li&gt;
+&lt;li&gt;这是一种&quot;快速失败&quot;策略，避免在不可恢复的轨迹上浪费资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;_8&quot;&gt;来源&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[[raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/07-SWE-agent 轨迹 格式长什么样，怎么进行分析，怎么判断轨迹中哪些问题导致了后续任务的失败？.md</span> — SWE-agent 轨迹分析方法论</li>
 </ul>
 <h2 id="_9">相关</h2>
@@ -218,7 +218,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="快速扩展随机树 (RRT).html">&larr; 快速扩展随机树 (RRT)</a>
+    <a href="性能审查.html">&larr; 性能审查</a>
     <a href="情境化检索.html">情境化检索 &rarr;</a>
   </div>
 </div>

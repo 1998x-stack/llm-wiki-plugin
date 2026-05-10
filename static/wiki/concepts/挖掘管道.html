@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>Room 检测四级级联：路径匹配 → 文件名匹配 → 内容关键词评分 → 兜底 general</li>
 <li>切块策略：800 字符 + 100 重叠，优先段落边界（<code>\n\n</code>），其次句子边界（<code>. ? !</code>），最后硬截断</li>
 <li><strong>Convos 模式详情</strong>：</li>
-<li>支持<a href="平台适配器模式.html">多平台适配器</a>：<a href="../entities/Claude Code.html">Claude Code</a>（<code>.jsonl</code>）、Claude.ai（<code>.json</code>）、ChatGPT（<code>conversations.json</code>）、Slack（频道 <code>.json</code>）</li>
+<li>支持<a href="平台适配器模式.html">多平台适配器</a>：<a href="../projects/Claude Code.html">Claude Code</a>（<code>.jsonl</code>）、<a href="../entities/Claude_Code.html">Claude</a>.ai（<code>.json</code>）、<a href="../entities/ChatGPT.html">ChatGPT</a>（<code>conversations.json</code>）、<a href="../entities/Slack.html">Slack</a>（频道 <code>.json</code>）</li>
 <li>统一格式化为 <code>&gt;</code> 标记的用户输入 + AI 回复</li>
 <li>Exchange 切块：以"用户提问 + AI 回答"问答对为单元，确保语义完整性</li>
 <li>Room 检测：5 类关键词评分（technical、architecture、planning、decisions、problems），扫描前 2000 字符</li>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>提取结果映射到对应 Hall：decisions → decisions、preferences → preferences、milestones → events、problems → discoveries、emotional_context → facts</li>
 <li><strong>去重机制</strong>：MD5 哈希去重，每次挖掘前从 <a href="../entities/ChromaDB.html">ChromaDB</a> 加载现有哈希，只存储不重复的块</li>
 <li><strong>零 LLM 调用</strong>：整个挖掘管道没有任何 LLM API 调用，所有决策都是确定性规则运算</li>
-<li><strong><a href="增量挖掘.html">增量挖掘</a></strong>：支持随时<a href="增量挖掘.html">追加挖掘</a>，<a href="MD5 去重.html">MD5 去重</a>保证幂等性，可设置 cron job 自动同步</li>
+<li><strong><a href="增量挖掘.html">增量挖掘</a></strong>：支持随时<a href="增量挖掘.html">追加挖掘</a>，<a href="MD5 去重.html">MD5 去重</a>保证幂等性，可<a href="Settings.html">设置</a> cron job 自动同步</li>
 </ul>
 <h3 id="_4">三种模式全流程对比</h3>
 <pre><code>Projects 模式：
@@ -208,7 +208,7 @@ General 模式（在 Convos 基础上）：
   </div>
   <div class="page-nav">
     <a href="指数平滑.html">&larr; 指数平滑</a>
-    <a href="排列重要性（Permutation Importance）.html">排列重要性（Permutation Importance） &rarr;</a>
+    <a href="挫败感检测.html">挫败感检测 &rarr;</a>
   </div>
 </div>
 </body>

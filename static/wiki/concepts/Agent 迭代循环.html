@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent">Agent 迭代循环</h1>
 <h2 id="_1">概述</h2>
-<p>Agent 迭代循环是一种自主编码代理的工作模式，每个迭代周期严格实现一个 User Story：选定任务 → 实现功能 → 验证通过 → 更新进度 → Git 提交 → 更新交接日记 → 输出<a href="完成信号机制（Completion Signal）.html">完成信号</a>，由外循环决定是否继续下一轮迭代。</p>
+<p>Agent 迭代循环是一种自主编码代理的工作模式，每个迭代周期严格实现一个 User Story：选定任务 → 实现功能 → 验证通过 → 更新进度 → <a href="Git Commit.html">Git 提交</a> → 更新交接日记 → 输出<a href="完成信号机制（Completion Signal）.html">完成信号</a>，由外循环决定是否继续下一轮迭代。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>异常处理路径</strong>：</p>
 </li>
 <li><strong>Bug 卡住</strong>：尝试 2 次 → 回退 → 标记 BLOCKED → 降级优先级 → 切换下一个 Story</li>
-<li><strong>上下文将满</strong>：stash 未完成工作 → 标注 Early exit → 提交干净状态 → 输出 COMPLETE</li>
+<li><strong>上下文将满</strong>：stash 未完成工作 → <a href="../entities/标注.html">标注</a> Early exit → 提交干净状态 → 输出 COMPLETE</li>
 <li>
 <p><strong>依赖未满足</strong>：检查 dependencies 字段，前置 Story 未完成时跳过</p>
 </li>
@@ -195,7 +195,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Agent 轨迹分析.html">&larr; Agent 轨迹分析</a>
-    <a href="Agent-Teams-Pattern.html">Agent-Teams-Pattern &rarr;</a>
+    <a href="Agent-Native-Architecture.html">Agent-Native-Architecture &rarr;</a>
   </div>
 </div>
 </body>

@@ -127,15 +127,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / subagent-driven-development Skill</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">superpowers</span><span class="tag">multi-agent</span><span class="tag">execution</span><span class="tag">workflow</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="subagent-driven-development-skill">subagent-driven-development Skill</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Superpowers.html">Superpowers</a> 技能，通过为每个任务派遣全新子 Agent 实现计划，配合两阶段评审（规格合规性 → 代码质量），是 <a href="Superpowers.html">Superpowers</a> 在有子 Agent 支持平台的首选执行引擎。</p>
+<p><a href="../entities/Superpowers.html">Superpowers</a> <a href="Skills.html">技能</a>，通过为每个任务派遣全新<span style="color:#e74c3c" title="broken link">子 Agent</span> 实现计划，配合<a href="Two-Stage Review.html">两阶段评审</a>（规格合规性 → 代码质量），是 <a href="../entities/Superpowers.html">Superpowers</a> 在有<span style="color:#e74c3c" title="broken link">子 Agent</span> 支持平台的首选执行引擎。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,58 +145,90 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 </li>
 <li>
-<p><strong>为什么不让主 Agent 直接做</strong>：</p>
+<p><strong><a href="Context Window Pollution.html">上下文窗口污染</a>问题</strong>：</p>
 </li>
-<li><a href="上下文窗口.html">上下文窗口</a>污染（需求讨论占用空间）</li>
-<li>污染推理路径（被否定的方案干扰）</li>
+<li>主 Agent 在 brainstorming + <a href="writing-plans Skill.html">writing-plans</a> 后，积累了大量需求讨论、设计方案权衡、被否定方案、用户偏好说明</li>
+<li>这些历史会占用宝贵上下文空间，压缩实现任务能看到的代码量</li>
+<li>污染推理路径，使实现被"应该用方案B但被否定了"这样的历史干扰</li>
 <li>
-<p>降低执行精度（协调与执行认知模式冲突）</p>
+<p>降低执行精度，<a href="Attention Dilution.html">注意力分散</a>在协调和执行两种认知模式之间</p>
 </li>
 <li>
-<p><strong>子 Agent 状态协议</strong>：
+<p><strong><span style="color:#e74c3c" title="broken link">子 Agent</span> 解决方案</strong>：</p>
+</li>
+<li><strong>主 Agent（编排者）</strong>：职责是读计划、维护状态、构建<span style="color:#e74c3c" title="broken link">子 Agent</span> 上下文、协调评审；上下文为完整的计划 + 项目背景</li>
+<li><strong><span style="color:#e74c3c" title="broken link">子 Agent</span>（执行者，每任务一个）</strong>：职责是只做当前任务；上下文仅为当前任务所需的最小信息；生命周期为任务完成即销毁</li>
+<li>
+<p><span style="color:#e74c3c" title="broken link">子 Agent</span> 的上下文由主 Agent <strong>精确构造</strong>，不继承主 Agent 的对话历史</p>
+</li>
+<li>
+<p><strong><span style="color:#e74c3c" title="broken link">子 Agent</span> 状态协议</strong>：
    | 状态 | 含义 | 处理 |
    |------|------|------|
-   | <code>DONE</code> | 任务完成，测试通过 | 进入 Phase A 评审 |
-   | <code>DONE_WITH_CONCERNS</code> | 完成但有问题 | 评估后处理 |
-   | <code>NEEDS_CONTEXT</code> | 缺少信息 | 提供信息后重派 |
-   | <code>BLOCKED</code> | 无法解决的阻碍 | 升级模型/拆分/人工 |</p>
+   | <code>DONE</code> | 任务完成，测试通过，自检通过 | 进入 Phase A 评审 |
+   | <code>DONE_WITH_CONCERNS</code> | 完成但有值得注意的问题 | 读取关切评估严重性，必要时处理后再评审 |
+   | <code>NEEDS_CONTEXT</code> | 缺少信息，无法决策 | 提供信息，重新派遣同级模型 |
+   | <code>BLOCKED</code> | 遇到无法解决的阻碍 | 升级到更强模型 / 拆分任务 / 升级给人类 |</p>
 </li>
 <li>
-<p><strong>两阶段评审</strong>：</p>
+<p><strong><a href="Two-Stage Review.html">两阶段评审</a></strong>：</p>
 </li>
 <li><strong>Phase A：规格合规性评审</strong>（Spec Compliance Review）<ul>
-<li>确认做了正确的事</li>
-<li>评审员角色：怀疑论者</li>
+<li>评审员角色：怀疑论者（Skeptic），不相信实现<span style="color:#e74c3c" title="broken link">子 Agent</span> 的自述</li>
+<li>确认做了正确的事：检查规格要求的每个功能点是否实现，是否有规格未要求的额外功能</li>
+<li>顺序：先确认"做了正确的事"，再审"做得对不对"</li>
 </ul>
 </li>
 <li>
 <p><strong>Phase B：代码质量评审</strong>（Code Quality Review）</p>
 <ul>
-<li>确认做得对不对</li>
-<li>代码组织、命名规范、可维护性</li>
+<li>仅在 Phase A 通过后触发</li>
+<li>确认做得对不对：代码是否遵循<a href="项目约定手册.html">项目约定</a>、<a href="错误处理.html">错误处理</a>是否完整、类型安全、<a href="可维护性.html">可维护性</a>、文件大小是否合理</li>
 </ul>
+</li>
+<li>
+<p><strong>实现流程</strong>：</p>
+</li>
+<li>主 Agent 宣告使用 Subagent-Driven Development</li>
+<li>读取计划文件，提取所有任务的完整文本和上下文</li>
+<li>创建 <a href="TodoWrite-Tool.html">TodoWrite</a> 任务列表</li>
+<li>
+<p>对每个任务：派遣实现<span style="color:#e74c3c" title="broken link">子 Agent</span> → Phase A 评审 → Phase B 评审 → 标记任务完成</p>
+</li>
+<li>
+<p><strong>模型选择策略</strong>：</p>
+</li>
+<li><strong>机械性实现</strong>：独立函数、清晰规格、1-2 个文件 → <strong>Cheap（快速廉价模型）</strong></li>
+<li><strong>集成任务</strong>：多文件协调、模式匹配、调试 → <strong>Standard（标准模型）</strong></li>
+<li>
+<p><strong>架构/设计/评审</strong>：全局视角、判断调用 → <strong>Capable（最强模型）</strong></p>
 </li>
 <li>
 <p><strong>平台要求</strong>：</p>
 </li>
-<li>✅ <a href="../entities/Claude Code.html">Claude Code</a></li>
+<li>✅ <a href="../projects/Claude Code.html">Claude Code</a></li>
 <li>✅ <a href="../entities/Codex CLI.html">Codex</a>（需 <code>multi_agent = true</code>）</li>
-<li>❌ <a href="../entities/Gemini CLI.html">Gemini CLI</a>（无子 Agent，用 executing-plans）</li>
+<li>❌ <a href="../entities/Gemini CLI.html">Gemini CLI</a>（无<span style="color:#e74c3c" title="broken link">子 Agent</span>，用 <a href="executing-plans Skill.html">executing-plans</a>）</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">05-subagent-driven-development</span> — subagent-driven-development Skill 解析</li>
+<li><a href="上下文窗口.html">上下文窗口</a> — 上下文管理策略</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Superpowers.html">Superpowers</a> — part_of</li>
+<li><a href="../entities/Superpowers.html">Superpowers</a> — part_of</li>
 <li><a href="Multi-Agent Orchestration.html">Multi-Agent Orchestration</a> — implements</li>
 <li><a href="writing-plans Skill.html">writing-plans Skill</a> — precedes</li>
+<li><a href="上下文窗口.html">上下文窗口</a> — addresses_context_pollution</li>
+<li><a href="Context Window Pollution.html">Context Window Pollution</a> — addresses</li>
+<li><a href="Two-Stage Review.html">Two-Stage Review</a> — implements</li>
+<li><a href="executing-plans Skill.html">executing-plans Skill</a> — alternative_approach</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="prd.json 格式规范.html">&larr; prd.json 格式规范</a>
-    <a href="web-artifacts-builder Skill.html">web-artifacts-builder Skill &rarr;</a>
+    <a href="switch语句.html">switch语句 &rarr;</a>
   </div>
 </div>
 </body>

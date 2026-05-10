@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="extended-thinking">扩展思维（Extended Thinking）</h1>
 <h2 id="_1">概述</h2>
-<p>扩展思维是 Claude 模型的一种能力，允许模型在生成回复前进行深度推理。思考 token 计入<a href="上下文窗口.html">上下文窗口</a>和输出计费，但在多轮对话中会被自动剥离以节省容量。</p>
+<p>扩展思维是 <a href="../entities/Claude_Code.html">Claude</a> 模型的一种能力，允许模型在生成回复前进行深度推理。思考 token 计入<a href="上下文窗口.html">上下文窗口</a>和输出计费，但在多轮对话中会被自动剥离以节省容量。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">基本机制</h3>
 <ul>
@@ -144,21 +144,21 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>所有输入和输出 token（包括思考 token）都计入<a href="上下文窗口.html">上下文窗口</a>限制</li>
 </ul>
 <h3 id="_4">多轮对话中的思考块剥离</h3>
-<p><strong>关键设计</strong>：Claude API 自动从<a href="上下文窗口.html">上下文窗口</a>计算中剔除<strong>之前轮次</strong>的思考块：
+<p><strong>关键设计</strong>：<a href="../entities/Claude_Code.html">Claude</a> API 自动从<a href="上下文窗口.html">上下文窗口</a><a href="计算.html">计算</a>中剔除<strong>之前轮次</strong>的思考块：
 - 思考块在每轮输出阶段生成，但<strong>不会作为后续轮次的输入 token 继续传递</strong>
 - 用户无需自行剥离思考块，API 自动处理
 - 思考 token 仅在生成时计费一次
-- 有效<a href="上下文窗口.html">上下文窗口</a>计算：<code>context_window = (input_tokens - previous_thinking_tokens) + current_turn_tokens</code></p>
+- 有效<a href="上下文窗口.html">上下文窗口</a><a href="计算.html">计算</a>：<code>context_window = (input_tokens - previous_thinking_tokens) + current_turn_tokens</code></p>
 <h3 id="_5">与工具使用结合</h3>
 <p>结合工具使用时，思考块的处理有特殊规则：</p>
 <ol>
-<li><strong>首轮</strong>：工具配置 + 用户消息 → 扩展思考 + 文本回复 + 工具使用请求</li>
+<li><strong>首轮</strong>：工具<a href="Configuration.html">配置</a> + 用户消息 → 扩展思考 + 文本回复 + 工具使用请求</li>
 <li><strong>工具结果回传</strong>：必须附带<strong>完整未修改</strong>的思考块（包括签名部分），这是唯一<strong>必须</strong>返回思考块的场景</li>
-<li><strong>第三轮起</strong>：思考块可舍弃（API 自动剥离或手动移除），Claude 收到新 <code>user</code> 轮次后生成新的思考块</li>
+<li><strong>第三轮起</strong>：思考块可舍弃（API 自动剥离或手动移除），<a href="../entities/Claude_Code.html">Claude</a> 收到新 <code>user</code> 轮次后生成新的思考块</li>
 </ol>
 <p><strong>重要</strong>：系统使用加密签名验证思考块真实性。修改思考块会导致 API 返回错误。</p>
 <h3 id="_6">交错式思考</h3>
-<p><a href="../entities/Claude-Mythos-Preview.html">Claude-Mythos-Preview</a>、<a href="../entities/Claude-Opus-4-6.html">Claude-Opus-4-6</a> 和 <a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a> 支持<strong><a href="交错式思考.html">交错式思考</a></strong>（<a href="交错式思考.html">交错式思考</a>），允许 Claude 在工具调用之间进行思考。<a href="../entities/Claude-Sonnet-3-7.html">Claude-Sonnet-3-7</a> 不支持此功能。</p>
+<p><a href="../entities/Claude-Mythos-Preview.html">Claude-Mythos-Preview</a>、<a href="../entities/Claude-Opus-4-6.html">Claude-Opus-4-6</a> 和 <a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a> 支持<strong><a href="交错式思考.html">交错式思考</a></strong>（<a href="交错式思考.html">交错式思考</a>），允许 <a href="../entities/Claude_Code.html">Claude</a> 在工具调用之间进行思考。<a href="../entities/Claude-Sonnet-3-7.html">Claude-Sonnet-3-7</a> 不支持此功能。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Context windows.md</span> — Anthropic 官方文档</li>
@@ -172,8 +172,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="手眼协调.html">&larr; 手眼协调</a>
-    <a href="技术出版经济学.html">技术出版经济学 &rarr;</a>
+    <a href="执行者视角.html">&larr; 执行者视角</a>
+    <a href="扩散模型.html">扩散模型 &rarr;</a>
   </div>
 </div>
 </body>

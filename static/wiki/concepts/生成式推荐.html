@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想</strong>：将用户历史行为表示为时间序列 ${(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)}$，其中 $c_i$ 为内容 token（交互物品），$a_i$ 为动作 token（交互类型：点击、停留、购买等）。<strong>召回</strong>建模为预测 $c_{t+1}$，<strong>排序</strong>建模为预测 $a_{t+1}$（给定候选后预测互动行为），两者统一到单一模型中。</p>
+<p><strong>核心思想</strong>：将用户历史行为表示为<a href="Time Series Analysis.html">时间序列</a> ${(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)}$，其中 $c_i$ 为内容 token（交互物品），$a_i$ 为动作 token（交互类型：点击、停留、购买等）。<strong>召回</strong>建模为预测 $c_{t+1}$，<strong>排序</strong>建模为预测 $a_{t+1}$（给定候选后预测互动行为），两者统一到单一模型中。</p>
 </li>
 <li>
 <p><strong>与传统架构的对比</strong>：传统 <a href="级联推荐管道.html">级联推荐管道</a>（召回→粗排→<a href="检索重排序.html">精排</a>→重排）各阶段独立优化，信息在传递中不断丢失。<a href="两阶段推荐架构.html">两阶段推荐架构</a> 中召回和排序使用不同模型和优化目标。生成式推荐通过端到端序列生成消除了阶段间信息损失。</p>
@@ -151,13 +151,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>特征序列化</strong>：将传统 DLRM 中的异构特征空间（用户画像、物品属性、上下文信息）全部序列化为 token 序列，每个特征表示为序列中的辅助事件。当序列长度趋于无穷时，序列化表示可逼近完整 DLRM 特征空间。</p>
 </li>
 <li>
-<p><strong>Scaling Laws 验证</strong>：HSTU 架构下，生成式推荐模型质量随训练计算量呈幂律增长，跨越三个数量级至 GPT-3/LLaMA-2 规模。传统 DLRM 在约 200B 参数后性能饱和，无法继续受益于更多计算。</p>
+<p><strong>Scaling Laws 验证</strong>：HSTU 架构下，生成式推荐模型质量随训练<a href="计算.html">计算</a>量呈幂律增长，跨越三个数量级至 <a href="../entities/GPT-3.html">GPT-3</a>/<a href="LLaMA.html">LLaMA</a>-2 规模。传统 DLRM 在约 200B 参数后性能饱和，无法继续受益于更多<a href="计算.html">计算</a>。</p>
 </li>
 <li>
-<p><strong>工业部署</strong>：<a href="../entities/M-FALCON.html">M-FALCON</a> 算法使 1.5 万亿参数生成式推荐模型在相同推理预算下运行，实现 1.5x-2.99x 吞吐量提升。Meta 在数十亿用户平台上部署，在线 A/B 测试提升 12.4%。</p>
+<p><strong>工业部署</strong>：<a href="../entities/M-FALCON.html">M-FALCON</a> <a href="算法.html">算法</a>使 1.5 万亿参数生成式推荐模型在相同推理预算下运行，实现 1.5x-2.99x 吞吐量提升。Meta 在数十亿用户平台上部署，在线 A/B 测试提升 12.4%。</p>
 </li>
 <li>
-<p><strong>行业影响</strong>：截至 2025-2026 年，<a href="../entities/Google.html">Google</a>、快手、美团、阿里、<a href="../entities/Netflix.html">Netflix</a>、小红书、字节、腾讯、百度、京东等均已探索或部署生成式推荐。MLCommons DLRMv3 基准受其启发将模型规模提升 20 倍。</p>
+<p><strong>行业影响</strong>：截至 2025-2026 年，<a href="../entities/Google.html">Google</a>、快手、美团、阿里、<a href="../entities/Netflix.html">Netflix</a>、小红书、字节、腾讯、<a href="../entities/百度.html">百度</a>、<a href="../entities/京东.html">京东</a>等均已探索或部署生成式推荐。MLCommons DLRMv3 基准受其启发将模型规模提升 20 倍。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：高度依赖用户历史序列，冷启动场景挑战大；万亿参数黑盒可解释性差；训练成本极高；端到端设计使调试和迭代更困难。</p>

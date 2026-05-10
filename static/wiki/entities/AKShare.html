@@ -127,44 +127,73 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / AKShare</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具与框架</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具与框架</span><span class="tag">财经数据</span><span class="tag">Python库</span></div>
 </div>
   <div class="content">
     <h1 id="akshare">AKShare</h1>
 <h2 id="_1">概述</h2>
-<p>AKShare 是开源全品类财经数据接口库（Python），提供 1000+ 接口覆盖 37 个数据分类，数据源包括东方财富、新浪财经、同花顺等，完全免费无需注册，覆盖 A 股、港股、美股、期货、期权、债券、外汇、基金、宏观等市场。</p>
+<p>AKShare 是 <a href="../concepts/Python.html">Python</a> 财经数据库中接口最广的开源库，拥有 1046+ 函数，覆盖 A 股、港股、美股、<a href="../concepts/期货数据.html">期货</a>、期权、债券、外汇、基金、宏观经济、数字货币、国际<a href="../concepts/期货数据.html">期货</a>等多个领域。完全免费，无需注册，持续高频迭代（2025 年仍活跃维护）。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>项目概览</strong>：版本 1.18.48（2025 持续更新），Python ≥ 3.6（64-bit），MIT License，GitHub Stars 10,000+。</p>
+<p><strong>安装方式</strong>：
+   <code>bash
+   pip install akshare -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com --upgrade</code></p>
 </li>
 <li>
-<p><strong>数据源命名约定</strong>：函数后缀标识数据来源——<code>_em</code>（东方财富）、<code>_sina</code>（新浪财经）、<code>_ths</code>（同花顺）、<code>_js</code>（金十数据）、<code>_bs</code>（<a href="Baostock.html">Baostock</a>）、<code>_qq</code>（腾讯财经）。</p>
+<p><strong>数据源命名约定</strong>：函数后缀标识数据来源——<code>_em</code>（东方财富，数据最完整实时性好）、<code>_sina</code>（新浪财经，实时行情为主）、<code>_ths</code>（同花顺，机构数据为主）、<code>_js</code>（金十数据，宏观/外汇为主）、<code>_bs</code>（证券宝，历史数据）。</p>
 </li>
 <li>
-<p><strong>模块结构</strong>：stock（A 股核心行情）、stock_feature（龙虎榜/融资融券/北向资金）、economic（宏观经济）、fund（公募基金/ETF）、bond（债券）、futures（期货）、option（期权）、forex（外汇）、crypto（数字货币）、index（指数）、news（财经新闻/舆情）。</p>
+<p><strong>A股行情数据</strong>：<code>stock_zh_a_hist()</code> 获取历史K线数据，<code>stock_zh_a_spot_em()</code> 获取全市场实时快照（约5000只股票），<code>stock_zh_a_minute()</code> 获取实时分钟数据。</p>
 </li>
 <li>
-<p><strong>优势</strong>：完全免费、无需注册、无 API Key、接口数量最多（1,046+）、覆盖市场最广。</p>
+<p><strong>北向资金数据</strong>：<code>stock_hsgt_north_net_flow_in_em()</code> 获取当日北向资金净流入，<code>stock_hsgt_hist_em()</code> 获取历史北向资金趋势，<code>stock_hsgt_top10_em()</code> 获取沪股通/深股通十大成交活跃股。</p>
+</li>
+<li>
+<p><strong>特色功能模块</strong>：stock_feature（龙虎榜/融资融券/北向资金）、economic（宏观经济）、fund（公募基金/ETF）、bond（债券）、futures（期货）、option（期权）、forex（外汇）、crypto（数字货币）。</p>
+</li>
+<li>
+<p><strong>HTTP API层</strong>：通过AKTools（基于FastAPI）提供HTTP API，适用于非Python环境的调用，启动后可通过curl等工具访问接口。</p>
+</li>
+<li>
+<p><strong>基本面与财务数据</strong>：提供财务三表（资产负债表/利润表/现金流量表）via <code>stock_financial_report_sina</code>，还包括历史分红数据、IPO信息、分析师评级等功能。</p>
+</li>
+<li>
+<p><strong>生态集成</strong>：与<a href="AKQuant.html">AKQuant</a>（Rust回测框架）原生集成，提供高性能回测能力，并支持通过Docker一键部署，适合Agent系统集成。</p>
+</li>
+<li>
+<p><strong>生产实践</strong>：支持容错封装、批量并发处理（使用ThreadPoolExecutor规避GIL），建议进行版本锁定以避免上游改版导致的接口突变。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">akshare</span> — AKShare 深度分析报告</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/finance-knowledge/akshare-skill/SKILL.md</span> — akshare技能详细说明</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/finance-knowledge/akshare.md</span> — AKShare深度分析报告</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Baostock.html">Baostock</a> — compares_to</li>
-<li><a href="Alpha Vantage.html">Alpha Vantage</a> — compares_to</li>
-<li><a href="yfinance.html">yfinance</a> — compares_to</li>
+<li><a href="../concepts/A股行情数据.html">A股行情数据</a> — provides_data_for</li>
+<li><a href="../concepts/北向资金.html">北向资金</a> — provides_data_for</li>
+<li><a href="../concepts/龙虎榜.html">龙虎榜</a> — provides_data_for</li>
+<li><a href="../concepts/融资融券.html">融资融券</a> — provides_data_for</li>
+<li><a href="../concepts/ETF基金.html">ETF基金</a> — provides_data_for</li>
+<li><a href="../concepts/宏观经济数据.html">宏观经济数据</a> — provides_data_for</li>
+<li><a href="../concepts/期货数据.html">期货数据</a> — provides_data_for</li>
+<li><a href="东方财富.html">东方财富</a> — uses</li>
+<li><a href="新浪财经.html">新浪财经</a> — uses</li>
+<li><a href="同花顺.html">同花顺</a> — uses</li>
+<li><a href="AKTools.html">AKTools</a> — extends</li>
+<li><a href="AKQuant.html">AKQuant</a> — integrates_with</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="AFM.html">&larr; AFM</a>
-    <a href="APPNP.html">APPNP &rarr;</a>
+    <a href="AKQuant.html">&larr; AKQuant</a>
+    <a href="AKTools.html">AKTools &rarr;</a>
   </div>
 </div>
 </body>

@@ -220,11 +220,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>引用</strong>（对象别名）适合：参数传递、返回对象本身、operator 重载、避免拷贝。</p>
 <p>核心原则：<strong>指针负责表达底层控制；引用负责表达高级语义。</strong></p>
 <h2 id="python">与 Python 的对比</h2>
-<p>Python 不是没有指针，而是不暴露给开发者。Python 内部有引用计数和对象指针，但由解释器管理：
+<p><a href="Python.html">Python</a> 不是没有指针，而是不暴露给开发者。<a href="Python.html">Python</a> 内部有引用计数和对象指针，但由解释器管理：
 - <code>b = a</code>（列表）：两个名字绑定同一对象，改 <code>b</code> 同时改 <code>a</code>
-- Python 变量名绑定到对象，这个绑定效果类似引用，但不是语言级语法</p>
-<p>Python 选择隐藏内存细节的原因：设计目标是简单、可读、开发效率高、少踩内存错误、跨平台兼容（不绑定具体实现如 CPython/PyPy）。</p>
-<p><strong>关键误区</strong>：Python 不是"没有引用关系"，而是把引用关系做成了默认语义，不单独给 <code>&amp;</code> 和 <code>*</code>。</p>
+- <a href="Python.html">Python</a> 变量名绑定到对象，这个绑定效果类似引用，但不是语言级语法</p>
+<p><a href="Python.html">Python</a> 选择隐藏内存细节的原因：设计目标是简单、可读、开发效率高、少踩内存错误、跨平台兼容（不绑定具体实现如 C<a href="Python.html">Python</a>/PyPy）。</p>
+<p><strong>关键误区</strong>：<a href="Python.html">Python</a> 不是"没有引用关系"，而是把引用关系做成了默认语义，不单独给 <code>&amp;</code> 和 <code>*</code>。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">C++ 指针引用解读</span> — ChatGPT 对话整理，从右往左读法 + 四类写法 + const 位置辨析</li>

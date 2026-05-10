@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="rudolf-e-kalman">Rudolf E. Kalman</h1>
 <h2 id="_1">概述</h2>
-<p>Rudolf E. Kalman（鲁道夫·卡尔曼）是匈牙利裔美国数学家和电气工程师，现代控制理论的奠基人之一。他最著名的成就是于 1960 年发表了论文《A New Approach to Linear Filtering and Prediction Problems》，提出了<strong><a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a></strong>算法，彻底改变了状态估计、信号处理和导航领域。除了滤波理论，他还对线性二次调节器（LQR）、可控性（Controllability）和可观测性（Observability）等核心概念的发展做出了开创性贡献。他的工作不仅在理论上严谨优美，更直接推动了阿波罗登月等人类重大工程项目的成功。</p>
+<p>Rudolf E. Kalman（鲁道夫·卡尔曼）是匈牙利裔美国数学家和电气工程师，现代控制理论的奠基人之一。他最著名的成就是于 1960 年发表了论文《A New Approach to Linear Filtering and Prediction Problems》，提出了<strong><a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a></strong><a href="../concepts/算法.html">算法</a>，彻底改变了状态估计、信号处理和导航领域。除了滤波理论，他还对线性二次调节器（LQR）、可控性（Controllability）和可观测性（Observability）等核心概念的发展做出了开创性贡献。他的工作不仅在理论上严谨优美，更直接推动了阿波罗登月等人类重大工程项目的成功。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 学术背景与早期生涯</h3>
-<p>Kalman 在麻省理工学院（MIT）获得电气工程学位，并在哥伦比亚大学获得博士学位。在 1960 年发表里程碑论文时，他就职于马里兰州巴尔的摩的<strong>高级研究研究所（Research Institute for Advanced Study, RIAS）</strong>。当时的工程界主要依赖频域分析方法（如 Bode 图和 Nyquist 判据），而 Kalman 敏锐地意识到状态空间方法在处理多变量系统和时变系统方面的巨大潜力。</p>
+<p>Kalman 在麻省理工学院（MIT）获得电气工程学位，并在哥伦比亚大学获得博士学位。在 1960 年发表里程碑论文时，他就职于马里兰州巴尔的摩的<strong>高级研究研究所（Research Institute for Advanced Study, RIAS）</strong>。当时的工程界主要依赖频域分析方法（如 Bode 图和 Nyquist 判据），而 Kalman 敏锐地<a href="../concepts/意识.html">意识</a>到状态空间方法在处理多变量系统和时变系统方面的巨大潜力。</p>
 <h3 id="2">2. 核心贡献：从频域到时域的革命</h3>
-<p>在 1960 年的经典论文中，Kalman 挑战了当时占主导地位的<strong>Wiener 滤波</strong>理论。他指出 Wiener 方法在处理非平稳过程和有限数据时的局限性，并提出了一种基于状态空间表示的递归滤波方法。
+<p>在 1960 年的经典论文中，Kalman 挑战了当时占主导地位的<strong>Wiener 滤波</strong>理论。他指出 Wiener 方法在处理非平稳过程和有限数据时的局限性，并提出了一种基于<a href="../concepts/State-Space Model.html">状态空间表示</a>的递归滤波方法。
 - <strong>状态空间方法的推广</strong>：Kalman 是将状态空间概念引入控制和滤波领域的关键人物。他强调直接在时间域操作状态向量，而非在频率域处理传递函数。
-- <strong>递归算法设计</strong>：他设计的滤波器不需要存储所有历史数据，只需当前状态估计和新观测即可更新，极大地降低了计算复杂度，使其适合早期的数字计算机。
+- <strong>递归<a href="../concepts/算法.html">算法</a>设计</strong>：他设计的滤波器不需要存储所有历史数据，只需当前状态估计和新观测即可更新，极大地降低了<a href="../concepts/计算.html">计算</a>复杂度，使其适合早期的数字<a href="../concepts/计算.html">计算</a>机。
 - <strong>对偶性原理</strong>：Kalman 揭示了滤波问题与最优控制问题之间深刻的数学对偶性，这一发现统一了估计与控制两个看似独立的领域。</p>
 <h3 id="3">3. 阿波罗计划与工程验证</h3>
-<p>Kalman 的理论迅速得到了工程界的验证。1961 年，NASA 工程师 Stanley Schmidt 认识到<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>在航天器导航中的巨大价值，并将其应用于<strong>阿波罗计划</strong>的导航计算机系统。该系统需要融合来自陀螺仪、加速度计和星光传感器的噪声数据，以精确确定飞船在前往月球途中的位置和速度。<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>的成功应用被认为是阿波罗任务成功的关键因素之一，也标志着现代控制理论正式走向大规模工程实践。</p>
+<p>Kalman 的理论迅速得到了工程界的验证。1961 年，NASA 工程师 Stanley Schmidt 认识到<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>在航天器导航中的巨大价值，并将其应用于<strong>阿波罗计划</strong>的导航<a href="../concepts/计算.html">计算</a>机系统。该系统需要融合来自陀螺仪、加速度计和星光传感器的噪声数据，以精确确定飞船在前往月球途中的位置和速度。<a href="../concepts/卡尔曼滤波.html">卡尔曼滤波</a>的成功应用被认为是阿波罗任务成功的关键因素之一，也标志着现代控制理论正式走向大规模工程实践。</p>
 <h3 id="4">4. 后续影响与荣誉</h3>
-<p>Kalman 的工作引发了控制理论的革命。他与他人共同发展的<strong>线性二次高斯（LQG）控制</strong>框架至今仍是现代控制系统的标准设计方法。鉴于其在经济学时间序列分析中的应用（如宏观经济的动态建模），他也获得了经济学领域的相关荣誉。截至 2025 年，他的 1960 年论文在 <a href="Google.html">Google</a> Scholar 上的引用量已超过 27,000 次，成为工程科学史上被引用最多的论文之一。他的名字永远与"最优估计"联系在一起，其思想深刻影响了机器人学、航空航天、经济学和信号处理等多个学科。</p>
+<p>Kalman 的工作引发了控制理论的革命。他与他人共同发展的<strong>线性二次高斯（LQG）控制</strong>框架至今仍是现代控制系统的标准设计方法。鉴于其在经济学<a href="../concepts/时间序列分析.html">时间序列分析</a>中的应用（如宏观经济的动态建模），他也获得了经济学领域的相关荣誉。截至 2025 年，他的 1960 年论文在 <a href="Google.html">Google</a> Scholar 上的引用量已超过 27,000 次，成为工程科学史上被引用最多的论文之一。他的名字永远与"最优估计"联系在一起，其思想深刻影响了机器人学、航空航天、经济学和信号处理等多个学科。</p>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/02-kalman-filter-linear-filtering.md</span></li>
@@ -162,8 +162,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Ronald J. Williams.html">&larr; Ronald J. Williams</a>
-    <a href="Ruiming Tang.html">Ruiming Tang &rarr;</a>
+    <a href="Ross Girshick.html">&larr; Ross Girshick</a>
+    <a href="Rudolf Emil Kalman.html">Rudolf Emil Kalman &rarr;</a>
   </div>
 </div>
 </body>

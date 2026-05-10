@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="puppeteer-mcp">Puppeteer MCP</h1>
 <h2 id="_1">概述</h2>
-<p>Puppeteer MCP 是基于 <a href="../concepts/MCP.html">Model Context Protocol</a> 的浏览器自动化工具集成，提供页面导航、截图、表单填充、点击交互和 DOM 验证等能力，在 <a href="Ralph Loop.html">Ralph Loop</a> 系统中用于前端 User Story 的 E2E 验证。</p>
+<p>Puppeteer MCP 是基于 <a href="MCP.html">Model Context Protocol</a> 的浏览器自动化工具集成，提供页面导航、截图、表单填充、点击交互和 DOM 验证等能力，在 <a href="Ralph Loop.html">Ralph Loop</a> 系统中用于前端 User Story 的 E2E 验证。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 API 验证的区别</strong>：API Story 使用 <code>curl</code> 命令行验证，前端 Story 必须使用 Puppeteer MCP。两者验证通过后才能更新 prd.json 中对应 Story 的 <code>passes: true</code> 状态。</p>
 </li>
 <li>
-<p><strong>MCP 协议集成</strong>：作为 MCP Server 运行，通过 stdio 或 Streamable HTTP 与 <a href="Claude Code.html">Claude Code</a> 等 Agent 通信，遵循 MCP 的工具注册、参数验证和结果返回规范。</p>
+<p><strong>MCP 协议集成</strong>：作为 <a href="../concepts/MCP Prompts.html">MCP Server</a> 运行，通过 stdio 或 Streamable HTTP 与 <a href="../projects/Claude Code.html">Claude Code</a> 等 Agent 通信，遵循 MCP 的工具注册、参数验证和结果返回规范。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -169,13 +169,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="Ralph Loop.html">Ralph Loop</a> — used_by（核心 E2E 验证工具）</li>
 <li><a href="../concepts/浏览器自动化验证.html">浏览器自动化验证</a> — enables（提供底层自动化能力）</li>
-<li><a href="../concepts/MCP.html">MCP</a> — implements（基于 MCP 协议的工具集成）</li>
-<li><a href="Claude Code.html">Claude Code</a> — uses（通过 MCP 协议调用的工具）</li>
+<li><a href="MCP.html">MCP</a> — implements（基于 MCP 协议的工具集成）</li>
+<li><a href="../projects/Claude Code.html">Claude Code</a> — uses（通过 MCP 协议调用的工具）</li>
 <li><a href="../concepts/E2E 验证模式.html">E2E 验证模式</a> — part_of（作为模式一的底层工具实现）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Prithvi-Rajasekaran.html">&larr; Prithvi-Rajasekaran</a>
+    <a href="Proximal Policy Optimization Algorithms (2017 论文).html">&larr; Proximal Policy Optimization Algorithms (2017 论文)</a>
     <a href="PyMuPDF.html">PyMuPDF &rarr;</a>
   </div>
 </div>

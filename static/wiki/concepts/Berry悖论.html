@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="berry">Berry悖论</h1>
 <h2 id="_1">概述</h2>
-<p>Berry 悖论（1906）是"最小的不能用二十个英文单词定义的正整数"——这个描述本身只用了不到二十个词。Chaitin 将其形式化为 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性不可计算性的证明。</p>
+<p>Berry 悖论（1906）是"最小的不能用二十个英文单词定义的正整数"——这个描述本身只用了不到二十个词。Chaitin 将其形式化为 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性不可<a href="计算.html">计算</a>性的证明。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">原始悖论</h3>
 <blockquote>
@@ -144,8 +144,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这个短语本身只用了 14 个英文单词，却定义了一个"不能用少于 20 个单词定义的数"——自相矛盾。</p>
 <h3 id="chaitin">Chaitin 的形式化</h3>
 <p>Chaitin 将 Berry 悖论转化为严格的数学定理：</p>
-<p>假设存在程序 P 能计算 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 I(x)。构造程序 Q：
-- 枚举所有字符串 x，对每个计算 I(x)
+<p>假设存在程序 P 能<a href="计算.html">计算</a> <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性 I(x)。构造程序 Q：
+- 枚举所有字符串 x，对每个<a href="计算.html">计算</a> I(x)
 - 输出第一个满足 I(x) ≥ N 的 x</p>
 <p>Q 的长度约 |P| + log N，但它输出了一个"复杂度应该 ≥ N"的字符串。当 N 足够大时，|P| + log N &lt; N——矛盾！</p>
 <h3 id="_4">意义</h3>

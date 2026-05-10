@@ -148,16 +148,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 </code></pre>
 <p>笔记的本质：<strong>将<a href="上下文窗口.html">上下文窗口</a>的"短期记忆"外置为"长期记忆"</strong>，解决 <a href="LLM-Statelessness.html">LLM 天然无状态</a>的问题。</p>
 <h3 id="_5">典型实现</h3>
-<p><strong><a href="../entities/Claude Code.html">Claude Code</a> 的 Todo 列表</strong>：<a href="../entities/Claude Code.html">Claude Code</a> 自动创建<a href="TodoWrite-Tool.html">待办清单</a>文件，跟踪复杂任务的进度、依赖和未完成事项，在压缩或重启后通过读取 Todo 恢复任务状态。</p>
-<p><strong>Claude 玩 Pokémon</strong>（<a href="../entities/Anthropic.html">Anthropic</a> 演示）：Claude 无需任何关于记忆结构的额外提示，自发：
+<p><strong><a href="../projects/Claude Code.html">Claude Code</a> 的 Todo 列表</strong>：<a href="../projects/Claude Code.html">Claude Code</a> 自动创建<a href="TodoWrite-Tool.html">待办清单</a>文件，跟踪复杂任务的进度、依赖和未完成事项，在压缩或重启后通过读取 Todo 恢复任务状态。</p>
+<p><strong><a href="../entities/Claude_Code.html">Claude</a> 玩 Pokémon</strong>（<a href="../entities/Anthropic.html">Anthropic</a> 演示）：<a href="../entities/Claude_Code.html">Claude</a> 无需任何关于记忆结构的额外提示，自发：
 - 维护精确的训练步数记录（"过去 1,234 步在路线 1 训练，皮卡丘升了 8 级，目标 10 级"）
 - 建立探索地图
 - 记录已解锁的关键成就
-- 维护战斗策略笔记（记录不同对手的有效技能）
+- 维护战斗策略笔记（记录不同对手的有效<a href="Skills.html">技能</a>）
 <a href="上下文重置.html">上下文重置</a>后读取自己的笔记，继续多小时的训练序列或地城探索，展现了长时任务连贯性。</p>
 <p><strong>自定义 Agent 的 NOTES.md</strong>：通用模式——Agent 维护一个 NOTES.md 文件，跟踪整个复杂任务中的进度、关键约束和跨工具调用的依赖关系。</p>
 <h3 id="anthropic-beta">Anthropic 记忆工具（Beta）</h3>
-<p>随 <a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 发布，<a href="../entities/Anthropic.html">Anthropic</a> 在 Claude Developer Platform 上线了公开 Beta 版<a href="记忆工具.html">记忆工具</a>，提供：
+<p>随 <a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 发布，<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/Claude_Code.html">Claude</a> Developer Platform 上线了公开 Beta 版<a href="记忆工具.html">记忆工具</a>，提供：
 - 基于文件系统的上下文外信息存储
 - 跨会话的项目状态维护
 - 无需将历史全放入上下文即可引用历史工作</p>

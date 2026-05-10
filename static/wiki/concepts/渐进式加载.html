@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">渐进式加载</h1>
 <h2 id="_2">概述</h2>
-<p>通过分层<a href="渐进式披露（Progressive Disclosure）.html">按需加载</a>模型解决"知识库越大、Token 消耗越多"的矛盾，使知识可无限增长而每次对话成本几乎固定。存在三级（<a href="Agent Skills.html">Skills</a>）和四级（<a href="../entities/MemPalace.html">MemPalace</a>）两种实现。</p>
+<p>通过分层<a href="渐进式披露（Progressive Disclosure）.html">按需加载</a>模型解决"知识库越大、Token 消耗越多"的矛盾，使知识可无限增长而每次对话成本几乎固定。存在三级（<a href="../entities/Agent Skills.html">Skills</a>）和四级（<a href="../entities/MemPalace.html">MemPalace</a>）两种实现。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>三级加载模型（<a href="Agent Skills.html">Skills</a> 系统）</strong>：Level 0 返回目录（名称+描述，约 3,000 tokens 固定消耗）→ Level 1 加载特定技能的完整 <a href="SKILL.html 格式规范.html">SKILL.md</a> → Level 2 加载技能目录中的特定参考文件</li>
-<li><strong>为什么固定 3,000 tokens</strong>：Level 0 只包含名称和一行描述，每个技能仅贡献约 30 tokens 的目录条目，无论有 10 个还是 100 个技能，目录大小基本固定</li>
-<li><strong>实际工作流</strong>：用户请求 → Agent 查看 Level 0 目录 → 发现相关技能 → 调用 skill_view 加载完整内容 → 按技能文档执行任务</li>
-<li><strong>设计目标</strong>：可以积累上百个技能，而不用担心 Token 成本爆炸，实现记忆库无限增长与每次对话成本可控的平衡</li>
+<li><strong>三级加载模型（<a href="../entities/Agent Skills.html">Skills</a> 系统）</strong>：Level 0 返回目录（名称+描述，约 3,000 tokens 固定消耗）→ Level 1 加载特定<a href="Skills.html">技能</a>的完整 <a href="SKILL.html 格式规范.html">SKILL.md</a> → Level 2 加载<a href="Skills.html">技能</a>目录中的特定参考文件</li>
+<li><strong>为什么固定 3,000 tokens</strong>：Level 0 只包含名称和一行描述，每个<a href="Skills.html">技能</a>仅贡献约 30 tokens 的目录条目，无论有 10 个还是 100 个<a href="Skills.html">技能</a>，目录大小基本固定</li>
+<li><strong>实际工作流</strong>：用户请求 → Agent 查看 Level 0 目录 → 发现相关<a href="Skills.html">技能</a> → 调用 skill_view 加载完整内容 → 按<a href="Skills.html">技能</a>文档执行任务</li>
+<li><strong>设计目标</strong>：可以积累上百个<a href="Skills.html">技能</a>，而不用担心 Token 成本爆炸，实现记忆库无限增长与每次对话成本可控的平衡</li>
 <li><strong>API 接口</strong>：<code>skills_list()</code> 返回 Level 0 目录，<code>skill_view(name)</code> 加载 Level 1，<code>skill_view(name, path)</code> 加载 Level 2</li>
 <li><strong>四级渐进式加载（<a href="../entities/MemPalace.html">MemPalace</a>）</strong>：从全局地图到精确原文，按需按量加载，解决"如何在有限的 Token 预算内精准注入最相关记忆"的核心工程问题</li>
 <li><strong>Level 1 — Palace Overview（宫殿鸟瞰）</strong>：~50-100 tokens，列出所有 Wing 名称和 <a href="隧道跨域连接.html">Tunnel</a> 连接。每次 Agent 启动时通过 <code>mempalace_status</code> 工具自动注入，让 AI 知道自己"拥有"哪些记忆</li>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="渐近等分性 (AEP).html">&larr; 渐近等分性 (AEP)</a>
+    <a href="渐进式信息披露.html">&larr; 渐进式信息披露</a>
     <a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure &rarr;</a>
   </div>
 </div>

@@ -142,10 +142,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">两阶段解决方案</h3>
 <p><strong>第一阶段：<a href="Initializer Agent.html">初始化 Agent</a></strong></p>
 <p>首次会话使用专门提示，负责搭建环境：
-1. 创建 <code>init.sh</code> 脚本（启动开发服务器）
+1. 创建 <code>init.sh</code> 脚本（启动开发<a href="服务.html">服务</a>器）
 2. 创建 <code>claude-progress.txt</code>（会话间状态传递文件）
 3. 基于用户提示生成<strong>完整功能需求列表</strong>（JSON 格式，每条功能含步骤和 <code>passes: false</code> 状态）
-4. 初始 git commit，展示已添加的文件</p>
+4. 初始 <a href="Git Commit.html">git commit</a>，展示已添加的文件</p>
 <p>功能列表示例（200+ 条，全部初始标记为 failing）：</p>
 <pre><code class="language-json">{
   &quot;category&quot;: &quot;functional&quot;,
@@ -200,10 +200,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">关键实现细节</h3>
 <p><strong>为什么用 JSON 而非 Markdown</strong>：实验发现模型更不容易擅自修改或覆盖 JSON 文件，而对 Markdown 文件有更强的"重写"冲动。</p>
 <p><strong>"不可接受移除测试"</strong>：需强措辞："移除或编辑测试是不可接受的行为，这会导致缺失或有 Bug 的功能。"</p>
-<p><strong>浏览器自动化测试的必要性</strong>：代码层面测试（单元测试、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。</p>
-<p><strong>视觉局限</strong>：Claude 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。</p>
+<p><strong>浏览器自动化测试的必要性</strong>：代码层面测试（<a href="单元测试.html">单元测试</a>、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。</p>
+<p><strong>视觉局限</strong>：<a href="../entities/Claude_Code.html">Claude</a> 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。</p>
 <h3 id="agent_1">与多 Agent 架构的关系</h3>
-<p>两阶段设计是 <a href="../entities/Anthropic.html">Anthropic</a> 早期长时 Harness 的探索。后续研究（见<a href="生成器-评估器架构.html">生成器-评估器架构</a>）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + <a href="生成器.html">Generator</a> + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。</p>
+<p>两阶段设计是 <a href="../entities/Anthropic.html">Anthropic</a> 早期长时 Harness 的探索。后续研究（见<a href="生成器-评估器架构.html">生成器-评估器架构</a>）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + <a href="生成器.html">Generator</a> + Evaluator）系统。当模型能力提升后（<a href="../entities/Claude_Opus_4.6.html">Opus 4.6</a>），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective harnesses for long-running agents.md</span></li>
@@ -219,7 +219,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="镜像神经元.html">&larr; 镜像神经元</a>
+    <a href="长参数列表.html">&larr; 长参数列表</a>
     <a href="长时程增强（LTP）.html">长时程增强（LTP） &rarr;</a>
   </div>
 </div>

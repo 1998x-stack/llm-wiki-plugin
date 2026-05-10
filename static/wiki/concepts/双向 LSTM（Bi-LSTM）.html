@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lstmbi-lstm">双向 LSTM（Bi-LSTM）</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>LSTM 的扩展架构，同时使用正向和反向两个 LSTM 处理序列，使每个时刻的表示能同时利用过去和未来的上下文信息。2005 年提出，广泛应用于序列标注、情感分析等任务。</p>
+<p>LSTM 的扩展架构，同时使用正向和反向两个 LSTM 处理序列，使每个时刻的表示能同时利用过去和未来的上下文信息。2005 年提出，广泛应用于序列<a href="../entities/标注.html">标注</a>、情感分析等任务。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>架构设计</strong>：Bi-LSTM 包含两个独立的 <a href="LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> 层——正向 LSTM 从左到右处理序列（捕捉过去上下文），反向 LSTM 从右到左处理序列（捕捉未来上下文）。两个方向的隐藏状态在每个时刻拼接或相加，形成完整的序列表示。</li>
-<li><strong>优势</strong>：标准 LSTM 只能利用历史信息（单向因果），而 Bi-LSTM 可以同时利用过去和未来上下文。在序列标注（NER、POS）、情感分析、机器翻译等任务中，双向上下文能显著提升模型表现。</li>
-<li><strong>代码实现</strong>：PyTorch 中通过 <code>nn.LSTM(..., bidirectional=True)</code> 启用。双向 LSTM 的隐藏状态维度变为 <code>hidden_dim * 2</code>，最后时刻的隐藏状态需要拼接两个方向：<code>torch.cat([h_n[-2], h_n[-1]], dim=1)</code>。</li>
-<li><strong>演进路径</strong>：<a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> → LSTM（1997）→ Bi-LSTM（2005）→ Encoder-Decoder + Attention（2014-2015）→ <a href="Transformer架构.html">Transformer架构</a>（2017）。Bi-LSTM 在 NLP 主要任务上已被 <a href="Transformer 架构.html">Transformer</a> 替代，但在时间序列、嵌入式设备等场景仍广泛使用。</li>
+<li><strong>优势</strong>：标准 LSTM 只能利用历史信息（单向因果），而 Bi-LSTM 可以同时利用过去和未来上下文。在序列<a href="../entities/标注.html">标注</a>（NER、POS）、情感分析、机器翻译等任务中，双向上下文能显著提升模型表现。</li>
+<li><strong>代码实现</strong>：<a href="../entities/PyTorch.html">PyTorch</a> 中通过 <code>nn.LSTM(..., bidirectional=True)</code> 启用。双向 LSTM 的隐藏状态维度变为 <code>hidden_dim * 2</code>，最后时刻的隐藏状态需要拼接两个方向：<code>torch.cat([h_n[-2], h_n[-1]], dim=1)</code>。</li>
+<li><strong>演进路径</strong>：<a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> → LSTM（1997）→ Bi-LSTM（2005）→ Encoder-Decoder + Attention（2014-2015）→ <a href="Transformer架构.html">Transformer架构</a>（2017）。Bi-LSTM 在 NLP 主要任务上已被 <a href="Transformer 架构.html">Transformer</a> 替代，但在<a href="Time Series Analysis.html">时间序列</a>、嵌入式设备等场景仍广泛使用。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>

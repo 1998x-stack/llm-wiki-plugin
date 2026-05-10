@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>本质区别</strong>：</li>
-<li><strong>Bi-encoder</strong>：<code>score(q,d) = cos(E_q(q), E_d(d))</code>。文档向量<strong>离线预计算并固定</strong>，与查询无关。查询时只需计算查询向量再做 ANN 检索。本质是"在共享向量空间找几何最近点"。</li>
+<li><strong>Bi-encoder</strong>：<code>score(q,d) = cos(E_q(q), E_d(d))</code>。文档向量<strong>离线预<a href="计算.html">计算</a>并固定</strong>，与查询无关。查询时只需<a href="计算.html">计算</a>查询向量再做 ANN 检索。本质是"在共享向量空间找几何最近点"。</li>
 <li>
 <p><strong>Cross-encoder</strong>：<code>score(q,d) = f([q;d])</code>。将查询和文档拼接输入模型，<strong>文档的表示随查询动态变化</strong>。输出直接是相关性分数，无需向量空间。</p>
 </li>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>为什么 Bi-encoder 不如 Cross-encoder</strong>：Bi-encoder 的文档向量在离线阶段固定，无法捕捉"同一文档在不同查询语境下的不同相关性"。Cross-encoder 的 full attention 可以捕捉 query 和 doc 之间的细粒度交互（指代消解、隐含约束、多跳语义关联）。</p>
 </li>
 <li>
-<p><strong>大模型重排（LLM as reranker）优势</strong>：BGE reranker（专用 cross-encoder）的能力边界集中在"相关性匹配"。大模型（GPT-4/Claude/Qwen）预训练见过海量模式，能处理：</p>
+<p><strong>大模型重排（LLM as reranker）优势</strong>：BGE reranker（专用 cross-encoder）的能力边界集中在"相关性匹配"。大模型（GPT-4/<a href="../entities/Claude_Code.html">Claude</a>/Qwen）预训练见过海量模式，能处理：</p>
 </li>
 <li>同义改写、隐含约束</li>
 <li>世界知识和任务常识（"糖尿病患者能不能吃这个"）</li>

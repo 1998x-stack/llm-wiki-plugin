@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context-Design — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Context-Design</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span><span class="tag">上下文管理</span></div>
+</div>
+  <div class="content">
+    <h1 id="context-design">Context-Design</h1>
+<h2 id="_1">概述</h2>
+<p>Context-Design（上下文设计）是一种基于经验规律的<a href="上下文管理系统.html">上下文管理系统</a>设计方法论，强调将上下文视为有限缓存而非聊天记录拼接器。该方法论由 <a href="../entities/Anthropic.html">Anthropic</a> 将 context engineering 定义为对有限上下文的策展和管理时确立，核心思想是在固定 token 预算下最大化有用信息密度。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="1">1. 经验规律驱动的设计原则</h3>
+<p>Context-Design 通过四大经验规律指导<a href="Context Management.html">上下文管理</a>：
+- <strong>Zipf / Pareto</strong>：绝大多数价值来自少数热点上下文，采用热/温/冷分层，而非所有历史平权
+- <strong>Bradford / Lotka / Price</strong>：少数核心来源覆盖大多数高价值信息，建立 source prior、canonical source pack、每源上限
+- <strong>Matthew effect</strong>：先进入上下文的材料会放大后续推理偏向，强制多源检索、反证位、去单源垄断
+- <strong>Benford 式思路</strong>：用分布基线找异常，监控 source share、stale fact rate、retrieval drift、无效 token 占比</p>
+<h3 id="2-router-first">2. 请求路由（Router-first）</h3>
+<p>第一层是路由判断，而非直接检索：</p>
+<pre><code>if kb_size &lt; 200k and low_churn and low_tooling:
+    mode = &quot;full_context_cached&quot;
+elif task_is_knowledge_intensive:
+    mode = &quot;retrieval_augmented&quot;
+elif session_is_long_running:
+    mode = &quot;hierarchical_memory&quot;
+else:
+    mode = &quot;hybrid_agent&quot;
+</code></pre>
+<h3 id="3">3. 五层内存架构</h3>
+<ul>
+<li><strong>L0 Cached Prefix</strong>：固定不变的系统提示、输出 schema、少量 few-shot、工具契约</li>
+<li><strong>L1 Working Memory</strong>：当前任务目标、约束、实体、术语表、未解决问题、当前计划</li>
+<li><strong>L2 Episodic Memory</strong>：按阶段压缩的"回合摘要"，只保留决策、证据、结论、pending items</li>
+<li><strong>L3 Semantic Memory</strong>：向量检索 + 关键词检索 + 元数据过滤的长期知识层</li>
+<li><strong>L4 Raw Archive</strong>：原始会话、原始文档、原始工具输出，默认不直接进 prompt，只在需要时回放</li>
+</ul>
+<h3 id="4-memory-object">4. Memory Object 模型</h3>
+<p>上下文管理的对象应是 memory object，而非 message：</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;mem_xxx&quot;,
+  &quot;type&quot;: &quot;fact|decision|preference|plan|episode&quot;,
+  &quot;text&quot;: &quot;用户更关心 latency 而不是 peak accuracy&quot;,
+  &quot;source&quot;: &quot;chat:turn_18&quot;,
+  &quot;freshness&quot;: &quot;2026-04-14&quot;,
+  &quot;salience&quot;: 0.82,
+  &quot;reuse_count&quot;: 6,
+  &quot;confidence&quot;: 0.91,
+  &quot;anchors&quot;: [&quot;turn18&quot;, &quot;doc:spec#p4&quot;]
+}
+</code></pre>
+<h3 id="5">5. 混合检索链路</h3>
+<p>采用按需检索 + 混合检索 + 重排 + 去重 + 反证位：
+- <strong>query understanding → need_retrieval? → hybrid retrieve → contextualize → rerank → diversify → compress → assemble</strong>
+- 强制"前 N 条不能全来自同一文档/同一作者/同一系统"，防止 Matthew effect 式的早期锚定
+- 专门保留"反证 / 边界条件 / 更新时间冲突"槽位</p>
+<h3 id="6-prompt">6. Prompt 位置编排</h3>
+<p>考虑到 Lost in the Middle 效应，推荐布局：</p>
+<pre><code>[Cached Prefix: system / policy / tool contract / output schema]
+[Task contract: 这轮要解决什么]
+[Working memory]
+[Top evidence A]                     ← 最关键证据放靠前
+[Compressed session summary]
+[Supporting evidence B/C]
+[Counter evidence / freshness note]  ← 关键约束放靠尾
+[Current user ask]
+[Final answer rubric]
+</code></pre>
+<h3 id="7">7. 压缩策略：提炼可复用状态</h3>
+<p>压缩目标是把"历史噪音"变成"未来可<a href="计算.html">计算</a>状态"，产出四种对象：
+- <strong>durable facts</strong>：长期有效事实
+- <strong>decisions</strong>：已做选择和理由
+- <strong>open loops</strong>：未完成事项
+- <strong>source anchors</strong>：原文锚点，便于回源</p>
+<h3 id="8">8. 评分函数</h3>
+<p>候选 memory/chunk 评分公式：
+$$
+score = 0.35 \cdot relevance + 0.20 \cdot source_quality + 0.15 \cdot freshness + 0.10 \cdot salience + 0.10 \cdot dependency + 0.10 \cdot novelty - redundancy
+$$</p>
+<h3 id="9-token">9. Token 预算分配</h3>
+<ul>
+<li><strong>Cached Prefix</strong>：10% — 系统指令、工具契约、output schema</li>
+<li><strong><a href="工作记忆.html">Working Memory</a></strong>：15% — 当前任务、约束、实体</li>
+<li><strong>Recent Turns</strong>：15% — 近期对话</li>
+<li><strong>Retrieved Evidence</strong>：35% — 检索结果</li>
+<li><strong>Episodic Summaries</strong>：15% — 阶段压缩摘要</li>
+<li><strong>Output Contract</strong>：10% — 输出要求、checklist</li>
+</ul>
+<h3 id="10-agent">10. 工具密集 Agent 的上下文管理</h3>
+<p>工具状态外置，只回注必要结果：
+- 工具 schema 常驻 L0，但尽量精简
+- 工具原始输出留在外部存储
+- 回注到 prompt 的只有：结果摘要、关键 delta、error message、下一步所需最小证据
+- <strong>原则</strong>：把"结果"放进上下文，不把"过程全量日志"放进上下文</p>
+<h3 id="11">11. 评估指标</h3>
+<ul>
+<li><strong>Context utilization</strong>：注入的 token 里，最后真正被引用/使用了多少</li>
+<li><strong>Answer quality @ fixed budget</strong>：固定预算下质量是否更高</li>
+<li><strong>Stale fact rate</strong>：过期信息混入比例</li>
+<li><strong>Source dominance</strong>：单一来源是否垄断前几条证据</li>
+<li><strong>Position robustness</strong>：把关键证据换位置后，答案是否明显劣化</li>
+<li><strong>Cache hit rate / latency / cost</strong>：<a href="KV 缓存命中率.html">前缀缓存</a>是否真的起作用</li>
+</ul>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span> — 经验规律、分层架构、混合检索等核心设计</li>
+<li><a href="Context Engineering.html">Context Engineering</a> — 基础理论和方法论</li>
+<li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</a> — Anthropic 官方指导</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Context Engineering.html">Context Engineering</a> — extends</li>
+<li><a href="分层记忆架构.html">分层记忆架构</a> — implements</li>
+<li><a href="检索增强生成.html">检索增强生成</a> — incorporates</li>
+<li><span style="color:#e74c3c" title="broken link">Prompt缓存</span> — incorporates</li>
+<li><a href="上下文压缩.html">上下文压缩</a> — incorporates</li>
+<li><a href="注意力预算.html">注意力预算</a> — builds_on</li>
+<li><a href="上下文腐烂.html">上下文腐烂</a> — addresses</li>
+<li><a href="即时上下文检索.html">即时上下文检索</a> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">Zipf定律</span> — applies</li>
+<li><span style="color:#e74c3c" title="broken link">帕累托法则</span> — applies</li>
+<li><span style="color:#e74c3c" title="broken link">Bradford定律</span> — applies</li>
+<li><span style="color:#e74c3c" title="broken link">Matthew效应</span> — addresses</li>
+<li><span style="color:#e74c3c" title="broken link">Benford定律</span> — applies</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Context Window Pollution.html">&larr; Context Window Pollution</a>
+    <a href="Context-Engineering.html">Context-Engineering &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

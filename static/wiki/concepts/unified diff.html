@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>unified diff — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / unified diff</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">code-diff</span><span class="tag">file-operations</span><span class="tag">version-control</span><span class="tag">ai-tools</span></div>
+</div>
+  <div class="content">
+    <h1 id="unified-diff">unified diff</h1>
+<h2 id="_1">概述</h2>
+<p>unified diff 是一种广泛使用的文本差异表示格式，使用标准的 <code>+</code> 和 <code>-</code> 符号来表示新增和删除的行，是大多数版本控制系统和代码工具的基础差异格式。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>格式结构</strong>：</li>
+<li><code>+</code> 表示新增行（通常显示为绿色）</li>
+<li><code>-</code> 表示删除行（通常显示为红色）</li>
+<li><code>@@</code> 表示差异块的行号范围（通常显示为青色）</li>
+<li>
+<p>保留行（不变的上下文）用于定位差异位置</p>
+</li>
+<li>
+<p><strong>在 <a href="Write-Tools.html">Write-Tools</a> 中的应用</strong>：</p>
+</li>
+<li><code>apply_patch</code> 工具使用统一差异格式执行文件修改</li>
+<li>作为 <a href="Approval Gate UI.html">Approval Gate</a> 中 diff 展示的标准格式</li>
+<li>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 避免使用此方式，优先推荐 str_replace，因为 LLM 对行号的准确性较差，导致 fuzz 不匹配造成 apply 失败率高</p>
+</li>
+<li>
+<p><strong>主要缺点</strong>：</p>
+</li>
+<li><strong>行号依赖性</strong>：对行号准确性要求很高，当文件结构发生变化时容易出现不匹配</li>
+<li><strong>格式敏感</strong>：换行、缩进等格式变化可能导致差异<a href="计算.html">计算</a>错误</li>
+<li>
+<p><strong>语义盲区</strong>：只考虑文本层面的变化，无法理解代码的语义结构</p>
+</li>
+<li>
+<p><strong>使用场景</strong>：</p>
+</li>
+<li>版本控制系统（如 Git）的差异表示</li>
+<li><a href="代码审查.html">代码审查</a>中的变更展示</li>
+<li>文件内容比较工具</li>
+<li>某些 AI 工具的文件修改操作</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 三、三种写入策略的核心差异</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 六、Approval Gate 与 Diff 展示</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 八、横向对比</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Write-Tools.html">Write-Tools</a> — used_in</li>
+<li><a href="AST-based diff.html">AST-based diff</a> — alternative_to</li>
+<li><span style="color:#e74c3c" title="broken link">Git</span> — uses</li>
+<li><span style="color:#e74c3c" title="broken link">apply_patch</span> — format_for</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="timeSVD++.html">&larr; timeSVD++</a>
+    <a href="using-git-worktrees Skill.html">using-git-worktrees Skill &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

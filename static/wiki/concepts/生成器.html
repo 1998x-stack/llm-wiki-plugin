@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>角色与目标</strong>：在 <a href="生成对抗网络（GAN）.html">生成对抗网络（GAN）</a> 中，<a href="生成器.html">生成器</a>（Generator, G）扮演"造假者"角色。它接收随机噪声向量 z ~ N(0, I) 作为输入，输出伪造数据 G(z)（如假图像）。其目标是生成足够逼真的样本，使 <a href="判别器.html">判别器</a> 无法<a href="../entities/区分.html">区分</a>真假。</li>
 <li><strong>网络架构</strong>：典型的生成器是全连接或<a href="卷积神经网络（CNN）.html">卷积神经网络</a>，将低维潜在空间（如 100 维噪声向量）映射到高维数据空间（如 28×28 图像）。常用架构包括 <a href="Batch Normalization.html">BatchNorm</a> + LeakyReLU + Tanh 输出层，其中 Tanh 将输出限制在 [-1, 1] 范围内以匹配归一化后的图像数据。</li>
 <li><strong>训练目标</strong>：理论上生成器最小化 log(1 - D(G(z)))，但实践中改为最大化 log D(G(z))。这是因为早期训练时<a href="判别器.html">判别器</a>很强，D(G(z)) ≈ 0，导致 log(1 - D(G(z))) 的梯度接近零（<a href="梯度消失.html">梯度消失</a>）。非饱和目标 log D(G(z)) 在训练初期提供更强的梯度信号。</li>
-<li><strong>训练问题</strong>：生成器容易出现 <a href="模式崩塌.html">模式崩塌</a>——只生成少数几种样本而非多样化输出。这是因为生成器找到了<a href="判别器.html">判别器</a>的某个"盲点"并反复利用。DCGAN 使用全卷积架构、WGAN 使用 Wasserstein 距离、StyleGAN 使用风格解耦等技术来改善生成器的训练稳定性。</li>
+<li><strong>训练问题</strong>：生成器容易出现 <a href="模式崩塌.html">模式崩塌</a>——只生成少数几种样本而非多样化输出。这是因为生成器找到了<a href="判别器.html">判别器</a>的某个"盲点"并反复利用。<a href="../entities/DCGAN（Deep Convolutional GAN）.html">DCGAN</a> 使用全卷积架构、WGAN 使用 Wasserstein 距离、StyleGAN 使用风格解耦等技术来改善生成器的训练稳定性。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

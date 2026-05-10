@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>解法</strong>：双轨成功断言
 - <strong>确定性断言</strong>：<code>final_text_contains</code>、<code>file_equals</code> → 事实性短答案、精确文件内容，成本低、可复现
 - <strong>语义断言</strong>（<a href="../concepts/LLM-as-Judge.html">LLM-as-Judge</a>）：<code>llm_judge(*criteria)</code> → 语义正确性、风格、推理完整性，默认 <code>claude-sonnet-4-6</code> 评判</p>
-<p><strong>设计哲学</strong>：先问"规则能否表达"，再决定是否需要 LLM。Judge 是最后手段，不是默认选项。准则粒度要细——一条准则一个可判定问题，失败时 comment 才能定位。</p>
+<p><strong>设计哲学</strong>：先问"规则能否表达"，再决定是否需要 LLM。Judge 是最后手段，不是默认选项。准则粒度要细——一条准则一个可<a href="../concepts/判定问题.html">判定问题</a>，失败时 comment 才能定位。</p>
 <hr />
 <h2 id="vs_2">第三分离：能力 vs 基础设施</h2>
 <p><strong>混淆陷阱</strong>：沙箱 OOM / 超时导致的失败被统计为"模型能力退步"，污染横向对比数据。</p>
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>确定性 vs 语义</td>
 <td>过度依赖 LLM（贵）或过度依赖子串（漏）</td>
 <td>需要判断每个准则的表达方式</td>
-<td>成本与覆盖率的帕累托最优</td>
+<td>成本与覆盖率的<a href="../entities/帕累托.html">帕累托</a>最优</td>
 </tr>
 <tr>
 <td>能力 vs 基础设施</td>
@@ -198,7 +198,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">延伸：这一哲学的普适性</h2>
 <p>三重分离不是 <a href="../entities/DeepAgents.html">DeepAgents</a> 独有的发明，而是<strong>好的软件测试哲学在 AI 评估领域的应用</strong>：
 - 正确性/效率分离 ≈ 功能测试 vs 性能测试的分层
-- 确定性/语义分离 ≈ 单元测试 vs 用户验收测试的粒度选择
+- 确定性/语义分离 ≈ <a href="../concepts/单元测试.html">单元测试</a> vs 用户验收测试的粒度选择
 - 能力/环境分离 ≈ 应用 bug vs 基础设施 bug 的分类</p>
 <p>AI Agent 评估的特殊性在于：Agent 的"轨迹"天然是随机的、多步的，比传统软件的输入/输出更难断言——因此需要更精细的分离设计来抵御各种混淆来源。</p>
 <h2 id="_4">来源</h2>
@@ -210,7 +210,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Claude-Code上下文工程全景.html">&larr; Claude-Code上下文工程全景</a>
-    <a href="控制论的最新发展.html">控制论的最新发展 &rarr;</a>
+    <a href="伊朗-乌克兰地缘冲突升级.html">伊朗-乌克兰地缘冲突升级 &rarr;</a>
   </div>
 </div>
 </body>

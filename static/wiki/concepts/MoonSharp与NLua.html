@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="moonsharp-c-lua">MoonSharp：纯 C# Lua 解释器</h3>
 <p><a href="../entities/MoonSharp.html">MoonSharp</a> 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2CPP/AOT 平台（iOS 等）。</p>
 <p><strong>对象注册流程</strong>：
-1. 在 C# 类上标注 <code>[MoonSharpUserData]</code>，通过 <code>UserData.RegisterAssembly()</code> 批量注册
+1. 在 C# 类上<a href="../entities/标注.html">标注</a> <code>[MoonSharpUserData]</code>，通过 <code>UserData.RegisterAssembly()</code> 批量注册
 2. <code>script.Globals["key"] = obj</code> 将 C# 对象注入 Lua 全局变量
 3. 静态类通过 <code>UserData.Create(typeof(SomeClass))</code> 包装后注入</p>
 <p><strong>调用机制</strong>：
@@ -209,7 +209,7 @@ var table = lua.GetTable(&quot;my_table&quot;);                    // 读取表
   </div>
   <div class="page-nav">
     <a href="Momentum（动量）.html">&larr; Momentum（动量）</a>
-    <a href="Multi-Agent Orchestration.html">Multi-Agent Orchestration &rarr;</a>
+    <a href="Move Field.html">Move Field &rarr;</a>
   </div>
 </div>
 </body>

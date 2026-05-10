@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">快速傅里叶变换</h1>
 <h2 id="_2">概述</h2>
-<p>基于分治策略（divide and conquer）的算法，将<a href="离散傅里叶变换.html">离散傅里叶变换</a>（DFT）的计算复杂度从O(n²)降低到O(n log n)，使大规模频谱分析从理论上可行变为实践中可行，从根本上改变了信号处理、通信、图像处理等领域的计算面貌。</p>
+<p>基于分治策略（divide and conquer）的<a href="算法.html">算法</a>，将<a href="离散傅里叶变换.html">离散傅里叶变换</a>（DFT）的<a href="计算.html">计算</a>复杂度从O(n²)降低到O(n log n)，使大规模频谱分析从理论上可行变为实践中可行，从根本上改变了信号处理、通信、图像处理等领域的<a href="计算.html">计算</a>面貌。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="radix-2-cooley-tukey">核心算法（Radix-2 Cooley-Tukey）</h3>
-<p><strong>DFT 定义</strong>：$X_k = \sum_{j=0}^{n-1} x_j \omega_n^{jk}$，$\omega_n = e^{-2\pi i/n}$，直接计算 $O(n^2)$</p>
+<p><strong>DFT 定义</strong>：$X_k = \sum_{j=0}^{n-1} x_j \omega_n^{jk}$，$\omega_n = e^{-2\pi i/n}$，直接<a href="计算.html">计算</a> $O(n^2)$</p>
 <p><strong>分治分解</strong>（$n = 2M$，按奇偶拆分）：</p>
 <p>$$X_k = \underbrace{\sum_{j=0}^{M-1} x_{2j}\omega_M^{jk}}<em>{A_k} + \omega_n^k \underbrace{\sum</em>{j=0}^{M-1} x_{2j+1}\omega_M^{jk}}_{B_k}$$</p>
 <p><strong>蝴蝶运算</strong>（butterfly operation）：利用周期性 $A_{k+M}=A_k$，$\omega_n^{k+M}=-\omega_n^k$：</p>
 <p>$$X_k = A_k + \omega_n^k B_k, \quad X_{k+M} = A_k - \omega_n^k B_k$$</p>
-<p>一次乘法（$\omega_n^k B_k$）同时产生两个输出——算法名称"蝴蝶"来自数据流图的形状。</p>
+<p>一次乘法（$\omega_n^k B_k$）同时产生两个输出——<a href="算法.html">算法</a>名称"蝴蝶"来自数据流图的形状。</p>
 <h3 id="_4">复杂度</h3>
 <p>递推：$T(n) = 2T(n/2) + O(n)$ → <strong>$T(n) = O(n\log n)$</strong></p>
 <table>
@@ -179,12 +179,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">算法要素</h3>
 <ul>
 <li><strong>位反转排列</strong>（bit-reversal permutation）：就地（in-place）实现的输入重排，将 $j$ 替换为其二进制反转</li>
-<li><strong>旋转因子</strong>（twiddle factor）：$\omega_n^k$ 预计算存于查找表，避免重复计算三角函数</li>
+<li><strong>旋转因子</strong>（twiddle factor）：$\omega_n^k$ 预<a href="计算.html">计算</a>存于查找表，避免重复<a href="计算.html">计算</a>三角函数</li>
 <li><strong>递归结构</strong>：$n = 2^m$ 时共 $m = \log_2 n$ 层，每层 $n/2$ 个蝴蝶，总 $O(n\log n)$</li>
 </ul>
 <h3 id="_6">历史背景</h3>
 <p><strong>冷战动因</strong>：1963年《部分禁止核试验条约》签署后，监测地下核试验需实时频谱分析全球地震数据。Richard Garwin（IBM物理学家，美国总统科学顾问委员会成员）促成了 Tukey-Cooley 合作。FFT 的诞生有深刻的地缘政治背景。</p>
-<p><strong>高斯先驱</strong>（鲜为人知）：<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 早在 <strong>1805 年</strong>计算小行星轨道时就在手稿中描述了类似的快速分解方法，但直到 1866 年才以拉丁文遗著发表，未被传播——FFT 的核心思想被独立重发现了。</p>
+<p><strong>高斯先驱</strong>（鲜为人知）：<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a> 早在 <strong>1805 年</strong><a href="计算.html">计算</a>小行星轨道时就在手稿中描述了类似的快速分解方法，但直到 1866 年才以拉丁文遗著发表，未被传播——FFT 的核心思想被独立重发现了。</p>
 <p><strong>Danielson-Lanczos 引理</strong>（1942）：<a href="../entities/康尼利厄斯·朗佐斯.html">康尼利厄斯·朗佐斯</a>与 Danielson 已将 DFT 分解表示为两个半长 DFT 的组合，但未递归到 $O(n\log n)$。</p>
 <h3 id="_7">主要应用领域</h3>
 <table>
@@ -208,11 +208,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>MP3/AAC编码（MDCT）、音乐识别（Shazam频谱指纹）、语音识别</td>
 </tr>
 <tr>
-<td>科学计算</td>
+<td>科学<a href="计算.html">计算</a></td>
 <td><a href="谱方法.html">谱方法</a>求解PDE、分子动力学（Ewald PME）、天体物理</td>
 </tr>
 <tr>
-<td>算法</td>
+<td><a href="算法.html">算法</a></td>
 <td>快速多项式乘法 $O(n\log n)$、大整数乘法（Schönhage-Strassen）</td>
 </tr>
 </tbody>
@@ -220,8 +220,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_8">变体与改进</h3>
 <ul>
 <li><strong>Radix-4 / Split-Radix FFT</strong>：进一步减少乘法次数</li>
-<li><strong>Bluestein 算法</strong>：处理任意长度（含素数长度）的 DFT</li>
-<li><strong>实数 FFT</strong>：利用实数信号对称性节省一半计算量</li>
+<li><strong>Bluestein <a href="算法.html">算法</a></strong>：处理任意长度（含素数长度）的 DFT</li>
+<li><strong>实数 FFT</strong>：利用实数信号对称性节省一半<a href="计算.html">计算</a>量</li>
 <li><strong>FFTW</strong>（Fastest Fourier Transform in the West，MIT）：自适应选择最优实现的开源库</li>
 </ul>
 <h2 id="_9">来源</h2>

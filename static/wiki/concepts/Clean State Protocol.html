@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心原则</strong>：若检查失败，在提交前修复，不要把破损状态传递给下一个 Agent。这保证了每个新 Agent 实例启动时面对的是一个干净、可运行的代码库。</p>
 </li>
 <li>
-<p><strong>与 <a href="Session 交接机制.html">Session 交接机制</a> 的关系</strong>：Clean State Protocol 是 <a href="Session 交接机制.html">Session 交接机制</a>的质量保障层。三文件（prd.json、progress.txt、AGENTS.md）的交接只有在代码库处于干净状态时才有意义。</p>
+<p><strong>与 <a href="Session 交接机制.html">Session 交接机制</a> 的关系</strong>：Clean State Protocol 是 <a href="Session 交接机制.html">Session 交接机制</a>的<a href="质量保障.html">质量保障</a>层。三文件（prd.json、progress.txt、<a href="项目约定手册.html">AGENTS.md</a>）的交接只有在代码库处于干净状态时才有意义。</p>
 </li>
 <li>
 <p><strong>与 <a href="Dumb Zone.html">Dumb Zone</a> 的关系</strong>：Clean State Protocol 通常在迭代即将结束、上下文接近 <a href="Dumb Zone.html">Dumb Zone</a> 之前执行。它确保 Agent 在主动退出前留下一个可继续工作的状态，而非半完成的混乱状态。</p>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Claude-Code-Hook-System.html">&larr; Claude-Code-Hook-System</a>
+    <a href="Clean Code Reviewer.html">&larr; Clean Code Reviewer</a>
     <a href="Closet-Drawer 架构.html">Closet-Drawer 架构 &rarr;</a>
   </div>
 </div>

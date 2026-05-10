@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mapreduce">MapReduce</h1>
 <h2 id="_1">概述</h2>
-<p>MapReduce 是一种用于大规模数据处理的编程模型，用户只需定义 Map 和 Reduce 两个函数，系统便能自动将计算并行化并分布到数千台机器上执行。</p>
+<p>MapReduce 是一种用于大规模数据处理的编程模型，用户只需定义 Map 和 Reduce 两个函数，系统便能自动将<a href="计算.html">计算</a>并行化并分布到数千台机器上执行。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">编程模型</h3>
 <pre><code>Map:    (k1, v1)       → list(k2, v2)
@@ -144,7 +144,7 @@ Reduce: (k2, list(v2)) → list(v2)
 <h3 id="_4">执行流程</h3>
 <ol>
 <li><strong>输入分片</strong>：将输入数据分割为 M 个分片</li>
-<li><strong>Map 阶段</strong>：每个 Worker 处理一个分片，输出中间键值对</li>
+<li><strong>Map 阶段</strong>：每个 <a href="Worker Agent.html">Worker</a> 处理一个分片，输出中间键值对</li>
 <li><strong>Shuffle &amp; Sort</strong>：按中间键排序，将相同键的数据聚集</li>
 <li><strong>Reduce 阶段</strong>：对每个键执行 Reduce 函数</li>
 <li><strong>输出合并</strong>：结果存储在 R 个输出文件中</li>
@@ -152,8 +152,8 @@ Reduce: (k2, list(v2)) → list(v2)
 <h3 id="_5">核心特性</h3>
 <ul>
 <li><strong>自动并行化</strong>：Map 函数无状态，可完全并行</li>
-<li><strong>透明容错</strong>：Worker 故障自动重新调度</li>
-<li><strong>数据本地性</strong>：移动计算而非移动数据</li>
+<li><strong>透明容错</strong>：<a href="Worker Agent.html">Worker</a> 故障自动重新调度</li>
+<li><strong>数据本地性</strong>：移动<a href="计算.html">计算</a>而非移动数据</li>
 <li><strong>Combiner 优化</strong>：Map 端预聚合减少网络传输</li>
 <li><strong>落后者处理</strong>：备份执行减少慢节点影响</li>
 </ul>

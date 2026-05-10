@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>前置生成流程</strong>：通过 <a href="PRD 生成提示词.html">PRD 生成提示词</a> 在 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 启动前生成 prd.json，LLM 先提出 5-10 个澄清问题再生成文档，确保 Story 遵循 <a href="User Story 粒度原则.html">User Story 粒度原则</a>（单个<a href="上下文窗口.html">上下文窗口</a>内可完成）。</p>
 </li>
 <li>
-<p><strong>生成后验证</strong>：prd.json 需通过 Python 脚本验证——检查基本格式、必填字段（id/description/acceptanceCriteria/passes/priority）、无重复 ID、UI Story 包含 browser 验证步骤。</p>
+<p><strong>生成后验证</strong>：prd.json 需通过 <a href="Python.html">Python</a> 脚本验证——检查基本格式、必填字段（id/description/acceptanceCriteria/passes/priority）、无重复 ID、UI Story 包含 browser 验证步骤。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

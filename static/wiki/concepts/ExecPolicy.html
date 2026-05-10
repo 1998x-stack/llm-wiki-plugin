@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / ExecPolicy</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
@@ -138,10 +138,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_1">核心思想</h2>
 <p>传统做法是硬编码黑名单（脆弱、无法共享）。ExecPolicy 改为结构化规则文件（TOML），支持：
 - 版本控制（提交到 Git 与团队共享）
-- 内置单元测试（load time 自动验证）
+- 内置<a href="单元测试.html">单元测试</a>（load time 自动验证）
 - 三态决策：<code>allow</code> / <code>prompt</code> / <code>forbidden</code></p>
 <h2 id="_2">规则语法</h2>
-<p>每条规则包含以下字段（TOML 数组表格式）：<code>name</code>（规则名）、<code>prefix</code>（命令前缀匹配）、<code>decision</code>（allow/prompt/forbidden）、<code>justification</code>（原因说明）、<code>match</code>/<code>not_match</code>（load-time 单元测试用例）。</p>
+<p>每条规则包含以下字段（TOML 数组表格式）：<code>name</code>（规则名）、<code>prefix</code>（命令前缀匹配）、<code>decision</code>（allow/prompt/forbidden）、<code>justification</code>（原因说明）、<code>match</code>/<code>not_match</code>（load-time <a href="单元测试.html">单元测试</a>用例）。</p>
 <p><strong>前缀匹配语法</strong>：prefix 数组内嵌套数组表示"或"——例如 <code>["git", "log/status/diff"]</code> 匹配三个 git 只读命令；<code>["npm/yarn", "install"]</code> 同时匹配 npm 和 yarn 的 install 命令。</p>
 <h2 id="_3">三态决策</h2>
 <table>
@@ -158,20 +158,20 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td><code>prompt</code></td>
-<td>暂停，在 <a href="Codex TUI.html">Codex TUI</a> 显示 Approval Gate，等人类决策</td>
-</tr>
-<tr>
-<td><code>forbidden</code></td>
-<td>直接拒绝，并将 <code>justification</code>（含替代方案）返回给 LLM</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>forbidden</code> 的工程价值</strong>：LLM 收到 justification 后可自动纠错（如用 <code>--force-with-lease</code> 替代 <code>--force</code>），形成<strong>自动纠错循环</strong>。</p>
-<h2 id="_4">规则评估机制</h2>
-<ul>
-<li><strong>前缀树（Trie）匹配</strong>：O(k) 时间（k = 命令 token 数），load 时构建</li>
+<td>暂停，在 <a href="Codex TUI.html">Codex TUI</a> 显示 <span style="color:#e74c3c" title="broken link">Approval Gate UI&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;forbidden&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;直接拒绝，并将 &lt;code&gt;justification&lt;/code&gt;（含替代方案）返回给 LLM&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;forbidden&lt;/code&gt; 的工程价值&lt;/strong&gt;：LLM 收到 justification 后可自动纠错（如用 &lt;code&gt;--force-with-lease&lt;/code&gt; 替代 &lt;code&gt;--force&lt;/code&gt;），形成&lt;strong&gt;自动纠错循环&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;_4&quot;&gt;规则评估机制&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;[[前缀树（Trie）</span>匹配</strong>：O(k) 时间（k = 命令 token 数），load 时构建</li>
 <li><strong>优先级</strong>：更具体的规则优先（更长前缀）；同层 first-match</li>
-<li><strong>无匹配时</strong>：fallback 到 <code>approval_policy</code> 全局设置</li>
+<li><strong>无匹配时</strong>：fallback 到 <code>approval_policy</code> 全局<a href="Settings.html">设置</a></li>
 <li><strong>Host Executable 解析</strong>：<code>--resolve-host-executables</code> 绑定绝对路径，防止 PATH 欺骗攻击</li>
 </ul>
 <h2 id="_5">规则文件层次</h2>
@@ -214,7 +214,7 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 </tr>
 <tr>
 <td>新加的规则引入了 bug</td>
-<td><code>match/not_match</code> 单元测试在 load time 捕获</td>
+<td><code>match/not_match</code> <a href="单元测试.html">单元测试</a>在 load time 捕获</td>
 </tr>
 <tr>
 <td>规则被 PATH 欺骗绕过</td>
@@ -228,7 +228,7 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 </table>
 <h2 id="_8">工程哲学</h2>
 <blockquote>
-<p><strong>ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"</strong>。规则在加载时验证，在执行时机械应用。没有临时判断，没有模糊地带。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。</p>
+<p><strong>ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"</strong>。规则在加载时验证，在执行时机械应用。没有临时判断，没有<a href="弹性规则.html">模糊地带</a>。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。</p>
 </blockquote>
 <h2 id="_9">来源</h2>
 <ul>
@@ -238,7 +238,7 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
   </div>
   <div class="page-nav">
     <a href="Exchange 切块模式.html">&larr; Exchange 切块模式</a>
-    <a href="ExitPlanTool.html">ExitPlanTool &rarr;</a>
+    <a href="Execute.html">Execute &rarr;</a>
   </div>
 </div>
 </body>

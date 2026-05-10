@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>独立优化</strong>：每层独立优化，召回层的好候选可能被排序层忽略，排序层高分可能被重排层否决。</li>
 <li><strong>信息损失</strong>：各阶段由不同团队维护，端到端优化几乎不可能，信息在传递中不断丢失。</li>
 <li>
-<p><strong>Scaling 瓶颈</strong>：传统 DLRM 在约 200B 参数后性能饱和，无法通过增加计算量持续提升。</p>
+<p><strong>Scaling 瓶颈</strong>：传统 DLRM 在约 200B 参数后性能饱和，无法通过增加<a href="计算.html">计算</a>量持续提升。</p>
 </li>
 <li>
 <p><strong>与 <a href="生成式推荐.html">生成式推荐</a> 的对比</strong>：HSTU / GR 将召回和排序统一到单一序列生成模型中，消除了级联管道的阶段间信息损失。通过 <a href="../entities/M-FALCON.html">M-FALCON</a> 实现端到端推理，在相同预算下处理 285 倍复杂度。</p>

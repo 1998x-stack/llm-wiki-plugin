@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="cfl">CFL 条件</h1>
 <h2 id="_1">概述</h2>
-<p>CFL 条件（Courant-Friedrichs-Lewy Condition）由<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>、Kurt Friedrichs 和 Hans Lewy 于 1928 年发表。其核心陈述是：求解双曲型偏微分方程的<strong>显式有限差分格式</strong>要收敛，必须满足"数值信息传播速度不慢于物理信息传播速度"的约束，量化为 CFL 数 $\nu = c\Delta t / \Delta x \leq 1$。这一条件原本是出于纯数学目的（PDE 存在性证明）被发现的，却成为所有显式时间步进数值方法必须遵守的基本约束，是计算科学中最重要的稳定性判据之一。</p>
+<p>CFL 条件（Courant-Friedrichs-Lewy Condition）由<a href="../entities/理查德·柯朗.html">理查德·柯朗</a>、Kurt Friedrichs 和 Hans Lewy 于 1928 年发表。其核心陈述是：求解双曲型偏微分方程的<strong>显式有限差分格式</strong>要收敛，必须满足"数值信息传播速度不慢于物理信息传播速度"的约束，量化为 CFL 数 $\nu = c\Delta t / \Delta x \leq 1$。这一条件原本是出于纯数学目的（PDE 存在性证明）被发现的，却成为所有显式时间步进数值方法必须遵守的基本约束，是<a href="计算.html">计算</a>科学中最重要的稳定性判据之一。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">数学表述</h3>
 <p><strong>一维波动方程</strong>：$u_{tt} = c^2 u_{xx}$，显式中心差分格式</p>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\frac{\alpha \Delta t}{(\Delta x)^2} \leq \frac{1}{2}$$</p>
 <p>物理解释：扩散速度而非波速；约束更严格（$\Delta t \sim (\Delta x)^2$，空间步长减半时间步长须减四分之一）。</p>
 <h3 id="_6">历史意义：超前计算机时代的理论</h3>
-<p>CFL 论文发表于 1928 年——第一台电子计算机出现之前约 20 年。三位作者的初衷是<strong>纯数学</strong>：用差分方程作为工具证明 PDE 解的存在性，而非设计实际的计算算法。CFL 条件是证明过程中的"副产品"。</p>
+<p>CFL 论文发表于 1928 年——第一台电子<a href="计算.html">计算</a>机出现之前约 20 年。三位作者的初衷是<strong>纯数学</strong>：用差分方程作为工具证明 PDE 解的存在性，而非设计实际的<a href="计算.html">计算</a><a href="算法.html">算法</a>。CFL 条件是证明过程中的"副产品"。</p>
 <p>这是科学史上"基础研究意想不到的实用价值"的经典案例。当<a href="../entities/刘易斯·弗赖·理查森.html">刘易斯·弗赖·理查森</a>1922 年的数值天气预报产生荒谬结果时（预测气压变化 145 百帕 vs. 实际 &lt;1 百帕），原因之一正是他使用的时间步长违反了 CFL 条件——而此时 CFL 条件尚未被发现（1928 年）。</p>
 <h3 id="vs">显式 vs 隐式方法的核心权衡</h3>
 <table>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>无条件稳定（或宽松得多）</td>
 </tr>
 <tr>
-<td>每步计算</td>
+<td>每步<a href="计算.html">计算</a></td>
 <td>简单，天然并行</td>
 <td>需解线性方程组</td>
 </tr>
@@ -245,7 +245,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="CBOW（连续词袋模型）.html">&larr; CBOW（连续词袋模型）</a>
-    <a href="CREB.html">CREB &rarr;</a>
+    <a href="CI_CD流水线.html">CI_CD流水线 &rarr;</a>
   </div>
 </div>
 </body>

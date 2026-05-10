@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心方法</strong>：将用户的下一个行为建模为两个部分的组合——（1）基于最近一个行为的<a href="../concepts/马尔可夫链.html">马尔可夫链</a>转移（个性化序列模式）；（2）用户-物品的全局偏好（<a href="../concepts/矩阵分解.html">矩阵分解</a>）。通过分解转移张量实现高效计算。</p>
+<p><strong>核心方法</strong>：将用户的下一个行为建模为两个部分的组合——（1）基于最近一个行为的<a href="../concepts/马尔可夫链.html">马尔可夫链</a>转移（个性化序列模式）；（2）用户-物品的全局偏好（<a href="../concepts/矩阵分解.html">矩阵分解</a>）。通过分解转移张量实现高效<a href="../concepts/计算.html">计算</a>。</p>
 </li>
 <li>
 <p><strong>适用场景</strong>：在数据极度稀疏的场景下表现良好，因为模型的简约性（parsimony）天然适合低数据量环境。在 <a href="Amazon.html">Amazon</a> Beauty 等极稀疏数据集上，FPMC 曾优于 <a href="GRU4Rec.html">GRU4Rec</a> 等深度方法。</p>
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>根本局限</strong>：只能看到"最近一步"，完全无法捕获用户的长期偏好模式。例如用户三个月前购买的相机与当前浏览的镜头配件之间的关联，FPMC 无法建模。</p>
 </li>
 <li>
-<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：<a href="SASRec.html">SASRec</a> 论文提供了一个优美的理论分析——当将<a href="../concepts/Self-Attention机制.html">自注意力</a>块设置为零（退化为恒等映射）、使用非共享物品嵌入、移除<a href="../concepts/位置编码.html">位置编码</a>时，<a href="SASRec.html">SASRec</a> 退化为 FPMC。这说明 <a href="SASRec.html">SASRec</a> 是 FPMC 等经典模型的广义化。</p>
+<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：<a href="SASRec.html">SASRec</a> 论文提供了一个优美的理论分析——当将<a href="../concepts/Self-Attention机制.html">自注意力</a>块<a href="../concepts/Settings.html">设置</a>为零（退化为恒等映射）、使用非共享物品嵌入、移除<a href="../concepts/位置编码.html">位置编码</a>时，<a href="SASRec.html">SASRec</a> 退化为 FPMC。这说明 <a href="SASRec.html">SASRec</a> 是 FPMC 等经典模型的广义化。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：代表了<a href="../concepts/马尔可夫链.html">马尔可夫链</a>方法在<a href="../concepts/序列推荐.html">序列推荐</a>中的巅峰，后续被深度学习方法（<a href="GRU4Rec.html">GRU4Rec</a>、<a href="SASRec.html">SASRec</a> 等）全面超越，但在稀疏数据场景下仍是一个有效的基线。</p>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="FORTRAN 编译器论文.html">&larr; FORTRAN 编译器论文</a>
-    <a href="Factorization Machines.html">Factorization Machines &rarr;</a>
+    <a href="Facebook.html">Facebook &rarr;</a>
   </div>
 </div>
 </body>

@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
@@ -149,7 +149,29 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>transcript.jsonl</code></td>
-<td>完整对话记录（<span style="color:#e74c3c" title="broken link">JSONL</span> 格式选择原因</strong>：流式追加、崩溃安全（中断只丢当前行）、可用 <code>jq</code> 直接分析。</p>
+<td>完整对话记录（[[JSONL格式</td>
+</tr>
+<tr>
+<td><code>metadata.json</code></td>
+<td>Session ID、模型、workspace、sandbox [[Configuration</td>
+</tr>
+<tr>
+<td><code>plan.json</code></td>
+<td>Agent 任务计划快照</td>
+</tr>
+<tr>
+<td><code>approvals.log</code></td>
+<td>人类审批记录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>transcript.jsonl 示例格式</strong>：</p>
+<pre><code class="language-jsonl">{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;帮我重构 src/auth/ 目录&quot;,&quot;ts&quot;:1735000000}
+{&quot;role&quot;:&quot;assistant&quot;,&quot;content&quot;:&quot;我来分析当前结构...&quot;,&quot;tool_calls&quot;:[...],&quot;ts&quot;:1735000010}
+{&quot;role&quot;:&quot;tool&quot;,&quot;tool_use_id&quot;:&quot;call_01&quot;,&quot;content&quot;:&quot;&lt;ls 输出&gt;&quot;,&quot;ts&quot;:1735000011}
+{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;[APPROVAL] 同意执行文件重构&quot;,&quot;ts&quot;:1735000025}
+</code></pre>
+<p><strong><a href="JSONL格式.html">JSONL</a> 格式选择原因</strong>：流式追加、崩溃安全（中断只丢当前行）、可用 <code>jq</code> 直接分析。</p>
 <h2 id="resume">Resume 机制</h2>
 <pre><code class="language-bash">codex resume          # 交互选择最近会话列表
 codex resume --last   # 直接跳最近会话
@@ -168,10 +190,12 @@ codex resume &lt;id&gt;     # 指定 Session ID
 <h2 id="memories-session">Memories 系统（跨 Session 长期记忆）</h2>
 <p><code>~/.codex/memories/</code> — 跨 Session 的长期记忆层（workspace_prefs.md、global_knowledge.md）。在 <code>workspace-write</code> sandbox 模式下自动添加到可写路径。Agent 通过工具调用写入，下次启动时自动注入初始上下文。</p>
 <h2 id="exec">exec 模式</h2>
-<pre><code class="language-bash">codex exec &quot;生成单元测试&quot;           # 非交互，结果流式输出到 stdout
-codex exec --output jsonl &quot;重构&quot;    # JSONL 输出（适合脚本处理）
-codex exec --ephemeral &quot;快速问答&quot;   # 不持久化（CI/CD 环境使用）
+<pre><code class="language-bash">codex exec &quot;生成单元测试&quot;                    # 非交互，结果流式输出到 stdout
+codex exec --output jsonl &quot;重构&quot;             # JSONL 输出（适合脚本处理）
+codex exec --ephemeral &quot;快速问答&quot;            # 不持久化（CI/CD 环境使用）
+codex exec resume --last &quot;继续上次的工作&quot;     # 非交互模式恢复会话
 </code></pre>
+<p><strong><code>--ephemeral</code> 的工程价值</strong>：CI/CD 环境中不应有 Session 残留。<code>--ephemeral</code> 保证执行后磁盘清洁，适合自动化流水线中的临时执行。</p>
 <h2 id="session_1">Session 生命周期</h2>
 <p>CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → 新 ACTIVE</p>
 <h2 id="_2">减少不确定性的方式</h2>
@@ -211,16 +235,15 @@ codex exec --ephemeral &quot;快速问答&quot;   # 不持久化（CI/CD 环境�
 </table>
 <h2 id="_3">工程哲学</h2>
 <blockquote>
-<p><strong>Transcript 只追加，不修改</strong>——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断工作记忆"能力。</p>
+<p><strong>Transcript 只追加，不修改</strong>——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断<a href="工作记忆.html">工作记忆</a>"能力。</p>
 </blockquote>
 <h2 id="_4">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/05_codex_session_manager.md</span></li>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/05_codex_session_manager.md</span> — Codex CLI 深度解析 Vol.5：Session Manager（详细版）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/05_codex_session_manager.md</span> — Codex CLI 深度解析 Vol.5：Session Manager</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Codex TUI.html">&larr; Codex TUI</a>
+    <a href="Codex Wire Protocol解耦.html">&larr; Codex Wire Protocol解耦</a>
     <a href="Codex多Agent调度.html">Codex多Agent调度 &rarr;</a>
   </div>
 </div>

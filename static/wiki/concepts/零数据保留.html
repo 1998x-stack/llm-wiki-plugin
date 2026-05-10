@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="zero-data-retention-zdr">零数据保留（Zero Data Retention / ZDR）</h1>
 <h2 id="_1">概述</h2>
-<p>零数据保留（ZDR）是 <a href="../entities/Anthropic.html">Anthropic</a> 为企业客户提供的数据隐私协议，确保通过特定 API 功能发送的数据在 API 响应返回后不会被存储，满足合规和隐私要求。</p>
+<p>零数据保留（ZDR）是 <a href="../entities/Anthropic.html">Anthropic</a> 为企业客户提供的<a href="隐私保护.html">数据隐私</a>协议，确保通过特定 API 功能发送的数据在 API 响应返回后不会被存储，满足合规和隐私要求。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心承诺</h3>
 <p>当组织签订 ZDR 协议后：
 - 通过符合条件的功能发送的数据<strong>不会在 API 响应后保留</strong>
 - 数据仅用于生成即时响应，不进入训练集或日志存储
-- 适用于对数据隐私有严格要求的企业场景</p>
+- 适用于对<a href="隐私保护.html">数据隐私</a>有严格要求的企业场景</p>
 <h3 id="_4">适用功能</h3>
 <p>根据 <a href="../entities/Anthropic.html">Anthropic</a> 官方文档，<a href="上下文压缩.html">上下文压缩</a> 功能符合 ZDR 条件。其他符合条件的功能需参考 <a href="../entities/Anthropic.html">Anthropic</a> 官方的 <a href="https://platform.claude.com/docs/en/build-with-claude/api-and-data-retention">API 和数据保留文档</a>。</p>
 <h3 id="_5">工程意义</h3>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="零和博弈.html">&larr; 零和博弈</a>
-    <a href="鞍点（Saddle Point）.html">鞍点（Saddle Point） &rarr;</a>
+    <a href="零样本学习.html">零样本学习 &rarr;</a>
   </div>
 </div>
 </body>

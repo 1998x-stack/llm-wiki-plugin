@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent-subagent-offloading">子 Agent 卸载（Subagent Offloading）</h1>
 <h2 id="_1">概述</h2>
-<p>子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是<a href="上下文策略.html">上下文策略</a>之一，将消耗大量 tokens 但只需要结论的操作（如运行测试套件、编译、截图分析）卸载给子 Agent 执行，主 Agent 仅接收精简的结论摘要，从而将主上下文的增长从数万 tokens 压缩到数十 tokens。</p>
+<p>子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是<a href="上下文策略.html">上下文策略</a>之一，将消耗大量 tokens 但只需要结论的操作（如运行测试套件、编译、截图分析）卸载给<span style="color:#e74c3c" title="broken link">子 Agent</span> 执行，主 Agent 仅接收精简的结论摘要，从而将主上下文的增长从数万 tokens 压缩到数十 tokens。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心机制</strong>：主 Agent 作为调度层保持精简，将 token 密集型操作 spawn 给子 Agent 执行。子 Agent 在执行层消耗大量 tokens 但不污染主上下文，最终返回简洁结论。例如：</li>
-<li>主 Agent："请用子 Agent 运行完整测试套件，告诉我哪些通过，哪些失败"</li>
-<li>子 Agent：执行 <code>npm test</code> → 生成 50,000 字符测试输出 → 总结为 "3 pass, 1 fail: auth.test.js line 45"</li>
+<li><strong>核心机制</strong>：主 Agent 作为调度层保持精简，将 token 密集型操作 spawn 给<span style="color:#e74c3c" title="broken link">子 Agent</span> 执行。<span style="color:#e74c3c" title="broken link">子 Agent</span> 在执行层消耗大量 tokens 但不污染主上下文，最终返回简洁结论。例如：</li>
+<li>主 Agent："请用<span style="color:#e74c3c" title="broken link">子 Agent</span> 运行完整测试套件，告诉我哪些通过，哪些失败"</li>
+<li><span style="color:#e74c3c" title="broken link">子 Agent</span>：执行 <code>npm test</code> → 生成 50,000 字符测试输出 → 总结为 "3 pass, 1 fail: auth.test.js line 45"</li>
 <li>
 <p>主上下文增加：~20 tokens（而非 50,000）</p>
 </li>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
    | Git diff 大型变更 | ~30,000 | ~100 | 300:1 |</p>
 </li>
 <li>
-<p><strong>与 <a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> 的关系</strong>：子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是 Orchestrator-Subagent 模式在<a href="Context Management.html">上下文管理</a>场景的具体应用。调度层（Orchestrator）负责决策和协调，执行层（Subagent）负责消耗性操作，两者通过精简的结论摘要通信。</p>
+<p><strong>与 <a href="Orchestrator-Subagent-Pattern.html">Orchestrator-Subagent-Pattern</a> 的关系</strong>：子 <a href="子 Agent 模式（Sub-Agent Pattern）.html">Agent 卸载</a>是 <a href="Orchestrator Agent.html">Orchestrator</a>-Subagent 模式在<a href="Context Management.html">上下文管理</a>场景的具体应用。调度层（<a href="Orchestrator Agent.html">Orchestrator</a>）负责决策和协调，执行层（Subagent）负责消耗性操作，两者通过精简的结论摘要通信。</p>
 </li>
 <li>
 <p><strong>设计原则</strong>：适合卸载的操作满足"消耗大量 tokens 但只需要结论"的特征。如果操作需要主 Agent 持续参与中间过程，则不适合卸载。</p>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="婚姻挤压理论.html">&larr; 婚姻挤压理论</a>
+    <a href="子 Agent & 多 Agent 系统.html">&larr; 子 Agent & 多 Agent 系统</a>
     <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern） &rarr;</a>
   </div>
 </div>

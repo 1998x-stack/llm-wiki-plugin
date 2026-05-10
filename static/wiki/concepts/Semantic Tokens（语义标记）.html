@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="semantic-tokens">Semantic Tokens（语义标记）</h1>
 <h2 id="_1">概述</h2>
-<p>LSP 3.16 引入的语义标记机制，通过语言服务器分析代码语义而非仅依赖 TextMate 语法正则，为编辑器提供精确的语法高亮和语义分类信息。</p>
+<p>LSP 3.16 引入的语义标记机制，通过语言<a href="服务.html">服务</a>器分析代码语义而非仅依赖 TextMate 语法正则，为编辑器提供精确的语法高亮和语义分类信息。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>Delta 编码格式</strong>：服务端返回 5 个整数一组的数组 <code>[deltaLine, deltaStartChar, length, tokenType, tokenModifiers]</code>。deltaLine 和 deltaStartChar 相对于上一个 token 的位置，实现紧凑的增量编码。</p>
+<p><strong>Delta 编码格式</strong>：<a href="服务.html">服务</a>端返回 5 个整数一组的数组 <code>[deltaLine, deltaStartChar, length, tokenType, tokenModifiers]</code>。deltaLine 和 deltaStartChar 相对于上一个 token 的位置，实现紧凑的增量编码。</p>
 </li>
 <li>
 <p><strong>Token 类型</strong>：包括 namespace、type、class、function、method、property、parameter、variable、keyword 等标准类型，由 legend 定义。</p>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>优势</strong>：相比 TextMate 语法（基于正则表达式的文本匹配），Semantic Tokens 能<a href="../entities/区分.html">区分</a>同名不同义的标识符（如局部变量 vs 全局变量、函数声明 vs 函数调用），提供更精确的着色。</p>
 </li>
 <li>
-<p><strong>客户端支持</strong>：Neovim、VS Code、Emacs 等主流编辑器均支持 Semantic Tokens 渲染。</p>
+<p><strong>客户端支持</strong>：Neovim、<a href="../entities/VS Code.html">VS Code</a>、Emacs 等主流编辑器均支持 Semantic Tokens 渲染。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -165,8 +165,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Self-Attention机制.html">&larr; Self-Attention机制</a>
-    <a href="Session 交接机制.html">Session 交接机制 &rarr;</a>
+    <a href="Self-Healing Memory.html">&larr; Self-Healing Memory</a>
+    <a href="Separate Query from Modifier.html">Separate Query from Modifier &rarr;</a>
   </div>
 </div>
 </body>

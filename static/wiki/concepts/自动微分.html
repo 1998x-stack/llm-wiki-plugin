@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">自动微分</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>自动微分（AutoDiff）是<a href="反向传播.html">反向传播</a>算法的工程化实现，通过记录计算图并自动应用<a href="链式法则.html">链式法则</a>，无需手动推导即可精确计算任意函数的梯度。PyTorch 和 <a href="../entities/TensorFlow.html">TensorFlow</a> 等深度学习框架的核心即此技术。</p>
+<p>自动微分（AutoDiff）是<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>的工程化实现，通过记录<a href="计算.html">计算</a>图并自动应用<a href="链式法则.html">链式法则</a>，无需手动推导即可精确<a href="计算.html">计算</a>任意函数的梯度。<a href="../entities/PyTorch.html">PyTorch</a> 和 <a href="../entities/TensorFlow.html">TensorFlow</a> 等深度学习框架的核心即此技术。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>基本原理</strong>：自动微分将<a href="../maps/数值分析.html">数值计算</a>分解为基本操作（加、减、乘、除、指数等）的组合，构建计算图（computational graph）。前向传播时记录操作序列，<a href="反向传播.html">反向传播</a>时从输出到输入逐节点应用<a href="链式法则.html">链式法则</a>计算梯度。与符号微分不同，AutoDiff 产生的是数值梯度而非解析表达式。</li>
-<li><strong>与<a href="反向传播.html">反向传播</a>的关系</strong>：<a href="反向传播.html">反向传播</a>本质上是反向模式自动微分（reverse-mode autodiff）在神经网络中的特例。当输出是标量（如损失函数）而输入是高维向量（如百万级参数）时，反向模式只需一次前向+一次反向即可计算所有梯度，效率远超数值微分的 O(N) 次前向传播。</li>
-<li><strong>主流框架实现</strong>：PyTorch 使用动态计算图（define-by-run），每次前向传播时即时构建计算图，灵活支持控制流（if/for）；<a href="../entities/TensorFlow.html">TensorFlow</a> 早期使用静态计算图（define-then-run），先定义完整计算图再执行，便于优化但灵活性较差（Eager Execution 后改为动态模式）。两者底层都实现了<a href="反向传播.html">反向传播</a>的自动微分引擎。</li>
-<li><strong>数值微分对比</strong>：数值微分 ∂L/∂wⱼ ≈ [L(w+ε·eⱼ) - L(w)]/ε 对每个参数需做一次前向传播，百万参数需百万次前向——不可接受。自动微分只需一次前向+一次反向，计算量与两次前向传播相当，速度提升 N 倍（N 为参数量）。</li>
+<li><strong>基本原理</strong>：自动微分将<a href="../maps/数值分析.html">数值计算</a>分解为基本操作（加、减、乘、除、指数等）的组合，构建<a href="计算.html">计算</a>图（computational graph）。前向传播时记录操作序列，<a href="反向传播.html">反向传播</a>时从输出到输入逐节点应用<a href="链式法则.html">链式法则</a><a href="计算.html">计算</a>梯度。与符号微分不同，AutoDiff 产生的是数值梯度而非解析表达式。</li>
+<li><strong>与<a href="反向传播.html">反向传播</a>的关系</strong>：<a href="反向传播.html">反向传播</a>本质上是反向模式自动微分（reverse-mode autodiff）在神经网络中的特例。当输出是标量（如损失函数）而输入是高维向量（如百万级参数）时，反向模式只需一次前向+一次反向即可<a href="计算.html">计算</a>所有梯度，效率远超数值微分的 O(N) 次前向传播。</li>
+<li><strong>主流框架实现</strong>：<a href="../entities/PyTorch.html">PyTorch</a> 使用动态<a href="计算.html">计算</a>图（define-by-run），每次前向传播时即时构建<a href="计算.html">计算</a>图，灵活支持控制流（if/for）；<a href="../entities/TensorFlow.html">TensorFlow</a> 早期使用静态<a href="计算.html">计算</a>图（define-then-run），先定义完整<a href="计算.html">计算</a>图再执行，便于优化但灵活性较差（Eager Execution 后改为动态模式）。两者底层都实现了<a href="反向传播.html">反向传播</a>的自动微分引擎。</li>
+<li><strong>数值微分对比</strong>：数值微分 ∂L/∂wⱼ ≈ [L(w+ε·eⱼ) - L(w)]/ε 对每个参数需做一次前向传播，百万参数需百万次前向——不可接受。自动微分只需一次前向+一次反向，<a href="计算.html">计算</a>量与两次前向传播相当，速度提升 N 倍（N 为参数量）。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>
@@ -152,13 +152,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="反向传播.html">反向传播</a> — implements</li>
 <li><a href="链式法则.html">链式法则</a> — implements</li>
-<li><span style="color:#e74c3c" title="broken link">PyTorch</span> — uses</li>
+<li><a href="../entities/PyTorch.html">PyTorch</a> — uses</li>
 <li><a href="../entities/TensorFlow.html">TensorFlow</a> — uses</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="自创生（Autopoiesis）.html">&larr; 自创生（Autopoiesis）</a>
-    <a href="自我实现预言.html">自我实现预言 &rarr;</a>
+    <a href="自回归模型.html">自回归模型 &rarr;</a>
   </div>
 </div>
 </body>

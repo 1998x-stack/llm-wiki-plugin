@@ -135,18 +135,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">卡尔曼滤波</h1>
 <h2 id="_2">概述</h2>
-<p>卡尔曼滤波（Kalman Filter, KF）是一种递归式的最优状态估计算法，由 <a href="../entities/Rudolf.html">Rudolf</a> E. Kalman 于 1960 年提出。该方法通过将系统的动态模型与带有噪声的观测数据相结合，以最小均方误差（MMSE）准则估计线性动态系统的真实状态。作为现代控制理论和信号处理的基石，卡尔曼滤波成功解决了非平稳过程和多变量系统的估计问题，广泛应用于从阿波罗登月导航到现代机器人 SLAM（<a href="SLAM.html">同时定位与建图</a>）及自动驾驶传感器融合等关键领域。</p>
+<p>卡尔曼滤波（<a href="Kalman Filter.html">Kalman Filter</a>, KF）是一种递归式的最优状态估<a href="计算.html">计算</a>法，由 <a href="../entities/Rudolf.html">Rudolf</a> E. Kalman 于 1960 年提出。该方法通过将系统的动态模型与带有噪声的观测数据相结合，以最小均方误差（MMSE）准则估计线性动态系统的真实状态。作为现代控制理论和信号处理的基石，卡尔曼滤波成功解决了非平稳过程和多变量系统的估计问题，广泛应用于从阿波罗登月导航到现代机器人 SLAM（<a href="SLAM.html">同时定位与建图</a>）及自动驾驶传感器融合等关键领域。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="1">1. 历史背景与范式转换</h3>
-<p>在卡尔曼滤波提出之前，信号处理领域的主流方法是<a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a>（<a href="../entities/诺伯特·维纳.html">Norbert Wiener</a>）提出的<strong>Wiener 滤波</strong>。然而，Wiener 滤波存在显著局限：它仅适用于平稳随机过程，要求无限长的数据记录，且需在频率域求解复杂的 Wiener-Hopf 积分方程，难以处理多变量系统。随着太空竞赛的开启和数字计算机的出现，航天器导航急需一种能处理非平稳轨迹、利用有限数据并进行实时递归计算的算法。</p>
-<p>Kalman 的突破性贡献在于将滤波问题从<strong>频率域</strong>转移到了<strong>时间域的状态空间</strong>。这一<a href="规范化理论.html">范式</a>转换使得算法能够自然地处理多变量系统、非平稳统计特性，并完美适配数字计算机的递推计算需求。</p>
+<p>在卡尔曼滤波提出之前，信号处理领域的主流方法是<a href="../entities/诺伯特·维纳.html">诺伯特·维纳</a>（<a href="../entities/诺伯特·维纳.html">Norbert Wiener</a>）提出的<strong>Wiener 滤波</strong>。然而，Wiener 滤波存在显著局限：它仅适用于平稳随机过程，要求无限长的数据记录，且需在频率域求解复杂的 Wiener-Hopf 积分方程，难以处理多变量系统。随着太空竞赛的开启和数字<a href="计算.html">计算</a>机的出现，航天器导航急需一种能处理非平稳轨迹、利用有限数据并进行实时递归<a href="计算.html">计算</a>的<a href="算法.html">算法</a>。</p>
+<p>Kalman 的突破性贡献在于将滤波问题从<strong>频率域</strong>转移到了<strong>时间域的状态空间</strong>。这一<a href="规范化理论.html">范式</a>转换使得<a href="算法.html">算法</a>能够自然地处理多变量系统、非平稳统计特性，并完美适配数字<a href="计算.html">计算</a>机的递推<a href="计算.html">计算</a>需求。</p>
 <h3 id="2">2. 数学原理与核心算法</h3>
 <p>卡尔曼滤波针对如下线性动态系统：
 - <strong>系统方程</strong>：(k+1) = \Phi x(k) + w(k)$，其中 $ 为过程噪声。
 - <strong>观测方程</strong>：(k) = H x(k) + v(k)$，其中 $ 为测量噪声。</p>
-<p>算法核心是一个优雅的两步递推过程：
+<p><a href="算法.html">算法</a>核心是一个优雅的两步递推过程：
 1.  <strong>预测步骤（Predict）</strong>：利用系统动力学模型 $\Phi$ 预测下一时刻的状态 $\hat{x}(k|k-1)$ 及其误差协方差 (k|k-1)$。此步骤引入了过程噪声协方差 $ 来量化模型的不确定性。
-2.  <strong>更新步骤（Update）</strong>：当新的观测值 (k)$ 到达时，计算<strong>卡尔曼增益</strong> (k)$。增益<a href="矩阵.html">矩阵</a>自动平衡"相信模型预测"与"相信传感器测量"的权重。随后利用增益修正预测值，得到最优状态估计 $\hat{x}(k|k)$ 并更新协方差 (k|k)$。</p>
+2.  <strong>更新步骤（Update）</strong>：当新的观测值 (k)$ 到达时，<a href="计算.html">计算</a><strong>卡尔曼增益</strong> (k)$。增益<a href="矩阵.html">矩阵</a>自动平衡"相信模型预测"与"相信传感器测量"的权重。随后利用增益修正预测值，得到最优状态估计 $\hat{x}(k|k)$ 并更新协方差 (k|k)$。</p>
 <p>其中，误差协方差<a href="矩阵.html">矩阵</a> $ 的演化遵循著名的<strong>Riccati 方程</strong>，这是一个非线性差分方程，其解直接决定了最优滤波器的系数。</p>
 <h3 id="3">3. 最优性与假设条件</h3>
 <p>Kalman 严格证明了在以下条件下，该滤波器是<strong>最小均方误差（MMSE）最优</strong>的：
@@ -158,9 +158,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>原始卡尔曼滤波的局限性主要在于其对<strong>线性</strong>和<strong>高斯噪声</strong>的强假设。实际物理系统大多是非线性的，且噪声可能呈现非<a href="正态分布.html">高斯分布</a>（如离群值）。为此，学界发展了多种扩展版本：
 - <strong>扩展卡尔曼滤波（EKF）</strong>：通过对非线性函数进行一阶 Taylor 展开实现局部线性化，是机器人定位和 SLAM 的标准工具。
 - <strong>无迹卡尔曼滤波（UKF）</strong>：使用确定性采样点（Sigma 点）来逼近状态分布的非线性变换，避免了求导过程，精度通常优于 EKF。
-- <strong>粒子滤波</strong>：基于蒙特卡洛采样，能够处理任意非线性和非<a href="正态分布.html">高斯分布</a>，但计算成本较高。</p>
+- <strong>粒子滤波</strong>：基于蒙特卡洛采样，能够处理任意非线性和非<a href="正态分布.html">高斯分布</a>，但<a href="计算.html">计算</a>成本较高。</p>
 <h3 id="5">5. 应用与影响</h3>
-<p>卡尔曼滤波最著名的一次应用是在<strong>阿波罗计划</strong>中。NASA 工程师 Stanley Schmidt 将其用于飞船导航系统，融合陀螺仪、加速度计和星敏感器数据，帮助人类成功登月。如今，它已成为机器人感知、惯性导航、经济时间序列预测、雷达跟踪及计算机视觉目标跟踪等领域的标准算法。即使在深度学习时代，由于其可解释性和在小数据场景下的可靠性，卡尔曼滤波在安全关键系统中依然不可替代。</p>
+<p>卡尔曼滤波最著名的一次应用是在<strong>阿波罗计划</strong>中。NASA 工程师 Stanley Schmidt 将其用于飞船导航系统，融合陀螺仪、加速度计和星敏感器数据，帮助人类成功登月。如今，它已成为机器人感知、惯性导航、经济<a href="Time Series Analysis.html">时间序列</a>预测、雷达跟踪及<a href="计算.html">计算</a>机视觉目标跟踪等领域的标准<a href="算法.html">算法</a>。即使在深度学习时代，由于其可解释性和在小数据场景下的可靠性，卡尔曼滤波在安全关键系统中依然不可替代。</p>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/02-kalman-filter-linear-filtering.md</span></li>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="单向陷门函数.html">&larr; 单向陷门函数</a>
+    <a href="博客文章提纲模板.html">&larr; 博客文章提纲模板</a>
     <a href="印象管理.html">印象管理 &rarr;</a>
   </div>
 </div>

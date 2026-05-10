@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">链式法则</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>链式法则是微积分中复合函数求导的基本法则：若 y = f(g(x))，则 dy/dx = f'(g(x))·g'(x)。在深度学习中，它是<a href="反向传播.html">反向传播</a>算法的数学基础，用于计算损失函数对网络中每个权重的梯度。</p>
+<p>链式法则是微积分中复合函数求导的基本法则：若 y = f(g(x))，则 dy/dx = f'(g(x))·g'(x)。在深度学习中，它是<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>的数学基础，用于<a href="计算.html">计算</a>损失函数对网络中每个权重的梯度。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>数学定义</strong>：对于复合函数 L = f(g(h(x)))，其对 x 的导数为 ∂L/∂x = (∂L/∂f)·(∂f/∂g)·(∂g/∂h)·(∂h/∂x)。每一层只需计算局部导数并相乘，即可得到全局梯度。</li>
+<li><strong>数学定义</strong>：对于复合函数 L = f(g(h(x)))，其对 x 的导数为 ∂L/∂x = (∂L/∂f)·(∂f/∂g)·(∂g/∂h)·(∂h/∂x)。每一层只需<a href="计算.html">计算</a>局部导数并相乘，即可得到全局梯度。</li>
 <li><strong>在神经网络中的应用</strong>：设两层网络的损失 L 关于第一层权重 W₁ 的梯度：∂L/∂W₁ = (∂L/∂ŷ)·(∂ŷ/∂h)·(∂h/∂W₁)，分别对应输出误差、输出层向后传的梯度、局部梯度。这正是<a href="反向传播.html">反向传播</a>的核心机制。</li>
-<li><strong>计算效率</strong>：链式法则使梯度的计算可以复用中间结果，避免了数值微分中对每个参数独立做前向传播的 O(N) 复杂度，将整体计算量降至 O(1) 次前向传播。<a href="自动微分.html">自动微分</a>系统（如 PyTorch 的 Autograd）本质上是对链式法则的工程化实现。</li>
-<li><strong>反向模式 vs 前向模式</strong>：深度学习使用反向模式（reverse-mode）<a href="自动微分.html">自动微分</a>，即先做前向传播记录计算图，再从输出向输入<a href="反向传播.html">反向传播</a>梯度。当输出维度远小于输入维度时（如标量损失对百万参数），反向模式比前向模式高效得多。</li>
+<li><strong><a href="计算.html">计算</a>效率</strong>：链式法则使梯度的<a href="计算.html">计算</a>可以复用中间结果，避免了数值微分中对每个参数独立做前向传播的 O(N) 复杂度，将整体<a href="计算.html">计算</a>量降至 O(1) 次前向传播。<a href="自动微分.html">自动微分</a>系统（如 <a href="../entities/PyTorch.html">PyTorch</a> 的 Autograd）本质上是对链式法则的工程化实现。</li>
+<li><strong>反向模式 vs 前向模式</strong>：深度学习使用反向模式（reverse-mode）<a href="自动微分.html">自动微分</a>，即先做前向传播记录<a href="计算.html">计算</a>图，再从输出向输入<a href="反向传播.html">反向传播</a>梯度。当输出维度远小于输入维度时（如标量损失对百万参数），反向模式比前向模式高效得多。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="铁笼.html">&larr; 铁笼</a>
-    <a href="镜像神经元.html">镜像神经元 &rarr;</a>
+    <a href="错误处理.html">错误处理 &rarr;</a>
   </div>
 </div>
 </body>

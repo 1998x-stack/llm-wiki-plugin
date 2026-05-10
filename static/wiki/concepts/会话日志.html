@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="session-log">会话日志（Session Log）</h1>
 <h2 id="_1">概述</h2>
-<p>会话日志是存在于 Claude <a href="上下文窗口.html">上下文窗口</a>之外的持久化上下文对象，以追加式事件流记录所有发生的事件。与压缩或裁剪等不可逆的上下文决策不同，会话日志保证上下文可持久化、可查询、可回溯。</p>
+<p>会话日志是存在于 <a href="../entities/Claude_Code.html">Claude</a> <a href="上下文窗口.html">上下文窗口</a>之外的持久化上下文对象，以追加式事件流记录所有发生的事件。与压缩或裁剪等不可逆的上下文决策不同，会话日志保证上下文可持久化、可查询、可回溯。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心接口</h3>
 <table>
@@ -158,13 +158,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_4">与上下文窗口的关系</h3>
 <blockquote>
-<p>"会话不是 Claude 的<a href="上下文窗口.html">上下文窗口</a>。"</p>
+<p>"会话不是 <a href="../entities/Claude_Code.html">Claude</a> 的<a href="上下文窗口.html">上下文窗口</a>。"</p>
 </blockquote>
-<p>长周期任务经常超出 Claude 的<a href="上下文窗口.html">上下文窗口</a>长度。标准的应对方式（压缩、<a href="记忆工具.html">记忆工具</a>、上下文裁剪）都涉及<strong>不可逆的上下文保留/丢弃决策</strong>。但很难知道未来轮次需要哪些 token。</p>
+<p>长周期任务经常超出 <a href="../entities/Claude_Code.html">Claude</a> 的<a href="上下文窗口.html">上下文窗口</a>长度。标准的应对方式（压缩、<a href="记忆工具.html">记忆工具</a>、上下文裁剪）都涉及<strong>不可逆的上下文保留/丢弃决策</strong>。但很难知道未来轮次需要哪些 token。</p>
 <p>会话日志提供了不同的方案：
 - 上下文作为<strong>存在于<a href="上下文窗口.html">上下文窗口</a>之外的对象</strong>持久化存储
 - 大脑可通过 <code>getEvents()</code> 灵活查询：从上次停止处继续、回退到特定事件前查看前因、在执行特定动作前重读上下文
-- 任何获取的事件可在 harness 中转换后再传入 Claude 的<a href="上下文窗口.html">上下文窗口</a></p>
+- 任何获取的事件可在 harness 中转换后再传入 <a href="../entities/Claude_Code.html">Claude</a> 的<a href="上下文窗口.html">上下文窗口</a></p>
 <h3 id="context-engineering">与 Context Engineering 的对比</h3>
 <table>
 <thead>

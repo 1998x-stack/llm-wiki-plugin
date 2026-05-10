@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>渲染层</td>
-<td>Ratatui / 原生终端，全屏 alternate screen mode</td>
+<td><a href="../entities/Ratatui.html">Ratatui</a> / 原生终端，全屏 alternate screen mode</td>
 </tr>
 <tr>
 <td>事件处理层</td>
@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="composer">Composer（输入框）</h3>
 <ul>
 <li>支持图片拖入（design spec、截图）</li>
-<li><code>@</code> 引用 <a href="Agent Skills.html">Skills</a>、MCP 工具、代码片段</li>
+<li><code>@</code> 引用 <a href="../entities/Agent Skills.html">Skills</a>、MCP 工具、代码片段</li>
 <li>Draft 历史：<code>Up/Down</code> 恢复之前草稿（含图片附件）</li>
 <li><code>Ctrl+L</code> 清屏不清上下文（≠ <code>/clear</code> 会开新 session）</li>
 </ul>
@@ -186,24 +186,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>untrusted</code></td>
-<td>只允许已知安全的只读操作自动执行</td>
-</tr>
-<tr>
-<td><code>on-request</code></td>
-<td>需要时才暂停（推荐日常开发）</td>
-</tr>
-<tr>
-<td><code>never</code></td>
-<td>全自动，配合外部沙箱使用</td>
-</tr>
-<tr>
-<td><code>granular</code></td>
-<td>精细到每类动作独立配置</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">斜杠命令系统</h3>
-<p>内置"内部 CLI"：<code>/model</code>（切换模型）、<code>/clear</code>（新会话）、<code>/review</code>（独立 Agent 做 <a href="Code-Review-for-Claude-Code.html">Code Review</a>）、<code>/status</code>、<code>/copy</code>、<code>/theme</code>、<code>/permissions</code>（只读规划模式）、<code>/plugins</code>、<code>/title</code>、<code>/exit</code>。</p>
+<td>只允许已知安全的只<span style="color:#e74c3c" title="broken link">Code Review</span>）、<code>/status</code>、<code>/copy</code>、<code>/theme</code>、<code>/permissions</code>（只读规划模式）、<code>/plugins</code>、<code>/title</code>、<code>/exit</code>。</p>
 <h2 id="alternate-screen">Alternate Screen 模式</h2>
 <p>TUI 默认使用终端 alternate screen buffer（类似 vim），全屏不污染 shell history，退出后恢复。可通过 <code>--no-alternate-screen</code> 或 <code>tui.alternate_screen = false</code> 禁用。</p>
 <h2 id="app-server">App Server 模式</h2>
@@ -237,17 +220,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>不知道 Agent 用的什么模型</td>
-<td><code>/status</code> 实时展示配置摘要</td>
-</tr>
-<tr>
-<td>Draft 写了一半，意外关闭</td>
-<td>Draft history 自动保存，Up/Down 恢复</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_5">设计哲学</h2>
-<blockquote>
-<p><strong>TUI 的本质是"人类监督带宽的最大化"</strong>——Agent 速度远超人类审阅速度，TUI 在关键决策点精确呈现恰好需要的上下文，让人类在 2 秒内做出正确判断。</p>
+<td><code>/status</code> 实时展示<span style="color:#e74c3c" title="broken link">Configuration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Draft 写了一半，意外关闭&lt;/td&gt;
+&lt;td&gt;Draft history 自动保存，Up/Down 恢复&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;_5&quot;&gt;设计哲学&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TUI 的本质是&quot;[[人类监督带宽</span>的最大化"</strong>——Agent 速度远超人类审阅速度，TUI 在关键决策点精确呈现恰好需要的上下文，让人类在 2 秒内做出正确判断。</p>
 </blockquote>
 <p>三原则：
 1. <strong>最小化审批摩擦</strong> — 常见的安全操作自动放行
@@ -261,8 +244,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Code-Review-for-Claude-Code.html">&larr; Code-Review-for-Claude-Code</a>
-    <a href="Codex会话管理器.html">Codex会话管理器 &rarr;</a>
+    <a href="CodeAct.html">&larr; CodeAct</a>
+    <a href="Codex Wire Protocol解耦.html">Codex Wire Protocol解耦 &rarr;</a>
   </div>
 </div>
 </body>

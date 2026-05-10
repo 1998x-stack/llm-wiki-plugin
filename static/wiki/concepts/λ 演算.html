@@ -135,32 +135,32 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">λ 演算</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/阿隆佐·邱奇.html">阿隆佐·邱奇</a>在1930年代发明的形式系统，用函数抽象和应用来刻画计算的本质。尽管语法极简（只有变量、函数抽象和应用三种构造），λ 演算被证明与<a href="图灵机.html">图灵机</a>完全等价，是<a href="函数式编程.html">函数式编程</a>语言的的理论基础。</p>
+<p><a href="../entities/阿隆佐·邱奇.html">阿隆佐·邱奇</a>在1930年代发明的形式系统，用函数抽象和应用来刻画<a href="计算.html">计算</a>的本质。尽管语法极简（只有变量、函数抽象和应用三种构造），λ 演算被证明与<a href="图灵机.html">图灵机</a>完全等价，是<a href="函数式编程.html">函数式编程</a>语言的的理论基础。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心语法</h3>
 <p>λ 演算的语法只有三种构造：
 1. <strong>变量</strong>：x, y, z, ...
 2. <strong>函数抽象（Abstraction）</strong>：λx.M — 定义一个以 x 为参数、返回 M 的函数
 3. <strong>应用（Application）</strong>：M N — 将函数 M 应用于参数 N</p>
-<p>尽管语法如此简单，λ 演算能够表达任何可计算函数。例如，自然数、布尔值、条件语句、递归等都可以在纯 λ 演算中编码。</p>
+<p>尽管语法如此简单，λ 演算能够表达任何可<a href="计算.html">计算</a>函数。例如，自然数、布尔值、<a href="switch语句.html">条件语句</a>、递归等都可以在纯 λ 演算中编码。</p>
 <h3 id="_5">在判定问题中的角色</h3>
 <p>1936年春，Church 使用 λ 演算证明了<a href="判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem)</a>的答案是否定的：
-- 首先定义"有效可计算性"为"λ可定义性"
+- 首先定义"有效可<a href="计算.html">计算</a>性"为"λ可定义性"
 - 然后证明存在不可 λ 定义的函数
-- 因此，不存在通用算法能判定一阶逻辑中任意命题的真假</p>
-<p>但 λ 演算是一个高度抽象的形式系统，普通人很难从中看到"计算"的直观含义。这正是<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>同年用<a href="图灵机.html">图灵机</a>独立解决同一问题的不可替代的价值所在。</p>
+- 因此，不存在通用<a href="算法.html">算法</a>能判定一阶逻辑中任意命题的真假</p>
+<p>但 λ 演算是一个高度抽象的形式系统，普通人很难从中看到"<a href="计算.html">计算</a>"的直观含义。这正是<a href="../entities/阿兰·图灵.html">阿兰·图灵</a>同年用<a href="图灵机.html">图灵机</a>独立解决同一问题的不可替代的价值所在。</p>
 <h3 id="_6">与图灵机的等价性</h3>
-<p>Turing 在其论文附录中证明了一个重要的等价性结果：</p>
+<p><a href="../entities/Alan Turing.html">Turing</a> 在其论文附录中证明了一个重要的等价性结果：</p>
 <blockquote>
-<p><strong>定理</strong>：一个函数是<a href="../entities/阿兰·图灵.html">图灵</a>可计算的，当且仅当它是 λ 可定义的。</p>
+<p><strong>定理</strong>：一个函数是<a href="../entities/阿兰·图灵.html">图灵</a>可<a href="计算.html">计算</a>的，当且仅当它是 λ 可定义的。</p>
 </blockquote>
-<p>这意味着，尽管<a href="图灵机.html">图灵机</a>和 λ 演算在表面上看起来完全不同——一个是基于机器操作的模型，一个是基于函数变换的形式系统——它们所定义的"可计算性"概念却是完全相同的。</p>
-<p>这一等价性，连同后来被证明的与 Godel 的一般递归函数、Post 的产生式系统、Markov 算法等多种计算模型的等价性，共同构成了<a href="Church-Turing 论题.html">Church-Turing 论题</a>的经验基础。</p>
+<p>这意味着，尽管<a href="图灵机.html">图灵机</a>和 λ 演算在表面上看起来完全不同——一个是基于机器操作的模型，一个是基于函数变换的形式系统——它们所定义的"可<a href="计算.html">计算</a>性"概念却是完全相同的。</p>
+<p>这一等价性，连同后来被证明的与 Godel 的一般递归函数、Post 的产生式系统、Markov <a href="算法.html">算法</a>等多种<a href="计算.html">计算</a>模型的等价性，共同构成了<a href="Church-Turing 论题.html">Church-Turing 论题</a>的经验基础。</p>
 <h3 id="_7">对编程语言的深远影响</h3>
 <p>λ 演算不仅是理论工具，它直接塑造了现代编程语言：
 - <strong>Lisp</strong>（1958）：<a href="../entities/John McCarthy.html">John McCarthy</a> 直接基于 λ 演算设计
 - <strong>Haskell、ML、OCaml</strong>：纯函数式语言，核心语义即 λ 演算
-- <strong>现代语言的函数特性</strong>：Python 的 lambda、JavaScript 的箭头函数、Java 的方法引用，都是 λ 抽象的工程体现
+- <strong>现代语言的函数特性</strong>：<a href="Python.html">Python</a> 的 lambda、JavaScript 的箭头函数、Java 的方法引用，都是 λ 抽象的工程体现
 - <strong>类型理论</strong>：Simply Typed λ Calculus、System F、依赖类型等，构成了现代类型系统的理论基础</p>
 <h2 id="_8">来源</h2>
 <ul>
@@ -180,7 +180,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="writing-plans Skill.html">&larr; writing-plans Skill</a>
-    <a href="一般系统论.html">一般系统论 &rarr;</a>
+    <a href="λ演算.html">λ演算 &rarr;</a>
   </div>
 </div>
 </body>

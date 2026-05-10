@@ -171,12 +171,12 @@ $$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{
 <p>$$\lambda_k = \min_{\dim V = k} \max_{u \in V,\, u \neq 0} \frac{\int_\Omega |\nabla u|^2 dx}{\int_\Omega u^2 dx}$$</p>
 <p>这是研究 Laplacian 特征值渐近分布（Weyl 定律）和<a href="有限元方法.html">有限元方法</a>收敛性的基础。</p>
 <h3 id="_6">鞍点视角（博弈论）</h3>
-<p>从优化/博弈论角度：一方（最大化者）选择子空间 V，另一方（最小化者）在 V 内选向量 x。特征值 λ_k 是这个二人<a href="零和博弈.html">零和博弈</a>的<strong>鞍点值</strong>（saddle-point value）。这与冯·诺依曼极大极小定理在精神上一脉相承。</p>
+<p>从优化/博弈论角度：一方（最大化者）选择子空间 V，另一方（最小化者）在 V 内选向量 x。特征值 λ_k 是这个二人<a href="零和博弈.html">零和博弈</a>的<strong>鞍点值</strong>（saddle-point value）。这与<a href="../entities/冯·诺依曼.html">冯·诺依曼</a>极大极小定理在精神上一脉相承。</p>
 <h2 id="_7">意义</h2>
 <h3 id="_8">解决的三大瓶颈</h3>
 <p>| 瓶颈 | 行列式方法 | <a href="../entities/恩斯特·菲舍尔.html">Fischer</a> 变分方法 |
 |------|---------|--------------|
-| 计算 | 行列式展开复杂，数值不稳定 | <a href="Rayleigh商.html">Rayleigh商</a>计算简单，可做近似 |
+| <a href="计算.html">计算</a> | 行列式展开复杂，数值不稳定 | <a href="Rayleigh商.html">Rayleigh商</a><a href="计算.html">计算</a>简单，可做近似 |
 | 理论 | 难以推广到无穷维算子 | 维数论证不依赖有限维性 |
 | 估计 | 估计一个特征值需知其他特征值 | 每个特征值独立变分刻画 |</p>
 <h3 id="_9">现代应用</h3>
@@ -193,8 +193,8 @@ $$\lambda_k = \min_{\dim W = n-k+1} \;\max_{x \in W,\, x \neq 0} \frac{x^T A x}{
 <td>最优 k 维投影子空间 = max-min 最优解</td>
 </tr>
 <tr>
-<td>Lanczos 算法</td>
-<td>在 Krylov 子空间上计算 <a href="Rayleigh商.html">Rayleigh商</a>极值</td>
+<td>Lanczos <a href="算法.html">算法</a></td>
+<td>在 Krylov 子空间上<a href="计算.html">计算</a> <a href="Rayleigh商.html">Rayleigh商</a>极值</td>
 </tr>
 <tr>
 <td>量子化学</td>

@@ -191,9 +191,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>xLua</strong>（Unity）</td>
 <td>高级桥接+热补丁层</td>
-<td>生成代码/反射；<code>[LuaCallCSharp]</code> 配置</td>
+<td>生成代码/反射；<code>[LuaCallCSharp]</code> <span style="color:#e74c3c" title="broken link">Configuration&lt;/td&gt;
+&lt;td&gt;配置</span></td>
 <td>MonoBehaviour 为主，Lua 桥接</td>
-<td>支持方法级 Hotfix（C#→Lua 替换）</td>
 </tr>
 <tr>
 <td><strong>tolua#</strong>（Unity）</td>
@@ -220,7 +220,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p><strong>生命周期自然度</strong>：<a href="../entities/Defold.html">Defold</a> &gt; Cocos/Lua &gt; xLua ≈ tolua#</p>
 <p><strong>选型建议</strong>：
-- Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2CPP 配置最成体系）
+- Unity 大型 C# 项目 → xLua（delegate 适配 + Hotfix + IL2CPP <a href="Configuration.html">配置</a>最成体系）
 - 大面积 Unity API 脚本化 → tolua#
 - <a href="../entities/Cocos2d-x.html">Cocos2d-x</a> 节点逻辑 → Cocos/Lua（官方天然配合）
 - Lua 作为主逻辑层 + 消息驱动<a href="规范化理论.html">范式</a> → <a href="../entities/Defold.html">Defold</a></p>

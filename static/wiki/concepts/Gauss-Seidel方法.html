@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="gauss-seidel">Gauss-Seidel 方法</h1>
 <h2 id="_1">概述</h2>
-<p>Gauss-Seidel 方法（亦称逐次位移法）是求解线性方程组 $Ax=b$ 的迭代算法，由<a href="../entities/菲利普·路德维希·冯·赛德尔.html">菲利普·路德维希·冯·赛德尔</a>于 1874 年正式发表。与<a href="Jacobi迭代法.html">Jacobi迭代法</a>的核心区别在于：计算第 $i$ 个分量时，立即使用本轮已更新的分量值（而非全部用旧值），因此通常收敛更快，但存在顺序依赖，天然并行性弱于 Jacobi 方法。</p>
+<p>Gauss-Seidel 方法（亦称逐次位移法）是求解线性方程组 $Ax=b$ 的迭代<a href="算法.html">算法</a>，由<a href="../entities/菲利普·路德维希·冯·赛德尔.html">菲利普·路德维希·冯·赛德尔</a>于 1874 年正式发表。与<a href="Jacobi迭代法.html">Jacobi迭代法</a>的核心区别在于：<a href="计算.html">计算</a>第 $i$ 个分量时，立即使用本轮已更新的分量值（而非全部用旧值），因此通常收敛更快，但存在顺序依赖，天然并行性弱于 Jacobi 方法。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">迭代格式</h3>
 <p>$$x_i^{(k+1)} = \frac{1}{a_{ii}}!\left(b_i - \sum_{j<i} a_{ij}x_j^{(k+1)} - \sum_{j>i} a_{ij}x_j^{(k)}\right)$$</p>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">命名中的历史争议</h3>
-<p>方法以"高斯-赛德尔"命名，但<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a>是否明确使用过这种迭代法存在学术争议。一些历史学家认为高斯在私人计算中可能使用过类似方法（因用途与他广泛使用的<a href="高斯最小二乘法.html">最小二乘法</a>相关），但没有明确文献记录；赛德尔 1874 年的论文才是可考的正式发表。</p>
+<p>方法以"高斯-赛德尔"命名，但<a href="../entities/卡尔·弗里德里希·高斯.html">卡尔·弗里德里希·高斯</a>是否明确使用过这种迭代法存在学术争议。一些历史学家认为高斯在私人<a href="计算.html">计算</a>中可能使用过类似方法（因用途与他广泛使用的<a href="高斯最小二乘法.html">最小二乘法</a>相关），但没有明确文献记录；赛德尔 1874 年的论文才是可考的正式发表。</p>
 <h3 id="_6">后续发展</h3>
 <p>Gauss-Seidel 方法是 <strong>SOR 方法</strong>（Successive Over-Relaxation）的直接前身。引入松弛参数 $\omega$：</p>
 <p>$$x_i^{(k+1)} = (1-\omega)x_i^{(k)} + \omega \cdot \text{(Gauss-Seidel更新值)}$$</p>
@@ -202,7 +202,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Gateway 消息网关.html">&larr; Gateway 消息网关</a>
-    <a href="Generator-Verifier-Pattern.html">Generator-Verifier-Pattern &rarr;</a>
+    <a href="Generated-Knowledge.html">Generated-Knowledge &rarr;</a>
   </div>
 </div>
 </body>

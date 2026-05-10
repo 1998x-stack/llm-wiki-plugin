@@ -140,11 +140,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>三种操作</strong>：<code>add</code> 添加新条目、<code>replace</code> 替换现有条目（子字符串匹配，无需完整内容）、<code>remove</code> 删除过期条目</li>
 <li><strong>子字符串匹配设计</strong>：完整条目可能经过多次修改，原始内容不再准确。子字符串匹配只需提供唯一标识片段，更鲁棒；若匹配到多条则返回错误要求更精确</li>
-<li><strong>自动触发</strong>：Agent 自动在发现新环境事实、学到项目约定、被用户纠正、完成重要里程碑时保存记忆，无需用户提醒</li>
+<li><strong>自动触发</strong>：Agent 自动在发现新环境事实、学到<a href="项目约定手册.html">项目约定</a>、被用户纠正、完成重要里程碑时保存记忆，无需用户提醒</li>
 <li><strong>显式触发</strong>：用户可直接要求"记住 X"来手动添加记忆条目</li>
 <li><strong>容量管理</strong>：<a href="语义记忆.html">MEMORY.md</a> 上限 2,200 字符，满时返回错误提示当前用量和条目列表，Agent 需先 replace 合并或 remove 删除后再 add</li>
 <li><strong>好的条目特征</strong>：信息密集、可操作、具体、有动作指导意义；避免模糊、冗长、可随时搜索到的事实</li>
-<li><strong>条目打包策略</strong>：将多个相关事实打包进一条，如<a href="操作系统.html">操作系统</a> + 工具链 + Shell + 编辑器 + Python 版本合并为一条环境记录</li>
+<li><strong>条目打包策略</strong>：将多个相关事实打包进一条，如<a href="操作系统.html">操作系统</a> + 工具链 + Shell + 编辑器 + <a href="Python.html">Python</a> 版本合并为一条环境记录</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

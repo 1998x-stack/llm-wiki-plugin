@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">学习排序</h1>
 <h2 id="_2">概述</h2>
-<p>学习排序（Learning to Rank, LTR）是搜索排序模型的机器学习<a href="规范化理论.html">范式</a>，用人工标注的查询-文档相关性数据训练排序模型，是传统 BM25 向神经排序演进的关键中间阶段。工业级搜索中常用于两阶段检索的第二阶段<a href="检索重排序.html">精排</a>。</p>
+<p>学习排序（Learning to Rank, LTR）是搜索排序模型的机器学习<a href="规范化理论.html">范式</a>，用人工<a href="../entities/标注.html">标注</a>的查询-文档相关性数据训练排序模型，是传统 BM25 向神经排序演进的关键中间阶段。工业级搜索中常用于两阶段检索的第二阶段<a href="检索重排序.html">精排</a>。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>三种建模<a href="规范化理论.html">范式</a></strong>：</li>
@@ -149,10 +149,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>RankSVM</strong>：最大化相关文档对间的 margin</li>
 <li>
-<p><strong>LambdaMART</strong>：梯度提升树（GBDT）+ Lambda 梯度，直接优化 NDCG，工业界最广泛使用的传统 LTR 算法</p>
+<p><strong>LambdaMART</strong>：梯度提升树（GBDT）+ Lambda 梯度，直接优化 NDCG，工业界最广泛使用的传统 LTR <a href="算法.html">算法</a></p>
 </li>
 <li>
-<p><strong>特征工程</strong>（传统 LTR 的核心）：</p>
+<p><strong><a href="特征工程（Feature Engineering）.html">特征工程</a></strong>（传统 LTR 的核心）：</p>
 </li>
 <li>查询-文档特征：<a href="TF-IDF.html">TF-IDF</a>/BM25 分数、查询词覆盖率、最小词距</li>
 <li>文档特征：PageRank/入链数量、文档长度、URL 深度、内容新鲜度</li>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="存储程序计算机.html">&larr; 存储程序计算机</a>
+    <a href="存内计算.html">&larr; 存内计算</a>
     <a href="学术评价体系.html">学术评价体系 &rarr;</a>
   </div>
 </div>

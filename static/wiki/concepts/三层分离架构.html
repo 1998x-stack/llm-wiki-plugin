@@ -138,11 +138,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/Hermes Agent.html">Hermes Agent</a> 的核心架构设计原则，将系统严格分为入口层、核心层和持久化层，实现关注点分离和入口统一但不耦合。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>入口层（Entry Points）</strong>：CLI (cli.py)、<a href="网关与路由器.html">Gateway</a> (gateway/run.py)、ACP (acp_adapter/)、<a href="Batch Runner.html">Batch Runner</a>、API Server、Python Library — 四种入口最终都调用同一个 <code>AIAgent.run_conversation()</code>，但各自管理会话生命周期</li>
+<li><strong>入口层（Entry Points）</strong>：CLI (cli.py)、<a href="网关与路由器.html">Gateway</a> (gateway/run.py)、ACP (acp_adapter/)、<a href="Batch Runner.html">Batch Runner</a>、API Server、<a href="Python.html">Python</a> Library — 四种入口最终都调用同一个 <code>AIAgent.run_conversation()</code>，但各自管理会话生命周期</li>
 <li><strong>核心层（AIAgent）</strong>：<code>run_agent.py</code> (~9,200 行) 是系统心脏，包含 Prompt Builder、Provider Resolution、Tool Dispatch、Compression &amp; Caching、<a href="工具注册机制.html">Tool Registry</a> 五大子模块</li>
 <li><strong>持久化层</strong>：Session Storage (<a href="../entities/SQLite.html">SQLite</a> + FTS5) 通过 <code>hermes_state.py</code> 和 <code>gateway/session.py</code> 实现跨会话状态持久化</li>
 <li><strong>执行后端层</strong>：Terminal (6 backends: local/docker/ssh/modal/daytona/singularity)、Browser (5 backends)、Web (4 backends)、MCP (dynamic)、File/Vision 等</li>
-<li><strong>设计价值</strong>：入口层统一但不耦合，简化状态管理，多任务通过子 Agent 委派解决，<a href="同步编排引擎.html">同步编排引擎</a>避免异步事件驱动的复杂性</li>
+<li><strong>设计价值</strong>：入口层统一但不耦合，简化状态管理，多任务通过<span style="color:#e74c3c" title="broken link">子 Agent</span> 委派解决，<a href="同步编排引擎.html">同步编排引擎</a>避免异步事件驱动的复杂性</li>
 <li><strong>代码规模</strong>：核心文件总计超过 36,000 行，测试套件 3,000+ 测试，是成熟的工程项目而非玩具 Demo</li>
 </ul>
 <h2 id="_4">来源</h2>
@@ -157,8 +157,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="三分解控制框架.html">&larr; 三分解控制框架</a>
-    <a href="三种 API 模式.html">三种 API 模式 &rarr;</a>
+    <a href="三大脱钩.html">&larr; 三大脱钩</a>
+    <a href="三层记忆架构.html">三层记忆架构 &rarr;</a>
   </div>
 </div>
 </body>

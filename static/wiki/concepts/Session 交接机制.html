@@ -135,23 +135,23 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="session">Session 交接机制</h1>
 <h2 id="_1">概述</h2>
-<p>Session 交接机制是一种跨 Agent 会话的状态传递模式，通过 prd.json（进度）、progress.txt（日记）和 AGENTS.md（经验）三个核心文件实现知识的持久化和继承，使每个新 Agent 实例无需依赖前一个实例的上下文记忆即可无缝继续工作。</p>
+<p>Session 交接机制是一种跨 Agent 会话的状态传递模式，通过 prd.json（进度）、progress.txt（日记）和 <a href="项目约定手册.html">AGENTS.md</a>（经验）三个核心文件实现知识的持久化和继承，使每个新 Agent 实例无需依赖前一个实例的上下文记忆即可无缝继续工作。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>三文件架构</strong>：</li>
 <li><strong>prd.json</strong>：权威进度源，包含所有 User Story 的状态（passes/未完成）、优先级、依赖关系。新 Agent 启动时首先解析此文件确定当前任务。</li>
 <li><strong>progress.txt</strong>：交班日记，按 Session 编号追加记录，包含完成的 Story、变更点列表、测试结果、阻塞信息、下一步计划。提供操作级别的上下文。</li>
 <li>
-<p><strong>AGENTS.md</strong>：项目约定手册，包含项目概览、运行方式、文件结构、命名规范、代码约定、环境变量、已知坑点（Gotchas）和 Learnings。由 Agent 在运行过程中持续维护。</p>
+<p><strong><a href="项目约定手册.html">AGENTS.md</a></strong>：<a href="项目约定手册.html">项目约定手册</a>，包含项目概览、运行方式、文件结构、命名规范、代码约定、<a href="Environment Variables.html">环境变量</a>、已知坑点（<a href="Gotchas.html">Gotchas</a>）和 Learnings。由 Agent 在运行过程中持续维护。</p>
 </li>
 <li>
-<p><strong>启动读取顺序</strong>：新 Agent 实例的强制启动序列中，第 3 步读取 progress.txt（交班日记），第 4 步读取 AGENTS.md（经验手册），第 5 步解析 prd.json（任务源）。这个顺序确保 Agent 先了解历史背景，再确定当前任务。</p>
+<p><strong>启动读取顺序</strong>：新 Agent 实例的<a href="强制启动序列.html">强制启动序列</a>中，第 3 步读取 progress.txt（交班日记），第 4 步读取 <a href="项目约定手册.html">AGENTS.md</a>（经验手册），第 5 步解析 prd.json（任务源）。这个顺序确保 Agent 先了解历史背景，再确定当前任务。</p>
 </li>
 <li>
 <p><strong>结束写入规范</strong>：</p>
 </li>
 <li>progress.txt 追加 Session 记录：Story ID、状态（COMPLETED/BLOCKED/Early exit）、变更点、测试结果、下一个 Story、剩余数量</li>
-<li>AGENTS.md 在 Learnings 部分追加新发现的规律、坑点、约定</li>
+<li><a href="项目约定手册.html">AGENTS.md</a> 在 Learnings 部分追加新发现的规律、坑点、约定</li>
 <li>
 <p>prd.json 更新已完成 Story 的 <code>passes: true</code></p>
 </li>
@@ -185,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Semantic Tokens（语义标记）.html">&larr; Semantic Tokens（语义标记）</a>
+    <a href="Seq2Seq.html">&larr; Seq2Seq</a>
     <a href="Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch &rarr;</a>
   </div>
 </div>

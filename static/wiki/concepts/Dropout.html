@@ -127,39 +127,45 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Dropout</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">正则化</span><span class="tag">神经网络</span></div>
 </div>
   <div class="content">
     <h1 id="dropout">Dropout</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>Dropout 是一种神经网络正则化技术，训练时以概率 p 随机关闭神经元，防止<a href="过拟合（Overfitting）.html">过拟合</a>。2012 年 <a href="AlexNet.html">AlexNet</a> 使用 p=0.5 显著降低验证集错误率，成为深度学习标准组件。</p>
+<p>Dropout 是一种神经网络正则化技术，训练时以概率 p 随机关闭神经元，防止<span style="color:#e74c3c" title="broken link">过拟合</span>。2012 年 <a href="AlexNet.html">AlexNet</a> 使用 p=0.5 显著降低验证集错误率，成为深度学习标准组件。2014年<a href="../entities/Nitish Srivastava.html">Nitish Srivastava</a>等人在JMLR论文中正式提出该方法并提供了理论基础。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>机制</strong>：训练阶段，每个神经元以概率 p（通常 0.5）被随机"关闭"（输出置零）。这强迫网络学习冗余、独立的特征表示，而不是依赖特定神经元的协同作用。相当于同时训练 2^N 个共享参数的子网络，是一种高效的模型集成方法。</li>
-<li><strong>测试时补偿</strong>：推理阶段所有神经元保持开启，但权重乘以 (1-p) 进行缩放。这是对训练时所有子网络的近似平均——如果训练时 50% 神经元被丢弃，测试时每个神经元的输出期望减半，因此需要补偿。</li>
-<li><strong>在 <a href="AlexNet.html">AlexNet</a> 中的应用</strong>：<a href="AlexNet.html">AlexNet</a>在 FC6 和 FC7 两个全连接层（各 4096 神经元）使用 Dropout(p=0.5)，显著降低了验证集错误率。全连接层参数量大（占网络总参数大部分），是<a href="过拟合（Overfitting）.html">过拟合</a>的高发区域，Dropout 在此处效果最明显。</li>
-<li><strong>理论解释与变体</strong>：Dropout 可理解为一种<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似推断，或一种自适应的正则化方法。后续衍生出 DropConnect（<a href="Dropout（随机失活）.html">随机丢弃</a>权重而非激活）、Spatial Dropout（丢弃整个特征图）、Variational Dropout 等变体。<a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>是 Dropout 的主要提出者之一。</li>
+<li><strong>机制与实现</strong>：训练阶段，每个神经元以概率 p（通常 0.5）被随机"关闭"（输出置零）。这强迫网络学习冗余、独立的特征表示，而不是依赖特定神经元的协同作用。现代实现常采用 <a href="Inverted Dropout.html">Inverted Dropout</a>：训练时进行缩放以避免测试时修改权重。相当于同时训练 2^N 个共享参数的子网络，是一种高效的模型集成方法。</li>
+<li><strong>数学形式化</strong>：训练时前向传播中的 Dropout 可形式化为：$\tilde{r}<em>j^{(l)} \sim \text{Bernoulli}(1-p)$，$\tilde{y}^{(l)} = \tilde{r}^{(l)} \odot y^{(l)}$。测试时权重乘以 $(1-p)$ 进行期望补偿：$w</em>{test} = w_{train} \times (1 - p)$。</li>
+<li><strong>理论解释</strong>：Dropout 的有效性可从三个角度理解：(a) 隐式<span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span>视角——训练 2^n 个子网络的几何平均；(b) 打破神经元<span style="color:#e74c3c" title="broken link">共适应</span>——强迫神经元独立有意义；(c) <a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似——可解释为对权重的变分<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似。</li>
+<li><strong>应用与最佳实践</strong>：通常在全连接层使用 0.5 丢弃率，在卷积层使用 0.1-0.3 丢弃率，输出层一般不用。需注意测试时切换 model.eval() 模式。<a href="../entities/Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文).html">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</a> 中详细验证了其在 MNIST、<a href="../entities/CIFAR-10 数据集.html">CIFAR-10</a>、<a href="ImageNet.html">ImageNet</a> 等多个基准上的有效性。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — AlexNet 论文</li>
-<li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
+<li>[Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., &amp; Salakhutdinov, R. (2014). JMLR, 15(1), 1929–1958.] — Dropout 论文</li>
+<li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — AlexNet 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_10_dropout.md] — Dropout 精读源文件</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
-<li><a href="AlexNet.html">AlexNet</a> — used_in</li>
+<li><a href="../entities/Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文).html">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</a> — described_in</li>
 <li><a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — invented_by</li>
 <li><span style="color:#e74c3c" title="broken link">过拟合</span> — prevents</li>
-<li><a href="Batch Normalization.html">Batch Normalization</a> — alternative_to</li>
-<li><a href="../maps/深度学习.html">深度学习</a> — standard_technique</li>
+<li><span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span> — theoretical_basis</li>
+<li><span style="color:#e74c3c" title="broken link">共适应</span> — addresses</li>
+<li><a href="MC Dropout.html">MC Dropout</a> — variant</li>
+<li><a href="Inverted Dropout.html">Inverted Dropout</a> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">DropConnect</span> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">Spatial Dropout</span> — variant</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Double DQN.html">&larr; Double DQN</a>
-    <a href="Dropout（随机失活）.html">Dropout（随机失活） &rarr;</a>
+    <a href="Dropout 最佳实践与变体.html">Dropout 最佳实践与变体 &rarr;</a>
   </div>
 </div>
 </body>

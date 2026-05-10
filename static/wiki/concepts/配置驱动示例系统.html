@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">配置驱动示例系统</h1>
 <h2 id="_2">概述</h2>
-<p>以 YAML 配置文件作为单一真实来源（SSOT），自动生成多视图文档索引和 API 反向映射的示例管理架构。</p>
+<p>以 YAML <a href="Configuration.html">配置</a>文件作为单一真实来源（SSOT），自动生成多视图文档索引和 API 反向映射的示例管理架构。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心架构</h3>
-<p>三层结构：配置文件 → 处理脚本 → 多种输出文档。</p>
+<p>三层结构：<a href="Configuration.html">配置</a>文件 → 处理脚本 → 多种输出文档。</p>
 <pre><code>examples-config.yaml (SSOT)
         ↓
 tools/process_examples.py
@@ -202,7 +202,7 @@ tools/process_examples.py
 <li>添加新验证规则：在 <code>validate_config()</code> 中增加逻辑</li>
 </ul>
 <h3 id="_8">工作流程</h3>
-<p>添加新示例：编辑 YAML → <code>--validate</code> 验证 → 执行生成 → 提交全部变更（配置 + 示例文件 + 生成文档）。</p>
+<p>添加新示例：编辑 YAML → <code>--validate</code> 验证 → 执行生成 → 提交全部变更（<a href="Configuration.html">配置</a> + 示例文件 + 生成文档）。</p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/personal/ai-dev-kit/config/EXAMPLES_SYSTEM.md</span> — UrhoX AI Dev Kit 示例系统架构文档 v1.0（2025-11-17）</li>
@@ -215,7 +215,7 @@ tools/process_examples.py
 </ul>
   </div>
   <div class="page-nav">
-    <a href="遗忘门（Forget Gate）.html">&larr; 遗忘门（Forget Gate）</a>
+    <a href="配置权限系统.html">&larr; 配置权限系统</a>
     <a href="采样 Softmax.html">采样 Softmax &rarr;</a>
   </div>
 </div>

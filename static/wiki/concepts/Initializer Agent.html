@@ -135,29 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="initializer-agent">Initializer Agent</h1>
 <h2 id="_1">概述</h2>
-<p>Initializer Agent 是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 系统中仅运行一次的项目初始化代理，负责在首个 context window 内建立完整的<a href="游戏脚手架模式.html">项目脚手架</a>（init.sh、prd.json、progress.txt、AGENTS.md 和初始 git commit），不实现任何业务功能。</p>
+<p>Initializer Agent 是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 系统中仅运行一次的项目初始化代理，负责在首个 context window 内建立完整的<a href="游戏脚手架模式.html">项目脚手架</a>（init.sh、prd.json、progress.txt、<a href="项目约定手册.html">AGENTS.md</a> 和初始 <a href="Git Commit.html">git commit</a>），不实现任何业务功能。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>职责边界</strong>：Initializer Agent 的唯一职责是"设置，不开发"。它创建五样产物——<code>init.sh</code> 环境启动脚本、<code>prd.json</code> 任务清单（50-200 个 User Story）、<code>progress.txt</code> 交班日记模板、<code>AGENTS.md</code> 项目约定手册、以及初始 git commit。严禁写业务代码、运行应用或安装不必要的依赖。</p>
+<p><strong>职责边界</strong>：Initializer Agent 的唯一职责是"<a href="Settings.html">设置</a>，不开发"。它创建五样产物——<code>init.sh</code> 环境启动脚本、<code>prd.json</code> 任务清单（50-200 个 User Story）、<code>progress.txt</code> 交班日记模板、<code>AGENTS.md</code> <a href="项目约定手册.html">项目约定手册</a>、以及初始 <a href="Git Commit.html">git commit</a>。严禁写业务代码、运行应用或安装不必要的依赖。</p>
 </li>
 <li>
-<p><strong>init.sh 设计规范</strong>：幂等性（多次运行结果相同）、安装依赖、启动开发服务器、健康检查等待就绪、成功打印 "=== READY ==="、失败 exit 1。支持多技术栈模板（Node.js/<a href="../entities/Next.js.html">Next.js</a>、Python/FastAPI），每种都包含依赖安装、环境变量检查、数据库初始化、进程管理和健康检查循环。</p>
+<p><strong>init.sh 设计规范</strong>：幂等性（多次运行结果相同）、安装依赖、启动开发<a href="服务.html">服务</a>器、健康检查等待就绪、成功打印 "=== READY ==="、失败 exit 1。支持多技术栈模板（Node.js/<a href="../entities/Next.js.html">Next.js</a>、<a href="Python.html">Python</a>/FastAPI），每种都包含依赖安装、<a href="Environment Variables.html">环境变量</a>检查、数据库初始化、进程管理和健康检查循环。</p>
 </li>
 <li>
 <p><strong>prd.json 生成规范</strong>：每个 User Story 包含 <code>id</code>（category-NNN 格式）、<code>category</code>、<code>title</code>、<code>description</code>（"用户可以..."格式）、<code>acceptanceCriteria</code>、<code>passes</code>（初始 false）、<code>priority</code>（1=最高）、<code>estimatedMinutes</code>、<code>dependencies</code>。前端 Story 的 acceptanceCriteria 必须包含 "Verify in browser using dev-browser skill"。</p>
 </li>
 <li>
-<p><strong>AGENTS.md 初始模板</strong>：包含 Project Overview、Running Commands、File Structure、Naming Conventions、NEVER DO 规则清单、Known Gotchas（运行时填充）、Learnings from Previous Sessions（运行时维护）。这是 <a href="AGENTS.html 项目约定文件.html">AGENTS.md 项目约定文件</a> 的初始种子。</p>
+<p><strong><a href="项目约定手册.html">AGENTS.md</a> 初始模板</strong>：包含 Project Overview、Running Commands、File Structure、Naming Conventions、NEVER DO 规则清单、Known <a href="Gotchas.html">Gotchas</a>（运行时填充）、Learnings from Previous Sessions（运行时维护）。这是 <a href="AGENTS.html 项目约定文件.html">AGENTS.md 项目约定文件</a> 的初始种子。</p>
 </li>
 <li>
-<p><strong>progress.txt 初始模板</strong>：记录 Session 日志格式——角色、行动、详情、完成特性数、下一轮建议。Initializer Agent 写入第一条 Session 记录并标注 "Next session should" 指向最高优先级 Story。</p>
+<p><strong>progress.txt 初始模板</strong>：记录 Session 日志格式——角色、行动、详情、完成特性数、下一轮建议。Initializer Agent 写入第一条 Session 记录并<a href="../entities/标注.html">标注</a> "Next session should" 指向最高优先级 Story。</p>
 </li>
 <li>
-<p><strong>完成后验证</strong>：运行 <code>bash init.sh</code> 确认 READY、用 Python 验证 prd.json Story 数量、<code>git log --oneline -1</code> 确认 commit 存在。输出标准化完成信息：Stories 数量、init.sh 测试结果、git commit 状态。</p>
+<p><strong>完成后验证</strong>：运行 <code>bash init.sh</code> 确认 READY、用 <a href="Python.html">Python</a> 验证 prd.json Story 数量、<code>git log --oneline -1</code> 确认 <a href="../entities/commit.html">commit</a> 存在。输出标准化完成信息：Stories 数量、init.sh 测试结果、<a href="Git Commit.html">git commit</a> 状态。</p>
 </li>
 <li>
-<p><strong>与 <a href="Agent Harness模式.html">Agent Harness模式</a> 的关系</strong>：Initializer Agent 是 Harness 模式的"准备阶段"——在 Coding Agent 开始工作前，确保环境、任务清单、约定文件全部就位。它体现了 Harness 设计中"环境先于执行"的原则。</p>
+<p><strong>与 <a href="Agent Harness模式.html">Agent Harness模式</a> 的关系</strong>：Initializer Agent 是 Harness 模式的"准备阶段"——在 <a href="编码 Agent 协议.html">Coding Agent</a> 开始工作前，确保环境、任务清单、约定文件全部就位。它体现了 <a href="Harness-Engineering.html">Harness 设计</a>中"环境先于执行"的原则。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Informer.html">&larr; Informer</a>
-    <a href="Itô随机积分.html">Itô随机积分 &rarr;</a>
+    <a href="Inline Method.html">Inline Method &rarr;</a>
   </div>
 </div>
 </body>

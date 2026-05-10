@@ -129,20 +129,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">person</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">人物</span><span class="tag">人工智能</span><span class="tag">深度学习</span><span class="tag">计算机视觉</span></div>
 </div>
   <div class="content">
     <h1 id="alex-krizhevsky">Alex Krizhevsky</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>Alex Krizhevsky 是加拿大计算机科学家，2012 年提出 <a href="../concepts/AlexNet.html">AlexNet</a>——在 <a href="../concepts/ImageNet.html">ImageNet</a> 竞赛中以压倒性优势夺冠的深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>，开启了深度学习革命。</p>
+<p>Alex Krizhevsky 是加拿大<a href="../concepts/计算.html">计算</a>机科学家，2012 年提出 <a href="../concepts/AlexNet.html">AlexNet</a>——在 <a href="../concepts/ImageNet.html">ImageNet</a> 竞赛中以压倒性优势夺冠的深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>，开启了深度学习革命。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong><a href="../concepts/AlexNet.html">AlexNet</a> 的诞生</strong>：2012 年，Krizhevsky 作为<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>的博士生，设计了 <a href="../concepts/AlexNet.html">AlexNet</a> 参加 <a href="../concepts/ImageNet.html">ImageNet 大规模视觉识别挑战赛</a>（<a href="../concepts/ImageNet.html">ILSVRC</a>）。该网络包含 5 层卷积和 3 层全连接，总参数量约 6200 万，使用<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>、<a href="../concepts/Dropout.html">Dropout</a>、<a href="../concepts/数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>和双 GPU 并行训练，将 Top-5 错误率从 25.8% 降至 15.3%，领先第二名 10 个百分点。</li>
-<li><strong>技术创新</strong>：Krizhevsky 的关键贡献在于将多项技术有效整合：首次在大规模视觉任务中系统使用 ReLU（比 Sigmoid 快 6 倍）、引入 <a href="../concepts/Dropout.html">Dropout</a> 防止<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>、设计数据增强策略（随机裁剪、翻转、PCA 色彩扰动）、以及创造性地将网络分布在两块 GTX 580 GPU 上并行训练（将训练时间从数月缩短至 5-6 天）。</li>
-<li><strong>历史影响</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 被广泛认为是深度学习革命的起点。它证明了深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>在大规模视觉任务中的压倒性优势，直接推动了 AI 产业的投资浪潮——NVIDIA GPU 从游戏显卡变为 AI 芯片，<a href="Google.html">Google</a>/<a href="DeepMind.html">DeepMind</a> 等公司大举投入深度学习研究。</li>
+<li><strong><a href="../concepts/AlexNet.html">AlexNet</a> 的诞生</strong>：2012 年，Krizhevsky 作为<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>的博士生，设计了 <a href="../concepts/AlexNet.html">AlexNet</a> 参加 <a href="../concepts/ImageNet.html">ImageNet 大规模视觉识别挑战赛</a>（<a href="../concepts/ImageNet.html">ILSVRC</a>）。该网络包含 5 层卷积和 3 层全连接，总参数量约 6200 万，使用<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>、<a href="../concepts/Dropout.html">Dropout</a>、<a href="../concepts/数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>和双 <a href="../concepts/GPU训练.html">GPU 并行训练</a>，将 <a href="../concepts/Top-5 错误率.html">Top-5 错误率</a>从 25.8% 降至 15.3%，领先第二名 10 个百分点。</li>
+<li><strong>技术创新</strong>：Krizhevsky 的关键贡献在于将多项技术有效整合：首次在大规模视觉任务中系统使用 ReLU（比 Sigmoid 快 6 倍）、引入 <a href="../concepts/Dropout.html">Dropout</a> 防止<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>、设计数据增强策略（随机裁剪、翻转、PCA 色彩扰动）、以及创造性地将网络分布在两块 GTX 580 GPU 上并行训练（将训练时间从数月缩短至 5-6 天）。<a href="../concepts/AlexNet.html">AlexNet</a> 的具体架构为：输入(224×224×3) → Conv1(96个11×11卷积核,stride=4) → ReLU → LRN → MaxPool → Conv2(256个5×5卷积核) → ReLU → LRN → MaxPool → Conv3/4/5(384/384/256个<a href="../concepts/3×3卷积核.html">3×3卷积核</a>) → FC1/FC2/FC3(4096/4096/1000神经元) → <a href="../concepts/Softmax.html">Softmax</a>。</li>
+<li><strong>历史影响</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 被广泛认为是深度学习革命的起点。它证明了深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>在大规模视觉任务中的压倒性优势，直接推动了 AI 产业的投资浪潮——<a href="NVIDIA.html">NVIDIA</a> GPU 从游戏显卡变为 AI 芯片，<a href="Google.html">Google</a>/<a href="DeepMind.html">DeepMind</a> 等公司大举投入深度学习研究。</li>
 <li><strong><a href="../concepts/Dropout.html">Dropout</a> 共同作者</strong>：2014 年，Krizhevsky 作为共同作者参与了 <a href="../concepts/Dropout.html">Dropout 正则化</a>论文的发表。他在 <a href="../concepts/AlexNet.html">AlexNet</a> 中率先使用 <a href="../concepts/Dropout.html">Dropout</a>（全连接层 p=0.5），是这一技术最早的实践验证者之一。</li>
-<li><strong>后续发展</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 之后，Krizhevsky 继续在深度学习领域工作，但相对低调。他与<a href="Ilya Sutskever.html">Ilya Sutskever</a>（同为 <a href="Geoffrey E. Hinton.html">Hinton</a> 学生）后来共同创立了 <a href="OpenAI.html">OpenAI</a>（2015 年），推动了 GPT 系列语言模型的发展。</li>
+<li><strong>后续发展</strong>：<a href="../concepts/AlexNet.html">AlexNet</a> 之后，Krizhevsky 继续在深度学习领域工作，但相对低调。他与<a href="Ilya Sutskever.html">Ilya Sutskever</a>（同为 <a href="Geoffrey E. Hinton.html">Hinton</a> 学生）后来共同创立了 <a href="OpenAI.html">OpenAI</a>（2015 年），推动了 <a href="../concepts/GPT 系列.html">GPT 系列</a><a href="../concepts/Language-Model.html">语言模型</a>的发展。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
@@ -150,6 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>[Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., &amp; Salakhutdinov, R. (2014). JMLR, 15(1), 1929–1958.] — Dropout 论文</li>
 <li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
 <li>[raw/articles/ai-papers/machine-learning/09_dropout_2014.md] — 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
@@ -165,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Aider.html">&larr; Aider</a>
+    <a href="Alec Radford.html">&larr; Alec Radford</a>
     <a href="Alex-Newman.html">Alex-Newman &rarr;</a>
   </div>
 </div>

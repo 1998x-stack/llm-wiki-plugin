@@ -135,20 +135,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="arima">ARIMA 模型</h1>
 <h2 id="_1">概述</h2>
-<p>ARIMA（<a href="AR 模型（自回归模型）.html">自回归</a>积分移动平均模型）由 George Box 和 Gwilym Jenkins 于 1970 年在《Time Series Analysis: Forecasting and Control》中提出，将 AR、差分和 MA 统一为单一框架，是时间序列分析历史上影响最深远的建模方法。</p>
+<p><a href="ARIMA.html">ARIMA</a>（<a href="AR 模型（自回归模型）.html">自回归</a>积分移动平均模型）由 <a href="../entities/George Box.html">George Box</a> 和 <a href="../entities/Gwilym Jenkins.html">Gwilym Jenkins</a> 于 1970 年在《<a href="Time Series Analysis.html">Time Series Analysis</a>: Forecasting and Control》中提出，将 AR、差分和 MA 统一为单一框架，是<a href="时间序列分析.html">时间序列分析</a>历史上影响最深远的建模方法。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>历史背景</strong>：1970 年前，AR 和 MA 被视为两类独立模型，差分技术散落在不同领域。Box 和 Jenkins 的核心洞见：三者不是互相竞争的方法，而是同一模型的三个组成部分。</p>
 </li>
 <li>
-<p><strong>ARIMA(p,d,q) 框架</strong>：AR(p) <a href="AR 模型（自回归模型）.html">自回归</a>部分（当前值依赖过去 p 个值）+ I(d) 差分部分（d 次差分实现平稳化）+ MA(q) 移动平均部分（当前值依赖过去 q 个随机冲击）。</p>
+<p><strong><a href="p,d,q">[ARIMA]</a> 框架</strong>：AR(p) <a href="AR 模型（自回归模型）.html">自回归</a>部分（当前值依赖过去 p 个值）+ I(d) 差分部分（d 次差分实现平稳化）+ MA(q) 移动平均部分（当前值依赖过去 q 个随机冲击）。</p>
 </li>
 <li>
-<p><strong>Box-Jenkins 方法论</strong>：提出系统性的建模流程——识别（通过 ACF/PACF 选择 p,d,q）→ 估计（最大似然或最小二乘）→ 诊断检验（残差白噪声检验）→ 预测。</p>
+<p><strong><a href="Box-Jenkins Methodology.html">Box-Jenkins 方法论</a></strong>：提出系统性的建模流程——识别（通过 ACF/PACF 选择 p,d,q）→ 估计（最大似然或最小二乘）→ 诊断检验（残差白噪声检验）→ 预测。</p>
 </li>
 <li>
-<p><strong>学科影响</strong>：统计学、计量经济学、运筹学、信号处理、金融工程、气象学、工业控制等领域均受其深远影响，至今仍是时间序列分析的入门必修内容。</p>
+<p><strong>学科影响</strong>：统计学、计量经济学、运筹学、信号处理、金融工程、气象学、工业控制等领域均受其深远影响，至今仍是<a href="时间序列分析.html">时间序列分析</a>的入门必修内容。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -167,8 +167,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ARCH 模型.html">&larr; ARCH 模型</a>
-    <a href="ARPANET.html">ARPANET &rarr;</a>
+    <a href="ARIMA Models.html">&larr; ARIMA Models</a>
+    <a href="ARMA Models.html">ARMA Models &rarr;</a>
   </div>
 </div>
 </body>

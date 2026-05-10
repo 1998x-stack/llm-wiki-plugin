@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="sgd">随机梯度下降（SGD）</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>SGD 是最基础的神经网络优化算法：θ ← θ - η·∇L(θ)。使用 mini-batch 梯度近似全梯度，简单但存在学习率难选、鞍点停滞等痛点。配合动量仍是 CNN 训练的首选。</p>
+<p>SGD 是最基础的神经网络优化<a href="算法.html">算法</a>：θ ← θ - η·∇L(θ)。使用 mini-batch 梯度近似全梯度，简单但存在学习率难选、鞍点停滞等痛点。配合动量仍是 CNN 训练的首选。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>基本形式</strong>：θ ← θ - η·∇L(θ)，其中 η 是学习率，∇L(θ) 是 mini-batch 上的损失梯度。每次迭代只使用一小批样本（如 32/64/256）计算梯度，而非全部数据。这使每次更新快速但有噪声——噪声既是缺点（震荡），也是优点（帮助逃离<a href="鞍点（Saddle Point）.html">鞍点（Saddle Point）</a>）。</li>
+<li><strong>基本形式</strong>：θ ← θ - η·∇L(θ)，其中 η 是学习率，∇L(θ) 是 mini-batch 上的损失梯度。每次迭代只使用一小批样本（如 32/64/256）<a href="计算.html">计算</a>梯度，而非全部数据。这使每次更新快速但有噪声——噪声既是缺点（震荡），也是优点（帮助逃离<a href="鞍点（Saddle Point）.html">鞍点（Saddle Point）</a>）。</li>
 <li><strong>四大痛点</strong>：(a) 学习率 η 难以选取——太大震荡不收敛，太小收敛极慢；(b) 所有参数共用同一学习率，无法适应梯度尺度差异（如<a href="词嵌入（Word Embedding）.html">词嵌入</a>中高频词与低频词）；(c) <a href="鞍点（Saddle Point）.html">鞍点（Saddle Point）</a>处梯度趋零，更新停滞；(d) 不同层参数量级相差千倍，统一 η 无法兼顾。</li>
-<li><strong>SGD+<a href="Momentum（动量）.html">Momentum</a></strong>：加入<a href="Momentum（动量）.html">Momentum（动量）</a>后（vₜ = β·vₜ₋₁ + gₜ, θ ← θ - η·vₜ），SGD 在 CNN（如 <a href="ImageNet.html">ImageNet</a> 分类）训练中通常优于自适应方法，能达到更好的最终精度。配合学习率调度（Step Decay、Cosine Annealing）和<a href="Batch Normalization.html">Batch Normalization</a>，SGD+<a href="Momentum（动量）.html">Momentum</a> 仍是计算机视觉领域的标准选择。</li>
+<li><strong>SGD+<a href="Momentum（动量）.html">Momentum</a></strong>：加入<a href="Momentum（动量）.html">Momentum（动量）</a>后（vₜ = β·vₜ₋₁ + gₜ, θ ← θ - η·vₜ），SGD 在 CNN（如 <a href="ImageNet.html">ImageNet</a> 分类）训练中通常优于自适应方法，能达到更好的最终精度。配合学习率调度（Step Decay、Cosine Annealing）和<a href="Batch Normalization.html">Batch Normalization</a>，SGD+<a href="Momentum（动量）.html">Momentum</a> 仍是<a href="计算.html">计算</a>机视觉领域的标准选择。</li>
 <li><strong>与 Adam 的对比</strong>：<a href="Adam（自适应矩估计）.html">Adam（自适应矩估计）</a>收敛更快、默认参数开箱即用，适合快速实验和 NLP/<a href="Transformer 架构.html">Transformer</a> 场景。但 SGD+<a href="Momentum（动量）.html">Momentum</a> 在充分调参后往往能达到更好的泛化性能——自适应方法的有效学习率在训练末期可能引入不必要的震荡。实践中常见策略：前期用 Adam 快速收敛，末期切换到 SGD 精细调优。</li>
 </ol>
 <h2 id="_1">来源</h2>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="随机变量的收敛.html">&larr; 随机变量的收敛</a>
-    <a href="随机森林（Random Forests）.html">随机森林（Random Forests） &rarr;</a>
+    <a href="随机森林.html">随机森林 &rarr;</a>
   </div>
 </div>
 </body>

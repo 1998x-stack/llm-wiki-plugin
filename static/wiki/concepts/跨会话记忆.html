@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">跨会话记忆</h1>
 <h2 id="_2">概述</h2>
-<p>AI Agent 在多次对话会话间持久化存储和召回知识的能力，使 Agent 记住环境、项目约定和用户偏好。</p>
+<p>AI Agent 在多次对话会话间持久化存储和召回知识的能力，使 Agent 记住环境、<a href="项目约定手册.html">项目约定</a>和用户偏好。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>核心能力</strong>：跨<a href="会话持久化.html">会话持久化</a>记忆，使 Agent 在下次交互时能"认识你"，记住之前的环境配置、项目约定和用户偏好</li>
+<li><strong>核心能力</strong>：跨<a href="会话持久化.html">会话持久化</a>记忆，使 Agent 在下次交互时能"认识你"，记住之前的环境<a href="Configuration.html">配置</a>、<a href="项目约定手册.html">项目约定</a>和用户偏好</li>
 <li><strong>技术实现</strong>：基于 <a href="../entities/SQLite.html">SQLite</a> + FTS5（全文检索）实现持久化存储，结合 LLM 摘要进行智能召回</li>
 <li><strong>与传统对比</strong>：传统聊天机器人每次对话后清空状态，跨会话记忆是核心设计目标而非附加功能</li>
 <li><strong>个性化方式</strong>：自动构建跨会话用户模型，而非依赖手动编写 System Prompt</li>
-<li><strong>在闭环中的角色</strong>：与 <a href="../entities/Honcho.html">Honcho</a> 用户建模、Skill 创建、FTS5 召回协同工作，构成<a href="闭环学习系统.html">闭环学习系统</a>的基础设施</li>
+<li><strong>在闭环中的角色</strong>：与 <a href="../entities/Honcho.html">Honcho</a> 用户建模、<a href="Skills.html">Skill</a> 创建、FTS5 召回协同工作，构成<a href="闭环学习系统.html">闭环学习系统</a>的基础设施</li>
 <li><strong>应用场景</strong>：跨设备知识助手（手机发任务→云端 VM 执行→手机收结果，全程保持上下文连贯）</li>
 <li><strong>FTS5 架构</strong>：sessions 表存储 id、created_at、platform、session_key、messages（JSON）、summary（LLM 摘要），FTS5 虚拟表对消息内容建立全文索引；Agent 按需触发搜索，辅助 LLM 对结果摘要精炼后注入上下文</li>
 <li><strong>方案优势</strong>：相比全部历史进 Prompt（Token 爆炸）和固定数量最近消息（丢失早期上下文），FTS5 按需召回只在需要时加载，精确相关，成本可控</li>

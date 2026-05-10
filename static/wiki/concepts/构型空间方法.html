@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">构型空间方法</h1>
 <h2 id="_2">概述</h2>
-<p><strong>构型空间方法（Configuration Space Approach）</strong>，简称 <strong>C-space 方法</strong>，是由 <a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a> 在 1983 年系统形式化的一种机器人<a href="运动规划.html">运动规划</a>理论框架。该方法的核心思想是将描述机器人所有可能位姿（位置和姿态）的参数作为坐标轴，构建一个高维空间（即构型空间）。在此空间中，机器人被抽象为一个点，而环境中的障碍物被映射为“构型空间障碍物”（C-obstacle）。通过这种变换，原本复杂的“扩展体在三维空间中避障”的几何问题，被转化为“点在高维自由空间（C-free）中寻找连续路径”的拓扑搜索问题。这一概念突破统一了不同自由度机器人的规划接口，成为现代<a href="运动规划.html">运动规划</a>算法（如 PRM、RRT）的通用语言。</p>
+<p><strong>构型空间方法（<a href="Configuration.html">Configuration</a> Space Approach）</strong>，简称 <strong>C-space 方法</strong>，是由 <a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a> 在 1983 年系统形式化的一种机器人<a href="运动规划.html">运动规划</a>理论框架。该方法的核心思想是将描述机器人所有可能位姿（位置和姿态）的参数作为坐标轴，构建一个高维空间（即构型空间）。在此空间中，机器人被抽象为一个点，而环境中的障碍物被映射为“构型空间障碍物”（C-obstacle）。通过这种变换，原本复杂的“扩展体在三维空间中避障”的几何问题，被转化为“点在高维自由空间（C-free）中寻找连续路径”的拓扑搜索问题。这一概念突破统一了不同自由度机器人的规划接口，成为现代<a href="运动规划.html">运动规划</a><a href="算法.html">算法</a>（如 PRM、RRT）的通用语言。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心定义与数学表述</h3>
 <p>构型空间 $C$ 是一个参数空间，其中的每一个点 $q \in C$ 唯一地对应于机器人的一个完整构型（configuration）。构型空间的维度等于机器人的自由度（Degrees of Freedom, DOF）。例如：
@@ -147,18 +147,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 2.  <strong>自由构型空间 ($C_{free}$)</strong>：构型空间中去除 $C_{obs}$ 后的剩余部分，即 $C_{free} = C \setminus C_{obs}$。</p>
 <p><a href="运动规划.html">运动规划</a>问题由此被严格定义为：在 $C_{free}$ 中寻找一条从起始构型 $q_{start}$ 到目标构型 $q_{goal}$ 的连续路径 $\tau: [0, 1] \to C_{free}$。</p>
 <h3 id="c-obstacle-minkowski">C-obstacle 的计算与 Minkowski 和</h3>
-<p>计算 $C_{obs}$ 是该方法的技术核心。对于仅具有平移自由度的机器人，Lozano-Perez 证明了 $C_{obs}$ 可以通过<strong>Minkowski 和</strong>运算精确计算。若障碍物为 $P$，机器人参考点位于原点时的形状为 $R$，则 $C_{obs} = P \oplus (-R)$，其中 $-R$ 是 $R$ 关于原点的中心对称。几何上，这相当于让机器人的参考点沿障碍物边界滑动所扫过的区域。对于凸多边形，该运算可在 $O(m+n)$ 时间内完成。</p>
-<p>当涉及旋转自由度时，$C_{obs}$ 的边界变得复杂，通常由一系列曲面片组成（由障碍物的面、边、顶点与机器人的面、边、顶点相互作用产生）。此时往往需要采用近似方法，如将旋转角度离散化，对每个固定角度计算平移 $C_{obs}$ 并堆叠，或使用单元分解（Cell Decomposition）来近似表示自由空间。</p>
+<p><a href="计算.html">计算</a> $C_{obs}$ 是该方法的技术核心。对于仅具有平移自由度的机器人，Lozano-Perez 证明了 $C_{obs}$ 可以通过<strong>Minkowski 和</strong>运算精确<a href="计算.html">计算</a>。若障碍物为 $P$，机器人参考点位于原点时的形状为 $R$，则 $C_{obs} = P \oplus (-R)$，其中 $-R$ 是 $R$ 关于原点的中心对称。几何上，这相当于让机器人的参考点沿障碍物边界滑动所扫过的区域。对于凸多边形，该运算可在 $O(m+n)$ 时间内完成。</p>
+<p>当涉及旋转自由度时，$C_{obs}$ 的边界变得复杂，通常由一系列曲面片组成（由障碍物的面、边、顶点与机器人的面、边、顶点相互作用产生）。此时往往需要采用近似方法，如将旋转角度离散化，对每个固定角度<a href="计算.html">计算</a>平移 $C_{obs}$ 并堆叠，或使用单元分解（Cell Decomposition）来近似表示自由空间。</p>
 <h3 id="_5">方法的优势与局限性</h3>
 <p><strong>优势</strong>：
-*   <strong>概念统一</strong>：无论机器人形状多么复杂，在 C-space 中均简化为点，使得路径搜索算法（如 A<em>、<a href="../entities/Edsger Dijkstra.html">Dijkstra</a>、随机采样）可以通用化。
+*   <strong>概念统一</strong>：无论机器人形状多么复杂，在 C-space 中均简化为点，使得路径搜索<a href="算法.html">算法</a>（如 A<em>、<a href="../entities/Edsger Dijkstra.html">Dijkstra</a>、随机采样）可以通用化。
 *   </em><em>解耦复杂性</em><em>：将实时的碰撞检测预处理为空间构建问题，路径搜索阶段只需进行简单的点包含测试或图遍历。
 *   </em><em>理论完备性</em>*：为分析<a href="运动规划.html">运动规划</a>问题的可判定性、复杂度（如 PSPACE-hard）提供了严格的数学基础。</p>
 <p><strong>局限性</strong>：
-*   <strong>维数灾难（Curse of Dimensionality）</strong>：随着自由度增加，C-space 维度线性增长，但 $C_{obs}$ 的显式表示和计算复杂度呈指数级爆炸。对于 6 自由度以上的机器人，精确计算 $C_{obs}$ 在实际中不可行。
+*   <strong>维数灾难（Curse of Dimensionality）</strong>：随着自由度增加，C-space 维度线性增长，但 $C_{obs}$ 的显式表示和<a href="计算.html">计算</a>复杂度呈指数级爆炸。对于 6 自由度以上的机器人，精确<a href="计算.html">计算</a> $C_{obs}$ 在实际中不可行。
 *   <strong>动态与环境假设</strong>：原始方法主要假设静态环境和刚性物体，未直接处理动态障碍物或非完整约束（如汽车不能横向移动），虽然后续研究对此进行了扩展。</p>
 <h3 id="_6">历史演变与现代应用</h3>
-<p>尽管 Lozano-Perez 原始论文中的精确计算方法受限于维数灾难，但 C-space 的概念框架生命力极强。20 世纪 90 年代诞生的<strong>采样方法</strong>（Sampling-based Methods），如概率路线图（PRM）和快速探索随机树（RRT），正是为了克服高维 C-space 的显式表示困难而生。这些方法不显式构建 $C_{obs}$，而是通过随机采样和碰撞检测器隐式地探索 $C_{free}$。今天，从工业机械臂的路径规划到自动驾驶汽车的轨迹生成，再到蛋白质折叠模拟，几乎所有主流规划系统（如 MoveIt!, OMPL）底层都遵循 C-space <a href="规范化理论.html">范式</a>。它已不再仅仅是一种算法，而是机器人学中描述运动问题的标准语言。</p>
+<p>尽管 Lozano-Perez 原始论文中的精确<a href="计算.html">计算</a>方法受限于维数灾难，但 C-space 的概念框架生命力极强。20 世纪 90 年代诞生的<strong>采样方法</strong>（Sampling-based Methods），如概率路线图（PRM）和快速探索随机树（RRT），正是为了克服高维 C-space 的显式表示困难而生。这些方法不显式构建 $C_{obs}$，而是通过随机采样和碰撞检测器隐式地探索 $C_{free}$。今天，从工业机械臂的路径规划到自动驾驶汽车的轨迹生成，再到蛋白质折叠模拟，几乎所有主流规划系统（如 MoveIt!, OMPL）底层都遵循 C-space <a href="规范化理论.html">范式</a>。它已不再仅仅是一种<a href="算法.html">算法</a>，而是机器人学中描述运动问题的标准语言。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>

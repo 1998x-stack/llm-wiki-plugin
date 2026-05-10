@@ -175,10 +175,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>内部实现机制</strong>：LÖVE 在 C++ 层实现所有 Module（graphics、audio、physics 等），通过 <code>luaL_newlib</code> 注册为 Lua 模块，<a href="../concepts/游戏主循环模式.html">主循环</a>从 C++ 触发 <code>love.update(dt)</code> 和 <code>love.draw()</code>。这是典型的 C++ 引擎 + 全 Lua 暴露 API 的架构模式。</p>
 </li>
 <li>
-<p><strong>配置文件 conf.lua</strong>：<code>love.conf(t)</code> 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：<code>t.window.width/height</code>、<code>t.window.resizable</code>、<code>t.window.vsync</code>、<code>t.window.msaa</code>、<code>t.modules.physics</code>。是 Love2D 项目的标准初始化入口。</p>
+<p><strong><a href="../concepts/Configuration.html">配置</a>文件 conf.lua</strong>：<code>love.conf(t)</code> 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：<code>t.window.width/height</code>、<code>t.window.resizable</code>、<code>t.window.vsync</code>、<code>t.window.msaa</code>、<code>t.modules.physics</code>。是 Love2D 项目的标准初始化入口。</p>
 </li>
 <li>
-<p><strong>完整生命周期回调集</strong>：除核心三件套外，还有 <code>love.quit()</code>（返回 true 可取消退出）、<code>love.resize(w,h)</code>、<code>love.focus(f)</code>、<code>love.mousereleased/moved/wheelmoved</code>、<code>love.touchpressed/released</code>、<code>love.gamepadpressed/released</code>、<code>love.errhand(msg)</code>（全局错误处理）。</p>
+<p><strong>完整生命周期回调集</strong>：除核心三件套外，还有 <code>love.quit()</code>（返回 true 可取消退出）、<code>love.resize(w,h)</code>、<code>love.focus(f)</code>、<code>love.mousereleased/moved/wheelmoved</code>、<code>love.touchpressed/released</code>、<code>love.gamepadpressed/released</code>、<code>love.errhand(msg)</code>（全局<a href="../concepts/错误处理.html">错误处理</a>）。</p>
 </li>
 <li>
 <p><strong>Canvas 离屏渲染</strong>：<code>love.graphics.newCanvas(w,h)</code> 创建离屏渲染目标，<code>love.graphics.setCanvas(canvas)</code> 切换渲染目标（nil 恢复默认屏幕），配合 Shader 实现后处理效果。<code>love.graphics.setShader(shader)</code> / <code>love.graphics.newShader(vert,frag)</code> 支持自定义着色器。</p>

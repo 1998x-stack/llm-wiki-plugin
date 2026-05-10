@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>基础函数</strong>：<code>ipairs/pairs/tostring/tonumber/type/error/pcall/xpcall/setmetatable</code></p>
 <p>明确禁止的危险库：<code>io</code>（文件访问）、<code>os</code>（系统调用）、<code>require</code>（任意模块加载）、<code>dofile/loadfile</code>（执行任意文件）、<code>debug</code>（绕过保护）。</p>
 <h3 id="_5">指令计数限制</h3>
-<p>通过 <code>debug.sethook(fn, "c", N)</code> 设置指令钩子，每执行 N 条指令触发一次回调，计数超过阈值时抛出错误，防止用户脚本死循环挂死游戏进程。</p>
+<p>通过 <code>debug.sethook(fn, "c", N)</code> <a href="Settings.html">设置</a>指令钩子，每执行 N 条指令触发一次回调，计数超过阈值时抛出错误，防止用户脚本死循环挂死游戏进程。</p>
 <h3 id="api">游戏 API 注入</h3>
 <p>沙盒环境可选择性注入受控的游戏 API：</p>
 <pre><code class="language-lua">Sandbox.create({
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">应用场景</h3>
 <ul>
 <li><strong>Mod 系统</strong>：允许玩家编写游戏模组（<a href="../entities/Roblox.html">Roblox</a>、Minecraft 式 Mod）</li>
-<li><strong>关卡脚本</strong>：关卡设计师编写触发逻辑，不需要完整引擎权限</li>
+<li><strong>关卡脚本</strong>：关卡设计师编写触发逻辑，不需要完整引擎<a href="Permissions.html">权限</a></li>
 <li><strong>AI 行为树</strong>：限定范围的行为脚本，防止 AI 调用不该调用的接口</li>
 </ul>
 <h2 id="_7">来源</h2>

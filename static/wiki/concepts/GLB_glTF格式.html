@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>坐标系规范</strong>：glTF 采用 Y-up 右手坐标系、米制单位；导入 <a href="../entities/UrhoX引擎.html">UrhoX</a>（左手系）时需自动转换坐标轴方向和 UV 翻转。</li>
 <li><strong>内嵌纹理处理</strong>：GLB 文件可将纹理直接打包进二进制，导入时自动提取到 <code>{模型名}.gbm/</code> 临时目录，再由工具复制到指定 <code>--texture-dir</code>；纹理命名按类型后缀<a href="../entities/区分.html">区分</a>：<code>D</code>（Diffuse/BaseColor）、<code>N</code>（Normal）、<code>S</code>（Specular）、<code>E</code>（Emissive）。</li>
-<li><strong>导入产物</strong>：通过 <a href="../entities/UrhoXCLI.html">UrhoXCLI</a> <code>import-gltf</code> 子命令可生成 MDL 模型、材质 XML、纹理（含 sidecar <code>.xml</code> 配置）、预制体 <code>.prefab</code> 和 ANI 动画；各产物路径独立，不传则跳过。</li>
+<li><strong>导入产物</strong>：通过 <a href="../entities/UrhoXCLI.html">UrhoXCLI</a> <code>import-gltf</code> 子命令可生成 MDL 模型、材质 XML、纹理（含 sidecar <code>.xml</code> <a href="Configuration.html">配置</a>）、预制体 <code>.prefab</code> 和 ANI 动画；各产物路径独立，不传则跳过。</li>
 <li><strong>LOD 自动生成</strong>：默认开启 3 级 <a href="LOD（细节层次）.html">LOD（细节层次）</a> 简化（85%/65%/45%），screenSize 阈值 0.2/0.08/0.03，可用 <code>--no-lod</code> 关闭或 <code>--lod-levels</code> 调整。</li>
 </ol>
 <h2 id="_3">来源</h2>

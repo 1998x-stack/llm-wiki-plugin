@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lua">Lua 数据驱动设计</h1>
 <h2 id="_1">概述</h2>
-<p>Lua 数据驱动设计将游戏内容（敌人属性、技能、本地化文本）以纯数据 table 定义，通过工厂函数按配置实例化对象，实现逻辑与数据分离、无需重编译即可调整内容。</p>
+<p>Lua 数据驱动设计将游戏内容（敌人属性、<a href="Skills.html">技能</a>、本地化文本）以纯数据 table 定义，通过工厂函数按<a href="Configuration.html">配置</a>实例化对象，实现逻辑与数据分离、无需重编译即可调整内容。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">配置表模式（纯数据，无代码）</h3>
 <pre><code class="language-lua">-- config/enemies.lua — 仅数据，无逻辑

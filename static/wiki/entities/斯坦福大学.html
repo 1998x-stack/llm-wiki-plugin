@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>斯坦福大学 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / 斯坦福大学</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">company</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机构</span><span class="tag">大学</span><span class="tag">AI研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">斯坦福大学</h1>
+<h2 id="_2">概述</h2>
+<p>斯坦福大学（Stanford University）是美国顶尖研究型大学，位于加州硅谷，是 <a href="../concepts/ImageNet.html">ImageNet</a> 数据集和 <a href="ILSVRC.html">ILSVRC</a> 竞赛的发源地。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong><a href="../concepts/ImageNet.html">ImageNet</a> 的诞生地</strong>：2009年起，斯坦福大学的<a href="李飞飞.html">李飞飞</a>教授领导团队构建了 <a href="../concepts/ImageNet.html">ImageNet</a> 大规模图像数据集——包含超过1400万张<a href="标注.html">标注</a>图像、1000个视觉类别。这一数据集为深度学习在<a href="../concepts/计算.html">计算</a>机视觉领域的突破提供了关键基础。</li>
+<li><strong><a href="ILSVRC.html">ILSVRC</a> 竞赛</strong>：2010年，斯坦福发起 <a href="ILSVRC.html">ILSVRC</a>（<a href="../concepts/ImageNet.html">ImageNet</a> 大规模视觉识别挑战赛），为<a href="../concepts/计算.html">计算</a>机视觉研究提供了标准化的评估基准。2012年 <a href="../concepts/AlexNet.html">AlexNet</a> 在该竞赛中的胜利标志着深度学习革命的开始。</li>
+<li><strong>AI 研究重镇</strong>：斯坦福在机器学习、自然语言处理、<a href="../concepts/计算.html">计算</a>机视觉等领域拥有世界级的研究实力。斯坦福 HAI（以人为中心的 AI 研究院）由<a href="李飞飞.html">李飞飞</a>共同创立，推动 AI 伦理与人类福祉。</li>
+<li><strong>硅谷生态</strong>：作为硅谷的核心学术机构，斯坦福与 AI 产业界联系紧密，培养了大量 AI 创业者和研究者，是学术→产业转化的重要枢纽。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="李飞飞.html">李飞飞</a> — affiliated_with</li>
+<li><a href="../concepts/ImageNet.html">ImageNet</a> — originated_at</li>
+<li><a href="ILSVRC.html">ILSVRC</a> — originated_at</li>
+<li><a href="../maps/深度学习.html">深度学习</a> — research_focus</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="教皇若望·保禄二世.html">&larr; 教皇若望·保禄二世</a>
+    <a href="斯宾塞.html">斯宾塞 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">双塔模型</h1>
 <h2 id="_2">概述</h2>
-<p><a href="推荐系统基础模型.html">推荐系统基础模型</a>架构：用户塔和物品塔分别独立产生 embedding，通过内积计算相似度，支持高效的 ANN 检索。</p>
+<p><a href="推荐系统基础模型.html">推荐系统基础模型</a>架构：用户塔和物品塔分别独立产生 embedding，通过内积<a href="计算.html">计算</a>相似度，支持高效的 ANN 检索。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>基本结构</strong>：双塔模型由两个独立的神经网络塔组成——"用户塔"（User Tower）和"物品塔"（Item Tower）。用户塔接收用户侧特征（观看历史、搜索历史、人口统计学等），物品塔接收物品侧特征（视频 ID、频道、类别等）。两塔分别产生固定维度的 embedding 向量，通过内积（或余弦相似度）计算用户-物品匹配分数。</p>
+<p><strong>基本结构</strong>：双塔模型由两个独立的神经网络塔组成——"用户塔"（User Tower）和"物品塔"（Item Tower）。用户塔接收用户侧特征（观看历史、搜索历史、人口统计学等），物品塔接收物品侧特征（视频 ID、频道、类别等）。两塔分别产生固定维度的 embedding 向量，通过内积（或余弦相似度）<a href="计算.html">计算</a>用户-物品匹配分数。</p>
 </li>
 <li>
-<p><strong>起源</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（RecSys 2016）中的<a href="候选生成.html">候选生成</a>模型是双塔模型的原型。用户通过 MLP 前向计算得到 embedding u，每个视频对应 softmax 层的权重向量 v_i 作为 embedding。训练时用 softmax 分类，服务时用 ANN 检索。</p>
+<p><strong>起源</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（RecSys 2016）中的<a href="候选生成.html">候选生成</a>模型是双塔模型的原型。用户通过 MLP 前向<a href="计算.html">计算</a>得到 embedding u，每个视频对应 softmax 层的权重向量 v_i 作为 embedding。训练时用 softmax 分类，<a href="服务.html">服务</a>时用 ANN 检索。</p>
 </li>
 <li>
-<p><strong>训练与服务的不对称</strong>：训练时两塔共同参与 softmax 分类器的训练，通过 <a href="采样 Softmax.html">采样 Softmax</a> 降低计算开销。服务时用户 embedding 通过前向传播实时计算，物品 embedding 预先存储，推荐问题转化为在物品 embedding 空间中寻找与用户 embedding 最近的 Top-N 个物品——即 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
+<p><strong>训练与<a href="服务.html">服务</a>的不对称</strong>：训练时两塔共同参与 softmax 分类器的训练，通过 <a href="采样 Softmax.html">采样 Softmax</a> 降低<a href="计算.html">计算</a>开销。<a href="服务.html">服务</a>时用户 embedding 通过前向传播实时<a href="计算.html">计算</a>，物品 embedding 预先存储，推荐问题转化为在物品 embedding 空间中寻找与用户 embedding 最近的 Top-N 个物品——即 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
 </li>
 <li>
-<p><strong>特征处理方式</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中，用户的观看历史（视频 ID 序列）每个 ID 映射为 embedding 后取<strong>平均值</strong>得到固定长度稠密向量，借鉴了 <a href="Word2Vec.html">Word2Vec</a> 中 CBOW 的思想。搜索历史同样 tokenize 后取平均。这些特征拼接后输入 MLP。</p>
+<p><strong>特征处理方式</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中，用户的观看历史（视频 ID 序列）每个 ID 映射为 embedding 后取<strong>平均值</strong>得到固定长度稠密向量，借鉴了 <a href="../entities/Word2Vec.html">Word2Vec</a> 中 CBOW 的思想。搜索历史同样 tokenize 后取平均。这些特征拼接后输入 MLP。</p>
 </li>
 <li>
 <p><strong>后续发展</strong>：双塔模型成为推荐系统中最基础的模型架构之一。后续的 DSSM（微软）、MIND（阿里）等模型都是这一思路的延伸。现代双塔模型在特征处理上更加精细，引入了<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>、序列建模、多模态特征等。</p>
 </li>
 <li>
-<p><strong>优势</strong>：（1）计算高效——用户和物品 embedding 可独立预计算，服务时只需内积运算；（2）支持 ANN 检索——embedding 空间中的最近邻搜索可在亚线性时间内完成；（3）泛化能力强——embedding 可被下游任务复用。</p>
+<p><strong>优势</strong>：（1）<a href="计算.html">计算</a>高效——用户和物品 embedding 可独立预<a href="计算.html">计算</a>，<a href="服务.html">服务</a>时只需内积运算；（2）支持 ANN 检索——embedding 空间中的最近邻搜索可在亚线性时间内完成；（3）泛化能力强——embedding 可被下游任务复用。</p>
 </li>
 <li>
 <p><strong>局限</strong>：（1）用户和物品特征在塔的顶层之前无交互，无法捕捉细粒度的<a href="特征交叉.html">特征交叉</a>；（2）简单的平均操作丢失了序列中的时序信息（后续 DIN、DIEN 等工作对此做了改进）；（3）表达能力受限于内积这一单一交互方式。</p>

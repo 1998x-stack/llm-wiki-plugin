@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">域随机化</h1>
 <h2 id="_2">概述</h2>
-<p>域随机化（Domain Randomization）是解决仿真到真实迁移（sim-to-real gap）的核心技术：在仿真训练中随机化大量环境参数（物理属性、外观、噪声），让策略在真实世界中见到的参数只是众多训练配置之一，从而实现零样本迁移。</p>
+<p>域随机化（Domain Randomization）是解决仿真到真实迁移（sim-to-real gap）的核心技术：在仿真训练中随机化大量环境参数（物理属性、外观、噪声），让策略在真实世界中见到的参数只是众多训练<a href="Configuration.html">配置</a>之一，从而实现<a href="零样本学习.html">零样本</a>迁移。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">问题背景</h3>
 <p>仿真-现实差距（sim-to-real gap）：在仿真中表现完美的策略往往在真实机器人上完全失效，因为摩擦特性、传感器噪声、渲染外观等参数无法精确复现。</p>
-<p><strong>域随机化的逻辑</strong>：与其精确建模真实世界，不如用如此宽泛的随机化范围，使真实世界只是训练中已见过的众多可能配置之一。</p>
+<p><strong>域随机化的逻辑</strong>：与其精确建模真实世界，不如用如此宽泛的随机化范围，使真实世界只是训练中已见过的众多可能<a href="Configuration.html">配置</a>之一。</p>
 <h3 id="_5">随机化类型</h3>
 <table>
 <thead>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   策略性能 &lt; 下阈值 → 自动缩小范围（降低难度）
 </code></pre>
 <p><strong>ADR 的惊人发现</strong>：ADR 最终产生的随机化范围远超人类经验的直觉（如重力 0–20 m/s²，质量变化数倍）。这些"不合理"的极端参数在真实世界中不会出现，但它们迫使策略学到了极端鲁棒的控制技巧——类比"在极端条件下训练的运动员，正常比赛时反而轻松"。</p>
-<p><strong>应用规模</strong>：ADR + 大规模分布式 RL（64 GPU + 920 台工作机器，等效 13,000 年仿真经验），实现了 Shadow Dexterous Hand（24 自由度）零样本解魔方。</p>
+<p><strong>应用规模</strong>：ADR + 大规模分布式 RL（64 GPU + 920 台工作机器，等效 13,000 年仿真经验），实现了 Shadow Dexterous Hand（24 自由度）<a href="零样本学习.html">零样本</a>解魔方。</p>
 <h3 id="_6">与纯仿真方法的对比</h3>
 <table>
 <thead>
@@ -199,7 +199,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>自动域随机化（ADR）</strong></td>
 <td>训练过程自适应调整范围</td>
-<td>计算量大，需精心设计阈值</td>
+<td><a href="计算.html">计算</a>量大，需精心设计阈值</td>
 </tr>
 <tr>
 <td>域适应（Domain Adaptation）</td>
@@ -212,8 +212,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li>Tobin et al. (2017)：系统性提出域随机化方法</li>
 <li><a href="../entities/OpenAI.html">OpenAI</a> Dactyl (2018)：Shadow Hand 翻块验证</li>
-<li><strong><a href="../entities/OpenAI.html">OpenAI</a> 解魔方 (2019)</strong>：ADR 使 24 自由度灵巧手零样本迁移</li>
-<li>NVIDIA Isaac Lab：现代 sim-to-real 基础设施</li>
+<li><strong><a href="../entities/OpenAI.html">OpenAI</a> 解魔方 (2019)</strong>：ADR 使 24 自由度灵巧手<a href="零样本学习.html">零样本</a>迁移</li>
+<li><a href="../entities/NVIDIA.html">NVIDIA</a> Isaac Lab：现代 sim-to-real 基础设施</li>
 </ul>
 <h2 id="_8">来源</h2>
 <ul>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropout 最佳实践与变体 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Dropout 最佳实践与变体</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">正则化</span><span class="tag">最佳实践</span><span class="tag">算法变体</span></div>
+</div>
+  <div class="content">
+    <h1 id="dropout">Dropout 最佳实践与变体</h1>
+<h2 id="50-200">概述 (50-200字符)</h2>
+<p>介绍 <a href="Dropout.html">Dropout</a> 的最佳实践原则、常见误区以及重要的<a href="算法.html">算法</a>变体。涵盖了丢弃率选择、使用场景、实现注意事项和衍生技术。</p>
+<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<ol>
+<li><strong>丢弃率选择最佳实践</strong>：全连接层通常使用 0.5 的丢弃率（参数多易<a href="过拟合（Overfitting）.html">过拟合</a>），卷积层使用 0.1-0.3 的较低丢弃率（权重共享已有正则效果），LSTM/RNN 中用于非循环连接使用 0.2-0.5，<a href="Transformer 架构.html">Transformer</a> 中通常使用 0.1，输出层通常不用 <a href="Dropout.html">Dropout</a>。小数据集上过高的丢弃率可能导致欠拟合。</li>
+<li><strong>实现注意事项</strong>：关键是在训练和推理时正确切换模式（<code>model.train()</code> vs <code>model.eval()</code>），否则会导致推理结果随机波动且准确率下降。避免在 <a href="Batch Normalization.html">Batch Normalization</a> 后使用 <a href="Dropout.html">Dropout</a>，两者训练/测试行为不一致会产生冲突。</li>
+<li><strong>重要变体</strong>：<span style="color:#e74c3c" title="broken link">Spatial Dropout</span> 按通道单位丢弃整个特征图，适用于 CNN；<span style="color:#e74c3c" title="broken link">DropConnect</span> <a href="Dropout（随机失活）.html">随机丢弃</a>权重而非激活值；<span style="color:#e74c3c" title="broken link">Stochastic Depth</span> 随机跳过整个残差层；<span style="color:#e74c3c" title="broken link">DropPath</span> <a href="Dropout（随机失活）.html">随机丢弃</a>路径（用于 NAS 网络）；<a href="MC Dropout.html">MC Dropout</a> 推理时也开启 <a href="Dropout.html">Dropout</a> 以估计预测不确定性。</li>
+<li><strong>理论解释与应用场景</strong>：<a href="Dropout.html">Dropout</a> 通过三种机制生效：隐式<span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span>（训练 2^N 个子网络）、打破<span style="color:#e74c3c" title="broken link">共适应</span>（强迫神经元独立学习特征）、<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似（变分推断）。在各类深度学习任务中都有广泛应用，是防止<a href="过拟合（Overfitting）.html">过拟合</a>的基本工具。</li>
+</ol>
+<h2 id="_1">来源</h2>
+<ul>
+<li>[raw/articles/ai-papers/foundations/paper_10_dropout.md] — 精读源文件</li>
+</ul>
+<h2 id="_2">相关</h2>
+<ul>
+<li><a href="Dropout.html">Dropout</a> — elaborates</li>
+<li><a href="MC Dropout.html">MC Dropout</a> — variant</li>
+<li><a href="Inverted Dropout.html">Inverted Dropout</a> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">DropConnect</span> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">Spatial Dropout</span> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">Stochastic Depth</span> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">DropPath</span> — variant</li>
+<li><span style="color:#e74c3c" title="broken link">共适应</span> — addresses</li>
+<li><span style="color:#e74c3c" title="broken link">过拟合</span> — prevents</li>
+<li><a href="../entities/PyTorch.html">PyTorch</a> — applied_in</li>
+<li><a href="../entities/TensorFlow.html">TensorFlow</a> — applied_in</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Dropout.html">&larr; Dropout</a>
+    <a href="Dropout 算法详解.html">Dropout 算法详解 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

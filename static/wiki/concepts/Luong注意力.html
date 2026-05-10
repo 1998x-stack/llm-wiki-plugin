@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="bahdanau">与 Bahdanau 的核心差异</h3>
 <ol>
-<li><strong>计算时机</strong>：Bahdanau 在 Decoder 输入前计算注意力；Luong 在 Decoder 状态更新后计算</li>
+<li><strong><a href="计算.html">计算</a>时机</strong>：Bahdanau 在 Decoder 输入前<a href="计算.html">计算</a>注意力；Luong 在 Decoder 状态更新后<a href="计算.html">计算</a></li>
 <li><strong>维度约束</strong>：Luong 要求编码器与解码器隐藏维度相同；Bahdanau 无此限制</li>
 <li><strong>效率</strong>：Luong 点积变体无需额外前馈网络，速度显著快于 Bahdanau</li>
 </ol>
@@ -185,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Lua脚本宿主模式.html">&larr; Lua脚本宿主模式</a>
-    <a href="MCAR.html">MCAR &rarr;</a>
+    <a href="MC Dropout.html">MC Dropout &rarr;</a>
   </div>
 </div>
 </body>

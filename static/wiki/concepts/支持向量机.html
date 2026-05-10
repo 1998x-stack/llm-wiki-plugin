@@ -129,31 +129,37 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">分类算法</span><span class="tag">统计学习理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">支持向量机</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>支持向量机（SVM）是一种基于统计学习理论的监督学习分类器，通过最大化分类间隔实现最优决策边界。1995年由<a href="../entities/Corinna Cortes.html">Corinna Cortes</a>和<a href="../entities/Vladimir Vapnik.html">Vladimir Vapnik</a>提出，深度学习崛起前（1995-2012）统治机器学习领域。</p>
+<p>支持向量机（SVM）是一种基于统计学习理论的监督学习分类器，通过最大化分类间隔实现最优<a href="决策边界.html">决策边界</a>。1995年由<a href="../entities/Corinna Cortes.html">Corinna Cortes</a>和<a href="../entities/Vladimir Vapnik.html">Vladimir Vapnik</a>提出，深度学习崛起前（1995-2012）统治机器学习领域。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>核心哲学</strong>：SVM不寻找任意分割线，而是<strong>最大化分类间隔（Margin）</strong>——距两类最近样本点距离之和最大的超平面。由<span style="color:#e74c3c" title="broken link">VC维理论</span>保证泛化能力最强。落在边界上的训练样本称为<strong>支持向量</strong>，SVM由此得名。</li>
 <li><strong>硬间隔与软间隔</strong>：线性可分时用硬间隔SVM，最小化½‖w‖²；实际数据含噪声时用软间隔SVM，引入松弛变量ξᵢ和正则化参数C。C大→严格边界（低偏差高方差），C小→宽松边界（高偏差低方差）。</li>
-<li><strong><a href="核技巧.html">核技巧</a></strong>：将低维非线性数据映射到高维空间实现线性可分，无需显式计算φ(x)，只需计算内积K(xᵢ,xⱼ)。常用核函数：线性核（文本分类）、多项式核（图像/NLP）、RBF/高斯核（通用最常用）、Sigmoid核（类神经网络）。</li>
+<li><strong><a href="核技巧.html">核技巧</a></strong>：将低维非线性数据映射到高维空间实现线性可分，无需显式<a href="计算.html">计算</a>φ(x)，只需<a href="计算.html">计算</a>内积K(xᵢ,xⱼ)。常用核函数：线性核（文本分类）、多项式核（图像/NLP）、RBF/高斯核（通用最常用）、Sigmoid核（类神经网络）。</li>
 <li><strong>与神经网络对比</strong>：SVM基于<span style="color:#e74c3c" title="broken link">VC维理论</span>有界泛化误差，凸优化保证全局最优，小数据效果好；神经网络经验主义驱动，非凸优化易陷局部最优，需大数据但GPU并行强。</li>
-<li><strong>求解算法</strong>：通过拉格朗日对偶转化为对偶问题，用<span style="color:#e74c3c" title="broken link">SMO算法</span>（Sequential Minimal Optimization）求解。最优解满足KKT条件：αᵢ&gt;0的样本即为支持向量，决定决策边界。</li>
+<li><strong>求解<a href="算法.html">算法</a></strong>：通过拉格朗日对偶转化为对偶问题，用<span style="color:#e74c3c" title="broken link">SMO算法</span>（Sequential Minimal Optimization）求解。最优解满足KKT条件：αᵢ&gt;0的样本即为支持向量，决定<a href="决策边界.html">决策边界</a>。</li>
+<li><strong>早期发展</strong>：1992年的<span style="color:#e74c3c" title="broken link">A Training Algorithm for Optimal Margin Classifiers (1992 论文)</span>首次提出了最优边缘分类器的概念，为SVM的发展奠定了基础。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>
 <li><a href="../entities/Support-Vector Networks.html">Support-Vector Networks</a> — Cortes &amp; Vapnik (1995), Machine Learning 20(3), 273-297</li>
+<li><span style="color:#e74c3c" title="broken link">ai_papers_timeline.md</span> — 1992年SVM早期研究记录</li>
 <li>raw/articles/ai-papers/machine-learning/03_svm_1995.md — 详细解读与Python实现</li>
 </ul>
 <h2 id="_3">相关</h2>
 <ul>
-<li><a href="核技巧.html">核技巧</a> — extends</li>
+<li><span style="color:#e74c3c" title="broken link">A Training Algorithm for Optimal Margin Classifiers (1992 论文)</span> — related_to</li>
+<li><span style="color:#e74c3c" title="broken link">Support-Vector Networks (1995 论文)</span> — described_in</li>
+<li><a href="../entities/Corinna Cortes.html">Corinna Cortes</a> — developed_by</li>
+<li><a href="../entities/Vladimir Vapnik.html">Vladimir Vapnik</a> — developed_by</li>
+<li><a href="核技巧.html">核技巧</a> — uses</li>
 <li><a href="最大间隔分类器.html">最大间隔分类器</a> — part_of</li>
-<li><span style="color:#e74c3c" title="broken link">VC维理论</span> — depends_on</li>
+<li><span style="color:#e74c3c" title="broken link">VC维理论</span> — based_on</li>
 <li><span style="color:#e74c3c" title="broken link">SMO算法</span> — implements</li>
 <li><span style="color:#e74c3c" title="broken link">神经网络</span> — compares_to</li>
 </ul>

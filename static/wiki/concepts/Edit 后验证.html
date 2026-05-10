@@ -142,8 +142,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 - edit 完以后立刻做检查
 - 如果新编辑引入语法错误，就不应用这次编辑
 - 把错误信息、原代码片段、应用后会长什么样，都反馈给 agent
-- 让 agent 重新 edit，而不是把坏状态写进仓库继续往下走</p>
-<p><strong>当前仓库实现（str_replace_editor）：</strong>
+- 让 agent 重新 edit，而不是把坏状态写进<a href="仓库.html">仓库</a>继续往下走</p>
+<p><strong>当前<a href="仓库.html">仓库</a>实现（str_replace_editor）：</strong>
 - <code>USE_LINTER</code> 开关：是否启用 linter
 - <code>flake8(file_path)</code>：对文件运行 flake8，仅对 .py 文件生效
 - 默认 <code>LINT_COMMAND</code>：<code>flake8 --isolated --select=F821,F822,F831,E111,E112,E113,E999,E902 {file_path}</code></p>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>E999</td>
 <td>语法错误</td>
-<td>Python 语法解析失败</td>
+<td><a href="Python.html">Python</a> 语法解析失败</td>
 </tr>
 <tr>
 <td>E902</td>
@@ -200,8 +200,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>全量检查对 agent 不友好</strong>：</li>
 <li>慢：每次 edit 后跑全仓太耗时</li>
 <li>噪声大：容易把 agent 淹没</li>
-<li>历史问题混入：很难<a href="../entities/区分.html">区分</a>"这次 edit 导致的新问题"和"仓库本来就有的问题"</li>
-<li><strong>Python-first 导向</strong>：核心 validate 抽象更偏 Python，linter 路径明确只对 .py 生效</li>
+<li>历史问题混入：很难<a href="../entities/区分.html">区分</a>"这次 edit 导致的新问题"和"<a href="仓库.html">仓库</a>本来就有的问题"</li>
+<li><strong><a href="Python.html">Python</a>-first 导向</strong>：核心 validate 抽象更偏 <a href="Python.html">Python</a>，linter 路径明确只对 .py 生效</li>
 <li><strong>复杂度收缩</strong>：官方已将 <a href="../entities/SWE-agent.html">SWE-agent</a> 转向 maintenance-only，建议用 mini-<a href="../entities/SWE-agent.html">SWE-agent</a></li>
 </ol>
 <h3 id="validate">三层 Validate 设计建议</h3>
@@ -259,38 +259,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这符合 <a href="../entities/SWE-agent.html">SWE-agent</a> 强调的 <strong>specific + concise</strong> 设计逻辑。</p>
 <h3 id="ablation-study">Ablation Study 证据</h3>
 <p><a href="../entities/SWE-agent.html">SWE-agent</a> 论文 Table 3 专门对 editor interface 做了 ablation，验证了 edit 后 validate 的有效性：</p>
-<table>
-<thead>
-<tr>
-<th>配置</th>
-<th><a href="SWE-bench.html">SWE-bench</a> Lite Resolved Rate</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>w/ linting</strong></td>
-<td><strong>18.0%</strong></td>
-<td>带 linting 的 edit（最佳）</td>
-</tr>
-<tr>
-<td><strong>edit action</strong></td>
-<td><strong>15.0%</strong></td>
-<td>有专门 edit 动作但不带 linting</td>
-</tr>
-<tr>
-<td><strong>No edit</strong></td>
-<td><strong>10.3%</strong></td>
-<td>没有专门 edit 工具，靠 shell 方式改文件</td>
-</tr>
-</tbody>
-</table>
+<p>| <a href="Configuration.html">配置</a> | <a href="SWE-bench.html">SWE-bench</a> Lite Resolved Rate | 说明 |
+|------|----------------------------|------|
+| <strong>w/ linting</strong> | <strong>18.0%</strong> | 带 linting 的 edit（最佳） |
+| <strong>edit action</strong> | <strong>15.0%</strong> | 有专门 edit 动作但不带 linting |
+| <strong>No edit</strong> | <strong>10.3%</strong> | 没有专门 edit 工具，靠 shell 方式改文件 |</p>
 <p><strong>两层结论：</strong>
 1. <strong>有专门 edit 工具本身就重要</strong>：从 No edit (10.3) 到 edit action (15.0)，把编辑变成紧凑、受约束的专门动作，本身就能显著提升效果（+4.7 点）。
 2. <strong>edit 后做 validate / linting 进一步显著有益</strong>：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少错误传播。</p>
 <p><strong>准确表述</strong>：论文这里验证的主要是 linting / syntax-level guardrail，不是完整的 LSP/全仓语义检查。它证明的是"edit 后做轻量、即时的有效性校验有帮助"，而非"必须上完整 LSP 才有效"。</p>
 <h3 id="claude-code">Claude Code 分层验证方案</h3>
-<p>在 <a href="../entities/Claude Code.html">Claude Code</a> 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
+<p>在 <a href="../projects/Claude Code.html">Claude Code</a> 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
 <table>
 <thead>
 <tr>
@@ -302,16 +281,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><strong>Tool Description</strong></td>
-<td>"会用"：教会 Claude 如何正确调用 validate 工具</td>
-<td>参数语义 + 使用示例</td>
+<td>"会用"：教会 <span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
+&lt;td&gt;Claude</span> 如何正确调用 validate 工具</td>
 </tr>
 <tr>
-<td><strong>CLAUDE.md</strong></td>
+<td><strong><a href="../entities/CLAUDE.html.html">CLAUDE.md</a></strong></td>
 <td>"想这么做"：定义项目验证策略和偏好</td>
 <td>每个会话加载的持久指令</td>
 </tr>
 <tr>
-<td><strong>Hooks / settings.json</strong></td>
+<td><strong><a href="Hooks.html">Hooks</a> / settings.json</strong></td>
 <td>"真的会做"：PostToolUse 自动触发 lint/test</td>
 <td>additionalContext + decision:block</td>
 </tr>
@@ -322,7 +301,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><strong>核心原则</strong>：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。</p>
+<p><strong>核心原则</strong>：必须发生的放 hooks，希望 <a href="../entities/Claude_Code.html">Claude</a> 优先做的放 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a>，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。</p>
 <h3 id="vs">单文件 vs 多文件编辑</h3>
 <ul>
 <li><strong>单次工具调用</strong>：针对一个 path，作用对象是一个文件</li>
@@ -346,7 +325,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ECS架构.html">&larr; ECS架构</a>
+    <a href="ETS框架.html">&larr; ETS框架</a>
     <a href="Embedding.html">Embedding &rarr;</a>
   </div>
 </div>

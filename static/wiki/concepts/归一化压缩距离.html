@@ -140,12 +140,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">定义</h3>
 <p>归一化压缩距离基于 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 复杂性的归一化信息距离：</p>
 <p>$$NCD(x, y) = \frac{C(xy) - \min(C(x), C(y))}{\max(C(x), C(y))}$$</p>
-<p>其中 C(x) 是 x 的压缩长度（K(x) 的可计算近似），C(xy) 是 x 和 y 拼接后的压缩长度。</p>
+<p>其中 C(x) 是 x 的压缩长度（K(x) 的可<a href="计算.html">计算</a>近似），C(xy) 是 x 和 y 拼接后的压缩长度。</p>
 <h3 id="_5">直觉</h3>
 <p>如果 x 和 y 高度相似，那么 C(xy) ≈ C(x) ≈ C(y)，NCD 接近 0。如果 x 和 y 完全不相关，那么 C(xy) ≈ C(x) + C(y)，NCD 接近 1。</p>
 <h3 id="_6">应用</h3>
 <ul>
-<li><strong>无参数聚类</strong>：不需要预先指定距离函数，压缩算法自动发现数据的内在相似性</li>
+<li><strong>无参数聚类</strong>：不需要预先指定距离函数，压缩<a href="算法.html">算法</a>自动发现数据的内在相似性</li>
 <li><strong>语言分类</strong>：基于文本压缩距离自动将文档按语言分类</li>
 <li><strong>音乐分类</strong>：基于 MIDI 文件压缩距离自动将音乐按风格分类</li>
 <li><strong>基因组学</strong>：基于 DNA 序列压缩距离进行物种分类</li>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南斯拉夫解体 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / 南斯拉夫解体</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">南斯拉夫解体：绝对民主的警示</h1>
+<h2 id="_2">概述</h2>
+<p>南斯拉夫社会主义联邦共和国从"东欧之光"走向十年内战、20万人死亡的悲剧，其根源在于极端分权与绝对民主理念的制度性失控。1966年兰科维奇倒台移除中央集权屏障，1974年宪法将否决权和脱离权写入国家根基，铁托去世后权力彻底瘫痪，经济崩溃最终引爆民族仇恨。这一历史证明：脱离现实的极端民主和无底线分权只会摧毁国家凝聚力。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>第一块多米诺骨牌（1966年）</strong>：副总统兰科维奇被政治逼宫下台，他是中央集权和压制分裂势力的最后一道防线。他的倒台打破了权力平衡，地方势力再无制约。</li>
+<li><strong>经济失衡点燃民族主义</strong>：西北部（克罗地亚、斯洛文尼亚）富裕，东南部落后。富国不满财政补贴穷国，克罗地亚1967年开始舆论造势，炮制"语言宣言"从文化根源制造分裂。</li>
+<li><strong>克罗地亚之春失控（1971年）</strong>：面对苏联"有限主权论"的外部压力，铁托选择妥协，签署1971年宪法修正案满足克罗地亚诉求，但妥协反而助长分裂气焰，极端法西斯组织"乌斯塔沙"复活。</li>
+<li><strong>1974年宪法——"自杀契约"</strong>：设立9人联邦主席团（6共和国+2自治省+铁托），一人一票、绝对否决权；各地区拥有独立宪法、国旗、军队，甚至写入"无条件脱离联邦的自由"。南斯拉夫变成比欧盟还松散的邦联。</li>
+<li><strong>铁托去世后的权力瘫痪（1980年后）</strong>：8名代表轮流担任主席，任期仅一年；任何决策需一致同意，国家最高权力机构彻底瘫痪。七年停滞期后经济崩溃，通胀率飙升至2500%，政客煽动民族仇恨转移矛盾，内战爆发。</li>
+</ol>
+<h2 id="_4">核心教训</h2>
+<ul>
+<li><strong>绝对平等导致最大不平等</strong>：当中央失去权威，国家名存实亡，无法整合资源与维护统一</li>
+<li><strong>妥协换不来和平</strong>：对分裂势力的让步只会助长其气焰</li>
+<li><strong>制度设计必须现实</strong>：脱离现实的乌托邦民主设计最终导致国家分崩离析</li>
+<li><strong>个人威望不可持续</strong>：建立在个人威望和外债上的繁荣是虚假泡沫</li>
+</ul>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/004-绝对的民主，为何会葬送一个国家？南斯拉夫解体的残酷真相</span> — 全文</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="铁托.html">铁托</a> — relates_to</li>
+<li><a href="兰科维奇.html">兰科维奇</a> — relates_to</li>
+<li><a href="克罗地亚之春.html">克罗地亚之春</a> — relates_to</li>
+<li><a href="1974年南斯拉夫宪法.html">1974年南斯拉夫宪法</a> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">联邦制</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">民族主义</span> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="单科性院校.html">&larr; 单科性院校</a>
+    <a href="去中心化马赛克防御体系.html">去中心化马赛克防御体系 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>RMSProp 为每个参数维护梯度平方的指数移动平均，实现自适应学习率。梯度大的参数自动减速，梯度小的参数自动加速。是 <a href="Adam（自适应矩估计）.html">Adam 优化器</a>的二阶矩组件。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>算法</strong>：vₜ = β₂·vₜ₋₁ + (1-β₂)·gₜ²，θ ← θ - η/(√vₜ + ε)·gₜ。二阶矩 vₜ 追踪梯度平方的指数移动平均，有效学习率为 η/√vₜ。β₂ 通常取 0.999，窗口约 1000 步。ε=1e-8 防止除零。</li>
+<li><strong><a href="算法.html">算法</a></strong>：vₜ = β₂·vₜ₋₁ + (1-β₂)·gₜ²，θ ← θ - η/(√vₜ + ε)·gₜ。二阶矩 vₜ 追踪梯度平方的指数移动平均，有效学习率为 η/√vₜ。β₂ 通常取 0.999，窗口约 1000 步。ε=1e-8 防止除零。</li>
 <li><strong>自适应直觉</strong>：梯度大的参数 → vₜ 大 → 有效学习率 η/√vₜ 小（自动减速，防止震荡）；梯度小的参数 → vₜ 小 → 有效学习率 η/√vₜ 大（自动加速，加快收敛）。这解决了<a href="随机梯度下降（SGD）.html">随机梯度下降（SGD）</a>中所有参数共用同一学习率的问题——例如<a href="词嵌入（Word Embedding）.html">词嵌入</a>中高频词梯度大、低频词梯度小，RMSProp 能自动平衡。</li>
 <li><strong>与 AdaGrad 的关系</strong>：RMSProp 改进了 AdaGrad 的单调递减学习率问题。AdaGrad 累积所有历史梯度平方和，学习率只会单调下降，可能过早停止学习。RMSProp 使用指数移动平均，赋予近期梯度更大权重，学习率可以回升。</li>
 <li><strong>在 Adam 中的角色</strong>：<a href="Adam（自适应矩估计）.html">Adam（自适应矩估计）</a>将 RMSProp 作为二阶矩组件（β₂=0.999），与<a href="Momentum（动量）.html">Momentum（动量）</a>的一阶矩结合。Adam 额外引入了<a href="偏差修正（Bias Correction）.html">偏差修正</a>机制，解决 RMSProp 初始化时 v₀=0 导致的早期学习率过大问题。</li>

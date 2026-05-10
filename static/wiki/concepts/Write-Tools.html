@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write-Tools — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Write-Tools</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">prompt-context</span><span class="tag">tools</span><span class="tag">file-operations</span><span class="tag">token-economics</span></div>
+</div>
+  <div class="content">
+    <h1 id="write-tools">Write Tools</h1>
+<h2 id="_1">概述</h2>
+<p><a href="Write.html">Write</a> <a href="Tool System.html">Tools</a> 是一组分层的文件写入机制，提供多粒度的文件操作能力，包括整文件替换、块级替换和补丁应用。其设计受到 <a href="Token 经济学.html">Token 经济学</a>的深刻影响，需要在精确性、效率和成本之间取得平衡。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>分层机制</strong>：</li>
+<li><strong>LLM 输出层 → 解析调度层 → 策略决策层 → <a href="Permissions.html">权限</a>校验层 → I/O 执行层 → 验证反馈层</strong></li>
+<li>
+<p>每一层都有独立的设计权衡，形成了完整的安全与效率保障体系</p>
+</li>
+<li>
+<p><strong>多粒度设计与 <a href="Token 经济学.html">Token 经济学</a></strong>：</p>
+</li>
+<li><code>write_file</code> / <code>create_file</code>：整文件替换，适用于新建文件、小文件<a href="重构.html">重构</a>（&lt; 100 行）</li>
+<li><code>str_replace_editor</code>：块级 find-replace，适用于局部修改、函数替换（100~500 行）</li>
+<li><code>apply_patch</code>：<a href="unified diff.html">unified diff</a> 应用，适用于大文件精确修改（&gt; 500 行）</li>
+<li>
+<p><strong><a href="Token 经济学.html">Token 经济学</a>驱动选择</strong>：<code>&lt; 100 行 → full-replace</code>，<code>100~500 行 → str_replace</code>，<code>&gt; 500 行 → patch</code>。500 行文件的 full-replace 约消耗 15K output tokens，成本极高。</p>
+</li>
+<li>
+<p><strong>写入策略详解</strong>：</p>
+</li>
+<li><strong>Full Replace</strong>：最简单但最昂贵，token 消耗与文件大小线性正比，无 patch 失败风险</li>
+<li><strong>str_replace</strong>：核心武器，具有唯一性约束以确保精确定位。唯一性约束是精心设计的安全锁：强迫 LLM 提供足够的上下文来精确定位目标片段，防止误替换<a href="重复代码.html">重复代码</a>块。若重复，LLM 必须扩展 <code>old_str</code> 直到唯一</li>
+<li>
+<p><strong>Unified Patch</strong>：最节省 token，但 LLM 对行号准确性差，fuzz 不匹配导致 apply 失败率高，工业实践中 <a href="../entities/Codex CLI.html">Codex</a> <a href="Sandbox Mode.html">沙箱模式</a>使用，<a href="../projects/Claude Code.html">Claude Code</a> 则回避</p>
+</li>
+<li>
+<p><strong>安全与<a href="Permissions.html">权限</a>机制</strong>：</p>
+</li>
+<li>沙箱与<a href="Permissions.html">权限</a>机制：<a href="../entities/Codex CLI.html">Codex</a> 使用 OS 级隔离（macOS 的 <code>sandbox-exec</code>/<a href="../entities/Apple Sandbox.html">Seatbelt</a>，Linux 的 <code>landlock</code> + <code>seccomp</code>），<a href="../projects/Claude Code.html">Claude Code</a> 使用<a href="Permissions.html">权限</a><a href="门控机制（Gating Mechanism）.html">门控</a>（路径白名单检查 + 危险路径识别）</li>
+<li><a href="atomic_write.html">Atomic Write</a>：使用 temp → fsync → rename 三步<a href="atomic_write.html">原子写入</a>确保数据一致性，关键细节是 tempfile 必须在同一目录（同一文件系统），否则 <code>os.replace</code> 退化为 copy+delete，失去原子性保证</li>
+<li>唯一性约束：str_replace 要求 old_str 必须唯一，防止误替换<a href="重复代码.html">重复代码</a>块</li>
+<li>
+<p>Path traversal 检查：确保路径在工作区范围内，防止路径遍历攻击</p>
+</li>
+<li>
+<p><strong>工作流程与用户体验</strong>：</p>
+</li>
+<li><a href="Approval Gate UI.html">Approval Gate</a>：写入前<a href="计算.html">计算</a>并显示 <a href="unified diff.html">unified diff</a>（<code>+</code> 行绿色，<code>-</code> 行红色，<code>@@</code> 块青色），支持同步逐步（每次等 <code>y/n</code>）、YOLO 模式（跳过确认）、事后批量（先生成所有 diff 再统一审批）等交互模式</li>
+<li>Read-before-<a href="Write.html">Write</a>：str_replace 策略要求先读取文件再修改，因为 <code>old_str</code> 与磁盘内容必须完全一致（空格、换行都算）</li>
+<li>
+<p>大文件读取策略：行范围读取、Symbol-level 读取（<a href="../projects/Claude Code.html">Claude Code</a> 方式，先提取 def/class <a href="骨骼系统.html">骨架</a>再按需读函数体）、Semantic Chunking + RAG（构建代码知识图谱后 retrieve 相关上下文）</p>
+</li>
+<li>
+<p><strong>架构对比</strong>：</p>
+</li>
+<li><strong><a href="../projects/Claude Code.html">Claude Code</a></strong>：write / str_replace / patch 三件套，<a href="Permissions.html">权限</a><a href="门控机制（Gating Mechanism）.html">门控</a>（进程级），同步逐步/YOLO 审批，Symbol-level 大文件读取</li>
+<li><strong><a href="../entities/Codex CLI.html">Codex CLI</a></strong>：write / patch，OS 沙箱（内核级），suggest/auto-edit/full-auto 模式，行范围读取</li>
+<li><strong><a href="../entities/Cursor.html">Cursor</a></strong>：<a href="AST-based diff.html">AST-based diff</a>（最精确方案，直接在语法树层面做 diff，解决行号漂移问题），无沙箱（IDE 内），inline accept/reject</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 一、本质：不是一个工具，是一组分层机制</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 二、工具 Schema 与多粒度设计</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 三、三种写入策略的核心差异</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 四、沙箱与权限机制：两条不同的路</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 五、Atomic Write — 不可妥协的底线</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 六、Approval Gate 与 Diff 展示</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 七、Read-before-Write 是架构级要求</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 八、横向对比</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Tool-Use.html">Tool-Use</a> — base_for</li>
+<li><a href="atomic_write.html">atomic_write</a> — uses</li>
+<li><a href="../projects/Claude Code.html">Claude Code</a> — implements</li>
+<li><a href="../entities/Codex CLI.html">Codex CLI</a> — compares_to</li>
+<li><a href="../entities/Cursor.html">Cursor</a> — compares_to</li>
+<li><a href="上下文窗口经济学.html">上下文窗口经济学</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Write.html">&larr; Write</a>
+    <a href="XLNet.html">XLNet &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

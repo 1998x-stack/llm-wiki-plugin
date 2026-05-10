@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pymupdf">PyMuPDF</h1>
 <h2 id="_1">概述</h2>
-<p>PyMuPDF 是 MuPDF 引擎的 Python 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 <a href="MinerU.html">MinerU</a> TextBased 管道的核心解析引擎。</p>
+<p>PyMuPDF 是 MuPDF 引擎的 <a href="../concepts/Python.html">Python</a> 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 <a href="MinerU.html">MinerU</a> TextBased 管道的核心解析引擎。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="pymupdf_1">为什么是 PyMuPDF</h3>
-<p>PyMuPDF 底层是 <strong>MuPDF</strong>——业界最优秀的 PDF 渲染引擎之一（Foxit 阅读器也基于它）。相比 <code>pdfminer</code>（纯 Python，慢）和 <code>pypdf</code>（精度有限），PyMuPDF 在速度（C++ 内核）、字符精度（亚像素级）、图像渲染、字体信息、嵌入图片提取、中文 PDF 支持上全面领先。</p>
+<p>PyMuPDF 底层是 <strong>MuPDF</strong>——业界最优秀的 PDF 渲染引擎之一（Foxit 阅读器也基于它）。相比 <code>pdfminer</code>（纯 <a href="../concepts/Python.html">Python</a>，慢）和 <code>pypdf</code>（精度有限），PyMuPDF 在速度（C++ 内核）、字符精度（亚像素级）、图像渲染、字体信息、嵌入图片提取、中文 PDF 支持上全面领先。</p>
 <h3 id="mineru-pymupdf">MinerU 使用 PyMuPDF 的三个核心操作</h3>
 <p><strong>操作一：页面渲染为图像</strong>
 将每页渲染为高分辨率图像（默认 <a href="../concepts/PDF坐标系.html">200 DPI</a>），供<a href="../concepts/文档布局检测.html">文档布局检测</a>模型和<a href="../concepts/光学字符识别.html">光学字符识别</a>模型推理使用。通过 <code>fitz.Matrix(scale, scale)</code> 控制缩放比例。</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Puppeteer MCP.html">&larr; Puppeteer MCP</a>
-    <a href="Ralph Loop.html">Ralph Loop &rarr;</a>
+    <a href="PyTorch.html">PyTorch &rarr;</a>
   </div>
 </div>
 </body>

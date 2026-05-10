@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>输入：矫正后的文字行图像（高度固定为 48px，宽度按比例缩放）
 输出：文字字符串 + 置信度</p>
 <h3 id="ctc">CTC 解码的妙处</h3>
-<p><a href="CTC解码.html">CTC解码</a> 允许模型输出比输入序列更短的字符序列，天然处理了字符宽度不一、字符间隔不均匀等问题，不需要字符级的对齐标注。这是 SVTR 能够高效识别文字的关键机制。</p>
+<p><a href="CTC解码.html">CTC解码</a> 允许模型输出比输入序列更短的字符序列，天然处理了字符宽度不一、字符间隔不均匀等问题，不需要字符级的对齐<a href="../entities/标注.html">标注</a>。这是 SVTR 能够高效识别文字的关键机制。</p>
 <h3 id="_4">架构特点</h3>
 <ul>
 <li><strong>CNN + <a href="Transformer 架构.html">Transformer</a> 混合</strong>：CNN 提取局部特征，<a href="Transformer 架构.html">Transformer</a> 捕获全局上下文依赖</li>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="STRIPS 规划器.html">&larr; STRIPS 规划器</a>
+    <a href="SVD++.html">&larr; SVD++</a>
     <a href="SWE-bench.html">SWE-bench &rarr;</a>
   </div>
 </div>

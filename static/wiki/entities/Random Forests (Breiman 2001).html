@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="random-forests-breiman-2001">Random Forests (Breiman 2001)</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p><a href="Leo Breiman.html">Leo Breiman</a> 于 2001 年发表在 Machine Learning 期刊的论文，正式提出随机森林算法，引用量逾 10 万次，是机器学习领域被引最高的论文之一。</p>
+<p><a href="Leo Breiman.html">Leo Breiman</a> 于 2001 年发表在 Machine Learning 期刊的论文，正式提出<a href="../concepts/随机森林.html">随机森林</a><a href="../concepts/算法.html">算法</a>，引用量逾 10 万次，是机器学习领域被引最高的论文之一。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>发表信息</strong>：Breiman, L. (2001). Random forests. Machine learning, 45(1), 5–32. 作者 <a href="Leo Breiman.html">Leo Breiman</a>，期刊 Machine Learning，年份 2001。</li>
-<li><strong>核心贡献</strong>：论文提出随机森林 = <a href="../concepts/Bagging（自举聚合）.html">Bagging（自举聚合）</a>（Breiman 1996）+ 随机特征子集（新贡献）。每次分裂节点时仅随机选取 m 个特征（分类 m = ⌊√p⌋，回归 m = ⌊p/3⌋），降低树间相关性，使集成方差进一步减小。</li>
+<li><strong>核心贡献</strong>：论文提出<a href="../concepts/随机森林.html">随机森林</a> = <a href="../concepts/Bagging（自举聚合）.html">Bagging（自举聚合）</a>（Breiman 1996）+ 随机特征子集（新贡献）。每次分裂节点时仅随机选取 m 个特征（分类 m = ⌊√p⌋，回归 m = ⌊p/3⌋），降低树间相关性，使集成方差进一步减小。</li>
 <li><strong>理论分析</strong>：论文给出了<a href="../concepts/偏差-方差分解.html">偏差-方差分解</a>视角下的集成方差公式：集成方差 = ρ·σ² + (1-ρ)/T · σ²，证明当 T → ∞ 时方差下限由树间相关性 ρ 决定。同时提出袋外误差（<a href="../concepts/袋外误差（Out-of-Bag Error）.html">OOB Error</a>）作为内置验证方法，以及两种特征重要性量化方法。</li>
-<li><strong>历史地位</strong>：该论文是<a href="../concepts/模型融合.html">集成学习</a>领域的里程碑，直接催生了 <span style="color:#e74c3c" title="broken link">XGBoost</span>、<span style="color:#e74c3c" title="broken link">LightGBM</span> 等后续算法。至今在表格数据任务中，随机森林仍是首选算法之一。</li>
+<li><strong>历史地位</strong>：该论文是<a href="../concepts/模型融合.html">集成学习</a>领域的里程碑，直接催生了 <span style="color:#e74c3c" title="broken link">XGBoost</span>、<span style="color:#e74c3c" title="broken link">LightGBM</span> 等后续<a href="../concepts/算法.html">算法</a>。至今在表格数据任务中，<a href="../concepts/随机森林.html">随机森林</a>仍是首选<a href="../concepts/算法.html">算法</a>之一。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
@@ -156,8 +156,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Randal E. Bryant.html">&larr; Randal E. Bryant</a>
-    <a href="RecBole.html">RecBole &rarr;</a>
+    <a href="Random Forests (2001 论文).html">&larr; Random Forests (2001 论文)</a>
+    <a href="Ratatui.html">Ratatui &rarr;</a>
   </div>
 </div>
 </body>

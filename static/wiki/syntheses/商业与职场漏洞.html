@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商业与职场漏洞 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../syntheses/index.html">syntheses</a> / 商业与职场漏洞</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工作</span><span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">商业与职场漏洞</h1>
+<h2 id="_2">概述</h2>
+<p>规则漏洞在职场与商业场景中的集中应用。任何人为规则（员工手册、晋升制度、行业规范、市场规则）都存在4大先天缺陷，职场与商业是这些漏洞最密集、普通人最容易落地变现的场景。核心逻辑：不靠熬年限、不打价格战，而是看懂<a href="../concepts/非对称赛道.html">规则缝隙</a>，在合规前提下跳出无效内卷，实现降维超车。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">认知破局：规则不是铁律</h3>
+<p>职场与商业规则的本质是<strong>既得利益者为降低管理成本、维护竞争格局而制定的标准化行为框架</strong>。老板制定考勤晋升规则，核心是筛选最听话、最能解决核心问题的人；行业头部制定价格体系和渠道规则，核心是抬高准入门槛，把后来者困在红海。破局者先拆解规则：谁制定的？核心诉求是什么？有哪些<a href="../concepts/弹性规则.html">模糊地带</a>、空白窗口、弹性空间？</p>
+<h3 id="_5">职场四大漏洞</h3>
+<ol>
+<li>
+<p><strong>晋升规则的不周延性漏洞</strong>：公司晋升规则只写原则性要求（"入职满X年、年度考核达标"），但从不明确定义"突出贡献"。实操：圈出模糊表述 → 找到决策人核心KPI → 围绕痛点做增量方案 → 将成果定义为"突出贡献"，实现破格晋升。案例：运营入职1年破格升主管，薪资涨50%。</p>
+</li>
+<li>
+<p><strong>绩效考核的执行弹性漏洞</strong>：考核纸面规则是KPI和考勤，但执行主体是直属领导，打分有<a href="../concepts/规则执行弹性.html">自由裁量空间</a>。领导的核心诉求不是"你把活干完"，而是"帮他解决核心痛点"。实操：把80%精力放在满足决策人核心诉求的事上，20%完成纸面基础工作。</p>
+</li>
+<li>
+<p><strong>组织发展的滞后性漏洞</strong>：成熟业务线规则完善、内卷严重、一个萝卜一个坑；新业务处于规则空白期，没有固化层级，谁做出结果谁卡位核心岗位。案例：内容编辑主动牵头AI内容项目，半年成为部门经理，薪资翻3倍。</p>
+</li>
+<li>
+<p><strong>职场赛道的地域差漏洞</strong>：一线城市大厂内卷极致、晋升稀缺；新一线/强二线城市本土企业急需有大厂经验的人才，规则宽松、晋升机会多。实操：把头部企业成熟方法论平移到下沉市场企业，实现降维打击。</p>
+</li>
+</ol>
+<h3 id="_6">商业四大漏洞</h3>
+<ol>
+<li>
+<p><strong>行业规范的不周延性漏洞</strong>：行业规范围绕主流市场设计，必然忽略细分需求。找到主流规则覆盖不到的细分赛道，卡位成为头部。案例：宠物殡葬+纪念品定制，2人团队年赚80万，毛利率超80%。</p>
+</li>
+<li>
+<p><strong>市场发展的地域差漏洞</strong>：一线城市商业模式比下沉市场领先3-5年。把已验证成功的模式平移优化到县城/乡镇，成为当地第一个玩家。案例：上海健身店长回县城开社区轻健身工作室，6个月回本，年盈利40万+。</p>
+</li>
+<li>
+<p><strong>监管规则的滞后性漏洞</strong>：技术革新诞生新业态，监管规则永远滞后3-6个月甚至1-2年。空白窗口期是弯道超车最佳机会。案例：AI数字人直播早期进场，月营收30万成本仅2万，等规则完善时已完成原始积累。</p>
+</li>
+<li>
+<p><strong>供应链规则的执行弹性漏洞</strong>：供应链合作规则有极大<a href="../concepts/规则执行弹性.html">自由裁量空间</a>。拆解厂家核心诉求（长期稳定出货、库存周转），设计双赢方案（一件代发代替批量压货、阶梯订单代替大额预付），把启动成本和库存风险降到最低。</p>
+</li>
+</ol>
+<h3 id="_7">四条不可触碰的红线</h3>
+<ol>
+<li><strong>职场红线</strong>：不损害公司利益，不触碰合规底线。不伪造业绩、不泄露机密。</li>
+<li><strong>商业红线</strong>：不违法违规，不触碰监管红线。利用规则空白，不是法律灰色地带。</li>
+<li><strong>信用红线</strong>：不透支信用，不做一锤子买卖。个人信用是最核心资产。</li>
+<li><strong>竞争底线</strong>：不搞恶性竞争，不损害他人合法权益。</li>
+</ol>
+<h2 id="_8">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/09</span> — 全文</li>
+</ul>
+<h2 id="_9">相关</h2>
+<ul>
+<li><a href="../concepts/规则漏洞学.html">规则漏洞学</a> — part_of</li>
+<li><a href="../concepts/规则的4大先天缺陷.html">规则的4大先天缺陷</a> — extends</li>
+<li><a href="../地域差异型漏洞.html">地域差异型漏洞</a> — relates_to</li>
+<li><a href="../政策与监管漏洞.html">政策与监管漏洞</a> — relates_to</li>
+<li><a href="../concepts/同质化内卷.html">同质化内卷</a> — contradicts</li>
+<li><a href="../concepts/规则不周延性.html">规则不周延性</a> — extends</li>
+<li><a href="../concepts/规则执行弹性.html">规则执行弹性</a> — extends</li>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a> — relates_to</li>
+<li><a href="../拼多多.html">拼多多</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="伊朗-乌克兰地缘冲突升级.html">&larr; 伊朗-乌克兰地缘冲突升级</a>
+    <a href="控制论的最新发展.html">控制论的最新发展 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

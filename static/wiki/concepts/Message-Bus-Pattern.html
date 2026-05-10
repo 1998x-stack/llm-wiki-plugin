@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="message-bus-pattern">Message Bus Pattern</h1>
 <h2 id="_1">概述</h2>
-<p>消息总线（Message Bus）是随着智能体数量增加、交互模式变得复杂时采用的多智能体模式。引入共享通信层，智能体在该层中发布和订阅事件。新智能体具备新功能时可开始接收相关任务，而无需重新配置现有连接。</p>
+<p>消息总线（Message Bus）是随着智能体数量增加、交互模式变得复杂时采用的多智能体模式。引入共享通信层，智能体在该层中发布和订阅事件。新智能体具备新功能时可开始接收相关任务，而无需重新<a href="Configuration.html">配置</a>现有连接。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
 <p><strong>两个原语</strong>：
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>特点</strong>：
 - 智能体通过共享通信层交互
 - 新智能体可轻松加入生态系统
-- 无需重新配置现有连接</p>
+- 无需重新<a href="Configuration.html">配置</a>现有连接</p>
 <h3 id="_4">适用场景</h3>
 <p><strong>事件驱动型管道</strong>：
 - 工作流由事件而非预设序列生成
@@ -187,30 +187,25 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 需要监控和告警机制
 - 日志记录至关重要</p>
 <h3 id="orchestrator-subagent">与 Orchestrator-Subagent 的对比</h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>Orchestrator-Subagent</th>
-<th>Message Bus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>工作流结构</strong></td>
-<td>预设序列</td>
-<td>由事件生成</td>
-</tr>
-<tr>
-<td><strong>路由</strong></td>
-<td>协调者决定</td>
-<td><span style="color:#e74c3c" title="broken link">路由器</span>的分类准确性
-- 设置误分类检测和告警
+<p>| 维度 | <a href="Orchestrator Agent.html">Orchestrator</a>-Subagent | Message Bus |
+|------|----------------------|-------------|
+| <strong>工作流结构</strong> | 预设序列 | 由事件生成 |
+| <strong>路由</strong> | 协调者决定 | <a href="网关与路由器.html">路由器</a>基于主题 |
+| <strong>扩展性</strong> | 协调者成为瓶颈 | 可轻松添加新智能体 |
+| <strong>调试</strong> | 顺序决策易追踪 | 级联事件难追踪 |</p>
+<h3 id="_8">设计建议</h3>
+<p><strong>日志记录</strong>：
+- 细致的日志记录所有事件
+- 关联分析工具
+- 监控和告警机制</p>
+<p><strong>路由准确性</strong>：
+- 测试<a href="网关与路由器.html">路由器</a>的分类准确性
+- <a href="Settings.html">设置</a>误分类检测和告警
 - 考虑基于规则和基于模型的混合路由</p>
 <p><strong>监控</strong>：
 - 跟踪事件流转
 - 检测无声失效
-- 设置完成超时和重试机制</p>
+- <a href="Settings.html">设置</a>完成超时和重试机制</p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Multi-agent coordination patterns_ Five approaches and when to use them.md</span> — Cara Phillips 撰写</li>
@@ -223,8 +218,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Memory Nudge.html">&larr; Memory Nudge</a>
-    <a href="MinerUSpan格式.html">MinerUSpan格式 &rarr;</a>
+    <a href="Memory-Management.html">&larr; Memory-Management</a>
+    <a href="Meta-Prompting.html">Meta-Prompting &rarr;</a>
   </div>
 </div>
 </body>

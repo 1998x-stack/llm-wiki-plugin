@@ -129,24 +129,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">paper</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">论文</span><span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">卷积神经网络</span></div>
 </div>
   <div class="content">
     <h1 id="imagenet-classification-with-deep-convolutional-neural-networks-2012">ImageNet Classification with Deep Convolutional Neural Networks (2012 论文)</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>2012 年 NeurIPS 发表的里程碑论文，介绍了 <a href="../concepts/AlexNet.html">AlexNet</a> 架构，在 <a href="../concepts/ImageNet.html">ImageNet</a> 竞赛中将 Top-5 错误率从 25.8% 降至 15.3%，开启了深度学习革命。</p>
+<p>2012 年 <a href="NeurIPS.html">NeurIPS</a> 发表的里程碑论文，介绍了 <a href="../concepts/AlexNet.html">AlexNet</a> 架构，在 <a href="../concepts/ImageNet.html">ImageNet</a> 竞赛中将 <a href="../concepts/Top-5 错误率.html">Top-5 错误率</a>从 25.8% 降至 15.3%，开启了深度学习革命。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>论文信息</strong>：作者 <a href="Alex Krizhevsky.html">Alex Krizhevsky</a>、<a href="Ilya Sutskever.html">Ilya Sutskever</a>、<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>（多伦多大学），发表于 NeurIPS 2012（第 25 届）。论文提出了一个 8 层深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络（CNN）</a>——<a href="../concepts/AlexNet.html">AlexNet</a>，在 <a href="../concepts/ImageNet.html">ImageNet 大规模视觉识别挑战赛</a>（<a href="../concepts/ImageNet.html">ILSVRC</a>）中取得突破性成绩。</li>
-<li><strong>核心贡献</strong>：(1) 证明了深度 CNN 在大规模视觉任务中的有效性；(2) 系统引入<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>（训练速度快 6 倍）；(3) 使用双 GPU 并行训练（GTX 580，训练 5-6 天）；(4) 提出<a href="../concepts/Dropout.html">Dropout</a>正则化（p=0.5，显著降低<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>）；(5) 设计<a href="../concepts/数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>策略（随机裁剪、翻转、PCA 色彩扰动）；(6) 使用<a href="../concepts/局部响应归一化（LRN）.html">局部响应归一化（LRN）</a>提升泛化。</li>
-<li><strong>实验结果</strong>：Top-5 错误率 15.3%（2011 年冠军为 25.8%），领先第二名 10 个百分点。这是计算机视觉历史上最大的单年进步幅度，证明了数据驱动的深度学习远优于手工特征工程（SIFT/HOG + SVM）的传统<a href="../concepts/规范化理论.html">范式</a>。</li>
-<li><strong>影响与引用</strong>：该论文是深度学习领域被引用最多的论文之一（超过 10 万次引用），直接推动了 AI 产业投资浪潮。它标志着从"<a href="../concepts/AI 寒冬.html">AI 寒冬</a>"到"深度学习时代"的转折点，后续几乎所有视觉突破（VGGNet、<a href="../concepts/残差网络（ResNet）.html">ResNet</a>、ViT 等）都建立在此论文奠定的<a href="../concepts/规范化理论.html">范式</a>之上。</li>
+<li><strong>论文信息</strong>：作者 <a href="Alex Krizhevsky.html">Alex Krizhevsky</a>、<a href="Ilya Sutskever.html">Ilya Sutskever</a>、<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>（多伦多大学），发表于 <a href="NeurIPS.html">NeurIPS</a> 2012（第 25 届）。论文提出了一个 8 层深度<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络（CNN）</a>——<a href="../concepts/AlexNet.html">AlexNet</a>，在 <a href="../concepts/ImageNet.html">ImageNet 大规模视觉识别挑战赛</a>（<a href="../concepts/ImageNet.html">ILSVRC</a>）中取得突破性成绩。</li>
+<li><strong>核心贡献</strong>：(1) 证明了深度 CNN 在大规模视觉任务中的有效性；(2) 系统引入<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>（训练速度快 6 倍）；(3) 使用双 <a href="../concepts/GPU训练.html">GPU 并行训练</a>（GTX 580，训练 5-6 天）；(4) 提出<a href="../concepts/Dropout.html">Dropout</a>正则化（p=0.5，显著降低<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>）；(5) 设计<a href="../concepts/数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>策略（随机裁剪、翻转、PCA 色彩扰动）；(6) 使用<a href="../concepts/局部响应归一化（LRN）.html">局部响应归一化（LRN）</a>提升泛化。</li>
+<li><strong>实验结果</strong>：<a href="../concepts/Top-5 错误率.html">Top-5 错误率</a> 15.3%（2011 年冠军为 25.8%），领先第二名 10 个百分点。这是<a href="../concepts/计算.html">计算</a>机视觉历史上最大的单年进步幅度，证明了数据驱动的深度学习远优于<a href="../concepts/手工特征工程.html">手工特征工程</a>（SIFT/HOG + SVM）的传统<a href="../concepts/规范化理论.html">范式</a>。</li>
+<li><strong>影响与引用</strong>：该论文是深度学习领域被引用最多的论文之一（超过 10 万次引用），直接推动了 AI 产业投资浪潮。它标志着从"<a href="../concepts/AI 寒冬.html">AI 寒冬</a>"到"深度学习时代"的转折点，后续几乎所有视觉突破（<a href="../concepts/VGGNet.html">VGGNet</a>、<a href="../concepts/残差网络（ResNet）.html">ResNet</a>、ViT 等）都建立在此论文奠定的<a href="../concepts/规范化理论.html">范式</a>之上。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — 原始论文</li>
 <li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
@@ -162,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Ilya Sutskever.html">&larr; Ilya Sutskever</a>
-    <a href="InstructRec.html">InstructRec &rarr;</a>
+    <a href="ImageNet: A Large-Scale Hierarchical Image Database (2009 论文).html">ImageNet: A Large-Scale Hierarchical Image Database (2009 论文) &rarr;</a>
   </div>
 </div>
 </body>

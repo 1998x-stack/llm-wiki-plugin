@@ -142,13 +142,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心流程</strong>：对于目标用户 A，在所有用户中寻找与 A 品味最相似的 K 个"邻居用户"；将邻居用户喜欢但 A 尚未接触的物品推荐给 A。</p>
 </li>
 <li>
-<p><strong>相似度计算</strong>：常用皮尔逊相关系数和余弦相似度来计算用户之间的相似度。皮尔逊相关系数在 User-Based CF 中被广泛使用，衡量两个用户评分序列之间的线性相关性。</p>
+<p><strong>相似度<a href="计算.html">计算</a></strong>：常用皮尔逊相关系数和余弦相似度来<a href="计算.html">计算</a>用户之间的相似度。皮尔逊相关系数在 User-Based CF 中被广泛使用，衡量两个用户评分序列之间的线性相关性。</p>
 </li>
 <li>
-<p><strong>可扩展性瓶颈</strong>：计算复杂度与用户数量的平方成正比。当系统需要在数千万用户中为每个人实时寻找相似用户时，计算量变得不可承受。正如论文指出："这些算法能在实时环境中搜索数万个潜在邻居，但现代系统的需求是搜索数千万个潜在邻居。"</p>
+<p><strong>可扩展性瓶颈</strong>：<a href="计算.html">计算</a>复杂度与用户数量的平方成正比。当系统需要在数千万用户中为每个人实时寻找相似用户时，<a href="计算.html">计算</a>量变得不可承受。正如论文指出："这些<a href="算法.html">算法</a>能在实时环境中搜索数万个潜在邻居，但现代系统的需求是搜索数千万个潜在邻居。"</p>
 </li>
 <li>
-<p><strong>用户行为动态性</strong>：用户偏好经常变化，相似度<a href="矩阵.html">矩阵</a>难以有效缓存和复用，需要频繁重新计算。</p>
+<p><strong>用户行为动态性</strong>：用户偏好经常变化，相似度<a href="矩阵.html">矩阵</a>难以有效缓存和复用，需要频繁重新<a href="计算.html">计算</a>。</p>
 </li>
 <li>
 <p><strong>被 <a href="基于物品的协同过滤.html">Item-Based CF</a> 超越</strong>：<a href="../entities/Item-Based Collaborative Filtering Recommendation Algorithms.html">Item-Based Collaborative Filtering Recommendation Algorithms</a> 证明，<a href="基于物品的协同过滤.html">Item-Based CF</a> 在保持与 User-Based CF 相当甚至更优推荐质量的同时，实现了显著的性能提升，因为物品相似度关系远比用户相似度关系稳定。</p>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="基于物品的协同过滤.html">&larr; 基于物品的协同过滤</a>
-    <a href="增量挖掘.html">增量挖掘 &rarr;</a>
+    <a href="基础类型沉迷.html">基础类型沉迷 &rarr;</a>
   </div>
 </div>
 </body>

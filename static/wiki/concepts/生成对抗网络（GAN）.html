@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">生成模型</span></div>
 </div>
   <div class="content">
@@ -138,11 +138,30 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>一种通过<a href="生成器.html">生成器</a>与<a href="判别器.html">判别器</a><a href="零和博弈.html">零和博弈</a>学习数据分布的生成模型框架，由 <a href="../entities/Ian Goodfellow.html">Ian Goodfellow</a> 于 2014 年提出，开创了<a href="对抗训练.html">对抗训练</a><a href="规范化理论.html">范式</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心思想</strong>：GAN 将生成建模转化为两个神经网络的博弈问题。<a href="生成器.html">生成器</a>（造假者）从随机噪声 z ~ N(0, I) 生成伪造数据 G(z)，目标是欺骗<a href="判别器.html">判别器</a>；<a href="判别器.html">判别器</a>（鉴别专家）接收真实数据 x 或生成数据 G(z)，输出其为真实数据的概率 D(·) ∈ [0, 1]，目标是正确<a href="../entities/区分.html">区分</a>真假。两者通过<a href="对抗训练.html">对抗训练</a>不断提升，最终达到 <a href="纳什均衡.html">纳什均衡</a>。</li>
-<li><strong>数学目标函数</strong>：min_G max_D V(D, G) = E_{x~p_data}[log D(x)] + E_{z~p_z}[log(1 - D(G(z)))]。这是一个 <a href="零和博弈.html">零和博弈</a>（Minimax Game）。实践中<a href="生成器.html">生成器</a>的目标改为最大化 log D(G(z)) 而非最小化 log(1-D(G(z)))，以避免早期训练时的梯度饱和问题。</li>
-<li><strong>理论保证</strong>：Goodfellow 严格证明了给定 G 时最优<a href="判别器.html">判别器</a>为 D<em>_G(x) = p_data(x) / (p_data(x) + p_g(x))，全局最优点为 p_g = p_data，此时 D</em>(x) = 1/2（无法<a href="../entities/区分.html">区分</a>真假）。但现实中此条件无法满足，GAN 训练极不稳定。</li>
-<li><strong>常见训练问题</strong>：<a href="模式崩塌.html">模式崩塌</a>（<a href="生成器.html">生成器</a>只生成几种样本）、训练不稳定（损失震荡不收敛）、<a href="梯度消失.html">梯度消失</a>（<a href="判别器.html">判别器</a>太强时<a href="生成器.html">生成器</a>梯度为零）、超参数敏感。解决方案包括 <a href="Wasserstein距离.html">Wasserstein距离</a>（WGAN）、谱归一化、非饱和损失、Adam β₁=0.5 等。</li>
-<li><strong>演化谱系</strong>：原版 GAN（2014）→ DCGAN（2015，卷积化）→ WGAN（2017，Wasserstein 距离）→ Pix2Pix / CycleGAN（2017，条件控制）→ PGGAN（2018，渐进式训练）→ StyleGAN 系列（2019-2020，风格解耦）→ 最终被 <span style="color:#e74c3c" title="broken link">扩散模型（Diffusion Model）</span>（2020+）超越。</li>
+<li>
+<p><strong>核心思想</strong>：GAN 将生成建模转化为两个神经网络的博弈问题。<a href="生成器.html">生成器</a>（造假者）从随机噪声 z ~ N(0, I) 生成伪造数据 G(z)，目标是欺骗<a href="判别器.html">判别器</a>；<a href="判别器.html">判别器</a>（鉴别专家）接收真实数据 x 或生成数据 G(z)，输出其为真实数据的概率 D(·) ∈ [0, 1]，目标是正确<a href="../entities/区分.html">区分</a>真假。两者通过<a href="对抗训练.html">对抗训练</a>不断提升，最终达到 <a href="纳什均衡.html">纳什均衡</a>。这种灵感据说是 <a href="../entities/Ian Goodfellow.html">Ian Goodfellow</a> 在酒吧讨论后当晚实现的。</p>
+</li>
+<li>
+<p><strong>数学目标函数</strong>：min_G max_D V(D, G) = E_{x~p_data}[log D(x)] + E_{z~p_z}[log(1 - D(G(z)))]。这是一个 <a href="零和博弈.html">零和博弈</a>（Minimax Game）。实践中<a href="生成器.html">生成器</a>的目标改为最大化 log D(G(z)) 而非最小化 log(1-D(G(z)))，以避免早期训练时的梯度饱和问题。理论上给定 G 时最优<a href="判别器.html">判别器</a>为 D<em>_G(x) = p_data(x) / (p_data(x) + p_g(x))，全局最优点为 p_g = p_data，此时 D</em>(x) = 1/2（无法<a href="../entities/区分.html">区分</a>真假）。</p>
+</li>
+<li>
+<p><strong>训练<a href="算法.html">算法</a></strong>：交替训练两个网络：（1）固定<a href="生成器.html">生成器</a>G，训练<a href="判别器.html">判别器</a>D使其最大化正确分类真假样本的能力；（2）固定<a href="判别器.html">判别器</a>D，训练<a href="生成器.html">生成器</a>G使其最小化生成样本被识别为假的概率。两个网络轮流训练，直到达到平衡。</p>
+</li>
+<li>
+<p><strong>常见训练问题</strong>：<a href="模式崩塌.html">模式崩塌</a>（<a href="生成器.html">生成器</a>只生成几种样本）、训练不稳定（损失震荡不收敛）、<a href="梯度消失.html">梯度消失</a>（<a href="判别器.html">判别器</a>太强时<a href="生成器.html">生成器</a>梯度为零）、超参数敏感。解决方案包括 <a href="Wasserstein距离.html">Wasserstein距离</a>（WGAN）、谱归一化、非饱和损失、Adam β₁=0.5 等。</p>
+</li>
+<li>
+<p><strong>架构演进</strong>：原始GAN使用全连接网络，效果不稳定。<a href="../entities/DCGAN（Deep Convolutional GAN）.html">DCGAN（Deep Convolutional GAN）</a>（2015）通过卷积化改进，使用ConvTranspose2d上采样、stride=2卷积下采样、<a href="Batch Normalization.html">BatchNorm</a>、LeakyReLU等设计原则，大幅提升了生成质量和训练稳定性。</p>
+</li>
+<li>
+<p><strong>演化谱系</strong>：原版 GAN（2014）→ <a href="../entities/DCGAN（Deep Convolutional GAN）.html">DCGAN（Deep Convolutional GAN）</a>（2015，卷积化）→ WGAN（2017，Wasserstein 距离）→ Pix2Pix / CycleGAN（2017，条件控制）→ PGGAN（2018，渐进式训练）→ StyleGAN 系列（2019-2020，风格解耦）→ 最终被 <span style="color:#e74c3c" title="broken link">扩散模型（Diffusion Model）</span>（2020+）超越。GAN 在实时生成场景仍有优势。</p>
+</li>
+<li>
+<p><strong>评估指标</strong>：为了衡量生成质量，提出了多种评估指标，如IS（<a href="Inception Network.html">Inception</a> Score）衡量清晰度和多样性，FID（Fréchet <a href="Inception Network.html">Inception</a> Distance）衡量生成分布与真实分布的距离。</p>
+</li>
+<li>
+<p><strong>实际影响</strong>：为整个生成式 AI 领域奠定基础，影响了 Deepfake、StyleGAN、<a href="DALL-E.html">DALL-E</a> 等后续工作的发展，<a href="../entities/Yann LeCun.html">Yann LeCun</a> 称其为"过去20年最有趣的ML想法"。</p>
+</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

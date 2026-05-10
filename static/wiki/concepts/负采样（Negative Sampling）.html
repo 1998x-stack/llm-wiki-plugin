@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="negative-sampling">负采样（Negative Sampling）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="负采样.html">负采样</a>是 <a href="Word2Vec.html">Word2Vec</a> 的核心训练优化方法，用 K 个随机负样本替代全量 Softmax，使训练速度提升 1000 倍以上。</p>
+<p><a href="负采样.html">负采样</a>是 <a href="../entities/Word2Vec.html">Word2Vec</a> 的核心训练优化方法，用 K 个随机负样本替代全量 <a href="Softmax.html">Softmax</a>，使训练速度提升 1000 倍以上。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">问题背景</h3>
-<p>原始 Softmax 的计算复杂度：</p>
+<p>原始 <a href="Softmax.html">Softmax</a> 的<a href="计算.html">计算</a>复杂度：</p>
 <pre><code>P(上下文词 w_o | 中心词 w_c) = exp(v'ᵀ v) / Σ_{w=1}^{V} exp(v'_w ᵀ v)
                                                   ↑
                                          对所有 V≈10万个词求和
@@ -172,21 +172,21 @@ def get_negative_sample_probs(self):
 negatives = np.random.choice(len(self.vocab), self.n_neg, p=self.neg_probs, replace=False)
 </code></pre>
 <h3 id="_7">历史意义</h3>
-<p><a href="负采样.html">负采样</a>是 <a href="Word2Vec.html">Word2Vec</a> 能够实现高效训练的关键创新之一，使得在亿级语料上训练<a href="词嵌入（Word Embedding）.html">词向量</a>成为可能，直接推动了 NLP 预训练<a href="规范化理论.html">范式</a>的兴起。</p>
+<p><a href="负采样.html">负采样</a>是 <a href="../entities/Word2Vec.html">Word2Vec</a> 能够实现高效训练的关键创新之一，使得在亿级语料上训练<a href="词嵌入（Word Embedding）.html">词向量</a>成为可能，直接推动了 NLP 预训练<a href="规范化理论.html">范式</a>的兴起。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/08_word2vec_2013.md</span></li>
 </ul>
 <h2 id="_9">相关</h2>
 <ul>
-<li><a href="Word2Vec.html">Word2Vec</a> — 所属模型</li>
+<li><a href="../entities/Word2Vec.html">Word2Vec</a> — 所属模型</li>
 <li><a href="Skip-gram.html">Skip-gram</a> — 应用的架构</li>
 <li><a href="../entities/Efficient Estimation of Word Representations in Vector Space (2013 论文).html">Efficient Estimation of Word Representations in Vector Space (2013 论文)</a> — 提出论文</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="负采样.html">&larr; 负采样</a>
-    <a href="资源与能力差异.html">资源与能力差异 &rarr;</a>
+    <a href="负采样技术.html">&larr; 负采样技术</a>
+    <a href="质量保障.html">质量保障 &rarr;</a>
   </div>
 </div>
 </body>

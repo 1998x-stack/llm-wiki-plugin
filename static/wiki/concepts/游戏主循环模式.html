@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>draw/render</strong>：每帧绘制当前状态到屏幕</p>
 </li>
 <li>
-<p><strong>回调（Callback）机制</strong>：开发者定义约定好名称的函数，引擎在合适时机主动调用。业务逻辑嵌在<a href="UrhoX引擎生命周期API.html">引擎生命周期</a>里运行，开发者不需要写主循环本身。</p>
+<p><strong>回调（Callback）机制</strong>：开发者定义约定好名称的函数，引擎在<a href="../entities/KAIROS.html">合适时机</a>主动调用。业务逻辑嵌在<a href="UrhoX引擎生命周期API.html">引擎生命周期</a>里运行，开发者不需要写主循环本身。</p>
 </li>
 <li>
 <p><strong>dt 时间无关移动</strong>：用 <code>position += speed * dt</code> 而非 <code>position += speed</code>，使运动速度与帧率解耦。帧率为 60fps 时 dt≈0.016，帧率为 30fps 时 dt≈0.033，速度保持每秒 <code>speed</code> 单位不变。</p>

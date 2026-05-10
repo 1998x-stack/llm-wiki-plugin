@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当输入特征仅为用户 one-hot 和物品 one-hot 时，FM 退化为标准的<a href="矩阵分解.html">矩阵分解</a>模型。FM 可处理额外的上下文特征（如时间、地点、物品属性等）。</p>
 </li>
 <li>
-<p><strong>计算效率</strong>：FM 的二阶交互项可通过代数变换从 O(n²) 优化到 O(nk) 计算复杂度，其中 n 为特征数量，k 为<a href="嵌入表示.html">隐向量</a>维度，使得 FM 在高维稀疏特征空间上高效运行。</p>
+<p><strong><a href="计算.html">计算</a>效率</strong>：FM 的二阶交互项可通过代数变换从 O(n²) 优化到 O(nk) <a href="计算.html">计算</a>复杂度，其中 n 为特征数量，k 为<a href="嵌入表示.html">隐向量</a>维度，使得 FM 在高维稀疏特征空间上高效运行。</p>
 </li>
 <li>
 <p><strong>后续发展</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 等深度推荐模型将 FM 与深度神经网络结合，FM 部分负责低阶<a href="特征交叉.html">特征交互</a>，DNN 部分负责高阶<a href="特征交叉.html">特征交互</a>，两者共享输入<a href="嵌入表示.html">嵌入层</a>。</p>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="FTS5.html">&larr; FTS5</a>
-    <a href="GARCH 模型.html">GARCH 模型 &rarr;</a>
+    <a href="Feature Envy.html">Feature Envy &rarr;</a>
   </div>
 </div>
 </body>

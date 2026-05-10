@@ -129,32 +129,56 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">paper</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">残差网络</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">残差网络</span><span class="tag">机器学习</span><span class="tag">网络架构</span></div>
 </div>
   <div class="content">
     <h1 id="deep-residual-learning-for-image-recognition-2016">Deep Residual Learning for Image Recognition (2016 论文)</h1>
-<h2 id="50-200">概述 (50-200字符)</h2>
-<p>何恺明等人提出的残差学习框架，通过引入<a href="../concepts/残差连接.html">残差连接</a>解决了深度神经网络的退化问题，使网络能够训练至152层以上。该论文获CVPR 2016最佳论文，<a href="../concepts/ImageNet.html">ILSVRC</a> 2015冠军。</p>
-<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<h2 id="_1">概述</h2>
+<p><a href="Kaiming He.html">何恺明</a>、张祥雨、任少卿、孙剑于2015年发表的开创性论文，提出了<a href="../concepts/残差学习（Residual Learning）.html">残差学习</a>框架和<a href="../concepts/残差网络（ResNet）.html">残差网络（ResNet）</a>，通过引入<a href="../concepts/残差连接.html">残差连接</a>解决了深度神经网络的退化问题，使网络能够训练至152层以上。该论文获得了CVPR 2016最佳论文奖，并在<a href="ILSVRC.html">ILSVRC</a> 2015竞赛中取得多项冠军。</p>
+<h2 id="_2">关键内容</h2>
 <ol>
-<li><strong><a href="../concepts/退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a></strong>：实验发现更深的网络（如56层）训练误差反而比浅层网络（如20层）更高，这不是<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>而是优化问题——深层网络学不会恒等映射。</li>
-<li><strong>残差学习公式</strong>：将目标映射重构为 H(x) = F(x) + x，网络只需学习残差 F(x) = H(x) - x。当最优解接近恒等映射时，将权重推向零比学习恒等变换更容易。</li>
-<li><strong>梯度高速公路</strong>：<a href="../concepts/反向传播.html">反向传播</a>时 ∂L/∂x = ∂L/∂H · (∂F/∂x + 1)，<a href="../concepts/残差连接（Residual Connection）.html">恒等捷径</a>贡献的"1"确保梯度可以绕过任意层直接流向浅层，有效解决<a href="../concepts/梯度消失.html">梯度消失</a>问题。</li>
-<li><strong>两种残差块设计</strong>：BasicBlock（两层3×3卷积，用于<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-18/34）和Bottleneck（1×1降维→3×3→1×1升维，用于<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-50/101/152），后者将计算量减少约8倍。</li>
-<li><strong><a href="../concepts/ImageNet.html">ILSVRC</a> 2015 成果</strong>：<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-152以3.57% Top-5错误率夺冠，首次超越人类水平（约5%）。</li>
+<li>
+<p><strong><a href="../concepts/退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a></strong>：实验发现更深的网络（如56层）训练误差反而比浅层网络（如20层）更高，这不是<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>而是优化问题——深层网络学不会恒等映射。在<a href="CIFAR-10 数据集.html">CIFAR-10</a>数据集上，56层网络的训练误差显著高于20层网络。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/残差学习（Residual Learning）.html">残差学习</a>公式</strong>：将目标映射<a href="../concepts/重构.html">重构</a>为 H(x) = F(x) + x，网络只需学习残差 F(x) = H(x) - x。当最优解接近恒等映射时，将权重推向零比学习恒等变换更容易。这种设计使得网络在不需要额外变换时可以轻松学习到零映射。</p>
+</li>
+<li>
+<p><strong>两种残差块设计</strong>：</p>
+</li>
+<li>BasicBlock（用于<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-18/34）：包含两个3×3卷积层，结构简单。</li>
+<li>
+<p>Bottleneck（用于<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-50/101/152）：采用1×1降维→3×3→1×1升维的结构，参数量比BasicBlock节省约40%（11 vs 18单位参数）。</p>
+</li>
+<li>
+<p><strong><a href="../concepts/ImageNet.html">ILSVRC</a> 2015 成果</strong>：<a href="../concepts/残差网络（ResNet）.html">ResNet</a>-152以3.57% Top-5错误率获得冠军，首次超越人类水平（约5.1%），同时获得目标检测、图像定位等多项冠军，以及COCO 2015检测任务冠军，成为史无前例的"五冠王"。</p>
+</li>
+<li>
+<p><strong>实验验证</strong>：论文通过在<a href="CIFAR-10 数据集.html">CIFAR-10</a>上的实验展示了<a href="../concepts/残差连接.html">残差连接</a>的效果。普通网络（Plain Network）在超过一定层数后出现明显的性能退化，而残差网络即使到1202层仍可训练。实验还表明残差函数的响应普遍较小，说明网络确实学习到了接近恒等映射的小扰动。</p>
+</li>
+<li>
+<p><strong>理论意义</strong>：<a href="../concepts/残差连接.html">残差连接</a>提供了梯度高速公路，确保梯度可以直接流向浅层，解决<a href="../concepts/梯度消失.html">梯度消失</a>问题；使深层网络更容易训练；损失曲面更加平滑，便于优化器找到全局最优解。</p>
+</li>
 </ol>
-<h2 id="_1">来源</h2>
+<h2 id="_3">来源</h2>
 <ul>
-<li><a href="../../raw/articles/ai-papers/machine-learning/13_resnet_2015.md">raw/articles/ai-papers/machine-learning/13_resnet_2015.md</a> — 原始笔记文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/13_resnet_2015.md</span> — 原始笔记文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_05_resnet.md</span> — 论文精读 #05：残差网络 ResNet</li>
+<li><span style="color:#e74c3c" title="broken link">https://arxiv.org/abs/1512.03385</span> — arXiv 论文原文</li>
 </ul>
-<h2 id="_2">相关</h2>
+<h2 id="_4">相关</h2>
 <ul>
 <li><a href="../concepts/残差网络（ResNet）.html">残差网络（ResNet）</a> — implements</li>
+<li><a href="Kaiming He.html">Kaiming He</a> — author</li>
+<li><a href="微软亚洲研究院.html">微软亚洲研究院</a> — published_by</li>
 <li><a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络（CNN）</a> — extends</li>
-<li><a href="../concepts/ImageNet.html">ImageNet</a> — compares_to</li>
-<li><a href="../concepts/退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a> — caused</li>
-<li><a href="../concepts/残差连接（Residual Connection）.html">残差连接（Residual Connection）</a> — implements</li>
+<li><a href="../concepts/ImageNet.html">ImageNet</a> — tested_on</li>
+<li><a href="../concepts/退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a> — addresses</li>
+<li><a href="../concepts/残差连接（Residual Connection）.html">残差连接（Residual Connection）</a> — introduces</li>
+<li><span style="color:#e74c3c" title="broken link">ILSVRC 2015</span> — achieves_results_on</li>
+<li><span style="color:#e74c3c" title="broken link">CVPR 2016</span> — awarded</li>
+<li><a href="CIFAR-10 数据集.html">CIFAR-10 数据集</a> — tested_on</li>
 </ul>
   </div>
   <div class="page-nav">

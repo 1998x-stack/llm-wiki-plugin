@@ -139,11 +139,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>配对流程</strong>：CLI 生成配对码（<code>hermes gateway pair</code>）→ 用户在 Telegram 等平台发送 <code>/pair &lt;配对码&gt;</code> → 配对成功后该账户被授权</li>
-<li><strong>多用户支持</strong>：支持家庭成员、团队成员等多用户授权，每个用户在 <code>allowed_users</code> 中配置（如 <code>telegram:123456789</code>）</li>
+<li><strong>多用户支持</strong>：支持家庭成员、团队成员等多用户授权，每个用户在 <code>allowed_users</code> 中<a href="Configuration.html">配置</a>（如 <code>telegram:123456789</code>）</li>
 <li><strong>会话隔离</strong>：每个授权用户有独立的会话隔离，互不干扰，即使在同一平台同一群组中</li>
 <li><strong>授权验证时机</strong>：每条消息到达时首先执行 <code>pairing.is_authorized(user_id, platform)</code>，未授权则拒绝并提示配对</li>
 <li><strong>安全意义</strong>：作为 <a href="网关与路由器.html">Gateway</a> 入口层的第一道防线，与<a href="记忆安全扫描.html">记忆安全扫描</a>（防止敏感信息持久化）共同构成 <a href="../entities/Hermes Agent.html">Hermes</a> 的安全体系</li>
-<li><strong>配置模式</strong>：<code>authorization.mode: pairing</code> 启用配对模式，也可通过 <code>allowed_users</code> 白名单直接授权</li>
+<li><strong><a href="Configuration.html">配置</a>模式</strong>：<code>authorization.mode: pairing</code> 启用配对模式，也可通过 <code>allowed_users</code> 白名单直接授权</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>

@@ -139,24 +139,28 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心结构</strong>：感知机对单个神经元做最简洁的数学抽象——输入特征向量 x 与权重向量 w 做加权求和，加上偏置 b，再通过符号函数 sign(·) 输出二分类结果 ŷ ∈ {-1, +1}。几何上是在特征空间中寻找一个超平面（2D 中是直线）将两类样本分开。</p>
+<p><strong>核心结构</strong>：<a href="../entities/感知机.html">感知机</a>对单个神经元做最简洁的数学抽象——输入特征向量 x 与权重向量 w 做加权求和，加上偏置 b，再通过符号函数 sign(·) 输出二分类结果 ŷ ∈ {-1, +1}。几何上是在特征空间中寻找一个超平面（2D 中是直线）将两类样本分开。</p>
 </li>
 <li>
 <p><strong><a href="感知机学习规则.html">感知机学习规则</a></strong>：权重通过错误自动修正——初始化 w=0, b=0，对每个样本 (xᵢ, yᵢ)，若预测 ŷ ≠ yᵢ 则更新 w ← w + η · yᵢ · xᵢ，b ← b + η · yᵢ。直觉类比：考试做错题老师纠正你——错了就改，对了维持不动。</p>
 </li>
 <li>
-<p><strong>收敛定理</strong>：Rosenblatt 严格证明若训练数据线性可分，感知机学习算法在有限步内必然收敛。收敛步数上界 T ≤ (R/γ)²，其中 R 为样本最大范数，γ 为最近点到决策边界的距离。数据越"容易分"（γ 越大），收敛越快。</p>
+<p><strong>收敛定理</strong>：Rosenblatt 严格证明若训练数据线性可分，<a href="../entities/感知机.html">感知机</a>学习<a href="算法.html">算法</a>在有限步内必然收敛。收敛步数上界 T ≤ (R/γ)²，其中 R 为样本最大范数，γ 为最近点到<a href="决策边界.html">决策边界</a>的距离。数据越"容易分"（γ 越大），收敛越快。</p>
 </li>
 <li>
-<p><strong>致命局限——<a href="XOR 问题.html">XOR 问题</a></strong>：1969 年 Minsky 和 Papert 在《<span style="color:#e74c3c" title="broken link">Perceptrons (Minsky &amp;amp; Papert 1969)</span>》中证明，单层感知机无法解决线性不可分问题，如 XOR（异或）。这直接导致神经网络研究进入长达十余年的<a href="AI 寒冬.html">AI 寒冬</a>。</p>
+<p>直观例子（AND逻辑门）：假设判断垃圾邮件，x₁=含有"免费"（0或1），x₂=含有"中奖"（0或1），x₃=来自联系人（0或1）。<a href="../entities/感知机.html">感知机</a>学习到w₁=0.8, w₂=0.9, w₃=-1.2, b=0.5。当含关键词但非联系人时：0.8×1 + 0.9×1 + (-1.2)×0 - 0.5 = 1.2 &gt; 0，判定为垃圾邮件。</p>
 </li>
 <li>
-<p><strong>演化路径</strong>：感知机（1958）→ 加隐藏层+非线性激活 → <a href="多层感知机（MLP）.html">多层感知机（MLP）</a>（1980s）→ +<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a>+更深的层 → 深度神经网络（2000s+）→ 现代大模型（GPT、Claude、BERT）。现代神经网络每个神经元本质上都是感知机，只是用更平滑的非线性激活替代了 sign 函数。</p>
+<p><strong>致命局限——<a href="XOR 问题.html">XOR 问题</a></strong>：1969 年 <a href="../entities/Marvin Minsky.html">Minsky</a> 和 <a href="../entities/Seymour Papert.html">Papert</a> 在《<span style="color:#e74c3c" title="broken link">Perceptrons (Minsky &amp;amp; Papert 1969)</span>》中证明，单层<a href="../entities/感知机.html">感知机</a>无法解决线性不可分问题，如 XOR（异或）。这直接导致神经网络研究进入长达十余年的<a href="AI 寒冬.html">AI 寒冬</a>。</p>
+</li>
+<li>
+<p><strong>演化路径</strong>：<a href="../entities/感知机.html">感知机</a>（1958）→ 加隐藏层+非线性激活 → <a href="多层感知机（MLP）.html">多层感知机（MLP）</a>（1980s）→ +<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a>+更深的层 → 深度神经网络（2000s+）→ 现代大模型（GPT、<a href="../entities/Claude_Code.html">Claude</a>、BERT）。现代神经网络每个神经元本质上都是<a href="../entities/感知机.html">感知机</a>，只是用更平滑的非线性激活替代了 sign 函数。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01_perceptron_1958</span> — 感知机原始论文解读</li>
+<li><span style="color:#e74c3c" title="broken link">paper_01_perceptron</span> — 论文精读</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
@@ -171,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="感知机收敛定理.html">&larr; 感知机收敛定理</a>
-    <a href="戏剧论.html">戏剧论 &rarr;</a>
+    <a href="愿望实现.html">愿望实现 &rarr;</a>
   </div>
 </div>
 </body>

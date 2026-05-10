@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">动态规划</h1>
 <h2 id="_2">概述</h2>
-<p>Bellman 于 1957 年提出最优性原理和动态规划方法，将多阶段决策问题分解为一系列简单子问题，通过值函数的递推关系（Bellman 方程）求解最优策略——这一框架后来成为<a href="强化学习.html">强化学习</a>的数学基石。</p>
+<p>Bellman 于 1957 年提出最优性原理和动态规划方法，将多阶段<a href="判定问题.html">决策问题</a>分解为一系列简单子问题，通过值函数的递推关系（Bellman 方程）求解最优策略——这一框架后来成为<a href="强化学习.html">强化学习</a>的数学基石。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -145,10 +145,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>最优性原理</strong>：一个最优策略具有这样的性质——无论初始状态和初始决策如何，其余决策必须构成关于由第一个决策所产生的状态的最优策略。</p>
 </li>
 <li>
-<p><strong>Bellman 方程</strong>：V(s) = max_a [R(s,a) + γ·V(s')]，将复杂多阶段决策分解为递归子问题。值迭代和策略迭代是两种基本求解算法。</p>
+<p><strong>Bellman 方程</strong>：V(s) = max_a [R(s,a) + γ·V(s')]，将复杂多阶段决策分解为递归子问题。值迭代和策略迭代是两种基本求解<a href="算法.html">算法</a>。</p>
 </li>
 <li>
-<p><strong>维度灾难</strong>：Bellman 首次指出状态空间维度增长导致计算复杂度指数爆炸的问题，这一挑战至今仍是<a href="强化学习.html">强化学习</a>和最优控制的核心难题。</p>
+<p><strong>维度灾难</strong>：Bellman 首次指出状态空间维度增长导致<a href="计算.html">计算</a>复杂度指数爆炸的问题，这一挑战至今仍是<a href="强化学习.html">强化学习</a>和最优控制的核心难题。</p>
 </li>
 <li>
 <p><strong>命名趣闻</strong>："动态规划"名称是政治策略——"规划"在军事语境中易获资助，"动态"比"数学"更不惹怒政客。</p>

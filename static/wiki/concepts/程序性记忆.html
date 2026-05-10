@@ -135,18 +135,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">程序性记忆</h1>
 <h2 id="_2">概述</h2>
-<p>AI Agent 记住"怎么做"的能力，与陈述性记忆（记住事实）相对，通过结构化技能文档实现可修改、可增长的工作流知识库。</p>
+<p>AI Agent 记住"怎么做"的能力，与陈述性记忆（记住事实）相对，通过结构化<a href="Skills.html">技能</a>文档实现可修改、可增长的工作流知识库。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>与陈述性记忆的对比</strong>：<a href="语义记忆.html">MEMORY.md</a> 存储事实、偏好、环境信息（陈述性），始终在 System Prompt 中固定消耗；<a href="Agent Skills.html">Skills</a> 存储工作流、步骤、方法（程序性），通过<a href="渐进式加载.html">渐进式加载</a>按需消耗</li>
+<li><strong>与陈述性记忆的对比</strong>：<a href="语义记忆.html">MEMORY.md</a> 存储事实、偏好、环境信息（陈述性），始终在 System Prompt 中固定消耗；<a href="../entities/Agent Skills.html">Skills</a> 存储工作流、步骤、方法（程序性），通过<a href="渐进式加载.html">渐进式加载</a>按需消耗</li>
 <li><strong>外化设计</strong>：把"怎么做"从模型的参数（无法修改）变成文件系统上的文档（可以修改、可以增长），实现程序性记忆的可编辑性</li>
 <li><strong>生成方式</strong>：Agent 从成功经验中主动创建，成功完成 4 步以上工作流、感知到任务会重复、工作流中有易出错步骤、或用户说"把这个记下来"时触发</li>
-<li><strong>存储位置</strong>：Agent 创建的技能默认存入 <code>~/.hermes/skills/personal/</code> 子目录，与社区技能和系统技能分开管理</li>
-<li><strong>自我改进</strong>：Agent 发现步骤有误时自动更新技能，版本号递增（1.0.0 → 1.1.0），用户也可显式编辑</li>
+<li><strong>存储位置</strong>：Agent 创建的<a href="Skills.html">技能</a>默认存入 <code>~/.hermes/skills/personal/</code> 子目录，与社区<a href="Skills.html">技能</a>和系统<a href="Skills.html">技能</a>分开管理</li>
+<li><strong>自我改进</strong>：Agent 发现步骤有误时自动更新<a href="Skills.html">技能</a>，版本号递增（1.0.0 → 1.1.0），用户也可显式编辑</li>
 <li><strong>完整生命周期</strong>：创建 → 首次使用 → 自我改进 → 共享/迁移 → 弃用删除，Agent 可从经验中自动创建形成闭环</li>
-<li><strong><a href="技能自我改进.html">技能自我改进</a>机制</strong>：技能在使用过程中持续改进——步骤出错时修复并添加 Pitfalls，发现更好方法时简化流程，用户纠正时记录正确做法；版本号遵循语义化版本（小修正 1.0.1、功能改进 1.1.0、重大重构 2.0.0）</li>
-<li><strong>description 字段的关键性</strong>：Level 0 目录中 Agent 看到的唯一信息，决定下次是否会调用该技能；好的 description 应精确描述触发条件和使用场景，而非泛泛的"Docker 部署配置"</li>
-<li><strong>核心价值主张</strong>：技能是程序性记忆的外化——把"怎么做"从模型参数（不可修改）迁移到文件系统（可修改、可版本化、可共享），是 Agent 持续改进的正确路径</li>
+<li><strong><a href="技能自我改进.html">技能自我改进</a>机制</strong>：<a href="Skills.html">技能</a>在使用过程中持续改进——步骤出错时修复并添加 Pitfalls，发现更好方法时简化流程，用户纠正时记录正确做法；版本号遵循语义化版本（小修正 1.0.1、功能改进 1.1.0、重大<a href="重构.html">重构</a> 2.0.0）</li>
+<li><strong>description 字段的关键性</strong>：Level 0 目录中 Agent 看到的唯一信息，决定下次是否会调用该<a href="Skills.html">技能</a>；好的 description 应精确描述触发条件和使用场景，而非泛泛的"Docker 部署<a href="Configuration.html">配置</a>"</li>
+<li><strong>核心价值主张</strong>：<a href="Skills.html">技能</a>是程序性记忆的外化——把"怎么做"从模型参数（不可修改）迁移到文件系统（可修改、可版本化、可共享），是 Agent 持续改进的正确路径</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>
@@ -164,8 +164,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="科学等级体系.html">&larr; 科学等级体系</a>
-    <a href="端到端原则.html">端到端原则 &rarr;</a>
+    <a href="稀疏激活.html">&larr; 稀疏激活</a>
+    <a href="空洞卷积.html">空洞卷积 &rarr;</a>
   </div>
 </div>
 </body>

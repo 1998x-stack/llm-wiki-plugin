@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Koren 的层次化建模框架</strong>：Koren, Bell, Volinsky (2009) 提出了由简到繁的 MF 框架：基本 MF → <a href="Bias 建模.html">Bias 建模</a>（$\hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u$）→ <a href="../entities/SVD++.html">SVD++</a>（融合<a href="隐式反馈.html">隐式反馈</a>）→ <a href="../entities/timeSVD++.html">timeSVD++</a>（时间动态）。这一框架构成了推荐系统领域长达十余年的技术基石。</p>
 </li>
 <li>
-<p><strong>优化方法</strong>：SGD（实现简单、收敛快）和 ALS（精确求解、适合并行、适合<a href="隐式反馈.html">隐式反馈</a>）是 MF 的两大主流优化方法。ALS 优化的 MF 成为了 <a href="../entities/Apache Spark MLlib.html">Apache Spark MLlib</a> 的标准推荐算法实现。</p>
+<p><strong>优化方法</strong>：SGD（实现简单、收敛快）和 ALS（精确求解、适合并行、适合<a href="隐式反馈.html">隐式反馈</a>）是 MF 的两大主流优化方法。ALS 优化的 MF 成为了 <a href="../entities/Apache Spark MLlib.html">Apache Spark MLlib</a> 的标准推荐<a href="算法.html">算法</a>实现。</p>
 </li>
 <li>
 <p><strong>现代视角</strong>：MF 的隐因子向量本质上是 <a href="Embedding.html">Embedding</a> 的早期形式。从 MF 到 FM、<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span>、NCF、<a href="../entities/BERT4Rec.html">BERT4Rec</a>、<a href="双塔模型.html">双塔模型</a>，"双向量 + 相似度"<a href="规范化理论.html">范式</a>至今仍是推荐系统的<a href="骨骼系统.html">骨架</a>。</p>

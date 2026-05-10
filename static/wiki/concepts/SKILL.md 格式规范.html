@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="skillmd">SKILL.md 格式规范</h1>
 <h2 id="_1">概述</h2>
-<p>定义 AI Agent 技能文档的标准格式，包含 frontmatter 元数据和工作流正文，是 <a href="../entities/agentskills.io.html">agentskills.io</a> 开放标准的核心载体。</p>
+<p>定义 AI Agent <a href="Skills.html">技能</a>文档的标准格式，包含 frontmatter 元数据和工作流正文，是 <a href="../entities/agentskills.io.html">agentskills.io</a> 开放标准的核心载体。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
-<li><strong>Frontmatter 关键字段</strong>：<code>name</code>（唯一标识符，也是<a href="斜杠命令（Slash Commands）.html">斜杠命令</a>名称）、<code>description</code>（Level 0 目录展示内容，是 Agent 决定是否加载技能的唯一依据）、<code>version</code>（语义化版本，Agent 自我改进时递增）、<code>platforms</code>（不匹配时技能完全隐藏）、<code>category</code>（Level 0 目录分类展示）、<code>config</code>（声明非密钥配置项，存入 config.yaml 自动注入）</li>
-<li><strong>安全配置</strong>：<code>required_environment_variables</code> 声明所需环境变量，技能不会因缺少它们而隐藏，首次加载时自动弹出配置提示</li>
-<li><strong><a href="条件激活机制.html">条件激活</a>字段</strong>：<code>fallback_for_toolsets</code>、<code>fallback_for_tools</code>、<code>requires_toolsets</code>、<code>requires_tools</code> 控制技能根据工具可用性自动显示或隐藏</li>
+<li><strong>Frontmatter 关键字段</strong>：<code>name</code>（唯一标识符，也是<a href="斜杠命令（Slash Commands）.html">斜杠命令</a>名称）、<code>description</code>（Level 0 目录展示内容，是 Agent 决定是否加载<a href="Skills.html">技能</a>的唯一依据）、<code>version</code>（语义化版本，Agent 自我改进时递增）、<code>platforms</code>（不匹配时<a href="Skills.html">技能</a>完全隐藏）、<code>category</code>（Level 0 目录分类展示）、<code>config</code>（声明非密钥<a href="Configuration.html">配置</a>项，存入 config.yaml 自动注入）</li>
+<li><strong>安全<a href="Configuration.html">配置</a></strong>：<code>required_environment_variables</code> 声明所需<a href="Environment Variables.html">环境变量</a>，<a href="Skills.html">技能</a>不会因缺少它们而隐藏，首次加载时自动弹出<a href="Configuration.html">配置</a>提示</li>
+<li><strong><a href="条件激活机制.html">条件激活</a>字段</strong>：<code>fallback_for_toolsets</code>、<code>fallback_for_tools</code>、<code>requires_toolsets</code>、<code>requires_tools</code> 控制<a href="Skills.html">技能</a>根据工具可用性自动显示或隐藏</li>
 <li><strong>正文结构</strong>：When to Use（何时使用）→ Prerequisites（前提条件）→ Procedure（步骤）→ Rollback（回滚）→ Pitfalls（常见问题）→ Verification（验证）</li>
 <li><strong>目录结构</strong>：<code>~/.hermes/skills/&lt;category&gt;/&lt;skill-name&gt;/SKILL.md</code>，可包含 <code>examples/</code> 和 <code>reference/</code> 子目录供 Level 2 加载</li>
-<li><strong><a href="斜杠命令（Slash Commands）.html">斜杠命令</a>映射</strong>：每个已安装的技能自动成为<a href="斜杠命令（Slash Commands）.html">斜杠命令</a>，如 <code>/deploy-to-k8s</code></li>
+<li><strong><a href="斜杠命令（Slash Commands）.html">斜杠命令</a>映射</strong>：每个已安装的<a href="Skills.html">技能</a>自动成为<a href="斜杠命令（Slash Commands）.html">斜杠命令</a>，如 <code>/deploy-to-k8s</code></li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="SEO搜索引擎优化.html">&larr; SEO搜索引擎优化</a>
+    <a href="SKILL.md.html">&larr; SKILL.md</a>
     <a href="SLAM.html">SLAM &rarr;</a>
   </div>
 </div>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="shakey">Shakey 机器人</h1>
 <h2 id="_1">概述</h2>
-<p>Shakey 是世界上第一个具备通用目的的移动机器人，由斯坦福研究院（SRI International）人工智能中心于 1960 年代末至 1970 年代初研发。该项目旨在将感知、推理和行动统一在一个系统中，使机器人能够理解自然语言指令，自主规划行动序列，并在真实物理环境中执行任务（如推箱子、开门、穿越房间）。Shakey 不仅是硬件工程的奇迹，更是人工智能软件的试验床，孕育了 A* 搜索算法、Hough 变换以及 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>等影响深远的技术成果，被誉为现代智能机器人的鼻祖。</p>
+<p>Shakey 是世界上第一个具备通用目的的移动机器人，由<a href="斯坦福大学.html">斯坦福</a>研究院（SRI International）人工智能中心于 1960 年代末至 1970 年代初研发。该项目旨在将感知、推理和行动统一在一个系统中，使机器人能够理解自然语言指令，自主规划行动序列，并在真实物理环境中执行任务（如推箱子、开门、穿越房间）。Shakey 不仅是硬件工程的奇迹，更是人工智能软件的试验床，孕育了 A* 搜索<a href="../concepts/算法.html">算法</a>、Hough 变换以及 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>等影响深远的技术成果，被誉为现代智能机器人的鼻祖。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">系统架构与设计理念</h3>
 <p>Shakey 的名字来源于其起步和停止时的晃动特性。其硬件平台包括一个装有轮子的底座、金属框架、顶部的电视摄像头、测距仪以及碰撞传感器。然而，Shakey 真正的革命性在于其软件架构，它采用了分层控制系统：
@@ -144,13 +144,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 3.  <strong>高层任务规划</strong>：由 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a> 担任，负责接收用户的高级目标（如“把 Box1 推到 Room3"），自动推理出达成目标所需的动作序列。</p>
 <p>这种“规划 - 执行”分离的架构成为了后来机器人系统设计的标准<a href="../concepts/规范化理论.html">范式</a>。</p>
 <h3 id="_4">核心技术突破</h3>
-<p>Shakey 项目产出了多项计算机科学史上的里程碑式成果：
+<p>Shakey 项目产出了多项<a href="../concepts/计算.html">计算</a>机科学史上的里程碑式成果：
 *   <strong>自动规划</strong>：为了解决“想清楚再行动”的问题，项目组开发了 <a href="../concepts/STRIPS 规划器.html">STRIPS 规划器</a>，首次用形式化逻辑描述了动作的前提与效果，解决了复杂环境下的多步规划难题。
 *   <strong>路径搜索</strong>：为了在已知地图中寻找最优路径，<a href="Nils J. Nilsson.html">Nils Nilsson</a> 等人发明了 <span style="color:#e74c3c" title="broken link">A&lt;em&gt;搜索算法</span>，结合了启发式信息与代价评估，成为图搜索领域的黄金标准。
-*   </em><em>计算机视觉</em><em>：为了让机器人识别环境中的线条和物体边界，项目团队应用并推广了 Hough 变换，这是早期计算机视觉的关键算法。
+*   </em><em><a href="../concepts/计算.html">计算</a>机视觉</em><em>：为了让机器人识别环境中的线条和物体边界，项目团队应用并推广了 Hough 变换，这是早期<a href="../concepts/计算.html">计算</a>机视觉的关键<a href="../concepts/算法.html">算法</a>。
 *   </em><em>感知整合</em>*：Shakey 能够通过摄像头识别简单的几何形状，构建内部的世界模型（World Model），并利用该模型进行逻辑推理，实现了从“感知”到“认知”的跨越。</p>
 <h3 id="_5">历史意义与局限</h3>
-<p>Shakey 证明了人工智能系统可以在真实物理世界中自主运行，而不仅仅停留在模拟或理论层面。它展示了符号主义 AI 在解决结构化问题上的强大能力。然而，受限于当时的计算能力和传感器技术，Shakey 的行动非常缓慢，且依赖于高度受控的环境（如特定的地板标记、光照条件）。尽管如此，它所确立的技术<a href="../concepts/规范化理论.html">范式</a>和算法遗产至今仍深刻影响着机器人学和人工智能的发展，特别是在具身智能（Embodied AI）和任务与<a href="../concepts/运动规划.html">运动规划</a>（TAMP）领域。</p>
+<p>Shakey 证明了人工智能系统可以在真实物理世界中自主运行，而不仅仅停留在模拟或理论层面。它展示了符号主义 AI 在解决结构化问题上的强大能力。然而，受限于当时的<a href="../concepts/计算.html">计算</a>能力和传感器技术，Shakey 的行动非常缓慢，且依赖于高度受控的环境（如特定的地板标记、光照条件）。尽管如此，它所确立的技术<a href="../concepts/规范化理论.html">范式</a>和<a href="../concepts/算法.html">算法</a>遗产至今仍深刻影响着机器人学和人工智能的发展，特别是在具身智能（Embodied AI）和任务与<a href="../concepts/运动规划.html">运动规划</a>（TAMP）领域。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/04-fikes-nilsson-strips-planner.md</span></li>
@@ -164,8 +164,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Sergey-Levine.html">&larr; Sergey-Levine</a>
-    <a href="Shijie Geng.html">Shijie Geng &rarr;</a>
+    <a href="Seymour Papert.html">&larr; Seymour Papert</a>
+    <a href="Shaoqing Ren.html">Shaoqing Ren &rarr;</a>
   </div>
 </div>
 </body>

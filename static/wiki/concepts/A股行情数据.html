@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股行情数据 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / A股行情数据</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">金融数据</span><span class="tag">股票市场</span><span class="tag">A股</span></div>
+</div>
+  <div class="content">
+    <h1 id="a">A股行情数据</h1>
+<h2 id="_1">概述</h2>
+<p>A股行情数据是指中国上海证券交易所和深圳证券交易所上市股票的实时及历史价格数据，包括开盘价、收盘价、最高价、最低价、成交量、成交额、涨跌幅等核心指标，是投资者进行技术分析和投资决策的重要依据。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>数据维度</strong>：包含实时行情快照、历史日K线、周K线、月K线、分钟K线等多种时间周期数据。每个数据点包含日期、开盘、收盘、最高、最低、成交量、成交额、振幅、涨跌幅、涨跌额、换手率等信息。</p>
+</li>
+<li>
+<p><strong>数据来源</strong>：主要来自官方交易所（上交所、深交所）以及各大财经门户网站如<a href="../entities/东方财富.html">东方财富网</a>、<a href="../entities/新浪财经.html">新浪财经</a>、<a href="../entities/同花顺.html">同花顺</a>等。此外，可通过专门的数据API获取，如<a href="../entities/AKShare.html">AKShare</a>和<a href="../entities/Baostock.html">Baostock</a>提供的<a href="Python.html">Python</a>接口。</p>
+</li>
+<li>
+<p><strong>获取接口</strong>：通过<a href="../entities/AKShare.html">AKShare</a>库的<code>stock_zh_a_hist()</code>函数可以获取指定股票的历史K线数据，<code>stock_zh_a_spot_em()</code>函数可获取全市场约5000只股票的实时快照，<code>stock_zh_a_minute()</code>函数提供实时分钟级别数据。<a href="../entities/Baostock.html">Baostock</a>也提供了相应的K线数据接口如<code>query_history_k_data_plus()</code>。</p>
+</li>
+<li>
+<p><strong>复权机制</strong>：包含不复权、前复权、后复权三种处理方式，用于消除股票分红、配股等事件对价格走势的影响，确保技术指标<a href="计算.html">计算</a>的准确性。</p>
+</li>
+<li>
+<p><strong>数据应用</strong>：广泛应用于量化分析、程序化交易、技术指标<a href="计算.html">计算</a>、回测系统等领域，是金融<a href="数据分析.html">数据分析</a>的基础。</p>
+</li>
+<li>
+<p><strong>生产实践</strong>：在实际应用中需要实现容错机制、批量处理和版本管理，以确保数据获取的稳定性和可靠性。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/finance-knowledge/akshare-skill/SKILL.md</span> — A股行情数据获取方法</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/finance-knowledge/akshare.md</span> — AKShare深度分析报告</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/AKShare.html">AKShare</a> — provided_by</li>
+<li><a href="../entities/Baostock.html">Baostock</a> — provided_by</li>
+<li><a href="北向资金.html">北向资金</a> — related_to</li>
+<li><a href="龙虎榜.html">龙虎榜</a> — related_to</li>
+<li><a href="融资融券.html">融资融券</a> — related_to</li>
+<li><a href="../entities/东方财富.html">东方财富</a> — sourced_from</li>
+<li><a href="../entities/新浪财经.html">新浪财经</a> — sourced_from</li>
+<li><a href="../entities/AKQuant.html">AKQuant</a> — used_in</li>
+<li><a href="金融数据API对比分析.html">金融数据API对比分析</a> — featured_in</li>
+<li><a href="AKShare生产实践建议.html">AKShare生产实践建议</a> — subject_of</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Attention Dilution.html">&larr; Attention Dilution</a>
+    <a href="BERT.html">BERT &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="example-age">Example Age</h1>
 <h2 id="_1">概述</h2>
-<p>推荐系统中解决新鲜度偏差的特征工程技术：将训练样本的"年龄"作为显式输入，推理时设为零以偏好新鲜内容。</p>
+<p>推荐系统中解决新鲜度偏差的<a href="特征工程（Feature Engineering）.html">特征工程</a>技术：将训练样本的"年龄"作为显式输入，推理时设为零以偏好新鲜内容。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心设计</strong>：将训练样本的"年龄"（即训练样本的时间戳距离训练时刻的时间差）作为一个显式的输入特征传入模型。这样模型在训练过程中可以学到"样本年龄"与用户观看概率之间的关系——即用户确实偏好新鲜内容。</p>
 </li>
 <li>
-<p><strong>训练-服务不对称</strong>：在线上服务（推理）时，Example Age 特征被<strong>设为零或略微为负</strong>。这等价于告诉模型："现在是训练窗口的最末端，预测当前时刻用户最可能观看什么。"通过这个简单技巧，模型就能自然地倾向于推荐新上传的视频。</p>
+<p><strong>训练-<a href="服务.html">服务</a>不对称</strong>：在线上<a href="服务.html">服务</a>（推理）时，Example Age 特征被<strong>设为零或略微为负</strong>。这等价于告诉模型："现在是训练窗口的最末端，预测当前时刻用户最可能观看什么。"通过这个简单技巧，模型就能自然地倾向于推荐新上传的视频。</p>
 </li>
 <li>
 <p><strong>效果验证</strong>：加入 Example Age 特征后，模型预测的视频观看概率分布与实际分布的拟合度有了显著提升。这是 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中最被人津津乐道的工程技巧之一。</p>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Embedding.html">&larr; Embedding</a>
+    <a href="Evolver 安全模型.html">&larr; Evolver 安全模型</a>
     <a href="Exchange 切块模式.html">Exchange 切块模式 &rarr;</a>
   </div>
 </div>

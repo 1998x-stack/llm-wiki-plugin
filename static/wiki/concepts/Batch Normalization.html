@@ -127,39 +127,75 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Batch Normalization</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.88</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">归一化</span><span class="tag">CNN</span><span class="tag">训练稳定性</span><span class="tag">LLM能力</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">归一化</span><span class="tag">CNN</span><span class="tag">训练稳定性</span><span class="tag">LLM能力</span><span class="tag">优化景观</span></div>
 </div>
   <div class="content">
     <h1 id="batch-normalization">Batch Normalization</h1>
 <h2 id="_1">概述</h2>
-<p>在一个 batch 上对某一特征维度统计均值和方差并做归一化。在 CNN 中广泛使用，但不适合 <a href="Transformer架构.html">Transformer</a> 的序列建模场景。</p>
+<p>在一个 batch 上对某一特征维度统计均值和方差并做归一化，解决<a href="内部协变量偏移.html">内部协变量偏移</a>问题。在 CNN 中广泛使用，使训练速度提升 14 倍，大幅降低对初始化和学习率的敏感性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>计算方式</strong>：跨 batch 中所有样本，对同一特征位置统计均值和方差，再做标准化。训练时使用 batch 内统计量，推理时使用历史移动平均统计量，两者行为不一致</p>
+<p><strong>核心公式</strong>：对 mini-batch $\mathcal{B} = {x_1, \ldots, x_m}$，<a href="计算.html">计算</a>均值 $\mu_\mathcal{B}$ 和方差 $\sigma_\mathcal{B}^2$，归一化 $\hat{x}<em>i = \frac{x_i - \mu</em>\mathcal{B}}{\sqrt{\sigma_\mathcal{B}^2 + \epsilon}}$，再缩放平移 $y_i = \gamma \hat{x}_i + \beta$。其中 γ 和 β 是可学习参数，让网络自行决定每层需要的分布。</p>
 </li>
 <li>
-<p><strong>适用场景</strong>：在 batch size 较大、输入尺寸固定的 CNN 图像任务中效果好，能有效稳定激活值分布，加速收敛</p>
+<p><strong>训练 vs 推理</strong>：训练时使用当前 batch 统计量（引入正则化噪声），推理时使用训练过程中累积的滑动平均统计量（running_mean, running_var），两者行为不一致。</p>
 </li>
 <li>
-<p><strong>不适合 <a href="Transformer架构.html">Transformer</a> 的原因</strong>：序列长度可变导致 batch 统计不稳定；长序列致 batch size 小，统计噪声大；不同位置 token 语义差异大不宜混合统计；训练/推理行为不一致；<a href="AR 模型（自回归模型）.html">自回归</a>生成场景单样本推理时无法正常工作</p>
+<p><strong>在 CNN 中的位置</strong>：通常插在卷积层之后、激活函数之前（Conv → BN → ReLU），使激活处于合理范围。后来研究发现放在激活函数后有时效果更好，至今仍有争议。</p>
+</li>
+<li>
+<p><strong>正则化副作用</strong>：batch 统计量的随机性类似于 <a href="Dropout（随机失活）.html">Dropout</a> 效果，使用 BN 后可减少甚至去掉 <a href="Dropout.html">Dropout</a>（尤其卷积层）。</p>
+</li>
+<li>
+<p><strong>适用场景</strong>：batch size 较大（≥16）、输入尺寸固定的 CNN 图像任务中效果好。不适合 <a href="Transformer架构.html">Transformer</a>：序列长度可变导致 batch 统计不稳定；不同位置 token 语义差异大不宜混合统计；<a href="AR 模型（自回归模型）.html">自回归</a>生成场景单样本推理时无法正常工作。</p>
+</li>
+<li>
+<p><strong>局限性</strong>：小 batch size 时方差估计不准（→ <a href="Group Normalization.html">Group Normalization</a>）；在线学习/单样本推理无法使用（→ <a href="Layer Normalization.html">Layer Normalization</a>）；分布式训练跨设备同步统计量开销大。</p>
+</li>
+<li>
+<p><strong>理论争议</strong>：论文声称有效原因是减少"<a href="内部协变量偏移.html">内部协变量偏移</a>"，但 2018 年 MIT 后续研究表明 BN 并没有显著减少<a href="内部协变量偏移.html">内部协变量偏移</a>，真正原因是<strong>让<a href="损失曲面（Loss Landscape）.html">优化景观</a>（loss landscape）更加平滑</strong>——使梯度方向更稳定，更容易优化。这个"<a href="损失景观平滑化.html">损失景观平滑化</a>"解释目前更被学界接受。</p>
+</li>
+<li>
+<p><strong>归一化变体对比</strong>：
+   | 方法 | 归一化维度 | 主要应用 | Batch Size 要求 |
+   |------|-----------|---------|----------------|
+   | Batch Norm | 沿 N 方向（每个通道独立） | CNN | 较大 (≥16) |
+   | <a href="Layer Normalization.html">Layer Normalization</a> | 沿 C×H×W 方向（每个样本独立） | <a href="../entities/Transformer.html">Transformer</a>, LSTM | 任意 |
+   | <a href="Instance Normalization.html">Instance Normalization</a> | 沿 H×W 方向（每个样本每个通道独立） | 风格迁移 | 任意 |
+   | <a href="Group Normalization.html">Group Normalization</a> | 沿 group 内的 C×H×W | 目标检测 | 任意 |</p>
+</li>
+<li>
+<p><strong>实验结果</strong>：在 MNIST 上，BN 能将达到 99% 测试准确率的步骤从约 50 万步减少到 3.5 万步（快 14 倍！）；在 <a href="ImageNet.html">ImageNet</a> 上，BN-<a href="Inception Network.html">Inception</a> 达到了 4.09% 的 <a href="Top-5 错误率.html">Top-5 错误率</a>，超越了当时的人类表现（5.1%）。</p>
+</li>
+<li>
+<p><strong>历史背景</strong>：2014-2015 年间，研究者们试图训练越来越深的网络，但遇到了训练极其脆弱的问题——学习率稍大则梯度爆炸，稍小则收敛极慢，权重初始化不好则训练失败。BN 的提出彻底改变了这一局面，让深度网络训练从"玄学艺术"变成了"工程科学"。</p>
+</li>
+<li>
+<p><strong><a href="../entities/Google.html">Google</a> 机构</strong>：该论文由 <a href="../entities/Sergey Ioffe.html">Sergey Ioffe</a> 和 <a href="../entities/Christian Szegedy.html">Christian Szegedy</a> 在 <a href="../entities/Google.html">Google</a> 机构完成，发表于 2015 年，成为现代深度学习的基础组件之一。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析</span> — Self-Attention 机制解析系列 QA</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_04_batchnorm.md</span> — 论文精读 #04：批归一化</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Layer Normalization.html">Layer Normalization</a> — compares_to（Transformer 选择 LayerNorm 而非 BatchNorm 的核心对比）</li>
-<li><a href="残差连接.html">残差连接</a> — relates_to</li>
+<li><a href="Instance Normalization.html">Instance Normalization</a> — compares_to（BN 的变体，沿空间维度归一化，用于风格迁移）</li>
+<li><a href="Group Normalization.html">Group Normalization</a> — compares_to（BN 的变体，按通道组归一化，解决小 batch size 问题）</li>
+<li><a href="残差连接（Residual Connection）.html">残差连接（Residual Connection）</a> — relates_to（BN 与残差连接配合使用于 ResNet 等架构）</li>
+<li><a href="内部协变量偏移（Internal Covariate Shift）.html">内部协变量偏移（Internal Covariate Shift）</a> — solves（BN 论文提出的核心解决方案）</li>
+<li><a href="ReLU激活函数.html">ReLU激活函数</a> — relates_to（BN 通常放在 ReLU 之前）</li>
+<li><a href="Dropout（随机失活）.html">Dropout（随机失活）</a> — compares_to（BN 的正则化效果可部分替代 Dropout）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Bahdanau注意力.html">&larr; Bahdanau注意力</a>
+    <a href="Bash通用适配器.html">&larr; Bash通用适配器</a>
     <a href="Batch Runner.html">Batch Runner &rarr;</a>
   </div>
 </div>

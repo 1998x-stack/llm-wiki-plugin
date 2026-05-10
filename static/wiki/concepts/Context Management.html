@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-management">Context Management</h1>
 <h2 id="_1">概述</h2>
-<p>Context Management（上下文管理）是 Agent 系统中决定哪些历史保留、哪些删除、错误格式如何处理、哪些 observation 更值得进入 prompt 的机制。它本质上是 agent 的"工作记忆管理"。</p>
+<p>Context Management（上下文管理）是 Agent 系统中决定哪些历史保留、哪些删除、错误格式如何处理、哪些 observation 更值得进入 prompt 的机制。它本质上是 agent 的"<a href="工作记忆.html">工作记忆</a>管理"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心问题</h3>
 <p>LM 不是外部记忆无限的系统。每条历史都占用<a href="上下文预算管理.html">上下文预算</a>，而且错误、冗余、过时信息会污染后续决策。</p>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 去掉 demonstration 后也会略有下降</p>
 <h3 id="_5">核心洞察</h3>
 <blockquote>
-<p>"不是历史越多越好，而是最近、相关、结构化的历史更好。这和人类工作记忆很像：解决当前 bug，最有用的是最近几步的操作与反馈，而不是完整人生回放。"</p>
+<p>"不是历史越多越好，而是最近、相关、结构化的历史更好。这和人类<a href="工作记忆.html">工作记忆</a>很像：解决当前 bug，最有用的是最近几步的操作与反馈，而不是完整人生回放。"</p>
 </blockquote>
 <h3 id="context-engineering">与 Context Engineering 的关系</h3>
 <p>Context Management 是 <a href="Context-Engineering.html">Context-Engineering</a> 在 Agent 层面的具体实现：
@@ -192,7 +192,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Context Engineering.html">&larr; Context Engineering</a>
+    <a href="Context File System.html">&larr; Context File System</a>
     <a href="Context Rot.html">Context Rot &rarr;</a>
   </div>
 </div>

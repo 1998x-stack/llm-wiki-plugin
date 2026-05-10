@@ -189,7 +189,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>模型评分器（Model-based / <a href="LLM-as-Judge.html">LLM-as-Judge</a>）</strong>：
 - 基于 Rubric 评分、自然语言断言、成对比较、多评判员共识
 - 优势：灵活、可扩展、捕捉细微差别
-- 劣势：不确定性、成本较高、需用人类标注校准
+- 劣势：不确定性、成本较高、需用人类<a href="../entities/标注.html">标注</a>校准
 - 建议：为每个维度单独调用 LLM judge；给 LLM 提供"Unknown"逃生路线防止幻觉</p>
 <p><strong>人类评分器（Human）</strong>：
 - 领域专家审查、众包判断、A/B 测试
@@ -226,10 +226,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 7. <strong>阅读 Transcript</strong>：分辨是真正的错误还是评分器拒绝了有效解法；验证评估确实在测量重要指标
 8. <strong>监控饱和并持续贡献</strong>：eval 套件是活的工件，需明确所有权和持续维护</p>
 <h3 id="agent_1">不同 Agent 类型的评估策略</h3>
-<p><strong>编码 Agent</strong>：确定性评分器（单元测试 pass/fail）是自然选择；可加 LLM Rubric 评估代码质量和交互方式</p>
+<p><strong>编码 Agent</strong>：确定性评分器（<a href="单元测试.html">单元测试</a> pass/fail）是自然选择；可加 LLM Rubric 评估代码质量和交互方式</p>
 <p><strong>对话 Agent</strong>：多维成功（状态检查 + Transcript 约束 + LLM Rubric）；常需第二个 LLM 模拟用户</p>
 <p><strong>研究 Agent</strong>：接地性检查 + 覆盖度检查 + 来源质量检查；LLM judge 需频繁用专家人类判断校准</p>
-<p><strong>计算机使用 Agent</strong>：需要在真实或沙箱环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）</p>
+<p><strong><a href="计算.html">计算</a>机使用 Agent</strong>：需要在真实或沙箱环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）</p>
 <h3 id="_5">评估与其他方法的关系（多层防御）</h3>
 <table>
 <thead>

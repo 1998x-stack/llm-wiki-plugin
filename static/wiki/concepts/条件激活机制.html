@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">条件激活机制</h1>
 <h2 id="_2">概述</h2>
-<p><a href="Agent Skills.html">Skills</a> 系统中让技能根据当前工具可用性自动显示或隐藏的机制，实现技能的条件化呈现，避免无能力执行时的界面混乱。</p>
+<p><a href="../entities/Agent Skills.html">Skills</a> 系统中让<a href="Skills.html">技能</a>根据当前工具可用性自动显示或隐藏的机制，实现<a href="Skills.html">技能</a>的条件化呈现，避免无能力执行时的界面混乱。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>四种条件字段</strong>：<code>fallback_for_toolsets</code>（当某 toolset 不可用时显示，作为回退方案）、<code>fallback_for_tools</code>（当特定工具不可用时显示）、<code>requires_toolsets</code>（只在某 toolset 可用时显示）、<code>requires_tools</code>（只在特定工具可用时显示）</li>
-<li><strong>经典案例 — DuckDuckGo 回退</strong>：有 FIRECRAWL_API_KEY 时 web toolset 可用，DuckDuckGo 技能隐藏（用更好的工具）；没有 API Key 时 web toolset 不可用，DuckDuckGo 技能自动出现</li>
-<li><strong>另一个案例 — 需要终端的技能</strong>：设置 <code>requires_toolsets: [terminal]</code>，在纯对话模式（没有 terminal toolset）下自动隐藏，没有能力执行时显示只会造成混乱</li>
-<li><strong>用户无需手动管理</strong>：条件激活自动处理技能的显示与隐藏，根据当前环境动态调整</li>
-<li><strong>与<a href="渐进式加载.html">渐进式加载</a>的关系</strong>：条件激活在 Level 0 目录层面过滤技能，<a href="渐进式加载.html">渐进式加载</a>在内容层面控制 Token 消耗，两者协同实现高效的技能管理</li>
+<li><strong>经典案例 — DuckDuckGo 回退</strong>：有 FIRECRAWL_API_KEY 时 web toolset 可用，DuckDuckGo <a href="Skills.html">技能</a>隐藏（用更好的工具）；没有 API Key 时 web toolset 不可用，DuckDuckGo <a href="Skills.html">技能</a>自动出现</li>
+<li><strong>另一个案例 — 需要终端的<a href="Skills.html">技能</a></strong>：<a href="Settings.html">设置</a> <code>requires_toolsets: [terminal]</code>，在纯对话模式（没有 terminal toolset）下自动隐藏，没有能力执行时显示只会造成混乱</li>
+<li><strong>用户无需手动管理</strong>：条件激活自动处理<a href="Skills.html">技能</a>的显示与隐藏，根据当前环境动态调整</li>
+<li><strong>与<a href="渐进式加载.html">渐进式加载</a>的关系</strong>：条件激活在 Level 0 目录层面过滤<a href="Skills.html">技能</a>，<a href="渐进式加载.html">渐进式加载</a>在内容层面控制 Token 消耗，两者协同实现高效的<a href="Skills.html">技能</a>管理</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

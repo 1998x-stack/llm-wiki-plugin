@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="swe-agent">SWE-agent</h1>
 <h2 id="_1">概述</h2>
-<p>SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 GitHub 仓库中的真实 issue 和 bug。通过专门设计的 Agent 计算机接口（ACI）和 <a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a>，在 <a href="../concepts/SWE-bench.html">SWE-bench</a> 上取得显著优于直接输出 patch 的效果。</p>
+<p>SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 <a href="GitHub.html">GitHub</a> <a href="../concepts/仓库.html">仓库</a>中的真实 issue 和 bug。通过专门设计的 Agent <a href="../concepts/计算.html">计算</a>机接口（ACI）和 <a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a>，在 <a href="../concepts/SWE-bench.html">SWE-bench</a> 上取得显著优于直接输出 patch 的效果。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心架构</h3>
 <ol>
 <li><strong><a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a></strong>：每一步生成 thought（思考）和 action（命令），再接收 observation（<a href="../concepts/环境反馈设计.html">环境反馈</a>），形成"想一点、做一点、看反馈、再想一点"的交互循环。</li>
-<li><strong>Agent 计算机接口（ACI）</strong>：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。</li>
+<li><strong>Agent <a href="../concepts/计算.html">计算</a>机接口（ACI）</strong>：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。</li>
 <li><strong>Trajectory 落盘</strong>：每次运行产生 <code>.traj</code> 文件，记录完整的 thought/action/observation 序列，支持事后分析和调试。</li>
 </ol>
 <h3 id="swe-bench">SWE-bench 表现</h3>

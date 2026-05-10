@@ -138,10 +138,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Adam 是深度学习的"自动挡"优化器，结合动量和自适应学习率，为每个参数自动调节更新速度。默认参数开箱即用，是 <a href="Transformer 架构.html">Transformer</a>、GAN、<a href="强化学习.html">强化学习</a>等场景的默认选择。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>算法核心</strong>：Adam = <a href="Momentum（动量）.html">Momentum（动量）</a> + <a href="RMSProp.html">RMSProp</a> + <a href="偏差修正（Bias Correction）.html">偏差修正（Bias Correction）</a>。每步更新包含六个步骤：(1) 计算梯度 gₜ；(2) 更新一阶矩 mₜ = β₁·mₜ₋₁ + (1-β₁)·gₜ（梯度指数移动平均）；(3) 更新二阶矩 vₜ = β₂·vₜ₋₁ + (1-β₂)·gₜ²（梯度平方指数移动平均）；(4)(5) <a href="偏差修正（Bias Correction）.html">偏差修正</a> m̂ₜ = mₜ/(1-β₁ᵗ)、v̂ₜ = vₜ/(1-β₂ᵗ)；(6) 参数更新 θₜ = θₜ₋₁ - η·m̂ₜ/(√v̂ₜ + ε)。</li>
+<li><strong><a href="算法.html">算法</a>核心</strong>：Adam = <a href="Momentum（动量）.html">Momentum（动量）</a> + <a href="RMSProp.html">RMSProp</a> + <a href="偏差修正（Bias Correction）.html">偏差修正（Bias Correction）</a>。每步更新包含六个步骤：(1) <a href="计算.html">计算</a>梯度 gₜ；(2) 更新一阶矩 mₜ = β₁·mₜ₋₁ + (1-β₁)·gₜ（梯度指数移动平均）；(3) 更新二阶矩 vₜ = β₂·vₜ₋₁ + (1-β₂)·gₜ²（梯度平方指数移动平均）；(4)(5) <a href="偏差修正（Bias Correction）.html">偏差修正</a> m̂ₜ = mₜ/(1-β₁ᵗ)、v̂ₜ = vₜ/(1-β₂ᵗ)；(6) 参数更新 θₜ = θₜ₋₁ - η·m̂ₜ/(√v̂ₜ + ε)。</li>
 <li><strong>自适应直觉</strong>：梯度方向稳定的参数 → m̂ 大、v̂ 小 → 有效学习率大（加速）；梯度剧烈震荡的参数 → m̂ 趋零、v̂ 大 → 有效学习率小（自动减速）。这解决了<a href="随机梯度下降（SGD）.html">随机梯度下降（SGD）</a>的四大痛点：学习率难选、参数共用学习率、<a href="鞍点（Saddle Point）.html">鞍点（Saddle Point）</a>停滞、梯度尺度差异。</li>
 <li><strong>默认超参数</strong>：η=0.001, β₁=0.9, β₂=0.999, ε=1e-8。这组值在绝大多数任务上开箱即用，无需调整。β₁=0.9 意味着动量窗口约 10 步，β₂=0.999 意味着二阶矩窗口约 1000 步。</li>
-<li><strong>局限与改进</strong>：(a) 某些任务收敛不如 SGD+<a href="Momentum（动量）.html">Momentum</a>（如 CNN <a href="ImageNet.html">ImageNet</a> 训练）；(b) 权重衰减与自适应学习率耦合 → <a href="AdamW.html">AdamW</a> 解耦修正；(c) 早期二阶矩估计偏差 → AMSGrad 用历史最大 v̂；(d) 内存占用是 SGD 的 3 倍（需存 m、v）→ Adafactor 内存高效版。训练末期常配合 Cosine Annealing 学习率调度减少震荡。</li>
+<li><strong>局限与改进</strong>：(a) 某些任务收敛不如 SGD+<a href="Momentum（动量）.html">Momentum</a>（如 CNN <a href="ImageNet.html">ImageNet</a> 训练）；(b) <a href="权重衰减（Weight Decay）.html">权重衰减</a>与自适应学习率耦合 → <a href="AdamW.html">AdamW</a> 解耦修正；(c) 早期二阶矩估计偏差 → AMSGrad 用历史最大 v̂；(d) 内存占用是 SGD 的 3 倍（需存 m、v）→ Adafactor 内存高效版。训练末期常配合 Cosine Annealing 学习率调度减少震荡。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>

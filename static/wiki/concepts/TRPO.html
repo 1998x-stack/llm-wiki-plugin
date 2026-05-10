@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="trpo">TRPO</h1>
 <h2 id="_1">概述</h2>
-<p>Schulman et al. (ICML 2015) 提出的信赖域策略优化算法。通过在 KL 散度约束的信赖域内最大化代理目标，提供策略单调改进的理论保证。使用<a href="共轭梯度法.html">共轭梯度法</a> + 回溯线搜索求解，计算开销大，是 PPO 的前身。</p>
+<p>Schulman et al. (ICML 2015) 提出的信赖域策略优化<a href="算法.html">算法</a>。通过在 KL 散度约束的信赖域内最大化代理目标，提供策略单调改进的理论保证。使用<a href="共轭梯度法.html">共轭梯度法</a> + 回溯线搜索求解，<a href="计算.html">计算</a>开销大，是 PPO 的前身。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -151,10 +151,10 @@ nav a.active { color: var(--link); font-weight: 600; }
    最大化代理目标 <code>L_{θ_old}(θ) = E [ (π_θ/π_θ_old) · A^{π_old} ]</code>，约束 <code>E_s[KL(π_old || π_θ)] ≤ δ</code>（典型 δ=0.01）。</p>
 </li>
 <li>
-<p><strong>求解方法</strong>：<a href="共轭梯度法.html">共轭梯度法</a>近似计算 F^{-1}g（F 为 Fisher 信息<a href="矩阵.html">矩阵</a>），避免 O(n²) 的显式<a href="矩阵.html">矩阵</a>构造；随后用回溯线搜索找满足约束的最大步长。</p>
+<p><strong>求解方法</strong>：<a href="共轭梯度法.html">共轭梯度法</a>近似<a href="计算.html">计算</a> F^{-1}g（F 为 Fisher 信息<a href="矩阵.html">矩阵</a>），避免 O(n²) 的显式<a href="矩阵.html">矩阵</a>构造；随后用回溯线搜索找满足约束的最大步长。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：共轭梯度（10-50次迭代）+ 线搜索计算开销极大；不兼容参数共享的 <a href="强化学习三大范式.html">Actor-Critic</a>；不支持标准 mini-batch SGD；实现极为复杂，逐渐被 PPO 取代。</p>
+<p><strong>局限性</strong>：共轭梯度（10-50次迭代）+ 线搜索<a href="计算.html">计算</a>开销极大；不兼容参数共享的 <a href="强化学习三大范式.html">Actor-Critic</a>；不支持标准 mini-batch SGD；实现极为复杂，逐渐被 PPO 取代。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

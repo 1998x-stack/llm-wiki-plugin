@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
      <code>y_DDQN = r + γ · Q_{θ̄}(s', argmax_{a'} Q_θ(s', a'))</code></p>
 </li>
 <li>
-<p><strong>实现极简</strong>：利用 DQN 已有的在线网络 θ 与<a href="目标网络.html">目标网络</a> θ̄ 两套结构，仅修改目标计算一行，无需额外参数。</p>
+<p><strong>实现极简</strong>：利用 DQN 已有的在线网络 θ 与<a href="目标网络.html">目标网络</a> θ̄ 两套结构，仅修改目标<a href="计算.html">计算</a>一行，无需额外参数。</p>
 </li>
 <li>
 <p><strong>实验结果</strong>：在 49 款 Atari 游戏中 41 款优于 DQN；Q 值过估计从平均 300% 高估降至接近真实值；Wizard of Wor 等游戏提升超 2 倍。</p>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Diffie-Hellman 密钥交换.html">&larr; Diffie-Hellman 密钥交换</a>
+    <a href="Documentation Writer Agent.html">&larr; Documentation Writer Agent</a>
     <a href="Dropout.html">Dropout &rarr;</a>
   </div>
 </div>

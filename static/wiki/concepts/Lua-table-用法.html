@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_3">核心用途（游戏开发）</h3>
 <ol>
 <li>
-<p><strong>配置表</strong>：存静态数据（关卡、角色、技能、掉落、商店），是数据驱动架构的核心。
+<p><strong><a href="Configuration.html">配置</a>表</strong>：存静态数据（关卡、角色、<a href="Skills.html">技能</a>、掉落、商店），是数据驱动架构的核心。
    <code>lua
    local heroConfig = { id = 1001, name = "Knight", hp = 1200, skills = {101, 102, 103} }</code></p>
 </li>
@@ -275,7 +275,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>配置表写运行时数据</td>
-<td><code>SkillCfg[1001].cd = 0</code> 污染所有实例</td>
+<td><code><a href="Skills.html">Skill</a>Cfg[1001].cd = 0</code> 污染所有实例</td>
 </tr>
 <tr>
 <td>数组/map 混用不自知</td>

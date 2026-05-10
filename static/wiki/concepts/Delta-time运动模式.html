@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="delta-time">Delta-time运动模式</h1>
 <h2 id="_1">概述</h2>
-<p>Delta-time（dt）运动模式：以帧间时间差乘以速度计算位移，使物体移动速度与帧率无关，保证跨帧率一致性。</p>
+<p>Delta-time（dt）运动模式：以帧间时间差乘以速度<a href="计算.html">计算</a>位移，使物体移动速度与帧率无关，保证跨帧率一致性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心公式</strong>：<code>position += speed * dt</code>，其中 <code>dt</code> 为相邻两帧之间经过的秒数。</li>
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>为什么需要 dt</strong>：不同设备帧率不同（30/60/120fps），若直接 <code>position += speed</code>，高帧率设备物体移动更快，低帧率设备移动更慢，导致游戏体验不一致。</p>
 </li>
 <li>
-<p><strong><a href="../entities/Love2D.html">Love2D</a> 中的实现</strong>：<code>love.update(dt)</code> 回调自动传入帧间时间差，直接用于计算：
+<p><strong><a href="../entities/Love2D.html">Love2D</a> 中的实现</strong>：<code>love.update(dt)</code> 回调自动传入帧间时间差，直接用于<a href="计算.html">计算</a>：
    <code>lua
    function love.update(dt)
        if love.keyboard.isDown("right") then

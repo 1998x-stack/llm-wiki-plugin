@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>历史背景</strong>：1990年代神经网络陷入<a href="../concepts/梯度消失.html">梯度消失</a>、<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>困境。Vapnik在<a href="贝尔实验室.html">贝尔实验室</a>提出从<span style="color:#e74c3c" title="broken link">统计学习理论</span>出发直接推导最优分类器，而非在巨大函数空间中盲目搜索。</li>
 <li><strong>核心贡献</strong>：在<span style="color:#e74c3c" title="broken link">VC维理论</span>框架下，证明最大化分类间隔的分类器泛化能力最强。提出<strong>硬间隔SVM</strong>（线性可分）和<strong>软间隔SVM</strong>（含噪声，引入松弛变量ξᵢ和参数C）。</li>
-<li><strong><a href="../concepts/核技巧.html">核技巧</a>引入</strong>：将低维非线性不可分数据映射到高维空间，在高维中线性可分。关键突破：无需显式计算φ(x)，只需替换内积xᵢ·xⱼ→K(xᵢ,xⱼ)，实现非线性分类。</li>
+<li><strong><a href="../concepts/核技巧.html">核技巧</a>引入</strong>：将低维非线性不可分数据映射到高维空间，在高维中线性可分。关键突破：无需显式<a href="../concepts/计算.html">计算</a>φ(x)，只需替换内积xᵢ·xⱼ→K(xᵢ,xⱼ)，实现非线性分类。</li>
 <li><strong>历史影响</strong>：1995-2012年间统治机器学习领域，在手写数字识别（MNIST）、文本分类、生物信息学、图像识别等领域超越当时最好方法。深度学习崛起前最强分类器。</li>
 <li><strong>数学优雅性</strong>：凸优化保证全局最优解，支持向量可解释，预测公式：ŷ=sign(Σᵢ αᵢyᵢK(xᵢ,x)+b)，仅依赖支持向量。</li>
 </ol>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Steven M. LaValle.html">&larr; Steven M. LaValle</a>
+    <a href="Superpowers.html">&larr; Superpowers</a>
     <a href="T5.html">T5 &rarr;</a>
   </div>
 </div>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="orthosize">正交缩放补偿orthoSize半高度因子</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 引擎中 <code>camera.orthoSize</code> 代表视野<strong>全高度</strong>，但投影<a href="矩阵.html">矩阵</a>内部使用 <code>orthoSize * 0.5</code> 作为半高度。手动计算屏幕到世界坐标转换时，若忽略此 0.5 因子会导致缩放补偿漂移。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 引擎中 <code>camera.orthoSize</code> 代表视野<strong>全高度</strong>，但投影<a href="矩阵.html">矩阵</a>内部使用 <code>orthoSize * 0.5</code> 作为半高度。手动<a href="计算.html">计算</a>屏幕到世界坐标转换时，若忽略此 0.5 因子会导致缩放补偿漂移。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">问题现象</h3>
 <p>实现"鼠标滚轮缩放时，鼠标指向的世界坐标保持固定"功能时，尽管数学公式看起来正确，每次缩放后锚点发生漂移，且漂移量与 <code>orthoSize</code> 变化量成正比（线性误差 = 存在常数因子错误的信号）。</p>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZFNet — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / ZFNet</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">project</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">项目</span><span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">CNN</span></div>
+</div>
+  <div class="content">
+    <h1 id="zfnet">ZFNet</h1>
+<h2 id="_1">概述</h2>
+<p>ZFNet（Zeiler &amp; Fergus Net）是 2013 年 <a href="ILSVRC.html">ILSVRC</a> 冠军网络，通过可视化并微调 <a href="../concepts/AlexNet.html">AlexNet</a> 架构取得进一步改进，是 <a href="../concepts/AlexNet.html">AlexNet</a> 的直接后继者。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>与 <a href="../concepts/AlexNet.html">AlexNet</a> 的关系</strong>：ZFNet 由 Matthew Zeiler 和 Rob Fergus 提出，本质上是 <a href="../concepts/AlexNet.html">AlexNet</a> 的改进版。通过可视化技术（反卷积网络）分析 <a href="../concepts/AlexNet.html">AlexNet</a> 各层学到的特征，发现第一层卷积核过大（11×11）导致信息丢失，将其缩小为 7×7，并调整中间层通道数。</li>
+<li><strong>2013 年 <a href="ILSVRC.html">ILSVRC</a> 冠军</strong>：ZFNet 在 2013 年竞赛中夺冠，<a href="../concepts/Top-5 错误率.html">Top-5 错误率</a>进一步从 <a href="../concepts/AlexNet.html">AlexNet</a> 的 16.4% 降至约 11.2%。这证明了 <a href="../concepts/AlexNet.html">AlexNet</a> 架构的可改进性和深度学习方向的持续潜力。</li>
+<li><strong>可视化贡献</strong>：ZFNet 最重要的贡献不是架构本身，而是其可视化方法——通过反卷积（deconvolution）将卷积层激活映射回像素空间，直观展示网络各层学到的特征。这增强了深度学习模型的可解释性。</li>
+<li><strong>演化路径</strong>：<a href="../concepts/AlexNet.html">AlexNet</a>（2012）→ ZFNet（2013）→ <a href="../concepts/VGGNet.html">VGGNet</a>（2014，全 3×3 卷积）→ <a href="../concepts/GoogLeNet: Inception.html">GoogLeNet: Inception</a>（2014，<a href="../concepts/GoogLeNet: Inception.html">Inception 模块</a>）→ <a href="../concepts/残差网络（ResNet）.html">残差网络（ResNet）</a>（2015，<a href="../concepts/残差连接.html">残差连接</a>）。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/AlexNet.html">AlexNet</a> — extends</li>
+<li><a href="../concepts/VGGNet.html">VGGNet</a> — precedes</li>
+<li><a href="../concepts/GoogLeNet: Inception.html">GoogLeNet: Inception</a> — precedes</li>
+<li><a href="../concepts/残差网络（ResNet）.html">残差网络（ResNet）</a> — precedes</li>
+<li><a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络（CNN）</a> — implements</li>
+<li><a href="ILSVRC.html">ILSVRC</a> — won_2013</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Yunming Ye.html">&larr; Yunming Ye</a>
+    <a href="ZFNet（2013 论文）.html">ZFNet（2013 论文） &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

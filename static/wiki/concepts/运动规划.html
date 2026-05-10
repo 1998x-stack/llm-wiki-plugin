@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">运动规划</h1>
 <h2 id="_2">概述</h2>
-<p><strong>运动规划（Motion Planning）</strong>，又称路径规划（Path Planning），是机器人学和人工智能领域的核心问题之一。其基本任务是：给定一个机器人（或可移动物体）、一个包含障碍物的工作环境、一个起始状态和一个目标状态，自动计算出一条从起始状态到目标状态的连续、无碰撞的运动轨迹。该问题在早期被称为“钢琴搬运工问题”（Piano Movers' Problem），因其几何复杂性而闻名。自 1983 年 <a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a> 提出<strong>构型空间（C-space）</strong>方法以来，运动规划已从特定的几何启发式算法发展为拥有严格数学理论基础（包括拓扑学、计算几何和代数几何）的独立学科，广泛应用于工业自动化、自动驾驶、计算机动画及生物信息学等领域。</p>
+<p><strong>运动规划（Motion Planning）</strong>，又称路径规划（Path Planning），是机器人学和人工智能领域的核心问题之一。其基本任务是：给定一个机器人（或可移动物体）、一个包含障碍物的工作环境、一个起始状态和一个目标状态，自动<a href="计算.html">计算</a>出一条从起始状态到目标状态的连续、无碰撞的运动轨迹。该问题在早期被称为“钢琴搬运工问题”（Piano Movers' Problem），因其几何复杂性而闻名。自 1983 年 <a href="../entities/Tomas Lozano-Perez.html">Tomas Lozano-Perez</a> 提出<strong>构型空间（C-space）</strong>方法以来，运动规划已从特定的几何启发式<a href="算法.html">算法</a>发展为拥有严格数学理论基础（包括拓扑学、<a href="计算.html">计算</a>几何和代数几何）的独立学科，广泛应用于工业自动化、自动驾驶、<a href="计算.html">计算</a>机动画及生物信息学等领域。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">问题定义与复杂性</h3>
 <p>运动规划的输入通常包括：
@@ -144,21 +144,21 @@ nav a.active { color: var(--link); font-weight: 600; }
 3.  <strong>约束条件</strong>：包括几何碰撞约束、运动学约束（如关节限位）和动力学约束（如速度、加速度限制）。
 4.  <strong>起止构型</strong>：起始点 $q_{start}$ 和目标点 $q_{goal}$。</p>
 <p>输出是一条参数化路径 $\tau(t)$，满足 $\tau(0)=q_{start}$，$\tau(1)=q_{goal}$，且对于所有 $t$，$\tau(t)$ 均处于无碰撞状态并满足所有约束。</p>
-<p>该问题的计算复杂度极高。Schwartz 和 Sharir 在 1980 年代证明，一般的运动规划问题是 <strong>PSPACE-hard</strong> 的。这意味着随着机器人自由度的增加，求解时间可能呈指数级增长。这种复杂性主要源于高维空间中自由空间（C-free）的拓扑结构极其复杂，可能包含狭窄通道、多个连通分量等难以探测的特征。</p>
+<p>该问题的<a href="计算.html">计算</a>复杂度极高。Schwartz 和 Sharir 在 1980 年代证明，一般的运动规划问题是 <strong>PSPACE-hard</strong> 的。这意味着随着机器人自由度的增加，求解时间可能呈指数级增长。这种复杂性主要源于高维空间中自由空间（C-free）的拓扑结构极其复杂，可能包含狭窄通道、多个连通分量等难以探测的特征。</p>
 <h3 id="_5">主要方法论流派</h3>
-<p>运动规划算法的发展大致经历了以下几个阶段：</p>
+<p>运动规划<a href="算法.html">算法</a>的发展大致经历了以下几个阶段：</p>
 <ol>
 <li>
 <p><strong>精确方法（Exact Methods）</strong>：
-    旨在构建自由空间的精确几何表示。代表方法包括<strong>单元分解法（Cell Decomposition）</strong>和<strong>可见性图（Visibility Graph）</strong>。Lozano-Perez 早期的工作属于此类，利用 C-space 和 Minkowski 和精确计算障碍物边界。这类方法具有完备性（若路径存在必能找到），但受限于“维数灾难”，仅适用于低自由度（2D 或 3D）系统。</p>
+    旨在构建自由空间的精确几何表示。代表方法包括<strong>单元分解法（Cell Decomposition）</strong>和<strong>可见性图（Visibility Graph）</strong>。Lozano-Perez 早期的工作属于此类，利用 C-space 和 Minkowski 和精确<a href="计算.html">计算</a>障碍物边界。这类方法具有完备性（若路径存在必能找到），但受限于“维数灾难”，仅适用于低自由度（2D 或 3D）系统。</p>
 </li>
 <li>
 <p><strong><a href="人工势场法.html">势场法</a>（Potential Field Methods）</strong>：
-    由 Khatib (1986) 提出，将目标视为引力源，障碍物视为斥力源，机器人沿合力方向运动。该方法计算效率高，适合实时控制，但容易陷入局部极小值（Local Minima），导致无法找到路径，因此不具备完备性。</p>
+    由 Khatib (1986) 提出，将目标视为引力源，障碍物视为斥力源，机器人沿合力方向运动。该方法<a href="计算.html">计算</a>效率高，适合实时控制，但容易陷入局部极小值（Local Minima），导致无法找到路径，因此不具备完备性。</p>
 </li>
 <li>
 <p><strong>采样方法（Sampling-based Methods）</strong>：
-    为了解决高维空间的复杂性，1990 年代中期诞生了基于采样的算法，彻底改变了该领域。</p>
+    为了解决高维空间的复杂性，1990 年代中期诞生了基于采样的<a href="算法.html">算法</a>，彻底改变了该领域。</p>
 <ul>
 <li><strong>概率路线图（PRM, <a href="概率路线图 (PRM).html">Probabilistic Roadmap</a>）</strong>：通过在 C-space 中随机采样无碰撞点并连接它们构建路网，适合多查询场景。</li>
 <li><strong>快速探索随机树（RRT, Rapidly-exploring Random Tree）</strong>：增量式地生长搜索树，偏向未探索区域，适合单次查询和高维空间。
@@ -175,11 +175,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>工业机器人</strong>：自动焊接、装配、搬运，使机器人能适应环境变化而无需人工示教。</li>
 <li><strong>自动驾驶</strong>：车辆在复杂交通环境中的车道保持、变道和避障规划。</li>
 <li><strong>医疗机器人</strong>：手术器械在人体内部狭窄空间中的安全路径规划。</li>
-<li><strong>计算机动画</strong>：虚拟角色在复杂场景中的自然运动生成。</li>
-<li><strong>计算生物学</strong>：模拟蛋白质折叠过程，将其视为高维构象空间中的运动规划问题。</li>
+<li><strong><a href="计算.html">计算</a>机动画</strong>：虚拟角色在复杂场景中的自然运动生成。</li>
+<li><strong><a href="计算.html">计算</a>生物学</strong>：模拟蛋白质折叠过程，将其视为高维构象空间中的运动规划问题。</li>
 </ul>
 <h3 id="_7">挑战与未来方向</h3>
-<p>尽管取得了巨大进展，运动规划仍面临诸多挑战：处理动态不确定环境、考虑复杂的非完整约束（Nonholonomic Constraints）、多机器人协同规划中的冲突避免、以及在保证安全性的前提下实现实时规划。当前的研究热点还包括利用深度学习来学习 C-space 的结构或加速碰撞检测，以及开发具有渐近最优性（Asymptotic Optimality，如 RRT*）的算法以确保路径质量。</p>
+<p>尽管取得了巨大进展，运动规划仍面临诸多挑战：处理动态不确定环境、考虑复杂的非完整约束（Nonholonomic Constraints）、多机器人协同规划中的冲突避免、以及在保证安全性的前提下实现实时规划。当前的研究热点还包括利用深度学习来学习 C-space 的结构或加速碰撞检测，以及开发具有渐近最优性（Asymptotic Optimality，如 RRT*）的<a href="算法.html">算法</a>以确保路径质量。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/06-lozano-perez-configuration-space.md</span></li>

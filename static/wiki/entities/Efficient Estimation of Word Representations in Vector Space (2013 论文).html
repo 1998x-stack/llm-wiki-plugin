@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="efficient-estimation-of-word-representations-in-vector-space-2013">Efficient Estimation of Word Representations in Vector Space (2013 论文)</h1>
 <h2 id="_1">概述</h2>
-<p>Mikolov 等人于2013年发表的《Efficient Estimation of Word Representations in Vector Space》，提出了 <a href="../concepts/Word2Vec.html">Word2Vec</a> 模型，开创了<a href="../concepts/词嵌入（Word Embedding）.html">词嵌入</a>时代，将语义推理转化为向量算术。</p>
+<p>Mikolov 等人于2013年发表的《Efficient Estimation of Word Representations in Vector Space》，提出了 <a href="Word2Vec.html">Word2Vec</a> 模型，开创了<a href="../concepts/词嵌入（Word Embedding）.html">词嵌入</a>时代，将语义推理转化为向量算术。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">论文信息</h3>
 <table>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong><a href="../concepts/Skip-gram.html">Skip-gram</a> 架构</strong>：用中心词预测<a href="../concepts/上下文窗口.html">上下文窗口</a>内的词，对低频词效果尤佳</li>
 <li><strong><a href="../concepts/CBOW（连续词袋模型）.html">CBOW（连续词袋模型）</a> 架构</strong>：用上下文词的平均向量预测中心词，训练更快</li>
-<li><strong><a href="../concepts/负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></strong>：用 K 个随机负样本代替全量 Softmax，速度提升 1000 倍以上</li>
+<li><strong><a href="../concepts/负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></strong>：用 K 个随机负样本代替全量 <a href="../concepts/Softmax.html">Softmax</a>，速度提升 1000 倍以上</li>
 <li><strong>高频词下采样</strong>：丢弃概率 P(wᵢ) = 1 - √(t / freq(wᵢ))，减少无信息高频词影响</li>
 </ul>
 <h3 id="_5">语义发现</h3>
@@ -199,7 +199,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_9">相关</h2>
 <ul>
 <li><a href="Tomas Mikolov.html">Tomas Mikolov</a> — 第一作者</li>
-<li><a href="../concepts/Word2Vec.html">Word2Vec</a> — 提出的模型</li>
+<li><a href="Word2Vec.html">Word2Vec</a> — 提出的模型</li>
 <li><a href="../concepts/Skip-gram.html">Skip-gram</a> — 提出的架构</li>
 <li><a href="../concepts/CBOW（连续词袋模型）.html">CBOW（连续词袋模型）</a> — 提出的架构</li>
 <li><a href="../concepts/负采样（Negative Sampling）.html">负采样（Negative Sampling）</a> — 提出的训练方法</li>

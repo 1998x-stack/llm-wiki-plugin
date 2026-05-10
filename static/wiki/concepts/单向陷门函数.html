@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">单向陷门函数</h1>
 <h2 id="_2">概述</h2>
-<p>单向陷门函数（One-Way Trapdoor Function）是<a href="公钥密码学.html">公钥密码学</a>的数学基础：正向计算容易、逆向计算困难，但掌握"陷门"（私钥）后逆向计算变得容易。</p>
+<p>单向陷门函数（One-Way Trapdoor Function）是<a href="公钥密码学.html">公钥密码学</a>的数学基础：正向<a href="计算.html">计算</a>容易、逆向<a href="计算.html">计算</a>困难，但掌握"陷门"（私钥）后逆向<a href="计算.html">计算</a>变得容易。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>一个函数 f 是单向陷门函数，如果：
-1. <strong>正向容易</strong>：给定 x，计算 f(x) 很快
-2. <strong>逆向困难</strong>：给定 f(x)，找到 x 在计算上不可行
-3. <strong>陷门</strong>：如果掌握某个秘密信息（陷门/私钥），逆向计算变得容易</p>
+1. <strong>正向容易</strong>：给定 x，<a href="计算.html">计算</a> f(x) 很快
+2. <strong>逆向困难</strong>：给定 f(x)，找到 x 在<a href="计算.html">计算</a>上不可行
+3. <strong>陷门</strong>：如果掌握某个秘密信息（陷门/私钥），逆向<a href="计算.html">计算</a>变得容易</p>
 <h3 id="_5">在密码学中的角色</h3>
 <ul>
 <li><strong>公钥加密</strong>：公钥对应 f，私钥对应陷门</li>
-<li><strong><a href="数字签名.html">数字签名</a></strong>：私钥对应 f^{-1}（用陷门逆向计算），公钥对应 f（正向验证）</li>
+<li><strong><a href="数字签名.html">数字签名</a></strong>：私钥对应 f^{-1}（用陷门逆向<a href="计算.html">计算</a>），公钥对应 f（正向验证）</li>
 </ul>
 <h3 id="_6">候选函数</h3>
 <ul>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>椭圆曲线离散对数</strong>：椭圆曲线上的离散对数（ECC 基础）</li>
 </ul>
 <h3 id="p-vs-np">与 P vs NP 的关系</h3>
-<p>如果 P = NP，则单向函数不存在——所有"困难"问题都有快速算法。因此，<a href="公钥密码学.html">公钥密码学</a>的存在性依赖于 P ≠ NP 的假设。</p>
+<p>如果 P = NP，则单向函数不存在——所有"困难"问题都有快速<a href="算法.html">算法</a>。因此，<a href="公钥密码学.html">公钥密码学</a>的存在性依赖于 P ≠ NP 的假设。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/11-diffie-hellman-new-directions.md</span></li>
@@ -168,8 +168,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="协整分析（Cointegration）.html">&larr; 协整分析（Cointegration）</a>
-    <a href="卡尔曼滤波.html">卡尔曼滤波 &rarr;</a>
+    <a href="单元测试.html">&larr; 单元测试</a>
+    <a href="南方涛动.html">南方涛动 &rarr;</a>
   </div>
 </div>
 </body>

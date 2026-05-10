@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="cargo-for-x">Cargo-for-X 全能工具链模式</h1>
 <h2 id="_1">概述</h2>
-<p>Bun（JavaScript）和 uv（Python）代表了一种跨语言的工具链设计模式："Cargo for X"——用单一二进制文件统一运行时、包管理、构建和测试，以系统编程语言（Zig/Rust）重写实现数量级性能提升。这一模式的核心洞见是：语言生态的碎片化痛点可以通过"全能单体"工具一次性解决。</p>
+<p>Bun（JavaScript）和 uv（<a href="../concepts/Python.html">Python</a>）代表了一种跨语言的工具链设计模式："Cargo for X"——用单一二进制文件统一运行时、包管理、构建和测试，以系统编程语言（Zig/Rust）重写实现数量级性能提升。这一模式的核心洞见是：语言生态的碎片化痛点可以通过"全能单体"工具一次性解决。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">模式定义</h3>
 <p>"Cargo for X" 是指借鉴 Rust 的 Cargo 工具链设计理念——一个工具覆盖依赖管理、构建、测试、发布——移植到其他语言生态的工具设计模式。</p>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <th>特征</th>
 <th>Bun (JS)</th>
-<th>uv (Python)</th>
+<th>uv (<a href="../concepts/Python.html">Python</a>)</th>
 </tr>
 </thead>
 <tbody>
@@ -177,10 +177,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>碎片化是痛点而非特性</strong>：npm/pip 生态中需要 4-5 个独立工具协作的模式，不是"Unix 哲学"的体现，而是历史包袱。Cargo 证明了统一工具链可以更好。</p>
 </li>
 <li>
-<p><strong>系统语言重写是性能杠杆</strong>：用 Zig/Rust 重写 JS/Python 工具链，获得的不是 20% 提升而是 10-100x 提升。这不是优化，是<a href="../concepts/规范化理论.html">范式</a>转换。</p>
+<p><strong>系统语言重写是性能杠杆</strong>：用 Zig/Rust 重写 JS/<a href="../concepts/Python.html">Python</a> 工具链，获得的不是 20% 提升而是 10-100x 提升。这不是优化，是<a href="../concepts/规范化理论.html">范式</a>转换。</p>
 </li>
 <li>
-<p><strong>AI 友好是新的选型维度</strong>：现代工具链强调"零配置"和"确定性输出"，这些恰好是 AI Agent（如 <a href="../entities/Claude-Code.html">Claude-Code</a>）高效工作的前提条件。</p>
+<p><strong>AI 友好是新的选型维度</strong>：现代工具链强调"零<a href="../concepts/Configuration.html">配置</a>"和"确定性输出"，这些恰好是 AI Agent（如 <a href="../entities/Claude-Code.html">Claude-Code</a>）高效工作的前提条件。</p>
 </li>
 </ol>
 <h2 id="_6">来源</h2>

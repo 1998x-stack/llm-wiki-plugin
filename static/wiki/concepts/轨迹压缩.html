@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>压缩策略</strong>：去除冗余的工具调用输出，保留关键决策节点（observation, action, reward 三元组），压缩为训练效率更高的格式</li>
 <li><strong>在训练流程中的位置</strong>：批量运行 Agent（batch_runner.py）→ 记录完整轨迹 → 轨迹压缩（trajectory.py）→ <a href="../entities/Atropos.html">Atropos</a> RL 训练 → 策略蒸馏</li>
 <li><strong>命令行使用</strong>：<code>hermes batch compress --input trajectories/ --output compressed_trajectories/ --max-tokens 4096</code></li>
-<li><strong>与 RL 训练的关系</strong>：压缩后的轨迹作为 <a href="../entities/Atropos.html">Atropos</a> RL 环境的输入数据，通过 PPO/GRPO 等 RL 算法学习更优的工具调用策略</li>
+<li><strong>与 RL 训练的关系</strong>：压缩后的轨迹作为 <a href="../entities/Atropos.html">Atropos</a> RL 环境的输入数据，通过 PPO/GRPO 等 RL <a href="算法.html">算法</a>学习更优的工具调用策略</li>
 <li><strong>策略蒸馏</strong>：改进后的策略最终蒸馏回模型权重，发布新版本 <a href="../entities/Hermes Agent.html">Hermes</a> 模型，在工具调用基准上超越前代</li>
 </ul>
 <h2 id="_4">来源</h2>

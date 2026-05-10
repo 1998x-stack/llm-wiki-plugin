@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>p₃ ⊕ d₂ ⊕ d₃ ⊕ d₄ = 0</li>
 </ul>
 <h3 id="_4">纠错过程</h3>
-<p>接收后计算三个伴随式（syndrome）s₁, s₂, s₃。如果全为 0，无错误。否则 (s₃s₂s₁)₂ 的二进制值直接给出<strong>出错的位置</strong>！</p>
+<p>接收后<a href="计算.html">计算</a>三个伴随式（syndrome）s₁, s₂, s₃。如果全为 0，无错误。否则 (s₃s₂s₁)₂ 的二进制值直接给出<strong>出错的位置</strong>！</p>
 <p>例如 s₃=1, s₂=0, s₁=1 → 出错位置 = (101)₂ = 5，翻转第 5 位即可纠正。</p>
 <h3 id="_5">精妙之处</h3>
 <p>校验位放在 2 的幂次位置，使得伴随式的二进制值直接指向出错位置——这是一个极其优雅的构造。</p>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>增加一个全局奇偶校验位，将 (7,4) 码扩展为 (8,4) 码，实现<strong>单纠错双检错</strong>（SECDED: Single Error Correction, Double Error Detection）。这一扩展几乎不增加开销却显著提高可靠性。</p>
 <h3 id="_6">工业应用</h3>
 <ul>
-<li><strong>ECC 内存</strong>：服务器和关键系统的内存使用 SECDED Hamming 码保护</li>
+<li><strong>ECC 内存</strong>：<a href="服务.html">服务</a>器和关键系统的内存使用 SECDED Hamming 码保护</li>
 <li><strong>闪存/SSD</strong>：使用 Hamming 码或更强的 BCH 码纠正存储错误</li>
 <li><strong>通信协议</strong>：许多基础通信协议使用 Hamming 原理进行错误检测</li>
 </ul>

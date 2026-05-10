@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>与<a href="矩阵分解.html">矩阵分解</a>的关系</strong>：当 $a_{out}$ 为恒等函数、$\mathbf{h}$ 为全1向量时，GMF 恰好退化为标准 MF。这证明了<strong>MF 是 NCF 的一个特例</strong>。GMF 的"广义"体现在：(1) 权重向量 $\mathbf{h}$ 允许不同潜在维度有不同的重要性；(2) 非线性激活函数引入表达能力提升。</li>
 <li><strong>在 NCF 中的角色</strong>：GMF 负责捕捉潜在因子之间的线性交互模式（传统 MF 擅长的部分），与 MLP 的非线性建模能力形成互补。</li>
 <li><strong>独立嵌入空间</strong>：在最终的 <a href="NeuMF.html">NeuMF</a> 融合模型中，GMF 使用自己独立的用户/物品嵌入 $\mathbf{p}_u^G, \mathbf{q}_i^G$，不与 MLP 共享，赋予子模型更大的灵活性。</li>
-<li><strong>实验表现</strong>：在大多数设置下，GMF 的性能不如 MLP，验证了非线性交互函数优于线性交互函数的假设。但 GMF + MLP 的融合（<a href="NeuMF.html">NeuMF</a>）持续优于单一模型。</li>
+<li><strong>实验表现</strong>：在大多数<a href="Settings.html">设置</a>下，GMF 的性能不如 MLP，验证了非线性交互函数优于线性交互函数的假设。但 GMF + MLP 的融合（<a href="NeuMF.html">NeuMF</a>）持续优于单一模型。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="GLB_glTF格式.html">&larr; GLB_glTF格式</a>
-    <a href="GSD Commands.html">GSD Commands &rarr;</a>
+    <a href="GPT 系列.html">GPT 系列 &rarr;</a>
   </div>
 </div>
 </body>

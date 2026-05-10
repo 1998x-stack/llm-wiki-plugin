@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">最大熵强化学习</h1>
 <h2 id="_2">概述</h2>
-<p>最大熵<a href="强化学习.html">强化学习</a>（Maximum Entropy RL）在标准 RL 累积奖励目标中增加策略熵正则项：J(π) = E_π[∑_t r(s_t,a_t) + α·H(π(·|s_t))]，其中 α 为温度参数控制探索权重。核心思想：让智能体在最大化奖励的同时最大化策略随机性，使探索成为优化目标的一部分而非外加机制。该框架导出软<a href="贝尔曼方程.html">贝尔曼方程</a>和软策略迭代，SAC 是其最成功的深度 RL 实现。</p>
+<p>最大熵<a href="强化学习.html">强化学习</a>（Maximum <a href="熵.html">Entropy</a> RL）在标准 RL 累积奖励目标中增加策略熵正则项：J(π) = E_π[∑_t r(s_t,a_t) + α·H(π(·|s_t))]，其中 α 为温度参数控制探索权重。核心思想：让智能体在最大化奖励的同时最大化策略随机性，使探索成为优化目标的一部分而非外加机制。该框架导出软<a href="贝尔曼方程.html">贝尔曼方程</a>和软策略迭代，SAC 是其最成功的深度 RL 实现。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>软<a href="贝尔曼方程.html">贝尔曼方程</a></strong>：V_soft(s) = E_{a~π}[Q_soft(s,a) - α log π(a|s)] = E[Q] + α·H(π)。熵项被内嵌到<a href="价值函数.html">价值函数</a>定义中，形成 T^π Q(s,a) = r + γ·E_{s'}[E_{a'~π}[Q(s',a') - α log π(a'|s')]]。</li>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="最大似然原理.html">&larr; 最大似然原理</a>
+    <a href="最大池化（Max Pooling）.html">&larr; 最大池化（Max Pooling）</a>
     <a href="最大间隔分类器.html">最大间隔分类器 &rarr;</a>
   </div>
 </div>

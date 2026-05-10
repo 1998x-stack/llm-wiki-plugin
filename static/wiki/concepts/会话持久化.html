@@ -139,9 +139,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>Session Key 设计</strong>：<code>session_key = f"{platform}:{user_id}"</code>，如 <code>"telegram:123456789"</code>，确保每个平台每个用户有独立会话</li>
-<li><strong>存储结构</strong>：每条会话记录包含 messages（JSON 格式的角色-内容列表）、created_at、last_active 时间戳</li>
+<li><strong>存储结构</strong>：每条<a href="Transcripts.html">会话记录</a>包含 messages（JSON 格式的角色-内容列表）、created_at、last_active 时间戳</li>
 <li><strong><a href="../entities/SQLite.html">SQLite</a> + FTS5 全文检索</strong>：支持按 session_key 精确查询和跨会话<a href="FTS5.html">全文搜索</a>，Agent 可搜索历史消息找到相关内容</li>
-<li><strong>自动会话摘要</strong>：<code>auto_summarize: true</code> 配置下，LLM 自动压缩历史消息，控制上下文长度，默认保留最近 50 条消息</li>
+<li><strong>自动会话摘要</strong>：<code>auto_summarize: true</code> <a href="Configuration.html">配置</a>下，LLM 自动压缩历史消息，控制上下文长度，默认保留最近 50 条消息</li>
 <li><strong>与<a href="跨会话记忆.html">跨会话记忆</a>的区别</strong>：会话持久化关注单个 <a href="网关与路由器.html">Gateway</a> 会话内的消息历史维护；<a href="跨会话记忆.html">跨会话记忆</a>更广泛，包括 <a href="语义记忆.html">MEMORY.md</a>、USER.md、FTS5 按需召回等多层机制</li>
 <li><strong>生命周期</strong>：消息到达 → 加载历史 → 注入 AIAgent → 执行对话 → 保存更新后的历史，形成完整的读写循环</li>
 <li><strong>会话隔离</strong>：多用户授权下，每个用户有独立的会话隔离，互不干扰</li>

@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="-">预训练-微调范式</h1>
 <h2 id="_1">概述</h2>
-<p>预训练-微调<a href="规范化理论.html">范式</a>（Pre-training and Fine-tuning）是 BERT 确立的 NLP 标准方法论：先在大规模无标注语料上通过自监督任务学习通用语言表示，再在下游任务上用少量标注数据进行参数微调，彻底改变了 NLP 的开发模式。</p>
+<p>预训练-微调<a href="规范化理论.html">范式</a>（Pre-training and Fine-tuning）是 BERT 确立的 NLP 标准方法论：先在大规模无<a href="../entities/标注.html">标注</a>语料上通过自监督任务学习通用语言表示，再在下游任务上用少量<a href="../entities/标注.html">标注</a>数据进行参数微调，彻底改变了 NLP 的开发模式。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">两阶段流程</h3>
 <p><strong>第一阶段：大规模无监督预训练</strong></p>
 <ul>
-<li><strong>语料</strong>：33 亿词（Wikipedia 25 亿 + BooksCorpus 8 亿），无需人工标注</li>
+<li><strong>语料</strong>：33 亿词（Wikipedia 25 亿 + BooksCorpus 8 亿），无需人工<a href="../entities/标注.html">标注</a></li>
 <li><strong>任务</strong>：<a href="掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> + <a href="下一句预测（NSP）.html">下一句预测（NSP）</a>（自监督）</li>
 <li><strong>产物</strong>：预训练模型权重（通用语言表示）</li>
-<li><strong>计算规模</strong>：64 块 TPU v2，训练 4 天（<a href="BERT.html">BERT</a>-Large）</li>
+<li><strong><a href="计算.html">计算</a>规模</strong>：64 块 TPU v2，训练 4 天（<a href="BERT.html">BERT</a>-Large）</li>
 </ul>
 <p><strong>第二阶段：小规模有监督微调</strong></p>
 <ul>
-<li><strong>数据</strong>：只需少量标注数据（几百到几万条）</li>
+<li><strong>数据</strong>：只需少量<a href="../entities/标注.html">标注</a>数据（几百到几万条）</li>
 <li><strong>方法</strong>：添加一个简单的任务特定输出层，在下游任务上 fine-tune 几个 epoch</li>
 <li><strong>成本</strong>：单 GPU 数小时即可完成</li>
 </ul>
@@ -186,9 +186,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>NLI、文本蕴含</td>
 </tr>
 <tr>
-<td><strong>序列标注</strong></td>
+<td><strong>序列<a href="../entities/标注.html">标注</a></strong></td>
 <td>每个 Token 位置 → Linear → 标签</td>
-<td>NER、词性标注</td>
+<td>NER、词性<a href="../entities/标注.html">标注</a></td>
 </tr>
 <tr>
 <td><strong>阅读理解</strong></td>
@@ -200,12 +200,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">与传统方法的对比</h3>
 <p>| 维度 | 传统方法 | 预训练-微调<a href="规范化理论.html">范式</a> |
 |------|---------|----------------|
-| 数据需求 | 大量标注数据 | 少量标注数据 + 大量无标注数据 |
+| 数据需求 | 大量<a href="../entities/标注.html">标注</a>数据 | 少量<a href="../entities/标注.html">标注</a>数据 + 大量无<a href="../entities/标注.html">标注</a>数据 |
 | 模型训练 | 每个任务从头训练 | 共享预训练权重 |
-| 特征工程 | 手工设计特征 | 自动学习表示 |
+| <a href="特征工程（Feature Engineering）.html">特征工程</a> | 手工设计特征 | 自动学习表示 |
 | 泛化能力 | 任务特定 | 跨任务迁移 |</p>
-<h3 id="_6">与 <span style="color:#e74c3c" title="broken link">迁移学习</span> 的关系</h3>
-<p>预训练-微调<a href="规范化理论.html">范式</a>是 <span style="color:#e74c3c" title="broken link">迁移学习</span> 在 NLP 领域的具体实现：
+<h3 id="_6">与 <a href="迁移学习.html">迁移学习</a> 的关系</h3>
+<p>预训练-微调<a href="规范化理论.html">范式</a>是 <a href="迁移学习.html">迁移学习</a> 在 NLP 领域的具体实现：
 - <strong>源任务</strong>：大规模自监督语言建模（MLM + NSP）
 - <strong>目标任务</strong>：各种下游 NLP 任务
 - <strong>迁移方式</strong>：参数初始化（预训练权重作为微调的起点）</p>
@@ -214,14 +214,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>RoBERTa</strong>（2019）：更大的数据、更长的训练、动态掩码</li>
 <li><strong>DistilBERT</strong>（2019）：知识蒸馏压缩，66% 参数量保持 97% 性能</li>
-<li><strong>GPT 系列</strong>：将<a href="规范化理论.html">范式</a>应用于 Decoder-only 架构，侧重生成能力</li>
+<li><strong><a href="GPT 系列.html">GPT 系列</a></strong>：将<a href="规范化理论.html">范式</a>应用于 Decoder-only 架构，侧重生成能力</li>
 <li><strong>T5</strong>（2020）：统一框架，所有 NLP 任务都转化为文本到文本</li>
 </ul>
 <h3 id="_8">为什么有效？</h3>
 <ol>
 <li><strong>表示学习</strong>：预训练学到的是通用的语言结构知识（语法、语义、世界知识）</li>
 <li><strong>参数初始化</strong>：预训练权重提供了远优于随机初始化的起点</li>
-<li><strong>数据效率</strong>：无标注数据远多于标注数据，预训练充分利用了这一优势</li>
+<li><strong>数据效率</strong>：无<a href="../entities/标注.html">标注</a>数据远多于<a href="../entities/标注.html">标注</a>数据，预训练充分利用了这一优势</li>
 <li><strong>任务无关性</strong>：同一套预训练权重可适配多种下游任务</li>
 </ol>
 <h2 id="_9">来源</h2>
@@ -234,9 +234,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="BERT.html">BERT</a> — caused（BERT 确立并推广了这一范式）</li>
 <li><a href="掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> — depends_on（预训练阶段的核心任务之一）</li>
 <li><a href="词嵌入（Word Embedding）.html">词嵌入（Word Embedding）</a> — extends（从静态词向量到上下文相关的预训练表示）</li>
-<li><a href="Word2Vec.html">Word2Vec</a> — extends（预训练思想的早期探索）</li>
+<li><a href="../entities/Word2Vec.html">Word2Vec</a> — extends（预训练思想的早期探索）</li>
 <li><span style="color:#e74c3c" title="broken link">GPT</span> — relates_to（GPT 将同一范式应用于 Decoder-only 架构）</li>
-<li><span style="color:#e74c3c" title="broken link">迁移学习</span> — part_of（预训练-微调是迁移学习在 NLP 的具体实现）</li>
+<li><a href="迁移学习.html">迁移学习</a> — part_of（预训练-微调是迁移学习在 NLP 的具体实现）</li>
 </ul>
   </div>
   <div class="page-nav">

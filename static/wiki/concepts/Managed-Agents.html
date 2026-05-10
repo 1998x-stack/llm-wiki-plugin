@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="managed-agents">Managed Agents</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Managed Agents 是 <a href="../entities/Anthropic.html">Anthropic</a> 在 Claude Platform 中提供的托管服务，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、沙箱）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。</p>
+<p><a href="../entities/Claude_Code.html">Claude</a> Managed <a href="Agents.html">Agents</a> 是 <a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/Claude_Code.html">Claude</a> Platform 中提供的托管<a href="服务.html">服务</a>，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、沙箱）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">设计动机</h3>
-<p><a href="Agent Harness模式.html">Agent Harness模式</a> 编码了关于"Claude 不能独立做什么"的假设，但这些假设会随模型进步而<strong>过时</strong>。例如：<a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 会在接近上下文限制时过早结束任务（<a href="上下文焦虑.html">上下文焦虑</a>），因此在 harness 中加入了<a href="上下文重置.html">上下文重置</a>；但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重。</p>
-<p>Managed Agents 的目标是设计一组<strong>能超越任何特定实现的接口</strong>，包括 <a href="../entities/Anthropic.html">Anthropic</a> 今天运行的那些实现。</p>
+<p><a href="Agent Harness模式.html">Agent Harness模式</a> 编码了关于"<a href="../entities/Claude_Code.html">Claude</a> 不能独立做什么"的假设，但这些假设会随模型进步而<strong>过时</strong>。例如：<a href="../entities/Claude-Sonnet-4-5.html">Claude Sonnet 4.5</a> 会在接近上下文限制时过早结束任务（<a href="上下文焦虑.html">上下文焦虑</a>），因此在 harness 中加入了<a href="上下文重置.html">上下文重置</a>；但同样的 harness 用于 <a href="../entities/Claude_Code.html">Claude</a> Opus 4.5 时，该行为消失了——重置变成了死重。</p>
+<p>Managed <a href="Agents.html">Agents</a> 的目标是设计一组<strong>能超越任何特定实现的接口</strong>，包括 <a href="../entities/Anthropic.html">Anthropic</a> 今天运行的那些实现。</p>
 <h3 id="_4">三大抽象组件</h3>
 <table>
 <thead>
@@ -157,13 +157,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td><strong>控制框架（Harness）</strong></td>
-<td>调用 Claude 并路由工具调用的循环</td>
-<td><code>wake(sessionId)</code>, <code>getSession(id)</code></td>
+<td>调用 <span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
+&lt;td&gt;Claude</span> 并路由工具调用的循环</td>
 </tr>
 <tr>
 <td><strong>沙箱（Sandbox）</strong></td>
-<td>Claude 可运行代码和编辑文件的执行环境</td>
-<td><code>execute(name, input) → string</code>, <code>provision({resources})</code></td>
+<td><span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
+&lt;td&gt;Claude</span> 可运行代码和编辑文件的执行环境</td>
 </tr>
 </tbody>
 </table>
@@ -177,17 +177,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>初始设计</strong>：所有组件放在单个容器中（会话、harness、沙箱共享环境）</li>
 <li><strong>问题暴露</strong>：容器变成"宠物"——失败时需人工修复，无法调试，无法连接客户 VPC（详见 <a href="宠物与牲畜模式.html">宠物与牲畜模式</a>）</li>
-<li><strong>解耦方案</strong>：将"大脑"（Claude + harness）与"手"（沙箱）和"会话"（事件日志）分离</li>
+<li><strong>解耦方案</strong>：将"大脑"（<a href="../entities/Claude_Code.html">Claude</a> + harness）与"手"（沙箱）和"会话"（事件日志）分离</li>
 </ol>
 <h3 id="_7">性能收益</h3>
-<p>解耦后 p50 TTFT 下降约 <strong>60%</strong>，p95 TTFT 下降超过 <strong>90%</strong>。因为不需要沙箱的会话可立即开始推理，无需等待容器配置。</p>
+<p>解耦后 p50 TTFT 下降约 <strong>60%</strong>，p95 TTFT 下降超过 <strong>90%</strong>。因为不需要沙箱的会话可立即开始推理，无需等待容器<a href="Configuration.html">配置</a>。</p>
 <h3 id="_8">安全边界</h3>
-<p>在耦合设计中，Claude 生成的不可信代码与凭证运行在同一容器中。解耦后：
+<p>在耦合设计中，<a href="../entities/Claude_Code.html">Claude</a> 生成的不可信代码与凭证运行在同一容器中。解耦后：
 - Git 令牌在沙箱初始化时注入本地 git remote，Agent 从不直接处理令牌
 - 自定义工具通过 MCP 调用，OAuth 令牌存储在安全保险库中，由专用代理代为调用
 - Harness 从不知晓任何凭证</p>
 <h3 id="context-engineering">与 Context Engineering 的关系</h3>
-<p>会话作为<strong>存在于 Claude <a href="上下文窗口.html">上下文窗口</a>之外的上下文对象</strong>，提供了与 <a href="Context-Engineering.html">Context-Engineering</a> 互补的机制：不是通过压缩或裁剪做不可逆的上下文决策，而是保证上下文可持久化、可查询、可回溯。</p>
+<p>会话作为<strong>存在于 <a href="../entities/Claude_Code.html">Claude</a> <a href="上下文窗口.html">上下文窗口</a>之外的上下文对象</strong>，提供了与 <a href="Context-Engineering.html">Context-Engineering</a> 互补的机制：不是通过压缩或裁剪做不可逆的上下文决策，而是保证上下文可持久化、可查询、可回溯。</p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md</span> — Anthropic Engineering Blog</li>

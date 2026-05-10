@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">分层记忆架构</h1>
 <h2 id="_2">概述</h2>
-<p>分层记忆架构（Hierarchical Memory Architecture）是 <a href="Context-Engineering.html">Context-Engineering</a> 的核心实现模式。将 LLM 上下文从单一聊天历史升级为五个功能分层（L0–L4），每层承担不同的记忆职责和时效性，从而将"把整段历史一路往前拖"替换为"结构化状态检索与压缩"。灵感来源于 MemGPT 和 LongMem 将有限上下文与外部慢存储协同工作的思路。</p>
+<p>分层记忆架构（Hierarchical <a href="三层记忆架构.html">Memory Architecture</a>）是 <a href="Context-Engineering.html">Context-Engineering</a> 的核心实现模式。将 LLM 上下文从单一聊天历史升级为五个功能分层（L0–L4），每层承担不同的记忆职责和时效性，从而将"把整段历史一路往前拖"替换为"结构化状态检索与压缩"。灵感来源于 MemGPT 和 LongMem 将有限上下文与外部慢存储协同工作的思路。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">五层架构</h3>
 <table>
@@ -156,13 +156,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;L1&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Working Memory&lt;/td&gt;
-&lt;td&gt;当前任务目标、约束、实体、术语表、未解决问题、当前计划&lt;/td&gt;
-&lt;td&gt;最贵，只放&quot;这轮必须记住&quot;的内容&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;L2&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;[[情节记忆&lt;/td&gt;
+&lt;td&gt;[[工作记忆&lt;/td&gt;
+&lt;td&gt;Working Memory</span></td>
+<td>当前任务目标、约束、实体、术语表、未解决问题、当前计划</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td><span style="color:#e74c3c" title="broken link">情节记忆&lt;/td&gt;
 &lt;td&gt;Episodic Memory</span></td>
 <td>按阶段压缩的"回合摘要"：决策、证据、结论、pending items</td>
 </tr>
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;L0&lt;/strong&gt;：稳定 + 高复用 → 最适合被 [[Prompt缓存</span> 命中</li>
 <li><strong>L1</strong>：当前轮最关键信息 → token 成本最高，严格筛选</li>
-<li><strong>L2</strong>：过去的结构化 checkpoint → 压缩后仍可计算</li>
+<li><strong>L2</strong>：过去的结构化 checkpoint → 压缩后仍可<a href="计算.html">计算</a></li>
 <li><strong>L3</strong>：按需检索 → hybrid retrieve（dense + BM25 + graph）</li>
 <li><strong>L4</strong>：保留 source anchor，不直接注入 prompt</li>
 </ul>
@@ -206,7 +206,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">层间晋升规则</h3>
 <ul>
 <li><strong>L4 → L3</strong>：多次检索命中的片段 → 晋升为<a href="语义记忆.html">语义记忆</a>条目</li>
-<li><strong>L2 → L1</strong>：当前轮用到的 episode checkpoint → 临时注入工作记忆</li>
+<li><strong>L2 → L1</strong>：当前轮用到的 episode checkpoint → 临时注入<a href="工作记忆.html">工作记忆</a></li>
 <li><strong>L1 → L2</strong>：任务阶段切换时 → 压缩为 episode 条目</li>
 <li>压缩产出物：durable facts / decisions / open loops / source anchors</li>
 </ul>

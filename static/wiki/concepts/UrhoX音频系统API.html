@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="audio">Audio 子系统</h3>
 <p>主要方法：
 - <code>SetMode(bufferLengthMSec, mixRate, stereo, interpolation)</code> — 初始化混音器
-- <code>SetMasterGain(type, gain)</code> — 按声音类型设置主音量（如 <code>"Music"</code>、<code>"Effect"</code>）
+- <code>SetMasterGain(type, gain)</code> — 按声音类型<a href="Settings.html">设置</a>主音量（如 <code>"Music"</code>、<code>"Effect"</code>）
 - <code>PauseSoundType(type)</code> / <code>ResumeSoundType(type)</code> / <code>ResumeAll()</code> — 声音类型暂停控制
 - <code>SetListener(listener)</code> — 绑定听者组件
 - <code>StopSound(sound)</code> — 停止指定 Sound 资源的所有播放实例</p>

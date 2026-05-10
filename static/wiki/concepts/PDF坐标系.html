@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>坐标系是<a href="PDF解析.html">PDF解析</a>的基石：
 1. <strong>字符定位</strong>：每个Span的bbox使用PDF坐标系表示 <code>(x0, y0, x1, y1)</code>
 2. <strong>布局检测</strong>：<a href="文档布局检测.html">文档布局检测</a>模型的检测框需要与PDF坐标对齐
-3. <strong><a href="阅读顺序重建.html">阅读顺序重建</a></strong>：基于坐标的排序算法依赖正确的坐标参照
+3. <strong><a href="阅读顺序重建.html">阅读顺序重建</a></strong>：基于坐标的排序<a href="算法.html">算法</a>依赖正确的坐标参照
 4. <strong>多模态对齐</strong>：文字Span的坐标需要与图像像素坐标对应</p>
 <h3 id="_6">坐标归一化</h3>
 <p><a href="../entities/MinerU.html">MinerU</a>将<a href="../entities/PyMuPDF.html">PyMuPDF</a>提取的原始坐标转换为其内部<a href="MinerUSpan格式.html">MinerUSpan格式</a>时，关键步骤之一就是坐标归一化：从PDF坐标（左下原点）转换为图像坐标（左上原点），确保文字管道和视觉管道的坐标系统一致。</p>

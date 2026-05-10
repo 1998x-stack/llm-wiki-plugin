@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地域时间差套利 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 地域时间差套利</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.60</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">地域时间差套利</h1>
+<h2 id="_2">概述</h2>
+<p>不同区域、不同阶段的规则不统一，形成天然套利空间。把A地成熟但B地还没有的玩法，从规则严格的地方搬到规则宽松的地方，实现低风险套利。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>定义与成因</strong>：规则从来不是全球统一、全国统一、永恒不变的。不同国家、省份、城市因为经济发展水平、产业结构、治理理念的不同，规则的松紧度、监管尺度、扶持政策天差地别。同一个地区在不同发展阶段，规则的标准、监管重点也完全不一样。</p>
+</li>
+<li>
+<p><strong>套利逻辑</strong>：</p>
+</li>
+<li>地域差：同一个行为，在A地是违规甚至违法的，但在B地是完全合规合法的，只需要完成主体和地域的迁移，就能把违规操作变成合规生意</li>
+<li>
+<p>时间差：成熟市场已经内卷的玩法，在发展初期的市场就是降维打击</p>
+</li>
+<li>
+<p><strong>经典案例</strong>：</p>
+</li>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a> 的海外布局：<a href="94禁令.html">94禁令</a>后国内全面叫停ICO，但美国、新加坡、阿联酋对加密货币的监管规则完全不同。他第一时间完成国内合规切割，把核心业务搬到海外监管宽松地区，申请合规牌照，把<a href="../entities/波场.html">波场</a>做成全球第三大公链</li>
+<li>电商行业：国内<a href="../entities/淘宝.html">淘宝</a>、抖音内卷到极致，但东南亚、拉美地区的TikTok Shop还处于10年前国内<a href="../entities/淘宝.html">淘宝</a>的发展阶段，很多人把国内成熟玩法搬过去轻松月入几十万</li>
+<li>职场发展：一线城市互联网大厂裁员缩招卷到极致，但新一线城市、强二线城市的本土企业正在快速发展，急需有大厂经验的人才，很多人从大厂跳过去直接从专员升到总监</li>
+<li>
+<p>商业创业：一线城市奶茶、咖啡、新零售内卷到红海，但下沉市场、县城市场还处于发展初期，很多人把一线城市成熟商业模式优化后搬到县城轻松做到区域头部</p>
+</li>
+<li>
+<p><strong>预判方法</strong>：</p>
+</li>
+<li>找"成熟对标体"：国内电商赛道是东南亚电商的对标体，一线城市新零售是县城市场的对标体</li>
+<li>看发展阶段差：对标体已经发展成熟、规则完善、内卷严重，而目标市场还处于发展初期、规则宽松、竞争很小</li>
+<li>
+<p>核心判断标准：这个玩法在A地已经被验证能赚钱，在B地还没有人做，且B地的规则完全允许</p>
+</li>
+<li>
+<p><strong>持久性</strong>：套利机会永远都会存在——因为区域发展永远不可能平衡，行业发展永远有先后之分，规则的地域/时间差永远不可能消除。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/04</span> — 全文</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="规则漏洞学.html">规则漏洞学</a> — part_of</li>
+<li><a href="规则的4大先天缺陷.html">规则的4大先天缺陷</a> — extends</li>
+<li><a href="监管空白窗口期.html">监管空白窗口期</a> — relates_to</li>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a> — relates_to</li>
+<li><a href="../entities/波场.html">波场</a> — relates_to</li>
+<li><a href="94禁令.html">94禁令</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="地域差套利.html">&larr; 地域差套利</a>
+    <a href="地心说.html">地心说 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

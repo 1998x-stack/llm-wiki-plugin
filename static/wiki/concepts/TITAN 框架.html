@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TITAN 框架 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / TITAN 框架</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI-Agent</span><span class="tag">Automated-Testing</span><span class="tag">Video-Game-Testing</span><span class="tag">GPT-4o</span><span class="tag">langgraph</span><span class="tag">qwen</span></div>
+</div>
+  <div class="content">
+    <h1 id="titan">TITAN 框架</h1>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/TITAN-智能体.html">TITAN</a>框架是一个AI驱动的自动游戏测试框架，最初基于GPT-4o实现，后来有类似实现基于LangGraph和Qwen构建为<a href="../entities/TITAN-智能体.html">TITAN</a>智能体。该框架模仿真人测试员的思路进行自动化测试，包含感知、动作优化、反射推理和问题诊断等模块。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>感知抽象模块（Perception Abstraction Module）</strong>：</li>
+<li>帮助AI理解并简化游戏信息</li>
+<li>删除无用信息，将复杂数字转换为简单文字（如血量：高/中/低）</li>
+<li>提供给AI干净、简短的信息</li>
+<li>快速适配不同游戏，帮助AI”读明白”游戏而不负担过重</li>
+<li>
+<p>在<a href="../entities/TITAN-智能体.html">TITAN</a>智能体中实现为<a href="状态感知与抽象.html">状态感知与抽象</a>层</p>
+</li>
+<li>
+<p><strong>动作优化模块（Action Optimization Module）</strong>：</p>
+</li>
+<li>帮助AI只执行有用的操作</li>
+<li>定义通用动作模板（移动、对话、攻击、使用道具等）</li>
+<li>结合游戏经验，仅推荐5个左右当前最应执行的动作</li>
+<li>过滤无效操作，确保动作可执行</li>
+<li>
+<p>在<a href="../entities/TITAN-智能体.html">TITAN</a>智能体中集成于<a href="LangGraph状态机.html">LangGraph状态机</a>的optimize_actions节点</p>
+</li>
+<li>
+<p><strong>反射推理模块（Reflective Reasoning Module）</strong>：</p>
+</li>
+<li>框架的核心，使AI具备思考能力并能从卡关中自救</li>
+<li>进度监控：持续监控任务推进情况，无进展时判定为”卡关”</li>
+<li>反思复盘：回顾先前操作，分析错误并调整策略</li>
+<li>记忆机制：记录已测试区域，避免重复，完成任务的同时探索未测试区域寻找bug</li>
+<li>
+<p>在<a href="../entities/TITAN-智能体.html">TITAN</a>智能体中通过<span style="color:#e74c3c" title="broken link">反思节点</span>实现</p>
+</li>
+<li>
+<p><strong>问题诊断模块（Problem Diagnosis Module）</strong>：</p>
+</li>
+<li>自动检测和报告问题</li>
+<li>崩溃监控：立即捕捉游戏崩溃</li>
+<li>任务卡死监控：标记无法推进的任务并清晰说明原因</li>
+<li>执行时间监控：发现动作/任务执行过慢的问题（如无限循环、<a href="服务.html">服务</a>器卡顿）</li>
+<li>整体误报率为30%</li>
+<li>在<a href="../entities/TITAN-智能体.html">TITAN</a>智能体中实现为<a href="诊断预言机系统.html">诊断预言机系统</a></li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Leveraging LLM Agents for Automated Video Game Testing</span> — 框架原始设计</li>
+<li><span style="color:#e74c3c" title="broken link">TITAN-技术框架核心点报告</span> — TITAN智能体实现</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/TITAN-智能体.html">TITAN-智能体</a> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">AI-Agent</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">GPT-4o</span> — originally_uses</li>
+<li><a href="../entities/Qwen.html">Qwen</a> — implementation_uses</li>
+<li><span style="color:#e74c3c" title="broken link">Automated-Testing</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Video-Game-Testing</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">LangGraph</span> — implements_similar_pattern_as</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="TF-IDF.html">&larr; TF-IDF</a>
+    <a href="TITAN-同步帧协议.html">TITAN-同步帧协议 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

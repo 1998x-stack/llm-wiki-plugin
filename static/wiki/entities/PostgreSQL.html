@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>连接池管理</strong>：在 Agent 驱动的开发环境中，必须设置 connection pool timeout，否则长时间无操作后连接会断开。典型连接串格式：<code>postgresql://localhost:5432/[project]_dev</code>。</p>
+<p><strong>连接池管理</strong>：在 Agent 驱动的开发环境中，必须<a href="../concepts/Settings.html">设置</a> connection pool timeout，否则长时间无操作后连接会断开。典型连接串格式：<code>postgresql://localhost:5432/[project]_dev</code>。</p>
 </li>
 <li>
-<p><strong>与 <a href="Prisma.html">Prisma</a> 配合</strong>：通过 <code>DATABASE_URL</code> 环境变量配置连接，<a href="Prisma.html">Prisma</a> 的 <code>migrate dev</code> 命令执行前需确保数据库可访问。迁移文件由 <a href="Prisma.html">Prisma</a> 自动生成并管理。</p>
+<p><strong>与 <a href="Prisma.html">Prisma</a> 配合</strong>：通过 <code>DATABASE_URL</code> <a href="../concepts/Environment Variables.html">环境变量</a><a href="../concepts/Configuration.html">配置</a>连接，<a href="Prisma.html">Prisma</a> 的 <code>migrate dev</code> 命令执行前需确保数据库可访问。迁移文件由 <a href="Prisma.html">Prisma</a> 自动生成并管理。</p>
 </li>
 <li>
-<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：AGENTS.md 模板中作为默认数据库选择，配合 <a href="Prisma.html">Prisma</a> ORM 和 <a href="Next.js.html">Next.js</a> 构成全栈开发基线。环境变量存储在 <code>.env.local</code> 中（gitignored）。</p>
+<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：<a href="../concepts/项目约定手册.html">AGENTS.md</a> 模板中作为默认数据库选择，配合 <a href="Prisma.html">Prisma</a> ORM 和 <a href="Next.js.html">Next.js</a> 构成全栈开发基线。<a href="../concepts/Environment Variables.html">环境变量</a>存储在 <code>.env.local</code> 中（gitignored）。</p>
 </li>
 <li>
 <p><strong>开发工作流</strong>：</p>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Plastic Labs.html">&larr; Plastic Labs</a>
-    <a href="Prisma.html">Prisma &rarr;</a>
+    <a href="Prettier.html">Prettier &rarr;</a>
   </div>
 </div>
 </body>

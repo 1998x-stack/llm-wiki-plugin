@@ -129,24 +129,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">归一化</span><span class="tag">神经网络</span></div>
 </div>
   <div class="content">
     <h1 id="lrn">局部响应归一化（LRN）</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>LRN 是一种受神经科学"侧抑制"启发的归一化技术，对相邻通道的激活值做局部归一化。<a href="AlexNet.html">AlexNet</a> 使用 LRN 提升泛化能力，后被 <a href="Batch Normalization.html">Batch Normalization</a> 取代。</p>
+<p>LRN 是一种受神经科学"<a href="侧抑制.html">侧抑制</a>"启发的归一化技术，对相邻通道的激活值做局部归一化。<a href="AlexNet.html">AlexNet</a> 使用 LRN 提升泛化能力，后被 <a href="Batch Normalization.html">Batch Normalization</a> 取代。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>生物学灵感</strong>：LRN 受神经科学中"侧抑制"（lateral inhibition）现象启发——相邻神经元之间相互竞争抑制，使响应更强的神经元更加突出。在 CNN 中，LRN 对同一空间位置、相邻通道的激活值做归一化，抑制过大的响应、增强相对较大的激活。</li>
+<li><strong>生物学灵感</strong>：LRN 受神经科学中"<a href="侧抑制.html">侧抑制</a>"（lateral inhibition）现象启发——相邻神经元之间相互竞争抑制，使响应更强的神经元更加突出。在 CNN 中，LRN 对同一空间位置、相邻通道的激活值做归一化，抑制过大的响应、增强相对较大的激活。</li>
 <li><strong>数学形式</strong>：对于位置 (x,y) 处第 i 个通道的激活值 aᵢ，LRN 输出为 aᵢ / (k + α·Σⱼ aⱼ²)^β，其中求和跨越相邻通道（窗口大小 n），k、α、β、n 为超参数。<a href="AlexNet.html">AlexNet</a>使用 k=2, α=1e-4, β=0.75, n=5。</li>
-<li><strong>在 <a href="AlexNet.html">AlexNet</a> 中的应用</strong>：LRN 应用于 Conv1 和 Conv2 的 ReLU 激活之后、MaxPool 之前。原论文报告 LRN 带来约 1-2% 的 Top-1/Top-5 错误率下降。然而 LRN 计算开销较大，且效果不如后续技术显著。</li>
+<li><strong>在 <a href="AlexNet.html">AlexNet</a> 中的应用</strong>：LRN 应用于 Conv1 和 Conv2 的 ReLU 激活之后、MaxPool 之前。原论文报告 LRN 带来约 1-2% 的 Top-1/<a href="Top-5 错误率.html">Top-5 错误率</a>下降。然而 LRN <a href="计算.html">计算</a>开销较大，且效果不如后续技术显著。</li>
 <li><strong>被 <a href="Batch Normalization.html">Batch Normalization</a> 取代</strong>：2015 年<a href="Batch Normalization.html">Batch Normalization</a>提出后，LRN 基本被淘汰。BN 对整个 mini-batch 做归一化（而非局部通道窗口），效果更强、训练更快、对初始化更不敏感。现代架构中 LRN 已极少使用，但作为 CNN 演化史上的一个节点仍有历史意义。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — AlexNet 论文</li>
 <li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
@@ -157,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="对话平台适配器.html">&larr; 对话平台适配器</a>
+    <a href="少样本学习.html">&larr; 少样本学习</a>
     <a href="局部激活单元.html">局部激活单元 &rarr;</a>
   </div>
 </div>

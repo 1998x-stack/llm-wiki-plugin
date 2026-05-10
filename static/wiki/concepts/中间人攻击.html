@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">中间人攻击</h1>
 <h2 id="_2">概述</h2>
-<p>中间人攻击（Man-in-the-Middle Attack）是一种主动攻击，攻击者在通信双方之间拦截、篡改和转发消息，使双方误以为在直接通信。</p>
+<p><a href="中间人.html">中间人</a>攻击（Man-in-the-Middle Attack）是一种主动攻击，攻击者在通信双方之间拦截、篡改和转发消息，使双方误以为在直接通信。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">攻击原理</h3>
 <p>攻击者 Mallory 同时冒充 Bob 与 Alice 通信、冒充 Alice 与 Bob 通信：
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 2. Mallory 与 Bob 建立共享密钥 K2
 3. Alice 以为在和 Bob 通信，实际上所有消息都经过 Mallory 的中转</p>
 <h3 id="diffie-hellman">Diffie-Hellman 的弱点</h3>
-<p>DH 协议本身<strong>缺乏身份认证</strong>——双方只交换公开值，不验证对方身份。这使得中间人攻击成为 DH 协议的最大弱点。</p>
+<p>DH 协议本身<strong>缺乏身份认证</strong>——双方只交换公开值，不验证对方身份。这使得<a href="中间人.html">中间人</a>攻击成为 DH 协议的最大弱点。</p>
 <h3 id="_5">防御方法</h3>
 <ul>
 <li><strong>数字证书和 PKI</strong>：通过可信的证书颁发机构（CA）验证公钥归属</li>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>不安全的 Wi-Fi 热点</li>
 <li>DNS 欺骗</li>
 <li>SSL 剥离攻击</li>
-<li>恶意代理服务器</li>
+<li>恶意代理<a href="服务.html">服务</a>器</li>
 </ul>
 <h2 id="_7">来源</h2>
 <ul>
@@ -171,8 +171,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="中心极限定理.html">&larr; 中心极限定理</a>
-    <a href="乘数效应.html">乘数效应 &rarr;</a>
+    <a href="中间人.html">&larr; 中间人</a>
+    <a href="临时字段.html">临时字段 &rarr;</a>
   </div>
 </div>
 </body>

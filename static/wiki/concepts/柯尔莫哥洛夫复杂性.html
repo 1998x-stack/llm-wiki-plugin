@@ -135,20 +135,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">柯尔莫哥洛夫复杂性</h1>
 <h2 id="_2">概述</h2>
-<p>柯尔莫哥洛夫复杂性 K(x) 是产生字符串 x 的最短程序长度（以 bit 计），度量了单个对象的内在信息含量，是<a href="算法信息论.html">算法信息论</a>的核心概念。</p>
+<p><a href="../entities/Andrey Kolmogorov.html">柯尔莫哥洛夫</a>复杂性 K(x) 是产生字符串 x 的最短程序长度（以 bit 计），度量了单个对象的内在信息含量，是<a href="算法信息论.html">算法信息论</a>的核心概念。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
 <p>K(x) = min{|p| : U(p) = x}</p>
 <p>其中 U 是一台固定的<a href="图灵机.html">通用图灵机</a>，|p| 是程序 p 的长度。</p>
 <h3 id="_5">直觉</h3>
-<p>一个字符串的柯尔莫哥洛夫复杂性等于"描述它所需的最短程序"的长度。
+<p>一个字符串的<a href="../entities/Andrey Kolmogorov.html">柯尔莫哥洛夫</a>复杂性等于"描述它所需的最短程序"的长度。
 - "000...0"（1000 个 0）的 K(x) 很小——只需一行代码 <code>print("0" * 1000)</code>
 - 真正的随机字符串的 K(x) ≈ |x|——没有比直接存储更短的描述</p>
 <h3 id="solomonoff">与 Solomonoff 先验的关系</h3>
 <p>$$K(x) \leq -\log_2 M(x) \leq K(x) + O(\log K(x))$$</p>
-<p><a href="Solomonoff先验.html">算法概率</a>的负对数近似等于柯尔莫哥洛夫复杂性。一个字符串的先验概率主要由能产生它的最短程序决定。</p>
+<p><a href="Solomonoff先验.html">算法概率</a>的负对数近似等于<a href="../entities/Andrey Kolmogorov.html">柯尔莫哥洛夫</a>复杂性。一个字符串的先验概率主要由能产生它的最短程序决定。</p>
 <h3 id="_6">不可计算性</h3>
-<p>K(x) 是不可计算的——不存在算法能在有限时间内精确计算任意字符串的柯尔莫哥洛夫复杂性。这与<a href="停机问题.html">停机问题</a>密切相关。</p>
+<p>K(x) 是不可<a href="计算.html">计算</a>的——不存在<a href="算法.html">算法</a>能在有限时间内精确<a href="计算.html">计算</a>任意字符串的<a href="../entities/Andrey Kolmogorov.html">柯尔莫哥洛夫</a>复杂性。这与<a href="停机问题.html">停机问题</a>密切相关。</p>
 <h3 id="_7">发现历史</h3>
 <ul>
 <li><strong>Solomonoff (1960)</strong>：第一个提出程序长度作为复杂性度量（技术报告）</li>
@@ -158,8 +158,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>尽管 Solomonoff 最早提出，但这一概念以 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 命名，因为 <a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a> 是 20 世纪最伟大的数学家之一，名声远超 Solomonoff。</p>
 <h3 id="_8">应用</h3>
 <ul>
-<li><strong>MDL 原理</strong>：最小描述长度是 K(x) 的可计算近似</li>
-<li><strong><a href="算法随机性.html">算法随机性</a></strong>：如果 K(x) ≈ |x|，则 x 是算法随机的</li>
+<li><strong>MDL 原理</strong>：最小描述长度是 K(x) 的可<a href="计算.html">计算</a>近似</li>
+<li><strong><a href="算法随机性.html">算法随机性</a></strong>：如果 K(x) ≈ |x|，则 x 是<a href="算法.html">算法</a>随机的</li>
 <li><strong>机器学习正则化</strong>：模型复杂度惩罚项可以理解为对 K(模型) 的近似</li>
 </ul>
 <h2 id="_9">来源</h2>

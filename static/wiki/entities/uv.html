@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="uv">uv</h1>
 <h2 id="_1">概述</h2>
-<p>uv 是 Python 生态的一体化包 &amp; 环境管理器，用 Rust 实现，由 Astral（Ruff 团队）开发，2024 年首发。定位为"Cargo for Python"，统一替代 pip + venv + pyenv + pipx + poetry 碎片化工具链。</p>
+<p>uv 是 <a href="../concepts/Python.html">Python</a> 生态的一体化包 &amp; 环境管理器，用 Rust 实现，由 Astral（Ruff 团队）开发，2024 年首发。定位为"Cargo for <a href="../concepts/Python.html">Python</a>"，统一替代 pip + venv + pyenv + pipx + poetry 碎片化工具链。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>性能基准</strong>：JupyterLab 全量安装冷缓存比 pip 快 8-10x（2.6s vs 21.4s）；有缓存时快 80-115x（~0.2s）；<code>uv venv</code> 比 <code>python -m venv</code> 快 80x。</li>
-<li><strong>功能覆盖</strong>：包安装（替代 pip）、虚拟环境管理（<code>uv venv</code>）、跨平台依赖锁定（<code>uv.lock</code> TOML格式）、Python 版本管理（内置，无需 pyenv）、全局工具安装（<code>uv tool install</code> / <code>uvx</code>，替代 pipx）、项目初始化（<code>uv init</code>）、PEP 723 单文件脚本内联依赖、发布到 PyPI（<code>uv publish</code>）、Cargo-style Workspaces。</li>
-<li><strong>架构设计</strong>：全局 wheel 缓存 + CoW/硬链接；PubGrub 解析算法（确定性，跨平台）；人类可读 <code>uv.lock</code>（TOML）；内置 Python 安装管理。</li>
-<li><strong>适用场景</strong>：新建 Python 项目彻底告别碎片化工具链、CI/CD pip 安装成为瓶颈、AI/ML 工程（LangChain/FastAPI/LLM 管线）、多 Python 版本并存、<a href="Claude Code.html">Claude Code</a>/AI agent 自动化 Python 项目。</li>
-<li><strong>局限</strong>：不处理系统级非 Python 依赖（CUDA/cuDNN 等仍需 Conda）；相比 Poetry 在 PyPI 发布语义版本管理上略弱；v0.9.x 仍在快速迭代阶段。</li>
+<li><strong>功能覆盖</strong>：包安装（替代 pip）、虚拟环境管理（<code>uv venv</code>）、跨平台依赖锁定（<code>uv.lock</code> TOML格式）、<a href="../concepts/Python.html">Python</a> 版本管理（内置，无需 pyenv）、全局工具安装（<code>uv tool install</code> / <code>uvx</code>，替代 pipx）、项目初始化（<code>uv init</code>）、PEP 723 单文件脚本内联依赖、发布到 PyPI（<code>uv publish</code>）、Cargo-style Workspaces。</li>
+<li><strong>架构设计</strong>：全局 wheel 缓存 + CoW/硬链接；PubGrub 解析<a href="../concepts/算法.html">算法</a>（确定性，跨平台）；人类可读 <code>uv.lock</code>（TOML）；内置 <a href="../concepts/Python.html">Python</a> 安装管理。</li>
+<li><strong>适用场景</strong>：新建 <a href="../concepts/Python.html">Python</a> 项目彻底告别碎片化工具链、CI/CD pip 安装成为瓶颈、AI/ML 工程（LangChain/FastAPI/LLM 管线）、多 <a href="../concepts/Python.html">Python</a> 版本并存、<a href="../projects/Claude Code.html">Claude Code</a>/AI agent 自动化 <a href="../concepts/Python.html">Python</a> 项目。</li>
+<li><strong>局限</strong>：不处理系统级非 <a href="../concepts/Python.html">Python</a> 依赖（CUDA/cuDNN 等仍需 Conda）；相比 Poetry 在 PyPI 发布语义版本管理上略弱；v0.9.x 仍在快速迭代阶段。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Bun-Runtime.html">Bun-Runtime</a> — compares_to（JS 生态对标工具，同代精神）</li>
-<li><span style="color:#e74c3c" title="broken link">Python</span> — part_of</li>
+<li><a href="../concepts/Python.html">Python</a> — part_of</li>
 </ul>
   </div>
   <div class="page-nav">

@@ -129,51 +129,42 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">信息论</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">信息论</span><span class="tag">通信理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">信道容量</h1>
 <h2 id="_2">概述</h2>
-<p>信道容量（Channel Capacity）是 Shannon (1948) 定义的通信信道可靠传输信息的最大速率：C = max I(X;Y)，是<a href="../maps/信息论.html">信息论</a>中最深刻的概念之一。</p>
+<p><a href="../maps/信息论.html">信息论</a>中的重要概念，指在给定噪声干扰的通信信道中，能够可靠传输信息的最大速率。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定义</h3>
-<p>$$C = \max_{p(x)} I(X;Y)$$</p>
-<p>其中 I(X;Y) = H(X) - H(X|Y) = H(Y) - H(Y|X) 是<a href="互信息.html">互信息</a>，度量 X 和 Y 共享的信息量。最大化遍历所有可能的输入分布 p(x)。</p>
-<h3 id="shannon">信道编码定理（Shannon 第二定理）</h3>
-<blockquote>
-<p>对于传输速率 R &lt; C，存在编码方案使得解码错误概率任意小。
-对于 R &gt; C，不存在任何编码方案能使错误概率趋于零。</p>
-</blockquote>
-<h3 id="_5">惊人之处</h3>
-<ol>
-<li>
-<p><strong>存在性而非构造性</strong>：Shannon 证明了可靠通信方案的<strong>存在</strong>，但没有给出具体的编码算法。寻找接近 Shannon 极限的实用编码方案成为了后续半个世纪的核心研究课题。</p>
-</li>
-<li>
-<p><strong>阈值效应</strong>：通信系统存在一个精确的阈值 C，低于阈值时错误可以任意小，高于阈值时灾难性的错误不可避免。这与人们的直觉——"速率越高，错误越多，但总能通过更多冗余来改善"——完全不同。</p>
-</li>
-<li>
-<p><strong><a href="随机编码论证.html">随机编码论证</a></strong>：Shannon 使用了当时非常新颖的证明策略——随机选择编码本，然后证明"好"的编码本以压倒性的概率存在。这一方法后来成为<a href="../maps/信息论.html">信息论</a>的核心证明技术。</p>
-</li>
-</ol>
-<h3 id="_6">实际影响</h3>
-<p>从 1948 年到 1993 年（Turbo 码），花了 45 年才在实践中逼近 Shannon 极限。整个数字通信产业（从调制解调器到 5G）都建立在这个理论基础之上。</p>
-<h2 id="_7">来源</h2>
+<p>信道容量定义为 $C = \max_{p(x)} I(X; Y)$，其中$I(X; Y)$是输入X和输出Y之间的<a href="互信息.html">互信息</a>，最大化在所有可能的输入分布$p(x)$上进行。</p>
+<h3 id="-">香农-哈特利公式</h3>
+<p>对于加性白高斯噪声(AWGN)信道，信道容量为 $C = B \log_2\left(1 + \frac{S}{N}\right)$，其中B是信道带宽，S/N是<a href="信噪比.html">信噪比</a>。</p>
+<h3 id="_5">物理意义</h3>
+<p>信道容量给出了通信的终极物理极限，是由信道物理特性唯一决定的量，独立于任何特定的编码方案。</p>
+<h3 id="_6">有噪信道编码定理</h3>
+<p>只要传输速率低于信道容量，就存在编码方案使得错误概率可以任意接近零。</p>
+<h3 id="_7">工程应用</h3>
+<p>为通信工程师提供了理论基准，各种现代通信系统(如5G/6G)的性能都以接近<a href="../entities/Claude Shannon.html">香农</a>极限的程度来衡量。</p>
+<h2 id="_8">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/books/信息论/02_shannon_1948_mathematical_theory_of_communication.md</span> — Shannon (1948) 深度解析</li>
-<li><span style="color:#e74c3c" title="broken link">raw/books/信息论/03_shannon_1949_communication_in_presence_of_noise.md</span> — Shannon (1949) 深度解析</li>
-<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md</span> — Shannon (1948) 计算机科学视角深度解析</li>
+<li><a href="../entities/A Mathematical Theory of Communication.html">A Mathematical Theory of Communication</a> — original theory</li>
+<li><a href="../entities/Claude Shannon.html">Claude Shannon</a> — developed_by</li>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md</span> — detailed analysis</li>
+<li><a href="互信息.html">互信息</a> — mathematical basis</li>
 </ul>
-<h2 id="_8">相关</h2>
+<h2 id="_9">相关</h2>
 <ul>
-<li><a href="../entities/克劳德·香农.html">克劳德·香农</a> — 提出者</li>
-<li><a href="../maps/信息论.html">信息论</a> — 所属学科</li>
-<li><a href="互信息.html">互信息</a> — 定义基础</li>
+<li><a href="../maps/信息论.html">信息论</a> — belongs_to_field</li>
+<li><a href="../entities/Claude Shannon.html">Claude Shannon</a> — theorized_by</li>
+<li><a href="熵.html">熵</a> — related_concept</li>
+<li><a href="互信息.html">互信息</a> — mathematical_basis</li>
+<li><a href="有噪信道编码定理.html">有噪信道编码定理</a> — theoretical_implication</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="信源编码定理.html">&larr; 信源编码定理</a>
+    <a href="信用分配问题（Credit Assignment Problem）.html">&larr; 信用分配问题（Credit Assignment Problem）</a>
     <a href="信道编码定理.html">信道编码定理 &rarr;</a>
   </div>
 </div>

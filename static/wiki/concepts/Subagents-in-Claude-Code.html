@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="subagents-in-claude-code">Subagents in Claude Code</h1>
 <h2 id="_1">概述</h2>
-<p>Subagents（子智能体）是 <a href="../entities/Claude Code.html">Claude Code</a> 中的独立代理实例，拥有自己的<a href="上下文窗口.html">上下文窗口</a>。主代理可以派遣子智能体处理独立任务，子智能体完成后仅返回相关结果。子智能体如同 <a href="../entities/Claude Code.html">Claude Code</a> 会话中的浏览器标签页，允许探索旁支思路而不中断主线。</p>
+<p>Subagents（子智能体）是 <a href="../projects/Claude Code.html">Claude Code</a> 中的独立代理实例，拥有自己的<a href="上下文窗口.html">上下文窗口</a>。主代理可以派遣子智能体处理独立任务，子智能体完成后仅返回相关结果。子智能体如同 <a href="../projects/Claude Code.html">Claude Code</a> 会话中的浏览器标签页，允许探索旁支思路而不中断主线。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">什么是子智能体</h3>
 <p><strong>核心特性</strong>：
-- <strong>独立性</strong>：每个子智能体是独立的 Claude 实例，有自己的<a href="上下文窗口.html">上下文窗口</a>
-- <strong>隔离性</strong>：不受对话历史或已调用技能的影响
+- <strong>独立性</strong>：每个子智能体是独立的 <a href="../entities/Claude_Code.html">Claude</a> 实例，有自己的<a href="上下文窗口.html">上下文窗口</a>
+- <strong>隔离性</strong>：不受对话历史或已调用<a href="Skills.html">技能</a>的影响
 - <strong>并行性</strong>：多个子智能体可并行运行
-- <strong>权限控制</strong>：每个子智能体可有不同的权限（只读/完全编辑）</p>
+- <strong><a href="Permissions.html">权限</a>控制</strong>：每个子智能体可有不同的<a href="Permissions.html">权限</a>（只读/完全编辑）</p>
 <p><strong>内置子智能体类型</strong>：
 1. <strong>通用型智能体</strong>：适用于复杂的多步骤任务
 2. <strong>规划智能体</strong>：先研究代码库，再提出实施策略
@@ -168,10 +168,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>信号</strong>：存在具有明确交接的连续阶段
 - <strong>好处</strong>：每个子智能体专注于自身阶段，不会因其他阶段的上下文产生干扰
 - <strong>示例</strong>：设计→实施→测试的三阶段流水线</p>
-<p><strong>专业提示</strong>：当任务需要浏览 10+ 文件，或涉及 3+ 独立工作内容时，是引导 Claude 使用子智能体的强烈信号。</p>
+<p><strong>专业提示</strong>：当任务需要浏览 10+ 文件，或涉及 3+ 独立工作内容时，是引导 <a href="../entities/Claude_Code.html">Claude</a> 使用子智能体的强烈信号。</p>
 <h3 id="_5">调用子智能体的方法</h3>
 <p><strong>1. 对话式调用（最灵活）</strong>
-- 适用于所有 <a href="../entities/Claude Code.html">Claude Code</a> 界面（终端/VS Code/JetBrains/网页/桌面）
+- 适用于所有 <a href="../projects/Claude Code.html">Claude Code</a> 界面（终端/<a href="../entities/VS Code.html">VS Code</a>/JetBrains/网页/桌面）
 - 自然语言模式示例：
   - "使用子代理探索此代码库中的身份验证工作原理"
   - "让一个独立的智能体检查这段代码是否存在安全问题"
@@ -303,7 +303,7 @@ model: sonnet
 </ul>
   </div>
   <div class="page-nav">
-    <a href="StaticModel静态网格体.html">&larr; StaticModel静态网格体</a>
+    <a href="Subagent 地址系统.html">&larr; Subagent 地址系统</a>
     <a href="Superpowers.html">Superpowers &rarr;</a>
   </div>
 </div>

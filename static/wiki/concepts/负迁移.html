@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="mmoe">MMoE 的缓解机制</h3>
 <ol>
 <li><strong>梯度隔离</strong>：不同任务通过各自<a href="门控机制（Gating Mechanism）.html">门控</a>网络传递梯度，冲突时可调低相关专家权重</li>
-<li><strong>专家特化</strong>：训练中部分专家特化为服务特定任务，另一些保持通用性，减少任务间干扰</li>
+<li><strong>专家特化</strong>：训练中部分专家特化为<a href="服务.html">服务</a>特定任务，另一些保持通用性，减少任务间干扰</li>
 <li><strong>软性参数分配</strong>：参数分配连续柔性，比硬性分割更精细地平衡共享与隔离</li>
 </ol>
 <h3 id="_7">未完全解决的问题</h3>

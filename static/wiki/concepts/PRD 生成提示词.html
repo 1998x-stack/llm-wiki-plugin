@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="prd">PRD 生成提示词</h1>
 <h2 id="_1">概述</h2>
-<p>PRD 生成提示词是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 的前置技能，通过让 LLM 扮演产品经理角色，先进行 5-10 轮澄清问答，再生成符合 <a href="prd.json 格式规范.html">prd.json 格式规范</a>的完整产品需求文档。</p>
+<p>PRD 生成提示词是 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 的前置<a href="Skills.html">技能</a>，通过让 LLM 扮演产品经理角色，先进行 5-10 轮澄清问答，再生成符合 <a href="prd.json 格式规范.html">prd.json 格式规范</a>的完整产品需求文档。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>触发时机</strong>：在启动 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 之前必须先生成结构化的 PRD。触发方式为加载 PRD 技能后发送 <code>Load the prd skill and create a PRD for [feature description]</code>，然后回答澄清问题。</p>
+<p><strong>触发时机</strong>：在启动 <a href="../entities/Ralph Loop.html">Ralph Loop</a> 之前必须先生成结构化的 PRD。触发方式为加载 PRD <a href="Skills.html">技能</a>后发送 <code>Load the prd skill and create a PRD for [feature description]</code>，然后回答澄清问题。</p>
 </li>
 <li>
 <p><strong>交互流程</strong>：</p>
@@ -171,13 +171,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>专项场景模板</strong>：</p>
 </li>
-<li><strong>SaaS 应用</strong>：Landing Page、Authentication、Dashboard、Core Feature、Settings、Billing、Admin、Email 等分类</li>
-<li><strong>CLI 工具</strong>：Core Commands、Config Management、Output Formatting、Error Handling、Plugin System、Documentation</li>
+<li><strong>SaaS 应用</strong>：Landing Page、Authentication、Dashboard、Core Feature、<a href="Settings.html">Settings</a>、Billing、Admin、Email 等分类</li>
+<li><strong>CLI 工具</strong>：Core Commands、Config Management、Output Formatting、<a href="错误处理.html">Error Handling</a>、<a href="Plugins.html">Plugin System</a>、Documentation</li>
 <li>
-<p><strong>API 服务</strong>：Core Endpoints、Authentication、Data Validation、Error Responses、Rate Limiting、Documentation、Testing</p>
+<p><strong>API <a href="服务.html">服务</a></strong>：Core Endpoints、Authentication、Data Validation、Error Responses、Rate Limiting、Documentation、Testing</p>
 </li>
 <li>
-<p><strong>生成后验证</strong>：通过 Python 脚本验证 prd.json 的基本格式、必填字段、重复 ID、前端 Story 的 browser 验证覆盖，以及优先级和分类分布统计。</p>
+<p><strong>生成后验证</strong>：通过 <a href="Python.html">Python</a> 脚本验证 prd.json 的基本格式、必填字段、重复 ID、前端 Story 的 browser 验证覆盖，以及优先级和分类分布统计。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="PPO.html">&larr; PPO</a>
+    <a href="PPO（近端策略优化）.html">&larr; PPO（近端策略优化）</a>
     <a href="PRD 驱动开发.html">PRD 驱动开发 &rarr;</a>
   </div>
 </div>

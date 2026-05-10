@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="react">ReAct 风格循环</h1>
 <h2 id="_1">概述</h2>
-<p>ReAct 风格循环是 <a href="../entities/SWE-agent.html">SWE-agent</a> 的运行框架：每一步生成 thought（思考）和 command（命令），再接收命令执行结果。这种"想一点、做一点、看反馈、再想一点"的循环天然适合高反馈密度的软件工程任务。</p>
+<p><a href="ReAct.html">ReAct</a> 风格循环是 <a href="../entities/SWE-agent.html">SWE-agent</a> 的运行框架：每一步生成 thought（思考）和 command（命令），再接收命令执行结果。这种"想一点、做一点、看反馈、再想一点"的循环天然适合高反馈密度的软件工程任务。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">运行机制</h3>
 <pre><code>while task not complete:
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <th>维度</th>
 <th>传统循环</th>
-<th>ReAct 风格循环</th>
+<th><a href="ReAct.html">ReAct</a> 风格循环</th>
 </tr>
 </thead>
 <tbody>
@@ -172,9 +172,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">为什么重要</h3>
-<p>这让 agent 的推理与行动形成<strong>显式耦合</strong>：不是先想完一切再一次输出，而是想一点、做一点、看反馈、再想一点。对于软件工程这种高反馈密度任务，这种循环天然更合适。</p>
+<p>这让 agent 的<a href="ReAct.html">推理与行动</a>形成<strong>显式耦合</strong>：不是先想完一切再一次输出，而是想一点、做一点、看反馈、再想一点。对于软件工程这种高反馈密度任务，这种循环天然更合适。</p>
 <h3 id="aci">与 ACI 的关系</h3>
-<p>ReAct 在这篇论文里不是创新点本身，但它是 ACI 能发挥作用的<strong>运行框架</strong>。没有这个循环，ACI 就只是静态工具集；有了这个循环，ACI 才变成动态工作环境。</p>
+<p><a href="ReAct.html">ReAct</a> 在这篇论文里不是创新点本身，但它是 ACI 能发挥作用的<strong>运行框架</strong>。没有这个循环，ACI 就只是静态工具集；有了这个循环，ACI 才变成动态工作环境。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>
@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Rayleigh商.html">&larr; Rayleigh商</a>
+    <a href="ReAct.html">&larr; ReAct</a>
     <a href="ReLU激活函数.html">ReLU激活函数 &rarr;</a>
   </div>
 </div>

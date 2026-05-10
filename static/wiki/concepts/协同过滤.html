@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>手动 CF（<a href="../entities/Tapestry 系统.html">Tapestry</a>, 1992）</strong>：用户需要知道并主动选择信任特定的人，自行编写查询规则（如 TQL）。适用于小型熟人社区。</li>
 <li>
-<p><strong>自动 CF（<a href="../entities/GroupLens.html">GroupLens</a>, 1994 及以后）</strong>：系统自动计算用户间相似度，发现品味相近的陌生人并生成推荐。可扩展到大规模用户群。</p>
+<p><strong>自动 CF（<a href="../entities/GroupLens.html">GroupLens</a>, 1994 及以后）</strong>：系统自动<a href="计算.html">计算</a>用户间相似度，发现品味相近的陌生人并生成推荐。可扩展到大规模用户群。</p>
 </li>
 <li>
 <p><strong>核心机制</strong>：</p>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="显式反馈.html">显式反馈</a></strong>：用户主动点击"Like It!"/"Hate It!"、评分、撰写评论</li>
 <li><strong><a href="隐式反馈.html">隐式反馈</a></strong>：通过点击、购买、浏览时长等行为推断偏好</li>
 <li>
-<p><strong>标注共享</strong>：用户的评价被存储并公开，其他人的过滤器可引用这些标注</p>
+<p><strong><a href="../entities/标注.html">标注</a>共享</strong>：用户的评价被存储并公开，其他人的过滤器可引用这些<a href="../entities/标注.html">标注</a></p>
 </li>
 <li>
 <p><strong>与基于内容过滤的区别</strong>：<a href="基于内容的过滤.html">基于内容的过滤</a> 关注"文档是什么"（关键词、主题、元数据），协同过滤关注"别人怎么评价"。两者互补，现代推荐系统通常将二者融合为 <a href="混合推荐系统.html">混合推荐系统</a>。</p>
@@ -163,10 +163,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>关键挑战</strong>：</p>
 </li>
 <li><a href="冷启动问题.html">冷启动问题</a>：新用户无历史数据、新物品无评价时无法推荐</li>
-<li>标注稀疏性：绝大多数文档/物品缺乏用户评价</li>
+<li><a href="../entities/标注.html">标注</a>稀疏性：绝大多数文档/物品缺乏用户评价</li>
 <li>规模限制：手动 CF 仅适用于小型社区</li>
 <li>
-<p>激励不对称：标注成本由标注者承担，收益由他人享受</p>
+<p>激励不对称：<a href="../entities/标注.html">标注</a>成本由<a href="../entities/标注.html">标注</a>者承担，收益由他人享受</p>
 </li>
 <li>
 <p><strong>历史影响</strong>：从 <a href="../entities/Tapestry 系统.html">Tapestry</a> 的"推荐卡片"到 <a href="../entities/Amazon.html">Amazon</a> 的"购买了的人还买了"，再到 <a href="../entities/Netflix.html">Netflix</a>、<a href="../entities/YouTube.html">YouTube</a>、TikTok 的推荐引擎，协同过滤的核心思想——利用群体智慧帮助个体做出选择——一脉相承，支撑起价值数千亿美元的推荐系统产业。</p>
@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="包容体系结构.html">&larr; 包容体系结构</a>
+    <a href="北向资金.html">&larr; 北向资金</a>
     <a href="协整分析（Cointegration）.html">协整分析（Cointegration） &rarr;</a>
   </div>
 </div>

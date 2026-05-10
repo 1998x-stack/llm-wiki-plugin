@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mcp">MCP 工具集成</h1>
 <h2 id="_1">概述</h2>
-<p>通过 <a href="MCP.html">Model Context Protocol</a> 将记忆系统的能力暴露为 AI Agent 可调用的工具。<a href="../entities/MemPalace.html">MemPalace</a> 提供 19 个 MCP 工具，使 Agent 能够查询、导航和操作<a href="记忆宫殿.html">记忆宫殿</a>。</p>
+<p>通过 <a href="../entities/MCP.html">Model Context Protocol</a> 将记忆系统的能力暴露为 AI Agent 可调用的工具。<a href="../entities/MemPalace.html">MemPalace</a> 提供 19 个 MCP 工具，使 Agent 能够查询、导航和操作<a href="记忆宫殿.html">记忆宫殿</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>规模</strong>：<a href="../entities/MemPalace.html">MemPalace v3.0.0</a> 提供 19 个 MCP 工具，按功能分为 6 组</li>
@@ -145,8 +145,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Group 4 <a href="隧道跨域连接.html">Tunnel</a> 发现（1 个）</strong>：<code>mempalace_tunnel_explore</code>（探索当前 Room 的跨域连接）</li>
 <li><strong>Group 5 日记（2 个）</strong>：<code>mempalace_diary_write</code>（写入带时间戳日记）、<code>mempalace_diary_read</code>（读取最近 N 条日记）——为长期运行 Agent 提供持久化工作日志</li>
 <li><strong>Group 6 管理工具（7 个）</strong>：<code>mempalace_list_wings</code>、<code>mempalace_list_rooms</code>、<code>mempalace_delete</code>、<code>mempalace_update</code>、<code>mempalace_export</code>、<code>mempalace_stats</code>、<code>mempalace_rebuild_index</code></li>
-<li><strong><a href="../entities/Claude Code.html">Claude Code</a> Auto-save</strong>：会话结束时自动调用 <code>mempalace_save</code> 保存关键决策和代码变更摘要，通过 <code>.claude/settings.json</code> 配置 triggers（session_end, important_decision）</li>
-<li><strong>跨模型兼容</strong>：支持 Claude（原生）、GPT-4o（API 适配）、<a href="../entities/Gemini CLI.html">Gemini</a>（API 适配）、Llama（<a href="../entities/Ollama.html">Ollama</a> MCP 插件）、Mistral（API 适配）</li>
+<li><strong><a href="../projects/Claude Code.html">Claude Code</a> Auto-save</strong>：会话结束时自动调用 <code>mempalace_save</code> 保存关键决策和代码变更摘要，通过 <code>.claude/settings.json</code> <a href="Configuration.html">配置</a> triggers（session_end, important_decision）</li>
+<li><strong>跨模型兼容</strong>：支持 <a href="../entities/Claude_Code.html">Claude</a>（原生）、GPT-4o（API 适配）、<a href="../entities/Gemini CLI.html">Gemini</a>（API 适配）、Llama（<a href="../entities/Ollama.html">Ollama</a> MCP 插件）、Mistral（API 适配）</li>
 <li><strong><a href="KBS 协议.html">KBS 协议</a></strong>：<code>mempalace_status</code> 响应末尾附加 "<a href="Know Before Speaking 协议.html">Know Before Speaking</a>" 协议指令，强制 Agent 先检索再回答</li>
 <li><strong>价值</strong>：将记忆系统从被动存储升级为 Agent 可主动使用的工具集</li>
 </ul>
@@ -165,7 +165,7 @@ Step 4: Agent 回答 → 带完整推理链的答案，标注来源位置
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="MCP.html">MCP</a> — implements</li>
+<li><a href="../entities/MCP.html">MCP</a> — implements</li>
 <li><a href="../entities/MemPalace.html">MemPalace</a> — part_of</li>
 <li><a href="工具注册机制.html">工具注册机制</a> — extends</li>
 <li><a href="KBS 协议.html">KBS 协议</a> — extends</li>
@@ -175,7 +175,7 @@ Step 4: Agent 回答 → 带完整推理链的答案，标注来源位置
   </div>
   <div class="page-nav">
     <a href="MCP 层工程亮点.html">&larr; MCP 层工程亮点</a>
-    <a href="MCP协议层.html">MCP协议层 &rarr;</a>
+    <a href="MCP 服务器.html">MCP 服务器 &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mlm">掩码语言模型（MLM）</h1>
 <h2 id="_1">概述</h2>
-<p>掩码语言模型（Masked Language Model, MLM）是 BERT 的核心预训练任务，通过随机掩盖输入序列中 15% 的词并让模型预测被遮盖的词，强制模型同时利用左右两侧上下文，实现真正的双向语言理解。</p>
+<p>掩码<a href="Language-Model.html">语言模型</a>（Masked Language Model, MLM）是 BERT 的核心预训练任务，通过随机掩盖输入序列中 15% 的词并让模型预测被遮盖的词，强制模型同时利用左右两侧上下文，实现真正的双向语言理解。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心机制</h3>
 <p>MLM 的工作流程：</p>
 <ol>
 <li><strong>随机掩盖</strong>：从输入序列中随机选择 15% 的词进行掩盖</li>
 <li><strong>模型预测</strong>：模型根据未被掩盖的上下文预测被遮盖的词</li>
-<li><strong>损失计算</strong>：仅对被掩盖位置的预测计算<a href="二元交叉熵.html">交叉熵损失</a></li>
+<li><strong>损失<a href="计算.html">计算</a></strong>：仅对被掩盖位置的预测<a href="计算.html">计算</a><a href="二元交叉熵.html">交叉熵损失</a></li>
 </ol>
 <pre><code>原始句子：The cat sat on the mat
           ↓ 随机掩盖 15% 的词
@@ -185,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 10% 学习处理噪声输入（增强鲁棒性）
 - 10% 学习保持原始表示（防止 [MASK] 分布偏移）</p>
 <h3 id="word2vec-cbow">与 Word2Vec CBOW 的关系</h3>
-<p>MLM 可视为 <a href="Word2Vec.html">Word2Vec</a> 中 CBOW（Continuous Bag of Words）的<strong>深度化扩展</strong>：
+<p>MLM 可视为 <a href="../entities/Word2Vec.html">Word2Vec</a> 中 CBOW（<a href="CBOW.html">Continuous Bag of Words</a>）的<strong>深度化扩展</strong>：
 - CBOW：用周围词的<strong>平均嵌入</strong>预测中心词（浅层线性模型）
 - MLM：用深层 <a href="Transformer架构.html">Transformer架构</a> 编码的上下文化表示预测中心词（非线性、多层、<a href="Self-Attention机制.html">自注意力</a>）</p>
 <h3 id="vs">动态掩码 vs 静态掩码</h3>
@@ -196,7 +196,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="bert">在 BERT 中的作用</h3>
 <p>MLM 是 <a href="BERT.html">BERT</a> 两大预训练任务之一（另一个是 <a href="下一句预测（NSP）.html">下一句预测（NSP）</a>）。MLM 负责学习词级别的语义表示，NSP 负责学习句子级别的关系理解。后续研究表明 MLM 是核心有效组件，NSP 的贡献有限。</p>
 <h3 id="_4">后继影响</h3>
-<p>MLM <a href="规范化理论.html">范式</a>被后续多个模型采用：RoBERTa、DistilBERT、ALBert、DeBERTa、XLM-R 等。MLM 也成为评估语言模型双向理解能力的标准预训练任务。</p>
+<p>MLM <a href="规范化理论.html">范式</a>被后续多个模型采用：RoBERTa、DistilBERT、ALBert、DeBERTa、XLM-R 等。MLM 也成为评估<a href="Language-Model.html">语言模型</a>双向理解能力的标准预训练任务。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><a href="../entities/BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文).html">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)</a> — 首次提出 MLM 预训练任务</li>
@@ -205,7 +205,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_6">相关</h2>
 <ul>
 <li><a href="BERT.html">BERT</a> — part_of（MLM 是 BERT 的核心预训练任务）</li>
-<li><a href="Word2Vec.html">Word2Vec</a> — extends（MLM 是 CBOW 的深度化扩展）</li>
+<li><a href="../entities/Word2Vec.html">Word2Vec</a> — extends（MLM 是 CBOW 的深度化扩展）</li>
 <li><a href="词嵌入（Word Embedding）.html">词嵌入（Word Embedding）</a> — extends（MLM 学习上下文相关的词嵌入）</li>
 <li><a href="下一句预测（NSP）.html">下一句预测（NSP）</a> — compares_to（BERT 的另一预训练任务，句子级别 vs 词级别）</li>
 <li><a href="自注意力机制.html">自注意力机制</a> — depends_on（MLM 依赖自注意力实现双向上下文编码）</li>

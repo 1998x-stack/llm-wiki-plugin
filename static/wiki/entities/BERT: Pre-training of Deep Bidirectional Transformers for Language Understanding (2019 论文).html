@@ -170,39 +170,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_4">核心创新</h3>
 <ol>
-<li><strong>双向预训练</strong>：突破单向语言模型限制，通过 <a href="../concepts/掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> 实现真正双向上下文理解</li>
+<li><strong>双向预训练</strong>：突破单向<a href="../concepts/Language-Model.html">语言模型</a>限制，通过 <a href="../concepts/掩码语言模型（MLM）.html">掩码语言模型（MLM）</a> 实现真正双向上下文理解</li>
 <li><strong>多任务预训练</strong>：MLM（词级别）+ <a href="../concepts/下一句预测（NSP）.html">下一句预测（NSP）</a>（句子级别）<a href="../concepts/联合训练.html">联合训练</a></li>
 <li><strong>微调<a href="../concepts/规范化理论.html">范式</a></strong>：预训练权重作为参数初始化，下游任务只需添加简单输出层并微调几个 epoch</li>
 <li><strong>架构简洁</strong>：纯 <a href="../concepts/Transformer架构.html">Transformer架构</a> Encoder 堆叠，无 Decoder，无复杂任务特定架构</li>
 </ol>
 <h3 id="_5">模型配置</h3>
-<table>
-<thead>
-<tr>
-<th>配置</th>
-<th>层数 L</th>
-<th>隐藏维度 H</th>
-<th>注意力头数 A</th>
-<th>参数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BERT-Base</td>
-<td>12</td>
-<td>768</td>
-<td>12</td>
-<td>110M</td>
-</tr>
-<tr>
-<td>BERT-Large</td>
-<td>24</td>
-<td>1024</td>
-<td>16</td>
-<td>340M</td>
-</tr>
-</tbody>
-</table>
+<p>| <a href="../concepts/Configuration.html">配置</a> | 层数 L | 隐藏维度 H | 注意力头数 A | 参数量 |
+|------|--------|-----------|------------|--------|
+| BERT-Base | 12 | 768 | 12 | 110M |
+| BERT-Large | 24 | 1024 | 16 | 340M |</p>
 <h3 id="_6">实验结果</h3>
 <p>一次性刷新 11 项 NLP 基准：</p>
 <table>
@@ -260,7 +237,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li>确立了"预训练+微调"作为 NLP 的标准<a href="../concepts/规范化理论.html">范式</a></li>
 <li>催生了 RoBERTa、DistilBERT、ALBert、DeBERTa 等一系列后继模型</li>
-<li>与 GPT 系列共同开启了大语言模型时代</li>
+<li>与 <a href="../concepts/GPT 系列.html">GPT 系列</a>共同开启了大<a href="../concepts/Language-Model.html">语言模型</a>时代</li>
 <li>HuggingFace transformers 库使 BERT 成为开箱即用的工业标准工具</li>
 </ul>
 <h2 id="_9">来源</h2>
@@ -278,7 +255,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/下一句预测（NSP）.html">下一句预测（NSP）</a> — 核心创新之一</li>
 <li><a href="../concepts/预训练-微调范式.html">预训练-微调范式</a> — 确立 NLP 标准范式</li>
 <li><a href="Transformer 论文.html">Transformer 论文</a> — 架构基础</li>
-<li><a href="../concepts/Word2Vec.html">Word2Vec</a> — 被 BERT 的上下文词向量取代</li>
+<li><a href="Word2Vec.html">Word2Vec</a> — 被 BERT 的上下文词向量取代</li>
 </ul>
   </div>
   <div class="page-nav">

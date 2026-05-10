@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="sqlite">SQLite</h1>
 <h2 id="_1">概述</h2>
-<p>SQLite 是一个轻量级、无服务器、嵌入式的关系型数据库引擎，由 D. Richard Hipp 于2000年创建。它将整个数据库存储为单个磁盘文件，无需独立服务器进程，是世界上部署量最大的数据库引擎（手机、浏览器、桌面应用、嵌入式系统内置）。在 <a href="Claude-Mem.html">Claude-Mem</a> 中，SQLite 作为本地记忆存储后端，通过 <code>bun:sqlite</code> 接口高效读写观察记录。</p>
+<p>SQLite 是一个轻量级、无<a href="../concepts/服务.html">服务</a>器、嵌入式的关系型数据库引擎，由 D. Richard Hipp 于2000年创建。它将整个数据库存储为单个磁盘文件，无需独立<a href="../concepts/服务.html">服务</a>器进程，是世界上部署量最大的数据库引擎（手机、浏览器、桌面应用、嵌入式系统内置）。在 <a href="Claude-Mem.html">Claude-Mem</a> 中，SQLite 作为本地记忆存储后端，通过 <code>bun:sqlite</code> 接口高效读写观察记录。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
-<li><strong>核心特点</strong>：零配置、无服务器、单文件存储（.db 文件）、跨平台、ACID 事务</li>
-<li><strong>WAL 模式</strong>：Write-Ahead Logging，允许读写并发，提升高频写入场景（如 <a href="Claude-Mem.html">Claude-Mem</a>）的吞吐量</li>
+<li><strong>核心特点</strong>：零<a href="../concepts/Configuration.html">配置</a>、无<a href="../concepts/服务.html">服务</a>器、单文件存储（.db 文件）、跨平台、ACID 事务</li>
+<li><strong>WAL 模式</strong>：<a href="../concepts/Write.html">Write</a>-Ahead Logging，允许读写并发，提升高频写入场景（如 <a href="Claude-Mem.html">Claude-Mem</a>）的吞吐量</li>
 <li><strong>FTS5</strong>：内置<a href="../concepts/FTS5.html">全文搜索</a>引擎模块，支持快速文本索引和检索</li>
 <li><strong>使用场景</strong>：移动应用（iOS/Android 内置）、桌面软件、测试数据库、嵌入式系统、本地 AI 工具</li>
-<li><strong>局限性</strong>：不适合高并发写密集的多服务器场景；无内置网络访问控制</li>
+<li><strong>局限性</strong>：不适合高并发写密集的多<a href="../concepts/服务.html">服务</a>器场景；无内置网络访问控制</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -156,12 +156,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>FTS5</li>
 <li><a href="ChromaDB.html">ChromaDB</a></li>
 <li><a href="../concepts/关系模型.html">关系模型</a> — 实现的理论基础</li>
-<li><a href="../concepts/SQL.html">SQL</a> — 使用的查询语言</li>
+<li><a href="SQL.html">SQL</a> — 使用的查询语言</li>
 <li><a href="E.F. Codd.html">E.F. Codd</a> — 关系模型奠基者</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="SGC.html">&larr; SGC</a>
+    <a href="SQL.html">&larr; SQL</a>
     <a href="SSE-PT.html">SSE-PT &rarr;</a>
   </div>
 </div>

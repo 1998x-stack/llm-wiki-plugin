@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风险隔离 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 风险隔离</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">工作</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">风险隔离</h1>
+<h2 id="_2">概述</h2>
+<p>风险隔离指通过主体隔离、地域隔离、资金隔离、退出机制等全链路设计，将风险锁死在独立"盒子"内，确保某一环节出问题不会传染到核心资产和基本盘的策略。核心原则是<strong>有限风险，无限收益</strong>——把风险封顶在可承受范围内，同时让收益上不封顶。是<a href="规则漏洞学.html">规则漏洞学</a>的核心保命符。</p>
+<h2 id="_3">关键内容</h2>
+<h3 id="_4">三大致命误解</h3>
+<ol>
+<li><strong>风险隔离≠不冒险</strong>：不是让你不碰风口和套利机会，而是让你只冒"输得起的险"。<a href="../entities/孙宇晨.html">孙宇晨</a>拍<a href="../entities/巴菲特午餐.html">巴菲特午餐</a>最坏亏457万闲钱，潜在收益几十亿市值增长。</li>
+<li><strong>风险隔离≠分散投资</strong>：分散只是皮毛，核心是<strong>切割</strong>——把有风险的套利行为和核心资产完全切割，不同项目风险完全隔离，一个篮子碎了不影响其他。</li>
+<li><strong>风险隔离≠事后补救</strong>：真正的风险隔离是前置动作、全链路设计，从出手那一刻起主体、资金、合规、退出、退路全流程已设计完成。</li>
+</ol>
+<h3 id="_5">孙宇晨标杆案例</h3>
+<ol>
+<li><strong>94 ICO卡点</strong>：提前3个月预判禁令，红线前置（划死<a href="刚性规则.html">法律红线</a>）、合规切割（禁令落地第一时间全额退款国内用户）、主体隔离（国内主体不涉及加密业务，海外单独搭建合规主体）、风险封顶（最坏全额退款损失几百万运营成本）。</li>
+<li><strong><a href="../entities/巴菲特午餐.html">巴菲特午餐</a></strong>：成本封顶（固定457万美元无法律风险）、合规全程前置（慈善拍卖合法合规）、风险不扩散（个人IP舆论争议与<a href="../entities/波场.html">波场</a>主体合规运营隔离）、收益上不封顶（一顿饭撬动几十亿曝光，<a href="../entities/波场.html">波场</a>币市值暴涨270%）。</li>
+<li><strong>全球化合规布局</strong>：地域切割（新加坡、阿联酋、波多黎各分别搭建独立合规主体）、牌照合规（每个主体申请当地金融牌照）、主体隔离（各主体股权资金业务完全独立）。</li>
+</ol>
+<h3 id="6">全链路风险隔离6步闭环体系</h3>
+<p><strong>第一步：前置红线隔离——先锁死生死线</strong>
+- 法律风险不可逆，必须先划清绝对不能碰的红线。
+- 写下「3条绝对红线清单」：刑事红线（非法集资、诈骗、虚开发票等）、行政红线（监管/平台明令禁止的违规行为）、风险承受红线（绝对不能击穿的亏损底线）。
+- 合规前置审核3步法：查原文（只看官方文件）、找案例（查过往处罚尺度）、做预判（最坏结果能否提前切割）。
+- 铁律：不确定合不合法就当它不合法；心里发慌的事绝对不做。</p>
+<p><strong>第二步：主体隔离——让风险只在盒子里</strong>
+- 初级隔离（身份/账号隔离）：主业永远合规稳定，副业/套利用新手机号、新账号、新身份去做，和主身份完全切割。
+- 中级隔离（经营主体隔离）：用有限公司主体承接有风险项目，以注册资本为限承担有限责任；不同项目用不同公司主体；核心资产放在安全无负债的主体里。
+- 高级隔离（地域/跨境主体隔离）：利用不同地区监管规则差异，在监管宽松地区搭建独立合规主体。</p>
+<p><strong>第三步：资金隔离——亏可以，但不能亏光</strong>
+- 账户三分法：安全账户（1-2年家庭生活开支，雷打不动）、主业账户（正职工资稳定收入）、风险账户（能承受最大亏损上限的资金）。
+- 单笔亏损封顶：任何项目投入不超过风险账户总资金的20%，提前定好最大亏损上限，到点立刻止损。
+- 铁律：绝对不碰杠杆、不借贷、不抵押核心资产。
+- 落袋为安：赚到钱后第一时间把本金转回安全账户，用利润继续博弈。</p>
+<p><strong>第四步：动态风险隔离——窗口期关闭前提前切割</strong>
+- <a href="Settings.html">设置</a>3个退出预警信号：政策/规则信号（措辞从"鼓励"变"打击"）、市场信号（蓝海变红海红利消失）、亏损信号（达到止损线）。
+- 动态合规审核：每月重新审核项目合规性，看有没有新政策新规则。
+- 小步测试快速迭代：先用最小成本测试，跑通闭环验证合规后再逐步放大。</p>
+<p><strong>第五步：退出机制隔离——给每次出手留好安全出口</strong>
+- 出手前先写好4个退出方案：止盈退出、止损退出、政策变动退出、极端情况退出。
+- 退出路径前置：提前打通资金回款合规路径、账号<a href="矩阵.html">矩阵</a>承接流量、找好接盘方转型路径。
+- 铁律：到点必退，绝不恋战。</p>
+<p><strong>第六步：兜底退路隔离——永远留在牌桌上</strong>
+- 永远保住基本盘：正职工作、稳定现金流、核心资产、个人信用、行业口碑绝对不用于高风险操作。
+- 永远留足安全垫：安全账户生活保障金至少覆盖1-2年家庭开支，雷打不动。
+- 永远保持可迁移的核心能力：规则拆解能力、流量能力、商业能力、风控能力永远跟着你。</p>
+<h3 id="_6">五大致命误区</h3>
+<ol>
+<li>以为分散投资就是风险隔离，结果越分散风险越大（分散是手段，隔离才是核心）。</li>
+<li>只做事前隔离不做动态隔离，规则变了还不撤。</li>
+<li>用主体隔离逃避债务、违法违规，最终触犯<a href="刚性规则.html">法律红线</a>。</li>
+<li>没有退出机制，赚了钱不想走最终亏光所有。</li>
+<li>为了高收益击穿风险承受底线，赌上全部身家。</li>
+</ol>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/03</span> — 两条核心底线分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/11</span> — 全链路风险隔离6步闭环体系全文</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="规则漏洞学.html">规则漏洞学</a> — part_of</li>
+<li><a href="有限风险无限收益公式.html">有限风险无限收益公式</a> — relates_to</li>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="风险社会.html">&larr; 风险社会</a>
+    <a href="首次令牌时间.html">首次令牌时间 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

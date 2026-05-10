@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="task-tool">Task Tool</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Claude Code.html">Claude Code</a> 推出的任务协调工具，用于替代 <a href="TodoWrite-Tool.html">TodoWrite-Tool</a>。与 <a href="TodoWrite-Tool.html">TodoWrite</a> 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 推出的任务协调工具，用于替代 <a href="TodoWrite-Tool.html">TodoWrite-Tool</a>。与 <a href="TodoWrite-Tool.html">TodoWrite</a> 专注于"保持模型轨道"不同，Task Tool 聚焦于帮助 Agent 之间进行沟通，支持任务依赖、跨子代理共享更新、可修改和删除。是"像智能体一样观察"设计哲学的典型应用，反映了模型能力提升后工具演进的必然性。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">设计动机</h3>
 <p><strong><a href="TodoWrite-Tool.html">TodoWrite</a> 的局限性</strong>：
-- 僵化的清单思维：Claude 认为必须严格遵守清单，无法灵活调整
+- 僵化的清单思维：<a href="../entities/Claude_Code.html">Claude</a> 认为必须严格遵守清单，无法灵活调整
 - 子代理协作困难：不支持多个子代理在共享清单上协作
 - 能力错配：随着模型能力提升，旧工具从"帮助"变成"约束"</p>
 <p><strong>新需求</strong>：
@@ -210,13 +210,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 上下文传递</p>
 <h3 id="claude-code">在 Claude Code 生态中的位置</h3>
 <p><strong>工具集合</strong>：
-- <a href="../entities/Claude Code.html">Claude Code</a> 目前拥有约 20 个工具
+- <a href="../projects/Claude Code.html">Claude Code</a> 目前拥有约 20 个工具
 - Task Tool 是核心协调工具之一
 - 与 <a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a>、<a href="ExitPlanTool.html">ExitPlanTool</a> 等协同工作</p>
-<p><strong>与 <a href="Agent Skills.html">Agent Skills</a> 的关系</strong>：
+<p><strong>与 <a href="../entities/Agent Skills.html">Agent Skills</a> 的关系</strong>：
 - Task Tool 是内置工具
-- <span style="color:#e74c3c" title="broken link">Agent-Skills</span> 可以扩展和自定义 Task Tool 的使用方式
-- 渐进式披露机制允许 <a href="Agent Skills.html">Skills</a> 引入 Task 相关的最佳实践</p>
+- <a href="Agent-Skills.html">Agent-Skills</a> 可以扩展和自定义 Task Tool 的使用方式
+- 渐进式披露机制允许 <a href="../entities/Agent Skills.html">Skills</a> 引入 Task 相关的最佳实践</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Seeing like an agent_ how we design tools in Claude Code.md</span> — Task Tool 设计动机、与 TodoWrite 对比、演进原因</li>
@@ -227,13 +227,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/Claude-Code.html">Claude-Code</a> — 所属项目</li>
 <li><a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a> — 同时期设计的提问工具</li>
 <li><a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — 设计方法论</li>
-<li><span style="color:#e74c3c" title="broken link">Agent-Skills</span> — 可扩展 Task Tool 使用方式</li>
+<li><a href="Agent-Skills.html">Agent-Skills</a> — 可扩展 Task Tool 使用方式</li>
 <li><a href="脑手分离架构.html">脑手分离架构</a> — Task Tool 可能用于协调 Brain/Hands 角色</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Target Attention.html">&larr; Target Attention</a>
-    <a href="Terrain地形系统.html">Terrain地形系统 &rarr;</a>
+    <a href="TaskBench.html">TaskBench &rarr;</a>
   </div>
 </div>
 </body>

@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>XML 结构</strong>：
    <code>xml
-   &lt;task type="auto"&gt;
+   &lt;task type="auto|manual"&gt;  &lt;!-- auto: Claude自动执行, manual: 需要人工干预 --&gt;
      &lt;n&gt;创建用户登录 API 端点&lt;/n&gt;
      &lt;files&gt;src/app/api/auth/login/route.ts&lt;/files&gt;
      &lt;action&gt;
@@ -156,6 +156,16 @@ nav a.active { color: var(--link); font-weight: 600; }
      &lt;/verify&gt;
      &lt;done&gt;有效凭证返回 200 + Set-Cookie；无效凭证返回 401&lt;/done&gt;
    &lt;/task&gt;</code></p>
+</li>
+<li>
+<p><strong>任务类型</strong>：</p>
+</li>
+<li><strong>auto</strong>：Claude 自动执行的任务</li>
+<li>
+<p><strong>manual</strong>：需要人工干预的任务（例如：复杂的设计决策、代码审查等）</p>
+</li>
+<li>
+<p><strong>标签职责</strong>：</p>
 </li>
 <li>
 <p><strong>标签职责</strong>：</p>
@@ -204,7 +214,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Word2Vec.html">&larr; Word2Vec</a>
+    <a href="XLNet.html">&larr; XLNet</a>
     <a href="XML Plan System.html">XML Plan System &rarr;</a>
   </div>
 </div>

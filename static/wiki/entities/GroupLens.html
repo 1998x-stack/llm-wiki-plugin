@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="grouplens">GroupLens</h1>
 <h2 id="_1">概述</h2>
-<p>GroupLens 是历史上第一个自动化<a href="../concepts/协同过滤.html">协同过滤</a>系统，由 MIT 的 <a href="Paul Resnick.html">Paul Resnick</a> 与明尼苏达大学的 <a href="John Riedl.html">John Riedl</a> 团队于 1994 年联合开发，通过 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>计算用户相似度并预测评分，以开放式架构解决了 Usenet 新闻组的信息过载问题，奠定了现代推荐系统的技术基础。</p>
+<p>GroupLens 是历史上第一个自动化<a href="../concepts/协同过滤.html">协同过滤</a>系统，由 MIT 的 <a href="Paul Resnick.html">Paul Resnick</a> 与<a href="University of Minnesota.html">明尼苏达大学</a>的 <a href="John Riedl.html">John Riedl</a> 团队于 1994 年联合开发，通过 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a><a href="../concepts/计算.html">计算</a>用户相似度并预测评分，以<a href="../concepts/开放架构.html">开放式架构</a>解决了 <a href="Usenet.html">Usenet</a> <a href="Usenet.html">新闻组</a>的<a href="../concepts/信息过载.html">信息过载</a>问题，奠定了现代推荐系统的技术基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：<a href="Paul Resnick.html">Resnick</a>, P., Iacovou, N., Suchak, M., Bergstrom, P., &amp; Riedl, J. (1994). "GroupLens: An Open Architecture for <a href="../concepts/协同过滤.html">Collaborative Filtering</a> of Netnews." <em>Proceedings of CSCW '94</em>, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。</p>
+<p><strong>论文信息</strong>：<a href="Paul Resnick.html">Resnick</a>, P., Iacovou, N., Suchak, M., Bergstrom, P., &amp; Riedl, J. (1994). "GroupLens: An <a href="../concepts/开放架构.html">Open Architecture</a> for <a href="../concepts/协同过滤.html">Collaborative Filtering</a> of Netnews." <em>Proceedings of CSCW '94</em>, pp. 175-186。DOI: 10.1145/192844.192905。引用量超过 6000 次，是推荐系统领域被引最多的开山之作之一。2010 年 GroupLens 研究组荣获 ACM 软件系统奖。</p>
 </li>
 <li>
-<p><strong>时代背景</strong>：1994 年 Usenet 新闻组每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。<a href="Tapestry 系统.html">Tapestry 系统</a> 虽首创"<a href="../concepts/协同过滤.html">协同过滤</a>"概念，但需手动指定信任对象，无法扩展。</p>
+<p><strong>时代背景</strong>：1994 年 <a href="Usenet.html">Usenet</a> <a href="Usenet.html">新闻组</a>每天发布约 100,000 篇文章，数据传输量以每年 181% 的速率增长。人工编辑模式（版主审核）和基于关键词的过滤（Kill Files）都无法应对信息海啸。<a href="Tapestry 系统.html">Tapestry 系统</a> 虽首创"<a href="../concepts/协同过滤.html">协同过滤</a>"概念，但需手动指定信任对象，无法扩展。</p>
 </li>
 <li>
 <p><strong>核心假设</strong>："People who agreed in their subjective evaluation of past articles are likely to agree again in the future."（在过去文章的主观评价上达成一致的人，未来也可能再次达成一致。）这一"看似简单却意义深远"（deceptively simple）的洞察成为整个<a href="../concepts/协同过滤.html">协同过滤</a>领域的理论基石。</p>
@@ -151,12 +151,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>系统架构</strong>：由三类实体组成：</p>
 </li>
 <li><strong>新闻客户端（News Clients）</strong>：用户阅读和评分的界面，团队为 Gnus、xrn、tin 等主流 Unix 新闻阅读器和 Macintosh 客户端开发了修改版本</li>
-<li><strong>新闻服务器（News Servers）</strong>：标准 Usenet NNTP 服务器，通过创建专用"评分传输新闻组"在服务器间同步评分数据</li>
+<li><strong>新闻<a href="../concepts/服务.html">服务</a>器（News Servers）</strong>：标准 <a href="Usenet.html">Usenet</a> NNTP <a href="../concepts/服务.html">服务</a>器，通过创建专用"评分传输<a href="Usenet.html">新闻组</a>"在<a href="../concepts/服务.html">服务</a>器间同步评分数据</li>
 <li>
-<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（BBB，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、计算用户间相关系数、生成预测评分</p>
+<p><strong><a href="Better Bit Bureau.html">Better Bit Bureau</a>（BBB，<a href="Better Bit Bureau.html">评分服务器</a>）</strong>：GroupLens 引入的唯一新实体，负责收集评分、共享评分、<a href="../concepts/计算.html">计算</a>用户间相关系数、生成预测评分</p>
 </li>
 <li>
-<p><strong>用户相似度计算</strong>：采用 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：</p>
+<p><strong>用户相似度<a href="../concepts/计算.html">计算</a></strong>：采用 <a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a> 衡量用户间评分模式的相似性，取值范围 [-1, 1]。选择 Pearson 的原因：</p>
 </li>
 <li><strong>均值中心化</strong>：衡量评分偏离个人均值的模式，而非绝对评分值，因此能兼容不同评分习惯的用户</li>
 <li>
@@ -168,23 +168,23 @@ nav a.active { color: var(--link); font-weight: 600; }
    该公式后来成为 <a href="../concepts/User-Based 协同过滤.html">User-Based 协同过滤</a> 的标准<a href="../concepts/规范化理论.html">范式</a>，在随后十余年间被无数论文引用、扩展和改进。</p>
 </li>
 <li>
-<p><strong>开放式架构设计五大目标</strong>：</p>
+<p><strong><a href="../concepts/开放架构.html">开放式架构</a>设计五大目标</strong>：</p>
 </li>
-<li><strong>开放性（Openness）</strong>：任何 Usenet 客户端都可参与，任何人都可开发替代的 BBB 服务器或客户端</li>
+<li><strong>开放性（Openness）</strong>：任何 <a href="Usenet.html">Usenet</a> 客户端都可参与，任何人都可开发替代的 BBB <a href="../concepts/服务.html">服务</a>器或客户端</li>
 <li><strong>易用性（Ease of Use）</strong>：评分操作简便，不打断正常阅读流程</li>
-<li><strong>与 Usenet 兼容（Compatibility）</strong>：建立在现有基础设施之上，无需迁移到新平台</li>
+<li><strong>与 <a href="Usenet.html">Usenet</a> 兼容（Compatibility）</strong>：建立在现有基础设施之上，无需迁移到新平台</li>
 <li><strong>可扩展性（Scalability）</strong>：能随用户数量增长而扩展</li>
 <li>
-<p><strong>隐私保护（Privacy）</strong>：用户可在假名下提交评分而不降低预测有效性</p>
+<p><strong><a href="../concepts/隐私保护.html">隐私保护</a>（Privacy）</strong>：用户可在假名下提交评分而不降低预测有效性</p>
 </li>
 <li>
-<p><strong>隐私保护机制</strong>：允许用户使用假名提交评分。由于相关系数计算只依赖评分模式而非真实身份，假名不会降低预测质量，实现了"可用性"与"隐私"之间的平衡。</p>
+<p><strong><a href="../concepts/隐私保护.html">隐私保护</a>机制</strong>：允许用户使用假名提交评分。由于相关系数<a href="../concepts/计算.html">计算</a>只依赖评分模式而非真实身份，假名不会降低预测质量，实现了"可用性"与"隐私"之间的平衡。</p>
 </li>
 <li>
-<p><strong>大规模部署（1996-1997）</strong>：为期七周的公开试验中，从十余个新闻组招募 250 名志愿用户，提交 47,569 条评分，为 22,862 篇不同文章生成超过 600,000 条预测。关键发现：</p>
+<p><strong>大规模部署（1996-1997）</strong>：为期七周的公开试验中，从十余个<a href="Usenet.html">新闻组</a>招募 250 名志愿用户，提交 47,569 条评分，为 22,862 篇不同文章生成超过 600,000 条预测。关键发现：</p>
 </li>
 <li>个性化预测显著优于非个性化平均分</li>
-<li>按新闻组分区提升评分密度，缓解数据稀疏问题</li>
+<li>按<a href="Usenet.html">新闻组</a>分区提升评分密度，缓解数据稀疏问题</li>
 <li>
 <p>95% 的预测请求在 2 秒内完成，评分提交在 1 秒内完成</p>
 </li>
@@ -194,7 +194,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>孵化出 <a href="MovieLens.html">MovieLens</a> 数据集（推荐系统领域最重要的公开数据集）</li>
 <li>1996 年创立 <a href="Net Perceptions.html">Net Perceptions</a> 公司（第一家专注于推荐引擎的商业公司，客户包括 <a href="Amazon.html">Amazon</a>.com、CDnow、Art.com）</li>
 <li>培养了推荐系统领域的一代领军人物（<a href="Joseph Konstan.html">Joseph Konstan</a>、Jonathan Herlocker、Loren Terveen 等）</li>
-<li>其开放分布式架构理念与今天联邦学习（Federated Learning）的核心思想惊人一致</li>
+<li>其开放分布式架构理念与今天<a href="../concepts/联邦学习.html">联邦学习</a>（<a href="../concepts/联邦学习.html">Federated Learning</a>）的核心思想惊人一致</li>
 </ul>
 </li>
 <li>
@@ -203,8 +203,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/冷启动问题.html">冷启动问题</a>：新用户无历史评分时无法提供个性化推荐</li>
 <li>数据稀疏性：用户-文章评分<a href="../concepts/矩阵.html">矩阵</a>极其稀疏，<a href="../concepts/Pearson 相关系数.html">Pearson 相关系数</a>在共同评分少时不可靠</li>
 <li>显式评分的代价：用户主动打分增加操作负担</li>
-<li>可扩展性瓶颈：<a href="../concepts/基于用户的协同过滤.html">User-Based CF</a> 计算复杂度为 $O(n^2)$</li>
-<li>评分操纵风险：开放系统中恶意用户可蓄意提交虚假评分</li>
+<li>可扩展性瓶颈：<a href="../concepts/基于用户的协同过滤.html">User-Based CF</a> <a href="../concepts/计算.html">计算</a>复杂度为 $O(n^2)$</li>
+<li>评分操纵风险：<a href="../concepts/开放架构.html">开放系统</a>中恶意用户可蓄意提交虚假评分</li>
 </ul>
 </li>
 <li>
@@ -232,7 +232,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Gradient-Based Learning Applied to Document Recognition (1998 论文).html">&larr; Gradient-Based Learning Applied to Document Recognition (1998 论文)</a>
-    <a href="HSTU.html">HSTU &rarr;</a>
+    <a href="Gwilym Jenkins.html">Gwilym Jenkins &rarr;</a>
   </div>
 </div>
 </body>

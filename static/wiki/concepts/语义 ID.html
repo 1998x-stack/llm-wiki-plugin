@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>问题来源</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 使用字面数字 ID（如 "item_1532"）表示物品，后续研究指出这些 ID 本身不携带语义信息，与预训练语言模型的语义空间存在天然鸿沟，影响模型性能。</p>
+<p><strong>问题来源</strong>：<a href="../entities/P5 论文.html">P5 论文</a> 使用字面数字 ID（如 "item_1532"）表示物品，后续研究指出这些 ID 本身不携带语义信息，与预训练<a href="Language-Model.html">语言模型</a>的语义空间存在天然鸿沟，影响模型性能。</p>
 </li>
 <li>
 <p><strong><a href="Whole-word Embedding.html">Whole-word Embedding</a> 的局限</strong>：P5 的 <a href="Whole-word Embedding.html">Whole-word Embedding</a> 虽然通过共享<a href="Whole-word Embedding.html">全词嵌入</a>改善了 ID 表示，但仍然依赖数字 ID 作为基础，无法从根本上解决语义鸿沟问题。</p>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>缓解<a href="冷启动问题.html">冷启动问题</a>：新物品可通过语义描述获得有意义的表示</li>
 <li>增强跨域迁移：语义空间比数字 ID 空间更具可迁移性</li>
 <li>
-<p>提升模型理解：语言模型能更好地理解有语义的标识符</p>
+<p>提升模型理解：<a href="Language-Model.html">语言模型</a>能更好地理解有语义的标识符</p>
 </li>
 <li>
 <p><strong>挑战</strong>：语义 ID 的构建质量直接影响推荐效果；语义空间的设计需要权衡<a href="../entities/区分.html">区分</a>性和泛化性；大规模物品库的语义 ID 构建成本高。</p>

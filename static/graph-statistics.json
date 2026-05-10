@@ -1,507 +1,894 @@
 {
-  "generated": "2026-04-18T15:32:34+00:00",
+  "generated": "2026-04-26T04:28:27+00:00",
   "summary": {
-    "total_nodes": 1627,
-    "total_edges": 12356,
-    "orphan_count": 0,
-    "component_count": 5,
-    "avg_degree": 10.44,
-    "density": 0.0064,
-    "diameter": 10,
-    "avg_clustering": 0.5223,
-    "bridge_count": 14
+    "total_nodes": 2703,
+    "total_edges": 21772,
+    "orphan_count": 3,
+    "component_count": 17,
+    "avg_degree": 11.86,
+    "density": 0.0044,
+    "diameter": 11,
+    "avg_clustering": 0.4823,
+    "bridge_count": 29
   },
   "type_distribution": {
-    "concept": 1016,
-    "entity": 567,
-    "person": 10,
-    "paper": 9,
-    "tool": 7,
-    "synthesis": 7,
-    "project": 6,
-    "company": 3,
+    "concept": 1686,
+    "entity": 891,
+    "synthesis": 35,
+    "tool": 29,
+    "project": 18,
+    "paper": 15,
+    "company": 14,
+    "person": 13,
     "qa-insight": 2
   },
   "confidence_distribution": {
     "0.0-0.3": 0,
     "0.3-0.5": 0,
-    "0.5-0.7": 101,
-    "0.7-0.9": 601,
-    "0.9-1.0": 924
+    "0.5-0.7": 325,
+    "0.7-0.9": 1321,
+    "0.9-1.0": 1056
   },
   "top_connected": [
+    {
+      "label": "计算",
+      "type": "concept",
+      "edge_count": 604
+    },
+    {
+      "label": "算法",
+      "type": "concept",
+      "edge_count": 319
+    },
+    {
+      "label": "Claude Code",
+      "type": "entity",
+      "edge_count": 308
+    },
+    {
+      "label": "规范化理论",
+      "type": "concept",
+      "edge_count": 252
+    },
     {
       "label": "推荐系统",
       "type": "concept",
       "edge_count": 210
     },
     {
-      "label": "规范化理论",
+      "label": "服务",
       "type": "concept",
-      "edge_count": 206
+      "edge_count": 189
+    },
+    {
+      "label": "Configuration",
+      "type": "concept",
+      "edge_count": 178
     },
     {
       "label": "矩阵",
       "type": "concept",
-      "edge_count": 132
+      "edge_count": 148
+    },
+    {
+      "label": "上下文窗口",
+      "type": "concept",
+      "edge_count": 133
+    },
+    {
+      "label": "Context-Engineering",
+      "type": "concept",
+      "edge_count": 129
+    },
+    {
+      "label": "Claude_Code",
+      "type": "entity",
+      "edge_count": 128
     },
     {
       "label": "矩阵分解",
+      "type": "concept",
+      "edge_count": 127
+    },
+    {
+      "label": "Google",
+      "type": "entity",
+      "edge_count": 126
+    },
+    {
+      "label": "Anthropic",
+      "type": "company",
+      "edge_count": 124
+    },
+    {
+      "label": "Skills",
       "type": "concept",
       "edge_count": 122
     },
     {
       "label": "信息论",
       "type": "concept",
-      "edge_count": 113
+      "edge_count": 122
     },
     {
-      "label": "Google",
-      "type": "entity",
-      "edge_count": 104
-    },
-    {
-      "label": "上下文窗口",
+      "label": "Language-Model",
       "type": "concept",
-      "edge_count": 102
-    },
-    {
-      "label": "社会学",
-      "type": "concept",
-      "edge_count": 98
+      "edge_count": 114
     },
     {
       "label": "协同过滤",
       "type": "concept",
-      "edge_count": 92
+      "edge_count": 110
     },
     {
       "label": "区分",
       "type": "entity",
-      "edge_count": 91
-    },
-    {
-      "label": "数值分析",
-      "type": "concept",
-      "edge_count": 89
-    },
-    {
-      "label": "Context-Engineering",
-      "type": "concept",
-      "edge_count": 88
-    },
-    {
-      "label": "Claude Code",
-      "type": "project",
-      "edge_count": 88
-    },
-    {
-      "label": "阿兰·图灵",
-      "type": "entity",
-      "edge_count": 85
-    },
-    {
-      "label": "SASRec",
-      "type": "entity",
-      "edge_count": 79
-    },
-    {
-      "label": "概率论",
-      "type": "concept",
-      "edge_count": 78
-    },
-    {
-      "label": "Anthropic",
-      "type": "company",
-      "edge_count": 77
-    },
-    {
-      "label": "MemPalace",
-      "type": "entity",
-      "edge_count": 77
-    },
-    {
-      "label": "P5 论文",
-      "type": "entity",
-      "edge_count": 77
+      "edge_count": 110
     },
     {
       "label": "强化学习",
       "type": "concept",
-      "edge_count": 76
+      "edge_count": 100
     }
   ],
   "top_betweenness": [
     {
+      "id": "wiki/concepts/计算.md",
+      "label": "计算",
+      "betweenness": 0.2862
+    },
+    {
+      "id": "wiki/concepts/算法.md",
+      "label": "算法",
+      "betweenness": 0.1088
+    },
+    {
+      "id": "wiki/concepts/服务.md",
+      "label": "服务",
+      "betweenness": 0.0878
+    },
+    {
       "id": "wiki/concepts/规范化理论.md",
       "label": "规范化理论",
-      "betweenness": 0.2709
+      "betweenness": 0.0861
     },
     {
       "id": "wiki/entities/区分.md",
       "label": "区分",
-      "betweenness": 0.1861
+      "betweenness": 0.0581
     },
     {
-      "id": "wiki/concepts/矩阵.md",
-      "label": "矩阵",
-      "betweenness": 0.0995
+      "id": "wiki/concepts/Configuration.md",
+      "label": "Configuration",
+      "betweenness": 0.0518
     },
     {
-      "id": "wiki/maps/推荐系统.md",
-      "label": "推荐系统",
-      "betweenness": 0.0704
+      "id": "wiki/projects/Claude Code.md",
+      "label": "Claude Code",
+      "betweenness": 0.0426
+    },
+    {
+      "id": "wiki/concepts/意识.md",
+      "label": "意识",
+      "betweenness": 0.0284
+    },
+    {
+      "id": "wiki/concepts/重构.md",
+      "label": "重构",
+      "betweenness": 0.0283
     },
     {
       "id": "wiki/concepts/社会学.md",
       "label": "社会学",
-      "betweenness": 0.06
+      "betweenness": 0.0262
     },
     {
-      "id": "wiki/entities/Google.md",
-      "label": "Google",
-      "betweenness": 0.0559
+      "id": "wiki/concepts/规则漏洞学.md",
+      "label": "规则漏洞学",
+      "betweenness": 0.0261
     },
     {
-      "id": "wiki/entities/阿兰·图灵.md",
-      "label": "阿兰·图灵",
-      "betweenness": 0.0429
+      "id": "wiki/concepts/矩阵.md",
+      "label": "矩阵",
+      "betweenness": 0.0228
     },
     {
-      "id": "wiki/maps/数值分析.md",
-      "label": "数值分析",
-      "betweenness": 0.0418
-    },
-    {
-      "id": "wiki/maps/信息论.md",
-      "label": "信息论",
-      "betweenness": 0.0412
-    },
-    {
-      "id": "wiki/concepts/Lua脚本宿主模式.md",
-      "label": "Lua脚本宿主模式",
-      "betweenness": 0.0315
-    },
-    {
-      "id": "wiki/maps/工具与框架.md",
-      "label": "工具与框架",
-      "betweenness": 0.0303
-    },
-    {
-      "id": "wiki/entities/UrhoX引擎.md",
-      "label": "UrhoX引擎",
-      "betweenness": 0.0294
-    },
-    {
-      "id": "wiki/entities/Claude Code.md",
-      "label": "Claude Code",
-      "betweenness": 0.0249
-    },
-    {
-      "id": "wiki/concepts/上下文窗口.md",
-      "label": "上下文窗口",
+      "id": "wiki/concepts/Settings.md",
+      "label": "Settings",
       "betweenness": 0.0221
     },
     {
-      "id": "wiki/entities/望远镜.md",
-      "label": "望远镜",
-      "betweenness": 0.0201
+      "id": "wiki/concepts/Skills.md",
+      "label": "Skills",
+      "betweenness": 0.0212
+    },
+    {
+      "id": "wiki/maps/推荐系统.md",
+      "label": "推荐系统",
+      "betweenness": 0.0205
     }
   ],
   "top_pagerank": [
     {
+      "id": "wiki/concepts/计算.md",
+      "label": "计算",
+      "pagerank": 0.015
+    },
+    {
+      "id": "wiki/concepts/算法.md",
+      "label": "算法",
+      "pagerank": 0.008
+    },
+    {
       "id": "wiki/concepts/规范化理论.md",
       "label": "规范化理论",
-      "pagerank": 0.0097
+      "pagerank": 0.0061
+    },
+    {
+      "id": "wiki/projects/Claude Code.md",
+      "label": "Claude Code",
+      "pagerank": 0.0056
+    },
+    {
+      "id": "wiki/concepts/服务.md",
+      "label": "服务",
+      "pagerank": 0.0051
+    },
+    {
+      "id": "wiki/concepts/Configuration.md",
+      "label": "Configuration",
+      "pagerank": 0.005
     },
     {
       "id": "wiki/maps/推荐系统.md",
       "label": "推荐系统",
-      "pagerank": 0.0086
+      "pagerank": 0.0047
     },
     {
-      "id": "wiki/concepts/社会学.md",
-      "label": "社会学",
-      "pagerank": 0.0057
+      "id": "wiki/concepts/Skills.md",
+      "label": "Skills",
+      "pagerank": 0.0033
     },
     {
       "id": "wiki/concepts/矩阵.md",
       "label": "矩阵",
-      "pagerank": 0.0056
+      "pagerank": 0.0033
+    },
+    {
+      "id": "wiki/entities/Claude_Code.md",
+      "label": "Claude_Code",
+      "pagerank": 0.0032
+    },
+    {
+      "id": "wiki/concepts/社会学.md",
+      "label": "社会学",
+      "pagerank": 0.0032
     },
     {
       "id": "wiki/entities/区分.md",
       "label": "区分",
-      "pagerank": 0.005
+      "pagerank": 0.0031
     },
     {
-      "id": "wiki/entities/UrhoX引擎.md",
-      "label": "UrhoX引擎",
-      "pagerank": 0.0046
+      "id": "wiki/concepts/重构.md",
+      "label": "重构",
+      "pagerank": 0.003
+    },
+    {
+      "id": "wiki/concepts/Language-Model.md",
+      "label": "Language-Model",
+      "pagerank": 0.0027
     },
     {
       "id": "wiki/entities/Google.md",
       "label": "Google",
-      "pagerank": 0.0044
-    },
-    {
-      "id": "wiki/maps/数值分析.md",
-      "label": "数值分析",
-      "pagerank": 0.004
-    },
-    {
-      "id": "wiki/entities/Claude Code.md",
-      "label": "Claude Code",
-      "pagerank": 0.0038
-    },
-    {
-      "id": "wiki/maps/信息论.md",
-      "label": "信息论",
-      "pagerank": 0.0037
-    },
-    {
-      "id": "wiki/entities/Anthropic.md",
-      "label": "Anthropic",
-      "pagerank": 0.0036
-    },
-    {
-      "id": "wiki/concepts/上下文窗口.md",
-      "label": "上下文窗口",
-      "pagerank": 0.0035
-    },
-    {
-      "id": "wiki/entities/阿兰·图灵.md",
-      "label": "阿兰·图灵",
-      "pagerank": 0.0031
-    },
-    {
-      "id": "wiki/concepts/矩阵分解.md",
-      "label": "矩阵分解",
-      "pagerank": 0.0029
-    },
-    {
-      "id": "wiki/maps/工具与框架.md",
-      "label": "工具与框架",
-      "pagerank": 0.0029
+      "pagerank": 0.0027
     }
   ],
   "top_clustering": [
     {
-      "id": "wiki/concepts/ACP协议.md",
-      "label": "ACP协议",
+      "id": "wiki/1974年南斯拉夫宪法.md",
+      "label": "1974年南斯拉夫宪法",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/AI Slop.md",
-      "label": "AI Slop",
+      "id": "wiki/Elasticsearch.md",
+      "label": "Elasticsearch",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/AI 原生架构.md",
-      "label": "AI 原生架构",
+      "id": "wiki/GraphRAG.md",
+      "label": "GraphRAG",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/Adjusted Cosine Similarity.md",
-      "label": "Adjusted Cosine Similarity",
+      "id": "wiki/Harrison Chase.md",
+      "label": "Harrison Chase",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/BillboardSet广告牌.md",
-      "label": "BillboardSet广告牌",
+      "id": "wiki/Kik.md",
+      "label": "Kik",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/C++ STL vector.md",
-      "label": "C++ STL vector",
+      "id": "wiki/Milvus.md",
+      "label": "Milvus",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/C++流运算符重载实践.md",
-      "label": "C++流运算符重载实践",
+      "id": "wiki/Neo4j.md",
+      "label": "Neo4j",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/C++面向对象基础.md",
-      "label": "C++面向对象基础",
+      "id": "wiki/RTG.md",
+      "label": "RTG",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/CBOW（连续词袋模型）.md",
-      "label": "CBOW（连续词袋模型）",
+      "id": "wiki/Wework.md",
+      "label": "Wework",
       "clustering": 1.0
     },
     {
-      "id": "wiki/concepts/CREB.md",
-      "label": "CREB",
+      "id": "wiki/concepts/18年滞后效应.md",
+      "label": "18年滞后效应",
       "clustering": 1.0
     }
   ],
   "degree_distribution": {
-    "1": 13,
-    "2": 37,
-    "3": 104,
-    "4": 144,
-    "5": 144,
-    "6": 163,
-    "7": 165,
-    "8": 147,
-    "9": 118,
-    "10": 98,
-    "11": 68,
-    "12": 44,
-    "13": 51,
-    "14": 47,
-    "15": 44,
-    "16": 32,
-    "17": 23,
-    "18": 18,
-    "19": 18,
-    "20": 22,
-    "21": 9,
-    "22": 12,
-    "23": 8,
-    "24": 11,
-    "25": 8,
-    "26": 11,
-    "27": 8,
-    "28": 4,
-    "29": 4,
-    "30": 3,
-    "31": 4,
-    "32": 4,
-    "33": 4,
-    "34": 1,
-    "35": 3,
-    "37": 1,
-    "38": 1,
-    "39": 3,
-    "40": 1,
-    "42": 1,
-    "44": 3,
-    "46": 2,
-    "47": 1,
-    "49": 1,
-    "52": 1,
+    "0": 3,
+    "1": 27,
+    "2": 69,
+    "3": 157,
+    "4": 220,
+    "5": 234,
+    "6": 216,
+    "7": 217,
+    "8": 214,
+    "9": 197,
+    "10": 174,
+    "11": 142,
+    "12": 99,
+    "13": 108,
+    "14": 74,
+    "15": 67,
+    "16": 67,
+    "17": 42,
+    "18": 38,
+    "19": 35,
+    "20": 27,
+    "21": 24,
+    "22": 22,
+    "23": 21,
+    "24": 14,
+    "25": 18,
+    "26": 21,
+    "27": 11,
+    "28": 16,
+    "29": 9,
+    "30": 6,
+    "31": 6,
+    "32": 5,
+    "33": 1,
+    "34": 7,
+    "35": 4,
+    "36": 6,
+    "37": 2,
+    "38": 5,
+    "39": 4,
+    "40": 5,
+    "41": 4,
+    "42": 4,
+    "43": 3,
+    "44": 5,
+    "45": 2,
+    "47": 2,
+    "49": 2,
+    "50": 4,
+    "51": 2,
+    "52": 2,
+    "53": 1,
     "55": 2,
-    "56": 2,
-    "57": 1,
-    "60": 1,
-    "66": 1,
-    "68": 1,
-    "69": 1,
+    "57": 2,
+    "58": 1,
+    "61": 1,
+    "62": 1,
+    "63": 1,
+    "64": 1,
+    "66": 3,
+    "67": 1,
     "70": 1,
-    "73": 1,
+    "71": 1,
+    "72": 1,
+    "73": 2,
+    "77": 1,
     "79": 1,
-    "91": 1,
-    "98": 2,
-    "124": 1,
-    "199": 1,
-    "210": 1
+    "80": 1,
+    "94": 1,
+    "97": 1,
+    "98": 1,
+    "104": 1,
+    "108": 1,
+    "110": 1,
+    "116": 2,
+    "128": 1,
+    "140": 1,
+    "178": 1,
+    "189": 1,
+    "208": 1,
+    "210": 1,
+    "245": 1,
+    "319": 1,
+    "604": 1
   },
   "center_nodes": [
-    "结构功能主义",
-    "范式批判",
-    "W.E.B. 杜波依斯",
-    "望远镜",
-    "欧内斯特·伯吉斯"
+    "AIXI模型",
+    "AR 模型（自回归模型）",
+    "Ablation Study",
+    "Agent Skills",
+    "Agent-Skills"
   ],
   "tag_frequency": {
-    "技术": 394,
-    "研究": 344,
-    "推荐系统": 223,
-    "AI": 185,
+    "研究": 521,
+    "技术": 467,
+    "推荐系统": 263,
+    "深度学习": 225,
+    "方法论": 210,
+    "AI": 195,
     "社会学": 171,
-    "深度学习": 147,
-    "数学": 145,
-    "历史": 129,
-    "方法论": 126,
-    "机器学习": 118,
-    "AI工程": 116,
-    "社会科学": 109,
-    "天文学": 95,
-    "计算理论": 91,
+    "机器学习": 151,
+    "数学": 151,
+    "历史": 132,
+    "AI工程": 122,
+    "社会科学": 108,
+    "计算理论": 108,
+    "工作": 99,
+    "天文学": 96,
+    "工具": 90,
     "游戏开发": 90,
-    "概率论": 85,
-    "工具与框架": 81,
-    "工具": 77,
-    "Agent系统": 73,
+    "概率论": 84,
+    "Agent系统": 81,
+    "工具与框架": 80,
     "数值分析": 66,
+    "信息论": 65,
+    "LLM": 59,
+    "人物": 59,
     "机器人学": 58,
-    "信息论": 57,
+    "ai-tools": 56,
+    "NLP": 54,
     "Lua": 53,
-    "人物": 49,
-    "UrhoX": 44,
-    "强化学习": 38,
-    "矩阵理论": 37,
-    "LLM能力": 36,
-    "文档处理": 36,
-    "经济学": 33
+    "重构": 52,
+    "UrhoX": 44
   },
   "growth_timeline": {
     "2026-04-15": 291,
-    "2026-04-16": 953,
-    "2026-04-17": 1073,
-    "2026-04-18": 1627
+    "2026-04-16": 948,
+    "2026-04-17": 1068,
+    "2026-04-18": 1628,
+    "2026-04-19": 1725,
+    "2026-04-20": 1941,
+    "2026-04-21": 2049,
+    "2026-04-25": 2567,
+    "2026-04-26": 2852
   },
   "relationship_types": {
-    "wikilink": 8342,
-    "implements": 644,
-    "extends": 529,
-    "uses": 528,
-    "caused": 462,
-    "part_of": 461,
-    "related_to": 373,
-    "compares_to": 296,
-    "depends_on": 224,
-    "relates_to": 156,
-    "caused_by": 132,
-    "contradicts": 49,
-    "supersedes": 46,
-    "used_by": 32,
-    "implemented_by": 19,
-    "enables": 13,
+    "wikilink": 15773,
+    "implements": 830,
+    "part_of": 705,
+    "extends": 673,
+    "uses": 666,
+    "related_to": 581,
+    "caused": 469,
+    "compares_to": 363,
+    "relates_to": 333,
+    "depends_on": 238,
+    "caused_by": 131,
+    "used_by": 57,
+    "supersedes": 55,
+    "contradicts": 53,
+    "implemented_by": 28,
+    "enables": 26,
+    "created_by": 23,
+    "developed_by": 21,
+    "supports": 17,
+    "used_in": 15,
+    "addresses": 13,
+    "described_in": 13,
+    "authored": 13,
+    "authored_by": 12,
+    "provided_by": 11,
     "synthesizes": 11,
-    "causes": 7,
-    "influenced": 5,
+    "featured_in": 10,
+    "includes": 10,
+    "contains": 9,
+    "originated_from": 9,
+    "employs": 9,
+    "causes": 8,
+    "influenced": 8,
+    "creator": 8,
+    "author": 8,
+    "component_of": 7,
+    "applies_to": 7,
+    "implemented_in": 7,
+    "developed_at": 7,
+    "developed": 7,
+    "complements": 7,
+    "provides_data_for": 7,
+    "contributed_to": 7,
+    "contributes_to": 6,
+    "solved_by": 6,
+    "created": 6,
+    "introduces": 6,
+    "theoretical_foundation": 5,
+    "collaborates_with": 5,
+    "integrates_with": 5,
+    "builds_on": 5,
+    "co_developer": 5,
+    "collaborator": 5,
+    "collaborates": 5,
+    "affects": 4,
+    "alternative_to": 4,
+    "incorporates": 4,
+    "elaborates": 4,
+    "has_variant": 4,
+    "connects_to": 4,
+    "bundles": 4,
+    "methodology_developer": 4,
+    "predecessor": 4,
+    "precedes": 4,
+    "fundamental_concept": 4,
+    "developed_with": 4,
+    "co_author": 4,
+    "proposes": 4,
+    "methodology_implemented_by": 3,
+    "works_with": 3,
+    "requires": 3,
+    "addressed_by": 3,
+    "optimized_by": 3,
+    "superseded_by": 3,
+    "improves_upon": 3,
+    "utilizes": 3,
+    "evaluated_on": 3,
+    "member_of": 3,
+    "relies_on": 3,
     "optimizes": 3,
-    "contains": 3,
-    "originated_from": 3,
-    "employs": 3,
-    "created_by": 2,
-    "solved_by": 2,
-    "created": 2,
-    "requires": 1,
-    "used_in": 1,
-    "creates": 1,
-    "optimized_by": 1,
+    "compatible_with": 3,
+    "founded": 3,
+    "introduced_by": 3,
+    "researched_by": 3,
+    "tested_on": 3,
+    "collaborated_with": 3,
+    "established_theorem": 3,
+    "originated": 3,
+    "invented": 3,
+    "develops": 3,
+    "proved": 3,
+    "extension_for": 3,
+    "published_by": 3,
+    "implementation_of": 3,
+    "defines": 3,
+    "designer": 3,
+    "contributor_to": 3,
+    "inspects": 3,
+    "influenced_indirectly": 3,
+    "data_provider_to": 3,
+    "competitor_with": 3,
+    "mentions": 2,
+    "extension_of": 2,
+    "equivalent_representation": 2,
+    "algorithmic_solution_for_state_space": 2,
+    "based_on": 2,
+    "sourced_from": 2,
+    "subject_of": 2,
+    "solves": 2,
+    "developer": 2,
+    "manages": 2,
+    "enabled_by": 2,
+    "applied_in": 2,
+    "invented_by": 2,
+    "first_author": 2,
+    "supported_by": 2,
+    "creates": 2,
+    "exemplifies": 2,
+    "popularized_by": 2,
+    "includes_model_class": 2,
+    "worked_at": 2,
+    "protocol_by": 2,
+    "measures_performance": 2,
+    "theoretical_foundation_for": 2,
+    "theoretical_basis_for": 2,
+    "follows_after": 2,
+    "component": 2,
+    "related_concept": 2,
+    "founded_by": 2,
+    "fundamental_theorem": 2,
+    "defined_by": 2,
+    "pioneered": 2,
+    "solution_approach": 2,
+    "improves_over": 2,
+    "successor": 2,
+    "contrasts_with": 2,
+    "has_part": 2,
+    "introduced_concept": 2,
+    "solved_negatively": 2,
+    "affiliated_with": 2,
+    "provides": 2,
+    "researcher": 2,
+    "developed_concept": 2,
+    "influenced_work_of": 2,
+    "inspired_by": 2,
+    "motivator_for": 2,
+    "published": 2,
+    "introduced": 2,
+    "influenced_by": 2,
+    "feature_of": 2,
+    "validates": 2,
+    "provides_input_for": 2,
+    "explains": 2,
+    "related": 2,
+    "exemplified_by": 1,
+    "source_for": 1,
+    "core_technology": 1,
+    "methodology_for": 1,
+    "basis_for": 1,
+    "important_model_class": 1,
+    "motivation_for": 1,
+    "constraint_on": 1,
+    "protects": 1,
+    "constrained_by": 1,
+    "contributed_by": 1,
+    "conceptually_similar_to": 1,
+    "encompasses": 1,
+    "standard_technique": 1,
+    "prevents": 1,
+    "enhances": 1,
+    "introduced_in": 1,
+    "prerequisite": 1,
+    "employed": 1,
+    "core_principle": 1,
+    "referenced_in": 1,
+    "secures": 1,
+    "improved_by": 1,
+    "coordinates": 1,
+    "mirrors": 1,
+    "characteristic": 1,
+    "impacts": 1,
+    "technology_used": 1,
+    "used_with": 1,
+    "generated_by": 1,
+    "security_impact": 1,
+    "decomposition_applied_to": 1,
+    "subset_of_processes": 1,
+    "requirement_for_modeling": 1,
+    "fundamental_theorem_in": 1,
+    "core_concept_in": 1,
+    "standard_methodology": 1,
+    "foundational_contributor": 1,
+    "advanced_technique_in": 1,
+    "modeling_framework_for": 1,
+    "base_for": 1,
+    "ironic_failure": 1,
+    "optimizes_for": 1,
+    "proved_by": 1,
+    "core_theorem_in": 1,
+    "successor_method": 1,
+    "predecessor_framework": 1,
+    "reports_to": 1,
+    "solved_in_paper": 1,
+    "mitigates": 1,
+    "follows": 1,
+    "alternative": 1,
+    "related_file": 1,
+    "related_field": 1,
+    "mathematical_basis": 1,
+    "implementation": 1,
+    "complementary_theorem": 1,
+    "addressed_in": 1,
+    "uses_solution_of": 1,
+    "prevented_training_of": 1,
+    "solved_problem_for": 1,
+    "theorized_by": 1,
+    "theoretical_implication": 1,
+    "deployed_on": 1,
+    "method_used": 1,
+    "modern_formulation": 1,
+    "limitation_of": 1,
+    "conceptualizer": 1,
+    "equivalent_concept": 1,
+    "has_limitation": 1,
+    "paired_with": 1,
+    "discovered_by": 1,
+    "formalized_in": 1,
+    "demonstrated_in_experiment": 1,
+    "core_operation": 1,
+    "fundamental_process": 1,
+    "has_examples": 1,
+    "application_to": 1,
+    "engineering_implementation": 1,
+    "formal_definition": 1,
+    "alternative_approach": 1,
+    "historical_counterpoint": 1,
+    "demonstrated_in": 1,
+    "demonstration_of": 1,
+    "affected_by": 1,
+    "measured_in": 1,
+    "instance_of": 1,
+    "extends_to": 1,
+    "performed_by": 1,
+    "platform": 1,
+    "complement_algorithm": 1,
+    "variant_of": 1,
+    "implementable_in": 1,
     "combines_with": 1,
-    "collaborated_with": 1,
-    "published_by": 1,
-    "authored_by": 1,
+    "originally_defined_in": 1,
+    "application": 1,
+    "foundational_element": 1,
+    "builds_upon": 1,
+    "contextualizes": 1,
+    "includes_result": 1,
+    "covers": 1,
+    "based_on_theory": 1,
+    "conceived_by": 1,
+    "engineering_realization": 1,
+    "specialization_of": 1,
+    "feature": 1,
+    "security_model_for": 1,
+    "founded_field": 1,
+    "transformed_field": 1,
+    "established_model": 1,
+    "defined": 1,
+    "built_with": 1,
+    "suitable_for": 1,
+    "supports_platform": 1,
+    "proved_unsolvable": 1,
+    "contemporary_and_similar_work": 1,
+    "addressed_problem_by": 1,
+    "built_upon_work_by": 1,
+    "developed_equivalent_model": 1,
+    "contributor": 1,
+    "co_developed_with_Wold": 1,
+    "employed_by": 1,
+    "discovered": 1,
+    "popularized": 1,
+    "theorized": 1,
+    "co-founded": 1,
+    "product_of": 1,
+    "use_case_for": 1,
+    "proposed": 1,
+    "built_upon_work_of": 1,
+    "coined_term": 1,
+    "conceptualized": 1,
+    "demonstrates_on": 1,
+    "builder": 1,
+    "first_practical_implementation": 1,
+    "realizes": 1,
+    "same_document": 1,
+    "advisor": 1,
+    "predecessor_architecture": 1,
+    "developed_with_Jenkins": 1,
+    "discovers": 1,
+    "developed_with_Box": 1,
+    "advisor_of": 1,
+    "distributor": 1,
+    "student_of": 1,
+    "co_developed_with_Kolmogorov": 1,
+    "proposer": 1,
+    "base_framework": 1,
+    "enabled": 1,
+    "uses_metric": 1,
+    "named_and_criticized": 1,
+    "creator_of": 1,
+    "influenced_solution_to": 1,
+    "addressed_work_of": 1,
+    "challenged": 1,
+    "demonstrates_solution_to": 1,
+    "demonstrates_with_experiment": 1,
+    "first_running_example": 1,
+    "integrated_with": 1,
+    "complementary": 1,
+    "discovered_relation": 1,
+    "implements_methodology": 1,
+    "explained_by": 1,
+    "describes": 1,
+    "incubated_by": 1,
+    "partnered_with": 1,
+    "settlement_layer_for": 1,
+    "parent_architecture": 1,
+    "improves": 1,
+    "implements_theory": 1,
+    "supports_command": 1,
+    "responds_to": 1,
+    "produces_output_for": 1,
+    "implements_validation": 1,
+    "generates": 1,
+    "consolidates_output_from": 1,
+    "verifies": 1,
+    "supports_through": 1,
+    "subset_of": 1,
+    "teacher": 1,
+    "established": 1,
+    "stored_in": 1,
+    "queried_by": 1,
+    "stores": 1,
+    "interprets": 1,
+    "influences": 1,
     "analyzes": 1
   },
-  "orphans": [],
+  "orphans": [
+    "wiki/concepts/博客文章提纲模板.md",
+    "wiki/万斯（JD Vance）.md",
+    "wiki/农民养老金问题深度分析.md"
+  ],
   "components": [
     {
       "id": 0,
-      "size": 1613
+      "size": 2615
     },
     {
       "id": 1,
-      "size": 6
+      "size": 18
     },
     {
       "id": 2,
-      "size": 4
+      "size": 17
     },
     {
       "id": 3,
-      "size": 2
+      "size": 9
     },
     {
       "id": 4,
+      "size": 9
+    },
+    {
+      "id": 5,
+      "size": 5
+    },
+    {
+      "id": 6,
+      "size": 5
+    },
+    {
+      "id": 7,
+      "size": 5
+    },
+    {
+      "id": 8,
+      "size": 5
+    },
+    {
+      "id": 9,
+      "size": 3
+    },
+    {
+      "id": 10,
+      "size": 3
+    },
+    {
+      "id": 11,
       "size": 2
+    },
+    {
+      "id": 12,
+      "size": 2
+    },
+    {
+      "id": 13,
+      "size": 2
+    },
+    {
+      "id": 14,
+      "size": 1
+    },
+    {
+      "id": 15,
+      "size": 1
+    },
+    {
+      "id": 16,
+      "size": 1
     }
   ]
 }

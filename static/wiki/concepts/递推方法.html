@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>f(a, 0) = 0（B已经赢了，A应得0）</li>
 </ul>
 <h4 id="_7">计算过程</h4>
-<p>通过这个递推关系，可以逐步计算出f(a, b)的值。例如：</p>
+<p>通过这个递推关系，可以逐步<a href="计算.html">计算</a>出f(a, b)的值。例如：</p>
 <ul>
 <li>f(1, 1) = [f(0, 1) + f(1, 0)] / 2 = [1 + 0] / 2 = 1/2</li>
 <li>f(2, 1) = [f(1, 1) + f(2, 0)] / 2 = [1/2 + 0] / 2 = 1/4</li>
@@ -165,14 +165,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_9">与后向归纳的联系</h3>
 <p>递推方法本质上是后向归纳：
 1. 从已知的边界条件开始（游戏已经结束）
-2. 向后推导，一步步计算之前的状态
+2. 向后推导，一步步<a href="计算.html">计算</a>之前的状态
 3. 最终得到初始状态的答案</p>
 <p>这正是现代<a href="动态规划.html">动态规划</a>和博弈论中的核心思想。</p>
 <h2 id="_10">与费马方法的比较</h2>
 <p>| 方面 | <a href="../entities/布莱兹·帕斯卡.html">帕斯卡</a>的递推方法 | <a href="../entities/皮埃尔·德·费马.html">费马</a>的<a href="组合枚举法.html">组合枚举法</a> |
 |------|------|------|
-| 思路 | 分解问题，逐步递推 | 列举所有情景，计算比例 |
-| 复杂度 | O(a × b)的计算量 | O(2^(a+b))种情景枚举 |
+| 思路 | 分解问题，逐步递推 | 列举所有情景，<a href="计算.html">计算</a>比例 |
+| 复杂度 | O(a × b)的<a href="计算.html">计算</a>量 | O(2^(a+b))种情景枚举 |
 | 优点 | 高效、优雅 | 直观、易于理解 |
 | 缺点 | 需要建立递推关系 | 对大数字繁琐 |
 | 原型 | 后向归纳、<a href="动态规划.html">动态规划</a> | <a href="样本空间.html">样本空间</a>、古典概率 |</p>
@@ -180,13 +180,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_12">为什么递推方法重要</h3>
 <ol>
 <li><strong>问题分解</strong>：将复杂问题分解为更小的相同结构的子问题</li>
-<li><strong>高效计算</strong>：避免穷举，通过递推关系大幅降低计算复杂度</li>
-<li><strong>理论洞察</strong>：揭示问题的内在结构，而不仅仅计算数值</li>
+<li><strong>高效<a href="计算.html">计算</a></strong>：避免穷举，通过递推关系大幅降低<a href="计算.html">计算</a>复杂度</li>
+<li><strong>理论洞察</strong>：揭示问题的内在结构，而不仅仅<a href="计算.html">计算</a>数值</li>
 <li><strong>广泛应用</strong>：这个思想在博弈论、<a href="动态规划.html">动态规划</a>、金融定价等领域无处不在</li>
 </ol>
 <h3 id="_13">在概率论和决策理论中的地位</h3>
 <ul>
-<li><a href="../entities/布莱兹·帕斯卡.html">帕斯卡</a>的递推方法是<a href="期望值.html">期望值</a>计算的原型</li>
+<li><a href="../entities/布莱兹·帕斯卡.html">帕斯卡</a>的递推方法是<a href="期望值.html">期望值</a><a href="计算.html">计算</a>的原型</li>
 <li>它展示了如何用数学处理"不确定未来"的问题</li>
 <li>从这个意义上，它是现代<a href="动态规划.html">动态规划</a>和随机决策理论的思想源头</li>
 </ul>
@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="透视变换.html">&larr; 透视变换</a>
-    <a href="通信系统模型.html">通信系统模型 &rarr;</a>
+    <a href="通信理论.html">通信理论 &rarr;</a>
   </div>
 </div>
 </body>

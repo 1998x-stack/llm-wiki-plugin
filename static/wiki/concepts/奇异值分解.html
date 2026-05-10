@@ -185,14 +185,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;tr&gt;
 &lt;td&gt;1965&lt;/td&gt;
 &lt;td&gt;Golub &amp;amp; Kahan&lt;/td&gt;
-&lt;td&gt;高效计算算法（Golub-Kahan双对角化）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;_6&quot;&gt;几何意义&lt;/h3&gt;
-&lt;p&gt;SVD 揭示了线性映射 $A: \mathbb{C}^n \to \mathbb{C}^m$ 的本质几何：&lt;/p&gt;
-&lt;p&gt;$$A = U\Sigma V^&lt;em&gt; = \sum_{i=1}^n \sigma_i u_i v_i^&lt;/em&gt;$$&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;含义&lt;/strong&gt;：$A$ 等于 $n$ 个秩1[[矩阵</span>的加权叠加，权重即奇异值。作用于输入空间的标准正交基 ${v_1,\ldots,v_n}$，输出得到沿 ${u_1,\ldots,u_n}$ 方向、放缩因子为 ${\sigma_1,\ldots,\sigma_n}$ 的向量。</p>
+&lt;td&gt;高效[[计算</span><a href="算法.html">算法</a>（Golub-Kahan双对角化）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">几何意义</h3>
+<p>SVD 揭示了线性映射 $A: \mathbb{C}^n \to \mathbb{C}^m$ 的本质几何：</p>
+<p>$$A = U\Sigma V^<em> = \sum_{i=1}^n \sigma_i u_i v_i^</em>$$</p>
+<p><strong>含义</strong>：$A$ 等于 $n$ 个秩1<a href="矩阵.html">矩阵</a>的加权叠加，权重即奇异值。作用于输入空间的标准正交基 ${v_1,\ldots,v_n}$，输出得到沿 ${u_1,\ldots,u_n}$ 方向、放缩因子为 ${\sigma_1,\ldots,\sigma_n}$ 的向量。</p>
 <h3 id="_7">关键性质</h3>
 <ul>
 <li><strong>唯一性</strong>：奇异值唯一；当奇异值不等时，奇异向量唯一（到相位因子）</li>
@@ -215,8 +215,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$|\lambda_1(A)| \geq |\lambda_2(A)| \geq \cdots, \quad \prod_{i=1}^k |\lambda_i(A)| \leq \prod_{i=1}^k \sigma_i(A)$$</p>
 <p>等号 $\Leftrightarrow$ $A$ 为<a href="正规矩阵.html">正规矩阵</a>时，$|\lambda_i| = \sigma_i$。</p>
 <h3 id="_9">计算算法</h3>
-<p><strong>Golub-Kahan 算法（1965）</strong>：先将 $A$ 化为双对角形式（bidiagonal form），然后应用<a href="QR算法.html">QR算法</a>到双对角<a href="矩阵.html">矩阵</a>。这是 LAPACK <code>xGESVD</code> 的核心流程，时间复杂度 $O(\min(m,n) \cdot mn)$。</p>
-<p><strong>随机化 SVD</strong>（Halko, Martinsson, Tropp, 2011）：对大规模<a href="矩阵.html">矩阵</a>（如 $10^6 \times 10^6$），用随机投影快速计算近似低秩 SVD，复杂度 $O(mn\log k)$（$k$ 为目标秩）。</p>
+<p><strong>Golub-Kahan <a href="算法.html">算法</a>（1965）</strong>：先将 $A$ 化为双对角形式（bidiagonal form），然后应用<a href="QR算法.html">QR算法</a>到双对角<a href="矩阵.html">矩阵</a>。这是 LAPACK <code>xGESVD</code> 的核心流程，时间复杂度 $O(\min(m,n) \cdot mn)$。</p>
+<p><strong>随机化 SVD</strong>（Halko, Martinsson, Tropp, 2011）：对大规模<a href="矩阵.html">矩阵</a>（如 $10^6 \times 10^6$），用随机投影快速<a href="计算.html">计算</a>近似低秩 SVD，复杂度 $O(mn\log k)$（$k$ 为目标秩）。</p>
 <h2 id="_10">现代应用</h2>
 <table>
 <thead>
@@ -256,7 +256,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td>数值<a href="线性代数.html">线性代数</a></td>
-<td>伪逆计算、最小二乘解、<a href="条件数.html">条件数</a>估计</td>
+<td>伪逆<a href="计算.html">计算</a>、最小二乘解、<a href="条件数.html">条件数</a>估计</td>
 </tr>
 </tbody>
 </table>
@@ -280,7 +280,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="失范型自杀.html">&larr; 失范型自杀</a>
-    <a href="婚姻挤压理论.html">婚姻挤压理论 &rarr;</a>
+    <a href="奖励模型.html">奖励模型 &rarr;</a>
   </div>
 </div>
 </body>

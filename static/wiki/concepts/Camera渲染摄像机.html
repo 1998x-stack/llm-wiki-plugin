@@ -140,8 +140,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>投影模式</strong>：<code>orthographic = true</code> 切换为正交投影，默认为透视投影</li>
 <li><strong>透视参数</strong>：<code>fov</code>（视野角）、<code>nearClip</code>/<code>farClip</code>（近远裁剪面）、<code>aspectRatio</code></li>
-<li><strong>正交参数</strong>：<code>orthoSize</code> 代表视野<strong>全高度</strong>，引擎内部使用 <code>orthoSize * 0.5</code> 作半高度参与<a href="矩阵.html">矩阵</a>计算</li>
-<li><strong>坐标转换</strong>：<code>GetScreenRay(x, y)</code> 实时计算射线；<code>WorldToScreenPoint</code> / <code>ScreenToWorldPoint</code> 双向转换</li>
+<li><strong>正交参数</strong>：<code>orthoSize</code> 代表视野<strong>全高度</strong>，引擎内部使用 <code>orthoSize * 0.5</code> 作半高度参与<a href="矩阵.html">矩阵</a><a href="计算.html">计算</a></li>
+<li><strong>坐标转换</strong>：<code>GetScreenRay(x, y)</code> 实时<a href="计算.html">计算</a>射线；<code>WorldToScreenPoint</code> / <code>ScreenToWorldPoint</code> 双向转换</li>
 <li><strong>LOD 偏置</strong>：<code>lodBias</code> 影响可见物体的 LOD 级别选择</li>
 <li><strong>视图遮罩</strong>：<code>viewMask</code> 过滤可见 Drawable 对象</li>
 <li><strong>反射/裁剪</strong>：<code>useReflection</code> + <code>reflectionPlane</code> 实现水面反射；<code>useClipping</code> + <code>clipPlane</code> 斜裁剪</li>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="CTR 预估.html">&larr; CTR 预估</a>
-    <a href="Chaitin常数.html">Chaitin常数 &rarr;</a>
+    <a href="Chain-of-Thought.html">Chain-of-Thought &rarr;</a>
   </div>
 </div>
 </body>

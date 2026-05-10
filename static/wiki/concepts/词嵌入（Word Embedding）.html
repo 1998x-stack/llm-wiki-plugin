@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="word-embedding">词嵌入（Word Embedding）</h1>
 <h2 id="_1">概述</h2>
-<p>词嵌入是将词语映射为稠密低维实数向量的技术，使语义相似的词在向量空间中距离相近，是现代 NLP 的基础表示方法。</p>
+<p><a href="词向量（Word Embedding）.html">词嵌入</a>是将词语映射为稠密低维实数向量的技术，使语义相似的词在向量空间中距离相近，是现代 NLP 的基础表示方法。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">传统方法的局限</h3>
-<p>在词嵌入出现之前，NLP 中通常使用 <strong>One-hot 编码</strong>：</p>
+<p>在<a href="词向量（Word Embedding）.html">词嵌入</a>出现之前，NLP 中通常使用 <strong>One-hot 编码</strong>：</p>
 <pre><code>词汇表：[猫, 狗, 汽车, 苹果]（共 4 个词）
 
 &quot;猫&quot; → [1, 0, 0, 0]
@@ -151,30 +151,30 @@ nav a.active { color: var(--link); font-weight: 600; }
 </code></pre>
 <h3 id="_4">语言学基础</h3>
 <p>Firth（1957）的名言：<strong>"A word is characterized by the company it keeps."</strong>（词的意义由其上下文决定）</p>
-<p>词嵌入将这个语言学直觉转化为可学习的神经网络——用上下文预测词或用词预测上下文，训练出稠密、低维、语义丰富的词向量。</p>
+<p><a href="词向量（Word Embedding）.html">词嵌入</a>将这个语言学直觉转化为可学习的神经网络——用上下文预测词或用词预测上下文，训练出稠密、低维、语义丰富的<a href="词向量.html">词向量</a>。</p>
 <h3 id="_5">代表性实现</h3>
 <ol>
-<li><strong><a href="Word2Vec.html">Word2Vec</a></strong>（2013，<a href="../entities/Google.html">Google</a>）：<a href="Skip-gram.html">Skip-gram</a> + <a href="CBOW（连续词袋模型）.html">CBOW（连续词袋模型）</a> + <a href="负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></li>
-<li><strong><span style="color:#e74c3c" title="broken link">GloVe</span></strong>（2014，Stanford）：全局词共现<a href="矩阵分解.html">矩阵分解</a> + 局部<a href="上下文窗口.html">上下文窗口</a></li>
-<li><strong><span style="color:#e74c3c" title="broken link">FastText</span></strong>（2016，<a href="../entities/Meta.html">Facebook</a>）：子词嵌入（character n-gram）→ 处理未登录词</li>
-<li><strong><span style="color:#e74c3c" title="broken link">ELMo</span></strong>（2018，AllenNLP）：深层双向 LSTM → 上下文相关的词向量</li>
+<li><strong><a href="../entities/Word2Vec.html">Word2Vec</a></strong>（2013，<a href="../entities/Google.html">Google</a>）：<a href="Skip-gram.html">Skip-gram</a> + <a href="CBOW（连续词袋模型）.html">CBOW（连续词袋模型）</a> + <a href="负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></li>
+<li><strong><span style="color:#e74c3c" title="broken link">GloVe</span></strong>（2014，<a href="../entities/斯坦福大学.html">Stanford</a>）：全局词共现<a href="矩阵分解.html">矩阵分解</a> + 局部<a href="上下文窗口.html">上下文窗口</a></li>
+<li><strong><span style="color:#e74c3c" title="broken link">FastText</span></strong>（2016，<a href="../entities/Meta.html">Facebook</a>）：子<a href="词向量（Word Embedding）.html">词嵌入</a>（character n-gram）→ 处理未登录词</li>
+<li><strong><span style="color:#e74c3c" title="broken link">ELMo</span></strong>（2018，AllenNLP）：深层双向 LSTM → 上下文相关的<a href="词向量.html">词向量</a></li>
 <li><strong><a href="BERT.html">BERT</a></strong>（2018，<a href="../entities/Google.html">Google</a>）：<a href="Transformer 架构.html">Transformer</a> + 预训练 → 完全上下文化的表示</li>
 </ol>
 <h3 id="_6">语义向量算术</h3>
-<p><a href="Word2Vec.html">Word2Vec</a> 训练后的词向量空间展现惊人的线性语义关系：
+<p><a href="../entities/Word2Vec.html">Word2Vec</a> 训练后的<a href="词向量.html">词向量</a>空间展现惊人的线性语义关系：
 - king - man + woman ≈ queen（性别类比）
 - Paris - France + Italy ≈ Rome（国家-首都关系）
 - walked - walk + swim ≈ swam（动词时态变化）</p>
 <p><strong>几何解释</strong>：向量空间中存在<strong>语义方向（Semantic Direction）</strong>，不同维度方向编码不同的语义概念。</p>
 <h3 id="_7">历史地位</h3>
-<p>词嵌入技术开创了 NLP <a href="预训练-微调范式.html">预训练-微调范式</a>的先河，是当代大语言模型内置词<a href="嵌入表示.html">嵌入层</a>的直系祖先。</p>
+<p><a href="词向量（Word Embedding）.html">词嵌入</a>技术开创了 NLP <a href="预训练-微调范式.html">预训练-微调范式</a>的先河，是当代大<a href="Language-Model.html">语言模型</a>内置词<a href="嵌入表示.html">嵌入层</a>的直系祖先。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/08_word2vec_2013.md</span></li>
 </ul>
 <h2 id="_9">相关</h2>
 <ul>
-<li><a href="Word2Vec.html">Word2Vec</a> — 代表性实现</li>
+<li><a href="../entities/Word2Vec.html">Word2Vec</a> — 代表性实现</li>
 <li><a href="Skip-gram.html">Skip-gram</a> — 实现方法</li>
 <li><a href="CBOW（连续词袋模型）.html">CBOW（连续词袋模型）</a> — 实现方法</li>
 <li><a href="负采样（Negative Sampling）.html">负采样（Negative Sampling）</a> — 训练优化方法</li>
@@ -185,7 +185,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="设备像素比.html">&larr; 设备像素比</a>
+    <a href="词向量（Word Embedding）.html">&larr; 词向量（Word Embedding）</a>
     <a href="词汇不匹配问题.html">词汇不匹配问题 &rarr;</a>
   </div>
 </div>

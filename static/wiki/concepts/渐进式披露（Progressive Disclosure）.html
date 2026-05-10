@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="progressive-disclosure">渐进式披露（Progressive Disclosure）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Claude Code.html">Claude Code</a> <a href="Agent Skills.html">Skills</a> 的<a href="Context Management.html">上下文管理</a>策略——不一次性把所有内容塞进上下文，而是按需分三层加载：先看描述判断相关性，再加载 <a href="Agent Skills.html">SKILL.md</a> 核心说明，最后按需加载脚本和辅助文件。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> <a href="../entities/Agent Skills.html">Skills</a> 的<a href="Context Management.html">上下文管理</a>策略——不一次性把所有内容塞进上下文，而是按需分三层加载：先看描述判断相关性，再加载 <a href="../entities/Agent Skills.html">SKILL.md</a> 核心说明，最后按需加载脚本和辅助文件。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>三层加载机制</strong>：</li>
-<li><strong>第一层：描述</strong>——Claude 扫描技能目录，根据描述判断 skill 是否匹配当前任务</li>
-<li><strong>第二层：<a href="Agent Skills.html">SKILL.md</a></strong>——读取核心说明和指令</li>
+<li><strong>第一层：描述</strong>——<a href="../entities/Claude_Code.html">Claude</a> 扫描<a href="Skills.html">技能</a>目录，根据描述判断 skill 是否匹配当前任务</li>
+<li><strong>第二层：<a href="../entities/Agent Skills.html">SKILL.md</a></strong>——读取核心说明和指令</li>
 <li>
 <p><strong>第三层：支持文件</strong>——如有需要，再加载脚本、模板、参考资料</p>
 </li>
 <li>
 <p><strong>加载流程</strong>：</p>
 </li>
-<li>Claude 扫描技能目录</li>
+<li><a href="../entities/Claude_Code.html">Claude</a> 扫描<a href="Skills.html">技能</a>目录</li>
 <li>根据描述判断是否匹配当前任务</li>
 <li>读取 <code>SKILL.md</code></li>
 <li>
 <p>如有需要，再加载脚本和辅助文件</p>
 </li>
 <li>
-<p><strong>设计动机</strong>：<a href="上下文窗口.html">上下文窗口</a>有限，渐进式披露确保只加载当前任务真正需要的信息，避免上下文污染和 token 浪费。</p>
+<p><strong>设计动机</strong>：<a href="上下文窗口.html">上下文窗口</a>有限，渐进式披露确保只加载当前任务真正需要的信息，避免<a href="Context Window Pollution.html">上下文污染</a>和 token 浪费。</p>
 </li>
 <li>
 <p><strong>与<a href="上下文压缩.html">上下文压缩</a>的关系</strong>：渐进式披露是"预防性"策略（不让不需要的信息进入上下文），<a href="上下文压缩.html">上下文压缩</a>是"补救性"策略（当上下文过长时压缩旧内容）。两者互补。</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Agent Skills.html">Agent Skills</a> — implements</li>
+<li><a href="../entities/Agent Skills.html">Agent Skills</a> — implements</li>
 <li><a href="上下文窗口.html">上下文窗口</a> — depends_on</li>
 <li><a href="上下文压缩.html">上下文压缩</a> — relates_to</li>
 </ul>

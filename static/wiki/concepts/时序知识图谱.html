@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>核心问题</strong>：传统 RAG 检索返回的片段无法<a href="../entities/区分.html">区分</a>同一事实在不同时间点的状态，导致 AI 回答"现在用什么部署策略"时可能混淆历史答案</li>
-<li><strong>数据结构</strong>：每个 entity 维护 timeline 数组，记录不同日期的 value 和来源 drawer。示例：<code>my_app.deployment_strategy</code> 的 timeline 包含 2025-06 蓝绿部署 → 2025-11 金丝雀发布 → 2026-02 回归蓝绿部署</li>
+<li><strong>数据结构</strong>：每个 entity 维护 timeline 数组，记录不同日期的 value 和来源 drawer。示例：<code>my_app.deployment_strategy</code> 的 timeline 包含 2025-06 <a href="蓝绿部署.html">蓝绿部署</a> → 2025-11 <a href="金丝雀发布.html">金丝雀发布</a> → 2026-02 回归<a href="蓝绿部署.html">蓝绿部署</a></li>
 <li><strong>自动返回最新状态</strong>：当 AI 询问当前事实时，时序图谱自动筛选并返回时间线上最新的条目，无需手动排序</li>
 <li><strong>来源可追溯</strong>：每个时间点状态都关联来源 drawer（如 drawer_012、drawer_067），可追溯到原始对话上下文</li>
 <li><strong>与<a href="渐进式加载.html">渐进式加载</a>的集成</strong>：时序 KG 作为 <a href="../entities/MemPalace.html">MemPalace</a> 的额外层级，在<a href="渐进式加载.html">四级渐进式加载</a>之上处理"会随时间变化的事实"，补充 <a href="Closet-Drawer 架构.html">Closet-Drawer 架构</a>的静态信息检索</li>

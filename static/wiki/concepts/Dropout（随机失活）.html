@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">正则化</span></div>
 </div>
   <div class="content">
@@ -138,33 +138,75 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="Dropout.html">Dropout</a> 是一种神经网络正则化技术，训练时以概率 p 随机将神经元输出置零，迫使每个神经元学习更鲁棒、独立的特征表示，有效防止<a href="过拟合（Overfitting）.html">过拟合（Overfitting）</a>，由<a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>团队于 2014 年正式提出。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>核心机制</strong>：训练时每个神经元以概率 p（通常 0.5）被随机置零，即 <code>h = ReLU(W·x + b) ⊙ mask</code>，其中 <code>mask ~ Bernoulli(1-p)</code>。测试时所有神经元开启，权重乘以保留概率 (1-p) 以保证<a href="期望值.html">期望值</a>不变。现代实现采用 <strong><span style="color:#e74c3c" title="broken link">Inverted Dropout</span></strong>：训练时直接除以 (1-p)，测试时无需任何调整，只需切换 <code>model.eval()</code> 即可。</li>
+<li><strong>核心机制与数学形式化</strong>：训练时每个神经元以概率 p（通常 0.5）被随机置零，即 <code>ỹ^(l) = r^(l) ⊙ y^(l)</code>，其中 <code>r_j^(l) ~ Bernoulli(1-p)</code>。测试时所有神经元开启，权重乘以保留概率 (1-p) 以保证<a href="期望值.html">期望值</a>不变。现代实现采用 <strong><a href="Inverted Dropout.html">Inverted Dropout</a></strong>：训练时直接除以 (1-p)，测试时无需任何调整，只需切换 <code>model.eval()</code> 即可。</li>
+<li><strong>数学公式</strong>：</li>
+<li><strong>训练时</strong>：<code>ỹ^(l) = r^(l) ⊙ y^(l)</code>，其中 <code>r_j^(l) ~ Bernoulli(1-p)</code></li>
+<li><strong>测试时</strong>：<code>w_test = w_train × (1 - p)</code> （或现代版本：训练时 <code>x = x * mask / (1 - p)</code>，测试时无缩放）</li>
 <li><strong><a href="模型融合.html">集成学习</a>视角</strong>：<a href="Dropout.html">Dropout</a> 等价于同时训练指数级数量（2^N）的子网络并做集成。每次前向传播随机生成一个"薄"子网络，所有子网络共享参数但只有参与的子集被更新。测试时的权重缩放近似于对所有子网络取几何平均，这是 <a href="Dropout.html">Dropout</a> 强大泛化能力的理论基础。</li>
+<li><strong>代码实现</strong>：</li>
+</ol>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+
+class MyDropout(nn.Module):
+    def __init__(self, p=0.5):
+        &quot;&quot;&quot;
+        p: 丢弃概率（被置零的概率）
+        注意：论文中 p 有时指&quot;保留概率&quot;，不同库定义不同！
+        PyTorch 的 nn.Dropout(p) 中 p 是丢弃概率
+        &quot;&quot;&quot;
+        super().__init__()
+        assert 0 &lt;= p &lt; 1
+        self.p = p
+
+    def forward(self, x):
+        if not self.training:          # 推理模式：直接返回
+            return x
+
+        if self.p == 0:
+            return x
+
+        # 生成 Bernoulli 掩码（保留概率 = 1-p）
+        keep_prob = 1 - self.p
+        mask = torch.bernoulli(torch.full_like(x, keep_prob))
+
+        # Inverted Dropout：训练时缩放
+        return x * mask / keep_prob
+</code></pre>
+<ol>
 <li><strong>减少共适应（Co-adaptation）</strong>：没有 <a href="Dropout.html">Dropout</a> 时，神经元会相互依赖来修正错误（"共谋"），导致单个神经元无法独立工作。<a href="Dropout.html">Dropout</a> 强制每个神经元学习更鲁棒、更独立的特征——"你不能依赖你的邻居，因为它随时可能消失"。<a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>用有性生殖作类比：基因随机混合比完全复制更能防止"寄生基因"传播。</li>
 <li><strong>变体与应用场景</strong>：<strong><span style="color:#e74c3c" title="broken link">Spatial Dropout</span></strong> 随机置零整个特征图通道（适用于 CNN）；<strong><span style="color:#e74c3c" title="broken link">DropConnect</span></strong> 随机置零权重而非神经元；<strong><span style="color:#e74c3c" title="broken link">MC Dropout（蒙特卡洛 Dropout）</span></strong> 测试时保持 <a href="Dropout.html">Dropout</a> 开启以估计预测不确定性（Gal &amp; Ghahramani 2016 证明等价于<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似推断）；<strong><span style="color:#e74c3c" title="broken link">DropPath（Stochastic Depth）</span></strong> 随机跳过整个残差块（<a href="残差网络（ResNet）.html">ResNet</a>、ViT）；<strong>Attention <a href="Dropout.html">Dropout</a></strong> 对注意力权重做 <a href="Dropout.html">Dropout</a>（<a href="Transformer 架构.html">Transformer</a>）。尽管<a href="Batch Normalization.html">Batch Normalization</a>在卷积网络中承担了部分正则化作用，<a href="Dropout.html">Dropout</a> 在全连接层、<a href="Transformer 架构.html">Transformer</a>、<a href="强化学习.html">强化学习</a>、<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>估计和小数据集场景中仍不可替代。</li>
+<li><strong>最佳实践</strong>：丢弃率推荐 - 全连接层 0.5，卷积层 0.1-0.3，输出层不用。常见误区包括忘记切换 <code>model.eval()</code>、对小数据集用过大丢弃率、在<a href="Batch Normalization.html">批归一化</a>后加 <a href="Dropout.html">Dropout</a> 等。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., &amp; Salakhutdinov, R. (2014). Dropout: a simple way to prevent neural networks from overfitting. JMLR, 15(1), 1929–1958.] — 原始论文</li>
 <li>[raw/articles/ai-papers/machine-learning/09_dropout_2014.md] — 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读（首次实践验证）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_10_dropout.md</span> — 全文精读</li>
+<li>[Gal, Y., &amp; Ghahramani, Z. (2016). Dropout as a bayesian approximation: Representing model uncertainty in deep learning. ICML, 48, 1050-1059.] — MC Dropout 理论基础</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
 <li><a href="../entities/Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文).html">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</a> — described_in</li>
 <li><a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — invented_by</li>
 <li><a href="../entities/Nitish Srivastava.html">Nitish Srivastava</a> — first_author</li>
+<li><a href="../entities/Alex Krizhevsky.html">Alex Krizhevsky</a> — co_author</li>
+<li><a href="../entities/Ilya Sutskever.html">Ilya Sutskever</a> — co_author</li>
+<li><a href="../entities/Ruslan Salakhutdinov.html">Ruslan Salakhutdinov</a> — co_author</li>
 <li><a href="过拟合（Overfitting）.html">过拟合（Overfitting）</a> — prevents</li>
 <li><span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span> — interpreted_as</li>
 <li><a href="AlexNet.html">AlexNet</a> — used_in</li>
-<li><span style="color:#e74c3c" title="broken link">Inverted Dropout</span> — variant</li>
+<li><a href="Inverted Dropout.html">Inverted Dropout</a> — variant</li>
 <li><span style="color:#e74c3c" title="broken link">MC Dropout（蒙特卡洛 Dropout）</span> — variant</li>
 <li><span style="color:#e74c3c" title="broken link">DropConnect</span> — variant</li>
 <li><span style="color:#e74c3c" title="broken link">Spatial Dropout</span> — variant</li>
 <li><span style="color:#e74c3c" title="broken link">DropPath（Stochastic Depth）</span> — variant</li>
+<li><a href="Batch Normalization.html">Batch Normalization</a> — alternative_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Dropout.html">&larr; Dropout</a>
+    <a href="Dropout 算法详解.html">&larr; Dropout 算法详解</a>
     <a href="Dueling DQN.html">Dueling DQN &rarr;</a>
   </div>
 </div>

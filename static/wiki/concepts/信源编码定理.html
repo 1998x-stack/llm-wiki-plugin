@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">数学</span><span class="tag">信息论</span></div>
 </div>
   <div class="content">
@@ -139,27 +139,35 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">定理表述</h3>
 <p><strong>不可能</strong>被无损压缩到低于熵率 H 的比特率，但<strong>存在</strong>编码方案使得平均码长任意接近 H。</p>
-<h3 id="_5">直觉解释</h3>
-<p>信源的熵衡量了它产生的消息的"不可压缩核心"。如果一个英文文本的每个字母平均携带 1.5 bit 的信息（考虑到字母频率不均匀和字母间的相关性），那么无论多么巧妙的压缩算法，每个字母平均都不能压缩到少于 1.5 bit。</p>
-<h3 id="_6">典型序列</h3>
-<p>这一定理的证明使用了<strong><a href="典型序列.html">典型序列</a></strong>的概念——当消息足够长时，绝大多数实际产生的消息都集中在一个远小于所有可能消息的集合中。</p>
-<h3 id="_7">实际应用</h3>
-<p>从 ZIP 文件到流媒体视频，所有数据压缩技术的理论上限都由信源编码定理给出。</p>
-<h2 id="_8">来源</h2>
+<h3 id="_5">数学表达</h3>
+<p>对于熵为H(X)的信源X，存在编码方案使得平均码长L满足 H(X) ≤ L &lt; H(X) + 1。</p>
+<h3 id="_6">物理意义</h3>
+<p>信源的熵衡量了它产生的消息的"不可压缩核心"。如果一个英文文本的每个字母平均携带 1.5 bit 的信息（考虑到字母频率不均匀和字母间的相关性），那么无论多么巧妙的压缩<a href="算法.html">算法</a>，每个字母平均都不能压缩到少于 1.5 bit。</p>
+<h3 id="_7">渐近等分性</h3>
+<p>这一定理的证明使用了<strong><a href="典型序列.html">典型序列</a></strong>的概念——当消息足够长时，绝大多数实际产生的消息都集中在一个远小于所有可能消息的集合中，即"典型集"。</p>
+<h3 id="_8">实际应用</h3>
+<p>从 ZIP 文件到流媒体视频，所有数据压缩技术的理论上限都由信源编码定理给出。该定理为<a href="Huffman编码.html">Huffman编码</a>、Lempel-Ziv<a href="算法.html">算法</a>等现代数据压缩技术提供了理论基础。</p>
+<h2 id="_9">来源</h2>
 <ul>
+<li><a href="../entities/A Mathematical Theory of Communication.html">A Mathematical Theory of Communication</a> — original theory</li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/信息论/02_shannon_1948_mathematical_theory_of_communication.md</span> — Shannon (1948) 深度解析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/02-shannon-mathematical-theory-of-communication.md</span> — Shannon (1948) 计算机科学视角深度解析</li>
 </ul>
-<h2 id="_9">相关</h2>
+<h2 id="_10">相关</h2>
 <ul>
 <li><a href="../entities/克劳德·香农.html">克劳德·香农</a> — 提出者</li>
 <li><a href="信息熵.html">信息熵</a> — 定理核心参数</li>
 <li><a href="../maps/信息论.html">信息论</a> — 所属学科</li>
+<li><a href="../entities/Claude Shannon.html">Claude Shannon</a> — developed_by</li>
+<li><a href="熵.html">熵</a> — mathematical basis</li>
+<li><span style="color:#e74c3c" title="broken link">数据压缩</span> — practical application</li>
+<li><a href="Huffman编码.html">Huffman编码</a> — implementation</li>
+<li><a href="有噪信道编码定理.html">有噪信道编码定理</a> — complementary theorem</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="信源信道分离定理.html">&larr; 信源信道分离定理</a>
-    <a href="信道容量.html">信道容量 &rarr;</a>
+    <a href="信用分配问题（Credit Assignment Problem）.html">信用分配问题（Credit Assignment Problem） &rarr;</a>
   </div>
 </div>
 </body>

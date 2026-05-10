@@ -129,36 +129,84 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">网络架构</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="resnet">残差网络（ResNet）</h1>
-<h2 id="50-200">概述 (50-200字符)</h2>
-<p>何恺明等人于2015年提出的深度网络架构，通过<a href="残差连接.html">残差连接</a>解决退化问题，使网络可训练至152层以上，获<a href="ImageNet.html">ILSVRC</a> 2015冠军并首次超越人类图像识别水平。</p>
-<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<h2 id="_1">概述</h2>
+<p><a href="../entities/Kaiming He.html">何恺明</a>等人于2015年在<a href="../entities/微软亚洲研究院.html">微软亚洲研究院</a>提出的深度网络架构，通过<a href="残差连接.html">残差连接</a>解决退化问题，使网络可训练至152层以上。ResNet 在 <span style="color:#e74c3c" title="broken link">ILSVRC 2015</span> 竞赛中获得图像分类、目标检测、图像定位三项冠军，并获得 CVPR 2016 最佳论文奖，成为 AI 历史上最具有影响力的网络架构之一。</p>
+<h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心架构</strong>：残差网络通过引入<a href="残差连接（Residual Connection）.html">残差连接（Residual Connection）</a>（skip connection/<a href="残差连接（Residual Connection）.html">恒等捷径</a>），将传统网络的直接映射 H(x) 重构为 H(x) = F(x) + x，其中 F(x) 是网络学习的残差。这一设计使梯度可以通过"梯度高速公路"直接流向浅层。</li>
-<li><strong>两种残差块</strong>：BasicBlock（Conv3×3-BN-ReLU-Conv3×3-BN，用于ResNet-18/34）和Bottleneck（Conv1×1降维-Conv3×3-Conv1×1升维，用于ResNet-50/101/152）。Bottleneck通过1×1卷积将计算量减少约8倍。</li>
-<li><strong>ResNet家族</strong>：ResNet-18(11M参数, 69.8% Top-1)、ResNet-34(21M, 73.3%)、ResNet-50(25M, 76.1%)、ResNet-101(44M, 77.4%)、ResNet-152(60M, 78.3%)。ResNet-152在<a href="ImageNet.html">ILSVRC</a> 2015以3.57% Top-5错误率夺冠。</li>
-<li><strong>退化问题的解决</strong>：<a href="退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a>指更深层网络训练误差反而更高的现象。ResNet通过残差学习使网络在最优解接近恒等映射时只需将权重推向零，比学习恒等变换容易得多。</li>
-<li><strong>广泛影响</strong>：<a href="残差连接.html">残差连接</a>成为现代深度学习的默认<a href="规范化理论.html">范式</a>，被<span style="color:#e74c3c" title="broken link">Transformer</span>、GPT、BERT、扩散模型U-Net等架构广泛采用。后续衍生出DenseNet、SENet、ResNeXt、EfficientNet等变体。</li>
+<li>
+<p><strong>核心架构</strong>：残差网络通过引入<span style="color:#e74c3c" title="broken link">残差连接（Residual连接）</span>（skip connection/<a href="残差连接（Residual Connection）.html">恒等捷径</a>），将传统网络的直接映射 H(x) <a href="重构.html">重构</a>为 H(x) = F(x) + x，其中 F(x) 是网络学习的残差。这一设计使梯度可以通过"梯度高速公路"直接流向浅层，解决了深层网络的<a href="梯度消失.html">梯度消失</a>问题。</p>
+</li>
+<li>
+<p><strong>两种残差块</strong>：</p>
+</li>
+<li>BasicBlock（用于ResNet-18/34）：Conv3×3-BN-ReLU-Conv3×3-BN结构，简单高效。</li>
+<li>
+<p>Bottleneck（用于ResNet-50/101/152）：1×1降维-3×3-1×1升维结构，通过1×1卷积将<a href="计算.html">计算</a>量减少约40%，使更深的网络得以实现。</p>
+</li>
+<li>
+<p><strong>ResNet家族</strong>：</p>
+</li>
+<li>ResNet-18（11.7M参数, ~10% Top-5错误率）</li>
+<li>ResNet-34（21.8M参数, 7.73% Top-5错误率）</li>
+<li>ResNet-50（25.6M参数, 6.71% Top-5错误率，最常用版本）</li>
+<li>ResNet-101（44.5M参数, 6.05% Top-5错误率）</li>
+<li>
+<p>ResNet-152（60.2M参数, 4.49% Top-5错误率，152层的超深网络）</p>
+</li>
+<li>
+<p><strong>退化问题的解决</strong>：<a href="退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a>指更深层网络训练误差反而更高的现象。ResNet通过<a href="残差学习（Residual Learning）.html">残差学习</a>使网络在最优解接近恒等映射时只需将权重推向零，比学习恒等变换容易得多。实验表明，即使到1202层的超深网络仍能训练，这在普通网络中是不可能的。</p>
+</li>
+<li>
+<p><strong>竞赛成就</strong>：在<a href="../entities/ILSVRC.html">ILSVRC</a> 2015中获得图像分类、目标检测、图像定位三项第一，以及COCO 2015检测任务第一，同时获得CVPR 2016最佳论文奖，成为史无前例的"五冠王"。ResNet-152在<a href="ImageNet.html">ImageNet</a>以3.57% Top-5错误率夺冠，首次超越人类图像识别水平（约5.1%）。</p>
+</li>
+<li>
+<p><strong>广泛影响</strong>：<a href="残差连接.html">残差连接</a>成为现代深度学习的默认<a href="规范化理论.html">范式</a>，被<a href="../entities/Transformer.html">Transformer</a>、GPT、BERT、<a href="U-Net.html">U-Net</a>、神经ODE等架构广泛采用。后续衍生出DenseNet、SENet、ResNeXt、EfficientNet等变体，影响遍及<a href="计算.html">计算</a>机视觉、自然语言处理等所有深度学习领域。</p>
+</li>
+<li>
+<p><strong>理论解释</strong>：</p>
+</li>
+<li>梯度高速公路：提供了∂L/∂x = ∂L/∂y · (1 + ∂F(x)/∂x)的直接路径，保证梯度不会完全消失</li>
+<li><a href="隐式集成.html">隐式集成</a>：相当于对指数级数量浅层路径进行集成</li>
+<li>
+<p><a href="损失景观平滑化.html">损失曲面平滑化</a>：使优化过程更加稳定</p>
+</li>
+<li>
+<p><strong>维度不匹配处理</strong>：当输入输出维度不匹配时（如通道数翻倍、特征图尺寸减半），通过1×1投影卷积或补零操作调整<a href="跳跃连接（Skip Connection）.html">跳跃连接</a>的维度。</p>
+</li>
+<li>
+<p><strong>具体实验数据</strong>：在<a href="../entities/CIFAR-10 数据集.html">CIFAR-10</a>上的实验显示，普通网络（Plain Network）在56层以上开始出现退化，而残差网络（ResNet）即使到1202层仍可训练。例如，56层ResNet的错误率为6.97%，而对应的plain网络错误率为7.20%。</p>
+</li>
 </ol>
-<h2 id="_1">来源</h2>
+<h2 id="_3">来源</h2>
 <ul>
-<li><a href="../../raw/articles/ai-papers/machine-learning/13_resnet_2015.md">raw/articles/ai-papers/machine-learning/13_resnet_2015.md</a> — 原始笔记文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/13_resnet_2015.md</span> — 原始笔记文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_05_resnet.md</span> — 全文精读</li>
+<li><span style="color:#e74c3c" title="broken link">https://arxiv.org/abs/1512.03385</span> — arXiv 论文原文</li>
 </ul>
-<h2 id="_2">相关</h2>
+<h2 id="_4">相关</h2>
 <ul>
+<li><a href="../entities/Kaiming He.html">Kaiming He</a> — creator</li>
+<li><a href="../entities/微软亚洲研究院.html">微软亚洲研究院</a> — developed_at</li>
 <li><a href="../entities/Deep Residual Learning for Image Recognition (2016 论文).html">Deep Residual Learning for Image Recognition (2016 论文)</a> — implements</li>
 <li><a href="卷积神经网络（CNN）.html">卷积神经网络（CNN）</a> — extends</li>
-<li><a href="退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a> — supersedes</li>
+<li><a href="退化问题（Degradation Problem）.html">退化问题（Degradation Problem）</a> — addresses</li>
 <li><a href="残差连接（Residual Connection）.html">残差连接（Residual Connection）</a> — uses</li>
-<li><a href="ImageNet.html">ImageNet</a> — compares_to</li>
+<li><a href="ImageNet.html">ImageNet</a> — tested_on</li>
+<li><span style="color:#e74c3c" title="broken link">ILSVRC 2015</span> — achieves_results_on</li>
+<li><a href="AlexNet.html">AlexNet</a> — improves_over</li>
+<li><a href="VGGNet.html">VGGNet</a> — improves_over</li>
+<li><a href="Batch Normalization.html">Batch Normalization</a> — uses</li>
+<li><a href="跳跃连接（Skip Connection）.html">跳跃连接（Skip Connection）</a> — uses</li>
+<li><a href="He 初始化（Kaiming Initialization）.html">He 初始化（Kaiming Initialization）</a> — uses</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="正规矩阵.html">&larr; 正规矩阵</a>
+    <a href="残差学习（Residual Learning）.html">&larr; 残差学习（Residual Learning）</a>
     <a href="残差连接.html">残差连接 &rarr;</a>
   </div>
 </div>

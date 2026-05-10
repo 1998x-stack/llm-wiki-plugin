@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>主要解决路径</strong>：</p>
 </li>
 <li><strong>间接路径（最有效）</strong>：用生成式 VLM（如 <span style="color:#e74c3c" title="broken link">Qwen-VL</span> ）将图像转为文字描述 → 文本 <a href="Embedding.html">Embedding</a> 检索（避开 modality gap）</li>
-<li><strong>直接路径（局限性大）</strong>：用 CLIP 类模型直接计算图文余弦相似度，领域迁移性差</li>
+<li><strong>直接路径（局限性大）</strong>：用 CLIP 类模型直接<a href="计算.html">计算</a>图文余弦相似度，领域迁移性差</li>
 <li>
 <p><strong>混合路径</strong>：文本通道 + 图像通道 → RRF 融合</p>
 </li>
@@ -180,8 +180,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Mixture-of-Experts.html">&larr; Mixture-of-Experts</a>
-    <a href="Momentum（动量）.html">Momentum（动量） &rarr;</a>
+    <a href="MoE（混合专家）.html">&larr; MoE（混合专家）</a>
+    <a href="Model Context Protocol.html">Model Context Protocol &rarr;</a>
   </div>
 </div>
 </body>

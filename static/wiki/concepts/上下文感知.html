@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-awareness">上下文感知（Context Awareness）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文感知是 Claude 4.5+ 模型（<a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a>、<a href="../entities/Claude-Sonnet-4-5.html">Claude-Sonnet-4-5</a>、<a href="../entities/Claude-Haiku-4-5.html">Claude-Haiku-4-5</a>）的内置能力，使模型能在对话过程中追踪剩余<a href="上下文窗口.html">上下文窗口</a>（即"令牌预算"），从而更高效地执行长时任务。</p>
+<p>上下文感知是 <a href="../entities/Claude_Code.html">Claude</a> 4.5+ 模型（<a href="../entities/Claude-Sonnet-4-6.html">Claude-Sonnet-4-6</a>、<a href="../entities/Claude-Sonnet-4-5.html">Claude-Sonnet-4-5</a>、<a href="../entities/Claude-Haiku-4-5.html">Claude-Haiku-4-5</a>）的内置能力，使模型能在对话过程中追踪剩余<a href="上下文窗口.html">上下文窗口</a>（即"令牌预算"），从而更高效地执行长时任务。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
-<p>对话开始时，Claude 获取总<a href="上下文窗口.html">上下文窗口</a>信息：</p>
+<p>对话开始时，<a href="../entities/Claude_Code.html">Claude</a> 获取总<a href="上下文窗口.html">上下文窗口</a>信息：</p>
 <pre><code>&lt;budget:token_budget&gt;1000000&lt;/budget:token_budget&gt;
 </code></pre>
 <p>每次工具调用后，Claude 收到剩余容量更新：</p>

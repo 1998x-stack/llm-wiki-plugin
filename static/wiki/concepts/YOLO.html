@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="yolo">YOLO</h1>
 <h2 id="_1">概述</h2>
-<p>YOLO（You Only Look Once）是一类 One-Stage 目标检测框架，一次前向推理即可得到所有目标的类别和边界框，速度显著快于两阶段检测器（如 Faster R-CNN）。</p>
+<p>YOLO（You Only Look Once）是一类 One-Stage 目标检测框架，一次前向推理即可得到所有目标的类别和边界框，速度显著快于两阶段检测器（如 <a href="R-CNN 系列.html">Faster R-CNN</a>）。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">标准架构</h3>
 <pre><code>输入图像
@@ -149,32 +149,11 @@ Head（三个尺度的检测头）
 NMS（非极大值抑制）→ 最终检测框
 </code></pre>
 <h3 id="one-stage-vs-two-stage">One-Stage vs Two-Stage</h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>One-Stage (YOLO)</th>
-<th>Two-Stage (Faster R-CNN)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>推理速度</td>
-<td>快</td>
-<td>慢</td>
-</tr>
-<tr>
-<td>精度</td>
-<td>略低</td>
-<td>略高</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>实时检测、大规模部署</td>
-<td>高精度要求场景</td>
-</tr>
-</tbody>
-</table>
+<p>| 特性 | One-Stage (YOLO) | Two-Stage (<a href="R-CNN 系列.html">Faster R-CNN</a>) |
+|------|------------------|--------------------------|
+| 推理速度 | 快 | 慢 |
+| 精度 | 略低 | 略高 |
+| 适用场景 | 实时检测、大规模部署 | 高精度要求场景 |</p>
 <h3 id="anchor">Anchor 机制</h3>
 <p>YOLO 使用预定义的 Anchor box 尺寸来匹配不同大小的目标。标准 YOLO 的 Anchor 为自然场景优化，在文档场景需要重新聚类 bbox 尺寸分布来生成专用 Anchor。</p>
 <h3 id="nms">NMS（非极大值抑制）</h3>
@@ -192,8 +171,8 @@ NMS（非极大值抑制）→ 最终检测框
 </ul>
   </div>
   <div class="page-nav">
-    <a href="XOR问题.html">&larr; XOR问题</a>
-    <a href="Zero-shot 推荐.html">Zero-shot 推荐 &rarr;</a>
+    <a href="Xavier 初始化.html">&larr; Xavier 初始化</a>
+    <a href="Yule-Walker方程.html">Yule-Walker方程 &rarr;</a>
   </div>
 </div>
 </body>

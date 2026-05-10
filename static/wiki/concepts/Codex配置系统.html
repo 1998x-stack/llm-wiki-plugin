@@ -129,18 +129,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="codex">Codex配置系统</h1>
-<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的"神经系统"，控制每一个可调行为。不是简单的配置文件，而是一个<strong>多层继承、可版本化、环境感知</strong>的配置管理体系。</p>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的"神经系统"，控制每一个可调行为。不是简单的<a href="Configuration.html">配置</a>文件，而是一个<strong>多层继承、可版本化、环境感知</strong>的<a href="Configuration.html">配置</a>管理体系。</p>
 <h2 id="_1">四大设计原则</h2>
 <ol>
 <li><strong>分层覆盖</strong>：系统级 &lt; 用户级 &lt; 团队级 &lt; 项目级 &lt; Profile &lt; 命令行</li>
-<li><strong>Git 友好</strong>：项目级配置在 <code>.codex/</code> 下，可提交版本控制</li>
+<li><strong>Git 友好</strong>：项目级<a href="Configuration.html">配置</a>在 <code>.codex/</code> 下，可提交版本控制</li>
 <li><strong>环境感知</strong>：dev/staging/prod 使用不同 Profile</li>
-<li><strong>显式优于隐式</strong>：安全关键配置（sandbox、approval）必须显式声明</li>
+<li><strong>显式优于隐式</strong>：安全关键<a href="Configuration.html">配置</a>（sandbox、approval）必须显式声明</li>
 </ol>
 <h2 id="6">配置层次（6 层）</h2>
 <table>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>L2 用户级</td>
 <td><code>~/.codex/config.toml</code></td>
-<td>个人偏好：默认模型、沙箱、MCP 服务器</td>
+<td>个人偏好：默认模型、沙箱、<a href="MCP 服务器.html">MCP 服务器</a></td>
 </tr>
 <tr>
 <td>L3 团队级</td>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>L4 子目录</td>
 <td><code>{project}/src/auth/.codex/config.toml</code></td>
-<td>特定目录专属配置</td>
+<td>特定目录专属[[Configuration</td>
 </tr>
 <tr>
 <td>L5 Profile</td>
@@ -180,21 +180,47 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>L6 命令行</td>
 <td><code>codex -c key=value</code></td>
-<td>单次覆盖，不影响配置文件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_2">核心配置项</h2>
-<p><strong>模型</strong>：<code>model = "gpt-5.4"</code> / <code>model_provider = "openai"</code> 或 <code>"oss"</code>（本地 <a href="../entities/Ollama.html">Ollama</a>）</p>
+<td>单次覆盖，不影响<span style="color:#e74c3c" title="broken link">Configuration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;_2&quot;&gt;核心配置项&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;模型&lt;/strong&gt;：&lt;code&gt;model = &quot;gpt-5.4&quot;&lt;/code&gt; / &lt;code&gt;model_provider = &quot;openai&quot;&lt;/code&gt; 或 &lt;code&gt;&quot;oss&quot;&lt;/code&gt;（本地 [[Ollama</span>）</p>
 <p><strong>Review 独立模型</strong>：<code>[review]</code> 段可指定独立模型（如 <code>gpt-5.4-mini</code>），review 作为独立 Agent 可用更便宜的模型。</p>
-<p><strong>环境变量覆盖</strong>：<code>CODEX_CONFIG_PATH</code> 可指定配置文件路径，<code>CODEX_MODEL</code> 等部分配置支持 env 直接覆盖。</p>
+<p><strong><a href="Environment Variables.html">环境变量</a>覆盖</strong>：<code>CODEX_CONFIG_PATH</code> 可指定<a href="Configuration.html">配置</a>文件路径，<code>CODEX_MODEL</code> 等部分<a href="Configuration.html">配置</a>支持 env 直接覆盖。</p>
 <p><strong>沙箱与审批</strong>：</p>
-<pre><code class="language-toml">sandbox_mode = &quot;workspace-write&quot;
+<pre><code class="language-toml">sandbox_mode = &quot;workspace-write&quot;  # read-only | workspace-write | danger-full-access
+# workspace-write 细节：
+[sandbox_workspace_write]
+network_access = false           # 是否允许网络（默认禁止）
+exclude_tmp = false              # 是否从可写根排除 /tmp
+exclude_tmpdir = false           # 是否从可写根排除 $TMPDIR
+extra_writable_roots = [         # 额外允许写的目录
+  &quot;/tmp/build_cache&quot;
+]
+# 审批策略
 approval_policy = &quot;on-request&quot;
 # 精细 approval：
-approval_policy = { granular = { mcp_elicitations = true, rules = true } }
+approval_policy = { granular = {
+  sandbox_approval = true,       # 需要逃出沙箱时询问
+  rules = true,                  # execpolicy prompt 规则触发时询问
+  mcp_elicitations = true,       # MCP 请求额外权限时询问
+  request_permissions = false,   # 自动拒绝 request_permissions
+  skill_approval = true,         # Skill 脚本执行时询问
+} }
 </code></pre>
 <p><strong>AGENTS.md</strong>：项目根目录的项目级 Agent 指令文件（类似 CLAUDE.md），包含技术栈说明、代码规范、禁止操作等。Codex 启动时自动读取注入上下文。</p>
+<p>AGENTS.md 相关配置：</p>
+<pre><code class="language-toml">[project]
+agents_md_max_bytes = 65536              # 最大读取字节数
+agents_md_fallback_names = [             # AGENTS.md 不存在时的备选文件名
+  &quot;CLAUDE.md&quot;, &quot;COPILOT_INSTRUCTIONS.md&quot;
+]
+project_root_markers = [                 # 项目根目录标识文件
+  &quot;.git&quot;, &quot;package.json&quot;, &quot;Cargo.toml&quot;, &quot;go.mod&quot;
+]
+trust = &quot;trusted&quot;                        # trusted | untrusted（不信任的项目跳过项目级 .codex/）
+</code></pre>
 <p><strong>Shell 环境策略</strong>：精细控制哪些 env var 传递给子进程，防止密钥泄露（默认自动排除含 <code>KEY/SECRET/TOKEN</code> 的变量）。</p>
 <h2 id="profile">Profile 系统</h2>
 <pre><code class="language-toml">[profiles.strict]    # codex -p strict
@@ -288,17 +314,7 @@ env_tag = &quot;dev&quot;
 </tr>
 <tr>
 <td>不知道当前生效的配置</td>
-<td><code>/status</code> 命令展示生效配置摘要</td>
-</tr>
-<tr>
-<td>新功能行为不可预期</td>
-<td>Feature flags 逐步启用，控制暴露范围</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_5">工程哲学</h2>
-<blockquote>
-<p><strong>"约定优于配置"和"显式优于隐式"的平衡点</strong>。大多数情况有合理默认值，安全关键决策强制显式声明。分层设计让个人、团队、企业在同一套体系上各取所需。</p>
+<td><code>/status</code> 命令展示生效<span style="color:#e74c3c" title="broken link">配置</span>"和"显式优于隐式"的平衡点</strong>。大多数情况有合理默认值，安全关键决策强制显式声明。分层设计让个人、团队、企业在同一套体系上各取所需。</p>
 </blockquote>
 <h2 id="_6">来源</h2>
 <ul>

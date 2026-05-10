@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Lua 绑定机制</strong>：Cocos2d-x 通过 <code>tolua++</code> 自动生成 C++ → Lua 的 wrapper 代码，C++ 类以 <code>cc.ClassName</code> 形式暴露给 Lua。引擎核心类（Scene、Layer、Sprite 等）均可在 Lua 侧直接调用。</p>
 </li>
 <li>
-<p><strong>节点系统</strong>：以 Scene/Layer 为根，Sprite 等节点通过 <code>addChild(node, zOrder)</code> 构建层级树。位置用 <code>cc.p(x, y)</code> 表示，锚点/位置/旋转在 Lua 侧设置。</p>
+<p><strong>节点系统</strong>：以 Scene/Layer 为根，Sprite 等节点通过 <code>addChild(node, zOrder)</code> 构建层级树。位置用 <code>cc.p(x, y)</code> 表示，锚点/位置/旋转在 Lua 侧<a href="../concepts/Settings.html">设置</a>。</p>
 </li>
 <li>
 <p><strong>动作系统</strong>：<code>cc.MoveBy</code>、<code>cc.MoveTo</code>、<code>cc.Sequence</code>、<code>cc.RepeatForever</code> 等动作对象通过 <code>sprite:runAction(action)</code> 驱动，是 Cocos2d 的核心动画机制。</p>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Clifford Cocks.html">&larr; Clifford Cocks</a>
+    <a href="Cloudflare.html">&larr; Cloudflare</a>
     <a href="Codex CLI.html">Codex CLI &rarr;</a>
   </div>
 </div>

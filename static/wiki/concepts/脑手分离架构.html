@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="brain-hands-decoupling">脑手分离架构（Brain-Hands Decoupling）</h1>
 <h2 id="_1">概述</h2>
-<p>脑手分离架构是将 Agent 的"大脑"（Claude 及其控制框架）与"手"（沙箱和执行工具）及"会话"（事件日志）解耦的设计模式，使各组件可独立失败、替换和扩展。</p>
+<p>脑手分离架构是将 Agent 的"大脑"（<a href="../entities/Claude_Code.html">Claude</a> 及其控制框架）与"手"（沙箱和执行工具）及"会话"（事件日志）解耦的设计模式，使各组件可独立失败、替换和扩展。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">三个组件</h3>
 <table>
@@ -151,13 +151,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>大脑（Brain）</strong></td>
 <td>决策中枢</td>
-<td>Claude + harness 循环</td>
-<td><code>wake(sessionId)</code>, <code>getSession(id)</code></td>
+<td><span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
+&lt;td&gt;Claude</span> + harness 循环</td>
 </tr>
 <tr>
 <td><strong>手（Hands）</strong></td>
 <td>执行器官</td>
-<td>沙箱、工具、MCP 服务器</td>
+<td>沙箱、工具、<a href="MCP 服务器.html">MCP 服务器</a></td>
 <td><code>execute(name, input) → string</code></td>
 </tr>
 <tr>
@@ -173,12 +173,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>宠物问题</strong>：所有组件共享单个容器，容器失败时会话丢失，需人工修复（详见 <a href="宠物与牲畜模式.html">宠物与牲畜模式</a>）</li>
 <li><strong>调试困境</strong>：WebSocket 事件流无法定位失败源，harness bug、丢包、容器离线表现相同</li>
-<li><strong>安全边界</strong>：不可信代码与凭证同容器运行，prompt 注入可读取环境变量</li>
+<li><strong>安全边界</strong>：不可信代码与凭证同容器运行，prompt 注入可读取<a href="Environment Variables.html">环境变量</a></li>
 </ol>
 <h3 id="_5">解耦后的行为</h3>
 <p><strong>大脑离开容器：</strong>
 - Harness 像调用其他工具一样调用容器：<code>execute(name, input) → string</code>
-- 容器变成"牲畜"——失败时 harness 捕获为工具调用错误，Claude 可决定重试
+- 容器变成"牲畜"——失败时 harness 捕获为工具调用错误，<a href="../entities/Claude_Code.html">Claude</a> 可决定重试
 - 新容器通过标准配方初始化：<code>provision({resources})</code></p>
 <p><strong>Harness 失败恢复：</strong>
 - Harness 也变成"牲畜"——因<a href="会话日志.html">会话日志</a>在外部，harness 无需在崩溃中存活
@@ -212,11 +212,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>因为不需要沙箱的会话可立即开始推理，无需等待容器配置。</p>
+<p>因为不需要沙箱的会话可立即开始推理，无需等待容器<a href="Configuration.html">配置</a>。</p>
 <h3 id="_7">多脑多手</h3>
 <ul>
 <li><strong>多脑</strong>：启动多个无状态 harness，仅在需要时连接手</li>
-<li><strong>多手</strong>：Claude 推理多个执行环境并决定工作分配</li>
+<li><strong>多手</strong>：<a href="../entities/Claude_Code.html">Claude</a> 推理多个执行环境并决定工作分配</li>
 <li><strong>脑手传递</strong>：因无手与任何脑耦合，脑之间可传递手</li>
 </ul>
 <h2 id="_8">来源</h2>

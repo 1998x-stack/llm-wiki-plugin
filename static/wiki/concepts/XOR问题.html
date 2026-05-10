@@ -127,38 +127,56 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / XOR问题</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">逻辑问题</span></div>
 </div>
   <div class="content">
     <h1 id="xor">XOR问题</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>XOR（异或）问题是感知机无法解决的经典非线性可分问题：XOR 运算的真值表无法用一条直线在二维平面上分隔为正负两类。1969 年 Minsky 指出此问题后，神经网络研究沉寂十余年，直到<a href="多层感知机.html">多层感知机</a>和<a href="反向传播.html">反向传播</a>的出现才被彻底解决。</p>
+<p>XOR（异或）问题是<a href="../entities/感知机.html">感知机</a>无法解决的经典非线性可分问题：XOR 运算的真值表无法用一条直线在二维平面上分隔为正负两类。1969 年 <a href="../entities/Marvin Minsky.html">Minsky</a> 指出此问题后，神经网络研究沉寂十余年，直到<a href="多层感知机.html">多层感知机</a>和<a href="反向传播.html">反向传播</a>的出现才被彻底解决。1986年<a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a>中详细展示了解决方案。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>问题定义</strong>：XOR 运算的真值表为 (0,0)→0, (0,1)→1, (1,0)→1, (1,1)→0。在二维平面上，这四个点无法用一条直线将输出为 0 和 1 的点分开，因此 XOR 是"非线性可分"的。单层<span style="color:#e74c3c" title="broken link">感知机</span>只能学习线性决策边界，故无法解决 XOR。</li>
-<li><strong>历史影响</strong>：1969 年 Minsky 和 Papert 在《<span style="color:#e74c3c" title="broken link">Perceptrons</span>》一书中系统分析了感知机的局限性，<a href="XOR 问题.html">XOR 问题</a>成为最著名的例证。这本书直接导致了神经网络研究的第一次"<a href="AI 寒冬.html">AI 寒冬</a>"，研究沉寂了十余年。</li>
-<li><strong>MLP 的解决</strong>：<a href="多层感知机.html">多层感知机</a>通过隐藏层引入非线性变换能力，可以学习非线性的决策边界。一个 2→4→1 的 MLP（2 维输入，4 维隐藏层，1 维输出）配合<a href="反向传播.html">反向传播</a>训练，可以完美学习 XOR 函数。隐藏层实际上学习了输入空间的非线性映射，使原本不可分的问题在隐藏层空间中变得线性可分。</li>
-<li><strong>理论意义</strong>：<a href="XOR 问题.html">XOR 问题</a>揭示了线性模型的表达能力局限，推动了非线性模型的发展。通用近似定理（Universal Approximation Theorem）证明：具有单个隐藏层和足够多神经元的 MLP 可以以任意精度逼近任意连续函数——XOR 只是其中最简单的一个特例。</li>
+<li>
+<p><strong>问题定义</strong>：XOR 运算的真值表为 (0,0)→0, (0,1)→1, (1,0)→1, (1,1)→0。在二维平面上，这四个点无法用一条直线将输出为 0 和 1 的点分开，因此 XOR 是"非线性可分"的。单层<a href="../entities/感知机.html">感知机</a>只能学习线性<a href="决策边界.html">决策边界</a>，故无法解决 XOR。</p>
+</li>
+<li>
+<p><strong>历史影响</strong>：1969 年 <a href="../entities/Marvin Minsky.html">Minsky</a> 和 <a href="../entities/Seymour Papert.html">Papert</a> 在《<span style="color:#e74c3c" title="broken link">Perceptrons</span>》一书中系统分析了<a href="../entities/感知机.html">感知机</a>的局限性，<a href="XOR 问题.html">XOR 问题</a>成为最著名的例证。这本书直接导致了神经网络研究的第一次"<a href="AI 寒冬.html">AI 寒冬</a>"，研究沉寂了十余年。</p>
+</li>
+<li>
+<p><strong>MLP 的解决</strong>：<a href="多层感知机.html">多层感知机</a>通过隐藏层引入非线性变换能力，可以学习非线性的<a href="决策边界.html">决策边界</a>。一个 2→4→1 的 MLP（2 维输入，4 维隐藏层，1 维输出）配合<a href="反向传播.html">反向传播</a>训练，可以完美学习 XOR 函数。隐藏层实际上学习了输入空间的非线性映射，使原本不可分的问题在隐藏层空间中变得线性可分。</p>
+</li>
+<li>
+<p><strong>理论意义</strong>：<a href="XOR 问题.html">XOR 问题</a>揭示了线性模型的表达能力局限，推动了非线性模型的发展。通用近似定理（<a href="万能近似定理.html">Universal Approximation Theorem</a>）证明：具有单个隐藏层和足够多神经元的 MLP 可以以任意精度逼近任意连续函数——XOR 只是其中最简单的一个特例。</p>
+</li>
+<li>
+<p><strong>1986年论文中的解决</strong>：<a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a>中详细演示了如何用两层网络解决XOR问题。论文展示了网络如何通过<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>学习到正确的权重<a href="Configuration.html">配置</a>，使得四个输入组合都能被正确分类，这是<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>有效性的关键证明。</p>
+</li>
+<li>
+<p><strong>实验演示</strong>：1986年论文中包含了具体的XOR实验，证明了两层网络配合适当的学习<a href="算法.html">算法</a>确实能够解决这一经典问题，为多层网络的实用性提供了坚实的实验基础。</p>
+</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
+<li><a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a> — 解决方案出处</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_02_backpropagation.md</span> — 源文件</li>
 <li>[Learning Representations by Back-propagating Errors] — Rumelhart, Hinton &amp; Williams, Nature 1986</li>
-<li>[raw/articles/ai-papers/machine-learning/02_backpropagation_1986.md] — 源文件</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">感知机</span> — contradicts</li>
+<li><a href="../entities/感知机.html">感知机</a> — contradicts</li>
 <li><a href="多层感知机.html">多层感知机</a> — solves</li>
 <li><a href="反向传播.html">反向传播</a> — uses</li>
 <li><span style="color:#e74c3c" title="broken link">非线性可分</span> — exemplifies</li>
+<li><a href="../entities/David E. Rumelhart.html">David E. Rumelhart</a> — solved_by</li>
+<li><a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — solved_by</li>
+<li><a href="../entities/Ronald J. Williams.html">Ronald J. Williams</a> — solved_by</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="XOR 问题.html">&larr; XOR 问题</a>
-    <a href="YOLO.html">YOLO &rarr;</a>
+    <a href="Xavier 初始化.html">Xavier 初始化 &rarr;</a>
   </div>
 </div>
 </body>

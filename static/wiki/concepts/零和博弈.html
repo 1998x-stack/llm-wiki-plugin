@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>定义</strong>：<a href="零和博弈.html">零和博弈</a> 是博弈论中的基本概念，指所有参与方的收益与损失之和恒为零。一方的所得必为另一方的所失。在数学上，若参与方 A 的收益函数为 u_A，参与方 B 的收益函数为 u_B，则 u_A + u_B = 0。</li>
 <li><strong>在 GAN 中的应用</strong>：<a href="生成对抗网络（GAN）.html">生成对抗网络（GAN）</a> 的训练过程是一个典型的零和博弈。<a href="生成器.html">生成器</a> 和 <a href="判别器.html">判别器</a> 的目标函数互为相反数：<a href="判别器.html">判别器</a>希望最大化 V(D, G)（正确<a href="../entities/区分.html">区分</a>真假），<a href="生成器.html">生成器</a>希望最小化 V(D, G)（欺骗<a href="判别器.html">判别器</a>）。这种对抗关系驱动两者不断提升，最终趋向 <a href="纳什均衡.html">纳什均衡</a>。</li>
 <li><strong><a href="纳什均衡.html">纳什均衡</a></strong>：在零和博弈中，<a href="纳什均衡.html">纳什均衡</a>点是最优策略组合，此时任何单方面改变策略都不会带来额外收益。GAN 的理论最优均衡点是 p_g = p_data（生成分布等于真实分布），此时<a href="判别器.html">判别器</a>输出恒为 1/2，无法<a href="../entities/区分.html">区分</a>真假。</li>
-<li><strong>实际局限</strong>：现实中的 GAN 训练无法严格满足零和博弈的理想条件。神经网络容量有限、优化算法非完美、训练步数有限，导致实际训练中出现 <a href="模式崩塌.html">模式崩塌</a>、训练不稳定等问题。这也是 WGAN 等后续工作试图改进的方向。</li>
+<li><strong>实际局限</strong>：现实中的 GAN 训练无法严格满足零和博弈的理想条件。神经网络容量有限、优化<a href="算法.html">算法</a>非完美、训练步数有限，导致实际训练中出现 <a href="模式崩塌.html">模式崩塌</a>、训练不稳定等问题。这也是 WGAN 等后续工作试图改进的方向。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="零 LLM 调用内存层.html">&larr; 零 LLM 调用内存层</a>
+    <a href="零信任架构.html">&larr; 零信任架构</a>
     <a href="零数据保留.html">零数据保留 &rarr;</a>
   </div>
 </div>

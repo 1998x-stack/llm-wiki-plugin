@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="denavit-hartenberg">Denavit-Hartenberg 参数</h1>
 <h2 id="_1">概述</h2>
-<p>Denavit-Hartenberg（DH）参数是一种用于描述串联机器人连杆和关节几何关系的标准化方法，由 <a href="../entities/Jacques Denavit.html">Jacques Denavit</a> 和 <a href="../entities/Richard S. Hartenberg.html">Richard S. Hartenberg</a> 于 1955 年提出。该方法通过四个参数（连杆长度 $a$、连杆扭转角 $\alpha$、连杆偏距 $d$ 和关节角 $\theta$）唯一确定相邻两个连杆坐标系之间的相对位姿。虽然最初是为传统机构学设计的，但在 <a href="../entities/Richard P. Paul.html">Richard P. Paul</a> 1981 年的专著中被系统化地应用于机器人建模，从此成为全球工业机器人技术文档和机器人学教育的通用标准，被誉为机器人运动学的“字母表”。</p>
+<p>Denavit-Hartenberg（DH）参数是一种用于描述串联机器人连杆和关节几何关系的标准化方法，由 <a href="../entities/Jacques Denavit.html">Jacques Denavit</a> 和 <a href="../entities/Richard S. Hartenberg.html">Richard S. Hartenberg</a> 于 1955 年提出。该方法通过四个参数（连杆长度 $a$、连杆扭转角 $\alpha$、连杆偏距 $d$ 和关节角 $\theta$）唯一确定相邻两个连杆坐标系之间的相对位姿。虽然最初是为传统机构学设计的，但在 <a href="../entities/Richard P. Paul.html">Richard P. Paul</a> 1981 年的专著中被系统化地应用于机器人建模，从此成为全球工业机器人<a href="技术文档.html">技术文档</a>和机器人学教育的通用标准，被誉为机器人运动学的“字母表”。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">四个核心参数</h3>
 <p>DH 约定通过在每个连杆上建立局部坐标系，用以下四个参数描述连杆 $i-1$ 到连杆 $i$ 的变换：
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="paul">Paul 的标准化贡献</h3>
 <p>在 Paul 之前，DH 参数并未在机器人领域得到统一应用，不同的研究者使用不同的符号系统和坐标系定义。Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators</a>》中不仅采纳了 DH 方法，还对其进行了严格的标准化定义（通常称为“标准 DH"或"Classic DH"），并展示了如何从物理机器人图纸一步步提取 DH 参数表。他以 <a href="../entities/PUMA 机器人.html">PUMA 560</a> 机器人为例，手把手演示了从参数提取到正向运动学方程生成的全过程。这种“理论 + 实例”的写作方式，使得 DH 参数从一种抽象的机构学描述工具，变成了工程师手中可操作的建模利器。</p>
 <h3 id="_4">在运动学建模中的核心地位</h3>
-<p>DH 参数的最大优势在于其通用性和程序化潜力。对于任何串联开链机器人，只要确定了 DH 参数表，其正向运动学方程就可以自动写成一串<a href="矩阵.html">矩阵</a>连乘的形式：$T_{0n} = \prod A_i$。这一特性极大地简化了复杂机器人的建模过程，并为后来的计算机辅助设计（CAD）和运动学仿真软件奠定了基础。直到今天，全球所有主流工业机器人制造商（如 ABB, FANUC, KUKA）在其技术手册中仍使用 DH 参数来描述产品的运动学构型。当工程师说“给我这台机器人的 DH 表”时，他们使用的正是 Paul 所标准化的那套方法论。</p>
+<p>DH 参数的最大优势在于其通用性和程序化潜力。对于任何串联开链机器人，只要确定了 DH 参数表，其正向运动学方程就可以自动写成一串<a href="矩阵.html">矩阵</a>连乘的形式：$T_{0n} = \prod A_i$。这一特性极大地简化了复杂机器人的建模过程，并为后来的<a href="计算.html">计算</a>机辅助设计（CAD）和运动学仿真软件奠定了基础。直到今天，全球所有主流工业机器人制造商（如 ABB, FANUC, KUKA）在其技术手册中仍使用 DH 参数来描述产品的运动学构型。当工程师说“给我这台机器人的 DH 表”时，他们使用的正是 Paul 所标准化的那套方法论。</p>
 <h3 id="_5">局限性与替代方案</h3>
 <p>尽管 DH 参数应用广泛，但它也存在一些局限性，例如在处理平行轴相邻连杆时可能出现定义不唯一的情况，且参数物理意义有时不够直观。为此，后来发展出了改进型 DH 参数（Modified DH）以及基于旋量理论（Screw Theory）的积指数公式（PoE）方法。PoE 方法在数学上更加紧凑且避免了某些奇异性，但在工业界的普及程度目前仍不及 DH 参数。尽管如此，DH 参数作为机器人学入门和工业标准的地位依然不可动摇。</p>
 <h2 id="_6">来源</h2>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Delta-time运动模式.html">&larr; Delta-time运动模式</a>
-    <a href="Dice 激活函数.html">Dice 激活函数 &rarr;</a>
+    <a href="Design Review.html">Design Review &rarr;</a>
   </div>
 </div>
 </body>

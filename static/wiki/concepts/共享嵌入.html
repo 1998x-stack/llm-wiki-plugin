@@ -138,9 +138,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>在并行多组件模型中，不同组件使用同一套嵌入参数，通过<a href="联合训练.html">联合优化</a>使嵌入同时适配多种学习任务。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 的核心设计</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 最核心的创新是 FM 组件和 Deep 组件使用完全相同的<a href="嵌入表示.html">嵌入层</a>参数。每个特征 i 的<a href="Embedding.html">嵌入向量</a> V_i 同时被用于 FM 的二阶交互计算 ⟨V_i, V_j⟩ 和 Deep 组件中拼接后输入 DNN。</li>
+<li><strong><a href="../entities/DeepFM.html">DeepFM</a> 的核心设计</strong>：<a href="../entities/DeepFM.html">DeepFM</a> 最核心的创新是 FM 组件和 Deep 组件使用完全相同的<a href="嵌入表示.html">嵌入层</a>参数。每个特征 i 的<a href="Embedding.html">嵌入向量</a> V_i 同时被用于 FM 的二阶交互<a href="计算.html">计算</a> ⟨V_i, V_j⟩ 和 Deep 组件中拼接后输入 DNN。</li>
 <li><strong>三重优势</strong>：（1）参数效率——<a href="嵌入表示.html">嵌入层</a>通常占据模型参数量的绝大部分，共享避免参数冗余；（2）<a href="联合训练.html">联合优化</a>——FM 的二阶信号和 DNN 的高阶信号共同优化嵌入，使嵌入同时适配低阶和高阶学习；（3）消除预训练——不需要像 FNN 那样先用 FM 预训练嵌入再送入 DNN。</li>
-<li><strong>与 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的区别</strong>：<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的 Wide 和 Deep 部分各有独立输入，而 <a href="../entities/DeepFM.html">DeepFM</a> 的 FM 和 Deep 共享嵌入输入。这是 <a href="../entities/DeepFM.html">DeepFM</a> 消除手工特征工程的关键设计。</li>
+<li><strong>与 <span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的区别</strong>：<span style="color:#e74c3c" title="broken link">Wide &amp;amp; Deep</span> 的 Wide 和 Deep 部分各有独立输入，而 <a href="../entities/DeepFM.html">DeepFM</a> 的 FM 和 Deep 共享嵌入输入。这是 <a href="../entities/DeepFM.html">DeepFM</a> 消除<a href="手工特征工程.html">手工特征工程</a>的关键设计。</li>
 <li><strong>实验验证</strong>：<a href="Ablation Study.html">消融实验</a>表明，与不共享嵌入的"LR &amp; DNN"和"FM &amp; DNN"相比，共享嵌入的 <a href="../entities/DeepFM.html">DeepFM</a> 在 AUC 上提升了 0.44%-0.48%，在 LogLoss 上降低了 0.58%-0.80%。</li>
 <li><strong>通用<a href="规范化理论.html">范式</a></strong>：共享嵌入已成为推荐系统"浅层 + 深层"并行架构的标准设计模式，后续的 <a href="../entities/xDeepFM.html">xDeepFM</a>、DCN 等工作都继承了这一设计理念。</li>
 </ol>

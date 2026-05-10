@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>每层只依赖下层，由构建系统强制执行。任何层可独立使用、替换或测试。</p>
 <h3 id="2">2. 四大设计哲学</h3>
 <ol>
-<li><strong>「不需要就不构建」</strong>——子代理、计划模式、权限弹窗等均通过扩展系统实现而非内置</li>
+<li><strong>「不需要就不构建」</strong>——子代理、计划模式、<a href="../concepts/Permissions.html">权限</a>弹窗等均通过扩展系统实现而非内置</li>
 <li><strong>严格单向分层</strong>——构建系统强制，L0 零依赖向上到 L2</li>
 <li><strong><a href="../concepts/Context-Engineering.html">Context-Engineering</a> 第一公民</strong>——每个进入 LLM 的 token 均可见可控，系统提示 &lt; 1000 token，无"秘密注入"</li>
 <li><strong>会话 <a href="../concepts/JSONL格式.html">JSONL</a> 第一公民</strong>——<a href="../concepts/JSONL格式.html">JSONL</a> 格式持久化，可序列化、可后处理、可跨 Provider 迁移</li>
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <thead>
 <tr>
 <th>维度</th>
-<th><a href="Claude Code.html">Claude Code</a></th>
+<th><a href="../projects/Claude Code.html">Claude Code</a></th>
 <th>Pi</th>
 </tr>
 </thead>
@@ -225,7 +225,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="../concepts/会话持久化.html">会话持久化</a></strong>：<code>session.serialize()</code> 序列化完整状态，<code>restoreAgentSession()</code> 在新进程中恢复</li>
 </ul>
 <h3 id="4-terminal-bench">4. Terminal-Bench 验证</h3>
-<p>Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：<strong>Agent 性能瓶颈在于 Harness 设计质量和上下文精确性，而非工具数量。</strong></p>
+<p>Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：<strong>Agent 性能瓶颈在于 <a href="../concepts/Harness-Engineering.html">Harness 设计</a>质量和上下文精确性，而非工具数量。</strong></p>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/pi-agent/01-overview-philosophy.md</span></li>

@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>display 对象系统</strong>：通过 <code>display.newRect</code>、<code>display.newCircle</code>、<code>display.newGroup</code> 等 API 创建可视对象。对象以 display group 组织层级，支持 <code>x/y/rotation/alpha</code> 等属性直接赋值。</p>
 </li>
 <li>
-<p><strong>物理集成</strong>：通过 <code>require("physics")</code> 引入，<code>physics.addBody(object, "static"|"dynamic", params)</code> 将任意 display 对象绑定物理属性（<code>radius/friction/bounce/density</code>）。重力通过 <code>physics.setGravity(x, y)</code> 设置。</p>
+<p><strong>物理集成</strong>：通过 <code>require("physics")</code> 引入，<code>physics.addBody(object, "static"|"dynamic", params)</code> 将任意 display 对象绑定物理属性（<code>radius/friction/bounce/density</code>）。重力通过 <code>physics.setGravity(x, y)</code> <a href="../concepts/Settings.html">设置</a>。</p>
 </li>
 <li>
 <p><strong>Runtime 事件系统</strong>：使用 <code>Runtime:addEventListener(eventName, handler)</code> 订阅全局事件。<code>"enterFrame"</code> 用于帧更新，<code>"collision"</code> 用于碰撞处理，<code>"tap"</code> 用于触摸输入。与 <a href="Love2D.html">Love2D</a> 的回调函数风格不同，Solar2D 采用发布-订阅模式。</p>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Snyk.html">&larr; Snyk</a>
-    <a href="Spotify.html">Spotify &rarr;</a>
+    <a href="Solayer Labs.html">Solayer Labs &rarr;</a>
   </div>
 </div>
 </body>

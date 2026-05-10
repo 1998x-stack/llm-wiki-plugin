@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 即使是单个干扰项，也会显著降低性能（相比基线仅有针）
 - 四个干扰项的影响远大于单个，但影响<strong>非均匀</strong>——某些干扰项远比其他更具误导性
 - 随上下文增长，干扰项的非均匀影响<strong>更加放大</strong>
-- <strong>模型差异</strong>：Claude 模型幻觉率最低，但面对歧义时更倾向于"弃权"（abstain）；GPT 模型幻觉率最高，即使有干扰项也倾向于给出（错误的）确定性答案</p>
+- <strong>模型差异</strong>：<a href="../entities/Claude_Code.html">Claude</a> 模型幻觉率最低，但面对歧义时更倾向于"弃权"（abstain）；GPT 模型幻觉率最高，即使有干扰项也倾向于给出（错误的）确定性答案</p>
 <h4 id="-needle-haystack-similarity">实验三：针-干草堆相似度（Needle-Haystack Similarity）</h4>
 <p><strong>反直觉发现</strong>：
 - 针与干草堆语义相似（"融入"背景），模型在 PG 文章干草堆中表现<strong>更差</strong>
@@ -169,7 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li>原始干草堆（保留自然段落逻辑流）→ 性能更差</li>
 <li>打乱句序的干草堆（保留话题但无逻辑连贯性）→ 性能更好</li>
-<li>此规律在全部 18 个模型和所有配置中一致出现</li>
+<li>此规律在全部 18 个模型和所有<a href="Configuration.html">配置</a>中一致出现</li>
 </ul>
 <p><strong>推测</strong>：结构化文本的连贯逻辑流可能以某种方式影响<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的应用方式，在长上下文中尤为明显——具体机制超出本报告范围，指向可解释性研究方向。</p>
 <h3 id="longmemeval-vs">LongMemEval：聚焦 vs. 全量输入</h3>
@@ -180,7 +180,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 | 模型任务 | 仅需推理 | 检索 + 推理 |
 | 性能 | 跨所有模型显著更好 | 跨所有模型显著下降 |</p>
 <p><strong>结论</strong>：将检索（从长上下文中找相关信息）和推理（基于信息回答问题）合并为一次调用，会显著降低两者的质量。<strong>最佳实践是尽量为模型预先过滤，只提供相关信息。</strong></p>
-<p>Claude 特有行为：面对全量输入中的歧义性更倾向于"无法从对话历史中确定答案"（弃权），导致 focused vs. full 的性能差距在 Claude 模型中最为明显。</p>
+<p><a href="../entities/Claude_Code.html">Claude</a> 特有行为：面对全量输入中的歧义性更倾向于"无法从对话历史中确定答案"（弃权），导致 focused vs. full 的性能差距在 <a href="../entities/Claude_Code.html">Claude</a> 模型中最为明显。</p>
 <h3 id="repeated-words">重复单词任务（Repeated Words）</h3>
 <p>验证极简场景：要求模型精确复制一段由重复词组成的文本（含一个特殊词）。</p>
 <p><strong>发现</strong>：即使是如此简单的任务，随输入+输出长度增长，性能也一致退化：
@@ -196,7 +196,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 <ul>
 <li>上下文腐烂不是崖式崩溃，而是<strong>性能梯度下降</strong>，且降速因语义相似度、干扰项数量、内容结构而非均匀</li>
-<li>所有 18 个主流 LLM 均表现出此现象，包括 GPT-4.1、Claude 4、<a href="../entities/Gemini CLI.html">Gemini</a> 2.5、Qwen3</li>
+<li>所有 18 个主流 LLM 均表现出此现象，包括 GPT-4.1、<a href="../entities/Claude_Code.html">Claude</a> 4、<a href="../entities/Gemini CLI.html">Gemini</a> 2.5、Qwen3</li>
 <li>等待更大的<a href="上下文窗口.html">上下文窗口</a>不能解决此问题——即使窗口扩大，退化仍然发生</li>
 <li>这是<a href="Context-Engineering.html">Context-Engineering</a>存在的核心动机：<strong>精心策划呈现给模型的信息，而非简单堆砌</strong></li>
 </ul>

@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../entities/Ralph Loop.html">Ralph Loop</a> 的解法</strong>：在 Agent 进入愚钝区之前，主动清空上下文并启动新实例。这种"预防性重置"策略避免了模型在低质量状态下继续工作，确保每次迭代都从已知良态开始。</p>
 </li>
 <li>
-<p><strong>内存分配类比</strong>：LLM 的<a href="上下文窗口.html">上下文窗口</a>类似于计算机内存，但只有 <code>malloc()</code> 没有 <code>free()</code>——每次读取文件或工具调用输出都会永久占用上下文空间，无法释放。愚钝区就是内存即将耗尽时的性能崩溃区。</p>
+<p><strong>内存分配类比</strong>：LLM 的<a href="上下文窗口.html">上下文窗口</a>类似于<a href="计算.html">计算</a>机内存，但只有 <code>malloc()</code> 没有 <code>free()</code>——每次读取文件或工具调用输出都会永久占用上下文空间，无法释放。愚钝区就是内存即将耗尽时的性能崩溃区。</p>
 </li>
 <li>
 <p><strong>工程含义</strong>：任何长时 Agent 系统都需要监控上下文使用率，在接近愚钝区阈值时触发<a href="上下文重置.html">上下文重置</a>、<a href="上下文压缩.html">上下文压缩</a> 或新实例启动，而非等到窗口完全填满。</p>
@@ -169,6 +169,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/how-the-loop-works.md</span> — Ralph Loop 核心原理深度解析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/ralph-loop/context-strategies.md</span> — 上下文策略文档</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
@@ -179,8 +180,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="意大利面条式代码.html">&larr; 意大利面条式代码</a>
-    <a href="感知机学习规则.html">感知机学习规则 &rarr;</a>
+    <a href="意识.html">&larr; 意识</a>
+    <a href="感受野.html">感受野 &rarr;</a>
   </div>
 </div>
 </body>

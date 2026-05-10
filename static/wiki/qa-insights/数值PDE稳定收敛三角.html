@@ -155,10 +155,10 @@ Lax-Richtmyer 等价定理
 <p><strong>CFL → 必要条件</strong>：$\nu = c\Delta t/\Delta x \leq 1$ 来自依赖域几何论证——特征线不得"穿出"数值信息锥，否则格式看不到物理信息，<em>不可能</em>收敛。</p>
 </li>
 <li>
-<p><strong>冯·诺依曼 → 证明 CFL</strong>：对 Lax-Friedrichs 格式，放大因子 $|g(\xi)| \leq 1$ 当且仅当 $\nu \leq 1$——将 CFL 从"物理直觉"转化为可计算的代数不等式，给出了 CFL 条件的数学证明。</p>
+<p><strong><a href="../entities/冯·诺依曼.html">冯·诺依曼</a> → 证明 CFL</strong>：对 Lax-Friedrichs 格式，放大因子 $|g(\xi)| \leq 1$ 当且仅当 $\nu \leq 1$——将 CFL 从"物理直觉"转化为可<a href="../concepts/计算.html">计算</a>的代数不等式，给出了 CFL 条件的数学证明。</p>
 </li>
 <li>
-<p><strong>Lax-Richtmyer → 闭合</strong>：相容 + 稳定 ⟺ 收敛，稳定性验证（冯·诺依曼）直接保证收敛性。</p>
+<p><strong>Lax-Richtmyer → 闭合</strong>：相容 + 稳定 ⟺ 收敛，稳定性验证（<a href="../entities/冯·诺依曼.html">冯·诺依曼</a>）直接保证收敛性。</p>
 </li>
 </ol>
 <h2 id="_3">关键区分</h2>
@@ -191,8 +191,8 @@ Lax-Richtmyer 等价定理
 <p><strong>容易混淆的点</strong>：中心差分迎风格式即使满足 CFL $\leq 1$ 也是无条件不稳定——这正说明 CFL 是必要非充分条件，需要<a href="../concepts/冯·诺依曼稳定性分析.html">冯·诺依曼分析</a>进一步验证。</p>
 <h2 id="_4">历史意义</h2>
 <p>三个工具的时间跨度达 28 年：
-- <strong>1928</strong>：CFL 论文——数学家为证明 PDE 存在性而发现，比计算机早约 20 年
-- <strong>1940s</strong>：冯·诺依曼在洛斯阿拉莫斯曼哈顿计划中发展稳定性分析
+- <strong>1928</strong>：CFL 论文——数学家为证明 PDE 存在性而发现，比<a href="../concepts/计算.html">计算</a>机早约 20 年
+- <strong>1940s</strong>：<a href="../entities/冯·诺依曼.html">冯·诺依曼</a>在洛斯阿拉莫斯曼哈顿计划中发展稳定性分析
 - <strong>1956</strong>：Lax-Richtmyer 将稳定性与收敛性正式桥接</p>
 <p>每个工具在其时代是独立的，而三者组合形成了数值 PDE 的理论核心。</p>
 <h2 id="_5">相关</h2>

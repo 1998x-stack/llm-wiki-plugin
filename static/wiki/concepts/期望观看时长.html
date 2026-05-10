@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>为何不优化 CTR</strong>：优化点击率（CTR）会鼓励"标题党"（clickbait）——用户点了但看了几秒就关掉的视频可能有很高的 CTR，但显然不是好的推荐。观看时长更能反映用户的真实满意度。<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 明确指出应优化期望观看时长而非 CTR。</p>
 </li>
 <li>
-<p><strong>加权逻辑回归设计</strong>：对于每个训练样本，正样本（用户点击并观看了）的权重设为该用户的<strong>实际观看时长 T_i</strong>，负样本（展示了但用户没有点击）的权重设为 1。在这种设置下，逻辑回归学到的 odds（即 e^{Wx+b}）近似等于<strong>期望观看时长 E[T]</strong>。</p>
+<p><strong>加权逻辑回归设计</strong>：对于每个训练样本，正样本（用户点击并观看了）的权重设为该用户的<strong>实际观看时长 T_i</strong>，负样本（展示了但用户没有点击）的权重设为 1。在这种<a href="Settings.html">设置</a>下，逻辑回归学到的 odds（即 e^{Wx+b}）近似等于<strong>期望观看时长 E[T]</strong>。</p>
 </li>
 <li>
 <p><strong>数学推导</strong>：假设正样本比例 P 很小（在推荐场景中通常成立），则加权后的 odds 约为：odds = (P * E[T]) / (1 - P) ≈ P * E[T] * (1 + P) ≈ E[T]。因此在线上推理时，直接使用 e^{Wx+b} 作为排序得分，就近似地在按期望观看时长排序。</p>
@@ -171,7 +171,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="期望值.html">&larr; 期望值</a>
-    <a href="本体性安全.html">本体性安全 &rarr;</a>
+    <a href="期货数据.html">期货数据 &rarr;</a>
   </div>
 </div>
 </body>

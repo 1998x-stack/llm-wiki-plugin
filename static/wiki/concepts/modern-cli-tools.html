@@ -139,26 +139,26 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心理念与架构优势</h3>
 <p>现代 CLI 工具运动的核心理念是“在不牺牲兼容性的前提下，彻底重塑用户体验”。传统 Unix 工具设计于数十年前的单核时代，而现代替代品充分利用了当代硬件特性。
-1.  <strong>性能飞跃</strong>：基于 <strong>Rust</strong> 的工具（如 <code>ripgrep</code>, <code>fd</code>）利用内存安全特性和零成本抽象，结合多线程并行搜索，在处理大型代码仓库（Monorepo）或包含 <code>node_modules</code> 的目录时，速度比传统工具快 10 至 100 倍。
+1.  <strong>性能飞跃</strong>：基于 <strong>Rust</strong> 的工具（如 <code>ripgrep</code>, <code>fd</code>）利用内存安全特性和零成本抽象，结合多线程并行搜索，在处理大型代码<a href="仓库.html">仓库</a>（Monorepo）或包含 <code>node_modules</code> 的目录时，速度比传统工具快 10 至 100 倍。
 2.  <strong>智能感知</strong>：新工具默认理解现代开发环境，自动读取 <code>.gitignore</code> 和 <code>.rgignore</code> 文件，跳过版本控制忽略的目录，避免了大量无效的磁盘 I/O 操作。
-3.  <strong>人性化交互</strong>：摒弃了晦涩的正则转义和复杂的参数组合，提供更直观的默认行为。例如，<code>fd</code> 无需指定 <code>-name</code> 即可进行模糊匹配，<code>sd</code> 使用类似 Python/JS 的正则语法替代 <code>sed</code> 的反人类转义。</p>
+3.  <strong>人性化交互</strong>：摒弃了晦涩的正则转义和复杂的参数组合，提供更直观的默认行为。例如，<code>fd</code> 无需指定 <code>-name</code> 即可进行模糊匹配，<code>sd</code> 使用类似 <a href="Python.html">Python</a>/JS 的正则语法替代 <code>sed</code> 的反人类转义。</p>
 <h3 id="_4">关键工具分类详解</h3>
 <p>该全景图涵盖了文件系统操作、文本搜索、内容查看及任务自动化等多个维度：</p>
 <ul>
 <li><strong>安全删除 (<code>rm</code> → <code>trash</code>)</strong>：传统的 <code>rm</code> 命令一旦执行即永久删除，风险极高。<code>trash</code> 将文件移至系统回收站，支持恢复，为 AI Agent 执行批量清理任务提供了重要的安全网，防止因逻辑错误导致源码丢失。</li>
 <li><strong>极速搜索 (<code>grep</code> → <code>rg</code>, <code>find</code> → <code>fd</code>)</strong>：<code>ripgrep</code> (rg) 已成为代码搜索的事实标准，它不仅速度快，还支持正则上下文显示（<code>-A/-B</code>）和 JSON 输出，便于管道处理。<code>fd</code> 则简化了文件查找语法，自动处理隐藏文件和排除规则，极大降低了脚本编写的复杂度。</li>
-<li><strong>增强查看 (<code>cat</code> → <code>bat</code>, <code>ls</code> → <code>eza</code>)</strong>：<code>bat</code> 集成了语法高亮、Git 变更标注（显示哪些行被修改过）和自动分页功能，使<a href="Code-Review-for-Claude-Code.html">代码审查</a>更清晰。<code>eza</code> 作为 <code>ls</code> 的现代继承者，支持图标显示、树状视图（替代 <code>tree</code>）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。</li>
+<li><strong>增强查看 (<code>cat</code> → <code>bat</code>, <code>ls</code> → <code>eza</code>)</strong>：<code>bat</code> 集成了语法高亮、Git 变更<a href="../entities/标注.html">标注</a>（显示哪些行被修改过）和自动分页功能，使<a href="Code-Review-for-Claude-Code.html">代码审查</a>更清晰。<code>eza</code> 作为 <code>ls</code> 的现代继承者，支持图标显示、树状视图（替代 <code>tree</code>）及详细的 Git 状态列（新增、修改、忽略），让目录结构一目了然。</li>
 <li><strong>现代化编辑与构建 (<code>sed</code> → <code>sd</code>, <code>make</code> → <code>just</code>)</strong>：<code>sd</code> 简化了流编辑器的正则捕获组语法，减少转义错误。<code>just</code> 作为任务运行器，解决了 <code>make</code> 依赖文件时间戳的局限，支持参数传递和更清晰的语法，成为管理开发任务（如测试、构建、部署）的首选。</li>
 <li><strong>可视化与分析 (<code>du</code> → <code>dust</code>, <code>df</code> → <code>duf</code>)</strong>：<code>dust</code> 以交互式树形图展示磁盘占用，直观定位大文件；<code>duf</code> 则以彩色分组形式呈现磁盘使用情况，<a href="../entities/区分.html">区分</a>本地、网络和特殊挂载点。</li>
 </ul>
 <h3 id="ai-agent">AI Agent 协同效应</h3>
-<p>在现代软件开发流程中，<strong>AI Agent</strong>（如 <a href="../entities/Claude Code.html">Claude Code</a>, <a href="../entities/Cursor.html">Cursor</a>）频繁执行文件读写与代码分析任务。现代 CLI 工具对此具有特殊价值：
+<p>在现代软件开发流程中，<strong>AI Agent</strong>（如 <a href="../projects/Claude Code.html">Claude Code</a>, <a href="../entities/Cursor.html">Cursor</a>）频繁执行文件读写与代码分析任务。现代 CLI 工具对此具有特殊价值：
 *   <strong>精确性</strong>：<code>rg</code> 和 <code>fd</code> 的 Git 感知能力确保 Agent 不会在生成的上下文中包含无关的依赖包或构建产物，从而提高代码生成的准确度。
 *   <strong>可解释性</strong>：<code>bat</code> 的行号和 <code>eza</code> 的树状结构帮助 Agent 更精准地引用代码位置，减少幻觉。
-*   <strong>容错性</strong>：配置 <code>trash</code> 作为默认删除命令，为 Agent 的自主操作增加了回滚机制，符合“人机协作”的安全原则。
-*   <strong>数据管道</strong>：<code>jq</code> 和 <code>yq</code> 配合 <code>rg --json</code>，使得 Agent 能够高效地解析结构化数据，进行复杂的配置管理或日志分析。</p>
+*   <strong>容错性</strong>：<a href="Configuration.html">配置</a> <code>trash</code> 作为默认删除命令，为 Agent 的自主操作增加了回滚机制，符合“人机协作”的安全原则。
+*   <strong>数据管道</strong>：<code>jq</code> 和 <code>yq</code> 配合 <code>rg --json</code>，使得 Agent 能够高效地解析结构化数据，进行复杂的<a href="Configuration.html">配置</a>管理或日志分析。</p>
 <h3 id="_5">部署与生态整合</h3>
-<p>这套工具链具有极强的跨平台兼容性，可通过 <code>Homebrew</code> (macOS), <code>apt</code> (Linux), <code>cargo</code> (Rust 包管理器) 或 <code>npm</code> 轻松安装。最佳实践是通过 Shell 别名（Aliases）无缝替换传统命令（如 <code>alias ls='eza'</code>），并在配置文件（<code>.zshrc</code> 或 <code>.bashrc</code>）中集成 <code>fzf</code>（模糊搜索）和 <code>zoxide</code>（智能目录跳转），从而构建一个高效、美观且安全的现代化终端工作环境。此外，<code>hyperfine</code> 可用于基准测试，量化验证工具升级带来的性能收益。</p>
+<p>这套工具链具有极强的跨平台兼容性，可通过 <code>Homebrew</code> (macOS), <code>apt</code> (Linux), <code>cargo</code> (Rust 包管理器) 或 <code>npm</code> 轻松安装。最佳实践是通过 Shell 别名（Aliases）无缝替换传统命令（如 <code>alias ls='eza'</code>），并在<a href="Configuration.html">配置</a>文件（<code>.zshrc</code> 或 <code>.bashrc</code>）中集成 <code>fzf</code>（模糊搜索）和 <code>zoxide</code>（智能目录跳转），从而构建一个高效、美观且安全的现代化终端工作环境。此外，<code>hyperfine</code> 可用于基准测试，量化验证工具升级带来的性能收益。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/programming/cli-tools/modern-cli-tools.md</span></li>
@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="happened-before 关系.html">&larr; happened-before 关系</a>
-    <a href="offline-online gap.html">offline-online gap &rarr;</a>
+    <a href="nO 主循环.html">nO 主循环 &rarr;</a>
   </div>
 </div>
 </body>

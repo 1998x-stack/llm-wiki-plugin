@@ -127,56 +127,66 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Anthropic</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">company</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-company</span><span class="tag">llm</span><span class="tag">claude</span></div>
 </div>
   <div class="content">
     <h1 id="anthropic">Anthropic</h1>
 <h2 id="_1">概述</h2>
-<p>美国人工智能安全研究公司，成立于 2021 年，开发 Claude 系列大语言模型及 <a href="Claude Code.html">Claude Code</a> AI 编程工具，提出 Constitutional AI 和 <a href="../concepts/Agent Skills.html">Agent Skills</a> 规范。</p>
+<p>美国人工智能安全研究公司，成立于 2021 年，开发 <a href="Claude_Code.html">Claude</a> 系列大<a href="../concepts/Language-Model.html">语言模型</a>及 <a href="../projects/Claude Code.html">Claude Code</a> AI 编程工具，提出 Constitutional AI 和 <a href="Agent Skills.html">Agent Skills</a> 规范。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心产品</strong>：</li>
-<li><strong>Claude</strong>：大语言模型系列（Haiku、Sonnet、Opus）</li>
-<li><strong><a href="Claude Code.html">Claude Code</a></strong>：AI 驱动代码编辑器</li>
+<li><strong><a href="Claude_Code.html">Claude</a></strong>：大<a href="../concepts/Language-Model.html">语言模型</a>系列（Haiku、Sonnet、Opus）</li>
+<li><strong><a href="../projects/Claude Code.html">Claude Code</a></strong>：AI 驱动代码编辑器</li>
 <li>
-<p><strong><a href="../concepts/Agent Skills.html">Agent Skills</a></strong>：开放规范 <a href="agentskills.io.html">agentskills.io</a>/specification</p>
+<p><strong><a href="Agent Skills.html">Agent Skills</a></strong>：开放规范 <a href="agentskills.io.html">agentskills.io</a>/specification</p>
+</li>
+<li>
+<p><strong>安全技术</strong>：</p>
+</li>
+<li><strong><a href="../concepts/客户端证明.html">客户端证明</a></strong>：DRM 风格的 API 调用认证机制</li>
+<li><strong><a href="../concepts/反蒸馏系统.html">反蒸馏系统</a></strong>：防止竞争对手录制 API 流量训练竞品模型</li>
+<li><strong><a href="../concepts/Undercover Mode.html">Undercover Mode</a></strong>：防止内部代号泄露的<a href="../concepts/Undercover_Mode.html">隐藏模式</a></li>
+<li>
+<p><strong><a href="../concepts/权限模型.html">权限模型</a></strong>：多层次的用户确认机制</p>
 </li>
 <li>
 <p><strong>技术贡献</strong>：</p>
 </li>
 <li><strong>Constitutional AI</strong>：基于宪法原则的 AI 对齐方法</li>
-<li><strong><a href="../concepts/Agent Skills.html">Agent Skills</a> 规范</strong>：被 <a href="Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Cursor.html">Cursor</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用</li>
+<li><strong><a href="Agent Skills.html">Agent Skills</a> 规范</strong>：被 <a href="../projects/Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Cursor.html">Cursor</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用</li>
 <li><strong><a href="../concepts/Context Engineering.html">Context Engineering</a></strong>：<a href="../concepts/Context Engineering.html">上下文工程</a>方法论</li>
 <li>
-<p><strong>MCP（<a href="../concepts/MCP.html">Model Context Protocol</a>）</strong>：2024 年末提出的标准协议，定义 AI Agent 与外部工具/数据源之间的通信方式，被称为"AI 的 USB 接口"</p>
+<p><strong>MCP（<a href="MCP.html">Model Context Protocol</a>）</strong>：2024 年末提出的标准协议，定义 AI Agent 与外部工具/数据源之间的通信方式，被称为"AI 的 USB 接口"</p>
 </li>
 <li>
 <p><strong>社区项目</strong>：</p>
 </li>
-<li><code>anthropics/skills</code>：官方 Skill 仓库（65k+ Stars）</li>
-<li><code>anthropics/claude-code</code>：<a href="Claude Code.html">Claude Code</a> 主仓库</li>
-<li><code>frontend-design</code> Skill：反 <a href="../concepts/AI Slop.html">AI Slop</a> 的前端设计能力包</li>
+<li><code>anthropics/skills</code>：官方 <a href="../concepts/Skills.html">Skill</a> <a href="../concepts/仓库.html">仓库</a>（65k+ Stars）</li>
+<li><code>anthropics/claude-code</code>：<a href="../projects/Claude Code.html">Claude Code</a> 主<a href="../concepts/仓库.html">仓库</a></li>
+<li><code>frontend-design</code> <a href="../concepts/Skills.html">Skill</a>：反 <a href="../concepts/AI Slop.html">AI Slop</a> 的前端设计能力包</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01_claude_code_skill_system_overview</span> — 系统架构全景</li>
 <li><span style="color:#e74c3c" title="broken link">02_anthropic_frontend_design_skill</span> — frontend-design Skill 解析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/mempalace/mempalace_06_mcp_tools.md</span> — MemPalace 深度解析第六篇：MCP 工具集成</li>
+<li><span style="color:#e74c3c" title="broken link">Claude Code 源码泄露深度解析（六）：安全机制与反蒸馏——从客户端证明到 Undercover Mode</span> — 安全机制分析</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Claude Code.html">Claude Code</a> — uses</li>
+<li><a href="../projects/Claude Code.html">Claude Code</a> — uses</li>
 <li><a href="OpenAI.html">OpenAI</a> — compares_to</li>
-<li><a href="../concepts/Agent Skills.html">Agent Skills</a> — implements</li>
+<li><a href="Agent Skills.html">Agent Skills</a> — implements</li>
 <li><span style="color:#e74c3c" title="broken link">Constitutional AI</span> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Amazon US Reviews.html">&larr; Amazon US Reviews</a>
-    <a href="Apache Spark MLlib.html">Apache Spark MLlib &rarr;</a>
+    <a href="Andrey Kolmogorov.html">&larr; Andrey Kolmogorov</a>
+    <a href="Anthropic Messages API.html">Anthropic Messages API &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="chaitin">Chaitin常数</h1>
 <h2 id="_1">概述</h2>
-<p>Chaitin 常数 Ω = Σ 2^{-|p|}（对所有停机程序求和）是"随机程序停机的概率"，一个不可计算的超越数，其二进制展开的每一位都是算法随机的，包含了所有有限规模<a href="停机问题.html">停机问题</a>的完整信息。</p>
+<p>Chaitin 常数 Ω = Σ 2^{-|p|}（对所有停机程序求和）是"随机程序停机的概率"，一个不可<a href="计算.html">计算</a>的超越数，其二进制展开的每一位都是<a href="算法.html">算法</a>随机的，包含了所有有限规模<a href="停机问题.html">停机问题</a>的完整信息。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定义</h3>
 <p>$$\Omega = \sum_{p: U(p) \text{ halts}} 2^{-|p|}$$</p>
@@ -143,8 +143,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">惊人性质</h3>
 <ol>
 <li><strong>良定义</strong>：级数收敛（因为<a href="前缀码.html">前缀码</a>的 Kraft 不等式保证 Σ 2^{-|p|} ≤ 1）</li>
-<li><strong>不可计算</strong>：不存在算法能计算 Ω 的任意精度的近似值</li>
-<li><strong>算法随机</strong>：Ω 的二进制展开的每一位都是算法随机的——无法从前面任何有限位预测下一位</li>
+<li><strong>不可<a href="计算.html">计算</a></strong>：不存在<a href="算法.html">算法</a>能<a href="计算.html">计算</a> Ω 的任意精度的近似值</li>
+<li><strong><a href="算法.html">算法</a>随机</strong>：Ω 的二进制展开的每一位都是<a href="算法.html">算法</a>随机的——无法从前面任何有限位预测下一位</li>
 <li><strong>全知性</strong>：Ω 的前 n 位二进制展开包含了关于所有长度不超过 n 的程序是否停机的完整信息</li>
 </ol>
 <h3 id="_5">直觉</h3>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>Ω 代表了<strong>数学不可知性的精确度量</strong></li>
 </ul>
 <h3 id="_7">与停机问题的关系</h3>
-<p>如果你知道了 Ω 的精确值，你就能解决所有有限规模的<a href="停机问题.html">停机问题</a>——只需枚举所有程序，逐步计算 Ω 的近似值，当近似值的前 n 位稳定时，你就知道哪些长度 ≤ n 的程序会停机。</p>
+<p>如果你知道了 Ω 的精确值，你就能解决所有有限规模的<a href="停机问题.html">停机问题</a>——只需枚举所有程序，逐步<a href="计算.html">计算</a> Ω 的近似值，当近似值的前 n 位稳定时，你就知道哪些长度 ≤ n 的程序会停机。</p>
 <h3 id="_8">历史</h3>
 <p>Ω 常数在 Chaitin 1975 年论文中正式提出，但其根基在 1966 年论文中已经埋下。Chaitin 称之为"智慧之数"（the number of wisdom）。</p>
 <h2 id="_9">来源</h2>
@@ -174,8 +174,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Camera渲染摄像机.html">&larr; Camera渲染摄像机</a>
-    <a href="Checkpoints 与 Rewind.html">Checkpoints 与 Rewind &rarr;</a>
+    <a href="Chain-of-Thought.html">&larr; Chain-of-Thought</a>
+    <a href="Change Function Declaration.html">Change Function Declaration &rarr;</a>
   </div>
 </div>
 </body>

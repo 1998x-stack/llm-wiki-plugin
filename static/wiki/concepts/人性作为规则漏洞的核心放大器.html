@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人性作为规则漏洞的核心放大器 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 人性作为规则漏洞的核心放大器</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">人性作为规则漏洞的核心放大器</h1>
+<h2 id="_2">概述</h2>
+<p>规则漏洞的变现离不开人性的配合。规则提供套利框架，人性弱点（贪婪、猎奇、从众、迷信权威、厌恶损失）提供执行杠杆。没有人性的配合，规则漏洞只是空陷阱；没有人性的放大，套利无法规模化变现。人性永恒不变，规则会迭代，因此人性是<a href="规则漏洞学.html">规则漏洞学</a>永恒的核心放大器。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>底层逻辑：规则是死的，人是活的，人性是永恒不变的</strong>
+   <a href="规则的4大先天缺陷.html">规则的4大先天缺陷</a>（滞后性、不周延性、执行弹性、地域/时间差）的利用都离不开人性配合：滞后性利用好奇与贪婪，不周延性利用执行者的主观偏好，执行弹性拿捏执行主体的利益与弱点，地域/时间差利用认知差和欲望差。人性几千年来从未改变，规则会迭代、漏洞会被堵上，但人性弱点永远留下新的套利机会。</p>
+</li>
+<li>
+<p><strong>可被利用的5大<a href="人性五大弱点.html">人性底层弱点</a></strong></p>
+</li>
+<li><strong>贪婪</strong>：人对超额收益的无限渴望，是套利的核心燃料。案例：<a href="../entities/孙宇晨.html">孙宇晨</a>通过画饼"千倍涨幅"点燃散户贪婪，用少量资金拉盘引发正循环，最终套现3亿美元。</li>
+<li><strong>猎奇</strong>：人对反常、稀缺事物的注意力偏好，是免费流量的终极密码。案例：<a href="../entities/巴菲特午餐.html">巴菲特午餐</a>事件利用"投机者 vs 股神"的反差撬动几十亿免费曝光，<a href="../entities/波场.html">波场</a>币价暴涨270%。</li>
+<li><strong>从众（羊群效应）</strong>：个体本能跟随群体决策，是把小范围套利变成大规模变现的核心杠杆。案例：<a href="../entities/孙宇晨.html">孙宇晨</a>用几千万初始资金撬动几十亿散户资金，形成买盘正循环。</li>
+<li><strong>迷信权威</strong>：人本能信任权威背书，是降低信任成本的万能钥匙。案例：<a href="../entities/孙宇晨.html">孙宇晨</a>绑定"<a href="../entities/马云.html">马云</a>门徒"标签获取商业圈入场券，拍<a href="../entities/巴菲特午餐.html">巴菲特午餐</a>让散户放下防备。</li>
+<li>
+<p><strong>厌恶损失</strong>：损失带来的痛苦是收益快乐的2.5倍，比贪婪威力更大的行动触发器。案例：<a href="94禁令.html">94禁令</a>后全额退款7000万美元，"避免损失"的快乐远大于"赚钱"的快乐，建立深度信任。</p>
+</li>
+<li>
+<p><strong><a href="../entities/孙宇晨.html">孙宇晨</a>的变现闭环：<a href="人性套利.html">5大人性弱点</a>的组合拳</strong>
+   以<a href="../entities/巴菲特午餐.html">巴菲特午餐</a>事件为例的完整闭环：</p>
+</li>
+<li>钩子阶段：猎奇 → 撬动全网免费传播，拿到几十亿曝光</li>
+<li>信任阶段：迷信权威 → 降低用户防备心，建立信任</li>
+<li>兴趣阶段：贪婪 → 激发进场欲望</li>
+<li>放大阶段：从众 → 形成买盘正循环，币价飙升</li>
+<li>行动阶段：厌恶损失 → "再不买就踏空"促使立刻行动</li>
+<li>
+<p>变现阶段：最高点抛售60亿枚<a href="../entities/波场.html">波场</a>币，套现3亿美元</p>
+</li>
+<li>
+<p><strong>四大场景的合规利用方法</strong></p>
+</li>
+<li><strong>流量场景</strong>：猎奇做钩子 → 贪婪留用户 → 权威建信任 → 从众做放大 → 厌恶损失促行动</li>
+<li><strong>营销场景</strong>：权威降门槛 → 从众消顾虑 → 猎奇做差<a href="异化.html">异化</a> → 贪婪给动力 → 厌恶损失促成交</li>
+<li><strong>投资场景</strong>：识别贪婪/从众/厌恶损失构成的收割陷阱；利用人性周期（别人贪婪我恐惧，别人恐惧我贪婪）赚钱</li>
+<li>
+<p><strong>职场场景</strong>：对领导用厌恶损失代替贪婪；用权威支撑方案；用从众建立群众基础；用贪婪激发团队执行力；用猎奇让领导记住你</p>
+</li>
+<li>
+<p><strong>最后的警示：人性是双刃剑，共赢才是长久之道</strong>
+   <a href="../entities/孙宇晨.html">孙宇晨</a>能用人性漏洞赚百亿身家，也因贪婪被香港信托骗走33亿人民币。利用人性的最高境界不是收割，是共赢。只靠收割别人的钱最终会被人性的反噬加倍还回去，只有给别人创造价值、靠共赢赚的钱才能长久。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/05</span> — 全文</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="规则漏洞学.html">规则漏洞学</a> — part_of</li>
+<li><a href="人性套利.html">人性套利</a> — extends</li>
+<li><a href="../entities/孙宇晨.html">孙宇晨</a> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">贪婪</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">厌恶损失</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">从众效应</span> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="人性五大弱点.html">&larr; 人性五大弱点</a>
+    <a href="人性套利.html">人性套利 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

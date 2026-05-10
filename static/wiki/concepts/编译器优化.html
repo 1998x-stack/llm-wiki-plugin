@@ -138,11 +138,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>编译器优化是指编译器在翻译源代码为目标代码过程中自动执行的代码改进技术，旨在提高生成代码的执行效率。<a href="FORTRAN.html">FORTRAN</a> 编译器（1957）首次系统实现了多项核心优化技术。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="fortran">FORTRAN 开创的优化技术</h3>
-<p><strong>公共子表达式消除（Common Subexpression Elimination）</strong>：识别在同一基本块内被重复计算的子表达式，将其替换为对先前计算结果的引用。例如 <code>A(I) + B(I)</code> 和 <code>A(I) * C</code> 中，<code>A(I)</code> 的地址计算只执行一次。</p>
-<p><strong>循环不变量外提（Loop-Invariant Code Motion）</strong>：如果一个表达式的值在整个循环执行期间不变，编译器将其移动到循环之前。在迭代万次的循环中可节省 9999 次冗余计算。</p>
-<p><strong>强度削减（Strength Reduction）</strong>：将循环中的昂贵操作替换为廉价操作。例如数组 <code>A(I)</code> 的地址计算通常需要乘法，但如果 I 是步长为1的循环变量，每次迭代只需在上一次结果上加常数。</p>
-<p><strong>基于循环深度的优化优先级</strong>：将优化资源集中在最内层循环上，外层代码优化降低优先级。在有限资源下最大化优化收益。</p>
-<p><strong>寄存器分配的启发式算法</strong>：综合考虑变量的活跃范围和循环嵌套深度，优先为内层循环中的热点变量分配寄存器。最优寄存器分配是 <a href="NP 完全性.html">NP 完全</a>的，<a href="FORTRAN.html">FORTRAN</a> 团队的启发式算法在实践中表现惊人。</p>
+<p><strong>公共子表达式消除（Common Subexpression Elimination）</strong>：识别在同一基本块内被重复<a href="计算.html">计算</a>的子表达式，将其替换为对先前<a href="计算.html">计算</a>结果的引用。例如 <code>A(I) + B(I)</code> 和 <code>A(I) * C</code> 中，<code>A(I)</code> 的地址<a href="计算.html">计算</a>只执行一次。</p>
+<p><strong>循环不变量外提（Loop-Invariant Code Motion）</strong>：如果一个表达式的值在整个循环执行期间不变，编译器将其移动到循环之前。在迭代万次的循环中可节省 9999 次冗余<a href="计算.html">计算</a>。</p>
+<p><strong>强度削减（Strength Reduction）</strong>：将循环中的昂贵操作替换为廉价操作。例如数组 <code>A(I)</code> 的地址<a href="计算.html">计算</a>通常需要乘法，但如果 I 是步长为1的循环变量，每次迭代只需在上一次结果上加常数。</p>
+<p><strong>基于循环深度的优化优先级</strong>：将优化资源集中在最内层循环上，外层<a href="代码优化.html">代码优化</a>降低优先级。在有限资源下最大化优化收益。</p>
+<p><strong>寄存器分配的启发式<a href="算法.html">算法</a></strong>：综合考虑变量的活跃范围和循环嵌套深度，优先为内层循环中的热点变量分配寄存器。最优寄存器分配是 <a href="NP 完全性.html">NP 完全</a>的，<a href="FORTRAN.html">FORTRAN</a> 团队的启发式<a href="算法.html">算法</a>在实践中表现惊人。</p>
 <h3 id="_4">现代延续</h3>
 <p>现代编译器（GCC、LLVM/Clang）中的优化 pass 以百计，但核心框架——数据流分析、循环变换、寄存器分配——仍然可以追溯到 <a href="FORTRAN.html">FORTRAN</a> 编译器的开创性工作。自动向量化（auto-vectorization）和自动并行化（auto-parallelization）是循环优化的现代延伸。</p>
 <h3 id="_5">哲学意义</h3>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCGAN（Deep Convolutional GAN） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / DCGAN（Deep Convolutional GAN）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">生成模型</span><span class="tag">ICLR</span></div>
+</div>
+  <div class="content">
+    <h1 id="dcgandeep-convolutional-gan">DCGAN（Deep Convolutional GAN）</h1>
+<h2 id="_1">概述</h2>
+<p>2015年提出的深度卷积<a href="../concepts/生成对抗网络（GAN）.html">生成对抗网络</a>，通过将传统GAN的全连接层替换为卷积层，显著提升了生成质量和训练稳定性，成为后续所有CNN-based生成模型的基础架构。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong>架构创新</strong>：DCGAN首次将<a href="../concepts/卷积神经网络（CNN）.html">卷积神经网络</a>成功应用于GAN框架，用ConvTranspose2d（转置卷积）替代池化层进行上采样，用strided convolutions替代池化层进行下采样，整个网络完全由可学习的卷积操作构成。</p>
+</li>
+<li>
+<p><strong>训练稳定性提升</strong>：相比原始GAN，DCGAN引入了多项关键技术：（1）在<a href="../concepts/生成器.html">生成器</a>中广泛使用<a href="../concepts/Batch Normalization.html">Batch Normalization</a>（除输出层）；（2）在<a href="../concepts/判别器.html">判别器</a>中使用Leaky<a href="../concepts/ReLU激活函数.html">ReLU激活函数</a>；（3）<a href="../concepts/生成器.html">生成器</a>输出层使用Tanh激活而非ReLU；（4）取消全连接层，采用纯卷积架构。</p>
+</li>
+<li>
+<p><strong>设计原则</strong>：DCGAN建立了生成模型的通用设计准则：使用卷积替代全连接、逐步上采样、逐步下采样、<a href="../concepts/Batch Normalization.html">批归一化</a>等，这些原则被后续几乎所有基于CNN的生成模型所采纳。</p>
+</li>
+<li>
+<p><strong>应用价值</strong>：DCGAN使得GAN能够生成高质量的图像（如64x64人脸），并展示了GAN在特征学习方面的潜力，为后来的PGGAN、StyleGAN等高分辨率生成模型奠定了基础。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Radford, Alec, et al. &quot;Unsupervised representation learning with deep convolutional generative adversarial networks.&quot; arXiv 2015</span> — 原始论文</li>
+<li>paper_08_gan.md — 源文件</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/生成对抗网络（GAN）.html">生成对抗网络（GAN）</a> — extends</li>
+<li><a href="Generative Adversarial Nets (2014 论文).html">Generative Adversarial Nets (2014 论文)</a> — extends</li>
+<li><a href="Alec Radford.html">Alec Radford</a> — author</li>
+<li><span style="color:#e74c3c" title="broken link">卷积神经网络</span> — part_of</li>
+<li><a href="../concepts/Batch Normalization.html">Batch Normalization</a> — uses</li>
+<li><span style="color:#e74c3c" title="broken link">转置卷积</span> — uses</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Custom_Slash_Commands.html">&larr; Custom_Slash_Commands</a>
+    <a href="DCN.html">DCN &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

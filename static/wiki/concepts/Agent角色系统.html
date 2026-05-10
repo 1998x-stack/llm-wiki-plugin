@@ -134,14 +134,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="agent">Agent角色系统</h1>
-<p>为多 Agent 系统中的每个子 Agent 定义专业化角色，通过注入不同的 guidance（行为指引）和约束，使 Agent 从"通用型"转变为"专业型"，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。</p>
+<p>为<a href="子 Agent 系统.html">多 Agent 系统</a>中的每个<span style="color:#e74c3c" title="broken link">子 Agent</span> 定义专业化角色，通过注入不同的 guidance（行为指引）和约束，使 Agent 从"通用型"转变为"专业型"，用结构化分工取代"一个 Agent 包揽一切"的脆弱模式。</p>
 <h2 id="_1">概述</h2>
-<p>Agent 角色系统通过配置文件定义不同角色的行为边界、关注点和输出格式，让多 Agent 协作模拟人类团队的分工协作——架构师、工程师、审查者各司其职。</p>
+<p>Agent 角色系统通过<a href="Configuration.html">配置</a>文件定义不同角色的行为边界、关注点和输出格式，让多 Agent 协作模拟人类团队的分工协作——架构师、工程师、审查者各司其职。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>角色定义结构</strong>：每个角色包含 <code>config_path</code>（独立配置路径）、<code>guidance</code>（行为指引文本）、<code>display_names</code>（多实例时的随机昵称）。角色在配置文件中声明，运行时动态加载。</li>
-<li><strong>专业分工机制</strong>：不同角色注入不同的 system prompt，限制其行为边界。例如 coder 角色"专注实现，不跨模块边界"；reviewer 角色"只提建议不改代码"；documenter 角色"负责技术文档生成"。</li>
-<li><strong>角色与工具的绑定</strong>：不同角色可配备不同的工具集——coder 拥有文件读写和执行权限，reviewer 仅有只读访问和建议输出权限。</li>
+<li><strong>角色定义结构</strong>：每个角色包含 <code>config_path</code>（独立<a href="Configuration.html">配置</a>路径）、<code>guidance</code>（行为指引文本）、<code>display_names</code>（多实例时的随机昵称）。角色在<a href="Configuration.html">配置</a>文件中声明，运行时动态加载。</li>
+<li><strong>专业分工机制</strong>：不同角色注入不同的 system prompt，限制其行为边界。例如 coder 角色"专注实现，不跨模块边界"；reviewer 角色"只提建议不改代码"；documenter 角色"负责<a href="技术文档.html">技术文档</a>生成"。</li>
+<li><strong>角色与工具的绑定</strong>：不同角色可配备不同的工具集——coder 拥有文件读写和执行<a href="Permissions.html">权限</a>，reviewer 仅有只读访问和建议输出<a href="Permissions.html">权限</a>。</li>
 <li><strong>降低不确定性的核心机制</strong>：当 Agent 角色不专业、泛化处理时，Role System 通过注入专业 guidance 约束输出范围，减少"万金油"式低质量响应。</li>
 <li><strong>工程哲学</strong>：Multi-Agent 的本质是把"人类团队的分工协作"映射到 AI Agent 层面。好的团队有架构师、工程师、Review 者各司其职，Role 系统让不同 subagent 扮演不同角色。</li>
 </ol>
@@ -157,8 +157,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>Coder</td>
-<td>代码质量、测试覆盖、边界情况</td>
-<td>不修改架构、不跨模块边界</td>
+<td>代码质量、<span style="color:#e74c3c" title="broken link">测试覆盖率&lt;/td&gt;
+&lt;td&gt;测试覆盖</span>、边界情况</td>
 </tr>
 <tr>
 <td>Reviewer</td>

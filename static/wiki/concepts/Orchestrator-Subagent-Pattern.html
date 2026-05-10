@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="orchestrator-subagent-pattern">Orchestrator-Subagent Pattern</h1>
 <h2 id="_1">概述</h2>
-<p>协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a>（Orchestrator-Subagent）是由层级结构定义的多智能体模式。一个智能体担任团队负责人，负责规划工作、分配任务并整合结果。<a href="Subagents-in-Claude-Code.html">子智能体</a>则承担具体职责并反馈结果。<a href="../entities/Claude-Code.html">Claude-Code</a> 采用此模式。</p>
+<p>协调器 - <a href="Subagents-in-Claude-Code.html">子智能体</a>（<a href="Orchestrator Agent.html">Orchestrator</a>-Subagent）是由层级结构定义的多智能体模式。一个智能体担任团队负责人，负责规划工作、分配任务并整合结果。<a href="Subagents-in-Claude-Code.html">子智能体</a>则承担具体职责并反馈结果。<a href="../entities/Claude-Code.html">Claude-Code</a> 采用此模式。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
 <ol>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 协调者maintains 整体目标的连贯视图
 - <a href="Subagents-in-Claude-Code.html">子智能体</a>专注于具体职责</p>
 <p><strong>具体应用</strong>：
-- 自动化<a href="Code-Review-for-Claude-Code.html">代码审查</a>（安全检查/测试覆盖率/代码风格/架构一致性）
+- 自动化<a href="Code-Review-for-Claude-Code.html">代码审查</a>（安全检查/<a href="测试覆盖率.html">测试覆盖率</a>/代码风格/架构一致性）
 - <a href="../entities/Claude-Code.html">Claude-Code</a> 的代码库搜索和独立问题调查
 - 多文件协调修改</p>
 <h3 id="_5">实际案例</h3>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>协调者</strong>：接收 PR，确定需要执行的检查
 - <strong><a href="Subagents-in-Claude-Code.html">子智能体</a></strong>：
   - 安全子代理：检查漏洞、注入风险、身份验证问题
-  - 测试子代理：验证测试覆盖率
+  - 测试子代理：验证<a href="测试覆盖率.html">测试覆盖率</a>
   - 风格子代理：评估代码风格一致性
   - 架构子代理：判断架构一致性
 - <strong>整合</strong>：协调者收集结果，整合为统一的审查意见</p>
@@ -180,37 +180,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 顺序执行限制吞吐量（除非显式并行化）
 - 产生多智能体令牌成本，却无法获得速度优势</p>
 <h3 id="agent-teams">与 Agent Teams 的对比</h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>Orchestrator-Subagent</th>
-<th>Agent Teams</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>子任务时长</strong></td>
-<td>简短、有界</td>
-<td>持续、多步骤</td>
-</tr>
-<tr>
-<td><strong>上下文积累</strong></td>
-<td>无（每次从零开始）</td>
-<td>有（积累领域知识）</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>清晰分解的独立任务</td>
-<td>需要持续多步骤工作的任务</td>
-</tr>
-<tr>
-<td><strong>示例</strong></td>
-<td><span style="color:#e74c3c" title="broken link">Code-Review-for-Claude-Code&lt;/td&gt;
-&lt;td&gt;代码审查</span>检查</td>
-</tr>
-</tbody>
-</table>
+<p>| 维度 | <a href="Orchestrator Agent.html">Orchestrator</a>-Subagent | Agent Teams |
+|------|----------------------|-------------|
+| <strong>子任务时长</strong> | 简短、有界 | 持续、多步骤 |
+| <strong>上下文积累</strong> | 无（每次从零开始） | 有（积累领域知识） |
+| <strong>适用场景</strong> | 清晰分解的独立任务 | 需要持续多步骤工作的任务 |
+| <strong>示例</strong> | <a href="Code-Review-for-Claude-Code.html">代码审查</a>检查 | 代码库迁移 |</p>
 <h3 id="_8">设计建议</h3>
 <p><strong>任务分解</strong>：
 - 确保子任务间依赖度极低
@@ -237,7 +212,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Octree八叉树.html">&larr; Octree八叉树</a>
+    <a href="Orchestrator Agent.html">&larr; Orchestrator Agent</a>
     <a href="P vs NP.html">P vs NP &rarr;</a>
   </div>
 </div>

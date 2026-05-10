@@ -134,14 +134,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="ollama">Ollama</h1>
-<p>本地大模型运行工具，支持在个人设备上部署和运行开源 LLM（如 Llama、Mistral、Qwen 等），通过本地 API 提供模型推理服务。</p>
+<p>本地大模型运行工具，支持在个人设备上部署和运行开源 LLM（如 Llama、Mistral、Qwen 等），通过本地 API 提供模型推理<a href="../concepts/服务.html">服务</a>。</p>
 <h2 id="_1">概述</h2>
-<p>开源的本地 LLM 推理框架，让用户无需云端 API 即可在本地运行开源大模型。通过 <code>ollama serve</code> 启动本地服务，兼容 <a href="OpenAI.html">OpenAI</a> API 格式。</p>
+<p>开源的本地 LLM 推理框架，让用户无需云端 API 即可在本地运行开源大模型。通过 <code>ollama serve</code> 启动本地<a href="../concepts/服务.html">服务</a>，兼容 <a href="OpenAI.html">OpenAI</a> API 格式。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>本地推理</strong>：支持多种开源模型一键下载运行，自动处理量化、GPU 加速等底层细节</li>
 <li><strong><a href="OpenAI.html">OpenAI</a> 兼容 API</strong>：提供与 <a href="OpenAI.html">OpenAI</a> 兼容的 REST API 接口，应用可通过切换 <code>model_provider = "oss"</code> 无缝切换到本地模型</li>
-<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的集成</strong>：<a href="Codex CLI.html">Codex CLI</a> 通过 <code>model_provider = "oss"</code> 配置项支持 Ollama 作为本地模型 Provider，需先运行 <code>ollama serve</code></li>
+<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的集成</strong>：<a href="Codex CLI.html">Codex CLI</a> 通过 <code>model_provider = "oss"</code> <a href="../concepts/Configuration.html">配置</a>项支持 Ollama 作为本地模型 Provider，需先运行 <code>ollama serve</code></li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Observation of Gravitational Waves from a Binary Black Hole Merger.html">&larr; Observation of Gravitational Waves from a Binary Black Hole Merger</a>
+    <a href="Oh-My-Zsh.html">&larr; Oh-My-Zsh</a>
     <a href="On Computable Numbers 论文.html">On Computable Numbers 论文 &rarr;</a>
   </div>
 </div>

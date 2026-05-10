@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构设计</strong>（四组件）：</p>
 </li>
 <li><strong><a href="../concepts/嵌入表示.html">嵌入层</a></strong>：物品 ID 通过嵌入<a href="../concepts/矩阵.html">矩阵</a>映射为 d 维稠密向量 + <span style="color:#e74c3c" title="broken link">Learnable Positional Embedding</span>（不同于 <a href="../concepts/Transformer架构.html">Transformer</a> 的正弦/余弦固定编码）</li>
-<li><strong><a href="../concepts/Self-Attention机制.html">自注意力</a>块</strong>：核心计算模块，通过 Q/K/V 三<a href="../concepts/矩阵.html">矩阵</a>进行 <a href="../concepts/缩放点积注意力.html">缩放点积注意力</a>，默认堆叠 2 层</li>
+<li><strong><a href="../concepts/Self-Attention机制.html">自注意力</a>块</strong>：核心<a href="../concepts/计算.html">计算</a>模块，通过 Q/K/V 三<a href="../concepts/矩阵.html">矩阵</a>进行 <a href="../concepts/缩放点积注意力.html">缩放点积注意力</a>，默认堆叠 2 层</li>
 <li><strong>逐点前馈网络</strong>：两层 FFN，权重在所有位置间共享（类似 1x1 卷积）</li>
 <li>
 <p><strong>预测层</strong>：序列最后位置输出与候选物品嵌入做点积，嵌入<a href="../concepts/矩阵.html">矩阵</a>与输入层共享</p>
@@ -157,13 +157,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../concepts/因果掩码.html">因果掩码</a>（<a href="../concepts/因果掩码.html">Causal Masking</a>）</strong>：SASRec 与标准 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 的关键区别。施加下三角掩码<a href="../concepts/矩阵.html">矩阵</a>，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 <a href="../concepts/Transformer架构.html">Transformer</a> Decoder（<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>模式），而非 Encoder 的双向模式。</p>
 </li>
 <li>
-<p><strong>自适应依赖距离</strong>：最优雅的特性——在稀疏数据集（如 <a href="Amazon.html">Amazon</a> Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶<a href="../concepts/马尔可夫链.html">马尔可夫链</a>）；在密集数据集（如 <a href="MovieLens.html">MovieLens</a>-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。</p>
+<p><strong>自适应依赖距离</strong>：最优雅的特性——在稀疏数据集（如 <a href="Amazon.html">Amazon</a> Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶<a href="../concepts/马尔可夫链.html">马尔可夫链</a>）；在密集数据集（如 <a href="MovieLens.html">MovieLens</a>-1M）上<a href="../concepts/Attention Dilution.html">注意力分散</a>到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。</p>
 </li>
 <li>
 <p><strong>正则化</strong>：<a href="../concepts/残差连接.html">残差连接</a> + <a href="../concepts/Layer Normalization.html">层归一化</a>（Post-norm）+ <a href="../concepts/Dropout.html">Dropout</a>（密集数据集 0.2，稀疏数据集 0.5）。</p>
 </li>
 <li>
-<p><strong>训练目标</strong>：<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。</p>
+<p><strong>训练目标</strong>：<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的<a href="../concepts/计算.html">计算</a>效率。</p>
 </li>
 <li>
 <p><strong>实验结果</strong>：在四个数据集（<a href="Amazon.html">Amazon</a> Beauty/Games, Steam, <a href="MovieLens.html">MovieLens</a>-1M）上均取得最优表现，Hit Rate 提升 6.9%，NDCG 提升 9.6%（相对最强基线）。训练速度比 <a href="Caser.html">Caser</a> 快约 11 倍，比 <a href="GRU4Rec.html">GRU4Rec</a>+ 快约 17 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒收敛）。</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>理论退化分析</strong>：当<a href="../concepts/Self-Attention机制.html">自注意力</a>块退化为恒等映射、使用非共享物品嵌入、移除<a href="../concepts/位置编码.html">位置编码</a>时，SASRec 退化为 <a href="FPMC.html">分解马尔可夫链</a>，证明 SASRec 是经典<a href="../concepts/协同过滤.html">协同过滤</a>模型的广义化。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：<a href="../concepts/Transformer架构.html">Transformer</a> 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 <a href="../concepts/Transformer架构.html">Transformer</a> 时代。催生了 <a href="BERT4Rec.html">BERT4Rec</a>（2019）、<a href="TiSASRec.html">TiSASRec</a>（2020）、<a href="SSE-PT.html">SSE-PT</a>（2020）、BST（2019）、<a href="S3-Rec.html">S3-Rec</a>（2020）、<a href="LightSANs.html">LightSANs</a>（2021）、<a href="DuoRec.html">DuoRec</a>（2022）、<a href="SASRec+.html">SASRec+</a>（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于淘宝<a href="../concepts/CTR 预估.html">点击率预估</a>系统。</p>
+<p><strong>历史地位</strong>：<a href="../concepts/Transformer架构.html">Transformer</a> 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 <a href="../concepts/Transformer架构.html">Transformer</a> 时代。催生了 <a href="BERT4Rec.html">BERT4Rec</a>（2019）、<a href="TiSASRec.html">TiSASRec</a>（2020）、<a href="SSE-PT.html">SSE-PT</a>（2020）、BST（2019）、<a href="S3-Rec.html">S3-Rec</a>（2020）、<a href="LightSANs.html">LightSANs</a>（2021）、<a href="DuoRec.html">DuoRec</a>（2022）、<a href="SASRec+.html">SASRec+</a>（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于<a href="淘宝.html">淘宝</a><a href="../concepts/CTR 预估.html">点击率预估</a>系统。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 <a href="BERT4Rec.html">BERT4Rec</a> 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 <a href="TiSASRec.html">TiSASRec</a> 弥补）；"一正一负"训练目标非最优（后续 <a href="SASRec+.html">SASRec+</a> 证明替换为全物品 softmax 可显著提升）。</p>

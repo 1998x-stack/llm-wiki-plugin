@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国海王星探测计划 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../graph.html">Graph</a>
+    <a href="../statistics.html">Statistics</a>
+    <a href="index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / 中国海王星探测计划</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-21</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-21</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">中国海王星探测计划</h1>
+<h2 id="_2">概述</h2>
+<p>中国海王星探测计划是中国深空探测战略的远期目标，旨在实现人类历史上首次对海王星的环绕探测。该计划预计于2039年前后通过天问六号及后续任务实施，是继月球、火星、小行星、木星探测之后的太阳系级探索任务。计划涵盖轨道器设计、核动力推进、超远距离通信、自主导航等核心技术突破，目标包括海王星大气与磁场研究、海卫一抵近观测，以及冰巨星内部结构探索。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>战略意义</strong>：海王星是目前唯一尚未被人类探测器环绕的大行星，探测成功将实现从跟跑到领跑的历史性跨越。深空探测被视为新时代的"大航海"，技术成果将反哺民用领域，如阿波罗计划般推动科技产业腾飞。</li>
+<li><strong>四大技术挑战</strong>：</li>
+<li><strong>能源绝境</strong>：海王星轨道光照强度仅为地球千分之一，太阳能完全失效，必须依赖同位素核电源（RTG），而钚-238全球年产量极低。</li>
+<li><strong>通信极限</strong>：45亿公里距离导致信号衰减百亿倍，往返延迟8.5小时，需建立全球深空测控网并赋予探测器自主故障处理能力。</li>
+<li><strong>太空刹车</strong>：探测器抵达时速度极高，需在精确时间点自主制动以被引力捕获，容错率为零。</li>
+<li><strong>时间考验</strong>：飞行时间超10年，整个任务周期超30年，需要两代甚至三代科研人员接力。</li>
+<li><strong>任务目标</strong>：首次环绕探测并长期驻留观测；深入研究大气成分、垂直结构及独特磁场环境；对海王星最大卫星海卫一进行抵近观测，探索其地质活动与潜在冰下海洋。</li>
+<li><strong>技术反哺</strong>：深空核电源技术可应用于月球基地和火星定居点；超远距离通信技术直接提升卫星通信与北斗导航系统性能；自主导航与精准制动技术是未来星际航行的核心基础。</li>
+<li><strong>中国深空探测基础</strong>：嫦娥工程实现月球采样返回；天问一号完成火星环绕、着陆、巡视；天问二号执行小行星探测；深空测控网已覆盖全球，具备支持太阳系级探测任务的能力。</li>
+<li><strong>历史借鉴</strong>：五百年前郑和船队领先世界，但海禁政策使中国错失大航海时代。当前深空探测被视为不能再错过的历史机遇。</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/016-中国海王星探测计划PPT</span> — 全文</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="海王星.html">海王星</a> — part_of</li>
+<li><a href="天问系列任务.html">天问系列任务</a> — implements</li>
+<li><a href="嫦娥工程.html">嫦娥工程</a> — extends</li>
+<li><a href="旅行者2号.html">旅行者2号</a> — compares_to</li>
+<li><a href="RTG.html">RTG</a> — depends_on</li>
+<li><a href="海卫一.html">海卫一</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="中国城乡养老差距.html">&larr; 中国城乡养老差距</a>
+    <a href="丹尼索瓦人.html">丹尼索瓦人 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

@@ -134,26 +134,30 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="openai">OpenAI</h1>
-<p>美国人工智能研究公司，成立于 2015 年，总部位于旧金山。以 GPT 系列大模型和 ChatGPT 闻名，同时开源多个开发者工具。</p>
+<p>美国人工智能研究公司，成立于 2015 年，总部位于旧金山。以 <a href="../concepts/GPT 系列.html">GPT 系列</a>大模型和 <a href="ChatGPT.html">ChatGPT</a> 闻名，同时开源多个开发者工具。</p>
 <h2 id="_1">关键内容</h2>
 <ol>
 <li><strong>开发者工具线</strong>：发布 <a href="Codex CLI.html">Codex CLI</a>——以 <a href="Rust.html">Rust</a> 重写的本地编码 Agent，采用 Policy-First 架构与 OS 级沙箱隔离。</li>
 <li><strong>开源策略</strong>：<a href="Codex CLI.html">Codex CLI</a> 以开源方式发布，允许社区审查其安全架构（<a href="../concepts/ExecPolicy.html">ExecPolicy</a>、Sandbox、MCP 层）。</li>
 <li><strong>工程哲学</strong>：选择 Rust 而非 <a href="TypeScript.html">TypeScript</a> 重写 <a href="Codex CLI.html">Codex</a>，体现了"安全隔离必须在系统调用层做"的底层思维。</li>
+<li><strong><a href="../concepts/Harness-Engineering.html">Harness Engineering</a> 先驱</strong>：进行了 3 个工程师 5 个月构建超过 100 万行代码的实验，所有代码均由 <a href="Codex CLI.html">Codex</a> 生成，提出了"Human steer. <a href="../concepts/Agents.html">Agents</a> execute."的核心哲学。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/01_codex_architecture_overview.md</span> — 整体架构章节</li>
+<li><span style="color:#e74c3c" title="broken link">Harness Engineering的本质是什么？ - riba2534 的回答</span> — Harness Engineering 实验介绍</li>
 </ul>
 <h2 id="_3">相关</h2>
 <ul>
 <li><a href="Codex CLI.html">Codex CLI</a> — OpenAI 开源的本地编码 Agent</li>
 <li><a href="Rust.html">Rust</a> — OpenAI 选择用于重写 Codex 的系统编程语言</li>
-<li><a href="Claude Code.html">Claude Code</a> — 竞品，Anthropic 的编码 Agent</li>
+<li><a href="../projects/Claude Code.html">Claude Code</a> — 竞品，Anthropic 的编码 Agent</li>
+<li><a href="../concepts/Harness-Engineering.html">Harness-Engineering</a> — OpenAI 推广的 AI 时代工程方法论</li>
+<li><a href="../concepts/Humans-steer-Agents-execute.html">Humans-steer-Agents-execute</a> — OpenAI 提出的核心哲学</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="On Computable Numbers 论文.html">&larr; On Computable Numbers 论文</a>
+    <a href="On_Computable_Numbers,_with_an_Application_to_the_Entscheidungsproblem.html">&larr; On_Computable_Numbers,_with_an_Application_to_the_Entscheidungsproblem</a>
     <a href="OpenAI Codex.html">OpenAI Codex &rarr;</a>
   </div>
 </div>

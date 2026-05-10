@@ -136,14 +136,217 @@ nav a.active { color: var(--link); font-weight: 600; }
     <h1 id="context-engineering">Context Engineering</h1>
 <h2 id="_1">概述</h2>
 <p><a href="Context Engineering.html">Context Engineering</a>（<a href="Context Engineering.html">上下文工程</a>）是指对 LLM 的有限<a href="上下文窗口.html">上下文窗口</a>进行策展与管理的系统化方法。<a href="../entities/Anthropic.html">Anthropic</a> 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作<strong>有限缓存</strong>（Cache）和<strong>工作集</strong>（Working Set），而非日志记录器。</p>
-<h2 id="_2">关键内容</h2>
-<h3 id="_3">四条经验规律驱动的设计原则</h3>
-<p>| 规律 | <a href="Context Engineering.html">上下文工程</a>含义 | 工程手段 |
-|------|--------------|---------|
-| <strong>Zipf / Pareto</strong> | 绝大多数价值来自少数热点上下文 | 热/温/冷分层，优先权加权 |
-| <strong>Bradford / Lotka</strong> | 少数核心来源覆盖大多数高价值信息 | source prior、每源上限（per-source cap） |
-| <strong>Matthew Effect</strong> | 早进入上下文的材料放大后续推理偏向 | 强制多源检索、反证位（counter-evidence lane） |
-| <strong>Benford 式思路</strong> | 用分布基线发现异常 | 监控 source share、stale fact rate、retrieval drift |</p>
+<blockquote>
+<p><strong>定义</strong>：系统性地设计、构建、管理和优化输入到 LLM <a href="上下文窗口.html">上下文窗口</a>中的所有信息——包括其内容、结构、来源、时序和动态组装逻辑——以稳定、可扩展地实现复杂 AI 应用目标的工程学科。</p>
+</blockquote>
+<h2 id="_2">诞生条件</h2>
+<h3 id="_3">技术触发因素</h3>
+<table>
+<thead>
+<tr>
+<th>触发点</th>
+<th>时间</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>长<a href="上下文窗口.html">上下文窗口</a>出现</td>
+<td>2023</td>
+<td><span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAG [[规范化理论&lt;/td&gt;
+&lt;td&gt;范式</span>成熟</td>
+<td>2023</td>
+</tr>
+<tr>
+<td>Agent 框架崛起</td>
+<td>2023–2024</td>
+<td>AutoGPT、LangGraph、CrewAI 使多轮工具调用成为标准</td>
+</tr>
+<tr>
+<td>工具调用（Function <span style="color:#e74c3c" title="broken link">天职&lt;/td&gt;
+&lt;td&gt;Calling</span>）标准化</td>
+<td>2023</td>
+</tr>
+<tr>
+<td>模型能力上移</td>
+<td>2024</td>
+<td>推理质量提升，"上下文组装质量"成为主要瓶颈</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">认知转折</h3>
+<p>旧认知（<a href="Prompt Engineering.html">Prompt Engineering</a> 时代）：
+"如何让模型理解我的指令？"</p>
+<p>新认知（<a href="Context Engineering.html">Context Engineering</a> 时代）：
+"如何让模型在正确的时间，拥有完成任务所需的全部、且仅有必要的信息？"</p>
+<p>关键推手：<a href="../entities/Andrej Karpathy.html">Andrej Karpathy</a> 2024 年提出"<a href="Context Engineering.html">Context Engineering</a> &gt; <a href="Prompt Engineering.html">Prompt Engineering</a>"，
+将这一概念正式推向主流视野。</p>
+<h2 id="_5">关键内容</h2>
+<h3 id="_6">四条经验规律驱动的设计原则</h3>
+<table>
+<thead>
+<tr>
+<th>规律</th>
+<th><span style="color:#e74c3c" title="broken link">Context Engineering&lt;/th&gt;
+&lt;th&gt;上下文工程</span>含义</th>
+<th>工程手段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zipf / Pareto</strong></td>
+<td>绝大多数价值来自少数热点上下文</td>
+<td>热/温/冷分层，优先权加权</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Bradford / Lotka</strong></td>
+<td>少数核心来源覆盖大多数高价值信息</td>
+<td>source prior、每源上限（per-source cap）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Matthew Effect</strong></td>
+<td>早进入上下文的材料放大后续推理偏向</td>
+<td>强制多源检索、反证位（counter-evidence lane）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Benford 式思路</strong></td>
+<td>用分布基线发现异常</td>
+<td>监控 source share、stale fact rate、retrieval drift</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="context">Context 的信息架构</h3>
+<p><a href="Context Engineering.html">Context Engineering</a> 管理的不再只是"提示词"，而是整个<a href="上下文窗口.html">上下文窗口</a>的<strong>信息架构</strong>：</p>
+<pre><code>┌─────────────────────────────────────────────┐
+│              Context Window                  │
+├──────────────┬──────────────────────────────┤
+│ System       │ 角色定义、全局规则、工具声明    │
+│ Prompt       │                              │
+├──────────────┼──────────────────────────────┤
+│ Memory       │ 短期记忆（当前对话）           │
+│              │ 长期记忆（向量检索/KV存储）     │
+├──────────────┼──────────────────────────────┤
+│ Retrieved    │ RAG 检索内容                  │
+│ Knowledge    │ 知识库/文档片段               │
+├──────────────┼──────────────────────────────┤
+│ Tool         │ 工具定义 + 工具调用结果        │
+│ Results      │                              │
+├──────────────┼──────────────────────────────┤
+│ Conversation │ 历史对话（选择性保留）          │
+│ History      │                              │
+├──────────────┼──────────────────────────────┤
+│ Task         │ 当前任务描述 + 状态            │
+│ State        │                              │
+└──────────────┴──────────────────────────────┘
+</code></pre>
+<h3 id="_7">核心技术体系</h3>
+<p><strong>1. RAG（检索增强生成）</strong></p>
+<pre><code class="language-python"># 基础 RAG 流程
+query → Embedding → 向量检索 → Top-K 文档 → 注入上下文 → 生成
+
+# 高级变体
+- HyDE（假设文档嵌入）：先让 LLM 生成假设答案，再用假设答案检索
+- RAG-Fusion：多查询 + 倒排融合重排序
+- GraphRAG：知识图谱 + 向量检索双通道
+- RAPTOR：递归摘要树，解决超长文档检索
+</code></pre>
+<p><strong>2. 记忆系统分层架构</strong></p>
+<pre><code>┌─────────────────────────────────────┐
+│ L1: 工作记忆（Working Memory）       │
+│     当前对话轮次，直接在上下文中      │
+├─────────────────────────────────────┤
+│ L2: 情节记忆（Episodic Memory）      │
+│     历史对话摘要，按需检索注入        │
+├─────────────────────────────────────┤
+│ L3: 语义记忆（Semantic Memory）      │
+│     向量化知识库，相关性检索          │
+├─────────────────────────────────────┤
+│ L4: 程序记忆（Procedural Memory）    │
+│     系统 Prompt 中的规则和能力定义    │
+└─────────────────────────────────────┘
+</code></pre>
+<p><strong>3. 上下文压缩与管理</strong></p>
+<pre><code class="language-python">策略一：滑动窗口（Sliding Window）
+→ 只保留最近 N 轮对话
+
+策略二：摘要压缩（Summarization）
+→ 定期将历史对话压缩为摘要
+
+策略三：选择性保留（Selective Retention）
+→ 用 LLM 判断哪些信息&quot;重要&quot;需要保留
+
+策略四：分层压缩（Hierarchical Compression）
+→ 近期详细 + 中期摘要 + 远期关键事件
+</code></pre>
+<p><strong>4. 上下文窗口位置效应（Position Effects）</strong></p>
+<pre><code>Lost in the Middle 研究发现：
+┌─────────────────────────────┐
+│ 开头部分：注意力权重 ████████ │  ← 最高
+│ 中间部分：注意力权重 ████░░░░ │  ← 最低（&quot;lost in middle&quot;）
+│ 结尾部分：注意力权重 ███████░ │  ← 次高
+└─────────────────────────────┘
+
+工程策略：
+- 关键信息放头部（System Prompt）或尾部（用户消息紧前）
+- 大量背景材料放中间
+- 重要规则在头尾重复
+</code></pre>
+<p><strong>5. 动态上下文组装（Dynamic Context Assembly）</strong></p>
+<pre><code class="language-python">class ContextAssembler:
+    def build(self, query, session, tools) -&gt; Context:
+        return Context(
+            system=self.load_system_prompt(session.persona),
+            memories=self.retrieve_relevant_memories(query, k=5),
+            knowledge=self.rag_retrieve(query, k=10),
+            conversation=self.compress_history(session.history),
+            tools=self.select_relevant_tools(query, tools),
+            task=self.format_current_task(query)
+        )
+
+    def compress_history(self, history):
+        # 保留最近 3 轮完整 + 更早的摘要
+        recent = history[-3:]
+        older = self.summarize(history[:-3])
+        return older + recent
+</code></pre>
+<p><strong>6. MCP（Model Context Protocol）</strong></p>
+<pre><code>Anthropic 2024 年提出的上下文注入标准协议：
+- 统一工具/资源/Prompt 注入接口
+- 解决各框架上下文注入方式不统一的碎片化问题
+- Server/Client 架构，服务可复用
+
+MCP 将 Context Engineering 推向&quot;基础设施&quot;层面
+</code></pre>
+<p><strong>7. 上下文评估指标</strong></p>
+<pre><code class="language-python">评估维度：
+- 相关性（Relevance）：检索内容与查询的语义相关度
+- 忠实性（Faithfulness）：生成内容是否基于给定上下文
+- 覆盖率（Coverage）：所需信息是否都被包含
+- 噪声比（Noise Ratio）：无关信息占比
+- 位置效率（Position Efficiency）：关键信息是否在高注意力区域
+
+工具：RAGAs、TREC、TruLens
+</code></pre>
+<h3 id="_8">核心机理</h3>
+<p><strong>注意⼒稀释原理</strong>：</p>
+<pre><code>Transformer 的 Softmax Attention：
+attention(Q,K,V) = softmax(QK^T / √d) · V
+
+当上下文长度 N 增大：
+- Softmax 分母增大 → 每个 token 平均注意力权重下降
+- 关键信息被&quot;稀释&quot;在大量噪声中
+- 模型有效&quot;关注&quot;范围存在软上限
+
+→ Context Engineering 的核心任务之一：
+  最大化信噪比（Signal-to-Noise Ratio）
+</code></pre>
 <h3 id="router-first">请求路由（Router-first）</h3>
 <p>第一层不是检索，而是<strong>路由判断</strong>：</p>
 <pre><code>if kb_size &lt; 200k and low_churn and low_tooling:
@@ -156,7 +359,80 @@ else:
     mode = &quot;hybrid_agent&quot;
 </code></pre>
 <p>Anthropic 建议：知识库小于约 200k tokens 且相对稳定时，直接放入 prompt 往往是最简单方案。</p>
-<h3 id="_4">检索链路：按需混合检索</h3>
+<h3 id="_9">代表性工程框架</h3>
+<pre><code>检索框架：
+├── LlamaIndex（最完整的 RAG 生态）
+├── LangChain（最广泛的 Context 管道工具）
+└── Haystack（企业级搜索+RAG）
+
+向量数据库：
+├── Chroma（本地开发首选）
+├── Pinecone（云端生产）
+├── Weaviate（混合检索）
+├── Qdrant（Rust 高性能）
+└── Milvus（分布式规模化）
+
+记忆系统：
+├── Mem0（智能记忆层）
+├── Zep（对话记忆专项）
+└── LangMem（LangGraph 官方记忆）
+
+上下文协议：
+└── MCP（Model Context Protocol）
+
+评估：
+├── RAGAs（RAG 专项评估）
+└── TruLens（全链路追踪）
+</code></pre>
+<h3 id="_10">局限性与失效边界</h3>
+<table>
+<thead>
+<tr>
+<th>局限</th>
+<th>表现</th>
+<th>根因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检索错误级联</td>
+<td>错误检索 → 错误生成，且难以溯源</td>
+<td>RAG 管道中间态不透明</td>
+</tr>
+<tr>
+<td>上下文窗口仍有上限</td>
+<td>超长文档仍需截断或压缩</td>
+<td>Transformer O(n²) 复杂度</td>
+</tr>
+<tr>
+<td>多智能体协调困难</td>
+<td>多个 Agent 共享上下文时状态冲突</td>
+<td>无统一状态管理原语</td>
+</tr>
+<tr>
+<td>工程复杂度高</td>
+<td>检索+压缩+注入+评估，维护成本高</td>
+<td>无标准化"上下文操作系统"</td>
+</tr>
+<tr>
+<td>实时知识延迟</td>
+<td>数据入库 → 可检索存在时间差</td>
+<td>向量数据库更新延迟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">历史地位</h3>
+<p>Context Engineering 是 LLM 工程的<strong>第一个真正的系统性工程学科</strong>：</p>
+<ul>
+<li>将"AI 应用质量"问题从"模型问题"转移到"工程问题"</li>
+<li>确立了"信息架构 + 检索系统 + 记忆管理"的三角支柱</li>
+<li>为 Agent 系统提供了状态管理的理论基础</li>
+<li>但仍以<strong>人类为中心</strong>：人类设计流程，Agent 执行单步</li>
+</ul>
+<blockquote>
+<p><strong>核心隐喻</strong>：Context Engineer = 图书馆员。不管理书的内容（模型），而是管理"哪些书、以什么顺序、放在读者面前"。让读者（LLM）在最短时间内找到并理解正确信息。</p>
+</blockquote>
+<h3 id="_12">检索链路：按需混合检索</h3>
 <p><strong>query understanding → need_retrieval? → hybrid retrieve → contextualize → rerank → diversify → compress → assemble</strong></p>
 <p>关键环节：
 1. <strong>need_retrieval?</strong> — 先判断能否靠 working memory 回答
@@ -177,7 +453,7 @@ else:
 [Final answer rubric]
 </code></pre>
 <p>对真正不能丢的约束，<strong>允许重复一次</strong>比埋在中间更稳。</p>
-<h3 id="_5">压缩目标：可复用状态，而非摘要</h3>
+<h3 id="_13">压缩目标：可复用状态，而非摘要</h3>
 <p>压缩应产出四种结构化对象，而非自由文本摘要：</p>
 <ul>
 <li><strong>durable facts</strong> — 长期有效事实</li>
@@ -259,7 +535,7 @@ $$</p>
 <li><strong>Position robustness</strong> — 换位置后答案是否明显劣化</li>
 <li><strong>Cache hit rate / latency / cost</strong> — 前缀缓存效果</li>
 </ul>
-<h3 id="_6">核心结论</h3>
+<h3 id="_14">核心结论</h3>
 <blockquote>
 <p>大模型上下文管理不要围绕"聊天历史"设计，而要围绕"<strong>价值密度</strong>"设计；不要把上下文当日志，而要当<strong>缓存、工作集、可审计记忆</strong>。</p>
 </blockquote>
@@ -285,10 +561,10 @@ $$</p>
 - Few-shot examples 应精选 diverse、canonical 的样例，而非往 prompt 里塞一长串 edge case</p>
 <p><strong>混合检索策略（Hybrid Strategy）</strong>：
 - 部分数据预加载（速度优先）+ 部分运行时自主探索（灵活性优先）
-- Claude Code 是典型混合实现：<code>CLAUDE.md</code> 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
+- Claude Code 是典型混合实现：<code><a href="../entities/CLAUDE.html.html">CLAUDE.md</a></code> 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
 - 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
 - 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少</p>
-<h3 id="_7">来源作者</h3>
+<h3 id="_15">来源作者</h3>
 <p>本文由 <a href="../entities/Anthropic.html">Anthropic</a> Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
 <h3 id="manus-2025">Manus 的上下文工程六原则（2025）</h3>
 <p><a href="../entities/Manus.html">Manus</a> 团队通过四次框架重建总结出六条核心原则，是<a href="Context Engineering.html">上下文工程</a>在生产环境的重要实践补充：</p>
@@ -298,10 +574,10 @@ $$</p>
 <li><strong>使用文件系统作为上下文</strong>：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的</li>
 <li><strong>通过复述操控注意力</strong>：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"</li>
 <li><strong>保留错误的内容</strong>：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率</li>
-<li><strong>不要被少样本示例所困</strong>：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏</li>
+<li><strong>不要被<a href="少样本学习.html">少样本</a>示例所困</strong>：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏</li>
 </ol>
 <p><strong>核心哲学</strong>：<a href="Context Engineering.html">上下文工程</a>仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。</p>
-<h2 id="_8">来源</h2>
+<h2 id="_16">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/prompt-context/context-design.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Effective context engineering for AI agents.md</span></li>
@@ -310,7 +586,7 @@ $$</p>
 <li><a href="https://arxiv.org/abs/2310.08560">Towards LLMs as Operating Systems</a> — MemGPT</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic Compaction API 文档</li>
 </ul>
-<h2 id="_9">相关</h2>
+<h2 id="_17">相关</h2>
 <ul>
 <li><a href="分层记忆架构.html">分层记忆架构</a></li>
 <li><a href="LLM-Statelessness.html">LLM-Statelessness</a></li>
@@ -331,8 +607,8 @@ $$</p>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Context Rot.html">&larr; Context Rot</a>
-    <a href="Cook-Levin 定理.html">Cook-Levin 定理 &rarr;</a>
+    <a href="Context-Design.html">&larr; Context-Design</a>
+    <a href="Context-Parity.html">Context-Parity &rarr;</a>
   </div>
 </div>
 </body>

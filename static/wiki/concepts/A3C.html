@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="a3c">A3C</h1>
 <h2 id="_1">概述</h2>
-<p>A3C（Asynchronous Advantage <a href="强化学习三大范式.html">Actor-Critic</a>）由 <a href="../entities/DeepMind.html">DeepMind</a> 于 ICML 2016 发表（arXiv:1602.01783）。核心洞察：多个并行 Worker 与不同环境实例异步交互，天然产生不相关数据，可替代<a href="经验回放.html">经验回放</a>解决训练稳定性问题。这使 A3C 无需经验<a href="经验回放.html">回放缓冲区</a>，同时支持 on-policy 算法和连续动作空间，用 CPU 集群即可达到与 DQN（GPU）相当的 Atari 性能，且训练时间从 8-10 天缩短至约 1 天（16 CPU）。</p>
+<p>A3C（Asynchronous Advantage <a href="强化学习三大范式.html">Actor-Critic</a>）由 <a href="../entities/DeepMind.html">DeepMind</a> 于 ICML 2016 发表（arXiv:1602.01783）。核心洞察：多个并行 <a href="Worker Agent.html">Worker</a> 与不同环境实例异步交互，天然产生不相关数据，可替代<a href="经验回放.html">经验回放</a>解决训练稳定性问题。这使 A3C 无需经验<a href="经验回放.html">回放缓冲区</a>，同时支持 on-policy <a href="算法.html">算法</a>和连续动作空间，用 CPU 集群即可达到与 DQN（GPU）相当的 Atari 性能，且训练时间从 8-10 天缩短至约 1 天（16 CPU）。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>异步并行架构</strong>：维护全局共享网络（Actor 头 + Critic 头），多个 Worker 各持局部副本，独立与环境交互后计算梯度，异步（lock-free）更新全局参数。每个 Worker 循环：复制全局参数 → 执行 t_max 步 → 计算梯度 → 更新全局。</li>
+<li><strong>异步并行架构</strong>：维护全局共享网络（Actor 头 + Critic 头），多个 <a href="Worker Agent.html">Worker</a> 各持局部副本，独立与环境交互后<a href="计算.html">计算</a>梯度，异步（lock-free）更新全局参数。每个 <a href="Worker Agent.html">Worker</a> 循环：复制全局参数 → 执行 t_max 步 → <a href="计算.html">计算</a>梯度 → 更新全局。</li>
 <li><strong><a href="多步回报.html">n步回报</a> + 熵正则化</strong>：<a href="策略梯度定理.html">策略梯度</a> = ∑_t ∇log π(a_t|s_t)·(R_t - V(s_t)) + β·∇H(π)，其中 R_t 为 n 步 bootstrapped 回报，熵项（β=0.01）鼓励探索避免策略过早收敛。</li>
 <li><strong>局限性</strong>：梯度陈旧（stale gradients）、on-policy 导致样本低效、对超参数敏感。同步版本 A2C 缓解了训练噪声问题，是现代 PPO 实现的基础。</li>
 </ol>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    
+    <a href="A2A 协议.html">&larr; A2A 协议</a>
     <a href="AAAK 方言.html">AAAK 方言 &rarr;</a>
   </div>
 </div>

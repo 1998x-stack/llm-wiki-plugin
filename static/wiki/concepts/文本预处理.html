@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>空白分词</strong>：最简单，标点粘连问题</li>
 <li><strong>标准分词</strong>：Unicode 规则，处理缩写（U.S.A.）、连字符</li>
-<li><strong>中文分词</strong>：无天然空格，主流方法：基于词典前向最大匹配（jieba）、HMM（将分词视为 B/M/E/S 序列标注 + Viterbi 算法）、CRF（判别式版本，特征更丰富）、深度学习（BiLSTM-CRF，LTP/HanLP）</li>
+<li><strong>中文分词</strong>：无天然空格，主流方法：基于词典前向最大匹配（jieba）、HMM（将分词视为 B/M/E/S 序列<a href="../entities/标注.html">标注</a> + Viterbi <a href="算法.html">算法</a>）、CRF（判别式版本，特征更丰富）、深度学习（BiLSTM-CRF，LTP/HanLP）</li>
 <li>
 <p><strong>N-gram 分词</strong>：字符级 bigram 用于拼写容错，词级 bigram 用于短语匹配，但索引膨胀 5-50 倍</p>
 </li>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>词形还原（Lemmatization）</strong>：词典+词性分析，返回真实词典形式（lemma）。比词干提取慢但精确：better→good、geese→<a href="../entities/Goose.html">goose</a>、went→go。搜索引擎通常优先速度，用词干提取；问答系统优先准确性，用词形还原。</p>
 </li>
 <li>
-<p><strong>同义词扩展</strong>：索引时扩展（索引膨胀）vs 查询时扩展（更灵活）。来源：WordNet、人工词典、<a href="Word2Vec.html">Word2Vec</a> 相似词、搜索日志挖掘。</p>
+<p><strong>同义词扩展</strong>：索引时扩展（索引膨胀）vs 查询时扩展（更灵活）。来源：WordNet、人工词典、<a href="../entities/Word2Vec.html">Word2Vec</a> 相似词、搜索日志挖掘。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

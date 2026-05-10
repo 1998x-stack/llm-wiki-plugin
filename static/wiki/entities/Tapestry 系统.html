@@ -126,14 +126,32 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Tapestry 系统</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">paper</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">信息过滤</span><span class="tag">协同过滤</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">信息过滤</span><span class="tag">协同过滤</span><span class="tag">Xerox PARC</span></div>
 </div>
   <div class="content">
-    <h1 id="tapestry">Tapestry 系统</h1>
+    <p>ce: 0.85
+created: 2026-04-16
+updated: 2026-04-16
+last_accessed: 2026-04-16
+source_count: 2
+tags: [推荐系统, 信息过滤, <a href="../concepts/协同过滤.html">协同过滤</a>]
+aliases: ["Tapestry", "<a href="Tapestry 论文.html">Using Collaborative Filtering to Weave an Information Tapestry</a>"]
+relates_to:
+  - target: "<a href="../concepts/协同过滤.html">协同过滤</a>"
+    type: caused
+  - target: "<a href="Xerox PARC.html">Xerox PARC</a>"
+    type: part_of
+  - target: "<a href="GroupLens.html">GroupLens</a>"
+    type: extends
+  - target: "TQL"
+    type: uses
+supersedes: null</p>
+<hr />
+<h1 id="tapestry">Tapestry 系统</h1>
 <h2 id="_1">概述</h2>
 <p>Tapestry 是 <a href="Xerox PARC.html">Xerox PARC</a> 于 1992 年开发的信息过滤系统，首次提出"<a href="../concepts/协同过滤.html">协同过滤</a>"（<a href="../concepts/协同过滤.html">Collaborative Filtering</a>）术语和概念，通过让用户协作分享对文档的主观评价来帮助彼此从海量信息中筛选有价值内容。</p>
 <h2 id="_2">关键内容</h2>
@@ -146,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>Indexer（索引器）</strong>：提取文档可索引字段（发件人、主题、日期、关键词）</li>
 <li><strong>Document Store（文档存储）</strong>：只追加数据库，文档不可修改/删除</li>
-<li><strong>Annotation Store（标注存储）</strong>：保存用户对文档的反应和评价，与文档分离存储且公开</li>
+<li><strong>Annotation Store（<a href="标注存储.html">标注存储</a>）</strong>：保存用户对文档的反应和评价，与文档分离存储且公开</li>
 <li><strong>Filterer（过滤器）</strong>：反复运行用户定义的 TQL 查询，投递匹配文档到用户邮箱</li>
 <li><strong>Little Box（用户邮箱）</strong>：每个用户的专属队列</li>
 <li><strong>Appraiser（评估器）</strong>：对过滤结果分类和优先级排序</li>
@@ -154,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>Reader/Browser（阅读器/浏览器）</strong>：提供"Like It!"和"Hate It!"按钮</p>
 </li>
 <li>
-<p><strong>TQL（Tapestry Query Language）</strong>：量身定制的查询语言，在 SQL 基础上改进，支持可扩展字段、集合值字段、标注引用。用户可在同一查询中混合基于内容的条件和基于标注的条件。</p>
+<p><strong>TQL（<a href="TQL.html">Tapestry Query Language</a>）</strong>：量身定制的查询语言，在 SQL 基础上改进，支持可扩展字段、集合值字段、<a href="标注.html">标注</a>引用。用户可在同一查询中混合基于内容的条件和基于<a href="标注.html">标注</a>的条件。</p>
 </li>
 <li>
 <p><strong>手动<a href="../concepts/协同过滤.html">协同过滤</a>的特征</strong>：</p>
@@ -168,10 +186,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>局限性</strong>：</p>
 </li>
-<li>绝大多数文档未被标注（标注稀疏性）</li>
-<li>激励不对称：标注成本由标注者承担，收益由他人享受</li>
+<li>绝大多数文档未被<a href="标注.html">标注</a>（<a href="标注.html">标注</a>稀疏性）</li>
+<li>激励不对称：<a href="标注.html">标注</a>成本由<a href="标注.html">标注</a>者承担，收益由他人享受</li>
 <li>依赖商业数据库授权，无法自由分发</li>
-<li><a href="../concepts/冷启动问题.html">冷启动问题</a>：新用户不知道该引用谁的标注</li>
+<li><a href="../concepts/冷启动问题.html">冷启动问题</a>：新用户不知道该引用谁的<a href="标注.html">标注</a></li>
 <li>
 <p>只追加存储导致存储需求持续增长</p>
 </li>
@@ -189,13 +207,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/协同过滤.html">协同过滤</a> — Tapestry 首次提出并定义的核心概念</li>
 <li><a href="Xerox PARC.html">Xerox PARC</a> — Tapestry 的开发机构</li>
 <li><a href="GroupLens.html">GroupLens</a> — 受 Tapestry 启发，实现自动化协同过滤</li>
-<li>TQL — Tapestry 的查询语言</li>
+<li><a href="TQL.html">TQL</a> — Tapestry 的查询语言</li>
 <li><a href="../concepts/基于内容的过滤.html">基于内容的过滤</a> — Tapestry 将内容过滤与协同过滤有机结合</li>
+<li><a href="标注存储.html">标注存储</a> — Tapestry 系统的重要组成部分</li>
+<li><a href="标注.html">标注</a> — Tapestry 协同过滤的核心机制</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="TapTap Maker.html">&larr; TapTap Maker</a>
-    <a href="Tat-Seng Chua.html">Tat-Seng Chua &rarr;</a>
+    <a href="Tapestry 论文.html">Tapestry 论文 &rarr;</a>
   </div>
 </div>
 </body>

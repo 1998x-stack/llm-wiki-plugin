@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">样本空间</h1>
 <h2 id="_2">概述</h2>
-<p>样本空间是<a href="../maps/概率论.html">概率论</a>中的基本概念，指的是随机试验的所有可能结果的集合。在<a href="../entities/皮埃尔·德·费马.html">费马</a>解决<a href="点数问题.html">点数问题</a>的<a href="组合枚举法.html">组合枚举法</a>中，他隐含地运用了样本空间的思想——将所有可能的未来情景列举出来，然后计算"有利情景"的比例。</p>
+<p>样本空间是<a href="../maps/概率论.html">概率论</a>中的基本概念，指的是随机试验的所有可能结果的集合。在<a href="../entities/皮埃尔·德·费马.html">费马</a>解决<a href="点数问题.html">点数问题</a>的<a href="组合枚举法.html">组合枚举法</a>中，他隐含地运用了样本空间的思想——将所有可能的未来情景列举出来，然后<a href="计算.html">计算</a>"有利情景"的比例。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">基本定义</h3>
 <p>样本空间（通常记为Ω）是随机试验所有可能结果的集合。</p>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>明确样本空间</strong>：不管实际赌局是否会提前结束，想象一个假设的实验：双方再掷a+b-1局</li>
 <li><strong>列举所有样本点</strong>：每局有"A赢"或"B赢"两种结果，所以共有2^(a+b-1)种等可能的序列</li>
 <li><strong>定义事件</strong>："A最终获胜" = 那些其中至少有a个回合A赢的所有序列</li>
-<li><strong>计算概率</strong>：P(A获胜) = |有利样本点数| / |总样本点数|</li>
+<li><strong><a href="计算.html">计算</a>概率</strong>：P(A获胜) = |有利样本点数| / |总样本点数|</li>
 </ol>
 <p>这正是古典概率的基本思想：<strong>在等可能的情形下，概率 = 有利结果数 / 总结果数</strong>。</p>
 <h3 id="_7">样本空间的性质</h3>
@@ -185,8 +185,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_9">意义</h2>
 <h3 id="_10">为什么样本空间重要</h3>
 <ol>
-<li><strong>概率的基础</strong>：样本空间是定义概率的前提——没有明确的样本空间，就无法计算概率</li>
-<li><strong>古典概率的基础</strong>：在等可能的样本空间中，概率计算简化为组合计数</li>
+<li><strong>概率的基础</strong>：样本空间是定义概率的前提——没有明确的样本空间，就无法<a href="计算.html">计算</a>概率</li>
+<li><strong>古典概率的基础</strong>：在等可能的样本空间中，概率<a href="计算.html">计算</a>简化为组合计数</li>
 <li><strong>现代概率的基础</strong>：<a href="../entities/安德烈·柯尔莫哥洛夫.html">Kolmogorov</a>的公理化体系建立在样本空间和事件的基础上</li>
 </ol>
 <h3 id="_11">在概率论中的地位</h3>

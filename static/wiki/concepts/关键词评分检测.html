@@ -140,10 +140,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>两套实现</strong>：<code>room_detector_local.py</code>（本地文件，~60 个关键词映射规则）和 <code>convo_miner.py</code>（对话内容，5 大分类约 56 个关键词）</li>
 <li><strong>四级检测优先级</strong>：1. 文件夹路径（/auth/ → auth room）→ 2. 文件名（auth.py → auth room）→ 3. 内容关键词评分 → 4. 默认归入 general</li>
-<li><strong>关键词评分逻辑</strong>：对每条内容的前 2000 个字符计算各分类命中关键词数量，最高分的分类成为 Room。速度优先，只扫描前 2000 字符</li>
+<li><strong>关键词评分逻辑</strong>：对每条内容的前 2000 个字符<a href="计算.html">计算</a>各分类命中关键词数量，最高分的分类成为 Room。速度优先，只扫描前 2000 字符</li>
 <li><strong>Room 关键词分类</strong>：technical（13 个关键词：code、python、api 等）、architecture（10 个）、planning（10 个）、decisions（10 个）、problems（10 个）</li>
 <li><strong>无 LLM 调用</strong>：纯关键词统计，零模型成本。这是 <a href="../entities/MemPalace.html">MemPalace</a> 设计哲学的体现——结构本身带来精度提升，不需要额外模型</li>
-<li><strong>交互式确认</strong>：用户可以修改 Room 分配，修改保存到 <code>mempalace.yaml</code> 配置文件</li>
+<li><strong>交互式确认</strong>：用户可以修改 Room 分配，修改保存到 <code>mempalace.yaml</code> <a href="Configuration.html">配置</a>文件</li>
 </ul>
 <h2 id="_4">来源</h2>
 <ul>

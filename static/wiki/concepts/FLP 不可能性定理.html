@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="flp">FLP 不可能性定理</h1>
 <h2 id="_1">概述</h2>
-<p>FLP 不可能性定理（1985年）严格证明了：在完全异步的<a href="分布式系统.html">分布式系统</a>中，即使只有一个进程可能崩溃，也不存在任何确定性算法能够保证共识一定能达成。</p>
+<p>FLP 不可能性定理（1985年）严格证明了：在完全异步的<a href="分布式系统.html">分布式系统</a>中，即使只有一个进程可能崩溃，也不存在任何确定性<a href="算法.html">算法</a>能够保证共识一定能达成。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">定理内容</h3>
-<p><a href="../entities/恩斯特·菲舍尔.html">Fischer</a>、Lynch 和 Paterson 于1985年证明：在异步模型中，任何确定性共识算法都存在至少一个执行路径，使得算法永远无法终止。</p>
+<p><a href="../entities/恩斯特·菲舍尔.html">Fischer</a>、Lynch 和 Paterson 于1985年证明：在异步模型中，任何确定性共识<a href="算法.html">算法</a>都存在至少一个执行路径，使得<a href="算法.html">算法</a>永远无法终止。</p>
 <h3 id="paxos">Paxos 的绕过策略</h3>
 <p><a href="Paxos 算法.html">Paxos</a> 没有违反 FLP 定理，而是巧妙地绕过了它：
 - <strong>安全性无条件保证</strong>：无论发生什么，永远不会产生错误结果
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li>FLP 定理告诉我们：不可能在所有情况下都保证共识达成</li>
 <li>但实践中，FLP 的"坏路径"极少发生</li>
-<li><a href="Paxos 算法.html">Paxos</a>、Raft 等算法在实践中几乎总是能终止</li>
+<li><a href="Paxos 算法.html">Paxos</a>、Raft 等<a href="算法.html">算法</a>在实践中几乎总是能终止</li>
 </ul>
 <h2 id="_5">来源</h2>
 <ul>

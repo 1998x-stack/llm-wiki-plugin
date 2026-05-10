@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ol>
 <h3 id="_5">训练优化</h3>
 <ul>
-<li><strong><a href="负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></strong>：每次只更新正样本 + K 个随机负样本（K=5~20），替代全量 Softmax，速度提升 1000 倍以上</li>
+<li><strong><a href="负采样（Negative Sampling）.html">负采样（Negative Sampling）</a></strong>：每次只更新正样本 + K 个随机负样本（K=5~20），替代全量 <a href="Softmax.html">Softmax</a>，速度提升 1000 倍以上</li>
 <li><strong><a href="负采样.html">负采样</a>策略</strong>：按词频的 3/4 次方采样 P(w) ∝ freq(w)^(3/4)</li>
 <li><strong>高频词下采样</strong>：丢弃概率 P(wᵢ) = 1 - √(t / freq(wᵢ))，t=1e-5，减少 "the"、"a" 等无信息词的影响</li>
 </ul>
@@ -159,15 +159,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>几何解释</strong>：向量空间中存在<strong>语义方向（Semantic Direction）</strong>，某个维度方向编码"皇室"、"国家→首都"、"动词时态"等语义概念。</p>
 <h3 id="_7">工程实现</h3>
 <ul>
-<li>使用 PyTorch 实现时，中心词和上下文词各有独立的嵌入<a href="矩阵.html">矩阵</a></li>
+<li>使用 <a href="../entities/PyTorch.html">PyTorch</a> 实现时，中心词和上下文词各有独立的嵌入<a href="矩阵.html">矩阵</a></li>
 <li>推荐使用 Sparse<a href="Adam（自适应矩估计）.html">Adam 优化器</a>，学习率线性衰减</li>
-<li>典型配置：embed_dim=300, window_size=5, n_negatives=5</li>
+<li>典型<a href="Configuration.html">配置</a>：embed_dim=300, window_size=5, n_negatives=5</li>
 </ul>
 <h3 id="_8">演化谱系</h3>
-<p>Word2Vec（2013）→ <span style="color:#e74c3c" title="broken link">GloVe</span>（2014，Stanford）→ <span style="color:#e74c3c" title="broken link">FastText</span>（2016，<a href="../entities/Meta.html">Facebook</a>）→ <span style="color:#e74c3c" title="broken link">ELMo</span>（2018，AllenNLP）→ <a href="BERT.html">BERT</a>（2018，<a href="../entities/Google.html">Google</a>）→ 当今大模型内置词<a href="嵌入表示.html">嵌入层</a></p>
+<p>Word2Vec（2013）→ <span style="color:#e74c3c" title="broken link">GloVe</span>（2014，<a href="../entities/斯坦福大学.html">Stanford</a>）→ <span style="color:#e74c3c" title="broken link">FastText</span>（2016，<a href="../entities/Meta.html">Facebook</a>）→ <span style="color:#e74c3c" title="broken link">ELMo</span>（2018，AllenNLP）→ <a href="BERT.html">BERT</a>（2018，<a href="../entities/Google.html">Google</a>）→ 当今大模型内置词<a href="嵌入表示.html">嵌入层</a></p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/08_word2vec_2013.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_09_word2vec.md</span> — 全文精读</li>
 </ul>
 <h2 id="_10">相关</h2>
 <ul>
@@ -180,8 +181,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Wold 分解定理.html">&larr; Wold 分解定理</a>
-    <a href="XML Plan.html">XML Plan &rarr;</a>
+    <a href="Wold-Kolmogorov Prediction Theory.html">&larr; Wold-Kolmogorov Prediction Theory</a>
+    <a href="Worker Agent.html">Worker Agent &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-compaction">上下文压缩（Context Compaction）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Claude Code.html">Claude Code</a> 的<a href="上下文压缩.html">上下文压缩</a>功能（<code>/compact</code> 命令）将长对话压缩成精简摘要，释放<a href="上下文窗口.html">上下文窗口</a>空间，同时保留关键信息和任务连续性。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 的<a href="上下文压缩.html">上下文压缩</a>功能（<code>/compact</code> 命令）将长对话压缩成精简摘要，释放<a href="上下文窗口.html">上下文窗口</a>空间，同时保留关键信息和任务连续性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>工作原理</strong>：<code>/compact [instructions]</code> 命令将当前对话历史压缩成 AI 生成的摘要，可附带聚焦指令告诉 Claude 压缩时应保留哪些关键信息。压缩后，旧消息被替换为摘要，释放 token 空间。</p>
+<p><strong>工作原理</strong>：<code>/compact [instructions]</code> 命令将当前对话历史压缩成 AI 生成的摘要，可附带聚焦指令告诉 <a href="../entities/Claude_Code.html">Claude</a> 压缩时应保留哪些关键信息。压缩后，旧消息被替换为摘要，释放 token 空间。</p>
 </li>
 <li>
 <p><strong>与 <a href="Checkpoints 与 Rewind.html">Rewind</a> 的关系</strong>：<a href="Checkpoints 与 Rewind.html">Rewind</a> 的"从这里开始总结"选项也会执行类似压缩，但 <code>/compact</code> 是主动触发的独立操作，更灵活。</p>

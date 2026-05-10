@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>冒号语法糖</strong>：<code>obj:method(x)</code> 等价于 <code>obj.method(obj, x)</code>；定义时 <code>function T:foo(x)</code> 等价于 <code>function T.foo(self, x)</code>。冒号自动传入 <code>self</code>，是 Lua OOP 的语法基础。</li>
 <li><strong>经典类模式</strong>：将类本身既作命名空间又作 metatable，令 <code>Class.__index = Class</code>，实例通过 <code>setmetatable({}, Class)</code> 创建。实例访问不到的字段会沿 <code>__index</code> 链在 Class 上查找，实现方法共享。</li>
-<li><strong>构造器约定</strong>：通常写 <code>Class.new(...)</code> 而非 <code>Class:new(...)</code> 以避免多余的 self 参数。构造器内 <code>local self = setmetatable({}, Class)</code> 后设置实例字段并 return self。另一种风格是 <code>Class:new(...)</code> 使 <code>self</code> 可以是子类，对继承更友好。</li>
+<li><strong>构造器约定</strong>：通常写 <code>Class.new(...)</code> 而非 <code>Class:new(...)</code> 以避免多余的 self 参数。构造器内 <code>local self = setmetatable({}, Class)</code> 后<a href="Settings.html">设置</a>实例字段并 return self。另一种风格是 <code>Class:new(...)</code> 使 <code>self</code> 可以是子类，对继承更友好。</li>
 <li><strong>私有辅助函数</strong>：模块内用 <code>local function helper(...)</code> 声明的函数外部无法访问，起到私有方法作用。如 <code>local function clamp(v, min, max)</code> 在模块内部使用，不随 return 导出。</li>
 <li><strong>静态方法</strong>：直接挂在类表上的普通函数（用 <code>.</code> 定义），不接受 self，常用于工厂方法和类型检查，如 <code>Class.isInstance(obj)</code>。</li>
 <li><strong>继承扩展</strong>：子类可设 <code>Child.__index = Child</code>，并令 <code>setmetatable(Child, {__index = Parent})</code>，形成两级原型链——实例 → 子类 → 父类。子类构造器调用 <code>Parent.new(self, ...)</code> 复用父类初始化逻辑。</li>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">谱方法</h1>
 <h2 id="_2">概述</h2>
-<p>谱方法（Spectral Methods）是求解偏微分方程（PDE）的一类高精度数值方法，其核心思想是将未知函数展开为<strong>全局基函数</strong>（如<a href="切比雪夫多项式.html">切比雪夫多项式</a>或傅里叶基函数）的有限级数，利用展开系数代替点值来离散化方程。对于光滑解，谱方法收敛速度是<strong>指数级</strong>（谱精度），远优于有限差分或<a href="有限元方法.html">有限元方法</a>的代数收敛速度。代价是仅适用于规则计算域和光滑问题。</p>
+<p>谱方法（Spectral Methods）是求解偏微分方程（PDE）的一类高精度数值方法，其核心思想是将未知函数展开为<strong>全局基函数</strong>（如<a href="切比雪夫多项式.html">切比雪夫多项式</a>或傅里叶基函数）的有限级数，利用展开系数代替点值来离散化方程。对于光滑解，谱方法收敛速度是<strong>指数级</strong>（谱精度），远优于有限差分或<a href="有限元方法.html">有限元方法</a>的代数收敛速度。代价是仅适用于规则<a href="计算.html">计算</a>域和光滑问题。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心思想</h3>
 <p><strong>有限差分 / 有限元</strong>：函数用局部分段低次多项式表示，误差 $O(h^p)$（$h$ 为网格尺寸）。</p>
@@ -169,12 +169,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_5">两类基函数</h3>
-<p><strong>傅里叶谱方法</strong>：适用于<strong>周期边界</strong>（流体周期通道流、信号处理），基函数 $e^{ikx}$；系数由 FFT 计算。</p>
-<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lobatto nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/FFT 计算。</p>
+<p><strong>傅里叶谱方法</strong>：适用于<strong>周期边界</strong>（流体周期通道流、信号处理），基函数 $e^{ikx}$；系数由 FFT <a href="计算.html">计算</a>。</p>
+<p><strong>切比雪夫谱方法</strong>：适用于<strong>非周期边界</strong>，基函数 $T_k(x)$；节点取切比雪夫-高斯-洛巴托点（Chebyshev-Gauss-Lobatto nodes）$x_j = \cos(j\pi/N)$；系数由 DCT/FFT <a href="计算.html">计算</a>。</p>
 <h3 id="clenshaw-curtis">Clenshaw-Curtis 求积</h3>
 <p>以切比雪夫极值点 $x_k = \cos(k\pi/n)$ 为节点，权重通过对切比雪夫展开积分得到：</p>
 <p>$$\int_{-1}^1 f(x)dx \approx \sum_{k=0}^n w_k f(x_k)$$</p>
-<p>优势：节点嵌套（加倍节点数时旧节点保留），权重可用 FFT 以 $O(n\log n)$ 计算，实践精度可与<a href="高斯求积公式.html">高斯求积公式</a>媲美（Trefethen, 2008）。</p>
+<p>优势：节点嵌套（加倍节点数时旧节点保留），权重可用 FFT 以 $O(n\log n)$ <a href="计算.html">计算</a>，实践精度可与<a href="高斯求积公式.html">高斯求积公式</a>媲美（Trefethen, 2008）。</p>
 <h3 id="galerkin">配点法与 Galerkin 法</h3>
 <p><strong>配点法</strong>（Pseudospectral）：要求方程在 $N+1$ 个配点处精确满足，等价于在物理空间操作，可直接利用 FFT/DCT。</p>
 <p><strong>Galerkin 谱方法</strong>：要求残差与每个基函数正交，在频率空间操作，便于误差分析。</p>

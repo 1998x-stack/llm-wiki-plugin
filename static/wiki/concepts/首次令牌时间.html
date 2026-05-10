@@ -141,14 +141,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>TTFT = 从会话接受工作到产生第一个响应 token 的时间间隔。</p>
 <h3 id="agent">在 Agent 架构中的意义</h3>
 <p>在 Agent 系统中，TTFT 受以下因素影响：
-- 容器配置时间
-- 仓库克隆时间
+- 容器<a href="Configuration.html">配置</a>时间
+- <a href="仓库.html">仓库</a>克隆时间
 - 进程启动时间
-- 从服务器获取待处理事件的时间</p>
+- 从<a href="服务.html">服务</a>器获取待处理事件的时间</p>
 <h3 id="ttft">脑手分离对 TTFT 的影响</h3>
-<p>在耦合设计中，每个"大脑"需要一个容器，推理只能在容器配置完成后开始——每个会话都需支付完整的容器设置成本。</p>
+<p>在耦合设计中，每个"大脑"需要一个容器，推理只能在容器<a href="Configuration.html">配置</a>完成后开始——每个会话都需支付完整的容器<a href="Settings.html">设置</a>成本。</p>
 <p><a href="脑手分离架构.html">脑手分离架构</a> 后：
-- 容器仅在需要时通过工具调用配置
+- 容器仅在需要时通过工具调用<a href="Configuration.html">配置</a>
 - 不需要容器的会话可立即开始推理
 - 编排层从<a href="会话日志.html">会话日志</a>拉取待处理事件后即可开始推理</p>
 <h3 id="_4">性能改善</h3>
@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="风险社会.html">&larr; 风险社会</a>
+    <a href="风险隔离.html">&larr; 风险隔离</a>
     <a href="马尔可夫体制转换模型.html">马尔可夫体制转换模型 &rarr;</a>
   </div>
 </div>

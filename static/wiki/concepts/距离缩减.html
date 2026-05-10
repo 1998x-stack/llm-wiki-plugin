@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>在 <a href="../entities/MemPalace.html">MemPalace</a> 中的应用</strong>：</li>
 <li><a href="精确短语引号提取.html">精确短语引号提取</a>：60% 距离缩减 → 目标从"未排名"跳到第 1</li>
 <li><a href="人名权重增强.html">人名权重增强</a>：40% 距离缩减 → 目标从"未排名"跳到第 2</li>
-<li><strong>与重新排序的区别</strong>：距离缩减是轻量级的分数调整，不需要重新计算向量或调用 LLM</li>
+<li><strong>与重新排序的区别</strong>：距离缩减是轻量级的分数调整，不需要重新<a href="计算.html">计算</a>向量或调用 LLM</li>
 <li><strong>参数选择</strong>：不同场景使用不同的缩减比例（40%-60%），需要根据实际效果调优</li>
 <li><strong>风险</strong>：过度缩减可能导致不相关内容被过度提升，需要设定合理的触发条件</li>
 </ul>

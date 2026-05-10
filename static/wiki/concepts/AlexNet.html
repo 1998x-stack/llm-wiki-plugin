@@ -129,24 +129,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">卷积神经网络</span></div>
 </div>
   <div class="content">
     <h1 id="alexnet">AlexNet</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>AlexNet 是 <a href="../entities/Alex Krizhevsky.html">Alex Krizhevsky</a> 于 2012 年提出的深度<a href="卷积神经网络（CNN）.html">卷积神经网络</a>，在 <a href="ImageNet.html">ImageNet</a> 竞赛中将 Top-5 错误率从 25.8% 降至 15.3%，标志着深度学习时代的正式开启。</p>
-<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<p>AlexNet 是 <a href="../entities/Alex Krizhevsky.html">Alex Krizhevsky</a> 于 2012 年提出的深度<a href="卷积神经网络（CNN）.html">卷积神经网络</a>，在 <a href="../entities/ILSVRC.html">ILSVRC</a> 竞赛中以 16.4% <a href="Top-5 错误率.html">Top-5 错误率</a>夺冠，超越第二名 9.8 个百分点，标志着深度学习时代的正式开启。</p>
+<h2 id="300">关键内容 (≥300字符, 用双链)</h2>
 <ol>
-<li><strong>架构设计</strong>：8 层网络（5 层卷积 + 3 层全连接），输入 224×224×3 RGB 图像，总参数量约 6200 万。Conv1 使用 96 个 11×11 大卷积核（stride=4）捕获低级特征，后续层逐步使用 5×5 和 3×3 小卷积核叠加感受野。FC6/FC7 各 4096 神经元，FC8 为 1000 类输出。</li>
-<li><strong>五大技术创新</strong>：(1) <a href="ReLU激活函数.html">ReLU激活函数</a>替代 Sigmoid，训练速度快 6 倍且解决<a href="梯度消失.html">梯度消失</a>；(2) 双 GPU 并行训练（GTX 580），将训练时间从数月缩短至 5-6 天；(3) <a href="Dropout（随机失活）.html">Dropout（随机失活）</a>（p=0.5）正则化，防止<a href="过拟合（Overfitting）.html">过拟合</a>；(4) <a href="数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>（随机裁剪、水平翻转、PCA 色彩扰动），将 120 万样本等效扩展至数十亿；(5) <a href="局部响应归一化（LRN）.html">局部响应归一化（LRN）</a>，受神经科学"侧抑制"启发。</li>
-<li><strong>历史影响</strong>：2012 年 ILSRC 竞赛中领先第二名 10 个百分点，是跨越式突破而非渐进式改进。此后深度学习彻底取代手工特征+SVM 的传统 CV <a href="规范化理论.html">范式</a>，催生了 VGGNet（2014）、Goog<a href="卷积神经网络（CNN）.html">LeNet</a>（2014）、<span style="color:#e74c3c" title="broken link">ResNet</span>（2015）等后续架构，并直接引爆 AI 产业投资浪潮——NVIDIA GPU 从游戏显卡变为 AI 芯片，<a href="../entities/Google.html">Google</a> 收购 <a href="../entities/DeepMind.html">DeepMind</a>，自动驾驶、医疗影像等商业应用爆发。</li>
-<li><strong>演化路径</strong>：AlexNet → VGGNet（更深、全 3×3）→ Goog<a href="卷积神经网络（CNN）.html">LeNet</a>（Inception 模块）→ <a href="残差网络（ResNet）.html">ResNet</a>（<a href="残差连接.html">残差连接</a>、152 层）→ DenseNet（密集连接）→ EfficientNet（复合缩放）→ ViT（<a href="Transformer 架构.html">Transformer</a> 取代 CNN）。</li>
+<li><strong>架构设计</strong>：8 层网络（5 层卷积 + 3 层全连接），输入 224×224×3 RGB 图像，总参数量约 6200 万。Conv1 使用 96 个 11×11 大卷积核（stride=4）捕获低级特征，后续层逐步使用 5×5 和 3×3 <a href="3×3卷积核.html">小卷积核</a>叠加<a href="感受野.html">感受野</a>。FC6/FC7 各 4096 神经元，FC8 为 1000 类输出。架构具体为：输入(224×224×3) → Conv1(96个11×11卷积核,stride=4) → ReLU → LRN → MaxPool → Conv2(256个5×5卷积核) → ReLU → LRN → MaxPool → Conv3/4/5(384/384/256个<a href="3×3卷积核.html">3×3卷积核</a>) → FC1/FC2/FC3(4096/4096/1000神经元) → <a href="Softmax.html">Softmax</a>。</li>
+<li><strong>五大技术创新</strong>：(1) <a href="ReLU激活函数.html">ReLU激活函数</a>替代 Sigmoid，训练速度快 6 倍且解决<a href="梯度消失.html">梯度消失</a>；(2) 双 <a href="GPU训练.html">GPU 并行训练</a>（GTX 580），将训练时间从数月缩短至 5-6 天；(3) <a href="Dropout（随机失活）.html">Dropout（随机失活）</a>（p=0.5）正则化，防止<a href="过拟合（Overfitting）.html">过拟合</a>；(4) <a href="数据增强（Data Augmentation）.html">数据增强（Data Augmentation）</a>（随机裁剪、水平翻转、PCA 色彩扰动），将 120 万样本等效扩展至数十亿；(5) <a href="局部响应归一化（LRN）.html">局部响应归一化（LRN）</a>，受神经科学"<a href="侧抑制.html">侧抑制</a>"启发。</li>
+<li><strong>竞赛结果</strong>：2012 年 <a href="../entities/ILSVRC.html">ILSVRC</a> 竞赛中，AlexNet <a href="Top-5 错误率.html">Top-5 错误率</a> 16.4%，第二名（ISI，传统方法）26.2%，领先 9.8 个百分点。2010 年冠军 28.2%，2011 年 25.8%——AlexNet 是降维打击而非渐进式改进。这一胜利彻底终结了"<a href="手工特征工程.html">手工特征工程</a>"时代，宣告深度学习革命正式开始。</li>
+<li><strong>产业涟漪效应</strong>：AlexNet 发表后 6 个月内，<a href="../entities/Google.html">Google</a>、<a href="../entities/Facebook.html">Facebook</a>、<a href="../entities/百度.html">百度</a>纷纷建立深度学习研究团队。2013.03 <a href="../entities/Geoffrey E. Hinton.html">Hinton</a> 公司 <a href="../entities/DNNresearch.html">DNNresearch</a> 以 4400 万美元被 <a href="../entities/Google.html">Google</a> 收购；<a href="../entities/DeepMind.html">DeepMind</a> 被 <a href="../entities/Google.html">Google</a> 以 5 亿美元收购；2014 <a href="../entities/Facebook AI Research (FAIR).html">Facebook AI Research (FAIR)</a> 成立；<a href="../entities/百度.html">百度</a> IDL 大规模扩张。</li>
+<li><strong>可解释性</strong>：研究者可视化了 AlexNet 第一层卷积核学到的特征——边缘检测器、颜色对比检测器、类似 Gabor 滤波器的纹理检测器。这些不是人工设计的，而是网络从数据中自动学到的，与人类视觉系统相似。深层特征越来越抽象：第 1 层边缘/颜色 → 第 2 层纹理/角点 → 第 3-4 层物体部件 → 第 5 层整体概念。</li>
+<li><strong>关键超参数</strong>：初始学习率 0.01（验证集停止改善时除以 10），<a href="Momentum（动量）.html">Momentum（动量）</a> 0.9，<a href="权重衰减（Weight Decay）.html">权重衰减（Weight Decay）</a> 0.0005，Batch Size 128，训练 90 epochs 约 5-6 天。</li>
+<li><strong>演化路径与影响</strong>：AlexNet 发表后迅速催生了后续研究，包括 <a href="2013">[ZFNet]</a>、<a href="2014">[VGGNet]</a>、Goog<a href="2014">[卷积神经网络（CNN）|LeNet]</a>、<a href="2015">[残差网络（ResNet）|ResNet]</a>等。它不仅奠定了深度学习在<a href="计算.html">计算</a>机视觉中的主导地位，还开创了<a href="迁移学习.html">迁移学习</a>的新时代——预训练的AlexNet特征被应用于医疗图像诊断、自动驾驶、工业检测等多个领域，成为深度学习时代的"通用特征提取器"。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
 <li>[Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — 原始论文</li>
 <li>[raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件</li>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读（新）</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
@@ -160,6 +164,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../entities/ImageNet Classification with Deep Convolutional Neural Networks (2012 论文).html">ImageNet Classification with Deep Convolutional Neural Networks (2012 论文)</a> — described_in</li>
 <li><a href="LeNet-5.html">LeNet-5</a> — extends</li>
 <li><a href="Batch Normalization.html">Batch Normalization</a> — supersedes_lrn</li>
+<li><a href="../entities/ILSVRC（ImageNet大规模视觉识别挑战赛）.html">ILSVRC（ImageNet大规模视觉识别挑战赛）</a> — won</li>
+<li><a href="迁移学习（Transfer Learning）.html">迁移学习（Transfer Learning）</a> — enabled</li>
+<li><a href="GPU训练.html">GPU训练</a> — pioneered</li>
+<li><a href="稀疏激活.html">稀疏激活</a> — produces</li>
+<li><a href="侧抑制.html">侧抑制</a> — inspired_lrn</li>
+<li><a href="权重衰减（Weight Decay）.html">权重衰减（Weight Decay）</a> — uses</li>
+<li><a href="卷积核可视化.html">卷积核可视化</a> — demonstrated</li>
+<li><a href="Top-5 错误率.html">Top-5 错误率</a> — evaluated_by</li>
+<li><a href="特征工程（Feature Engineering）.html">特征工程（Feature Engineering）</a> — superseded</li>
+<li><a href="../entities/DNNresearch.html">DNNresearch</a> — inspired</li>
+<li><a href="../entities/ZFNet（2013 论文）.html">ZFNet（2013 论文）</a> — followed_by</li>
 </ul>
   </div>
   <div class="page-nav">

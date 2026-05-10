@@ -139,12 +139,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>自然语言调度</strong>：无需记忆 crontab 格式，直接用自然语言定义任务，如"每天早上 9 点，搜集科技新闻摘要，发到我的 Telegram"</li>
-<li><strong>执行流程</strong>：调度器每分钟检查 → 从 jobs.json 加载到期任务 → 创建全新 AIAgent（无会话历史）→ 注入任务附加 <a href="Agent Skills.html">Skills</a> → 运行任务提示词 → delivery.send() 投递 → 更新 next_run 时间戳</li>
+<li><strong>执行流程</strong>：调度器每分钟检查 → 从 jobs.json 加载到期任务 → 创建全新 AIAgent（无会话历史）→ 注入任务附加 <a href="../entities/Agent Skills.html">Skills</a> → 运行任务提示词 → delivery.send() 投递 → 更新 next_run 时间戳</li>
 <li><strong>关键设计：每次创建全新 AIAgent</strong>：Cron 任务是隔离的，不携带历史，确保结果的确定性和可重现性。这与<a href="冻结快照模式.html">冻结快照模式</a>（会话开始时加载 <a href="语义记忆.html">MEMORY.md</a> + USER.md 快照）形成对比——Cron 任务完全无状态</li>
 <li><strong>任务管理命令</strong>：<code>hermes cron list/show/run/disable/delete</code>，支持列出、查看、手动执行、暂停、删除任务</li>
 <li><strong>与 <a href="网关与路由器.html">Gateway</a> 的协同</strong>：<a href="网关与路由器.html">Gateway</a> 处理被动响应，Cron 处理主动触发，两者共用相同的 AIAgent 执行引擎和 delivery 投递系统，实现"被动 + 主动双模式"</li>
-<li><strong>存储格式</strong>：任务定义存储在 jobs.json 中，包含 cron 表达式、目标平台、任务提示词、附加 <a href="Agent Skills.html">Skills</a> 等</li>
-<li><strong>典型场景</strong>：新闻摘要推送、Git 提交分析周报、API 费用统计月报、定期数据监控告警</li>
+<li><strong>存储格式</strong>：任务定义存储在 jobs.json 中，包含 cron 表达式、目标平台、任务提示词、附加 <a href="../entities/Agent Skills.html">Skills</a> 等</li>
+<li><strong>典型场景</strong>：新闻摘要推送、<a href="Git Commit.html">Git 提交</a>分析周报、API 费用统计月报、定期数据监控告警</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Cook-Levin 定理.html">&larr; Cook-Levin 定理</a>
+    <a href="Coordinator Mode.html">&larr; Coordinator Mode</a>
     <a href="Cross-encoder与Bi-encoder.html">Cross-encoder与Bi-encoder &rarr;</a>
   </div>
 </div>

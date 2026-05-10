@@ -138,10 +138,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>StaticModel 是 <a href="../entities/UrhoX引擎.html">UrhoX</a> 中最基础的 3D 渲染组件（继承自 Drawable），用于渲染不含骨骼动画的静态网格模型，支持多材质槽和遮挡 LOD。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
-<li><strong>设置模型</strong>：<code>model</code> 属性指向 Model 资源（<code>.mdl</code> 文件）</li>
+<li><strong><a href="Settings.html">设置</a>模型</strong>：<code>model</code> 属性指向 Model 资源（<code>.mdl</code> 文件）</li>
 <li><strong>材质绑定</strong>：<code>SetMaterial(index, material)</code> 按几何体槽分配材质；无索引版本全槽应用</li>
 <li><strong>材质列表</strong>：<code>ApplyMaterialList(fileName)</code> 批量加载 <code>.txt</code> 格式材质列表</li>
-<li><strong>几何体数量</strong>：<code>numGeometries</code> 对应模型内的子网格数量，每个可独立设置材质</li>
+<li><strong>几何体数量</strong>：<code>numGeometries</code> 对应模型内的子网格数量，每个可独立<a href="Settings.html">设置</a>材质</li>
 <li><strong>遮挡 LOD</strong>：<code>occlusionLodLevel</code> 指定用于遮挡剔除的 LOD 级别</li>
 <li><strong>包围盒</strong>：<code>boundingBox</code>（只读）用于碰撞检测和视锥剔除</li>
 <li><strong>点包含检测</strong>：<code>IsInside(worldPos)</code> / <code>IsInsideLocal(localPos)</code> 判断点是否在模型内</li>
@@ -161,8 +161,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Sprint合约制.html">&larr; Sprint合约制</a>
-    <a href="Subagents-in-Claude-Code.html">Subagents-in-Claude-Code &rarr;</a>
+    <a href="State-Space Model.html">&larr; State-Space Model</a>
+    <a href="Stationary Time Series.html">Stationary Time Series &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="llm">零 LLM 调用内存层</h1>
 <h2 id="_1">概述</h2>
-<p>AI 记忆系统的架构设计原则：在内存的写入和读取过程中不调用任何 LLM，所有分类、检测、压缩操作通过确定性算法（正则表达式、关键词评分）完成。</p>
+<p>AI 记忆系统的架构设计原则：在内存的写入和读取过程中不调用任何 LLM，所有分类、检测、压缩操作通过确定性<a href="算法.html">算法</a>（正则表达式、关键词评分）完成。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
-<li><strong>核心原则</strong>：内存层应该是确定性的、免费的、离线的。不依赖 LLM 做内存管理决策</li>
+<li><strong>核心原则</strong>：内存层应该是确定性的、免费的、离线的。不依赖 LLM 做<a href="内存管理.html">内存管理</a>决策</li>
 <li><strong>技术实现</strong>：所有 Room 检测、内容分类、压缩全部用正则表达式和关键词评分完成，无需 LLM 参与</li>
 <li><strong>与传统方案对比</strong>：Mem0/Zep 在写入和读取时频繁调用 LLM 做信息提取和摘要；<a href="../entities/MemPalace.html">MemPalace</a> 内存层零 LLM 调用</li>
 <li><strong>优势</strong>：</li>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>确定性行为（相同输入产生相同输出）</li>
 <li>完全离线运行</li>
 <li>可预测的性能表现</li>
-<li><strong>依赖极简</strong>：仅 <a href="../entities/ChromaDB.html">ChromaDB</a>（向量存储）+ PyYAML（配置），无 LangChain、LlamaIndex、<a href="../entities/OpenAI.html">OpenAI</a> SDK</li>
+<li><strong>依赖极简</strong>：仅 <a href="../entities/ChromaDB.html">ChromaDB</a>（向量存储）+ PyYAML（<a href="Configuration.html">配置</a>），无 LangChain、LlamaIndex、<a href="../entities/OpenAI.html">OpenAI</a> SDK</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -162,7 +162,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="集体表象.html">&larr; 集体表象</a>
-    <a href="零和博弈.html">零和博弈 &rarr;</a>
+    <a href="零信任架构.html">零信任架构 &rarr;</a>
   </div>
 </div>
 </body>

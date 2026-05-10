@@ -127,47 +127,127 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / yfinance</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具与框架</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">finance</span><span class="tag">stocks</span><span class="tag">data</span><span class="tag">api</span><span class="tag">python-library</span><span class="tag">market-data</span><span class="tag">quantitative-finance</span></div>
 </div>
   <div class="content">
     <h1 id="yfinance">yfinance</h1>
 <h2 id="_1">概述</h2>
-<p>yfinance 是 Yahoo Finance 非官方 Python 封装库，提供全球市场数据（美股、港股、A 股、ETF、加密货币、外汇、期货、指数），完全免费无需 API Key，是研究和原型开发的首选工具，但不建议用于生产交易系统。</p>
+<p>yfinance是Yahoo Finance非官方<a href="../concepts/Python.html">Python</a>封装库，提供零<a href="../concepts/Configuration.html">配置</a>访问全球60+国家市场的股票数据，包括历史行情、财务报表、期权链等，适用于学术研究和策略原型验证。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
+<li><strong>项目背景</strong>：</li>
+<li>最新版本：1.2.1（2026-04-07，活跃维护）</li>
+<li>作者：Ran Aroussi（2019年从fix-yahoo-finance改名）</li>
+<li>许可证：Apache 2.0</li>
+<li><a href="../concepts/Python.html">Python</a>要求：≥ 3.8</li>
+<li>数据源：Yahoo Finance公开接口（非官方，爬取+非公开API）</li>
 <li>
-<p><strong>项目概览</strong>：版本 1.2.1（2026-04-07），Python ≥ 3.8，Apache 2.0 License，作者 Ran Aroussi，GitHub Stars 15,000+。</p>
+<p>市场覆盖：美股、港股、A股、ETF、加密货币、外汇、<a href="../concepts/期货数据.html">期货</a>、指数</p>
 </li>
 <li>
-<p><strong>核心风险</strong>：使用 Yahoo Finance 非授权接口，Yahoo 可随时改变接口结构导致功能异常。仅限研究/教育目的，不建议用于生产交易系统。</p>
+<p><strong>核心API体系</strong>：</p>
+</li>
+<li><strong>Ticker对象</strong>：核心功能模块<ul>
+<li><code>ticker.history()</code> - 获取历史K线数据（OHLCV + Dividends + Splits）</li>
+<li><code>ticker.fast_info</code> - 轻量级实时快照（价格/市值/PE）</li>
+<li><code>ticker.financials</code>, <code>ticker.quarterly_financials</code> - 财务报表（年度/季度）</li>
+<li><code>ticker.balance_sheet</code>, <code>ticker.quarterly_balance_sheet</code> - 资产负债表</li>
+<li><code>ticker.cashflow</code>, <code>ticker.quarterly_cashflow</code> - 现金流量表</li>
+<li><code>ticker.info</code> - 公司概况（完整JSON字典）</li>
+<li><code>ticker.calendar</code> - 财报/股息日历</li>
+<li><code>ticker.analyst_price_targets</code>, <code>ticker.recommendations</code> - 分析师评级</li>
+<li><code>ticker.major_holders</code>, <code>ticker.institutional_holders</code> - 股东结构</li>
+<li><code>ticker.option_chain()</code> - 期权链数据（calls + puts）</li>
+<li><code>ticker.dividends</code>, <code>ticker.splits</code>, <code>ticker.actions</code> - 股息拆股记录</li>
+<li><code>ticker.news</code> - 相关新闻</li>
+</ul>
+</li>
+<li><strong>批量下载</strong>：<code>yf.download()</code>函数用于批量获取多股票数据<ul>
+<li>支持时间范围参数：<code>start</code>, <code>end</code>, <code>period</code></li>
+<li>支持多只股票返回MultiIndex DataFrame</li>
+<li>支持多线程下载：<code>threads=True</code></li>
+<li>支持自动复权：<code>auto_adjust=True</code></li>
+</ul>
+</li>
+<li><strong>Sector/Industry API</strong>：v1.0+新增的行业分析API<ul>
+<li><code>Sector("technology")</code> - 行业概览（头部公司、相关ETF等）</li>
+<li><code>Industry("semiconductors")</code> - 子行业分析</li>
+</ul>
 </li>
 <li>
-<p><strong>版本里程碑</strong>：2025-12-22 发布 1.0 重大版本，API 全面重构，新增 Sector/Industry 类；2026-04-07 发布 1.2.1 最新稳定版。</p>
+<p><strong>Multi-Ticker操作</strong>：<code>yf.Tickers()</code>批量管理多个Ticker对象</p>
 </li>
 <li>
-<p><strong>核心 API</strong>：Ticker 对象（行情数据/财务报表/公司信息）、Sector/Industry 类、Options 数据、Holdings 数据、下载批量数据。</p>
+<p><strong>全球市场代码规范</strong>：</p>
+</li>
+<li>美股：直接使用代码（如<code>AAPL</code>, <code>MSFT</code>）</li>
+<li>港股：4-5位数字 + <code>.HK</code>（如<code>0700.HK</code>, <code>09988.HK</code>）</li>
+<li>A股：6位数字 + <code>.SS</code>（上交所）或 <code>.SZ</code>（深交所）（如<code>600519.SS</code>, <code>000001.SZ</code>）</li>
+<li>指数：<code>^</code>前缀（如<code>^GSPC</code>, <code>^HSI</code>）</li>
+<li>外汇：<code>XXXYYY=X</code>（如<code>EURUSD=X</code>）</li>
+<li>加密货币：<code>XXX-USD</code>（如<code>BTC-USD</code>）</li>
+<li>
+<p>ETF：直接使用代码（如<code>SPY</code>, <code>QQQ</code>）</p>
 </li>
 <li>
-<p><strong>优势</strong>：完全免费、无需注册、全球市场覆盖、API 简洁易用。劣势：非官方接口、稳定性无保障、不适合生产环境。</p>
+<p><strong>历史数据限制</strong>：</p>
 </li>
+<li><code>1m</code> (1分钟) - 仅最近7天</li>
+<li><code>2m/5m/15m/30m</code> - 仅最近60天  </li>
+<li><code>60m/90m/1h</code> - 仅最近730天</li>
+<li><code>1d</code> (1日) - 无限制（约20年+）</li>
+<li>
+<p><code>5d/1wk/1mo/3mo</code> - 无限制</p>
+</li>
+<li>
+<p><strong>限流与反爬处理</strong>：</p>
+</li>
+<li>常见HTTP 429错误（Too Many Requests）</li>
+<li>解决方案：请求间增加延迟、使用requests_cache本地缓存、代理池</li>
+<li>推荐使用requests_cache进行缓存，避免重复请求</li>
+<li>
+<p>分块批量下载可降低单次请求压力</p>
+</li>
+<li>
+<p><strong>优势与局限性</strong>：</p>
+</li>
+<li>优势：零<a href="../concepts/Configuration.html">配置</a>、全球市场覆盖、数据丰富、免费、<a href="../concepts/Python.html">Python</a>ic集成、活跃维护</li>
+<li>
+<p>局限性：非官方（随时可能失效）、限流风险、<a href="../concepts/A股行情数据.html">A股数据</a>质量差、不适合生产环境、法律灰色地带、数据延迟（约15分钟）</p>
+</li>
+<li>
+<p><strong>适用场景</strong>：</p>
+</li>
+<li>适合：学术研究、量化策略原型验证、个人投资者分析、教学演示、期权策略研究</li>
+<li>不适合：生产级交易系统、高频/日内策略、大批量自动化下载、商业产品内置数据层</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
-<li><a href="yfinance.html">yfinance</a> — yfinance 深度分析报告</li>
+<li><span style="color:#e74c3c" title="broken link">yfinance.md</span> — Yahoo Finance深度分析报告</li>
+<li><a href="../concepts/SKILL.html.html">SKILL.md</a> — Yahoo Finance技能定义文件</li>
+<li><span style="color:#e74c3c" title="broken link">raw/assets/finance-knowledge/yfinance.md</span> — yfinance深度分析报告</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="AKShare.html">AKShare</a> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">Yahoo Finance</span> — part_of</li>
+<li><span style="color:#e74c3c" title="broken link">Ran Aroussi</span> — author</li>
 <li><a href="Alpha Vantage.html">Alpha Vantage</a> — compares_to</li>
 <li><a href="Baostock.html">Baostock</a> — compares_to</li>
+<li><a href="AKShare.html">AKShare</a> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">Financial Modeling Prep</span> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">Polygon.io</span> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">Finnhub</span> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">requests-cache</span> — dependency</li>
+<li><a href="../concepts/A股行情数据.html">A股行情数据</a> — compares_to</li>
+<li><span style="color:#e74c3c" title="broken link">美股数据</span> — compares_to</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="xDeepFM.html">&larr; xDeepFM</a>
-    <a href="万历十五年.html">万历十五年 &rarr;</a>
+    <a href="yule-1927-ar-model.html">yule-1927-ar-model &rarr;</a>
   </div>
 </div>
 </body>

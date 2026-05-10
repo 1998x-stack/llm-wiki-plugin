@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自回归模型 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 自回归模型</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列分析</span><span class="tag">统计模型</span><span class="tag">预测</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">自回归模型</h1>
+<h2 id="_2">概述</h2>
+<p><a href="AR 模型（自回归模型）.html">自回归</a>模型（Autoregressive Model, AR）是一种<a href="Time Series Analysis.html">时间序列</a>预测模型，利用序列自身的过去值来预测当前值。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>基本思想</strong>：</li>
+<li><strong>今天的值，主要取决于前几天的值，再加上一个随机冲击</strong></li>
+<li>模型形式：X(t) = a₁X(t-1) + a₂X(t-2) + ... + aₚX(t-p) + ε(t)</li>
+<li>
+<p>其中p为模型阶数，ε(t)为随机误差项</p>
+</li>
+<li>
+<p><strong>历史起源</strong>：</p>
+</li>
+<li>由<a href="../entities/George Udny Yule.html">George Udny Yule</a>于1927年首次提出并应用于<a href="太阳黑子.html">太阳黑子数</a>据分析</li>
+<li>Yule试图解决<a href="太阳黑子.html">太阳黑子数</a>据中"周期性"是真实节律还是随机扰动的问题</li>
+<li>当时的传统方法是Arthur Schuster的<a href="周期图法.html">周期图法</a>，对"野性"数据效果不佳</li>
+<li>
+<p>Yule<a href="../entities/区分.html">区分</a>了两类受扰序列：叠加噪声的周期与扰动作用于机制本身的周期</p>
+</li>
+<li>
+<p><strong>两类受扰序列的区别</strong>：</p>
+</li>
+<li><strong>第一类（Type I）</strong>：噪声叠加在观测值上，但不影响系统本身的运动（如相机抖动拍摄钟摆）</li>
+<li><strong>第二类（Type II）</strong>：扰动作用于机制本身（如小孩随机弹击钟摆），<a href="太阳黑子.html">太阳黑子数</a>据属于此类</li>
+<li>
+<p><a href="太阳黑子.html">太阳黑子</a>的周期性不是被噪声掩盖的"真实信号"，而是不断被随机扰动重塑的动力学过程的外在表现</p>
+</li>
+<li>
+<p><strong>物理含义</strong>：</p>
+</li>
+<li>Yule证明了AR(2)模型与<a href="阻尼谐振子.html">阻尼谐振子</a>的微分方程离散化形式一致</li>
+<li>即一个在摩擦力作用下逐渐衰减并被随机力驱动的振荡系统</li>
+<li>
+<p>揭示深层规律：在随机力驱动下，任何具有"惯性"和"回复力"的系统，都会表现出类似周期性的振荡行为——即使系统中根本不存在任何确定性的周期</p>
+</li>
+<li>
+<p><strong><a href="Yule-Walker方程.html">Yule-Walker方程</a></strong>：</p>
+</li>
+<li>提供了从观测数据估计AR模型参数的系统化方法</li>
+<li>将<a href="Time Series Analysis.html">时间序列</a>的自相关系数与AR模型参数联系起来</li>
+<li>
+<p>系数<a href="矩阵.html">矩阵</a>为Toeplitz<a href="矩阵.html">矩阵</a>，可用高效<a href="算法.html">算法</a>求解</p>
+</li>
+<li>
+<p><strong>与Slutsky工作的互补</strong>：</p>
+</li>
+<li>Yule发展了<a href="AR 模型（自回归模型）.html">自回归</a>（AR）方法——用过去的值预测现在</li>
+<li>Slutsky发展了滑动平均（MA）方法——展示对随机序列取滑动平均也能产生逼真的"周期"</li>
+<li>
+<p>两条发展路线最终在1970年由Box-Jenkins合流为<a href="ARIMA.html">ARIMA</a>框架</p>
+</li>
+<li>
+<p><strong>现代应用</strong>：</p>
+</li>
+<li>语音编码（LPC线性预测编码）</li>
+<li>金融预测（股价、利率走势）</li>
+<li>气象预报（气温、压力分析）</li>
+<li>地震学（地震波分析）</li>
+<li>脑科学（脑电图信号分析）</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="../entities/yule-1927-ar-model.html">yule-1927-ar-model</a> — 提出与发展历程</li>
+<li><a href="太阳黑子.html">太阳黑子</a> — 研究案例</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/George Udny Yule.html">George Udny Yule</a> — implements</li>
+<li><a href="时间序列分析.html">时间序列分析</a> — part_of</li>
+<li><a href="Yule-Walker方程.html">Yule-Walker方程</a> — extends</li>
+<li><span style="color:#e74c3c" title="broken link">ARIMA模型</span> — extends</li>
+<li><a href="太阳黑子.html">太阳黑子</a> — relates_to</li>
+<li><a href="../entities/Eugen Slutsky.html">Eugen Slutsky</a> — compares_to</li>
+<li><a href="阻尼谐振子.html">阻尼谐振子</a> — relates_to</li>
+<li><a href="周期图法.html">周期图法</a> — contrasts_with</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="自动微分.html">&larr; 自动微分</a>
+    <a href="自我实现预言.html">自我实现预言 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

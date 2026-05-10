@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实现机制</strong>：概念模式与内模式之间的映射。当物理存储结构变化时，只需修改这个映射关系，概念模式保持不变。</p>
 <h3 id="_5">逻辑数据独立性</h3>
 <p>即使数据的逻辑结构发生变化（添加新的列、拆分或合并表），现有的应用程序也应尽可能不受影响。</p>
-<p><strong>实现机制</strong>：视图（view）——通过关系运算从基本关系派生出的虚拟关系，不实际存储数据，在被查询时实时计算。当概念模式变化时，可以通过定义适当的视图来保持原有外部接口的稳定。</p>
+<p><strong>实现机制</strong>：视图（view）——通过关系运算从基本关系派生出的虚拟关系，不实际存储数据，在被查询时实时<a href="计算.html">计算</a>。当概念模式变化时，可以通过定义适当的视图来保持原有外部接口的稳定。</p>
 <h3 id="_6">三级模式架构</h3>
 <p>数据独立性的两个层面共同构成了"三级模式架构"（Three-Schema Architecture）：</p>
 <table>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p>每相邻两个层级之间的映射关系可以独立变化，从而实现了系统化的数据独立性保障。</p>
 <h3 id="_7">深远影响</h3>
-<p>数据独立性是"关注点分离"（Separation of Concerns）原则在数据管理领域的具体体现，后来被广泛应用于软件工程的各个层面：API 设计、分层架构、微服务架构等。</p>
+<p>数据独立性是"关注点分离"（Separation of Concerns）原则在数据管理领域的具体体现，后来被广泛应用于软件工程的各个层面：API 设计、分层架构、微<a href="服务.html">服务</a>架构等。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/07-codd-relational-model.md</span></li>
@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="数据处理不等式.html">&larr; 数据处理不等式</a>
+    <a href="数据泥团.html">&larr; 数据泥团</a>
     <a href="数目字管理.html">数目字管理 &rarr;</a>
   </div>
 </div>

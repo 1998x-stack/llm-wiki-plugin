@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="managed-agents">Managed Agents 架构设计</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Managed-Agents.html">Managed Agents</a> 架构是一种专为长时运行、高可靠性智能体系统设计的工程<a href="规范化理论.html">范式</a>，核心思想是将"大脑"（决策逻辑）与"双手"（执行环境）解耦。该架构基于事件驱动模型，通过不可变的 Session Event Log 作为唯一事实来源，实现状态的持久化与故障恢复。</p>
+<p><a href="Managed-Agents.html">Managed Agents</a> 架构是一种专为长时运行、高可靠性<a href="Agent Systems.html">智能体系统</a>设计的工程<a href="规范化理论.html">范式</a>，核心思想是将"大脑"（决策逻辑）与"双手"（执行环境）解耦。该架构基于事件驱动模型，通过不可变的 Session Event Log 作为唯一事实来源，实现状态的持久化与故障恢复。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心设计原则</h3>
 <ol>
-<li><strong>状态外置</strong>：状态存储在 Session 和 Event Log 中，计算节点可随时替换。</li>
+<li><strong>状态外置</strong>：状态存储在 Session 和 Event Log 中，<a href="计算.html">计算</a>节点可随时替换。</li>
 <li><strong>Harness 无状态</strong>：工作器可随时崩溃或重新调度，不影响任务连续性。</li>
 <li><strong>Sandbox 隔离</strong>：沙箱仅作为执行器，失败仅表现为 Tool Failure 事件。</li>
 <li><strong>凭证隔离</strong>：Secrets 对模型不可达，通过 Vault 引用绑定。</li>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MRR.html">&larr; MRR</a>
+    <a href="Machine Payments.html">&larr; Machine Payments</a>
     <a href="Managed-Agents.html">Managed-Agents &rarr;</a>
   </div>
 </div>

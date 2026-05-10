@@ -141,9 +141,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>代码存放与脚手架</strong>：用户代码必须放在 <code>/workspace/scripts/</code>；必须基于对应类型脚手架起手（2D休闲/2D物理/3D场景/3D角色），禁止从零手写；<code>urhox-libs/</code> 为只读参考副本，修改不生效。</li>
 <li><strong>坐标系与单位</strong>：Y-up 左手坐标系（与 Unity 相同），单位为米；<code>SetMode()</code> 已禁用，通过 <code>GetWidth()/GetHeight()/GetDPR()</code> 获取屏幕参数；<code>orthoSize</code> 代表全高度，内部使用 <code>orthoSize * 0.5</code> 作为半高度。</li>
 <li><strong>UI 系统选型</strong>：必须使用 <code>urhox-libs/UI</code>（Yoga Flexbox + <a href="../entities/NanoVG.html">NanoVG</a>，40+ 控件）；原生 Urho3D UIElement 已废弃；raw <a href="../entities/NanoVG.html">NanoVG</a> 仅用于自定义图形，不做 UI/HUD。</li>
-<li><strong>枚举值与类型</strong>：鼠标/键盘事件必须使用枚举常量（<code>MOUSEB_LEFT</code>、<code>KEY_SPACE</code> 等），禁止用数字替代；未赋值变量必须加 <code>---@type</code> 类型标注，否则 LSP 报 undefined-field 错误。</li>
+<li><strong>枚举值与类型</strong>：鼠标/键盘事件必须使用枚举常量（<code>MOUSEB_LEFT</code>、<code>KEY_SPACE</code> 等），禁止用数字替代；未赋值变量必须加 <code>---@type</code> 类型<a href="../entities/标注.html">标注</a>，否则 LSP 报 undefined-field 错误。</li>
 <li><strong>Lua 特性陷阱</strong>：数组索引从 1 开始；<code>table.unpack()</code> 只在表构造器最后位置完全展开；<code>eventData</code> 用 <code>eventData["Key"]:GetInt()</code> 或更高效的 <code>eventData:GetInt("Key")</code> 访问。</li>
-<li><strong>模块化阈值</strong>：单文件超过 1500 行必须拆分；多轮迭代项目从第一轮就建立模块化结构；第三人称相机必须使用 <code>ThirdPersonCamera</code> 库，不要手动计算相机位置。</li>
+<li><strong>模块化阈值</strong>：单文件超过 1500 行必须拆分；多轮迭代项目从第一轮就建立模块化结构；第三人称相机必须使用 <code>ThirdPersonCamera</code> 库，不要手动<a href="计算.html">计算</a>相机位置。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

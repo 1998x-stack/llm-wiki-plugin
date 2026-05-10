@@ -143,12 +143,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>训练流程</strong>：批量运行 Agent 会话 → 导出 (observation, action, reward) 轨迹 → Atropos RL 环境训练工具调用模型 → 下一代 <a href="Hermes Agent.html">Hermes</a> 更聪明</li>
 <li><strong>批量轨迹生成</strong>：支持大规模并行运行 Agent 收集训练数据</li>
 <li><strong><a href="../concepts/轨迹压缩.html">轨迹压缩</a></strong>：压缩冗余上下文，减少训练成本</li>
-<li><strong>训练数据生成流程</strong>：定义任务类型和评估标准 → <a href="../concepts/Batch Runner.html">Batch Runner</a> 批量并行运行 Agent 收集轨迹 → trajectory.py 压缩轨迹去除冗余保留关键决策节点 → Atropos RL 环境使用 PPO/GRPO 等算法训练 → 策略蒸馏回模型权重发布新版本</li>
+<li><strong>训练数据生成流程</strong>：定义任务类型和评估标准 → <a href="../concepts/Batch Runner.html">Batch Runner</a> 批量并行运行 Agent 收集轨迹 → trajectory.py 压缩轨迹去除冗余保留关键决策节点 → Atropos RL 环境使用 PPO/GRPO 等<a href="../concepts/算法.html">算法</a>训练 → 策略蒸馏回模型权重发布新版本</li>
 <li><strong><a href="../concepts/Batch Runner.html">Batch Runner</a></strong>：<code>hermes batch run --task-file tasks/coding_tasks.jsonl --n-workers 8 --output-dir trajectories/ --model hermes-3.5</code>，并行启动 N 个 Agent 实例独立执行同类型任务</li>
 <li><strong><a href="../concepts/轨迹压缩.html">轨迹压缩</a>命令</strong>：<code>hermes batch compress --input trajectories/ --output compressed_trajectories/ --max-tokens 4096</code></li>
 <li><strong>导出为 Atropos 格式</strong>：<code>hermes batch export --input compressed_trajectories/ --format atropos --output training_data.jsonl</code></li>
 <li><strong>RL vs SFT</strong>：SFT 学习已有正确示例（模仿），只能学习已有数据；RL 通过奖励信号试错学习，可发现 SFT 数据中没有的更优策略</li>
-<li><strong>多维度评估</strong>：奖励计算基于正确性、效率、代码质量等多维度评分</li>
+<li><strong>多维度评估</strong>：奖励<a href="../concepts/计算.html">计算</a>基于正确性、效率、代码质量等多维度评分</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Ashudeep Singh.html">&larr; Ashudeep Singh</a>
-    <a href="AutoInt.html">AutoInt &rarr;</a>
+    <a href="AutoDream.html">AutoDream &rarr;</a>
   </div>
 </div>
 </body>

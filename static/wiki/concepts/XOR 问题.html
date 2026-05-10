@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="xor">XOR 问题</h1>
 <h2 id="_1">概述</h2>
-<p>XOR（异或）是单层感知机无法解决的经典线性不可分问题，由 Minsky 和 Papert 在 1969 年《<span style="color:#e74c3c" title="broken link">Perceptrons</span>》中严格证明，直接导致 <a href="AI 寒冬.html">AI 寒冬</a>。</p>
+<p>XOR（异或）是单层<a href="../entities/感知机.html">感知机</a>无法解决的经典线性不可分问题，由 <a href="../entities/Marvin Minsky.html">Minsky</a> 和 <a href="../entities/Seymour Papert.html">Papert</a> 在 1969 年《<span style="color:#e74c3c" title="broken link">Perceptrons</span>》中严格证明，直接导致 <a href="AI 寒冬.html">AI 寒冬</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,18 +145,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>几何不可分性</strong>：在二维特征空间中，(0,0) 和 (1,1) 为一类（输出 0），(0,1) 和 (1,0) 为另一类（输出 1）。这两类样本呈对角分布，无法用一条直线分开。</p>
 </li>
 <li>
-<p><strong>Minsky-Papert 证明</strong>：1969 年《<span style="color:#e74c3c" title="broken link">Perceptrons (Minsky &amp;amp; Papert 1969)</span>》严格证明了单层感知机只能解决线性可分问题，XOR 作为反例证明了感知机的根本局限。</p>
+<p><strong><a href="../entities/Marvin Minsky.html">Minsky</a>-<a href="../entities/Seymour Papert.html">Papert</a> 证明</strong>：1969 年《<span style="color:#e74c3c" title="broken link">Perceptrons (Minsky &amp;amp; Papert 1969)</span>》严格证明了单层<a href="../entities/感知机.html">感知机</a>只能解决线性可分问题，XOR 作为反例证明了<a href="../entities/感知机.html">感知机</a>的根本局限。</p>
 </li>
 <li>
 <p><strong>历史后果</strong>：该证明发表后，神经网络研究经费大幅削减，学术界转向符号主义 AI，连接主义研究进入长达十余年的<a href="AI 寒冬.html">AI 寒冬</a>。</p>
 </li>
 <li>
-<p><strong>解决方案</strong>：XOR 问题最终通过<a href="多层感知机（MLP）.html">多层感知机（MLP）</a>解决——添加隐藏层并引入非线性激活函数（如 sigmoid、ReLU），配合<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a>算法训练，即可学习任意非线性决策边界。</p>
+<p><strong>解决方案</strong>：XOR 问题最终通过<a href="多层感知机（MLP）.html">多层感知机（MLP）</a>解决——添加隐藏层并引入非线性激活函数（如 sigmoid、ReLU），配合<a href="反向传播（Backpropagation）.html">反向传播（Backpropagation）</a><a href="算法.html">算法</a>训练，即可学习任意非线性<a href="决策边界.html">决策边界</a>。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01_perceptron_1958</span> — 感知机原始论文解读</li>
+<li><span style="color:#e74c3c" title="broken link">paper_01_perceptron.md</span> — 不能做的：非线性问题 &amp; Minsky的"毁灭一击"章节</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
@@ -167,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="XML Plan System.html">&larr; XML Plan System</a>
+    <a href="XML 结构化 Prompt.html">&larr; XML 结构化 Prompt</a>
     <a href="XOR问题.html">XOR问题 &rarr;</a>
   </div>
 </div>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特征工程（Feature Engineering） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 特征工程（Feature Engineering）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">计算机视觉</span><span class="tag">传统方法</span><span class="tag">范式</span></div>
+</div>
+  <div class="content">
+    <h1 id="feature-engineering">特征工程（Feature Engineering）</h1>
+<h2 id="_1">概述</h2>
+<p>特征工程指由领域专家手工设计和选择用于机器学习任务的特征表示。深度学习前，这是<a href="计算.html">计算</a>机视觉和 NLP 的核心方法论，2012 年后被深度学习取代。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>传统<a href="规范化理论.html">范式</a></strong>：在深度学习时代之前，机器学习流水线分为两个阶段：(1) 特征工程——专家手工设计特征（如 SIFT、HOG、Haar-like、<a href="TF-IDF.html">TF-IDF</a>、n-gram）；(2) 训练分类器（如 SVM、<a href="随机森林.html">随机森林</a>、逻辑回归）。特征工程的质量直接决定模型性能上限。</li>
+<li><strong>经典特征</strong>：<a href="计算.html">计算</a>机视觉领域的经典手工特征包括：<a href="SIFT（尺度不变特征变换）.html">SIFT（尺度不变特征变换）</a>（尺度不变关键点）、<a href="HOG（方向梯度直方图）.html">HOG（方向梯度直方图）</a>（梯度方向统计）、<a href="Haar 小波.html">Haar 小波</a>（矩形模式检测）。这些特征需要领域专家数年的经验设计，且为特定任务定制，无法泛化。</li>
+<li><strong><a href="AlexNet.html">AlexNet</a> 的颠覆</strong>：2012 年，<a href="AlexNet.html">AlexNet</a> 在 <a href="../entities/ILSVRC.html">ILSVRC</a> 竞赛中以 16.4% 的 <a href="Top-5 错误率.html">Top-5 错误率</a>夺冠，超越传统方法（SIFT+SVM，26.2%）近 10 个百分点。这证明了深度<a href="卷积神经网络（CNN）.html">卷积神经网络（CNN）</a>从数据中自动学习的特征远超手工设计特征。<a href="AlexNet.html">AlexNet</a> 的卷积核自动学到了边缘、纹理、物体部件等层次化特征。</li>
+<li><strong><a href="规范化理论.html">范式</a>转变</strong>：<a href="AlexNet.html">AlexNet</a> 之后，<a href="计算.html">计算</a>机视觉从"手工特征 + 简单分类器"转向"端到端深度学习"。特征工程的角色从"手工设计"转变为"网络架构设计"——研究者设计网络结构让模型自动学习最优特征表示。</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li>[raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="SIFT（尺度不变特征变换）.html">SIFT（尺度不变特征变换）</a> — exemplar_of</li>
+<li><a href="HOG（方向梯度直方图）.html">HOG（方向梯度直方图）</a> — exemplar_of</li>
+<li><a href="Haar 小波.html">Haar 小波</a> — exemplar_of</li>
+<li><a href="AlexNet.html">AlexNet</a> — superseded_by</li>
+<li><a href="深度学习（Deep Learning）.html">深度学习（Deep Learning）</a> — replaced_by</li>
+<li><a href="卷积神经网络（CNN）.html">卷积神经网络（CNN）</a> — auto_feature_learning</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="特征可视化.html">&larr; 特征可视化</a>
+    <a href="特里芬难题.html">特里芬难题 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

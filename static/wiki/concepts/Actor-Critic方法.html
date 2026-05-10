@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="强化学习三大范式.html">Actor-Critic</a>（<a href="强化学习三大范式.html">演员-评论家</a>）方法是<a href="强化学习.html">强化学习</a>中结合<a href="策略梯度定理.html">策略梯度</a>（Actor）与<a href="价值函数.html">价值函数</a>估计（Critic）的混合架构。Actor 负责选择动作，Critic 负责评估当前策略的价值，用于降低<a href="策略梯度定理.html">策略梯度</a>的方差。相比纯<a href="策略梯度定理.html">策略梯度</a>方法，AC 通过 Critic 提供基线，减少估计噪声；相比纯价值方法，AC 直接优化策略，天然支持连续动作空间。现代深度<a href="强化学习.html">强化学习</a>中绝大多数 SOTA 方法（A3C、DDPG、TD3、SAC、PPO）均属于 <a href="强化学习三大范式.html">Actor-Critic</a> 家族。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>架构分工</strong>：Actor 网络参数化策略 π_θ(a|s)，Critic 网络估计<a href="价值函数.html">价值函数</a> V_φ(s) 或 Q_φ(s,a)；Actor 用 Critic 的输出计算<a href="价值函数.html">优势函数</a>指导更新方向。</li>
+<li><strong>架构分工</strong>：Actor 网络参数化策略 π_θ(a|s)，Critic 网络估计<a href="价值函数.html">价值函数</a> V_φ(s) 或 Q_φ(s,a)；Actor 用 Critic 的输出<a href="计算.html">计算</a><a href="价值函数.html">优势函数</a>指导更新方向。</li>
 <li><strong><a href="价值函数.html">优势函数</a></strong>：A(s,a) = Q(s,a) - V(s)，衡量某动作相对于平均水平的优劣，作为<a href="策略梯度定理.html">策略梯度</a>的权重，替代原始回报以降低方差。</li>
 <li><strong>演化路线</strong>：A3C（异步并行）→ DDPG（确定性策略 + <a href="经验回放.html">经验回放</a>）→ TD3（双 Critic + 延迟更新）→ SAC（最大熵框架），每代解决前代的核心缺陷。</li>
 </ol>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Ablation Study.html">&larr; Ablation Study</a>
+    <a href="Action-Parity.html">&larr; Action-Parity</a>
     <a href="AdamW.html">AdamW &rarr;</a>
   </div>
 </div>

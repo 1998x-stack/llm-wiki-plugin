@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent">多 Agent 架构</h1>
 <h2 id="_1">概述</h2>
-<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong>子 Agent 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
+<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong><span style="color:#e74c3c" title="broken link">子 Agent</span> 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="agent_1">多 Agent 系统的适用条件</h3>
 <p><a href="../entities/Anthropic.html">Anthropic</a> 研究表明，多 Agent 架构在以下场景最有价值：
@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><strong>关键结论</strong>：多 Agent 架构的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。多 Agent 系统 vs 单 Agent Claude Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
+<p><strong>关键结论</strong>：多 Agent 架构的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。<a href="子 Agent 系统.html">多 Agent 系统</a> vs 单 Agent <a href="../entities/Claude_Code.html">Claude</a> Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
 <h3 id="-">编排者-工人模式（研究系统实现）</h3>
 <p><a href="../entities/Anthropic.html">Anthropic</a> Research 系统的具体架构：</p>
 <pre><code>用户查询
@@ -188,27 +188,27 @@ LeadResearcher 综合结果
   - 传递给 CitationAgent 处理引用
 </code></pre>
 <h3 id="agent_2">子 Agent 作为"压缩器"</h3>
-<p>子 Agent 的核心贡献不只是并行，而是<strong><a href="上下文压缩.html">上下文压缩</a></strong>：
-- 每个子 Agent 可能消耗数万 token 探索信息
+<p><span style="color:#e74c3c" title="broken link">子 Agent</span> 的核心贡献不只是并行，而是<strong><a href="上下文压缩.html">上下文压缩</a></strong>：
+- 每个<span style="color:#e74c3c" title="broken link">子 Agent</span> 可能消耗数万 token 探索信息
 - 但只返回 1000-2000 token 的精简摘要给主 Agent
-- 实现关注点分离：主 Agent 专注综合，子 Agent 专注深度探索</p>
+- 实现关注点分离：主 Agent 专注综合，<span style="color:#e74c3c" title="broken link">子 Agent</span> 专注深度探索</p>
 <h3 id="_3">提示工程的特殊挑战</h3>
-<p>多 Agent 系统的提示涉及协调，不只是行为控制：</p>
+<p><a href="子 Agent 系统.html">多 Agent 系统</a>的提示涉及协调，不只是行为控制：</p>
 <ol>
-<li><strong>教导编排者如何委派</strong>：明确目标、输出格式、工具使用指导、任务边界——否则子 Agent 重复工作或留下空白</li>
-<li><strong>按查询复杂度缩放努力</strong>：嵌入明确的规模规则（简单事实查询：1 个 Agent + 3-10 次工具调用；复杂研究：10+ 子 Agent）</li>
+<li><strong>教导编排者如何委派</strong>：明确目标、输出格式、工具使用指导、任务边界——否则<span style="color:#e74c3c" title="broken link">子 Agent</span> 重复工作或留下空白</li>
+<li><strong>按查询复杂度缩放努力</strong>：嵌入明确的规模规则（简单事实查询：1 个 Agent + 3-10 次工具调用；复杂研究：10+ <span style="color:#e74c3c" title="broken link">子 Agent</span>）</li>
 <li><strong>从宽到窄的搜索策略</strong>：先用短宽泛查询探索，再逐步聚焦</li>
-<li><strong>引导思考过程</strong>：让主 Agent 用 <a href="扩展思维.html">Extended Thinking</a> 规划方法，子 Agent 用 <a href="交错式思考.html">Interleaved Thinking</a> 评估每次工具结果</li>
+<li><strong>引导思考过程</strong>：让主 Agent 用 <a href="扩展思维.html">Extended Thinking</a> 规划方法，<span style="color:#e74c3c" title="broken link">子 Agent</span> 用 <a href="交错式思考.html">Interleaved Thinking</a> 评估每次工具结果</li>
 </ol>
 <h3 id="_4">工程可靠性挑战</h3>
 <p><strong>错误传播与状态</strong>：Agent 运行时间长，错误可传播。建议：
 - 结合 AI 的适应性（让 Agent 知道工具失败，自行适应）与确定性保障（重试逻辑、定期检查点）</p>
 <p><strong>调试</strong>：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。</p>
-<p><strong>部署</strong>：使用彩虹部署（<a href="Rainbow.html">Rainbow</a> Deployment）避免更新中断运行中的 Agent。</p>
-<p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待子 Agent 完成，创建信息流瓶颈。异步执行是下一步。</p>
+<p><strong>部署</strong>：使用彩虹部署（<a href="Rainbow.html">Rainbow</a> <a href="应用部署.html">Deploy</a>ment）避免更新中断运行中的 Agent。</p>
+<p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待<span style="color:#e74c3c" title="broken link">子 Agent</span> 完成，创建信息流瓶颈。异步执行是下一步。</p>
 <h3 id="_5">并行工具调用</h3>
 <p>多 Agent 并行外，单个 Agent 内的并行工具调用也至关重要：
-- 子 Agent 并行调用 3+ 个工具，而非顺序调用
+- <span style="color:#e74c3c" title="broken link">子 Agent</span> 并行调用 3+ 个工具，而非顺序调用
 - 研究系统中此优化将复杂查询研究时间缩短 <strong>90%</strong></p>
 <h2 id="_6">来源</h2>
 <ul>
@@ -222,10 +222,13 @@ LeadResearcher 综合结果
 <li><a href="即时上下文检索.html">即时上下文检索</a> — related_to（子 Agent 用 JIT 策略独立检索信息）</li>
 <li><a href="结构化笔记法.html">结构化笔记法</a> — uses（跨会话的信息传递机制）</li>
 <li><a href="上下文腐烂.html">上下文腐烂</a> — related_to（多 Agent 是绕过单 Agent 上下文限制的架构方案）</li>
+<li><a href="subagent-driven-development Skill.html">subagent-driven-development Skill</a> — implements（具体的多 Agent 执行技能）</li>
+<li><a href="Context Window Pollution.html">Context Window Pollution</a> — addresses（多 Agent 架构解决上下文污染问题）</li>
+<li><a href="Two-Stage Review.html">Two-Stage Review</a> — supports（支持多 Agent 系统的质量保证流程）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="增量挖掘.html">&larr; 增量挖掘</a>
+    <a href="外部工具集成.html">&larr; 外部工具集成</a>
     <a href="多任务学习.html">多任务学习 &rarr;</a>
   </div>
 </div>

@@ -138,10 +138,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>将 Agent 能力通过统一接口暴露到多个消息平台的设计模式，每个平台实现独立适配器，核心逻辑与平台解耦。</p>
 <h2 id="_3">关键内容</h2>
 <ul>
-<li><strong>覆盖 15 个平台</strong>：即时消息（Telegram、Discord、Slack、WhatsApp、Signal、<a href="矩阵.html">Matrix</a>、Mattermost）、传统通信（Email、SMS、BlueBubbles/iMessage）、国内平台（钉钉、飞书、企业微信）、智能家居/通用（Home Assistant、Webhook）</li>
+<li><strong>覆盖 15 个平台</strong>：即时消息（Telegram、Discord、<a href="../entities/Slack.html">Slack</a>、WhatsApp、Signal、<a href="矩阵.html">Matrix</a>、Mattermost）、传统通信（Email、SMS、BlueBubbles/iMessage）、国内平台（钉钉、飞书、企业微信）、智能家居/通用（Home Assistant、Webhook）</li>
 <li><strong>统一接口设计</strong>：每个适配器实现 <code>on_message()</code> 方法，将平台特定格式转换为内部 <code>MessageEvent</code> 统一格式 <code>{platform, user_id, text, media?, reply_to, timestamp}</code></li>
 <li><strong>出站适配</strong>：<code>delivery.py</code> 处理向不同平台发送消息的细节，包括长消息分段（各平台有不同长度限制）、Markdown 格式转换（不同平台支持不同的 Markdown 子集）、媒体文件上传、失败重试</li>
-<li><strong>扩展性</strong>：新增平台只需实现适配器接口，不修改 AIAgent 核心代码，符合开闭原则</li>
+<li><strong>扩展性</strong>：新增平台只需实现适配器接口，不修改 AIAgent 核心代码，符合<a href="SOLID原则.html">开闭原则</a></li>
 <li><strong>平台元数据注入</strong>：每个 MessageEvent 携带 platform 元数据，AIAgent 可根据平台特性调整响应格式（如 Telegram 支持富文本，SMS 仅纯文本）</li>
 <li><strong>与<a href="模型无关设计.html">模型无关设计</a>的协同</strong>：平台适配器解决"在哪里交互"的问题，<a href="模型无关设计.html">模型无关设计</a>解决"用什么模型"的问题，两者共同实现 <a href="../entities/Hermes Agent.html">Hermes</a> 的"随处运行、无处不在"愿景</li>
 </ul>

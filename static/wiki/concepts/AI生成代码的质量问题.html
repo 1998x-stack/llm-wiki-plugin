@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI生成代码的质量问题 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / AI生成代码的质量问题</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">code-generation</span><span class="tag">quality-assurance</span></div>
+</div>
+  <div class="content">
+    <h1 id="ai">AI生成代码的质量问题</h1>
+<h2 id="_1">概述</h2>
+<p>AI生成代码过程中常见的质量问题，包括风格不一致、过度抽象、命名奇怪等现象，需要通过自动化手段解决。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>常见问题类型</strong>：</li>
+<li><strong>风格不一致</strong>：代码格式、命名风格不符合项目规范</li>
+<li><strong>过度抽象</strong>：引入不必要的复杂抽象层</li>
+<li><strong>命名奇怪</strong>：变量、函数名不符合语义或<a href="项目约定手册.html">项目约定</a></li>
+<li><strong>违反架构约束</strong>：不遵守项目的依赖方向和分层规则</li>
+<li>
+<p><strong><a href="重复代码.html">重复代码</a></strong>：未能有效复用现有功能</p>
+</li>
+<li>
+<p><strong><a href="../entities/OpenAI.html">OpenAI</a>实验案例</strong>：</p>
+</li>
+<li>团队最初每周花费20%时间清理Agent产出的"AI slop"</li>
+<li>问题包括风格不一致、过度抽象、命名奇怪的代码</li>
+<li>
+<p>早期未编码架构约束导致<a href="../entities/Codex CLI.html">Codex</a>大量生成违反依赖方向的代码</p>
+</li>
+<li>
+<p><strong>解决方案</strong>：</p>
+</li>
+<li>将清理标准编码成"golden principles"</li>
+<li>让<a href="../entities/Codex CLI.html">Codex</a>根据原则自动<a href="重构.html">重构</a>代码</li>
+<li>实现从人工清理到自动清理的反馈回路闭合</li>
+<li>
+<p>通过CI规则硬卡，自动拒绝违规代码</p>
+</li>
+<li>
+<p><strong>预防措施</strong>：</p>
+</li>
+<li>预先定义清晰的架构约束和编码规范</li>
+<li>使用自定义Linter规则验证代码质量</li>
+<li>建立自动化测试验证代码行为正确性</li>
+<li>通过<a href="项目约定手册.html">AGENTS.md</a>等文档明确告知Agent项目要求</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">Harness Engineering的本质是什么？ - riba2534 的回答</span> — 关于AI生成代码质量问题的详细分析</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Harness-Engineering.html">Harness-Engineering</a> — relates_to</li>
+<li><a href="OpenAI百万行代码实验.html">OpenAI百万行代码实验</a> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Code-Quality</span> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Automated-Refactoring</span> — relates_to</li>
+<li><a href="CLAUDE.html文档.html">CLAUDE.md文档</a> — relates_to</li>
+<li><span style="color:#e74c3c" title="broken link">Coding-Standards</span> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="AI寒冬.html">&larr; AI寒冬</a>
+    <a href="AI的终极短板：责任承担.html">AI的终极短板：责任承担 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

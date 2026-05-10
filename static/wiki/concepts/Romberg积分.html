@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_4">关键优势：节点嵌套</h3>
 <p>梯形法则有一个实用特性：步长减半时，细网格的节点<strong>包含</strong>粗网格的所有节点。因此：</p>
 <p>$$T(h/2) = \frac{T(h)}{2} + \frac{h}{2}\sum_{\text{新节点}} f(x_i)$$</p>
-<p>从 $n$ 点梯形法则到 $2n+1$ 点只需计算 $n$ 个<strong>新</strong>函数值，旧值可完全重用。</p>
+<p>从 $n$ 点梯形法则到 $2n+1$ 点只需<a href="计算.html">计算</a> $n$ 个<strong>新</strong>函数值，旧值可完全重用。</p>
 <p>这使得 Romberg 积分的总函数求值次数为 $2^n + 1$（到第 $n$ 层），每一层只额外支付新节点的代价，而精度从 $O(h^{2n})$ 到 $O(h^{2n+2})$。</p>
 <h3 id="_5">与高斯求积的比较</h3>
 <table>
@@ -223,7 +223,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>实现复杂度</td>
 <td>简单（梯形法则 + 递推）</td>
-<td>需预计算高斯节点和权重</td>
+<td>需预<a href="计算.html">计算</a>高斯节点和权重</td>
 </tr>
 <tr>
 <td>自适应扩展</td>

@@ -204,8 +204,8 @@ local done = deserializer:IsEof()       -- 是否结束
 <li><code>File</code> 同时继承 Serializer 和 Deserializer，根据打开模式决定可用操作</li>
 <li><code>VectorBuffer</code> 同样双向实现，常用于构建数据包后写入网络或文件</li>
 <li>所有读方法按值返回，写方法返回 <code>bool</code> 指示成功</li>
-<li><code>WriteVLE</code>/<code>ReadVLE</code> 用于网络协议的可变长整数，减少带宽占用</li>
-<li><code>WritePackedVector3(maxAbsCoord)</code> 将 Vector3 量化压缩为 uint32，适合网络同步位置数据</li>
+<li><code><a href="Write.html">Write</a>VLE</code>/<code>ReadVLE</code> 用于网络协议的可变长整数，减少带宽占用</li>
+<li><code><a href="Write.html">Write</a>PackedVector3(maxAbsCoord)</code> 将 Vector3 量化压缩为 uint32，适合网络同步位置数据</li>
 </ul>
 <h3 id="_4">完整读写循环示例</h3>
 <pre><code class="language-lua">-- 写

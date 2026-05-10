@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>定义</strong>：在多元函数中，鞍点是梯度 ∇f(θ)=0 但 Hessian <a href="矩阵.html">矩阵</a>既有正特征值又有负特征值的点。形象地说，一个方向看是山谷（极小），垂直方向看是山脊（极大）。在高维空间中，鞍点远比局部极小值常见——随维度增加，所有特征值同号的概率指数级下降。</li>
 <li><strong>对 SGD 的威胁</strong>：<a href="随机梯度下降（SGD）.html">随机梯度下降（SGD）</a>在鞍点附近梯度趋零，更新步长 η·∇L(θ) 极小，训练几乎停滞。这是 SGD 的四大痛点之一。高维神经网络的损失曲面中鞍点极其密集，是训练缓慢的主要原因。</li>
 <li><strong>Adam 的解决方案</strong>：<a href="Adam（自适应矩估计）.html">Adam（自适应矩估计）</a>通过二阶矩 vₜ 追踪梯度方差——即使梯度均值 m̂ 趋零（鞍点特征），只要梯度有波动（不同方向曲率不同），v̂ 就非零，有效学习率 η/√v̂ 仍能提供更新动力。同时<a href="Momentum（动量）.html">Momentum（动量）</a>的惯性帮助穿越梯度趋零区域。</li>
-<li><strong>与其他方法对比</strong>：二阶优化方法（如 Newton 法）通过 Hessian 的负特征值方向逃离鞍点，但计算代价过高。一阶方法中，<a href="Momentum（动量）.html">Momentum</a> 和自适应学习率是逃离鞍点最实用的策略。随机噪声（如 SGD 的 mini-batch 采样噪声）也有助于逃离鞍点。</li>
+<li><strong>与其他方法对比</strong>：二阶优化方法（如 Newton 法）通过 Hessian 的负特征值方向逃离鞍点，但<a href="计算.html">计算</a>代价过高。一阶方法中，<a href="Momentum（动量）.html">Momentum</a> 和自适应学习率是逃离鞍点最实用的策略。随机噪声（如 SGD 的 mini-batch 采样噪声）也有助于逃离鞍点。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
@@ -158,8 +158,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="零数据保留.html">&larr; 零数据保留</a>
-    <a href="预定论.html">预定论 &rarr;</a>
+    <a href="非对称赛道.html">&larr; 非对称赛道</a>
+    <a href="项目约定手册.html">项目约定手册 &rarr;</a>
   </div>
 </div>
 </body>

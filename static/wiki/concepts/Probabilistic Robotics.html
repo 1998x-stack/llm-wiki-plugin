@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="probabilistic-robotics">Probabilistic Robotics</h1>
 <h2 id="_1">概述</h2>
-<p>《Probabilistic Robotics》是由 <a href="../entities/Sebastian Thrun.html">Sebastian Thrun</a>、<a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> 和 <a href="../entities/Dieter Fox.html">Dieter Fox</a> 于 2005 年出版的学术专著，被公认为概率机器人学领域的奠基之作。本书系统性地将<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>概率框架应用于机器人学的核心问题，包括定位（<a href="Localization.html">Localization</a>）、建图（Mapping）和<a href="SLAM.html">同时定位与建图</a>（SLAM）。它提出将不确定性视为需要管理的信息而非单纯噪声，统一了<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波等多种算法，并介绍了 MCL、FastSLAM 和 GraphSLAM 等开创性方法。该书不仅是全球数百所大学的标准教材，其算法实现（如 ROS 中的 amcl）也广泛应用于工业界和自动驾驶领域。</p>
+<p>《Probabilistic Robotics》是由 <a href="../entities/Sebastian Thrun.html">Sebastian Thrun</a>、<a href="../entities/Wolfram Burgard.html">Wolfram Burgard</a> 和 <a href="../entities/Dieter Fox.html">Dieter Fox</a> 于 2005 年出版的学术专著，被公认为概率机器人学领域的奠基之作。本书系统性地将<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>概率框架应用于机器人学的核心问题，包括定位（<a href="Localization.html">Localization</a>）、建图（Mapping）和<a href="SLAM.html">同时定位与建图</a>（SLAM）。它提出将不确定性视为需要管理的信息而非单纯噪声，统一了<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波等多种<a href="算法.html">算法</a>，并介绍了 MCL、FastSLAM 和 GraphSLAM 等开创性方法。该书不仅是全球数百所大学的标准教材，其<a href="算法.html">算法</a>实现（如 ROS 中的 amcl）也广泛应用于工业界和自动驾驶领域。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">理论框架与核心哲学</h3>
-<p>本书的核心贡献在于建立了一个统一的<strong><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>滤波</strong>理论框架，用于处理机器人感知和行动中的不确定性。传统方法往往试图消除传感器噪声或依赖硬性规则，而本书主张通过概率分布来量化和管理不确定性。其基本递归公式为：$\text{bel}(x_t) = \eta \cdot P(z_t | x_t) \cdot \int P(x_t | u_t, x_{t-1}) \cdot \text{bel}(x_{t-1}) \, dx_{t-1}$。这一框架将看似不同的算法（如<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波、信息滤波）统一为同一方程在不同假设下的实例化，极大地简化了算法的选择和理解。</p>
+<p>本书的核心贡献在于建立了一个统一的<strong><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>滤波</strong>理论框架，用于处理机器人感知和行动中的不确定性。传统方法往往试图消除传感器噪声或依赖<a href="刚性规则.html">硬性规则</a>，而本书主张通过概率分布来量化和管理不确定性。其基本递归公式为：$\text{bel}(x_t) = \eta \cdot P(z_t | x_t) \cdot \int P(x_t | u_t, x_{t-1}) \cdot \text{bel}(x_{t-1}) \, dx_{t-1}$。这一框架将看似不同的<a href="算法.html">算法</a>（如<a href="卡尔曼滤波.html">卡尔曼滤波</a>、粒子滤波、信息滤波）统一为同一方程在不同假设下的实例化，极大地简化了<a href="算法.html">算法</a>的选择和理解。</p>
 <h3 id="_4">三大核心问题的系统化</h3>
 <p>本书详细定义了机器人学的三个子问题：
 1.  <strong>定位（<a href="Localization.html">Localization</a>）</strong>：在已知地图下估计机器人状态的后验分布。书中重点介绍了<strong><a href="蒙特卡罗定位.html">蒙特卡罗定位</a>（MCL）</strong>，利用粒子滤波解决全局定位和“绑架机器人”问题，成为行业标准。
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_5">决策与规划</h3>
 <p>除了状态估计，本书还将讨论延伸至不确定性条件下的决策，引入了<strong>部分可观测<a href="../entities/马尔可夫.html">马尔可夫</a>决策过程（POMDP）</strong>框架。该框架将机器人的任务建模为信念空间中的策略搜索，统一了“探索”与“利用”的权衡，为主动感知和鲁棒规划提供了理论基础。</p>
 <h3 id="_6">实践验证与影响</h3>
-<p>书中的理论经过了严格的现实世界验证，包括史密森尼博物馆的 Minerva 导游机器人和赢得 2005 年 DARPA Grand Challenge 的 Stanley 自动驾驶汽车。这些案例证明了概率方法在动态、非结构化环境中的鲁棒性。此外，本书深刻影响了 ROS（<a href="ROS (Robot Operating System).html">Robot Operating System</a>）生态系统的设计，其算法构成了现代移动机器人导航栈的核心。</p>
+<p>书中的理论经过了严格的现实世界验证，包括史密森尼博物馆的 Minerva 导游机器人和赢得 2005 年 DARPA Grand Challenge 的 Stanley 自动驾驶汽车。这些案例证明了概率方法在动态、非结构化环境中的鲁棒性。此外，本书深刻影响了 ROS（<a href="ROS (Robot Operating System).html">Robot Operating System</a>）生态系统的设计，其<a href="算法.html">算法</a>构成了现代移动机器人导航栈的核心。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/机器人学/12-thrun-probabilistic-robotics.md</span></li>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Pre-LN架构.html">&larr; Pre-LN架构</a>
+    <a href="Proactive Agent.html">&larr; Proactive Agent</a>
     <a href="Programmatic-Tool-Calling-PTC.html">Programmatic-Tool-Calling-PTC &rarr;</a>
   </div>
 </div>

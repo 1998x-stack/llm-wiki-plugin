@@ -145,8 +145,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>各模型的 Dumb Zone 阈值</strong>：
    | 模型 | Context | Dumb Zone 估计 |
    |------|---------|---------------|
-   | Claude 3.5 Sonnet | 200k tokens | &gt;120k tokens |
-   | Claude 3 Opus | 200k tokens | &gt;120k tokens |
+   | <a href="../entities/Claude_Code.html">Claude</a> 3.5 Sonnet | 200k tokens | &gt;120k tokens |
+   | <a href="../entities/Claude_Code.html">Claude</a> 3 Opus | 200k tokens | &gt;120k tokens |
    | GPT-4o | 128k tokens | &gt;80k tokens |
    | <a href="../entities/Gemini CLI.html">Gemini</a> 1.5 Pro | 1M tokens | &gt;700k tokens |</p>
 </li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="../entities/Ralph Loop.html">Ralph Loop</a> 的应对策略</strong>：不在 Dumb Zone 中强行完成任务，而是主动退出（输出 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code>），由外循环启动一个拥有干净上下文的新 Agent 实例继续工作。这比在退化上下文中继续操作更可靠。</p>
 </li>
 <li>
-<p><strong>为什么大窗口不能解决 Dumb Zone</strong>：即使 <a href="../entities/Gemini CLI.html">Gemini</a> 1.5 Pro 有 1M tokens 的<a href="上下文窗口.html">上下文窗口</a>，Dumb Zone 仍然存在（&gt;700k tokens）。<a href="上下文策略.html">上下文策略</a> 推荐即使在大窗口模型下也保持小粒度迭代（每迭代 1 Story），因为小粒度意味着更清晰的 git commit 和更低的失败恢复成本。</p>
+<p><strong>为什么大窗口不能解决 Dumb Zone</strong>：即使 <a href="../entities/Gemini CLI.html">Gemini</a> 1.5 Pro 有 1M tokens 的<a href="上下文窗口.html">上下文窗口</a>，Dumb Zone 仍然存在（&gt;700k tokens）。<a href="上下文策略.html">上下文策略</a> 推荐即使在大窗口模型下也保持小粒度迭代（每迭代 1 Story），因为小粒度意味着更清晰的 <a href="Git Commit.html">git commit</a> 和更低的失败恢复成本。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

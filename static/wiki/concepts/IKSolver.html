@@ -152,11 +152,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 <tr>
 <td><code>RecalculateSegmentLengths()</code></td>
-<td>重新计算各段骨骼长度</td>
+<td>重新<a href="计算.html">计算</a>各段骨骼长度</td>
 </tr>
 <tr>
 <td><code>CalculateJointRotations()</code></td>
-<td>计算关节旋转（通常由 Solve 内部调用）</td>
+<td><a href="计算.html">计算</a>关节旋转（通常由 Solve 内部调用）</td>
 </tr>
 <tr>
 <td><code>Solve()</code></td>
@@ -200,8 +200,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><code>algorithm</code></td>
-<td>IKSolver::Algorithm</td>
-<td>IK 算法（如 FABRIK）</td>
+<td>IKSolver::<span style="color:#e74c3c" title="broken link">算法&lt;/td&gt;
+&lt;td&gt;Algorithm</span></td>
 </tr>
 <tr>
 <td><code>maximumIterations</code></td>
@@ -216,7 +216,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><code>JOINT_ROTATIONS</code></td>
 <td>bool</td>
-<td>启用关节旋转计算</td>
+<td>启用关节旋转<a href="计算.html">计算</a></td>
 </tr>
 <tr>
 <td><code>TARGET_ROTATIONS</code></td>
@@ -255,7 +255,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>将 IKSolver 挂载到骨骼根节点</li>
 <li>在子节点挂载 <a href="IKEffector.html">IKEffector</a> 指定目标</li>
 <li>可选在关节节点挂载 <a href="IK约束.html">IK约束</a> 限制活动范围</li>
-<li>设置 <code>AUTO_SOLVE = true</code> 自动驱动，或手动调用 <code>Solve()</code></li>
+<li><a href="Settings.html">设置</a> <code>AUTO_SOLVE = true</code> 自动驱动，或手动调用 <code>Solve()</code></li>
 </ul>
 <h2 id="_6">来源</h2>
 <ul>

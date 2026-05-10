@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>规则三层拆解法 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 规则三层拆解法</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">方法论</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">规则三层拆解法</h1>
+<h2 id="_2">概述</h2>
+<p><a href="全维度漏洞扫描法.html">全维度漏洞扫描法</a>第一步的核心方法。任何规则都可以拆成三个层级：表层条文规则（写了什么）、中层执行规则（谁来执行、怎么执行）、底层诉求规则（制定者是谁、核心诉求是什么）。从表层到中层到底层逐层拆解，把模糊的规则变成可分析的零件。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>表层：条文规则</strong>——规则写了什么，禁止什么，允许什么</li>
+<li>拆解重点：完整条文内容、明确禁止的行为、明确允许的行为</li>
+<li>
+<p>常见误区：只看碎片化的规则片段，不读完整条文</p>
+</li>
+<li>
+<p><strong>中层：执行规则</strong>——规则靠谁落地，怎么执行，谁来评判</p>
+</li>
+<li>拆解重点：执行主体是谁、执行流程/标准/尺度、结果的评判人/决策人</li>
+<li>
+<p>常见误区：只看规则写了什么，不关心谁来执行、怎么执行</p>
+</li>
+<li>
+<p><strong>底层：诉求规则</strong>——规则是谁定的，他为什么定这个规则，核心诉求是什么</p>
+</li>
+<li>拆解重点：规则制定者是谁、制定规则要解决什么问题、制定者的核心利益/诉求</li>
+<li>
+<p>常见误区：完全不关心制定者的诉求，把规则当成无差别的刚性约束</p>
+</li>
+<li>
+<p><strong>职场晋升案例</strong>：</p>
+</li>
+<li>表层：员工手册写"入职满1年，年度考核S级，通过部门答辩，可晋升主管"</li>
+<li>中层：执行主体是部门总监+HRBP，决策人是部门总监，答辩评分标准未量化，总监有完全自由裁量权</li>
+<li>
+<p>底层：管理层核心诉求不是"找考勤全勤的老员工"，而是"找能扛项目、创造增量业绩、帮管理层解决问题的人"</p>
+</li>
+<li>
+<p><strong>抖音自媒体案例</strong>：</p>
+</li>
+<li>表层：平台规则"鼓励优质原创内容，禁止搬运、抄袭、低质内容"</li>
+<li>中层：执行主体是平台<a href="算法.html">算法</a>+人工审核，优质内容核心评判标准是完播率、互动率、停留时长</li>
+<li>底层：平台核心诉求不是"培养艺术家"，而是"留住用户，提升用户时长和日活"</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/规则漏洞学系列/07</span> — 全文</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="全维度漏洞扫描法.html">全维度漏洞扫描法</a> — part_of</li>
+<li><a href="规则的4大先天缺陷.html">规则的4大先天缺陷</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="观察遮蔽.html">&larr; 观察遮蔽</a>
+    <a href="规则不周延性.html">规则不周延性 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

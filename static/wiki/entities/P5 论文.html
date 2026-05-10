@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：全称 "<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a> (RLP): A Unified Pretrain, <a href="../concepts/个性化 Prompt.html">Personalized Prompt</a> &amp; Predict Paradigm (P5)"，作者 <a href="Shijie Geng.html">Shijie Geng</a>, Shuchang Liu, Zuohui Fu, Yingqiang Ge, <a href="Yongfeng Zhang.html">Yongfeng Zhang</a>，机构 <a href="Rutgers University.html">Rutgers University</a>，发表于 <a href="RecSys 2022.html">RecSys 2022</a>（第16届ACM推荐系统会议），arXiv:2203.13366，代码仓库 github.com/jeykigung/P5，引用量 545+。</p>
+<p><strong>论文信息</strong>：全称 "<a href="../concepts/生成式推荐 (LLM).html">Recommendation as Language Processing</a> (RLP): A Unified Pretrain, <a href="../concepts/个性化 Prompt.html">Personalized Prompt</a> &amp; Predict <a href="Paradigm.html">Paradigm</a> (P5)"，作者 <a href="Shijie Geng.html">Shijie Geng</a>, Shuchang Liu, Zuohui Fu, Yingqiang Ge, <a href="Yongfeng Zhang.html">Yongfeng Zhang</a>，机构 <a href="Rutgers University.html">Rutgers University</a>，发表于 <a href="RecSys 2022.html">RecSys 2022</a>（第16届ACM推荐系统会议），arXiv:2203.13366，代码<a href="../concepts/仓库.html">仓库</a> github.com/jeykigung/P5，引用量 545+。</p>
 </li>
 <li>
 <p><strong>核心<a href="../concepts/规范化理论.html">范式</a>突破</strong>：将推荐系统的五大任务——<span style="color:#e74c3c" title="broken link">评分预测</span>、<a href="../concepts/序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——全部转化为自然语言的输入-输出文本对，使用 T5 作为骨干模型，实现"一个模型走天下"。</p>
 </li>
 <li>
-<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头注意力）和 P5-base（223.28M参数，12层编解码器，768维，12头注意力），使用 SentencePiece 分词器（词汇表 32,128），4块 NVIDIA RTX A5000 GPU 训练 10 epochs。</p>
+<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头注意力）和 P5-base（223.28M参数，12层编解码器，768维，12头注意力），使用 SentencePiece 分词器（词汇表 32,128），4块 <a href="NVIDIA.html">NVIDIA</a> RTX A5000 GPU 训练 10 epochs。</p>
 </li>
 <li>
 <p><strong>47个<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 模板</strong>：覆盖五类任务家族，每类包含多种措辞和格式。评分预测采用高斯采样将5个整数类别扩展为41个浮点数类别以避免<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>；<a href="../concepts/序列推荐.html">序列推荐</a>将用户历史交互编码为自然语言序列；解释生成和评论摘要利用文本生成能力；直接推荐以是/否形式判断偏好。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>多任务训练策略</strong>：从预训练 T5 检查点加载权重，将五类任务数据混合采样，使用标准 seq2seq <a href="../concepts/二元交叉熵.html">交叉熵损失</a><a href="../concepts/联合训练.html">联合训练</a>，推理时使用 beam search（beam size=20）解码。</p>
 </li>
 <li>
-<p><strong>实验结果</strong>：在 <a href="Amazon US Reviews.html">Amazon US Reviews</a>（Sports/Beauty/Toys）和 <a href="Yelp Review.html">Yelp Review</a> 数据集上验证。评分预测 MAE 优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>；<a href="../concepts/序列推荐.html">序列推荐</a>在全量物品设置下评估；直接推荐显著优于 BPR-MF 和 BPR-MLP；生成任务超越参数量大得多的 T0（11B）和 GPT-2（1.5B）。</p>
+<p><strong>实验结果</strong>：在 <a href="Amazon US Reviews.html">Amazon US Reviews</a>（Sports/Beauty/Toys）和 <a href="Yelp Review.html">Yelp Review</a> 数据集上验证。评分预测 MAE 优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>；<a href="../concepts/序列推荐.html">序列推荐</a>在全量物品<a href="../concepts/Settings.html">设置</a>下评估；直接推荐显著优于 BPR-MF 和 BPR-MLP；生成任务超越参数量大得多的 T0（11B）和 GPT-2（1.5B）。</p>
 </li>
 <li>
 <p><strong><a href="../concepts/Zero-shot 推荐.html">Zero-shot 推荐</a>能力</strong>：保留部分 Prompt 模板用于测试，模型在未见过的 Prompt 格式上仍能给出合理推荐，这是传统推荐模型完全不具备的能力。</p>
@@ -206,7 +206,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Oussama Khatib.html">&larr; Oussama Khatib</a>
-    <a href="PNN.html">PNN &rarr;</a>
+    <a href="PENGUIN_MODE.html">PENGUIN_MODE &rarr;</a>
   </div>
 </div>
 </body>

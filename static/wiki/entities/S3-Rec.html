@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心创新</strong>：在 <a href="SASRec.html">SASRec</a> 的基础上引入自监督预训练阶段，通过四个辅助任务（Attribute Prediction, Masked Item Prediction, Segment Prediction, Maximal Association Prediction）学习物品和序列的表示，然后在下游推荐任务上进行微调。</p>
 </li>
 <li>
-<p><strong>方法</strong>：利用序列数据本身的内在关联作为监督信号，无需额外标注数据。预训练阶段学习通用的序列表示，微调阶段针对具体推荐任务优化。</p>
+<p><strong>方法</strong>：利用序列数据本身的内在关联作为监督信号，无需额外<a href="标注.html">标注</a>数据。预训练阶段学习通用的序列表示，微调阶段针对具体推荐任务优化。</p>
 </li>
 <li>
 <p><strong>效果</strong>：在多个数据集上显著超越 <a href="SASRec.html">SASRec</a> 基线，证明了自监督学习在<a href="../concepts/序列推荐.html">序列推荐</a>中的有效性。</p>

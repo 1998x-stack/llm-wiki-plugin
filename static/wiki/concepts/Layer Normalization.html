@@ -139,24 +139,31 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>计算方式</strong>：对每个样本自身隐藏维度求均值 $\mu$ 和方差 $\sigma^2$，标准化后乘以可学习参数 $\gamma$（缩放）和 $\beta$（平移）。公式：$y_i = \gamma \hat{x}_i + \beta$，其中 $\hat{x}_i = (x_i - \mu)/\sqrt{\sigma^2 + \epsilon}$</p>
+<p><strong><a href="计算.html">计算</a>方式</strong>：对每个样本自身隐藏维度求均值 $\mu$ 和方差 $\sigma^2$，标准化后乘以可学习参数 $\gamma$（缩放）和 $\beta$（平移）。公式：$y_i = \gamma \hat{x}_i + \beta$，其中 $\hat{x}_i = (x_i - \mu)/\sqrt{\sigma^2 + \epsilon}$</p>
 </li>
 <li>
 <p><strong>两种放置方式</strong>：Post-LN（原始 <a href="Transformer架构.html">Transformer</a>）将 LayerNorm 放在子层输出之后：$\text{LN}(x + \text{Sublayer}(x))$；<a href="Pre-LN架构.html">Pre-LN</a>（现代大模型更常用）放在子层输入之前：$x + \text{Sublayer}(\text{LN}(x))$，深层网络训练更稳定</p>
 </li>
 <li>
-<p><strong>核心优势</strong>：不依赖 batch size，训练与推理行为一致，适合可变长度序列，适合<a href="AR 模型（自回归模型）.html">自回归</a>生成（每次只处理一个样本/位置）；相比 <a href="Batch Normalization.html">Batch Normalization</a> 不会混合不同样本的统计量</p>
+<p><strong>核心优势</strong>：不依赖 batch size，训练与推理行为一致，适合可变长度序列，适合<a href="AR 模型（自回归模型）.html">自回归</a>生成（每次只处理一个样本/位置）；相比 <a href="Batch Normalization.html">Batch Normalization</a> 不会混合不同样本的统计量。</p>
+</li>
+<li>
+<p><strong>归一化方法对比</strong>：在 N×C×H×W 张量中，LayerNorm 沿 C×H×W 方向归一化（每个样本独立），与 <a href="Batch Normalization.html">Batch Normalization</a>（沿 N 方向）、<a href="Instance Normalization.html">Instance Normalization</a>（沿 H×W 方向）、<a href="Group Normalization.html">Group Normalization</a>（沿 group 内 C×H×W 方向）形成完整的归一化方法族。<a href="../entities/Transformer.html">Transformer</a>/BERT/GPT 全部使用 LayerNorm 而非 <a href="Batch Normalization.html">BatchNorm</a>——NLP 任务中序列长度不固定，batch 维度归一化不适用。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析</span> — Self-Attention 机制解析系列 QA</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_04_batchnorm.md</span> — 论文精读 #04：批归一化</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="Batch Normalization.html">Batch Normalization</a> — compares_to（LayerNorm 在特征维度归一化；BatchNorm 在 batch 维度归一化）</li>
-<li><a href="残差连接.html">残差连接</a> — relates_to（LayerNorm 与残差连接配合控制数值尺度）</li>
-<li><a href="注意力预算.html">注意力预算</a> — relates_to</li>
+<li><a href="Instance Normalization.html">Instance Normalization</a> — compares_to（IN 对每个通道独立归一化，LN 对所有通道归一化）</li>
+<li><a href="Group Normalization.html">Group Normalization</a> — compares_to（GN 按通道组归一化，LN 是 GN 在 G=1 时的特例）</li>
+<li><a href="残差连接（Residual Connection）.html">残差连接（Residual Connection）</a> — relates_to（LayerNorm 与残差连接配合控制数值尺度）</li>
+<li><span style="color:#e74c3c" title="broken link">Self-Attention</span> — relates_to（LayerNorm 是 Transformer 中 Self-Attention 的标准组件）</li>
+<li><a href="Transformer架构.html">Transformer架构</a> — relates_to（LayerNorm 是 Transformer 的基础组件）</li>
 </ul>
   </div>
   <div class="page-nav">

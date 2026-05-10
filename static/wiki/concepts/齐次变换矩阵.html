@@ -146,10 +146,10 @@ $$
 <h3 id="_5">在机器人运动学中的应用</h3>
 <p>Paul 在《<a href="../entities/Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators</a>》中选择齐次变换<a href="矩阵.html">矩阵</a>作为统一工具，主要基于其优异的代数性质：
 1.  <strong>变换的复合</strong>：两个连续的变换（先 $T_1$ 后 $T_2$）可以直接通过<a href="矩阵.html">矩阵</a>乘法 $T_{total} = T_1 \cdot T_2$ 得到，这使得描述由多个连杆组成的机器人链条变得异常简洁。
-2.  <strong>逆变换</strong>：由于 $R$ 的正交性，齐次变换<a href="矩阵.html">矩阵</a>的逆可以通过简单的转置和向量运算快速求得，无需复杂的通用<a href="矩阵.html">矩阵</a>求逆算法，这对实时控制至关重要。
+2.  <strong>逆变换</strong>：由于 $R$ 的正交性，齐次变换<a href="矩阵.html">矩阵</a>的逆可以通过简单的转置和向量运算快速求得，无需复杂的通用<a href="矩阵.html">矩阵</a>求逆<a href="算法.html">算法</a>，这对实时控制至关重要。
 3.  <strong>统一性</strong>：无论是点的坐标变换、坐标系的描述，还是运动轨迹的插值，都可以在同一个 $4 \times 4$ <a href="矩阵.html">矩阵</a>框架下完成。Paul 详细讨论了它与欧拉角、RPY 角、轴角表示等其他旋转描述方法之间的转换关系，建立了一个完整的数学工具箱。</p>
 <h3 id="dh">与 DH 参数的结合</h3>
-<p>齐次变换<a href="矩阵.html">矩阵</a>是 <a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> 方法的载体。在机器人建模中，每个关节 - 连杆对由四个 DH 参数（$a, \alpha, d, \theta$）描述，这些参数直接用于构造相邻连杆间的齐次变换<a href="矩阵.html">矩阵</a> $A_i$。整个机器人的正向运动学方程即表现为一系列 $A_i$ <a href="矩阵.html">矩阵</a>的连乘：$T_{0n} = A_1(\theta_1) A_2(\theta_2) \cdots A_n(\theta_n)$。这种程序化的建模方法不仅降低了工程师的工作量，还为后来的计算机辅助建模工具（如 MATLAB Robotics Toolbox, ROS URDF）提供了理论基础。</p>
+<p>齐次变换<a href="矩阵.html">矩阵</a>是 <a href="Denavit-Hartenberg 参数.html">Denavit-Hartenberg 参数</a> 方法的载体。在机器人建模中，每个关节 - 连杆对由四个 DH 参数（$a, \alpha, d, \theta$）描述，这些参数直接用于构造相邻连杆间的齐次变换<a href="矩阵.html">矩阵</a> $A_i$。整个机器人的正向运动学方程即表现为一系列 $A_i$ <a href="矩阵.html">矩阵</a>的连乘：$T_{0n} = A_1(\theta_1) A_2(\theta_2) \cdots A_n(\theta_n)$。这种程序化的建模方法不仅降低了工程师的工作量，还为后来的<a href="计算.html">计算</a>机辅助建模工具（如 MATLAB Robotics Toolbox, ROS URDF）提供了理论基础。</p>
 <h3 id="_6">历史地位与现代演变</h3>
 <p>虽然齐次变换<a href="矩阵.html">矩阵</a>在 1981 年之前已被部分研究者使用，但正是通过 Paul 的著作，它才真正成为机器人学的“宪法级”标准。直至今日，尽管旋量理论（Screw Theory）和积指数公式（PoE）提供了另一种优雅的数学框架，齐次变换<a href="矩阵.html">矩阵</a>因其直观性和与现有工业标准（如 DH 参数）的完美契合，仍然是工业机器人编程、标定和控制中最常用的数学工具。在现代软件框架如 MoveIt! 和 OpenRAVE 中，其底层运动学引擎依然依赖于这一经典表示法。</p>
 <h2 id="_7">来源</h2>

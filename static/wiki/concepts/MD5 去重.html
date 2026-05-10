@@ -149,10 +149,10 @@ nav a.active { color: var(--link); font-weight: 600; }
       existing_hashes.add(h)
       return True
   <code>``
-- **工作流程**：挖掘前先从 ChromaDB 加载所有现有 MD5 哈希到</code>existing_hashes` 集合，每个新块计算 MD5 后检查是否已存在
+- **工作流程**：挖掘前先从 ChromaDB 加载所有现有 MD5 哈希到</code>existing_hashes` 集合，每个新块<a href="计算.html">计算</a> MD5 后检查是否已存在
 - <strong>去重粒度</strong>：以 chunk（切块）为单位进行去重，不是以文件为单位
 - <strong>幂等性保证</strong>：同一内容多次挖掘，只有第一次会被存储
-- <strong>性能考量</strong>：MD5 计算速度快，集合查找 O(1)，适合大规模内容去重
+- <strong>性能考量</strong>：MD5 <a href="计算.html">计算</a>速度快，集合查找 O(1)，适合大规模内容去重
 - <strong>与<a href="增量挖掘.html">增量挖掘</a>的关系</strong>：MD5 去重是<a href="增量挖掘.html">增量挖掘</a>能够安全执行的基础机制</p>
 <h2 id="_3">来源</h2>
 <ul>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="MCP协议层.html">&larr; MCP协议层</a>
+    <a href="MCP（Model Context Protocol）.html">&larr; MCP（Model Context Protocol）</a>
     <a href="MDL格式.html">MDL格式 &rarr;</a>
   </div>
 </div>

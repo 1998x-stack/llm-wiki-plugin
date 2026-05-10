@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Lua 通过 metatable 机制允许对 table 的行为进行拦截和重定义，是实现 OOP、运算符重载、原型继承的基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>设置与获取</strong>：<code>setmetatable(t, mt)</code> 为 table <code>t</code> 指定 metatable <code>mt</code>；<code>getmetatable(t)</code> 取回。每个 table 最多关联一个 metatable。</li>
+<li><strong><a href="Settings.html">设置</a>与获取</strong>：<code>setmetatable(t, mt)</code> 为 table <code>t</code> 指定 metatable <code>mt</code>；<code>getmetatable(t)</code> 取回。每个 table 最多关联一个 metatable。</li>
 <li><strong><code>__index</code> 元方法</strong>：访问 table 中不存在的字段时触发。可以是函数 <code>function(tbl, key) ... end</code> 或另一张 table（原型查找）。原型链继承即利用此机制：<code>setmetatable(t, {__index = proto})</code>，访问 <code>t</code> 中不存在的字段时自动在 <code>proto</code> 中查找。</li>
 <li><strong><code>__newindex</code> 元方法</strong>：对不存在的字段赋值时触发，可用于只读 table 或代理写入。</li>
 <li><strong>运算符重载</strong>：<code>__add</code>/<code>__sub</code>/<code>__mul</code>/<code>__div</code>/<code>__mod</code>/<code>__unm</code>（一元负）等对应算术操作；<code>__eq</code>/<code>__lt</code>/<code>__le</code> 对应比较操作。</li>

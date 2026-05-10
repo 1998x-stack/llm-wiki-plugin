@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="geo">GEO生成式引擎优化</h1>
 <h2 id="_1">概述</h2>
-<p>GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化<a href="规范化理论.html">范式</a>，目标是让内容被 ChatGPT、Perplexity、<a href="../entities/Google.html">Google</a> AI Overviews、Claude 等 LLM 在生成答案时<strong>主动引用</strong>。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。</p>
+<p>GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化<a href="规范化理论.html">范式</a>，目标是让内容被 <a href="../entities/ChatGPT.html">ChatGPT</a>、Perplexity、<a href="../entities/Google.html">Google</a> AI Overviews、<a href="../entities/Claude_Code.html">Claude</a> 等 LLM 在生成答案时<strong>主动引用</strong>。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>市场规模（2025）</strong>：AI 搜索替代传统搜索比例 58%、AI 引荐流量同比增长 +527%（2025 H1）、每次 AI 答案平均只引用 2-7 个域名（vs 传统搜索 10 条蓝链），竞争高度集中。</p>
 </li>
 <li>
-<p><strong>生成式引擎多阶段检索</strong>：广域文档检索 → 重排模型（ChatGPT 用 ret-rr-skysight-v3）→ LLM 合成生成（从 2-7 个精选域名提取事实）→ 带引用的自然语言答案。</p>
+<p><strong>生成式引擎多阶段检索</strong>：广域文档检索 → 重排模型（<a href="../entities/ChatGPT.html">ChatGPT</a> 用 ret-rr-skysight-v3）→ LLM 合成生成（从 2-7 个精选域名提取事实）→ 带引用的自然语言答案。</p>
 </li>
 <li>
 <p><strong>内容被 AI 选中的四大维度</strong>：</p>
@@ -159,10 +159,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>内容结构：直接答案优先（前 40-60 字）、FAQ 格式、语义分块（每段落可脱离上下文被提取）、每 150-200 字嵌入一条具体数据点</li>
 <li>权威构建：原创研究/白皮书、透明作者署名、被高权威网站引用</li>
 <li>
-<p>技术实现：Schema Markup（结构化数据）、AI 爬虫友好（不屏蔽 GPTBot/ClaudeBot/PerplexityBot）</p>
+<p>技术实现：Schema Markup（结构化数据）、AI 爬虫友好（不屏蔽 GPTBot/<a href="../entities/Claude_Code.html">Claude</a>Bot/PerplexityBot）</p>
 </li>
 <li>
-<p><strong>平台差<a href="异化.html">异化</a></strong>：ChatGPT 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；<a href="../entities/Google.html">Google</a> AI Overviews 偏好已有高 SEO 排名的内容；Claude 偏好可溯源、有引用的结构化内容。</p>
+<p><strong>平台差<a href="异化.html">异化</a></strong>：<a href="../entities/ChatGPT.html">ChatGPT</a> 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；<a href="../entities/Google.html">Google</a> AI Overviews 偏好已有高 SEO 排名的内容；<a href="../entities/Claude_Code.html">Claude</a> 偏好可溯源、有引用的结构化内容。</p>
 </li>
 <li>
 <p><strong>衡量指标</strong>：AIGVR（AI Visibility Rate）、Citation Rate（引用率）、CER（内容提取率）、C2CR（AI 引用→业务转化率）。</p>

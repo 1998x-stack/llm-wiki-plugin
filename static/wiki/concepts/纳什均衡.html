@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>定义</strong>：<a href="纳什均衡.html">纳什均衡</a> 是博弈论的核心概念，由 John Nash 提出。在一个策略组合中，如果没有任何参与方可以通过单方面改变自己的策略而获得更好的结果，则该策略组合构成纳什均衡。对于两人博弈 (A, B)，策略组合 (s_A<em>, s_B</em>) 是纳什均衡当且仅当：u_A(s_A<em>, s_B</em>) ≥ u_A(s_A, s_B<em>) 对所有 s_A 成立，且 u_B(s_A</em>, s_B<em>) ≥ u_B(s_A</em>, s_B) 对所有 s_B 成立。</li>
 <li><strong>在 GAN 中的意义</strong>：<a href="生成对抗网络（GAN）.html">生成对抗网络（GAN）</a> 的训练目标是达到纳什均衡。Goodfellow 在 <a href="../entities/Generative Adversarial Nets (2014 论文).html">Generative Adversarial Nets (2014 论文)</a> 中严格证明了：当生成分布 p_g 等于真实数据分布 p_data 时，系统达到全局最优均衡，此时<a href="判别器.html">判别器</a> D<em>(x) = 1/2（对任何输入都无法<a href="../entities/区分.html">区分</a>真假），全局损失 C(G</em>) = -log 4。</li>
-<li><strong>收敛定理</strong>：论文证明若 G 和 D 有足够容量（能表示任意函数），且训练算法每步将 D 更新至最优，则算法收敛至 p_g = p_data 的纳什均衡。但这一理论条件在现实中无法满足——神经网络容量有限、优化算法非完美、训练步数有限。</li>
+<li><strong>收敛定理</strong>：论文证明若 G 和 D 有足够容量（能表示任意函数），且训练<a href="算法.html">算法</a>每步将 D 更新至最优，则<a href="算法.html">算法</a>收敛至 p_g = p_data 的纳什均衡。但这一理论条件在现实中无法满足——神经网络容量有限、优化<a href="算法.html">算法</a>非完美、训练步数有限。</li>
 <li><strong>实际挑战</strong>：由于无法达到理论纳什均衡，GAN 训练中出现 <a href="模式崩塌.html">模式崩塌</a>、损失震荡等问题。<a href="Wasserstein距离.html">Wasserstein距离</a>（WGAN）通过提供更有意义的梯度度量来改善收敛行为，谱归一化通过限制<a href="判别器.html">判别器</a>的 Lipschitz 常数来稳定训练。</li>
 </ol>
 <h2 id="_4">来源</h2>

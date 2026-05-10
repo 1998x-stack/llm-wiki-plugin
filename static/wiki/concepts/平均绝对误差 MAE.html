@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mae">平均绝对误差 MAE</h1>
 <h2 id="_1">概述</h2>
-<p>推荐系统预测评分准确性的核心评估指标，计算预测评分与实际评分之间绝对误差的平均值，MAE 越小说明预测越准确。</p>
+<p>推荐系统预测评分准确性的核心评估指标，<a href="计算.html">计算</a>预测评分与实际评分之间绝对误差的平均值，MAE 越小说明预测越准确。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>公式定义</strong>：MAE = (1/N) × Σ|p_i - q_i|，其中 p_i 是预测评分，q_i 是实际评分，N 是测试样本数量。</p>
 </li>
 <li>
-<p><strong>在推荐系统中的应用</strong>：MAE 是推荐系统评估的标准做法，被广泛用于比较不同推荐算法的预测准确性。<a href="../entities/Item-Based Collaborative Filtering Recommendation Algorithms.html">Item-Based Collaborative Filtering Recommendation Algorithms</a> 采用 MAE 作为主要评估指标，比较 <a href="基于物品的协同过滤.html">Item-Based CF</a> 与 <a href="基于用户的协同过滤.html">User-Based CF</a> 的推荐质量。</p>
+<p><strong>在推荐系统中的应用</strong>：MAE 是推荐系统评估的标准做法，被广泛用于比较不同推荐<a href="算法.html">算法</a>的预测准确性。<a href="../entities/Item-Based Collaborative Filtering Recommendation Algorithms.html">Item-Based Collaborative Filtering Recommendation Algorithms</a> 采用 MAE 作为主要评估指标，比较 <a href="基于物品的协同过滤.html">Item-Based CF</a> 与 <a href="基于用户的协同过滤.html">User-Based CF</a> 的推荐质量。</p>
 </li>
 <li>
 <p><strong>实验结论</strong>：在 <a href="../entities/MovieLens.html">MovieLens</a> 100K 数据集上，<a href="基于物品的协同过滤.html">Item-Based CF</a> 使用调整后余弦相似度时 MAE 最低，显著优于基本余弦相似度和皮尔逊相关系数，且优于或等同于最优的 <a href="基于用户的协同过滤.html">User-Based CF</a> 方法。</p>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="平台适配器模式.html">&larr; 平台适配器模式</a>
-    <a href="广义优势估计.html">广义优势估计 &rarr;</a>
+    <a href="平等主义.html">平等主义 &rarr;</a>
   </div>
 </div>
 </body>

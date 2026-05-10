@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="renderer">Renderer渲染器</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的全局 Renderer 对象管理所有渲染视口、阴影质量、纹理质量、HDR 和实例化绘制等全局渲染设置，是渲染管线的顶层控制器。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 的全局 Renderer 对象管理所有渲染视口、阴影质量、纹理质量、HDR 和实例化绘制等全局渲染<a href="Settings.html">设置</a>，是渲染管线的顶层<a href="控制器.html">控制器</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>视口管理</strong>：<code>SetNumViewports(n)</code> + <code>SetViewport(index, viewport)</code> 支持多视口渲染（分屏、后处理等）</li>
 <li><strong>默认<a href="RenderPath渲染管线.html">渲染路径</a></strong>：<code>SetDefaultRenderPath(renderPath)</code> 切换前向/延迟渲染管线</li>
-<li><strong>阴影配置</strong>：<code>drawShadows</code>、<code>shadowMapSize</code>、<code>shadowQuality</code>、<code>reuseShadowMaps</code></li>
+<li><strong>阴影<a href="Configuration.html">配置</a></strong>：<code>drawShadows</code>、<code>shadowMapSize</code>、<code>shadowQuality</code>、<code>reuseShadowMaps</code></li>
 <li><strong>HDR 渲染</strong>：<code>HDRRendering</code> 开启高动态范围，配合 ToneMapping <a href="RenderPath渲染管线.html">RenderPath</a> 使用</li>
 <li><strong>纹理质量</strong>：<code>textureQuality</code> / <code>materialQuality</code> / <code>textureAnisotropy</code> 影响纹理过滤</li>
 <li><strong>动态实例化</strong>：<code>dynamicInstancing</code> 自动合批相同材质物体减少 DrawCall</li>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="RenderPath渲染管线.html">&larr; RenderPath渲染管线</a>
-    <a href="Richardson外推法.html">Richardson外推法 &rarr;</a>
+    <a href="Replace Conditional with Polymorphism.html">Replace Conditional with Polymorphism &rarr;</a>
   </div>
 </div>
 </body>

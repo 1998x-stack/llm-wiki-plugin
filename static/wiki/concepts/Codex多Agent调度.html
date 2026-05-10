@@ -134,7 +134,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="codexagent">Codex多Agent调度</h1>
-<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的并行任务执行系统，让 <a href="../entities/Codex CLI.html">Codex</a> 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Agent 将复杂任务分解后，派遣多个子 Agent 并行执行，收集汇总结果。</p>
+<p><a href="../entities/Codex CLI.html">Codex CLI</a> 的并行任务执行系统，让 <a href="../entities/Codex CLI.html">Codex</a> 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Agent 将复杂任务分解后，派遣多个<span style="color:#e74c3c" title="broken link">子 Agent</span> 并行执行，收集汇总结果。</p>
 <h2 id="_1">核心价值</h2>
 <p>单 Agent 面临<a href="上下文窗口.html">上下文窗口</a>有限、顺序执行、单点失败三大局限。Multi-Agent 解决：任务分解（每个 subagent 专注较小上下文）、并行执行、专业分工、隔离失败（subagent 失败不影响主流程）。</p>
 <h2 id="feature-flag-multi_agents">核心工具集（feature flag: multi_agents）</h2>
@@ -205,7 +205,7 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 <h2 id="spawn_agents_on_csv">典型场景：spawn_agents_on_csv</h2>
 <p>批量同构任务（50 个 API endpoint 各写测试、30 个模块迁移框架）：
 1. 主 Agent 枚举任务目标 → 生成 CSV → 调用 spawn_agents_on_csv
-2. 每个 Worker Agent 独立上下文、独立沙箱
+2. 每个 <a href="Worker Agent.html">Worker Agent</a> 独立上下文、独立沙箱
 3. 主 Agent wait 所有 worker → 汇总报告</p>
 <p><strong>DevDay 2025 案例</strong>：7 个终端同时跑 7 个 <a href="../entities/Codex CLI.html">Codex</a> 实例，各自开发一款 <a href="../entities/Phaser.js.html">Phaser.js</a> 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。</p>
 <h2 id="_4">降低不确定性的机制</h2>

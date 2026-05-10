@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ppo">PPO</h1>
 <h2 id="_1">概述</h2>
-<p>Schulman et al. (<a href="../entities/OpenAI.html">OpenAI</a>, 2017) 提出的近端策略优化算法。通过 Clip 目标函数近似 TRPO 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 RL 算法，也是 RLHF（InstructGPT/ChatGPT）的核心组件。</p>
+<p>Schulman et al. (<a href="../entities/OpenAI.html">OpenAI</a>, 2017) 提出的<a href="Proximal Policy Optimization.html">近端策略优化</a><a href="算法.html">算法</a>。通过 Clip 目标函数近似 TRPO 的信赖域约束，在保留近似单调改进保证的同时实现一阶优化（普通 SGD/Adam），成为 2017-2023 年工业界最广泛使用的 RL <a href="算法.html">算法</a>，也是 RLHF（<a href="../entities/InstructGPT.html">InstructGPT</a>/<a href="../entities/ChatGPT.html">ChatGPT</a>）的核心组件。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -149,16 +149,16 @@ nav a.active { color: var(--link); font-weight: 600; }
    三项分别为策略目标（最大化）、<a href="价值函数.html">价值函数</a>损失（最小化）、熵正则化（最大化，促进探索）。</p>
 </li>
 <li>
-<p><strong>GAE 优势估计</strong>：使用<a href="广义优势估计.html">广义优势估计</a>（λ=0.95）计算 Â_t，在偏差-方差之间取得平衡，是 PPO 训练稳定的关键。</p>
+<p><strong>GAE 优势估计</strong>：使用<a href="广义优势估计.html">广义优势估计</a>（λ=0.95）<a href="计算.html">计算</a> Â_t，在偏差-方差之间取得平衡，是 PPO 训练稳定的关键。</p>
 </li>
 <li>
-<p><strong>数据复用（多轮更新）</strong>：每批数据收集后执行 K=10 轮 mini-batch 更新，提高样本效率，是相较 TRPO 的重要工程优势。</p>
+<p><strong>数据复用（多轮更新）</strong>：每批<a href="遥测系统.html">数据收集</a>后执行 K=10 轮 mini-batch 更新，提高样本效率，是相较 TRPO 的重要工程优势。</p>
 </li>
 <li>
-<p><strong>工程细节</strong>：优势归一化 (Â-mean)/std；梯度裁剪 max norm 0.5；Adam 学习率 3e-4；并行环境数据收集（N×T transitions）。</p>
+<p><strong>工程细节</strong>：优势归一化 (Â-mean)/std；梯度裁剪 max norm 0.5；Adam 学习率 3e-4；并行环境<a href="遥测系统.html">数据收集</a>（N×T transitions）。</p>
 </li>
 <li>
-<p><strong>广泛应用</strong>：<a href="../entities/OpenAI.html">OpenAI</a> Dactyl（机器人）、<a href="../entities/OpenAI.html">OpenAI</a> Five（Dota2）、InstructGPT/ChatGPT（RLHF）、AlphaStar，是 RLHF 标准算法选择。</p>
+<p><strong>广泛应用</strong>：<a href="../entities/OpenAI.html">OpenAI</a> Dactyl（机器人）、<a href="../entities/OpenAI.html">OpenAI</a> Five（Dota2）、<a href="../entities/InstructGPT.html">InstructGPT</a>/<a href="../entities/ChatGPT.html">ChatGPT</a>（RLHF）、AlphaStar，是 RLHF 标准<a href="算法.html">算法</a>选择。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="PDF解析.html">&larr; PDF解析</a>
-    <a href="PRD 生成提示词.html">PRD 生成提示词 &rarr;</a>
+    <a href="PPO（近端策略优化）.html">PPO（近端策略优化） &rarr;</a>
   </div>
 </div>
 </body>

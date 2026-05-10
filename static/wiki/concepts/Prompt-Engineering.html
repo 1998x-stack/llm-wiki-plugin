@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt-Engineering — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Prompt-Engineering</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">prompt-engineering</span><span class="tag">llm</span></div>
+</div>
+  <div class="content">
+    <h1 id="prompt-engineering">Prompt Engineering</h1>
+<h2 id="_1">概述</h2>
+<p><a href="Prompt Engineering.html">Prompt Engineering</a> 是通过精心设计自然语言指令，最大化 LLM 单次/多次调用的输出质量的方法论体系。它是 LLM 工程化的第一个可操作<a href="规范化理论.html">范式</a>。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>定义与核心工作</strong>：</li>
+<li>
+<p><a href="Prompt Engineering.html">Prompt Engineering</a> 是对 LLM 输入端的精细化设计艺术，核心工作包括指令设计、示例工程、<a href="Chain-of-Thought.html">思维链</a>诱导、格式控制和负向指令。</p>
+</li>
+<li>
+<p><strong>技术发展史</strong>：</p>
+</li>
+<li><strong>2020年</strong>: <a href="../entities/GPT-3.html">GPT-3</a> 首次展示"few-shot learning"，证明 LLM 能从示例中推断任务意图</li>
+<li><strong>2022年</strong>: <a href="../entities/InstructGPT.html">InstructGPT</a> RLHF 对齐训练使模型真正服从自然语言指令</li>
+<li>
+<p><strong>2022年11月</strong>: <a href="../entities/ChatGPT.html">ChatGPT</a> 普及，让数百万人首次感知到"怎么问"影响"怎么答"</p>
+</li>
+<li>
+<p><strong>核心技术模式</strong>：</p>
+</li>
+<li><strong><a href="CO-STAR-Framework.html">CO-STAR 框架</a></strong>: Context, Objective, Style, Tone, Audience, Response</li>
+<li><strong><a href="Chain-of-Thought.html">Chain-of-Thought</a> (CoT)</strong>: 诱导模型逐步推理，显著提升复杂推理准确率</li>
+<li><strong>Few-Shot 示例设计</strong>: 通常 3-8 个示例效果最优</li>
+<li><strong>角色扮演 (Role Prompting)</strong>: 激活模型特定知识域的权重激活模式</li>
+<li><strong>结构化输出控制</strong>: 通过 XML 或 JSON 格式约束输出</li>
+<li>
+<p><strong><a href="Meta-Prompting.html">元提示</a> (<a href="Meta-Prompting.html">Meta-Prompting</a>)</strong>: 先生成最佳提示词，再用它来回答问题</p>
+</li>
+<li>
+<p><strong>高级技术</strong>：</p>
+</li>
+<li><strong><a href="Self-Consistency.html">Self-Consistency</a></strong>: 多次采样取多数答案，适用于数学/逻辑推理</li>
+<li><strong><a href="Tree-of-Thought.html">Tree-of-Thought</a></strong>: 树形搜索推理路径，适用于复杂规划问题</li>
+<li><strong><a href="ReAct.html">ReAct</a></strong>: 交错 Reasoning + Acting，适用于工具调用</li>
+<li><strong><a href="Least-to-Most.html">Least-to-Most</a></strong>: 分解子问题递进解决，适用于复杂分步任务</li>
+<li>
+<p><strong><a href="Generated-Knowledge.html">Generated Knowledge</a></strong>: 先生成背景知识再回答，适用于知识密集型任务</p>
+</li>
+<li>
+<p><strong>局限性与挑战</strong>：</p>
+</li>
+<li><a href="上下文窗口.html">上下文窗口</a>瓶颈、幻觉问题、不稳定性</li>
+<li><a href="可维护性.html">可维护性</a>差、跨模型不可移植</li>
+<li>知识截止问题、复杂任务天花板</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">ai-engineering--01_prompt_engineering</span> — 第一阶段：Prompt Engineering（提示词工程）</li>
+<li><a href="../entities/GPT-3.html">GPT-3</a> — 技术起源参考</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../entities/GPT-3.html">GPT-3</a> — enabled_by</li>
+<li><a href="../entities/InstructGPT.html">InstructGPT</a> — popularized_by</li>
+<li><a href="../entities/ChatGPT.html">ChatGPT</a> — popularized_by</li>
+<li><a href="CO-STAR-Framework.html">CO-STAR-Framework</a> — implements</li>
+<li><a href="Meta-Prompting.html">Meta-Prompting</a> — implements</li>
+<li><a href="In-Context-Learning.html">In-Context-Learning</a> — extends</li>
+<li><a href="Chain-of-Thought.html">Chain-of-Thought</a> — implements</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Prompt 缓存.html">&larr; Prompt 缓存</a>
+    <a href="Prophet.html">Prophet &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

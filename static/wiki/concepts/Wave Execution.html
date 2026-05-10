@@ -127,30 +127,49 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Wave Execution</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">gsd</span><span class="tag">workflow</span><span class="tag">parallelization</span><span class="tag">project-management</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">gsd</span><span class="tag">workflow</span><span class="tag">parallelization</span><span class="tag">project-management</span><span class="tag">orchestration</span><span class="tag">parallel-execution</span><span class="tag">scheduling</span></div>
 </div>
   <div class="content">
     <h1 id="wave-execution">Wave Execution</h1>
 <h2 id="_1">概述</h2>
-<p>GSD 系统的并行执行机制，通过 DAG 依赖分析将可并行的任务分组到同一"波次"，实现高效的并行处理。</p>
+<p>一种并行任务调度模式，将具有依赖关系的任务按照拓扑顺序分组成波次，同波次内的任务可并行执行，不同波次按序等待执行完成，以最大化并行度同时保证依赖约束。GSD系统利用此机制通过DAG依赖分析将可并行的任务分组到同一"波次"，实现高效的并行处理。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心思想</strong>：</li>
-<li>分析 PLAN 文件间的依赖关系</li>
-<li>构建 DAG（有向无环图）</li>
+<li><strong>核心原理</strong>：</li>
+<li>将任务的依赖关系图进行拓扑排序</li>
+<li>将无相互依赖的任务归类到同一波次</li>
+<li>同波次内的任务可以并行执行</li>
 <li>
-<p>将可并行的计划放入同一"波次"</p>
+<p>等待整个波次完成后再开始下一波次</p>
 </li>
 <li>
-<p><strong>示例</strong>：
+<p><strong><a href="算法.html">算法</a>实现</strong>：</p>
+</li>
+<li>解析所有任务的依赖关系</li>
+<li>构建依赖关系图</li>
+<li>找出所有依赖已完成的可立即执行任务</li>
+<li>将这些任务组成一个波次</li>
+<li>
+<p>重复直到所有任务都被调度</p>
+</li>
+<li>
+<p><strong>GSD中的应用示例</strong>：
    <code>WAVE 1（并行）              WAVE 2（并行）          WAVE 3
    ┌──────────┐ ┌──────────┐  ┌──────────┐ ┌──────┐  ┌──────────┐
    │ Plan 01  │ │ Plan 02  │→ │ Plan 03  │ │ P04  │→ │ Plan 05  │
    │User Model│ │Prod Model│  │Orders API│ │CartAPI│  │ Checkout │
    └──────────┘ └──────────┘  └──────────┘ └──────┘  └──────────┘</code></p>
+</li>
+<li>
+<p><strong>冲突检测与解决</strong>：</p>
+</li>
+<li>检测同一波次内的任务是否会产生资源冲突（如修改同一文件）</li>
+<li>如检测到冲突，则将冲突任务推迟到下一波次</li>
+<li>
+<p>或将冲突任务合并为同一计划</p>
 </li>
 <li>
 <p><strong>关键原则</strong>：</p>
@@ -170,21 +189,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>最大化并行执行效率</li>
 <li>减少总体执行时间</li>
 <li>保持任务依赖关系清晰</li>
+<li>避免资源竞争和冲突</li>
+<li>提供清晰的执行进度感知</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01-overview-context-rot</span> — Context Rot 与上下文工程</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/claude-skills/04-multi-agent-orchestration.md</span> — GSD多智能体编排架构详解</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="../entities/GSD.html">GSD</a> — part_of</li>
+<li><a href="GSD 多智能体编排架构.html">GSD 多智能体编排架构</a> — implements</li>
+<li><a href="Multi-Agent Orchestration.html">Multi-Agent Orchestration</a> — relates_to</li>
 <li><span style="color:#e74c3c" title="broken link">DAG</span> — uses</li>
 <li><span style="color:#e74c3c" title="broken link">Parallel Execution</span> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">Dependency Graph</span> — depends_on</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Wasserstein距离.html">&larr; Wasserstein距离</a>
-    <a href="Weyl特征值不等式.html">Weyl特征值不等式 &rarr;</a>
+    <a href="WaveNet.html">WaveNet &rarr;</a>
   </div>
 </div>
 </body>

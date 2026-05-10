@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-budget-management">上下文预算管理（Context Budget Management）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文预算管理是在编写 CLAUDE.md 等 Agent 提示词时，预先估算各部分 token 消耗并确保总量在安全范围内的策略，目标是保持上下文使用量在 50-55% 以下，留出充足的安全缓冲区避免进入 <a href="Dumb Zone.html">Dumb Zone</a>。</p>
+<p>上下文预算管理是在编写 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 等 Agent 提示词时，预先估算各部分 token 消耗并确保总量在安全范围内的策略，目标是保持上下文使用量在 50-55% 以下，留出充足的安全缓冲区避免进入 <a href="Dumb Zone.html">Dumb Zone</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>理想的 CLAUDE.md 上下文预算（模型 ~200k context）</strong>：
+<p><strong>理想的 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 上下文预算（模型 ~200k context）</strong>：
    | 组件 | Tokens | 占比 |
    |------|--------|------|
-   | CLAUDE.md 固定内容 | ~5,000 | 2.5% |
+   | <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 固定内容 | ~5,000 | 2.5% |
    | prd.json（当前状态） | ~15,000 | 7.5% |
    | progress.txt | ~3,000 | 1.5% |
-   | AGENTS.md | ~2,000 | 1.0% |
+   | <a href="项目约定手册.html">AGENTS.md</a> | ~2,000 | 1.0% |
    | 实现过程中的工具调用结果 | ~50,000 | 25% |
    | 代码文件读取 | ~30,000 | 15% |
    | <strong>小计</strong> | <strong>~105,000</strong> | <strong>52.5%</strong> |
@@ -156,13 +156,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>方案 A</strong>：只加载未完成的 Story，用脚本过滤 <code>passes: false</code> 的条目，只展示前 10 个</li>
 <li>
-<p><strong>方案 B</strong>：在 CLAUDE.md 中用脚本动态加载，而非 <code>@prd.json</code> 全量引用</p>
+<p><strong>方案 B</strong>：在 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 中用脚本动态加载，而非 <code>@prd.json</code> 全量引用</p>
 </li>
 <li>
 <p><strong>与 <a href="注意力预算.html">注意力预算</a> 的关系</strong>：上下文预算管理是<a href="注意力预算.html">注意力预算</a>概念的具体量化实践。通过预先估算各组件的 token 消耗，确保 Agent 在执行过程中有足够的<a href="注意力预算.html">注意力资源</a>用于推理和决策。</p>
 </li>
 <li>
-<p><strong>动态调整</strong>：不同类型的任务需要不同的预算分配。Coding Agent 场景应减少 Retrieved Evidence，增加 Working Memory + Tool Delta 的比例。</p>
+<p><strong>动态调整</strong>：不同类型的任务需要不同的预算分配。<a href="编码 Agent 协议.html">Coding Agent</a> 场景应减少 Retrieved Evidence，增加 <a href="工作记忆.html">Working Memory</a> + Tool Delta 的比例。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

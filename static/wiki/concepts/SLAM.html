@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>GraphSLAM 贡献</strong>：将 SLAM 建模为约束满足问题，利用稀疏结构实现高效全局优化，催生了 g2o、iSAM、GTSAM 等框架。</p>
 <h3 id="_5">地图表示形式</h3>
 <ul>
-<li><strong>占据栅格地图</strong>（Occupancy Grid）：将环境离散为网格，每格标注占据概率。直观完整，适合激光雷达。</li>
+<li><strong>占据栅格地图</strong>（Occupancy Grid）：将环境离散为网格，每格<a href="../entities/标注.html">标注</a>占据概率。直观完整，适合激光雷达。</li>
 <li><strong>特征地图</strong>（Feature-based）：用角点、线段等几何特征表示环境。存储高效，依赖特征提取。</li>
 <li><strong>拓扑地图</strong>（Topological）：用图结构表示连接关系。抽象度高，适合大尺度导航。</li>
 </ul>
@@ -168,7 +168,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_7">现代发展</h3>
 <ul>
 <li><strong>视觉 SLAM</strong>：用摄像头替代激光雷达，ORB-SLAM3、LIO-SAM 等方案广泛使用</li>
-<li><strong>深度学习 SLAM</strong>：SuperPoint/SuperGlue 替代手工特征，神经网络估计深度</li>
+<li><strong>深度学习 SLAM</strong>：SuperPoint/SuperGlue 替代<a href="特征工程（Feature Engineering）.html">手工特征</a>，神经网络估计深度</li>
 <li><strong>语义 SLAM</strong>：在几何地图上叠加物体类别信息（"桌子在 A 处，椅子在 B 处"）</li>
 <li><strong>神经场景表示</strong>：NeRF、3D Gaussian Splatting 作为新型地图形式</li>
 </ul>
@@ -186,7 +186,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="SKILL.md 格式规范.html">&larr; SKILL.md 格式规范</a>
-    <a href="SNIPS.html">SNIPS &rarr;</a>
+    <a href="SMART 核心五阶段流水线.html">SMART 核心五阶段流水线 &rarr;</a>
   </div>
 </div>
 </body>

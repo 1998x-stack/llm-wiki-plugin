@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bat">bat</h1>
 <h2 id="_1">概述</h2>
-<p>bat 是 <code>cat</code> 命令的现代替代品，用 Rust 编写。集成语法高亮、Git diff 标注、行号显示和自动分页，Ubuntu 下二进制名为 <code>batcat</code>，可设 alias。</p>
+<p>bat 是 <code>cat</code> 命令的现代替代品，用 Rust 编写。集成语法高亮、Git diff <a href="标注.html">标注</a>、行号显示和自动分页，Ubuntu 下二进制名为 <code>batcat</code>，可设 alias。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心功能</strong>：语法高亮（支持 100+ 语言）+ Git 变更行标注（显示哪些行被新增/修改）+ 自动分页（类 <code>less</code>）；<code>--paging=never</code> 适合管道使用。</li>
-<li><strong>集成场景</strong>：<code>rg "error" --json | bat --language json</code>（彩色 JSON 输出）；<code>git show HEAD:file.py | bat -l py</code>（历史版本带高亮）；可配置为 <code>MANPAGER</code> 使 man 页带语法高亮。</li>
-<li><strong>AI Agent 价值</strong>：行号显示让 Agent 引用代码位置更精确；Git diff 标注帮助 Agent 直观理解文件变更状态，减少错误引用。</li>
+<li><strong>核心功能</strong>：语法高亮（支持 100+ 语言）+ Git 变更行<a href="标注.html">标注</a>（显示哪些行被新增/修改）+ 自动分页（类 <code>less</code>）；<code>--paging=never</code> 适合管道使用。</li>
+<li><strong>集成场景</strong>：<code>rg "error" --json | bat --language json</code>（彩色 JSON 输出）；<code>git show HEAD:file.py | bat -l py</code>（历史版本带高亮）；可<a href="../concepts/Configuration.html">配置</a>为 <code>MANPAGER</code> 使 man 页带语法高亮。</li>
+<li><strong>AI Agent 价值</strong>：行号显示让 Agent 引用代码位置更精确；Git diff <a href="标注.html">标注</a>帮助 Agent 直观理解文件变更状态，减少错误引用。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="agentskills.io.html">&larr; agentskills.io</a>
-    <a href="ccls.html">ccls &rarr;</a>
+    <a href="bencium UX Designer.html">bencium UX Designer &rarr;</a>
   </div>
 </div>
 </body>

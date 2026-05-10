@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\text{MultiHead}(Q,K,V)=\text{Concat}(head_1,\dots,head_h)W_O$$</p>
 <p>每个 head 独立执行<a href="缩放点积注意力.html">缩放点积注意力</a>：</p>
 <p>$$head_i = \text{Attention}(QW_Q^i, KW_K^i, VW_V^i)$$</p>
-<p>每个 head 的投影维度通常为 $d_k = d_{model}/h$，保持总计算量与单头相当。</p>
+<p>每个 head 的投影维度通常为 $d_k = d_{model}/h$，保持总<a href="计算.html">计算</a>量与单头相当。</p>
 <h3 id="_5">为什么需要多头</h3>
 <p>单头注意力在单一表示子空间内学习关系。多头机制让模型在不同子空间里同时学习：</p>
 <ul>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="多信使天文学.html">&larr; 多信使天文学</a>
+    <a href="多元主义.html">&larr; 多元主义</a>
     <a href="多层感知机.html">多层感知机 &rarr;</a>
   </div>
 </div>

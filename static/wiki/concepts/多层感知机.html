@@ -135,23 +135,24 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">多层感知机</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p><a href="多层感知机（MLP）.html">多层感知机（MLP）</a>是包含输入层、一个或多个隐藏层和输出层的<a href="多层感知机（MLP）.html">前馈神经网络</a>。通过<a href="反向传播.html">反向传播</a>算法训练，MLP 能够解决单层<span style="color:#e74c3c" title="broken link">感知机</span>无法处理的非线性问题（如<a href="XOR问题.html">XOR问题</a>），是现代深度学习的基础架构。</p>
+<p><a href="多层感知机（MLP）.html">多层感知机（MLP）</a>是包含输入层、一个或多个隐藏层和输出层的<a href="多层感知机（MLP）.html">前馈神经网络</a>。通过<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>训练，MLP 能够解决单层<a href="../entities/感知机.html">感知机</a>无法处理的非线性问题（如<a href="XOR问题.html">XOR问题</a>），是现代深度学习的基础架构。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>架构</strong>：MLP 由多层全连接层堆叠而成，每层执行 h = σ(W·x + b) 的线性变换加非线性激活。隐藏层的引入使网络能够学习数据的层次化表示（representations），这也是 Rumelhart 论文标题"Learning Representations"的含义。</li>
-<li><strong>为什么需要多层</strong>：单层感知机只能学习线性可分的决策边界。1969 年 Minsky 指出感知机无法解决 <a href="XOR 问题.html">XOR 问题</a>（异或运算），导致神经网络研究沉寂十余年。MLP 通过隐藏层引入非线性变换能力，可以拟合任意复杂函数（通用近似定理）。</li>
-<li><strong>训练方法</strong>：MLP 的训练依赖<a href="反向传播.html">反向传播</a>算法。输出层的误差可直接观察，但隐藏层的权重更新需要将误差沿计算图逆向传播，用<a href="链式法则.html">链式法则</a>计算每个权重对误差的贡献。1986 年 Rumelhart 等人的论文给出了完整解答。</li>
+<li><strong>为什么需要多层</strong>：单层<a href="../entities/感知机.html">感知机</a>只能学习线性可分的<a href="决策边界.html">决策边界</a>。1969 年 <a href="../entities/Marvin Minsky.html">Minsky</a> 指出<a href="../entities/感知机.html">感知机</a>无法解决 <a href="XOR 问题.html">XOR 问题</a>（异或运算），导致神经网络研究沉寂十余年。MLP 通过隐藏层引入非线性变换能力，可以拟合任意复杂函数（通用近似定理）。</li>
+<li><strong>训练方法</strong>：MLP 的训练依赖<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>。输出层的误差可直接观察，但隐藏层的权重更新需要将误差沿<a href="计算.html">计算</a>图逆向传播，用<a href="链式法则.html">链式法则</a><a href="计算.html">计算</a>每个权重对误差的贡献。1986 年 Rumelhart 等人的论文给出了完整解答。</li>
 <li><strong>现代演进</strong>：虽然 MLP 是最基础的网络形式，但现代深度学习架构（CNN、RNN、<a href="Transformer 架构.html">Transformer</a>）本质上都是 MLP 的变体——引入特定归纳偏置（如卷积的局部性、<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的全局依赖）以提升效率和性能。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>
 <li>[Learning Representations by Back-propagating Errors] — Rumelhart, Hinton &amp; Williams, Nature 1986</li>
 <li>[raw/articles/ai-papers/machine-learning/02_backpropagation_1986.md] — 源文件</li>
+<li><span style="color:#e74c3c" title="broken link">paper_01_perceptron.md</span> — Minsky的"毁灭一击"与第一次AI寒冬章节</li>
 </ul>
 <h2 id="_3">相关</h2>
 <ul>
 <li><a href="反向传播.html">反向传播</a> — uses</li>
-<li><span style="color:#e74c3c" title="broken link">感知机</span> — extends</li>
+<li><a href="../entities/感知机.html">感知机</a> — extends</li>
 <li><a href="XOR问题.html">XOR问题</a> — solves</li>
 <li><span style="color:#e74c3c" title="broken link">全连接层</span> — part_of</li>
 </ul>

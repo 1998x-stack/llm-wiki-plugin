@@ -164,8 +164,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;优势&lt;/td&gt;
-&lt;td&gt;速度快（已预计算）&lt;/td&gt;
-&lt;td&gt;不浪费[[注意力预算</span>、不受索引陈旧影响</td>
+&lt;td&gt;速度快（已预[[计算</span>）</td>
+<td>不浪费<a href="注意力预算.html">注意力预算</a>、不受索引陈旧影响</td>
 </tr>
 <tr>
 <td>劣势</td>
@@ -177,12 +177,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="claude-code">Claude Code 的实现案例</h3>
 <p><a href="../entities/Claude-Code.html">Claude-Code</a> 是 JIT 上下文检索的典型实现：</p>
 <ul>
-<li><strong>CLAUDE.md 文件</strong>：直接载入上下文（预推理，小文件，高频引用）</li>
+<li><strong><a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 文件</strong>：直接载入上下文（预推理，小文件，高频引用）</li>
 <li><strong>glob / grep</strong>：作为探索工具，运行时按需查找文件路径或内容模式</li>
 <li><strong>Bash（head/tail）</strong>：对大型数据对象只读取片段，不全量加载</li>
 <li><strong>SQL 查询</strong>：动态写入目标查询，只取所需字段和行</li>
 </ul>
-<p>这种混合策略（CLAUDE.md 预加载 + 工具探索 JIT）使 <a href="../entities/Claude Code.html">Claude Code</a> 能在大型代码库中工作，同时规避陈旧索引和复杂语法树的问题。</p>
+<p>这种混合策略（<a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 预加载 + 工具探索 JIT）使 <a href="../projects/Claude Code.html">Claude Code</a> 能在大型代码库中工作，同时规避陈旧索引和复杂语法树的问题。</p>
 <h3 id="_5">元数据作为信号</h3>
 <p>JIT 策略的关键优势之一：<strong>引用的元数据本身就提供信息</strong>。Agent 不需要加载文件内容，仅凭路径/文件名/时间戳就能推断用途：</p>
 <ul>
@@ -220,7 +220,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="印象管理.html">&larr; 印象管理</a>
-    <a href="卷积神经网络（CNN）.html">卷积神经网络（CNN） &rarr;</a>
+    <a href="卷积核可视化.html">卷积核可视化 &rarr;</a>
   </div>
 </div>
 </body>

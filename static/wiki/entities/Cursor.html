@@ -129,34 +129,45 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">tool</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">coding-assistant</span><span class="tag">ide</span><span class="tag">工具与框架</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">coding-assistant</span><span class="tag">ide</span><span class="tag">git</span><span class="tag">workflow</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="cursor">Cursor</h1>
 <h2 id="_1">概述</h2>
-<p>AI 原生代码编辑器，基于 VS Code 构建，支持 <a href="../concepts/Agent Skills.html">Agent Skills</a> 规范，与 <a href="Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用 <a href="agentskills.io.html">agentskills.io</a> 扩展标准。</p>
+<p>AI 原生代码编辑器，基于 <a href="VS Code.html">VS Code</a> 构建，支持 <a href="Agent Skills.html">Agent Skills</a> 规范，与 <a href="../projects/Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用 <a href="agentskills.io.html">agentskills.io</a> 扩展标准。在 <a href="../concepts/Write-Tools.html">Write-Tools</a> 实现中采用了先进的 <a href="../concepts/AST-based diff.html">AST-based diff</a> 技术，提供了精确的代码修改能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>定位</strong>：基于 VS Code 的 AI 编程 IDE</li>
-<li><strong><a href="../concepts/Agent Skills.html">Agent Skills</a> 支持</strong>：支持 <a href="../concepts/Agent Skills.html">Agent Skills</a> 规范</li>
-<li><strong>跨工具兼容</strong>：与 <a href="Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共享 Skill 生态</li>
+<li><strong>定位</strong>：基于 <a href="VS Code.html">VS Code</a> 的 AI 编程 IDE</li>
+<li><strong><a href="Agent Skills.html">Agent Skills</a> 支持</strong>：支持 <a href="Agent Skills.html">Agent Skills</a> 规范</li>
+<li><strong>跨工具兼容</strong>：与 <a href="../projects/Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共享 <a href="../concepts/Skills.html">Skill</a> 生态</li>
+<li><strong><a href="../concepts/Write-Tools.html">Write Tools</a> 实现</strong>：</li>
+<li>采用 <a href="../concepts/AST-based diff.html">AST-based diff</a> 技术，这是目前最精确的方案——不依赖行号，直接在语法树层面做 diff，彻底解决了 unified patch 的行号漂移问题</li>
+<li>无传统意义上的沙箱（在 IDE 内运行），信任环境中的代码修改操作</li>
+<li>采用 inline accept/reject 模式，用户可以直接在编辑器中接受或拒绝 AI 建议的修改</li>
+<li>采用 AST 感知的大文件处理策略，能够理解代码结构而非简单的行号定位</li>
+<li>部分支持多文件事务（通过 Composer 功能）</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">01_claude_code_skill_system_overview</span> — 系统架构全景</li>
+<li><span style="color:#e74c3c" title="broken link">04-using-git-worktrees</span> — Git Worktree 支持情况</li>
+<li><span style="color:#e74c3c" title="broken link">write-tools.md</span> — 八、横向对比</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Claude Code.html">Claude Code</a> — compares_to</li>
+<li><a href="../projects/Claude Code.html">Claude Code</a> — compares_to</li>
 <li><a href="OpenAI Codex.html">OpenAI Codex</a> — compares_to</li>
 <li><a href="Gemini CLI.html">Gemini CLI</a> — compares_to</li>
-<li><a href="../concepts/Agent Skills.html">Agent Skills</a> — uses</li>
+<li><a href="Agent Skills.html">Agent Skills</a> — uses</li>
+<li><a href="../concepts/Git Worktree.html">Git Worktree</a> — supports</li>
+<li><a href="../concepts/Write-Tools.html">Write-Tools</a> — compares_to</li>
+<li><a href="../concepts/AST-based diff.html">AST-based diff</a> — implements</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="Criteo.html">&larr; Criteo</a>
-    <a href="DCN.html">DCN &rarr;</a>
+    <a href="Custom_Slash_Commands.html">Custom_Slash_Commands &rarr;</a>
   </div>
 </div>
 </body>

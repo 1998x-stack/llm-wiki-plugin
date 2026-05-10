@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="exitplantool">ExitPlanTool</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Claude Code.html">Claude Code</a> 早期工具之一，用于生成执行计划。在 <a href="AskUserQuestion-Tool.html">AskUserQuestion Tool</a> 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 <a href="../entities/Claude Code.html">Claude Code</a> 工具演进历史的重要案例。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 早期工具之一，用于生成执行计划。在 <a href="AskUserQuestion-Tool.html">AskUserQuestion Tool</a> 的设计演进中曾被尝试扩展以支持提问功能，但因设计冲突而放弃。是理解 <a href="../projects/Claude Code.html">Claude Code</a> 工具演进历史的重要案例。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心功能</h3>
 <p><strong>计划生成</strong>：
 - 输出任务执行的详细计划
 - 可能包含步骤分解、依赖关系、资源需求等信息
-- 作为 <a href="../entities/Claude Code.html">Claude Code</a> 工作流的起点</p>
+- 作为 <a href="../projects/Claude Code.html">Claude Code</a> 工作流的起点</p>
 <h3 id="_4">设计演进中的角色</h3>
 <p><strong>尝试扩展：添加提问参数</strong></p>
 <p>在开发 <a href="AskUserQuestion-Tool.html">AskUserQuestion-Tool</a> 时，曾尝试修改 ExitPlanTool：</p>
@@ -149,12 +149,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 添加参数：在计划旁边附带一组问题数组
 - 优点：最容易实现的修复方式</p>
 <p><strong>失败原因</strong>：
-1. <strong>职责冲突</strong>：同时要求生成计划和关于计划的问题，导致 Claude 困惑
+1. <strong>职责冲突</strong>：同时要求生成计划和关于计划的问题，导致 <a href="../entities/Claude_Code.html">Claude</a> 困惑
 2. <strong>潜在矛盾</strong>：用户的回答可能与计划内容相冲突
 3. <strong>多次调用需求</strong>：可能需要调用 ExitPlanTool 两次（一次生成计划，一次根据回答调整）</p>
 <p><strong>结论</strong>：此路不通，需要重新设计独立的提问工具</p>
 <h3 id="_5">设计启示</h3>
-<p><strong>单一职责原则</strong>：
+<p><strong><a href="SOLID原则.html">单一职责原则</a></strong>：
 - 工具应该专注于单一功能
 - 混合职责（计划 + 提问）会导致模型困惑
 - 分离关注点是更好的设计选择</p>
@@ -186,8 +186,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="ExecPolicy.html">&larr; ExecPolicy</a>
-    <a href="FBX格式.html">FBX格式 &rarr;</a>
+    <a href="Execute.html">&larr; Execute</a>
+    <a href="Extract Class.html">Extract Class &rarr;</a>
   </div>
 </div>
 </body>

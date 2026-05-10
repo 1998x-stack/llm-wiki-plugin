@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美貌经济 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 美貌经济</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#9B59B6">synthesis</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.50</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">研究</span><span class="tag">工作</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">美貌经济</h1>
+<h2 id="_2">概述</h2>
+<p>美貌经济指在特定社会经济环境下，外貌颜值成为一种可量化的变现资本，女性通过直播、网红、娱乐等流量行业将美貌直接兑换为财富的现象。中国因全球最成熟的<a href="事件营销闭环.html">流量变现闭环</a>、蓝领劳动性价比低、职业鄙视链、阶层上升通道收窄及消费主义洗脑五重因素叠加，使美貌变现成为普通家庭女性最低成本的阶层跨越捷径。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong><a href="事件营销闭环.html">流量变现闭环</a>的全球独一性</strong>：过去10年中国构建了全球最完善的流量经济变现链条——抖音、快手、小红书等平台形成从"颜值曝光"到"打赏/带货/商单/私域"的完整闭环，零门槛、高回报，腰部主播月入过万为常态，头部年入百万至千万。对比国外，TikTok变现能力远不及抖音，欧美缺乏直播打赏文化，日韩市场被财团垄断。</p>
+</li>
+<li>
+<p><strong>蓝领劳动的性价比天堑</strong>：国外蓝领收入体面（日本出租车司机月薪约30万日元、德国蓝领时薪22欧元），而国内底层体力行业月薪3000-5000元、日工作12小时以上、缺乏社保。同样一个年轻女孩，奶茶店<a href="服务.html">服务</a>员月赚4500元 vs 直播月赚1-2万，理性选择导向后者。</p>
+</li>
+<li>
+<p><strong>职业鄙视链与颜值绑架</strong>：国内社会存在极端的职业贵贱叙事，"长得这么好看还端盘子，太可惜了"成为普遍社会压力，使高颜值女性从一开始就排除基础劳动行业。国外职业平等观念深入人心，蓝领白领仅有工作内容区别。</p>
+</li>
+<li>
+<p><strong>阶层上升通道收窄下的颜值捷径</strong>：普通年轻人靠学历和基础工作实现阶层跨越难度越来越大，而颜值经济提供零门槛、见效极快的上升通道。十八线县城无学历女孩通过直播有机会年入几十万甚至几百万。</p>
+</li>
+<li>
+<p><strong>消费主义对颜值的极致炒作</strong>：互联网平台、医美行业、消费品牌将女性外貌与财富、阶层、幸福深度绑定，制造颜值焦虑。大量女性不愿做体力劳动怕"变丑失去变现资本"，反而花巨资做医美、买奢侈品维持人设。</p>
+</li>
+<li>
+<p><strong>三大认知偏差的纠正</strong>：</p>
+</li>
+<li><strong>幸存者偏差</strong>：国外旅行看到的是全体女性覆盖各行各业，国内观察聚焦在抖音/朋友圈/娱乐场所的高颜值女性，自动过滤了普通行业的年轻女孩</li>
+<li><strong>异域滤镜</strong>：旅行中的异域光环拉高对外国女性的颜值评价，降低对国内日常场景女性的颜值感知</li>
+<li>
+<p><strong>人设幻觉</strong>：朋友圈的"精致不缺钱"90%是演出来的——拼单下午茶、二手租赁奢侈品、信用卡透支、网贷支撑虚假繁荣</p>
+</li>
+<li>
+<p><strong>不可持续性与社会畸形</strong>：美貌经济将女性价值单一绑定在颜值上，弱化劳动价值和个人能力；放大拜金主义和消费主义；且行业已严重内卷——《2025年中国直播行业白皮书》显示90%以上颜值主播月收入不足5000元。美貌是入场券而非硬通货，能持续创造价值的能力才是。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/essays/thinking-series/003-美貌经济</span> — 全文</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="注意力经济.html">注意力经济</a> — extends</li>
+<li><a href="消费社会.html">消费社会</a> — relates_to</li>
+<li><a href="人性套利.html">人性套利</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="美国全球霸权信用.html">&larr; 美国全球霸权信用</a>
+    <a href="耗散结构.html">耗散结构 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

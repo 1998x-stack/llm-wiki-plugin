@@ -135,19 +135,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="urhox">UrhoX示例管理系统</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a>示例管理系统以单一 YAML 配置文件统一管理 25 个 Lua 示例的元数据，并通过处理脚本自动生成多视图文档（按分类/难度索引 + API <a href="倒排索引.html">反向索引</a>），为用户、开发者和 AI 助手提供结构化的示例查找能力。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a>示例管理系统以单一 YAML <a href="Configuration.html">配置</a>文件统一管理 25 个 Lua 示例的元数据，并通过处理脚本自动生成多视图文档（按分类/难度索引 + API <a href="倒排索引.html">反向索引</a>），为用户、开发者和 AI 助手提供结构化的示例查找能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心文件结构</strong>：<code>examples-config.yaml</code>（核心配置，定义示例的源/目标文件、分类、难度、标题、描述、API、功能、标签）；<code>tools/process_examples.py</code>（处理脚本，加载验证配置、复制示例文件、生成索引文档）。</li>
+<li><strong>核心文件结构</strong>：<code>examples-config.yaml</code>（核心<a href="Configuration.html">配置</a>，定义示例的源/目标文件、分类、难度、标题、描述、API、功能、标签）；<code>tools/process_examples.py</code>（处理脚本，加载验证<a href="Configuration.html">配置</a>、复制示例文件、生成索引文档）。</li>
 <li><strong>分类与难度</strong>：10 个分类（3D图形、2D图形、3D/2D物理、UI、音频、网络、动画、导航、高级）；3 个难度级别（初级 beginner、中级 intermediate、高级 advanced）；共 25 个示例（初级6、中级11、高级8）。按分类：3D图形6、2D图形5、物理3D/3+2D/2、UI3、音频1、网络2、动画2、导航2、高级1。</li>
 <li><strong>生成的文档视图</strong>：<code>examples/index.md</code>（按分类/难度分组的主索引）；<code>examples/api-index.md</code>（API <a href="倒排索引.html">反向索引</a>：列出使用特定 API 的所有示例），两份文档均在执行 <code>process_examples.py</code> 后自动生成。</li>
-<li><strong>配置字段规范</strong>：每条示例需声明 <code>source</code>（源 <code>.lua</code> 文件名）、<code>target</code>（目标文件名）、<code>metadata.title</code>（中英双语）、<code>category</code>、<code>difficulty</code>、<code>description</code>、<code>features</code>（3-6条，动词开头）、<code>apis</code>（只列主要 API）、<code>concepts</code>（核心学习点）、<code>tags</code>（关键词）。可选字段：<code>line_count</code>、<code>dependencies</code>。</li>
+<li><strong><a href="Configuration.html">配置</a>字段规范</strong>：每条示例需声明 <code>source</code>（源 <code>.lua</code> 文件名）、<code>target</code>（目标文件名）、<code>metadata.title</code>（中英双语）、<code>category</code>、<code>difficulty</code>、<code>description</code>、<code>features</code>（3-6条，动词开头）、<code>apis</code>（只列主要 API）、<code>concepts</code>（核心学习点）、<code>tags</code>（关键词）。可选字段：<code>line_count</code>、<code>dependencies</code>。</li>
 <li><strong>文件命名规范</strong>：目标文件名格式 <code>{两位序号}-{kebab-case}.lua</code>，如 <code>01-hello-world.lua</code>、<code>07-physics-3d.lua</code>。分类选择最相关的单一分类（3D物理示例 → <code>physics</code>，不是 <code>3d-graphics</code>）。</li>
 <li><strong>难度评估标准</strong>：Beginner（&lt;200行，单一功能）；Intermediate（200-400行，多功能，中等复杂度）；Advanced（&gt;400行，复杂系统，高级特性）。</li>
-<li><strong>使用方式</strong>：<code>--validate</code> 仅校验配置（检查源文件存在性、分类/难度合法性、必填字段）；<code>--dry-run</code> 预览不写文件；无参数则正式处理（复制文件 + 生成文档）。</li>
+<li><strong>使用方式</strong>：<code>--validate</code> 仅校验<a href="Configuration.html">配置</a>（检查源文件存在性、分类/难度合法性、必填字段）；<code>--dry-run</code> 预览不写文件；无参数则正式处理（复制文件 + 生成文档）。</li>
 <li><strong>AI 友好设计</strong>：通过 <code>api-index.md</code> 可快速定位"使用某 API 的示例"；通过分类/难度过滤可推荐合适示例；结构化元数据方便 LLM 解析。双语标题支持中英文检索。</li>
 <li><strong>扩展方式</strong>：添加新示例只需编辑 <code>examples-config.yaml</code> 新增条目，再运行处理脚本即可，无需手动维护文档。支持自定义元数据字段（<code>related_examples</code>、<code>video_url</code>、<code>min_version</code>）和多语言扩展。</li>
-<li><strong>关键约束</strong>：生成的文档（<code>index.md</code>、<code>api-index.md</code>）不可手动编辑，下次运行脚本会覆盖。应通过修改配置文件来控制生成内容。依赖 Python 3.6+ 和 PyYAML（<code>pip install pyyaml</code>）。</li>
+<li><strong>关键约束</strong>：生成的文档（<code>index.md</code>、<code>api-index.md</code>）不可手动编辑，下次运行脚本会覆盖。应通过修改<a href="Configuration.html">配置</a>文件来控制生成内容。依赖 <a href="Python.html">Python</a> 3.6+ 和 PyYAML（<code>pip install pyyaml</code>）。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

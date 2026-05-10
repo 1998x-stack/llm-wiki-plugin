@@ -135,18 +135,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="roblox">Roblox</h1>
 <h2 id="_1">概述</h2>
-<p>Roblox 是面向用户自创游戏的在线游戏平台，使用 Luau（Lua 5.1 的 Roblox 扩展方言）作为脚本语言，采用严格的服务端/客户端分离架构和 RemoteEvent 通信机制。</p>
+<p>Roblox 是面向用户自创游戏的在线游戏平台，使用 Luau（Lua 5.1 的 Roblox 扩展方言）作为脚本语言，采用严格的<a href="../concepts/服务.html">服务</a>端/客户端分离架构和 RemoteEvent 通信机制。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>服务端/客户端分离架构</strong>：</li>
-<li><code>ServerScriptService/</code> — 仅服务端执行，处理权威逻辑</li>
+<li><strong><a href="../concepts/服务.html">服务</a>端/客户端分离架构</strong>：</li>
+<li><code>ServerScriptService/</code> — 仅<a href="../concepts/服务.html">服务</a>端执行，处理权威逻辑</li>
 <li><code>StarterPlayer/StarterPlayerScripts/</code> — 仅客户端执行，处理 UI 和本地效果</li>
-<li><code>ReplicatedStorage/</code> — 服务端+客户端共享，存放通用代码和 RemoteEvent</li>
+<li><code>ReplicatedStorage/</code> — <a href="../concepts/服务.html">服务</a>端+客户端共享，存放通用代码和 RemoteEvent</li>
 <li>
 <p><code>Workspace/</code> — 3D 场景和游戏对象</p>
 </li>
 <li>
-<p><strong>RemoteEvent 通信</strong>：客户端与服务端之间通过 RemoteEvent/RemoteFunction 通信。服务端必须验证客户端数据，永远不信任客户端传入的数值（反作弊关键）。<code>OnServerEvent:Connect(player, ...)</code> 处理客户端触发，<code>FireServer(...)</code> 从客户端发起。</p>
+<p><strong>RemoteEvent 通信</strong>：客户端与<a href="../concepts/服务.html">服务</a>端之间通过 RemoteEvent/RemoteFunction 通信。<a href="../concepts/服务.html">服务</a>端必须验证客户端数据，永远不信任客户端传入的数值（反作弊关键）。<code>OnServerEvent:Connect(player, ...)</code> 处理客户端触发，<code>FireServer(...)</code> 从客户端发起。</p>
 </li>
 <li>
 <p><strong>Luau 类型系统</strong>：在标准 Lua 上新增可选静态类型注解（<code>local x: number</code>）、联合类型（<code>"idle" | "running"</code>）、泛型（<code>Array&lt;T&gt;</code>）等。类型检查在 Studio 编辑阶段运行，运行时仍为动态类型。</p>
@@ -158,13 +158,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实例系统</strong>：游戏对象以 Instance 层级组织，通过 <code>game:GetService("Players")</code>、<code>Instance.new("RemoteEvent")</code> 等 API 操作，<code>FindFirstChild</code>、<code>WaitForChild</code> 是常用安全访问模式。</p>
 </li>
 <li>
-<p><strong>DataStore 持久化</strong>：<code>DataStoreService:GetDataStore("name")</code> 获取持久化存储，<code>SetAsync(key, data)</code> 写入，<code>GetAsync(key)</code> 读取，均需 <code>pcall</code> 包裹防错。<code>UpdateAsync(key, fn)</code> 提供原子读-改-写操作，是防止并发写入冲突的推荐方式。</p>
+<p><strong>DataStore 持久化</strong>：<code>DataStoreService:GetDataStore("name")</code> 获取持久化存储，<code>SetAsync(key, data)</code> 写入，<code>GetAsync(key)</code> 读取，均需 <code>pcall</code> 包裹防错。<code>UpdateAsync(key, fn)</code> 提供原子读-改-<a href="../concepts/Write.html">写操作</a>，是防止并发写入冲突的推荐方式。</p>
 </li>
 <li>
-<p><strong>RemoteFunction 双向调用</strong>：<code>RemoteFunction.OnServerInvoke</code> 设置服务端处理函数，客户端调用 <code>rf:InvokeServer(data)</code> 阻塞等待返回值。适合需要确认响应的场景（如购买请求），但阻塞特性需注意超时风险。</p>
+<p><strong>RemoteFunction 双向调用</strong>：<code>RemoteFunction.OnServerInvoke</code> <a href="../concepts/Settings.html">设置</a><a href="../concepts/服务.html">服务</a>端处理函数，客户端调用 <code>rf:InvokeServer(data)</code> 阻塞等待返回值。适合需要确认响应的场景（如购买请求），但阻塞特性需注意超时风险。</p>
 </li>
 <li>
-<p><strong>RunService 环境检测</strong>：<code>RunService:IsServer()</code> / <code>IsClient()</code> / <code>IsStudio()</code> 在运行时判断当前执行环境，用于编写服务端/客户端通用代码，是防止逻辑错位执行的常用守卫模式。</p>
+<p><strong>RunService 环境检测</strong>：<code>RunService:IsServer()</code> / <code>IsClient()</code> / <code>IsStudio()</code> 在运行时判断当前执行环境，用于编写<a href="../concepts/服务.html">服务</a>端/客户端通用代码，是防止逻辑错位执行的常用守卫模式。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -179,7 +179,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Robert Kahn.html">&larr; Robert Kahn</a>
+    <a href="Robin Rombach.html">&larr; Robin Rombach</a>
     <a href="Robot Manipulators: Mathematics, Programming, and Control.html">Robot Manipulators: Mathematics, Programming, and Control &rarr;</a>
   </div>
 </div>

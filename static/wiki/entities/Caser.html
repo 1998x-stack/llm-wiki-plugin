@@ -135,20 +135,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="caser">Caser</h1>
 <h2 id="_1">概述</h2>
-<p>Tang 与 Wang 于 WWW 2018 提出的 CNN <a href="../concepts/序列推荐.html">序列推荐</a>方法，用水平和垂直卷积捕获序列模式，但感受野受限，后被 <a href="SASRec.html">SASRec</a> 以显著效率优势超越。</p>
+<p>Tang 与 Wang 于 WWW 2018 提出的 CNN <a href="../concepts/序列推荐.html">序列推荐</a>方法，用水平和垂直卷积捕获序列模式，但<a href="../concepts/感受野.html">感受野</a>受限，后被 <a href="SASRec.html">SASRec</a> 以显著效率优势超越。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>论文信息</strong>：标题 "Personalized Top-N <a href="../concepts/序列推荐.html">Sequential Recommendation</a> via Convolutional Sequence <a href="../concepts/Embedding.html">Embedding</a>"，作者 Jiaxi Tang 与 Ke Wang，发表于 WWW 2018（KDD 2018 也有相关版本）。</p>
 </li>
 <li>
-<p><strong>核心方法</strong>：将用户历史交互序列视为二维图像（用户嵌入 × 序列位置），通过水平卷积（捕获序列模式）和垂直卷积（捕获点级特征）进行特征提取。CNN 支持并行计算，但感受野受限于卷积核大小，捕获长程依赖需要堆叠多层。</p>
+<p><strong>核心方法</strong>：将用户历史交互序列视为二维图像（用户嵌入 × 序列位置），通过水平卷积（捕获序列模式）和垂直卷积（捕获点级特征）进行特征提取。CNN 支持并行<a href="../concepts/计算.html">计算</a>，但<a href="../concepts/感受野.html">感受野</a>受限于卷积核大小，捕获长程依赖需要堆叠多层。</p>
 </li>
 <li>
-<p><strong>与 <a href="SASRec.html">SASRec</a> 的对比</strong>：<a href="SASRec.html">SASRec</a> 在训练速度上比 Caser 快约 11 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒 vs ~3,850 秒），且在所有指标上均优于 Caser。<a href="../concepts/Self-Attention机制.html">Self-Attention</a> 的任意位置直接连接（O(1) 最短路径）相比 CNN 的局部感受野在<a href="../concepts/序列推荐.html">序列推荐</a>中具有明显优势。</p>
+<p><strong>与 <a href="SASRec.html">SASRec</a> 的对比</strong>：<a href="SASRec.html">SASRec</a> 在训练速度上比 Caser 快约 11 倍（<a href="MovieLens.html">MovieLens</a>-1M 上 ~350 秒 vs ~3,850 秒），且在所有指标上均优于 Caser。<a href="../concepts/Self-Attention机制.html">Self-Attention</a> 的任意位置直接连接（O(1) 最短路径）相比 CNN 的局部<a href="../concepts/感受野.html">感受野</a>在<a href="../concepts/序列推荐.html">序列推荐</a>中具有明显优势。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：卷积操作的局部相关性先验假设并不完全适用于用户行为序列；长程依赖需要深层堆叠；感受野受限于卷积核大小。</p>
+<p><strong>局限性</strong>：卷积操作的局部相关性先验假设并不完全适用于用户行为序列；长程依赖需要深层堆叠；<a href="../concepts/感受野.html">感受野</a>受限于卷积核大小。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Cara-Phillips.html">&larr; Cara-Phillips</a>
-    <a href="Chris Volinsky.html">Chris Volinsky &rarr;</a>
+    <a href="Chaofan Shou.html">Chaofan Shou &rarr;</a>
   </div>
 </div>
 </body>

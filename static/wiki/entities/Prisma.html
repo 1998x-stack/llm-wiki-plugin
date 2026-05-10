@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>声明式 Schema</strong>：通过 <code>prisma/schema.prisma</code> 文件以 DSL 定义数据模型，支持关系定义、枚举类型和默认值配置。模型命名采用 PascalCase 单数形式（如 <code>User</code>、<code>BlogPost</code>）。</p>
+<p><strong>声明式 Schema</strong>：通过 <code>prisma/schema.prisma</code> 文件以 DSL 定义数据模型，支持关系定义、枚举类型和默认值<a href="../concepts/Configuration.html">配置</a>。模型命名采用 PascalCase 单数形式（如 <code>User</code>、<code>BlogPost</code>）。</p>
 </li>
 <li>
-<p><strong>迁移管理</strong>：<code>npx prisma migrate dev</code> 执行数据库迁移并同步 schema 状态，迁移历史存储在 <code>prisma/migrations/</code> 目录中，不应手动编辑。执行前需确保 <code>DATABASE_URL</code> 环境变量可连接。</p>
+<p><strong>迁移管理</strong>：<code>npx prisma migrate dev</code> 执行数据库迁移并同步 schema 状态，迁移历史存储在 <code>prisma/migrations/</code> 目录中，不应手动编辑。执行前需确保 <code>DATABASE_URL</code> <a href="../concepts/Environment Variables.html">环境变量</a>可连接。</p>
 </li>
 <li>
 <p><strong>核心命令</strong>：</p>
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><code>prisma generate</code> — 生成类型安全的 Client 代码</p>
 </li>
 <li>
-<p><strong>环境变量</strong>：通过 <code>.env.local</code> 配置 <code>DATABASE_URL</code>，支持 <a href="PostgreSQL.html">PostgreSQL</a>、MySQL、<a href="SQLite.html">SQLite</a> 等数据库。<a href="PostgreSQL.html">PostgreSQL</a> 连接需设置 connection pool timeout 防止长时间空闲后断开。</p>
+<p><strong><a href="../concepts/Environment Variables.html">环境变量</a></strong>：通过 <code>.env.local</code> <a href="../concepts/Configuration.html">配置</a> <code>DATABASE_URL</code>，支持 <a href="PostgreSQL.html">PostgreSQL</a>、MySQL、<a href="SQLite.html">SQLite</a> 等数据库。<a href="PostgreSQL.html">PostgreSQL</a> 连接需<a href="../concepts/Settings.html">设置</a> connection pool timeout 防止长时间空闲后断开。</p>
 </li>
 <li>
-<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：AGENTS.md 模板中作为默认数据库层工具，与 <a href="Next.js.html">Next.js</a> App <a href="../concepts/网关与路由器.html">Router</a> 和 <a href="TypeScript.html">TypeScript</a> 配合构成全栈开发基线。</p>
+<p><strong>在 <a href="Ralph Loop.html">Ralph Loop</a> 中的角色</strong>：<a href="../concepts/项目约定手册.html">AGENTS.md</a> 模板中作为默认数据库层工具，与 <a href="Next.js.html">Next.js</a> App <a href="../concepts/网关与路由器.html">Router</a> 和 <a href="TypeScript.html">TypeScript</a> 配合构成全栈开发基线。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="PostgreSQL.html">&larr; PostgreSQL</a>
+    <a href="Prettier.html">&larr; Prettier</a>
     <a href="Prithvi-Rajasekaran.html">Prithvi-Rajasekaran &rarr;</a>
   </div>
 </div>

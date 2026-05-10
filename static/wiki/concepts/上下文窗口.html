@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-window">上下文窗口（Context Window）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文窗口是语言模型在生成回复时可参考的所有文本总量，包括输入和输出，相当于模型的"工作记忆"。Claude 最新模型支持最大 1M tokens 的上下文窗口，但更多上下文并非必然更优——随 token 增长会出现 <a href="上下文腐烂.html">上下文腐烂</a> 现象。</p>
+<p>上下文窗口是<a href="Language-Model.html">语言模型</a>在生成回复时可参考的所有文本总量，包括输入和输出，相当于模型的"<a href="工作记忆.html">工作记忆</a>"。<a href="../entities/Claude_Code.html">Claude</a> 最新模型支持最大 1M tokens 的上下文窗口，但更多上下文并非必然更优——随 token 增长会出现 <a href="上下文腐烂.html">上下文腐烂</a> 现象。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">基本行为</h3>
 <p>标准 API 请求的上下文窗口遵循以下模式：
@@ -184,7 +184,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p>单次请求最多可包含 600 张图片或 PDF 页面（200k 窗口模型最多 100 张）。</p>
 <h3 id="_5">长上下文检索基准</h3>
-<p>Claude 在以下长上下文检索基准测试中取得 SOTA 结果：
+<p><a href="../entities/Claude_Code.html">Claude</a> 在以下长上下文检索基准测试中取得 SOTA 结果：
 - <strong>MRCR</strong>（https://arxiv.org/abs/2501.03276）
 - <strong>GraphWalks</strong>（https://arxiv.org/abs/2412.04360）</p>
 <p>但这些提升取决于上下文的<strong>内容质量</strong>，而非仅仅是容量大小。</p>
@@ -205,7 +205,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><a href="上下文压缩.html">上下文压缩</a></td>
 <td>长时对话和 Agent 工作流</td>
-<td>低（服务端自动）</td>
+<td>低（<a href="服务.html">服务</a>端自动）</td>
 </tr>
 <tr>
 <td><a href="上下文编辑.html">上下文编辑</a></td>
@@ -237,7 +237,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="上下文焦虑.html">&larr; 上下文焦虑</a>
-    <a href="上下文策略.html">上下文策略 &rarr;</a>
+    <a href="上下文窗口经济学.html">上下文窗口经济学 &rarr;</a>
   </div>
 </div>
 </body>

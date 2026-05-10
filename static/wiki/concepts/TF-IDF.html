@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>BM25 IDF：<code>log((N-df+0.5)/(df+0.5)+1)</code> — 最稳健</p>
 </li>
 <li>
-<p><strong><a href="向量空间模型.html">向量空间模型</a>（VSM）</strong>：每篇文档表示为 TF-IDF 权重向量，用<strong>余弦相似度</strong>（而非欧氏距离）计算查询-文档相关性。余弦相似度消除文档长度影响：<code>cos(q, d) = q⃗·d⃗ / (‖q‖‖d‖)</code>。实践中对文档向量预先 L2 归一化，查询时只需点积。</p>
+<p><strong><a href="向量空间模型.html">向量空间模型</a>（VSM）</strong>：每篇文档表示为 TF-IDF 权重向量，用<strong>余弦相似度</strong>（而非欧氏距离）<a href="计算.html">计算</a>查询-文档相关性。余弦相似度消除文档长度影响：<code>cos(q, d) = q⃗·d⃗ / (‖q‖‖d‖)</code>。实践中对文档向量预先 L2 归一化，查询时只需点积。</p>
 </li>
 <li>
 <p><strong>SMART 表示法</strong>：三字母编码 TF变体][IDF变体][归一化]，如 <code>lnc-ltc</code>（文档用 log-TF 无IDF 余弦归一化，查询用 log-TF 标准IDF 余弦归一化）。</p>
@@ -188,8 +188,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="TDD Skill.html">&larr; TDD Skill</a>
-    <a href="TOP1 Loss.html">TOP1 Loss &rarr;</a>
+    <a href="TDD强制执行.html">&larr; TDD强制执行</a>
+    <a href="TITAN 框架.html">TITAN 框架 &rarr;</a>
   </div>
 </div>
 </body>

@@ -135,15 +135,15 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="entscheidungsproblem">判定问题 (Entscheidungsproblem)</h1>
 <h2 id="_1">概述</h2>
-<p>Hilbert 于1928年提出的数学基础核心问题：是否存在一种纯机械的算法，能在有限步骤内判定一阶谓词逻辑中任意命题的真假？1936年被 Church 和 Turing 独立证明为不可能，标志着数学推理无法被完全机械化。</p>
+<p>Hilbert 于1928年提出的数学基础核心问题：是否存在一种纯机械的<a href="算法.html">算法</a>，能在有限步骤内判定一阶谓词逻辑中任意命题的真假？1936年被 Church 和 <a href="../entities/Alan Turing.html">Turing</a> 独立证明为不可能，标志着数学推理无法被完全机械化。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">问题的精确表述</h3>
 <blockquote>
-<p>是否存在一种算法（definite method），它以一阶谓词逻辑的一个命题作为输入，能够在有限步骤内给出"该命题是普遍有效的（universally valid）"还是"不是"的回答？</p>
+<p>是否存在一种<a href="算法.html">算法</a>（definite method），它以一阶谓词逻辑的一个命题作为输入，能够在有限步骤内给出"该命题是普遍有效的（universally valid）"还是"不是"的回答？</p>
 </blockquote>
-<p>关键词是"算法"——一种纯机械的、不需要任何灵感或创造力的、能在有限时间内终止的操作程序。但在1936年之前，"算法"这个概念本身就没有严格的数学定义。</p>
+<p>关键词是"<a href="算法.html">算法</a>"——一种纯机械的、不需要任何灵感或创造力的、能在有限时间内终止的操作程序。但在1936年之前，"<a href="算法.html">算法</a>"这个概念本身就没有严格的数学定义。</p>
 <h3 id="_4">为什么如此关键</h3>
-<p>判定问题触及一个根本性的哲学追问：<strong>数学推理能否被完全机械化？</strong></p>
+<p><a href="判定问题.html">判定问题</a>触及一个根本性的哲学追问：<strong>数学推理能否被完全机械化？</strong></p>
 <ul>
 <li>如果答案是肯定的 → 原则上可以建造一台"数学真理发现机"，数学家的创造性工作在理论上多余</li>
 <li>如果答案是否定的 → 人类的数学直觉和创造力具有某种不可被机器替代的本质</li>
@@ -153,26 +153,26 @@ nav a.active { color: var(--link); font-weight: 600; }
 1. <strong>一致性</strong>：系统内部不会推导出矛盾
 2. <strong>完备性</strong>：系统中的每一个真命题都能被证明
 3. <strong>可判定性</strong>：存在机械化方法判定任意命题真假</p>
-<p>Godel 不完备定理（1931）已经粉碎了完备性和一致性的期望，但判定问题——作为关于"算法存在性"的问题——仍然悬而未决。</p>
+<p>Godel 不完备定理（1931）已经粉碎了完备性和一致性的期望，但<a href="判定问题.html">判定问题</a>——作为关于"<a href="算法.html">算法</a>存在性"的问题——仍然悬而未决。</p>
 <h3 id="church-1936">Church 的先行回答（1936春）</h3>
-<p>Church 使用 <a href="λ 演算.html">λ 演算</a>证明了判定问题的答案是否定的：
-- 定义"有效可计算性"为"λ可定义性"
+<p>Church 使用 <a href="λ 演算.html">λ 演算</a>证明了<a href="判定问题.html">判定问题</a>的答案是否定的：
+- 定义"有效可<a href="计算.html">计算</a>性"为"λ可定义性"
 - 证明存在不可 λ 定义的函数
-- 但 <a href="λ 演算.html">λ 演算</a>高度抽象，缺乏"计算"的直观含义</p>
+- 但 <a href="λ 演算.html">λ 演算</a>高度抽象，缺乏"<a href="计算.html">计算</a>"的直观含义</p>
 <h3 id="turing-1936">Turing 的独立回答（1936）</h3>
-<p>Turing 用截然不同的方法得出了同样的结论：
-- 首先精确定义了"算法"（通过<a href="图灵机.html">图灵机</a>模型）
+<p><a href="../entities/Alan Turing.html">Turing</a> 用截然不同的方法得出了同样的结论：
+- 首先精确定义了"<a href="算法.html">算法</a>"（通过<a href="图灵机.html">图灵机</a>模型）
 - 证明了<a href="停机问题.html">停机问题</a>不可判定
-- 由此推导出判定问题不可解：如果判定问题可解，则<a href="停机问题.html">停机问题</a>也可判定——矛盾</p>
-<p>Turing 的方法具有 Church 的方法所不具备的优势：<a href="图灵机.html">图灵机</a>可以被想象为一台物理机器，任何人都能理解其工作方式。</p>
+- 由此推导出<a href="判定问题.html">判定问题</a>不可解：如果<a href="判定问题.html">判定问题</a>可解，则<a href="停机问题.html">停机问题</a>也可判定——矛盾</p>
+<p><a href="../entities/Alan Turing.html">Turing</a> 的方法具有 Church 的方法所不具备的优势：<a href="图灵机.html">图灵机</a>可以被想象为一台物理机器，任何人都能理解其工作方式。</p>
 <h3 id="_5">从停机问题到判定问题的归约</h3>
-<p>Turing 的论证路线：
-如果判定问题可解 → 存在算法判定一阶逻辑中任意命题的真假 → 特别地，能判定"存在一台<a href="图灵机.html">图灵机</a> M，在输入 w 上执行 n 步后停机" → 通过搜索所有可能的 n，这将能判定 M 在 w 上是否最终停机 → 但<a href="停机问题.html">停机问题</a>不可判定 → 因此判定问题也不可判定。</p>
+<p><a href="../entities/Alan Turing.html">Turing</a> 的论证路线：
+如果<a href="判定问题.html">判定问题</a>可解 → 存在<a href="算法.html">算法</a>判定一阶逻辑中任意命题的真假 → 特别地，能判定"存在一台<a href="图灵机.html">图灵机</a> M，在输入 w 上执行 n 步后停机" → 通过搜索所有可能的 n，这将能判定 M 在 w 上是否最终停机 → 但<a href="停机问题.html">停机问题</a>不可判定 → 因此<a href="判定问题.html">判定问题</a>也不可判定。</p>
 <h3 id="_6">历史意义</h3>
-<p>与 Godel 不完备定理一起，判定问题的否定回答彻底终结了 Hilbert 纲领：
+<p>与 Godel 不完备定理一起，<a href="判定问题.html">判定问题</a>的否定回答彻底终结了 Hilbert 纲领：
 - <strong>Godel（1931）</strong>：数学有不可证的真命题（完备性的边界）
-- <strong>Turing/Church（1936）</strong>：有不可判定的问题（算法能力的边界）</p>
-<p>合并解读：数学真理的范围永远超出任何形式系统，算法的能力也有根本限制——数学推理不能被完全机械化。</p>
+- <strong><a href="../entities/Alan Turing.html">Turing</a>/Church（1936）</strong>：有不可判定的问题（<a href="算法.html">算法</a>能力的边界）</p>
+<p>合并解读：数学真理的范围永远超出任何形式系统，<a href="算法.html">算法</a>的能力也有根本限制——数学推理不能被完全机械化。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/01-turing-on-computable-numbers.md</span></li>
@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="判别式 LLM 推荐.html">&larr; 判别式 LLM 推荐</a>
+    <a href="判定问题.html">&larr; 判定问题</a>
     <a href="利他型自杀.html">利他型自杀 &rarr;</a>
   </div>
 </div>

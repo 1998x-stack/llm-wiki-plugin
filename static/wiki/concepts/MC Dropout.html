@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC Dropout — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / MC Dropout</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">不确定性估计</span><span class="tag">贝叶斯深度学习</span><span class="tag">推理</span><span class="tag">Dropout</span></div>
+</div>
+  <div class="content">
+    <h1 id="mc-dropout">MC Dropout</h1>
+<h2 id="_1">概述</h2>
+<p>Monte Carlo <a href="Dropout.html">Dropout</a>，在推理时保持 <a href="Dropout.html">Dropout</a> 激活，通过多次前向传播估计模型预测的不确定性。这种技术允许我们获得模型预测的概率分布，而不只是点估计，从而提供预测不确定性的量化。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li>
+<p><strong><a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>近似</strong>：Gal 和 Ghahramani（2016）证明，在推理时启用 <a href="Dropout.html">Dropout</a> 等价于对深度高斯过程进行变分推断，为模型不确定性估计提供了<a href="计算.html">计算</a>高效的近似方法。这使 <a href="Dropout.html">Dropout</a> 不仅是正则化工具，也是<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>深度学习的桥梁。</p>
+</li>
+<li>
+<p><strong>不确定性量化</strong>：对同一输入进行 T 次带 <a href="Dropout.html">Dropout</a> 的前向传播，得到 T 个预测结果。预测的均值作为最终输出，方差作为不确定性估计。这在医疗诊断、自动驾驶等安全关键场景中至关重要。</p>
+</li>
+<li>
+<p><strong>与 <a href="Inverted Dropout.html">Inverted Dropout</a> 的对比</strong>：<a href="Inverted Dropout.html">Inverted Dropout</a> 在推理时关闭 <a href="Dropout.html">Dropout</a> 以获得确定性输出；MC <a href="Dropout.html">Dropout</a> 则在推理时保持 <a href="Dropout.html">Dropout</a> 以获取预测分布。两者<a href="服务.html">服务</a>于不同目的：前者用于标准推理，后者用于不确定性估计。</p>
+</li>
+<li>
+<p><strong>实现代码示例</strong>：</p>
+</li>
+</ol>
+<pre><code class="language-python">def predict_with_uncertainty(model, x, n_samples=100):
+    &quot;&quot;&quot;MC Dropout 预测函数&quot;&quot;&quot;
+    model.train()  # 保持 Dropout 开启
+    predictions = []
+    for _ in range(n_samples):
+        with torch.no_grad():
+            pred = torch.softmax(model(x), dim=-1)
+            predictions.append(pred)
+
+    predictions = torch.stack(predictions)
+    mean = predictions.mean(0)     # 预测均值
+    std = predictions.std(0)       # 预测不确定性（标准差）
+    return mean, std
+</code></pre>
+<p>MC <a href="Dropout.html">Dropout</a> 是一种无需修改网络架构即可获取不确定性估计的实用技术，是<a href="../entities/托马斯·贝叶斯.html">贝叶斯</a>深度学习的重要实践方法。</p>
+<h2 id="_3">来源</h2>
+<ul>
+<li>[Gal, Y., &amp; Ghahramani, Z. (2016). Dropout as a bayesian approximation: Representing model uncertainty in deep learning. ICML, 48, 1050-1059.] — 理论基础</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_10_dropout.md</span> — 详细介绍</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Dropout（随机失活）.html">Dropout（随机失活）</a> — extends</li>
+<li><a href="Inverted Dropout.html">Inverted Dropout</a> — compares_to</li>
+<li><a href="../entities/托马斯·贝叶斯.html">托马斯·贝叶斯</a> — theoretical_basis</li>
+<li><span style="color:#e74c3c" title="broken link">变分贝叶斯近似</span> — theoretical_basis</li>
+<li><a href="过拟合（Overfitting）.html">过拟合（Overfitting）</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Luong注意力.html">&larr; Luong注意力</a>
+    <a href="MCAR.html">MCAR &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

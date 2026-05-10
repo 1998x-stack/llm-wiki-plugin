@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>四类模板</strong>：纯 2D 游戏（<code>scaffold-2d.lua</code>，无物理）；2D 物理游戏（<code>scaffold-2d-physics.lua</code>，内置 Box2D）；3D 场景展示（<code>scaffold-3d-scene.lua</code>，自由相机无角色）；3D 角色游戏（<code>scaffold-3d-character.lua</code>，第三人称角色控制）。</li>
 <li><strong>使用约束</strong>：任何新项目必须基于对应脚手架起手，禁止从零编写；多人/单机模式由 <code>.project/settings.json</code> 的 <code>multiplayer.enabled</code> 字段决定（<code>true</code> → Client.lua/Server.lua，<code>false</code> → Standalone.lua）。</li>
 <li><strong>选择依据</strong>：按游戏类型而非复杂度选择——Flappy Bird/Snake 等休闲游戏→ 2D；马里奥等平台跳跃→ 2D 物理；可视化/展示→ 3D 场景；Fall Guys/<a href="../entities/Roblox.html">Roblox</a> 风格→ 3D 角色；云变量/排行榜功能无需脚手架，直接用示例代码组合。</li>
-<li><strong>复用示例的原则</strong>：示例可作为起点，但交付前至少需要一轮优化（UI 美化、配置调整、代码清理），不能直接复制交付；复制示例目录前须检查 <code>manifest.json</code> 是否定义了必需的附加文件（<code>.fsm</code>、<code>.blendspace</code>、配置 JSON 等）。</li>
+<li><strong>复用示例的原则</strong>：示例可作为起点，但交付前至少需要一轮优化（UI 美化、<a href="Configuration.html">配置</a>调整、代码清理），不能直接复制交付；复制示例目录前须检查 <code>manifest.json</code> 是否定义了必需的附加文件（<code>.fsm</code>、<code>.blendspace</code>、<a href="Configuration.html">配置</a> JSON 等）。</li>
 <li><strong>模块化阈值</strong>：单文件 &lt; 1000 行可接受；1000–1500 行考虑拆分；&gt; 1500 行必须拆分为多模块——参考 <code>examples/07-minecraft-voxel-world</code>（多文件架构示例）。</li>
 </ol>
 <h2 id="_4">来源</h2>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="游戏引擎架构.html">&larr; 游戏引擎架构</a>
-    <a href="潜在结果框架.html">潜在结果框架 &rarr;</a>
+    <a href="潜在扩散模型.html">潜在扩散模型 &rarr;</a>
   </div>
 </div>
 </body>

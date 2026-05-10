@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="edvac">EDVAC 报告</h1>
 <h2 id="_1">概述</h2>
-<p><a href="约翰·冯·诺依曼.html">Von Neumann</a>于1945年撰写的内部技术报告《First Draft of a Report on the EDVAC》，是人类历史上第一份系统、完整地描述<a href="../concepts/存储程序计算机.html">存储程序计算机</a>设计原理的文献，定义了此后八十年所有计算机的基本架构<a href="../concepts/规范化理论.html">范式</a>。</p>
+<p><a href="约翰·冯·诺依曼.html">Von Neumann</a>于1945年撰写的内部技术报告《<a href="First Draft of a Report on the EDVAC.html">First Draft of a Report on the EDVAC</a>》，是人类历史上第一份系统、完整地描述<a href="../concepts/存储程序计算机.html">存储程序计算机</a>设计原理的文献，定义了此后八十年所有<a href="../concepts/计算.html">计算</a>机的基本架构<a href="../concepts/规范化理论.html">范式</a>。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">报告信息</h3>
 <table>
@@ -148,22 +148,52 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><strong>标题</strong></td>
-<td>First Draft of a Report on the EDVAC</td>
+<td><a href="First Draft of a Report on the EDVAC.html">First Draft of a Report on the EDVAC</a></td>
 </tr>
 <tr>
 <td><strong>作者</strong></td>
-<td><span style="color:#e74c3c" title="broken link">范式</span></li>
+<td><span style="color:#e74c3c" title="broken link">约翰·冯·诺依曼&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;撰写时间&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1945年2月至6月&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;分发时间&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1945年6月30日&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;发表形式&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;内部技术报告（非正式出版物）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;篇幅&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;约101页（未完成的初稿）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_4&quot;&gt;五大组件架构&lt;/h3&gt;
+&lt;p&gt;Von Neumann 将[[计算</span>机分解为五个功能器官：
+1. <strong>中央算术单元（CA）</strong> — 对应现代 ALU
+2. <strong>中央控制单元（CC）</strong> — 对应现代<a href="../concepts/控制器.html">控制器</a>
+3. <strong>内存（M）</strong> — 同时存储数据和指令
+4. <strong>输入设备（I）</strong>
+5. <strong>输出设备（O）</strong></p>
+<h3 id="_5">核心贡献</h3>
+<ul>
+<li><strong>存储程序概念</strong>：指令与数据统一存储，消除物理重新接线</li>
+<li><strong><a href="../concepts/取指-解码-执行循环.html">取指-解码-执行循环</a></strong>：定义了处理器工作的基本<a href="../concepts/规范化理论.html">范式</a></li>
 <li><strong>二进制表示</strong>：明确推荐二进制而非十进制</li>
 <li><strong>条件转移指令</strong>：实现循环、分支、子程序的基础</li>
 </ul>
 <h3 id="_6">署名争议</h3>
-<p>报告以 von Neumann 一人署名分发，引发了计算机史上最著名的优先权之争。<a href="J. Presper Eckert.html">Eckert</a> 和 <a href="John Mauchly.html">Mauchly</a> 认为存储程序的核心概念源自他们在1944年的讨论，von Neumann 是将工程直觉提炼为逻辑框架的人，而非概念的唯一发明者。更严重的是，由于报告被视为公开披露，直接导致 Eckert 和 Mauchly 后来申请的 EDVAC 专利无法执行。</p>
+<p>报告以 von Neumann 一人署名分发，引发了<a href="../concepts/计算.html">计算</a>机史上最著名的优先权之争。<a href="J. Presper Eckert.html">Eckert</a> 和 <a href="John Mauchly.html">Mauchly</a> 认为存储程序的核心概念源自他们在1944年的讨论，von Neumann 是将工程直觉提炼为逻辑框架的人，而非概念的唯一发明者。更严重的是，由于报告被视为公开披露，直接导致 Eckert 和 Mauchly 后来申请的 EDVAC 专利无法执行。</p>
 <h3 id="_7">传播效应</h3>
 <p>报告被 <a href="Herman Goldstine.html">Goldstine</a> 广泛分发至美英研究机构后，几乎每一个读到它的团队都能够理解其设计思想并据此建造自己的<a href="../concepts/存储程序计算机.html">存储程序计算机</a>：
-- <strong>EDSAC</strong>（1949，剑桥大学）— <a href="Maurice Wilkes.html">Maurice Wilkes</a> 主持
-- <strong>Manchester Baby</strong>（1948，曼彻斯特大学）
-- <strong>EDVAC</strong>（1951，宾夕法尼亚大学）
-- <strong>IAS 计算机</strong>（1952，普林斯顿高等研究院）</p>
+- <strong><a href="EDSAC.html">EDSAC</a></strong>（1949，剑桥大学）— <a href="Maurice Wilkes.html">Maurice Wilkes</a> 主持
+- <strong><a href="Manchester Baby.html">Manchester Baby</a></strong>（1948，曼彻斯特大学）
+- <strong>EDVAC</strong>（1951，<a href="宾夕法尼亚大学.html">宾夕法尼亚大学</a>）
+- <strong>IAS <a href="../concepts/计算.html">计算</a>机</strong>（1952，普林斯顿高等研究院）</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/03-von-neumann-edvac.md</span></li>
@@ -178,8 +208,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="E.F. Codd.html">&larr; E.F. Codd</a>
-    <a href="Ed H. Chi.html">Ed H. Chi &rarr;</a>
+    <a href="EDSAC.html">&larr; EDSAC</a>
+    <a href="EDVAC报告.html">EDVAC报告 &rarr;</a>
   </div>
 </div>
 </body>

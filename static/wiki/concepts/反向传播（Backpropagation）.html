@@ -127,25 +127,34 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 反向传播（Backpropagation）</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">概率论</span><span class="tag">深度学习</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="backpropagation">反向传播（Backpropagation）</h1>
 <h2 id="_1">概述</h2>
-<p>Rumelhart、<a href="../entities/Geoffrey E. Hinton.html">Hinton</a> 和 Williams 于 1986 年在 <em>Nature</em> 发表论文，系统展示了<a href="反向传播.html">反向传播</a>算法如何通过<a href="链式法则.html">链式法则</a>将输出误差逆向传播到隐藏层，使多层神经网络能够自动学习有用的内部表示，解决了困扰 AI 领域十余年的"信用<a href="点数问题.html">分配问题</a>"。</p>
+<p>Rumelhart、<a href="../entities/Geoffrey E. Hinton.html">Hinton</a> 和 Williams 于 1986 年在 <em><a href="../entities/Nature.html">Nature</a></em> 发表论文，系统展示了<a href="反向传播.html">反向传播</a><a href="算法.html">算法</a>如何通过<a href="链式法则.html">链式法则</a>将输出误差逆向传播到隐藏层，使多层神经网络能够自动学习有用的内部表示，解决了困扰 AI 领域十余年的"信用<a href="点数问题.html">分配问题</a>"。该<a href="算法.html">算法</a>是现代深度学习的基石。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>历史背景</strong>：1969 年 Minsky-Papert《<a href="感知机（Perceptron）.html">感知器</a>》证明单层<a href="感知机（Perceptron）.html">感知器</a>无法解决 <a href="XOR 问题.html">XOR 问题</a>，导致神经网络研究陷入"<a href="AI 寒冬.html">AI 寒冬</a>"。出路是添加隐藏层，但如何训练隐藏层成为核心难题。</p>
+<p><strong>历史背景</strong>：1969 年 <a href="../entities/Marvin Minsky.html">Minsky</a>-<a href="../entities/Seymour Papert.html">Papert</a>《<a href="感知机（Perceptron）.html">感知器</a>》证明单层<a href="感知机（Perceptron）.html">感知器</a>无法解决 <a href="XOR 问题.html">XOR 问题</a>，导致神经网络研究陷入"<a href="AI 寒冬.html">AI 寒冬</a>"。出路是添加隐藏层，但如何训练隐藏层成为核心难题。</p>
 </li>
 <li>
-<p><strong>信用<a href="点数问题.html">分配问题</a></strong>：当系统整体犯错时，如何将责任分配给每个组件？输出层误差可直接计算，但隐藏层没有"期望输出"可供参考。</p>
+<p><strong>信用<a href="信用分配问题（Credit Assignment Problem）.html">分配问题</a></strong>：当系统整体犯错时，如何将责任分配给每个组件？输出层误差可直接<a href="计算.html">计算</a>，但隐藏层没有"期望输出"可供参考。</p>
 </li>
 <li>
-<p><strong>核心算法</strong>：通过<a href="链式法则.html">链式法则</a>逐层计算复合函数导数，将误差从输出层逆向传播到每个隐藏层神经元，实现梯度下降优化。</p>
+<p><strong>核心<a href="算法.html">算法</a></strong>：通过<a href="链式法则.html">链式法则</a>逐层<a href="计算.html">计算</a>复合函数导数，将误差从输出层逆向传播到每个隐藏层神经元，实现梯度下降优化。具体来说，对于第l层权重W^(l)，梯度为：∂L/∂W^(l) = ∂L/∂ŷ · ∂ŷ/∂h^(l+1) · ... · ∂h^(l+1)/∂h^l · ∂h^l/∂W^l。</p>
+</li>
+<li>
+<p><strong>1986年突破</strong>：<a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a>中，Rumelhart、<a href="../entities/Geoffrey E. Hinton.html">Hinton</a>和Williams不仅给出了完整的数学推导，还通过<a href="XOR问题.html">XOR问题</a>和<a href="家族关系学习.html">家族关系学习</a>实验展示了<a href="算法.html">算法</a>的有效性，证明了网络能够自动学习有意义的内部表示。</p>
+</li>
+<li>
+<p><strong><a href="算法.html">算法</a>步骤</strong>：1)前向传播：输入数据通过网络得到预测输出；2)<a href="计算.html">计算</a>损失：比较预测值与真实标签；3)<a href="反向传播.html">反向传播</a>：使用<a href="链式法则.html">链式法则</a><a href="计算.html">计算</a>各层梯度；4)参数更新：梯度下降更新权重。</p>
+</li>
+<li>
+<p><strong>实验验证</strong>：论文中的两个关键实验包括：<a href="XOR问题.html">XOR问题</a>的解决，证明了多层网络能处理非线性可分问题；<a href="家族关系学习.html">家族关系学习</a>实验，展示了网络自动学习抽象概念的能力。</p>
 </li>
 <li>
 <p><strong>历史优先权</strong>：Werbos（1974 博士论文）最早提出，Linnainmaa（1970）描述<a href="自动微分.html">自动微分</a>反向模式，Parker（1985）独立再发现。但 Rumelhart 等人的论文通过令人信服的实验展示了隐藏层自动学习有意义内部表示的能力。</p>
@@ -156,18 +165,29 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">17-rumelhart-backpropagation</span> — 反向传播学习表示</li>
+<li><a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a> — 反向传播学习表示</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_02_backpropagation.md</span> — 源文件</li>
+<li>[Nature 323, 533–536 (1986)] — 原始论文</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
 <li><a href="McCulloch-Pitts 神经元模型.html">McCulloch-Pitts 神经元模型</a> — extends</li>
 <li><a href="LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> — extends</li>
 <li><a href="Transformer架构.html">Transformer架构</a> — extends</li>
+<li><a href="../entities/Learning Representations by Back-propagating Errors (1986 论文).html">Learning Representations by Back-propagating Errors (1986 论文)</a> — formalized_in</li>
+<li><a href="../entities/David E. Rumelhart.html">David E. Rumelhart</a> — developed_by</li>
+<li><a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — developed_by</li>
+<li><a href="../entities/Ronald J. Williams.html">Ronald J. Williams</a> — developed_by</li>
+<li><a href="XOR问题.html">XOR问题</a> — solves</li>
+<li><a href="信用分配问题（Credit Assignment Problem）.html">信用分配问题（Credit Assignment Problem）</a> — addresses</li>
+<li><a href="链式法则.html">链式法则</a> — uses</li>
+<li><a href="家族关系学习.html">家族关系学习</a> — demonstrated_in</li>
+<li><a href="梯度下降（Gradient Descent）.html">梯度下降（Gradient Descent）</a> — complements</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="反向传播.html">&larr; 反向传播</a>
-    <a href="反身性.html">反身性 &rarr;</a>
+    <a href="反应时测量.html">反应时测量 &rarr;</a>
   </div>
 </div>
 </body>

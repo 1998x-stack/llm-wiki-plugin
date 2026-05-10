@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">纵深防御</h1>
 <h2 id="_2">概述</h2>
-<p>一种安全架构设计原则，通过多层独立防御机制确保单层突破不等于完全逃逸，每层提供不同类型的保护以应对不同攻击向量。</p>
+<p>一种安全架构设计原则，通过多层独立<a href="防御机制.html">防御机制</a>确保单层突破不等于完全逃逸，每层提供不同类型的保护以应对不同攻击向量。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心原则</strong>：不依赖单一防御机制，而是叠加多层独立的约束措施。即使攻击者突破某一层，后续层仍能提供保护。</p>
+<p><strong>核心原则</strong>：不依赖单一<a href="防御机制.html">防御机制</a>，而是叠加多层独立的约束措施。即使攻击者突破某一层，后续层仍能提供保护。</p>
 </li>
 <li>
 <p><strong>在 <a href="../entities/Codex CLI.html">Codex</a> 中的体现</strong>：Linux 平台使用 <a href="../entities/Landlock.html">Landlock</a> + <a href="../entities/seccomp.html">seccomp</a> 双层沙箱——<a href="../entities/Landlock.html">Landlock</a> 在 VFS 层拦截文件操作（不可逆、继承到子进程、无法被 LD_PRELOAD 或 ptrace 绕过），<a href="../entities/seccomp.html">seccomp</a> 在系统调用层过滤危险调用（socket、ptrace、mount 等）。两层叠加确保即使 <a href="../entities/seccomp.html">seccomp</a> 漏网，<a href="../entities/Landlock.html">Landlock</a> 在 VFS 层也会拦截。</p>
@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="ExecPolicy.html">ExecPolicy</a> + Sandbox 协同</strong>：<a href="ExecPolicy.html">ExecPolicy</a> 作为意图过滤器是第一道防线，Sandbox 作为能力约束器是最后一道防线。应用层过滤无法处理所有边缘情况，OS 级沙箱提供执行层面的强制约束。</p>
 </li>
 <li>
-<p><strong>设计决策背后的原因</strong>：使用 <a href="../entities/Landlock.html">Landlock</a> 而非 chroot 因为 <a href="../entities/Landlock.html">Landlock</a> 不可逆、继承到子进程、不需要 root 权限；默认禁止网络遵循失败安全原则（宁可任务失败，不可数据泄露）；保护 <code>.git</code> 和 <code>.codex</code> 防止 Agent 修改自己的执行规则（反射性攻击）。</p>
+<p><strong>设计决策背后的原因</strong>：使用 <a href="../entities/Landlock.html">Landlock</a> 而非 chroot 因为 <a href="../entities/Landlock.html">Landlock</a> 不可逆、继承到子进程、不需要 root <a href="Permissions.html">权限</a>；默认禁止网络遵循失败安全原则（宁可任务失败，不可数据泄露）；保护 <code>.git</code> 和 <code>.codex</code> 防止 Agent 修改自己的执行规则（反射性攻击）。</p>
 </li>
 <li>
-<p><strong>可测试性</strong>：沙箱配置错误本身是不确定性来源，<a href="../entities/Codex CLI.html">Codex</a> 内置沙箱测试工具（<code>codex sandbox</code> 命令）可在真实沙箱中测试任意命令行为，通过可测试性消除配置不确定性。</p>
+<p><strong>可测试性</strong>：沙箱<a href="Configuration.html">配置</a>错误本身是不确定性来源，<a href="../entities/Codex CLI.html">Codex</a> 内置沙箱测试工具（<code>codex sandbox</code> 命令）可在真实沙箱中测试任意命令行为，通过可测试性消除<a href="Configuration.html">配置</a>不确定性。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

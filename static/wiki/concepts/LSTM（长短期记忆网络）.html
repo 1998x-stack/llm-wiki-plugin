@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>解决<a href="梯度消失.html">梯度消失</a>的数学本质</strong>：<a href="细胞状态（Cell State）.html">细胞状态</a>的梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当<a href="遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时，梯度通过加法直接传递而不衰减。对比 RNN：∂hₜ/∂hₜ₋₁ = Wₕᵀ · diag(tanh'(·))，需要乘以小于 1 的数，连乘后指数衰减。类比：RNN 像用粉笔写黑板（每次覆盖），LSTM <a href="细胞状态（Cell State）.html">细胞状态</a>像一本可精确"写入"、"擦除"、"读取"的日记本。</p>
 </li>
 <li>
-<p><strong>实际应用与退出</strong>：LSTM 统治序列学习领域近 20 年，在语音识别（<a href="../entities/Google.html">Google</a> Voice 2015）、机器翻译（<a href="../entities/Google.html">Google</a> 翻译 2016）、文本生成、时间序列预测等领域大规模部署。2017 年 <a href="Transformer架构.html">Transformer架构</a> 问世后逐步退场，但在时间序列、嵌入式/边缘设备、<a href="强化学习.html">强化学习</a>等场景仍广泛使用（2024 年仍活跃）。</p>
+<p><strong>实际应用与退出</strong>：LSTM 统治序列学习领域近 20 年，在语音识别（<a href="../entities/Google.html">Google</a> Voice 2015）、机器翻译（<a href="../entities/Google.html">Google</a> 翻译 2016）、文本生成、<a href="Time Series Analysis.html">时间序列</a>预测等领域大规模部署。2017 年 <a href="Transformer架构.html">Transformer架构</a> 问世后逐步退场，但在<a href="Time Series Analysis.html">时间序列</a>、嵌入式/边缘设备、<a href="强化学习.html">强化学习</a>等场景仍广泛使用（2024 年仍活跃）。</p>
 </li>
 <li>
-<p><strong>代码实现</strong>：PyTorch 中通过 <code>nn.LSTM(input_size, hidden_size, num_layers, bidirectional=True)</code> 实现。支持多层堆叠、双向处理、dropout 正则化。权重绑定（embedding 与输出层共享权重）可节省参数。</p>
+<p><strong>代码实现</strong>：<a href="../entities/PyTorch.html">PyTorch</a> 中通过 <code>nn.LSTM(input_size, hidden_size, num_layers, bidirectional=True)</code> 实现。支持多层堆叠、双向处理、dropout 正则化。权重绑定（embedding 与输出层共享权重）可节省参数。</p>
 </li>
 </ol>
 <h2 id="_1">来源</h2>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="LSP（语言服务器协议）.html">&larr; LSP（语言服务器协议）</a>
-    <a href="Laplace变换.html">Laplace变换 &rarr;</a>
+    <a href="LangGraph状态机.html">LangGraph状态机 &rarr;</a>
   </div>
 </div>
 </body>

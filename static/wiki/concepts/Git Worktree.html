@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">git</span><span class="tag">workflow</span><span class="tag">isolation</span><span class="tag">superpowers</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">git</span><span class="tag">workflow</span><span class="tag">isolation</span><span class="tag">superpowers</span><span class="tag">multi-agent</span></div>
 </div>
   <div class="content">
     <h1 id="git-worktree">Git Worktree</h1>
 <h2 id="_1">概述</h2>
-<p>Git 功能，允许一个仓库拥有多个独立工作目录，每个目录对应不同分支，支持同时在多个分支上工作互不干扰，是 <a href="Superpowers.html">Superpowers</a> 实现并行子 Agent 隔离的核心机制。</p>
+<p>Git 功能，允许一个<a href="仓库.html">仓库</a>拥有多个独立工作目录，每个目录对应不同分支，支持同时在多个分支上工作互不干扰，是 <a href="../entities/Superpowers.html">Superpowers</a> 实现并行<span style="color:#e74c3c" title="broken link">子 Agent</span> 隔离的核心机制。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>与普通分支的区别</strong>：</li>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>为什么需要 Worktree</strong>：</p>
 </li>
 <li><strong>保护主分支</strong>：防止实验性代码混入稳定代码</li>
-<li><strong>支持并行子 Agent</strong>：每个 Agent 独立工作目录，互不覆盖</li>
+<li><strong>支持并行<span style="color:#e74c3c" title="broken link">子 Agent</span></strong>：每个 Agent 独立工作目录，互不覆盖</li>
 <li>
 <p><strong>建立测试基线</strong>：清晰<a href="../entities/区分.html">区分</a>"修改引入的失败"和"预先存在的失败"</p>
 </li>
@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>平台支持</strong>：
    | 平台 | 支持 |
    |------|------|
-   | <a href="../entities/Claude Code.html">Claude Code</a> | ✅ 完整 |
+   | <a href="../projects/Claude Code.html">Claude Code</a> | ✅ 完整 |
    | <a href="../entities/Codex CLI.html">Codex</a> | ✅ 完整 |
    | <a href="../entities/Cursor.html">Cursor</a> | ✅ 完整 |
    | <a href="../entities/Gemini CLI.html">Gemini CLI</a> | ⚠️ 部分 |</p>
@@ -205,14 +205,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="Superpowers.html">Superpowers</a> — part_of</li>
-<li><span style="color:#e74c3c" title="broken link">using-git-worktrees Skill</span> — implements</li>
-<li><span style="color:#e74c3c" title="broken link">dispatching-parallel-agents Skill</span> — uses</li>
+<li><a href="../entities/Superpowers.html">Superpowers</a> — part_of</li>
+<li><a href="using-git-worktrees Skill.html">using-git-worktrees Skill</a> — implements</li>
+<li><a href="dispatching-parallel-agents Skill.html">dispatching-parallel-agents Skill</a> — uses</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Generator-Verifier-Pattern.html">&larr; Generator-Verifier-Pattern</a>
-    <a href="Guardrails.html">Guardrails &rarr;</a>
+    <a href="Git Safety Checks.html">&larr; Git Safety Checks</a>
+    <a href="GitHub Actions.html">GitHub Actions &rarr;</a>
   </div>
 </div>
 </body>

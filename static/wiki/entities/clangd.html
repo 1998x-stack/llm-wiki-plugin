@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="clangd">clangd</h1>
 <h2 id="_1">概述</h2>
-<p>LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言服务器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功能的 LSP 实现。</p>
+<p>LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言<a href="../concepts/服务.html">服务</a>器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功能的 LSP 实现。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构</strong>：LSP Layer（JSON-RPC 处理）→ ClangdServer（协调层）→ TUScheduler（翻译单元调度，异步优先级）→ FileIndex（后台全 workspace 索引，含 MemIndex 和 DiskIndex）→ GlobalCompilationDatabase（compile_commands.json）。</p>
 </li>
 <li>
-<p><strong>核心设计</strong>：TUScheduler 按文件异步调度 AST Worker 和 Preamble Worker；FileIndex 维护内存和磁盘双层索引；通过 compile_commands.json 获取编译配置。</p>
+<p><strong>核心设计</strong>：TUScheduler 按文件异步调度 AST <a href="../concepts/Worker Agent.html">Worker</a> 和 Preamble <a href="../concepts/Worker Agent.html">Worker</a>；FileIndex 维护内存和磁盘双层索引；通过 compile_commands.json 获取编译<a href="../concepts/Configuration.html">配置</a>。</p>
 </li>
 <li>
 <p><strong>与 ccls 对比</strong>：clangd 功能最全、官方维护；ccls 是高性能替代方案，在 C++17 支持上表现优秀。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="ccls.html">&larr; ccls</a>
-    <a href="eclipse.jdt.ls.html">eclipse.jdt.ls &rarr;</a>
+    <a href="commit.html">commit &rarr;</a>
   </div>
 </div>
 </body>

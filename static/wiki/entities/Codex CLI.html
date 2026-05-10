@@ -129,12 +129,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">工具</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="codex-cli">Codex CLI</h1>
-<p><a href="OpenAI.html">OpenAI</a> 以 Rust 重写并开源的<strong>本地编码 Agent</strong>。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读仓库、改文件、跑命令。</p>
+<p><a href="OpenAI.html">OpenAI</a> 以 Rust 重写并开源的<strong>本地编码 Agent</strong>。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读<a href="../concepts/仓库.html">仓库</a>、改文件、跑命令。</p>
 <h2 id="_1">一句话定义</h2>
 <p><strong>LLM 推理引擎 + OS 级沙箱执行器 + 人机协同审批协议 + MCP 协议总线</strong></p>
 <h2 id="_2">整体分层架构</h2>
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;tr&gt;
 &lt;td&gt;协议层&lt;/td&gt;
 &lt;td&gt;[[MCP协议层</span></td>
-<td>双向 MCP：客户端连工具，服务端暴露自身</td>
+<td>双向 MCP：客户端连工具，<a href="../concepts/服务.html">服务</a>端暴露自身</td>
 </tr>
 <tr>
 <td>沙箱层</td>
@@ -236,7 +236,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<h2 id="_3">关键架构决策</h2>
+<h2 id="_3">组件依赖关系</h2>
+<pre><code>config.toml ──────────────────────────────────────┐
+                                                   ▼
+AGENTS.md ──► core (业务逻辑) ──► ExecPolicy ──► Sandbox
+                │                      │
+                ├──► Session Manager   └──► Approval Gate ──► TUI
+                │
+                ├──► MCP Client ──► 外部工具服务器
+                │
+                └──► Subagent Pool ──► 并行 core 实例
+</code></pre>
+<h2 id="_4">关键架构决策</h2>
 <h3 id="rust">Rust 重写</h3>
 <p>原版为 <a href="TypeScript.html">TypeScript</a>，2025 年迁移 Rust 的核心理由：
 - <strong>原生沙箱绑定</strong>：<a href="Landlock.html">Landlock</a>/<a href="seccomp.html">seccomp</a> 必须在系统调用层做，应用层做不到
@@ -246,6 +257,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <blockquote>
 <p>工程智慧：选 Rust 不只是"性能更好"，更是为了<strong>在内核层做安全隔离</strong>。</p>
 </blockquote>
+<h3 id="write-tools">Write Tools 策略</h3>
+<p>支持 write / patch 两种写入粒度，相比 Claude Code 的三件套（write / str_replace / patch）少一种粒度。使用 OS 级隔离机制，包括 macOS 上的 <code><a href="Apple Sandbox.html">sandbox-exec</a></code>（Seatbelt）和 Linux 上的 <code>landlock</code> + <code><a href="seccomp.html">seccomp</a></code> 过滤系统调用，提供内核级别的隔离强度。</p>
+<p>提供三种模式（suggest / auto-edit / full-auto），分别对应不同的文件系统权限和网络权限。采用 suggest 模式（先生成所有 diff 再统一审批），让用户可以看到整个计划再决定是否执行，比逐步确认更有全局感。</p>
+<p>大文件处理采用行范围读取策略，与 Claude Code 的 Symbol-level 读取方式不同。</p>
 <h3 id="policy-first">Policy-First 设计</h3>
 <p>先声明策略，再执行——而非"先执行再道歉"：</p>
 <pre><code>[用户配置] approval_policy + sandbox_mode
@@ -258,16 +273,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="wire-protocol">Wire Protocol 解耦</h3>
 <p>核心业务逻辑通过 Wire Protocol（<code>codex-rs/protocol</code>）与 UI 层解耦：
 - TUI、App Server、IDE Extension 共用同一个 <code>core</code> crate
-- 支持 Python/<a href="TypeScript.html">TypeScript</a> 客户端通过协议接入
-- Codex 自身可作为 MCP Server 被其他 Agent 调用</p>
-<h2 id="_4">三道防线（不确定性 → 确定性）</h2>
+- 支持 <a href="../concepts/Python.html">Python</a>/<a href="TypeScript.html">TypeScript</a> 客户端通过协议接入
+- Codex 自身可作为 <a href="../concepts/MCP Prompts.html">MCP Server</a> 被其他 Agent 调用</p>
+<h2 id="_5">三道防线（不确定性 → 确定性）</h2>
 <p>LLM 输出是随机的，系统执行必须是可控的，用三道防线解决：</p>
 <ol>
 <li><strong><a href="../concepts/ExecPolicy.html">ExecPolicy</a>（意图过滤）</strong> — allow / prompt / forbidden 三态决策</li>
-<li><strong>Approval Gate（人机协同）</strong> — 不确定命令暂停等待人类批准</li>
+<li><strong><a href="../concepts/Approval Gate UI.html">Approval Gate</a>（人机协同）</strong> — 不确定命令暂停等待人类批准</li>
 <li><strong>OS Sandbox（执行隔离）</strong> — 内核级强制，LLM 无法绕过</li>
 </ol>
-<h2 id="_5">来源</h2>
+<h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/01_codex_architecture_overview.md</span></li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/02_codex_tui_component.md</span> — Codex CLI 深度解析 Vol.2：TUI 交互式终端的设计哲学</li>
@@ -277,7 +292,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Cocos2d-x.html">&larr; Cocos2d-x</a>
-    <a href="Context7.html">Context7 &rarr;</a>
+    <a href="Coinbase.html">Coinbase &rarr;</a>
   </div>
 </div>
 </body>

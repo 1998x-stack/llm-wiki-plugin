@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="openclaw">OpenClaw</h1>
 <h2 id="_1">概述</h2>
-<p>OpenClaw 是一个多渠道 AI 助手，以 <a href="Pi-Agent.html">Pi-Agent</a> 为核心引擎，支持 WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等平台，各渠道共享内存和持久化会话。一周内获得 14.5 万 GitHub Stars，使 Pi Agent 从私人工具走向公众视野。</p>
+<p>OpenClaw 是一个多渠道 AI 助手，以 <a href="Pi-Agent.html">Pi-Agent</a> 为核心引擎，支持 WhatsApp、Telegram、Discord、<a href="Slack.html">Slack</a>、Signal、iMessage 等平台，各渠道共享内存和持久化会话。一周内获得 14.5 万 <a href="GitHub.html">GitHub</a> Stars，使 Pi Agent 从私人工具走向公众视野。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="1">1. 多渠道架构</h3>
 <p>OpenClaw 将 Pi Agent 内嵌为核心 Agent 引擎，在其上构建了多平台通道适配层，支持的渠道包括：
-- WhatsApp、Telegram、Discord、Slack、Signal
+- WhatsApp、Telegram、Discord、<a href="Slack.html">Slack</a>、Signal
 - iMessage、<a href="Google.html">Google</a> Chat、Microsoft Teams</p>
 <p>关键特性：各渠道<strong>共享内存和持久化会话</strong>——在任一平台发起的对话可在另一平台无缝继续。这依赖于 Pi 的 <a href="../concepts/JSONL格式.html">JSONL</a> 会话格式和跨 Provider 迁移能力。</p>
 <h3 id="2-pi-agent">2. 对 Pi Agent 的意义</h3>
-<p>Pi 原本是 <a href="Mario-Zechner.html">Mario-Zechner</a> 的私人工具，"永远不会有用户"。OpenClaw 作为 Pi 的第一个大规模用户验证了其架构的可扩展性——从个人 CLI 工具到服务百万用户的多渠道平台，核心引擎无需重写。</p>
+<p>Pi 原本是 <a href="Mario-Zechner.html">Mario-Zechner</a> 的私人工具，"永远不会有用户"。OpenClaw 作为 Pi 的第一个大规模用户验证了其架构的可扩展性——从个人 CLI 工具到<a href="../concepts/服务.html">服务</a>百万用户的多渠道平台，核心引擎无需重写。</p>
 <h3 id="3-agentskillsio">3. 与 agentskills.io 开放标准的关系</h3>
-<p>OpenClaw 的技能格式兼容 <a href="agentskills.io.html">agentskills.io</a> 开放规范，支持通过 <code>hermes claw migrate</code> 工具从 OpenClaw 迁移到 <a href="Hermes Agent.html">Hermes Agent</a>。迁移命令支持 <code>--dry-run</code> 预览、<code>--preset user-data</code> 只迁移用户数据、<code>--overwrite</code> 覆盖冲突文件。这体现了<a href="../concepts/开放技能标准.html">开放技能标准</a>的核心价值：技能可在不同 Agent 框架间流通，而非某个系统的私有数据。</p>
+<p>OpenClaw 的<a href="../concepts/Skills.html">技能</a>格式兼容 <a href="agentskills.io.html">agentskills.io</a> 开放规范，支持通过 <code>hermes claw migrate</code> 工具从 OpenClaw 迁移到 <a href="Hermes Agent.html">Hermes Agent</a>。迁移命令支持 <code>--dry-run</code> 预览、<code>--preset user-data</code> 只迁移用户数据、<code>--overwrite</code> 覆盖冲突文件。这体现了<a href="../concepts/开放技能标准.html">开放技能标准</a>的核心价值：<a href="../concepts/Skills.html">技能</a>可在不同 Agent 框架间流通，而非某个系统的私有数据。</p>
 <h3 id="4-hermes-gateway">4. 与 Hermes Gateway 的架构差异</h3>
 <p>OpenClaw 把 <a href="../concepts/网关与路由器.html">Gateway</a> 作为<strong>控制平面</strong>：一个拥有会话、路由、工具执行和状态的单一长期进程，所有东西都流过它。<a href="Hermes Agent.html">Hermes</a> 的 <a href="../concepts/网关与路由器.html">Gateway</a> 更轻：它是消息路由层，核心逻辑在 AIAgent 循环里，<a href="../concepts/网关与路由器.html">Gateway</a> 只负责"把消息送进去、把结果送出来"。这反映了两种设计哲学：OpenClaw 偏向集中式控制，<a href="Hermes Agent.html">Hermes</a> 偏向轻量解耦。</p>
 <h2 id="_3">来源</h2>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="OpenAI Codex.html">&larr; OpenAI Codex</a>
-    <a href="OpenP5.html">OpenP5 &rarr;</a>
+    <a href="OpenCode.html">OpenCode &rarr;</a>
   </div>
 </div>
 </body>

@@ -142,13 +142,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>角色定位</strong>：候选生成（Candidate Generation / Recall / 召回）是 <a href="两阶段推荐架构.html">两阶段推荐架构</a> 的第一阶段。目标是从数十亿级别的候选集中快速筛选出数百个粗略候选，追求高召回率（尽可能不漏掉用户可能感兴趣的物品）。</p>
 </li>
 <li>
-<p><strong>特征选择</strong>：使用相对粗粒度的特征，计算效率高。在 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中，候选生成的输入特征包括：观看历史（视频 ID embedding 取平均）、搜索历史（query embedding 取平均）、人口统计学特征（地理位置、设备类型、性别、年龄等）、<a href="Example Age.html">Example Age</a>。</p>
+<p><strong>特征选择</strong>：使用相对粗粒度的特征，<a href="计算.html">计算</a>效率高。在 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中，候选生成的输入特征包括：观看历史（视频 ID embedding 取平均）、搜索历史（query embedding 取平均）、人口统计学特征（地理位置、设备类型、性别、年龄等）、<a href="Example Age.html">Example Age</a>。</p>
 </li>
 <li>
-<p><strong>模型架构</strong>：通常采用 <a href="双塔模型.html">双塔模型</a> 结构——用户塔产生用户 embedding，物品塔产生物品 embedding，通过内积计算相似度。这种设计使得服务时可以转化为 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
+<p><strong>模型架构</strong>：通常采用 <a href="双塔模型.html">双塔模型</a> 结构——用户塔产生用户 embedding，物品塔产生物品 embedding，通过内积<a href="计算.html">计算</a>相似度。这种设计使得<a href="服务.html">服务</a>时可以转化为 <a href="近似最近邻检索.html">近似最近邻检索</a> 问题。</p>
 </li>
 <li>
-<p><strong>服务方式</strong>：训练时用 softmax 分类，服务时用 ANN 检索。每个视频预先存储其 embedding 向量（softmax 层权重），用户请求时通过神经网络前向计算得到用户 embedding，然后在视频 embedding 空间中找到与用户 embedding 最近的 Top-N 个视频。</p>
+<p><strong><a href="服务.html">服务</a>方式</strong>：训练时用 softmax 分类，<a href="服务.html">服务</a>时用 ANN 检索。每个视频预先存储其 embedding 向量（softmax 层权重），用户请求时通过神经网络前向<a href="计算.html">计算</a>得到用户 embedding，然后在视频 embedding 空间中找到与用户 embedding 最近的 Top-N 个视频。</p>
 </li>
 <li>
 <p><strong>多路召回</strong>：现代推荐系统中，候选生成往往不止一路，而是多路召回——包括基于<a href="协同过滤.html">协同过滤</a>的召回、基于内容的召回、基于热门趋势的召回、基于图神经网络的召回等。各路召回的结果合并后进入下一阶段。</p>

@@ -138,18 +138,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>固定栈分配是<a href="上下文策略.html">上下文策略</a>之一，要求每次 Agent 迭代以完全相同的顺序和方式分配上下文栈，确保关键约束始终位于注意力最高的开头和结尾位置，避免"lost in the middle"问题导致 Agent 遗忘重要规则。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心原则</strong>：每次迭代，以完全相同的方式分配上下文栈。CLAUDE.md 的固定分配顺序为：</li>
+<li><strong>核心原则</strong>：每次迭代，以完全相同的方式分配上下文栈。<a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 的固定分配顺序为：</li>
 <li>[System Prompt] ← 总是第一个（~3k tokens）</li>
 <li>[Project conventions] ← 总是第二个（~2k tokens）</li>
 <li>[Core constraints] ← 总是第三个（~1k tokens）</li>
 <li>
-<p>[File references] ← 总是最后（@prd.json @progress.txt @AGENTS.md）</p>
+<p>[File references] ← 总是最后（@prd.json @progress.txt @<a href="项目约定手册.html">AGENTS.md</a>）</p>
 </li>
 <li>
 <p><strong>为什么顺序重要</strong>：LLM 对上下文开头和结尾的注意力高于中间部分（"lost in the middle"问题）。注意力曲线呈 U 形——开头和结尾高，中间低。把最重要的约束放在最前面，确保 Agent 不会忘记它们。</p>
 </li>
 <li>
-<p><strong>工程实践</strong>：在 CLAUDE.md 中硬编码加载顺序，而非依赖 Agent 自主决定加载什么。这保证了每次迭代的一致性，避免了因上下文内容变化导致的注意力漂移。</p>
+<p><strong>工程实践</strong>：在 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 中硬编码加载顺序，而非依赖 Agent 自主决定加载什么。这保证了每次迭代的一致性，避免了因上下文内容变化导致的注意力漂移。</p>
 </li>
 <li>
 <p><strong>与 <a href="Context-Engineering.html">Context-Engineering</a> 的关系</strong>：固定栈分配是 <a href="Context Engineering.html">Context Engineering</a> 中 Prompt 位置编排的具体实现。<a href="Context-Engineering.html">Context-Engineering</a> 推荐的布局（Cached Prefix → Task contract → Working memory → Evidence → Counter evidence → User ask → Final answer rubric）与固定栈分配的原则一致——关键信息放两端，避免埋中间。</p>

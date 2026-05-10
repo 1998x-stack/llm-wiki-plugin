@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">样条方法</h1>
 <h2 id="_2">概述</h2>
-<p>样条方法（Spline methods）用<strong>分段低次多项式</strong>逐段拼接来逼近函数，是对<a href="龙格现象.html">龙格现象</a>的直接回应。与整体高次多项式不同，每段只需低次多项式（通常三次），在拼接点保持连续性和光滑性（$C^2$ 连续），从而规避了全局多项式在端点附近振荡失控的问题。样条方法由 Isaac Schoenberg 在 1946 年系统发展，是 20 世纪<a href="../maps/数值分析.html">数值分析</a>最重要的发展之一，也是计算机辅助设计（CAD）和计算机图形学的基础。</p>
+<p>样条方法（Spline methods）用<strong>分段低次多项式</strong>逐段拼接来逼近函数，是对<a href="龙格现象.html">龙格现象</a>的直接回应。与整体高次多项式不同，每段只需低次多项式（通常三次），在拼接点保持连续性和光滑性（$C^2$ 连续），从而规避了全局多项式在端点附近振荡失控的问题。样条方法由 Isaac Schoenberg 在 1946 年系统发展，是 20 世纪<a href="../maps/数值分析.html">数值分析</a>最重要的发展之一，也是<a href="计算.html">计算</a>机辅助设计（CAD）和<a href="计算.html">计算</a>机图形学的基础。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心思想：分段代替整体</h3>
 <p><strong>整体高次多项式</strong>（龙格的问题）：$n+1$ 个节点 → $n$ 次全局多项式 → 端点振荡失控。</p>
 <p><strong>样条</strong>：将区间 $[a,b]$ 划分为子区间，在每段用低次多项式，在分割点（节点）处施加光滑性约束。</p>
 <h3 id="cubic-spline">三次样条（Cubic Spline）</h3>
 <p>最常用形式。在每个子区间 $[x_i, x_{i+1}]$ 上用三次多项式，整体满足 $C^2$ 连续（函数值、一阶导、二阶导处处连续）。</p>
-<p>自由度计算：$n$ 段，每段 4 个系数 = $4n$ 个自由度；$C^2$ 连续条件 = $3(n-1)$ 个约束；插值条件 = $n+1$ 个；还需 2 个边界条件（自然样条：端点二阶导为零；夹紧样条：端点一阶导给定）。</p>
+<p>自由度<a href="计算.html">计算</a>：$n$ 段，每段 4 个系数 = $4n$ 个自由度；$C^2$ 连续条件 = $3(n-1)$ 个约束；插值条件 = $n+1$ 个；还需 2 个边界条件（自然样条：端点二阶导为零；夹紧样条：端点一阶导给定）。</p>
 <p><strong>数值稳定性</strong>：三次样条系数由三对角线性方程组确定，<a href="条件数.html">条件数</a>良好，远优于高次全局插值。</p>
 <h3 id="b-b-spline">B 样条（B-Spline）</h3>
 <p>B 样条（Basis Spline）是样条的更灵活表示，以"基函数 + 控制点"形式表达。</p>
@@ -207,7 +207,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_6">应用</h3>
 <ul>
 <li><strong>CAD/CAM</strong>：NURBS 是曲线/曲面的工业标准</li>
-<li><strong>计算机图形学</strong>：贝塞尔曲线（Bézier curve）是 B 样条的特例</li>
+<li><strong><a href="计算.html">计算</a>机图形学</strong>：贝塞尔曲线（Bézier curve）是 B 样条的特例</li>
 <li><strong><a href="有限元方法.html">有限元方法</a></strong>：等几何分析（IGA）将 B 样条/NURBS 作为有限元形函数</li>
 <li><strong>数据拟合</strong>：避免<a href="龙格现象.html">龙格现象</a>的鲁棒插值工具</li>
 <li><strong>图像处理</strong>：双三次样条插值（双线性插值的光滑升级）</li>

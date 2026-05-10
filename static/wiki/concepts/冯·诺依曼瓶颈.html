@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">冯·诺依曼瓶颈</h1>
 <h2 id="_2">概述</h2>
-<p>冯·诺依曼瓶颈（von Neumann bottleneck）指<a href="存储程序计算机.html">存储程序计算机</a>中 CPU 与内存之间的数据传输通道成为系统性能的根本限制。无论 CPU 有多快，它都必须通过这条狭窄的通道"一个字一个字地"从内存中泵取数据和指令。</p>
+<p><a href="../entities/冯·诺依曼.html">冯·诺依曼</a>瓶颈（von Neumann bottleneck）指<a href="存储程序计算机.html">存储程序计算机</a>中 CPU 与内存之间的数据传输通道成为系统性能的根本限制。无论 CPU 有多快，它都必须通过这条狭窄的通道"一个字一个字地"从内存中泵取数据和指令。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">命名来源</h3>
 <p><a href="../entities/John Backus.html">John Backus</a> 在1977年<a href="../entities/阿兰·图灵.html">图灵</a>奖演讲《<a href="../entities/Backus 函数式编程论文.html">Can Programming Be Liberated from the von Neumann Style?</a>》中明确命名并批判了这一问题。Backus 因 <a href="FORTRAN.html">FORTRAN</a> 和 <a href="BNF.html">BNF</a> 的贡献获奖，却在演讲中批评了包括 <a href="FORTRAN.html">FORTRAN</a> 在内的"冯诺依曼式语言"的根本局限，提出了<a href="函数式编程.html">函数式编程</a>作为替代方案。</p>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>今天</strong>：CPU 可以在一个纳秒内完成运算，但从主内存读取数据可能需要几十到上百纳秒——差距达两个数量级</li>
 </ul>
 <h3 id="_7">应对措施</h3>
-<p>现代计算机系统的缓解策略：
+<p>现代<a href="计算.html">计算</a>机系统的缓解策略：
 - <strong>缓存层次结构</strong>（L1、L2、L3 cache）
 - <strong>数据预取技术</strong>
 - <strong>乱序执行</strong>
@@ -155,12 +155,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>这些技术本质上都是在<a href="存储程序计算机.html">冯·诺依曼架构</a>框架内做出的工程弥补——缓解了瓶颈，但没有从根本上解决问题。</p>
 <h3 id="_8">新兴突破方向</h3>
 <ul>
-<li><strong>存内计算（PIM）</strong>：将计算搬到数据所在的地方，从根本上消除数据搬运</li>
-<li><strong>异构计算</strong>：GPU/TPU 等加速器采用大规模数据并行，绕开"一个字一个字"处理的瓶颈</li>
-<li><strong>量子计算</strong>：完全不同的计算<a href="规范化理论.html">范式</a>，不受冯·诺依曼瓶颈约束</li>
+<li><strong><a href="存内计算.html">存内计算</a>（PIM）</strong>：将<a href="计算.html">计算</a>搬到数据所在的地方，从根本上消除数据搬运</li>
+<li><strong>异构<a href="计算.html">计算</a></strong>：GPU/TPU 等加速器采用大规模数据并行，绕开"一个字一个字"处理的瓶颈</li>
+<li><strong>量子<a href="计算.html">计算</a></strong>：完全不同的<a href="计算.html">计算</a><a href="规范化理论.html">范式</a>，不受<a href="../entities/冯·诺依曼.html">冯·诺依曼</a>瓶颈约束</li>
 </ul>
 <h3 id="llm">LLM 时代的回响</h3>
-<p>大语言模型的训练和推理都是极度内存密集的任务——模型参数存储在内存中，推理过程需要频繁读取这些参数。内存带宽已经成为限制 LLM 推理速度的主要瓶颈之一。颇具历史讽刺意味的是：Von Neumann 在报告中使用神经元模型的术语来描述计算机，八十年后，这些计算机正在被用来运行人工神经网络，而它们遇到的核心性能限制恰恰是 von Neumann 设计中固有的瓶颈。</p>
+<p>大<a href="Language-Model.html">语言模型</a>的训练和推理都是极度内存密集的任务——模型参数存储在内存中，推理过程需要频繁读取这些参数。内存带宽已经成为限制 LLM 推理速度的主要瓶颈之一。颇具历史讽刺意味的是：Von Neumann 在报告中使用神经元模型的术语来描述<a href="计算.html">计算</a>机，八十年后，这些<a href="计算.html">计算</a>机正在被用来运行人工神经网络，而它们遇到的核心性能限制恰恰是 von Neumann 设计中固有的瓶颈。</p>
 <h2 id="_9">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/03-von-neumann-edvac.md</span></li>
@@ -174,7 +174,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="内生增长理论.html">&larr; 内生增长理论</a>
+    <a href="冯·诺依曼架构.html">&larr; 冯·诺依曼架构</a>
     <a href="冯·诺依曼稳定性分析.html">冯·诺依曼稳定性分析 &rarr;</a>
   </div>
 </div>

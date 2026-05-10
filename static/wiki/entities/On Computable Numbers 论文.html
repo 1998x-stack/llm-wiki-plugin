@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="on-computable-numbers">On Computable Numbers 论文</h1>
 <h2 id="_1">概述</h2>
-<p><a href="阿兰·图灵.html">阿兰·图灵</a>于1936年发表的划时代论文，首次精确定义了"计算"的数学概念（<a href="../concepts/图灵机.html">图灵机</a>），证明了<a href="../concepts/停机问题.html">停机问题</a>不可判定，否定回答了<a href="../concepts/判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem)</a>，并构造了<a href="../concepts/图灵机.html">通用图灵机</a>预言了可编程计算机。被公认为计算机科学的"创世文档"。</p>
+<p><a href="阿兰·图灵.html">阿兰·图灵</a>于1936年发表的划时代论文，首次精确定义了"<a href="../concepts/计算.html">计算</a>"的数学概念（<a href="../concepts/图灵机.html">图灵机</a>），证明了<a href="../concepts/停机问题.html">停机问题</a>不可判定，否定回答了<a href="../concepts/判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem)</a>，并构造了<a href="../concepts/图灵机.html">通用图灵机</a>预言了可编程<a href="../concepts/计算.html">计算</a>机。被公认为<a href="../concepts/计算.html">计算</a>机科学的"创世文档"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">论文信息</h3>
 <table>
@@ -175,27 +175,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;h3 id=&quot;_4&quot;&gt;四大核心贡献&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;[[图灵机</span>定义</strong>：通过对人类计算员行为的忠实抽象（有限符号、有限状态、每步一格），给出了有史以来第一个数学上完全精确的"计算"定义。Godel 本人评价为"哲学上不可能设置得更令人满意"。</p>
+&lt;p&gt;&lt;strong&gt;[[图灵机</span>定义</strong>：通过对人类<a href="../concepts/计算.html">计算</a>员行为的忠实抽象（有限符号、有限状态、每步一格），给出了有史以来第一个数学上完全精确的"<a href="../concepts/计算.html">计算</a>"定义。Godel 本人评价为"哲学上不可能<a href="../concepts/Settings.html">设置</a>得更令人满意"。</p>
 </li>
 <li>
-<p><strong><a href="../concepts/图灵机.html">通用图灵机</a></strong>：证明存在一台能模拟任意<a href="../concepts/图灵机.html">图灵机</a>的机器——在概念层面预言了可编程计算机的出现，比 ENIAC（1946年）早10年，比 von Neumann 存储程序架构（1945年）早9年。</p>
+<p><strong><a href="../concepts/图灵机.html">通用图灵机</a></strong>：证明存在一台能模拟任意<a href="../concepts/图灵机.html">图灵机</a>的机器——在概念层面预言了可编程<a href="../concepts/计算.html">计算</a>机的出现，比 <a href="ENIAC.html">ENIAC</a>（1946年）早10年，比 von Neumann <a href="../concepts/冯·诺依曼架构.html">存储程序架构</a>（1945年）早9年。</p>
 </li>
 <li>
-<p><strong><a href="../concepts/停机问题.html">停机问题</a>不可判定</strong>：通过反证法和对角化论证，证明不存在算法能判定任意程序是否停机。这是第一个被严格证明不可判定的具体问题，开创了<a href="../concepts/停机问题.html">不可判定性</a>理论的整个领域。</p>
+<p><strong><a href="../concepts/停机问题.html">停机问题</a>不可判定</strong>：通过反证法和对角化论证，证明不存在<a href="../concepts/算法.html">算法</a>能判定任意程序是否停机。这是第一个被严格证明不可判定的具体问题，开创了<a href="../concepts/停机问题.html">不可判定性</a>理论的整个领域。</p>
 </li>
 <li>
-<p><strong><a href="../concepts/判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem)</a>的否定回答</strong>：由<a href="../concepts/停机问题.html">停机问题</a>的<a href="../concepts/停机问题.html">不可判定性</a>推导出 Hilbert 判定问题不可解，与 Godel 不完备定理一起彻底终结了 Hilbert 形式化纲领。</p>
+<p><strong><a href="../concepts/判定问题 (Entscheidungsproblem).html">判定问题 (Entscheidungsproblem)</a>的否定回答</strong>：由<a href="../concepts/停机问题.html">停机问题</a>的<a href="../concepts/停机问题.html">不可判定性</a>推导出 Hilbert <a href="../concepts/判定问题.html">判定问题</a>不可解，与 Godel 不完备定理一起彻底终结了 Hilbert 形式化纲领。</p>
 </li>
 </ol>
 <h3 id="church">附录：与 Church λ 演算的等价性</h3>
-<p>Turing 在附录中证明了<a href="阿兰·图灵.html">图灵</a>可计算性与 λ 可定义性的完全等价，这一结果连同与 Godel 递归函数、Post 产生式系统、Markov 算法等的等价性，共同构成了<a href="../concepts/Church-Turing 论题.html">Church-Turing 论题</a>的经验基础。</p>
+<p><a href="Alan Turing.html">Turing</a> 在附录中证明了<a href="阿兰·图灵.html">图灵</a>可<a href="../concepts/计算.html">计算</a>性与 λ 可定义性的完全等价，这一结果连同与 Godel 递归函数、Post 产生式系统、Markov <a href="../concepts/算法.html">算法</a>等的等价性，共同构成了<a href="../concepts/Church-Turing 论题.html">Church-Turing 论题</a>的经验基础。</p>
 <h3 id="_5">历史意义</h3>
 <p>很少有学术论文能够同时：
-- 解决了一个著名的悬而未决的数学问题（判定问题）
-- 创立了一个全新的学科（计算理论）
+- 解决了一个著名的悬而未决的数学问题（<a href="../concepts/判定问题.html">判定问题</a>）
+- 创立了一个全新的学科（<a href="../concepts/计算理论.html">计算理论</a>）
 - 发明了一个至今仍在使用的核心概念（<a href="../concepts/图灵机.html">图灵机</a>）
-- 预言了一种尚未出现的技术（可编程计算机）</p>
-<p>Turing 的这篇论文做到了以上所有。在人类思想史上，很难找到第二篇单独的论文具有如此多维度的深远影响。</p>
+- 预言了一种尚未出现的技术（可编程<a href="../concepts/计算.html">计算</a>机）</p>
+<p><a href="Alan Turing.html">Turing</a> 的这篇论文做到了以上所有。在人类思想史上，很难找到第二篇单独的论文具有如此多维度的深远影响。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/01-turing-on-computable-numbers.md</span></li>
@@ -213,7 +213,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="Ollama.html">&larr; Ollama</a>
-    <a href="OpenAI.html">OpenAI &rarr;</a>
+    <a href="On_Computable_Numbers,_with_an_Application_to_the_Entscheidungsproblem.html">On_Computable_Numbers,_with_an_Application_to_the_Entscheidungsproblem &rarr;</a>
   </div>
 </div>
 </body>

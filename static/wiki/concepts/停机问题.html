@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.98</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算理论</span><span class="tag">计算机科学</span><span class="tag">不可判定性</span><span class="tag">算法</span><span class="tag">基础理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">停机问题</h1>
 <h2 id="_2">概述</h2>
-<p>停机问题（Halting Problem）是 <a href="../entities/阿兰·图灵.html">阿兰·图灵</a> 于 1936 年证明的第一个不可判定问题：<strong>不存在</strong>一个通用算法，能判定任意给定程序在任意输入上是否最终停止运行——这是数学上的必然，而非技术上的局限。</p>
+<p>停机问题（Halting Problem）是 <a href="../entities/阿兰·图灵.html">阿兰·图灵</a> 于 1936 年证明的第一个不可<a href="判定问题.html">判定问题</a>：<strong>不存在</strong>一个通用<a href="算法.html">算法</a>，能判定任意给定程序在任意输入上是否最终停止运行——这是数学上的必然，而非技术上的局限。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">问题陈述</h3>
 <blockquote>
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 <p><strong>回答：不存在。</strong></p>
 <h3 id="_5">对角化证明</h3>
-<p>Turing 采用反证法 + Cantor 对角化思想：</p>
+<p><a href="../entities/Alan Turing.html">Turing</a> 采用反证法 + Cantor 对角化思想：</p>
 <p><strong>步骤 1：假设 H 存在。</strong></p>
 <p><strong>步骤 2：构造矛盾机器 D</strong></p>
 <pre><code>D(M) = {
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>两种情况均矛盾，故 H 不可能存在。</p>
 <p><strong>对角化的本质</strong>：D 被构造为"与 H 对每台机器的判断反着来"，类比 Cantor 构造与所有已列出实数都不同的新实数——自指引发不可解的矛盾。</p>
 <h3 id="_6">与判定问题的关系</h3>
-<p>Turing 进一步证明：若判定问题（Hilbert 的 <a href="判定问题 (Entscheidungsproblem).html">Entscheidungsproblem</a>）可解，则停机问题也可判定。但停机问题不可判定，∴ 判定问题也不可判定，否定回答了 Hilbert 1928 年的提问。</p>
+<p><a href="../entities/Alan Turing.html">Turing</a> 进一步证明：若<a href="判定问题.html">判定问题</a>（Hilbert 的 <a href="判定问题 (Entscheidungsproblem).html">Entscheidungsproblem</a>）可解，则停机问题也可判定。但停机问题不可判定，∴ <a href="判定问题.html">判定问题</a>也不可判定，否定回答了 Hilbert 1928 年的提问。</p>
 <h3 id="reduction">归约（Reduction）技术</h3>
 <p>停机问题是"归约"证明的标准起点：要证明问题 A 不可判定，只需证明"若 A 可判定，则停机问题也可判定"：</p>
 <p>已证明通过归约不可判定的问题举例：
@@ -183,7 +183,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>等价于判定停机问题</td>
 </tr>
 <tr>
-<td>完美的编译器死代码消除</td>
+<td>完美的编译器<a href="死代码.html">死代码</a>消除</td>
 <td>判定代码是否可达 = 停机问题变形</td>
 </tr>
 <tr>
@@ -196,6 +196,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/01-turing-on-computable-numbers.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">01-turing-on-computable-numbers</span> — 详细分析</li>
 </ul>
 <h2 id="_9">相关</h2>
 <ul>
@@ -203,11 +204,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Church-Turing 论题.html">Church-Turing 论题</a> — 停机问题在所有合理计算模型中均不可判定</li>
 <li><a href="../entities/阿兰·图灵.html">阿兰·图灵</a> — 证明者</li>
 <li><a href="../entities/大卫·希尔伯特.html">大卫·希尔伯特</a> — 判定问题提出者，停机问题否定回答了它</li>
+<li><span style="color:#e74c3c" title="broken link">论可计算数及其在判定问题上的应用</span> — 原始论文</li>
+<li><a href="可计算数.html">可计算数</a> — 相关概念</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="偏差修正（Bias Correction）.html">&larr; 偏差修正（Bias Correction）</a>
-    <a href="元控制框架.html">元控制框架 &rarr;</a>
+    <a href="元信号.html">元信号 &rarr;</a>
   </div>
 </div>
 </body>

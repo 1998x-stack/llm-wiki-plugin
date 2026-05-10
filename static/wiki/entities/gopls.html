@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="gopls">gopls</h1>
 <h2 id="_1">概述</h2>
-<p>Go 官方语言服务器，由 <a href="Google.html">Google</a> Go 团队在 <code>golang.org/x/tools</code> 中维护，提供完整的 Go 语言 LSP 支持，包括代码补全、跳转定义、诊断、重构等功能。</p>
+<p>Go 官方语言<a href="../concepts/服务.html">服务</a>器，由 <a href="Google.html">Google</a> Go 团队在 <code>golang.org/x/tools</code> 中维护，提供完整的 Go 语言 LSP 支持，包括代码补全、跳转定义、诊断、<a href="../concepts/重构.html">重构</a>等功能。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>历史</strong>：2018-01 启动（原名 langserver-go），2019-05 v0.1.0 首次发布，2023-04 v0.11.0 泛型完整支持，2025-01 v0.17.x 当前稳定版。</p>
 </li>
 <li>
-<p><strong>架构</strong>：位于 <code>golang.org/x/tools/gopls</code>，包含 LSP 协议层（server.go/cache/source）、语言分析核心（completion/hover/rename）、CLI 命令（check/format 等）、配置管理。</p>
+<p><strong>架构</strong>：位于 <code>golang.org/x/tools/gopls</code>，包含 LSP 协议层（server.go/cache/source）、语言分析核心（completion/hover/rename）、CLI 命令（check/format 等）、<a href="../concepts/Configuration.html">配置</a>管理。</p>
 </li>
 <li>
-<p><strong>关键特性</strong>：Go modules 支持、<a href="../concepts/Semantic Tokens（语义标记）.html">语义高亮</a>、Call Hierarchy、Inlay Hints、Workspace symbols、零配置 workspace、多工作区支持。</p>
+<p><strong>关键特性</strong>：Go modules 支持、<a href="../concepts/Semantic Tokens（语义标记）.html">语义高亮</a>、Call Hierarchy、Inlay Hints、Workspace symbols、零<a href="../concepts/Configuration.html">配置</a> workspace、多工作区支持。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -158,8 +158,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="fd.html">&larr; fd</a>
-    <a href="hls（Haskell Language Server）.html">hls（Haskell Language Server） &rarr;</a>
+    <a href="frontend-design Skill.html">&larr; frontend-design Skill</a>
+    <a href="gsd-codebase-mapper.html">gsd-codebase-mapper &rarr;</a>
   </div>
 </div>
 </body>

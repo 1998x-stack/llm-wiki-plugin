@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>随机生成码本</strong>：独立地、随机地生成 $2^{nR}$ 个长度为 $n$ 的码字（$R$ 是传输速率），每个码字中的每个符号按照使<a href="互信息.html">互信息</a>最大化的分布独立选取</li>
 <li><strong>联合典型解码</strong>：解码器寻找与接收序列"联合典型"的码字</li>
-<li><strong>计算平均错误概率</strong>：对所有可能的随机码本求平均，Shannon 证明当 $R &lt; C$ 时，平均错误概率随 $n$ 指数衰减趋近于零</li>
+<li><strong><a href="计算.html">计算</a>平均错误概率</strong>：对所有可能的随机码本求平均，Shannon 证明当 $R &lt; C$ 时，平均错误概率随 $n$ 指数衰减趋近于零</li>
 <li><strong>存在性结论</strong>：由于平均错误概率趋于零，<strong>必然存在至少一个</strong>具体的码本，其错误概率不超过平均值</li>
 </ol>
 <h3 id="_5">为什么出人意料</h3>
@@ -151,9 +151,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>随机编码论证是<strong>存在性证明</strong>而非<strong>构造性证明</strong>：
 - 它证明了好的编码方案<strong>存在</strong>
 - 但没有告诉我们如何<strong>找到</strong>它们
-- 随机选择的码本在实际中既不可行（存储量巨大），解码计算量也过于庞大</p>
+- 随机选择的码本在实际中既不可行（存储量巨大），解码<a href="计算.html">计算</a>量也过于庞大</p>
 <h3 id="_6">后续影响</h3>
-<p>如何构造接近 Shannon 极限且计算可行的编码方案，成为此后半个多世纪编码理论研究的核心驱动力：
+<p>如何构造接近 Shannon 极限且<a href="计算.html">计算</a>可行的编码方案，成为此后半个多世纪编码理论研究的核心驱动力：
 - Hamming 码（1950）、BCH 码（1959-1960）、Reed-Solomon 码（1960）
 - Turbo 码（1993）、LDPC 码（1962 提出，1996 重新发现）
 - Polar 码（2009）—— 第一个在理论上证明可达 Shannon 极限的构造性编码</p>

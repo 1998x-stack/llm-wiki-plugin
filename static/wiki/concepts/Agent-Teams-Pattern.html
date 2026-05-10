@@ -139,62 +139,37 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">工作原理</h3>
 <ol>
-<li><strong>协调器生成</strong> → 多个工作智能体作为独立进程</li>
+<li><strong>协调器生成</strong> → 多个<a href="Worker Agent.html">工作智能体</a>作为独立进程</li>
 <li><strong>任务认领</strong> → 团队成员从共享队列中认领任务</li>
 <li><strong>自主执行</strong> → 在多个步骤中自主完成任务</li>
 <li><strong><a href="完成信号机制（Completion Signal）.html">完成信号</a></strong> → 发出<a href="完成信号机制（Completion Signal）.html">完成信号</a></li>
 <li><strong>持续运行</strong> → 不重置，积累上下文和领域知识</li>
 </ol>
 <h3 id="orchestrator-subagent">与 Orchestrator-Subagent 的区别</h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>Orchestrator-Subagent</th>
-<th>Agent Teams</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>持久性</strong></td>
-<td>子代理完成后终止</td>
-<td>团队成员持续运行</td>
-</tr>
-<tr>
-<td><strong>上下文</strong></td>
-<td>每次从零开始</td>
-<td>积累领域专业知识</td>
-</tr>
-<tr>
-<td><strong>任务分配</strong></td>
-<td>单次有界子任务</td>
-<td>多次任务分配</td>
-</tr>
-<tr>
-<td><strong>性能提升</strong></td>
-<td>无</td>
-<td>随时间推移提升</td>
-</tr>
-</tbody>
-</table>
+<p>| 维度 | <a href="Orchestrator Agent.html">Orchestrator</a>-Subagent | Agent Teams |
+|------|----------------------|-------------|
+| <strong>持久性</strong> | 子代理完成后终止 | 团队成员持续运行 |
+| <strong>上下文</strong> | 每次从零开始 | 积累领域专业知识 |
+| <strong>任务分配</strong> | 单次有界子任务 | 多次任务分配 |
+| <strong>性能提升</strong> | 无 | 随时间推移提升 |</p>
 <h3 id="_4">适用场景</h3>
 <p><strong>独立并行子任务</strong>：
 - 子任务相互独立且适合进行持续的多步骤工作
 - 每位团队成员积累其负责领域的相关背景知识
 - 而非每次分配新任务时都从零开始</p>
 <p><strong>具体应用</strong>：
-- 代码库迁移（每个服务独立迁移）
+- 代码库迁移（每个<a href="服务.html">服务</a>独立迁移）
 - 大规模数据迁移
 - 多语言本地化
 - 并行测试套件执行</p>
 <h3 id="_5">实际案例</h3>
 <p><strong>代码库框架迁移</strong>：
 - <strong>场景</strong>：将大型代码库从一个框架迁移到另一个框架
-- <strong>协调器</strong>：为每位团队成员分配对应的服务
+- <strong>协调器</strong>：为每位团队成员分配对应的<a href="服务.html">服务</a>
 - <strong>团队成员</strong>：
   - 自主完成迁移工作：依赖项更新、代码修改、测试修复和验证
-  - 每个服务有自己的依赖项、测试套件和部署配置
-  - 积累该服务的领域知识（依赖关系图、测试模式、部署配置）
+  - 每个<a href="服务.html">服务</a>有自己的依赖项、测试套件和部署<a href="Configuration.html">配置</a>
+  - 积累该<a href="服务.html">服务</a>的领域知识（依赖关系图、测试模式、部署<a href="Configuration.html">配置</a>）
 - <strong>协调器</strong>：收集已完成的迁移任务，在整个系统中运行集成测试</p>
 <h3 id="_6">优势</h3>
 <ul>
@@ -227,7 +202,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 协调者监控潜在冲突</p>
 <p><strong>完成检测</strong>：
 - 处理可变时长的工作
-- 设置超时和重试机制
+- <a href="Settings.html">设置</a>超时和重试机制
 - 协调者收集已完成的结果</p>
 <h2 id="_9">来源</h2>
 <ul>
@@ -242,8 +217,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Agent 迭代循环.html">&larr; Agent 迭代循环</a>
-    <a href="Agentic Search.html">Agentic Search &rarr;</a>
+    <a href="Agent-Skills.html">&larr; Agent-Skills</a>
+    <a href="AgentBench.html">AgentBench &rarr;</a>
   </div>
 </div>
 </body>

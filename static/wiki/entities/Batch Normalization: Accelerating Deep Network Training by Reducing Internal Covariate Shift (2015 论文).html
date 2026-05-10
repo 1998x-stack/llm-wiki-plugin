@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift (2015 论文) — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift (2015 论文)</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">paper</span><span class="tag">deep-learning</span><span class="tag">normalization</span><span class="tag">google</span><span class="tag">2015</span></div>
+</div>
+  <div class="content">
+    <h1 id="batch-normalization-accelerating-deep-network-training-by-reducing-internal-covariate-shift-2015">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift (2015 论文)</h1>
+<h2 id="_1">概述</h2>
+<p><a href="Sergey Ioffe.html">Sergey Ioffe</a> 与 <a href="Christian Szegedy.html">Christian Szegedy</a> 于 2015 年发表的论文，提出 <a href="../concepts/Batch Normalization.html">Batch Normalization</a> 技术，解决深度网络训练中的<a href="../concepts/内部协变量偏移.html">内部协变量偏移</a>问题，使训练速度提升 14 倍。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>核心问题</strong>：深度网络训练极其脆弱——学习率稍大则梯度爆炸发散，稍小则收敛极慢；对权重初始化极度敏感；Sigmoid 激活函数存在饱和区问题。</li>
+<li><strong>核心方法</strong>：对每个 mini-batch <a href="../concepts/计算.html">计算</a>均值和方差，做归一化后引入可学习参数 γ（缩放）和 β（平移），让网络自行决定每层需要的分布。公式：$y_i = \gamma \frac{x_i - \mu_\mathcal{B}}{\sqrt{\sigma_\mathcal{B}^2 + \epsilon}} + \beta$</li>
+<li><strong>训练/推理差异</strong>：训练时使用当前 batch 统计量（引入正则化噪声），推理时使用训练过程中累积的滑动平均统计量。</li>
+<li><strong>实验结果</strong>：MNIST 上收敛快 14 倍；<a href="../concepts/ImageNet.html">ImageNet</a> 上 BN-<a href="../concepts/Inception Network.html">Inception</a> <a href="../concepts/Top-5 错误率.html">Top-5 错误率</a> 4.82%（超越当时人类表现 5.1%）；可使用大 100 倍的学习率而不发散。</li>
+<li>
+<p><strong>正则化副作用</strong>：batch 统计量的随机性类似于 <a href="../concepts/Dropout.html">Dropout</a> 效果，使用 BN 后可减少甚至去掉 <a href="../concepts/Dropout.html">Dropout</a>。</p>
+</li>
+<li>
+<p><strong>理论争议</strong>：论文声称有效原因是减少"<a href="../concepts/内部协变量偏移.html">内部协变量偏移</a>"，但 2018 年 MIT 后续研究表明 BN 并没有显著减少<a href="../concepts/内部协变量偏移.html">内部协变量偏移</a>，真正原因是让<a href="../concepts/损失曲面（Loss Landscape）.html">优化景观</a>（loss landscape）更加平滑——使梯度方向更稳定，更容易优化。</p>
+</li>
+<li>
+<p><strong>归一化变体启发</strong>：BN 启发了一系列归一化方法——<a href="../concepts/Layer Normalization.html">Layer Normalization</a>（沿 C×H×W，适合 <a href="Transformer.html">Transformer</a>）、<a href="../concepts/Instance Normalization.html">Instance Normalization</a>（沿 H×W，适合风格迁移）、<a href="../concepts/Group Normalization.html">Group Normalization</a>（沿 group 内 C×H×W，适合小 batch size 目标检测）。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/foundations/paper_04_batchnorm.md</span> — 论文精读 #04：批归一化</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="../concepts/Batch Normalization.html">Batch Normalization</a> — describes</li>
+<li><a href="Sergey Ioffe.html">Sergey Ioffe</a> — authored_by</li>
+<li><a href="Christian Szegedy.html">Christian Szegedy</a> — authored_by</li>
+<li><a href="../concepts/GoogLeNet: Inception.html">GoogLeNet: Inception</a> — extends（在同一架构上验证 BN 效果）</li>
+<li><a href="../concepts/内部协变量偏移.html">内部协变量偏移</a> — describes</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Baostock.html">&larr; Baostock</a>
+    <a href="BellKor.html">BellKor &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

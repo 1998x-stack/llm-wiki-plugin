@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>策略语言</strong>：使用 Scheme 语法描述访问控制规则，支持 <code>(deny default)</code> 设置默认拒绝策略，<code>(allow file-read*)</code> 允许读操作，<code>(allow file-write* (subpath "..."))</code> 限定写路径，<code>(deny network-outbound)</code> 禁止网络访问。</p>
+<p><strong>策略语言</strong>：使用 Scheme 语法描述访问控制规则，支持 <code>(deny default)</code> <a href="../concepts/Settings.html">设置</a>默认拒绝策略，<code>(allow file-read*)</code> 允许<a href="../concepts/Read.html">读操作</a>，<code>(allow file-write* (subpath "..."))</code> 限定写路径，<code>(deny network-outbound)</code> 禁止网络访问。</p>
 </li>
 <li>
-<p><strong>动态策略生成</strong>：<a href="Codex CLI.html">Codex CLI</a> 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动配置策略文件。</p>
+<p><strong>动态策略生成</strong>：<a href="Codex CLI.html">Codex CLI</a> 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动<a href="../concepts/Configuration.html">配置</a>策略文件。</p>
 </li>
 <li>
-<p><strong>调试支持</strong>：<code>--log-denials</code> 模式可打印所有被拦截的系统调用，便于调试沙箱配置错误。</p>
+<p><strong>调试支持</strong>：<code>--log-denials</code> 模式可打印所有被拦截的系统调用，便于调试沙箱<a href="../concepts/Configuration.html">配置</a>错误。</p>
 </li>
 <li>
 <p><strong>零额外依赖</strong>：作为 Apple 原生机制，无需安装额外软件或内核模块，macOS 系统自带支持。</p>

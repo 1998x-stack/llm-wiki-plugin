@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="swe-bench">SWE-bench</h1>
 <h2 id="_1">概述</h2>
-<p>SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自动修复 GitHub 仓库中真实 issue 和 bug 的能力。采用 pass@1 指标，即 Agent 一次性成功修复问题的比例。</p>
+<p>SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自动修复 <a href="../entities/GitHub.html">GitHub</a> <a href="仓库.html">仓库</a>中真实 issue 和 bug 的能力。采用 pass@1 指标，即 Agent 一次性成功修复问题的比例。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">测试机制</h3>
 <ul>
-<li>从真实 GitHub 仓库中抽取 issue 和对应的修复 commit</li>
-<li>Agent 接收 issue 描述和代码库访问权限</li>
-<li>通过运行仓库测试套件验证修复是否正确</li>
+<li>从真实 <a href="../entities/GitHub.html">GitHub</a> <a href="仓库.html">仓库</a>中抽取 issue 和对应的修复 <a href="../entities/commit.html">commit</a></li>
+<li>Agent 接收 issue 描述和代码库访问<a href="Permissions.html">权限</a></li>
+<li>通过运行<a href="仓库.html">仓库</a>测试套件验证修复是否正确</li>
 <li><strong>pass@1</strong>：单次尝试成功修复的比例</li>
 </ul>
 <h3 id="_4">代表性结果</h3>
@@ -172,13 +172,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td>评估对象</td>
-<td>真实仓库 issue 修复</td>
+<td>真实<a href="仓库.html">仓库</a> issue 修复</td>
 <td>单函数级代码修复</td>
 <td>多轮 Agent 轨迹</td>
 </tr>
 <tr>
 <td>粒度</td>
-<td>仓库级（跨文件）</td>
+<td><a href="仓库.html">仓库</a>级（跨文件）</td>
 <td>函数级</td>
 <td>工作流级</td>
 </tr>
@@ -202,7 +202,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p><a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到仓库级时，好的交互界面带来的优势更加显著。</p>
+<p><a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到<a href="仓库.html">仓库</a>级时，好的交互界面带来的优势更加显著。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — ChatGPT 对话总结</li>
@@ -220,7 +220,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   </div>
   <div class="page-nav">
     <a href="SVTR.html">&larr; SVTR</a>
-    <a href="Schur分解.html">Schur分解 &rarr;</a>
+    <a href="Sandbox Mode.html">Sandbox Mode &rarr;</a>
   </div>
 </div>
 </body>
