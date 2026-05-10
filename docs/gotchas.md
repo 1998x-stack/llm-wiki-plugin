@@ -1,6 +1,6 @@
 # Gotchas & Known Issues — Index
 
-> Last updated: 2026-04-16
+> Last updated: 2026-04-19
 
 Issues are split into topical files under `docs/gotchas/`.
 
@@ -8,14 +8,14 @@ Issues are split into topical files under `docs/gotchas/`.
 
 | File | Topics | Issues |
 |------|--------|--------|
-| [ingest-issues.md](gotchas/ingest-issues.md) | Index errors, broken links, ingest-loop state | #1-4 |
+| [ingest-issues.md](gotchas/ingest-issues.md) | Index errors, broken links, ingest-loop state, M2 unmapped pages, I2 stale index, F3 overview length | #1-4, #50-#52 |
 | [qwen-api.md](gotchas/qwen-api.md) | Model names, frontmatter failures, session summary | Qwen-specific |
 | [infrastructure.md](gotchas/infrastructure.md) | Source format, BM25, graph rebuild, keywords pollution | #5-8 |
 | [hooks-and-paths.md](gotchas/hooks-and-paths.md) | Hook path errors, relink cascade, extract_overview stubs | #36-37 |
-| [knowledge-graph.md](gotchas/knowledge-graph.md) | Cross-domain connections, fix checklist, M2 unmapped pages | #9, #2 |
+| [knowledge-graph.md](gotchas/knowledge-graph.md) | Cross-domain connections, fix checklist, M2 unmapped pages, orphan_count vs lint O1 discrepancy, component_count | #9, #2, #48, #49 |
 | [code-review-bugs.md](gotchas/code-review-bugs.md) | V2.1-V2.3 code review (12 bugs fixed) | #10 |
 | [integration-testing.md](gotchas/integration-testing.md) | claude -p max_turns, lint F4, allowedTools | #11-14 |
-| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math, B1 false-positive in code blocks, I1/I2 plain-text index false positives, M1 truncated map wikilinks | #15-17, #35, #44, #45 |
+| [script-fixes.md](gotchas/script-fixes.md) | Lint regex, relates_to crash, KaTeX math, B1 false-positive in code blocks, I1/I2 plain-text index false positives, M1 truncated map wikilinks, B1 TOML/JSON syntax false positive, Map link truncation | #15-17, #35, #44-#47 |
 | [v3.3-refactor.md](gotchas/v3.3-refactor.md) | wiki_utils, dedup, QA pipeline, XSS, debounce | #18-27 |
 | [v3.4-relink-reorganize.md](gotchas/v3.4-relink-reorganize.md) | relink substring matching, bold markers, hooks, macOS case, re-map.json, lint removal | #28-34 |
 | [v3.9-script-review.md](gotchas/v3.9-script-review.md) | hardcoded path, YAML newline, unsafe quoting, source deletion, hook silent errors | #38-43 |

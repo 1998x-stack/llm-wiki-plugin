@@ -1,43 +1,59 @@
-# Knowledge Graph Notes
+# Knowledge Graph Gotchas
 
-> From docs/gotchas.md #9
-
----
-
-## 9. 概率论系列与数值分析系列的跨域连接
-
-**已建立的跨域链接（值得注意）：**
-- `[[快速傅里叶变换]]` <-> `[[切比雪夫多项式]]`（DCT/谱方法联系）
-- `[[Perron-Frobenius定理]]` <-> `[[马尔可夫链]]`（平稳分布存在性）
-- `[[谱半径]]` <-> `[[Jacobi迭代法]]`（收敛条件）
-- `[[条件数]]` <-> `[[后向误差分析]]`（Wilkinson 传承链）
-- `[[CFL条件]]` <-> `[[刘易斯·弗赖·理查森]]`（天气预报失败的根因）
-
-**待补充的跨域连接：**
-- `[[中心极限定理]]` <-> `[[正态分布]]`（概率论 <-> 统计学）
-- `[[马尔可夫链]]` <-> `[[Krylov子空间方法]]`（两者都与幂法和谱理论相关）
-- `[[布朗运动]]`（待创建）<-> `[[偏微分方程]]` / `[[有限元方法]]`
+图谱构建和孤儿检测相关的问题。
 
 ---
 
-## 修复清单（remaining items）
+## #1 — O1: Graph orphan_count 与 lint O1 检查结果不一致
 
-| 优先级 | 任务 |
-|--------|------|
-| 高 | 完成 ingest files 14-16（file 13 已完成） |
-| 中 | 修复断链 `[[马尔可夫]]` -> `[[安德烈·马尔可夫]]` |
-| 中 | 修复断链 `[[切比雪夫不等式]]` -> 已创建的同名页面 |
-| 低 | 创建 `[[离散傅里叶变换]]` concept 页面 |
-| 低 | 标准化来源节格式（bare string -> `[[raw/...]]`）|
+**Status**: New (2026-04-19)
+
+**问题描述**:
+
+`graph.json` 报告 `orphan_count: 0`，但 `lint_wiki.py --json` 报告 **76 个孤儿页面**。
+
+**根因分析**:
+
+两种检测逻辑不同：
+
+| 工具 | 检测逻辑 | 数据来源 |
+|------|---------|---------|
+| `build_graph.py` | 基于 `relates_to` 关系和文件存在性 | frontmatter 中的 relates_to |
+| `lint_wiki.py O1` | 基于 wikilink 语法解析 `[[...]]` | 页面正文中的双链引用 |
+
+**示例**: 
+- 页面 A 在 frontmatter 中声明 `relates_to: [{target: B}]` → Graph 认为 A-B 有连接
+- 页面 B 在正文中没有 `[[A]]` 链接 → Lint 认为 A 是孤儿
+
+**When it bites**:
+- 对孤儿定义产生困惑
+- 不知道该相信哪个数据源
+- 可能导致过度链接或遗漏真正的孤立页面
+
+**Workaround/Fix**:
+- 明确孤儿定义：
+  - **Graph 孤儿**: 无 relates_to 关系（语义孤立）
+  - **Lint 孤儿**: 无 wikilink 入链（导航孤立）
+- 建议维护者同时关注两个指标
+- 长期 fix: 统一孤儿定义，或明确区分两种孤儿的报告
 
 ---
 
-## #2 — M2: 1552 wiki 页面未映射到任何 topic map
+## #2 — H1: 存在 5 个连通分量
 
-**Status**: New (2026-04-18)
+**Status**: New (2026-04-19)
 
-`.claude/topic-to-wiki.json` 仅覆盖 35 个页面，而 wiki 实际有 1566 个页面。`maps/*.md` 虽然列出了更多页面（通过 `[[wikilink]]`），但 `topic-to-wiki.json` 是权威映射源，导致 M2 检查报告 872+ 页面"不属于任何 map"。
+**问题描述**:
 
-**When it bites**: 每次批量 ingest 创建新页面后，新页面自动不被映射。`wiki:reindex` 的 subagent 只分析部分页面生成 topic 映射，覆盖度极低。
+`graph.json` 显示 `"component_count": 5`，表示知识图谱存在 5 个不连通的子图。
 
-**Workaround/Fix**: 运行 `wiki:reindex` 重建 topic-to-wiki.json（但 subagent 覆盖度仍然有限）。或将 M2 检查改为基于 `maps/*.md` 文件中的 `[[wikilink]]` 而非仅依赖 `topic-to-wiki.json`。
+**When it bites**:
+- 某些主题的知识完全孤立，无法通过链接导航到达
+- 查询时可能遗漏相关跨主题内容
+
+**Workaround/Fix**:
+- 运行 `wiki:relink` 自动链接相关概念
+- 手动在边界页面添加跨主题链接
+- 检查是否有应该连接但未连接的主题对
+
+---

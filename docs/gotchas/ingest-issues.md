@@ -1,114 +1,87 @@
-# Ingest Issues
+# Ingest Issues Gotchas
 
-> From docs/gotchas.md #1-4
-
----
-
-## 1. Index 分类错误（已修复）
-
-**问题**：5 个实体页面被误分类到 index.md 的「概念」区段而非「实体」区段：
-- `[[赫尔曼·外尔]]`
-- `[[樊畿]]`
-- `[[赫尔穆特·维兰特]]`
-- `[[詹姆斯·威尔金森]]`
-- `[[加藤敏夫]]`
-
-**根因**：初始批量 ingest（数值分析卷 + 矩阵分析卷）在添加 index 条目时，将部分人物页面错误地放入了 `## 概念` 区段。
-
-**修复**：运行 `wiki:lint` 后已将这 5 个条目移至 `## 实体` 区段。
-
-**预防**：ingest 时添加 index 条目，注意检查文件路径：实体页面在 `wiki/entities/`，概念页面在 `wiki/concepts/`。
+内容摄取和索引相关的问题。
 
 ---
 
-## 2. Index 统计数字错误（已修复）
+## #1 — M2: 240 页面未分类到任何 Map
 
-**问题**：`index.md` 底部的统计数字与实际文件数不符：
+**Status**: New (2026-04-19)
 
-| 字段 | 错误值 | 正确值 |
-|------|--------|--------|
-| 总页面数 | 100 | 96（修复后随新增持续更新）|
-| 实体数 | 38 | 37 |
+**问题描述**:
 
-**根因**：
-1. 一次 ingest 中算术错误（96+3 写成了 100）
-2. 5 个实体被计入概念区，导致实体计数虚高
+`lint_wiki.py` 报告 `240 pages not in any map`，包括：
+- AI工程, AI设计, APPNP, Adam 论文, Agent-Teams-Pattern, Agent系统 等
 
-**修复**：`wiki:lint` 后已修正。
+**根因分析**:
 
-**预防**：每次 ingest 结束前做一次简单验算：`entities + concepts + syntheses + qa-insights = 总页面数`。
+1. **topic-to-wiki.json 过期**: 这些页面可能是在上次 `wiki:reindex` 之后新建的
+2. **主题分配失败**: 某些页面可能因为语义不明确被 LLM 分配为"其他"主题
+3. **Map 生成问题**: `build_maps.py` 可能遗漏了某些页面
 
----
+**When it bites**:
+- 用户通过 maps/ 浏览时找不到这些页面
+- `wiki:query` 的主题扩展可能无法覆盖这些页面
+- 知识组织结构不完整
 
-## 3. 断链（Broken Links）
-
-**问题**：wiki:lint 扫描发现 **20 个断链** `[[...]]` 指向不存在的页面。分两类：
-
-### 类别 A：待后续 ingest 自然补全（前向引用）
-
-这类断链是初始批量 ingest 时从源文件中提取的链接，指向尚未单独处理的源文件对应的概念：
-
-| 断链 | 所在页面 | 来源文件（待 ingest）|
-|------|---------|---------------------|
-| `[[矩阵舍入误差分析]]` | 阿兰·图灵 | 14_turing_rounding_errors.md（**已 ingest，已修复**）|
-| `[[图灵机]]` | 阿兰·图灵 | 14_turing_rounding_errors.md（**已 ingest，已修复**）|
-| `[[布莱切利园]]` | 阿兰·图灵 | 同上（**已修复**）|
-| `[[ENIAC]]` | 阿兰·图灵, 约翰·冯·诺依曼 | 对应计算机史文件（待 ingest）|
-| `[[贝尔实验室]]` | 约翰·图基 | 21_cooley_tukey_fft.md（**已 ingest，entity 已有**）|
-| `[[离散傅里叶变换]]` | 约翰·图基, 詹姆斯·库利 | 同上（仍是断链，需创建 concept）|
-| `[[IBM沃森研究中心]]` | 詹姆斯·库利 | 同上（仍是断链，org 页面未创建）|
-
-### 类别 B：需专项处理（关系引用）
-
-| 断链 | 所在页面 | 处理建议 |
-|------|---------|---------|
-| `[[马尔可夫]]` | 帕夫努季·利沃维奇·切比雪夫 | 已创建 [[安德烈·马尔可夫]]，需更新链接 |
-| `[[李雅普诺夫]]` | 同上 | 待 ingest Lyapunov 相关文件 |
-| `[[切比雪夫不等式]]` | 同上 | 已创建 [[切比雪夫不等式]]，需更新链接 |
-| `[[龙格-库塔方法]]` | 卡尔·龙格 | 待 ingest ODE 文件 |
-| `[[雅可比矩阵]]` | 卡尔·古斯塔夫·雅各布·雅可比 | 微积分概念，待 ingest |
-| `[[高斯消元法]]` | 卡尔·弗里德里希·高斯 | 线性代数基础，待 ingest |
-| `[[骰子问题]]` | 梅雷骑士 | 可能是 [[点数问题]] 别名 |
-| `[[惯性律]]` | 詹姆斯·约瑟夫·西尔维斯特 | 待矩阵分析 ingest |
-| `[[阿瑟·凯莱]]` | 同上 | 人物实体，待 ingest |
-| `[[非负矩阵]]` | 奥斯卡·佩龙 | **已修复** → 改为 `[[不可约矩阵\|非负矩阵]]` |
-
----
-
-## 4. ingest-loop 中断状态
-
-**问题**：`wiki:ingest-loop /vault/raw/books/概率论` 在处理到 index=5（概率论第 06-10 文件）时被中断。
-
-**当前状态**（`.claude/ingest-loop.local.md`）：
-- `current_index: 5`（state 未反映手动处理的 06-10）
-- 实际已手动完成：files 01-10（06-10 在当前会话中处理）
-- **未完成**：files 11-16
-
-**已创建但未登记到 state 文件的页面**（files 06-10 手动 ingest 产出）：
-- `[[Laplace变换]]` — 来自 06
-- `[[最大似然原理]]` — 来自 07
-- `[[西梅翁·泊松]]`, `[[泊松分布]]` — 来自 08
-- `[[切比雪夫不等式]]` — 来自 09
-- `[[安德烈·马尔可夫]]`, `[[马尔可夫链]]` — 来自 10
-- `[[埃米尔·博雷尔]]`, `[[安德烈·柯尔莫哥洛夫]]`, `[[概率公理体系]]` — 来自 11-12（部分）
-
-**恢复方法**：
+**Workaround/Fix**:
 ```bash
-# 直接继续处理剩余文件（11-16）
-# 编辑 .claude/ingest-loop.local.md 将 current_index 改为 10
-# 然后重新运行 /wiki:ingest-loop
+wiki:reindex  # 重建 topic-to-wiki.json 和 maps/
 ```
 
-**或逐个手动 ingest**：
-```
-/wiki:ingest raw/books/概率论/13_wiener_brownian_motion.md
-/wiki:ingest raw/books/概率论/14_kolmogorov_analytical_methods.md
-/wiki:ingest raw/books/概率论/15_doob_stochastic_processes.md
-/wiki:ingest raw/books/概率论/16_ito_stochastic_integral.md
+**预防措施**:
+- 新建页面后及时运行 `wiki:reindex`
+- 或在 CI 流程中定期运行 reindex
+
+---
+
+## #2 — I2: index.md 陈旧条目
+
+**Status**: New (2026-04-19)
+
+**问题描述**:
+
+`index.md` 包含 3 个陈旧条目：
+- `[[Programming]]`
+- `[[Robot Manipulators: Mathematics]]`
+- `[[and Control]]`
+
+**When it bites**:
+- 索引与实际 wiki 内容不一致
+- 用户点击这些链接会得到空页面
+
+**Workaround/Fix**:
+```bash
+# 方法 1: 使用脚本更新
+bash scripts/wiki.sh snapshot_index --update
+
+# 方法 2: 作为 wiki:reindex 的一部分自动修复
+wiki:reindex
 ```
 
-**未完成的主要概念页面**（files 13-16）：
-- `[[布朗运动]]` / `[[Wiener过程]]`（file 13）
-- `[[Fokker-Planck方程]]` / `[[Kolmogorov后向方程]]`（file 14）
-- `[[鞅理论]]`（file 15）
-- `[[Itô积分]]` / `[[随机微分方程]]`（file 16）
+**根因**: 页面被删除或重命名后，index.md 未同步更新。
+
+---
+
+## #3 — F3: Overview 章节长度超限
+
+**Status**: New (2026-04-19)
+
+**问题描述**:
+
+根据 `_schema/CLAUDE.md` 质量标准，概述部分应不超过 200 字。
+
+**违规页面**:
+- `wiki/syntheses/矩阵谱理论的统一叙事.md`: Overview 362 字符
+
+**When it bites**:
+- 影响页面可读性
+- 不符合 schema 规范
+- 可能在模板渲染时被截断
+
+**Workaround/Fix**:
+1. 打开违规页面
+2. 精简概述内容至 200 字符以内
+3. 将详细内容移至 "关键内容" 章节
+
+---
