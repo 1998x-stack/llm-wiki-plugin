@@ -28,6 +28,9 @@ relates_to:
 - target: '[[Context-Engineering]]'
   type: related_to
   confidence: 0.85
+- target: '[[可扩展的受管理 Agent]]'
+  type: extends
+  confidence: 0.9
 supersedes: null
 ---
 
@@ -91,3 +94,4 @@ Managed [[Agents]] 的目标是设计一组**能超越任何特定实现的接�
 - [[Agent Harness模式]] — extends（超越特定 harness 的通用接口层）
 - [[会话日志]] — uses（会话作为外部上下文对象）
 - [[Context-Engineering]] — related_to（互补的上下文管理策略）
+- [[可扩展的受管理 Agent]] — extends（分层扩展模式）

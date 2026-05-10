@@ -5,7 +5,7 @@ confidence: 0.8
 created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
-source_count: 1
+source_count: 3
 tags: ["agent-pattern", "context-management", "orchestration", "Agent系统"]
 aliases: ["Sub-Agent Pattern", "子 Agent 模式", "Agent 卸载", "上下文保护模式"]
 relates_to:
@@ -57,6 +57,8 @@ supersedes: null
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/how-the-loop-works.md]] — Ralph Loop 核心原理深度解析
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/04_context_engineering.md]] — Anthropic 子 Agent 架构上下文流模式分析
+- [[08_claude_code_best_practices.md]] — Anthropic 官方 Claude Code 最佳实践指南（子 Agent 用于调查的经验法则）
 
 ## 相关
 - [[Ralph Loop]] — used_by（Ralph Loop 中用于保护主上下文）

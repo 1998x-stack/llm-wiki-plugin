@@ -434,6 +434,19 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "label": "ACI (Agent-Computer Interface)",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-design",
+        "interface",
+        "tool-design",
+        "engineering-principle"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/concepts/ACI 设计原则.md",
       "label": "ACI 设计原则",
       "type": "concept",
@@ -442,7 +455,10 @@
         "AI",
         "方法论",
         "技术",
-        "AI工程"
+        "AI工程",
+        "ai-engineering",
+        "interface-design",
+        "agent-computer-interface"
       ],
       "edge_count": 24
     },
@@ -997,6 +1013,19 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/concepts/Agent Harness 运行框架.md",
+      "label": "Agent Harness 运行框架",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "Agent工程",
+        "长时任务",
+        "架构模式",
+        "可靠性"
+      ],
+      "edge_count": 22
+    },
+    {
       "id": "wiki/concepts/Agent Harness模式.md",
       "label": "Agent Harness模式",
       "type": "concept",
@@ -1405,6 +1434,19 @@
       "edge_count": 32
     },
     {
+      "id": "wiki/concepts/Auto Mode 安全分类器.md",
+      "label": "Auto Mode 安全分类器",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "安全性",
+        "分类器",
+        "权限管理"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/concepts/BERT.md",
       "label": "BERT",
       "type": "concept",
@@ -1697,6 +1739,31 @@
         "ai-engineering",
         "architecture-decision",
         "debate"
+      ],
+      "edge_count": 14
+    },
+    {
+      "id": "wiki/concepts/BrowseComp.md",
+      "label": "BrowseComp",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "benchmark",
+        "browsing"
+      ],
+      "edge_count": 16
+    },
+    {
+      "id": "wiki/concepts/C 编译器.md",
+      "label": "C 编译器",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "compiler",
+        "programming-language",
+        "software-engineering"
       ],
       "edge_count": 14
     },
@@ -2151,9 +2218,11 @@
       "id": "wiki/concepts/Claude Code 权限模式.md",
       "label": "Claude Code 权限模式",
       "type": "concept",
-      "confidence": 0.8,
+      "confidence": 0.9,
       "tags": [
-        "AI工程"
+        "AI工程",
+        "安全性",
+        "权限管理"
       ],
       "edge_count": 7
     },
@@ -2899,6 +2968,18 @@
       "edge_count": 9
     },
     {
+      "id": "wiki/concepts/DXT 文件格式.md",
+      "label": "DXT 文件格式",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "MCP",
+        "文件格式",
+        "打包"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/DeepAgents中间件体系.md",
       "label": "DeepAgents中间件体系",
       "type": "concept",
@@ -3002,6 +3083,19 @@
         "culture"
       ],
       "edge_count": 18
+    },
+    {
+      "id": "wiki/concepts/Desktop Extensions.md",
+      "label": "Desktop Extensions",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "MCP",
+        "Claude Desktop",
+        "开发者体验",
+        "生态系统"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/Dice 激活函数.md",
@@ -3305,6 +3399,46 @@
         "代码进化"
       ],
       "edge_count": 14
+    },
+    {
+      "id": "wiki/concepts/Emoji自动Fallback.md",
+      "label": "Emoji自动Fallback",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "Emoji",
+        "字体回退",
+        "NanoVG",
+        "UrhoX",
+        "文本渲染"
+      ],
+      "edge_count": 3
+    },
+    {
+      "id": "wiki/concepts/Evaluation Harness.md",
+      "label": "Evaluation Harness",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "基础设施",
+        "质量保障"
+      ],
+      "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/Evaluator-Optimizer 模式.md",
+      "label": "Evaluator-Optimizer 模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-pattern",
+        "workflow",
+        "feedback-loop",
+        "iteration"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/Example Age.md",
@@ -3911,6 +4045,19 @@
         "CNN"
       ],
       "edge_count": 11
+    },
+    {
+      "id": "wiki/concepts/Ground Truth 验证.md",
+      "label": "Ground Truth 验证",
+      "type": "concept",
+      "confidence": 0.75,
+      "tags": [
+        "Agent工程",
+        "验证",
+        "客观性",
+        "测试"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/concepts/Guardrails.md",
@@ -4844,14 +4991,15 @@
       "id": "wiki/concepts/LLM-as-Judge.md",
       "label": "LLM-as-Judge",
       "type": "concept",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "tags": [
         "AI",
         "评估",
         "LLM",
         "测试",
         "机器学习",
-        "AI工程"
+        "AI工程",
+        "评分器"
       ],
       "edge_count": 16
     },
@@ -5172,6 +5320,20 @@
       "edge_count": 20
     },
     {
+      "id": "wiki/concepts/Lua-eventData访问模式.md",
+      "label": "Lua-eventData访问模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "Lua",
+        "事件系统",
+        "tolua++",
+        "UrhoX",
+        "数据访问"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/Lua-metatable.md",
       "label": "Lua-metatable",
       "type": "concept",
@@ -5262,7 +5424,7 @@
         "编程语言",
         "游戏开发"
       ],
-      "edge_count": 11
+      "edge_count": 12
     },
     {
       "id": "wiki/concepts/Lua事件总线.md",
@@ -5450,7 +5612,7 @@
         "模块化",
         "Lua编程"
       ],
-      "edge_count": 21
+      "edge_count": 23
     },
     {
       "id": "wiki/concepts/Lua沙盒系统.md",
@@ -5491,6 +5653,21 @@
         "Lua编程"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/Lua类型标注规范.md",
+      "label": "Lua类型标注规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "Lua",
+        "类型标注",
+        "EmmyLua",
+        "LSP",
+        "UrhoX",
+        "代码质量"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/Lua脚本宿主模式.md",
@@ -5618,13 +5795,14 @@
       "id": "wiki/concepts/MCP.md",
       "label": "MCP",
       "type": "concept",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "tags": [
         "claude-code",
         "protocol",
         "tool-system",
         "integration",
-        "工具与框架"
+        "工具与框架",
+        "agent-engineering"
       ],
       "edge_count": 38
     },
@@ -5950,6 +6128,18 @@
       "edge_count": 9
     },
     {
+      "id": "wiki/concepts/Meta-AI 改进循环.md",
+      "label": "Meta-AI 改进循环",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "meta-ai",
+        "self-improvement",
+        "agent-engineering"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/MinerUSpan格式.md",
       "label": "MinerUSpan格式",
       "type": "concept",
@@ -6215,6 +6405,34 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/concepts/NanoVG字体创建规范.md",
+      "label": "NanoVG字体创建规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "NanoVG",
+        "字体",
+        "显存泄漏",
+        "UrhoX",
+        "渲染"
+      ],
+      "edge_count": 3
+    },
+    {
+      "id": "wiki/concepts/NanoVG渲染事件模式.md",
+      "label": "NanoVG渲染事件模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "NanoVG",
+        "渲染事件",
+        "UrhoX",
+        "矢量图形",
+        "游戏开发"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/NeuMF.md",
       "label": "NeuMF",
       "type": "concept",
@@ -6378,6 +6596,18 @@
         "Agent系统"
       ],
       "edge_count": 29
+    },
+    {
+      "id": "wiki/concepts/Orchestrator-Workers 模式.md",
+      "label": "Orchestrator-Workers 模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-pattern",
+        "workflow",
+        "dynamic-decomposition"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/concepts/P vs NP.md",
@@ -6579,6 +6809,18 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/concepts/Parallelization 模式.md",
+      "label": "Parallelization 模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-pattern",
+        "workflow",
+        "parallel-processing"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/PatchTST.md",
       "label": "PatchTST",
       "type": "concept",
@@ -6688,6 +6930,19 @@
       "edge_count": 15
     },
     {
+      "id": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "label": "Poka-Yoke 工具设计",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "Agent设计",
+        "工具设计",
+        "防错",
+        "ACI"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/Policy-First 设计.md",
       "label": "Policy-First 设计",
       "type": "concept",
@@ -6698,6 +6953,18 @@
         "Agent系统"
       ],
       "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/Postmortem 文化.md",
+      "label": "Postmortem 文化",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "可靠性工程",
+        "事故管理",
+        "组织文化"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/concepts/Pre-LN架构.md",
@@ -6811,6 +7078,42 @@
         "LLM"
       ],
       "edge_count": 27
+    },
+    {
+      "id": "wiki/concepts/Prompt Caching.md",
+      "label": "Prompt Caching",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "LLM工程",
+        "成本优化",
+        "Anthropic"
+      ],
+      "edge_count": 4
+    },
+    {
+      "id": "wiki/concepts/Prompt Chaining.md",
+      "label": "Prompt Chaining",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-pattern",
+        "workflow",
+        "prompt-engineering"
+      ],
+      "edge_count": 4
+    },
+    {
+      "id": "wiki/concepts/Prompt Injection.md",
+      "label": "Prompt Injection",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "安全性",
+        "攻击向量"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/concepts/Prompt 缓存.md",
@@ -6945,6 +7248,19 @@
         "context-engineering"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/concepts/RAG 系统.md",
+      "label": "RAG 系统",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "ai-engineering",
+        "retrieval",
+        "rag",
+        "knowledge-management"
+      ],
+      "edge_count": 7
     },
     {
       "id": "wiki/concepts/REINFORCE算法.md",
@@ -7334,6 +7650,18 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/concepts/Routing 模式.md",
+      "label": "Routing 模式",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-pattern",
+        "workflow",
+        "classification"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/S-表达式.md",
       "label": "S-表达式",
       "type": "concept",
@@ -7582,11 +7910,12 @@
       "id": "wiki/concepts/SWE-bench.md",
       "label": "SWE-bench",
       "type": "concept",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "tags": [
         "AI",
         "方法论",
-        "AI工程"
+        "AI工程",
+        "评测"
       ],
       "edge_count": 23
     },
@@ -8412,6 +8741,18 @@
       "edge_count": 2
     },
     {
+      "id": "wiki/concepts/Think 工具.md",
+      "label": "Think 工具",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI工程",
+        "Agent架构",
+        "推理机制"
+      ],
+      "edge_count": 18
+    },
+    {
       "id": "wiki/concepts/Think工具.md",
       "label": "Think工具",
       "type": "concept",
@@ -8613,6 +8954,18 @@
       "edge_count": 20
     },
     {
+      "id": "wiki/concepts/Transcript vs Outcome.md",
+      "label": "Transcript vs Outcome",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "质量保障"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/concepts/Transformer 架构.md",
       "label": "Transformer 架构",
       "type": "concept",
@@ -8715,6 +9068,21 @@
         "工具与框架"
       ],
       "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/UI系统选择规范.md",
+      "label": "UI系统选择规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "UI系统",
+        "UrhoX",
+        "Yoga",
+        "Flexbox",
+        "NanoVG",
+        "废弃API"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/UNIX.md",
@@ -9024,7 +9392,7 @@
         "手柄",
         "游戏开发"
       ],
-      "edge_count": 3
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/UrhoX音频系统API.md",
@@ -9450,6 +9818,20 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/Writer-Reviewer 模式.md",
+      "label": "Writer-Reviewer 模式",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "Claude Code",
+        "代码审查",
+        "多Agent系统",
+        "最佳实践"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/concepts/XML Plan System.md",
       "label": "XML Plan System",
       "type": "concept",
@@ -9524,6 +9906,21 @@
         "优化"
       ],
       "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/Y-up左手坐标系.md",
+      "label": "Y-up左手坐标系",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "坐标系",
+        "Y-up",
+        "左手坐标系",
+        "UrhoX",
+        "游戏引擎",
+        "旋转"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/concepts/YOLO.md",
@@ -9756,6 +10153,20 @@
       "edge_count": 20
     },
     {
+      "id": "wiki/concepts/manifest-json检查规范.md",
+      "label": "manifest-json检查规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "示例管理",
+        "manifest",
+        "UrhoX",
+        "项目配置",
+        "文件复制"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/modern-cli-tools.md",
       "label": "modern-cli-tools",
       "type": "concept",
@@ -9806,6 +10217,19 @@
         "review"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/pass@k vs pass^k.md",
+      "label": "pass@k vs pass^k",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "统计",
+        "非确定性"
+      ],
+      "edge_count": 5
     },
     {
       "id": "wiki/concepts/prd.json 格式规范.md",
@@ -10051,6 +10475,18 @@
       "edge_count": 11
     },
     {
+      "id": "wiki/concepts/三级自主权模型.md",
+      "label": "三级自主权模型",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "human-ai-collaboration",
+        "autonomy-levels"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/三线表.md",
       "label": "三线表",
       "type": "concept",
@@ -10103,6 +10539,18 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/上下文传递协议.md",
+      "label": "上下文传递协议",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "context-management",
+        "session-handoff"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/concepts/上下文压缩.md",
       "label": "上下文压缩",
       "type": "concept",
@@ -10111,7 +10559,8 @@
         "技术",
         "方法论",
         "AI",
-        "AI工程"
+        "AI工程",
+        "长时任务"
       ],
       "edge_count": 67
     },
@@ -10137,6 +10586,18 @@
         "AI工程"
       ],
       "edge_count": 23
+    },
+    {
+      "id": "wiki/concepts/上下文检索.md",
+      "label": "上下文检索",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "RAG",
+        "信息检索",
+        "检索增强生成"
+      ],
+      "edge_count": 12
     },
     {
       "id": "wiki/concepts/上下文漂移.md",
@@ -10224,6 +10685,33 @@
       "edge_count": 14
     },
     {
+      "id": "wiki/concepts/上下文管理策略.md",
+      "label": "上下文管理策略",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "Claude Code",
+        "上下文管理",
+        "斜杠命令",
+        "最佳实践"
+      ],
+      "edge_count": 11
+    },
+    {
+      "id": "wiki/concepts/上下文经济学.md",
+      "label": "上下文经济学",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI工程",
+        "Claude Code",
+        "上下文管理",
+        "最佳实践"
+      ],
+      "edge_count": 20
+    },
+    {
       "id": "wiki/concepts/上下文编辑.md",
       "label": "上下文编辑",
       "type": "concept",
@@ -10274,6 +10762,18 @@
         "LLM能力"
       ],
       "edge_count": 19
+    },
+    {
+      "id": "wiki/concepts/上游依赖变更.md",
+      "label": "上游依赖变更",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "事故根因",
+        "依赖管理",
+        "AI 系统脆弱性"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/concepts/下一句预测（NSP）.md",
@@ -10665,6 +11165,18 @@
         "优化算法"
       ],
       "edge_count": 11
+    },
+    {
+      "id": "wiki/concepts/交织推理.md",
+      "label": "交织推理",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "推理",
+        "多Agent系统",
+        "Prompt工程"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/concepts/交错式思考.md",
@@ -11490,6 +12002,18 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/先广后深搜索策略.md",
+      "label": "先广后深搜索策略",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "搜索策略",
+        "Prompt工程",
+        "多Agent系统"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/光学字符识别.md",
       "label": "光学字符识别",
       "type": "concept",
@@ -12100,6 +12624,19 @@
       "edge_count": 20
     },
     {
+      "id": "wiki/concepts/初始化-编码循环模式.md",
+      "label": "初始化-编码循环模式",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "Agent工程",
+        "任务分解",
+        "架构模式",
+        "长时任务"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/concepts/判别器.md",
       "label": "判别器",
       "type": "concept",
@@ -12458,6 +12995,19 @@
         "unit-tests"
       ],
       "edge_count": 29
+    },
+    {
+      "id": "wiki/concepts/单 Agent 架构.md",
+      "label": "单 Agent 架构",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "Agent架构",
+        "单Agent",
+        "简单性",
+        "Anthropic"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/单向陷门函数.md",
@@ -12844,6 +13394,20 @@
       "edge_count": 23
     },
     {
+      "id": "wiki/concepts/可扩展的受管理 Agent.md",
+      "label": "可扩展的受管理 Agent",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "ai-engineering",
+        "agent-architecture",
+        "scalability",
+        "cost-optimization",
+        "managed-agents"
+      ],
+      "edge_count": 13
+    },
+    {
       "id": "wiki/concepts/可行系统模型（VSM）.md",
       "label": "可行系统模型（VSM）",
       "type": "concept",
@@ -13152,7 +13716,7 @@
         "旋转",
         "陷阱"
       ],
-      "edge_count": 3
+      "edge_count": 4
     },
     {
       "id": "wiki/concepts/回滚策略.md",
@@ -13406,6 +13970,19 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/concepts/基础设施噪声.md",
+      "label": "基础设施噪声",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "evaluation",
+        "infrastructure",
+        "benchmark",
+        "reliability"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/concepts/增量挖掘.md",
       "label": "增量挖掘",
       "type": "concept",
@@ -13432,6 +14009,45 @@
       "edge_count": 20
     },
     {
+      "id": "wiki/concepts/外化工作记忆.md",
+      "label": "外化工作记忆",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "认知科学",
+        "AI工程",
+        "Agent架构",
+        "长时任务"
+      ],
+      "edge_count": 16
+    },
+    {
+      "id": "wiki/concepts/外化进度追踪.md",
+      "label": "外化进度追踪",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "Agent工程",
+        "状态管理",
+        "外部记忆",
+        "长时任务"
+      ],
+      "edge_count": 12
+    },
+    {
+      "id": "wiki/concepts/多 Agent 系统.md",
+      "label": "多 Agent 系统",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "ai-engineering",
+        "multi-agent",
+        "architecture",
+        "parallel"
+      ],
+      "edge_count": 33
+    },
+    {
       "id": "wiki/concepts/多Agent架构.md",
       "label": "多Agent架构",
       "type": "concept",
@@ -13443,6 +14059,20 @@
         "Agent系统"
       ],
       "edge_count": 28
+    },
+    {
+      "id": "wiki/concepts/多人游戏模式判断.md",
+      "label": "多人游戏模式判断",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "多人游戏",
+        "网络",
+        "配置",
+        "UrhoX",
+        "模式判断"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/多任务学习.md",
@@ -13937,6 +14567,20 @@
       "edge_count": 11
     },
     {
+      "id": "wiki/concepts/安全沙箱.md",
+      "label": "安全沙箱",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "security",
+        "sandbox",
+        "code-execution",
+        "mcp",
+        "agent-engineering"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/完成信号机制（Completion Signal）.md",
       "label": "完成信号机制（Completion Signal）",
       "type": "concept",
@@ -14235,6 +14879,18 @@
       "edge_count": 17
     },
     {
+      "id": "wiki/concepts/工具描述质量.md",
+      "label": "工具描述质量",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "agent-engineering",
+        "tool-design",
+        "ACI"
+      ],
+      "edge_count": 7
+    },
+    {
       "id": "wiki/concepts/工具注册机制.md",
       "label": "工具注册机制",
       "type": "concept",
@@ -14246,6 +14902,67 @@
         "Agent系统"
       ],
       "edge_count": 13
+    },
+    {
+      "id": "wiki/concepts/工具测试 Agent.md",
+      "label": "工具测试 Agent",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "agent-engineering",
+        "meta-ai",
+        "tool-testing",
+        "MCP"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/concepts/工具组合模式.md",
+      "label": "工具组合模式",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "工具使用",
+        "Agent",
+        "架构模式"
+      ],
+      "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/工具结果缓存.md",
+      "label": "工具结果缓存",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "工具使用",
+        "缓存",
+        "性能优化"
+      ],
+      "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/工具选择控制.md",
+      "label": "工具选择控制",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "工具使用",
+        "Agent",
+        "API 设计"
+      ],
+      "edge_count": 5
+    },
+    {
+      "id": "wiki/concepts/工具错误处理.md",
+      "label": "工具错误处理",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "工具使用",
+        "错误处理",
+        "Agent"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/工程化UX规则体系.md",
@@ -14385,6 +15102,31 @@
         "继承设计"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/concepts/并行 Agent 开发.md",
+      "label": "并行 Agent 开发",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "ai-engineering",
+        "multi-agent",
+        "parallel-development",
+        "claude"
+      ],
+      "edge_count": 18
+    },
+    {
+      "id": "wiki/concepts/并行工具调用.md",
+      "label": "并行工具调用",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "工具使用",
+        "Agent",
+        "性能优化"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/广义优势估计.md",
@@ -15006,6 +15748,18 @@
       "edge_count": 5
     },
     {
+      "id": "wiki/concepts/扩展市场.md",
+      "label": "扩展市场",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "MCP",
+        "生态系统",
+        "分发"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/扩展思维.md",
       "label": "扩展思维",
       "type": "concept",
@@ -15042,6 +15796,18 @@
         "并行计算"
       ],
       "edge_count": 12
+    },
+    {
+      "id": "wiki/concepts/技术债务追踪.md",
+      "label": "技术债务追踪",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "technical-debt",
+        "quality-management"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/技术出版经济学.md",
@@ -15121,6 +15887,19 @@
       "edge_count": 9
     },
     {
+      "id": "wiki/concepts/抗 AI 评测设计.md",
+      "label": "抗 AI 评测设计",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "evaluation",
+        "hiring",
+        "ai-era",
+        "technical-interview"
+      ],
+      "edge_count": 11
+    },
+    {
       "id": "wiki/concepts/拟剧论.md",
       "label": "拟剧论",
       "type": "concept",
@@ -15155,6 +15934,18 @@
         "社会科学"
       ],
       "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/持续验证循环.md",
+      "label": "持续验证循环",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "quality-assurance",
+        "testing"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/concepts/指令调优.md",
@@ -15259,6 +16050,31 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/concepts/探索-规划-编码工作流.md",
+      "label": "探索-规划-编码工作流",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "AI工程",
+        "Claude Code",
+        "工作流",
+        "最佳实践"
+      ],
+      "edge_count": 10
+    },
+    {
+      "id": "wiki/concepts/接口规范.md",
+      "label": "接口规范",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "software-engineering",
+        "parallel-development",
+        "agent-coordination"
+      ],
+      "edge_count": 18
+    },
+    {
       "id": "wiki/concepts/控制即推断.md",
       "label": "控制即推断",
       "type": "concept",
@@ -15345,6 +16161,42 @@
       "edge_count": 27
     },
     {
+      "id": "wiki/concepts/提示工程.md",
+      "label": "提示工程",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "ai-engineering",
+        "prompt-design",
+        "llm"
+      ],
+      "edge_count": 14
+    },
+    {
+      "id": "wiki/concepts/提示更新副作用.md",
+      "label": "提示更新副作用",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "提示工程",
+        "事故根因",
+        "回归测试"
+      ],
+      "edge_count": 4
+    },
+    {
+      "id": "wiki/concepts/提示注入防御.md",
+      "label": "提示注入防御",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "ai-security",
+        "prompt-injection",
+        "agent-safety"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/concepts/提示词缓存.md",
       "label": "提示词缓存",
       "type": "concept",
@@ -15365,7 +16217,7 @@
       "tags": [
         "AI工程"
       ],
-      "edge_count": 25
+      "edge_count": 26
     },
     {
       "id": "wiki/concepts/操作空间控制.md",
@@ -15835,6 +16687,18 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/concepts/智能检查点触发.md",
+      "label": "智能检查点触发",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "checkpoint",
+        "state-management"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/concepts/暗物质.md",
       "label": "暗物质",
       "type": "concept",
@@ -16239,6 +17103,20 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/concepts/枚举值使用规范.md",
+      "label": "枚举值使用规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "Lua",
+        "枚举",
+        "输入事件",
+        "UrhoX",
+        "最佳实践"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/concepts/查询处理.md",
       "label": "查询处理",
       "type": "concept",
@@ -16393,6 +17271,19 @@
       "edge_count": 18
     },
     {
+      "id": "wiki/concepts/格式敏感性.md",
+      "label": "格式敏感性",
+      "type": "concept",
+      "confidence": 0.6,
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "model-behavior",
+        "prompt-engineering"
+      ],
+      "edge_count": 7
+    },
+    {
       "id": "wiki/concepts/梯度消失.md",
       "label": "梯度消失",
       "type": "concept",
@@ -16415,6 +17306,19 @@
         "梯度"
       ],
       "edge_count": 10
+    },
+    {
+      "id": "wiki/concepts/检查点策略.md",
+      "label": "检查点策略",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "Agent工程",
+        "可靠性",
+        "状态管理",
+        "验证"
+      ],
+      "edge_count": 11
     },
     {
       "id": "wiki/concepts/检索增强生成.md",
@@ -16969,6 +17873,18 @@
       "edge_count": 14
     },
     {
+      "id": "wiki/concepts/涌现行为.md",
+      "label": "涌现行为",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "多Agent系统",
+        "复杂系统",
+        "涌现"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/液体现代性.md",
       "label": "液体现代性",
       "type": "concept",
@@ -17268,6 +18184,18 @@
       "edge_count": 3
     },
     {
+      "id": "wiki/concepts/特性追踪器.md",
+      "label": "特性追踪器",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "harness-engineering",
+        "feature-management",
+        "agent-infrastructure"
+      ],
+      "edge_count": 7
+    },
+    {
       "id": "wiki/concepts/状态变化感知.md",
       "label": "状态变化感知",
       "type": "concept",
@@ -17433,6 +18361,19 @@
         "社会科学"
       ],
       "edge_count": 7
+    },
+    {
+      "id": "wiki/concepts/瑞士奶酪模型.md",
+      "label": "瑞士奶酪模型",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "质量保障",
+        "安全工程",
+        "风险管理",
+        "多层防御"
+      ],
+      "edge_count": 5
     },
     {
       "id": "wiki/concepts/甚长基线干涉测量.md",
@@ -18221,6 +19162,21 @@
         "信息论"
       ],
       "edge_count": 14
+    },
+    {
+      "id": "wiki/concepts/米制单位系统.md",
+      "label": "米制单位系统",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "游戏引擎",
+        "单位系统",
+        "米",
+        "坐标系",
+        "UrhoX",
+        "物理"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/精确短语引号提取.md",
@@ -19146,6 +20102,18 @@
       "edge_count": 10
     },
     {
+      "id": "wiki/concepts/行为回归测试.md",
+      "label": "行为回归测试",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "测试",
+        "回归测试",
+        "AI 系统质量"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/行为机器人学.md",
       "label": "行为机器人学",
       "type": "concept",
@@ -19601,6 +20569,18 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/concepts/词法分析.md",
+      "label": "词法分析",
+      "type": "concept",
+      "confidence": 0.75,
+      "tags": [
+        "compiler",
+        "parsing",
+        "lexical-analysis"
+      ],
+      "edge_count": 8
+    },
+    {
       "id": "wiki/concepts/语义 ID.md",
       "label": "语义 ID",
       "type": "concept",
@@ -19612,6 +20592,18 @@
         "语义"
       ],
       "edge_count": 20
+    },
+    {
+      "id": "wiki/concepts/语义分析.md",
+      "label": "语义分析",
+      "type": "concept",
+      "confidence": 0.75,
+      "tags": [
+        "compiler",
+        "semantic-analysis",
+        "type-checking"
+      ],
+      "edge_count": 10
     },
     {
       "id": "wiki/concepts/语义压缩.md",
@@ -19677,6 +20669,18 @@
         "经济模型"
       ],
       "edge_count": 10
+    },
+    {
+      "id": "wiki/concepts/语法分析.md",
+      "label": "语法分析",
+      "type": "concept",
+      "confidence": 0.75,
+      "tags": [
+        "compiler",
+        "parsing",
+        "syntax-analysis"
+      ],
+      "edge_count": 11
     },
     {
       "id": "wiki/concepts/调速器稳定性理论.md",
@@ -19824,6 +20828,20 @@
         "社会科学"
       ],
       "edge_count": 9
+    },
+    {
+      "id": "wiki/concepts/资源路径引用规范.md",
+      "label": "资源路径引用规范",
+      "type": "concept",
+      "confidence": 0.9,
+      "tags": [
+        "资源管理",
+        "路径引用",
+        "UrhoX",
+        "游戏开发",
+        "沙箱"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/concepts/赌徒破产问题.md",
@@ -20452,6 +21470,18 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/concepts/配置漂移.md",
+      "label": "配置漂移",
+      "type": "concept",
+      "confidence": 0.7,
+      "tags": [
+        "可靠性工程",
+        "配置管理",
+        "事故根因"
+      ],
+      "edge_count": 4
+    },
+    {
       "id": "wiki/concepts/配置驱动示例系统.md",
       "label": "配置驱动示例系统",
       "type": "concept",
@@ -20666,6 +21696,19 @@
       "edge_count": 5
     },
     {
+      "id": "wiki/concepts/错误复合.md",
+      "label": "错误复合",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "多Agent系统",
+        "生产工程",
+        "可靠性",
+        "长时任务"
+      ],
+      "edge_count": 14
+    },
+    {
       "id": "wiki/concepts/镜像神经元.md",
       "label": "镜像神经元",
       "type": "concept",
@@ -20850,6 +21893,18 @@
         "精神分析"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/concepts/防错设计.md",
+      "label": "防错设计",
+      "type": "concept",
+      "confidence": 0.8,
+      "tags": [
+        "tool-design",
+        "error-prevention",
+        "ACI"
+      ],
+      "edge_count": 5
     },
     {
       "id": "wiki/concepts/阶级斗争.md",
@@ -21167,6 +22222,20 @@
         "工作"
       ],
       "edge_count": 22
+    },
+    {
+      "id": "wiki/concepts/非交互模式.md",
+      "label": "非交互模式",
+      "type": "concept",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "Claude Code",
+        "命令行",
+        "自动化",
+        "最佳实践"
+      ],
+      "edge_count": 8
     },
     {
       "id": "wiki/concepts/鞍点（Saddle Point）.md",
@@ -22000,6 +23069,19 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/entities/App Sandbox.md",
+      "label": "App Sandbox",
+      "type": "tool",
+      "confidence": 0.8,
+      "tags": [
+        "macos",
+        "security",
+        "sandbox",
+        "apple"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/Apple Sandbox.md",
       "label": "Apple Sandbox",
       "type": "entity",
@@ -22061,6 +23143,18 @@
       "edge_count": 15
     },
     {
+      "id": "wiki/entities/AutoGen.md",
+      "label": "AutoGen",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "tool",
+        "agent-framework",
+        "multi-agent"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/AutoInt.md",
       "label": "AutoInt",
       "type": "entity",
@@ -22113,6 +23207,18 @@
         "历史"
       ],
       "edge_count": 34
+    },
+    {
+      "id": "wiki/entities/BM25.md",
+      "label": "BM25",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "算法",
+        "信息检索",
+        "搜索引擎"
+      ],
+      "edge_count": 17
     },
     {
       "id": "wiki/entities/BPR 论文.md",
@@ -22205,6 +23311,18 @@
         2015
       ],
       "edge_count": 23
+    },
+    {
+      "id": "wiki/entities/Barry Zhang.md",
+      "label": "Barry Zhang",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/entities/BellKor in BigChaos.md",
@@ -22324,6 +23442,19 @@
         "机器人学"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/entities/Box2D.md",
+      "label": "Box2D",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "物理引擎",
+        "2D物理",
+        "碰撞检测",
+        "游戏开发"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/Brian Gerkey.md",
@@ -22497,6 +23628,19 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/entities/CLAUDE.md.md",
+      "label": "CLAUDE.md",
+      "type": "entity",
+      "confidence": 0.9,
+      "tags": [
+        "Claude Code",
+        "工具",
+        "上下文管理",
+        "最佳实践"
+      ],
+      "edge_count": 15
+    },
+    {
       "id": "wiki/entities/Cara-Phillips.md",
       "label": "Cara-Phillips",
       "type": "entity",
@@ -22507,6 +23651,18 @@
         "AI工程"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/Carlos E. Jiménez.md",
+      "label": "Carlos E. Jiménez",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "研究者",
+        "AI"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/Caser.md",
@@ -22632,6 +23788,31 @@
         "推荐引擎"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/entities/Claude 3 Haiku.md",
+      "label": "Claude 3 Haiku",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "LLM",
+        "模型",
+        "Anthropic"
+      ],
+      "edge_count": 3
+    },
+    {
+      "id": "wiki/entities/Claude 3.5 Sonnet.md",
+      "label": "Claude 3.5 Sonnet",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "AI",
+        "LLM",
+        "Anthropic",
+        "模型"
+      ],
+      "edge_count": 13
     },
     {
       "id": "wiki/entities/Claude Code.md",
@@ -23109,6 +24290,17 @@
       "edge_count": 7
     },
     {
+      "id": "wiki/entities/Daniel Ford.md",
+      "label": "Daniel Ford",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "AI工程师"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/entities/David E. Rumelhart.md",
       "label": "David E. Rumelhart",
       "type": "person",
@@ -23347,6 +24539,18 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/entities/Descript.md",
+      "label": "Descript",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "公司",
+        "视频编辑",
+        "AI"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/Diederik P. Kingma.md",
       "label": "Diederik P. Kingma",
       "type": "person",
@@ -23394,6 +24598,19 @@
         "深度学习专家"
       ],
       "edge_count": 7
+    },
+    {
+      "id": "wiki/entities/Django.md",
+      "label": "Django",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "项目",
+        "Python",
+        "Web框架",
+        "开源"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/DocLayout-YOLO.md",
@@ -23605,6 +24822,20 @@
         "研究机构"
       ],
       "edge_count": 13
+    },
+    {
+      "id": "wiki/entities/EmmyLua.md",
+      "label": "EmmyLua",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "LSP",
+        "类型定义",
+        "Lua",
+        "IDE",
+        "代码补全"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/Emre Sargin.md",
@@ -23842,6 +25073,32 @@
         "计算机历史"
       ],
       "edge_count": 31
+    },
+    {
+      "id": "wiki/entities/Flask.md",
+      "label": "Flask",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "项目",
+        "Python",
+        "Web框架",
+        "开源",
+        "微框架"
+      ],
+      "edge_count": 2
+    },
+    {
+      "id": "wiki/entities/Florian Scholz.md",
+      "label": "Florian Scholz",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/entities/Frank Rosenblatt.md",
@@ -24183,6 +25440,19 @@
       "edge_count": 19
     },
     {
+      "id": "wiki/entities/Google Kubernetes Engine (GKE).md",
+      "label": "Google Kubernetes Engine (GKE)",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "cloud",
+        "kubernetes",
+        "infrastructure",
+        "google"
+      ],
+      "edge_count": 5
+    },
+    {
       "id": "wiki/entities/Google.md",
       "label": "Google",
       "type": "entity",
@@ -24347,6 +25617,19 @@
         "probability-theory"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/Harbor Framework.md",
+      "label": "Harbor Framework",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "框架",
+        "评测",
+        "容器化",
+        "Agent"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/entities/Heinrich A. Ernst.md",
@@ -24877,6 +26160,31 @@
       "edge_count": 12
     },
     {
+      "id": "wiki/entities/Jeremy Fox.md",
+      "label": "Jeremy Fox",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师"
+      ],
+      "edge_count": 3
+    },
+    {
+      "id": "wiki/entities/Jeremy Hadfield.md",
+      "label": "Jeremy Hadfield",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师",
+        "评测"
+      ],
+      "edge_count": 9
+    },
+    {
       "id": "wiki/entities/Jiaqi Ma.md",
       "label": "Jiaqi Ma",
       "type": "entity",
@@ -24899,6 +26207,19 @@
         "深度学习"
       ],
       "edge_count": 11
+    },
+    {
+      "id": "wiki/entities/Jiri De Jonghe.md",
+      "label": "Jiri De Jonghe",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师",
+        "评测"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/entities/John Backus.md",
@@ -25151,6 +26472,18 @@
       "edge_count": 33
     },
     {
+      "id": "wiki/entities/Kenneth Lien.md",
+      "label": "Kenneth Lien",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/entities/Kenton Lee.md",
       "label": "Kenton Lee",
       "type": "entity",
@@ -25375,6 +26708,18 @@
         "GPT"
       ],
       "edge_count": 8
+    },
+    {
+      "id": "wiki/entities/LangChain.md",
+      "label": "LangChain",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "tool",
+        "agent-framework",
+        "python"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/LayoutLMv3.md",
@@ -26049,6 +27394,19 @@
       "edge_count": 5
     },
     {
+      "id": "wiki/entities/Mikaela Grace.md",
+      "label": "Mikaela Grace",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师",
+        "评测"
+      ],
+      "edge_count": 10
+    },
+    {
       "id": "wiki/entities/Milla Jovovich.md",
       "label": "Milla Jovovich",
       "type": "entity",
@@ -26087,6 +27445,19 @@
         "AI研究者"
       ],
       "edge_count": 15
+    },
+    {
+      "id": "wiki/entities/Model Context Protocol.md",
+      "label": "Model Context Protocol",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "protocol",
+        "tool-integration",
+        "anthropic",
+        "standard"
+      ],
+      "edge_count": 3
     },
     {
       "id": "wiki/entities/MoonSharp.md",
@@ -26201,7 +27572,7 @@
         "游戏引擎",
         "游戏开发"
       ],
-      "edge_count": 4
+      "edge_count": 8
     },
     {
       "id": "wiki/entities/National University of Singapore.md",
@@ -26463,6 +27834,19 @@
       "edge_count": 4
     },
     {
+      "id": "wiki/entities/OSWorld.md",
+      "label": "OSWorld",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "基准测试",
+        "计算机使用",
+        "操作系统",
+        "评测"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/entities/Observation of Gravitational Waves from a Binary Black Hole Merger.md",
       "label": "Observation of Gravitational Waves from a Binary Black Hole Merger",
       "type": "entity",
@@ -26600,6 +27984,19 @@
         "工具与框架"
       ],
       "edge_count": 6
+    },
+    {
+      "id": "wiki/entities/Opus 4.5.md",
+      "label": "Opus 4.5",
+      "type": "entity",
+      "confidence": 0.6,
+      "tags": [
+        "产品",
+        "Anthropic",
+        "LLM",
+        "模型"
+      ],
+      "edge_count": 4
     },
     {
       "id": "wiki/entities/Otto Loewi.md",
@@ -27367,6 +28764,19 @@
       "edge_count": 16
     },
     {
+      "id": "wiki/entities/Rodrigo Olivares.md",
+      "label": "Rodrigo Olivares",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "人物",
+        "Anthropic",
+        "工程师",
+        "评测"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/entities/Ronald J. Williams.md",
       "label": "Ronald J. Williams",
       "type": "person",
@@ -27587,6 +28997,18 @@
       "edge_count": 34
     },
     {
+      "id": "wiki/entities/SRE.md",
+      "label": "SRE",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "可靠性工程",
+        "组织",
+        "实践"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/entities/SSE-PT.md",
       "label": "SSE-PT",
       "type": "entity",
@@ -27623,6 +29045,18 @@
         "Agent系统"
       ],
       "edge_count": 29
+    },
+    {
+      "id": "wiki/entities/SWE-bench.md",
+      "label": "SWE-bench",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "benchmark",
+        "coding-agent",
+        "evaluation"
+      ],
+      "edge_count": 54
     },
     {
       "id": "wiki/entities/Sanjay Ghemawat.md",
@@ -27967,6 +29401,20 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/entities/Sympy.md",
+      "label": "Sympy",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "项目",
+        "Python",
+        "数学",
+        "开源",
+        "符号计算"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/T5.md",
       "label": "T5",
       "type": "entity",
@@ -28227,6 +29675,32 @@
         "anthropic"
       ],
       "edge_count": 5
+    },
+    {
+      "id": "wiki/entities/Terminal-Bench 2.0.md",
+      "label": "Terminal-Bench 2.0",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "benchmark",
+        "agentic-coding",
+        "evaluation",
+        "terminal"
+      ],
+      "edge_count": 7
+    },
+    {
+      "id": "wiki/entities/Terminal-Bench.md",
+      "label": "Terminal-Bench",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "基准测试",
+        "终端",
+        "通用Agent",
+        "评测"
+      ],
+      "edge_count": 6
     },
     {
       "id": "wiki/entities/Thariq-Shihipar.md",
@@ -28646,6 +30120,19 @@
       "edge_count": 11
     },
     {
+      "id": "wiki/entities/Urho3D.md",
+      "label": "Urho3D",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "游戏引擎",
+        "C++",
+        "3D引擎",
+        "开源"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/UrhoXCLI.md",
       "label": "UrhoXCLI",
       "type": "entity",
@@ -28678,7 +30165,7 @@
         "Box2D",
         "游戏开发"
       ],
-      "edge_count": 58
+      "edge_count": 78
     },
     {
       "id": "wiki/entities/UrhoX材质库.md",
@@ -28999,6 +30486,19 @@
       "edge_count": 6
     },
     {
+      "id": "wiki/entities/WebArena.md",
+      "label": "WebArena",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "基准测试",
+        "计算机使用",
+        "网页自动化",
+        "评测"
+      ],
+      "edge_count": 6
+    },
+    {
       "id": "wiki/entities/Whitfield Diffie.md",
       "label": "Whitfield Diffie",
       "type": "entity",
@@ -29223,6 +30723,20 @@
       "edge_count": 11
     },
     {
+      "id": "wiki/entities/Yoga-Flexbox.md",
+      "label": "Yoga-Flexbox",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "布局引擎",
+        "Flexbox",
+        "CSS",
+        "UI",
+        "跨平台"
+      ],
+      "edge_count": 2
+    },
+    {
       "id": "wiki/entities/Yongfeng Zhang.md",
       "label": "Yongfeng Zhang",
       "type": "entity",
@@ -29425,6 +30939,19 @@
         "C++编程"
       ],
       "edge_count": 4
+    },
+    {
+      "id": "wiki/entities/cjson.md",
+      "label": "cjson",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "JSON",
+        "Lua库",
+        "编解码",
+        "高性能"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/clangd.md",
@@ -29876,6 +31403,19 @@
       "edge_count": 8
     },
     {
+      "id": "wiki/entities/seccomp-BPF.md",
+      "label": "seccomp-BPF",
+      "type": "tool",
+      "confidence": 0.85,
+      "tags": [
+        "linux",
+        "security",
+        "sandbox",
+        "kernel"
+      ],
+      "edge_count": 3
+    },
+    {
       "id": "wiki/entities/seccomp.md",
       "label": "seccomp",
       "type": "entity",
@@ -29912,6 +31452,20 @@
         "时间动态"
       ],
       "edge_count": 18
+    },
+    {
+      "id": "wiki/entities/tolua++.md",
+      "label": "tolua++",
+      "type": "entity",
+      "confidence": 0.85,
+      "tags": [
+        "Lua绑定",
+        "C++",
+        "tolua",
+        "UrhoX",
+        "Lua-C互操作"
+      ],
+      "edge_count": 2
     },
     {
       "id": "wiki/entities/typescript-language-server.md",
@@ -30047,6 +31601,31 @@
         "研究"
       ],
       "edge_count": 2
+    },
+    {
+      "id": "wiki/entities/τ-Bench.md",
+      "label": "τ-Bench",
+      "type": "entity",
+      "confidence": 0.8,
+      "tags": [
+        "基准测试",
+        "对话Agent",
+        "评测",
+        "Anthropic"
+      ],
+      "edge_count": 5
+    },
+    {
+      "id": "wiki/entities/τ2-Bench.md",
+      "label": "τ2-Bench",
+      "type": "entity",
+      "confidence": 0.7,
+      "tags": [
+        "基准测试",
+        "对话Agent",
+        "评测"
+      ],
+      "edge_count": 5
     },
     {
       "id": "wiki/entities/万历十五年.md",
@@ -33779,6 +35358,18 @@
       "edge_count": 4
     },
     {
+      "id": "wiki/projects/τ-Bench.md",
+      "label": "τ-Bench",
+      "type": "project",
+      "confidence": 0.85,
+      "tags": [
+        "AI工程",
+        "评测基准",
+        "Agent"
+      ],
+      "edge_count": 12
+    },
+    {
       "id": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
       "label": "Cargo-for-X全能工具链模式",
       "type": "qa-insight",
@@ -36299,6 +37890,24 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "target": "wiki/entities/Model Context Protocol.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/ACI 设计原则.md",
       "target": "wiki/concepts/Agent计算机接口.md",
       "relation": "part_of",
@@ -36336,13 +37945,31 @@
     },
     {
       "source": "wiki/concepts/ACI 设计原则.md",
-      "target": "wiki/entities/SWE-agent.md",
-      "relation": "wikilink",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "part_of",
       "bidirectional": false
     },
     {
       "source": "wiki/concepts/ACI 设计原则.md",
-      "target": "wiki/concepts/Agent计算机接口.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/MCP.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/上下文工程.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/上下文窗口.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -36372,7 +37999,7 @@
     },
     {
       "source": "wiki/concepts/ACI 设计原则.md",
-      "target": "wiki/concepts/Ablation Study.md",
+      "target": "wiki/concepts/Agent计算机接口.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -36391,6 +38018,30 @@
     {
       "source": "wiki/concepts/ACI 设计原则.md",
       "target": "wiki/concepts/恢复机制.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/MCP.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/ACI 设计原则.md",
+      "target": "wiki/concepts/上下文工程.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -38316,7 +39967,7 @@
     },
     {
       "source": "wiki/concepts/Ablation Study.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "uses",
       "bidirectional": false
     },
@@ -38659,6 +40310,90 @@
     {
       "source": "wiki/concepts/Advisor Tool（顾问工具）.md",
       "target": "wiki/concepts/零数据保留.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/外化工作记忆.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/错误复合.md",
+      "relation": "prevents",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/上下文窗口.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/Saga 模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/初始化-编码循环模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/外化进度追踪.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/检查点策略.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/外化工作记忆.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/错误复合.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Agent Harness 运行框架.md",
+      "target": "wiki/concepts/上下文窗口.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -39240,7 +40975,7 @@
     },
     {
       "source": "wiki/concepts/Agent 轨迹分析.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -40044,7 +41779,7 @@
     },
     {
       "source": "wiki/concepts/Agent计算机接口.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "uses",
       "bidirectional": false
     },
@@ -40116,7 +41851,7 @@
     },
     {
       "source": "wiki/concepts/Agent计算机接口.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -44255,6 +45990,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/Claude Code 权限模式.md",
+      "target": "wiki/concepts/Prompt Injection.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude Code 沙箱机制.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude Code 沙箱机制.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude Code 沙箱机制.md",
+      "target": "wiki/concepts/纵深防御.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude Code 沙箱机制.md",
+      "target": "wiki/concepts/提示注入防御.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Claude Code 沙箱机制.md",
+      "target": "wiki/concepts/权限模型.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Claude Code 记忆系统.md",
       "target": "wiki/concepts/斜杠命令（Slash Commands）.md",
       "relation": "uses",
@@ -45960,7 +47731,7 @@
     },
     {
       "source": "wiki/concepts/Context Management.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -46885,6 +48656,12 @@
     {
       "source": "wiki/concepts/Cross-encoder与Bi-encoder.md",
       "target": "wiki/concepts/近似最近邻检索.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Cross-encoder与Bi-encoder.md",
+      "target": "wiki/entities/BM25.md",
       "relation": "compares_to",
       "bidirectional": false
     },
@@ -53676,7 +55453,7 @@
     },
     {
       "source": "wiki/concepts/HumanEvalFix.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "compares_to",
       "bidirectional": false
     },
@@ -53688,7 +55465,7 @@
     },
     {
       "source": "wiki/concepts/HumanEvalFix.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -57354,7 +59131,7 @@
     },
     {
       "source": "wiki/concepts/Localization.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "related_to",
       "bidirectional": false
     },
@@ -57372,7 +59149,7 @@
     },
     {
       "source": "wiki/concepts/Localization.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -57589,6 +59366,18 @@
     {
       "source": "wiki/concepts/Lua-OOP.md",
       "target": "wiki/concepts/游戏引擎架构.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lua-eventData访问模式.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lua-eventData访问模式.md",
+      "target": "wiki/concepts/Luau.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -58277,6 +60066,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/Lua数组索引从1开始.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lua数组索引从1开始.md",
+      "target": "wiki/concepts/table-unpack表构造器陷阱.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Lua模块系统.md",
       "target": "wiki/concepts/Lua-table.md",
       "relation": "depends_on",
@@ -58423,6 +60224,18 @@
     {
       "source": "wiki/concepts/Lua状态机.md",
       "target": "wiki/concepts/Lua脚本宿主模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lua类型标注规范.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Lua类型标注规范.md",
+      "target": "wiki/entities/EmmyLua.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -59329,6 +61142,24 @@
     {
       "source": "wiki/concepts/MCP.md",
       "target": "wiki/entities/Slack.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP.md",
+      "target": "wiki/concepts/工具测试 Agent.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP.md",
+      "target": "wiki/concepts/代码执行.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/MCP.md",
+      "target": "wiki/concepts/安全沙箱.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -60343,6 +62174,12 @@
     {
       "source": "wiki/concepts/Managed-Agents.md",
       "target": "wiki/concepts/会话日志.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Managed-Agents.md",
+      "target": "wiki/concepts/可扩展的受管理 Agent.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -61999,6 +63836,36 @@
     {
       "source": "wiki/concepts/NanoVG分辨率模式.md",
       "target": "wiki/entities/UrhoX材质库.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/NanoVG字体创建规范.md",
+      "target": "wiki/entities/NanoVG.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/NanoVG字体创建规范.md",
+      "target": "wiki/concepts/NanoVG渲染事件模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/NanoVG渲染事件模式.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/NanoVG渲染事件模式.md",
+      "target": "wiki/entities/NanoVG.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/NanoVG渲染事件模式.md",
+      "target": "wiki/concepts/UI系统选择规范.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -64049,6 +65916,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/concepts/ACI (Agent-Computer Interface).md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Poka-Yoke 工具设计.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/Policy-First 设计.md",
       "target": "wiki/entities/Codex CLI.md",
       "relation": "implements",
@@ -64093,6 +65996,24 @@
     {
       "source": "wiki/concepts/Policy-First 设计.md",
       "target": "wiki/concepts/三道防线模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Postmortem 文化.md",
+      "target": "wiki/concepts/涌现行为.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Postmortem 文化.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/Postmortem 文化.md",
+      "target": "wiki/concepts/彩虹部署.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -66954,6 +68875,12 @@
     },
     {
       "source": "wiki/concepts/SEO搜索引擎优化.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SEO搜索引擎优化.md",
       "target": "wiki/entities/Google.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -67794,6 +69721,12 @@
     },
     {
       "source": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/concepts/Agent计算机接口.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SWE-bench.md",
       "target": "wiki/concepts/Agent评估方法论.md",
       "relation": "implements",
       "bidirectional": false
@@ -67836,7 +69769,31 @@
     },
     {
       "source": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/concepts/Agent计算机接口.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SWE-bench.md",
       "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/Claude 3.5 Sonnet.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/concepts/Think 工具.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/concepts/HumanEvalFix.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -70092,6 +72049,12 @@
     },
     {
       "source": "wiki/concepts/TF-IDF.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/TF-IDF.md",
       "target": "wiki/concepts/向量空间模型.md",
       "relation": "implements",
       "bidirectional": false
@@ -71861,6 +73824,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/UI系统选择规范.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/UI系统选择规范.md",
+      "target": "wiki/entities/NanoVG.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/UNIX.md",
       "target": "wiki/entities/Dennis Ritchie.md",
       "relation": "caused_by",
@@ -73154,6 +75129,12 @@
       "source": "wiki/concepts/Voyager.md",
       "target": "wiki/concepts/ReAct.md",
       "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/WAND算法.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "uses",
       "bidirectional": false
     },
     {
@@ -77243,6 +79224,24 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/三级自主权模型.md",
+      "target": "wiki/concepts/Agent vs Workflow.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三级自主权模型.md",
+      "target": "wiki/concepts/持续验证循环.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/三级自主权模型.md",
+      "target": "wiki/concepts/ACI 设计原则.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/三线表.md",
       "target": "wiki/concepts/表格识别.md",
       "relation": "part_of",
@@ -77405,6 +79404,30 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/上下文传递协议.md",
+      "target": "wiki/concepts/上下文工程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文传递协议.md",
+      "target": "wiki/concepts/外化工作记忆.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文传递协议.md",
+      "target": "wiki/concepts/特性追踪器.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文传递协议.md",
+      "target": "wiki/concepts/技术债务追踪.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/上下文压缩.md",
       "target": "wiki/concepts/Context-Engineering.md",
       "relation": "implements",
@@ -77456,6 +79479,18 @@
       "source": "wiki/concepts/上下文压缩.md",
       "target": "wiki/concepts/同步编排引擎.md",
       "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文压缩.md",
+      "target": "wiki/concepts/Agent Harness 运行框架.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文压缩.md",
+      "target": "wiki/concepts/Session 交接机制.md",
+      "relation": "compares_to",
       "bidirectional": false
     },
     {
@@ -77579,6 +79614,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/上下文压缩.md",
+      "target": "wiki/concepts/Agent Harness 运行框架.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文压缩.md",
+      "target": "wiki/concepts/Session 交接机制.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/上下文压缩（Context Compaction）.md",
       "target": "wiki/concepts/上下文窗口.md",
       "relation": "depends_on",
@@ -77617,6 +79664,108 @@
     {
       "source": "wiki/concepts/上下文压缩（Context Compaction）.md",
       "target": "wiki/concepts/渐进式披露（Progressive Disclosure）.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/RAG 系统.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/上下文腐烂.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/即时上下文检索.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/上下文压缩.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/结构化笔记法.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/子 Agent 模式（Sub-Agent Pattern）.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/Token 资源管理.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/上下文压缩.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/结构化笔记法.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/子 Agent 模式（Sub-Agent Pattern）.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/上下文腐烂.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文工程.md",
+      "target": "wiki/concepts/即时上下文检索.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -77689,6 +79838,42 @@
     {
       "source": "wiki/concepts/上下文感知.md",
       "target": "wiki/concepts/Context-Engineering.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/entities/Claude 3 Haiku.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/projects/LightRAG.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/projects/GraphRAG.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/concepts/检索增强生成.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上下文检索.md",
+      "target": "wiki/concepts/语义嵌入.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -78553,6 +80738,24 @@
     {
       "source": "wiki/concepts/上下文预算管理.md",
       "target": "wiki/entities/Ralph Loop.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上游依赖变更.md",
+      "target": "wiki/concepts/Postmortem 文化.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上游依赖变更.md",
+      "target": "wiki/concepts/提示工程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/上游依赖变更.md",
+      "target": "wiki/concepts/ACI (Agent-Computer Interface).md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -83222,6 +85425,12 @@
       "source": "wiki/concepts/倒排索引.md",
       "target": "wiki/concepts/搜索引擎架构.md",
       "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/倒排索引.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "used_by",
       "bidirectional": false
     },
     {
@@ -90378,6 +92587,12 @@
     },
     {
       "source": "wiki/concepts/向量空间模型.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/向量空间模型.md",
       "target": "wiki/concepts/Embedding.md",
       "relation": "compares_to",
       "bidirectional": false
@@ -93852,6 +96067,12 @@
     },
     {
       "source": "wiki/concepts/学习排序.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/学习排序.md",
       "target": "wiki/concepts/搜索引擎架构.md",
       "relation": "part_of",
       "bidirectional": false
@@ -95323,6 +97544,60 @@
     {
       "source": "wiki/concepts/工具注册机制.md",
       "target": "wiki/concepts/数据分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具测试 Agent.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具测试 Agent.md",
+      "target": "wiki/concepts/防错设计.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具测试 Agent.md",
+      "target": "wiki/concepts/多 Agent 系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具组合模式.md",
+      "target": "wiki/concepts/工具错误处理.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具组合模式.md",
+      "target": "wiki/concepts/并行工具调用.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具结果缓存.md",
+      "target": "wiki/concepts/并行工具调用.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具选择控制.md",
+      "target": "wiki/concepts/并行工具调用.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具错误处理.md",
+      "target": "wiki/concepts/错误复合.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/工具错误处理.md",
+      "target": "wiki/concepts/并行工具调用.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -98639,6 +100914,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/持续验证循环.md",
+      "target": "wiki/concepts/Evaluator-Optimizer 模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/持续验证循环.md",
+      "target": "wiki/concepts/特性追踪器.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/指令调优.md",
       "target": "wiki/entities/P5 论文.md",
       "relation": "compares_to",
@@ -99497,6 +101784,72 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/上下文工程.md",
+      "relation": "supersedes",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/Token 资源管理.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/上下文工程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示工程.md",
+      "target": "wiki/concepts/Token 资源管理.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示更新副作用.md",
+      "target": "wiki/concepts/提示工程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示更新副作用.md",
+      "target": "wiki/concepts/配置漂移.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示更新副作用.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示注入防御.md",
+      "target": "wiki/concepts/纵深防御.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/提示注入防御.md",
+      "target": "wiki/concepts/提示工程.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/提示词缓存.md",
       "target": "wiki/concepts/上下文压缩.md",
       "relation": "related_to",
@@ -99541,6 +101894,12 @@
     {
       "source": "wiki/concepts/搜索引擎架构.md",
       "target": "wiki/concepts/TF-IDF.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/搜索引擎架构.md",
+      "target": "wiki/entities/BM25.md",
       "relation": "uses",
       "bidirectional": false
     },
@@ -101249,6 +103608,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/智能检查点触发.md",
+      "target": "wiki/concepts/特性追踪器.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/智能检查点触发.md",
+      "target": "wiki/concepts/上下文传递协议.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/暗物质.md",
       "target": "wiki/entities/弗里茨·兹威基.md",
       "relation": "wikilink",
@@ -102713,6 +105084,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/枚举值使用规范.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/枚举值使用规范.md",
+      "target": "wiki/concepts/UrhoX输入类API.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/查询处理.md",
       "target": "wiki/concepts/搜索引擎架构.md",
       "relation": "part_of",
@@ -102733,6 +105116,12 @@
     {
       "source": "wiki/concepts/查询处理.md",
       "target": "wiki/concepts/WAND算法.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/查询处理.md",
+      "target": "wiki/entities/BM25.md",
       "relation": "uses",
       "bidirectional": false
     },
@@ -105888,6 +108277,12 @@
     },
     {
       "source": "wiki/concepts/混合搜索.md",
+      "target": "wiki/entities/BM25.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/混合搜索.md",
       "target": "wiki/entities/MemPalace.md",
       "relation": "used_by",
       "bidirectional": false
@@ -105913,6 +108308,12 @@
     {
       "source": "wiki/concepts/混合搜索.md",
       "target": "wiki/concepts/近似最近邻检索.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/混合搜索.md",
+      "target": "wiki/entities/BM25.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -107317,6 +109718,36 @@
     {
       "source": "wiki/concepts/理解社会学.md",
       "target": "wiki/entities/新教伦理与资本主义精神.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/瑞士奶酪模型.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/瑞士奶酪模型.md",
+      "target": "wiki/concepts/Agent 评测体系.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/瑞士奶酪模型.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/瑞士奶酪模型.md",
+      "target": "wiki/concepts/Agent 评测体系.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/瑞士奶酪模型.md",
+      "target": "wiki/concepts/LLM-as-Judge.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -110291,6 +112722,12 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/米制单位系统.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/精确短语引号提取.md",
       "target": "wiki/entities/MemPalace.md",
       "relation": "used_by",
@@ -113261,6 +115698,24 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/行为回归测试.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行为回归测试.md",
+      "target": "wiki/concepts/提示更新副作用.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/行为回归测试.md",
+      "target": "wiki/concepts/Postmortem 文化.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/行为机器人学.md",
       "target": "wiki/concepts/包容体系结构.md",
       "relation": "depends_on",
@@ -114905,6 +117360,36 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/concepts/词法分析.md",
+      "target": "wiki/concepts/语法分析.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/词法分析.md",
+      "target": "wiki/concepts/接口规范.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/词法分析.md",
+      "target": "wiki/concepts/语法分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/词法分析.md",
+      "target": "wiki/concepts/接口规范.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/词法分析.md",
+      "target": "wiki/concepts/并行 Agent 开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/concepts/语义 ID.md",
       "target": "wiki/entities/P5 论文.md",
       "relation": "compares_to",
@@ -114973,6 +117458,36 @@
     {
       "source": "wiki/concepts/语义 ID.md",
       "target": "wiki/concepts/嵌入表示.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/语义分析.md",
+      "target": "wiki/concepts/语法分析.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/语义分析.md",
+      "target": "wiki/concepts/代码生成.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/语义分析.md",
+      "target": "wiki/concepts/接口规范.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/语义分析.md",
+      "target": "wiki/concepts/语法分析.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/语义分析.md",
+      "target": "wiki/concepts/接口规范.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -115699,6 +118214,18 @@
     {
       "source": "wiki/concepts/资源与能力差异.md",
       "target": "wiki/concepts/Agent评估方法论.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/资源路径引用规范.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/concepts/资源路径引用规范.md",
+      "target": "wiki/concepts/Lua模块系统.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -123516,6 +126043,30 @@
     },
     {
       "source": "wiki/entities/Anthropic.md",
+      "target": "wiki/concepts/上下文检索.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Anthropic.md",
+      "target": "wiki/entities/Gian Segato.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Anthropic.md",
+      "target": "wiki/concepts/基础设施噪声.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Anthropic.md",
+      "target": "wiki/entities/Terminal-Bench 2.0.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Anthropic.md",
       "target": "wiki/entities/OpenAI.md",
       "relation": "wikilink",
       "bidirectional": false
@@ -123595,6 +126146,18 @@
     {
       "source": "wiki/entities/Apache Spark MLlib.md",
       "target": "wiki/concepts/分布式系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/App Sandbox.md",
+      "target": "wiki/concepts/Claude Code 沙箱机制.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/App Sandbox.md",
+      "target": "wiki/entities/seccomp-BPF.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -124183,6 +126746,12 @@
     {
       "source": "wiki/entities/BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文).md",
       "target": "wiki/entities/Word2Vec.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/BM25.md",
+      "target": "wiki/concepts/TF-IDF.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -125219,6 +127788,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Box2D.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Box2D.md",
+      "target": "wiki/concepts/游戏脚手架模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Brian Gerkey.md",
       "target": "wiki/concepts/ROS (Robot Operating System).md",
       "relation": "caused",
@@ -126157,6 +128738,66 @@
     {
       "source": "wiki/entities/Cinematch.md",
       "target": "wiki/entities/timeSVD++.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3 Haiku.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "extends",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/concepts/Think 工具.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Claude 3.5 Sonnet.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -134021,6 +136662,48 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Gian Segato.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Gian Segato.md",
+      "target": "wiki/entities/Terminal-Bench 2.0.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/GitHub Copilot.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/GitHub Copilot.md",
+      "target": "wiki/concepts/抗 AI 评测设计.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/GitHub Copilot.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "relates_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/GitHub Copilot.md",
+      "target": "wiki/entities/Claude Code.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/GitHub Copilot.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Go To Statement Considered Harmful 论文.md",
       "target": "wiki/entities/Edsger Dijkstra.md",
       "relation": "caused_by",
@@ -137453,6 +140136,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Jeremy Fox.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jeremy Fox.md",
+      "target": "wiki/concepts/多 Agent 系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jeremy Fox.md",
+      "target": "wiki/entities/Jeremy Hadfield.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jeremy Hadfield.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jeremy Hadfield.md",
+      "target": "wiki/concepts/多 Agent 系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jeremy Hadfield.md",
+      "target": "wiki/entities/Daniel Ford.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/Jiaqi Ma.md",
       "target": "wiki/entities/MMoE 论文.md",
       "relation": "wikilink",
@@ -137545,6 +140264,42 @@
     {
       "source": "wiki/entities/Jimmy Ba.md",
       "target": "wiki/concepts/Transformer 架构.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/entities/Mikaela Grace.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "implements",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/entities/Mikaela Grace.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Jiri De Jonghe.md",
+      "target": "wiki/concepts/评测驱动开发.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -138517,6 +141272,24 @@
     {
       "source": "wiki/entities/Ken Thompson.md",
       "target": "wiki/concepts/C 语言.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Kenneth Lien.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Kenneth Lien.md",
+      "target": "wiki/concepts/多 Agent 系统.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Kenneth Lien.md",
+      "target": "wiki/entities/Jeremy Hadfield.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -142307,6 +145080,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/Model Context Protocol.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/Model Context Protocol.md",
+      "target": "wiki/concepts/AI Agent 架构模式.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/MoonSharp.md",
       "target": "wiki/concepts/Lua脚本宿主模式.md",
       "relation": "implements",
@@ -143767,6 +146552,36 @@
     {
       "source": "wiki/entities/ONNX Runtime.md",
       "target": "wiki/entities/MinerU.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OSWorld.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OSWorld.md",
+      "target": "wiki/entities/WebArena.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OSWorld.md",
+      "target": "wiki/concepts/评测驱动开发.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OSWorld.md",
+      "target": "wiki/entities/WebArena.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/OSWorld.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -148415,6 +151230,24 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/SRE.md",
+      "target": "wiki/concepts/Postmortem 文化.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/SRE.md",
+      "target": "wiki/concepts/彩虹部署.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/SRE.md",
+      "target": "wiki/concepts/行为回归测试.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/SSE-PT.md",
       "target": "wiki/entities/SASRec.md",
       "relation": "extends",
@@ -148542,7 +151375,7 @@
     },
     {
       "source": "wiki/entities/SWE-agent.md",
-      "target": "wiki/concepts/SWE-bench.md",
+      "target": "wiki/entities/SWE-bench.md",
       "relation": "uses",
       "bidirectional": false
     },
@@ -148597,6 +151430,18 @@
     {
       "source": "wiki/entities/SWE-agent.md",
       "target": "wiki/concepts/环境反馈设计.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/SWE-bench.md",
+      "target": "wiki/entities/Terminal-Bench 2.0.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/SWE-bench.md",
+      "target": "wiki/entities/Anthropic.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -154655,6 +157500,18 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/entities/cjson.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/cjson.md",
+      "target": "wiki/concepts/Lua数据驱动设计.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/entities/clangd.md",
       "target": "wiki/concepts/LSP（语言服务器协议）.md",
       "relation": "implements",
@@ -156073,6 +158930,18 @@
     {
       "source": "wiki/entities/timeSVD++.md",
       "target": "wiki/concepts/会话推荐.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/tolua++.md",
+      "target": "wiki/entities/UrhoX引擎.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/entities/tolua++.md",
+      "target": "wiki/concepts/Lua-eventData访问模式.md",
       "relation": "wikilink",
       "bidirectional": false
     },
@@ -169157,6 +172026,42 @@
       "bidirectional": false
     },
     {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "compares_to",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "uses",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "part_of",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/entities/SWE-bench.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/concepts/Agent 架构与设计原则.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
+      "source": "wiki/projects/τ-Bench.md",
+      "target": "wiki/entities/Anthropic.md",
+      "relation": "wikilink",
+      "bidirectional": false
+    },
+    {
       "source": "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
       "target": "wiki/entities/Bun-Runtime.md",
       "relation": "implements",
@@ -171865,6 +174770,7 @@
         "wiki/concepts/A2A 协议.md",
         "wiki/concepts/A3C.md",
         "wiki/concepts/AAAK 方言.md",
+        "wiki/concepts/ACI (Agent-Computer Interface).md",
         "wiki/concepts/ACI 设计原则.md",
         "wiki/concepts/ACP 编辑器集成.md",
         "wiki/concepts/ACP协议.md",
@@ -171910,6 +174816,7 @@
         "wiki/concepts/Adam（自适应矩估计）.md",
         "wiki/concepts/Adjusted Cosine Similarity.md",
         "wiki/concepts/Advisor Tool（顾问工具）.md",
+        "wiki/concepts/Agent Harness 运行框架.md",
         "wiki/concepts/Agent Harness模式.md",
         "wiki/concepts/Agent Skills 三层渐进式加载.md",
         "wiki/concepts/Agent Skills 指南.md",
@@ -172000,6 +174907,7 @@
         "wiki/concepts/Claude Code 工程设计哲学.md",
         "wiki/concepts/Claude Code 插件系统.md",
         "wiki/concepts/Claude Code 权限模式.md",
+        "wiki/concepts/Claude Code 沙箱机制.md",
         "wiki/concepts/Claude Code 记忆系统.md",
         "wiki/concepts/Claude Code四大能力基元.md",
         "wiki/concepts/Claude Connectors.md",
@@ -172239,6 +175147,7 @@
         "wiki/concepts/Lua userdata.md",
         "wiki/concepts/Lua 栈操作模型.md",
         "wiki/concepts/Lua-OOP.md",
+        "wiki/concepts/Lua-eventData访问模式.md",
         "wiki/concepts/Lua-metatable.md",
         "wiki/concepts/Lua-table-游戏战斗架构.md",
         "wiki/concepts/Lua-table-用法.md",
@@ -172259,10 +175168,12 @@
         "wiki/concepts/Lua控制流.md",
         "wiki/concepts/Lua数据文件模板.md",
         "wiki/concepts/Lua数据驱动设计.md",
+        "wiki/concepts/Lua数组索引从1开始.md",
         "wiki/concepts/Lua模块系统.md",
         "wiki/concepts/Lua沙盒系统.md",
         "wiki/concepts/Lua热重载.md",
         "wiki/concepts/Lua状态机.md",
+        "wiki/concepts/Lua类型标注规范.md",
         "wiki/concepts/Lua脚本宿主模式.md",
         "wiki/concepts/Luong注意力.md",
         "wiki/concepts/MC Dropout.md",
@@ -172319,6 +175230,8 @@
         "wiki/concepts/NP 完全性.md",
         "wiki/concepts/NP完全性.md",
         "wiki/concepts/NanoVG分辨率模式.md",
+        "wiki/concepts/NanoVG字体创建规范.md",
+        "wiki/concepts/NanoVG渲染事件模式.md",
         "wiki/concepts/NeuMF.md",
         "wiki/concepts/NoisyNets.md",
         "wiki/concepts/Nyquist Validation Layer.md",
@@ -172332,6 +175245,7 @@
         "wiki/concepts/OpenAgents.md",
         "wiki/concepts/Orchestrator Agent.md",
         "wiki/concepts/Orchestrator-Subagent-Pattern.md",
+        "wiki/concepts/Orchestrator-Workers 模式.md",
         "wiki/concepts/P vs NP.md",
         "wiki/concepts/P vs NP问题.md",
         "wiki/concepts/PBR材质系统.md",
@@ -172357,7 +175271,9 @@
         "wiki/concepts/Plan-Work-Review-Compound.md",
         "wiki/concepts/Plugins.md",
         "wiki/concepts/Pointwise 学习.md",
+        "wiki/concepts/Poka-Yoke 工具设计.md",
         "wiki/concepts/Policy-First 设计.md",
+        "wiki/concepts/Postmortem 文化.md",
         "wiki/concepts/Pre-LN架构.md",
         "wiki/concepts/Pre_commit Hooks.md",
         "wiki/concepts/Proactive Agent.md",
@@ -172410,6 +175326,7 @@
         "wiki/concepts/Risk Grading System.md",
         "wiki/concepts/Roblox API.md",
         "wiki/concepts/Romberg积分.md",
+        "wiki/concepts/Routing 模式.md",
         "wiki/concepts/S-表达式.md",
         "wiki/concepts/SAC.md",
         "wiki/concepts/SAT 问题.md",
@@ -172519,6 +175436,7 @@
         "wiki/concepts/TypeScript.md",
         "wiki/concepts/U-Net.md",
         "wiki/concepts/UI Design Contract.md",
+        "wiki/concepts/UI系统选择规范.md",
         "wiki/concepts/UNIX.md",
         "wiki/concepts/URL.md",
         "wiki/concepts/UX设计双模式架构.md",
@@ -172597,6 +175515,7 @@
         "wiki/concepts/goto语句.md",
         "wiki/concepts/h2A 实时转向队列.md",
         "wiki/concepts/happened-before 关系.md",
+        "wiki/concepts/manifest-json检查规范.md",
         "wiki/concepts/modern-cli-tools.md",
         "wiki/concepts/nO 主循环.md",
         "wiki/concepts/offline-online gap.md",
@@ -172620,13 +175539,17 @@
         "wiki/concepts/三层分离架构.md",
         "wiki/concepts/三层记忆架构.md",
         "wiki/concepts/三种 API 模式.md",
+        "wiki/concepts/三级自主权模型.md",
         "wiki/concepts/三线表.md",
         "wiki/concepts/三角形绕序与面朝向.md",
         "wiki/concepts/三道防线模式.md",
         "wiki/concepts/三阶段定律.md",
+        "wiki/concepts/上下文传递协议.md",
         "wiki/concepts/上下文压缩.md",
         "wiki/concepts/上下文压缩（Context Compaction）.md",
+        "wiki/concepts/上下文工程.md",
         "wiki/concepts/上下文感知.md",
+        "wiki/concepts/上下文检索.md",
         "wiki/concepts/上下文漂移.md",
         "wiki/concepts/上下文焦虑.md",
         "wiki/concepts/上下文窗口.md",
@@ -172638,6 +175561,7 @@
         "wiki/concepts/上下文腐烂.md",
         "wiki/concepts/上下文重置.md",
         "wiki/concepts/上下文预算管理.md",
+        "wiki/concepts/上游依赖变更.md",
         "wiki/concepts/下一句预测（NSP）.md",
         "wiki/concepts/不可约矩阵.md",
         "wiki/concepts/不同接口的相似类.md",
@@ -172669,6 +175593,7 @@
         "wiki/concepts/交叉积变换.md",
         "wiki/concepts/交往理性.md",
         "wiki/concepts/交替最小二乘法 ALS.md",
+        "wiki/concepts/交织推理.md",
         "wiki/concepts/交错式思考.md",
         "wiki/concepts/人名权重增强.md",
         "wiki/concepts/人工势场法.md",
@@ -172893,6 +175818,7 @@
         "wiki/concepts/增量挖掘.md",
         "wiki/concepts/外部工具集成.md",
         "wiki/concepts/多Agent架构.md",
+        "wiki/concepts/多人游戏模式判断.md",
         "wiki/concepts/多任务学习.md",
         "wiki/concepts/多信使天文学.md",
         "wiki/concepts/多元主义.md",
@@ -172959,6 +175885,11 @@
         "wiki/concepts/工作台 vs 长期记忆.md",
         "wiki/concepts/工作记忆.md",
         "wiki/concepts/工具注册机制.md",
+        "wiki/concepts/工具测试 Agent.md",
+        "wiki/concepts/工具组合模式.md",
+        "wiki/concepts/工具结果缓存.md",
+        "wiki/concepts/工具选择控制.md",
+        "wiki/concepts/工具错误处理.md",
         "wiki/concepts/工程化UX规则体系.md",
         "wiki/concepts/布尔可满足性问题.md",
         "wiki/concepts/布罗卡区.md",
@@ -173033,6 +175964,7 @@
         "wiki/concepts/拟剧论.md",
         "wiki/concepts/拥塞控制.md",
         "wiki/concepts/择偶梯度理论.md",
+        "wiki/concepts/持续验证循环.md",
         "wiki/concepts/指令调优.md",
         "wiki/concepts/指数平滑.md",
         "wiki/concepts/挖掘管道.md",
@@ -173048,6 +175980,9 @@
         "wiki/concepts/推荐系统 Scaling Laws.md",
         "wiki/concepts/推荐系统基础模型.md",
         "wiki/concepts/掩码语言模型（MLM）.md",
+        "wiki/concepts/提示工程.md",
+        "wiki/concepts/提示更新副作用.md",
+        "wiki/concepts/提示注入防御.md",
         "wiki/concepts/提示词缓存.md",
         "wiki/concepts/搜索引擎架构.md",
         "wiki/concepts/操作空间控制.md",
@@ -173089,6 +176024,7 @@
         "wiki/concepts/显式反馈.md",
         "wiki/concepts/显梦.md",
         "wiki/concepts/晚期现代性.md",
+        "wiki/concepts/智能检查点触发.md",
         "wiki/concepts/暗物质.md",
         "wiki/concepts/暗物质晕.md",
         "wiki/concepts/暗能量.md",
@@ -173122,6 +176058,7 @@
         "wiki/concepts/极大值原理（Pontryagin Maximum Principle）.md",
         "wiki/concepts/极大极小定理.md",
         "wiki/concepts/构型空间方法.md",
+        "wiki/concepts/枚举值使用规范.md",
         "wiki/concepts/查询处理.md",
         "wiki/concepts/柯尔莫哥洛夫复杂性.md",
         "wiki/concepts/标准烛光.md",
@@ -173218,6 +176155,7 @@
         "wiki/concepts/理性预期假说.md",
         "wiki/concepts/理想类型.md",
         "wiki/concepts/理解社会学.md",
+        "wiki/concepts/瑞士奶酪模型.md",
         "wiki/concepts/甚长基线干涉测量.md",
         "wiki/concepts/生命史方法.md",
         "wiki/concepts/生命周期 Hooks.md",
@@ -173279,6 +176217,7 @@
         "wiki/concepts/算法信息论.md",
         "wiki/concepts/算法复杂度.md",
         "wiki/concepts/算法随机性.md",
+        "wiki/concepts/米制单位系统.md",
         "wiki/concepts/精确短语引号提取.md",
         "wiki/concepts/精英主义.md",
         "wiki/concepts/精英循环理论.md",
@@ -173353,6 +176292,7 @@
         "wiki/concepts/行业色彩情绪映射.md",
         "wiki/concepts/行业设计反模式系统.md",
         "wiki/concepts/行为、目的与目的论.md",
+        "wiki/concepts/行为回归测试.md",
         "wiki/concepts/行为机器人学.md",
         "wiki/concepts/行星逆行运动.md",
         "wiki/concepts/表格单元格填充.md",
@@ -173389,7 +176329,9 @@
         "wiki/concepts/词向量（Word Embedding）.md",
         "wiki/concepts/词嵌入（Word Embedding）.md",
         "wiki/concepts/词汇不匹配问题.md",
+        "wiki/concepts/词法分析.md",
         "wiki/concepts/语义 ID.md",
+        "wiki/concepts/语义分析.md",
         "wiki/concepts/语义压缩.md",
         "wiki/concepts/语义奖励生成.md",
         "wiki/concepts/语义子目标生成.md",
@@ -173407,6 +176349,7 @@
         "wiki/concepts/负采样（Negative Sampling）.md",
         "wiki/concepts/质量保障.md",
         "wiki/concepts/资源与能力差异.md",
+        "wiki/concepts/资源路径引用规范.md",
         "wiki/concepts/赌徒破产问题.md",
         "wiki/concepts/赫布学习律.md",
         "wiki/concepts/超稳定系统（Design for a Brain）.md",
@@ -173583,6 +176526,7 @@
         "wiki/entities/Anthropic.md",
         "wiki/entities/Anthropic_frontend-design_Skill.md",
         "wiki/entities/Apache Spark MLlib.md",
+        "wiki/entities/App Sandbox.md",
         "wiki/entities/Apple Sandbox.md",
         "wiki/entities/Ashish Vaswani.md",
         "wiki/entities/Ashudeep Singh.md",
@@ -173592,6 +176536,7 @@
         "wiki/entities/BERT4Rec-extended.md",
         "wiki/entities/BERT4Rec.md",
         "wiki/entities/BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文).md",
+        "wiki/entities/BM25.md",
         "wiki/entities/BPR 论文.md",
         "wiki/entities/BST.md",
         "wiki/entities/Backus 函数式编程论文.md",
@@ -173609,6 +176554,7 @@
         "wiki/entities/Boris Cherny.md",
         "wiki/entities/Boris N. Oreshkin.md",
         "wiki/entities/Boston Dynamics.md",
+        "wiki/entities/Box2D.md",
         "wiki/entities/Brian Gerkey.md",
         "wiki/entities/Brian Kernighan.md",
         "wiki/entities/Brian M. Oki.md",
@@ -173624,6 +176570,7 @@
         "wiki/entities/CLAUDE.md.md",
         "wiki/entities/CVPR.md",
         "wiki/entities/Cara-Phillips.md",
+        "wiki/entities/Carlos E. Jiménez.md",
         "wiki/entities/Caser.md",
         "wiki/entities/Cerf-Kahn_TCP-IP协议.md",
         "wiki/entities/Chaofan Shou.md",
@@ -173634,6 +176581,8 @@
         "wiki/entities/Christian Szegedy.md",
         "wiki/entities/ChromaDB.md",
         "wiki/entities/Cinematch.md",
+        "wiki/entities/Claude 3 Haiku.md",
+        "wiki/entities/Claude 3.5 Sonnet.md",
         "wiki/entities/Claude Code.md",
         "wiki/entities/Claude Shannon.md",
         "wiki/entities/Claude-Code.md",
@@ -173816,6 +176765,7 @@
         "wiki/entities/Jia Deng.md",
         "wiki/entities/Jiaqi Ma.md",
         "wiki/entities/Jimmy Ba.md",
+        "wiki/entities/Jiri De Jonghe.md",
         "wiki/entities/John Backus.md",
         "wiki/entities/John Hopfield.md",
         "wiki/entities/John Mauchly.md",
@@ -173836,6 +176786,7 @@
         "wiki/entities/Karl Deisseroth.md",
         "wiki/entities/Katarina Juselius.md",
         "wiki/entities/Ken Thompson.md",
+        "wiki/entities/Kenneth Lien.md",
         "wiki/entities/Kenton Lee.md",
         "wiki/entities/Kieran Klaassen.md",
         "wiki/entities/Kieran-Klaassen.md",
@@ -173910,6 +176861,7 @@
         "wiki/entities/Milla Jovovich.md",
         "wiki/entities/MinerU.md",
         "wiki/entities/Ming-Wei Chang.md",
+        "wiki/entities/Model Context Protocol.md",
         "wiki/entities/MoonSharp.md",
         "wiki/entities/Morgan Quigley.md",
         "wiki/entities/MovieLens.md",
@@ -173940,6 +176892,7 @@
         "wiki/entities/Nougat.md",
         "wiki/entities/Nous Research.md",
         "wiki/entities/ONNX Runtime.md",
+        "wiki/entities/OSWorld.md",
         "wiki/entities/Observation of Gravitational Waves from a Binary Black Hole Merger.md",
         "wiki/entities/Oh-My-Zsh.md",
         "wiki/entities/Ollama.md",
@@ -173951,6 +176904,7 @@
         "wiki/entities/OpenCode.md",
         "wiki/entities/OpenP5.md",
         "wiki/entities/OpenTelemetry.md",
+        "wiki/entities/Opus 4.5.md",
         "wiki/entities/Oussama Khatib.md",
         "wiki/entities/P5 论文.md",
         "wiki/entities/PENGUIN_MODE.md",
@@ -174012,6 +176966,7 @@
         "wiki/entities/Roblox.md",
         "wiki/entities/Robot Manipulators: Mathematics, Programming, and Control.md",
         "wiki/entities/Rodney Brooks.md",
+        "wiki/entities/Rodrigo Olivares.md",
         "wiki/entities/Ronald J. Williams.md",
         "wiki/entities/Ronald Williams.md",
         "wiki/entities/Ross Girshick.md",
@@ -174029,9 +176984,11 @@
         "wiki/entities/SPT.md",
         "wiki/entities/SQL.md",
         "wiki/entities/SQLite.md",
+        "wiki/entities/SRE.md",
         "wiki/entities/SSE-PT.md",
         "wiki/entities/SVD++.md",
         "wiki/entities/SWE-agent.md",
+        "wiki/entities/SWE-bench.md",
         "wiki/entities/Sanjay Ghemawat.md",
         "wiki/entities/Santiago Ramón y Cajal.md",
         "wiki/entities/ScaNN.md",
@@ -174060,6 +177017,7 @@
         "wiki/entities/Stripe.md",
         "wiki/entities/Superpowers.md",
         "wiki/entities/Support-Vector Networks.md",
+        "wiki/entities/Sympy.md",
         "wiki/entities/T5.md",
         "wiki/entities/TALLRec.md",
         "wiki/entities/TCP-IP 论文.md",
@@ -174175,6 +177133,7 @@
         "wiki/entities/bat.md",
         "wiki/entities/bencium UX Designer.md",
         "wiki/entities/ccls.md",
+        "wiki/entities/cjson.md",
         "wiki/entities/clangd.md",
         "wiki/entities/commit.md",
         "wiki/entities/eclipse.jdt.ls.md",
@@ -174212,9 +177171,11 @@
         "wiki/entities/ripgrep.md",
         "wiki/entities/rls.md",
         "wiki/entities/rust-analyzer.md",
+        "wiki/entities/seccomp-BPF.md",
         "wiki/entities/seccomp.md",
         "wiki/entities/shadcn/ui.md",
         "wiki/entities/timeSVD++.md",
+        "wiki/entities/tolua++.md",
         "wiki/entities/typescript-language-server.md",
         "wiki/entities/uv.md",
         "wiki/entities/vtsls.md",
@@ -174530,6 +177491,7 @@
         "wiki/projects/Everything Claude Code.md",
         "wiki/projects/OpenAI Harness.md",
         "wiki/projects/UI UX Pro Max.md",
+        "wiki/projects/τ-Bench.md",
         "wiki/qa-insights/Cargo-for-X全能工具链模式.md",
         "wiki/qa-insights/数值PDE稳定收敛三角.md",
         "wiki/syntheses/AI对就业的深层影响.md",

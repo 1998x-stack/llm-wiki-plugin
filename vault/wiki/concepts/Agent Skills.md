@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 3
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 4
 tags: [技术, AI, 方法论, AI工程, claude-code, plugin-system, extensibility]
 aliases: ["Agent Skills", "SKILL.md", "技能系统", "Agent技能", "Skills"]
 relates_to:
@@ -146,6 +146,55 @@ Skills 可包含预写的 Python/Bash 脚本供 Claude 运行，而无需将脚�
 
 [[SKILL.md 格式规范|SKILL.md]] 文件本质上是实施计划，告诉 [[Claude_Code|Claude]] *如何* 做某事。随模型能力提升，仅用自然语言描述*该[[Skills|技能]]应实现什么*可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为[[Skills|技能]]本身。
 
+### Skills vs CLAUDE.md 对比
+
+| 特性 | CLAUDE.md | Skills |
+|---|---|---|
+| 加载时机 | **每次会话开始**自动加载 | **按需/相关时**加载 |
+| 内容范围 | 普遍适用的项目规则 | 特定领域或工作流知识 |
+| 触发方式 | 自动 | 自动（相关时）或显式调用（`/skill-name`） |
+| 上下文成本 | 每次会话固定消耗 | 仅在使用时消耗 |
+
+**核心差异**：CLAUDE.md 解决项目级持久化问题，而 Skills 处理特定情境相关的领域知识。将所有内容放入 CLAUDE.md 会导致过度膨胀，Skills 提供结构化的知识组件化方案。
+
+### 两种 Skill 示例
+
+**领域知识 Skill**：
+```yaml
+---
+name: api-conventions
+description: 我们服务的 REST API 设计约定
+---
+```
+包含具体的技术约定，如 URL 路径使用 kebab-case、JSON 属性使用 camelCase、列表端点始终分页等。
+
+**工作流 Skill**：
+```yaml
+---
+name: fix-issue
+description: 修复 GitHub Issue
+disable-model-invocation: true
+---
+```
+包含可执行的步骤流程，通过 `/fix-issue 1234` 显式调用，指导 Agent 完成从获取 Issue 到创建 PR 的完整工作流。
+
+### 工程价值
+
+1. **知识的组件化**：将"如何做某事"的知识从"做什么"中分离，Agent 系统可积累大量专业 Skills，按需组合使用。
+
+2. **可维护性**：Skills 像代码一样进行版本控制、审查和更新。团队可共享和协作维护 Skills 库，形成组织级的 AI 能力积累。
+
+3. **上下文效率**：只在需要时加载 Skills，避免 CLAUDE.md 过长问题，保持主上下文的清洁。
+
+### 实际应用场景
+
+| 场景 | Skill 示例 |
+|---|---|
+| 代码库迁移 | API 约定、命名规则、架构模式 |
+| 标准工作流 | fix-issue、code-review、deploy-staging |
+| 领域知识 | 法律合规检查、安全扫描、性能优化原则 |
+| 团队实践 | PR 格式、文档标准、测试覆盖要求 |
+
 ### 在 Anthropic 生态中的位置
 
 Agent [[Skills]] 是开放标准，支持：[[Claude_Code|Claude]].ai、[[Claude Code]]、[[Claude_Code|Claude]] Agent SDK、[[Claude_Code|Claude]] Developer Platform。
@@ -156,6 +205,7 @@ Agent [[Skills]] 是开放标准，支持：[[Claude_Code|Claude]].ai、[[Claude
 
 - [[raw/articles/ai-engineering/anthropic-engineering/Equipping agents for the real world with Agent Skills.md]] — Agent Skills 原始发布
 - [[raw/articles/ai-engineering/claude-blog/Improving skill-creator_ Test, measure, and refine Agent Skills.md]] — Skill-Creator 评估框架、基准测试、多智能体支持、描述优化
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/11_agent_skills.md]] — Skills 与 CLAUDE.md 对比、领域知识 vs 工作流 Skill 示例、工程价值分析
 
 ## 相关
 
@@ -164,3 +214,4 @@ Agent [[Skills]] 是开放标准，支持：[[Claude_Code|Claude]].ai、[[Claude
 - [[Context-Engineering]] — part_of（Skills 是上下文工程中知识注入的模块化手段）
 - [[Claude-Code]] — implemented_by（Claude Code 是 Skills 的主要运行环境）
 - [[MCP协议层]] — related_to（Skills 和 MCP 是互补的能力扩展机制）
+- [[CLAUDE.md]] — compares_to（Skills 按需加载 vs CLAUDE.md 每次会话自动加载）

@@ -52,11 +52,17 @@ relates_to:
    - **[[Agent Skills]] 规范**：被 [[Claude Code]]、[[OpenAI Codex]]、[[Cursor]]、[[Gemini CLI]] 共同采用
    - **[[Context Engineering]]**：[[Context Engineering|上下文工程]]方法论
    - **MCP（[[MCP|Model Context Protocol]]）**：2024 年末提出的标准协议，定义 AI Agent 与外部工具/数据源之间的通信方式，被称为"AI 的 USB 接口"
+   - **[[上下文检索]]**：2024 年 9 月提出的 RAG 改进方法，通过为文本块添加语境前缀降低检索失败率达 67%
 
 3. **社区项目**：
    - `anthropics/skills`：官方 [[Skills|Skill]] [[仓库]]（65k+ Stars）
    - `anthropics/claude-code`：[[Claude Code]] 主[[仓库]]
    - `frontend-design` [[Skills|Skill]]：反 [[AI Slop]] 的前端设计能力包
+
+4. **评测方法论研究**：
+   - [[Gian Segato]] 等发表关于 Agentic 编码评测中[[基础设施噪声]]的量化研究
+   - 发现在 [[Terminal-Bench 2.0]] 上不同资源配置之间的成功率差距达 6 个百分点
+   - 提出 Benchmark 资源配置的校准原则：分别规定 requests 和 limits，推荐 3× 带宽
 
 ## 来源
 - [[01_claude_code_skill_system_overview]] — 系统架构全景
@@ -69,3 +75,9 @@ relates_to:
 - [[OpenAI]] — compares_to
 - [[Agent Skills]] — implements
 - [[Constitutional AI]] — relates_to
+- [[上下文检索]] — implements
+- [[Gian Segato]] — employs（Anthropic Engineering 团队成员）
+- [[基础设施噪声]] — researches（量化研究并发表工程建议）
+- [[Auto Mode 安全分类器]] — created（Auto Mode 核心安全组件）
+- [[Prompt Injection]] — researches（防御机制研究）
+- [[抗 AI 评测设计]] — researches（Anthropic Engineering 团队研究并发表）

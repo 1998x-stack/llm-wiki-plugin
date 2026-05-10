@@ -1,12 +1,12 @@
 ---
 type: concept
 status: active
-confidence: 0.8
+confidence: 0.9
 created: 2026-04-16
-updated: 2026-04-16
-last_accessed: 2026-04-16
-source_count: 1
-tags: ["AI工程"]
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 2
+tags: ["AI工程", "安全性", "权限管理"]
 aliases: ["Permission Modes", "权限模式", "Claude Code Permissions"]
 relates_to:
   - target: "[[斜杠命令（Slash Commands）]]"
@@ -15,6 +15,12 @@ relates_to:
   - target: "[[Claude Code 插件系统]]"
     type: relates_to
     confidence: 0.6
+  - target: "[[Auto Mode 安全分类器]]"
+    type: implements
+    confidence: 0.9
+  - target: "[[Prompt Injection]]"
+    type: defends_against
+    confidence: 0.85
 supersedes: null
 ---
 
@@ -29,7 +35,7 @@ supersedes: null
    - **default**：默认模式，每步操作前确认
    - **acceptEdits**：自动接受文件编辑，但命令执行需确认
    - **plan**：仅规划模式，不执行任何文件修改或命令
-   - **auto**：自动模式，由后台安全分类器在每一步执行前审查（Research Preview）
+   - **auto**：自动模式，由 [[Auto Mode 安全分类器]] 在每一步执行前审查
    - **dontAsk**：不询问模式，自动执行所有操作
    - **bypass[[Permissions]]**：绕过所有[[Permissions|权限]]检查，完全自动化
 
@@ -43,7 +49,10 @@ supersedes: null
 
 ## 来源
 - [[09-advanced-features/README.md]] — Claude HowTo 高级功能指南
+- [[raw/articles/ai-engineering/anthropic-engineering/claude-engineering/15_claude_code_auto_mode.md]] — Claude Code Auto Mode 深度解析
 
 ## 相关
 - [[斜杠命令（Slash Commands）]] — uses
 - [[Claude Code 插件系统]] — relates_to
+- [[Auto Mode 安全分类器]] — implements
+- [[Prompt Injection]] — defends_against
