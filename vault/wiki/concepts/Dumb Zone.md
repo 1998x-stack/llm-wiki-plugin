@@ -37,8 +37,8 @@ Dumb Zone 是 L[[LM Agent]] 上下文使用量超过安全阈值后进入的性�
 2. **各模型的 Dumb Zone 阈值**：
    | 模型 | Context | Dumb Zone 估计 |
    |------|---------|---------------|
-   | Claude 3.5 Sonnet | 200k tokens | >120k tokens |
-   | Claude 3 Opus | 200k tokens | >120k tokens |
+   | [[Claude_Code|Claude]] 3.5 Sonnet | 200k tokens | >120k tokens |
+   | [[Claude_Code|Claude]] 3 Opus | 200k tokens | >120k tokens |
    | GPT-4o | 128k tokens | >80k tokens |
    | [[Gemini CLI|Gemini]] 1.5 Pro | 1M tokens | >700k tokens |
 
@@ -46,7 +46,7 @@ Dumb Zone 是 L[[LM Agent]] 上下文使用量超过安全阈值后进入的性�
 
 4. **[[Ralph Loop]] 的应对策略**：不在 Dumb Zone 中强行完成任务，而是主动退出（输出 `<promise>COMPLETE</promise>`），由外循环启动一个拥有干净上下文的新 Agent 实例继续工作。这比在退化上下文中继续操作更可靠。
 
-5. **为什么大窗口不能解决 Dumb Zone**：即使 [[Gemini CLI|Gemini]] 1.5 Pro 有 1M tokens 的[[上下文窗口]]，Dumb Zone 仍然存在（>700k tokens）。[[上下文策略]] 推荐即使在大窗口模型下也保持小粒度迭代（每迭代 1 Story），因为小粒度意味着更清晰的 git commit 和更低的失败恢复成本。
+5. **为什么大窗口不能解决 Dumb Zone**：即使 [[Gemini CLI|Gemini]] 1.5 Pro 有 1M tokens 的[[上下文窗口]]，Dumb Zone 仍然存在（>700k tokens）。[[上下文策略]] 推荐即使在大窗口模型下也保持小粒度迭代（每迭代 1 Story），因为小粒度意味着更清晰的 [[Git Commit|git commit]] 和更低的失败恢复成本。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/context-strategies.md]] — Context Strategies 文档中的 Dumb Zone 定义与模型对比表

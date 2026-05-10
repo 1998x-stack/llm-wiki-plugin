@@ -33,12 +33,12 @@ Bi-encoder（双编码器）和 Cross-encoder（跨编码器）是检索-重排�
 ## 关键内容
 
 1. **本质区别**：
-   - **Bi-encoder**：`score(q,d) = cos(E_q(q), E_d(d))`。文档向量**离线预计算并固定**，与查询无关。查询时只需计算查询向量再做 ANN 检索。本质是"在共享向量空间找几何最近点"。
+   - **Bi-encoder**：`score(q,d) = cos(E_q(q), E_d(d))`。文档向量**离线预[[计算]]并固定**，与查询无关。查询时只需[[计算]]查询向量再做 ANN 检索。本质是"在共享向量空间找几何最近点"。
    - **Cross-encoder**：`score(q,d) = f([q;d])`。将查询和文档拼接输入模型，**文档的表示随查询动态变化**。输出直接是相关性分数，无需向量空间。
 
 2. **为什么 Bi-encoder 不如 Cross-encoder**：Bi-encoder 的文档向量在离线阶段固定，无法捕捉"同一文档在不同查询语境下的不同相关性"。Cross-encoder 的 full attention 可以捕捉 query 和 doc 之间的细粒度交互（指代消解、隐含约束、多跳语义关联）。
 
-3. **大模型重排（LLM as reranker）优势**：BGE reranker（专用 cross-encoder）的能力边界集中在"相关性匹配"。大模型（GPT-4/Claude/Qwen）预训练见过海量模式，能处理：
+3. **大模型重排（LLM as reranker）优势**：BGE reranker（专用 cross-encoder）的能力边界集中在"相关性匹配"。大模型（GPT-4/[[Claude_Code|Claude]]/Qwen）预训练见过海量模式，能处理：
    - 同义改写、隐含约束
    - 世界知识和任务常识（"糖尿病患者能不能吃这个"）
    - 长上下文关键信息定位

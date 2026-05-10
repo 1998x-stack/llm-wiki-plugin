@@ -118,7 +118,7 @@ Evaluator（Playwright MCP，点击测试运行中的应用 + 对照准则打分
 Generator（修复 + 迭代，循环直到所有准则通过）
 ```
 
-核心设计原则：**每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。** Opus 4.5 需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务；Opus 4.6 发布后，这两个组件被移除，Harness 大幅简化而性能不降。
+核心设计原则：**每个 Harness 组件都在弥补模型当前的某个不足——当模型能力提升时，这些组件就该被移除。** Opus 4.5 需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务；[[Claude_Opus_4.6|Opus 4.6]] 发布后，这两个组件被移除，Harness 大幅简化而性能不降。
 
 这与 [[DeepAgents]] 的"batteries-included"路线形成对比：
 - **[[DeepAgents]] 路线**：预设丰富[[ROS (Robot Operating System)|中间件]]，适合企业多场景
@@ -129,16 +129,16 @@ Generator（修复 + 迭代，循环直到所有准则通过）
 Harness 编码了关于"模型不能独立做什么"的假设，但这些假设会随模型进步而**过时**。[[Anthropic]] 发现：
 
 - [[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入[[上下文重置]]
-- 但同样的 harness 用于 Claude Opus 4.5 时，该行为消失了——重置变成了死重
+- 但同样的 harness 用于 [[Claude_Code|Claude]] Opus 4.5 时，该行为消失了——重置变成了死重
 
-这引出了 [[元控制框架]] 的设计哲学：不对具体 harness 有主见，而是对**围绕 Claude 的接口**有主见，使 harness 实现可随模型能力自由替换。
+这引出了 [[元控制框架]] 的设计哲学：不对具体 harness 有主见，而是对**围绕 [[Claude_Code|Claude]] 的接口**有主见，使 harness 实现可随模型能力自由替换。
 
 ### 从 Harness 到 Meta-harness
 
 [[Managed-Agents]] 代表了 Harness 模式的下一个演进阶段——**[[元控制框架]]**（[[元控制框架]]）：
 - 定义通用接口（会话、harness、沙箱）而非具体实现
 - 每个组件可独立失败和替换
-- 通过 [[脑手分离架构]] 实现弹性：大脑（Claude + harness）与手（沙箱）和会话（事件日志）解耦
+- 通过 [[脑手分离架构]] 实现弹性：大脑（[[Claude_Code|Claude]] + harness）与手（沙箱）和会话（事件日志）解耦
 - 性能收益：p50 TTFT 下降 60%，p95 TTFT 下降 90%+
 
 ## 来源

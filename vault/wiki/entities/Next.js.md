@@ -24,7 +24,7 @@ supersedes: null
 # Next.js
 
 ## 概述
-[[Vercel]] 开发的基于 React 的全栈 Web 框架，支持服务端渲染（SSR）、静态生成（SSG）和 App [[网关与路由器|Router]] 架构。
+[[Vercel]] 开发的基于 [[React]] 的全栈 Web 框架，支持[[服务]]端渲染（SSR）、静态生成（SSG）和 App [[网关与路由器|Router]] 架构。
 
 ## 关键内容
 
@@ -32,11 +32,11 @@ supersedes: null
 
 2. **Server Components 优先**：App [[网关与路由器|Router]] 中默认使用 Server Components，可直接使用 `async/await` 获取数据，无需 `useEffect` 或客户端数据获取库。仅在有交互需求时通过 `'use client'` 指令标记 Client Components。
 
-3. **Route Handlers**：API 路由使用标准的 `GET`、`POST` 等导出函数处理 HTTP 请求，返回 `Response.json()` 对象，支持完整的错误处理和状态码控制。
+3. **Route Handlers**：API 路由使用标准的 `GET`、`POST` 等导出函数处理 HTTP 请求，返回 `Response.json()` 对象，支持完整的[[错误处理]]和状态码控制。
 
 4. **与 [[Prisma]] 集成**：常搭配 [[Prisma|Prisma ORM]] 使用，通过 `npx prisma migrate dev` 管理数据库迁移，`npx prisma studio` 提供 GUI 数据浏览，`npx prisma db seed` 导入测试数据。
 
-5. **在 [[Ralph Loop]] 中的角色**：作为 AGENTS.md 模板中推荐的默认技术栈，配合 [[TypeScript]]、[[Prisma]] 和 [[PostgreSQL]] 构成全栈开发基线。
+5. **在 [[Ralph Loop]] 中的角色**：作为 [[项目约定手册|AGENTS.md]] 模板中推荐的默认技术栈，配合 [[TypeScript]]、[[Prisma]] 和 [[PostgreSQL]] 构成全栈开发基线。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/AGENTS.md]] — Ralph Loop 项目约定模板

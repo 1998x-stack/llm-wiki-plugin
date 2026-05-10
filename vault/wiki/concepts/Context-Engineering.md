@@ -50,6 +50,30 @@ relates_to:
 - target: '[[上下文预算管理]]'
   type: implements
   confidence: 0.85
+- target: '[[RAG]]'
+  type: incorporates
+  confidence: 0.9
+- target: '[[Transformer架构]]'
+  type: builds_on
+  confidence: 0.8
+- target: '[[MCP]]'
+  type: uses
+  confidence: 0.85
+- target: '[[Andrej Karpathy]]'
+  type: contributed_by
+  confidence: 0.9
+- target: '[[LlamaIndex]]'
+  type: uses
+  confidence: 0.75
+- target: '[[RAGAs]]'
+  type: uses
+  confidence: 0.7
+- target: '[[Context Design]]'
+  type: implements
+  confidence: 0.8
+- target: '[[Claude Code Skills]]'
+  type: uses
+  confidence: 0.85
 supersedes: null
 ---
 
@@ -59,16 +83,196 @@ supersedes: null
 
 [[Context Engineering]]（[[Context Engineering|上下文工程]]）是指对 LLM 的有限[[上下文窗口]]进行策展与管理的系统化方法。[[Anthropic]] 将其定义为：在固定 token 预算下最大化有用信息密度，而非简单地将聊天历史拼接填满窗口。核心隐喻是把上下文当作**有限缓存**（Cache）和**工作集**（Working Set），而非日志记录器。
 
+> **定义**：系统性地设计、构建、管理和优化输入到 LLM [[上下文窗口]]中的所有信息——包括其内容、结构、来源、时序和动态组装逻辑——以稳定、可扩展地实现复杂 AI 应用目标的工程学科。
+
+## 诞生条件
+
+### 技术触发因素
+
+| 触发点 | 时间 | 内容 |
+|--------|------|------|
+| 长[[上下文窗口]]出现 | 2023 | [[Claude_Code|Claude]] 100K、GPT-4-turbo 128K，窗口从"稀缺资源"变为"待管理空间" |
+| RAG [[规范化理论|范式]]成熟 | 2023 | LlamaIndex / LangChain 标准化[[检索增强生成]]工作流 |
+| Agent 框架崛起 | 2023–2024 | AutoGPT、LangGraph、CrewAI 使多轮工具调用成为标准 |
+| 工具调用（Function [[天职|Calling]]）标准化 | 2023 | [[OpenAI]] Function [[天职|Calling]] API，工具结果需要结构化注入上下文 |
+| 模型能力上移 | 2024 | 推理质量提升，"上下文组装质量"成为主要瓶颈 |
+
+### 认知转折
+
+旧认知（[[Prompt Engineering]] 时代）：
+"如何让模型理解我的指令？"
+
+新认知（[[Context Engineering]] 时代）：
+"如何让模型在正确的时间，拥有完成任务所需的全部、且仅有必要的信息？"
+
+关键推手：[[Andrej Karpathy]] 2024 年提出"[[Context Engineering]] > [[Prompt Engineering]]"，
+将这一概念正式推向主流视野。
+
 ## 关键内容
 
 ### 四条经验规律驱动的设计原则
 
-| 规律 | [[Context Engineering|上下文工程]]含义 | 工程手段 |
-|------|--------------|---------|
-| **Zipf / Pareto** | 绝大多数价值来自少数热点上下文 | 热/温/冷分层，优先权加权 |
-| **Bradford / Lotka** | 少数核心来源覆盖大多数高价值信息 | source prior、每源上限（per-source cap） |
-| **Matthew Effect** | 早进入上下文的材料放大后续推理偏向 | 强制多源检索、反证位（counter-evidence lane） |
-| **Benford 式思路** | 用分布基线发现异常 | 监控 source share、stale fact rate、retrieval drift |
+| 规律                   | [[Context Engineering | 上下文工程]]含义                                       | 工程手段 |
+| -------------------- | --------------------- | ----------------------------------------------- | ---- |
+| **Zipf / Pareto**    | 绝大多数价值来自少数热点上下文       | 热/温/冷分层，优先权加权                                   |      |
+| **Bradford / Lotka** | 少数核心来源覆盖大多数高价值信息      | source prior、每源上限（per-source cap）               |      |
+| **Matthew Effect**   | 早进入上下文的材料放大后续推理偏向     | 强制多源检索、反证位（counter-evidence lane）               |      |
+| **Benford 式思路**      | 用分布基线发现异常             | 监控 source share、stale fact rate、retrieval drift |      |
+
+### Context 的信息架构
+
+[[Context Engineering]] 管理的不再只是"提示词"，而是整个[[上下文窗口]]的**信息架构**：
+
+```
+┌─────────────────────────────────────────────┐
+│              Context Window                  │
+├──────────────┬──────────────────────────────┤
+│ System       │ 角色定义、全局规则、工具声明    │
+│ Prompt       │                              │
+├──────────────┼──────────────────────────────┤
+│ Memory       │ 短期记忆（当前对话）           │
+│              │ 长期记忆（向量检索/KV存储）     │
+├──────────────┼──────────────────────────────┤
+│ Retrieved    │ RAG 检索内容                  │
+│ Knowledge    │ 知识库/文档片段               │
+├──────────────┼──────────────────────────────┤
+│ Tool         │ 工具定义 + 工具调用结果        │
+│ Results      │                              │
+├──────────────┼──────────────────────────────┤
+│ Conversation │ 历史对话（选择性保留）          │
+│ History      │                              │
+├──────────────┼──────────────────────────────┤
+│ Task         │ 当前任务描述 + 状态            │
+│ State        │                              │
+└──────────────┴──────────────────────────────┘
+```
+
+### 核心技术体系
+
+**1. RAG（检索增强生成）**
+
+```python
+# 基础 RAG 流程
+query → Embedding → 向量检索 → Top-K 文档 → 注入上下文 → 生成
+
+# 高级变体
+- HyDE（假设文档嵌入）：先让 LLM 生成假设答案，再用假设答案检索
+- RAG-Fusion：多查询 + 倒排融合重排序
+- GraphRAG：知识图谱 + 向量检索双通道
+- RAPTOR：递归摘要树，解决超长文档检索
+```
+
+**2. 记忆系统分层架构**
+
+```
+┌─────────────────────────────────────┐
+│ L1: 工作记忆（Working Memory）       │
+│     当前对话轮次，直接在上下文中      │
+├─────────────────────────────────────┤
+│ L2: 情节记忆（Episodic Memory）      │
+│     历史对话摘要，按需检索注入        │
+├─────────────────────────────────────┤
+│ L3: 语义记忆（Semantic Memory）      │
+│     向量化知识库，相关性检索          │
+├─────────────────────────────────────┤
+│ L4: 程序记忆（Procedural Memory）    │
+│     系统 Prompt 中的规则和能力定义    │
+└─────────────────────────────────────┘
+```
+
+**3. 上下文压缩与管理**
+
+```python
+策略一：滑动窗口（Sliding Window）
+→ 只保留最近 N 轮对话
+
+策略二：摘要压缩（Summarization）
+→ 定期将历史对话压缩为摘要
+
+策略三：选择性保留（Selective Retention）
+→ 用 LLM 判断哪些信息"重要"需要保留
+
+策略四：分层压缩（Hierarchical Compression）
+→ 近期详细 + 中期摘要 + 远期关键事件
+```
+
+**4. 上下文窗口位置效应（Position Effects）**
+
+```
+Lost in the Middle 研究发现：
+┌─────────────────────────────┐
+│ 开头部分：注意力权重 ████████ │  ← 最高
+│ 中间部分：注意力权重 ████░░░░ │  ← 最低（"lost in middle"）
+│ 结尾部分：注意力权重 ███████░ │  ← 次高
+└─────────────────────────────┘
+
+工程策略：
+- 关键信息放头部（System Prompt）或尾部（用户消息紧前）
+- 大量背景材料放中间
+- 重要规则在头尾重复
+```
+
+**5. 动态上下文组装（Dynamic Context Assembly）**
+
+```python
+class ContextAssembler:
+    def build(self, query, session, tools) -> Context:
+        return Context(
+            system=self.load_system_prompt(session.persona),
+            memories=self.retrieve_relevant_memories(query, k=5),
+            knowledge=self.rag_retrieve(query, k=10),
+            conversation=self.compress_history(session.history),
+            tools=self.select_relevant_tools(query, tools),
+            task=self.format_current_task(query)
+        )
+    
+    def compress_history(self, history):
+        # 保留最近 3 轮完整 + 更早的摘要
+        recent = history[-3:]
+        older = self.summarize(history[:-3])
+        return older + recent
+```
+
+**6. MCP（Model Context Protocol）**
+
+```
+Anthropic 2024 年提出的上下文注入标准协议：
+- 统一工具/资源/Prompt 注入接口
+- 解决各框架上下文注入方式不统一的碎片化问题
+- Server/Client 架构，服务可复用
+
+MCP 将 Context Engineering 推向"基础设施"层面
+```
+
+**7. 上下文评估指标**
+
+```python
+评估维度：
+- 相关性（Relevance）：检索内容与查询的语义相关度
+- 忠实性（Faithfulness）：生成内容是否基于给定上下文
+- 覆盖率（Coverage）：所需信息是否都被包含
+- 噪声比（Noise Ratio）：无关信息占比
+- 位置效率（Position Efficiency）：关键信息是否在高注意力区域
+
+工具：RAGAs、TREC、TruLens
+```
+
+### 核心机理
+
+**注意⼒稀释原理**：
+
+```
+Transformer 的 Softmax Attention：
+attention(Q,K,V) = softmax(QK^T / √d) · V
+
+当上下文长度 N 增大：
+- Softmax 分母增大 → 每个 token 平均注意力权重下降
+- 关键信息被"稀释"在大量噪声中
+- 模型有效"关注"范围存在软上限
+
+→ Context Engineering 的核心任务之一：
+  最大化信噪比（Signal-to-Noise Ratio）
+```
 
 ### 请求路由（Router-first）
 
@@ -86,6 +290,55 @@ else:
 ```
 
 Anthropic 建议：知识库小于约 200k tokens 且相对稳定时，直接放入 prompt 往往是最简单方案。
+
+### 代表性工程框架
+
+```
+检索框架：
+├── LlamaIndex（最完整的 RAG 生态）
+├── LangChain（最广泛的 Context 管道工具）
+└── Haystack（企业级搜索+RAG）
+
+向量数据库：
+├── Chroma（本地开发首选）
+├── Pinecone（云端生产）
+├── Weaviate（混合检索）
+├── Qdrant（Rust 高性能）
+└── Milvus（分布式规模化）
+
+记忆系统：
+├── Mem0（智能记忆层）
+├── Zep（对话记忆专项）
+└── LangMem（LangGraph 官方记忆）
+
+上下文协议：
+└── MCP（Model Context Protocol）
+
+评估：
+├── RAGAs（RAG 专项评估）
+└── TruLens（全链路追踪）
+```
+
+### 局限性与失效边界
+
+| 局限 | 表现 | 根因 |
+|------|------|------|
+| 检索错误级联 | 错误检索 → 错误生成，且难以溯源 | RAG 管道中间态不透明 |
+| 上下文窗口仍有上限 | 超长文档仍需截断或压缩 | Transformer O(n²) 复杂度 |
+| 多智能体协调困难 | 多个 Agent 共享上下文时状态冲突 | 无统一状态管理原语 |
+| 工程复杂度高 | 检索+压缩+注入+评估，维护成本高 | 无标准化"上下文操作系统" |
+| 实时知识延迟 | 数据入库 → 可检索存在时间差 | 向量数据库更新延迟 |
+
+### 历史地位
+
+Context Engineering 是 LLM 工程的**第一个真正的系统性工程学科**：
+
+- 将"AI 应用质量"问题从"模型问题"转移到"工程问题"
+- 确立了"信息架构 + 检索系统 + 记忆管理"的三角支柱
+- 为 Agent 系统提供了状态管理的理论基础
+- 但仍以**人类为中心**：人类设计流程，Agent 执行单步
+
+> **核心隐喻**：Context Engineer = 图书馆员。不管理书的内容（模型），而是管理"哪些书、以什么顺序、放在读者面前"。让读者（LLM）在最短时间内找到并理解正确信息。
 
 ### 检索链路：按需混合检索
 
@@ -214,7 +467,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 
 **混合检索策略（Hybrid Strategy）**：
 - 部分数据预加载（速度优先）+ 部分运行时自主探索（灵活性优先）
-- Claude Code 是典型混合实现：`CLAUDE.md` 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
+- Claude Code 是典型混合实现：`[[CLAUDE.md]]` 文件预先放入上下文，同时通过 glob/grep 按需导航环境检索文件
 - 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
 - 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少
 
@@ -231,7 +484,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 3. **使用文件系统作为上下文**：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的
 4. **通过复述操控注意力**：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"
 5. **保留错误的内容**：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率
-6. **不要被少样本示例所困**：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏
+6. **不要被[[少样本学习|少样本]]示例所困**：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏
 
 **核心哲学**：[[Context Engineering|上下文工程]]仍是一门新兴科学，但对于 Agent 系统已是必不可少。模型可能更强大、更快速、更经济，但再多的原始能力也无法替代对记忆、环境和反馈的需求。
 

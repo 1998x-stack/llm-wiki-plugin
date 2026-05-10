@@ -19,10 +19,10 @@ relates_to:
   type: related_to
   confidence: 0.9
   note: 在 ENIAC/EDVAC 项目中与 von Neumann 密切合作
-- target: "[[EDVAC 报告]]"
-  type: caused
+- target: "[[First Draft of a Report on the EDVAC]]"
+  type: distributor
   confidence: 0.9
-  note: 以安全官员身份分发报告至美英多个研究机构
+  note: 以安全官员身份将报告分发至美国及英国多个研究机构，促成了存储程序计算机概念的广泛传播
 - target: "[[约翰·冯·诺依曼]]"
   type: related_to
   confidence: 0.85
@@ -38,14 +38,14 @@ supersedes: null
 
 ## 概述
 
-美国数学家、陆军军官（1913–2004），ENIAC/EDVAC 项目的军方联络官和安全官员。以安全官员身份将[[EDVAC 报告]]分发至美国及英国多个研究机构，对[[存储程序计算机]]思想的广泛传播起到了关键作用。
+美国数学家、陆军军官（1913–2004），[[ENIAC]]/EDVAC 项目的军方联络官和安全官员。以安全官员身份将[[EDVAC 报告]]分发至美国及英国多个研究机构，对[[存储程序计算机]]思想的广泛传播起到了关键作用。
 
 ## 关键内容
 
 ### EDVAC 报告的分发
 
 - 1945年6月30日，Goldstine 以 von Neumann 一人署名的形式将 [[EDVAC 报告]]分发至美英多个研究机构
-- 这一分发行为使得报告的影响力远远超出了宾夕法尼亚大学的范围
+- 这一分发行为使得报告的影响力远远超出了[[宾夕法尼亚大学]]的范围
 - 几乎每一个读到报告的团队都能够理解其设计思想，并据此开始建造自己的[[存储程序计算机]]
 
 ### 署名争议中的角色
@@ -56,7 +56,7 @@ supersedes: null
 ### 与 von Neumann 的合作
 
 - Goldstine 与 von Neumann 在[[数值分析]]方面深入合作
-- 后来撰写了《The Computer from Pascal to von Neumann》（1972），是研究早期计算机史的重要史料
+- 后来撰写了《The Computer from Pascal to von Neumann》（1972），是研究早期[[计算]]机史的重要史料
 
 ## 来源
 

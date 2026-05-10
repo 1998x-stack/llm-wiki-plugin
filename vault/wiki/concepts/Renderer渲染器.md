@@ -14,12 +14,12 @@ supersedes: null
 # Renderer渲染器
 
 ## 概述
-[[UrhoX引擎|UrhoX]] 的全局 Renderer 对象管理所有渲染视口、阴影质量、纹理质量、HDR 和实例化绘制等全局渲染设置，是渲染管线的顶层控制器。
+[[UrhoX引擎|UrhoX]] 的全局 Renderer 对象管理所有渲染视口、阴影质量、纹理质量、HDR 和实例化绘制等全局渲染[[Settings|设置]]，是渲染管线的顶层[[控制器]]。
 
 ## 关键内容
 - **视口管理**：`SetNumViewports(n)` + `SetViewport(index, viewport)` 支持多视口渲染（分屏、后处理等）
 - **默认[[RenderPath渲染管线|渲染路径]]**：`SetDefaultRenderPath(renderPath)` 切换前向/延迟渲染管线
-- **阴影配置**：`drawShadows`、`shadowMapSize`、`shadowQuality`、`reuseShadowMaps`
+- **阴影[[Configuration|配置]]**：`drawShadows`、`shadowMapSize`、`shadowQuality`、`reuseShadowMaps`
 - **HDR 渲染**：`HDRRendering` 开启高动态范围，配合 ToneMapping [[RenderPath渲染管线|RenderPath]] 使用
 - **纹理质量**：`textureQuality` / `materialQuality` / `textureAnisotropy` 影响纹理过滤
 - **动态实例化**：`dynamicInstancing` 自动合批相同材质物体减少 DrawCall

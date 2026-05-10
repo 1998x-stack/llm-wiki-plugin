@@ -22,7 +22,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **定义**：RMSE（Root Mean Square Error）衡量预测评分与真实评分之间的偏差，计算公式为 $\sqrt{\frac{1}{N}\sum(r_{ui} - \hat{r}_{ui})^2}$。值越小表示预测越准确。
+1. **定义**：RMSE（Root Mean Square Error）衡量预测评分与真实评分之间的偏差，[[计算]]公式为 $\sqrt{\frac{1}{N}\sum(r_{ui} - \hat{r}_{ui})^2}$。值越小表示预测越准确。
 2. **[[Netflix Prize]] 基线**：[[Cinematch]] 基线 RMSE 为 0.9514，竞赛目标为降至 0.8563 以下（10% 提升）。最终 [[BellKor's Pragmatic Chaos]] 以 0.8567（10.06% 提升）获胜。
 3. **各方法 RMSE 对比**：
    - [[FunkSVD]]: ~0.896（~5.9% 提升）

@@ -53,7 +53,7 @@ PRD 驱动开发是一种以产品需求文档（prd.json）为进度驱动核�
 
 8. **前置生成流程**：通过 [[PRD 生成提示词]] 在 [[Ralph Loop]] 启动前生成 prd.json，LLM 先提出 5-10 个澄清问题再生成文档，确保 Story 遵循 [[User Story 粒度原则]]（单个[[上下文窗口]]内可完成）。
 
-9. **生成后验证**：prd.json 需通过 Python 脚本验证——检查基本格式、必填字段（id/description/acceptanceCriteria/passes/priority）、无重复 ID、UI Story 包含 browser 验证步骤。
+9. **生成后验证**：prd.json 需通过 [[Python]] 脚本验证——检查基本格式、必填字段（id/description/acceptanceCriteria/passes/priority）、无重复 ID、UI Story 包含 browser 验证步骤。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/CLAUDE.md]] — Ralph Coding Agent 提示词模板中的 prd.json 驱动流程

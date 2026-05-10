@@ -25,13 +25,13 @@ supersedes: null
 
 ## 概述
 
-opendatalab 是开源数据和工具平台，与[[上海人工智能实验室]]相关联，是 [[MinerU]]（[[MinerU|magic-pdf]]）项目的 GitHub 组织托管方。
+opendatalab 是开源数据和工具平台，与[[上海人工智能实验室]]相关联，是 [[MinerU]]（[[MinerU|magic-pdf]]）项目的 [[GitHub]] 组织托管方。
 
 ## 关键内容
 
 ### 与 MinerU 的关系
 
-- [[MinerU]] 项目的 GitHub 仓库托管在 opendatalab 组织下：`github.com/opendatalab/MinerU`
+- [[MinerU]] 项目的 [[GitHub]] [[仓库]]托管在 opendatalab 组织下：`github.com/opendatalab/MinerU`
 - 与[[上海人工智能实验室]]的开源生态相关联
 
 ## 来源

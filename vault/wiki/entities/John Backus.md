@@ -29,13 +29,17 @@ relates_to:
   confidence: 0.95
   note: 1959年为 ALGOL 58 发明 Backus 范式
 - target: "[[冯·诺依曼瓶颈]]"
-  type: related_to
+  type: named_and_criticized
   confidence: 0.8
-  note: 1977年图灵奖演讲批评冯诺依曼式语言的根本局限
+  note: 1977年图灵奖演讲《Can Programming Be Liberated from the von Neumann Style?》中明确命名并批判了冯·诺依曼瓶颈
 - target: "[[FORTRAN 编译器论文]]"
   type: related_to
   confidence: 0.9
   note: 在 IBM 工作期间完成 FORTRAN 和 BNF
+- target: "[[Can Programming Be Liberated from the von Neumann Style?]]"
+  type: authored
+  confidence: 0.95
+  note: 1977年图灵奖演讲，首次明确命名并批判了冯·诺依曼瓶颈，提倡函数式编程
 - target: "[[Grace Hopper]]"
   type: compares_to
   confidence: 0.75
@@ -47,7 +51,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1924–2007），[[FORTRAN]] 编程语言之父，BNF（[[BNF|Backus-Naur Form]]）发明者。1977年因这两项贡献获得 ACM [[阿兰·图灵|图灵]]奖。
+美国[[计算]]机科学家（1924–2007），[[FORTRAN]] 编程语言之父，BNF（[[BNF|Backus-Naur Form]]）发明者。1977年因这两项贡献获得 ACM [[阿兰·图灵|图灵]]奖。
 
 ## 关键内容
 
@@ -71,7 +75,7 @@ supersedes: null
 
 ### 学术遗产
 
-从 [[FORTRAN]] 到 BNF 再到[[函数式编程]]，Backus 的学术生涯本身就是一部关于"解放"的历史——先是将程序员从机器码中解放出来，然后试图将编程从冯·诺依曼[[规范化理论|范式]]中解放出来。
+从 [[FORTRAN]] 到 BNF 再到[[函数式编程]]，Backus 的学术生涯本身就是一部关于"解放"的历史——先是将程序员从机器码中解放出来，然后试图将编程从[[冯·诺依曼]][[规范化理论|范式]]中解放出来。
 
 ## 来源
 

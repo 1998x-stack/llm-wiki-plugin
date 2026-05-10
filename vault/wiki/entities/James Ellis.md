@@ -54,7 +54,7 @@ supersedes: null
 
 ### GCHQ 团队
 
-- [[Clifford Cocks]] 在1973年独立发明了类似 RSA 的算法
+- [[Clifford Cocks]] 在1973年独立发明了类似 RSA 的[[算法]]
 - [[Malcolm Williamson]] 在1974年独立发明了类似 Diffie-Hellman 的密钥交换方案
 - 这些工作直到1997年才部分解密
 

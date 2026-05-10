@@ -36,7 +36,7 @@ Eric Kandel（1929-）是奥地利 - 美国神经科学家，哥伦比亚大学�
 - 研究鳃缩回反射（gill-withdrawal reflex）的三种学习形式：
   - 习惯化（Habituation）：重复无害刺激→反应减弱
   - 敏感化（Sensitization）：强烈有害刺激后→对轻微刺激反应增强
-  - 经典条件反射（Classical Conditioning）：CS-US 配对→条件反应
+  - [[经典条件反射]]（[[经典条件反射|Classical Conditioning]]）：CS-US 配对→条件反应
 
 **短期与长期记忆的分子差异**：
 - **短期记忆（单次训练）**：

@@ -27,7 +27,7 @@ supersedes: null
 
 2. **研究贡献**：系统性地将 [[Self-Attention机制|Self-Attention]] 应用于[[序列推荐]]任务，设计了[[因果掩码]]的单向 [[Transformer架构|Transformer]] 架构，证明了 [[Self-Attention机制|Self-Attention]] 在用户行为建模中的自适应能力——在稀疏数据上聚焦近期行为（类似[[马尔可夫链]]），在密集数据上捕获长程依赖（类似 RNN）。
 
-3. **开源贡献**：[[SASRec]] 官方代码开源在 GitHub（https://github.com/kang205/[[SASRec]]），成为[[序列推荐]]领域最常用的基准实现之一。
+3. **开源贡献**：[[SASRec]] 官方代码开源在 [[GitHub]]（https://github.com/kang205/[[SASRec]]），成为[[序列推荐]]领域最常用的基准实现之一。
 
 4. **学术影响**：[[SASRec]] 直接催生了 [[BERT4Rec]]、[[TiSASRec]]、BST、[[S3-Rec]]、[[SSE-PT]]、[[LightSANs]]、[[DuoRec]]、[[SASRec+]] 等一系列后续工作，奠定了 [[Transformer架构|Transformer]] 在推荐系统中的基础地位。
 

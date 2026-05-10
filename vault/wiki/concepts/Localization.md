@@ -42,7 +42,7 @@ Localization（代码定位）是软件工程 Agent 的关键子任务，包括�
 
 > "找不到正确位置，再强的编辑能力也没有意义；找错位置，后续动作都会建立在错误假设上。"
 
-真实软件工程最难的往往不是"最后改那几行代码"，而是先**找到该改哪里**。仓库级搜索能力实际上决定了 agent 是否能把问题缩到可操作范围。
+真实软件工程最难的往往不是"最后改那几行代码"，而是先**找到该改哪里**。[[仓库]]级搜索能力实际上决定了 agent 是否能把问题缩到可操作范围。
 
 ### 搜索方式的发现
 
@@ -75,7 +75,7 @@ Figure 7 统计了成功解决的 [[SWE-bench]] 任务中各 turn 的动作调�
 ### 失败模式分布（Figure 8）
 
 Figure 8 把未解决任务按失败类型做了分布统计：
-- **Incorrect Implementation** + **Overly Specific Implementation**：~52.0%（最大类别）
+- **Incorrect Implementation** + **Overly Specific Implementation**：~52.0%（最[[大类]]别）
 - **Failed to Recover from Edit**：~23.4%（与编辑恢复相关）
 - **Failed to Find Edit Location**：定位失败
 - **Failed to Find Relevant File**：文件级定位失败

@@ -37,7 +37,7 @@ Net Perceptions 是 [[GroupLens]] 团队于 1996 年 5 月创立的第一家专�
 
 4. **与 [[MovieLens]] 的关系**：[[MovieLens]] 保持了学术研究定位并提供公开数据集，而 Net Perceptions 则专注于商业化推荐引擎的开发和部署，两者共同构成了 [[GroupLens]] 生态的"学术-产业"双轮驱动模式。
 
-5. **技术遗产**：Net Perceptions 将 [[GroupLens]] 的开放式架构理念转化为可商用的推荐工具包（[[GroupLens]] toolkit），使得企业可以快速集成[[协同过滤]]功能到自己的产品中。
+5. **技术遗产**：Net Perceptions 将 [[GroupLens]] 的[[开放架构|开放式架构]]理念转化为可商用的推荐工具包（[[GroupLens]] toolkit），使得企业可以快速集成[[协同过滤]]功能到自己的产品中。
 
 ## 来源
 - [[raw/books/推荐系统/02-grouplens-collaborative-filtering.md]] — 历史地位与影响章节

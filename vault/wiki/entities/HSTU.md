@@ -30,15 +30,15 @@ HSTU（Hierarchical Sequential Transduction Unit），Meta 在 ICML 2024 发表�
 
 ## 关键内容
 
-1. **论文信息**：*[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]: [[Actions Speak Louder than Words 论文|Trillion-Parameter Sequential Transducers for Generative Recommendations]]*，作者 Jiaqi Zhai 等（Meta MRS/PyTorch/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: [2402.17152](https://arxiv.org/abs/2402.17152)，代码开源: [github.com/meta-recsys/generative-recommenders](https://github.com/meta-recsys/generative-recommenders)。
+1. **论文信息**：*[[Actions Speak Louder than Words 论文|Actions Speak Louder than Words]]: [[Actions Speak Louder than Words 论文|Trillion-Parameter Sequential Transducers for Generative Recommendations]]*，作者 Jiaqi Zhai 等（Meta MRS/[[PyTorch]]/AI Infra/Instagram 团队），ICML 2024（PMLR 235:58484-58509），ArXiv: [2402.17152](https://arxiv.org/abs/2402.17152)，代码开源: [github.com/meta-recsys/generative-recommenders](https://github.com/meta-recsys/generative-recommenders)。
 
-2. **核心方法**：将[[序列推荐]]从判别式模型转向生成式模型。用户行为序列被表示为时间序列 $\{(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)\}$，其中 $c_i$ 为内容 token，$a_i$ 为动作 token（点击、停留、购买等）。**召回**建模为预测下一个内容 token $c_{t+1}$，**排序**建模为预测下一个动作 token $a_{t+1}$，两者统一到单一模型中。
+2. **核心方法**：将[[序列推荐]]从判别式模型转向生成式模型。用户行为序列被表示为[[Time Series Analysis|时间序列]] $\{(c_1, a_1), (c_2, a_2), \ldots, (c_t, a_t)\}$，其中 $c_i$ 为内容 token，$a_i$ 为动作 token（点击、停留、购买等）。**召回**建模为预测下一个内容 token $c_{t+1}$，**排序**建模为预测下一个动作 token $a_{t+1}$，两者统一到单一模型中。
 
 3. **HSTU 架构改造**（与标准 [[Transformer架构|Transformer]] 的关键区别）：
-   - **SiLU 注意力替代 Softmax**：注意力分数计算使用 $\phi_2(QK^\top + \text{relative\_attention\_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 Softmax。保留偏好强度信息，适应非平稳分布。[[Ablation Study|消融实验]]证实 Softmax 替换导致性能下降。
+   - **SiLU 注意力替代 [[Softmax]]**：注意力分数[[计算]]使用 $\phi_2(QK^\top + \text{relative\_attention\_bias}) \cdot V$，其中 $\phi_2$ 为 SiLU 激活而非 [[Softmax]]。保留偏好强度信息，适应非平稳分布。[[Ablation Study|消融实验]]证实 [[Softmax]] 替换导致性能下降。
    - **相对注意力偏置替代[[绝对位置编码]]**：将位置信息和时间间隔作为相对偏置直接注入注意力分数，同时编码序列顺序和交互时间距离。
    - **[[门控机制（Gating Mechanism）|门控]]机制（U [[矩阵]]）**：在 QKV 之外引入 U [[矩阵]]作为[[门控机制（Gating Mechanism）|门控]]信号，通过 Hadamard 乘积控制[[特征交叉|特征交互]]贡献，类似 LSTM [[门控机制（Gating Mechanism）|门控]]。
-   - **精简架构**：注意力外线性层从 6 个减少到 2 个，激进融合计算操作，降低激活内存。
+   - **精简架构**：注意力外线性层从 6 个减少到 2 个，激进融合[[计算]]操作，降低激活内存。
    - **[[因果掩码]]**：单向注意力，确保[[AR 模型（自回归模型）|自回归]]生成合法性。
 
 4. **与 [[SASRec]] 的关系**：HSTU 的[[AR 模型（自回归模型）|自回归]]生成式思路可以追溯到 [[SASRec]] 建立的[[因果掩码]] + [[Self-Attention机制|自注意力]]框架。[[SASRec]] 为今天的[[生成式推荐]]奠定了概念基础。

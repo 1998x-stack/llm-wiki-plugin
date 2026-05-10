@@ -31,7 +31,7 @@ supersedes: null
    - 探索不同的实现方案
    - 在重大修改前创建安全分支
    - 对比多种设计选择
-   - 实验性重构
+   - 实验性[[重构]]
 
 3. **与 [[Checkpoints 与 Rewind|Checkpoints]] 的关系**：[[Checkpoints 与 Rewind|Checkpoints]] 是同一会话内的快照和回退，分支是创建独立的新会话。分支适合长期并行探索，[[Checkpoints 与 Rewind|Checkpoints]] 适合短期回退。
 

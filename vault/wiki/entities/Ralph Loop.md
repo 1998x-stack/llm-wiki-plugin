@@ -59,7 +59,7 @@ supersedes: null
 # Ralph Loop
 
 ## 概述
-Ralph Loop 是一种自主编码代理系统，通过 CLAUDE.md 提示词模板驱动 [[Claude Code]] 实例按迭代循环逐个实现 PRD 中的 User Story，利用 prd.json、progress.txt 和 AGENTS.md 三个核心文件实现跨会话进度继承与知识积累。
+Ralph Loop 是一种自主编码代理系统，通过 [[CLAUDE.md]] 提示词模板驱动 [[Claude Code]] 实例按迭代循环逐个实现 PRD 中的 User Story，利用 prd.json、progress.txt 和 [[项目约定手册|AGENTS.md]] 三个核心文件实现跨会话进度继承与知识积累。
 
 ## 关键内容
 
@@ -69,18 +69,18 @@ Ralph Loop 是一种自主编码代理系统，通过 CLAUDE.md 提示词模板�
 
 3. **核心架构**：每次迭代启动一个全新的 [[Claude Code]] 实例，通过 `cat CLAUDE.md | claude --dangerously-skip-permissions` 注入完整提示词模板。Agent 从文件系统中读取进度状态，继续未完成任务，而非依赖上下文记忆。
 
-2. **强制启动序列**：每个 Agent 实例启动时必须按顺序执行 7 步确认仪式——确认工作目录、查看 Git 历史、读取 progress.txt（交班日记）、读取 AGENTS.md（经验手册）、解析 prd.json 查找最高优先级未完成任务、启动开发环境、执行 Smoke Test 验证代码可运行。
+2. **[[强制启动序列]]**：每个 Agent 实例启动时必须按顺序执行 7 步确认仪式——确认工作目录、查看 Git 历史、读取 progress.txt（交班日记）、读取 [[项目约定手册|AGENTS.md]]（经验手册）、解析 prd.json 查找最高优先级未完成任务、启动开发环境、执行 Smoke Test 验证代码可运行。
 
-3. **单次迭代约束**：每次迭代只实现 ONE 个 User Story，禁止跨 Story 并行。前端变更必须通过 [[Puppeteer MCP]] [[浏览器自动化验证]]（截图、填表、点击、验证 DOM），验证通过后方可设置 `passes: true`。
+3. **单次迭代约束**：每次迭代只实现 ONE 个 User Story，禁止跨 Story 并行。前端变更必须通过 [[Puppeteer MCP]] [[浏览器自动化验证]]（截图、填表、点击、验证 DOM），验证通过后方可[[Settings|设置]] `passes: true`。
 
 4. **进度追踪三文件**：
    - **prd.json**：产品需求文档，包含 User Story 列表、优先级、依赖关系、`passes` 状态
    - **progress.txt**：交班日记，记录每轮 Session 的完成状态、变更点、阻塞信息
-   - **AGENTS.md**：项目约定手册，由 Agent 维护，积累 Learnings、Gotchas、依赖映射
+   - **[[项目约定手册|AGENTS.md]]**：[[项目约定手册]]，由 Agent 维护，积累 Learnings、[[Gotchas]]、依赖映射
 
-5. **Bug 处理策略**：尝试 2 次失败后执行回退流程——`git stash` 或 `git revert HEAD`，在 progress.txt 中标记 BLOCKED，在 AGENTS.md 中记录坑点，将该 Story priority 改为 99 并移动到下一个 Story。
+5. **Bug 处理策略**：尝试 2 次失败后执行回退流程——`git stash` 或 `git revert HEAD`，在 progress.txt 中标记 BLOCKED，在 [[项目约定手册|AGENTS.md]] 中记录坑点，将该 Story priority 改为 99 并移动到下一个 Story。
 
-6. **[[Context Management|上下文管理]]**：当上下文快满时不强行完成任务，而是 `git stash` 保存未完成工作，在 progress.txt 中标注 Early exit，提交干净状态后输出 `<promise>COMPLETE</promise>`，由外循环决定是否继续迭代。
+6. **[[Context Management|上下文管理]]**：当上下文快满时不强行完成任务，而是 `git stash` 保存未完成工作，在 progress.txt 中[[标注]] Early exit，提交干净状态后输出 `<promise>COMPLETE</promise>`，由外循环决定是否继续迭代。
 
 7. **[[完成信号机制（Completion Signal）|完成信号]]**：无论是否还有未完成的 Story，每次迭代结束必须输出 `<promise>COMPLETE</promise>`，Ralph 外循环检查 prd.json 决定是否启动下一个 Agent 实例。
 

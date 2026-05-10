@@ -31,7 +31,7 @@ CREB（cAMP Response Element Binding protein）是一种转录因子，在长期
 
 **Kandel 的海兔研究**：
 - [[Eric Kandel]] 选择加州海兔（Aplysia californica）作为模式生物
-- 研究鳃缩回反射的三种学习形式：习惯化、敏感化、经典条件反射
+- 研究鳃缩回反射的三种学习形式：习惯化、敏感化、[[经典条件反射]]
 - 发现短期记忆和长期记忆的分子机制存在本质差异
 
 **短期 vs 长期记忆**：

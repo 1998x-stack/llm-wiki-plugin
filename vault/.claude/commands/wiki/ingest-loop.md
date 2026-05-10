@@ -26,7 +26,7 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
 |------|---------------|------|
 | 提取引擎 | Agent 子代理（每文件独立上下文） | Qwen API |
 | 设置脚本 | `setup-ingest-loop.sh` | `setup-ingest-loop-qwen.sh` |
-| 状态文件 | `.claude/ingest-loop.local.md` | `.claude/ingest-loop-qwen.local.md` |
+| 状态文件 | `tmp/ingest-loop.local.<n>.md` | `tmp/ingest-loop-qwen.<n>.local.md` |
 | 错误日志 | `.claude/ingest-loop.error.md` | `.claude/ingest-loop-qwen.error.md` |
 | 上下文隔离 | 每文件独立子代理，互不污染 | 每文件独立 API 调用 |
 | 前置条件 | 无额外要求 | 需要 `$DASHSCOPE_API_KEY` |
@@ -62,8 +62,8 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
    - 如果设置成功，继续到步骤 2
 
 2. **读取状态文件**
-   - **claude 引擎**：读取 `.claude/ingest-loop.local.md`
-   - **qwen 引擎**：读取 `.claude/ingest-loop-qwen.local.md`
+   - **claude 引擎**：查找并读取 `tmp/ingest-loop.local.*.md` 中对应当前实例的文件
+   - **qwen 引擎**：查找并读取 `tmp/ingest-loop-qwen.*.local.md` 中对应当前实例的文件
 
    获取文件列表和当前索引。
 
@@ -225,8 +225,8 @@ $ARGUMENTS — 文件夹路径或文件路径（相对于 raw/），以及可选
      - 跳过（去重）：N 个页面
      - 失败：N 个文件
    - 删除状态文件：
-     - **claude 引擎**：`Bash: rm .claude/ingest-loop.local.md`
-     - **qwen 引擎**：`Bash: rm .claude/ingest-loop-qwen.local.md`
+     - **claude 引擎**：`Bash: rm tmp/ingest-loop.local.<n>.md` （n为当前实例编号）
+     - **qwen 引擎**：`Bash: rm tmp/ingest-loop-qwen.<n>.local.md` （n为当前实例编号）
    - 注意：错误日志文件 **不删除**，保留供用户审查
    - **claude 引擎**：输出 `<promise>ALL_FILES_INGESTED</promise>`
    - **qwen 引擎**：输出 `<promise>ALL_FILES_INGESTED_QWEN</promise>`

@@ -19,7 +19,7 @@ supersedes: null
 # Hal Varian
 
 ## 概述
-Hal Varian 是著名经济学家和计算机科学家，与 [[Paul Resnick]] 共同主编了 1997 年 CACM 推荐系统特刊，正式确立了"推荐系统"这一研究领域的名称。
+Hal Varian 是著名经济学家和[[计算]]机科学家，与 [[Paul Resnick]] 共同主编了 1997 年 CACM 推荐系统特刊，正式确立了"推荐系统"这一研究领域的名称。
 
 ## 关键内容
 

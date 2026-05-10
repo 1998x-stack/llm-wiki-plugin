@@ -4,6 +4,41 @@ type: log
 
 # 操作日志
 
+## [2026-04-20 ingest: paper_03_alexnet.md]
+- 源文件: raw/articles/ai-papers/foundations/paper_03_alexnet.md
+- 新建实体: wiki/entities/李飞飞.md, wiki/entities/NVIDIA.md, wiki/entities/NeurIPS.md, wiki/entities/百度.md, wiki/entities/Facebook.md, wiki/entities/DNNresearch.md, wiki/entities/斯坦福大学.md, wiki/entities/Facebook AI Research (FAIR).md, wiki/entities/ILSVRC.md, wiki/entities/NEC-UIUC.md, wiki/entities/ISI.md, wiki/entities/ZFNet.md
+- 新建概念: wiki/concepts/GPU训练.md, wiki/concepts/迁移学习.md, wiki/concepts/手工特征工程.md, wiki/concepts/Top-5 错误率.md, wiki/concepts/最大池化（Max Pooling）.md, wiki/concepts/Softmax.md
+- 更新: wiki/concepts/AlexNet.md, wiki/concepts/ReLU激活函数.md, wiki/concepts/Dropout（随机失活）.md, wiki/concepts/局部响应归一化（LRN）.md, wiki/concepts/数据增强（Data Augmentation）.md, wiki/concepts/过拟合（Overfitting）.md, wiki/concepts/Momentum（动量）.md, wiki/entities/Geoffrey E. Hinton.md, wiki/entities/Alex Krizhevsky.md, wiki/entities/Ilya Sutskever.md, wiki/entities/ImageNet Classification with Deep Convolutional Neural Networks (2012 论文).md
+- BM25: 24 页面索引更新
+- Snapshot: updated (1925 entries)
+
+## [2026-04-21 ingest: paper_03_alexnet.md 补遗]
+- 源文件: raw/articles/ai-papers/foundations/paper_03_alexnet.md
+- 新建实体: wiki/entities/PyTorch.md
+- 新建概念: wiki/concepts/SIFT.md, wiki/concepts/HOG.md, wiki/concepts/PCA颜色增强.md, wiki/concepts/特征可视化.md
+- 更新: wiki/entities/Alex Krizhevsky.md (新增源), wiki/entities/Ilya Sutskever.md (新增源), wiki/concepts/卷积神经网络（CNN）.md (新增 AlexNet 演化内容、relates_to、源)
+- BM25: 5 页面索引更新
+- Snapshot: updated (1935 entries)
+
+## [2026-04-20 ingest: paper_04_batchnorm.md]
+- 源文件: raw/articles/ai-papers/foundations/paper_04_batchnorm.md
+- 新建: wiki/concepts/Instance Normalization.md, wiki/concepts/Group Normalization.md
+- 更新: wiki/concepts/Batch Normalization.md (新增理论争议、归一化变体对比表、relates_to), wiki/concepts/Layer Normalization.md (新增归一化方法对比、relates_to 结构化), wiki/entities/Sergey Ioffe.md (新增训练/推理双模式设计、实验验证), wiki/entities/Christian Szegedy.md (新增 BN 实验数据), wiki/entities/Batch Normalization: Accelerating... (2015 论文).md (新增理论争议、归一化变体启发、relates_to)
+- BM25: 4 页面索引更新
+- Snapshot: updated (1919 entries)
+
+## [2026-04-20 ingest: 013-得物面试]
+- Updated: wiki/得物.md (dates), wiki/细粒度视觉识别.md (dates), wiki/多模态融合.md (dates), wiki/类目负责制.md (dates), wiki/AI替代率.md (dates)
+- All 5 pages already existed with content from this source
+- BM25: 5 pages indexed
+- Snapshot: updated (1899 entries)
+
+## [2026-04-20 ingest: 007-美元霸权深度解析]
+- Created: wiki/美元霸权.md (synthesis), wiki/布雷顿森林体系.md (concept), wiki/特里芬难题.md (concept), wiki/去美元化.md (concept)
+- Updated: wiki/concepts/石油美元体系.md (source_count 1→2, confidence 0.5→0.7, added relates_to)
+- BM25: 5 pages indexed
+- Snapshot: updated (1801 entries)
+
 ## [2026-04-18 maintain]
 - Relink: 4980 terms, 1 new link across 1 page
 - Check: 0 errors, 1777 warnings (主要 B1 断链 1344 条，已知问题)，无新 gotchas
@@ -2589,3 +2624,121 @@ python3 scripts/build_graph.py
 - 术语词典: 5074 个
 - 扫描: 1605 个页面
 - 修改: 见 dry-run 结果, 添加新链接若干
+
+## [2026-04-19 00:00] lint
+- 扫描: 1627 个页面
+- ERROR: 0 个 | WARNING: 347+ 个 | INFO: 若干
+- 自动修复: 3 个
+  - ✅ F index.md 重建 (snapshot_index --slim)
+  - ✅ I2 index.md 陈旧条目已清理 (3 个 stale entries 移除)
+  - ✅ F3 矩阵谱理论的统一叙事.md Overview 精简 (362→168 字符)
+- 需要人工处理: 340+ 个
+  - ⚠️ B1 断链: 100+ (集中在 maps/*.md，建议运行 wiki:reindex)
+  - ⚠️ O1 孤儿: 76 个 (建议运行 wiki:reindex 重建 topic-to-wiki.json)
+  - ⚠️ M2 未分类: 240 个页面不在任何 map 中 (需要 wiki:reindex)
+  - ⚠️ M1 Map 引用不存在: 100+ (需要 wiki:reindex)
+- 跳过: H 图谱连通性 (由 wiki:build 负责), I 模板合规性 (仅报告)
+- 建议: 运行 `wiki:reindex` → `wiki:build` → `wiki:maintain` 完成全面修复
+- 详细报告: 见 log.check.2026-04-19.md
+
+## [2026-04-19 wiki:ingest-loop — codex articles]
+- 源: raw/articles/ai-tools/codex (8 文件)
+- 引擎: claude (子代理并行，最多 3)
+- 创建页面: 15 个
+  - wiki/concepts/Codex Wire Protocol解耦.md
+  - wiki/entities/Ratatui.md
+  - wiki/concepts/Approval Gate UI.md
+  - wiki/concepts/人类监督带宽.md
+  - wiki/concepts/App Server 模式.md
+  - wiki/concepts/工作记忆.md
+  - wiki/entities/GitHub.md
+  - wiki/entities/Slack.md
+  - wiki/concepts/TOML.md
+  - wiki/concepts/前缀树（Trie）.md
+  - wiki/concepts/Subagent 地址系统.md
+  - wiki/concepts/批量同构任务模式.md
+- 更新页面: 20+ 个 (Codex CLI, Codex TUI, ExecPolicy, Codex沙箱系统, Codex配置系统, Codex会话管理器, MCP协议层, Codex多Agent调度 等)
+- 失败: 0 (04_codex_execpolicy 首次因路径错误失败，重试成功)
+- Lint: 0 errors, 1755 warnings (预存)
+
+## [2026-04-19 ingest: raw/articles/essays/thinking-series/规则漏洞学系列/12.md]
+- 源文件: 规则漏洞学终极闭环 — 从识别—套利—风控—复利，普通人可复制的终身破局系统
+- 创建页面: 4
+  - wiki/syntheses/规则漏洞学终身复利闭环系统.md (synthesis, confidence: 0.85)
+  - wiki/concepts/价值底盘.md (concept, confidence: 0.85)
+  - wiki/concepts/规则利用者到规则制定者.md (concept, confidence: 0.85)
+  - wiki/concepts/闭环断裂致命坑.md (concept, confidence: 0.85)
+- 更新页面: 1
+  - wiki/concepts/规则漏洞学.md (添加闭环系统引用、新来源、更新 relates_to)
+- BM25: 5 页面索引更新成功
+- Snapshot: index.md 已更新 (1696 entries)
+
+## 2026-04-20 — 知识提取: 004-绝对的民主，为何会葬送一个国家？南斯拉夫解体的残酷真相
+- 源文件: raw/articles/essays/thinking-series/004-绝对的民主，为何会葬送一个国家？南斯拉夫解体的残酷真相.md
+- 创建页面: 5
+  - wiki/南斯拉夫解体.md (synthesis, confidence: 0.5)
+  - wiki/铁托.md (entity/person, confidence: 0.5)
+  - wiki/兰科维奇.md (entity/person, confidence: 0.5)
+  - wiki/克罗地亚之春.md (entity/project, confidence: 0.5)
+  - wiki/1974年南斯拉夫宪法.md (entity/project, confidence: 0.5)
+- BM25: 5 页面索引更新成功
+- Snapshot: index.md 已更新 (1715 entries)
+
+## [2026-04-20 ingest: 012-金融危机.md]
+- 源文件: raw/articles/essays/thinking-series/012-金融危机.md
+- 更新: wiki/2008年金融海啸.md (新增来源), wiki/迈克尔·伯里.md (新增来源), wiki/约翰·保尔森.md (新增来源), wiki/雷曼兄弟.md (新增来源), wiki/CDO（债务抵押债券）.md (新增来源), wiki/信用违约互换 CDS.md (新增来源), wiki/NINJA贷款.md (新增来源), wiki/MBS（抵押贷款支持证券）.md (新增来源), wiki/次级抵押贷款.md (修复 relates_to 链接指向 2008年金融海啸)
+- 新建: wiki/entities/新世纪金融公司.md (entity/company), wiki/entities/穆迪.md (entity/company), wiki/entities/标普.md (entity/company), wiki/concepts/TARP（问题资产救助计划）.md (concept), wiki/entities/《大空头》.md (entity/book), wiki/entities/贝尔斯登.md (entity/company), wiki/entities/房利美与房地美.md (entity/company)
+- BM25: 全量重建索引 (1939 pages)
+- Snapshot: index.md 已更新 (1923 entries)
+
+## [2026-04-20 wiki:ingest-loop — AI papers foundations]
+- 源: raw/articles/ai-papers/foundations (12 文件)
+- 引擎: claude (子代理并行 + 直接处理)
+- 处理文件:
+  - ai_papers_timeline.md → 创建 ~60 页面 (人物实体 + 论文实体 + 概念)
+  - paper_01_perceptron.md → 创建 7 页面, 更新 4 页面
+  - paper_02_backpropagation.md → 创建 8 页面, 更新 2 页面
+  - paper_03_alexnet.md → 更新 AlexNet 等页面
+  - paper_04_batchnorm.md → 创建 3 页面, 更新 3 页面
+  - paper_05_resnet.md → 更新 ResNet 等页面
+  - paper_06_transformer.md → 更新 Transformer 架构 (source_count→3)
+  - paper_07_bert.md → 更新 BERT (source_count→3)
+  - paper_08_gan.md → 更新 GAN (source_count→3)
+  - paper_09_word2vec.md → 更新 Word2Vec (source_count→2)
+  - paper_10_dropout.md → 更新 Dropout (source_count→4)
+  - paper_11_vggnet.md → 更新 VGGNet (source_count→2, 全面重写)
+- 新建概念页面: GPU并行计算, Top-K 错误率, Inverted Dropout, MC Dropout, 层次 Softmax, 分布式假说, 词向量, 损失景观平滑化, 隐式集成
+- Lint: 0 errors (预存 warnings 1755+)
+- BM25: 全量重建索引
+- Snapshot: index.md 已更新
+
+- **2026-04-21** — wiki:ingest-loop: 批量 ingest thinking-series (69 files, 68 processed, 1 failed content filter). ~150+ new wiki pages created across entities, concepts, syntheses.
+- **2026-04-25** — wiki:ingest-loop: 批量处理AI基础论文 (/raw/articles/ai-papers/foundations/) (12 files, 12 processed). 创建了数十个新概念和实体页面，涵盖感知机、反向传播、AlexNet、Batch Normalization、ResNet、Transformer、BERT、GAN、Word2Vec、Dropout、VGGNet等核心AI概念。
+
+## 2026-04-25 Batch Ingest - Evolver Articles
+
+Processed 8 files from raw/articles/ai-tools/Evolver:
+- 01_overview_architecture.md
+- 02_gep_protocol.md
+- 03_signals_system.md
+- 04_mutation_strategy.md
+- 05_a2a_protocol.md
+- 06_scripts_ops.md
+- 07_security_solidify.md
+- 08_env_vars_config.md
+
+Created/Updated multiple wiki pages including Evolver, GEP, Mutation, A2A Protocol, and related concepts.
+
+## [2026-04-25 21:01] lint
+- 扫描: 2498 个页面
+- ERROR: 12 个 | WARNING: 3875+ 个 | INFO: 0 个
+- 自动修复: index.md 重建, BM25 索引更新 (部分)
+- 需要人工处理: 大量断链问题, frontmatter 完整性问题
+
+
+## [2026-04-25 21:17] maintain
+- Relink: 7067 terms, 5249 new links across 1222 pages
+- Check: 0 errors, 3355 warnings, 0 info (0 new gotchas → ../docs/gotchas/)
+- Lint: index rebuilt, 0 repairs needed
+- Build: 2562 节点, 19442 边 → static/ 已同步
+

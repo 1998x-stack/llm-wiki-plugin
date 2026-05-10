@@ -95,7 +95,7 @@ design-system/
 
 ### 与 LLM-Statelessness 的关系
 
-这是"以文件系统为状态"的具体应用——不依赖 AI 的记忆（跨会话不存在），而是依赖项目文件（始终存在）。类似模式：AGENTS.md、CLAUDE.md、GEMINI.md 等项目上下文文件。
+这是"以文件系统为状态"的具体应用——不依赖 AI 的记忆（跨会话不存在），而是依赖项目文件（始终存在）。类似模式：[[项目约定手册|AGENTS.md]]、[[CLAUDE.md]]、GEMINI.md 等项目上下文文件。
 
 ## 设计哲学总结（UUPM 系列）
 

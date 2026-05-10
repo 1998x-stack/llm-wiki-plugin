@@ -35,14 +35,14 @@ supersedes: null
 
 ## 概述
 
-Tomas Mikolov 是捷克计算机科学家，[[Word2Vec]] [[Word2Vec|词向量模型]]的发明者，2013年发表《[[Efficient Estimation of Word Representations in Vector Space (2013 论文)|Efficient Estimation of Word Representations in Vector Space]]》开创了[[词嵌入（Word Embedding）|词嵌入]]时代。
+Tomas Mikolov 是捷克[[计算]]机科学家，[[Word2Vec]] [[Word2Vec|词向量模型]]的发明者，2013年发表《[[Efficient Estimation of Word Representations in Vector Space (2013 论文)|Efficient Estimation of Word Representations in Vector Space]]》开创了[[词嵌入（Word Embedding）|词嵌入]]时代。
 
 ## 关键内容
 
 ### 学术贡献
 
 - **[[Word2Vec]] 发明者**：提出 [[Skip-gram]] 和 CBOW 两种高效[[词嵌入（Word Embedding）|词向量]]学习架构
-- **[[负采样（Negative Sampling）]]**：设计了一种替代全量 Softmax 的高效训练方法，使训练速度提升 1000 倍以上
+- **[[负采样（Negative Sampling）]]**：设计了一种替代全量 [[Softmax]] 的高效训练方法，使训练速度提升 1000 倍以上
 - **语义向量算术发现**：首次展示[[词嵌入（Word Embedding）|词向量]]空间中的线性语义关系（如 king - man + woman ≈ queen）
 
 ### 职业背景
@@ -54,7 +54,7 @@ Tomas Mikolov 是捷克计算机科学家，[[Word2Vec]] [[Word2Vec|词向量模
 ### 历史影响
 
 - [[Word2Vec]] 开创了 [[词嵌入（Word Embedding）]] 时代
-- 为后续 ELMo、BERT 等预训练语言模型奠定基础
+- 为后续 ELMo、BERT 等预训练[[Language-Model|语言模型]]奠定基础
 - 其[[词嵌入（Word Embedding）|词向量]]算术发现震惊学界，展示了神经网络学习语义的能力
 
 ## 来源

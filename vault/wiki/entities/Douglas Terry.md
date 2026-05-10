@@ -10,11 +10,15 @@ tags: [推荐系统, 人物]
 aliases: ["Douglas Terry", "Doug Terry", "Terry"]
 relates_to:
   - target: "[[Tapestry 系统]]"
-    type: part_of
+    type: developed
   - target: "[[Xerox PARC]]"
     type: part_of
   - target: "[[协同过滤]]"
-    type: caused
+    type: coined_term
+  - target: "[[TQL]]"
+    type: created
+  - target: "[[标注]]"
+    type: conceptualized
 supersedes: null
 ---
 

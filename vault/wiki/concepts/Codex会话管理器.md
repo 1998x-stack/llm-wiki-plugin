@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 2
+updated: 2026-04-19
+last_accessed: 2026-04-19
+source_count: 1
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Session Manager, Codex Session]
 relates_to:
@@ -27,6 +27,9 @@ relates_to:
   - target: "[[会话分支（Branching）]]"
     type: implements
     confidence: 0.8
+  - target: "[[工作记忆]]"
+    type: implements
+    confidence: 0.85
 supersedes: null
 ---
 
@@ -45,9 +48,17 @@ LLM 每次 API 调用独立，没有内置记忆，[[上下文窗口]]有限。�
 | 文件 | 内容 |
 |------|------|
 | `transcript.jsonl` | 完整对话记录（[[JSONL格式|JSONL]] 格式，流式追加） |
-| `metadata.json` | Session ID、模型、workspace、sandbox 配置、approval_policy、title、**parent_session_id**（Fork 来源）、**git_commit**（启动时 HEAD） |
+| `metadata.json` | Session ID、模型、workspace、sandbox [[Configuration|配置]]、approval_policy、title、**parent_session_id**（Fork 来源）、**git_[[commit]]**（启动时 HEAD） |
 | `plan.json` | Agent 任务计划快照 |
 | `approvals.log` | 人类审批记录 |
+
+**transcript.jsonl 示例格式**：
+```jsonl
+{"role":"user","content":"帮我重构 src/auth/ 目录","ts":1735000000}
+{"role":"assistant","content":"我来分析当前结构...","tool_calls":[...],"ts":1735000010}
+{"role":"tool","tool_use_id":"call_01","content":"<ls 输出>","ts":1735000011}
+{"role":"user","content":"[APPROVAL] 同意执行文件重构","ts":1735000025}
+```
 
 **[[JSONL格式|JSONL]] 格式选择原因**：流式追加、崩溃安全（中断只丢当前行）、可用 `jq` 直接分析。
 
@@ -82,10 +93,13 @@ codex resume --fork <session_id>
 ## exec 模式
 
 ```bash
-codex exec "生成单元测试"           # 非交互，结果流式输出到 stdout
-codex exec --output jsonl "重构"    # JSONL 输出（适合脚本处理）
-codex exec --ephemeral "快速问答"   # 不持久化（CI/CD 环境使用）
+codex exec "生成单元测试"                    # 非交互，结果流式输出到 stdout
+codex exec --output jsonl "重构"             # JSONL 输出（适合脚本处理）
+codex exec --ephemeral "快速问答"            # 不持久化（CI/CD 环境使用）
+codex exec resume --last "继续上次的工作"     # 非交互模式恢复会话
 ```
+
+**`--ephemeral` 的工程价值**：CI/CD 环境中不应有 Session 残留。`--ephemeral` 保证执行后磁盘清洁，适合自动化流水线中的临时执行。
 
 ## Session 生命周期
 
@@ -104,9 +118,8 @@ CREATE → ACTIVE → 中断/完成/超时 → Resume → ACTIVE → Fork → �
 
 ## 工程哲学
 
-> **Transcript 只追加，不修改**——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断工作记忆"能力。
+> **Transcript 只追加，不修改**——这是系统可信任的基础。任何时刻中断，任何时刻恢复，上下文完整。让 AI Agent 拥有与人类工程师相同的"可中断[[工作记忆]]"能力。
 
 ## 来源
 
-- [[raw/articles/ai-tools/codex/05_codex_session_manager.md]]
-- [[raw/articles/ai-tools/codex/05_codex_session_manager.md]] — Codex CLI 深度解析 Vol.5：Session Manager（详细版）
+- [[raw/articles/ai-tools/codex/05_codex_session_manager.md]] — Codex CLI 深度解析 Vol.5：Session Manager

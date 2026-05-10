@@ -30,7 +30,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1931–2022），IBM System/360 [[操作系统]]（OS/360）开发经理，《人月神话》作者，1986年发表"[[No Silver Bullet 论文|No Silver Bullet]]"论文。
+美国[[计算]]机科学家（1931–2022），IBM System/360 [[操作系统]]（OS/360）开发经理，《人月神话》作者，1986年发表"[[No Silver Bullet 论文|No Silver Bullet]]"论文。
 
 ## 关键内容
 

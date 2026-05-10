@@ -20,16 +20,16 @@ relates_to:
 # web-artifacts-builder Skill
 
 ## 概述
-[[Anthropic]] 官方 Skill，用于构建复杂 React Artifacts，支持状态管理、路由和 shadcn/ui 组件，通过 Parcel + html-inline 将应用打包为单个 HTML 文件。
+[[Anthropic]] 官方 [[Skills|Skill]]，用于构建复杂 [[React]] Artifacts，支持状态管理、路由和 shadcn/ui 组件，通过 Parcel + html-inline 将应用打包为单个 HTML 文件。
 
 ## 关键内容
 
 1. **技术栈**：
-   - React 18
+   - [[React]] 18
    - [[TypeScript]] (strict)
-   - Vite（开发服务器）
+   - Vite（开发[[服务]]器）
    - Parcel（打包）
-   - Tailwind CSS 3.4.1
+   - [[Tailwind CSS]] 3.4.1
    - shadcn/ui（40+ 组件）
    - html-inline（资源内联）
 
@@ -48,10 +48,10 @@ relates_to:
    - **Step 5**：可选测试
 
 4. **为什么用 Parcel 而非 Vite build**：
-   - Vite 输出多文件，需服务器托管
+   - Vite 输出多文件，需[[服务]]器托管
    - Parcel + html-inline = 单文件 HTML（500KB ~ 3MB）
 
-5. **Anti-AI-Slop 警告**：
+5. **Anti-[[AI生成代码的质量问题|AI-Slop]] 警告**：
    - 避免过度居中布局
    - 避免紫色渐变
    - 避免统一圆角

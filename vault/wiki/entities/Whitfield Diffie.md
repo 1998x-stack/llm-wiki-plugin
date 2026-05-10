@@ -53,7 +53,7 @@ supersedes: null
 ### 公钥密码学的诞生
 
 - 对密码学着迷的独立研究者
-- 1976年与 Stanford 大学教授 [[Martin Hellman]] 携手发表《[[Diffie-Hellman 论文|New Directions in Cryptography]]》
+- 1976年与 [[斯坦福大学|Stanford]] 大学教授 [[Martin Hellman]] 携手发表《[[Diffie-Hellman 论文|New Directions in Cryptography]]》
 - 首次提出[[公钥密码学]]的完整概念框架
 - 给出了基于[[离散对数问题]]的 [[Diffie-Hellman 密钥交换]]协议
 

@@ -31,7 +31,7 @@ supersedes: null
    - 2008 年以 "[[BellKor in BigChaos]]" 身份参赛（RMSE 0.8616，约 9.4% 提升）
    - 2009 年 9 月以 "[[BellKor's Pragmatic Chaos]]" 身份最终获胜（RMSE 0.8567，10.06% 提升）
 3. **技术方案**：方案融合了超过 100 个模型，其中[[矩阵分解]]方法是绝对主力。融合了[[矩阵分解]]、近邻方法、受限玻尔兹曼机等多种模型进行集成。
-4. **历史地位**：BellKor 团队的工作将 [[Netflix Prize]] 竞赛中的实战经验升华为系统化的学术知识，其核心方法论通过 Koren 等人 2009 年 IEEE Computer 论文传播至整个计算机科学界。
+4. **历史地位**：BellKor 团队的工作将 [[Netflix Prize]] 竞赛中的实战经验升华为系统化的学术知识，其核心方法论通过 Koren 等人 2009 年 IEEE Computer 论文传播至整个[[计算]]机科学界。
 
 ## 来源
 - [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems

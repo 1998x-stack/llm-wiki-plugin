@@ -18,7 +18,7 @@ Octree 是 [[UrhoX引擎|UrhoX]] 场景的空间分区组件，负责管理所�
 
 ## 关键内容
 - **场景根组件**：每个 Scene 自动包含一个 Octree，通常不需手动创建
-- **大小设置**：`SetSize(boundingBox, numLevels)` 定义八叉树覆盖范围和最大深度
+- **大小[[Settings|设置]]**：`SetSize(boundingBox, numLevels)` 定义八叉树覆盖范围和最大深度
 - **空间查询**：`GetDrawables(point/box/frustum/sphere)` 按区域获取相交 Drawable
 - **射线检测**：`Raycast(ray, level, maxDistance, flags)` 返回所有命中；`RaycastSingle` 返回最近命中
 - **查询级别**：`RayQueryLevel` 控制精度（包围盒/三角形/OBB等）

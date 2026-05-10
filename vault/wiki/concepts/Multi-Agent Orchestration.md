@@ -13,6 +13,9 @@ relates_to:
     type: part_of
   - target: "[[GSD Commands]]"
     type: implements
+  - target: "[[GSD 多智能体编排架构]]"
+    type: has_variant
+    confidence: 0.8
 ---
 
 # Multi-Agent Orchestration
@@ -23,7 +26,7 @@ GSD 系统的核心架构模式，通过编排者（主会话）协调 11 个专
 ## 关键内容
 
 1. **为什么需要多智能体**：
-   - **上下文污染累积**：单智能体上下文会被各类信息填满
+   - **[[Context Window Pollution|上下文污染]]累积**：单智能体上下文会被各类信息填满
    - **角色冲突**：规划者和执行者需要不同思维模式
    - **串行瓶颈**：研究+规划+执行在单上下文中需数小时
 
@@ -31,7 +34,7 @@ GSD 系统的核心架构模式，通过编排者（主会话）协调 11 个专
 
    | 智能体 | 职责 | 并发度 |
    |--------|------|--------|
-   | `gsd-planner` | 生成 XML 结构化计划 | 串行 |
+   | `gsd-planner` | 生成 [[XML 结构化 Prompt|XML 结构化计划]] | 串行 |
    | `gsd-roadmapper` | 需求分解为路线图 | 串行 |
    | `gsd-executor` | 执行 [[XML Plan|PLAN.md]] 任务 | **并行** |
    | `gsd-phase-researcher` | 阶段领域研究（4 维） | **×4 并行** |
@@ -68,5 +71,6 @@ GSD 系统的核心架构模式，通过编排者（主会话）协调 11 个专
 ## 相关
 - [[GSD]] — part_of
 - [[GSD Commands]] — implements
+- [[GSD 多智能体编排架构]] — variant_of
 - [[Wave Execution]] — uses
 - [[Context Engineering]] — implements

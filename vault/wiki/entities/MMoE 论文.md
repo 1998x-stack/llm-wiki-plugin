@@ -24,22 +24,25 @@ KDD 2018 发表的奠基性论文，提出 MMoE 架构解决[[多任务学习]]�
 - **标题**：Modeling Task Relationships in Multi-task Learning with [[MMoE|Multi-gate Mixture-of-Experts]]
 - **作者**：[[Jiaqi Ma]], [[Zhe Zhao]], Xinyang Yi, Jilin Chen, Lichan Hong, [[Ed H. Chi]]
 - **机构**：[[Google]] 推荐系统团队
-- **发表**：KDD 2018(第 24 届 ACM SIGKDD 国际知识发现与数据挖掘大会)
-- **页码**：pp. 1930-1939
+- **发表**：KDD 2018(第 24 届 ACM SIGKDD 国际知识发现与数据挖掘大会)，pp. 1930-1939
 - **DOI**：10.1145/3219819.3220007
 - 至今被引用数千次，是[[多任务学习]]在推荐系统领域的奠基性工作之一
+- 第一作者 [[Jiaqi Ma]] 当时是密歇根大学的博士生，在 Google 实习期间完成了这项工作
+- 通讯作者 [[Ed H. Chi]] 是 Google Research 的杰出科学家，长期深耕推荐系统和人机交互领域
 
 ### 核心贡献
 - 提出 MMoE 架构：为每个任务配备独立[[门控机制（Gating Mechanism）|门控]]网络，自适应选择共享专家组合
 - 建立研究[[多任务学习]]任务关系的实验[[规范化理论|范式]]：通过合成数据精确控制任务相关性
 - 在 [[YouTube]] 大规模推荐系统中进行工业验证，离线和在线 A/B 测试均取得正向收益
 - 证明当任务相关性降低时，独立[[门控机制（Gating Mechanism）|门控]]的价值愈发凸显
+- 提出"模块化专家 + 动态路由"的范式，为后续大模型时代的 MoE 发展奠定基础
 
 ### 实验验证
 - **合成数据实验**：通过正交[[矩阵]]旋转变换精确控制任务相关性，验证 MMoE 在低相关性场景下的显著优势
 - **UCI Census-Income 数据集**：在多任务分类任务中对比 L2-Constrained 和 Cross-Stitch 等方法
 - **[[YouTube]] 推荐系统**：同时优化参与度预测和满意度预测，MMoE 在两任务上均优于 Shared-Bottom 基线
 - **[[门控机制（Gating Mechanism）|门控]]网络可视化**：发现满意度任务[[门控机制（Gating Mechanism）|门控]]权重集中在少数专家，参与度任务分布更均匀
+- **训练稳定性测试**：验证 MMoE 相比其他架构具有更好的训练稳定性，性能方差更小
 
 ### 关键洞察
 - "The prediction quality of commonly used multi-task models is often sensitive to the relationships between tasks."
@@ -58,5 +61,9 @@ KDD 2018 发表的奠基性论文，提出 MMoE 架构解决[[多任务学习]]�
 - MMoE — 论文提出的核心架构
 - [[Jiaqi Ma]] — 第一作者，当时为密歇根大学博士生，在 Google 实习期间完成此工作
 - [[Ed H. Chi]] — 通讯作者，Google Research 杰出科学家
+- [[Zhe Zhao]] — Google 研究员，论文合作者
+- [[Xinyang Yi]] — Google 研究员，论文合作者
+- [[Jilin Chen]] — Google 研究员，论文合作者
+- [[Lichan Hong]] — Google 研究员，论文合作者
 - PLE — 最重要的直接继承者
 - ESMM — 利用用户行为序列关系建模任务因果依赖的后续工作

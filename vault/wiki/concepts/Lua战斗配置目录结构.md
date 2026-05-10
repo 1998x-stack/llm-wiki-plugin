@@ -24,7 +24,7 @@ supersedes: null
 # Lua 战斗配置目录结构
 
 ## 概述
-手游战斗系统 Lua 配置的六层目录模板：cfg/battle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。
+手游战斗系统 Lua [[Configuration|配置]]的六层目录模板：cfg/battle/unit/skill/buff/event，以 id 引用替代直接嵌套，避免循环依赖。
 
 ## 关键内容
 

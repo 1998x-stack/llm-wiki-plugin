@@ -15,7 +15,7 @@ supersedes: null
 
 ## 概述
 
-[[UrhoX引擎|UrhoX]] 2D粒子系统由 ParticleEffect2D（粒子效果资源）和 ParticleEmitter2D（粒子发射器组件）组成，支持动态启停和精灵/混合模式配置。
+[[UrhoX引擎|UrhoX]] 2D粒子系统由 ParticleEffect2D（粒子效果资源）和 ParticleEmitter2D（粒子发射器组件）组成，支持动态启停和精灵/混合模式[[Configuration|配置]]。
 
 ## 关键内容
 

@@ -16,7 +16,7 @@ relates_to:
 # Systematic Debugging Skill
 
 ## 概述
-[[Superpowers]] 刚性技能，以"NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST"为铁律，用 4 个必须按顺序完成的阶段将猜测式调试替换为证据驱动的根因调查。
+[[Superpowers]] 刚性[[Skills|技能]]，以"NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST"为铁律，用 4 个必须按顺序完成的阶段将猜测式调试替换为证据驱动的根因调查。
 
 ## 关键内容
 

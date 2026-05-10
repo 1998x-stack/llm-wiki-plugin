@@ -28,7 +28,7 @@ supersedes: null
    - 天然适合并行化（固定 $Q$ 时每个用户的 $p_u$ 可独立求解）
    - 适合处理[[隐式反馈]]数据（此时训练数据不再稀疏）
 3. **与 SGD 对比**：SGD 实现简单、收敛速度快、内存占用小；ALS 每步精确求解、适合并行、适合[[隐式反馈]]。两者是[[矩阵分解]]的两大主流优化方法。
-4. **工业应用**：ALS 优化的[[矩阵分解]]成为了 [[Apache Spark MLlib]] 等大数据框架的标准推荐算法实现，因其分布式友好特性被大量企业采用。
+4. **工业应用**：ALS 优化的[[矩阵分解]]成为了 [[Apache Spark MLlib]] 等大数据框架的标准推荐[[算法]]实现，因其分布式友好特性被大量企业采用。
 
 ## 来源
 - [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems

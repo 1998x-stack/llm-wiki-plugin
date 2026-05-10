@@ -20,6 +20,18 @@ relates_to:
     type: extends
   - target: "[[MCP 层工程亮点]]"
     type: extends
+  - target: "[[HTTP 传输协议]]"
+    type: uses
+    confidence: 0.7
+  - target: "[[Stdio 传输协议]]"
+    type: uses
+    confidence: 0.8
+  - target: "[[OAuth 2.0 认证]]"
+    type: supports
+    confidence: 0.75
+  - target: "[[MCPorter]]"
+    type: enables
+    confidence: 0.7
   - target: "[[渐进式加载]]"
     type: extends
 supersedes: null
@@ -38,8 +50,8 @@ supersedes: null
 - **Group 4 [[隧道跨域连接|Tunnel]] 发现（1 个）**：`mempalace_tunnel_explore`（探索当前 Room 的跨域连接）
 - **Group 5 日记（2 个）**：`mempalace_diary_write`（写入带时间戳日记）、`mempalace_diary_read`（读取最近 N 条日记）——为长期运行 Agent 提供持久化工作日志
 - **Group 6 管理工具（7 个）**：`mempalace_list_wings`、`mempalace_list_rooms`、`mempalace_delete`、`mempalace_update`、`mempalace_export`、`mempalace_stats`、`mempalace_rebuild_index`
-- **[[Claude Code]] Auto-save**：会话结束时自动调用 `mempalace_save` 保存关键决策和代码变更摘要，通过 `.claude/settings.json` 配置 triggers（session_end, important_decision）
-- **跨模型兼容**：支持 Claude（原生）、GPT-4o（API 适配）、[[Gemini CLI|Gemini]]（API 适配）、Llama（[[Ollama]] MCP 插件）、Mistral（API 适配）
+- **[[Claude Code]] Auto-save**：会话结束时自动调用 `mempalace_save` 保存关键决策和代码变更摘要，通过 `.claude/settings.json` [[Configuration|配置]] triggers（session_end, important_decision）
+- **跨模型兼容**：支持 [[Claude_Code|Claude]]（原生）、GPT-4o（API 适配）、[[Gemini CLI|Gemini]]（API 适配）、Llama（[[Ollama]] MCP 插件）、Mistral（API 适配）
 - **[[KBS 协议]]**：`mempalace_status` 响应末尾附加 "[[Know Before Speaking 协议|Know Before Speaking]]" 协议指令，强制 Agent 先检索再回答
 - **价值**：将记忆系统从被动存储升级为 Agent 可主动使用的工具集
 

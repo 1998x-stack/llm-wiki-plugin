@@ -33,7 +33,7 @@ supersedes: null
 - **任务管理命令**：`hermes cron list/show/run/disable/delete`，支持列出、查看、手动执行、暂停、删除任务
 - **与 [[网关与路由器|Gateway]] 的协同**：[[网关与路由器|Gateway]] 处理被动响应，Cron 处理主动触发，两者共用相同的 AIAgent 执行引擎和 delivery 投递系统，实现"被动 + 主动双模式"
 - **存储格式**：任务定义存储在 jobs.json 中，包含 cron 表达式、目标平台、任务提示词、附加 [[Agent Skills|Skills]] 等
-- **典型场景**：新闻摘要推送、Git 提交分析周报、API 费用统计月报、定期数据监控告警
+- **典型场景**：新闻摘要推送、[[Git Commit|Git 提交]]分析周报、API 费用统计月报、定期数据监控告警
 
 ## 来源
 - [05_hermes_gateway.md](/raw/articles/ai-tools/hermes/05_hermes_gateway.md) — Hermes Agent 深度解析第五篇：Gateway 消息网关，2026 年 4 月版本

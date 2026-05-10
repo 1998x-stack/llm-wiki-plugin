@@ -1,11 +1,11 @@
 ---
 type: concept
 status: active
-confidence: 0.9
+confidence: 0.95
 created: 2026-04-15
-updated: 2026-04-18
-last_accessed: 2026-04-15
-source_count: 3
+updated: 2026-04-19
+last_accessed: 2026-04-19
+source_count: 4
 tags: [技术, 工具, Agent系统]
 aliases: [Codex ExecPolicy, 策略即代码, Policy as Code]
 relates_to:
@@ -27,6 +27,12 @@ relates_to:
   - target: "[[三道防线模式]]"
     type: part_of
     confidence: 0.9
+  - target: "[[TOML]]"
+    type: uses
+    confidence: 0.95
+  - target: "[[前缀树（Trie）]]"
+    type: uses
+    confidence: 0.95
 supersedes: null
 ---
 
@@ -38,12 +44,12 @@ supersedes: null
 
 传统做法是硬编码黑名单（脆弱、无法共享）。ExecPolicy 改为结构化规则文件（TOML），支持：
 - 版本控制（提交到 Git 与团队共享）
-- 内置单元测试（load time 自动验证）
+- 内置[[单元测试]]（load time 自动验证）
 - 三态决策：`allow` / `prompt` / `forbidden`
 
 ## 规则语法
 
-每条规则包含以下字段（TOML 数组表格式）：`name`（规则名）、`prefix`（命令前缀匹配）、`decision`（allow/prompt/forbidden）、`justification`（原因说明）、`match`/`not_match`（load-time 单元测试用例）。
+每条规则包含以下字段（TOML 数组表格式）：`name`（规则名）、`prefix`（命令前缀匹配）、`decision`（allow/prompt/forbidden）、`justification`（原因说明）、`match`/`not_match`（load-time [[单元测试]]用例）。
 
 **前缀匹配语法**：prefix 数组内嵌套数组表示"或"——例如 `["git", "log/status/diff"]` 匹配三个 git 只读命令；`["npm/yarn", "install"]` 同时匹配 npm 和 yarn 的 install 命令。
 
@@ -52,16 +58,16 @@ supersedes: null
 | 决策 | 行为 |
 |------|------|
 | `allow` | 直接放行，不触发审批弹窗 |
-| `prompt` | 暂停，在 [[Codex TUI]] 显示 Approval Gate，等人类决策 |
+| `prompt` | 暂停，在 [[Codex TUI]] 显示 [[Approval Gate UI|Approval Gate]]，等人类决策 |
 | `forbidden` | 直接拒绝，并将 `justification`（含替代方案）返回给 LLM |
 
 **`forbidden` 的工程价值**：LLM 收到 justification 后可自动纠错（如用 `--force-with-lease` 替代 `--force`），形成**自动纠错循环**。
 
 ## 规则评估机制
 
-- **前缀树（Trie）匹配**：O(k) 时间（k = 命令 token 数），load 时构建
+- **[[前缀树（Trie）]]匹配**：O(k) 时间（k = 命令 token 数），load 时构建
 - **优先级**：更具体的规则优先（更长前缀）；同层 first-match
-- **无匹配时**：fallback 到 `approval_policy` 全局设置
+- **无匹配时**：fallback 到 `approval_policy` 全局[[Settings|设置]]
 - **Host Executable 解析**：`--resolve-host-executables` 绑定绝对路径，防止 PATH 欺骗攻击
 
 ## 规则文件层次
@@ -100,13 +106,13 @@ codex execpolicy check --rules ~/.codex/rules/safe.rules git push --force
 | LLM 生成不安全命令 | `forbidden` 规则直接拒绝 + 返回替代建议 |
 | 不知道某命令是否安全 | `prompt` 规则让人类在执行前决策 |
 | 团队成员安全策略不一致 | 项目级规则文件提交 Git，统一策略 |
-| 新加的规则引入了 bug | `match/not_match` 单元测试在 load time 捕获 |
+| 新加的规则引入了 bug | `match/not_match` [[单元测试]]在 load time 捕获 |
 | 规则被 PATH 欺骗绕过 | host_executable 解析绑定绝对路径 |
 | Agent 绕过策略重复尝试 | forbidden + justification 引导 LLM 走正确路径 |
 
 ## 工程哲学
 
-> **ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"**。规则在加载时验证，在执行时机械应用。没有临时判断，没有模糊地带。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。
+> **ExecPolicy 把安全策略从"运行时判断"变成了"编译时声明"**。规则在加载时验证，在执行时机械应用。没有临时判断，没有[[弹性规则|模糊地带]]。这是把"AI 会不会乱来"的不确定性转化为确定性的关键机制。
 
 ## 来源
 

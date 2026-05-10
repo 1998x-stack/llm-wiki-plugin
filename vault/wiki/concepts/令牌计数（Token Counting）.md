@@ -24,7 +24,7 @@ supersedes: null
 # 令牌计数（Token Counting）
 
 ## 概述
-[[Anthropic]] API 的 `/v1/messages/count_tokens` 端点，用于在发送消息给 Claude 前估算输入令牌数量，帮助主动管理速率限制、成本和[[LLM 路由|模型路由]]决策。
+[[Anthropic]] API 的 `/v1/messages/count_tokens` 端点，用于在发送消息给 [[Claude_Code|Claude]] 前估算输入令牌数量，帮助主动管理速率限制、成本和[[LLM 路由|模型路由]]决策。
 
 ## 关键内容
 

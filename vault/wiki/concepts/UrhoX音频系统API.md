@@ -37,7 +37,7 @@ supersedes: null
 
 主要方法：
 - `SetMode(bufferLengthMSec, mixRate, stereo, interpolation)` — 初始化混音器
-- `SetMasterGain(type, gain)` — 按声音类型设置主音量（如 `"Music"`、`"Effect"`）
+- `SetMasterGain(type, gain)` — 按声音类型[[Settings|设置]]主音量（如 `"Music"`、`"Effect"`）
 - `PauseSoundType(type)` / `ResumeSoundType(type)` / `ResumeAll()` — 声音类型暂停控制
 - `SetListener(listener)` — 绑定听者组件
 - `StopSound(sound)` — 停止指定 Sound 资源的所有播放实例

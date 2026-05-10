@@ -45,42 +45,42 @@ supersedes: null
 ### 设计目标
 
 **优化启发式提问（Elicitation）**：
-- 提升 Claude 向用户提问的效率和质量
+- 提升 [[Claude_Code|Claude]] 向用户提问的效率和质量
 - 降低用户回答问题的时间成本
-- 增加用户与 Claude 之间的沟通带宽
+- 增加用户与 [[Claude_Code|Claude]] 之间的沟通带宽
 
 ### 演进历程
 
 **尝试 1：修改 [[ExitPlanTool]]**
 - 方案：在 [[ExitPlanTool]] 中添加参数，同时输出计划和一组问题
 - 失败原因：
-  - Claude 困惑：同时要求生成计划和问题导致混淆
+  - [[Claude_Code|Claude]] 困惑：同时要求生成计划和问题导致混淆
   - 潜在冲突：用户回答可能与计划内容矛盾
   - 需要多次调用：可能需要调用 [[ExitPlanTool]] 两次
 - 结论：此路不通，需要重新设计
 
 **尝试 2：更改输出格式**
-- 方案：更新 Claude 输出指令，使用修改的 Markdown 格式（如带括号选项的 bullet points）
+- 方案：更新 [[Claude_Code|Claude]] 输出指令，使用修改的 Markdown 格式（如带括号选项的 bullet points）
 - 失败原因：
-  - 不可靠：Claude 通常能生成格式，但不稳定
+  - 不可靠：[[Claude_Code|Claude]] 通常能生成格式，但不稳定
   - 常见问题：额外添加句子、遗漏选项、放弃结构
 - 结论：解析不可靠，需要更强约束
 
 **尝试 3：AskUserQuestion Tool（最终方案）**
-- 方案：创建独立工具，Claude 可在任意时刻调用（特别是计划模式）
+- 方案：创建独立工具，[[Claude_Code|Claude]] 可在任意时刻调用（特别是计划模式）
 - 工作机制：
   - 工具触发时显示模态框
   - 展示结构化问题和多个选项
   - 阻塞 Agent 循环直到用户回答
 - 成功原因：
-  - Claude"喜欢"调用这个工具
+  - [[Claude_Code|Claude]]"喜欢"调用这个工具
   - 输出效果好，结构化可靠
   - 用户可组合使用（如在 Agent SDK 中调用或在 [[Agent Skills|Skills]] 中引用）
 
 ### 核心特性
 
 **结构化输出**：
-- 强制 Claude 提供多个选项
+- 强制 [[Claude_Code|Claude]] 提供多个选项
 - 模态框 UI 提升用户体验
 - 阻塞机制确保问题得到回答
 
@@ -93,11 +93,11 @@ supersedes: null
 
 **工具与能力的匹配**：
 - 工具设计需要契合模型自身能力
-- 即使设计精良的工具，如果 Claude 不理解如何调用也无效
+- 即使设计精良的工具，如果 [[Claude_Code|Claude]] 不理解如何调用也无效
 - 需要"像智能体一样观察"才能设计出好工具
 
 **演进必要性**：
-- 随着 Claude 能力提升，工具也需要演进
+- 随着 [[Claude_Code|Claude]] 能力提升，工具也需要演进
 - AskUserQuestion 可能不是最终形态
 - 需要持续实验、阅读输出、尝试新方法
 

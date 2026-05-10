@@ -15,10 +15,10 @@ aliases:
 - Maurice Vincent Wilkes
 - 莫里斯·威尔克斯
 relates_to:
-- target: "[[EDVAC 报告]]"
-  type: extends
+- target: "[[First Draft of a Report on the EDVAC]]"
+  type: influenced_by
   confidence: 0.9
-  note: 1946年读到报告后深受启发，回国建造了 EDSAC
+  note: 1946年读到冯·诺依曼的报告后深受启发，回国后主持建造了EDSAC
 - target: "[[存储程序计算机]]"
   type: implements
   confidence: 0.95
@@ -34,26 +34,26 @@ supersedes: null
 
 ## 概述
 
-英国计算机科学家（1913–2010），剑桥大学数学实验室主任。1946年读到[[EDVAC 报告]]后深受启发，回国主持建造了 EDSAC（1949）——世界上第一台实用的[[存储程序计算机]]。
+英国[[计算]]机科学家（1913–2010），剑桥大学数学实验室主任。1946年读到[[EDVAC 报告]]后深受启发，回国主持建造了 [[EDSAC]]（1949）——世界上第一台实用的[[存储程序计算机]]。
 
 ## 关键内容
 
 ### EDSAC（1949）
 
-- 在剑桥大学主持建造了 EDSAC（Electronic Delay Storage Automatic Calculator）
-- 1949年5月6日运行了第一个程序，计算了一张平方数表和一个素数列表
-- EDSAC 是世界上第一台**实用**的[[存储程序计算机]]（Manchester Baby 1948年是实验性原型机）
+- 在剑桥大学主持建造了 [[EDSAC]]（[[EDSAC|Electronic Delay Storage Automatic Calculator]]）
+- 1949年5月6日运行了第一个程序，[[计算]]了一张平方数表和一个素数列表
+- [[EDSAC]] 是世界上第一台**实用**的[[存储程序计算机]]（[[Manchester Baby]] 1948年是实验性原型机）
 - 使用水银延迟线作为内存
 
 ### 受 EDVAC 报告启发
 
-- 1946年，Wilkes 在宾夕法尼亚大学参加了一场关于 EDVAC 设计的研讨会，读到了 von Neumann 的报告
-- 他深受启发，回国后立即开始设计和建造 EDSAC
+- 1946年，Wilkes 在[[宾夕法尼亚大学]]参加了一场关于 EDVAC 设计的研讨会，读到了 von Neumann 的报告
+- 他深受启发，回国后立即开始设计和建造 [[EDSAC]]
 - 这一案例完美展示了 [[EDVAC 报告]]的传播效应——所到之处生根发芽
 
 ### 后续贡献
 
-- 撰写了《Memoirs of a Computer Pioneer》（1985），是研究早期计算机史的重要史料
+- 撰写了《Memoirs of a Computer Pioneer》（1985），是研究早期[[计算]]机史的重要史料
 - 在微编程（microprogramming）领域做出了开创性贡献
 - 1967年获得[[阿兰·图灵|图灵]]奖
 

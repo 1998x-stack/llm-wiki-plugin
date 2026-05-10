@@ -23,7 +23,7 @@ supersedes: null
 ## 关键内容
 - **chat_completions（最广泛）**：适用 [[OpenAI]]、Open[[网关与路由器|Router]]、Kimi、MiniMax、GLM、本地 [[Ollama]] 等 200+ 模型，[[OpenAI]] Chat Completions API 标准格式，兼容性最广
 - **codex_responses（[[OpenAI]] 新格式）**：适用 [[OpenAI]] Responses API，支持 [[OpenAI]] 最新功能如 Reasoning tokens
-- **anthropic_messages（[[Anthropic]] 原生）**：适用 Claude 系列直连，支持 [[提示词缓存|Prompt Caching]]、[[扩展思维|Extended Thinking]]、文档类型等 Claude 独有功能
+- **anthropic_messages（[[Anthropic]] 原生）**：适用 [[Claude_Code|Claude]] 系列直连，支持 [[提示词缓存|Prompt Caching]]、[[扩展思维|Extended Thinking]]、文档类型等 [[Claude_Code|Claude]] 独有功能
 - **切换方式**：`hermes model` 命令即可切换，无需更改任何应用代码，运行时动态解析 Provider
 - **设计哲学**：不强迫统一接口，而是为三种主流格式分别实现适配器 — `anthropic_adapter.py` 专门处理 [[Anthropic]] Messages API 格式转换
 - **与[[模型无关设计]]的关系**：三种 API 模式是[[模型无关设计]]的具体实现机制，保证 200+ 模型无缝切换

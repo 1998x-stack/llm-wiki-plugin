@@ -83,7 +83,7 @@ supersedes: null
 ### 影响
 
 - 定义了现代[[操作系统]]的基因
-- 其后代（Linux、macOS、Android）统治了几乎所有计算平台
+- 其后代（Linux、macOS、Android）统治了几乎所有[[计算]]平台
 - 开源运动的先驱
 - 1983年 Thompson 和 Ritchie 因此获得[[阿兰·图灵|图灵]]奖
 

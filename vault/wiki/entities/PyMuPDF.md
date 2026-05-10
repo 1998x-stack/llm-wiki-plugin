@@ -25,13 +25,13 @@ supersedes: null
 
 ## 概述
 
-PyMuPDF 是 MuPDF 引擎的 Python 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 [[MinerU]] TextBased 管道的核心解析引擎。
+PyMuPDF 是 MuPDF 引擎的 [[Python]] 绑定，提供高性能的 PDF 文档解析能力，可直接读取精确到亚像素的字符坐标，是 [[MinerU]] TextBased 管道的核心解析引擎。
 
 ## 关键内容
 
 ### 为什么是 PyMuPDF
 
-PyMuPDF 底层是 **MuPDF**——业界最优秀的 PDF 渲染引擎之一（Foxit 阅读器也基于它）。相比 `pdfminer`（纯 Python，慢）和 `pypdf`（精度有限），PyMuPDF 在速度（C++ 内核）、字符精度（亚像素级）、图像渲染、字体信息、嵌入图片提取、中文 PDF 支持上全面领先。
+PyMuPDF 底层是 **MuPDF**——业界最优秀的 PDF 渲染引擎之一（Foxit 阅读器也基于它）。相比 `pdfminer`（纯 [[Python]]，慢）和 `pypdf`（精度有限），PyMuPDF 在速度（C++ 内核）、字符精度（亚像素级）、图像渲染、字体信息、嵌入图片提取、中文 PDF 支持上全面领先。
 
 ### MinerU 使用 PyMuPDF 的三个核心操作
 

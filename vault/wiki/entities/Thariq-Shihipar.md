@@ -34,7 +34,7 @@ supersedes: null
 
 ### 在 Anthropic 的角色
 
-Thariq Shihipar 是 [[Anthropic]] 的技术团队成员（member of technical staff），主要负责 [[Claude Code]] 项目的开发和工具设计工作。
+[[Thariq-(trq212)|Thariq]] Shihipar 是 [[Anthropic]] 的技术团队成员（member of technical staff），主要负责 [[Claude Code]] 项目的开发和工具设计工作。
 
 ### 核心贡献
 

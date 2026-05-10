@@ -36,7 +36,7 @@ Trajectory Schema 是 [[SWE-agent]] 定义的 Agent 运行轨迹数据结构（`
 
 | 字段 | 含义 | 构造方式 |
 |------|------|---------|
-| `environment` | 运行环境标识（如 "swe_main"） | 初始化时从运行配置写入，run-level metadata |
+| `environment` | 运行环境标识（如 "swe_main"） | 初始化时从运行[[Configuration|配置]]写入，run-level metadata |
 | `trajectory` | 核心数组，存储每步交互记录 | 每完成一轮交互 append 一条记录 |
 
 **建议补充的顶层工程化字段**：`instance_id`、`schema_version`、`run_id`、`agent_version`、`model_name`、`config_ref`、`info`。
@@ -48,7 +48,7 @@ Trajectory Schema 是 [[SWE-agent]] 定义的 Agent 运行轨迹数据结构（`
 | 字段 | 含义 | 构造方式 |
 |------|------|---------|
 | `response` | 模型原始输出（LM output） | 模型返回后原样保存，包含自然语言推理和动作文本 |
-| `thought` | 从 response 解析出的"思考部分" | 用 action parser 按约定模板从 response 中抽取（如 ReAct 中 `Thought:` 后的文本） |
+| `thought` | 从 response 解析出的"思考部分" | 用 action parser 按约定模板从 response 中抽取（如 [[ReAct]] 中 `Thought:` 后的文本） |
 | `action` | 从 response 解析出的"动作部分"，实际执行的命令 | 由 parser 从 response 中抽取，标准化后传给环境执行器 |
 | `observation` | 动作执行后的[[环境反馈设计|环境反馈]] | 执行 action 后，把 stdout/stderr/工具返回值合成为字符串 |
 | `state` | 动作执行后从环境抽取的状态 | 每轮完成后从环境对象读取关键状态（如 `open_file`、`working_dir`），序列化为 JSON |

@@ -1,20 +1,22 @@
 ---
 type: tool
 status: active
-confidence: 0.85
+confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 1
+updated: 2026-04-25
+last_accessed: 2026-04-25
+source_count: 2
 tags: [frontend, ui-library, react, tailwind]
 aliases: ["shadcn/ui", "shadcn"]
 relates_to:
   - target: "[[React]]"
     type: uses
-  - target: "[[Tailwind CSS]]"
+  - target: "[[Tailwind CSS v4]]"
     type: uses
   - target: "[[web-artifacts-builder Skill]]"
     type: uses
+  - target: "[[jezweb/claude-skills]]"
+    type: used_by
 ---
 
 # shadcn/ui
@@ -58,10 +60,11 @@ relates_to:
 
 ## 来源
 - [[03_web_artifacts_builder_skill]] — web-artifacts-builder Skill 解析
+- [[04_jezweb_claude_skills_frontend]] — jezweb/claude-skills shadcn-ui 详解
 - shadcn/ui 官方文档
 
 ## 相关
 - [[React]] — uses
-- [[Tailwind CSS]] — uses
+- [[Tailwind CSS v4]] — uses
 - [[Radix UI]] — uses
 - [[web-artifacts-builder Skill]] — uses

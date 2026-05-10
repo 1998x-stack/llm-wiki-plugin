@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 1
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 2
 tags: ["机器学习", "深度学习", "计算机视觉", "数据预处理"]
 aliases: ["Data Augmentation", "数据扩充", "数据增广"]
 relates_to: ["AlexNet", "过拟合", "深度学习", "计算机视觉"]
@@ -26,6 +26,7 @@ supersedes: null
 ## 来源
 - [Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. NeurIPS, 25.] — AlexNet 论文
 - [raw/articles/ai-papers/machine-learning/07_alexnet_2012.md] — 源文件
+- [raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读
 
 ## 相关
 - [[AlexNet]] — used_in

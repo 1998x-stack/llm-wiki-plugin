@@ -25,13 +25,13 @@ supersedes: null
 
 ## 概述
 
-GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化[[规范化理论|范式]]，目标是让内容被 ChatGPT、Perplexity、[[Google]] AI Overviews、Claude 等 LLM 在生成答案时**主动引用**。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。
+GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱动的生成式搜索引擎设计的内容优化[[规范化理论|范式]]，目标是让内容被 [[ChatGPT]]、Perplexity、[[Google]] AI Overviews、[[Claude_Code|Claude]] 等 LLM 在生成答案时**主动引用**。由普林斯顿/IIT Delhi 于 2023 年提出，KDD 2024 收录。
 
 ## 关键内容
 
 1. **市场规模（2025）**：AI 搜索替代传统搜索比例 58%、AI 引荐流量同比增长 +527%（2025 H1）、每次 AI 答案平均只引用 2-7 个域名（vs 传统搜索 10 条蓝链），竞争高度集中。
 
-2. **生成式引擎多阶段检索**：广域文档检索 → 重排模型（ChatGPT 用 ret-rr-skysight-v3）→ LLM 合成生成（从 2-7 个精选域名提取事实）→ 带引用的自然语言答案。
+2. **生成式引擎多阶段检索**：广域文档检索 → 重排模型（[[ChatGPT]] 用 ret-rr-skysight-v3）→ LLM 合成生成（从 2-7 个精选域名提取事实）→ 带引用的自然语言答案。
 
 3. **内容被 AI 选中的四大维度**：
    - **语义密度**：每 150-200 字中可提取的事实/数据/定义数量
@@ -42,9 +42,9 @@ GEO（Generative Engine Optimization，生成式引擎优化）是专为 AI 驱�
 4. **核心优化策略**：
    - 内容结构：直接答案优先（前 40-60 字）、FAQ 格式、语义分块（每段落可脱离上下文被提取）、每 150-200 字嵌入一条具体数据点
    - 权威构建：原创研究/白皮书、透明作者署名、被高权威网站引用
-   - 技术实现：Schema Markup（结构化数据）、AI 爬虫友好（不屏蔽 GPTBot/ClaudeBot/PerplexityBot）
+   - 技术实现：Schema Markup（结构化数据）、AI 爬虫友好（不屏蔽 GPTBot/[[Claude_Code|Claude]]Bot/PerplexityBot）
 
-5. **平台差[[异化]]**：ChatGPT 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；[[Google]] AI Overviews 偏好已有高 SEO 排名的内容；Claude 偏好可溯源、有引用的结构化内容。
+5. **平台差[[异化]]**：[[ChatGPT]] 偏好权威深度内容；Perplexity 偏好时效性强的社区讨论；[[Google]] AI Overviews 偏好已有高 SEO 排名的内容；[[Claude_Code|Claude]] 偏好可溯源、有引用的结构化内容。
 
 6. **衡量指标**：AIGVR（AI Visibility Rate）、Citation Rate（引用率）、CER（内容提取率）、C2CR（AI 引用→业务转化率）。
 

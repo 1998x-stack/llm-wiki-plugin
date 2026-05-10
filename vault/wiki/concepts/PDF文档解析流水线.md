@@ -48,7 +48,7 @@ PDF（Portable Document Format）本质上是一种**打印指令集**，而非�
 2. **底层 PDF 解析**：使用 [[PyMuPDF]] 等引擎提取原始 Span/Block（字符组）并将页面渲染为图像
 3. **[[文档布局检测]]**：通过 [[DocLayout-YOLO]] 或 [[LayoutLMv3]] 等模型检测文本区、图像、表格、公式框的位置和类别
 4. **内容专项识别**：针对不同内容类型使用专用模型——OCR（[[PaddleOCR]]）识别文字、[[公式识别]]（[[UniMERNet]]）输出 LaTeX、[[表格识别]]（[[TableMaster]]）还原结构
-5. **内容块分类与属性标注**：将检测结果分类为 title / text / figure / table / formula 等语义类别
+5. **内容块分类与属性[[标注]]**：将检测结果分类为 title / text / figure / table / formula 等语义类别
 6. **[[阅读顺序重建|阅读顺序]]排序**：基于坐标与分栏分析，重建人类阅读序列，解决多栏文档的顺序问题
 7. **Markdown / JSON 内容生成**：将有序内容块序列化为目标格式，输出结构化数据
 

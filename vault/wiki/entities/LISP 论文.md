@@ -64,7 +64,7 @@ supersedes: null
 
 ## 概述
 
-[[John McCarthy]] 于1960年发表的《Recursive Functions of [[S-表达式|Symbolic Expression]]s and Their Computation by Machine, Part I》，是计算机科学史上最具影响力的论文之一，首次系统描述了 LISP 语言，开创了[[函数式编程]][[规范化理论|范式]]。
+[[John McCarthy]] 于1960年发表的《Recursive Functions of [[S-表达式|Symbolic Expression]]s and Their Computation by Machine, Part I》，是[[计算]]机科学史上最具影响力的论文之一，首次系统描述了 LISP 语言，开创了[[函数式编程]][[规范化理论|范式]]。
 
 ## 关键内容
 
@@ -84,7 +84,7 @@ supersedes: null
 - **条件表达式**：将 `if-then-else` 从语句提升为表达式
 - **递归函数定义**：将递归提升为首选控制结构
 - **λ 表达式和高阶函数**：函数成为第一等值
-- **[[eval 函数]]**：用不到一页篇幅定义的 LISP 自解释器，被称为"计算机科学史上最美丽的一页"
+- **[[eval 函数]]**：用不到一页篇幅定义的 LISP 自解释器，被称为"[[计算]]机科学史上最美丽的一页"
 - **[[垃圾回收]]**：首次引入[[垃圾回收|自动内存管理]]
 
 ### 实现传奇
@@ -96,7 +96,7 @@ supersedes: null
 - 开创了[[函数式编程]][[规范化理论|范式]]
 - 1960-1990年代 AI 研究的事实标准语言
 - McCarthy 于1971年因 AI 贡献获[[阿兰·图灵|图灵]]奖
-- 影响了 JavaScript、Python、Ruby 等现代语言
+- 影响了 JavaScript、[[Python]]、Ruby 等现代语言
 
 ## 来源
 

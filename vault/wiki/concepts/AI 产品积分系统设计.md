@@ -26,7 +26,7 @@ AI 产品（[[Manus]]、v0.dev、Lovable、Bolt、[[Cursor]]、Replit、Builder.
 ## 关键内容
 
 1. **五种定价模式**：
-   - 纯订阅（Flat Fee）：ChatGPT Plus $20/月，成本可预期但厂商难控重度用户
+   - 纯订阅（Flat Fee）：[[ChatGPT]] Plus $20/月，成本可预期但厂商难控重度用户
    - 按用量计费（Usage-Based）：[[OpenAI]] API，线性公平但用户焦虑
    - 订阅+积分混合（Hybrid）：v0.dev、Lovable、[[Cursor]]，保底收入+控制超量
    - 结果导向（Outcome-Based）：Intercom Fin $0.99/成功解决，价值对齐但"成功"定义复杂
@@ -45,7 +45,7 @@ AI 产品（[[Manus]]、v0.dev、Lovable、Bolt、[[Cursor]]、Replit、Builder.
 7. **十大设计原则**：
    - 积分≠Token，需要抽象层（用户看到 50 积分，内部 150K input + 80K output tokens）
    - 执行前必须显示预估成本（置信区间而非精确值）
-   - 设置消耗上限/看门狗机制（检测循环→暂停）
+   - [[Settings|设置]]消耗上限/看门狗机制（检测循环→暂停）
    - 每日刷新机制（[[Manus]] 每日 300 积分保证轻度用户每天可用）
    - Rollover 与生命周期管理（促销>月度>购买，滚存上限防无限积累）
    - 模型分级+用户自主选择（快速/标准/深度模式，用户选而非系统自动决定）

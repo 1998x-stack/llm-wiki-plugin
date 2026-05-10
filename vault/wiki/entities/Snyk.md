@@ -16,7 +16,7 @@ relates_to:
 # Snyk
 
 ## 概述
-开发者安全平台，提供依赖漏洞检测、代码安全分析等服务，其技术博客评价了 [[Anthropic]] [[frontend-design Skill]] 对解决 AI 前端同质化问题的贡献。
+开发者安全平台，提供依赖漏洞检测、代码[[安全分析]]等[[服务]]，其技术博客评价了 [[Anthropic]] [[frontend-design Skill]] 对解决 AI 前端同质化问题的贡献。
 
 ## 关键内容
 

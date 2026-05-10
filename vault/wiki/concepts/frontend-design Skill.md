@@ -20,7 +20,7 @@ relates_to:
 # frontend-design Skill
 
 ## 概述
-[[Anthropic]] 官方 Skill，指导创建独特、生产级前端界面，避免通用的"[[AI Slop]]"美学，强制在编码前进行设计决策（Purpose → Tone → Constraints → Differentiation）。
+[[Anthropic]] 官方 [[Skills|Skill]]，指导创建独特、生产级前端界面，避免通用的"[[AI Slop]]"美学，强制在编码前进行设计决策（Purpose → Tone → Constraints → Differentiation）。
 
 ## 关键内容
 

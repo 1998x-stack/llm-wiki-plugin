@@ -26,11 +26,11 @@ entity_type: tool
 
 ## 关键内容
 
-1. **架构**：编辑器 (LSP Client) → JSON-RPC (stdio) → typescript-language-server (Node.js) → [[TypeScript]] TSServer Protocol (IPC/pipe) → tsserver（[[TypeScript]] 内置语言服务）。
+1. **架构**：编辑器 (LSP Client) → JSON-RPC (stdio) → typescript-language-server (Node.js) → [[TypeScript]] TSServer Protocol (IPC/pipe) → tsserver（[[TypeScript]] 内置语言[[服务]]）。
 
 2. **版本演进**：2016-2019 早期 theia-ide 版本，2021-03 重写为 1.0.0（完善 LSP 3.16 支持），2022-06 3.0.0（Inlay Hints），2024-09 4.3.3（TS 5.6 支持）。
 
-3. **能力覆盖**：代码补全、跳转定义、类型检查、重构、[[Semantic Tokens（语义标记）|语义高亮]]、Call Hierarchy、Inlay Hints 等。
+3. **能力覆盖**：代码补全、跳转定义、类型检查、[[重构]]、[[Semantic Tokens（语义标记）|语义高亮]]、Call Hierarchy、Inlay Hints 等。
 
 ## 来源
 - [[02_typescript_lsp]] — TypeScript/JavaScript LSP 工具完整调研

@@ -32,7 +32,7 @@ supersedes: null
 
 3. **后续工作**：[[GRU4Rec]] v2（CIKM 2018），与团队成员共同提出 BPR-max 和 TOP1-max 损失函数，将性能提升 35%。
 
-4. **开源贡献**：维护 [[GRU4Rec]] 的官方代码仓库（Theano 实现和 PyTorch 官方实现），为后续研究者提供了可复现的基线。
+4. **开源贡献**：维护 [[GRU4Rec]] 的官方代码[[仓库]]（Theano 实现和 [[PyTorch]] 官方实现），为后续研究者提供了可复现的基线。
 
 5. **机构背景**：Gravity R&D（匈牙利），与 Telefonica Research（西班牙）合作完成 [[GRU4Rec]] 研究。
 

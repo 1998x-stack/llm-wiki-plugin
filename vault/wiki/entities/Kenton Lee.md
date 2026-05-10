@@ -37,7 +37,7 @@ supersedes: null
 
 ## 概述
 
-Kenton Lee 是 [[Google]] AI Language 的研究科学家，[[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)|BERT 论文]]的第三作者，参与了双向预训练语言模型的开发。
+Kenton Lee 是 [[Google]] AI Language 的研究科学家，[[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)|BERT 论文]]的第三作者，参与了双向预训练[[Language-Model|语言模型]]的开发。
 
 ## 关键内容
 

@@ -10,8 +10,12 @@ source_count: 1
 tags: [推荐系统, 深度学习, Google]
 aliases: [Jay Adams]
 relates_to:
-  - {target: Deep Neural Networks for YouTube Recommendations, type: part_of}
-  - {target: YouTube, type: part_of}
+  - {target: Deep Neural Networks for YouTube Recommendations, type: co-authored}
+  - {target: YouTube, type: affiliated_with}
+  - {target: Google, type: affiliated_with}
+  - {target: Paul Covington, type: collaborated_with}
+  - {target: Emre Sargin, type: collaborated_with}
+  - {target: RecSys 2016, type: published_at}
 supersedes: null
 ---
 

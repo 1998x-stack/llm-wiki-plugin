@@ -48,7 +48,7 @@ Mario 的职业生涯横跨游戏引擎开发和 AI Agent 工程。他创建的 
 
 ### 3. 核心洞见
 
-> "Agent 的性能瓶颈不在于工具数量，而在于 Harness 设计质量和上下文精确性。"
+> "Agent 的性能瓶颈不在于工具数量，而在于 [[Harness-Engineering|Harness 设计]]质量和上下文精确性。"
 
 这一洞见通过 Terminal-Bench 基准测试得到验证——Pi 在基准中击败了许多工具集更丰富的 Agent。
 

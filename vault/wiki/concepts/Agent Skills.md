@@ -40,13 +40,13 @@ supersedes: null
 
 ## 概述
 
-Agent Skills（代理技能）是 [[Anthropic]] 提出的开放标准：**一个含 [[SKILL.md 格式规范|SKILL.md]] 文件的目录**，通过渐进式披露机制为 Agent 提供可组合、可共享的领域专业知识。本质是把"给新员工的入职指南"包装成 Agent 可动态加载的模块化资源。
+Agent [[Skills]]（代理[[Skills|技能]]）是 [[Anthropic]] 提出的开放标准：**一个含 [[SKILL.md 格式规范|SKILL.md]] 文件的目录**，通过渐进式披露机制为 Agent 提供可组合、可共享的领域专业知识。本质是把"给新员工的入职指南"包装成 Agent 可动态加载的模块化资源。
 
 ## 关键内容
 
 ### 核心结构
 
-一个 Skill 就是一个目录，核心是 `SKILL.md` 文件：
+一个 [[Skills|Skill]] 就是一个目录，核心是 `SKILL.md` 文件：
 
 ```
 skill-name/
@@ -101,56 +101,56 @@ Skills 可包含预写的 Python/Bash 脚本供 Claude 运行，而无需将脚�
 
 **从 Claude 视角思考**：监控 Claude 实际使用 Skill 的轨迹；若偏离预期，要求 Claude 自我反思；特别关注 `name` 和 `description` 的措辞——这决定触发时机。
 
-**与 Claude 迭代**：在完成任务过程中，要求 Claude 将成功方法和常见错误编码到 Skill 中。
+**与 [[Claude_Code|Claude]] 迭代**：在完成任务过程中，要求 [[Claude_Code|Claude]] 将成功方法和常见错误编码到 [[Skills|Skill]] 中。
 
 ### 安全考虑
 
-Skills 为 Claude 提供了新能力，恶意 Skill 可能引入漏洞或指导 Claude 外泄数据：
-- 只安装来自可信来源的 Skills
-- 对不受信来源的 Skill，彻底审计其文件内容和代码依赖
-- 注意 Skill 中引导 Claude 连接外部不受信网络的指令
+[[Skills]] 为 [[Claude_Code|Claude]] 提供了新能力，恶意 [[Skills|Skill]] 可能引入漏洞或指导 [[Claude_Code|Claude]] 外泄数据：
+- 只安装来自可信来源的 [[Skills]]
+- 对不受信来源的 [[Skills|Skill]]，彻底审计其文件内容和代码依赖
+- 注意 [[Skills|Skill]] 中引导 [[Claude_Code|Claude]] 连接外部不受信网络的指令
 
 ### 两种技能类型
 
-[[Anthropic]] 将 Agent Skills 分为两类，这一[[区分]]对测试策略有重要含义：
+[[Anthropic]] 将 Agent [[Skills]] 分为两类，这一[[区分]]对测试策略有重要含义：
 
 | 类型 | 定义 | 示例 | 测试关注点 |
 |------|------|------|-----------|
-| **能力提升（Capability Uplift）** | 帮助 Claude 完成基础模型无法完成或无法稳定完成的任务 | 文档创建技能（PDF、PPT 等） | 模型能力提升后可能变得不再必要 |
-| **编码偏好（Encoded Preference）** | Claude 已能完成每个环节，但技能按团队流程编排顺序 | NDA 审核流程、周报草稿生成 | 价值取决于与实际工作流的契合度 |
+| **能力提升（Capability Uplift）** | 帮助 [[Claude_Code|Claude]] 完成基础模型无法完成或无法稳定完成的任务 | 文档创建[[Skills|技能]]（PDF、PPT 等） | 模型能力提升后可能变得不再必要 |
+| **编码偏好（Encoded Preference）** | [[Claude_Code|Claude]] 已能完成每个环节，但[[Skills|技能]]按团队流程编排顺序 | NDA 审核流程、周报草稿生成 | 价值取决于与实际工作流的契合度 |
 
-**关键洞察**：能力提升类技能可能随模型进步而变得不再必要（评估能帮你判断何时发生）；编码偏好类技能更持久，但价值取决于其与实际流程的契合度。
+**关键洞察**：能力提升类[[Skills|技能]]可能随模型进步而变得不再必要（评估能帮你判断何时发生）；编码偏好类[[Skills|技能]]更持久，但价值取决于其与实际流程的契合度。
 
 ### Skill-Creator 评估框架
 
-[[Anthropic]] 推出的 skill-creator 增强功能将软件开发的严谨流程（测试、基准测试、迭代优化）引入技能创作，无需编写代码。
+[[Anthropic]] 推出的 skill-creator 增强功能将软件开发的严谨流程（测试、基准测试、迭代优化）引入[[Skills|技能]]创作，无需编写代码。
 
-**Evals（评估脚本）**：定义测试提示词（必要时加文件），描述合格标准，skill-creator 验证技能是否符合要求。两个重要用途：
-1. **捕捉质量回归**：模型和基础设施演进时，上个月有效的技能今天可能表现不同。针对新模型运行 evals 能提前发现变化信号。
-2. **判断模型能力是否已超越技能**：主要针对能力提升类技能。如果基础模型在**未加载技能**的情况下就能通过 evals，说明技能的技术可能已被整合到模型默认行为中——技能未失效，只是不再必要。
+**Evals（评估脚本）**：定义测试提示词（必要时加文件），描述合格标准，skill-creator 验证[[Skills|技能]]是否符合要求。两个重要用途：
+1. **捕捉质量回归**：模型和基础设施演进时，上个月有效的[[Skills|技能]]今天可能表现不同。针对新模型运行 evals 能提前发现变化信号。
+2. **判断模型能力是否已超越[[Skills|技能]]**：主要针对能力提升类[[Skills|技能]]。如果基础模型在**未加载[[Skills|技能]]**的情况下就能通过 evals，说明[[Skills|技能]]的技术可能已被整合到模型默认行为中——[[Skills|技能]]未失效，只是不再必要。
 
-**基准测试模式（Benchmark Mode）**：使用 evals 运行标准化评估，跟踪评估通过率、耗时和令牌使用量。可在模型更新后或技能迭代时运行。
+**基准测试模式（Benchmark Mode）**：使用 evals 运行标准化评估，跟踪评估通过率、耗时和令牌使用量。可在模型更新后或[[Skills|技能]]迭代时运行。
 
 **多智能体并行评估**：启动独立智能体并行运行 evals，每个在干净上下文中运行，拥有独立的令牌和计时指标，避免交叉干扰。
 
-**对比智能体（Comparator Agents）**：用于 A/B 对比——两个技能版本，或技能 vs 无技能。它们在判断输出时不知道哪个是哪个，从而判断改动是否真正有效。
+**对比智能体（Comparator [[Agents]]）**：用于 A/B 对比——两个[[Skills|技能]]版本，或[[Skills|技能]] vs 无[[Skills|技能]]。它们在判断输出时不知道哪个是哪个，从而判断改动是否真正有效。
 
 ### 描述优化：精准触发
 
-随着技能数量增长，描述精度变得至关重要：太宽导致误触发，太窄导致不触发。Skill-creator 能：
+随着[[Skills|技能]]数量增长，描述精度变得至关重要：太宽导致误触发，太窄导致不触发。[[Skills|Skill]]-creator 能：
 - 对照示例提示词分析当前描述
 - 提出修改建议，同时减少误触发（false positives）和漏触发（false negatives）
-- [[Anthropic]] 在 6 项公开文档创建技能中测试，5 项触发效果得到提升
+- [[Anthropic]] 在 6 项公开文档创建[[Skills|技能]]中测试，5 项触发效果得到提升
 
 ### 展望未来：从"如何做"到"做什么"
 
-[[SKILL.md 格式规范|SKILL.md]] 文件本质上是实施计划，告诉 Claude *如何* 做某事。随模型能力提升，仅用自然语言描述*该技能应实现什么*可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为技能本身。
+[[SKILL.md 格式规范|SKILL.md]] 文件本质上是实施计划，告诉 [[Claude_Code|Claude]] *如何* 做某事。随模型能力提升，仅用自然语言描述*该[[Skills|技能]]应实现什么*可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为[[Skills|技能]]本身。
 
 ### 在 Anthropic 生态中的位置
 
-Agent Skills 是开放标准，支持：Claude.ai、[[Claude Code]]、Claude Agent SDK、Claude Developer Platform。
+Agent [[Skills]] 是开放标准，支持：[[Claude_Code|Claude]].ai、[[Claude Code]]、[[Claude_Code|Claude]] Agent SDK、[[Claude_Code|Claude]] Developer Platform。
 
-与 [[MCP协议层]] 的互补关系：MCP 连接工具和服务，Skills 教导 Agent 如何使用这些工具和服务的复杂工作流。
+与 [[MCP协议层]] 的互补关系：MCP 连接工具和[[服务]]，[[Skills]] 教导 Agent 如何使用这些工具和[[服务]]的复杂工作流。
 
 ## 来源
 

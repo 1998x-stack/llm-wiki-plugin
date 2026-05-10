@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Claude Mythos Preview 是 [[Anthropic]] 发布的预览版 Claude 模型，是支持 [[上下文压缩]] 功能的模型之一。该模型通过 [[Anthropic]] 官方 glasswing 页面发布。
+[[Claude_Code|Claude]] Mythos Preview 是 [[Anthropic]] 发布的预览版 [[Claude_Code|Claude]] 模型，是支持 [[上下文压缩]] 功能的模型之一。该模型通过 [[Anthropic]] 官方 glasswing 页面发布。
 
 ## 关键内容
 

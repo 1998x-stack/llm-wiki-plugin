@@ -54,7 +54,7 @@ supersedes: null
 
 ## 概述
 
-UNIX 是由 [[Ken Thompson]] 和 [[Dennis Ritchie]] 在 [[贝尔实验室|Bell Labs]] 开发的分时[[操作系统]]，以简洁性、模块化和"一切皆文件"为核心设计哲学，其后代（Linux、macOS、Android）统治了几乎所有计算平台。
+UNIX 是由 [[Ken Thompson]] 和 [[Dennis Ritchie]] 在 [[贝尔实验室|Bell Labs]] 开发的分时[[操作系统]]，以简洁性、模块化和"一切皆文件"为核心设计哲学，其后代（Linux、macOS、Android）统治了几乎所有[[计算]]平台。
 
 ## 关键内容
 
@@ -88,16 +88,16 @@ UNIX 是由 [[Ken Thompson]] 和 [[Dennis Ritchie]] 在 [[贝尔实验室|Bell L
 
 | 系统 | 与 UNIX 的关系 | 市场地位 |
 |------|---------------|---------|
-| Linux | 从零重写的 UNIX 兼容系统 | 服务器、超级计算机、Android |
+| Linux | 从零重写的 UNIX 兼容系统 | [[服务]]器、超级[[计算]]机、Android |
 | macOS / iOS | 基于 FreeBSD/Mach 的 Darwin | Apple 全平台 |
 | Android | 基于 Linux 内核 | 全球最大移动[[操作系统]] |
-| FreeBSD | BSD UNIX 的直系后代 | 服务器、网络设备 |
+| FreeBSD | BSD UNIX 的直系后代 | [[服务]]器、网络设备 |
 
 ### 历史影响
 
 - 1983年 Thompson 和 Ritchie 获得[[阿兰·图灵|图灵]]奖
 - 开源运动的先驱
-- 管道思想影响了[[函数式编程]]、微服务架构、数据工程等
+- 管道思想影响了[[函数式编程]]、微[[服务]]架构、数据工程等
 
 ## 来源
 

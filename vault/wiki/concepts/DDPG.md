@@ -30,7 +30,7 @@ DDPG（Deep Deterministic Policy Gradient）由 [[DeepMind]] 于 ICLR 2016 发�
 
 ## 关键内容
 
-1. **四网络结构**：在线 Actor μ_θ、目标 Actor μ_θ̄、在线 Critic Q_φ、目标 Critic Q_φ̄。Critic 计算 TD 目标：y = r + γ·Q_φ̄(s', μ_θ̄(s'))；Actor 最大化期望 Q 值：∇J = ∇_a Q_φ(s,a)|_{a=μ_θ(s)} · ∇_θ μ_θ(s)。[[目标网络]]软更新：θ̄ ← τθ + (1-τ)θ̄。
+1. **四网络结构**：在线 Actor μ_θ、目标 Actor μ_θ̄、在线 Critic Q_φ、目标 Critic Q_φ̄。Critic [[计算]] TD 目标：y = r + γ·Q_φ̄(s', μ_θ̄(s'))；Actor 最大化期望 Q 值：∇J = ∇_a Q_φ(s,a)|_{a=μ_θ(s)} · ∇_θ μ_θ(s)。[[目标网络]]软更新：θ̄ ← τθ + (1-τ)θ̄。
 2. **OU 噪声探索**：确定性策略无内在随机性，通过 Ornstein-Uhlenbeck 过程添加时间相关噪声 dN = θ(μ-N)dt + σdW，适合物理控制；实践中也常用简单高斯噪声。
 3. **主要缺陷**：Critic 系统性过估计 Q 值（比真实值高 200-600%），Actor 利用过估计区域形成正反馈循环，训练不稳定，OU 噪声超参数难调。这些问题由 TD3 系统性修复。
 

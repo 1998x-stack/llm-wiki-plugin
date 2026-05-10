@@ -14,7 +14,7 @@ supersedes: null
 # C++面向对象基础
 
 ## 概述
-C++ 用 `class` 定义类，类封装属性（成员变量）和行为（成员函数），通过对象实例化访问；`public`/`private` 控制访问权限。
+C++ 用 `class` 定义类，类封装属性（成员变量）和行为（成员函数），通过对象实例化访问；`public`/`private` 控制访问[[Permissions|权限]]。
 
 ## 关键内容
 

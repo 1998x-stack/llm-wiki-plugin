@@ -14,7 +14,16 @@ aliases:
   - "Orchestrator-Subagent Pattern"
   - "协调器 - 子智能体模式"
   - "编排器 - 子代理模式"
-relates_to: []
+relates_to:
+  - target: "[[Codex多Agent调度]]"
+    type: implements
+    confidence: 0.85
+  - target: "[[Subagent 地址系统]]"
+    type: implements
+    confidence: 0.8
+  - target: "[[批量同构任务模式]]"
+    type: extends
+    confidence: 0.75
 supersedes: null
 ---
 
@@ -22,7 +31,7 @@ supersedes: null
 
 ## 概述
 
-协调器 - [[Subagents-in-Claude-Code|子智能体]]（Orchestrator-Subagent）是由层级结构定义的多智能体模式。一个智能体担任团队负责人，负责规划工作、分配任务并整合结果。[[Subagents-in-Claude-Code|子智能体]]则承担具体职责并反馈结果。[[Claude-Code]] 采用此模式。
+协调器 - [[Subagents-in-Claude-Code|子智能体]]（[[Orchestrator Agent|Orchestrator]]-Subagent）是由层级结构定义的多智能体模式。一个智能体担任团队负责人，负责规划工作、分配任务并整合结果。[[Subagents-in-Claude-Code|子智能体]]则承担具体职责并反馈结果。[[Claude-Code]] 采用此模式。
 
 ## 关键内容
 
@@ -43,7 +52,7 @@ supersedes: null
 - [[Subagents-in-Claude-Code|子智能体]]专注于具体职责
 
 **具体应用**：
-- 自动化[[Code-Review-for-Claude-Code|代码审查]]（安全检查/测试覆盖率/代码风格/架构一致性）
+- 自动化[[Code-Review-for-Claude-Code|代码审查]]（安全检查/[[测试覆盖率]]/代码风格/架构一致性）
 - [[Claude-Code]] 的代码库搜索和独立问题调查
 - 多文件协调修改
 
@@ -53,7 +62,7 @@ supersedes: null
 - **协调者**：接收 PR，确定需要执行的检查
 - **[[Subagents-in-Claude-Code|子智能体]]**：
   - 安全子代理：检查漏洞、注入风险、身份验证问题
-  - 测试子代理：验证测试覆盖率
+  - 测试子代理：验证[[测试覆盖率]]
   - 风格子代理：评估代码风格一致性
   - 架构子代理：判断架构一致性
 - **整合**：协调者收集结果，整合为统一的审查意见
@@ -78,7 +87,7 @@ supersedes: null
 
 ### 与 Agent Teams 的对比
 
-| 维度 | Orchestrator-Subagent | Agent Teams |
+| 维度 | [[Orchestrator Agent|Orchestrator]]-Subagent | Agent Teams |
 |------|----------------------|-------------|
 | **子任务时长** | 简短、有界 | 持续、多步骤 |
 | **上下文积累** | 无（每次从零开始） | 有（积累领域知识） |

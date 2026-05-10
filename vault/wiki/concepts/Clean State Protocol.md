@@ -41,7 +41,7 @@ Clean State Protocol 是[[上下文策略]]之一，要求每次 Agent 迭代结
 
 2. **核心原则**：若检查失败，在提交前修复，不要把破损状态传递给下一个 Agent。这保证了每个新 Agent 实例启动时面对的是一个干净、可运行的代码库。
 
-3. **与 [[Session 交接机制]] 的关系**：Clean State Protocol 是 [[Session 交接机制]]的质量保障层。三文件（prd.json、progress.txt、AGENTS.md）的交接只有在代码库处于干净状态时才有意义。
+3. **与 [[Session 交接机制]] 的关系**：Clean State Protocol 是 [[Session 交接机制]]的[[质量保障]]层。三文件（prd.json、progress.txt、[[项目约定手册|AGENTS.md]]）的交接只有在代码库处于干净状态时才有意义。
 
 4. **与 [[Dumb Zone]] 的关系**：Clean State Protocol 通常在迭代即将结束、上下文接近 [[Dumb Zone]] 之前执行。它确保 Agent 在主动退出前留下一个可继续工作的状态，而非半完成的混乱状态。
 

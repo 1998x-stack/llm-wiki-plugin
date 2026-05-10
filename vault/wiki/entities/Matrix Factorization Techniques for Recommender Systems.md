@@ -2,20 +2,22 @@
 type: entity
 entity_type: paper
 status: active
-confidence: 0.5
+confidence: 0.9
 created: 2026-04-16
-updated: 2026-04-16
-last_accessed: 2026-04-16
-source_count: 1
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 2
 tags: [推荐系统, 矩阵分解, 综述]
 aliases: [Matrix Factorization Techniques for Recommender Systems, MF 综述论文]
 relates_to:
-  - {target: Yehuda Koren, type: implements}
-  - {target: Robert Bell, type: implements}
-  - {target: Chris Volinsky, type: implements}
-  - {target: Netflix Prize, type: part_of}
-  - {target: 矩阵分解, type: implements}
-  - {target: 隐因子模型, type: implements}
+  - {target: "[[Yehuda Koren]]", type: implements}
+  - {target: "[[Robert Bell]]", type: implements}
+  - {target: "[[Chris Volinsky]]", type: implements}
+  - {target: "[[Netflix Prize]]", type: part_of}
+  - {target: "[[矩阵分解]]", type: implements}
+  - {target: "[[隐因子模型]]", type: implements}
+  - {target: "[[SVD++]]", type: extends}
+  - {target: "[[timeSVD++]]", type: extends}
 supersedes: null
 ---
 
@@ -37,7 +39,8 @@ Koren、Bell、Volinsky 2009 年发表于 IEEE Computer 的综述论文，系统
 5. **现代视角**：[[矩阵分解]]中的隐因子向量本质上是现代深度学习中的 [[Embedding]]，该论文的思想直接影响了 [[Neural Collaborative Filtering]]、[[Wide & Deep]]、[[DeepFM]] 等后续深度学习推荐方法。
 
 ## 来源
-- [[04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems
+- [[推荐系统/04-matrix-factorization-for-recsys.md]] — 深度解读 Matrix Factorization Techniques for Recommender Systems
+- [[]] — 
 
 ## 相关
 - [[Yehuda Koren]] — 第一作者
@@ -46,3 +49,5 @@ Koren、Bell、Volinsky 2009 年发表于 IEEE Computer 的综述论文，系统
 - [[Netflix Prize]] — 论文背景
 - [[矩阵分解]] — 核心技术
 - [[Neural Collaborative Filtering]] — 后续深度学习演进
+- [[SVD++]] — 提出的扩展模型
+- [[timeSVD++]] — 提出的时间动态模型

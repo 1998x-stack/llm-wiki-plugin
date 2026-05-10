@@ -28,7 +28,7 @@ supersedes: null
 
 ## 概述
 
-pypdf 是 Python 的 PDF 处理库，提供基本的 PDF 读取、写入和文本提取功能，但对复杂布局的处理能力有限。
+pypdf 是 [[Python]] 的 PDF 处理库，提供基本的 PDF 读取、写入和文本提取功能，但对复杂布局的处理能力有限。
 
 ## 关键内容
 

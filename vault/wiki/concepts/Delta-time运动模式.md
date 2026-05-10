@@ -21,7 +21,7 @@ supersedes: null
 # Delta-time运动模式
 
 ## 概述
-Delta-time（dt）运动模式：以帧间时间差乘以速度计算位移，使物体移动速度与帧率无关，保证跨帧率一致性。
+Delta-time（dt）运动模式：以帧间时间差乘以速度[[计算]]位移，使物体移动速度与帧率无关，保证跨帧率一致性。
 
 ## 关键内容
 
@@ -32,7 +32,7 @@ Delta-time（dt）运动模式：以帧间时间差乘以速度计算位移，�
 
 2. **为什么需要 dt**：不同设备帧率不同（30/60/120fps），若直接 `position += speed`，高帧率设备物体移动更快，低帧率设备移动更慢，导致游戏体验不一致。
 
-3. **[[Love2D]] 中的实现**：`love.update(dt)` 回调自动传入帧间时间差，直接用于计算：
+3. **[[Love2D]] 中的实现**：`love.update(dt)` 回调自动传入帧间时间差，直接用于[[计算]]：
    ```lua
    function love.update(dt)
        if love.keyboard.isDown("right") then

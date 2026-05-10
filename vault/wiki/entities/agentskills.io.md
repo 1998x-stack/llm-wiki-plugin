@@ -19,13 +19,13 @@ supersedes: null
 # agentskills.io
 
 ## 概述
-开放的 AI Agent 技能标准规范，定义 [[Agent Skills|Skills]] 为纯文本 Markdown 文件，支持 Git 管理、社区共享和跨平台迁移。
+开放的 AI Agent [[Skills|技能]]标准规范，定义 [[Agent Skills|Skills]] 为纯文本 Markdown 文件，支持 Git 管理、社区共享和跨平台迁移。
 
 ## 关键内容
-- **核心定位**：开放的 AI Agent 技能标准规范，由 agentskills.io 社区维护
-- **技能格式**：[[Agent Skills|Skills]] 是纯文本 Markdown 文件（[[SKILL.md 格式规范|SKILL.md]]），可 Git 管理、版本控制
-- **可移植性**：技能可在不同 Agent 框架间迁移，[[OpenClaw]] skill → [[Hermes Agent|Hermes]] skill 双向兼容
-- **社区生态**：通过 [[Agent Skills|Skills]] Hub 社区贡献和安装技能，`hermes skills hub search/install` 操作，技能经过 [[Agent Skills|Skills]] Hub 审核，可用 `hermes skills update` 更新到最新版
+- **核心定位**：开放的 AI Agent [[Skills|技能]]标准规范，由 agentskills.io 社区维护
+- **[[Skills|技能]]格式**：[[Agent Skills|Skills]] 是纯文本 Markdown 文件（[[SKILL.md 格式规范|SKILL.md]]），可 Git 管理、版本控制
+- **可移植性**：[[Skills|技能]]可在不同 Agent 框架间迁移，[[OpenClaw]] skill → [[Hermes Agent|Hermes]] skill 双向兼容
+- **社区生态**：通过 [[Agent Skills|Skills]] Hub 社区贡献和安装[[Skills|技能]]，`hermes skills hub search/install` 操作，[[Skills|技能]]经过 [[Agent Skills|Skills]] Hub 审核，可用 `hermes skills update` 更新到最新版
 - **[[Hermes Agent|Hermes]] 集成**：[[Hermes Agent]] 遵循此开放标准，支持 [[Agent Skills|Skills]] Hub 安装和 [[OpenClaw]] 迁移
 - **[[SKILL.md 格式规范|SKILL.md]] 格式**：定义标准 frontmatter（name, description, version, platforms, category, config, required_environment_variables）和正文结构（When to Use, Prerequisites, Procedure, Pitfalls, Verification）
 

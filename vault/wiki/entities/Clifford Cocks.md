@@ -38,20 +38,20 @@ supersedes: null
 
 ## 概述
 
-英国数学家，GCHQ 成员。1973年独立发明了类似 RSA 的公钥加密算法，比 Rivest、Shamir 和 Adleman 早4年，但工作被列为最高机密直到1997年才解密。
+英国数学家，GCHQ 成员。1973年独立发明了类似 RSA 的公钥加密[[算法]]，比 Rivest、Shamir 和 Adleman 早4年，但工作被列为最高机密直到1997年才解密。
 
 ## 关键内容
 
 ### 独立发现
 
-- 1973年在 GCHQ 内部发明了类似 RSA 的算法
+- 1973年在 GCHQ 内部发明了类似 RSA 的[[算法]]
 - 比 RSA 论文（1977年）早4年
 - 工作被列为最高机密，无法公开发表
 
 ### GCHQ 团队
 
 - [[James Ellis]] 在1970年提出[[公钥密码学]]概念
-- Cocks 在1973年发明了具体算法
+- Cocks 在1973年发明了具体[[算法]]
 - [[Malcolm Williamson]] 在1974年发明了类似 Diffie-Hellman 的密钥交换
 
 ### 历史评价

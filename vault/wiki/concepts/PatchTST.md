@@ -24,7 +24,7 @@ supersedes: null
 # PatchTST
 
 ## 概述
-PatchTST 由 IBM Research 于 2023 年提出（ICLR 2023），通过将时间序列分块（Patching）输入 [[Transformer架构|Transformer]]，解决了此前 [[Transformer架构|Transformer]] 处理时间序列时"语义贫乏"和"计算爆炸"两大痛点，是 [[Transformer架构|Transformer]] 在时间序列领域的绝地反击。
+PatchTST 由 IBM Research 于 2023 年提出（ICLR 2023），通过将[[Time Series Analysis|时间序列]]分块（Patching）输入 [[Transformer架构|Transformer]]，解决了此前 [[Transformer架构|Transformer]] 处理[[Time Series Analysis|时间序列]]时"语义贫乏"和"[[计算]]爆炸"两大痛点，是 [[Transformer架构|Transformer]] 在[[Time Series Analysis|时间序列]]领域的绝地反击。
 
 ## 关键内容
 

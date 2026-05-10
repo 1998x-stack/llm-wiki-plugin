@@ -21,7 +21,7 @@ Viewport 将场景（Scene）、摄像机（Camera）和[[RenderPath渲染管线
 - **场景与摄像机**：`scene` 和 `camera` 属性指定渲染源
 - **裁剪摄像机**：`cullCamera` 可与 `camera` 分离，用于反射等特殊效果
 - **渲染区域**：`rect`（IntRect）指定视口在屏幕上的像素区域，默认全屏
-- **[[RenderPath渲染管线|渲染路径]]**：`renderPath` 覆盖默认[[RenderPath渲染管线|渲染路径]]，每个视口可独立配置
+- **[[RenderPath渲染管线|渲染路径]]**：`renderPath` 覆盖默认[[RenderPath渲染管线|渲染路径]]，每个视口可独立[[Configuration|配置]]
 - **坐标转换**：`GetScreenRay(x, y)`、`WorldToScreenPoint`、`ScreenToWorldPoint` 提供视口级坐标映射
 - **调试绘制**：`drawDebug` 开启物理碰撞体、骨骼等调试可视化
 

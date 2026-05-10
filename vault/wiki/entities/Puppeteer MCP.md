@@ -41,7 +41,7 @@ Puppeteer MCP 是基于 [[MCP|Model Context Protocol]] 的浏览器自动化工�
 
 4. **与 API 验证的区别**：API Story 使用 `curl` 命令行验证，前端 Story 必须使用 Puppeteer MCP。两者验证通过后才能更新 prd.json 中对应 Story 的 `passes: true` 状态。
 
-5. **MCP 协议集成**：作为 MCP Server 运行，通过 stdio 或 Streamable HTTP 与 [[Claude Code]] 等 Agent 通信，遵循 MCP 的工具注册、参数验证和结果返回规范。
+5. **MCP 协议集成**：作为 [[MCP Prompts|MCP Server]] 运行，通过 stdio 或 Streamable HTTP 与 [[Claude Code]] 等 Agent 通信，遵循 MCP 的工具注册、参数验证和结果返回规范。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/CLAUDE.md]] — Ralph Coding Agent 提示词模板中的 Puppeteer MCP 验证流程

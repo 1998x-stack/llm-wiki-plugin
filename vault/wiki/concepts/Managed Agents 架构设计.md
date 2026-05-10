@@ -31,12 +31,12 @@ supersedes: null
 # Managed Agents 架构设计
 
 ## 概述
-[[Managed-Agents|Managed Agents]] 架构是一种专为长时运行、高可靠性智能体系统设计的工程[[规范化理论|范式]]，核心思想是将"大脑"（决策逻辑）与"双手"（执行环境）解耦。该架构基于事件驱动模型，通过不可变的 Session Event Log 作为唯一事实来源，实现状态的持久化与故障恢复。
+[[Managed-Agents|Managed Agents]] 架构是一种专为长时运行、高可靠性[[Agent Systems|智能体系统]]设计的工程[[规范化理论|范式]]，核心思想是将"大脑"（决策逻辑）与"双手"（执行环境）解耦。该架构基于事件驱动模型，通过不可变的 Session Event Log 作为唯一事实来源，实现状态的持久化与故障恢复。
 
 ## 关键内容
 
 ### 核心设计原则
-1. **状态外置**：状态存储在 Session 和 Event Log 中，计算节点可随时替换。
+1. **状态外置**：状态存储在 Session 和 Event Log 中，[[计算]]节点可随时替换。
 2. **Harness 无状态**：工作器可随时崩溃或重新调度，不影响任务连续性。
 3. **Sandbox 隔离**：沙箱仅作为执行器，失败仅表现为 Tool Failure 事件。
 4. **凭证隔离**：Secrets 对模型不可达，通过 Vault 引用绑定。

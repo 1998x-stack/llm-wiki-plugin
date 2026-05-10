@@ -26,8 +26,8 @@ relates_to:
 
 1. **定位**：[[OpenAI]] 的 AI 编程助手产品
 2. **[[Agent Skills]] 支持**：原生支持 [[Agent Skills]] 规范
-3. **跨工具兼容**：与 [[Claude Code]]、[[Cursor]]、[[Gemini CLI]] 共享 Skill 生态
-4. **生态系统**：可复用为 [[Claude Code]] 编写的 Skill
+3. **跨工具兼容**：与 [[Claude Code]]、[[Cursor]]、[[Gemini CLI]] 共享 [[Skills|Skill]] 生态
+4. **生态系统**：可复用为 [[Claude Code]] 编写的 [[Skills|Skill]]
 
 ## 来源
 - [[01_claude_code_skill_system_overview]] — 系统架构全景

@@ -22,7 +22,7 @@ entity_type: tool
 # clangd
 
 ## 概述
-LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言服务器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功能的 LSP 实现。
+LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言[[服务]]器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功能的 LSP 实现。
 
 ## 关键内容
 
@@ -30,7 +30,7 @@ LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言服务器，基于 Clang 的 LibTooli
 
 2. **架构**：LSP Layer（JSON-RPC 处理）→ ClangdServer（协调层）→ TUScheduler（翻译单元调度，异步优先级）→ FileIndex（后台全 workspace 索引，含 MemIndex 和 DiskIndex）→ GlobalCompilationDatabase（compile_commands.json）。
 
-3. **核心设计**：TUScheduler 按文件异步调度 AST Worker 和 Preamble Worker；FileIndex 维护内存和磁盘双层索引；通过 compile_commands.json 获取编译配置。
+3. **核心设计**：TUScheduler 按文件异步调度 AST [[Worker Agent|Worker]] 和 Preamble [[Worker Agent|Worker]]；FileIndex 维护内存和磁盘双层索引；通过 compile_commands.json 获取编译[[Configuration|配置]]。
 
 4. **与 ccls 对比**：clangd 功能最全、官方维护；ccls 是高性能替代方案，在 C++17 支持上表现优秀。
 

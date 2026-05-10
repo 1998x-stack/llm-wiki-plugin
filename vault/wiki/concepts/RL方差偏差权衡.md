@@ -38,7 +38,7 @@ supersedes: null
    - 过估计偏差：max 操作（DQN）系统性高估 Q 值；[[Double DQN]] 通过分离选择与评估网络缓解
    - 函数逼近 + Off-policy 组合：致命三角（Deadly Triad），DQN 的工程稳定化技术（[[目标网络]]+[[经验回放]]）是工程补丁而非理论保证
 
-3. **各算法梯度估计对比**：
+3. **各[[算法]]梯度估计对比**：
    - [[REINFORCE算法|REINFORCE]]：`ĝ = (1/N) Σ_τ [ Σ_t ∇_θ log π_θ(a_t|s_t) · G_t ]`，MC 回报 G_t 高方差
    - [[强化学习三大范式|Actor-Critic]]（A3C/PPO）：`ĝ = (1/N) Σ_t [ ∇_θ log π_θ(a_t|s_t) · Â_t^GAE ]`，GAE 优势降方差
    - DDPG/TD3（确定性）：`ĝ = (1/N) Σ_s [ ∇_θ μ_θ(s) · ∇_a Q_φ(s,a) ]`，无随机采样，[[链式法则]]

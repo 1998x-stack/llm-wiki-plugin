@@ -38,14 +38,14 @@ supersedes: null
 
 ## 概述
 
-[[Claude-Sonnet-4|Claude Sonnet 4]].6 是 [[Anthropic]] 发布的 Claude Sonnet 系列模型，在性能与成本之间取得平衡，支持 [[上下文压缩]] 等高级[[Context Management|上下文管理]]功能。
+[[Claude-Sonnet-4|Claude Sonnet 4]].6 是 [[Anthropic]] 发布的 [[Claude_Code|Claude]] Sonnet 系列模型，在性能与成本之间取得平衡，支持 [[上下文压缩]] 等高级[[Context Management|上下文管理]]功能。
 
 ## 关键内容
 
 ### 基本信息
 
 - **模型 ID**：`claude-sonnet-4-6`
-- **系列**：Claude Sonnet
+- **系列**：[[Claude_Code|Claude]] Sonnet
 - **版本**：4.6
 - **[[上下文窗口]]**：1M tokens
 - **发布方**：[[Anthropic]]
@@ -64,7 +64,7 @@ supersedes: null
 
 ### 压缩功能中的角色
 
-与 Opus 4.6 相同，[[Claude-Sonnet-4|Sonnet 4]].6 在压缩中既是对话执行模型，也是摘要生成模型（当前限制：无法指定更便宜的模型生成摘要）。
+与 [[Claude_Opus_4.6|Opus 4.6]] 相同，[[Claude-Sonnet-4|Sonnet 4]].6 在压缩中既是对话执行模型，也是摘要生成模型（当前限制：无法指定更便宜的模型生成摘要）。
 
 ## 来源
 

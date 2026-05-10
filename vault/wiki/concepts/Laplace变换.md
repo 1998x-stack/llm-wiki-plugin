@@ -42,7 +42,7 @@ $$\mathcal{L}[f](s) = \int_0^\infty f(t)\, e^{-st}\, dt$$
 
 ## 关键内容
 
-- **来源**：Laplace 在 *Théorie analytique des probabilités*（1812）中引入，用于处理连续概率分布的积分计算和大数近似
+- **来源**：Laplace 在 *Théorie analytique des probabilités*（1812）中引入，用于处理连续概率分布的积分[[计算]]和大数近似
 - **关系与[[生成函数]]**：离散的[[生成函数]] $G(z) = \sum a_n z^n$ 对应连续的 Laplace 变换 $F(s) = \int f(t)e^{-st}dt$，两者的代数性质和应用思路高度相似
 - **主要性质**：线性性、时域微分对应频域多项式乘法（$\mathcal{L}[f'](s) = sF(s) - f(0)$）、卷积定理
 - **与[[概率论]]的联系**：在[[概率论]]中，若 $X \geq 0$ 为随机变量，则 $\mathcal{L}[\text{PDF}_X](s) = \mathbb{E}[e^{-sX}]$ 即为矩[[生成函数|母函数]]，控制矩的生成和分布的唯一性

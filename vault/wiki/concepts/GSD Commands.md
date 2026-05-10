@@ -3,14 +3,18 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
+updated: 2026-04-25
+last_accessed: 2026-04-25
 source_count: 1
 tags: ["gsd", "workflow", "cli", "commands", "工具与框架"]
 aliases: ["GSD Commands", "GSD 命令", "gsd commands"]
 relates_to:
   - target: "[[GSD]]"
     type: part_of
+  - target: "[[多智能体编排]]"
+    type: implements
+  - target: "[[波次并行执行]]"
+    type: implements
 ---
 
 # GSD Commands
@@ -55,3 +59,5 @@ GSD 系统的核心命令集，覆盖从项目初始化到里程碑完成的完�
 ## 相关
 - [[GSD]] — part_of
 - [[GSD Planning Directory]] — uses
+- [[多智能体编排]] — implements
+- [[波次并行执行]] — implements

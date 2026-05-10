@@ -1,0 +1,47 @@
+---
+type: concept
+status: active
+confidence: 0.85
+created: 2026-04-26
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 2
+tags: [超文本, 信息组织, 计算机科学]
+aliases: [Hypertext, 超文本系统, Chao Wen Ben]
+relates_to: []
+supersedes: null
+---
+
+# Hypertext
+
+## 概述
+一种信息组织方式，通过链接将不同文档连接起来，允许用户非线性地浏览信息，是万维网的核心概念之一。
+
+## 关键内容
+
+1. **基本特征**：
+   - 非线性浏览：用户可通过点击链接跳转到相关信息
+   - 网状结构：信息组织形式更接近人类联想思维
+   - 动态关联：文档之间可建立灵活的关联关系
+
+2. **发展历史**：
+   - 1960年代：Ted Nelson提出Xanadu项目构想
+   - 1980年代：各类超文本系统在学术界发展
+   - 1987年：Apple HyperCard在Macintosh上实现单机超文本
+   - 1990年：伯纳斯-李将其与互联网结合发明万维网
+
+3. **技术特点**：
+   - 单向链接：与Xanadu的双向链接不同，无需目标方许可
+   - 简单实现：相对容易在各种平台上实现
+   - 开放性：不强制统一格式或标准
+
+## 来源
+- [[17-berners-lee-www]] — 论文中的超文本应用
+- [[]] —
+
+## 相关
+- [[万维网]] — foundation_for
+- [[蒂姆·伯纳斯-李]] — implements
+- [[超文本标记语言]] — implementation
+- [[信息管理：一项提案]] — mentioned_in
+- [[Xanadu项目]] — predecessor

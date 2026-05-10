@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-HumanEvalFix 是代码修复能力的基准测试，评估 AI 模型或 Agent 在给定有缺陷的代码后，能否正确修复 bug 并通过所有测试用例。与 [[SWE-bench]] 聚焦真实仓库 issue 不同，HumanEvalFix 更侧重单函数级别的代码修复能力。
+HumanEvalFix 是代码修复能力的基准测试，评估 AI 模型或 Agent 在给定有缺陷的代码后，能否正确修复 bug 并通过所有测试用例。与 [[SWE-bench]] 聚焦真实[[仓库]] issue 不同，HumanEvalFix 更侧重单函数级别的代码修复能力。
 
 ## 关键内容
 
@@ -39,16 +39,16 @@ HumanEvalFix 是代码修复能力的基准测试，评估 AI 模型或 Agent �
 ### 代表性结果
 
 - **[[SWE-agent]]**（GPT-4 Turbo）：
-  - Python：**87.7%** pass@1
+  - [[Python]]：**87.7%** pass@1
   - JavaScript：**89.7%** pass@1
   - Java：**87.9%** pass@1
-- 与 [[SWE-bench]] 上的 12.5% 形成对比——在简单函数级修复上表现优秀，但在真实仓库级 issue 修复上仍有很大提升空间
+- 与 [[SWE-bench]] 上的 12.5% 形成对比——在简单函数级修复上表现优秀，但在真实[[仓库]]级 issue 修复上仍有很大提升空间
 
 ### 与 SWE-bench 的对比
 
 | 维度 | HumanEvalFix | [[SWE-bench]] |
 |------|-------------|--------------|
-| 粒度 | 单函数级别 | 真实仓库 issue 级别 |
+| 粒度 | 单函数级别 | 真实[[仓库]] issue 级别 |
 | 复杂度 | 低（上下文有限） | 高（需跨文件导航） |
 | [[SWE-agent]] pass@1 | 87.7% | 12.5% |
 | 评估重点 | 代码修复正确性 | 完整工程工作流 |

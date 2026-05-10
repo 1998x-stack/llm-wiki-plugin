@@ -39,7 +39,7 @@ Luong 点积/乘性注意力以 $s^\top W h$ 替代 Bahdanau 的加性函数，�
 
 ### 与 Bahdanau 的核心差异
 
-1. **计算时机**：Bahdanau 在 Decoder 输入前计算注意力；Luong 在 Decoder 状态更新后计算
+1. **[[计算]]时机**：Bahdanau 在 Decoder 输入前[[计算]]注意力；Luong 在 Decoder 状态更新后[[计算]]
 2. **维度约束**：Luong 要求编码器与解码器隐藏维度相同；Bahdanau 无此限制
 3. **效率**：Luong 点积变体无需额外前馈网络，速度显著快于 Bahdanau
 

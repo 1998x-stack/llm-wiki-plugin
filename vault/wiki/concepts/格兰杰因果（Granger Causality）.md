@@ -24,7 +24,7 @@ supersedes: null
 # 格兰杰因果（Granger Causality）
 
 ## 概述
-Granger 因果检验由 Clive Granger 于 1969 年提出，用"X 的过去值是否能帮助预测 Y"来定义时间序列间的预测性因果关系，是计量经济学中因果分析的核心工具之一，也是 Granger 获得 2003 年诺贝尔经济学奖的核心贡献。
+Granger 因果检验由 Clive Granger 于 1969 年提出，用"X 的过去值是否能帮助预测 Y"来定义[[Time Series Analysis|时间序列]]间的预测性因果关系，是计量经济学中因果分析的核心工具之一，也是 Granger 获得 2003 年诺贝尔经济学奖的核心贡献。
 
 ## 关键内容
 

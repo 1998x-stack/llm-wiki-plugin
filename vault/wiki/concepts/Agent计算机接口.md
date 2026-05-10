@@ -52,7 +52,7 @@ supersedes: null
 
 ## 概述
 
-Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——[[Anthropic]] 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
+Agent [[计算]]机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——[[Anthropic]] 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
 
 ## 关键内容
 
@@ -60,12 +60,12 @@ Agent 计算机接口（Agent-Computer Interface, ACI）是类比人机接口（
 
 Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：
 
-> 软件工程 agent 的效果，很大程度上取决于它和计算机交互的"接口设计"是否合适。
+> 软件工程 agent 的效果，很大程度上取决于它和[[计算]]机交互的"接口设计"是否合适。
 
 **论文真正想回答的问题**：LLM agent 在软件工程任务上的瓶颈，到底来自模型能力不足，还是来自交互界面设计太差？作者的判断是后者至少同样重要。
 
 三大核心观点：
-1. **软件工程不是纯文本生成任务**，而是"读仓库 → 定位问题 → 修改文件 → 运行测试 → 继续迭代"的交互式任务
+1. **软件工程不是纯文本生成任务**，而是"读[[仓库]] → 定位问题 → 修改文件 → 运行测试 → 继续迭代"的交互式任务
 2. **ACI 是关键创新**——给模型设计专门的交互方式（浏览代码库、查看文件、编辑代码、执行测试），而非只靠 prompt engineering
 3. **Agent 上限由"模型 × 工具 × 界面"的系统乘积决定**，不只是模型参数规模
 
@@ -74,7 +74,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 - 编辑操作不稳定
 - 文件改坏了不一定有清晰反馈
 - 长输出容易让上下文失控
-- 在大型仓库中导航效率很差
+- 在大型[[仓库]]中导航效率很差
 
 因此 [[SWE-agent]] 不是让模型直接裸用电脑，而是通过 ACI 提供一套更适合 Agent 的动作抽象。**把"界面设计"从工程细节提升成研究对象**，这是论文最有思想含量的贡献。
 
@@ -104,7 +104,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 **2. 工具命名空间（Namespacing）**
 
 使用前缀或后缀[[区分]]不同来源的工具，避免 Agent 混淆类似工具：
-- 按服务：`asana_search`, `jira_search`
+- 按[[服务]]：`asana_search`, `jira_search`
 - 按资源：`asana_projects_search`, `asana_users_search`
 
 **3. 返回有意义的上下文**
@@ -118,7 +118,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 
 长响应使用分页/范围选择/过滤/截断。[[Claude Code]] 默认将工具响应限制在 25,000 tokens。截断时应给出明确指导，引导 Agent 使用更精准的查询，而非盲目依赖截断。
 
-**5. 工具描述的提示工程**
+**5. 工具描述的[[Prompt Engineering|提示工程]]**
 
 工具描述是最高效的 Agent 调优手段之一：
 - 像给新团队成员写文档一样编写：包含专业查询格式、领域术语定义、资源间关系
@@ -133,7 +133,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 2. **生成评估任务** — 基于真实使用场景的 prompt-response 对（包含需要多步工具调用的复杂任务）
 3. **运行评估** — 使用简单 agentic 循环程序化运行；收集精度、运行时间、工具调用次数、Token 消耗等指标
 4. **分析结果** — 阅读 transcript 和工具调用；让 Agent 分析自身的 transcript 找出改进点
-5. **让 Agent 改进工具** — 将评估 transcript 粘贴给 [[Claude Code]]，让它重构工具；对 Slack MCP 服务器的实验显示 Claude 优化后的工具性能高于人工编写版本
+5. **让 Agent 改进工具** — 将评估 transcript 粘贴给 [[Claude Code]]，让它[[重构]]工具；对 [[Slack]] [[MCP 服务器]]的实验显示 [[Claude_Code|Claude]] 优化后的工具性能高于人工编写版本
 
 ### 使用 Tool Use Examples 补充 Schema
 
@@ -143,7 +143,7 @@ JSON Schema 定义什么是**结构上有效**的，但无法表达**使用模�
 - 嵌套对象何时填写（critical bug vs feature request 的不同处理）
 - 可选参数的关联规则
 
-[[Anthropic]] 内部测试显示，添加 Tool Use Examples 将复杂参数处理准确率从 72% 提升至 **90%**。
+[[Anthropic]] 内部测试显示，添加 [[Tool-Use|Tool Use]] Examples 将复杂参数处理准确率从 72% 提升至 **90%**。
 
 ## 来源
 

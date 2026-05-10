@@ -43,7 +43,7 @@ supersedes: null
    - **Step 2**：验证 prd.json 实际状态（防止 Agent 撒谎）
    - 只有两者同时确认才真正退出循环
 
-4. **在 [[Agent 迭代循环]] 中的位置**：完成信号是每次迭代的最后一个动作，在代码实现、验证、Git 提交、progress.txt 更新之后输出。无论 Story 是否还有未完成，每次迭代都必须输出此信号。
+4. **在 [[Agent 迭代循环]] 中的位置**：完成信号是每次迭代的最后一个动作，在代码实现、验证、[[Git Commit|Git 提交]]、progress.txt 更新之后输出。无论 Story 是否还有未完成，每次迭代都必须输出此信号。
 
 5. **信号变体**：
    - `<promise>COMPLETE</promise>` — 正常完成

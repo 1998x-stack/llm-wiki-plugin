@@ -37,14 +37,14 @@ supersedes: null
 
 ## 概述
 
-SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 GitHub 仓库中的真实 issue 和 bug。通过专门设计的 Agent 计算机接口（ACI）和 [[ReAct 风格循环]]，在 [[SWE-bench]] 上取得显著优于直接输出 patch 的效果。
+SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 [[GitHub]] [[仓库]]中的真实 issue 和 bug。通过专门设计的 Agent [[计算]]机接口（ACI）和 [[ReAct 风格循环]]，在 [[SWE-bench]] 上取得显著优于直接输出 patch 的效果。
 
 ## 关键内容
 
 ### 核心架构
 
 1. **[[ReAct 风格循环]]**：每一步生成 thought（思考）和 action（命令），再接收 observation（[[环境反馈设计|环境反馈]]），形成"想一点、做一点、看反馈、再想一点"的交互循环。
-2. **Agent 计算机接口（ACI）**：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。
+2. **Agent [[计算]]机接口（ACI）**：为 LLM 专门设计的工具集，包括文件浏览、编辑、搜索、lint 检查等，而非简单复用人类 CLI 工具。
 3. **Trajectory 落盘**：每次运行产生 `.traj` 文件，记录完整的 thought/action/observation 序列，支持事后分析和调试。
 
 ### SWE-bench 表现

@@ -63,7 +63,7 @@ supersedes: null
 在 `memory=` 参数有值时启用。将指定记忆文件（如 `AGENTS.md`）内容注入系统提示，使 Agent 持有持久化指令/偏好知识。**放在[[ROS (Robot Operating System)|中间件]]栈尾部**（缓存之后），避免记忆更新破坏 [[Anthropic]] prompt cache 前缀。
 
 #### SkillsMiddleware
-在 `skills=` 参数有值时启用。从 backend 路径加载技能描述，注入系统提示，实现技能的**渐进式披露**（按需暴露，控制上下文长度）。
+在 `skills=` 参数有值时启用。从 backend 路径加载[[Skills|技能]]描述，注入系统提示，实现[[Skills|技能]]的**渐进式披露**（按需暴露，控制上下文长度）。
 
 #### PatchToolCallsMiddleware
 修正/规范化模型输出中格式异常的工具调用（悬空工具调用修复），提升与不同模型输出格式的兼容性。
@@ -72,7 +72,7 @@ supersedes: null
 为 [[Anthropic]] 模型注入 prompt cache 头；非 [[Anthropic]] 模型时 `unsupported_model_behavior="ignore"` 静默跳过。**放在尾部靠前**，记忆/人机协同之前。
 
 #### HumanInTheLoopMiddleware
-在 `interrupt_on=` 参数有值时启用。配置哪些条件下暂停执行等待人工审批。放在栈最末尾。
+在 `interrupt_on=` 参数有值时启用。[[Configuration|配置]]哪些条件下暂停执行等待人工审批。放在栈最末尾。
 
 #### TodoListMiddleware（来自 LangChain）
 始终启用，提供 `write_todos` 工具，让 Agent 维护结构化待办列表，支持规划能力。

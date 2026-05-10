@@ -31,6 +31,10 @@ relates_to:
   type: depends_on
   confidence: 0.9
   note: 运行在 TCP/IP 之上
+- target: "[[MCP（Model Context Protocol）]]"
+  type: uses
+  confidence: 0.8
+  note: MCP 支持 HTTP 作为传输方式
 supersedes: null
 ---
 
@@ -38,19 +42,19 @@ supersedes: null
 
 ## 概述
 
-HTTP（超文本传输协议）定义了 Web 客户端和服务器之间的通信规则，初始版本只有一个 GET 命令，是极简主义的典范。
+HTTP（超文本传输协议）定义了 Web 客户端和[[服务]]器之间的通信规则，初始版本只有一个 GET 命令，是极简主义的典范。
 
 ## 关键内容
 
 ### HTTP/0.9
 
 - 只有一个命令：`GET`
-- 客户端发送 URL，服务器返回文档
+- 客户端发送 URL，[[服务]]器返回文档
 - 没有认证、加密、缓存控制
 
 ### 设计哲学
 
-- 极致的简单性：任何人都可以在几小时内实现 HTTP 服务器
+- 极致的简单性：任何人都可以在几小时内实现 HTTP [[服务]]器
 - 请求-响应模型：一问一答，无需复杂手续
 
 ### 后续发展
@@ -70,3 +74,4 @@ HTTP（超文本传输协议）定义了 Web 客户端和服务器之间的通�
 - [[Tim Berners-Lee]] — 发明者
 - [[URL]] — 请求目标
 - [[TCP-IP]] — 运行基础
+- [[MCP（Model Context Protocol）]] — uses

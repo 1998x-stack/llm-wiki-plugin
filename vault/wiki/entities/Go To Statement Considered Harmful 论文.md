@@ -57,7 +57,7 @@ supersedes: null
 
 ## 概述
 
-[[Edsger Dijkstra]] 于1968年发表的编辑来信《Go To Statement Considered Harmful》，是计算机科学史上影响最深远的短文之一，开创了[[结构化编程]]运动。
+[[Edsger Dijkstra]] 于1968年发表的编辑来信《Go To Statement Considered Harmful》，是[[计算]]机科学史上影响最深远的短文之一，开创了[[结构化编程]]运动。
 
 ## 关键内容
 

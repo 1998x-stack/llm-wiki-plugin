@@ -39,7 +39,7 @@ supersedes: null
 
 ## 概述
 
-Krylov 子空间方法（Krylov Subspace Methods）是现代大规模[[线性代数]]计算的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步[[矩阵]]-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}\{v, Av, A^2v, \ldots, A^{k-1}v\}$ 中寻找最优近似解，每步只需一次[[矩阵]]-向量乘法，能高效利用[[矩阵]]稀疏性。[[共轭梯度法]]（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学计算不可或缺的工具集。
+Krylov 子空间方法（Krylov Subspace Methods）是现代大规模[[线性代数]][[计算]]的核心方法族，以苏联数学家 Aleksei Nikolaevich Krylov（1863–1945）命名其使用的子空间。核心思想是：在 $k$ 步[[矩阵]]-向量乘法生成的 $k$ 维子空间 $K_k(A, v) = \text{span}\{v, Av, A^2v, \ldots, A^{k-1}v\}$ 中寻找最优近似解，每步只需一次[[矩阵]]-向量乘法，能高效利用[[矩阵]]稀疏性。[[共轭梯度法]]（1952）是其第一个也是最重要的成员，后续发展出 GMRES、Lanczos、Arnoldi 等方法，构成了当代科学[[计算]]不可或缺的工具集。
 
 ## 关键内容
 
@@ -78,7 +78,7 @@ $$K_k(A, v) = \text{span}\{v, Av, A^2v, \ldots, A^{k-1}v\}$$
 
 ### CG-Lanczos 深层联系
 
-[[共轭梯度法]]中产生的三项递推关系与 Lanczos 算法产生的三对角[[矩阵]]之间存在精确对应：
+[[共轭梯度法]]中产生的三项递推关系与 Lanczos [[算法]]产生的三对角[[矩阵]]之间存在精确对应：
 
 $$\text{Lanczos 三对角化} \iff \text{CG 递推关系}$$
 

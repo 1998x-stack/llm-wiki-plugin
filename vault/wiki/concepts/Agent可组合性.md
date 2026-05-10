@@ -38,14 +38,14 @@ supersedes: null
    ```
    父 Agent 负责协调和任务分解，[[Codex CLI|Codex]] 作为执行节点被动态调用。
 
-3. **协议依赖**：依赖 [[MCP]] 等标准化协议实现解耦。任何支持 MCP 的 Agent 都可以被任何支持 MCP 的 Orchestrator 发现和调用，无需定制集成代码。
+3. **协议依赖**：依赖 [[MCP]] 等标准化协议实现解耦。任何支持 MCP 的 Agent 都可以被任何支持 MCP 的 [[Orchestrator Agent|Orchestrator]] 发现和调用，无需定制集成代码。
 
-4. **与 [[Orchestrator-Subagent-Pattern]] 的关系**：可组合性是实现编排模式的底层能力。Orchestrator 模式是顶层架构设计，可组合性确保子 Agent 可以被不同父级复用。
+4. **与 [[Orchestrator-Subagent-Pattern]] 的关系**：可组合性是实现编排模式的底层能力。[[Orchestrator Agent|Orchestrator]] 模式是顶层架构设计，可组合性确保[[子 Agent & 多 Agent 系统|子 Agent]] 可以被不同父级复用。
 
 5. **工程意义**：
-   - **工具集成配置化**：从"写集成代码"变成"写配置文件"
+   - **工具集成[[Configuration|配置]]化**：从"写集成代码"变成"写[[Configuration|配置]]文件"
    - **Agent 复用**：同一 [[Codex CLI|Codex]] 实例可被 [[Cursor]]、父级 Agent、CI 流水线等不同消费者调用
-   - **生态效应**：类似 USB-C 标准，协议统一后工具和服务自动可插拔
+   - **生态效应**：类似 USB-C 标准，协议统一后工具和[[服务]]自动可插拔
 
 ## 来源
 - [[raw/articles/ai-tools/codex/06_codex_mcp_layer.md]] — Codex MCP Layer 深度解析

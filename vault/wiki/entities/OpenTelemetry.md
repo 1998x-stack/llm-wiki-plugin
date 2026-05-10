@@ -27,7 +27,7 @@ CNCF 旗下的统一可观测性标准，定义了 OTLP（OpenTelemetry Protocol
 
 1. **三种信号类型**：Traces（请求链路追踪）、Metrics（指标聚合）、Logs（结构化日志），统一采集框架
 2. **OTLP 协议**：标准的遥测数据传输协议，默认 gRPC 端口 4317，HTTP 端口 4318
-3. **在 [[Codex CLI|Codex]] 中的集成**：[[Codex CLI]] 通过 `[telemetry]` 配置段支持 OTLP exporter，自动记录 session_id、model、tool call 耗时、approval 决策等事件，便于审计和性能分析
+3. **在 [[Codex CLI|Codex]] 中的集成**：[[Codex CLI]] 通过 `[telemetry]` [[Configuration|配置]]段支持 OTLP exporter，自动记录 session_id、model、tool call 耗时、approval 决策等事件，便于审计和[[性能分析]]
 
 ## 来源
 

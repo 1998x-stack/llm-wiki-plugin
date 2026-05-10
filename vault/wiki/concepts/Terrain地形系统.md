@@ -22,7 +22,7 @@ supersedes: null
 - **分块大小**：`patchSize` 每个 TerrainPatch 包含的顶点数（默认 65）
 - **LOD 级别**：`maxLodLevels` 控制最多细分层数，远处自动降分辨率
 - **法线平滑**：`smoothing` 开启法线插值避免台阶感
-- **邻居接缝**：`SetNeighbors(north, south, west, east)` 设置相邻地形块，消除 LOD 裂缝
+- **邻居接缝**：`SetNeighbors(north, south, west, east)` [[Settings|设置]]相邻地形块，消除 LOD 裂缝
 - **高度查询**：`GetHeight(worldPos)` 实时查询任意世界坐标的地面高度
 - **法线查询**：`GetNormal(worldPos)` 获取地形法线（用于物体贴地对齐）
 - **坐标转换**：`WorldToHeightMap` / `HeightMapToWorld` 像素坐标与世界坐标互转

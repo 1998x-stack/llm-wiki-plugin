@@ -3,9 +3,9 @@ type: entity
 status: active
 confidence: 0.9
 created: 2026-04-15
-updated: 2026-04-18
-last_accessed: 2026-04-15
-source_count: 4
+updated: 2026-04-19
+last_accessed: 2026-04-19
+source_count: 5
 tags: [技术, 工具, 工具与框架]
 aliases: [Codex, OpenAI Codex CLI]
 relates_to:
@@ -27,12 +27,21 @@ relates_to:
   - target: "[[Agent角色系统]]"
     type: uses
     confidence: 0.8
+  - target: "[[Ratatui]]"
+    type: uses
+    confidence: 0.9
+  - target: "[[Approval Gate UI]]"
+    type: uses
+    confidence: 0.9
+  - target: "[[App Server 模式]]"
+    type: implements
+    confidence: 0.85
 supersedes: null
 ---
 
 # Codex CLI
 
-[[OpenAI]] 以 Rust 重写并开源的**本地编码 Agent**。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读仓库、改文件、跑命令。
+[[OpenAI]] 以 Rust 重写并开源的**本地编码 Agent**。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读[[仓库]]、改文件、跑命令。
 
 ## 一句话定义
 
@@ -46,7 +55,7 @@ supersedes: null
 | 会话管理层 | Session Store / Transcript / Resume / Subagent Pool | [[会话持久化]] |
 | Agent Core | codex-rs/core | 业务逻辑、Model I/O、Tool Dispatch |
 | 策略层 | [[ExecPolicy]] | [[ExecPolicy|策略即代码]]的命令审批引擎 |
-| 协议层 | [[MCP协议层]] | 双向 MCP：客户端连工具，服务端暴露自身 |
+| 协议层 | [[MCP协议层]] | 双向 MCP：客户端连工具，[[服务]]端暴露自身 |
 | 沙箱层 | [[Codex沙箱系统]] | macOS [[Apple Sandbox|Seatbelt]] / [[Landlock|Linux Landlock]]+[[seccomp]] |
 
 ## 核心组件（C1–C9）
@@ -63,6 +72,20 @@ supersedes: null
 | C8 | [[Codex配置系统]] | `config.toml` |
 | C9 | Model Layer | `core/model*.rs` |
 
+## 组件依赖关系
+
+```
+config.toml ──────────────────────────────────────┐
+                                                   ▼
+AGENTS.md ──► core (业务逻辑) ──► ExecPolicy ──► Sandbox
+                │                      │
+                ├──► Session Manager   └──► Approval Gate ──► TUI
+                │
+                ├──► MCP Client ──► 外部工具服务器
+                │
+                └──► Subagent Pool ──► 并行 core 实例
+```
+
 ## 关键架构决策
 
 ### Rust 重写
@@ -74,6 +97,13 @@ supersedes: null
 - 真并发（[[Tokio|Tokio async]]/await）
 
 > 工程智慧：选 Rust 不只是"性能更好"，更是为了**在内核层做安全隔离**。
+
+### Write Tools 策略
+支持 write / patch 两种写入粒度，相比 Claude Code 的三件套（write / str_replace / patch）少一种粒度。使用 OS 级隔离机制，包括 macOS 上的 `[[Apple Sandbox|sandbox-exec]]`（Seatbelt）和 Linux 上的 `landlock` + `[[seccomp]]` 过滤系统调用，提供内核级别的隔离强度。
+
+提供三种模式（suggest / auto-edit / full-auto），分别对应不同的文件系统权限和网络权限。采用 suggest 模式（先生成所有 diff 再统一审批），让用户可以看到整个计划再决定是否执行，比逐步确认更有全局感。
+
+大文件处理采用行范围读取策略，与 Claude Code 的 Symbol-level 读取方式不同。
 
 ### Policy-First 设计
 
@@ -93,15 +123,15 @@ supersedes: null
 
 核心业务逻辑通过 Wire Protocol（`codex-rs/protocol`）与 UI 层解耦：
 - TUI、App Server、IDE Extension 共用同一个 `core` crate
-- 支持 Python/[[TypeScript]] 客户端通过协议接入
-- Codex 自身可作为 MCP Server 被其他 Agent 调用
+- 支持 [[Python]]/[[TypeScript]] 客户端通过协议接入
+- Codex 自身可作为 [[MCP Prompts|MCP Server]] 被其他 Agent 调用
 
 ## 三道防线（不确定性 → 确定性）
 
 LLM 输出是随机的，系统执行必须是可控的，用三道防线解决：
 
 1. **[[ExecPolicy]]（意图过滤）** — allow / prompt / forbidden 三态决策
-2. **Approval Gate（人机协同）** — 不确定命令暂停等待人类批准
+2. **[[Approval Gate UI|Approval Gate]]（人机协同）** — 不确定命令暂停等待人类批准
 3. **OS Sandbox（执行隔离）** — 内核级强制，LLM 无法绕过
 
 ## 来源

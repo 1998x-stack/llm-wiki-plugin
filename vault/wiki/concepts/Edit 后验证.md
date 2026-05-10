@@ -41,9 +41,9 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 - edit 完以后立刻做检查
 - 如果新编辑引入语法错误，就不应用这次编辑
 - 把错误信息、原代码片段、应用后会长什么样，都反馈给 agent
-- 让 agent 重新 edit，而不是把坏状态写进仓库继续往下走
+- 让 agent 重新 edit，而不是把坏状态写进[[仓库]]继续往下走
 
-**当前仓库实现（str_replace_editor）：**
+**当前[[仓库]]实现（str_replace_editor）：**
 - `USE_LINTER` 开关：是否启用 linter
 - `flake8(file_path)`：对文件运行 flake8，仅对 .py 文件生效
 - 默认 `LINT_COMMAND`：`flake8 --isolated --select=F821,F822,F831,E111,E112,E113,E999,E902 {file_path}`
@@ -55,7 +55,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 | F821/F822 | 未定义名 | 变量/函数未声明 |
 | F831 | 重复参数 | 函数参数名重复 |
 | E111/E112/E113 | 缩进 | 缩进不一致或缺失 |
-| E999 | 语法错误 | Python 语法解析失败 |
+| E999 | 语法错误 | [[Python]] 语法解析失败 |
 | E902 | 文件 IO | 文件无法读取 |
 
 **两种模式：**
@@ -79,8 +79,8 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 2. **全量检查对 agent 不友好**：
    - 慢：每次 edit 后跑全仓太耗时
    - 噪声大：容易把 agent 淹没
-   - 历史问题混入：很难[[区分]]"这次 edit 导致的新问题"和"仓库本来就有的问题"
-3. **Python-first 导向**：核心 validate 抽象更偏 Python，linter 路径明确只对 .py 生效
+   - 历史问题混入：很难[[区分]]"这次 edit 导致的新问题"和"[[仓库]]本来就有的问题"
+3. **[[Python]]-first 导向**：核心 validate 抽象更偏 [[Python]]，linter 路径明确只对 .py 生效
 4. **复杂度收缩**：官方已将 [[SWE-agent]] 转向 maintenance-only，建议用 mini-[[SWE-agent]]
 
 ### 三层 Validate 设计建议
@@ -130,7 +130,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 
 [[SWE-agent]] 论文 Table 3 专门对 editor interface 做了 ablation，验证了 edit 后 validate 的有效性：
 
-| 配置 | [[SWE-bench]] Lite Resolved Rate | 说明 |
+| [[Configuration|配置]] | [[SWE-bench]] Lite Resolved Rate | 说明 |
 |------|----------------------------|------|
 | **w/ linting** | **18.0%** | 带 linting 的 edit（最佳） |
 | **edit action** | **15.0%** | 有专门 edit 动作但不带 linting |
@@ -148,12 +148,12 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 
 | 层级 | 职责 | 机制 |
 |------|------|------|
-| **Tool Description** | "会用"：教会 Claude 如何正确调用 validate 工具 | 参数语义 + 使用示例 |
-| **CLAUDE.md** | "想这么做"：定义项目验证策略和偏好 | 每个会话加载的持久指令 |
-| **Hooks / settings.json** | "真的会做"：PostToolUse 自动触发 lint/test | additionalContext + decision:block |
+| **Tool Description** | "会用"：教会 [[Claude_Code|Claude]] 如何正确调用 validate 工具 | 参数语义 + 使用示例 |
+| **[[CLAUDE.md]]** | "想这么做"：定义项目验证策略和偏好 | 每个会话加载的持久指令 |
+| **[[Hooks]] / settings.json** | "真的会做"：PostToolUse 自动触发 lint/test | additionalContext + decision:block |
 | **LSP** | "即时反馈"：edit 后自动报告 type errors/warnings | 内建 code intelligence |
 
-**核心原则**：必须发生的放 hooks，希望 Claude 优先做的放 CLAUDE.md，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。
+**核心原则**：必须发生的放 hooks，希望 [[Claude_Code|Claude]] 优先做的放 [[CLAUDE.md]]，自定义工具用法放 tool description + examples，快速语义反馈交给 LSP。
 
 ### 单文件 vs 多文件编辑
 

@@ -23,8 +23,8 @@ IKSolver 是 [[UrhoX引擎|UrhoX]] 的[[逆向运动学]]求解器组件，挂�
 | 方法 | 说明 |
 |------|------|
 | `RebuildChainTrees()` | 重建 IK 链树，场景结构变化后调用 |
-| `RecalculateSegmentLengths()` | 重新计算各段骨骼长度 |
-| `CalculateJointRotations()` | 计算关节旋转（通常由 Solve 内部调用） |
+| `RecalculateSegmentLengths()` | 重新[[计算]]各段骨骼长度 |
+| `CalculateJointRotations()` | [[计算]]关节旋转（通常由 Solve 内部调用） |
 | `Solve()` | 执行一次 IK 求解迭代 |
 | `ApplyOriginalPoseToScene()` | 将原始姿态写回场景节点 |
 | `ApplySceneToOriginalPose()` | 从场景节点读取并保存为原始姿态 |
@@ -37,10 +37,10 @@ IKSolver 是 [[UrhoX引擎|UrhoX]] 的[[逆向运动学]]求解器组件，挂�
 
 | 属性 | 类型 | 说明 |
 |------|------|------|
-| `algorithm` | IKSolver::Algorithm | IK 算法（如 FABRIK） |
+| `algorithm` | IKSolver::[[算法|Algorithm]] | IK [[算法]]（如 FABRIK） |
 | `maximumIterations` | unsigned | 最大迭代次数 |
 | `tolerance` | float | 收敛误差阈值 |
-| `JOINT_ROTATIONS` | bool | 启用关节旋转计算 |
+| `JOINT_ROTATIONS` | bool | 启用关节旋转[[计算]] |
 | `TARGET_ROTATIONS` | bool | 末端目标也旋转匹配 |
 | `UPDATE_ORIGINAL_POSE` | bool | 每帧更新原始姿态 |
 | `UPDATE_ACTIVE_POSE` | bool | 每帧更新活动姿态 |
@@ -52,7 +52,7 @@ IKSolver 是 [[UrhoX引擎|UrhoX]] 的[[逆向运动学]]求解器组件，挂�
 - 将 IKSolver 挂载到骨骼根节点
 - 在子节点挂载 [[IKEffector]] 指定目标
 - 可选在关节节点挂载 [[IK约束]] 限制活动范围
-- 设置 `AUTO_SOLVE = true` 自动驱动，或手动调用 `Solve()`
+- [[Settings|设置]] `AUTO_SOLVE = true` 自动驱动，或手动调用 `Solve()`
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/engine-docs/api/ik.md]] — UrhoX Lua API IK 模块文档

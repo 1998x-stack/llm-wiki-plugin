@@ -61,13 +61,13 @@ Diffie-Hellman 密钥交换是人类历史上第一个公钥密钥交换协议�
 ### 协议过程
 
 1. **公开参数**：双方公开选定大素数 p 和原根 g
-2. **各自生成秘密**：Alice 选随机数 a，计算 A = g^a mod p；Bob 选随机数 b，计算 B = g^b mod p
+2. **各自生成秘密**：Alice 选随机数 a，[[计算]] A = g^a mod p；Bob 选随机数 b，[[计算]] B = g^b mod p
 3. **交换公开值**：Alice 发送 A 给 Bob，Bob 发送 B 给 Alice
-4. **计算共享密钥**：Alice 计算 K = B^a mod p = g^{ab} mod p；Bob 计算 K = A^b mod p = g^{ab} mod p
+4. **[[计算]]共享密钥**：Alice [[计算]] K = B^a mod p = g^{ab} mod p；Bob [[计算]] K = A^b mod p = g^{ab} mod p
 
 ### 安全性
 
-窃听者能看到 p、g、A、B，但要计算 K = g^{ab} mod p，需要从 A 或 B 中恢复 a 或 b——这正是**[[离散对数问题]]**，目前没有已知的多项式时间经典算法。
+窃听者能看到 p、g、A、B，但要[[计算]] K = g^{ab} mod p，需要从 A 或 B 中恢复 a 或 b——这正是**[[离散对数问题]]**，目前没有已知的多项式时间经典[[算法]]。
 
 ### 弱点
 

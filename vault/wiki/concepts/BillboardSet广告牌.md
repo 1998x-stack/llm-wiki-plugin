@@ -19,7 +19,7 @@ BillboardSet 是 [[UrhoX引擎|UrhoX]] 中用于渲染始终朝向摄像机的 2
 ## 关键内容
 - **广告牌数量**：`numBillboards` 控制池大小，通过 `GetBillboard(index)` 访问单个广告牌
 - **朝向模式**：`faceCameraMode` 控制朝向策略（全向/仅Y轴旋转/固定等）
-- **固定屏幕尺寸**：`fixedScreenSize` 保持广告牌在屏幕上的像素大小不变（适合 UI 标注）
+- **固定屏幕尺寸**：`fixedScreenSize` 保持广告牌在屏幕上的像素大小不变（适合 UI [[标注]]）
 - **相对坐标**：`relative = true` 时广告牌位置相对于节点，否则为世界坐标
 - **排序**：`sorted = true` 按距离排序，保证半透明正确叠加
 - **UV 动画**：每个 Billboard 有独立的 `uv`（Rect）属性，实现贴图集动画

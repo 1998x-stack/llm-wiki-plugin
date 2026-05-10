@@ -4,7 +4,7 @@ status: active
 confidence: 0.8
 created: 2026-04-18
 updated: 2026-04-18
-last_accessed: 2026-04-18
+last_accessed: 2026-04-19
 source_count: 2
 tags: ["工具", "安全", "Linux内核", "工具与框架"]
 aliases: ["Secure Computing Mode", "seccomp-bpf"]
@@ -24,7 +24,7 @@ Linux 内核的系统调用过滤机制（Secure Computing Mode），通过 BPF 
 
 ## 关键内容
 
-1. **系统调用级隔离**：seccomp 在进程与内核之间设置过滤层，只允许预定义的系统调用通过，从根本上缩小攻击面。
+1. **系统调用级隔离**：seccomp 在进程与内核之间[[Settings|设置]]过滤层，只允许预定义的系统调用通过，从根本上缩小攻击面。
 2. **在 [[Codex CLI|Codex]] 中的角色**：[[Codex沙箱系统]] 在 Linux 平台上将 seccomp 与 [[Landlock]] 组合使用——seccomp 管"能做什么操作"，[[Landlock]] 管"能访问什么文件"。
 3. **seccomp-bpf**：现代版本基于 Berkeley Packet Filter 语法，支持复杂的过滤规则（参数匹配、位掩码等）。
 4. **Rust 绑定优势**：Rust 可直接调用 seccomp syscall，无需 Node.js native addon 的桥接层。

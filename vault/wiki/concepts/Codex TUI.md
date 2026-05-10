@@ -5,7 +5,7 @@ confidence: 0.9
 created: 2026-04-15
 updated: 2026-04-18
 last_accessed: 2026-04-15
-source_count: 3
+source_count: 4
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Terminal UI, Codex 交互终端]
 relates_to:
@@ -21,6 +21,21 @@ relates_to:
   - target: "[[事件驱动Agent架构]]"
     type: implements
     confidence: 0.85
+  - target: "[[Ratatui]]"
+    type: uses
+    confidence: 0.95
+  - target: "[[Approval Gate UI]]"
+    type: implements
+    confidence: 0.95
+  - target: "[[人类监督带宽]]"
+    type: implements
+    confidence: 0.9
+  - target: "[[App Server 模式]]"
+    type: implements
+    confidence: 0.85
+  - target: "[[Subagent 地址系统]]"
+    type: uses
+    confidence: 0.8
 supersedes: null
 ---
 
@@ -36,7 +51,7 @@ supersedes: null
 
 | 层 | 职责 |
 |---|---|
-| 渲染层 | Ratatui / 原生终端，全屏 alternate screen mode |
+| 渲染层 | [[Ratatui]] / 原生终端，全屏 alternate screen mode |
 | 事件处理层 | 键盘输入、Agent 消息、Tool 结果、审批请求 |
 | 状态管理层 | 会话状态、Draft History、审批队列、Agent 树 |
 | Wire Protocol 接口 | 与 `codex-rs/core` 通过 protocol crate 通信 |
@@ -60,10 +75,10 @@ Agent 提出文件修改时，TUI 渲染语法高亮的 diff。用户可选 `[A]
 
 | approval_policy | 含义 |
 |----------------|------|
-| `untrusted` | 只允许已知安全的只读操作自动执行 |
+| `untrusted` | 只允许已知安全的只[[Read|读操作]]自动执行 |
 | `on-request` | 需要时才暂停（推荐日常开发） |
 | `never` | 全自动，配合外部沙箱使用 |
-| `granular` | 精细到每类动作独立配置 |
+| `granular` | 精细到每类动作独立[[Configuration|配置]] |
 
 ### 斜杠命令系统
 
@@ -89,12 +104,12 @@ VS Code Extension、桌面 App、Web 前端均可接入同一个 `core`，支持
 | 我不知道 Agent 要改哪些文件 | diff 预览在审批前可见 |
 | Agent 误操作了，想撤销 | Session resume + git 快照回溯 |
 | 多个任务并行，状态混乱 | `/title` 命名 session，parallel session 面板 |
-| 不知道 Agent 用的什么模型 | `/status` 实时展示配置摘要 |
+| 不知道 Agent 用的什么模型 | `/status` 实时展示[[Configuration|配置]]摘要 |
 | Draft 写了一半，意外关闭 | Draft history 自动保存，Up/Down 恢复 |
 
 ## 设计哲学
 
-> **TUI 的本质是"人类监督带宽的最大化"**——Agent 速度远超人类审阅速度，TUI 在关键决策点精确呈现恰好需要的上下文，让人类在 2 秒内做出正确判断。
+> **TUI 的本质是"[[人类监督带宽]]的最大化"**——Agent 速度远超人类审阅速度，TUI 在关键决策点精确呈现恰好需要的上下文，让人类在 2 秒内做出正确判断。
 
 三原则：
 1. **最小化审批摩擦** — 常见的安全操作自动放行

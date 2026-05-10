@@ -47,7 +47,7 @@ supersedes: null
 
 4. **在 [[Codex CLI]] 中的体现**：
    - [[ExecPolicy]] 作为独立的策略引擎 crate
-   - 配置分层：Global → Team → Project → Profile
+   - [[Configuration|配置]]分层：Global → Team → Project → Profile
    - 策略规则以 TOML 文件定义，支持 Git 版本控制
 
 ## 工程智慧

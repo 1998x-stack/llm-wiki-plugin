@@ -51,13 +51,13 @@ supersedes: null
 
 ## 概述
 
-荷兰计算机科学家（1930–2002），1972年[[阿兰·图灵|图灵]]奖得主。1968年发表《[[Go To Statement Considered Harmful 论文|Go To Statement Considered Harmful]]》开创了[[结构化编程]]运动，对编程语言设计和软件工程方法论产生了深远影响。
+荷兰[[计算]]机科学家（1930–2002），1972年[[阿兰·图灵|图灵]]奖得主。1968年发表《[[Go To Statement Considered Harmful 论文|Go To Statement Considered Harmful]]》开创了[[结构化编程]]运动，对编程语言设计和软件工程方法论产生了深远影响。
 
 ## 关键内容
 
 ### 主要贡献
 
-- **最短路径算法**（1956年）— 以他名字命名的 Dijkstra 算法
+- **最短路径[[算法]]**（1956年）— 以他名字命名的 Dijkstra [[算法]]
 - **ALGOL 60 语言设计** — 参与设计并开发了首个 ALGOL 60 编译器
 - **信号量**（semaphore）— 解决并发编程中的同步问题
 - **[[结构化编程]]** — 1968年论文开创了整个运动

@@ -50,7 +50,7 @@ supersedes: null
 设源编码 $h_1, h_2, ..., h_n$（双向 RNN 隐藏状态），Decoder 当前状态 $s_{t-1}$：
 
 1. **对齐分数**：$e_{it} = a(s_{t-1}, h_i) = v^\top \tanh(W_a s_{t-1} + U_a h_i)$，学习源位置与当前解码的相关性
-2. **Softmax 归一化**：$\alpha_{it} = \frac{\exp(e_{it})}{\sum_j \exp(e_{jt})}$，得到注意力权重 $\alpha_{it} \in [0,1]$，$\sum_i \alpha_{it} = 1$
+2. **[[Softmax]] 归一化**：$\alpha_{it} = \frac{\exp(e_{it})}{\sum_j \exp(e_{jt})}$，得到注意力权重 $\alpha_{it} \in [0,1]$，$\sum_i \alpha_{it} = 1$
 3. **加权上下文向量**：$c_t = \sum_i \alpha_{it} h_i$，每个解码时刻专属的动态上下文
 4. **Decoder 生成**：$s_t = f(s_{t-1}, y_{t-1}, c_t)$，融合注意力上下文生成目标词
 

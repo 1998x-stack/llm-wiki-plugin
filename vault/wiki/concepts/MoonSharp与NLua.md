@@ -31,7 +31,7 @@ supersedes: null
 [[MoonSharp]] 是完全用 C# 实现的 Lua 5.2 解释器，无原生 DLL 依赖，适合 IL2CPP/AOT 平台（iOS 等）。
 
 **对象注册流程**：
-1. 在 C# 类上标注 `[MoonSharpUserData]`，通过 `UserData.RegisterAssembly()` 批量注册
+1. 在 C# 类上[[标注]] `[MoonSharpUserData]`，通过 `UserData.RegisterAssembly()` 批量注册
 2. `script.Globals["key"] = obj` 将 C# 对象注入 Lua 全局变量
 3. 静态类通过 `UserData.Create(typeof(SomeClass))` 包装后注入
 

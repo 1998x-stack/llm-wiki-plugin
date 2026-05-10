@@ -4,21 +4,63 @@
     "type": "split",
     "children": [
       {
-        "id": "1a85484e185165c6",
+        "id": "89e0809ff088a08f",
         "type": "tabs",
         "children": [
           {
-            "id": "5e86ce1a57541834",
+            "id": "8befa929fe8b421b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/concepts/Context-Engineering.md",
+                "file": "wiki/concepts/Permissions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Context-Engineering"
+              "title": "Permissions"
+            }
+          },
+          {
+            "id": "aea7db5d909e3d4c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/entities/巴菲特午餐.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "巴菲特午餐"
+            }
+          },
+          {
+            "id": "fc5f398afacc834d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "maps/社会科学.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "社会科学"
+            }
+          },
+          {
+            "id": "85751a7df0bacd48",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/concepts/服务.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "服务"
             }
           }
         ]
@@ -78,8 +120,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "293db15df12be54e",
@@ -95,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/concepts/Context-Engineering.md",
+                "file": "wiki/concepts/Permissions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +146,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Context-Engineering 的反向链接列表"
+              "title": "Permissions 的反向链接列表"
             }
           },
           {
@@ -114,11 +155,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "wiki/concepts/Permissions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "Permissions 的出链列表"
             }
           },
           {
@@ -164,7 +206,8 @@
               "title": "大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -181,43 +224,43 @@
       "bases:新建数据库": false
     }
   },
-  "active": "5e86ce1a57541834",
+  "active": "8befa929fe8b421b",
   "lastOpenFiles": [
-    "wiki/entities/Claude-Code.md",
-    "wiki/syntheses/知识系统的六个工程反模式.md",
-    "maps/AI工程.md",
-    "wiki/concepts/上下文腐烂.md",
-    "raw/articles/ai-engineering/anthropic-engineering/Context Rot_ How Increasing Input Tokens Impacts LLM Performance.md",
-    "maps/计算理论.md",
-    "maps/脑科学.md",
-    "maps/经济学.md",
+    "wiki/concepts/时间序列分析.md",
+    "wiki/concepts/阻尼谐振子.md",
+    "wiki/concepts/周期图法.md",
+    "wiki/concepts/Yule-Walker方程.md",
+    "wiki/concepts/太阳黑子.md",
+    "tmp/ingest-loop.local.7.md",
+    "tmp/ingest-loop.local.6.md",
+    "wiki/concepts/自回归模型.md",
+    "wiki/entities/George Udny Yule.md",
+    "tmp/ingest-loop.local.5.md",
+    "tmp/ingest-loop.local.4.md",
+    "wiki/concepts/注意力套利.md",
+    "wiki/entities/巴菲特午餐.md",
     "maps/社会科学.md",
-    "maps/矩阵理论.md",
-    "maps/游戏开发.md",
-    "maps/深度学习.md",
-    "maps/概率论.md",
-    "maps/机器学习.md",
-    "maps/机器人学.md",
-    "maps/时间序列.md",
-    "maps/文档处理.md",
-    "maps/数值分析.md",
-    "maps/推荐系统.md",
-    "maps/控制论.md",
-    "maps/工具与框架.md",
-    "maps/天文学.md",
-    "maps/其他.md",
-    "maps/Lua编程.md",
-    "maps/LLM能力.md",
-    "maps/C++编程.md",
-    "wiki/concepts/记忆",
-    "wiki/papers",
-    "docs/gotchas",
-    "docs",
-    "wiki/projects",
-    "wiki/entities/shadcn",
-    "scripts/__pycache__/snapshot_index.cpython-314.pyc",
-    "scripts/__pycache__/snapshot_index.cpython-311.pyc",
-    "wiki/concepts/权力",
-    "scripts/relink_cleanup.py"
+    "wiki/concepts/服务.md",
+    "wiki/entities/社会学研究.md",
+    "scripts/integration_wiki_graphbrain.py",
+    "scripts/__pycache__/qa_loop_processor.cpython-314.pyc",
+    "scripts/__pycache__/entropy_control.cpython-314.pyc",
+    "scripts/__pycache__/graph_engine_enhancement.cpython-314.pyc",
+    "scripts/__pycache__/cognitive_core.cpython-314.pyc",
+    "scripts/graphbrain_main.py",
+    "scripts/qa_loop_processor.py",
+    "scripts/entropy_control.py",
+    "scripts/graph_engine_enhancement.py",
+    "scripts/cognitive_core.py",
+    "wiki/concepts/unified diff.md",
+    "wiki/concepts/AST-based diff.md",
+    "wiki/concepts/状态感知与抽象.md",
+    "wiki/entities/Qwen.md",
+    "wiki/concepts/atomic_write.md",
+    "wiki/entities/Luna-Engine.md",
+    "wiki/concepts/LLM推理策略.md",
+    "wiki/concepts/Tool-Use.md",
+    "wiki/concepts/LangGraph状态机.md",
+    "wiki/concepts/诊断预言机系统.md"
   ]
 }

@@ -34,7 +34,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1935–），1972年发表里程碑式论文《Reducibility among combinatorial problems》，通过一系列归约证明了21个经典组合问题都是 [[NP 完全性|NP 完全]]的，极大地拓展了 [[NP 完全性]]理论的应用范围。
+美国[[计算]]机科学家（1935–），1972年发表里程碑式论文《Reducibility among combinatorial problems》，通过一系列归约证明了21个经典组合问题都是 [[NP 完全性|NP 完全]]的，极大地拓展了 [[NP 完全性]]理论的应用范围。
 
 ## 关键内容
 

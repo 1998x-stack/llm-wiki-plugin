@@ -27,12 +27,30 @@ relates_to:
   - target: "[[MCP Inspector]]"
     type: used_by
     confidence: 0.75
+  - target: "[[GitHub]]"
+    type: uses
+    confidence: 0.8
+  - target: "[[Slack]]"
+    type: uses
+    confidence: 0.75
+  - target: "[[HTTP 传输协议]]"
+    type: uses
+    confidence: 0.8
+  - target: "[[Stdio 传输协议]]"
+    type: uses
+    confidence: 0.9
+  - target: "[[WebSocket 传输协议]]"
+    type: uses
+    confidence: 0.7
+  - target: "[[OAuth 2.0 认证]]"
+    type: supports
+    confidence: 0.75
 supersedes: null
 ---
 
 # MCP协议层
 
-[[Codex CLI]] 的工具连接协议层。MCP（[[MCP|Model Context Protocol]]）是 [[Anthropic]] 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。[[Codex CLI|Codex]] 同时扮演 **MCP 客户端**（连接外部工具）和 **MCP 服务端**（将自身暴露给其他 Agent）两个角色。
+[[Codex CLI]] 的工具连接协议层。MCP（[[MCP|Model Context Protocol]]）是 [[Anthropic]] 提出的开放协议，让工具与 Agent 解耦——"USB-C 接口"设计。[[Codex CLI|Codex]] 同时扮演 **MCP 客户端**（连接外部工具）和 **MCP [[服务]]端**（将自身暴露给其他 Agent）两个角色。
 
 ## 核心价值
 
@@ -40,9 +58,9 @@ supersedes: null
 
 ## Codex 双重身份
 
-**作为 MCP Client**：启动时连接 config.toml 声明的 MCP 服务器，通过 `tools/list` 发现工具，注入 LLM system prompt，将 LLM 的 tool_call 请求路由到对应服务器。
+**作为 MCP Client**：启动时连接 config.toml 声明的 [[MCP 服务器]]，通过 `tools/list` 发现工具，注入 LLM system prompt，将 LLM 的 tool_call 请求路由到对应[[服务]]器。
 
-**作为 MCP Server**：
+**作为 [[MCP Prompts|MCP Server]]**：
 
 ```bash
 codex mcp-server  # 启动后暴露 codex_exec、codex_review 等工具
@@ -83,11 +101,37 @@ MCP 工具调用受 Approval 机制保护：
 - `read-only: true` → 自动放行
 - `destructive: true` → 强制审批（即使 `approval_policy = "never"`）
 
-**环境变量隔离**（Shell Environment Policy）：精细控制哪些 env var 传递给子进程，防止密钥泄露。默认自动排除包含 `KEY/SECRET/TOKEN` 的变量。
+**精细审批策略**：
+```toml
+approval_policy = { granular = {
+  mcp_elicitations = true,    # MCP 请求权限时展示给用户确认
+  request_permissions = true, # request_permissions 工具需要确认
+} }
+```
+
+**环境变量隔离**（Shell Environment Policy）：精细控制哪些 env var 传递给子进程，防止密钥泄露。
+```toml
+[shell_environment_policy]
+inherit = "none"                    # 不继承任何 env var
+set = { PATH = "/usr/bin:/usr/local/bin" }
+exclude = ["AWS_*", "AZURE_*"]      # glob 模式排除
+include_only = ["PATH", "HOME", "GITHUB_TOKEN"]  # 白名单
+ignore_default_excludes = false     # 默认自动排除 KEY/SECRET/TOKEN
+```
+
+## MCP 增强确定性的方式
+
+| 不确定性来源 | MCP 的应对 |
+|------------|-----------|
+| LLM 对外部系统状态"猜测" | 通过 MCP 工具直接读取真实状态 |
+| 工具接口不稳定，Agent 调用出错 | MCP schema 强类型约束，load-time 验证 |
+| 工具调用暴露系统权限 | Approval gate + destructive annotation 强制确认 |
+| 密钥通过 env 泄露给工具进程 | Shell environment policy 精细过滤 |
+| Agent 对工具能力误解 | `tools/list` 接口的 description 字段规范化 |
 
 ## 工程哲学
 
-> **MCP Layer 把"工具集成"从编程问题变成配置问题。** [[Codex CLI|Codex]] 同时是客户端和服务端，实现了 Agent 的"可组合性"——任何 [[Codex CLI|Codex]] 实例都可以成为更大 Agent 系统的一个工具节点。
+> **MCP Layer 把"工具集成"从编程问题变成[[Configuration|配置]]问题。** [[Codex CLI|Codex]] 同时是客户端和[[服务]]端，实现了 Agent 的"可组合性"——任何 [[Codex CLI|Codex]] 实例都可以成为更大 Agent 系统的一个工具节点。
 
 ## 来源
 

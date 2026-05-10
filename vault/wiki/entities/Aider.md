@@ -28,13 +28,13 @@ supersedes: null
 
 ## 概述
 
-Aider 是由 Paul Gauthier 开源的 Git 原生 AI 结对编程 CLI 工具，支持 Claude、GPT-4o、[[Gemini CLI|Gemini]] 及本地模型。以极高的 Token 效率著称（综合测试仅消耗 126k tokens），是 Claude CLI 生态中性价比最高的工具之一。
+Aider 是由 Paul Gauthier 开源的 Git 原生 AI 结对编程 CLI 工具，支持 [[Claude_Code|Claude]]、GPT-4o、[[Gemini CLI|Gemini]] 及本地模型。以极高的 Token 效率著称（综合测试仅消耗 126k tokens），是 [[Claude_Code|Claude]] CLI 生态中性价比最高的工具之一。
 
 ## 关键内容
 
-1. **Git 原生集成**：所有改动自动 commit，保持清晰的 Git 历史，架构最轻量
+1. **Git 原生集成**：所有改动自动 [[commit]]，保持清晰的 Git 历史，架构最轻量
 2. **Token 效率冠军**：2025 Q4 评测中，平均 Token 消耗 126k，约为 [[Claude Code]]（397k）的三分之一
-3. **多模型支持**：除 Claude 外，兼容 GPT-4o、[[Gemini CLI|Gemini]]、本地模型，跨平台可选
+3. **多模型支持**：除 [[Claude_Code|Claude]] 外，兼容 GPT-4o、[[Gemini CLI|Gemini]]、本地模型，跨平台可选
 
 ### 安装与基础用法
 

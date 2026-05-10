@@ -19,7 +19,7 @@ Lua 无内建 class 系统，通过 table + metatable + 冒号语法糖实现面
 ## 关键内容
 1. **冒号语法糖**：`obj:method(x)` 等价于 `obj.method(obj, x)`；定义时 `function T:foo(x)` 等价于 `function T.foo(self, x)`。冒号自动传入 `self`，是 Lua OOP 的语法基础。
 2. **经典类模式**：将类本身既作命名空间又作 metatable，令 `Class.__index = Class`，实例通过 `setmetatable({}, Class)` 创建。实例访问不到的字段会沿 `__index` 链在 Class 上查找，实现方法共享。
-3. **构造器约定**：通常写 `Class.new(...)` 而非 `Class:new(...)` 以避免多余的 self 参数。构造器内 `local self = setmetatable({}, Class)` 后设置实例字段并 return self。另一种风格是 `Class:new(...)` 使 `self` 可以是子类，对继承更友好。
+3. **构造器约定**：通常写 `Class.new(...)` 而非 `Class:new(...)` 以避免多余的 self 参数。构造器内 `local self = setmetatable({}, Class)` 后[[Settings|设置]]实例字段并 return self。另一种风格是 `Class:new(...)` 使 `self` 可以是子类，对继承更友好。
 4. **私有辅助函数**：模块内用 `local function helper(...)` 声明的函数外部无法访问，起到私有方法作用。如 `local function clamp(v, min, max)` 在模块内部使用，不随 return 导出。
 5. **静态方法**：直接挂在类表上的普通函数（用 `.` 定义），不接受 self，常用于工厂方法和类型检查，如 `Class.isInstance(obj)`。
 6. **继承扩展**：子类可设 `Child.__index = Child`，并令 `setmetatable(Child, {__index = Parent})`，形成两级原型链——实例 → 子类 → 父类。子类构造器调用 `Parent.new(self, ...)` 复用父类初始化逻辑。

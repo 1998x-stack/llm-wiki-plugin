@@ -4,9 +4,9 @@ entity_type: paper
 status: active
 confidence: 0.95
 created: 2026-04-16
-updated: 2026-04-16
-last_accessed: 2026-04-16
-source_count: 2
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 3
 tags: [推荐系统, 序列推荐, Transformer, Self-Attention, ICDM]
 aliases: [SASRec, Self-Attentive Sequential Recommendation]
 relates_to:
@@ -32,6 +32,7 @@ relates_to:
   - {target: DuoRec, type: caused}
   - {target: SASRec+, type: caused}
   - {target: HSTU, type: caused}
+  - {target: ICDM, type: published_at}
 supersedes: null
 ---
 
@@ -48,23 +49,23 @@ supersedes: null
 
 3. **架构设计**（四组件）：
    - **[[嵌入表示|嵌入层]]**：物品 ID 通过嵌入[[矩阵]]映射为 d 维稠密向量 + [[可学习位置嵌入|Learnable Positional Embedding]]（不同于 [[Transformer架构|Transformer]] 的正弦/余弦固定编码）
-   - **[[Self-Attention机制|自注意力]]块**：核心计算模块，通过 Q/K/V 三[[矩阵]]进行 [[缩放点积注意力]]，默认堆叠 2 层
+   - **[[Self-Attention机制|自注意力]]块**：核心[[计算]]模块，通过 Q/K/V 三[[矩阵]]进行 [[缩放点积注意力]]，默认堆叠 2 层
    - **逐点前馈网络**：两层 FFN，权重在所有位置间共享（类似 1x1 卷积）
    - **预测层**：序列最后位置输出与候选物品嵌入做点积，嵌入[[矩阵]]与输入层共享
 
 4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（[[AR 模型（自回归模型）|自回归]]模式），而非 Encoder 的双向模式。
 
-5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上注意力分散到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
+5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上[[Attention Dilution|注意力分散]]到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
 
 6. **正则化**：[[残差连接]] + [[Layer Normalization|层归一化]]（Post-norm）+ [[Dropout]]（密集数据集 0.2，稀疏数据集 0.5）。
 
-7. **训练目标**：[[二元交叉熵]]损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的计算效率。
+7. **训练目标**：[[二元交叉熵]]损失，每个位置采样一正一负（真实下一个物品 + 随机负样本），远优于全物品 softmax 的[[计算]]效率。
 
 8. **实验结果**：在四个数据集（[[Amazon]] Beauty/Games, Steam, [[MovieLens]]-1M）上均取得最优表现，Hit Rate 提升 6.9%，NDCG 提升 9.6%（相对最强基线）。训练速度比 [[Caser]] 快约 11 倍，比 [[GRU4Rec]]+ 快约 17 倍（[[MovieLens]]-1M 上 ~350 秒收敛）。
 
 9. **理论退化分析**：当[[Self-Attention机制|自注意力]]块退化为恒等映射、使用非共享物品嵌入、移除[[位置编码]]时，SASRec 退化为 [[FPMC|分解马尔可夫链]]，证明 SASRec 是经典[[协同过滤]]模型的广义化。
 
-10. **历史地位**：[[Transformer架构|Transformer]] 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 [[Transformer架构|Transformer]] 时代。催生了 [[BERT4Rec]]（2019）、[[TiSASRec]]（2020）、[[SSE-PT]]（2020）、BST（2019）、[[S3-Rec]]（2020）、[[LightSANs]]（2021）、[[DuoRec]]（2022）、[[SASRec+]]（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于淘宝[[CTR 预估|点击率预估]]系统。
+10. **历史地位**：[[Transformer架构|Transformer]] 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 [[Transformer架构|Transformer]] 时代。催生了 [[BERT4Rec]]（2019）、[[TiSASRec]]（2020）、[[SSE-PT]]（2020）、BST（2019）、[[S3-Rec]]（2020）、[[LightSANs]]（2021）、[[DuoRec]]（2022）、[[SASRec+]]（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于[[淘宝]][[CTR 预估|点击率预估]]系统。
 
 11. **局限性**：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 [[BERT4Rec]] 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 [[TiSASRec]] 弥补）；"一正一负"训练目标非最优（后续 [[SASRec+]] 证明替换为全物品 softmax 可显著提升）。
 

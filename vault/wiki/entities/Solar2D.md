@@ -33,7 +33,7 @@ Solar2D（原 Corona SDK）是以 Lua 为唯一脚本语言的 2D 游戏框架�
 
 2. **display 对象系统**：通过 `display.newRect`、`display.newCircle`、`display.newGroup` 等 API 创建可视对象。对象以 display group 组织层级，支持 `x/y/rotation/alpha` 等属性直接赋值。
 
-3. **物理集成**：通过 `require("physics")` 引入，`physics.addBody(object, "static"|"dynamic", params)` 将任意 display 对象绑定物理属性（`radius/friction/bounce/density`）。重力通过 `physics.setGravity(x, y)` 设置。
+3. **物理集成**：通过 `require("physics")` 引入，`physics.addBody(object, "static"|"dynamic", params)` 将任意 display 对象绑定物理属性（`radius/friction/bounce/density`）。重力通过 `physics.setGravity(x, y)` [[Settings|设置]]。
 
 4. **Runtime 事件系统**：使用 `Runtime:addEventListener(eventName, handler)` 订阅全局事件。`"enterFrame"` 用于帧更新，`"collision"` 用于碰撞处理，`"tap"` 用于触摸输入。与 [[Love2D]] 的回调函数风格不同，Solar2D 采用发布-订阅模式。
 

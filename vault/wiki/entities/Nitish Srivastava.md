@@ -15,7 +15,7 @@ supersedes: null
 # Nitish Srivastava
 
 ## 概述 (50-200字符)
-Nitish Srivastava 是计算机科学家，[[Dropout|Dropout 正则化]]方法的第一作者。2014 年作为第一作者在 JMLR 发表[[Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)]]，与[[Geoffrey E. Hinton]]等人共同提出了这一深度学习标配技术。
+Nitish Srivastava 是[[计算]]机科学家，[[Dropout|Dropout 正则化]]方法的第一作者。2014 年作为第一作者在 JMLR 发表[[Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)]]，与[[Geoffrey E. Hinton]]等人共同提出了这一深度学习标配技术。
 
 ## 关键内容 (≥300字符, 用[[双链]])
 1. **[[Dropout]] 论文**：作为第一作者，Srivastava 与 [[Geoffrey E. Hinton|Hinton]]、[[Alex Krizhevsky]]、[[Ilya Sutskever]]、[[Ruslan Salakhutdinov]] 合作，在 JMLR 发表了 [[Dropout]] 的正式论文。论文提出了训练时随机置零神经元的极简正则化方案，从[[模型融合|集成学习]]、减少共适应、有性生殖类比三个角度解释了其有效性。

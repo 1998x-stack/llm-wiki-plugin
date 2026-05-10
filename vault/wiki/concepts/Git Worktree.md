@@ -3,22 +3,28 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 1
-tags: [git, workflow, isolation, superpowers]
-aliases: ["Git Worktree", "Git Worktrees", "工作树"]
+updated: 2026-04-25
+last_accessed: 2026-04-25
+source_count: 2
+tags: [git, workflow, isolation, superpowers, multi-agent]
+aliases: ["Git Worktree", "Git Worktrees", "工作树", "Git Subtree"]
 relates_to:
   - target: "[[Superpowers]]"
     type: part_of
   - target: "[[using-git-worktrees Skill]]"
     type: implements
+  - target: "[[dispatching-parallel-agents Skill]]"
+    type: enables
+  - target: "[[Claude Code]]"
+    type: supported_by
+  - target: "[[Codex CLI|Codex]]"
+    type: supported_by
 ---
 
 # Git Worktree
 
 ## 概述
-Git 功能，允许一个仓库拥有多个独立工作目录，每个目录对应不同分支，支持同时在多个分支上工作互不干扰，是 [[Superpowers]] 实现并行子 Agent 隔离的核心机制。
+Git 功能，允许一个[[仓库]]拥有多个独立工作目录，每个目录对应不同分支，支持同时在多个分支上工作互不干扰，是 [[Superpowers]] 实现并行[[子 Agent & 多 Agent 系统|子 Agent]] 隔离的核心机制。
 
 ## 关键内容
 
@@ -28,7 +34,7 @@ Git 功能，允许一个仓库拥有多个独立工作目录，每个目录对�
 
 2. **为什么需要 Worktree**：
    - **保护主分支**：防止实验性代码混入稳定代码
-   - **支持并行子 Agent**：每个 Agent 独立工作目录，互不覆盖
+   - **支持并行[[子 Agent & 多 Agent 系统|子 Agent]]**：每个 Agent 独立工作目录，互不覆盖
    - **建立测试基线**：清晰[[区分]]"修改引入的失败"和"预先存在的失败"
 
 3. **常用命令**：

@@ -3,8 +3,8 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
+updated: 2026-04-25
+last_accessed: 2026-04-25
 source_count: 1
 tags: [gsd, context-engineering, file-system, project-management]
 aliases: [".planning/", "GSD Planning Directory", "规划目录"]
@@ -13,6 +13,10 @@ relates_to:
     type: part_of
   - target: "[[Context Engineering]]"
     type: implements
+  - target: "[[多智能体编排]]"
+    type: enables
+  - target: "[[波次并行执行]]"
+    type: supports
 ---
 
 # GSD Planning Directory
@@ -31,7 +35,7 @@ GSD 系统的结构化项目记忆目录（`.planning/`），通过外部化项�
    - **RESEARCH.md**：阶段专属领域研究（plan-phase 生成）
    - **[[XML Plan|PLAN.md]]**：原子执行计划（XML 格式）
    - **SUMMARY.md**：执行存档
-   - **VALIDATION.md**：Nyquist 验证层（需求-测试映射）
+   - **VALIDATION.md**：Nyquist 验证层（[[Nyquist Validation Layer|需求-测试映射]]）
 
 2. **特殊目录**：
    - **research/**：项目级领域研究
@@ -62,3 +66,5 @@ GSD 系统的结构化项目记忆目录（`.planning/`），通过外部化项�
 - [[GSD]] — part_of
 - [[Context Engineering]] — implements
 - [[Context Rot]] — caused
+- [[多智能体编排]] — enables
+- [[波次并行执行]] — supports

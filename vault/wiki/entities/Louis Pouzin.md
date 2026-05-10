@@ -38,7 +38,7 @@ supersedes: null
 
 ## 概述
 
-法国计算机科学家（1931–），CYCLADES 项目的领导者。其数据报（datagram）模型深刻影响了 [[TCP-IP|TCP/IP]] 的端到端设计哲学。
+法国[[计算]]机科学家（1931–），CYCLADES 项目的领导者。其数据报（datagram）模型深刻影响了 [[TCP-IP|TCP/IP]] 的端到端设计哲学。
 
 ## 关键内容
 

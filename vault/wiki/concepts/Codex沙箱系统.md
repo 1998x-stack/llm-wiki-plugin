@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-15
-updated: 2026-04-15
-last_accessed: 2026-04-15
-source_count: 2
+updated: 2026-04-19
+last_accessed: 2026-04-19
+source_count: 3
 tags: [技术, 工具, Agent系统]
 aliases: [Codex Sandbox, Codex Sandbox System]
 relates_to:
@@ -32,7 +32,7 @@ supersedes: null
 
 # Codex沙箱系统
 
-[[Codex CLI]] 的执行边界层，用**[[操作系统]]内核级机制**限制 Agent 能触碰的文件系统范围和网络权限。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
+[[Codex CLI]] 的执行边界层，用**[[操作系统]]内核级机制**限制 Agent 能触碰的文件系统范围和网络[[Permissions|权限]]。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
 
 ## 为什么需要 OS 级沙箱
 
@@ -41,7 +41,7 @@ supersedes: null
 | 风险类型 | 示例 |
 |---------|------|
 | 意图正确，命令错误 | LLM 想清理 dist/，写成了 `rm -rf /` |
-| 提示词注入 | 仓库文件包含恶意指令，诱导 LLM 执行危险操作 |
+| 提示词注入 | [[仓库]]文件包含恶意指令，诱导 LLM 执行危险操作 |
 | 范围扩散 | Agent "顺手"修改 `~/.ssh/config` 或 `/etc/hosts` |
 
 OS 级沙箱提供**执行层面的强制约束**。
@@ -57,7 +57,7 @@ OS 级沙箱提供**执行层面的强制约束**。
 **层 1：[[Landlock]]**（Linux 5.13+ 引入）
 
 基于 eBPF/LSM 的不可绕过文件系统沙箱：
-- 进程设置后**无法提权取消**（不可逆）
+- 进程[[Settings|设置]]后**无法提权取消**（不可逆）
 - 规则自动继承到所有子进程（`cargo build`、`npm install` 等也受限）
 - 在 VFS 层拦截，无法被 `LD_PRELOAD` 或 ptrace 绕过
 
@@ -77,12 +77,12 @@ OS 级沙箱提供**执行层面的强制约束**。
 | `workspace-write` | 工作区读写，其他只读 | 默认禁止 | 日常开发 |
 | `danger-full-access` | 无限制 | 无限制 | 外部已隔离环境 |
 
-`workspace-write` 模式启动时自动将当前工作目录 + `~/.codex/memories` 注入可写路径，无需手动配置。
+`workspace-write` 模式启动时自动将当前工作目录 + `~/.codex/memories` 注入可写路径，无需手动[[Configuration|配置]]。
 
 ## 受保护路径
 
 即使在 `workspace-write` 模式，以下路径强制只读：
-- `.git/` — 防止 Agent 修改 hooks 或 commit history
+- `.git/` — 防止 Agent 修改 hooks 或 [[commit]] history
 - `.codex/` — 防止 Agent 修改自己的执行规则（反射性攻击防护）
 - `/etc/`、`/usr/`、`/bin/`、`~/.ssh/` 等系统路径
 

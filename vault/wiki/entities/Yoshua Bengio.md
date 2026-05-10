@@ -20,8 +20,8 @@ supersedes: null
 
 ## 关键内容
 1. **[[注意力机制（Attention Mechanism）|注意力机制]]**：与 Dzmitry Bahdanau、Kyunghyun Cho 共同提出 [[Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文)]]，首次引入[[注意力机制（Attention Mechanism）|注意力机制]]解决 seq2seq 固定长度瓶颈，是 [[Transformer 架构|Transformer]] 和现代 LLM 的直接前身。
-2. **GAN 论文合著**：作为 [[Generative Adversarial Nets (2014 论文)]] 的最后一位作者（senior author），[[Yoshua Bengio]] 为 GAN 的提出提供了学术指导和支持。该论文的共同作者包括 [[Ian Goodfellow]]（一作）、Jean Pouget-Abadie、Mehdi Mirza、Bing Xu、David Warde-Farley、Sherjil Ozair 和 Aaron Courville。
-3. **学术地位**：与 [[Geoffrey E. Hinton]] 和 [[Yann LeCun]] 共同获得 2018 年 ACM [[阿兰·图灵|图灵]]奖，表彰他们在深度学习领域的突破性贡献。他是蒙特利尔学习算法研究所（MILA）的创始人，培养了大量深度学习领域的杰出研究者。
+2. **GAN 论文合著**：作为 [[Generative Adversarial Nets (2014 论文)]] 的最后一位作者（senior author），[[Yoshua Bengio]] 为 GAN 的提出提供了学术指导和支持。该论文的共同作者包括 [[Ian Goodfellow]]（一作）、[[Jean Pouget-Abadie]]、[[Mehdi Mirza]]、Bing Xu、David Warde-Farley、Sherjil Ozair 和 Aaron Courville。
+3. **学术地位**：与 [[Geoffrey E. Hinton]] 和 [[Yann LeCun]] 共同获得 2018 年 ACM [[阿兰·图灵|图灵]]奖，表彰他们在深度学习领域的突破性贡献。他是蒙特利尔学习[[算法]]研究所（MILA）的创始人，培养了大量深度学习领域的杰出研究者。
 4. **研究方向**：长期专注于深度学习的理论基础，包括表示学习、生成模型、序列建模等。他的研究组在 GAN 的后续发展中持续产出重要工作，包括条件 GAN、[[注意力机制（Attention Mechanism）|注意力机制]]等方向。
 
 ## 来源

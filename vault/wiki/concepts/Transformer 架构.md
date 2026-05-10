@@ -5,7 +5,7 @@ confidence: 0.95
 created: 2026-04-17
 updated: 2026-04-17
 last_accessed: 2026-04-17
-source_count: 1
+source_count: 3
 tags:
   - 技术
   - 研究
@@ -65,7 +65,7 @@ supersedes: null
 ### 历史影响
 
 - BERT（2018）：Encoder-only 路线
-- GPT 系列（2018-）：Decoder-only 路线
+- [[GPT 系列]]（2018-）：Decoder-only 路线
 - ViT（2020）：视觉领域
 - 成为当代 AI 的"[[操作系统]]"
 
@@ -73,6 +73,7 @@ supersedes: null
 
 - [[raw/books/计算机科学/20-vaswani-transformer.md]]
 - [[raw/articles/ai-papers/machine-learning/14_transformer_2017.md]] — 完整代码实现 + RNN并行化困境 + 架构演变
+- [[raw/articles/ai-papers/foundations/paper_06_transformer.md]] — 全文精读
 
 ## 相关
 

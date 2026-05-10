@@ -23,6 +23,9 @@ relates_to:
   type: caused
   confidence: 0.99
   note: 1974年共同发表
+- target: "[[The UNIX Time-Sharing System]]"
+  type: authored
+  confidence: 0.9
 - target: "[[UNIX]]"
   type: caused
   confidence: 0.99
@@ -39,6 +42,9 @@ relates_to:
   type: caused
   confidence: 0.9
   note: 定义了现代操作系统的基因
+- target: "[[贝尔实验室]]"
+  type: worked_at
+  confidence: 0.9
 supersedes: null
 ---
 
@@ -46,7 +52,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1943–），[[UNIX|UNIX 操作系统]]的共同创造者，最初在 PDP-7 上写出了 UNIX 的第一个原型。1983年与 [[Dennis Ritchie]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
+美国[[计算]]机科学家（1943–），[[UNIX|UNIX 操作系统]]的共同创造者，最初在 PDP-7 上写出了 UNIX 的第一个原型。1983年与 [[Dennis Ritchie]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
 
 ## 关键内容
 
@@ -59,7 +65,7 @@ supersedes: null
 ### Space Travel 游戏
 
 - Thompson 最初是想在 PDP-7 上玩一个他写的"太空旅行"（Space Travel）游戏
-- 这促使他和 Ritchie 意识到需要一个高效的编程环境
+- 这促使他和 Ritchie [[意识]]到需要一个高效的编程环境
 - UNIX 是程序员为程序员设计的系统，这一基因决定了它后来的一切特征
 
 ### fork 的偶然优雅
@@ -71,7 +77,7 @@ supersedes: null
 
 - 题为"[[Thompson 信任信任论文|Reflections on Trusting Trust]]"
 - 展示了如何在编译器中植入不可检测的后门
-- 后来成为计算机安全领域的经典文献
+- 后来成为[[计算]]机安全领域的经典文献
 
 ### 后续贡献
 

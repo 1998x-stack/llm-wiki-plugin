@@ -21,11 +21,11 @@ supersedes: null
 # PRD 生成提示词
 
 ## 概述
-PRD 生成提示词是 [[Ralph Loop]] 的前置技能，通过让 LLM 扮演产品经理角色，先进行 5-10 轮澄清问答，再生成符合 [[prd.json 格式规范]]的完整产品需求文档。
+PRD 生成提示词是 [[Ralph Loop]] 的前置[[Skills|技能]]，通过让 LLM 扮演产品经理角色，先进行 5-10 轮澄清问答，再生成符合 [[prd.json 格式规范]]的完整产品需求文档。
 
 ## 关键内容
 
-1. **触发时机**：在启动 [[Ralph Loop]] 之前必须先生成结构化的 PRD。触发方式为加载 PRD 技能后发送 `Load the prd skill and create a PRD for [feature description]`，然后回答澄清问题。
+1. **触发时机**：在启动 [[Ralph Loop]] 之前必须先生成结构化的 PRD。触发方式为加载 PRD [[Skills|技能]]后发送 `Load the prd skill and create a PRD for [feature description]`，然后回答澄清问题。
 
 2. **交互流程**：
    - 第一步：LLM 作为产品经理和需求分析专家，向用户提出 5-10 个澄清问题
@@ -46,11 +46,11 @@ PRD 生成提示词是 [[Ralph Loop]] 的前置技能，通过让 LLM 扮演产�
    - 遵循 [[User Story 粒度原则]]，确保单个 Story 能在一个[[上下文窗口]]内完成
 
 5. **专项场景模板**：
-   - **SaaS 应用**：Landing Page、Authentication、Dashboard、Core Feature、Settings、Billing、Admin、Email 等分类
-   - **CLI 工具**：Core Commands、Config Management、Output Formatting、Error Handling、Plugin System、Documentation
-   - **API 服务**：Core Endpoints、Authentication、Data Validation、Error Responses、Rate Limiting、Documentation、Testing
+   - **SaaS 应用**：Landing Page、Authentication、Dashboard、Core Feature、[[Settings]]、Billing、Admin、Email 等分类
+   - **CLI 工具**：Core Commands、Config Management、Output Formatting、[[错误处理|Error Handling]]、[[Plugins|Plugin System]]、Documentation
+   - **API [[服务]]**：Core Endpoints、Authentication、Data Validation、Error Responses、Rate Limiting、Documentation、Testing
 
-6. **生成后验证**：通过 Python 脚本验证 prd.json 的基本格式、必填字段、重复 ID、前端 Story 的 browser 验证覆盖，以及优先级和分类分布统计。
+6. **生成后验证**：通过 [[Python]] 脚本验证 prd.json 的基本格式、必填字段、重复 ID、前端 Story 的 browser 验证覆盖，以及优先级和分类分布统计。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/prd-generator-prompt.md]] — PRD Generator 完整提示词模板、验证脚本和专项场景模板

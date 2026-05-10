@@ -28,9 +28,9 @@ supersedes: null
 
 ## 关键内容
 
-1. **声明式 Schema**：通过 `prisma/schema.prisma` 文件以 DSL 定义数据模型，支持关系定义、枚举类型和默认值配置。模型命名采用 PascalCase 单数形式（如 `User`、`BlogPost`）。
+1. **声明式 Schema**：通过 `prisma/schema.prisma` 文件以 DSL 定义数据模型，支持关系定义、枚举类型和默认值[[Configuration|配置]]。模型命名采用 PascalCase 单数形式（如 `User`、`BlogPost`）。
 
-2. **迁移管理**：`npx prisma migrate dev` 执行数据库迁移并同步 schema 状态，迁移历史存储在 `prisma/migrations/` 目录中，不应手动编辑。执行前需确保 `DATABASE_URL` 环境变量可连接。
+2. **迁移管理**：`npx prisma migrate dev` 执行数据库迁移并同步 schema 状态，迁移历史存储在 `prisma/migrations/` 目录中，不应手动编辑。执行前需确保 `DATABASE_URL` [[Environment Variables|环境变量]]可连接。
 
 3. **核心命令**：
    - `prisma migrate dev` — 开发环境迁移
@@ -38,9 +38,9 @@ supersedes: null
    - `prisma db seed` — 导入种子测试数据
    - `prisma generate` — 生成类型安全的 Client 代码
 
-4. **环境变量**：通过 `.env.local` 配置 `DATABASE_URL`，支持 [[PostgreSQL]]、MySQL、[[SQLite]] 等数据库。[[PostgreSQL]] 连接需设置 connection pool timeout 防止长时间空闲后断开。
+4. **[[Environment Variables|环境变量]]**：通过 `.env.local` [[Configuration|配置]] `DATABASE_URL`，支持 [[PostgreSQL]]、MySQL、[[SQLite]] 等数据库。[[PostgreSQL]] 连接需[[Settings|设置]] connection pool timeout 防止长时间空闲后断开。
 
-5. **在 [[Ralph Loop]] 中的角色**：AGENTS.md 模板中作为默认数据库层工具，与 [[Next.js]] App [[网关与路由器|Router]] 和 [[TypeScript]] 配合构成全栈开发基线。
+5. **在 [[Ralph Loop]] 中的角色**：[[项目约定手册|AGENTS.md]] 模板中作为默认数据库层工具，与 [[Next.js]] App [[网关与路由器|Router]] 和 [[TypeScript]] 配合构成全栈开发基线。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/AGENTS.md]] — Ralph Loop 项目约定模板

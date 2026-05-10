@@ -17,7 +17,7 @@ supersedes: null
 [[UrhoX引擎|UrhoX]] 的 Light 组件（继承自 Drawable）支持方向光、点光源、聚光灯三种类型，提供物理值模式、阴影级联、VSM软阴影等高级光照特性。
 
 ## 关键内容
-- **光照类型**：通过 `lightType` 设置（方向光 / 点光源 / 聚光灯）
+- **光照类型**：通过 `lightType` [[Settings|设置]]（方向光 / 点光源 / 聚光灯）
 - **颜色与亮度**：`color`、`brightness`、`specularIntensity`；`usePhysicalValues` 开启物理单位
 - **光照范围**：点光/聚光使用 `range` 和 `fadeDistance` 控制衰减
 - **阴影系统**：`castShadows` 开启阴影；`shadowBias`、`shadowCascade`（CSM）控制质量

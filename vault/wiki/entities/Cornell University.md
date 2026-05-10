@@ -20,7 +20,7 @@ supersedes: null
 # Cornell University
 
 ## 概述
-美国常春藤盟校，计算机科学和机器学习研究重镇，因果推荐方向奠基性论文《[[Recommendations as Treatments]]》的产出机构。
+美国常春藤盟校，[[计算]]机科学和机器学习研究重镇，因果推荐方向奠基性论文《[[Recommendations as Treatments]]》的产出机构。
 
 ## 关键内容
 

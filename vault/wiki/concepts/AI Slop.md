@@ -33,14 +33,14 @@ AI 生成的前端界面高度同质化现象，表现为千篇一律的字体�
    - 安全选择偏向（保守的默认样式）
 
 3. **[[Anthropic]] 的回应**：
-   - 推出 `frontend-design` Skill
+   - 推出 `frontend-design` [[Skills|Skill]]
    - 强制要求在编码前进行设计决策
    - 提供具体可操作的五维设计指导
    - 建立清晰的"禁止清单"
 
-4. **Anti-AI-Slop 原则**：
+4. **Anti-[[AI生成代码的质量问题|AI-Slop]] 原则**：
    - **独特性**（distinctive）：每次生成的设计都应该不同
-   - **有意识的选择**：Purpose → Tone → Constraints → Differentiation
+   - **有[[意识]]的选择**：Purpose → Tone → Constraints → Differentiation
    - **彻底执行**：选定美学方向后要彻底贯彻
    - **记忆锚点**：找到设计中令人难忘的那个点
 

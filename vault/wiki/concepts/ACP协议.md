@@ -19,7 +19,7 @@ supersedes: null
 
 ## 概述
 
-**Agent Client Protocol（ACP）** 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和消息流交互。[[DeepAgents]] 通过独立子包 `deepagents-acp`（`libs/acp/`）提供 ACP 服务端集成，将 Deep Agent 能力暴露给遵循 ACP 的客户端。
+**Agent Client Protocol（ACP）** 是一种标准化的"客户端—智能体"通信协议，定义客户端如何与 AI Agent 进行会话、工具调用和消息流交互。[[DeepAgents]] 通过独立子包 `deepagents-acp`（`libs/acp/`）提供 ACP [[服务]]端集成，将 Deep Agent 能力暴露给遵循 ACP 的客户端。
 
 ## 关键内容
 
@@ -28,15 +28,15 @@ supersedes: null
 | 模块 | 职责 |
 |------|------|
 | `deepagents_acp/__init__.py` | 包级说明与对外符号 |
-| `deepagents_acp/__main__.py` | CLI 入口，`python -m deepagents_acp` 启动测试服务端 |
-| `deepagents_acp/server.py` | ACP 服务端核心：对接 `acp` 库的会话/工具协议，调用 `create_deep_agent` 组装 Agent |
-| `deepagents_acp/utils.py` | 服务端辅助逻辑 |
+| `deepagents_acp/__main__.py` | CLI 入口，`python -m deepagents_acp` 启动测试[[服务]]端 |
+| `deepagents_acp/server.py` | ACP [[服务]]端核心：对接 `acp` 库的会话/工具协议，调用 `create_deep_agent` 组装 Agent |
+| `deepagents_acp/utils.py` | [[服务]]端辅助逻辑 |
 
 ### 设计决策
 
 - **独立子包**：ACP 与核心 SDK 解耦，独立版本化，通过 `[tool.uv.sources]` 指向可编辑本地路径桥接
-- **协议优先**：服务端逻辑与 `acp` 库 schema 和会话生命周期 API 对齐，减少自研分叉
-- **构建后端**：Hatchling；Python 3.14（其余子包用 3.12）
+- **协议优先**：[[服务]]端逻辑与 `acp` 库 schema 和会话生命周期 API 对齐，减少自研分叉
+- **构建后端**：Hatchling；[[Python]] 3.14（其余子包用 3.12）
 
 ### 与 DeepAgents 的集成
 

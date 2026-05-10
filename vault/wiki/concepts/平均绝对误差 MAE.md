@@ -19,13 +19,13 @@ supersedes: null
 # 平均绝对误差 MAE
 
 ## 概述
-推荐系统预测评分准确性的核心评估指标，计算预测评分与实际评分之间绝对误差的平均值，MAE 越小说明预测越准确。
+推荐系统预测评分准确性的核心评估指标，[[计算]]预测评分与实际评分之间绝对误差的平均值，MAE 越小说明预测越准确。
 
 ## 关键内容
 
 1. **公式定义**：MAE = (1/N) × Σ|p_i - q_i|，其中 p_i 是预测评分，q_i 是实际评分，N 是测试样本数量。
 
-2. **在推荐系统中的应用**：MAE 是推荐系统评估的标准做法，被广泛用于比较不同推荐算法的预测准确性。[[Item-Based Collaborative Filtering Recommendation Algorithms]] 采用 MAE 作为主要评估指标，比较 [[基于物品的协同过滤|Item-Based CF]] 与 [[基于用户的协同过滤|User-Based CF]] 的推荐质量。
+2. **在推荐系统中的应用**：MAE 是推荐系统评估的标准做法，被广泛用于比较不同推荐[[算法]]的预测准确性。[[Item-Based Collaborative Filtering Recommendation Algorithms]] 采用 MAE 作为主要评估指标，比较 [[基于物品的协同过滤|Item-Based CF]] 与 [[基于用户的协同过滤|User-Based CF]] 的推荐质量。
 
 3. **实验结论**：在 [[MovieLens]] 100K 数据集上，[[基于物品的协同过滤|Item-Based CF]] 使用调整后余弦相似度时 MAE 最低，显著优于基本余弦相似度和皮尔逊相关系数，且优于或等同于最优的 [[基于用户的协同过滤|User-Based CF]] 方法。
 

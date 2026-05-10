@@ -5,7 +5,7 @@ confidence: 0.95
 created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
-source_count: 1
+source_count: 2
 tags:
 - 机器学习
 - 深度学习
@@ -79,7 +79,7 @@ Word2Vec 是 [[Google]] 于2013年提出的[[词嵌入（Word Embedding）|词�
 
 ### 训练优化
 
-- **[[负采样（Negative Sampling）]]**：每次只更新正样本 + K 个随机负样本（K=5~20），替代全量 Softmax，速度提升 1000 倍以上
+- **[[负采样（Negative Sampling）]]**：每次只更新正样本 + K 个随机负样本（K=5~20），替代全量 [[Softmax]]，速度提升 1000 倍以上
 - **[[负采样]]策略**：按词频的 3/4 次方采样 P(w) ∝ freq(w)^(3/4)
 - **高频词下采样**：丢弃概率 P(wᵢ) = 1 - √(t / freq(wᵢ))，t=1e-5，减少 "the"、"a" 等无信息词的影响
 
@@ -95,17 +95,18 @@ Word2Vec 是 [[Google]] 于2013年提出的[[词嵌入（Word Embedding）|词�
 
 ### 工程实现
 
-- 使用 PyTorch 实现时，中心词和上下文词各有独立的嵌入[[矩阵]]
+- 使用 [[PyTorch]] 实现时，中心词和上下文词各有独立的嵌入[[矩阵]]
 - 推荐使用 Sparse[[Adam（自适应矩估计）|Adam 优化器]]，学习率线性衰减
-- 典型配置：embed_dim=300, window_size=5, n_negatives=5
+- 典型[[Configuration|配置]]：embed_dim=300, window_size=5, n_negatives=5
 
 ### 演化谱系
 
-Word2Vec（2013）→ [[GloVe]]（2014，Stanford）→ [[FastText]]（2016，[[Meta|Facebook]]）→ [[ELMo]]（2018，AllenNLP）→ [[BERT]]（2018，[[Google]]）→ 当今大模型内置词[[嵌入表示|嵌入层]]
+Word2Vec（2013）→ [[GloVe]]（2014，[[斯坦福大学|Stanford]]）→ [[FastText]]（2016，[[Meta|Facebook]]）→ [[ELMo]]（2018，AllenNLP）→ [[BERT]]（2018，[[Google]]）→ 当今大模型内置词[[嵌入表示|嵌入层]]
 
 ## 来源
 
 - [[raw/articles/ai-papers/machine-learning/08_word2vec_2013.md]]
+- [[raw/articles/ai-papers/foundations/paper_09_word2vec.md]] — 全文精读
 
 ## 相关
 

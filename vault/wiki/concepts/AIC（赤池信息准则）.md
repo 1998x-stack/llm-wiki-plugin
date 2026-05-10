@@ -18,6 +18,21 @@ relates_to:
   - target: "[[BIC（贝叶斯信息准则）]]"
     type: compares_to
     confidence: 0.85
+  - target: "[[KL散度]]"
+    type: foundation_for
+    confidence: 0.95
+  - target: "[[赤池弘次]]"
+    type: created_by
+    confidence: 0.95
+  - target: "[[模型选择]]"
+    type: part_of
+    confidence: 0.95
+  - target: "[[过拟合]]"
+    type: prevents
+    confidence: 0.9
+  - target: "[[欠拟合]]"
+    type: prevents
+    confidence: 0.9
 supersedes: null
 ---
 
@@ -34,12 +49,18 @@ supersedes: null
 
 3. **理论基础**：赤池从 Kullback-Leibler 散度出发，证明 AIC 是对模型预测误差的渐近无偏估计。这把"[[Occam剃刀|奥卡姆剃刀]]"有了精确的数学表达。
 
-4. **影响**：被广泛应用于时间序列分析（[[ARIMA 模型|ARIMA]] 阶数选择）、机器学习模型选择、生态学、经济学等领域。衍生出 AICc（小样本修正）、BIC 等变体。
+4. **影响**：被广泛应用于[[时间序列分析]]（[[ARIMA 模型|ARIMA]] 阶数选择）、机器学习模型选择、生态学、经济学等领域。衍生出 AICc（小样本修正）、BIC 等变体。
 
 ## 来源
 - [[07-akaike-1974-aic]] — 用一把"奥卡姆剃刀"丈量统计模型
+- [[Akaike, H. (1974). A New Look at the Statistical Model Identification]]
 
 ## 相关
 - [[ARIMA 模型]] — uses
 - [[最大似然原理]] — depends_on
 - [[BIC（贝叶斯信息准则）]] — compares_to
+- [[KL散度]] — foundation_for
+- [[赤池弘次]] — created_by
+- [[模型选择]] — part_of
+- [[过拟合]] — prevents
+- [[欠拟合]] — prevents

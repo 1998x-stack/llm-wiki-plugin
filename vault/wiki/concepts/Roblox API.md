@@ -24,7 +24,7 @@ supersedes: null
 # Roblox API
 
 ## 概述
-[[Roblox]] 平台提供的内建类型与服务 API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService [[游戏主循环模式|游戏循环]]。
+[[Roblox]] 平台提供的内建类型与[[服务]] API，涵盖值类型（Vector3/CFrame）、Instance 操作、动画（TweenService）、射线检测、玩家角色及 RunService [[游戏主循环模式|游戏循环]]。
 
 ## 关键内容
 

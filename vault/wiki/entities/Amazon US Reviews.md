@@ -30,7 +30,7 @@ supersedes: null
    - **Beauty**：美容产品评论
    - **Toys and Games**：玩具和游戏产品评论
 
-3. **实验设置**：P5 在这三个数据集上评估了评分预测（RMSE/MAE）、[[序列推荐]]（HR@k/NDCG@k）、解释生成（BLEU/ROUGE）、评论摘要和直接推荐等五大任务。
+3. **实验[[Settings|设置]]**：P5 在这三个数据集上评估了评分预测（RMSE/MAE）、[[序列推荐]]（HR@k/NDCG@k）、解释生成（BLEU/ROUGE）、评论摘要和直接推荐等五大任务。
 
 4. **跨域迁移实验**：P5 展示了跨域推荐能力——在一个领域（如 Beauty）上预训练的模型，可以迁移到其他领域（如 Sports 或 Toys）的推荐任务上。
 

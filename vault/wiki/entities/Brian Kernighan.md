@@ -39,7 +39,7 @@ supersedes: null
 
 ## 概述
 
-加拿大计算机科学家（1942–），[[贝尔实验室|Bell Labs]] UNIX 团队成员，与 [[Dennis Ritchie]] 合著《[[C 语言|C 程序设计语言]]》，是 `awk`、`AMPL` 等工具的创造者之一。
+加拿大[[计算]]机科学家（1942–），[[贝尔实验室|Bell Labs]] UNIX 团队成员，与 [[Dennis Ritchie]] 合著《[[C 语言|C 程序设计语言]]》，是 `awk`、`AMPL` 等工具的创造者之一。
 
 ## 关键内容
 
@@ -51,7 +51,7 @@ supersedes: null
 
 ### UNIX 团队
 
-- [[贝尔实验室|Bell Labs]] 的 UNIX 团队（包括 Thompson、Ritchie、McIlroy、Ossanna、Kernighan 等人）是计算机历史上最具影响力的小团队之一
+- [[贝尔实验室|Bell Labs]] 的 UNIX 团队（包括 Thompson、Ritchie、McIlroy、Ossanna、Kernighan 等人）是[[计算]]机历史上最具影响力的小团队之一
 - 他们不仅创造了 UNIX，还创造了 [[C 语言]]、`awk`、`sed`、`make`、`yacc`、`lex` 等一系列至今仍在使用的工具
 
 ### 其他贡献

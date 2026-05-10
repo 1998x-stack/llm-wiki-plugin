@@ -43,7 +43,7 @@ KV 缓存命中率是生产阶段 AI Agent 的关键性能指标，衡量推理�
 
 ### 成本影响
 
-以 Claude Sonnet 为例：
+以 [[Claude_Code|Claude]] Sonnet 为例：
 - 缓存输入 token：**$0.30/百万 token**
 - 未缓存输入 token：**$3.00/百万 token**
 - **相差 10 倍**

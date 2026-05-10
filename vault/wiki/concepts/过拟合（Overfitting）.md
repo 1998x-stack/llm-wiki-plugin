@@ -3,9 +3,9 @@ type: concept
 status: active
 confidence: 0.9
 created: 2026-04-18
-updated: 2026-04-18
-last_accessed: 2026-04-18
-source_count: 2
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 3
 tags: ["机器学习", "深度学习", "模型评估"]
 aliases: ["Overfitting", "过拟合", "过拟合现象", "Overfitting Phenomenon"]
 relates_to: ["Dropout（随机失活）", "正则化（Regularization）", "偏差-方差分解", "Early Stopping", "L2 正则化", "L1 正则化", "泛化误差（Generalization Error）", "欠拟合（Underfitting）"]
@@ -26,6 +26,7 @@ supersedes: null
 ## 来源
 - [Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: a simple way to prevent neural networks from overfitting. JMLR, 15(1), 1929–1958.] — Dropout 论文中的过拟合分析
 - [raw/articles/ai-papers/machine-learning/09_dropout_2014.md] — 源文件
+- [raw/articles/ai-papers/foundations/paper_03_alexnet.md] — AlexNet 论文精读（Dropout 首次大规模实践）
 
 ## 相关
 - [[Dropout（随机失活）]] — prevents

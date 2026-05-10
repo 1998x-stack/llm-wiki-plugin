@@ -56,9 +56,9 @@ Love2D（LÖVE）是以 Lua 为脚本语言的开源 2D 游戏框架，提供窗
 
 8. **内部实现机制**：LÖVE 在 C++ 层实现所有 Module（graphics、audio、physics 等），通过 `luaL_newlib` 注册为 Lua 模块，[[游戏主循环模式|主循环]]从 C++ 触发 `love.update(dt)` 和 `love.draw()`。这是典型的 C++ 引擎 + 全 Lua 暴露 API 的架构模式。
 
-9. **配置文件 conf.lua**：`love.conf(t)` 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：`t.window.width/height`、`t.window.resizable`、`t.window.vsync`、`t.window.msaa`、`t.modules.physics`。是 Love2D 项目的标准初始化入口。
+9. **[[Configuration|配置]]文件 conf.lua**：`love.conf(t)` 在引擎初始化前执行，控制窗口尺寸、VSYNC、MSAA、模块开关等：`t.window.width/height`、`t.window.resizable`、`t.window.vsync`、`t.window.msaa`、`t.modules.physics`。是 Love2D 项目的标准初始化入口。
 
-10. **完整生命周期回调集**：除核心三件套外，还有 `love.quit()`（返回 true 可取消退出）、`love.resize(w,h)`、`love.focus(f)`、`love.mousereleased/moved/wheelmoved`、`love.touchpressed/released`、`love.gamepadpressed/released`、`love.errhand(msg)`（全局错误处理）。
+10. **完整生命周期回调集**：除核心三件套外，还有 `love.quit()`（返回 true 可取消退出）、`love.resize(w,h)`、`love.focus(f)`、`love.mousereleased/moved/wheelmoved`、`love.touchpressed/released`、`love.gamepadpressed/released`、`love.errhand(msg)`（全局[[错误处理]]）。
 
 11. **Canvas 离屏渲染**：`love.graphics.newCanvas(w,h)` 创建离屏渲染目标，`love.graphics.setCanvas(canvas)` 切换渲染目标（nil 恢复默认屏幕），配合 Shader 实现后处理效果。`love.graphics.setShader(shader)` / `love.graphics.newShader(vert,frag)` 支持自定义着色器。
 

@@ -47,7 +47,7 @@ Dueling DQN（Wang et al., [[DeepMind]], ICML 2016）将 Q 值分解为状态价
 
 5. **实验结果**：49 款 Atari 游戏中 57%（28/49）优于 [[Double DQN]]；平均得分比 [[Double DQN]] 提升约 15-20%；在 Centipede 等动作不关键游戏提升最显著。
 
-6. **正交性**：架构改动与 [[Double DQN]]（目标计算）和 PER（采样策略）完全正交，可任意叠加。
+6. **正交性**：架构改动与 [[Double DQN]]（目标[[计算]]）和 PER（采样策略）完全正交，可任意叠加。
 
 ## 来源
 - [[rl_02_double_dueling_per]] — Dueling Network Architectures for Deep Reinforcement Learning (arXiv:1511.06581, ICML 2016)

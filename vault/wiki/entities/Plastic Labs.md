@@ -21,7 +21,7 @@ AI 原生用户建模系统 [[Honcho]] 的创建者，专注于通过[[辩证推
 ## 关键内容
 - **核心产品**：[[Honcho]] — AI 原生用户建模系统，通过[[辩证推理]]（正题-反题-合题）跨会话构建动态用户画像
 - **技术理念**：用户建模不应是静态的键值存储，而应通过矛盾化解持续精炼认知，理解用户话语背后的真实意图
-- **与 [[Hermes Agent|Hermes]] 的集成**：[[Hermes Agent]] 通过 `honcho-ai` Python 包深度集成 [[Honcho]]，提供 `hermes honcho` CLI 命令用于查看状态、导出和重置用户模型
+- **与 [[Hermes Agent|Hermes]] 的集成**：[[Hermes Agent]] 通过 `honcho-ai` [[Python]] 包深度集成 [[Honcho]]，提供 `hermes honcho` CLI 命令用于查看状态、导出和重置用户模型
 - **[[辩证推理]]来源**：源自黑格尔哲学的"正题-反题-合题"（Thesis-Antithesis-Synthesis）方法论，应用于用户偏好的动态推断
 
 ## 来源

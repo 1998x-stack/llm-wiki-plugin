@@ -13,12 +13,22 @@ relates_to:
     type: caused
   - target: "[[Claude Code]]"
     type: uses
+  - target: "[[TÂCHES]]"
+    type: created_by
+  - target: "[[上下文工程]]"
+    type: implements
+  - target: "[[多智能体编排]]"
+    type: implements
+  - target: "[[波次并行执行]]"
+    type: implements
+  - target: "[[XML 结构化 Prompt]]"
+    type: implements
 ---
 
 # GSD
 
 ## 概述
-为 [[Claude Code]] 设计的轻量级元提示、[[Context Engineering|上下文工程]]与规格驱动开发系统，由 TÂCHES 开发，GitHub Stars 40k+，被 [[Amazon]]/[[Google]]/Shopify 工程师使用。
+为 [[Claude Code]] 设计的轻量级[[Meta-Prompting|元提示]]、[[Context Engineering|上下文工程]]与规格驱动开发系统，由 [[TÂCHES]] 开发，[[GitHub]] Stars 40k+，被 [[Amazon]]/[[Google]]/Shopify 工程师使用。
 
 ## 关键内容
 
@@ -28,9 +38,9 @@ relates_to:
 
 2. **五大技术支柱**：
    - **[[Context Engineering|上下文工程]]**：每个命令只加载真正需要的文件
-   - **XML 结构化 Prompt**：结构化任务定义（<task>、<action>、<verify>）
+   - **[[XML 结构化 Prompt]]**：结构化任务定义（<task>、<action>、<verify>）
    - **[[Multi-Agent Orchestration|多智能体编排]]**：主会话轻量协调，[[Subagents-in-Claude-Code|子智能体]]深度专注
-   - **原子 Git 提交**：每个任务完成后立即独立提交
+   - **原子 [[Git Commit|Git 提交]]**：每个任务完成后立即独立提交
    - **[[Wave Execution|波次并行执行]]**：DAG 依赖分析，可并行计划同时执行
 
 3. **核心命令**：

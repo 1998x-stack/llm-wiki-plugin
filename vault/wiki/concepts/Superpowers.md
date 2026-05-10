@@ -18,17 +18,17 @@ relates_to:
 # Superpowers
 
 ## 概述
-一套为 [[Claude Code]] 设计的 [[Agent Skills]] 集合，通过专业化分工的[[Agent Skills|技能系统]]（brainstorming、[[writing-plans Skill|writing-plans]]、using-git-worktrees 等）实现高质量软件开发的完整工作流。
+一套为 [[Claude Code]] 设计的 [[Agent Skills]] 集合，通过专业化分工的[[Agent Skills|技能系统]]（brainstorming、[[writing-plans Skill|writing-plans]]、[[using-git-worktrees Skill|using-git-worktrees]] 等）实现高质量软件开发的完整工作流。
 
 ## 关键内容
 
-1. **核心技能列表**：
+1. **核心[[Skills|技能]]列表**：
    - **brainstorming**：创意探索与需求澄清
    - **[[writing-plans Skill|writing-plans]]**：将设计文档拆解为原子任务清单
-   - **using-git-worktrees**：创建隔离工作区
-   - **[[subagent-driven-development Skill|subagent-driven-development]]**：子 Agent 驱动开发
-   - **executing-plans**：计划执行（无子 Agent 平台）
-   - **dispatching-parallel-agents**：并行子 Agent 调度
+   - **[[using-git-worktrees Skill|using-git-worktrees]]**：创建隔离工作区
+   - **[[subagent-driven-development Skill|subagent-driven-development]]**：[[子 Agent & 多 Agent 系统|子 Agent]] 驱动开发
+   - **[[executing-plans Skill]]**：计划执行（无[[子 Agent & 多 Agent 系统|子 Agent]] 平台）
+   - **[[dispatching-parallel-agents Skill|dispatching-parallel-agents]]**：并行[[子 Agent & 多 Agent 系统|子 Agent]] 调度
    - **finishing-a-development-branch**：开发分支收尾
    - **verification-before-completion**：完成前验证
 
@@ -43,13 +43,13 @@ relates_to:
    ```
 
 3. **核心原则**：
-   - **专业化分工**：每个 Skill 负责特定阶段
+   - **专业化分工**：每个 [[Skills|Skill]] 负责特定阶段
    - **文件系统通信**：通过文件而非上下文传递信息
    - **隔离与并行**：[[Git Worktree]] 支持并行开发
    - **TDD**：每个任务以测试开始
 
 4. **与 GSD 的区别**：
-   - **Superpowers**：通用软件开发技能集
+   - **Superpowers**：通用软件开发[[Skills|技能]]集
    - **GSD**：完整项目管理框架（含 [[GSD Planning Directory|.planning/]] 目录系统）
 
 ## 来源

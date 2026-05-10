@@ -22,11 +22,11 @@ supersedes: null
 # Context7
 
 ## 概述
-由 Upstash 开发的 MCP 服务器工具，为 AI Agent 提供实时文档检索能力，通过 `npx @upstash/context7-mcp` 启动，支持代码示例和 API 文档的按需查询。
+由 Upstash 开发的 [[MCP 服务器]]工具，为 AI Agent 提供实时文档检索能力，通过 `npx @upstash/context7-mcp` 启动，支持代码示例和 API 文档的按需查询。
 
 ## 关键内容
 
-1. **定位**：Context7 是一个 MCP Server，专注于为 L[[LM Agent]] 提供最新、准确的库和框架文档。解决训练数据过时问题，让 Agent 能查询任意库的当前 API。
+1. **定位**：Context7 是一个 [[MCP Prompts|MCP Server]]，专注于为 L[[LM Agent]] 提供最新、准确的库和框架文档。解决训练数据过时问题，让 Agent 能查询任意库的当前 API。
 
 2. **使用方式**：
    ```toml

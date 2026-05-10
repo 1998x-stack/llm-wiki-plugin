@@ -66,7 +66,7 @@ Cook（1971）和 Levin（1973）独立证明了 SAT 是 [[NP 完全性|NP 完�
 ### 现代 SAT 求解器
 
 尽管 SAT 是 [[NP 完全性|NP 完全]]的，现代 SAT 求解器取得了惊人的实际性能：
-- **CDCL 算法**（Conflict-Driven Clause Learning）：MiniSat、CaDiCaL、Kissat
+- **CDCL [[算法]]**（Conflict-Driven Clause Learning）：MiniSat、CaDiCaL、Kissat
 - 可以在合理时间内求解包含**数百万变量**和**数千万子句**的工业级实例
 - 应用于硬件验证、软件测试、人工智能规划等领域
 

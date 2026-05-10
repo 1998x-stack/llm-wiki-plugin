@@ -44,7 +44,7 @@ supersedes: null
 
 ## 概述
 
-UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，专为 [[Claude Code]]、[[Cursor]]、Windsurf 等 AI 编程助手设计，作为「[[AI设计推理层|设计推理层]]」让 AI 在生成 UI 代码前先完成专业设计决策。
+UI UX Pro Max（UUPM）是 [[GitHub]] 上 53k+ Stars 的开源 AI 设计[[Skills|技能]]包，专为 [[Claude Code]]、[[Cursor]]、Windsurf 等 AI 编程助手设计，作为「[[AI设计推理层|设计推理层]]」让 AI 在生成 UI 代码前先完成专业设计决策。
 
 ## 关键内容
 
@@ -58,7 +58,7 @@ UI UX Pro Max（UUPM）是 GitHub 上 53k+ Stars 的开源 AI 设计技能包，
 | UX 准则 | 99 条（最佳实践 + 反模式 + 可访问性） |
 | 行业推理规则 | 161 条（v2.0 核心） |
 | 图表类型 | 25 种 |
-| 支持技术栈 | 15 个（React/Vue/SwiftUI/Flutter 等） |
+| 支持技术栈 | 15 个（[[React]]/Vue/SwiftUI/Flutter 等） |
 
 ### 三层架构
 

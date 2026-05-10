@@ -39,7 +39,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 
 ### 实验设计方法
 
-论文以当前最佳的 [[SWE-agent]] 配置为基准，每次只替换一个 ACI 组件，看性能变化。实验在 **[[SWE-bench]] Lite（300 个样本）** 上进行，针对 [[SWE-agent]] with GPT-4 Turbo 的 ACI 做消融。
+论文以当前最佳的 [[SWE-agent]] [[Configuration|配置]]为基准，每次只替换一个 ACI 组件，看性能变化。实验在 **[[SWE-bench]] Lite（300 个样本）** 上进行，针对 [[SWE-agent]] with GPT-4 Turbo 的 ACI 做消融。
 
 论文想回答的核心问题：
 - 搜索工具应该怎么呈现给 agent？
@@ -55,7 +55,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 | **Editor** | edit w/ linting vs edit w/o linting vs no edit | 有 linting 最优（18.0），无 linting 次之（15.0），无 edit 最差（10.3） | -3.0 / -7.7 | [[Guardrails]] 减少错误传播 |
 | **Search** | summarized vs iterative vs no search | 总结式最优（18.0），迭代式最差（12.0），无搜索居中（15.7） | -6.0 / -2.3 | 反馈简洁、信息密度高 |
 | **File Viewer** | 100 lines vs 30 lines vs full file | 100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7） | -3.7 / -5.3 | 适中窗口利于局部推理 |
-| **Context** | last 5 obs vs full history vs w/o demo | 最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3） | -3.0 / -1.7 | 简洁反馈、工作记忆有限 |
+| **Context** | last 5 obs vs full history vs w/o demo | 最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3） | -3.0 / -1.7 | 简洁反馈、[[工作记忆]]有限 |
 
 **Table 3 的核心论点**：[[SWE-agent]] 的提升不是"碰巧系统堆起来更强"，而是 ACI 的具体设计选择本身在起作用。搜索怎么做、编辑怎么做、viewer 开多大、历史留多少，都会显著影响 agent 表现。
 

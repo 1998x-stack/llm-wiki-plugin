@@ -66,7 +66,7 @@ Mikolov 等人于2013年发表的《Efficient Estimation of Word Representations
 
 - **[[Skip-gram]] 架构**：用中心词预测[[上下文窗口]]内的词，对低频词效果尤佳
 - **[[CBOW（连续词袋模型）]] 架构**：用上下文词的平均向量预测中心词，训练更快
-- **[[负采样（Negative Sampling）]]**：用 K 个随机负样本代替全量 Softmax，速度提升 1000 倍以上
+- **[[负采样（Negative Sampling）]]**：用 K 个随机负样本代替全量 [[Softmax]]，速度提升 1000 倍以上
 - **高频词下采样**：丢弃概率 P(wᵢ) = 1 - √(t / freq(wᵢ))，减少无信息高频词影响
 
 ### 语义发现

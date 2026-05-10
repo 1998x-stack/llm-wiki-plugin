@@ -38,10 +38,10 @@ supersedes: null
    - `/compact [instructions]`：压缩对话，可附带聚焦指令
    - `/context`：用彩色网格可视化上下文占用
    - `/cost`：查看 token 使用统计
-   - `/effort [low|medium|high|max|auto]`：设置推理强度，`max` 需要 Opus 4.6
+   - `/effort [low|medium|high|max|auto]`：[[Settings|设置]]推理强度，`max` 需要 [[Claude_Opus_4.6|Opus 4.6]]
    - `/fast [on|off]`：切换快速模式
    - `/branch [name]`：将当前[[会话分支（Branching）|对话分支]]到新会话（v2.1.77 中 `/fork` 更名为 `/branch`）
-   - `/sandbox`：切换沙箱模式
+   - `/sandbox`：切换[[Sandbox Mode|沙箱模式]]
    - `/teleport`：将会话转移到另一台机器
    - `/rewind`：回退到 checkpoint
 

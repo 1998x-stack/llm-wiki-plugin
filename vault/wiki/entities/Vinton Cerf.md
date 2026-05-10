@@ -51,7 +51,7 @@ supersedes: null
 
 ## 概述
 
-美国计算机科学家（1943–），[[TCP-IP|TCP/IP]] 协议的共同发明者，被尊称为"互联网之父"。2004年与 [[Robert Kahn]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
+美国[[计算]]机科学家（1943–），[[TCP-IP|TCP/IP]] 协议的共同发明者，被尊称为"互联网之父"。2004年与 [[Robert Kahn]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
 
 ## 关键内容
 
@@ -64,7 +64,7 @@ supersedes: null
 
 ### ARPANET 经历
 
-- 斯坦福大学助理教授期间深度参与 [[ARPANET]] 协议设计
+- [[斯坦福大学]]助理教授期间深度参与 [[ARPANET]] 协议设计
 - 是 NCP（Network Control Program）协议的核心设计者之一
 - 1983年见证了 [[ARPANET]] 从 NCP 到 [[TCP-IP|TCP/IP]] 的"旗帜日"切换
 

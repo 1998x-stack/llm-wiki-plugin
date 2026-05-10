@@ -26,14 +26,14 @@ supersedes: null
 
 ## 概述
 
-Claude Haiku 4.5 是 [[Anthropic]] 发布的 Claude Haiku 系列模型，[[上下文窗口]]为 200k tokens，支持 [[上下文感知]] 功能。
+[[Claude_Code|Claude]] Haiku 4.5 是 [[Anthropic]] 发布的 [[Claude_Code|Claude]] Haiku 系列模型，[[上下文窗口]]为 200k tokens，支持 [[上下文感知]] 功能。
 
 ## 关键内容
 
 ### 基本信息
 
 - **模型 ID**：`claude-haiku-4-5`
-- **系列**：Claude Haiku
+- **系列**：[[Claude_Code|Claude]] Haiku
 - **版本**：4.5
 - **[[上下文窗口]]**：200k tokens
 - **发布方**：[[Anthropic]]

@@ -5,7 +5,7 @@ confidence: 0.95
 created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
-source_count: 1
+source_count: 3
 tags: ["深度学习", "NLP", "预训练", "Transformer", "LLM基础", "机器学习"]
 aliases: ["BERT", "Bidirectional Encoder Representations from Transformers", "双向编码器表示"]
 relates_to:
@@ -52,7 +52,7 @@ BERT（Bidirectional Encoder Representations from [[Transformer 架构|Transform
 
 ### 历史背景：单向语言模型的局限
 
-2018 年 [[GPT]] 使用 [[Transformer 架构|Transformer]] Decoder 做**单向**（从左到右）语言模型预训练，只能利用左侧上下文。自然语言理解任务（情感分析、问答、NER）需要**双向**理解上下文，单向模型天然受限。[[Google]] 团队提出关键问题：能否预训练出真正双向的语言表示？
+2018 年 [[GPT]] 使用 [[Transformer 架构|Transformer]] Decoder 做**单向**（从左到右）[[Language-Model|语言模型]]预训练，只能利用左侧上下文。自然语言理解任务（情感分析、问答、NER）需要**双向**理解上下文，单向模型天然受限。[[Google]] 团队提出关键问题：能否预训练出真正双向的语言表示？
 
 ### 架构设计：纯 Transformer Encoder
 
@@ -62,7 +62,7 @@ BERT 本质是**纯 [[Transformer 架构|Transformer]] Encoder 堆叠**，无 De
 2. **[[Transformer 架构|Transformer]] Encoder Layer × L**：[[多头注意力]] + Add & [[Layer Normalization|LayerNorm]] + Feed-Forward + Add & [[Layer Normalization|LayerNorm]]
 3. **输出**：各位置的上下文化表示，每个 token 都能看到完整序列
 
-| 配置 | 层数 L | 隐藏维度 H | 注意力头数 A | 参数量 |
+| [[Configuration|配置]] | 层数 L | 隐藏维度 H | 注意力头数 A | 参数量 |
 |------|--------|-----------|------------|--------|
 | BERT-Base | 12 | 768 | 12 | 110M |
 | BERT-Large | 24 | 1024 | 16 | 340M |
@@ -78,12 +78,12 @@ BERT 本质是**纯 [[Transformer 架构|Transformer]] Encoder 堆叠**，无 De
 BERT 确立了 NLP 的主流[[规范化理论|范式]]（详见 [[预训练-微调范式]]）：
 
 - **第一阶段**：大规模无监督预训练（33 亿词，MLM + NSP，自监督）
-- **第二阶段**：小规模有监督微调，只需少量标注数据，添加简单任务特定输出层
+- **第二阶段**：小规模有监督微调，只需少量[[标注]]数据，添加简单任务特定输出层
 
 下游任务适配方式：
 - **单句分类**（情感分析）：[CLS] → Linear → 类别
 - **句对分类**（NLI）：[CLS] 句子A [SEP] 句子B → Linear → 关系
-- **序列标注**（NER）：每个 Token 位置 → Linear → 标签
+- **序列[[标注]]**（NER）：每个 Token 位置 → Linear → 标签
 - **阅读理解**（SQuAD）：两个线性层分别预测答案的起止位置
 
 ### 震撼性实验结果
@@ -112,20 +112,21 @@ BERT 确立了 NLP 的主流[[规范化理论|范式]]（详见 [[预训练-微�
 | 维度 | BERT（Encoder Only） | GPT（Decoder Only） |
 |------|---------------------|---------------------|
 | 方向性 | 双向 | 单向（[[AR 模型（自回归模型）|自回归]]） |
-| 预训练任务 | MLM + NSP | [[AR 模型（自回归模型）|自回归]]语言模型 |
+| 预训练任务 | MLM + NSP | [[AR 模型（自回归模型）|自回归]][[Language-Model|语言模型]] |
 | 擅长领域 | 分类/NER/QA | 文本生成 |
 | 上下文利用 | 完整序列 | 仅左侧 |
 
 ### 后继者谱系
 
-BERT（2018，[[Google]]）→ RoBERTa（2019，[[Meta|Facebook]]，去掉 NSP，更大数据，动态掩码）→ DistilBERT（2019，HuggingFace，66% 参数量，97% 性能）→ ERNIE 1.0/2.0（百度，实体/知识增强）→ ALBert → DeBERTa（2020，微软）。
+BERT（2018，[[Google]]）→ RoBERTa（2019，[[Meta|Facebook]]，去掉 NSP，更大数据，动态掩码）→ DistilBERT（2019，HuggingFace，66% 参数量，97% 性能）→ ERNIE 1.0/2.0（[[百度]]，实体/知识增强）→ ALBert → DeBERTa（2020，微软）。
 
-BERT（Encoder Only）与 GPT（Decoder Only）最终汇聚于 T5/BART（2020，Encoder+Decoder 统一框架），再演进至 GPT-3/4、Claude、[[Gemini CLI|Gemini]]（Scale Up Decoder）。
+BERT（Encoder Only）与 GPT（Decoder Only）最终汇聚于 T5/BART（2020，Encoder+Decoder 统一框架），再演进至 [[GPT-3]]/4、[[Claude_Code|Claude]]、[[Gemini CLI|Gemini]]（Scale Up Decoder）。
 
 ## 来源
 
 - [[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)]] — Devlin et al., NAACL 2019, arXiv 2018
 - [[raw/articles/ai-papers/machine-learning/15_bert_2018.md]] — 详细解读与代码实现
+- [[raw/articles/ai-papers/foundations/paper_07_bert.md]] — 全文精读
 
 ## 相关
 

@@ -22,13 +22,13 @@ entity_type: tool
 # lsp4j
 
 ## 概述
-Eclipse 基金会维护的 Java LSP 库，为 Java 语言服务器开发提供协议定义和基础设施，是 [[eclipse.jdt.ls]] 等 Java LSP 实现的基础。
+Eclipse 基金会维护的 Java LSP 库，为 Java 语言[[服务]]器开发提供协议定义和基础设施，是 [[eclipse.jdt.ls]] 等 Java LSP 实现的基础。
 
 ## 关键内容
 
 1. **定位**：Java 生态中的 LSP SDK，提供 LSP 协议的 Java 类型定义和基础实现。
 
-2. **使用方**：[[eclipse.jdt.ls]]、kotlin-language-server 等 Java/Kotlin LSP 服务器均基于 lsp4j 构建。
+2. **使用方**：[[eclipse.jdt.ls]]、kotlin-language-server 等 Java/Kotlin LSP [[服务]]器均基于 lsp4j 构建。
 
 ## 来源
 - [[06_java_csharp_kotlin_lsp]] — Java/C#/Kotlin LSP 工具完整调研

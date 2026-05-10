@@ -34,7 +34,7 @@ Geoffrey Huntley 是 Ralph Wiggum 技术的原创者，该技术构成了 [[Ralp
 
 3. **公开资源**：
    - 个人网站：https://ghuntley.com/ralph/
-   - GitHub 仓库：https://github.com/snarktank/ralph
+   - [[GitHub]] [[仓库]]：https://github.com/snarktank/ralph
    - [[Vercel|Vercel Labs]] 实现：https://github.com/vercel-labs/ralph-loop-agent
 
 4. **与 [[Agent Harness模式]] 的关系**：Geoffrey Huntley 的 Ralph Wiggum 技术代表了 [[Agent Harness模式|Agent Harness]] 设计谱系中的一个独特分支——**极简外循环 + 文件状态持久化**，与 [[DeepAgents]] 的 batteries-included [[ROS (Robot Operating System)|中间件]]栈和 [[Anthropic]] 的三 Agent 任务 Harness 形成对比。其核心创新在于用 Bash 脚本而非复杂框架来驱动 Agent 循环。

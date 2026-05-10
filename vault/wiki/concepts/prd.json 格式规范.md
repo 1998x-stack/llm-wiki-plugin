@@ -63,7 +63,7 @@ prd.json 是 [[PRD 驱动开发]]的核心数据文件，采用 JSON 格式定�
 5. **验收标准特殊要求**：
    - 前端/UI 相关 Story 的 acceptanceCriteria 必须包含 "Verify in browser using dev-browser skill"
    - 每个 Story 可独立测试，不依赖未完成的 Story
-   - 如有依赖，必须在 dependencies 字段中明确标注
+   - 如有依赖，必须在 dependencies 字段中明确[[标注]]
 
 6. **验证清单**：
    - 基本 JSON 格式合法性

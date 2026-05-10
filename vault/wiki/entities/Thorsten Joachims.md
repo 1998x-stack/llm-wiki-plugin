@@ -20,11 +20,11 @@ supersedes: null
 # Thorsten Joachims
 
 ## 概述
-[[Cornell University]] 计算机科学教授，机器学习与信息检索领域权威，因果推荐方向的重要推动者，[[Tobias Schnabel]] 的导师。
+[[Cornell University]] [[计算]]机科学教授，机器学习与信息检索领域权威，因果推荐方向的重要推动者，[[Tobias Schnabel]] 的导师。
 
 ## 关键内容
 
-1. **学术地位**：[[Cornell University]] 计算机科学教授，研究方向涵盖机器学习、信息检索、推荐系统、优化方法。是 ICML 2016 论文 [[Recommendations as Treatments]] 的通讯作者。
+1. **学术地位**：[[Cornell University]] [[计算]]机科学教授，研究方向涵盖机器学习、信息检索、推荐系统、优化方法。是 ICML 2016 论文 [[Recommendations as Treatments]] 的通讯作者。
 
 2. **研究领域**：在 [[学习排序|Learning to Rank]]、结构化 SVM、[[因果推断]]应用于信息检索等领域有深远影响。其研究组长期致力于将[[因果推断]]方法引入搜索和推荐系统。
 

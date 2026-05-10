@@ -105,7 +105,7 @@ MinerU 的核心处理逻辑是一条串行流水线，按七个阶段逐层处�
 2. **底层 PDF 解析**（[[PyMuPDF]] 提取原始 Span/Block + 页面渲染为图像）
 3. **[[文档布局检测]]**（[[DocLayout-YOLO]] / [[LayoutLMv3]] → 检测文本区/图/表/公式框）
 4. **内容专项识别**（OCR/[[PaddleOCR]]、[[公式识别]]/[[UniMERNet]]、[[表格识别]]/[[TableMaster]]）
-5. **内容块分类与属性标注**（title / text / figure / table / formula）
+5. **内容块分类与属性[[标注]]**（title / text / figure / table / formula）
 6. **[[阅读顺序重建|阅读顺序]]排序**（基于坐标与分栏分析，重建人类阅读序列）
 7. **Markdown / JSON 内容生成**（将有序内容块序列化为目标格式）
 

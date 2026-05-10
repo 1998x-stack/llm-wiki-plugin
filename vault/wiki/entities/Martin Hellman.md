@@ -50,13 +50,13 @@ supersedes: null
 
 ## 概述
 
-美国密码学家（1945–），斯坦福大学电气工程教授，[[公钥密码学]]和 [[Diffie-Hellman 密钥交换]]协议的共同发明者。2015年与 [[Whitfield Diffie]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
+美国密码学家（1945–），[[斯坦福大学]]电气工程教授，[[公钥密码学]]和 [[Diffie-Hellman 密钥交换]]协议的共同发明者。2015年与 [[Whitfield Diffie]] 共同获得 ACM [[阿兰·图灵|图灵]]奖。
 
 ## 关键内容
 
 ### 公钥密码学的诞生
 
-- 斯坦福大学电气工程教授
+- [[斯坦福大学]]电气工程教授
 - 1976年与 Diffie 共同发表《[[Diffie-Hellman 论文|New Directions in Cryptography]]》
 - 提出了[[公钥密码学]]的完整概念框架
 

@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Context Handoff 是 [[Pi-Agent]] pi-ai 层最独特的能力：一个会话可以在 [[Anthropic]] → [[OpenAI]] → [[Google]] 等不同 Provider 之间无缝延续，历史对话、思维链、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。
+Context Handoff 是 [[Pi-Agent]] pi-ai 层最独特的能力：一个会话可以在 [[Anthropic]] → [[OpenAI]] → [[Google]] 等不同 Provider 之间无缝延续，历史对话、[[Chain-of-Thought|思维链]]、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。
 
 ## 关键内容
 

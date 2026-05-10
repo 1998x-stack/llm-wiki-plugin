@@ -26,14 +26,14 @@ supersedes: null
 
 ## 概述
 
-Claude Sonnet 3.7 是 [[Anthropic]] 发布的 Claude Sonnet 系列模型，[[上下文窗口]]为 200k tokens。是从该模型开始，Claude 在超出[[上下文窗口]]时返回验证错误而非静默截断。
+[[Claude_Code|Claude]] Sonnet 3.7 是 [[Anthropic]] 发布的 [[Claude_Code|Claude]] Sonnet 系列模型，[[上下文窗口]]为 200k tokens。是从该模型开始，[[Claude_Code|Claude]] 在超出[[上下文窗口]]时返回验证错误而非静默截断。
 
 ## 关键内容
 
 ### 基本信息
 
 - **模型 ID**：`claude-sonnet-3-7`
-- **系列**：Claude Sonnet
+- **系列**：[[Claude_Code|Claude]] Sonnet
 - **版本**：3.7
 - **[[上下文窗口]]**：200k tokens
 - **发布方**：[[Anthropic]]

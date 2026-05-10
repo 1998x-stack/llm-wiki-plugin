@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-[[Anthropic]] Labs 团队成员，AI 工程实践研究者，专注于长时自主编码 Agent 的 Harness 设计与前端设计质量提升，提出了 [[生成器-评估器架构]] 和[[Sprint合约制]]等方法。
+[[Anthropic]] Labs 团队成员，AI 工程实践研究者，专注于长时自主编码 Agent 的 [[Harness-Engineering|Harness 设计]]与前端设计质量提升，提出了 [[生成器-评估器架构]] 和[[Sprint合约制]]等方法。
 
 ## 关键内容
 

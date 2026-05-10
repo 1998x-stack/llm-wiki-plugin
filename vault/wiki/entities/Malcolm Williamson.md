@@ -51,7 +51,7 @@ supersedes: null
 ### GCHQ 团队
 
 - [[James Ellis]]（1970）：提出[[公钥密码学]]概念
-- [[Clifford Cocks]]（1973）：发明类似 RSA 的算法
+- [[Clifford Cocks]]（1973）：发明类似 RSA 的[[算法]]
 - Williamson（1974）：发明类似 Diffie-Hellman 的密钥交换
 
 ## 来源

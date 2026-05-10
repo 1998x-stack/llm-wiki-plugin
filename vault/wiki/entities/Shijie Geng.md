@@ -24,9 +24,9 @@ supersedes: null
 
 ## 关键内容
 
-1. **[[P5 论文]]第一作者**：2022 年作为第一作者发表 "[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict Paradigm (P5)"，发表于 [[RecSys 2022]]，该论文被选为杰出论文之一，引用量 545+。
+1. **[[P5 论文]]第一作者**：2022 年作为第一作者发表 "[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict [[Paradigm]] (P5)"，发表于 [[RecSys 2022]]，该论文被选为杰出论文之一，引用量 545+。
 
-2. **核心贡献**：首次系统性地论证了"将推荐系统完全重构为语言处理任务"的可行性，将五大推荐任务（评分预测、[[序列推荐]]、解释生成、评论摘要、直接推荐）统一到一个基于 T5 的语言模型框架中。
+2. **核心贡献**：首次系统性地论证了"将推荐系统完全[[重构]]为语言处理任务"的可行性，将五大推荐任务（评分预测、[[序列推荐]]、解释生成、评论摘要、直接推荐）统一到一个基于 T5 的[[Language-Model|语言模型]]框架中。
 
 3. **后续工作**：领导开发了 [[OpenP5]] 标准化基准平台，方便后续研究者在 P5 [[规范化理论|范式]]下进行公平对比实验。
 

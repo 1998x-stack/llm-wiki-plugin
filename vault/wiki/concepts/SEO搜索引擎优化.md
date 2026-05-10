@@ -29,7 +29,7 @@ SEO（Search Engine Optimization，搜索引擎优化）是通过优化网站技
 
 ## 关键内容
 
-1. **发展历程**：1990s 关键词堆砌 → 2000s PageRank 主导 → 2010s 熊猫/企鹅算法（内容/链接质量）→ 2015 RankBrain（机器学习引入排名）→ 2018 E-A-T 框架 → 2021 Core Web Vitals → 2023 E-E-A-T 升级 → 2024 AI Overviews 全量上线 → 2025 GEO 兴起。
+1. **发展历程**：1990s 关键词堆砌 → 2000s PageRank 主导 → 2010s 熊猫/企鹅[[算法]]（内容/链接质量）→ 2015 RankBrain（机器学习引入排名）→ 2018 E-A-T 框架 → 2021 Core Web Vitals → 2023 E-E-A-T 升级 → 2024 AI Overviews 全量上线 → 2025 GEO 兴起。
 
 2. **四大核心模块**：
    - **技术 SEO**：爬虫可访问性、Core Web Vitals（LCP<2.5s，INP<200ms，CLS<0.1）、移动优先、URL规范化、robots.txt/sitemap

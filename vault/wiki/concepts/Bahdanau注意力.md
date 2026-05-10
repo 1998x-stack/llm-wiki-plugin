@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-Bahdanau 加性注意力通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ 计算对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是[[注意力机制（Attention Mechanism）|注意力机制]]的首次成功实现。
+Bahdanau 加性注意力通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ [[计算]]对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是[[注意力机制（Attention Mechanism）|注意力机制]]的首次成功实现。
 
 ## 关键内容
 

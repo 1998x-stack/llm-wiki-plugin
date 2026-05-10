@@ -26,9 +26,9 @@ IKEffector 告诉 [[IKSolver]] "这个关节要达到哪里"。链长（chainLen
 | 方法 | 说明 |
 |------|------|
 | `GetTargetNode() / SetTargetNode(Node*)` | 通过场景节点动态跟随目标 |
-| `GetTargetName() / SetTargetName(String)` | 按节点名称设置目标（延迟绑定） |
-| `GetTargetPosition() / SetTargetPosition(Vector3)` | 直接设置目标位置 |
-| `GetTargetRotation() / SetTargetRotation(Quaternion)` | 设置目标旋转 |
+| `GetTargetName() / SetTargetName(String)` | 按节点名称[[Settings|设置]]目标（延迟绑定） |
+| `GetTargetPosition() / SetTargetPosition(Vector3)` | 直接[[Settings|设置]]目标位置 |
+| `GetTargetRotation() / SetTargetRotation(Quaternion)` | [[Settings|设置]]目标旋转 |
 
 ### 链与权重参数
 

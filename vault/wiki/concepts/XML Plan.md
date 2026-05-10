@@ -24,7 +24,7 @@ GSD 系统的结构化执行计划格式，使用 XML 标签定义任务，每�
 
 1. **XML 结构**：
    ```xml
-   <task type="auto">
+   <task type="auto|manual">  <!-- auto: Claude自动执行, manual: 需要人工干预 -->
      <n>创建用户登录 API 端点</n>
      <files>src/app/api/auth/login/route.ts</files>
      <action>
@@ -40,6 +40,12 @@ GSD 系统的结构化执行计划格式，使用 XML 标签定义任务，每�
      <done>有效凭证返回 200 + Set-Cookie；无效凭证返回 401</done>
    </task>
    ```
+
+2. **任务类型**：
+   - **auto**：Claude 自动执行的任务
+   - **manual**：需要人工干预的任务（例如：复杂的设计决策、代码审查等）
+
+3. **标签职责**：
 
 2. **标签职责**：
    - `<n>`：任务名称（也是 git commit 名称）

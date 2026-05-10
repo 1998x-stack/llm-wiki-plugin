@@ -24,7 +24,7 @@ supersedes: null
 
 ## 概述
 
-YOLO（You Only Look Once）是一类 One-Stage 目标检测框架，一次前向推理即可得到所有目标的类别和边界框，速度显著快于两阶段检测器（如 Faster R-CNN）。
+YOLO（You Only Look Once）是一类 One-Stage 目标检测框架，一次前向推理即可得到所有目标的类别和边界框，速度显著快于两阶段检测器（如 [[R-CNN 系列|Faster R-CNN]]）。
 
 ## 关键内容
 
@@ -44,7 +44,7 @@ NMS（非极大值抑制）→ 最终检测框
 
 ### One-Stage vs Two-Stage
 
-| 特性 | One-Stage (YOLO) | Two-Stage (Faster R-CNN) |
+| 特性 | One-Stage (YOLO) | Two-Stage ([[R-CNN 系列|Faster R-CNN]]) |
 |------|------------------|--------------------------|
 | 推理速度 | 快 | 慢 |
 | 精度 | 略低 | 略高 |

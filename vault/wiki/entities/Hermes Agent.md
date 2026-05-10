@@ -62,25 +62,25 @@ supersedes: null
 - **设计哲学**：未来最有价值的 AI Agent 是积累了最多经验、能够持续自我改进的那个，而非拥有最大模型或最复杂提示词的那个
 - **六大核心能力**：[[闭环学习系统]]、随处运行（6 种执行后端）、无处不在（14+ 消息平台 [[网关与路由器|Gateway]] 接入）、模型无关（200+ 模型可切换）、[[开放技能标准]]（[[agentskills.io]] 规范）、研究就绪（批量轨迹生成 + [[Atropos]] RL 环境）
 - **执行模型差异**：传统 Agent 为"接收任务→执行→返回结果→状态清零"，Hermes 为"执行→学习→改进→下次执行更好→循环"
-- **记忆与技能**：[[SQLite]] + FTS5 跨[[会话持久化]]记忆，成功工作流自动转化为 [[SKILL.md 格式规范|SKILL.md]] 文件存入技能库，技能在使用中持续自我改进
+- **记忆与[[Skills|技能]]**：[[SQLite]] + FTS5 跨[[会话持久化]]记忆，成功工作流自动转化为 [[SKILL.md 格式规范|SKILL.md]] 文件存入[[Skills|技能]]库，[[Skills|技能]]在使用中持续自我改进
 - **运行环境**：支持 Local、Docker、SSH、Daytona、Singularity、Modal 六种终端执行后端，从笔记本到 HPC 全覆盖
-- **安装部署**：60 秒一键安装，支持 Linux、macOS、WSL2，通过 `hermes setup` 交互式向导配置
+- **安装部署**：60 秒一键安装，支持 Linux、macOS、WSL2，通过 `hermes setup` 交互式向导[[Configuration|配置]]
 - **四层记忆体系**：[[语义记忆]]（[[语义记忆|MEMORY.md]]，2,200 字符固定）、用户模型（USER.md，1,375 字符固定）、[[情节记忆]]（[[FTS5|SQLite FTS5]] 按需召回无上限）、[[辩证推理|辩证用户建模]]（[[Honcho]] 跨会话动态更新），总固定 Token 成本仅约 1,300
 - **[[冻结快照模式]]**：会话开始时加载 [[语义记忆|MEMORY.md]] + USER.md 为冻结快照注入 System Prompt，会话期间写入磁盘但不更新 Prompt，保护 KV Cache [[KV 缓存命中率|前缀缓存]]
 - **记忆安全**：写入记忆前自动扫描凭证泄露、指令注入和过大条目，防止敏感信息持久化
 - **[[三层分离架构]]**：入口层（CLI/[[网关与路由器|Gateway]]/ACP/[[Batch Runner]]）→ 核心层（AIAgent ~9,200 行）→ 持久化层（[[SQLite]] + FTS5）+ 执行后端层（Terminal 6/Browser 5/Web 4/MCP），入口统一但不耦合
-- **[[同步编排引擎]]**：AIAgent 是单线程同步循环而非异步事件驱动，简化状态管理，多任务通过子 Agent 委派解决
+- **[[同步编排引擎]]**：AIAgent 是单线程同步循环而非异步事件驱动，简化状态管理，多任务通过[[子 Agent & 多 Agent 系统|子 Agent]] 委派解决
 - **[[迭代预算]]**：跟踪迭代次数、Token 消耗、工具调用次数，任一超阈值时优雅终止，防止无限循环
-- **[[三种 API 模式]]**：chat_completions（200+ 模型兼容最广）、codex_responses（[[OpenAI]] 新格式）、anthropic_messages（Claude 原生支持 [[提示词缓存|Prompt Caching]]/[[扩展思维|Extended Thinking]]），`hermes model` 运行时动态切换
+- **[[三种 API 模式]]**：chat_completions（200+ 模型兼容最广）、codex_responses（[[OpenAI]] 新格式）、anthropic_messages（[[Claude_Code|Claude]] 原生支持 [[提示词缓存|Prompt Caching]]/[[扩展思维|Extended Thinking]]），`hermes model` 运行时动态切换
 - **工具体系**：48 工具 + 40 工具集，工具在导入时通过 `@register_tool` 自动注册，支持按需启用/禁用
-- **Prompt 组装**：[[SOUL.md 人格系统|SOUL.md]] → [[语义记忆|MEMORY.md]] → USER.md → [[Agent Skills|Skills]] Level 0 (~3k tokens) → Context Files → Active Tools → Date/Time → Platform Metadata
+- **Prompt 组装**：[[SOUL.md 人格系统|SOUL.md]] → [[语义记忆|MEMORY.md]] → USER.md → [[Agent Skills|Skills]] Level 0 (~3k tokens) → Context Files → Active [[Tool System|Tools]] → Date/Time → Platform Metadata
 - **[[上下文压缩]]**：会话历史接近窗口上限时 `context_compressor.py` 自动触发，辅助 LLM 递增压缩最早最冗余的工具输出
 - **[[Prompt 缓存]]**：`prompt_caching.py` 为 [[Anthropic]] 模式实现[[KV 缓存命中率|前缀缓存]]，标记稳定前缀（SOUL+MEMORY+USER），长期运行累积节省可观
 - **代码规模**：核心文件总计超过 36,000 行（run_agent.py ~9,200、cli.py ~8,500、gateway/run.py ~7,500、hermes_cli/main.py ~5,500），测试 3,000+，是成熟工程项目
 - **三条数据流**：CLI 会话（终端输入→AIAgent→[[SQLite]] 持久化）、[[网关与路由器|Gateway]] 消息（平台消息→授权验证→AIAgent→发回响应）、Cron 定时任务（调度器→独立 AIAgent→投递目标平台）
-- **学习飞轮**：会话 1 学习环境和用户偏好 → 会话 5 发现重复模式创建第一个技能 → 会话 10 技能被复用并自我改进 → 会话 50 已有 15+ 技能，同类型任务速度提升 3-5x → 持续运行成为专属 AI，复利增长
-- **技能创建触发条件**：任务步骤数≥4、有明确验证步骤、有易出错关键步骤、用户显式要求记录、同类型任务历史出现≥2 次、涉及特定工具非显而易见用法、任务是通用模式而非本次特有
-- **[[Memory Nudge]] 机制**：Agent 在长对话自然暂停点主动自我反思，检查是否有值得保存的环境事实、用户偏好、可复用工作流、技能问题或错误认知纠正
+- **学习飞轮**：会话 1 学习环境和用户偏好 → 会话 5 发现重复模式创建第一个[[Skills|技能]] → 会话 10 [[Skills|技能]]被复用并自我改进 → 会话 50 已有 15+ [[Skills|技能]]，同类型任务速度提升 3-5x → 持续运行成为专属 AI，复利增长
+- **[[Skills|技能]]创建触发条件**：任务步骤数≥4、有明确验证步骤、有易出错关键步骤、用户显式要求记录、同类型任务历史出现≥2 次、涉及特定工具非显而易见用法、任务是通用模式而非本次特有
+- **[[Memory Nudge]] 机制**：Agent 在长对话自然暂停点主动自我反思，检查是否有值得保存的环境事实、用户偏好、可复用工作流、[[Skills|技能]]问题或错误认知纠正
 - **安全边界**：[[记忆安全扫描]]（凭证拦截、指令注入防护、大小限制）、命令执行授权（危险模式需用户批准）、容器隔离（Docker/Singularity 命名空间隔离）、凭证过滤（工具执行结果返回 LLM 前过滤敏感信息）
 
 ## 来源

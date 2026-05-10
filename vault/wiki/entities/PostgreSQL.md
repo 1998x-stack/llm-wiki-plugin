@@ -28,11 +28,11 @@ supersedes: null
 
 ## 关键内容
 
-1. **连接池管理**：在 Agent 驱动的开发环境中，必须设置 connection pool timeout，否则长时间无操作后连接会断开。典型连接串格式：`postgresql://localhost:5432/[project]_dev`。
+1. **连接池管理**：在 Agent 驱动的开发环境中，必须[[Settings|设置]] connection pool timeout，否则长时间无操作后连接会断开。典型连接串格式：`postgresql://localhost:5432/[project]_dev`。
 
-2. **与 [[Prisma]] 配合**：通过 `DATABASE_URL` 环境变量配置连接，[[Prisma]] 的 `migrate dev` 命令执行前需确保数据库可访问。迁移文件由 [[Prisma]] 自动生成并管理。
+2. **与 [[Prisma]] 配合**：通过 `DATABASE_URL` [[Environment Variables|环境变量]][[Configuration|配置]]连接，[[Prisma]] 的 `migrate dev` 命令执行前需确保数据库可访问。迁移文件由 [[Prisma]] 自动生成并管理。
 
-3. **在 [[Ralph Loop]] 中的角色**：AGENTS.md 模板中作为默认数据库选择，配合 [[Prisma]] ORM 和 [[Next.js]] 构成全栈开发基线。环境变量存储在 `.env.local` 中（gitignored）。
+3. **在 [[Ralph Loop]] 中的角色**：[[项目约定手册|AGENTS.md]] 模板中作为默认数据库选择，配合 [[Prisma]] ORM 和 [[Next.js]] 构成全栈开发基线。[[Environment Variables|环境变量]]存储在 `.env.local` 中（gitignored）。
 
 4. **开发工作流**：
    - 本地开发：`postgresql://localhost:5432/[project]_dev`

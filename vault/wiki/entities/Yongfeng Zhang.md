@@ -25,9 +25,9 @@ supersedes: null
 
 ## 关键内容
 
-1. **[[P5 论文]]通讯作者**：作为通讯作者指导了 "[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict Paradigm (P5)" 的研究，该论文发表于 [[RecSys 2022]]，引用量 545+，成为 LLM+推荐系统领域最具影响力的早期工作之一。
+1. **[[P5 论文]]通讯作者**：作为通讯作者指导了 "[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict [[Paradigm]] (P5)" 的研究，该论文发表于 [[RecSys 2022]]，引用量 545+，成为 LLM+推荐系统领域最具影响力的早期工作之一。
 
-2. **[[推荐系统基础模型]]愿景**：在 [[P5 论文]]中明确提出了"[[推荐系统基础模型]]"概念——通过大规模预训练获得通用推荐理解能力，然后通过 Prompt 适配具体场景，类比 BERT 之于 NLP、ViT 之于计算机视觉。
+2. **[[推荐系统基础模型]]愿景**：在 [[P5 论文]]中明确提出了"[[推荐系统基础模型]]"概念——通过大规模预训练获得通用推荐理解能力，然后通过 Prompt 适配具体场景，类比 BERT 之于 NLP、ViT 之于[[计算]]机视觉。
 
 3. **学术领导力**：其研究团队持续推动 LLM for Recommendation 方向，开发了 [[OpenP5]] 标准化基准平台，为该领域的公平对比和可复现性研究提供了基础设施。
 

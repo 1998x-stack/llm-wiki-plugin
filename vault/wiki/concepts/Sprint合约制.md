@@ -72,7 +72,7 @@ Evaluator 对照合约执行 QA（Playwright MCP）
 
 ### 局限与演化
 
-Sprint 合约制是 Sprint 分解结构的组成部分。当 [[Anthropic]] 在 Opus 4.6 上移除 Sprint 分解（模型能力提升，不再需要分块）时，Sprint 合约制也随之移除，评估器改为在完整构建结束后进行一次性 QA。
+Sprint 合约制是 Sprint 分解结构的组成部分。当 [[Anthropic]] 在 [[Claude_Opus_4.6|Opus 4.6]] 上移除 Sprint 分解（模型能力提升，不再需要分块）时，Sprint 合约制也随之移除，评估器改为在完整构建结束后进行一次性 QA。
 
 这再次印证了 Harness 组件随模型能力演化而调整的原则。
 

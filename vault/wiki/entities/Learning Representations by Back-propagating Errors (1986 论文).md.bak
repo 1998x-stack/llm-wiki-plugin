@@ -1,0 +1,42 @@
+---
+type: entity
+status: active
+confidence: 0.8
+created: 2026-04-20
+updated: 2026-04-20
+last_accessed: 2026-04-20
+source_count: 1
+tags: [paper, deep-learning, backpropagation]
+aliases: [Rumelhart, Hinton, Williams 1986]
+relates_to:
+  - target: David Rumelhart
+    relation: authored_by
+  - target: Geoffrey E. Hinton
+    relation: authored_by
+  - target: Ronald Williams
+    relation: authored_by
+  - target: 反向传播（Backpropagation）
+    relation: introduced
+supersedes: null
+---
+
+# Learning Representations by Back-propagating Errors (1986 论文)
+
+## 概述
+反向传播算法的经典论文，系统化描述了如何通过链式法则训练多层神经网络，引发深度学习复兴。
+
+## 关键内容
+
+1. **算法描述**：清晰展示了误差从输出层向输入层逐层传播的数学过程，使多层网络训练成为可能。
+2. **链式法则应用**：将微积分中的 [[链式法则]] 应用于神经网络梯度计算，奠定了现代深度学习框架的核心算法。
+3. **历史意义**：该论文被视为深度学习复兴的关键文献，直接催生了 [[多层感知机]] 的实用化和后续 [[卷积神经网络（CNN）]] 的发展。
+
+## 来源
+- [[ai_papers_timeline.md]] — 1986 年时间线条目
+
+## 相关
+- [[David Rumelhart]] — authored_by
+- [[Geoffrey E. Hinton]] — authored_by
+- [[Ronald Williams]] — authored_by
+- [[反向传播（Backpropagation）]] — introduced
+- [[多层感知机]] — enabled

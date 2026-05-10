@@ -24,7 +24,7 @@ supersedes: null
 # Steffen Rendle
 
 ## 概述
-德国康斯坦茨大学计算机科学家，[[Factorization Machines]] (FM) 提出者，开源工具 [[libFM]] 和 xLearn 的开发者，后加入 [[Google]] 继续推动推荐系统研究。
+德国康斯坦茨大学[[计算]]机科学家，[[Factorization Machines]] (FM) 提出者，开源工具 [[libFM]] 和 xLearn 的开发者，后加入 [[Google]] 继续推动推荐系统研究。
 
 ## 关键内容
 
@@ -33,8 +33,9 @@ supersedes: null
 3. **PITF (2010)**：与 Schmidt-Thieme 合作提出 Pairwise Interaction Tensor Factorization，针对标签推荐任务的成对交互张量分解模型，后被证明可被 FM 框架等价表示。
 4. **FPMC (2010)**：提出 Fusion of [[矩阵分解|Matrix Factorization]] and [[马尔可夫链|Markov Chain]]s，融合[[马尔可夫链]]和[[矩阵分解]]的[[序列推荐]]模型，同样被纳入 FM 统一框架。
 5. **[[Google]] 时期**：后加入 [[Google]] 继续推荐系统研究。2020 年发表 "[[Neural Collaborative Filtering]] vs. [[矩阵分解|Matrix Factorization]] Revisited"，指出精心调优的[[矩阵分解]]（FM 特例）在多项基准测试上仍可匹敌甚至超过[[Neural Collaborative Filtering|神经协同过滤]]模型，提醒业界不要低估简单模型的力量。
-6. **核心洞察**："The interactions of a factorization machine are not independent but they depend on each other."——参数分解打破独立性假设，让模型在从未见过的特征组合上做出合理预测，这一思想与深度学习中的权重共享、参数绑定等技术一脉相承。
-7. **学术影响**：FM 论文仅6页篇幅却改变了整个推荐系统和 [[CTR 预估]]领域的格局，后续几乎所有重要的[[特征交叉|特征交互]]模型（FFM、[[DeepFM]]、x[[DeepFM]]、[[Wide & Deep]] 等）都直接或间接继承了 FM 的思想。
+6. **BPR (2009)**：与 Christoph Freudenthaler, Zeno Gantner, Lars Schmidt-Thieme 合作发表 "BPR: Bayesian Personalized Ranking from Implicit Feedback" (UAI 2009)，提出基于贝叶斯最大后验估计的 pairwise 排序学习框架，将隐式反馈推荐问题重新定义为个性化偏好排序学习。该论文奠定了隐式反馈推荐的范式基础，BPR-OPT 目标函数和 LearnBPR 学习算法成为经典方法，引用量超过6000次。
+7. **核心洞察**："The prediction quality does not only depend on the model but also largely on the optimization criterion."——优化准则对预测质量的重要性不亚于模型结构本身，这一观点深刻影响了推荐系统领域的研究方向。
+8. **学术影响**：FM 论文仅6页篇幅却改变了整个推荐系统和 [[CTR 预估]]领域的格局，后续几乎所有重要的[[特征交叉|特征交互]]模型（FFM、[[DeepFM]]、x[[DeepFM]]、[[Wide & Deep]] 等）都直接或间接继承了 FM 的思想。BPR 论文作为隐式反馈推荐的奠基之作，其 pairwise 优化范式至今仍是推荐系统训练的核心方法之一。
 
 ## 来源
 - [Factorization Machines (Rendle 2010)](https://arxiv.org/abs/1209.3994)

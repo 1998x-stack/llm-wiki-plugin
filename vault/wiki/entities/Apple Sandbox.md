@@ -4,7 +4,7 @@ status: active
 confidence: 0.7
 created: 2026-04-18
 updated: 2026-04-18
-last_accessed: 2026-04-18
+last_accessed: 2026-04-19
 source_count: 1
 tags: ["安全", "macOS", "沙箱"]
 aliases: ["Apple Sandbox", "Seatbelt", "sandbox-exec"]
@@ -23,11 +23,11 @@ Apple 原生 macOS 沙箱机制（代号 Seatbelt），基于 Scheme 描述语�
 
 ## 关键内容
 
-1. **策略语言**：使用 Scheme 语法描述访问控制规则，支持 `(deny default)` 设置默认拒绝策略，`(allow file-read*)` 允许读操作，`(allow file-write* (subpath "..."))` 限定写路径，`(deny network-outbound)` 禁止网络访问。
+1. **策略语言**：使用 Scheme 语法描述访问控制规则，支持 `(deny default)` [[Settings|设置]]默认拒绝策略，`(allow file-read*)` 允许[[Read|读操作]]，`(allow file-write* (subpath "..."))` 限定写路径，`(deny network-outbound)` 禁止网络访问。
 
-2. **动态策略生成**：[[Codex CLI]] 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动配置策略文件。
+2. **动态策略生成**：[[Codex CLI]] 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动[[Configuration|配置]]策略文件。
 
-3. **调试支持**：`--log-denials` 模式可打印所有被拦截的系统调用，便于调试沙箱配置错误。
+3. **调试支持**：`--log-denials` 模式可打印所有被拦截的系统调用，便于调试沙箱[[Configuration|配置]]错误。
 
 4. **零额外依赖**：作为 Apple 原生机制，无需安装额外软件或内核模块，macOS 系统自带支持。
 

@@ -45,7 +45,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 |------|------|
 | `libs/deepagents/` | 核心 SDK：`create_deep_agent`、[[ROS (Robot Operating System)|中间件]]、后端协议 |
 | `libs/cli/` | 基于 Textual 的终端 TUI，延迟加载重型依赖 |
-| `libs/acp/` | [[ACP协议|Agent Client Protocol]] 服务端集成 |
+| `libs/acp/` | [[ACP协议|Agent Client Protocol]] [[服务]]端集成 |
 | `libs/evals/` | 评估套件，含 Harbor、Terminal Bench 集成 |
 | `libs/repl/` | REPL [[ROS (Robot Operating System)|中间件]]（`langchain-repl`） |
 | `libs/partners/` | 合作方沙箱：Daytona、Modal、QuickJS、Runloop |
@@ -55,7 +55,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 
 ### 核心 API
 
-**`create_deep_agent()`**（`libs/deepagents/deepagents/graph.py`）：唯一公共装配入口，声明式配置返回 `CompiledStateGraph`。关键参数：
+**`create_deep_agent()`**（`libs/deepagents/deepagents/graph.py`）：唯一公共装配入口，声明式[[Configuration|配置]]返回 `CompiledStateGraph`。关键参数：
 - `model`：默认 `claude-sonnet-4-6`（需 `ANTHROPIC_API_KEY`）
 - `tools`、`middleware`、`backend`、`subagents`、`skills`、`memory`、`interrupt_on`
 - `recursion_limit=9999`（避免复杂任务被 LangGraph 截断）
@@ -73,7 +73,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 
 - 启动链延迟导入 LangChain/LangGraph（轻量命令如 `-v` 毫秒级）
 - SDK 版本精确 pin，与 CI 联动
-- Python 版本：`acp` 包用 3.14，其余用 3.12
+- [[Python]] 版本：`acp` 包用 3.14，其余用 3.12
 
 ### 示例项目
 
@@ -81,9 +81,9 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 
 ### CI/CD
 
-- GitHub Actions + release-please 自动版本化
-- pre-commit：格式化、换行检查，evals 数据目录受保护（字节级一致）
-- 提交规范：Conventional Commits（feat/fix/refactor/docs/test/chore）
+- [[GitHub]] Actions + release-please 自动版本化
+- pre-[[commit]]：格式化、换行检查，evals 数据目录受保护（字节级一致）
+- 提交规范：[[Conventional Commits]]（feat/fix/refactor/docs/test/chore）
 
 ## 来源
 - [[raw/books/deepagents-book-main/01-项目概览与仓库结构.md]]

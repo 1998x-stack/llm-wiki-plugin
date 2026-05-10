@@ -28,7 +28,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **工作原理**：`/compact [instructions]` 命令将当前对话历史压缩成 AI 生成的摘要，可附带聚焦指令告诉 Claude 压缩时应保留哪些关键信息。压缩后，旧消息被替换为摘要，释放 token 空间。
+1. **工作原理**：`/compact [instructions]` 命令将当前对话历史压缩成 AI 生成的摘要，可附带聚焦指令告诉 [[Claude_Code|Claude]] 压缩时应保留哪些关键信息。压缩后，旧消息被替换为摘要，释放 token 空间。
 
 2. **与 [[Checkpoints 与 Rewind|Rewind]] 的关系**：[[Checkpoints 与 Rewind|Rewind]] 的"从这里开始总结"选项也会执行类似压缩，但 `/compact` 是主动触发的独立操作，更灵活。
 

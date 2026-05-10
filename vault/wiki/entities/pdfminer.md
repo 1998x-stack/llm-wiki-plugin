@@ -28,7 +28,7 @@ supersedes: null
 
 ## 概述
 
-pdfminer 是 Python 的 PDF 文本提取库，可从 PDF 中提取文本内容，但对多栏布局的处理能力有限，提取结果常为乱序字符流。
+pdfminer 是 [[Python]] 的 PDF 文本提取库，可从 PDF 中提取文本内容，但对多栏布局的处理能力有限，提取结果常为乱序字符流。
 
 ## 关键内容
 

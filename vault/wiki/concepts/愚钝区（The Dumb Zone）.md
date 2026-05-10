@@ -5,7 +5,7 @@ confidence: 0.8
 created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
-source_count: 1
+source_count: 2
 tags: [ai-engineering, context-management, llm-behavior]
 aliases: ["The Dumb Zone", "愚钝区", "LLM 性能衰减区", "上下文性能衰减区"]
 relates_to:
@@ -17,6 +17,10 @@ relates_to:
     type: relates_to
   - target: "[[Ralph Loop]]"
     type: used_by
+  - target: "[[Ralph Loop 系统]]"
+    type: part_of
+  - target: "[[上下文管理策略]]"
+    type: addressed_by
 supersedes: null
 ---
 
@@ -42,12 +46,13 @@ supersedes: null
 
 4. **[[Ralph Loop]] 的解法**：在 Agent 进入愚钝区之前，主动清空上下文并启动新实例。这种"预防性重置"策略避免了模型在低质量状态下继续工作，确保每次迭代都从已知良态开始。
 
-5. **内存分配类比**：LLM 的[[上下文窗口]]类似于计算机内存，但只有 `malloc()` 没有 `free()`——每次读取文件或工具调用输出都会永久占用上下文空间，无法释放。愚钝区就是内存即将耗尽时的性能崩溃区。
+5. **内存分配类比**：LLM 的[[上下文窗口]]类似于[[计算]]机内存，但只有 `malloc()` 没有 `free()`——每次读取文件或工具调用输出都会永久占用上下文空间，无法释放。愚钝区就是内存即将耗尽时的性能崩溃区。
 
 6. **工程含义**：任何长时 Agent 系统都需要监控上下文使用率，在接近愚钝区阈值时触发[[上下文重置]]、[[上下文压缩]] 或新实例启动，而非等到窗口完全填满。
 
 ## 来源
 - [[raw/articles/ai-tools/ralph-loop/how-the-loop-works.md]] — Ralph Loop 核心原理深度解析
+- [[raw/articles/ai-tools/ralph-loop/context-strategies.md]] — 上下文策略文档
 
 ## 相关
 - [[上下文窗口]] — part_of（愚钝区是上下文窗口使用后期的性能特征区）

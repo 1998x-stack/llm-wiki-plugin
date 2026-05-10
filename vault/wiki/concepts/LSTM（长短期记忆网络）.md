@@ -42,9 +42,9 @@ supersedes: null
 
 3. **解决[[梯度消失]]的数学本质**：[[细胞状态（Cell State）|细胞状态]]的梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当[[遗忘门（Forget Gate）|遗忘门]]接近 1 时，梯度通过加法直接传递而不衰减。对比 RNN：∂hₜ/∂hₜ₋₁ = Wₕᵀ · diag(tanh'(·))，需要乘以小于 1 的数，连乘后指数衰减。类比：RNN 像用粉笔写黑板（每次覆盖），LSTM [[细胞状态（Cell State）|细胞状态]]像一本可精确"写入"、"擦除"、"读取"的日记本。
 
-4. **实际应用与退出**：LSTM 统治序列学习领域近 20 年，在语音识别（[[Google]] Voice 2015）、机器翻译（[[Google]] 翻译 2016）、文本生成、时间序列预测等领域大规模部署。2017 年 [[Transformer架构]] 问世后逐步退场，但在时间序列、嵌入式/边缘设备、[[强化学习]]等场景仍广泛使用（2024 年仍活跃）。
+4. **实际应用与退出**：LSTM 统治序列学习领域近 20 年，在语音识别（[[Google]] Voice 2015）、机器翻译（[[Google]] 翻译 2016）、文本生成、[[Time Series Analysis|时间序列]]预测等领域大规模部署。2017 年 [[Transformer架构]] 问世后逐步退场，但在[[Time Series Analysis|时间序列]]、嵌入式/边缘设备、[[强化学习]]等场景仍广泛使用（2024 年仍活跃）。
 
-5. **代码实现**：PyTorch 中通过 `nn.LSTM(input_size, hidden_size, num_layers, bidirectional=True)` 实现。支持多层堆叠、双向处理、dropout 正则化。权重绑定（embedding 与输出层共享权重）可节省参数。
+5. **代码实现**：[[PyTorch]] 中通过 `nn.LSTM(input_size, hidden_size, num_layers, bidirectional=True)` 实现。支持多层堆叠、双向处理、dropout 正则化。权重绑定（embedding 与输出层共享权重）可节省参数。
 
 ## 来源
 - [[Long Short-Term Memory (1997 论文)]] — Hochreiter, S., & Schmidhuber, J. (1997). Neural Computation, 9(8), 1735–1780

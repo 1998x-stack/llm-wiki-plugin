@@ -1,9 +1,8 @@
 #!/bin/bash
-# Setup script for wiki:ingest-loop ralph-loop mechanism
+# Setup script for wiki:ingest-loop ralph-loop mechanism with concurrent support
 set -e
 
 VAULT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-STATE_FILE="$VAULT_DIR/.claude/ingest-loop.local.md"
 INPUT_PATH="$1"
 
 if [ -z "$INPUT_PATH" ]; then
@@ -13,14 +12,24 @@ if [ -z "$INPUT_PATH" ]; then
 fi
 
 if [[ "$INPUT_PATH" != /* ]]; then
+    # First check if path exists as-is relative to vault
     FULL_PATH="$VAULT_DIR/$INPUT_PATH"
+    if [ ! -e "$FULL_PATH" ]; then
+        # If not found, try adding raw/ prefix (for wiki:ingest-loop compatibility)
+        FULL_PATH="$VAULT_DIR/raw/$INPUT_PATH"
+        if [ ! -e "$FULL_PATH" ]; then
+            echo "Error: Path not found: $VAULT_DIR/$INPUT_PATH or $VAULT_DIR/raw/$INPUT_PATH"
+            exit 1
+        fi
+        # Update INPUT_PATH to reflect the actual path used
+        INPUT_PATH="raw/$INPUT_PATH"
+    fi
 else
     FULL_PATH="$INPUT_PATH"
-fi
-
-if [ ! -e "$FULL_PATH" ]; then
-    echo "Error: Path not found: $FULL_PATH"
-    exit 1
+    if [ ! -e "$FULL_PATH" ]; then
+        echo "Error: Path not found: $FULL_PATH"
+        exit 1
+    fi
 fi
 
 if [ -f "$FULL_PATH" ]; then
@@ -41,6 +50,13 @@ if [ "$TOTAL" -eq 0 ]; then
     echo "Error: No processable files found in $INPUT_PATH"
     exit 1
 fi
+
+# Find the first available numbered state file
+COUNTER=1
+while [ -f "$VAULT_DIR/tmp/ingest-loop.local.$COUNTER.md" ]; do
+    COUNTER=$((COUNTER + 1))
+done
+STATE_FILE="$VAULT_DIR/tmp/ingest-loop.local.$COUNTER.md"
 
 FILES_YAML=""
 for f in "${FILES[@]}"; do
@@ -70,7 +86,7 @@ completion_promise: "ALL_FILES_INGESTED"
 This file tracks the progress of batch ingest. Do not edit manually.
 STATEEOF
 
-echo "=== Ingest Loop Setup ==="
+echo "=== Ingest Loop Setup (Concurrent Instance #$COUNTER) ==="
 echo "Source: $INPUT_PATH"
 echo "Files to process: $TOTAL"
 echo "State file: $STATE_FILE"

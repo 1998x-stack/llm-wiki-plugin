@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **在 [[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 中的角色**：[[Deep Neural Networks for YouTube Recommendations]] 中提到，[[Google]] 内部的 TensorFlow（2015年开源）为大规模深度学习训练提供了基础设施。[[YouTube]] 团队正是在 TensorFlow 的技术背景下，开始探索用深度神经网络重构推荐系统。
+1. **在 [[Deep Neural Networks for YouTube Recommendations|YouTube DNN]] 中的角色**：[[Deep Neural Networks for YouTube Recommendations]] 中提到，[[Google]] 内部的 TensorFlow（2015年开源）为大规模深度学习训练提供了基础设施。[[YouTube]] 团队正是在 TensorFlow 的技术背景下，开始探索用深度神经网络[[重构]]推荐系统。
 
 2. **核心能力**：支持大规模分布式训练、灵活的模型定义、丰富的优化器（包括[[采样 Softmax]] 等）、生产环境部署。这些能力使得 [[YouTube]] 能够在数十亿视频、上亿用户的超大规模场景下训练深度推荐模型。
 

@@ -28,12 +28,12 @@ supersedes: null
 - **训练流程**：批量运行 Agent 会话 → 导出 (observation, action, reward) 轨迹 → Atropos RL 环境训练工具调用模型 → 下一代 [[Hermes Agent|Hermes]] 更聪明
 - **批量轨迹生成**：支持大规模并行运行 Agent 收集训练数据
 - **[[轨迹压缩]]**：压缩冗余上下文，减少训练成本
-- **训练数据生成流程**：定义任务类型和评估标准 → [[Batch Runner]] 批量并行运行 Agent 收集轨迹 → trajectory.py 压缩轨迹去除冗余保留关键决策节点 → Atropos RL 环境使用 PPO/GRPO 等算法训练 → 策略蒸馏回模型权重发布新版本
+- **训练数据生成流程**：定义任务类型和评估标准 → [[Batch Runner]] 批量并行运行 Agent 收集轨迹 → trajectory.py 压缩轨迹去除冗余保留关键决策节点 → Atropos RL 环境使用 PPO/GRPO 等[[算法]]训练 → 策略蒸馏回模型权重发布新版本
 - **[[Batch Runner]]**：`hermes batch run --task-file tasks/coding_tasks.jsonl --n-workers 8 --output-dir trajectories/ --model hermes-3.5`，并行启动 N 个 Agent 实例独立执行同类型任务
 - **[[轨迹压缩]]命令**：`hermes batch compress --input trajectories/ --output compressed_trajectories/ --max-tokens 4096`
 - **导出为 Atropos 格式**：`hermes batch export --input compressed_trajectories/ --format atropos --output training_data.jsonl`
 - **RL vs SFT**：SFT 学习已有正确示例（模仿），只能学习已有数据；RL 通过奖励信号试错学习，可发现 SFT 数据中没有的更优策略
-- **多维度评估**：奖励计算基于正确性、效率、代码质量等多维度评分
+- **多维度评估**：奖励[[计算]]基于正确性、效率、代码质量等多维度评分
 
 ## 来源
 - [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — 2026 年 4 月版本

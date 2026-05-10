@@ -52,7 +52,7 @@ supersedes: null
 
 8. **局限性**：RNN 单向顺序处理无法并行化；完全丢失会话间信息；无法捕获全局物品关系；使用简单 one-hot 编码未利用物品侧信息；在某些场景下被精心设计的会话 KNN 方法超越。
 
-9. **工业界采纳**：[[Spotify]] 和 Pinterest 等公司的推荐系统借鉴了 GRU4Rec 的思想。在 NVIDIA Merlin / [[Transformer架构|Transformer]]s4Rec 等现代框架中仍保留为标准基线模型。
+9. **工业界采纳**：[[Spotify]] 和 Pinterest 等公司的推荐系统借鉴了 GRU4Rec 的思想。在 [[NVIDIA]] Merlin / [[Transformer架构|Transformer]]s4Rec 等现代框架中仍保留为标准基线模型。
 
 ## 来源
 - [原始论文 (arXiv)](https://arxiv.org/abs/1511.06939)

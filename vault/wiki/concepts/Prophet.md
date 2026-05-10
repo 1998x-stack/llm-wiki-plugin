@@ -24,11 +24,11 @@ supersedes: null
 # Prophet
 
 ## 概述
-Prophet 是 [[Meta|Facebook]]（Meta）于 2017 年开源的时间序列预测工具，由 Sean Taylor 和 Benjamin Letham 开发，旨在让非统计学专家也能对业务时间序列进行高质量预测，解决了大规模预测场景下的人机协作难题。
+Prophet 是 [[Meta|Facebook]]（Meta）于 2017 年开源的[[Time Series Analysis|时间序列]]预测工具，由 Sean Taylor 和 Benjamin Letham 开发，旨在让非统计学专家也能对业务[[Time Series Analysis|时间序列]]进行高质量预测，解决了大规模预测场景下的人机协作难题。
 
 ## 关键内容
 
-1. **历史背景**：[[Meta|Facebook]] 需要对数千条业务时间序列（日活、广告收入、服务器负载等）做预测，但传统方法（[[ARIMA 模型|ARIMA]]、[[指数平滑]]）对使用者专业要求极高，无法扩展到业务分析师和产品经理。
+1. **历史背景**：[[Meta|Facebook]] 需要对数千条业务[[Time Series Analysis|时间序列]]（日活、广告收入、[[服务]]器负载等）做预测，但传统方法（[[ARIMA 模型|ARIMA]]、[[指数平滑]]）对使用者专业要求极高，无法扩展到业务分析师和产品经理。
 
 2. **设计哲学**：与其追求全自动化，不如让人机协作变得更容易。Prophet 提供直观的参数接口（如节假日、突变点），让领域专家注入业务知识，而非统计学知识。
 

@@ -22,6 +22,13 @@ relates_to:
   type: caused
   confidence: 0.99
   note: 共同发明者
+- target: "[[Attention Is All You Need]]"
+  type: authored
+  confidence: 0.99
+  note: 第一作者
+- target: "[[Google Brain]]"
+  type: member_of
+  confidence: 0.95
 supersedes: null
 ---
 
@@ -29,7 +36,7 @@ supersedes: null
 
 ## 概述
 
-计算机科学家，[[Transformer 论文]]第一作者，与 [[Google]] Brain、[[Google]] Research 和多伦多大学的研究者共同提出了 [[Transformer 架构]]。
+[[计算]]机科学家，[[Transformer 论文]]第一作者，与 [[Google]] Brain、[[Google]] Research 和多伦多大学的研究者共同提出了 [[Transformer 架构]]。
 
 ## 关键内容
 

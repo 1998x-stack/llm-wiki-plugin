@@ -47,7 +47,7 @@ Bahdanau、Cho、Bengio 在 ICLR 2015 发表的论文，首次提出[[注意力�
 
 ### 历史影响
 
-该论文是[[注意力机制（Attention Mechanism）|注意力机制]]的**开山之作**，直接启发了 Luong (2015) 的[[Luong注意力|点积注意力]]、Vaswani (2017) 的 [[Self-Attention机制|Self-Attention]] 和 [[Transformer 架构]]。现代所有 LLM（GPT、Claude 等）的核心机制均可追溯至此。
+该论文是[[注意力机制（Attention Mechanism）|注意力机制]]的**开山之作**，直接启发了 Luong (2015) 的[[Luong注意力|点积注意力]]、Vaswani (2017) 的 [[Self-Attention机制|Self-Attention]] 和 [[Transformer 架构]]。现代所有 LLM（GPT、[[Claude_Code|Claude]] 等）的核心机制均可追溯至此。
 
 ## 来源
 

@@ -23,7 +23,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **问题背景**：在语言模型中表示用户和物品 ID 是一个棘手问题。[[P5 论文]] 探索了两种策略：P5-I（Independent Tokens）和 P5-S（Sub-word + Whole-word [[Embedding]]）。
+1. **问题背景**：在[[Language-Model|语言模型]]中表示用户和物品 ID 是一个棘手问题。[[P5 论文]] 探索了两种策略：P5-I（Independent Tokens）和 P5-S（Sub-word + Whole-word [[Embedding]]）。
 
 2. **P5-I 策略（失败方案）**：为每个用户和物品分配一个独立的新词元（token），加入 T5 词汇表。实验证明效果较差，因为大量新引入的词元和[[Embedding|嵌入向量]]无法像原始 T5 的子词单元那样被充分训练。
 
@@ -33,7 +33,7 @@ supersedes: null
 
 5. **实验验证**：在[[序列推荐]]和直接推荐任务上，P5-S 显著优于 P5-I，验证了 Whole-word [[Embedding]] 的有效性。
 
-6. **与[[语义 ID]]的关系**：Whole-word [[Embedding]] 仍依赖数字 ID 作为基础表示，后续研究指出这与预训练语言模型的语义空间存在天然鸿沟。[[LC-Rec]] 等工作用[[语义 ID|语义标识符]]替代数字 ID，进一步解决了这一问题。
+6. **与[[语义 ID]]的关系**：Whole-word [[Embedding]] 仍依赖数字 ID 作为基础表示，后续研究指出这与预训练[[Language-Model|语言模型]]的语义空间存在天然鸿沟。[[LC-Rec]] 等工作用[[语义 ID|语义标识符]]替代数字 ID，进一步解决了这一问题。
 
 ## 来源
 - Shijie Geng et al. — P5: Recommendation as Language Processing, RecSys 2022 (arXiv:2203.13366)

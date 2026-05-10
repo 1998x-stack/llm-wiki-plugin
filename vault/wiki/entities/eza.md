@@ -22,7 +22,7 @@ supersedes: null
 
 ## 概述
 
-eza 是 `ls` 命令的现代替代品（exa 的维护分支），用 Rust 编写。支持 Git 状态标注、文件图标、树形视图，可完全替代 `tree` 命令，通过 `cargo install eza` 安装。
+eza 是 `ls` 命令的现代替代品（exa 的维护分支），用 Rust 编写。支持 Git 状态[[标注]]、文件图标、树形视图，可完全替代 `tree` 命令，通过 `cargo install eza` 安装。
 
 ## 关键内容
 

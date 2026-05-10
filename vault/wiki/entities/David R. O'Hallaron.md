@@ -26,7 +26,7 @@ entity_type: person
 
 ## 关键内容
 
-1. **学术背景**：CMU 教授，长期从事计算机系统教育和研究。
+1. **学术背景**：CMU 教授，长期从事[[计算]]机系统教育和研究。
 
 2. **[[深入理解计算机系统（CSAPP）|CSAPP]] 贡献**：与 Bryant 共同创建 15-213 课程和 [[深入理解计算机系统（CSAPP）|CSAPP]] 教材，设计了精巧绝伦、难度循序渐进的实验体系（Data Lab、Bomb Lab、Attack Lab、Shell Lab 等），配有自动[[Better Bit Bureau|评分服务器]]。
 

@@ -14,6 +14,7 @@ relates_to:
   - {target: 隐式反馈, type: relates_to}
   - {target: 协同过滤, type: relates_to}
   - {target: Netflix Prize, type: compares_to}
+  - {target: WR-MF, type: compares_to}
 supersedes: null
 ---
 
@@ -31,10 +32,10 @@ Rendle 等人 2009 年发表于 UAI 的里程碑论文，提出[[BPR|贝叶斯�
 3. **核心贡献**：
    - 提出 BPR-OPT 目标函数：基于[[托马斯·贝叶斯|贝叶斯]] MAP 推导的 pairwise 排序优化准则
    - 证明 BPR-OPT 是 AUC 的可微光滑近似
-   - 提出 LearnBPR 算法：基于 bootstrap 随机采样的高效 SGD 学习算法
+   - 提出 LearnBPR [[算法]]：基于 bootstrap 随机采样的高效 SGD 学习[[算法]]
    - 展示 BPR 框架的模型无关性，实例化为 BPR-MF 和 BPR-kNN
 
-4. **实验验证**：在 Rossmann（在线购物，~10K 用户，~4K 物品，426K 交互）和 [[Netflix]]（DVD 租赁，~10K 用户，~5K 物品，565K 交互）两个真实数据集上验证，BPR-MF 显著优于 SVD-MF 和 WR-MF。
+4. **实验验证**：在 Rossmann（在线购物，~10K 用户，~4K 物品，426K 交互）和 Netflix（DVD 租赁，~10K 用户，~5K 物品，565K 交互）两个真实数据集上验证。对比方法包括 Most-Popular、Cosine-kNN、SVD-MF（使用 pointwise 回归损失的矩阵分解）、WR-MF（Weighted Regularized MF，Hu et al. 2008 提出的加权正则化矩阵分解，为未交互物品分配较低但非零的置信度）。实验结果表明 BPR-MF 显著优于 SVD-MF 和 WR-MF，在不同隐向量维度下均取得最好性能，证明了优化准则的重要性。
 
 5. **金句**："The prediction quality does not only depend on the model but also largely on the optimization criterion."（预测质量不仅取决于模型本身，也在很大程度上取决于优化准则。）
 

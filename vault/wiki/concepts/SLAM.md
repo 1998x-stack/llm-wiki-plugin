@@ -59,7 +59,7 @@ SLAM（Simultaneous [[Localization]] and Mapping，同时定位与建图）是�
 
 ### 地图表示形式
 
-- **占据栅格地图**（Occupancy Grid）：将环境离散为网格，每格标注占据概率。直观完整，适合激光雷达。
+- **占据栅格地图**（Occupancy Grid）：将环境离散为网格，每格[[标注]]占据概率。直观完整，适合激光雷达。
 - **特征地图**（Feature-based）：用角点、线段等几何特征表示环境。存储高效，依赖特征提取。
 - **拓扑地图**（Topological）：用图结构表示连接关系。抽象度高，适合大尺度导航。
 
@@ -74,7 +74,7 @@ SLAM（Simultaneous [[Localization]] and Mapping，同时定位与建图）是�
 ### 现代发展
 
 - **视觉 SLAM**：用摄像头替代激光雷达，ORB-SLAM3、LIO-SAM 等方案广泛使用
-- **深度学习 SLAM**：SuperPoint/SuperGlue 替代手工特征，神经网络估计深度
+- **深度学习 SLAM**：SuperPoint/SuperGlue 替代[[特征工程（Feature Engineering）|手工特征]]，神经网络估计深度
 - **语义 SLAM**：在几何地图上叠加物体类别信息（"桌子在 A 处，椅子在 B 处"）
 - **神经场景表示**：NeRF、3D Gaussian Splatting 作为新型地图形式
 

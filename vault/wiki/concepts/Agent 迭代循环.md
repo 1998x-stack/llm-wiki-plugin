@@ -29,7 +29,7 @@ supersedes: null
 # Agent 迭代循环
 
 ## 概述
-Agent 迭代循环是一种自主编码代理的工作模式，每个迭代周期严格实现一个 User Story：选定任务 → 实现功能 → 验证通过 → 更新进度 → Git 提交 → 更新交接日记 → 输出[[完成信号机制（Completion Signal）|完成信号]]，由外循环决定是否继续下一轮迭代。
+Agent 迭代循环是一种自主编码代理的工作模式，每个迭代周期严格实现一个 User Story：选定任务 → 实现功能 → 验证通过 → 更新进度 → [[Git Commit|Git 提交]] → 更新交接日记 → 输出[[完成信号机制（Completion Signal）|完成信号]]，由外循环决定是否继续下一轮迭代。
 
 ## 关键内容
 
@@ -54,7 +54,7 @@ Agent 迭代循环是一种自主编码代理的工作模式，每个迭代周�
 
 5. **异常处理路径**：
    - **Bug 卡住**：尝试 2 次 → 回退 → 标记 BLOCKED → 降级优先级 → 切换下一个 Story
-   - **上下文将满**：stash 未完成工作 → 标注 Early exit → 提交干净状态 → 输出 COMPLETE
+   - **上下文将满**：stash 未完成工作 → [[标注]] Early exit → 提交干净状态 → 输出 COMPLETE
    - **依赖未满足**：检查 dependencies 字段，前置 Story 未完成时跳过
 
 6. **与 [[Agent Harness模式]] 的关系**：Agent 迭代循环是 Harness 模式在自主编码场景下的具体实现。Harness 提供启动序列、验证工具、状态文件等基础设施，循环逻辑定义 Agent 的工作节奏。

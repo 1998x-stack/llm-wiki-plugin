@@ -24,7 +24,7 @@ supersedes: null
 
 1. **会议信息**：第16届 ACM Conference on Recommender Systems，2022年9月举行，是推荐系统领域最顶级的学术会议之一。
 
-2. **[[P5 论文]]的发表**：[[P5 论文]]（"[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict Paradigm"）在此会议发表，被选为杰出论文之一，引用量迅速增长至 545+。
+2. **[[P5 论文]]的发表**：[[P5 论文]]（"[[生成式推荐 (LLM)|Recommendation as Language Processing]] (RLP): A Unified Pretrain, [[个性化 Prompt|Personalized Prompt]] & Predict [[Paradigm]]"）在此会议发表，被选为杰出论文之一，引用量迅速增长至 545+。
 
 3. **历史意义**：RecSys 2022 见证了"LLM for Recommendation"方向的早期突破，[[P5 论文]]帮助推荐系统社区形成了"语言是连接不同推荐任务的天然桥梁"的重要共识。
 

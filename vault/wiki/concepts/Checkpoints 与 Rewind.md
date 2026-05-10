@@ -32,7 +32,7 @@ Checkpoints 保存 [[Claude Code]] 对话状态快照（消息、文件修改、
 
 2. **访问方式**：
    - 键盘快捷键：按两次 `Esc`（`Esc` + `Esc`）打开 checkpoint 界面
-   - Slash Command：`/rewind`（别名：`/checkpoint`）
+   - [[Slash Commands|Slash Command]]：`/rewind`（别名：`/checkpoint`）
 
 3. **Rewind 选项**：
    - **恢复代码和对话**：文件和消息都恢复到那个 checkpoint

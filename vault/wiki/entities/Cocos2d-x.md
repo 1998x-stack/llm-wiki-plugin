@@ -31,7 +31,7 @@ Cocos2d-x 是开源跨平台 2D 游戏引擎，通过官方 cocos2d-lua binding 
 
 1. **Lua 绑定机制**：Cocos2d-x 通过 `tolua++` 自动生成 C++ → Lua 的 wrapper 代码，C++ 类以 `cc.ClassName` 形式暴露给 Lua。引擎核心类（Scene、Layer、Sprite 等）均可在 Lua 侧直接调用。
 
-2. **节点系统**：以 Scene/Layer 为根，Sprite 等节点通过 `addChild(node, zOrder)` 构建层级树。位置用 `cc.p(x, y)` 表示，锚点/位置/旋转在 Lua 侧设置。
+2. **节点系统**：以 Scene/Layer 为根，Sprite 等节点通过 `addChild(node, zOrder)` 构建层级树。位置用 `cc.p(x, y)` 表示，锚点/位置/旋转在 Lua 侧[[Settings|设置]]。
 
 3. **动作系统**：`cc.MoveBy`、`cc.MoveTo`、`cc.Sequence`、`cc.RepeatForever` 等动作对象通过 `sprite:runAction(action)` 驱动，是 Cocos2d 的核心动画机制。
 

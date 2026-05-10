@@ -32,11 +32,11 @@ Joseph Konstan 是 [[GroupLens|GroupLens 研究组]]创始人之一，ACM Fellow
 
 ## 关键内容
 
-1. **[[GroupLens]] 部署报告**：1997 年，Konstan 等人在《Communications of the ACM》上发表了更详细的 [[GroupLens]] 部署报告（Konstan, J. A., Miller, B. N., Maltz, D., Herlocker, J. L., Gordon, L. R., & Riedl, J. (1997). "[[GroupLens]]: Applying [[协同过滤|Collaborative Filtering]] to Usenet News." *Communications of the ACM*, 40(3), pp. 77-87），记录了为期七周的公开试验中 250 名用户提交 47,569 条评分、生成超过 600,000 条预测的关键实验发现。
+1. **[[GroupLens]] 部署报告**：1997 年，Konstan 等人在《Communications of the ACM》上发表了更详细的 [[GroupLens]] 部署报告（Konstan, J. A., Miller, B. N., Maltz, D., Herlocker, J. L., Gordon, L. R., & Riedl, J. (1997). "[[GroupLens]]: Applying [[协同过滤|Collaborative Filtering]] to [[Usenet]] News." *Communications of the ACM*, 40(3), pp. 77-87），记录了为期七周的公开试验中 250 名用户提交 47,569 条评分、生成超过 600,000 条预测的关键实验发现。
 
 2. **关键实验发现**：
    - 个性化预测显著优于非个性化平均分
-   - 按新闻组分区提升评分密度，缓解数据稀疏问题
+   - 按[[Usenet|新闻组]]分区提升评分密度，缓解数据稀疏问题
    - 系统实现了 95% 预测请求在 2 秒内完成、评分提交在 1 秒内完成的性能目标
 
 3. **[[MovieLens|MovieLens 数据集]]文档**：2015 年与 F. Maxwell Harper 联合撰写了 "The [[MovieLens|MovieLens Dataset]]s: History and Context"（*ACM Transactions on Interactive Intelligent Systems*, 5(4), Article 19），这是推荐系统领域最广泛引用的数据集文档之一。

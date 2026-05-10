@@ -19,15 +19,15 @@ entity_type: tool
 # gopls
 
 ## 概述
-Go 官方语言服务器，由 [[Google]] Go 团队在 `golang.org/x/tools` 中维护，提供完整的 Go 语言 LSP 支持，包括代码补全、跳转定义、诊断、重构等功能。
+Go 官方语言[[服务]]器，由 [[Google]] Go 团队在 `golang.org/x/tools` 中维护，提供完整的 Go 语言 LSP 支持，包括代码补全、跳转定义、诊断、[[重构]]等功能。
 
 ## 关键内容
 
 1. **历史**：2018-01 启动（原名 langserver-go），2019-05 v0.1.0 首次发布，2023-04 v0.11.0 泛型完整支持，2025-01 v0.17.x 当前稳定版。
 
-2. **架构**：位于 `golang.org/x/tools/gopls`，包含 LSP 协议层（server.go/cache/source）、语言分析核心（completion/hover/rename）、CLI 命令（check/format 等）、配置管理。
+2. **架构**：位于 `golang.org/x/tools/gopls`，包含 LSP 协议层（server.go/cache/source）、语言分析核心（completion/hover/rename）、CLI 命令（check/format 等）、[[Configuration|配置]]管理。
 
-3. **关键特性**：Go modules 支持、[[Semantic Tokens（语义标记）|语义高亮]]、Call Hierarchy、Inlay Hints、Workspace symbols、零配置 workspace、多工作区支持。
+3. **关键特性**：Go modules 支持、[[Semantic Tokens（语义标记）|语义高亮]]、Call Hierarchy、Inlay Hints、Workspace symbols、零[[Configuration|配置]] workspace、多工作区支持。
 
 ## 来源
 - [[04_go_lsp]] — Go LSP 工具完整调研

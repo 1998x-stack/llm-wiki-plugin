@@ -22,6 +22,12 @@ relates_to:
   - target: "jq"
     type: compares_to
     confidence: 0.8
+  - target: "[[GrepTool]]"
+    type: implements
+    confidence: 0.8
+  - target: "[[Tool Ecosystem]]"
+    type: part_of
+    confidence: 0.7
 supersedes: null
 ---
 
@@ -35,7 +41,7 @@ ripgrep（简称 `rg`）是一个用 Rust 编写的高性能递归搜索工具�
 
 1. **性能优势**：多线程并行搜索 + SIMD 优化，处理含 `node_modules` 的大型 monorepo 时，同等任务从 45s 降至 0.4s（约 100 倍提升）。
 2. **Git 感知**：默认读取 `.gitignore` 和 `.rgignore`，自动跳过忽略目录，无需额外参数；`-l` 只输出文件名，`--json` 支持管道结构化处理。
-3. **AI Agent 价值**：Agent 代码库搜索首选工具——Git 感知避免无关上下文污染，`--json` 输出可直接 pipe 给 `jq` 进行程序化处理，行号精确引用减少幻觉。
+3. **AI Agent 价值**：Agent 代码库搜索首选工具——Git 感知避免无关[[Context Window Pollution|上下文污染]]，`--json` 输出可直接 pipe 给 `jq` 进行程序化处理，行号精确引用减少幻觉。
 
 ## 来源
 

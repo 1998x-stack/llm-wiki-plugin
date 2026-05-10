@@ -55,7 +55,7 @@ class SandboxBackendProtocol(BackendProtocol):
     async def aexecute(...): ...
 ```
 
-仅当 backend 实现此协议，`execute` 工具才对 Agent 可见（FilesystemMiddleware 在运行时动态检查）。`ExecuteResponse` 含 `output`（stdout+stderr 合并）、`exit_code`、`truncated`。
+仅当 backend 实现此协议，`execute` 工具才对 Agent 可见（FilesystemMiddleware 在运行时动态检查）。`[[Execute]]Response` 含 `output`（stdout+stderr 合并）、`exit_code`、`truncated`。
 
 ### 内置后端实现
 

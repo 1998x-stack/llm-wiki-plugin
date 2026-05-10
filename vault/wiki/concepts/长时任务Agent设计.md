@@ -41,10 +41,10 @@ supersedes: null
 **第一阶段：[[Initializer Agent|初始化 Agent]]**
 
 首次会话使用专门提示，负责搭建环境：
-1. 创建 `init.sh` 脚本（启动开发服务器）
+1. 创建 `init.sh` 脚本（启动开发[[服务]]器）
 2. 创建 `claude-progress.txt`（会话间状态传递文件）
 3. 基于用户提示生成**完整功能需求列表**（JSON 格式，每条功能含步骤和 `passes: false` 状态）
-4. 初始 git commit，展示已添加的文件
+4. 初始 [[Git Commit|git commit]]，展示已添加的文件
 
 功能列表示例（200+ 条，全部初始标记为 failing）：
 ```json
@@ -84,13 +84,13 @@ supersedes: null
 
 **"不可接受移除测试"**：需强措辞："移除或编辑测试是不可接受的行为，这会导致缺失或有 Bug 的功能。"
 
-**浏览器自动化测试的必要性**：代码层面测试（单元测试、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。
+**浏览器自动化测试的必要性**：代码层面测试（[[单元测试]]、curl）常常无法发现端到端 Bug；必须像真实用户一样通过浏览器测试，才能发现功能是否真正工作。
 
-**视觉局限**：Claude 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。
+**视觉局限**：[[Claude_Code|Claude]] 的视觉和浏览器自动化工具有限制——无法通过 Puppeteer 看到原生浏览器 alert 弹窗，依赖这些弹窗的功能往往更有 Bug。
 
 ### 与多 Agent 架构的关系
 
-两阶段设计是 [[Anthropic]] 早期长时 Harness 的探索。后续研究（见[[生成器-评估器架构]]）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + [[生成器|Generator]] + Evaluator）系统。当模型能力提升后（Opus 4.6），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。
+两阶段设计是 [[Anthropic]] 早期长时 Harness 的探索。后续研究（见[[生成器-评估器架构]]）在此基础上增加了 Evaluator 层，发展为三 Agent（Planner + [[生成器|Generator]] + Evaluator）系统。当模型能力提升后（[[Claude_Opus_4.6|Opus 4.6]]），Sprint 分解结构可被移除，但初始化/状态传递的核心思想依然有效。
 
 ## 来源
 

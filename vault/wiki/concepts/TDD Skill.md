@@ -18,7 +18,7 @@ relates_to:
 # TDD Skill
 
 ## 概述
-[[Superpowers]] 最严苛的刚性技能，以"NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST"为铁律，构建带强制验证门的 5 阶段 RED-GREEN-REFACTOR 循环。
+[[Superpowers]] 最严苛的刚性[[Skills|技能]]，以"NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST"为铁律，构建带强制验证门的 5 阶段 RED-GREEN-REFACTOR 循环。
 
 ## 关键内容
 
@@ -30,7 +30,7 @@ relates_to:
 2. **适用范围**：
    - ✅ 新功能实现
    - ✅ Bug 修复
-   - ✅ 重构
+   - ✅ [[重构]]
    - ✅ 行为变更
    - ❓ 一次性原型（询问人类）
 
@@ -39,7 +39,7 @@ relates_to:
    - **Phase 2 — 验证 RED**：确认测试正确失败
    - **Phase 3 — GREEN**：写最少实现代码
    - **Phase 4 — 验证 GREEN**：确认测试通过
-   - **Phase 5 — REFACTOR**：重构（保持测试通过）
+   - **Phase 5 — REFACTOR**：[[重构]]（保持测试通过）
 
 4. **测试要求**：
    - 每个测试只测一个行为

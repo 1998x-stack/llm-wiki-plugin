@@ -21,7 +21,7 @@ supersedes: null
 # Claude Code 记忆系统
 
 ## 概述
-Memory 系统让 [[Claude Code]] 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 `CLAUDE.md`，Claude 在合适场景下自动加载。
+Memory 系统让 [[Claude Code]] 在不同会话之间保留上下文。用户可将团队规范、项目规则、个人偏好和目录级约束写进 `CLAUDE.md`，[[Claude_Code|Claude]] 在合适场景下自动加载。
 
 ## 关键内容
 
@@ -36,9 +36,9 @@ Memory 系统让 [[Claude Code]] 在不同会话之间保留上下文。用户�
    - `/memory`：打开并编辑记忆文件，在不同范围间切换
    - `#` 前缀：快速把规则写入记忆（如 `# 这个项目始终使用 TypeScript 严格模式`）
 
-3. **自动加载机制**：Claude 会根据当前工作目录和任务上下文，自动判断加载哪些记忆文件，避免一次性把所有记忆塞进上下文。
+3. **自动加载机制**：[[Claude_Code|Claude]] 会根据当前工作目录和任务上下文，自动判断加载哪些记忆文件，避免一次性把所有记忆塞进上下文。
 
-4. **与 [[Agent Skills|Skills]] 的区别**：记忆是静态的规则和偏好，[[Agent Skills|Skills]] 是可复用的能力包（含脚本、模板、参考文件）。记忆告诉 Claude"怎么做"，[[Agent Skills|Skills]] 告诉 Claude"能做什么"。
+4. **与 [[Agent Skills|Skills]] 的区别**：记忆是静态的规则和偏好，[[Agent Skills|Skills]] 是可复用的能力包（含脚本、模板、参考文件）。记忆告诉 [[Claude_Code|Claude]]"怎么做"，[[Agent Skills|Skills]] 告诉 [[Claude_Code|Claude]]"能做什么"。
 
 ## 来源
 - [[02-memory/README.md]] — Claude HowTo Memory 指南

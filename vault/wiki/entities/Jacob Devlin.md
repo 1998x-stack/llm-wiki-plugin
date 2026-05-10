@@ -37,7 +37,7 @@ supersedes: null
 
 ## 概述
 
-Jacob Devlin 是 [[Google]] AI Language 的研究科学家，[[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)|BERT 论文]]的第一作者，对双向预训练语言模型的发展做出了开创性贡献。
+Jacob Devlin 是 [[Google]] AI Language 的研究科学家，[[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding (2019 论文)|BERT 论文]]的第一作者，对双向预训练[[Language-Model|语言模型]]的发展做出了开创性贡献。
 
 ## 关键内容
 

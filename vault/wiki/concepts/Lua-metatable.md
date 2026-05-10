@@ -17,7 +17,7 @@ supersedes: null
 Lua 通过 metatable 机制允许对 table 的行为进行拦截和重定义，是实现 OOP、运算符重载、原型继承的基础。
 
 ## 关键内容
-1. **设置与获取**：`setmetatable(t, mt)` 为 table `t` 指定 metatable `mt`；`getmetatable(t)` 取回。每个 table 最多关联一个 metatable。
+1. **[[Settings|设置]]与获取**：`setmetatable(t, mt)` 为 table `t` 指定 metatable `mt`；`getmetatable(t)` 取回。每个 table 最多关联一个 metatable。
 2. **`__index` 元方法**：访问 table 中不存在的字段时触发。可以是函数 `function(tbl, key) ... end` 或另一张 table（原型查找）。原型链继承即利用此机制：`setmetatable(t, {__index = proto})`，访问 `t` 中不存在的字段时自动在 `proto` 中查找。
 3. **`__newindex` 元方法**：对不存在的字段赋值时触发，可用于只读 table 或代理写入。
 4. **运算符重载**：`__add`/`__sub`/`__mul`/`__div`/`__mod`/`__unm`（一元负）等对应算术操作；`__eq`/`__lt`/`__le` 对应比较操作。

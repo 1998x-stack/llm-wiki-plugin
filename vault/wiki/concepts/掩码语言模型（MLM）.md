@@ -31,7 +31,7 @@ supersedes: null
 
 ## 概述
 
-掩码语言模型（Masked Language Model, MLM）是 BERT 的核心预训练任务，通过随机掩盖输入序列中 15% 的词并让模型预测被遮盖的词，强制模型同时利用左右两侧上下文，实现真正的双向语言理解。
+掩码[[Language-Model|语言模型]]（Masked Language Model, MLM）是 BERT 的核心预训练任务，通过随机掩盖输入序列中 15% 的词并让模型预测被遮盖的词，强制模型同时利用左右两侧上下文，实现真正的双向语言理解。
 
 ## 关键内容
 
@@ -41,7 +41,7 @@ MLM 的工作流程：
 
 1. **随机掩盖**：从输入序列中随机选择 15% 的词进行掩盖
 2. **模型预测**：模型根据未被掩盖的上下文预测被遮盖的词
-3. **损失计算**：仅对被掩盖位置的预测计算[[二元交叉熵|交叉熵损失]]
+3. **损失[[计算]]**：仅对被掩盖位置的预测[[计算]][[二元交叉熵|交叉熵损失]]
 
 ```
 原始句子：The cat sat on the mat
@@ -70,7 +70,7 @@ MLM 的工作流程：
 
 ### 与 Word2Vec CBOW 的关系
 
-MLM 可视为 [[Word2Vec]] 中 CBOW（Continuous Bag of Words）的**深度化扩展**：
+MLM 可视为 [[Word2Vec]] 中 CBOW（[[CBOW|Continuous Bag of Words]]）的**深度化扩展**：
 - CBOW：用周围词的**平均嵌入**预测中心词（浅层线性模型）
 - MLM：用深层 [[Transformer架构]] 编码的上下文化表示预测中心词（非线性、多层、[[Self-Attention机制|自注意力]]）
 
@@ -85,7 +85,7 @@ MLM 是 [[BERT]] 两大预训练任务之一（另一个是 [[下一句预测（
 
 ### 后继影响
 
-MLM [[规范化理论|范式]]被后续多个模型采用：RoBERTa、DistilBERT、ALBert、DeBERTa、XLM-R 等。MLM 也成为评估语言模型双向理解能力的标准预训练任务。
+MLM [[规范化理论|范式]]被后续多个模型采用：RoBERTa、DistilBERT、ALBert、DeBERTa、XLM-R 等。MLM 也成为评估[[Language-Model|语言模型]]双向理解能力的标准预训练任务。
 
 ## 来源
 

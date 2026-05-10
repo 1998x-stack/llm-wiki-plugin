@@ -18,8 +18,8 @@ supersedes: null
 
 ## 关键内容
 1. **Engine 帧率控制**：`minFps/maxFps` 设定帧率下限/上限（防止极低帧时步长过大）；`maxInactiveFps` 在后台/失焦时降低帧率节省资源；`timeStepSmoothing` 指定帧率平滑窗口（帧数），消除尖刺。
-2. **Engine 状态查询**：`IsInitialized()/IsExiting()/IsHeadless()` 检查引擎状态；`headless` 用于服务端无渲染模式判断；`Exit()` 主动退出引擎。
-3. **Engine 调试工具**：`DumpProfiler()` 打印性能分析数据；`DumpResources(dumpFileName)` 列出已加载资源；`DumpMemory()` 输出内存统计；`CreateConsole()/CreateDebugHud()` 动态创建调试界面。
+2. **Engine 状态查询**：`IsInitialized()/IsExiting()/IsHeadless()` 检查引擎状态；`headless` 用于[[服务]]端无渲染模式判断；`Exit()` 主动退出引擎。
+3. **Engine 调试工具**：`DumpProfiler()` 打印[[性能分析]]数据；`DumpResources(dumpFileName)` 列出已加载资源；`DumpMemory()` 输出内存统计；`CreateConsole()/CreateDebugHud()` 动态创建调试界面。
 4. **Engine 运行控制**：`RunFrame()` 手动推进一帧（非标准用法，通常由引擎自动调用）；`pauseMinimized` 控制最小化时是否暂停；`autoExit` 控制关闭窗口时是否自动退出。
 5. **Time 时间采样**：`timeStep`（当前帧 delta-time，秒）是驱动物理/动画/移动的核心值；`elapsedTime` 为引擎启动以来累计秒数；`frameNumber` 为帧计数器（uint）。
 6. **Time 工具方法**：`GetSystemTime()` 返回 Unix 时间戳（毫秒）；`GetTimeStamp()` 返回格式化时间字符串；`Sleep(ms)` 阻塞当前线程（谨慎使用，会卡住[[游戏主循环模式|主循环]]）；`timerPeriod` 为系统定时器精度（毫秒）。

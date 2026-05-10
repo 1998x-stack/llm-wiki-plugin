@@ -23,7 +23,7 @@ supersedes: null
 # Lua 控制流
 
 ## 概述
-Lua 提供 if/elseif/else 条件语句和三种循环（while、for 数值/泛型、repeat-until），配合 break 控制流程。
+Lua 提供 if/elseif/else [[switch语句|条件语句]]和三种循环（while、for 数值/泛型、repeat-until），配合 break 控制流程。
 
 ## 关键内容
 
