@@ -129,33 +129,50 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">人物</span></div>
 </div>
   <div class="content">
     <h1 id="jurgen-schmidhuber">Jürgen Schmidhuber</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>德国<a href="../concepts/计算.html">计算</a>机科学家，AI 研究者，LSTM 共同发明人。作为 <a href="Sepp Hochreiter.html">Sepp Hochreiter</a> 的博士导师，与 Hochreiter 于 1997 年共同提出 LSTM 架构，通过<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>机制解决 RNN <a href="../concepts/梯度消失.html">梯度消失</a>问题，对深度学习序列建模产生深远影响。</p>
+<p>德国计算机科学家，AI研究者，LSTM共同发明人。作为<a href="Sepp Hochreiter.html">Sepp Hochreiter</a>的博士导师，与Hochreiter于1997年共同提出LSTM架构，通过门控机制解决RNN梯度消失问题，对深度学习序列建模产生深远影响。被誉为"现代AI之父"之一。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>LSTM 共同发明</strong>：1997 年，Schmidhuber 与学生 <a href="Sepp Hochreiter.html">Sepp Hochreiter</a> 在 <em>Neural Computation</em> 发表《<a href="../concepts/LSTM（长短期记忆网络）.html">Long Short-Term Memory</a>》，引入<strong><a href="../concepts/细胞状态（Cell State）.html">细胞状态（Cell State）</a></strong>和三个门（<a href="../concepts/遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>、<a href="../concepts/输入门（Input Gate）.html">输入门（Input Gate）</a>、<a href="../concepts/输出门（Output Gate）.html">输出门（Output Gate）</a>），使神经网络首次能够学习跨越数百时间步的长期依赖。</li>
-<li><strong>技术贡献</strong>：LSTM 的核心思想是让梯度通过加法路径直接传递而不衰减（∂Cₜ/∂Cₜ₋₁ = fₜ），当<a href="../concepts/遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时，梯度可以无损流过整个序列。这一设计从根本上解决了 <a href="../concepts/梯度消失.html">梯度消失</a> 问题。</li>
-<li><strong>学术影响</strong>：LSTM 论文被引用超过 98,000 次，成为语音识别（<a href="Google.html">Google</a> Voice 2015）、机器翻译（<a href="Google.html">Google</a> 翻译 2016）、<a href="../concepts/Time Series Analysis.html">时间序列</a>预测等领域的标准架构，统治序列学习领域近 20 年。</li>
+<li>
+<p><strong>LSTM共同发明</strong>：1997年，Schmidhuber与学生<a href="Sepp Hochreiter.html">Sepp Hochreiter</a>在<em>Neural Computation</em>发表《<a href="../concepts/LSTM（长短期记忆网络）.html">Long Short-Term Memory</a>》，引入<strong><a href="../concepts/细胞状态（Cell State）.html">细胞状态（Cell State）</a></strong>和三个门（<a href="../concepts/遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>、<a href="../concepts/输入门（Input Gate）.html">输入门（Input Gate）</a>、<a href="../concepts/输出门（Output Gate）.html">输出门（Output Gate）</a>），使神经网络首次能够学习跨越数百时间步的长期依赖。共同开发了<a href="../concepts/常误差流（Constant Error Carousel）.html">常误差流</a>（CEC）机制，从根本上解决梯度问题。</p>
+</li>
+<li>
+<p><strong>技术贡献</strong>：LSTM的核心思想是让梯度通过加法路径直接传递而不衰减（∂Cₜ/∂Cₜ₋₁ = fₜ），当<a href="../concepts/遗忘门（Forget Gate）.html">遗忘门</a>接近1时，梯度可以无损流过整个序列。这一设计从根本上解决了<a href="../concepts/梯度消失.html">梯度消失</a>问题。他还积极推动神经网络压缩、元学习、强化学习等领域发展。</p>
+</li>
+<li>
+<p><strong>学术影响</strong>：LSTM论文被引用超过98,000次，成为语音识别（<a href="Google.html">Google</a> Voice 2015）、机器翻译（<a href="Google.html">Google</a>翻译2016）、<a href="../concepts/Time Series Analysis.html">时间序列</a>预测等领域的标准架构，统治序列学习领域近20年。</p>
+</li>
+<li>
+<p><strong>学术生涯</strong>：长期担任瑞士IDSIA（Dalle Molle人工智能研究所）科学主任，现创办AI公司NNAISENSE。以积极为自己和学生的历史贡献争取认可而闻名。</p>
+</li>
+<li>
+<p><strong>师生合作</strong>：与<a href="Sepp Hochreiter.html">Sepp Hochreiter</a>的合作被称为深度学习史上最具有影响力的师生组合之一。他们的协作模式展示了深度学习研究中理论分析与实践创新的完美结合。</p>
+</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>
+<li><span style="color:#e74c3c" title="broken link">12-hochreiter-1997-lstm.md</span> — 作者信息和贡献介绍</li>
 <li><a href="Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — Hochreiter, S., &amp; Schmidhuber, J. (1997). Neural Computation, 9(8), 1735–1780</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/04_lstm_1997.md</span> — LSTM 核心原理与代码实现</li>
 </ul>
 <h2 id="_2">相关</h2>
 <ul>
-<li><a href="Sepp Hochreiter.html">Sepp Hochreiter</a> — relates_to（学生与合作者）</li>
-<li><a href="../concepts/LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> — extends（共同发明）</li>
-<li><a href="Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — extends（共同作者）</li>
+<li><a href="Sepp Hochreiter.html">Sepp Hochreiter</a> — supervised（博士导师与合作者）</li>
+<li><a href="../concepts/LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> — created（共同发明）</li>
+<li><a href="../concepts/常误差流（Constant Error Carousel）.html">常误差流（Constant Error Carousel）</a> — co-invented（共同发明）</li>
+<li><a href="Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — authored（共同作者）</li>
+<li><span style="color:#e74c3c" title="broken link">IDSIA</span> — affiliated_with（任职机构）</li>
+<li><span style="color:#e74c3c" title="broken link">NNAISENSE</span> — founder（创办公司）</li>
+<li><a href="../concepts/梯度消失.html">梯度消失</a> — addressed（解决的核心问题）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="Julian McAuley.html">&larr; Julian McAuley</a>
+    <a href="Jurgen Schmidhuber.html">&larr; Jurgen Schmidhuber</a>
     <a href="KAIROS.html">KAIROS &rarr;</a>
   </div>
 </div>

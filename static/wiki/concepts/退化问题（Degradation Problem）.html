@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>深度神经网络中出现的反直觉现象：随着网络层数增加，训练误差（非测试误差）反而升高，表明深层网络无法有效学习，甚至学不会简单的恒等映射。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>现象描述</strong>：在<a href="../entities/CIFAR-10 数据集.html">CIFAR-10</a>实验中，20层网络训练误差为8.75%，而56层网络为7.61%——更深的网络训练误差反而更高。这不是<span style="color:#e74c3c" title="broken link">过拟合</span>，因为训练集本身的表现也变差了。</li>
+<li><strong>现象描述</strong>：在<a href="../entities/CIFAR-10 数据集.html">CIFAR-10</a>实验中，20层网络训练误差为8.75%，而56层网络为7.61%——更深的网络训练误差反而更高。这不是<a href="过拟合.html">过拟合</a>，因为训练集本身的表现也变差了。</li>
 <li><strong>退化悖论</strong>：理论上，56层网络可以把后36层学成恒等映射，效果至少与20层网络相当。但优化<a href="算法.html">算法</a>做不到这一点——深层网络学不会恒等映射（Identity Mapping）。</li>
 <li><strong>根本原因</strong>：传统网络要求每层直接从零学习目标映射 H(x)。当网络极深时，梯度在<a href="反向传播.html">反向传播</a>过程中逐渐消失，导致浅层参数几乎无法更新。</li>
 <li><strong>解决方案</strong>：<a href="残差网络（ResNet）.html">残差网络（ResNet）</a>通过<a href="残差连接（Residual Connection）.html">残差连接（Residual Connection）</a>将学习目标改为残差 F(x) = H(x) - x。当最优解接近恒等映射时，残差 F*(x) ≈ 0，将权重推向零比学习恒等变换容易得多。</li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="迭代预算.html">&larr; 迭代预算</a>
+    <a href="迹检验.html">&larr; 迹检验</a>
     <a href="适龄男性兵员池.html">适龄男性兵员池 &rarr;</a>
   </div>
 </div>

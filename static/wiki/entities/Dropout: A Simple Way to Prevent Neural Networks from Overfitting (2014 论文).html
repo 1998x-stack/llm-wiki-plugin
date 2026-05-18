@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="dropout-a-simple-way-to-prevent-neural-networks-from-overfitting-2014">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p><a href="Nitish Srivastava.html">Nitish Srivastava</a>、<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>等人于 2014 年发表在 JMLR 的里程碑论文，正式提出<a href="../concepts/Dropout.html">Dropout</a>正则化方法。论文以极简方案解决了深度神经网络的<span style="color:#e74c3c" title="broken link">过拟合</span>危机，提供数学形式化和多种理论解释，成为深度学习标配技术之一。</p>
+<p><a href="Nitish Srivastava.html">Nitish Srivastava</a>、<a href="Geoffrey E. Hinton.html">Geoffrey E. Hinton</a>等人于 2014 年发表在 JMLR 的里程碑论文，正式提出<a href="../concepts/Dropout.html">Dropout</a>正则化方法。论文以极简方案解决了深度神经网络的<a href="../concepts/过拟合.html">过拟合</a>危机，提供数学形式化和多种理论解释，成为深度学习标配技术之一。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>问题背景与动机</strong>：深度神经网络拥有数百万参数，极易"死记硬背"训练数据导致<span style="color:#e74c3c" title="broken link">过拟合</span>。传统正则化方法（L1/<a href="../concepts/权重衰减（Weight Decay）.html">L2 正则化</a>、Early Stopping）对深度网络效果有限。论文提出了一个出人意料的简单方案：训练时随机"杀死"一些神经元，模拟生物神经系统的随机性机制。</li>
+<li><strong>问题背景与动机</strong>：深度神经网络拥有数百万参数，极易"死记硬背"训练数据导致<a href="../concepts/过拟合.html">过拟合</a>。传统正则化方法（L1/<a href="../concepts/权重衰减（Weight Decay）.html">L2 正则化</a>、Early Stopping）对深度网络效果有限。论文提出了一个出人意料的简单方案：训练时随机"杀死"一些神经元，模拟生物神经系统的随机性机制。</li>
 <li><strong>核心贡献与机制</strong>：正式定义 <a href="../concepts/Dropout.html">Dropout</a> 机制——训练时每个神经元以概率 p（通常 0.5）被随机置零，测试时所有神经元开启并乘以保留概率 (1-p)。现代实现常采用<a href="../concepts/Inverted Dropout.html">Inverted Dropout</a>以简化测试流程。论文提供了三种理论解释：(a) <span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span>视角：等价于 2^N 种子网络的几何平均集成；(b) 减少<span style="color:#e74c3c" title="broken link">共适应</span>：迫使每个神经元学习独立鲁棒的特征；(c) <a href="托马斯·贝叶斯.html">贝叶斯</a>近似：可解释为对权重的变分<a href="托马斯·贝叶斯.html">贝叶斯</a>近似。</li>
 <li><strong>数学形式化与实现</strong>：论文给出了完整的数学表述：$\tilde{r}_j^{(l)} \sim \text{Bernoulli}(1-p)$，$\tilde{y}^{(l)} = \tilde{r}^{(l)} \odot y^{(l)}$。详细介绍了在各种网络架构（全连接层、CNN、RNN/LSTM）中的应用方式，并给出了推荐的丢弃率（全连接层 0.5，卷积层 0.1-0.3）。论文还提到了 <a href="../concepts/Inverted Dropout.html">Inverted Dropout</a> 的实现优化策略。</li>
 <li><strong>实验验证与历史影响</strong>：论文在多个基准数据集上验证了 <a href="../concepts/Dropout.html">Dropout</a> 的有效性，包括 <span style="color:#e74c3c" title="broken link">MNIST</span>、<span style="color:#e74c3c" title="broken link">CIFAR-10</span>、<a href="../concepts/ImageNet.html">ImageNet</a> 图像分类、TIMIT 语音识别、Reuters 文本分类和 HIV 药物发现。在 <span style="color:#e74c3c" title="broken link">MNIST</span> 上 <a href="../concepts/Dropout.html">Dropout</a> 将测试错误率从 1.60% 降至 1.25%，在 <span style="color:#e74c3c" title="broken link">CIFAR-10</span> 上从 16.6% 降至 12.6%，在 <a href="../concepts/ImageNet.html">ImageNet</a> 上（在 <a href="../concepts/AlexNet.html">AlexNet</a> 中）降低了约 2% 的 Top-1 错误率。论文至 2024 年被引用超过 5 万次，后续衍生出 MC <a href="../concepts/Dropout.html">Dropout</a>、<span style="color:#e74c3c" title="broken link">DropConnect</span>、<span style="color:#e74c3c" title="broken link">Spatial Dropout</span>、<span style="color:#e74c3c" title="broken link">Stochastic Depth</span>、<span style="color:#e74c3c" title="broken link">DropPath</span> 等多种变体。此外，论文还催生了 <a href="../concepts/MC Dropout.html">Monte Carlo Dropout</a>，可用于估计预测不确定性。</li>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="Ruslan Salakhutdinov.html">Ruslan Salakhutdinov</a> — co_author</li>
 <li><a href="../concepts/Dropout.html">Dropout</a> — introduces</li>
 <li><a href="../concepts/AlexNet.html">AlexNet</a> — demonstrates_on</li>
-<li><span style="color:#e74c3c" title="broken link">过拟合</span> — addresses</li>
+<li><a href="../concepts/过拟合.html">过拟合</a> — addresses</li>
 <li><span style="color:#e74c3c" title="broken link">共适应</span> — addresses</li>
 <li><span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span> — theoretical_basis</li>
 <li><a href="../concepts/MC Dropout.html">MC Dropout</a> — related_to</li>

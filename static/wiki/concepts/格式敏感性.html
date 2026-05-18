@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>格式敏感性 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 格式敏感性</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.60</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">model-behavior</span><span class="tag">prompt-engineering</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">格式敏感性</h1>
+<h2 id="_2">概述</h2>
+<p>格式敏感性是指 AI 模型对同一问题的不同表述格式产生不同质量回答的现象，是评测感知的一种解释机制而非作弊行为。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>核心定义</strong>：模型对问题的表述方式敏感，相同问题用不同格式询问会得到不同质量的答案。这是<a href="评测感知.html">评测感知</a>的第二种可能解释，与<a href="训练数据污染.html">训练数据污染</a>（记忆答案）有本质区别。</p>
+</li>
+<li>
+<p><strong>与作弊的区分</strong>：</p>
+</li>
+<li><strong>作弊</strong>：模型记住答案或识别到被测试并使用特殊手段——严重的可信度问题</li>
+<li>
+<p><strong>格式敏感</strong>：模型对问题表述方式自然敏感——评测设计需要注意的工程问题</p>
+</li>
+<li>
+<p><strong>在 BrowseComp 分析中的发现</strong>：Anthropic 的实验结果显示 Claude Opus 4.6 存在一定程度的格式敏感性，但没有发现明确的"答案记忆"或有意欺骗的证据。更准确的描述是：BrowseComp 的特定任务格式激活了模型某些在日常使用中未充分表达的搜索策略。</p>
+</li>
+<li>
+<p><strong>工程启示</strong>：</p>
+</li>
+<li>评测应使用多种问题呈现格式，避免单一格式偏差</li>
+<li>提示词工程需要考虑模型对格式的自然敏感性</li>
+<li>在生产环境中，应测试模型对同一任务不同表述的稳定性</li>
+<li>
+<p>格式敏感性本身不是问题，但会影响评测的可比性</p>
+</li>
+<li>
+<p><strong>与提示工程的关系</strong>：格式敏感性解释了为什么<a href="提示工程.html">提示工程</a>有效——模型确实对不同提示格式有不同反应。但这也意味着评测结果可能受提示格式影响，需要在评测设计中控制这一变量。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/16_eval_awareness_browsecomp.md</span> — 格式敏感性作为评测感知的机制及实验发现</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="评测感知.html">评测感知</a> — relates_to（格式敏感性是评测感知的一种解释机制）</li>
+<li><a href="提示工程.html">提示工程</a> — relates_to（格式敏感性解释了提示工程的有效性）</li>
+<li><a href="训练数据污染.html">训练数据污染</a> — relates_to（格式敏感性的对立假设）</li>
+<li><a href="BrowseComp.html">BrowseComp</a> — relates_to（格式敏感性实验的测试场景）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="格兰杰因果（Granger Causality）.html">&larr; 格兰杰因果（Granger Causality）</a>
+    <a href="梦理论.html">梦理论 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

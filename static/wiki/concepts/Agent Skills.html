@@ -129,7 +129,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span><span class="tag">claude-code</span><span class="tag">plugin-system</span><span class="tag">extensibility</span></div>
 </div>
   <div class="content">
@@ -244,21 +244,111 @@ description: 操作和处理 PDF 文件，包括读取、填写表单、提取�
 - <a href="../entities/Anthropic.html">Anthropic</a> 在 6 项公开文档创建<a href="Skills.html">技能</a>中测试，5 项触发效果得到提升</p>
 <h3 id="_11">展望未来：从"如何做"到"做什么"</h3>
 <p><a href="SKILL.html 格式规范.html">SKILL.md</a> 文件本质上是实施计划，告诉 <a href="../entities/Claude_Code.html">Claude</a> <em>如何</em> 做某事。随模型能力提升，仅用自然语言描述<em>该<a href="Skills.html">技能</a>应实现什么</em>可能就足够了，模型自行完成其余部分。Evals 已经描述了"是什么"——最终，这一描述可能成为<a href="Skills.html">技能</a>本身。</p>
+<h3 id="skills-vs-claudemd">Skills vs CLAUDE.md 对比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>CLAUDE.md</th>
+<th>Skills</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加载时机</td>
+<td><strong>每次会话开始</strong>自动加载</td>
+<td><strong>按需/相关时</strong>加载</td>
+</tr>
+<tr>
+<td>内容范围</td>
+<td>普遍适用的项目规则</td>
+<td>特定领域或工作流知识</td>
+</tr>
+<tr>
+<td>触发方式</td>
+<td>自动</td>
+<td>自动（相关时）或显式调用（<code>/skill-name</code>）</td>
+</tr>
+<tr>
+<td>上下文成本</td>
+<td>每次会话固定消耗</td>
+<td>仅在使用时消耗</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心差异</strong>：CLAUDE.md 解决项目级持久化问题，而 Skills 处理特定情境相关的领域知识。将所有内容放入 CLAUDE.md 会导致过度膨胀，Skills 提供结构化的知识组件化方案。</p>
+<h3 id="skill">两种 Skill 示例</h3>
+<p><strong>领域知识 Skill</strong>：</p>
+<pre><code class="language-yaml">---
+name: api-conventions
+description: 我们服务的 REST API 设计约定
+---
+</code></pre>
+<p>包含具体的技术约定，如 URL 路径使用 kebab-case、JSON 属性使用 camelCase、列表端点始终分页等。</p>
+<p><strong>工作流 Skill</strong>：</p>
+<pre><code class="language-yaml">---
+name: fix-issue
+description: 修复 GitHub Issue
+disable-model-invocation: true
+---
+</code></pre>
+<p>包含可执行的步骤流程，通过 <code>/fix-issue 1234</code> 显式调用，指导 Agent 完成从获取 Issue 到创建 PR 的完整工作流。</p>
+<h3 id="_12">工程价值</h3>
+<ol>
+<li>
+<p><strong>知识的组件化</strong>：将"如何做某事"的知识从"做什么"中分离，Agent 系统可积累大量专业 Skills，按需组合使用。</p>
+</li>
+<li>
+<p><strong>可维护性</strong>：Skills 像代码一样进行版本控制、审查和更新。团队可共享和协作维护 Skills 库，形成组织级的 AI 能力积累。</p>
+</li>
+<li>
+<p><strong>上下文效率</strong>：只在需要时加载 Skills，避免 CLAUDE.md 过长问题，保持主上下文的清洁。</p>
+</li>
+</ol>
+<h3 id="_13">实际应用场景</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>Skill 示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码库迁移</td>
+<td>API 约定、命名规则、架构模式</td>
+</tr>
+<tr>
+<td>标准工作流</td>
+<td>fix-issue、code-review、deploy-staging</td>
+</tr>
+<tr>
+<td>领域知识</td>
+<td>法律合规检查、安全扫描、性能优化原则</td>
+</tr>
+<tr>
+<td>团队实践</td>
+<td>PR 格式、文档标准、测试覆盖要求</td>
+</tr>
+</tbody>
+</table>
 <h3 id="anthropic">在 Anthropic 生态中的位置</h3>
 <p>Agent <a href="Skills.html">Skills</a> 是开放标准，支持：<a href="../entities/Claude_Code.html">Claude</a>.ai、<a href="../projects/Claude Code.html">Claude Code</a>、<a href="../entities/Claude_Code.html">Claude</a> Agent SDK、<a href="../entities/Claude_Code.html">Claude</a> Developer Platform。</p>
 <p>与 <a href="MCP协议层.html">MCP协议层</a> 的互补关系：MCP 连接工具和<a href="服务.html">服务</a>，<a href="Skills.html">Skills</a> 教导 Agent 如何使用这些工具和<a href="服务.html">服务</a>的复杂工作流。</p>
-<h2 id="_12">来源</h2>
+<h2 id="_14">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Equipping agents for the real world with Agent Skills.md</span> — Agent Skills 原始发布</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/claude-blog/Improving skill-creator_ Test, measure, and refine Agent Skills.md</span> — Skill-Creator 评估框架、基准测试、多智能体支持、描述优化</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/11_agent_skills.md</span> — Skills 与 CLAUDE.md 对比、领域知识 vs 工作流 Skill 示例、工程价值分析</li>
 </ul>
-<h2 id="_13">相关</h2>
+<h2 id="_15">相关</h2>
 <ul>
 <li><a href="渐进式披露-Progressive-Disclosure.html">渐进式披露-Progressive-Disclosure</a> — implements（Skills 是渐进式披露在 Agent 知识管理中的具体实现）</li>
 <li><a href="即时上下文检索.html">即时上下文检索</a> — implements（Skills 的按需加载机制是 JIT 检索的应用）</li>
 <li><a href="Context-Engineering.html">Context-Engineering</a> — part_of（Skills 是上下文工程中知识注入的模块化手段）</li>
 <li><a href="../entities/Claude-Code.html">Claude-Code</a> — implemented_by（Claude Code 是 Skills 的主要运行环境）</li>
 <li><a href="MCP协议层.html">MCP协议层</a> — related_to（Skills 和 MCP 是互补的能力扩展机制）</li>
+<li><a href="../entities/CLAUDE.html.html">CLAUDE.md</a> — compares_to（Skills 按需加载 vs CLAUDE.md 每次会话自动加载）</li>
 </ul>
   </div>
   <div class="page-nav">

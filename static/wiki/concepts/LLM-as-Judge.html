@@ -127,10 +127,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / LLM-as-Judge</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-15</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-15</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">评估</span><span class="tag">LLM</span><span class="tag">测试</span><span class="tag">机器学习</span><span class="tag">AI工程</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">评估</span><span class="tag">LLM</span><span class="tag">测试</span><span class="tag">机器学习</span><span class="tag">AI工程</span><span class="tag">评分器</span></div>
 </div>
   <div class="content">
     <h1 id="llm-as-judge">LLM-as-Judge</h1>
@@ -175,6 +175,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>每条准则应<strong>单条可判定</strong>、无歧义，不在一条内堆砌多个要求</li>
 <li>准则涉及工具调用行为（如"必须调用 <code>edit_file</code>"）时，需将完整轨迹送入评判上下文（<a href="../entities/DeepAgents.html">DeepAgents</a> 中用 <code>include_tool_calls=True</code>）</li>
 <li>固定 <code>judge_model</code> 版本，保证跨次运行可横向对比</li>
+<li><strong>给 LLM 评分器"退路"</strong>：当信息不足时允许返回 "Unknown"</li>
+<li><strong>为每个评测维度创建独立的 LLM-as-judge</strong>（而非一个模型评测所有维度）</li>
+<li>使用清晰的结构化评分标准（Rubric），而非模糊指令</li>
+<li><strong>定期与人类专家进行校准验证</strong>以确保评分一致性</li>
 </ul>
 <h3 id="deepagents-llmjudge">DeepAgents 实现（<code>LLMJudge</code>）</h3>
 <ul>
@@ -202,6 +206,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/deepagents-book-main/21-LLM-as-Judge评估模式.md</span></li>
+<li><span style="color:#e74c3c" title="broken link">05_multi_agent_research</span> — 第四节：评估体系（LLM-as-Judge 的最佳实践）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/12_demystifying_evals.md</span> — 基于模型的评分器章节</li>
+</ul>
+<h3 id="anthropic-research-llm-as-judge">Anthropic Research 系统的 LLM-as-Judge 实践</h3>
+<ul>
+<li>单次 LLM 调用 + 单一 prompt 输出 0.0-1.0 评分 + 通过/失败等级</li>
+<li>比多评判器方案<strong>更一致</strong>，且与人工判断更对齐</li>
+<li>评估维度：事实准确性、引用准确性、完整性、信源质量、工具效率</li>
 </ul>
 <h2 id="_8">相关</h2>
 <ul>

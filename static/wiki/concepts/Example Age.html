@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>训练-<a href="服务.html">服务</a>不对称</strong>：在线上<a href="服务.html">服务</a>（推理）时，Example Age 特征被<strong>设为零或略微为负</strong>。这等价于告诉模型："现在是训练窗口的最末端，预测当前时刻用户最可能观看什么。"通过这个简单技巧，模型就能自然地倾向于推荐新上传的视频。</p>
 </li>
 <li>
-<p><strong>效果验证</strong>：加入 Example Age 特征后，模型预测的视频观看概率分布与实际分布的拟合度有了显著提升。这是 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中最被人津津乐道的工程技巧之一。</p>
+<p><strong>效果验证</strong>：加入 Example Age 特征后，模型预测的视频观看概率分布与实际分布的拟合度有了显著提升。这是 <a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 中最被人津津乐道的工程技巧之一。</p>
 </li>
 <li>
 <p><strong>深远影响</strong>：Example Age 的思想——"在训练中暴露偏差，在推理中消除偏差"——可以被看作是推荐系统中 <a href="因果推断.html">因果推断</a>（<a href="因果推断.html">Causal Inference</a>）和去偏（Debiasing）研究的先驱。后续的 IPW（Inverse Propensity Weighting）、因果 embedding、<a href="反事实学习.html">反事实学习</a>等方法，都是这一思路的更加理论化和系统化的延伸。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 提出该技术的论文</li>
+<li><a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 提出该技术的论文</li>
 <li><a href="冷启动问题.html">冷启动问题</a> — Example Age 部分缓解但未完全解决的问题</li>
 <li><a href="因果推断.html">因果推断</a> — Example Age 思想的理论化延伸方向</li>
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — Example Age 在其中的应用位置</li>

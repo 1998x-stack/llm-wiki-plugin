@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>为何不优化 CTR</strong>：优化点击率（CTR）会鼓励"标题党"（clickbait）——用户点了但看了几秒就关掉的视频可能有很高的 CTR，但显然不是好的推荐。观看时长更能反映用户的真实满意度。<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 明确指出应优化期望观看时长而非 CTR。</p>
+<p><strong>为何不优化 CTR</strong>：优化点击率（CTR）会鼓励"标题党"（clickbait）——用户点了但看了几秒就关掉的视频可能有很高的 CTR，但显然不是好的推荐。观看时长更能反映用户的真实满意度。<a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 明确指出应优化期望观看时长而非 CTR。</p>
 </li>
 <li>
 <p><strong>加权逻辑回归设计</strong>：对于每个训练样本，正样本（用户点击并观看了）的权重设为该用户的<strong>实际观看时长 T_i</strong>，负样本（展示了但用户没有点击）的权重设为 1。在这种<a href="Settings.html">设置</a>下，逻辑回归学到的 odds（即 e^{Wx+b}）近似等于<strong>期望观看时长 E[T]</strong>。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 提出该优化目标的论文</li>
+<li><a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 提出该优化目标的论文</li>
 <li><a href="CTR 预估.html">CTR 预估</a> — 被期望观看时长替代的优化目标</li>
 <li><a href="两阶段推荐架构.html">两阶段推荐架构</a> — 期望观看时长在排序阶段的应用</li>
 <li><a href="Bias 建模.html">Bias 建模</a> — 与期望观看时长相关的偏差处理</li>

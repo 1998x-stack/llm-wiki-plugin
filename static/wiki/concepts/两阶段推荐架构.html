@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>排序阶段（Ranking / <a href="检索重排序.html">精排</a>）</strong>：对数百个候选进行精细化打分排序。可使用丰富得多的特征（因为<a href="计算.html">计算</a>量可控），包括候选视频 embedding、用户与候选视频的交互特征、候选来源特征、用户历史统计特征、视频特征等。模型目标为高精确率，<a href="服务.html">服务</a>方式为逐一打分。</p>
 </li>
 <li>
-<p><strong>历史渊源</strong>：信息检索领域早有"粗排 + <a href="检索重排序.html">精排</a>"的思想，但 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（RecSys 2016）是第一次在深度学习时代以完整系统的方式将其应用于推荐系统，并在全球最大的视频平台上验证了有效性。</p>
+<p><strong>历史渊源</strong>：信息检索领域早有"粗排 + <a href="检索重排序.html">精排</a>"的思想，但 <a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a>（RecSys 2016）是第一次在深度学习时代以完整系统的方式将其应用于推荐系统，并在全球最大的视频平台上验证了有效性。</p>
 </li>
 <li>
 <p><strong>架构演进</strong>：该<a href="规范化理论.html">范式</a>后来被进一步细化为"召回 → 粗排 → <a href="检索重排序.html">精排</a> → 重排"的四阶段流水线，但基本思想一脉相承。全球几乎所有大规模推荐系统——<a href="../entities/淘宝.html">淘宝</a>、抖音、快手、<a href="../entities/Netflix.html">Netflix</a>、<a href="../entities/Spotify.html">Spotify</a>、LinkedIn、Twitter（X）——都在某种程度上遵循这一架构。</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
-<li><a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 确立该范式的里程碑论文</li>
+<li><a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 确立该范式的里程碑论文</li>
 <li><a href="候选生成.html">候选生成</a> — 第一阶段</li>
 <li><a href="双塔模型.html">双塔模型</a> — 候选生成的典型模型架构</li>
 <li><a href="近似最近邻检索.html">近似最近邻检索</a> — 候选生成的服务方式</li>

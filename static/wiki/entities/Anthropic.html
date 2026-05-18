@@ -159,15 +159,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Constitutional AI</strong>：基于宪法原则的 AI 对齐方法</li>
 <li><strong><a href="Agent Skills.html">Agent Skills</a> 规范</strong>：被 <a href="../projects/Claude Code.html">Claude Code</a>、<a href="OpenAI Codex.html">OpenAI Codex</a>、<a href="Cursor.html">Cursor</a>、<a href="Gemini CLI.html">Gemini CLI</a> 共同采用</li>
 <li><strong><a href="../concepts/Context Engineering.html">Context Engineering</a></strong>：<a href="../concepts/Context Engineering.html">上下文工程</a>方法论</li>
+<li><strong>MCP（<a href="MCP.html">Model Context Protocol</a>）</strong>：2024 年末提出的标准协议，定义 AI Agent 与外部工具/数据源之间的通信方式，被称为"AI 的 USB 接口"</li>
 <li>
-<p><strong>MCP（<a href="MCP.html">Model Context Protocol</a>）</strong>：2024 年末提出的标准协议，定义 AI Agent 与外部工具/数据源之间的通信方式，被称为"AI 的 USB 接口"</p>
+<p><strong><a href="../concepts/上下文检索.html">上下文检索</a></strong>：2024 年 9 月提出的 RAG 改进方法，通过为文本块添加语境前缀降低检索失败率达 67%</p>
 </li>
 <li>
 <p><strong>社区项目</strong>：</p>
 </li>
 <li><code>anthropics/skills</code>：官方 <a href="../concepts/Skills.html">Skill</a> <a href="../concepts/仓库.html">仓库</a>（65k+ Stars）</li>
 <li><code>anthropics/claude-code</code>：<a href="../projects/Claude Code.html">Claude Code</a> 主<a href="../concepts/仓库.html">仓库</a></li>
-<li><code>frontend-design</code> <a href="../concepts/Skills.html">Skill</a>：反 <a href="../concepts/AI Slop.html">AI Slop</a> 的前端设计能力包</li>
+<li>
+<p><code>frontend-design</code> <a href="../concepts/Skills.html">Skill</a>：反 <a href="../concepts/AI Slop.html">AI Slop</a> 的前端设计能力包</p>
+</li>
+<li>
+<p><strong>评测方法论研究</strong>：</p>
+</li>
+<li><a href="Gian Segato.html">Gian Segato</a> 等发表关于 Agentic 编码评测中<a href="../concepts/基础设施噪声.html">基础设施噪声</a>的量化研究</li>
+<li>发现在 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 上不同资源配置之间的成功率差距达 6 个百分点</li>
+<li>提出 Benchmark 资源配置的校准原则：分别规定 requests 和 limits，推荐 3× 带宽</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
@@ -182,6 +191,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="OpenAI.html">OpenAI</a> — compares_to</li>
 <li><a href="Agent Skills.html">Agent Skills</a> — implements</li>
 <li><span style="color:#e74c3c" title="broken link">Constitutional AI</span> — relates_to</li>
+<li><a href="../concepts/上下文检索.html">上下文检索</a> — implements</li>
+<li><a href="Gian Segato.html">Gian Segato</a> — employs（Anthropic Engineering 团队成员）</li>
+<li><a href="../concepts/基础设施噪声.html">基础设施噪声</a> — researches（量化研究并发表工程建议）</li>
+<li><a href="../concepts/Auto Mode 安全分类器.html">Auto Mode 安全分类器</a> — created（Auto Mode 核心安全组件）</li>
+<li><a href="../concepts/Prompt Injection.html">Prompt Injection</a> — researches（防御机制研究）</li>
+<li><a href="../concepts/抗 AI 评测设计.html">抗 AI 评测设计</a> — researches（Anthropic Engineering 团队研究并发表）</li>
 </ul>
   </div>
   <div class="page-nav">

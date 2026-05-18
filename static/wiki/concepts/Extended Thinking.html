@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extended Thinking — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Extended Thinking</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI工程</span><span class="tag">推理机制</span><span class="tag">Claude</span></div>
+</div>
+  <div class="content">
+    <h1 id="extended-thinking">Extended Thinking</h1>
+<h2 id="_1">概述</h2>
+<p>Extended Thinking 是 Anthropic Claude 的一种推理机制，允许模型在开始生成响应之前进行深度规划和分析，特别适用于数学、编程和复杂计划任务。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心定义</h3>
+<p>Extended Thinking 让模型在<strong>开始生成之前</strong>进行全面的推理规划。与 Think 工具不同，Extended Thinking 的推理发生在模型输出任何内容之前，主要基于用户查询本身进行深度分析。</p>
+<h3 id="think">与 Think 工具的本质区别</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Extended Thinking</th>
+<th>Think 工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发时机</td>
+<td>模型开始生成<strong>之前</strong></td>
+<td>已开始生成<strong>之中</strong></td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>深度计划、数学、编程</td>
+<td>长工具调用链中处理工具输出</td>
+</tr>
+<tr>
+<td>信息基础</td>
+<td>主要基于用户查询</td>
+<td>基于<strong>外部工具返回的新信息</strong></td>
+</tr>
+<tr>
+<td>推理深度</td>
+<td>更全面</td>
+<td>更聚焦于新发现信息</td>
+</tr>
+<tr>
+<td>最优领域</td>
+<td>非工具场景（编码/数学/物理）</td>
+<td>策略密集、顺序决策场景</td>
+</tr>
+</tbody>
+</table>
+<p>直觉类比：Extended Thinking 像是专家<strong>开始工作前</strong>的深度规划；Think 工具像是专家在<strong>看到化验结果后</strong>的即时分析。</p>
+<h3 id="-bench">τ-Bench 评估表现</h3>
+<p>在 τ-Bench 航空域测试中：
+- 基准（无 think，无 ET）：pass@1 = 0.332
+- <strong>Extended Thinking</strong>：pass@1 = <strong>0.412</strong>
+- Think 工具（无 prompt 优化）：pass@1 = 0.404
+- Think 工具 + 优化 prompt：pass@1 = 0.584</p>
+<p>Extended Thinking 单独使用性能与 Think 工具（无 prompt 优化）相近（0.412 vs 0.404），但在策略复杂的航空域中不如 Think 工具 + 优化 prompt 的组合。</p>
+<p>零售域策略相对简单，Extended Thinking（pass@1 = 0.770）略低于 Think 工具（pass@1 = 0.812），说明在简单策略场景中，提供思考空间本身就足够。</p>
+<h3 id="2025-12">最新发展（2025 年 12 月更新）</h3>
+<p>Extended Thinking 能力已大幅提升，在大多数场景下 Anthropic 现推荐使用 Extended Thinking 替代专用的 Think 工具。随着 Extended Thinking 的不断完善，专用 Think 工具的使用场景可能会进一步收窄。</p>
+<h3 id="_4">适用场景</h3>
+<ol>
+<li><strong>深度计划任务</strong>：需要在工作开始前制定完整策略</li>
+<li><strong>数学问题求解</strong>：需要多步推理和验证</li>
+<li><strong>编程任务</strong>：需要理解复杂代码库和设计实现方案</li>
+<li><strong>物理问题</strong>：需要系统性分析和计算</li>
+</ol>
+<h3 id="chain-of-thought">与 Chain-of-Thought 的关系</h3>
+<p>Extended Thinking 与 Chain-of-Thought（CoT）有相似之处，都是让模型进行显式推理。但 Extended Thinking 是 Claude 平台的内置能力，而 CoT 是通过 prompt 工程实现的通用技术。Extended Thinking 的推理过程对用户不可见，而 CoT 的推理步骤会直接输出在响应中。</p>
+<h2 id="_5">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/03_think_tool.md</span> — The "think" tool: Enabling Claude to stop and think in complex tool use situations</li>
+</ul>
+<h2 id="_6">相关</h2>
+<ul>
+<li><a href="Think 工具.html">Think 工具</a> — compares_to（两种不同的推理机制，Extended Thinking 在工作前规划，Think 工具在工具调用中分析）</li>
+<li><a href="Chain-of-Thought.html">Chain-of-Thought</a> — compares_to（都是显式推理机制，但实现方式和可见性不同）</li>
+<li><a href="上下文工程.html">上下文工程</a> — part_of（Extended Thinking 是上下文工程中增强推理能力的技术）</li>
+<li><a href="../entities/Anthropic.html">Anthropic</a> — part_of（Extended Thinking 是 Anthropic Claude 平台的特性）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Expert Dropout.html">&larr; Expert Dropout</a>
+    <a href="Extract Class.html">Extract Class &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

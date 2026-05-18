@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Paxos — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Multi-Paxos</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+</div>
+  <div class="content">
+    <hr />
+<p>type: concept
+status: active
+confidence: 0.85
+created: 2026-04-26
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 2
+tags: [分布式系统, 理论基础, 共识算法]
+aliases: ["Multi-Paxos", "Multi-Paxos Algorithm"]
+relates_to:
+  - target: "<a href="Paxos算法.html">Paxos算法</a>"
+    type: extends
+    confidence: 0.9
+  - target: "<a href="状态机复制.html">状态机复制</a>"
+    type: implements
+    confidence: 0.8
+  - target: "<span style="color:#e74c3c" title="broken link">日志复制</span>
+    type: basis_for
+    confidence: 0.8
+  - target: "<a href="Raft算法.html">Raft算法</a>"
+    type: predecessor
+    confidence: 0.8
+supersedes: null</p>
+<hr />
+<h1 id="multi-paxos">Multi-Paxos</h1>
+<h2 id="_1">概述</h2>
+<p>Multi-Paxos是Paxos算法的扩展形式，用于实现一个有序的操作日志（replicated log），使所有节点能够执行相同顺序的操作以维护一致的状态。它通过为日志的每个位置运行一个独立的Paxos实例来实现多值共识。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>基本概念</strong>：</li>
+<li>基本Paxos（Basic Paxos）解决的是就一个值达成共识的问题</li>
+<li>Multi-Paxos通过为日志的每个位置（slot）运行一个独立的Paxos实例来实现有序操作日志</li>
+<li>
+<p>日志的第i个位置对应第i个Paxos实例，决定第i个操作是什么</p>
+</li>
+<li>
+<p><strong>关键优化</strong>：</p>
+</li>
+<li><strong>Leader优化</strong>：如果存在稳定Leader，它可以跳过阶段一（Prepare），直接执行阶段二（Accept）</li>
+<li><strong>管道化（Pipelining）</strong>：Leader可同时发起多个slot的共识过程</li>
+<li>
+<p><strong>日志压缩（Log Compaction）</strong>：通过快照机制定期清理已执行的旧日志条目</p>
+</li>
+<li>
+<p><strong>与基本Paxos的区别</strong>：</p>
+</li>
+<li>基本Paxos只解决单值共识，Multi-Paxos解决多值共识</li>
+<li>Multi-Paxos引入了日志和状态机复制的概念</li>
+<li>
+<p>在实际系统中，Multi-Paxos是真正使用的协议形态</p>
+</li>
+<li>
+<p><strong>实现复杂性</strong>：</p>
+</li>
+<li>原始论文对Multi-Paxos的描述较粗略</li>
+<li>Leader选举、日志中空洞处理、配置变更等关键问题没有详述</li>
+<li>
+<p>这导致不同的实现之间存在细微但重要的差异</p>
+</li>
+<li>
+<p><strong>实际应用</strong>：</p>
+</li>
+<li>作为许多分布式系统共识层的基础</li>
+<li>是后来Raft等算法的直接对标对象</li>
+<li>现代分布式系统中真正使用的Paxos形态</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">18-lamport-paxos</span> — 详细分析了Multi-Paxos的原理和发展</li>
+<li><a href="Paxos算法.html">Paxos算法</a> — 基础算法</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="Paxos算法.html">Paxos算法</a> — extends</li>
+<li><a href="Raft算法.html">Raft算法</a> — relates_to</li>
+<li><a href="状态机复制.html">状态机复制</a> — implements</li>
+<li><span style="color:#e74c3c" title="broken link">日志复制</span> — relates_to</li>
+<li><a href="分布式共识.html">分布式共识</a> — relates_to</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Multi-Head Attention.html">&larr; Multi-Head Attention</a>
+    <a href="Multics.html">Multics &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

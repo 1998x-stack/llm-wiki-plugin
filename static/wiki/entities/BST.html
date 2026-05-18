@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / BST</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">CTR预估</span><span class="tag">Transformer</span><span class="tag">阿里巴巴</span><span class="tag">KDD</span></div>
 </div>
   <div class="content">
@@ -139,21 +139,53 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "Behavior Sequence <a href="../concepts/Transformer架构.html">Transformer</a> for E-commerce Recommendation in Alibaba"，阿里巴巴团队发表于 KDD 2019。</p>
+<p><strong>论文信息</strong>：标题 "Behavior Sequence <a href="../concepts/Transformer架构.html">Transformer</a> for E-commerce Recommendation in Alibaba"，阿里巴巴团队发表于 KDD 2019。BST证明了SASRec开创的Transformer架构不仅在序列推荐任务中有效，在CTR预估等其他推荐场景中同样具有强大潜力。</p>
+</li>
+<li>
+<p><strong>开发背景</strong>：阿里巴巴团队受SASRec成功的启发，将Self-Attention机制应用于淘宝的点击率预估系统。BST是SASRec在工业界应用的直接延伸。</p>
+</li>
+<li>
+<p><strong>核心创新</strong>：</p>
+</li>
+<li><strong>行为序列建模</strong>：将用户的历史行为序列（如浏览、点击、购买）作为输入，使用Self-Attention机制建模用户兴趣的动态变化</li>
+<li><strong>多场特征融合</strong>：不仅处理行为序列，还融合了用户画像、广告特征等多种特征场</li>
+<li>
+<p><strong>工业级优化</strong>：针对大规模线上系统的性能要求，进行了计算效率优化</p>
 </li>
 <li>
 <p><strong>核心方法</strong>：受 <a href="SASRec.html">SASRec</a> 启发，将用户行为序列通过 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 进行编码，生成的序列表示与用户画像、物品特征等拼接后输入 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型。与 <a href="SASRec.html">SASRec</a> 的纯序列预测不同，BST 是多特征融合的工业级推荐模型。</p>
 </li>
 <li>
-<p><strong>工业应用</strong>：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户。证明了 <a href="../concepts/Transformer架构.html">Transformer</a> 架构在大规模工业推荐场景中的可行性和有效性。</p>
+<p><strong>架构特点</strong>：</p>
+</li>
+<li><strong>借鉴SASRec</strong>：采用与SASRec类似的Self-Attention机制建模用户行为序列</li>
+<li><strong>特征嵌入</strong>：将用户行为、商品特征、上下文特征等统一映射到向量空间</li>
+<li><strong>注意力机制</strong>：计算当前广告与历史行为的相关性，动态聚合用户兴趣表示</li>
+<li>
+<p><strong>工业部署</strong>：针对大规模在线服务进行了专门优化</p>
 </li>
 <li>
-<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：BST 将 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/Self-Attention机制.html">自注意力</a>序列编码思想迁移到 <a href="../concepts/CTR 预估.html">CTR 预估</a>场景，是 <a href="SASRec.html">SASRec</a> 工业影响力的最直接体现。两者架构相似，但 BST 增加了丰富的<a href="../concepts/特征工程（Feature Engineering）.html">特征工程</a>和工业级优化。</p>
+<p><strong>工业应用</strong>：</p>
+</li>
+<li><strong>阿里巴巴部署</strong>：BST在阿里巴巴的多个业务场景中得到应用</li>
+<li><strong>淘宝实践</strong>：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户</li>
+<li>
+<p><strong>效果验证</strong>：在线A/B测试验证了显著的效果提升</p>
+</li>
+<li>
+<p><strong>工业应用</strong>（原文）：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户。证明了 <a href="../concepts/Transformer架构.html">Transformer</a> 架构在大规模工业推荐场景中的可行性和有效性。</p>
+</li>
+<li>
+<p><strong>学术意义</strong>：BST证明了SASRec提出的方法论在工业界的实际价值，为学术界和工业界的结合提供了典型范例。展示了Transformer架构从序列推荐到点击率预估的可扩展性。</p>
+</li>
+<li>
+<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：BST 将 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/Self-Attention机制.html">自注意力</a>序列编码思想迁移到 <a href="../concepts/CTR 预估.html">CTR 预估</a>场景，是 <a href="SASRec.html">SASRec</a> 工业影响力的最直接体现。两者架构相似，但 BST 增加了丰富的<a href="../concepts/特征工程（Feature Engineering）.html">特征工程</a>和工业级优化。BST直接受SASRec启发，将SASRec在序列推荐中的成功迁移到点击率预估场景，证明了Transformer架构在推荐系统中的普适性。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>
 <li><a href="https://arxiv.org/abs/1905.06874">BST 原始论文 (KDD 2019)</a></li>
+<li>阿里巴巴技术分享</li>
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
@@ -162,6 +194,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/两阶段推荐架构.html">两阶段推荐架构</a> — BST 在工业推荐系统中的位置</li>
 <li><a href="../concepts/自注意力机制.html">自注意力机制</a> — BST 的核心计算机制</li>
 <li>阿里巴巴 — BST 的研发机构</li>
+<li><a href="../concepts/Transformer架构.html">Transformer架构</a> — BST 采用的核心架构</li>
+<li><a href="../concepts/序列推荐.html">序列推荐</a> — BST 扩展的应用场景</li>
+<li><a href="淘宝.html">淘宝</a> — BST 的部署平台</li>
 </ul>
   </div>
   <div class="page-nav">

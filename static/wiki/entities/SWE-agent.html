@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="swe-agent">SWE-agent</h1>
 <h2 id="_1">概述</h2>
-<p>SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 <a href="GitHub.html">GitHub</a> <a href="../concepts/仓库.html">仓库</a>中的真实 issue 和 bug。通过专门设计的 Agent <a href="../concepts/计算.html">计算</a>机接口（ACI）和 <a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a>，在 <a href="../concepts/SWE-bench.html">SWE-bench</a> 上取得显著优于直接输出 patch 的效果。</p>
+<p>SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LLM 转化为软件工程师，自动修复 <a href="GitHub.html">GitHub</a> <a href="../concepts/仓库.html">仓库</a>中的真实 issue 和 bug。通过专门设计的 Agent <a href="../concepts/计算.html">计算</a>机接口（ACI）和 <a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a>，在 <a href="SWE-bench.html">SWE-bench</a> 上取得显著优于直接输出 patch 的效果。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心架构</h3>
 <ol>
@@ -145,8 +145,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ol>
 <h3 id="swe-bench">SWE-bench 表现</h3>
 <ul>
-<li><a href="../concepts/SWE-bench.html">SWE-bench</a> Full：<strong>12.47%</strong> resolved（GPT-4 Turbo）</li>
-<li><a href="../concepts/SWE-bench.html">SWE-bench</a> Lite：<strong>18.00%</strong> resolved（GPT-4 Turbo）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> Full：<strong>12.47%</strong> resolved（GPT-4 Turbo）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> Lite：<strong>18.00%</strong> resolved（GPT-4 Turbo）</li>
 <li>pass@k 曲线：k=6 时解决率升至 30%+</li>
 </ul>
 <h3 id="trajectory">Trajectory 格式</h3>
@@ -171,7 +171,7 @@ Step 级建议补充：<code>step_id</code>、<code>timestamp_start</code>、<co
 </ul>
 <h2 id="_6">相关</h2>
 <ul>
-<li><a href="../concepts/SWE-bench.html">SWE-bench</a> — uses（基准测试平台）</li>
+<li><a href="SWE-bench.html">SWE-bench</a> — uses（基准测试平台）</li>
 <li><a href="../concepts/ReAct 风格循环.html">ReAct 风格循环</a> — implements（运行框架）</li>
 <li><a href="../concepts/Agent计算机接口.html">Agent计算机接口</a> — uses（专门设计的工具接口）</li>
 <li><a href="../concepts/Agent 轨迹分析.html">Agent 轨迹分析</a> — caused（产生可分析的轨迹数据）</li>
@@ -181,7 +181,7 @@ Step 级建议补充：<code>step_id</code>、<code>timestamp_start</code>、<co
   </div>
   <div class="page-nav">
     <a href="SVD++.html">&larr; SVD++</a>
-    <a href="Sanjay Ghemawat.html">Sanjay Ghemawat &rarr;</a>
+    <a href="SWE-bench.html">SWE-bench &rarr;</a>
   </div>
 </div>
 </body>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多峰分布（用户兴趣） — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 多峰分布（用户兴趣）</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">用户建模</span><span class="tag">多峰分布</span><span class="tag">表示学习</span><span class="tag">DIN</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">多峰分布（用户兴趣）</h1>
+<h2 id="_2">概述</h2>
+<p>用户兴趣在向量空间中呈现多峰（multi-modal）分布特征，即用户的不同兴趣点在向量空间中形成多个独立的聚类中心，而非单一的集中分布。这一洞察是DIN等现代推荐系统的重要理论基础。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li>
+<p><strong>理论背景</strong> — 传统推荐系统将用户历史行为通过Sum Pooling或Average Pooling等操作聚合为固定长度向量，隐含假设用户兴趣是单峰分布。但现实中，用户的兴趣覆盖多个品类（如购物、娱乐、学习），在向量空间中呈现多峰特征。</p>
+</li>
+<li>
+<p><strong>推荐系统中的表现</strong> — 一个典型用户可能同时对电子产品、美食、健身等多个领域感兴趣。这些兴趣在向量空间中对应不同的区域，强行用单一向量概括所有兴趣会导致表示失真。将多个兴趣峰平均后的向量可能落在完全不相关的空间位置上。</p>
+</li>
+<li>
+<p><strong>对传统方法的挑战</strong> — 多峰分布特性挑战了传统Embedding&amp;MLP范式中的固定长度向量假设。Sum Pooling/Average Pooling等操作无法有效表达多样化兴趣，形成了严重的表示瓶颈。</p>
+</li>
+<li>
+<p><strong>DIN的解决方案</strong> — DIN首次系统性地利用"用户兴趣多峰分布"洞察，提出通过局部激活机制动态关注与当前候选物品相关的兴趣峰，而非强制用单一向量表达所有兴趣。</p>
+</li>
+<li>
+<p><strong>后续影响</strong> — 这一洞察催生了多种兴趣建模方法：DIEN通过RNN建模兴趣演化；MIND提取多个兴趣向量；ComiRec通过聚类提取多样兴趣表示。这些方法都源于对用户兴趣多峰性质的认知。</p>
+</li>
+<li>
+<p><strong>实际案例</strong> — 用户可能浏览过运动装备、烹饪书籍、旅游攻略等完全不相关的物品。传统方法会将这些行为的Embedding简单平均，产生一个"模糊"的用户表示。而基于多峰分布的方法则能根据不同候选物品激活相关的兴趣峰。</p>
+</li>
+<li>
+<p><strong>数学表达</strong> — 设用户U的n个不同兴趣峰对应向量${v_1, v_2, ..., v_n}$，传统方法计算$\bar{v} = \frac{1}{n}\sum_{i=1}^{n} v_i$，而多峰方法在面对候选物品c时选择性激活相关峰$v_{active} = f({v_i}, c)$。</p>
+</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1706.06978">Deep Interest Network for Click-Through Rate Prediction (KDD 2018)</a></li>
+<li><a href="raw/books/推荐系统/11-din.md">raw/books/推荐系统/11-din.md</a></li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="../entities/DIN.html">DIN</a> — 首次利用多峰分布洞察的模型</li>
+<li><a href="局部激活单元.html">局部激活单元</a> — 实现多峰激活的技术手段</li>
+<li><span style="color:#e74c3c" title="broken link">Sum Pooling</span> — 多峰分布挑战的传统方法</li>
+<li><span style="color:#e74c3c" title="broken link">平均池化</span> — 与Sum Pooling类似的问题</li>
+<li><a href="嵌入表示.html">嵌入表示</a> — 多峰分布影响的核心概念</li>
+<li><span style="color:#e74c3c" title="broken link">用户行为序列建模</span> — 应用场景</li>
+<li><span style="color:#e74c3c" title="broken link">MIND</span> — 基于多峰分布的后续工作</li>
+<li><a href="DIEN.html">DIEN</a> — 建模兴趣演化的多峰模型</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="多层感知机（MLP）.html">&larr; 多层感知机（MLP）</a>
+    <a href="多智能体编排.html">多智能体编排 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

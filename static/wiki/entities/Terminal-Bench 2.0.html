@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal-Bench 2.0 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Terminal-Bench 2.0</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">benchmark</span><span class="tag">agentic-coding</span><span class="tag">evaluation</span><span class="tag">terminal</span></div>
+</div>
+  <div class="content">
+    <h1 id="terminal-bench-20">Terminal-Bench 2.0</h1>
+<h2 id="_1">概述</h2>
+<p>终端操作 Agentic 编码评测基准，为每个任务推荐 CPU 和 RAM 规格，用于评估 AI Agent 在真实终端环境中的问题解决能力。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>资源规范设计</strong>：2.0 版本引入了每任务推荐的 CPU 和 RAM 规格，但研究发现"规定资源 ≠ 一致执行"——执行方法论会改变 Benchmark 实际测量的内容。</li>
+<li><strong>基础设施噪声实验</strong>：<a href="Gian Segato.html">Gian Segato</a> 等在 Terminal-Bench 2.0 上进行了六种资源配置的受控实验（1x → 1.5x → 2x → 3x → 4x → Uncapped），发现：</li>
+<li>基础设施错误率随资源增加单调下降：1x 时 5.8% → 3x 时 2.1% → Uncapped 时 0.5%</li>
+<li>总成功率提升：1x → Uncapped 达 <strong>+6 个百分点</strong>（p &lt; 0.01）</li>
+<li>两阶段行为：3x 以下主要修复基础设施可靠性，3x 以上额外资源真正帮助 Agent 解决新任务</li>
+<li><strong>典型案例</strong>：<code>bn-fit-modify</code>（贝叶斯网络拟合）任务中，富资源策略可安装 pandas + networkx + scikit-learn，贫资源策略被迫使用标准库从零实现——不同资源配置在评测不同的模型能力。</li>
+<li><strong>校准建议</strong>：推荐 3× requests 作为 limits 起点，可将基础设施错误率降低 2/3（5.8% → 2.1%，p &lt; 0.001），同时成功率提升保持在噪声范围内（p = 0.40）。</li>
+<li><strong>其他噪声来源</strong>：时间效应（通过率随一天中的时段波动）、并发级别、出口带宽、集群健康度。</li>
+</ol>
+<h2 id="swe-bench">与 SWE-bench 的对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>SWE-bench</th>
+<th>Terminal-Bench 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务类型</td>
+<td>修复 GitHub Issues</td>
+<td>通用终端任务</td>
+</tr>
+<tr>
+<td>资源敏感性</td>
+<td>较低（+1.54% 在 5x RAM）</td>
+<td>较高（+6% 在 Uncapped）</td>
+</tr>
+<tr>
+<td>任务多样性</td>
+<td>聚焦代码库</td>
+<td>更广泛</td>
+</tr>
+<tr>
+<td>验证方式</td>
+<td>自动测试</td>
+<td>任务完成检查</td>
+</tr>
+</tbody>
+</table>
+<p>Terminal-Bench 2.0 对资源配置更敏感（+6% vs SWE-bench 的 +1.54%），表明终端任务更依赖系统资源，而 SWE-bench 的代码修复任务对资源变化相对不敏感。</p>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/06_infrastructure_noise.md</span> — Quantifying infrastructure noise in agentic coding evals</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/07_swe_bench_sonnet.md</span> — SWE-bench 与 Terminal-Bench 对比</li>
+<li><a href="https://terminal-bench.com/">Terminal-Bench 2.0 官网</a></li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="SWE-bench.html">SWE-bench</a> — compares_to（交叉验证显示 SWE-Bench 效应更小，仅 1.54 个百分点）</li>
+<li><a href="Anthropic.html">Anthropic</a> — participates_in（Anthropic 在其 GKE 集群上运行该 Benchmark）</li>
+<li><a href="../concepts/基础设施噪声.html">基础设施噪声</a> — affected_by（Terminal-Bench 2.0 是基础设施噪声研究的主要实验平台）</li>
+<li><a href="Google Kubernetes Engine (GKE).html">Google Kubernetes Engine (GKE)</a> — hosts_on（运行于 GKE 容器环境）</li>
+<li><a href="../concepts/评测驱动开发.html">评测驱动开发</a> — used_by（用于评测驱动开发方法论的实证）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Terminal-Bench.html">&larr; Terminal-Bench</a>
+    <a href="Thariq-(trq212).html">Thariq-(trq212) &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

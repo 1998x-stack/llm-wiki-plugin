@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / TiSASRec</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">序列推荐</span><span class="tag">时间间隔</span><span class="tag">Self-Attention</span><span class="tag">WSDM</span></div>
 </div>
   <div class="content">
@@ -148,7 +148,32 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>方法</strong>：在 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/嵌入表示.html">嵌入层</a>中增加时间间隔嵌入（Time-Interval <a href="../concepts/Embedding.html">Embedding</a>），与物品嵌入和<a href="../concepts/位置编码.html">位置嵌入</a>一起输入<a href="../concepts/Self-Attention机制.html">自注意力</a>层。注意力权重同时考虑内容相关性和时间接近度。</p>
 </li>
 <li>
-<p><strong>解决的问题</strong>：<a href="SASRec.html">SASRec</a> 的局限性之一——缺少时间间隔建模。在现实场景中，时间间隔是用户意图的重要信号：短时间内的密集交互通常反映明确的购买意图，而长时间跨度的交互可能反映周期性需求。</p>
+<p><strong>核心创新</strong>：</p>
+</li>
+<li><strong>时间间隔嵌入</strong>：为每个交互的时间间隔分配嵌入向量，编码时间距离信息</li>
+<li><strong>时间感知位置编码</strong>：结合相对位置信息和时间间隔信息，构建更丰富的序列表示</li>
+<li><strong>时间衰减机制</strong>：根据时间间隔长短对注意力权重进行衰减，长时间间隔的物品关注度更低</li>
+<li><strong>双重位置编码</strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
+<li><strong>时间间隔编码</strong>：将连续交互间的时间间隔离散化，映射为可学习的时间嵌入</li>
+<li>
+<p><strong>增强的自注意力</strong>：在计算Q/K/V时融入时间间隔信息，使模型能够区分不同时间尺度的依赖关系</p>
+</li>
+<li>
+<p><strong>解决的问题</strong>：<a href="SASRec.html">SASRec</a> 的局限性之一——缺少时间间隔建模。在现实场景中，时间间隔是用户意图的重要信号：短时间内的密集交互通常反映明确的购买意图，而长时间跨度的交互可能反映周期性需求。SASRec使用位置编码来表示物品在序列中的相对顺序，但没有考虑交互之间的实际时间间隔，而TiSASRec在SASRec的基础上加入了时间间隔感知能力。</p>
+</li>
+<li>
+<p><strong>技术实现</strong>：</p>
+</li>
+<li><strong>双重位置编码</strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
+<li><strong>时间间隔编码</strong>：将连续交互间的时间间隔离散化，映射为可学习的时间嵌入</li>
+<li>
+<p><strong>增强的自注意力</strong>：在计算Q/K/V时融入时间间隔信息，使模型能够区分不同时间尺度的依赖关系</p>
+</li>
+<li>
+<p><strong>与SASRec的关系</strong>：TiSASRec直接扩展了SASRec的架构，在其基础上加入了时间间隔感知能力，保持了原有的自注意力机制和因果掩码设计。</p>
+</li>
+<li>
+<p><strong>实验效果</strong>：在多个带有时间戳信息的数据集上验证了有效性，特别是在用户行为时间分布不均匀的场景下表现优异。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>
@@ -161,6 +186,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="../concepts/序列推荐.html">序列推荐</a> — TiSASRec 解决的核心场景</li>
 <li><a href="../concepts/自注意力机制.html">自注意力机制</a> — TiSASRec 的核心计算机制</li>
 <li><a href="../concepts/位置编码.html">位置编码</a> — TiSASRec 在此基础上增加时间间隔嵌入</li>
+<li><a href="../concepts/时间间隔建模.html">时间间隔建模</a> — TiSASRec关注的核心问题</li>
 </ul>
   </div>
   <div class="page-nav">

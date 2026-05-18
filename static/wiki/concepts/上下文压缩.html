@@ -129,8 +129,8 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">方法论</span><span class="tag">AI</span><span class="tag">AI工程</span><span class="tag">长时任务</span></div>
 </div>
   <div class="content">
     <h1 id="compaction">上下文压缩（Compaction）</h1>
@@ -267,8 +267,10 @@ solving the task in a future context...
 </ul>
 <h2 id="_12">来源</h2>
 <ul>
-<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-developer/Compaction.md</span> — Anthropic 官方文档</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Compaction.md</span> — Anthropic 官方文档</li>
 <li><a href="/raw/articles/ai-tools/hermes/02_hermes_architecture.md">02_hermes_architecture.md</a> — Hermes Agent 深度解析系列第二篇，2026 年 4 月版本</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/04_context_engineering.md</span> — Anthropic Applied AI 团队上下文工程分析（2025 年 9 月）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/09_effective_harnesses.md</span> — Harness 设计中的会话交接（Handoff）机制</li>
 </ul>
 <h2 id="_13">相关</h2>
 <ul>
@@ -281,10 +283,12 @@ solving the task in a future context...
 <li><a href="../entities/Hermes Agent.html">Hermes Agent</a> — implements（客户端压缩实现）</li>
 <li><a href="迭代预算.html">迭代预算</a> — extends（Token 跟踪协同）</li>
 <li><a href="同步编排引擎.html">同步编排引擎</a> — part_of</li>
+<li><a href="Agent Harness 运行框架.html">Agent Harness 运行框架</a> — part_of（上下文压缩是 Harness 处理会话交接的核心技术）</li>
+<li><a href="Session 交接机制.html">Session 交接机制</a> — compares_to（相似的跨会话状态传递方案）</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="三阶段定律.html">&larr; 三阶段定律</a>
+    <a href="上下文传递协议.html">&larr; 上下文传递协议</a>
     <a href="上下文压缩（Context Compaction）.html">上下文压缩（Context Compaction） &rarr;</a>
   </div>
 </div>

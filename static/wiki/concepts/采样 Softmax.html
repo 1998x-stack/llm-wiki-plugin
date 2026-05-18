@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心思想</strong>：每次训练时只采样数千个负样本（negative samples），加上真实正样本，在这个缩小后的集合上<a href="计算.html">计算</a> softmax。这样<a href="计算.html">计算</a>复杂度从 O(V) 降低到 O(k)，其中 k 是采样数量（通常数千）。</p>
 </li>
 <li>
-<p><strong>在 <a href="../entities/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中的应用</strong>：<a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 的<a href="候选生成.html">候选生成</a>模型将推荐建模为超大规模多分类问题，使用采样 <a href="Softmax.html">Softmax</a> 技术大幅降低训练开销。公式 P(w_t = i | U, C) = e^{v_i · u} / Σ_{j ∈ V} e^{v_j · u} 中的分母通过采样近似。</p>
+<p><strong>在 <a href="../papers/Deep Neural Networks for YouTube Recommendations.html">YouTube DNN</a> 中的应用</strong>：<a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> 的<a href="候选生成.html">候选生成</a>模型将推荐建模为超大规模多分类问题，使用采样 <a href="Softmax.html">Softmax</a> 技术大幅降低训练开销。公式 P(w_t = i | U, C) = e^{v_i · u} / Σ_{j ∈ V} e^{v_j · u} 中的分母通过采样近似。</p>
 </li>
 <li>
 <p><strong>与<a href="负采样.html">负采样</a>的关系</strong>：采样 <a href="Softmax.html">Softmax</a> 本质上是一种结构化的 <a href="负采样.html">负采样</a> 策略。它不仅随机采样负样本，还会根据频率等因素调整采样分布，确保训练的稳定性和效率。</p>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h2 id="_4">相关</h2>
 <ul>
-<li><a href="../entities/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 应用该技术的论文</li>
+<li><a href="../papers/Deep Neural Networks for YouTube Recommendations.html">Deep Neural Networks for YouTube Recommendations</a> — 应用该技术的论文</li>
 <li><a href="负采样.html">负采样</a> — 采样 Softmax 的核心机制</li>
 <li><a href="Embedding.html">Embedding</a> — 采样 Softmax 训练的副产品</li>
 <li><a href="对比学习.html">对比学习</a> — 采样 Softmax 的思想延伸</li>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
   </div>
   <div class="page-nav">
-    <a href="配置驱动示例系统.html">&larr; 配置驱动示例系统</a>
+    <a href="醉汉遛狗类比.html">&larr; 醉汉遛狗类比</a>
     <a href="采样定理.html">采样定理 &rarr;</a>
   </div>
 </div>

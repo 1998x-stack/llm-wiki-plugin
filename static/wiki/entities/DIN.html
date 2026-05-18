@@ -127,9 +127,9 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / DIN</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
   <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">CTR预估</span><span class="tag">深度学习</span><span class="tag">注意力机制</span><span class="tag">阿里巴巴</span><span class="tag">KDD</span></div>
 </div>
   <div class="content">
@@ -150,7 +150,6 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">来源</h2>
 <ul>
 <li><a href="https://arxiv.org/abs/1706.06978">Deep Interest Network for Click-Through Rate Prediction (KDD 2018)</a></li>
-<li><a href="raw/books/推荐系统/09-deepfm.md">raw/books/推荐系统/09-deepfm.md</a></li>
 <li><a href="raw/books/推荐系统/11-din.md">raw/books/推荐系统/11-din.md</a></li>
 </ul>
 <h2 id="_4">相关</h2>
@@ -166,6 +165,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>MIND — 从 DIN 单向量扩展为多向量表示</li>
 <li>BST — 用 Transformer 替代 DIN 简单注意力</li>
 <li>SIM — 将 DIN 扩展到超长行为序列</li>
+<li><a href="Guorui Zhou.html">Guorui Zhou</a> — 论文主要作者</li>
+<li><a href="Xiaoqiang Zhu.html">Xiaoqiang Zhu</a> — 论文作者</li>
+<li><a href="Chenru Song.html">Chenru Song</a> — 论文作者</li>
+<li><a href="Ying Fan.html">Ying Fan</a> — 论文作者</li>
+<li><a href="Han Zhu.html">Han Zhu</a> — 论文作者</li>
+<li><a href="Xiao Ma.html">Xiao Ma</a> — 论文作者</li>
+<li><a href="Yanghui Yan.html">Yanghui Yan</a> — 论文作者</li>
+<li><a href="Junqi Jin.html">Junqi Jin</a> — 论文作者</li>
+<li><a href="Han Li.html">Han Li</a> — 论文作者</li>
+<li><a href="Kun Gai.html">Kun Gai</a> — 论文作者</li>
+</ul>
+<h2 id="_5">实验效果</h2>
+<ul>
+<li>离线实验中在Amazon数据集上相比BaseModel取得了5.35%的相对AUC提升</li>
+<li>在MovieLens数据集上取得了1.61%的相对AUC提升  </li>
+<li>在阿里巴巴工业数据集上取得了11.65%的相对AUC提升和0.0113的绝对AUC增益</li>
+<li>在线A/B测试中CTR提升10.0%，RPM提升3.8%</li>
+<li>消融实验显示：Mini-batch Aware Regularization相比Dropout带来+0.0031绝对AUC提升；Dice激活函数相比PReLU带来+0.0015绝对AUC提升；局部激活单元相比Sum Pooling带来+0.0067绝对AUC提升</li>
 </ul>
   </div>
   <div class="page-nav">

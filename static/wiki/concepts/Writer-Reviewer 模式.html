@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writer-Reviewer 模式 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Writer-Reviewer 模式</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI工程</span><span class="tag">Claude Code</span><span class="tag">代码审查</span><span class="tag">多Agent系统</span><span class="tag">最佳实践</span></div>
+</div>
+  <div class="content">
+    <h1 id="writerreviewer-writerreviewer-pattern">Writer/Reviewer 模式（Writer/Reviewer Pattern）</h1>
+<h2 id="_1">概述</h2>
+<p>Writer/Reviewer 模式是一种利用两个独立 <a href="../projects/Claude Code.html">Claude Code</a> 会话进行代码编写和审查的并行工作模式，通过分离实现与审查上下文来提高代码质量。</p>
+<h2 id="_2">关键内容</h2>
+<ol>
+<li><strong>基本架构</strong>：</li>
+<li><strong>会话 A（Writer）</strong>：负责实现功能，如"实现 API 限流中间件"</li>
+<li><strong>会话 B（Reviewer）</strong>：独立审查 Writer 的产出，如"审查 @src/middleware/rateLimiter.ts，寻找边界情况、竞争条件"</li>
+<li>
+<p>Writer 根据 Reviewer 的反馈进行修复，形成迭代循环</p>
+</li>
+<li>
+<p><strong>上下文隔离优势</strong>：两个会话拥有独立的 <a href="上下文窗口.html">上下文窗口</a>，Writer 的实现上下文不会污染 Reviewer 的审查视角。这避免了单一会话中"自己审查自己代码"的盲点。</p>
+</li>
+<li>
+<p><strong>与 <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a> 的区别</strong>：</p>
+</li>
+<li>子 Agent 模式是主从关系——主 Agent 派发任务给子 Agent，子 Agent 返回摘要</li>
+<li>
+<p>Writer/Reviewer 是平等关系——两个会话独立运行，可以并行启动，互不依赖</p>
+</li>
+<li>
+<p><strong>与 <a href="多 Agent 系统.html">多 Agent 系统</a> 的关系</strong>：Writer/Reviewer 模式是 <a href="多 Agent 系统.html">多 Agent 系统</a> 的一种具体实现形态，属于双 Agent 协作的最简形态。更复杂的多 Agent 系统可以扩展为 Writer → Reviewer → Approver 的三阶段流水线。</p>
+</li>
+<li>
+<p><strong>适用场景</strong>：</p>
+</li>
+<li>关键代码路径的审查（安全相关、性能敏感）</li>
+<li>复杂逻辑的边界情况发现</li>
+<li>
+<p>需要独立视角的架构决策审查</p>
+</li>
+<li>
+<p><strong>上下文经济学意义</strong>：通过分离写入和审查上下文，避免了在单一会话中同时加载实现细节和审查标准导致的上下文过载，是 <a href="上下文经济学.html">上下文经济学</a> 的具体实践。</p>
+</li>
+</ol>
+<h2 id="_3">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">08_claude_code_best_practices.md</span> — Anthropic 官方 Claude Code 最佳实践指南</li>
+</ul>
+<h2 id="_4">相关</h2>
+<ul>
+<li><a href="多 Agent 系统.html">多 Agent 系统</a> — part_of（是多 Agent 协作的一种具体形态）</li>
+<li><a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a> — compares_to（主从派发 vs 平等协作）</li>
+<li><a href="上下文窗口.html">上下文窗口</a> — depends_on（依赖独立上下文实现视角隔离）</li>
+<li><a href="上下文经济学.html">上下文经济学</a> — part_of（通过上下文分离提高审查质量）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Write-Tools.html">&larr; Write-Tools</a>
+    <a href="XLNet.html">XLNet &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

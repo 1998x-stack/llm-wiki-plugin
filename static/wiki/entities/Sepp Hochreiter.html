@@ -129,30 +129,69 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">人物</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">机器学习</span><span class="tag">深度学习</span><span class="tag">LSTM</span></div>
 </div>
   <div class="content">
     <h1 id="sepp-hochreiter">Sepp Hochreiter</h1>
-<h2 id="50-200">概述 (50-200字符)</h2>
-<p>奥地利<a href="../concepts/计算.html">计算</a>机科学家，LSTM 共同发明人。1991 年硕士论文首次系统分析 RNN <a href="../concepts/梯度消失.html">梯度消失</a>问题，1997 年与导师 <a href="Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> 共同提出 LSTM 架构，彻底解决序列建模中的长期依赖难题。</p>
-<h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
+<h2 id="_1">概述</h2>
+<p>奥地利计算机科学家，LSTM共同发明人。1991年本科论文首次系统分析RNN梯度消失问题，1997年与导师Schmidhuber共同提出LSTM架构，解决序列建模中的长期依赖难题。其开创性工作为现代深度学习序列建模奠定了基础。</p>
+<h2 id="_2">关键内容</h2>
 <ol>
-<li><strong><a href="../concepts/梯度消失.html">梯度消失</a>的早期洞察</strong>：Hochreiter 在 1991 年的硕士论文中首次从数学上证明了标准 <a href="../concepts/循环神经网络（RNN）.html">循环神经网络（RNN）</a> 在时间<a href="../concepts/反向传播.html">反向传播</a>（<a href="../concepts/反向传播.html">BPTT</a>）时，梯度会因连乘权重<a href="../concepts/矩阵.html">矩阵</a>而指数级衰减，导致网络无法学习超过 10 步的长期依赖。</li>
-<li><strong>LSTM 的诞生</strong>：1997 年，Hochreiter 与 <a href="Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> 在 <em>Neural Computation</em> 期刊发表划时代论文《<a href="../concepts/LSTM（长短期记忆网络）.html">Long Short-Term Memory</a>》，提出通过<strong><a href="../concepts/细胞状态（Cell State）.html">细胞状态</a></strong>和<strong><a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>机制</strong>（<a href="../concepts/遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>、<a href="../concepts/输入门（Input Gate）.html">输入门（Input Gate）</a>、<a href="../concepts/输出门（Output Gate）.html">输出门（Output Gate）</a>）从根本上解决<a href="../concepts/梯度消失.html">梯度消失</a>问题。</li>
-<li><strong>历史影响</strong>：LSTM 成为 1997-2017 年间序列建模的标准架构，在语音识别、机器翻译、<a href="../concepts/Time Series Analysis.html">时间序列</a>预测等领域统治了 20 年，直到 <a href="../concepts/Transformer架构.html">Transformer架构</a> 出现才逐步退场。Hochreiter 的贡献被引用超过 98,000 次。</li>
+<li><strong>学术贡献</strong>：</li>
+<li>LSTM（长短期记忆）网络的主要发明者（1997年与Schmidhuber共同发表）</li>
+<li>早在1991年的本科毕业论文中就系统分析了RNN的梯度消失问题</li>
+<li>在1991年的硕士论文中首次从数学上证明了标准循环神经网络（RNN）在时间反向传播（BPTT）时，梯度会因连乘权重矩阵而指数级衰减</li>
+<li>提出了常误差流（CEC）机制，从根本上解决梯度消失问题</li>
+<li>
+<p>开创了门控机制的范式，影响了后续所有序列建模架构</p>
+</li>
+<li>
+<p><strong>学术生涯</strong>：</p>
+</li>
+<li>现任奥地利林茨约翰开普勒大学（Johannes Kepler University Linz）教授</li>
+<li>
+<p>ELLIS（欧洲学习与智能系统卓越实验室）单元主任</p>
+</li>
+<li>
+<p><strong>研究领域</strong>：</p>
+</li>
+<li>深度学习理论</li>
+<li>生物信息学</li>
+<li>
+<p>药物发现</p>
+</li>
+<li>
+<p><strong>历史地位</strong>：</p>
+</li>
+<li>与Schmidhuber的合作被称为深度学习史上最具有影响力的师生组合之一</li>
+<li>他的研究为解决循环神经网络的长期依赖问题奠定了基础</li>
+<li>LSTM成为1997-2017年间序列建模的标准架构，在语音识别、机器翻译、时间序列预测等领域统治了20年</li>
+<li>
+<p>1997年发表的LSTM论文被引用超过98,000次，是计算机科学领域被引用最多的论文之一</p>
+</li>
+<li>
+<p><strong>创新影响</strong>：</p>
+</li>
+<li>LSTM中的门控设计思想深刻影响了后续所有序列建模架构，包括GRU和Transformer</li>
+<li>常误差流（CEC）机制为解决梯度问题提供了全新思路</li>
+<li>其工作推动了深度学习的复兴，在2000年代深度学习低谷期持续产生实际成果</li>
 </ol>
-<h2 id="_1">来源</h2>
+<h2 id="_3">来源</h2>
 <ul>
+<li><span style="color:#e74c3c" title="broken link">12-hochreiter-1997-lstm.md</span> — 论文介绍和作者信息</li>
 <li><a href="Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — Hochreiter, S., &amp; Schmidhuber, J. (1997). Neural Computation, 9(8), 1735–1780</li>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-papers/machine-learning/04_lstm_1997.md</span> — LSTM 核心原理与代码实现</li>
+<li><a href="../concepts/常误差流（Constant Error Carousel）.html">常误差流（Constant Error Carousel）</a> — CEC机制详细介绍</li>
 </ul>
-<h2 id="_2">相关</h2>
+<h2 id="_4">相关</h2>
 <ul>
-<li><a href="Jürgen Schmidhuber.html">Jürgen Schmidhuber</a> — relates_to（导师与合作者）</li>
-<li><a href="../concepts/LSTM（长短期记忆网络）.html">LSTM（长短期记忆网络）</a> — extends（共同发明）</li>
-<li><a href="Long Short-Term Memory (1997 论文).html">Long Short-Term Memory (1997 论文)</a> — extends（共同作者）</li>
-<li><a href="../concepts/梯度消失.html">梯度消失</a> — relates_to（首次系统分析）</li>
+<li><a href="Jurgen Schmidhuber.html">Jurgen Schmidhuber</a> — collaborated_with（导师与合作者）</li>
+<li><a href="../concepts/LSTM.html">LSTM</a> — created（共同发明）</li>
+<li><a href="../concepts/梯度消失.html">梯度消失</a> — analyzed（首次系统分析）</li>
+<li><span style="color:#e74c3c" title="broken link">Long Short-Term Memory</span> — authored（共同作者）</li>
+<li><a href="../concepts/常误差流（Constant Error Carousel）.html">常误差流（Constant Error Carousel）</a> — invented（CEC机制发明）</li>
+<li><a href="../concepts/门控机制.html">门控机制</a> — pioneered（门控范式开创）</li>
 </ul>
   </div>
   <div class="page-nav">

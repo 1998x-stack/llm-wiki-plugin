@@ -127,10 +127,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / SWE-bench</div>
   <div class="meta-card">
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">AI工程</span><span class="tag">评测</span></div>
 </div>
   <div class="content">
     <h1 id="swe-bench">SWE-bench</h1>
@@ -159,6 +159,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <a href="../entities/Anthropic.html">Anthropic</a> 在 SWE-bench 中花费在工具优化上的时间多于整体提示词优化
 - 仅改工具描述就在 SWE-bench 上达到 SOTA
 - 证明了"接口设计质量直接决定 Agent 成功率"的核心假设</p>
+<h3 id="claude-35-sonnet-sota">Claude 3.5 Sonnet 的 SOTA 成绩</h3>
+<p><a href="../entities/Claude 3.5 Sonnet.html">Claude 3.5 Sonnet</a> 在 SWE-bench Verified 上实现 <strong>49%</strong> 解决率（当时 SOTA，后续迭代达到更高）：
+- 采用简单单 Agent 架构（无复杂多 Agent 编排）
+- 核心发现：工具优化比 prompt 优化花更多时间
+- 关键工具改进：要求绝对路径解决相对路径错误
+- <a href="Think 工具.html">Think 工具</a> 集成：实验提升 1.6%（Welch t 检验 p &lt; 0.001，d=1.47）
+- 测试驱动反馈循环：生成补丁 → 运行测试 → 分析失败 → 修改策略 → 重试</p>
 <h3 id="_5">与其他评估体系的对比</h3>
 <table>
 <thead>
@@ -203,24 +210,42 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <p><a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到<a href="仓库.html">仓库</a>级时，好的交互界面带来的优势更加显著。</p>
+<h3 id="eval">Eval 饱和问题</h3>
+<p>SWE-bench 是评测饱和（eval saturation）的典型案例：
+- 从 30% 开始，顶级模型现在接近 80%，差距越来越难推动
+- 100% 通过率只能追踪回退，不能推动改进
+- 当 eval 饱和时，需要构建更难的新 eval
+- 这是 Anthropic 工程博客中强调的评测维护重要教训</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — ChatGPT 对话总结</li>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/02-SWE-agent 论文的 5 页读书笔记版&quot;.md</span> — SWE-agent 论文 5 页读书笔记</li>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 24 个核心概念词条分析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/05-SWE agent 有哪些图表，每个图表核心内容和核心观点是什么？.md</span> — SWE-agent 论文图表分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/00_INDEX.md</span> — SWE-bench Verified 新标杆、工具优化优于 Prompt 优化</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/03_think_tool.md</span> — Think 工具在 SWE-bench 上的表现（平均提升 1.6%，效应量 d=1.47）</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/07_swe_bench_sonnet.md</span> — Claude 3.5 Sonnet 在 SWE-bench Verified 上实现 49% SOTA 成绩</li>
 </ul>
+<h3 id="think-swe-bench">Think 工具在 SWE-bench 上的表现</h3>
+<p><a href="Think 工具.html">Think 工具</a> 被集成到 SWE-bench 评估中：
+- 实验规模：n=30（有 think 工具） vs n=144（无 think 工具）
+- 性能提升：<strong>平均提升 1.6%</strong>（Welch t 检验：p &lt; 0.001，效应量 d=1.47）
+- 效应量相当大但平均提升仅 1.6%，说明 think 工具在编码场景中<strong>改善了稳定性</strong>（减少极端失败），而非系统性提升所有任务</p>
 <h2 id="_7">相关</h2>
 <ul>
 <li><a href="Agent计算机接口.html">Agent计算机接口</a> — uses（SWE-bench 是 ACI 设计质量的验证平台）</li>
 <li><a href="Agent评估方法论.html">Agent评估方法论</a> — implements（软件工程 Agent 的标准基准）</li>
 <li><a href="DeepAgents评估体系.html">DeepAgents评估体系</a> — compares_to（不同的评估范式）</li>
 <li><a href="HumanEvalFix.html">HumanEvalFix</a> — compares_to（不同粒度的代码修复基准，SWE-agent 87.7% vs 12.5%）</li>
+<li><a href="Think 工具.html">Think 工具</a> — uses（Think 工具在 SWE-bench 上验证了稳定性提升，平均 +1.6%，效应量 d=1.47）</li>
+<li><a href="../entities/Claude 3.5 Sonnet.html">Claude 3.5 Sonnet</a> — implements（Claude 3.5 Sonnet 在 SWE-bench Verified 上实现 49% SOTA）</li>
+<li><a href="测试驱动的 Agent 工程.html">测试驱动的 Agent 工程</a> — implements（SWE-bench 是测试驱动 Agent 工程的典型场景）</li>
+<li><a href="单 Agent 架构.html">单 Agent 架构</a> — implements（Claude 3.5 Sonnet 的 SWE-bench Agent 采用单 Agent 架构）</li>
 </ul>
   </div>
   <div class="page-nav">
     <a href="SVTR.html">&larr; SVTR</a>
-    <a href="Sandbox Mode.html">Sandbox Mode &rarr;</a>
+    <a href="Saga 模式.html">Saga 模式 &rarr;</a>
   </div>
 </div>
 </body>

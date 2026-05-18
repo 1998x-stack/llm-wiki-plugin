@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>检查点策略 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 检查点策略</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">可靠性</span><span class="tag">状态管理</span><span class="tag">验证</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">检查点策略</h1>
+<h2 id="_2">概述</h2>
+<p>检查点策略是 Agent Harness 设计中的关键原则，通过可验证的客观状态（而非 Agent 自我报告）来判断任务进度和完成标准，防止过早声明完成并支持从中间点恢复。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>核心原则</strong>：</li>
+<li><strong>不信任自我报告</strong>：不依赖 Agent 说"我完成了 X"来判断进度</li>
+<li><strong>可验证状态</strong>：通过客观条件检查来确认任务完成</li>
+<li>
+<p><strong>独立验证</strong>：每一步结束后的状态可被独立验证</p>
+</li>
+<li>
+<p><strong>验证示例</strong>：
+   <code>python
+   def is_checkpoint_reached(task_state):
+       # 不好：Agent 说"我完成了X"
+       # 好：检查可验证条件
+       return (
+           all_tests_pass(task_state) and
+           code_compiles(task_state) and
+           required_files_exist(task_state)
+       )</code></p>
+</li>
+<li>
+<p><strong>防止过早声明完成</strong>：</p>
+</li>
+<li><strong>常见失败模式</strong>：Agent 在任务未完成时声明完成，尤其在上下文即将用尽时</li>
+<li>
+<p><strong>对策</strong>：</p>
+<ul>
+<li>在 Harness 中设置独立的完成验证机制</li>
+<li>对"任务完成"设置强制确认步骤</li>
+<li>依赖客观指标而非 Agent 自我报告</li>
+</ul>
+</li>
+<li>
+<p><strong>与错误恢复的关系</strong>：</p>
+</li>
+<li>检查点是错误恢复的基础</li>
+<li>当 Agent 出错时，Harness 可从最近的检查点恢复</li>
+<li>
+<p>避免传统"重启"策略的高成本（用户体验差 + 资源浪费）</p>
+</li>
+<li>
+<p><strong>设计建议</strong>：</p>
+</li>
+<li>从小任务开始测试检查点逻辑</li>
+<li>设计可观察的中间状态</li>
+<li>假设 Agent 会在任意点失败，确保能从该点恢复</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/09_effective_harnesses.md</span> — Effective harnesses for long-running agents</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="Agent Harness 运行框架.html">Agent Harness 运行框架</a> — part_of（检查点策略是 Harness 的核心组件）</li>
+<li><a href="初始化-编码循环模式.html">初始化-编码循环模式</a> — uses（初始化 Agent 设定检查点标准）</li>
+<li><a href="外化进度追踪.html">外化进度追踪</a> — relates_to（进度文件记录检查点状态）</li>
+<li><a href="错误复合.html">错误复合</a> — prevents（检查点防止错误在多步迭代中积累）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="梯度爆炸.html">&larr; 梯度爆炸</a>
+    <a href="检索增强生成.html">检索增强生成 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

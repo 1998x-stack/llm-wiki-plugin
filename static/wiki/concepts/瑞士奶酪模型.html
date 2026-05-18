@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞士奶酪模型 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 瑞士奶酪模型</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">质量保障</span><span class="tag">安全工程</span><span class="tag">风险管理</span><span class="tag">多层防御</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">瑞士奶酪模型</h1>
+<h2 id="_2">概述</h2>
+<p>瑞士奶酪模型是安全工程中的多层防御理念，比喻每层质量保障方法都有漏洞，但多层叠加能拦截大多数问题，用于理解 Agent 性能的综合体系。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>核心理念</strong>：</li>
+<li>每层质量保障方法都有漏洞（像瑞士奶酪的孔洞）</li>
+<li>多层叠加能拦截大多数问题（孔洞不会完全对齐）</li>
+<li>
+<p>eval 只是理解 Agent 性能的工具之一，不是唯一手段</p>
+</li>
+<li>
+<p><strong>六层质量保障体系</strong>：</p>
+</li>
+<li><strong>自动化 eval</strong>：可重复、快速、无用户影响；需要前期投资，可能与真实使用不符；最佳时机：部署前、每次提交</li>
+<li><strong>生产监控</strong>：真实用户行为，发现意外问题；被动，问题先触达用户；最佳时机：部署后持续运行</li>
+<li><strong>A/B 测试</strong>：测量真实用户结果；慢（需要几天到几周），需要流量；最佳时机：显著功能变更</li>
+<li><strong>用户反馈</strong>：发现意外问题，真实示例；稀疏、自选偏差，倾向严重问题；最佳时机：持续分类</li>
+<li><strong>手动 Transcript 审查</strong>：发现细微质量问题；不可扩展，时间密集；最佳时机：每周抽样</li>
+<li>
+<p><strong>系统性人工评测</strong>：黄金标准，处理主观任务；昂贵、周期长；最佳时机：校准 LLM 评分器时</p>
+</li>
+<li>
+<p><strong>工程启示</strong>：</p>
+</li>
+<li>不要依赖单一评测方法</li>
+<li>每层方法有其最佳使用时机</li>
+<li>综合使用才能建立完整的质量保障体系</li>
+<li>类似安全工程中的纵深防御（Defense in Depth）策略</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/12_demystifying_evals.md</span> — Eval 与其他方法的综合体系章节</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="评测驱动开发.html">评测驱动开发</a> — part_of（瑞士奶酪模型是评测驱动开发的宏观框架）</li>
+<li><a href="Agent 评测体系.html">Agent 评测体系</a> — relates_to（评测体系是瑞士奶酪模型中的一层）</li>
+<li><a href="LLM-as-Judge.html">LLM-as-Judge</a> — relates_to（LLM 评分器需要人工评测作为校准层）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="理解社会学.html">&larr; 理解社会学</a>
+    <a href="甚长基线干涉测量.html">甚长基线干涉测量 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

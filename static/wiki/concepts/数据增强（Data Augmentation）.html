@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>数据增强通过对训练样本施加随机变换（裁剪、翻转、色彩扰动等）人工扩展数据集，增加模型泛化能力。<a href="AlexNet.html">AlexNet</a> 将 120 万 <a href="ImageNet.html">ImageNet</a> 样本等效扩展至数十亿。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>核心思想</strong>：在训练过程中对输入数据施加随机但合理的变换，使模型看到"新"样本，从而学习到对变换不变的特征表示。这本质上是一种正则化技术——通过增加训练数据的多样性来减少<span style="color:#e74c3c" title="broken link">过拟合</span>。</li>
+<li><strong>核心思想</strong>：在训练过程中对输入数据施加随机但合理的变换，使模型看到"新"样本，从而学习到对变换不变的特征表示。这本质上是一种正则化技术——通过增加训练数据的多样性来减少<a href="过拟合.html">过拟合</a>。</li>
 <li><strong><a href="AlexNet.html">AlexNet</a> 的增强策略</strong>：(1) <strong>随机裁剪</strong>：从 256×256 原图中随机提取 224×224 区域，每个训练样本可产生多个不同裁剪，等效扩展 2048 倍；(2) <strong>随机水平翻转</strong>：左右镜像翻转，扩展 2 倍；(3) <strong>PCA 色彩扰动</strong>：对 RGB 通道施加基于主成分分析的随机偏移，改变图像亮度和对比度而不改变语义内容。三者组合将 120 万样本等效扩展至数十亿。</li>
 <li><strong>为什么有效</strong>：数据增强迫使模型学习语义不变性——猫无论出现在图像左侧还是右侧、无论亮一些还是暗一些，都应该被识别为猫。这比单纯增加参数量或训练轮数更有效地提升泛化性能。</li>
 <li><strong>现代演进</strong>：从 <a href="AlexNet.html">AlexNet</a> 的几何+色彩增强，发展到 AutoAugment（自动搜索增强策略）、RandAugment（简化搜索空间）、MixUp/CutMix（样本间混合）、以及针对特定任务的领域特定增强（如医学影像的弹性形变）。数据增强已成为<a href="../maps/深度学习.html">深度学习</a>标准训练流程的必备组件。</li>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">相关</h2>
 <ul>
 <li><a href="AlexNet.html">AlexNet</a> — used_in</li>
-<li><span style="color:#e74c3c" title="broken link">过拟合</span> — prevents</li>
+<li><a href="过拟合.html">过拟合</a> — prevents</li>
 <li><a href="../maps/深度学习.html">深度学习</a> — standard_technique</li>
 <li><span style="color:#e74c3c" title="broken link">计算机视觉</span> — widely_used_in</li>
 <li><a href="Dropout.html">Dropout</a> — complementary_to</li>

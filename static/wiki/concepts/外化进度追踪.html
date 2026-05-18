@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外化进度追踪 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 外化进度追踪</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">状态管理</span><span class="tag">外部记忆</span><span class="tag">长时任务</span></div>
+</div>
+  <div class="content">
+    <h1 id="_1">外化进度追踪</h1>
+<h2 id="_2">概述</h2>
+<p>外化进度追踪是 Agent Harness 设计中的核心实践，使用文件系统作为外部记忆，通过结构化的进度文件（如 claude-progress.txt 和 features.json）实现跨会话的状态传递和任务协调。</p>
+<h2 id="_3">关键内容</h2>
+<ol>
+<li><strong>核心文件结构</strong>：</li>
+<li><strong>claude-progress.txt</strong>：<ul>
+<li>已完成的任务列表</li>
+<li>当前进行中的任务</li>
+<li>下一步计划</li>
+<li>关键决策和约束背景</li>
+<li>已知问题和阻塞点</li>
+</ul>
+</li>
+<li>
+<p><strong>features.json</strong>：</p>
+<ul>
+<li>功能列表及各自状态</li>
+<li>每个功能的完成标准</li>
+<li>功能间的依赖关系</li>
+</ul>
+</li>
+<li>
+<p><strong>设计原则</strong>：</p>
+</li>
+<li>文件系统作为单一真相源（Single Source of Truth）</li>
+<li>不依赖 Agent 的对话历史来维护状态</li>
+<li>每个执行步骤结束后必须更新进度文件</li>
+<li>
+<p>进度文件应包含足够的上下文，使新实例能无缝继续</p>
+</li>
+<li>
+<p><strong>与 <a href="外化工作记忆.html">外化工作记忆</a> 的关系</strong>：</p>
+</li>
+<li>外化进度追踪是 <a href="外化工作记忆.html">外化工作记忆</a> 概念在长时任务中的具体实现</li>
+<li>通过持久化存储减轻模型对内部上下文记忆的负担</li>
+<li>
+<p>使 Agent 可以专注于当前推理，而非全局状态管理</p>
+</li>
+<li>
+<p><strong>与 <a href="Session 交接机制.html">Session 交接机制</a> 的对比</strong>：</p>
+</li>
+<li>两者都使用文件外部化状态</li>
+<li>外化进度追踪更细粒度，专注于任务级别的进度</li>
+<li>Session 交接机制更宏观，关注跨会话的知识传递</li>
+</ol>
+<h2 id="_4">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/09_effective_harnesses.md</span> — Effective harnesses for long-running agents</li>
+</ul>
+<h2 id="_5">相关</h2>
+<ul>
+<li><a href="外化工作记忆.html">外化工作记忆</a> — implements（外化进度追踪实现了外化工作记忆的概念）</li>
+<li><a href="初始化-编码循环模式.html">初始化-编码循环模式</a> — part_of（是初始化-编码循环模式的核心组件）</li>
+<li><a href="Agent Harness 运行框架.html">Agent Harness 运行框架</a> — part_of（是 Harness 框架的关键实践）</li>
+<li><a href="Session 交接机制.html">Session 交接机制</a> — compares_to（相似但更细粒度的状态外部化方案）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="外化工作记忆.html">&larr; 外化工作记忆</a>
+    <a href="外部工具集成.html">外部工具集成 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>

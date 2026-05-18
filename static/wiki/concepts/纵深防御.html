@@ -153,10 +153,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>可测试性</strong>：沙箱<a href="Configuration.html">配置</a>错误本身是不确定性来源，<a href="../entities/Codex CLI.html">Codex</a> 内置沙箱测试工具（<code>codex sandbox</code> 命令）可在真实沙箱中测试任意命令行为，通过可测试性消除<a href="Configuration.html">配置</a>不确定性。</p>
 </li>
+<li>
+<p><strong>在 Claude Code 中的应用</strong>：采用语义层 + 系统层双层防御。Auto Mode 分类器在语义层判断操作是否超出任务范围，<a href="Claude Code 沙箱机制.html">Claude Code 沙箱机制</a> 在系统层通过系统调用过滤阻止危险操作。两层独立失效模式，叠加降低整体风险。</p>
+</li>
+<li>
+<p><strong>安全即基础设施</strong>：将安全从"用户持续监督"转移到"系统级执行约束"，用户从实时监督者转变为范围定义者，是 AI Agent 走向可靠助手的关键设计原则。</p>
+</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-tools/codex/03_codex_sandbox_system.md</span> — 第 8 节：工程智慧总结</li>
+<li><a href="https://www.anthropic.com/engineering/claude-code-sandboxing">Beyond permission prompts: making Claude Code more secure and autonomous</a> — Anthropic Engineering Blog, 2025 年 10 月 20 日</li>
 </ul>
 <h2 id="_5">相关</h2>
 <ul>
@@ -164,6 +171,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="ExecPolicy.html">ExecPolicy</a> — implements</li>
 <li><a href="../entities/Landlock.html">Landlock</a> — implements</li>
 <li><a href="../entities/seccomp.html">seccomp</a> — implements</li>
+<li><a href="Claude Code 沙箱机制.html">Claude Code 沙箱机制</a> — implements</li>
+<li><a href="AI Agent 架构模式.html">AI Agent 架构模式</a> — part_of</li>
 </ul>
   </div>
   <div class="page-nav">

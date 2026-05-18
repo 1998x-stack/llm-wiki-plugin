@@ -129,13 +129,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">技术</span><span class="tag">AI工程</span></div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">方法论</span><span class="tag">技术</span><span class="tag">AI工程</span><span class="tag">ai-engineering</span><span class="tag">interface-design</span><span class="tag">agent-computer-interface</span></div>
 </div>
   <div class="content">
     <h1 id="aci">ACI 设计原则</h1>
 <h2 id="_1">概述</h2>
-<p>ACI 设计原则是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文在 <a href="Agent计算机接口.html">Agent计算机接口</a> 研究中总结的一组方法论，包括四条核心原则：动作简单明确、反馈简洁高密度、<a href="状态变化感知.html">状态可见性</a>、<a href="Guardrails.html">护栏机制</a>。这些原则是论文最有方法论价值的贡献。</p>
+<p>ACI 设计原则是类似人机界面（HCI）的工具接口设计方法论，源自 SWE-agent 论文的四条核心原则，并在 Anthropic 工程实践中得到进一步验证和扩展，强调接口设计对 Agent 行为的决定性影响。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">原则一：动作要简单、容易理解</h3>
 <blockquote>
@@ -169,6 +169,25 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>不是锦上添花，而是 agent 系统稳定性的核心——LM 很容易在早期引入小错误，然后整条轨迹被污染</li>
 <li>Guardrail 的作用是在"错误刚出现时"把它截断</li>
 </ul>
+<h3 id="anthropic">Anthropic 工程实践扩展</h3>
+<p>Anthropic 在多篇文章中进一步验证和扩展了 ACI 设计理念：</p>
+<ol>
+<li>
+<p><strong>ACI 概念起源</strong>：在 Building Effective Agents 中首次提出，将工具接口设计类比为传统的人机界面（HCI），强调接口设计对 Agent 行为的决定性影响。</p>
+</li>
+<li>
+<p><strong>AI 辅助工具描述改进</strong>：2025 年 9 月提出的 Writing Tools for Agents 方法，利用 AI 自我改进工具描述，实现任务完成时间降低 40%。这是 ACI 设计的自动化演进路径。</p>
+</li>
+<li>
+<p><strong>工具设计对 Agent 行为的影响</strong>：上下文工程研究表明，工具接口设计直接影响 Agent 的上下文使用效率和任务完成率。绝对路径案例证明微小设计差异导致显著性能差异。</p>
+</li>
+<li>
+<p><strong>与 MCP 的关系</strong>：MCP（Model Context Protocol）是 ACI 设计的具体实现标准，通过 Desktop Extensions 实现一键安装 MCP 服务器，降低生态系统摩擦。</p>
+</li>
+<li>
+<p><strong>并行工具调用与 tool_choice 控制</strong>：2025 年 11 月提出的高级工具使用模式，支持并行执行和精确控制，是 ACI 设计的高级形态。</p>
+</li>
+</ol>
 <h3 id="_6">实验验证</h3>
 <p>论文通过 <a href="Ablation Study.html">消融实验</a> 验证了这些原则：
 - 总结式搜索优于迭代式搜索（原则二：反馈简洁）
@@ -179,6 +198,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/04-SWE agent 如何保证 搜索是否高效、编辑是否稳定、反馈是否足够、上下文是否可控、恢复机制是否.md</span> — SWE-agent 五大保障机制分析</li>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/00_INDEX.md</span> — 跨文章核心主题：工具接口设计（ACI）</li>
 </ul>
 <h2 id="_8">相关</h2>
 <ul>
@@ -188,10 +208,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><a href="环境反馈设计.html">环境反馈设计</a> — extends（原则二"反馈简洁高密度"的具体实现）</li>
 <li><a href="状态变化感知.html">状态变化感知</a> — extends（原则三"状态可见性"的具体实现）</li>
 <li><a href="恢复机制.html">恢复机制</a> — extends（原则四"护栏机制"的恢复策略实现）</li>
+<li><a href="../entities/Anthropic.html">Anthropic</a> — part_of</li>
+<li><a href="Agent 架构与设计原则.html">Agent 架构与设计原则</a> — part_of</li>
+<li><a href="../entities/MCP.html">MCP</a> — compares_to</li>
+<li><a href="上下文工程.html">上下文工程</a> — relates_to</li>
 </ul>
   </div>
   <div class="page-nav">
-    <a href="AAAK 方言.html">&larr; AAAK 方言</a>
+    <a href="ACI (Agent-Computer Interface).html">&larr; ACI (Agent-Computer Interface)</a>
     <a href="ACP 编辑器集成.html">ACP 编辑器集成 &rarr;</a>
   </div>
 </div>

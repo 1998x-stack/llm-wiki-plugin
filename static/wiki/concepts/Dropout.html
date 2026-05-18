@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="dropout">Dropout</h1>
 <h2 id="50-200">概述 (50-200字符)</h2>
-<p>Dropout 是一种神经网络正则化技术，训练时以概率 p 随机关闭神经元，防止<span style="color:#e74c3c" title="broken link">过拟合</span>。2012 年 <a href="AlexNet.html">AlexNet</a> 使用 p=0.5 显著降低验证集错误率，成为深度学习标准组件。2014年<a href="../entities/Nitish Srivastava.html">Nitish Srivastava</a>等人在JMLR论文中正式提出该方法并提供了理论基础。</p>
+<p>Dropout 是一种神经网络正则化技术，训练时以概率 p 随机关闭神经元，防止<a href="过拟合.html">过拟合</a>。2012 年 <a href="AlexNet.html">AlexNet</a> 使用 p=0.5 显著降低验证集错误率，成为深度学习标准组件。2014年<a href="../entities/Nitish Srivastava.html">Nitish Srivastava</a>等人在JMLR论文中正式提出该方法并提供了理论基础。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>机制与实现</strong>：训练阶段，每个神经元以概率 p（通常 0.5）被随机"关闭"（输出置零）。这强迫网络学习冗余、独立的特征表示，而不是依赖特定神经元的协同作用。现代实现常采用 <a href="Inverted Dropout.html">Inverted Dropout</a>：训练时进行缩放以避免测试时修改权重。相当于同时训练 2^N 个共享参数的子网络，是一种高效的模型集成方法。</li>
@@ -154,7 +154,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><a href="../entities/Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文).html">Dropout: A Simple Way to Prevent Neural Networks from Overfitting (2014 论文)</a> — described_in</li>
 <li><a href="../entities/Geoffrey E. Hinton.html">Geoffrey E. Hinton</a> — invented_by</li>
-<li><span style="color:#e74c3c" title="broken link">过拟合</span> — prevents</li>
+<li><a href="过拟合.html">过拟合</a> — prevents</li>
 <li><span style="color:#e74c3c" title="broken link">集成学习（Ensemble Learning）</span> — theoretical_basis</li>
 <li><span style="color:#e74c3c" title="broken link">共适应</span> — addresses</li>
 <li><a href="MC Dropout.html">MC Dropout</a> — variant</li>

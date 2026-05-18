@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Think 工具 — LLM Wiki</title>
+<style>
+:root {
+  --bg: #ffffff; --fg: #1a1a2e; --fg2: #555;
+  --surface: rgba(255,255,255,0.85); --border: #e0e0e0;
+  --input-bg: #f5f5f5; --code-bg: #f8f8f8;
+  --link: #4A90D9; --link-hover: #2a70b9;
+}
+.dark {
+  --bg: #1a1a2e; --fg: #e0e0e0; --fg2: #aaa;
+  --surface: rgba(30,30,50,0.88); --border: #333;
+  --input-bg: #2a2a3e; --code-bg: #2a2a3e;
+  --link: #6db3f2; --link-hover: #8cc5ff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--fg);
+  line-height: 1.7; transition: background 0.3s, color 0.3s;
+}
+/* Topbar */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  padding: 10px 20px; background: var(--surface);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav a {
+  color: var(--fg2); text-decoration: none; font-size: 14px;
+  padding: 4px 12px; border-radius: 6px; transition: background 0.2s;
+}
+nav a:hover { background: var(--input-bg); }
+nav a.active { color: var(--link); font-weight: 600; }
+.nav-links { display: flex; gap: 4px; }
+#theme-btn {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--input-bg); color: var(--fg); cursor: pointer; font-size: 12px;
+}
+/* Main content */
+.container {
+  max-width: 800px; margin: 0 auto; padding: 30px 20px 60px;
+}
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px; color: var(--fg2); margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--link); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+/* Metadata card */
+.meta-card {
+  background: var(--input-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.meta-item { font-size: 13px; color: var(--fg2); }
+.meta-item strong { color: var(--fg); }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 11px; color: #fff; font-weight: 600;
+}
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--fg2); margin: 2px;
+}
+/* Content */
+.content h1 { font-size: 28px; margin: 24px 0 12px; }
+.content h2 { font-size: 20px; margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.content h3 { font-size: 16px; margin: 16px 0 8px; }
+.content p { margin: 8px 0; }
+.content ul, .content ol { padding-left: 24px; margin: 8px 0; }
+.content li { margin: 4px 0; }
+.content a { color: var(--link); text-decoration: none; }
+.content a:hover { text-decoration: underline; color: var(--link-hover); }
+.content code {
+  background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: 0.9em; font-family: 'SF Mono', monospace;
+}
+.content pre {
+  background: var(--code-bg); padding: 14px; border-radius: 8px;
+  overflow-x: auto; margin: 10px 0; border: 1px solid var(--border);
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--link); padding: 8px 16px;
+  margin: 10px 0; color: var(--fg2); background: var(--input-bg);
+  border-radius: 0 6px 6px 0;
+}
+.content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+.content th, .content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 14px;
+}
+.content th { background: var(--input-bg); font-weight: 600; }
+/* Footer nav */
+.page-nav {
+  display: flex; justify-content: space-between; margin-top: 40px;
+  padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px;
+}
+.page-nav a { color: var(--link); text-decoration: none; }
+.page-nav a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .meta-card { grid-template-columns: 1fr; }
+  .container { padding: 16px 12px 40px; }
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false})"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-links">
+    <a href="../../graph.html">Graph</a>
+    <a href="../../statistics.html">Statistics</a>
+    <a href="../index.html" class="active">Wiki</a>
+  </div>
+  <button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'Light':'Dark'">Dark</button>
+</nav>
+<div class="container">
+  <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Think 工具</div>
+  <div class="meta-card">
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI工程</span><span class="tag">Agent架构</span><span class="tag">推理机制</span></div>
+</div>
+  <div class="content">
+    <h1 id="think">Think 工具</h1>
+<h2 id="_1">概述</h2>
+<p>Think 工具是一种为 LLM Agent 设计的显式"思考空间"机制，允许模型在复杂工具调用链中暂停并分析中间结果，从而提升策略遵从性和决策质量。</p>
+<h2 id="_2">关键内容</h2>
+<h3 id="_3">核心定义与实现</h3>
+<p>Think 工具的实现极其简单，仅需一个无副作用的工具定义：
+- <strong>名称</strong>：<code>think</code>
+- <strong>功能</strong>：将想法追加到日志中，不获取新信息、不修改系统状态
+- <strong>参数</strong>：仅一个 <code>thought</code> 字符串
+- <strong>关键特征</strong>：无副作用、透明性（思考内容出现在工具调用日志中可供调试）、最小化接口</p>
+<h3 id="extended-thinking">与 Extended Thinking 的本质区别</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Extended Thinking</th>
+<th>Think 工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发时机</td>
+<td>模型开始生成<strong>之前</strong></td>
+<td>已开始生成<strong>之中</strong></td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>深度计划、数学、编程</td>
+<td>长工具调用链中处理工具输出</td>
+</tr>
+<tr>
+<td>信息基础</td>
+<td>主要基于用户查询</td>
+<td>基于<strong>外部工具返回的新信息</strong></td>
+</tr>
+<tr>
+<td>推理深度</td>
+<td>更全面</td>
+<td>更聚焦于新发现信息</td>
+</tr>
+<tr>
+<td>最优领域</td>
+<td>非工具场景（编码/数学/物理）</td>
+<td>策略密集、顺序决策场景</td>
+</tr>
+</tbody>
+</table>
+<p>直觉类比：Extended Thinking 像是专家<strong>开始工作前</strong>的深度规划；Think 工具像是专家在<strong>看到化验结果后</strong>的即时分析。</p>
+<h3 id="-bench">τ-Bench 评估结果</h3>
+<p>在 τ-Bench 航空域测试中：
+- 基准（无 think，无 ET）：pass@1 = 0.332
+- Extended Thinking：pass@1 = 0.412
+- Think 工具（无 prompt 优化）：pass@1 = 0.404
+- <strong>Think 工具 + 优化 prompt</strong>：pass@1 = <strong>0.584</strong>（提升 54%）</p>
+<p>核心发现：
+1. Think + 优化 prompt 在航空域的改进远超 Extended Thinking
+2. 单独 Extended Thinking 和单独 Think 工具性能相近
+3. <strong>Prompt 优化是关键杠杆</strong>——策略越复杂，示例越重要</p>
+<p>零售域策略相对简单，仅凭 Think 工具（无 prompt 优化）就超过了基准和 Extended Thinking（pass@1 = 0.812 vs 0.783）。</p>
+<h3 id="swe-bench">SWE-Bench 表现</h3>
+<ul>
+<li>实验规模：n=30（有 think 工具） vs n=144（无 think 工具）</li>
+<li>性能提升：平均提升 1.6%（Welch t 检验：p &lt; 0.001，效应量 d=1.47）</li>
+<li>效应量相当大但平均提升仅 1.6%，说明 think 工具在编码场景中<strong>改善了稳定性</strong>（减少极端失败），而非系统性提升所有任务</li>
+</ul>
+<h3 id="_4">认知科学视角：外化工作记忆</h3>
+<p>Think 工具从认知科学角度可理解为<strong>外化工作记忆（Externalized Working Memory）</strong>。人类在面对复杂问题时也需要"写下来"帮助思考——清单、草稿纸、白板。LLM 在处理长工具调用链时同样面临"工作记忆"压力：
+- 之前哪些工具已调用
+- 收集到了哪些信息
+- 还缺少哪些信息
+- 当前状态是否符合策略要求</p>
+<p>Think 工具提供了一个<strong>持久化的中间状态缓存</strong>，减轻了模型在下一次推理时需要从对话历史中重新推导中间状态的负担。</p>
+<h3 id="chain-of-thought">与 Chain-of-Thought 的关系</h3>
+<p>Think 工具与 Chain-of-Thought（CoT）提示有内在联系，但存在重要区别：
+- CoT 通过 prompt 隐式引导，Think 工具是显式工具调用
+- CoT 固定在响应开始，Think 工具<strong>动态</strong>在需要时才触发
+- CoT 混在响应文本中，Think 工具是结构化工具调用易于追踪
+- Think 工具本质上是<strong>结构化的、按需触发的 CoT</strong></p>
+<h3 id="_5">适用与不适用场景</h3>
+<p><strong>适用场景</strong>：
+1. 工具输出分析：需要仔细处理前一个工具调用的输出并可能需要回溯
+2. 策略密集环境：需要遵循详细指南并验证合规性
+3. 顺序决策：每个行动都依赖于前一个，错误代价高</p>
+<p><strong>不适用场景</strong>：
+1. 非顺序工具调用：仅需单次或多个并行调用时
+2. 简单指令遵循：约束少，默认行为已足够好时</p>
+<h3 id="_6">实践建议</h3>
+<p><strong>System Prompt 引导模板</strong>：</p>
+<pre><code>## 使用 think 工具的时机
+在以下情况调用 think 工具：
+- 收到工具结果后，验证信息完整性
+- 做出不可逆操作前，核对所有策略规则
+- 发现多条可能路径时，分析最优选择
+
+示例推理结构：
+1. 当前状态：已获得哪些信息
+2. 缺失信息：还需要什么
+3. 策略检查：当前计划是否合规
+4. 下一步：最优行动是什么
+</code></pre>
+<p><strong>监控与迭代</strong>：
+- 观察模型实际在 think 中写了什么，识别推理模式
+- 若 think 内容质量低，可在 prompt 中提供更具体的示例
+- 定期清理工具调用历史，避免 context 膨胀</p>
+<h3 id="2025-12">更新说明（2025 年 12 月）</h3>
+<p>Extended Thinking 能力已大幅提升，在大多数场景下 Anthropic 现推荐使用 Extended Thinking 替代专用的 think 工具。但本文的分析仍具有重要的理论和实践价值。</p>
+<h2 id="_7">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/03_think_tool.md</span> — The "think" tool: Enabling Claude to stop and think in complex tool use situations</li>
+</ul>
+<h2 id="_8">相关</h2>
+<ul>
+<li><a href="Extended Thinking.html">Extended Thinking</a> — compares_to（两种不同的推理机制，触发时机和适用场景不同）</li>
+<li><a href="Chain-of-Thought.html">Chain-of-Thought</a> — extends（Think 工具是结构化的、按需触发的 CoT）</li>
+<li><a href="外化工作记忆.html">外化工作记忆</a> — implements（Think 工具实现了认知科学中的外化工作记忆概念）</li>
+<li><a href="../projects/τ-Bench.html">τ-Bench</a> — uses（τ-Bench 是评估 Think 工具效果的主要基准）</li>
+<li><a href="../entities/SWE-bench.html">SWE-bench</a> — uses（Think 工具在 SWE-bench 编码场景中得到验证）</li>
+<li><a href="上下文工程.html">上下文工程</a> — part_of（Think 工具是上下文工程中管理中间推理状态的技术）</li>
+</ul>
+  </div>
+  <div class="page-nav">
+    <a href="Test Engineer Agent.html">&larr; Test Engineer Agent</a>
+    <a href="Think工具.html">Think工具 &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
