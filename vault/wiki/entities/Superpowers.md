@@ -34,7 +34,7 @@ supersedes: null
 2. **主要功能**：
    - Brainstorm：苏格拉底式对话，挖掘真实需求
    - Spec：可供用户审读的规格说明（分块展示）
-   - Plan：微任务分解（2-5分钟每任务）
+   - Plan：微[[任务分解]]（2-5分钟每任务）
    - TDD：写测试→确认测试失败→写实现（不可跳过）
    - Subagent：多Agent并行执行任务列表
    - Review：[[代码审查]]员Agent

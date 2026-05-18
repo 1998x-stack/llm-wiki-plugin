@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, computer-vision, object-detection]
+tags: [person, computer-vision, object-detection, 机器学习]
 aliases: [Ross Girshick]
 relates_to:
   - target: R-CNN 系列

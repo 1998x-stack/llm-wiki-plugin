@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [deep-learning, architecture, efficiency]
+tags: [deep-learning, architecture, efficiency, AI工程]
 aliases: [MoE, Mixture of Experts, 混合专家模型]
 relates_to:
   - target: DeepSeek

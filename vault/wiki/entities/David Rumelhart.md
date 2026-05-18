@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, deep-learning, backpropagation]
+tags: [person, deep-learning, backpropagation, 脑科学]
 aliases: [David Rumelhart, 大卫·鲁梅尔哈特]
 relates_to:
   - target: Geoffrey E. Hinton

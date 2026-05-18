@@ -36,7 +36,7 @@ supersedes: null
 
 ## 概述
 
-[[Frederick Brooks]] 于1986年发表的《No Silver Bullet》，论证了软件工程中不存在能让生产力在十年内提高10倍的单一技术，因为核心困难来自本质复杂性而非偶然复杂性。
+[[Frederick Brooks]] 于1986年发表的《[[No Silver Bullet]]》，论证了软件工程中不存在能让生产力在十年内提高10倍的单一技术，因为核心困难来自本质复杂性而非偶然复杂性。
 
 ## 关键内容
 
@@ -44,17 +44,17 @@ supersedes: null
 
 | 项目 | 内容 |
 |------|------|
-| **标题** | No Silver Bullet -- Essence and Accident in Software Engineering |
-| **作者** | Frederick P. Brooks, Jr. |
+| **标题** | [[No Silver Bullet|No Silver Bullet -- Essence and Accident in Software Engineering]] |
+| **作者** | [[Frederick P. Brooks, Jr.]] |
 | **发表时间** | 1986年（会议）；1987年4月（期刊） |
 | **刊物** | IEEE Computer, Vol. 20, No. 4, pp. 10-19 |
 | **被引次数** | 超过5000次 |
 
 ### 核心框架
 
-**本质困难 vs 偶然困难**：
-- **本质困难**：软件概念结构固有的复杂性，不可消除
-- **偶然困难**：当前工具和表达方式的不完善，可通过技术进步消除
+**[[本质困难]] vs [[偶然困难]]**：
+- **[[本质困难]]**：软件概念结构固有的复杂性，不可消除
+- **[[偶然困难]]**：当前工具和表达方式的不完善，可通过技术进步消除
 
 ### 软件的四个本质特性
 

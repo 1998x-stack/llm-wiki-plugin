@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "agent-systems", "architecture"]
+tags: [ai-engineering, agent-systems, architecture, AI工程]
 aliases: ["Harness Layer Architecture", "Harness分层架构", "Agent Harness Layers"]
 relates_to:
   - target: "[[Harness-Engineering]]"
@@ -54,7 +54,7 @@ Harness分层架构是一种7层分类框架，描述了Agent系统中Harness的
 
 4. **性能影响**：
    - [[SWE-agent]]论文显示：仅靠[[Agent计算机接口|Agent-Computer Interface]]设计改进，获得64%的性能提升
-   - LangChain在Terminal Bench 2.0上的成绩从52.8%升到66.5%，排名从Top 30跳到Top 5
+   - [[LangChain]]在[[Terminal-Bench|Terminal Bench]] 2.0上的成绩从52.8%升到66.5%，排名从Top 30跳到Top 5
    - 模型未改变，仅优化Harness架构带来的显著提升
 
 ## 来源

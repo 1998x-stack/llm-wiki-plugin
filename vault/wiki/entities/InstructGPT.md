@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-model, language-model, openai, alignment]
+tags: [ai-model, language-model, openai, alignment, AI工程]
 aliases: ["InstructGPT", "Instruction Following GPT"]
 relates_to: 
   - target: "[[Language-Model]]"

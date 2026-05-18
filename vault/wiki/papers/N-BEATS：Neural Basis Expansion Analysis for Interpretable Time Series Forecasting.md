@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [时间序列预测, 深度学习, 神经网络, 基函数展开]
+tags: [时间序列预测, 深度学习, 神经网络, 基函数展开, 时间序列]
 aliases: ["N-BEATS", "N-BEATS: Neural Basis Expansion Analysis for Interpretable Time Series Forecasting", "Neural Basis Expansion Analysis"]
 relates_to:
   - target: "[[Yoshua Bengio]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [vc, crypto, investment]
+tags: [vc, crypto, investment, 经济学]
 aliases: ["Paradigm Investment", "Paradigm VC"]
 relates_to: []
 supersedes: null

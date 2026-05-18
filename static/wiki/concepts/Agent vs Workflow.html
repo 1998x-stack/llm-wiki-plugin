@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-architecture</span><span class="tag">design-principle</span><span class="tag">workflow</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-architecture</span><span class="tag">design-principle</span><span class="tag">workflow</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent-vs-workflow">Agent vs Workflow</h1>
 <h2 id="_1">概述</h2>
-<p>Anthropic 提出的关键架构区分：Workflow 通过预定义代码路径协调 LLM 和工具（确定性），Agent 由 LLM 动态指导自身过程和工具使用（灵活性）。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 提出的关键架构<a href="../entities/区分.html">区分</a>：Workflow 通过预定义代码路径协调 LLM 和工具（确定性），Agent 由 LLM 动态指导自身过程和工具使用（灵活性）。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>Workflow（工作流）定义</strong>：LLM 和工具通过<strong>预定义代码路径</strong>进行协调。特征：确定性、可预测、适合结构化任务。提供一致性和可重复性。</li>
 <li><strong>Agent（智能体）定义</strong>：LLM <strong>动态指导</strong>自己的过程和工具使用。特征：灵活性、自主性、适合开放性任务。提供模型驱动的决策能力。</li>
 <li><strong>选择错误的代价</strong>：选择错误的范式会带来巨大的维护成本。工作流用于开放任务会僵化，Agent 用于结构化任务会不可预测。</li>
 <li><strong>决策原则</strong>：除非任务天然开放且步骤无法预判，否则工作流通常优于自主 Agent。先测试单次优化的 LLM 调用是否满足需求，再考虑引入架构。</li>
-<li><strong>五种模式的归属</strong>：Prompt Chaining、Routing、Parallelization、Orchestrator-Workers、Evaluator-Optimizer 都属于工作流范式，是确定性与灵活性的不同平衡点。</li>
+<li><strong>五种模式的归属</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a>、Routing、Parallelization、<a href="多Agent架构.html">Orchestrator-Worker</a>s、Evaluator-Optimizer 都属于工作流范式，是确定性与灵活性的不同平衡点。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

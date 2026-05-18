@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [开发工具, 代码托管, 协作平台]
+tags: [开发工具, 代码托管, 协作平台, AI工程]
 aliases: [GitHub, Github]
 relates_to:
   - target: "[[MCP协议层]]"

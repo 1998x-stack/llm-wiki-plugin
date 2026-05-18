@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [prediction-theory, time-series-analysis, statistics, probability-theory]
+tags: [prediction-theory, time-series-analysis, statistics, probability-theory, 时间序列]
 aliases: ["Wold-Kolmogorov Prediction Theory", "Wold-Kolmogorov 预测理论", "Prediction Theory"]
 relates_to:
   - target: "[[Herman Wold]]"

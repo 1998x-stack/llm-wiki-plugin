@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [programming-language, computer-science, history]
+tags: [programming-language, computer-science, history, 计算理论]
 aliases: ["ALGOL 60", "Algorithmic Language 60"]
 relates_to:
   - target: "[[Edsger W. Dijkstra]]"
@@ -29,16 +29,16 @@ relates_to:
 # ALGOL 60
 
 ## 概述
-ALGOL 60（Algorithmic Language 60）是1960年发布的算法描述语言，是计算机历史上最重要的编程语言之一。它引入了许多现代编程语言的基础概念，对后续编程语言发展产生深远影响。
+ALGOL 60（[[算法|Algorithm]]ic Language 60）是1960年发布的[[算法]]描述语言，是[[计算]]机历史上最重要的编程语言之一。它引入了许多现代编程语言的基础概念，对后续编程语言发展产生深远影响。
 
 ## 关键内容
-1. **历史地位**：ALGOL 60是第一个成功定义结构化编程概念的语言之一，为后来的编程语言设计提供了重要蓝本。
+1. **历史地位**：ALGOL 60是第一个成功定义[[结构化编程]]概念的语言之一，为后来的编程语言设计提供了重要蓝本。
 
 2. **关键技术**：首次引入了局部变量、递归、巴科斯-诺尔范式（BNF）来定义语法等重要概念，这些都成为了现代编程语言的标准特征。
 
-3. **人员贡献**：Edsger W. Dijkstra参与了ALGOL 60语言的设计工作，并开发了首个ALGOL 60编译器，为其发展做出了重要贡献。
+3. **人员贡献**：[[Edsger W. Dijkstra]]参与了ALGOL 60语言的设计工作，并开发了首个ALGOL 60编译器，为其发展做出了重要贡献。
 
-4. **影响**：影响了Pascal、C、Simula等多种后续语言的设计，为结构化编程范式的发展奠定了基础。
+4. **影响**：影响了Pascal、C、Simula等多种后续语言的设计，为[[结构化编程]]范式的发展奠定了基础。
 
 ## 来源
 - [[编程语言发展史]] — 相关资料

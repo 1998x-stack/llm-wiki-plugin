@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["skills", "best-practices", "gotchas"]
+tags: [skills, best-practices, gotchas, AI工程]
 aliases: ["Gotchas", "Gotchas Section"]
 relates_to: []
 supersedes: null

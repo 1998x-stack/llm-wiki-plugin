@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [技术, 方法论]
+tags: [技术, 方法论, 推荐系统]
 aliases: [Reciprocal Rank Fusion, RFF]
 relates_to:
   - BGE-Reranker

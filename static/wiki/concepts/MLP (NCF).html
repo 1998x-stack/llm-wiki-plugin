@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">深度学习</span><span class="tag">协同过滤</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">深度学习</span><span class="tag">协同过滤</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="mlp-ncf">MLP (NCF)</h1>
 <h2 id="_1">概述</h2>
-<p>神经协同过滤(NCF)框架中的多层感知机模型，专门用于学习用户-物品交互中的非线性模式。</p>
+<p><a href="NCF">[神经协同过滤]</a>框架中的<a href="多层感知机.html">多层感知机</a>模型，专门用于学习用户-物品交互中的非线性模式。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>非线性建模</strong>：与GMF的逐元素乘积不同，MLP通过拼接和多层变换，能够学习到用户和物品潜在因子之间任意复杂的交叉模式。</p>
 </li>
 <li>
-<p><strong>与GMF对比</strong>：MLP从零开始自由探索交互模式空间，而GMF像是在已知"交互应该是乘法形式"的前提下做精细调整，MLP在多数实验设置下性能优于GMF。</p>
+<p><strong>与GMF对比</strong>：MLP从零开始自由探索交互模式空间，而GMF像是在已知"交互应该是乘法形式"的前提下做精细调整，MLP在多数实验<a href="Settings.html">设置</a>下性能优于GMF。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["不确定性估计", "贝叶斯深度学习", "推理", "Dropout"]
+tags: [不确定性估计, 贝叶斯深度学习, 推理, Dropout, 机器学习]
 aliases: ["Monte Carlo Dropout", "MC Dropout", "Bayesian Dropout"]
 relates_to: [{"target": "[[Dropout（随机失活）]]", "type": "extends", "confidence": 0.9}, {"target": "[[Inverted Dropout]]", "type": "compares_to", "confidence": 0.8}, {"target": "[[过拟合（Overfitting）]]", "type": "relates_to", "confidence": 0.7}, {"target": "[[托马斯·贝叶斯]]", "type": "relates_to", "confidence": 0.8}, {"target": "[[变分贝叶斯近似]]", "type": "based_on", "confidence": 0.9}]
 supersedes: null

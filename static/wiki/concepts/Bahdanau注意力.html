@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bahdanau">Bahdanau注意力</h1>
 <h2 id="_1">概述</h2>
-<p>Bahdanau 加性注意力通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ <a href="计算.html">计算</a>对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的首次成功实现。</p>
+<p>Bahdanau 加性<a href="注意力机制.html">注意力</a>通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ <a href="计算.html">计算</a>对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的首次成功实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">对齐函数</h3>
 <p>核心公式：$e(s_{t-1}, h_i) = v^\top \cdot \tanh(W_a \cdot s_{t-1} + U_a \cdot h_i)$</p>
@@ -197,7 +197,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_4">历史地位</h3>
-<p>Bahdanau 注意力是<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的<strong>首次成功实现</strong>，直接解决了 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 的固定长度瓶颈。其对齐<a href="矩阵.html">矩阵</a>使机器翻译首次具备可解释性，为后续 <a href="Luong注意力.html">Luong注意力</a>、<a href="自注意力机制.html">自注意力机制</a> 乃至 <a href="Transformer架构.html">Transformer架构</a> 奠定了理论基础。</p>
+<p>Bahdanau <a href="注意力机制.html">注意力</a>是<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>的<strong>首次成功实现</strong>，直接解决了 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 的固定长度瓶颈。其对齐<a href="矩阵.html">矩阵</a>使机器翻译首次具备可解释性，为后续 <a href="Luong注意力.html">Luong注意力</a>、<a href="自注意力机制.html">自注意力机制</a> 乃至 <a href="Transformer架构.html">Transformer架构</a> 奠定了理论基础。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><a href="../entities/Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文).html">Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文)</a> — 提出 Bahdanau 加性注意力</li>

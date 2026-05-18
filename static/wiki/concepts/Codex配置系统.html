@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td>L2 用户级</td>
 <td><code>~/.codex/config.toml</code></td>
-<td>个人偏好：默认模型、沙箱、<a href="MCP 服务器.html">MCP 服务器</a></td>
+<td>个人偏好：默认模型、[[Claude Code 沙箱机制</td>
 </tr>
 <tr>
 <td>L3 团队级</td>
@@ -188,7 +188,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;p&gt;&lt;strong&gt;模型&lt;/strong&gt;：&lt;code&gt;model = &quot;gpt-5.4&quot;&lt;/code&gt; / &lt;code&gt;model_provider = &quot;openai&quot;&lt;/code&gt; 或 &lt;code&gt;&quot;oss&quot;&lt;/code&gt;（本地 [[Ollama</span>）</p>
 <p><strong>Review 独立模型</strong>：<code>[review]</code> 段可指定独立模型（如 <code>gpt-5.4-mini</code>），review 作为独立 Agent 可用更便宜的模型。</p>
 <p><strong><a href="Environment Variables.html">环境变量</a>覆盖</strong>：<code>CODEX_CONFIG_PATH</code> 可指定<a href="Configuration.html">配置</a>文件路径，<code>CODEX_MODEL</code> 等部分<a href="Configuration.html">配置</a>支持 env 直接覆盖。</p>
-<p><strong>沙箱与审批</strong>：</p>
+<p><strong><a href="Claude Code 沙箱机制.html">沙箱</a>与审批</strong>：</p>
 <pre><code class="language-toml">sandbox_mode = &quot;workspace-write&quot;  # read-only | workspace-write | danger-full-access
 # workspace-write 细节：
 [sandbox_workspace_write]

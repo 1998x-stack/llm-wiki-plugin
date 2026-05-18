@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_3">函数连接</h3>
 <p>最基本的一层：把引擎函数（如 <code>SpawnEnemy</code>、<code>PlaySound</code>、<code>LoadScene</code>）注册给 Lua 全局表或模块表。三个质量关键点：
 - <strong>参数编解码</strong>：跨边界类型宽松转换易导致精度丢失、枚举误传、nil/false 语义混淆
-- <strong>错误传播</strong>：脚本报错需包裹在保护调用（<code>lua_pcall</code>）中，错误转为日志/堆栈输出，避免崩<a href="游戏主循环模式.html">主循环</a>
+- <strong><a href="错误复合.html">错误传播</a></strong>：脚本报错需包裹在保护调用（<code>lua_pcall</code>）中，错误转为日志/堆栈输出，避免崩<a href="游戏主循环模式.html">主循环</a>
 - <strong>边界粒度</strong>：高频逻辑应批量提交，避免每帧跨边界数千次读 getter/setter</p>
 <h3 id="registry">注册表（Registry）</h3>
 <p>Lua 官方提供给 C 宿主的特殊表，用于：保存原生对象指针→Lua包装对象映射、Lua 回调函数引用、类型表/模块表缓存、事件订阅表。同一个 C++ 对象每次暴露给 Lua 应使用唯一包装缓存（避免 <code>a ~= b</code> 但两者指向同一原生对象）。</p>
@@ -164,7 +164,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>人工成本高，易漏导出</td>
 </tr>
 <tr>
-<td>代码生成</td>
+<td><a href="代码生成.html">代码生成</a></td>
 <td><span style="color:#e74c3c" title="broken link">Lua脚本宿主模式&lt;/td&gt;
 &lt;td&gt;tolua</span>#、<span style="color:#e74c3c" title="broken link">Lua脚本宿主模式&lt;/td&gt;
 &lt;td&gt;tolua</span>++</td>

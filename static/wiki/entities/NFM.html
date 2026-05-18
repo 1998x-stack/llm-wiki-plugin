@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="nfm">NFM</h1>
 <h2 id="_1">概述</h2>
-<p>2017年提出的神经因子分解机模型，在FM的二阶交互层上叠加DNN，是FM与深度学习结合的另一种架构设计。</p>
+<p>2017年提出的神经<a href="Factorization Machines.html">因子分解机</a>模型，在FM的二阶交互层上叠加DNN，是FM与深度学习结合的另一种架构设计。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -143,12 +143,12 @@ nav a.active { color: var(--link); font-weight: 600; }
    在FM的二阶交互层之上添加深度神经网络，将FM的交互结果作为DNN的输入。</p>
 </li>
 <li>
-<p><strong>层次化特征交互</strong>：
+<p><strong>层次化<a href="../concepts/特征交叉.html">特征交互</a></strong>：
    先通过FM建模二阶交互，再通过DNN捕获更高阶的非线性交互。</p>
 </li>
 <li>
 <p><strong>架构创新</strong>：
-   与DeepFM的并行架构不同，NFM采用串联架构，FM的结果作为DNN的输入进行进一步处理。</p>
+   与<a href="DeepFM.html">DeepFM</a>的并行架构不同，NFM采用串联架构，FM的结果作为DNN的输入进行进一步处理。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

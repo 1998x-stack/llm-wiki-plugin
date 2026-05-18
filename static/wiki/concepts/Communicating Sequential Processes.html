@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">并发计算</span><span class="tag">编程语言理论</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">并发计算</span><span class="tag">编程语言理论</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">通信顺序进程</h1>
 <h2 id="_2">概述</h2>
-<p>由C.A.R. Hoare在1978年提出的并发编程模型，主张通过同步消息传递而非共享内存来实现进程间通信。</p>
+<p>由<a href="../entities/C.A.R. Hoare.html">C.A.R. Hoare</a>在1978年提出的并发编程模型，主张通过同步<a href="消息传递.html">消息传递</a>而非共享内存来实现进程间通信。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心理念</strong>：并发程序由多个独立的顺序进程组成，进程之间通过同步的消息传递进行通信，避免共享内存带来的复杂性。</p>
+<p><strong>核心理念</strong>：并发程序由多个独立的顺序进程组成，进程之间通过同步的<a href="消息传递.html">消息传递</a>进行通信，避免共享内存带来的复杂性。</p>
 </li>
 <li>
 <p><strong>进程定义</strong>：每个进程内部是严格顺序的，拥有私有状态，不与其他进程共享变量。复杂性只存在于进程之间的交互中。</p>
 </li>
 <li>
-<p><strong>同步通信</strong>：采用P!e(输出)和P?x(输入)命令，通信过程是同步的，发送方和接收方必须同时准备好才能完成通信，这被称为"会合"(rendezvous)。</p>
+<p><strong><a href="同步通信.html">同步通信</a></strong>：采用P!e(输出)和P?x(输入)命令，通信过程是同步的，发送方和接收方必须同时准备好才能完成通信，这被称为"<a href="同步通信.html">会合</a>"(rendezvous)。</p>
 </li>
 <li>
 <p><strong>守卫命令</strong>：允许将输入命令作为守卫条件，使进程可以同时监听多个通信伙伴，根据谁先准备好来决定下一步动作。</p>

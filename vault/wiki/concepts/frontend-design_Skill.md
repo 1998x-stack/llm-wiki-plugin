@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-skill, frontend-design, ui-framework]
+tags: [ai-skill, frontend-design, ui-framework, AI工程]
 aliases: ["frontend-design Skill", "Frontend Design Skill"]
 relates_to: []
 supersedes: null

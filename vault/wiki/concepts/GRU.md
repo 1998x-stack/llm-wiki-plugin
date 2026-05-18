@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [神经网络, 深度学习, 序列建模]
+tags: [神经网络, 深度学习, 序列建模, 机器学习]
 aliases: ["Gated Recurrent Unit", "门控循环单元", "GRU"]
 relates_to:
   - target: "[[LSTM]]"
@@ -30,7 +30,7 @@ supersedes: null
 # GRU
 
 ## 概述
-门控循环单元（Gated Recurrent Unit，GRU）是由Cho Kyunghyun等人于2014年提出的循环神经网络变体，是LSTM的简化版本。
+[[门控机制（Gating Mechanism）|门控]]循环单元（Gated Recurrent Unit，GRU）是由Cho Kyunghyun等人于2014年提出的循环神经网络变体，是LSTM的简化版本。
 
 ## 关键内容
 1. **架构特点**：
@@ -38,20 +38,20 @@ supersedes: null
    - 参数更少，训练更快
    - 在许多任务上表现与LSTM相当
 
-2. **门控机制**：
+2. **[[门控机制]]**：
    - 重置门：决定如何将过去的信息与当前输入结合起来
    - 更新门：决定保留多少过去的记忆
-   - 与LSTM相比，GRU没有单独的输出门
+   - 与LSTM相比，GRU没有单独的[[输出门]]
 
 3. **与LSTM的关系**：
    - 可以看作LSTM的"轻量版"
-   - 在计算资源有限的情况下是很好的选择
-   - 没有LSTM的记忆细胞和细胞状态概念
+   - 在[[计算]]资源有限的情况下是很好的选择
+   - 没有LSTM的[[记忆细胞]]和[[细胞状态（Cell State）|细胞状态]]概念
 
 4. **发展历程**：
    - 2014年由Cho Kyunghyun等人提出
    - 是LSTM之后序列建模领域的重要进展
-   - 代表了对门控机制的进一步简化和优化
+   - 代表了对[[门控机制]]的进一步简化和优化
 
 ## 来源
 - [[12-hochreiter-1997-lstm.md]] — GRU发展历程

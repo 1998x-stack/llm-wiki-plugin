@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="context-economics">上下文经济学（Context Economics）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文经济学是管理 AI 辅助开发中 <a href="上下文窗口.html">上下文窗口</a> 资源的哲学框架，核心原则是把有限的注意力预算用在最重要的信息上，通过持久化知识积累和噪声控制来实现可预测的工程协作。</p>
+<p>上下文经济学是管理 AI 辅助开发中 <a href="上下文窗口.html">上下文窗口</a> 资源的哲学框架，核心原则是把有限的<a href="注意力预算.html">注意力预算</a>用在最重要的信息上，通过持久化知识积累和噪声控制来实现可预测的工程协作。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心约束</strong>：LLM 在上下文填满时性能下降——这是所有最佳实践的底层驱动力。单次调试会话或代码库探索可能消耗数万 token，上下文填满时 Claude 开始"遗忘"早期指令，无关上下文积累会干扰重要指令。</p>
+<p><strong>核心约束</strong>：LLM 在上下文填满时性能下降——这是所有最佳实践的底层驱动力。单次调试会话或代码库探索可能消耗数万 token，上下文填满时 <a href="../entities/Claude_Code.html">Claude</a> 开始"遗忘"早期指令，无关上下文积累会干扰重要指令。</p>
 </li>
 <li>
 <p><strong>四大支柱</strong>：</p>
@@ -154,22 +154,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>经验法则</strong>：</p>
 </li>
 <li>同一问题纠错 2 次以上 → 清理上下文，重写更精确的 prompt</li>
-<li>探索导致 Claude 读取大量文件 → 用子 Agent 隔离探索上下文</li>
+<li>探索导致 <a href="../entities/Claude_Code.html">Claude</a> 读取大量文件 → 用<span style="color:#e74c3c" title="broken link">子 Agent</span> 隔离探索上下文</li>
 <li>
-<p>CLAUDE.md 过长 → 定期精简，保留高杠杆规则</p>
+<p><a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 过长 → 定期精简，保留高杠杆规则</p>
 </li>
 <li>
 <p><strong>常见失败模式</strong>：</p>
 </li>
-<li><strong>厨房水槽会话</strong>：在一个会话中混合无关任务，导致上下文污染</li>
+<li><strong>厨房水槽会话</strong>：在一个会话中混合无关任务，导致<a href="Context Window Pollution.html">上下文污染</a></li>
 <li><strong>反复纠错</strong>：同一问题纠错多次，上下文已腐化，应清空重来</li>
-<li><strong>CLAUDE.md 过度膨胀</strong>：重要规则被噪声淹没</li>
+<li><strong><a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 过度膨胀</strong>：重要规则被噪声淹没</li>
 <li><strong>相信验证间隙</strong>：产出看似正确但实则有问题的实现</li>
 <li>
 <p><strong>无边界探索</strong>：要求调查而无范围限定</p>
 </li>
 <li>
-<p><strong>与 <a href="注意力预算.html">注意力预算</a> 的关系</strong>：注意力预算是更广泛的人因概念，上下文经济学是其在 LLM 工程中的具体化——将"注意力"量化为 token，将"预算"量化为上下文窗口容量。</p>
+<p><strong>与 <a href="注意力预算.html">注意力预算</a> 的关系</strong>：<a href="注意力预算.html">注意力预算</a>是更广泛的人因概念，上下文经济学是其在 LLM 工程中的具体化——将"<a href="注意力机制.html">注意力</a>"量化为 token，将"预算"量化为<a href="上下文窗口.html">上下文窗口</a>容量。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

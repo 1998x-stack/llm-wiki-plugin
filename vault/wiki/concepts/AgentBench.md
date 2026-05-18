@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 代理评估, 综合能力]
+tags: [LLM, 代理评估, 综合能力, AI工程]
 aliases: ["AgentBench: Evaluating LLMs as Agents"]
 relates_to: []
 supersedes: null

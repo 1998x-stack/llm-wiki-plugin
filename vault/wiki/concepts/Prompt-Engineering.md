@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-engineering, prompt-engineering, llm]
+tags: [ai-engineering, prompt-engineering, llm, AI工程]
 aliases: ["提示词工程", "Prompt Engineering"]
 relates_to: 
   - target: "[[GPT-3]]"

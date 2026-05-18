@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 研究]
+tags: [技术, 研究, 强化学习]
 aliases: [Reinforcement Learning from Human Feedback, 基于人类反馈的强化学习]
 relates_to:
   - 强化学习

@@ -130,26 +130,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">序列建模</span><span class="tag">记忆机制</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">序列建模</span><span class="tag">记忆机制</span><span class="tag">脑科学</span></div>
 </div>
   <div class="content">
     <h1 id="lstm">LSTM</h1>
 <h2 id="_1">概述</h2>
-<p>长短期记忆（Long Short-Term Memory）是一种特殊的循环神经网络，通过记忆细胞和门控机制解决传统RNN的梯度消失问题，能够学习长期依赖关系。由Hochreiter和Schmidhuber于1997年提出，是深度学习序列建模的里程碑式创新。</p>
+<p>长短期记忆（<a href="LSTM（长短期记忆网络）.html">Long Short-Term Memory</a>）是一种特殊的循环神经网络，通过<a href="记忆细胞.html">记忆细胞</a>和<a href="门控机制.html">门控机制</a>解决传统RNN的<a href="梯度消失.html">梯度消失</a>问题，能够学习长期依赖关系。由Hochreiter和Schmidhuber于1997年提出，是深度学习序列建模的里程碑式创新。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心创新</strong>：</li>
-<li>记忆细胞（Memory Cell）：提供专门的通道让信息可以无损地流过任意长的时间跨度</li>
-<li>门控机制：包含输入门、遗忘门和输出门，控制信息的流入、保存和流出</li>
+<li><a href="记忆细胞.html">记忆细胞</a>（<a href="记忆细胞.html">Memory Cell</a>）：提供专门的通道让信息可以无损地流过任意长的时间跨度</li>
+<li><a href="门控机制.html">门控机制</a>：包含<a href="输入门.html">输入门</a>、<a href="遗忘门.html">遗忘门</a>和<a href="输出门.html">输出门</a>，控制信息的流入、保存和流出</li>
 <li>
-<p>常误差流（CEC）：通过自连接权重恒为1，确保误差信号在反向传播时不被缩放</p>
+<p><a href="常误差流（Constant Error Carousel）.html">常误差流</a>（CEC）：通过自连接权重恒为1，确保误差信号在<a href="反向传播.html">反向传播</a>时不被缩放</p>
 </li>
 <li>
 <p><strong>工作原理</strong>：</p>
 </li>
-<li>输入门控制当前时刻有多少新信息可以流入记忆细胞</li>
-<li>遗忘门控制记忆细胞中有多少旧信息需要被丢弃</li>
-<li>输出门控制记忆细胞中的信息有多少可以输出到网络的其他部分</li>
+<li><a href="输入门.html">输入门</a>控制当前时刻有多少新信息可以流入<a href="记忆细胞.html">记忆细胞</a></li>
+<li><a href="遗忘门.html">遗忘门</a>控制<a href="记忆细胞.html">记忆细胞</a>中有多少旧信息需要被丢弃</li>
+<li><a href="输出门.html">输出门</a>控制<a href="记忆细胞.html">记忆细胞</a>中的信息有多少可以输出到网络的其他部分</li>
 <li>
 <p>每个时刻都进行"信息审计"——决定保留什么、丢弃什么、输出什么</p>
 </li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>历史背景</strong>：</p>
 </li>
 <li>1990年代初期，RNN无法学习超过10-20个时间步的依赖关系</li>
-<li>1991年Hochreiter在本科毕业论文中首次系统分析RNN梯度消失问题</li>
+<li>1991年Hochreiter在本科毕业论文中首次系统分析RNN<a href="梯度消失.html">梯度消失</a>问题</li>
 <li>1994年Bengio等人进一步确认该问题</li>
 <li>
 <p>1997年Hochreiter和Schmidhuber发表划时代论文，提出LSTM解决方案</p>
@@ -165,28 +165,28 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>应用领域</strong>：</p>
 </li>
-<li>语音识别：Google在2015年前后引入LSTM，使错误率下降近49%</li>
-<li>机器翻译：Google翻译在2016年全面切换到基于LSTM的系统，翻译质量出现质的飞跃</li>
-<li>金融预测：在捕捉股票价格、汇率等时间序列的长周期模式方面表现优越</li>
+<li>语音识别：<a href="../entities/Google.html">Google</a>在2015年前后引入LSTM，使错误率下降近49%</li>
+<li>机器翻译：<a href="../entities/Google.html">Google</a>翻译在2016年全面切换到基于LSTM的系统，翻译质量出现质的飞跃</li>
+<li>金融预测：在捕捉股票价格、汇率等<a href="Time Series Analysis.html">时间序列</a>的长周期模式方面表现优越</li>
 <li>
-<p>手写识别、音乐生成、文本生成、医疗时序数据分析等众多领域</p>
+<p>手写识别、音乐生成、文本生成、医疗时序<a href="数据分析.html">数据分析</a>等众多领域</p>
 </li>
 <li>
 <p><strong>序列建模演化</strong>：</p>
 </li>
-<li>2014年：GRU（门控循环单元）简化LSTM为两个门，参数更少，训练更快</li>
-<li>2014-2015年：注意力机制增强长距离依赖捕捉能力</li>
-<li>2017年：Transformer完全抛弃循环结构，采用自注意力机制</li>
+<li>2014年：GRU（<a href="../entities/GRU.html">门控循环单元</a>）简化LSTM为两个门，参数更少，训练更快</li>
+<li>2014-2015年：<a href="注意力机制.html">注意力机制</a>增强长距离依赖捕捉能力</li>
+<li>2017年：<a href="../entities/Transformer.html">Transformer</a>完全抛弃循环结构，采用<a href="自注意力机制.html">自注意力机制</a></li>
 <li>
-<p>LSTM为Transformer的发展奠定了门控和选择性记忆的思想基础</p>
+<p>LSTM为<a href="../entities/Transformer.html">Transformer</a>的发展奠定了<a href="门控机制（Gating Mechanism）.html">门控</a>和选择性记忆的思想基础</p>
 </li>
 <li>
 <p><strong>历史意义</strong>：</p>
 </li>
-<li>解决了困扰RNN研究界近十年的梯度消失问题</li>
-<li>开创了门控网络的范式，影响了后续所有序列建模架构</li>
+<li>解决了困扰RNN研究界近十年的<a href="梯度消失.html">梯度消失</a>问题</li>
+<li>开创了<a href="门控机制（Gating Mechanism）.html">门控</a>网络的范式，影响了后续所有序列建模架构</li>
 <li>推动了深度学习的复兴，在深度学习低谷期产生实际成果</li>
-<li>论文被引用超过98,000次，是计算机科学领域被引用最多的论文之一</li>
+<li>论文被引用超过98,000次，是<a href="计算.html">计算</a>机科学领域被引用最多的论文之一</li>
 <li>在1997-2017年间成为序列建模的标准架构，驱动了无数AI产品的核心技术</li>
 </ol>
 <h2 id="_3">来源</h2>

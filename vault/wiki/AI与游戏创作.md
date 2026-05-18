@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 研究]
+tags: [技术, 研究, AI工程]
 aliases: [AI游戏, AI+Gaming, AI生成游戏]
 relates_to:
   - 面向Agent的工具设计

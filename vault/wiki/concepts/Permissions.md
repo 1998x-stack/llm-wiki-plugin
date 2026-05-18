@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, authorization, access-control]
+tags: [security, authorization, access-control, AI工程]
 aliases: ["Permissions", "权限", "权限系统"]
 relates_to: []
 supersedes: null

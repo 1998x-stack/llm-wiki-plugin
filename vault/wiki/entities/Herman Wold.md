@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [statistics, mathematics, time-series-analysis]
+tags: [statistics, mathematics, time-series-analysis, 矩阵理论]
 aliases: ["Herman Ole Andreas Wold", "赫尔曼·沃尔德"]
 relates_to:
   - target: "[[Wold Decomposition Theorem]]"

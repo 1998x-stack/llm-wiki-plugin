@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, researcher, phase-analysis, technology-study]
+tags: [gsd-agent, researcher, phase-analysis, technology-study, Agent系统]
 aliases: ["gsd-phase-researcher", "GSD Phase Researcher", "GSD阶段研究智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

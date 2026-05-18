@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span><span class="tag">C++编程</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -145,20 +145,20 @@ relates_to:
 
 <h1 id="common-subexpression-elimination">Common Subexpression Elimination</h1>
 <h2 id="_1">概述</h2>
-<p>公共子表达式消除是一种编译器优化技术，用于识别并消除程序中重复计算的子表达式，将重复的计算替换为对先前计算结果的引用。</p>
+<p>公共子表达式消除是一种<a href="编译器优化.html">编译器优化技术</a>，用于识别并消除程序中重复<a href="计算.html">计算</a>的子表达式，将重复的<a href="计算.html">计算</a>替换为对先前<a href="计算.html">计算</a>结果的引用。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术原理</strong>：</li>
-<li>扫描程序的中间表示，识别在同一基本块内被重复计算的子表达式</li>
-<li>将后续的相同计算替换为对首次计算结果的引用</li>
+<li>扫描程序的中间表示，识别在同一基本块内被重复<a href="计算.html">计算</a>的子表达式</li>
+<li>将后续的相同<a href="计算.html">计算</a>替换为对首次<a href="计算.html">计算</a>结果的引用</li>
 <li>
-<p>减少了不必要的重复计算，提高了代码效率</p>
+<p>减少了不必要的重复<a href="计算.html">计算</a>，提高了代码效率</p>
 </li>
 <li>
 <p><strong>实现细节</strong>：</p>
 </li>
-<li>在FORTRAN编译器的第二阶段实施，是编译器的第一个优化阶段</li>
-<li>例如，如果代码中出现A(I) + B(I)和A(I) * C，编译器会识别出A(I)的地址计算是重复的，只执行一次</li>
+<li>在<a href="../entities/FORTRAN.html">FORTRAN</a>编译器的第二阶段实施，是编译器的第一个优化阶段</li>
+<li>例如，如果代码中出现A(I) + B(I)和A(I) * C，编译器会识别出A(I)的地址<a href="计算.html">计算</a>是重复的，只执行一次</li>
 <li>
 <p>这项技术至今仍是所有优化编译器的标准步骤</p>
 </li>
@@ -166,8 +166,8 @@ relates_to:
 <p><strong>历史意义</strong>：</p>
 </li>
 <li>首次在实用系统中实现的关键优化技术之一</li>
-<li>为后续的编译器优化研究奠定了基础</li>
-<li>在FORTRAN编译器中证明了优化技术的实际价值</li>
+<li>为后续的<a href="编译器优化.html">编译器优化</a>研究奠定了基础</li>
+<li>在<a href="../entities/FORTRAN.html">FORTRAN</a>编译器中证明了优化技术的实际价值</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

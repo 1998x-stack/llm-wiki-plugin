@@ -139,9 +139,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
 <li><strong>数学公式</strong>：fₜ = σ(Wf · [hₜ₋₁, xₜ] + bf)，其中 σ 为 <a href="Sigmoid激活函数.html">Sigmoid激活函数</a>，输出范围 [0, 1]。输入为上一时刻隐藏状态 hₜ₋₁ 和当前输入 xₜ 的拼接。</li>
-<li><strong>功能直觉</strong>：遗忘<a href="门控机制（Gating Mechanism）.html">门控</a>制 <a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a> 中旧信息的保留比例。f=0 时完全清空<a href="细胞状态（Cell State）.html">细胞状态</a>（擦除），f=1 时原封不动传递（保留）。在<a href="Language-Model.html">语言模型</a>中，遇到句号时遗忘门可能清除上一句的主语信息。</li>
-<li><strong>梯度意义</strong>：<a href="细胞状态（Cell State）.html">细胞状态</a>的梯度传播 ∂Cₜ/∂Cₜ₋₁ = fₜ。当遗忘门接近 1 时，梯度通过加法直接传递而不衰减，这是 LSTM 解决 <a href="梯度消失.html">梯度消失</a> 的核心机制。对比标准 RNN 需要连乘小于 1 的数导致指数衰减。</li>
-<li><strong>与<a href="输入门（Input Gate）.html">输入门</a>协作</strong>：遗忘门和 <a href="输入门（Input Gate）.html">输入门（Input Gate）</a> 共同决定<a href="细胞状态（Cell State）.html">细胞状态</a>的更新：Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ，一个控制"遗忘旧信息"，一个控制"加入新信息"。</li>
+<li><strong>功能直觉</strong>：遗忘<a href="门控机制（Gating Mechanism）.html">门控</a>制 <a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a> 中旧信息的保留比例。f=0 时完全清空<a href="细胞状态（Cell State）.html">细胞状态</a>（擦除），f=1 时原封不动传递（保留）。在<a href="Language-Model.html">语言模型</a>中，遇到句号时<a href="遗忘门.html">遗忘门</a>可能清除上一句的主语信息。</li>
+<li><strong>梯度意义</strong>：<a href="细胞状态（Cell State）.html">细胞状态</a>的梯度传播 ∂Cₜ/∂Cₜ₋₁ = fₜ。当<a href="遗忘门.html">遗忘门</a>接近 1 时，梯度通过加法直接传递而不衰减，这是 LSTM 解决 <a href="梯度消失.html">梯度消失</a> 的核心机制。对比标准 RNN 需要连乘小于 1 的数导致指数衰减。</li>
+<li><strong>与<a href="输入门（Input Gate）.html">输入门</a>协作</strong>：<a href="遗忘门.html">遗忘门</a>和 <a href="输入门（Input Gate）.html">输入门（Input Gate）</a> 共同决定<a href="细胞状态（Cell State）.html">细胞状态</a>的更新：Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ，一个控制"遗忘旧信息"，一个控制"加入新信息"。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>

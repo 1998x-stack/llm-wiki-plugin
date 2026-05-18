@@ -7,7 +7,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: [AI, Agent, 协议, 记忆检索, MemPalace]
+tags: [AI, Agent, 协议, 记忆检索, MemPalace, AI工程]
 aliases: ["Know Before Speaking", "KBS Protocol", "先查后答协议"]
 relates_to:
   - target: "[[MemPalace]]"

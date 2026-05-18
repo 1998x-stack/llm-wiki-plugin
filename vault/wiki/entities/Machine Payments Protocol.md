@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-commerce, protocol, tempo-labs, stripe]
+tags: [ai-commerce, protocol, tempo-labs, stripe, AI工程]
 aliases: ["MPP", "Machine Payments Protocol"]
 relates_to:
   - target: "[[Tempo Labs]]"
@@ -33,7 +33,7 @@ supersedes: null
 
 1. **核心定位**：
    - 解决任何 API 如何向任何客户端（Agent/App/人类）收取费用，无需注册、API Key
-   - 被称为"按请求付费"的互联网原语，是对 API Key 的革命性替代
+   - 被称为"按请求付费"的[[互联网]]原语，是对 API Key 的革命性替代
 
 2. **协议流程**：
    - 客户端发起请求

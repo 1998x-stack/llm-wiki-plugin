@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [evolver, gep, mutation, ai-evolution, risk-management]
+tags: [evolver, gep, mutation, ai-evolution, risk-management, AI工程]
 aliases: ["Mutation System", "变异系统", "突变策略"]
 relates_to: 
   - target: "[[Evolver]]"

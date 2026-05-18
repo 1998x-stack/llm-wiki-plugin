@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, computer-vision, object-detection]
+tags: [person, computer-vision, object-detection, 计算理论]
 aliases: [Joseph Redmon]
 relates_to:
   - target: YOLO

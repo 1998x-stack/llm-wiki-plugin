@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">向量搜索</span><span class="tag">NLP</span><span class="tag">信息检索</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">向量搜索</span><span class="tag">NLP</span><span class="tag">信息检索</span><span class="tag">推荐系统</span></div>
 </div>
   <div class="content">
     <h1 id="_1">语义嵌入</h1>
 <h2 id="_2">概述</h2>
-<p>语义嵌入是将文本转换为高维向量表示的技术，捕获文本的语义关系和意图相似性，是现代 RAG 系统的核心检索机制之一。</p>
+<p>语义嵌入是将文本转换为高维向量表示的技术，捕获文本的语义关系和意图相似性，是现代 <a href="RAG 系统.html">RAG 系统</a>的核心检索机制之一。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>工作原理</strong>：通过嵌入模型（如 Gemini Text 004、Voyage 系列）将文本块转换为向量，使语义相似的文本在向量空间中距离更近。</p>
+<p><strong>工作原理</strong>：通过嵌入模型（如 <a href="../entities/Gemini CLI.html">Gemini</a> Text 004、Voyage 系列）将文本块转换为向量，使语义相似的文本在向量空间中距离更近。</p>
 </li>
 <li>
 <p><strong>优势</strong>：擅长理解查询意图和上下文相似性，能捕捉同义词、 paraphrase 等语义关系。</p>
@@ -148,10 +148,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>局限性</strong>：对精确词汇/标识符匹配能力有限，如查询"错误代码 TS-999"可能错过精确匹配。</p>
 </li>
 <li>
-<p><strong>与 BM25 互补</strong>：语义嵌入 + BM25 形成传统 RAG 的双引擎混合检索机制。</p>
+<p><strong>与 BM25 互补</strong>：语义嵌入 + BM25 形成传统 RAG 的双引擎<a href="混合搜索.html">混合检索</a>机制。</p>
 </li>
 <li>
-<p><strong>上下文检索增强</strong>：在嵌入前添加语境前缀，所有测试的嵌入模型均有提升效果，Gemini Text 004 和 Voyage 系列表现最佳。</p>
+<p><strong><a href="上下文检索.html">上下文检索</a>增强</strong>：在嵌入前添加语境前缀，所有测试的嵌入模型均有提升效果，<a href="../entities/Gemini CLI.html">Gemini</a> Text 004 和 Voyage 系列表现最佳。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

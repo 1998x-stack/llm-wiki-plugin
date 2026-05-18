@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">测试</span><span class="tag">反馈循环</span><span class="tag">SWE-bench</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">测试</span><span class="tag">反馈循环</span><span class="tag">SWE-bench</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">测试驱动的 Agent 工程</h1>
@@ -141,24 +141,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>核心反馈循环</strong>：
    <code>生成补丁 → 运行测试 → 分析失败原因 → 修改策略 → 重试</code>
-   SWE-bench 任务的独特优势是代码解决方案可以通过自动化测试验证，形成理想的 Agent 反馈循环。</p>
+   <a href="../entities/SWE-bench.html">SWE-bench</a> 任务的独特优势是代码解决方案可以通过自动化测试验证，形成理想的 Agent 反馈循环。</p>
 </li>
 <li>
-<p><strong>Ground Truth 验证</strong>：测试结果提供了"ground truth"，让 Agent 能够客观评估自己的进展，而不是依赖模型的自我评判。这避免了 LLM 常见的"自信但错误"的问题。</p>
+<p><strong><a href="Ground Truth 验证.html">Ground Truth 验证</a></strong>：测试结果提供了"ground truth"，让 Agent 能够客观评估自己的进展，而不是依赖模型的自我评判。这避免了 LLM 常见的"自信但错误"的问题。</p>
 </li>
 <li>
-<p><strong>与评测驱动开发的关系</strong>：测试驱动的 Agent 工程是 <a href="评测驱动开发.html">评测驱动开发</a> 方法论在 Agent 开发场景的具体应用，将传统 TDD 理念扩展到 AI Agent 行为。</p>
+<p><strong>与<a href="评测驱动开发.html">评测驱动开发</a>的关系</strong>：测试驱动的 Agent 工程是 <a href="评测驱动开发.html">评测驱动开发</a> 方法论在 Agent 开发场景的具体应用，将传统 TDD 理念扩展到 AI Agent 行为。</p>
 </li>
 <li>
 <p><strong>工程建议</strong>：</p>
 </li>
-<li><strong>测试先行</strong>：为 Agent 提供验证机制，避免 Agent 自我评判</li>
+<li><strong><a href="测试先行.html">测试先行</a></strong>：为 Agent 提供验证机制，避免 Agent 自我评判</li>
 <li>测试结果作为客观反馈信号，指导 Agent 迭代策略</li>
 <li>
-<p>测试覆盖率直接影响 Agent 能可靠完成的任务范围</p>
+<p><a href="测试覆盖率.html">测试覆盖率</a>直接影响 Agent 能可靠完成的任务范围</p>
 </li>
 <li>
-<p><strong>实践价值</strong>：这种方法论不仅适用于 SWE-bench，也可推广到任何有自动化测试可用场景——Agent 可以通过测试反馈自主修正错误，减少对人工干预的依赖。</p>
+<p><strong>实践价值</strong>：这种方法论不仅适用于 <a href="../entities/SWE-bench.html">SWE-bench</a>，也可推广到任何有自动化测试可用场景——Agent 可以通过测试反馈自主修正错误，减少对人工干预的依赖。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

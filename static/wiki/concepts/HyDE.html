@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">信息检索</span><span class="tag">RAG</span><span class="tag">向量搜索</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">信息检索</span><span class="tag">RAG</span><span class="tag">向量搜索</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="hyde">HyDE</h1>
 <h2 id="_1">概述</h2>
-<p>HyDE（Hypothetical Document Embeddings，假设文档嵌入）是一种零样本稠密检索方法，通过生成假设文档来改善向量检索效果，与上下文检索方向不同。</p>
+<p>HyDE（Hypothetical Document <a href="Embedding.html">Embedding</a>s，假设文档嵌入）是一种<a href="零样本学习.html">零样本</a>稠密检索方法，通过生成假设文档来改善<a href="向量空间模型.html">向量检索</a>效果，与<a href="上下文检索.html">上下文检索</a>方向不同。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心思想</strong>：对用户查询，先生成一个假设的理想回答文档，然后对该假设文档进行嵌入检索，而非直接对查询嵌入。</p>
 </li>
 <li>
-<p><strong>与上下文检索对比</strong>：</p>
+<p><strong>与<a href="上下文检索.html">上下文检索</a>对比</strong>：</p>
 </li>
 <li>HyDE 在查询侧生成假设文档来匹配真实文档</li>
-<li>Contextual Retrieval 在文档侧为每个块添加语境前缀</li>
+<li><a href="上下文检索.html">Contextual Retrieval</a> 在文档侧为每个块添加语境前缀</li>
 <li>
 <p>两者方向不同，未直接比较，但思路有相似之处（都用 LLM 生成额外文本改善检索）</p>
 </li>

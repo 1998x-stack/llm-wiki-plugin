@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心改进</strong>：<a href="LightGCN.html">LightGCN</a> 使用均匀的层组合权重 <code>α_k = 1/(K+1)</code>，<a href="LightGCN.html">LightGCN</a>++ 引入自适应的嵌入范数缩放（embedding norm scaling），让不同层的嵌入根据其对最终预测的贡献自动调整权重。</p>
+<p><strong>核心改进</strong>：<a href="LightGCN.html">LightGCN</a> 使用均匀的<a href="../concepts/层组合.html">层组合</a>权重 <code>α_k = 1/(K+1)</code>，<a href="LightGCN.html">LightGCN</a>++ 引入自适应的嵌入范数缩放（embedding norm scaling），让不同层的嵌入根据其对最终预测的贡献自动调整权重。</p>
 </li>
 <li>
-<p><strong>邻居加权</strong>：在邻域聚合中，不再使用简单的对称归一化 <code>1/√(|N_u|·|N_i|)</code>，而是引入可学习的邻居权重，使模型能<a href="区分.html">区分</a>不同邻居节点的重要性。</p>
+<p><strong>邻居加权</strong>：在<a href="../concepts/邻域聚合.html">邻域聚合</a>中，不再使用简单的<a href="../concepts/对称归一化.html">对称归一化</a> <code>1/√(|N_u|·|N_i|)</code>，而是引入可学习的邻居权重，使模型能<a href="区分.html">区分</a>不同邻居节点的重要性。</p>
 </li>
 <li>
 <p><strong>实验结果</strong>：在多个数据集上，<a href="LightGCN.html">LightGCN</a>++ 相比 <a href="LightGCN.html">LightGCN</a> 在 NDCG@20 上最高提升 17.81%，验证了均匀权重和简单邻居加权确实不是最优选择。</p>

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">枚举</span><span class="tag">输入事件</span><span class="tag">UrhoX</span><span class="tag">最佳实践</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">枚举</span><span class="tag">输入事件</span><span class="tag">UrhoX</span><span class="tag">最佳实践</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">枚举值使用规范</h1>
@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/UrhoX引擎.html">UrhoX</a> 开发中处理输入事件、渲染模式等场景时，必须使用枚举常量（如 <code>MOUSEB_LEFT</code>、<code>KEY_SPACE</code>），禁止使用数字常量。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>常用枚举类别</strong>：鼠标按钮（<code>MOUSEB_LEFT</code>、<code>MOUSEB_MIDDLE</code>、<code>MOUSEB_RIGHT</code>）；键盘按键（<code>KEY_SPACE</code>、<code>KEY_ESCAPE</code>、<code>KEY_A</code>~<code>KEY_Z</code> 等）；鼠标模式（<code>MM_ABSOLUTE</code>、<code>MM_RELATIVE</code>、<code>MM_FREE</code>）；刚体类型（<code>BT_STATIC</code>、<code>BT_DYNAMIC</code>、<code>BT_KINEMATIC</code>）。</li>
+<li><strong>常用枚举类别</strong>：鼠标按钮（<code>MOUSEB_LEFT</code>、<code>MOUSEB_MIDDLE</code>、<code>MOUSEB_RIGHT</code>）；键盘按键（<code>KEY_SPACE</code>、<code>KEY_ESCAPE</code>、<code>KEY_A</code>~<code>KEY_Z</code> 等）；<a href="UrhoX鼠标模式.html">鼠标模式</a>（<code>MM_ABSOLUTE</code>、<code>MM_RELATIVE</code>、<code>MM_FREE</code>）；刚体类型（<code>BT_STATIC</code>、<code>BT_DYNAMIC</code>、<code>BT_KINEMATIC</code>）。</li>
 <li><strong>错误示例</strong>：<code>if button == 0 then</code> 是错误的，因为 <code>MOUSEB_LEFT</code> 不一定是 0。正确写法：<code>if button == MOUSEB_LEFT then</code>。</li>
 <li><strong>查阅方式</strong>：不确定枚举值时查阅 <code>engine-docs/api/enums.md</code>，不要凭记忆或从其他框架（如 SDL）迁移数字常量。</li>
 </ol>

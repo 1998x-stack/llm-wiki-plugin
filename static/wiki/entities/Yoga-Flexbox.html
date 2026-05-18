@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">布局引擎</span><span class="tag">Flexbox</span><span class="tag">CSS</span><span class="tag">UI</span><span class="tag">跨平台</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">布局引擎</span><span class="tag">Flexbox</span><span class="tag">CSS</span><span class="tag">UI</span><span class="tag">跨平台</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="yoga-flexbox">Yoga-Flexbox</h1>
 <h2 id="_1">概述</h2>
-<p>Yoga 是一个跨平台的 Flexbox 布局引擎，最初由 Facebook 开发。<a href="UrhoX引擎.html">UrhoX</a> 的新 UI 系统（urhox-libs/UI）基于 Yoga 实现 Flexbox 布局。</p>
+<p>Yoga 是一个跨平台的 Flexbox 布局引擎，最初由 <a href="Facebook.html">Facebook</a> 开发。<a href="UrhoX引擎.html">UrhoX</a> 的新 UI 系统（<a href="../concepts/UI系统选择规范.html">urhox-libs/UI</a>）基于 Yoga 实现 Flexbox 布局。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>在 UrhoX 中的集成</strong>：新 UI 系统使用 Yoga 实现 Flexbox 布局，支持 <code>justifyContent</code>、<code>alignItems</code>、<code>flexDirection</code> 等标准 CSS Flexbox 属性。</li>
-<li><strong>常见陷阱</strong>：Yoga 默认 <code>flexShrink=0</code>，子元素溢出容器时需手动设置 <code>flexShrink = 1</code>。</li>
+<li><strong>在 <a href="UrhoX引擎.html">UrhoX</a> 中的集成</strong>：新 UI 系统使用 Yoga 实现 Flexbox 布局，支持 <code>justifyContent</code>、<code>alignItems</code>、<code>flexDirection</code> 等标准 CSS Flexbox 属性。</li>
+<li><strong>常见陷阱</strong>：Yoga 默认 <code>flexShrink=0</code>，子元素溢出容器时需手动<a href="../concepts/Settings.html">设置</a> <code>flexShrink = 1</code>。</li>
 <li><strong>使用方式</strong>：通过 <code>urhox-libs/UI</code> 高层封装使用，如 <code>UI.Panel { justifyContent = "center", alignItems = "center", children = {...} }</code>。</li>
 </ol>
 <h2 id="_3">来源</h2>

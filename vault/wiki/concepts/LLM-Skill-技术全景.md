@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 8
-tags: [LLM, 工具调用, Agent, 技能文件, 技能编排]
+tags: [LLM, 工具调用, Agent, 技能文件, 技能编排, LLM能力]
 aliases: ["LLM Skill Research Series", "LLM Skill 技术研究系列"]
 relates_to: []
 supersedes: null
@@ -38,7 +38,7 @@ LLM [[Skills|Skill]]技术是指让大型[[Language-Model|语言模型]]能够�
 
 5. **[[Skills|技能]]库[[规范化理论|范式]]**
    - **[[Voyager]]**：在Minecraft中实现自动课程学习，包含[[Skills|技能]]库的持久化存储与检索
-   - **GITM**：任务分解与记忆模块，将复杂任务分解为子目标树
+   - **GITM**：[[任务分解]]与记忆模块，将复杂[[任务分解]]为子目标树
    - **SkiLL-IT**：[[Skills|技能]]依赖图，按拓扑顺序组织[[Skills|技能]]学习
 
 6. **LLM作为工具制造者**
@@ -52,7 +52,7 @@ LLM [[Skills|Skill]]技术是指让大型[[Language-Model|语言模型]]能够�
    - **[[API-Bank]]**：端到端评估工具增强LLM的基准
 
 8. **任务规划与[[Skills|技能]]编排**
-   - **[[HuggingGPT]]**：四阶段工作流（任务规划、模型选择、任务执行、响应生成）
+   - **[[HuggingGPT]]**：[[探索-规划-编码工作流|四阶段工作流]]（任务规划、[[模型选择]]、任务执行、响应生成）
    - **[[AssistGPT]]**：PEIL框架（Plan-[[Execute]]-Inspect-Learn）带有主动检查机制
 
 9. **代码即[[Skills|技能]]统一[[规范化理论|范式]]**

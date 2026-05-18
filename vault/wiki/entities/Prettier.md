@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [开发工具, 代码格式化]
+tags: [开发工具, 代码格式化, AI工程]
 aliases: ["Prettier.js", "代码格式化工具"]
 relates_to: []
 supersedes: null

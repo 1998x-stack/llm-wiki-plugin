@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="attention-mechanism">注意力机制（Attention Mechanism）</h1>
 <h2 id="_1">概述</h2>
-<p>注意力机制使解码器在生成每个目标词时，能动态加权聚焦源序列的不同位置，彻底解决了 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 的固定长度瓶颈问题，是现代 LLM 的核心之源。</p>
+<p><a href="注意力机制.html">注意力机制</a>使解码器在生成每个目标词时，能动态加权聚焦源序列的不同位置，彻底解决了 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 的固定长度瓶颈问题，是现代 LLM 的核心之源。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">历史背景：固定长度瓶颈</h3>
 <p>2014 年 <a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器架构（Seq2Seq）</a> 将整个源句子压缩为<strong>单一固定向量 c</strong>，导致长句信息严重丢失。实验表明 BLEU 分数随源句长度增加急剧下降。<span style="color:#e74c3c" title="broken link">Dzmitry Bahdanau</span> 等人提出核心问题：翻译每个目标词时，Decoder 能否"回头看"原文的不同位置？</p>
@@ -143,12 +143,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>设源编码 $h_1, h_2, ..., h_n$（双向 RNN 隐藏状态），Decoder 当前状态 $s_{t-1}$：</p>
 <ol>
 <li><strong>对齐分数</strong>：$e_{it} = a(s_{t-1}, h_i) = v^\top \tanh(W_a s_{t-1} + U_a h_i)$，学习源位置与当前解码的相关性</li>
-<li><strong><a href="Softmax.html">Softmax</a> 归一化</strong>：$\alpha_{it} = \frac{\exp(e_{it})}{\sum_j \exp(e_{jt})}$，得到注意力权重 $\alpha_{it} \in [0,1]$，$\sum_i \alpha_{it} = 1$</li>
+<li><strong><a href="Softmax.html">Softmax</a> 归一化</strong>：$\alpha_{it} = \frac{\exp(e_{it})}{\sum_j \exp(e_{jt})}$，得到<a href="注意力机制.html">注意力</a>权重 $\alpha_{it} \in [0,1]$，$\sum_i \alpha_{it} = 1$</li>
 <li><strong>加权上下文向量</strong>：$c_t = \sum_i \alpha_{it} h_i$，每个解码时刻专属的动态上下文</li>
-<li><strong>Decoder 生成</strong>：$s_t = f(s_{t-1}, y_{t-1}, c_t)$，融合注意力上下文生成目标词</li>
+<li><strong>Decoder 生成</strong>：$s_t = f(s_{t-1}, y_{t-1}, c_t)$，融合<a href="注意力机制.html">注意力</a>上下文生成目标词</li>
 </ol>
 <h3 id="_5">可解释性突破：对齐矩阵</h3>
-<p>注意力权重 $\alpha$ 构成<strong>对齐<a href="矩阵.html">矩阵</a></strong>，使机器翻译首次可视化。英法等语序相近语言呈现对角线模式，语序调换场景（如英语→法语"European Economic Area"）呈现反对角线模式。</p>
+<p><a href="注意力机制.html">注意力</a>权重 $\alpha$ 构成<strong>对齐<a href="矩阵.html">矩阵</a></strong>，使机器翻译首次可视化。英法等语序相近语言呈现对角线模式，语序调换场景（如英语→法语"European Economic Area"）呈现反对角线模式。</p>
 <h3 id="_6">三种主要变体</h3>
 <table>
 <thead>

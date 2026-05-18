@@ -52,13 +52,13 @@ supersedes: null
 
 ## 概述
 
-Agent [[计算]]机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——[[Anthropic]] 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
+Agent [[计算]]机接口（[[ACI (Agent-Computer Interface)|Agent-Computer Interface]], ACI）是类比人机接口（HCI）的概念：为 L[[LM Agent]] 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——[[Anthropic]] 在 [[SWE-bench]] 中花费在工具优化上的时间多于整体提示词优化。
 
 ## 关键内容
 
 ### SWE-agent 论文的 ACI 贡献
 
-Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：
+Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: [[ACI (Agent-Computer Interface)|Agent-Computer Interface]]s Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：
 
 > 软件工程 agent 的效果，很大程度上取决于它和[[计算]]机交互的"接口设计"是否合适。
 
@@ -82,7 +82,7 @@ Princeton 的 [[SWE-agent]] 论文（"[[SWE-agent]]: Agent-Computer Interfaces E
 
 ### ACI vs. HCI
 
-| | HCI（Human-Computer Interface） | ACI（Agent-Computer Interface） |
+| | HCI（Human-Computer Interface） | ACI（[[ACI (Agent-Computer Interface)|Agent-Computer Interface]]） |
 |--|--|--|
 | 使用者 | 人类 | L[[LM Agent]] |
 | 设计约束 | 视觉认知、操作直觉 | Token 有限性、输入格式偏好、幻觉风险 |

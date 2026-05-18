@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">统计</span><span class="tag">非确定性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">统计</span><span class="tag">非确定性</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="passk-vs-passk">pass@k vs pass^k</h1>
@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>pass@k（至少一次成功）</strong>：</li>
 <li>公式：P(至少一次成功 | k 次尝试)</li>
 <li>k 增大 → 分数升高</li>
-<li>适用于：允许多次重试的场景、代码生成（找到一个有效解就够）</li>
+<li>适用于：允许多次重试的场景、<a href="代码生成.html">代码生成</a>（找到一个有效解就够）</li>
 <li>
 <p>直观理解：给 Agent 多次机会，只要有一次成功就算通过</p>
 </li>
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>选择指南</strong>：</p>
 </li>
-<li><strong>代码生成/搜索任务</strong>：用 pass@k（找到一个解就够）</li>
+<li><strong><a href="代码生成.html">代码生成</a>/搜索任务</strong>：用 pass@k（找到一个解就够）</li>
 <li><strong>面向用户的对话/操作 Agent</strong>：用 pass^k（用户期望每次可靠）</li>
 <li><strong>内部工具/可重试场景</strong>：用 pass@k</li>
 <li><strong>生产环境/不可重试场景</strong>：用 pass^k</li>

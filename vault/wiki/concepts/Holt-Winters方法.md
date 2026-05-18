@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [时间序列分析, 预测方法, 季节性分析]
+tags: [时间序列分析, 预测方法, 季节性分析, 时间序列]
 aliases: ["Holt-Winters Method", "Holt-Winters方法"]
 relates_to:
   - target: "[[指数平滑]]"

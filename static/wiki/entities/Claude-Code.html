@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="claude-code">Claude Code</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../projects/Claude Code.html">Claude Code</a> 是 <a href="Anthropic.html">Anthropic</a> 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 <a href="Claude_Code.html">Claude</a> 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（<a href="../concepts/MCP协议层.html">Model Context Protocol</a>）协议。通过 Hook 系统支持第三方插件扩展（如 <a href="Claude-Mem.html">Claude-Mem</a>），是当代 AI 辅助软件工程（AISE）的核心工具。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 是 <a href="Anthropic.html">Anthropic</a> 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 <a href="Claude_Code.html">Claude</a> 模型（Opus/Sonnet/<a href="Claude 3 Haiku.html">Haiku</a>）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（<a href="../concepts/MCP协议层.html">Model Context Protocol</a>）协议。通过 Hook 系统支持第三方插件扩展（如 <a href="Claude-Mem.html">Claude-Mem</a>），是当代 AI 辅助软件工程（AISE）的核心工具。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心特性</h3>
 <ul>
@@ -146,7 +146,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="CLAUDE.html.html">CLAUDE.md</a></strong>：项目级指令文件，为 <a href="../projects/Claude Code.html">Claude Code</a> 提供持久的项目上下文和规范</li>
 </ul>
 <h3 id="_4">子代理架构</h3>
-<p><a href="../projects/Claude Code.html">Claude Code</a> 支持并行 Agent 模式：主代理可将复杂任务分解为子任务，调度多个子代理并行处理，类似 <a href="../concepts/MapReduce.html">MapReduce</a>。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 支持并行 Agent 模式：主代理可将复杂<a href="../concepts/任务分解.html">任务分解</a>为子任务，调度多个子代理并行处理，类似 <a href="../concepts/MapReduce.html">MapReduce</a>。</p>
 <h3 id="_5">工具设计哲学</h3>
 <p><strong>"像智能体一样观察"（See like an agent）</strong>：
 - 工具设计需要契合模型自身能力，而非人类直觉
@@ -170,7 +170,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>LSP</strong>：每次 edit 后自动报告 type errors 和 warnings，作为第一道即时反馈
 - <strong><a href="../concepts/Hooks.html">Hooks</a>（settings.json）</strong>：通过 <code>PostToolUse</code> 钩子在 Edit/<a href="../concepts/Write.html">Write</a> 后自动触发 lint/test，支持 <code>additionalContext</code> 回灌和 <code>decision: "block"</code> 阻断
 - <strong><a href="CLAUDE.html.html">CLAUDE.md</a></strong>：定义项目级验证策略（最小检查原则、提交前门槛等），每个会话自动加载
-- <strong>Tool Description</strong>：定义自定义 validate 工具的用法和示例，教会 <a href="Claude_Code.html">Claude</a> 正确调用</p>
+- <strong>Tool <a href="Descript.html">Descript</a>ion</strong>：定义自定义 validate 工具的用法和示例，教会 <a href="Claude_Code.html">Claude</a> 正确调用</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li>综合自内部引用：<a href="../concepts/Claude-Code-Hook-System.html">Claude-Code-Hook-System</a>、<a href="../concepts/claude-cli-tools.html">claude-cli-tools</a> 等</li>

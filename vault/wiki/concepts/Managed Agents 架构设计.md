@@ -38,7 +38,7 @@ supersedes: null
 ### 核心设计原则
 1. **状态外置**：状态存储在 Session 和 Event Log 中，[[计算]]节点可随时替换。
 2. **Harness 无状态**：工作器可随时崩溃或重新调度，不影响任务连续性。
-3. **Sandbox 隔离**：沙箱仅作为执行器，失败仅表现为 Tool Failure 事件。
+3. **Sandbox 隔离**：[[Claude Code 沙箱机制|沙箱]]仅作为执行器，失败仅表现为 Tool Failure 事件。
 4. **凭证隔离**：Secrets 对模型不可达，通过 Vault 引用绑定。
 5. **全事件流**：工具执行、人工审批均通过事件流处理。
 6. **资源复用**：Agent 和 Environment 是可复用的版本化资源。

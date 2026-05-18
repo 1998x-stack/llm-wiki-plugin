@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [person, neural-networks, history, AI历史, 神经科学, 逻辑学]
+tags: [person, neural-networks, history, AI历史, 神经科学, 逻辑学, AI工程]
 aliases: [Warren McCulloch, 麦卡洛克]
 relates_to:
   - target: "[[Walter Pitts]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 工具发现, 工具修正]
+tags: [LLM, 工具调用, 工具发现, 工具修正, 工具与框架]
 aliases: ["CREATOR: Disentangling Abstract and Concrete Reasonings of Large Language Models"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [cloud-service, ai-computing, remote-execution]
+tags: [cloud-service, ai-computing, remote-execution, AI工程]
 aliases: ["ULTRAPLAN", "云端算力扩展", "Cloud Container Runtime", "CCR"]
 relates_to:
   - target: "[[KAIROS]]"

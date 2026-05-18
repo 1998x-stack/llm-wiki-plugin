@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua绑定</span><span class="tag">C++</span><span class="tag">tolua</span><span class="tag">UrhoX</span><span class="tag">Lua-C互操作</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua绑定</span><span class="tag">C++</span><span class="tag">tolua</span><span class="tag">UrhoX</span><span class="tag">Lua-C互操作</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="tolua">tolua++</h1>
 <h2 id="_1">概述</h2>
-<p>tolua++ 是一个将 C++ 类绑定到 Lua 的自动绑定工具，<a href="UrhoX引擎.html">UrhoX</a> 的事件系统（eventData 访问）基于 tolua++ 绑定实现。</p>
+<p><a href="../concepts/Lua脚本宿主模式.html">tolua</a>++ 是一个将 C++ 类绑定到 Lua 的自动绑定工具，<a href="UrhoX引擎.html">UrhoX</a> 的事件系统（eventData 访问）基于 <a href="../concepts/Lua脚本宿主模式.html">tolua</a>++ 绑定实现。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>在 UrhoX 中的作用</strong>：tolua++ 绑定使得 C++ 事件数据可以通过 Lua 访问，但返回的是包装对象而非原生 Lua 值，需要调用 <code>GetInt()</code>/<code>GetFloat()</code> 等方法进行类型转换。</li>
-<li><strong>访问模式</strong>：<code>eventData["X"]:GetInt()</code> 或 <code>eventData:GetInt("X")</code>，后者更高效。这是 tolua++ 绑定的特定访问方式。</li>
+<li><strong>在 <a href="UrhoX引擎.html">UrhoX</a> 中的作用</strong>：<a href="../concepts/Lua脚本宿主模式.html">tolua</a>++ 绑定使得 C++ 事件数据可以通过 Lua 访问，但返回的是包装对象而非原生 Lua 值，需要调用 <code>GetInt()</code>/<code>GetFloat()</code> 等方法进行类型转换。</li>
+<li><strong>访问模式</strong>：<code>eventData["X"]:GetInt()</code> 或 <code>eventData:GetInt("X")</code>，后者更高效。这是 <a href="../concepts/Lua脚本宿主模式.html">tolua</a>++ 绑定的特定访问方式。</li>
 <li><strong>类型定义</strong>：绑定信息反映在 <code>.emmylua/Events.d.lua</code> 中，定义了 177 个事件的事件数据结构。</li>
 </ol>
 <h2 id="_3">来源</h2>

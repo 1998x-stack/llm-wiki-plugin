@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [paper, deep-learning, normalization, google, 2015]
+tags: [paper, deep-learning, normalization, google, 2015, AI工程]
 aliases: [Batch Normalization 论文, BN 论文, Ioffe & Szegedy 2015]
 relates_to:
   - target: Batch Normalization
@@ -35,7 +35,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **核心问题**：深度网络训练极其脆弱——学习率稍大则梯度爆炸发散，稍小则收敛极慢；对权重初始化极度敏感；Sigmoid 激活函数存在饱和区问题。
+1. **核心问题**：深度网络训练极其脆弱——学习率稍大则[[梯度爆炸]]发散，稍小则收敛极慢；对权重初始化极度敏感；Sigmoid 激活函数存在饱和区问题。
 2. **核心方法**：对每个 mini-batch [[计算]]均值和方差，做归一化后引入可学习参数 γ（缩放）和 β（平移），让网络自行决定每层需要的分布。公式：$y_i = \gamma \frac{x_i - \mu_\mathcal{B}}{\sqrt{\sigma_\mathcal{B}^2 + \epsilon}} + \beta$
 3. **训练/推理差异**：训练时使用当前 batch 统计量（引入正则化噪声），推理时使用训练过程中累积的滑动平均统计量。
 4. **实验结果**：MNIST 上收敛快 14 倍；[[ImageNet]] 上 BN-[[Inception Network|Inception]] [[Top-5 错误率]] 4.82%（超越当时人类表现 5.1%）；可使用大 100 倍的学习率而不发散。

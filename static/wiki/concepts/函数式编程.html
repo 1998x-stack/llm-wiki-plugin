@@ -126,14 +126,72 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 函数式编程</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
 </div>
   <div class="content">
-    <h1 id="_1">函数式编程</h1>
+    <hr />
+<p>type: concept
+status: active
+confidence: 0.95
+created: 2026-04-17
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 3
+tags: [技术, 研究, 计算理论, 社会科学]
+- 技术
+- 研究
+- 计算理论
+aliases:
+- Functional Programming
+- 函数式程序设计
+relates_to:
+- target: "<a href="../entities/LISP.html">LISP</a>"
+  type: caused_by
+  confidence: 0.99
+  note: LISP 是历史上第一个函数式编程语言
+- target: "<a href="../entities/John McCarthy.html">John McCarthy</a>"
+  type: caused_by
+  confidence: 0.95
+  note: 开创者
+- target: "<a href="λ 演算.html">λ 演算</a>"
+  type: depends_on
+  confidence: 0.95
+  note: 理论基础
+- target: "<a href="../entities/John Backus.html">John Backus</a>"
+  type: related_to
+  confidence: 0.85
+  note: 1977年图灵奖演讲提倡函数式编程作为冯诺依曼范式的替代
+- target: "<a href="../entities/FORTRAN.html">FORTRAN</a>"
+  type: compares_to
+  confidence: 0.85
+  note: FORTRAN 是命令式编程，函数式编程是另一种范式
+- target: "<a href="../entities/Edsger Dijkstra.html">Edsger Dijkstra</a>"
+  type: related_to
+  confidence: 0.8
+  note: 晚年越来越倾向于函数式思维方式
+- target: "<a href="结构化编程.html">结构化编程</a>"
+  type: extends
+  confidence: 0.85
+  note: 函数式编程是比结构化编程走得更远的范式
+- target: "<a href="../entities/丘奇.html">丘奇</a>"
+  type: related_to
+  confidence: 0.9
+  note: λ演算的发明者，为函数式编程提供理论基础
+- target: "<a href="Church-Turing论题.html">Church-Turing论题</a>"
+  type: related_to
+  confidence: 0.85
+  note: λ演算与图灵机等价，为函数式编程提供理论支持
+- target: "<span style="color:#e74c3c" title="broken link">论可计算数及其在判定问题上的应用</span>"
+  type: theoretical_context
+  confidence: 0.7
+  note: 图灵证明了λ演算与图灵机的等价性
+supersedes: null</p>
+<hr />
+<h1 id="_1">函数式编程</h1>
 <h2 id="_2">概述</h2>
 <p>函数式编程是一种编程<a href="规范化理论.html">范式</a>，将<a href="计算.html">计算</a>视为数学函数的求值而非状态的改变。LISP（1960）是历史上第一个函数式编程语言，由 <a href="../entities/John McCarthy.html">John McCarthy</a> 基于 <a href="λ 演算.html">λ 演算</a>设计。</p>
 <h2 id="_3">关键内容</h2>
@@ -154,7 +212,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>从 LISP 出发的函数式语言谱系：
 - <strong>Scheme</strong>（1975）— 精简纯化
 - <strong>ML</strong>（1973）和 <strong>Haskell</strong>（1990）— 静态类型 + 函数式
-- <strong>Erlang</strong>（1986）— 函数式 + 并发
+- <strong><a href="../entities/Erlang.html">Erlang</a></strong>（1986）— 函数式 + 并发
 - <strong>Clojure</strong>（2007）— JVM 上的现代 LISP
 - <strong>JavaScript</strong> — 深受 Scheme 影响，支持闭包和高阶函数</p>
 <h3 id="_6">现代影响</h3>

@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [conference, recommendation-systems, acm]
+tags: [conference, recommendation-systems, acm, 推荐系统]
 aliases: [RecSys 2016, 第10届ACM推荐系统会议]
 relates_to:
   - {target: "[[Deep Neural Networks for YouTube Recommendations]]", type: published_at}
@@ -30,11 +30,11 @@ entity_type: conference
    - 页码范围：pp. 191-198
 
 2. **历史意义**：
-   - 在RecSys历史上，很少有哪篇论文能够像YouTube的《Deep Neural Networks for YouTube Recommendations》一样深刻影响学术研究方向和工业界系统架构
+   - 在RecSys历史上，很少有哪篇论文能够像[[YouTube]]的《[[Deep Neural Networks for YouTube Recommendations]]》一样深刻影响学术研究方向和工业界系统架构
    - 该会议发表了多篇对推荐系统领域产生深远影响的论文
 
 3. **知名论文**：
-   - 《Deep Neural Networks for YouTube Recommendations》（Paul Covington等人）：奠定了工业推荐系统十年架构范式的经典论文
+   - 《[[Deep Neural Networks for YouTube Recommendations]]》（[[Paul Covington]]等人）：奠定了工业推荐系统十年架构范式的经典论文
 
 ## 来源
 - [[07-youtube-dnn]] — 深度解读文档

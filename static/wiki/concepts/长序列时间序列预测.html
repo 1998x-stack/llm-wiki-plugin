@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">time-series</span><span class="tag">forecasting</span><span class="tag">transformer</span><span class="tag">sequence-modeling</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">time-series</span><span class="tag">forecasting</span><span class="tag">transformer</span><span class="tag">sequence-modeling</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="_1">长序列时间序列预测</h1>
 <h2 id="_2">概述</h2>
-<p>处理长序列历史数据并预测未来长时间范围的时间序列预测任务，是时间序列分析中的重要挑战。</p>
+<p>处理长序列历史数据并预测未来长时间范围的<a href="时间序列预测.html">时间序列预测</a>任务，是<a href="时间序列分析.html">时间序列分析</a>中的重要挑战。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>定义与特点</strong>：</li>
@@ -147,16 +147,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>技术挑战</strong>：</p>
 </li>
-<li>计算复杂度高，内存需求大</li>
+<li><a href="计算.html">计算</a>复杂度高，内存需求大</li>
 <li>标准模型（如LSTM、RNN）难以有效处理</li>
 <li>
-<p>Transformer面临O(L^2)的注意力复杂度瓶颈</p>
+<p><a href="../entities/Transformer.html">Transformer</a>面临O(L^2)的<a href="注意力机制.html">注意力</a>复杂度瓶颈</p>
 </li>
 <li>
 <p><strong>解决方案演进</strong>：</p>
 </li>
-<li>早期：LSTM、DeepAR、N-BEATS等模型</li>
-<li>2021年：Informer提出ProbSparse注意力等创新解决复杂度问题</li>
+<li>早期：LSTM、DeepAR、<a href="N-BEATS.html">N-BEATS</a>等模型</li>
+<li>2021年：<a href="Informer.html">Informer</a>提出ProbSparse<a href="注意力机制.html">注意力</a>等创新解决复杂度问题</li>
 <li>后续：Autoformer、FEDformer、Pyraformer等专门针对此任务设计</li>
 </ol>
 <h2 id="_4">来源</h2>

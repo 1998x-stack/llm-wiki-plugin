@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [claude, documentation, ai-agent, project-setup]
+tags: [claude, documentation, ai-agent, project-setup, AI工程]
 aliases: ["CLAUDE.MD", "Claude Markdown", "Project Context File"]
 relates_to:
   - target: "[[Claude Code]]"

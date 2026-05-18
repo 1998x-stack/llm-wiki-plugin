@@ -21,10 +21,10 @@ relates_to:
 # x402 Foundation
 
 ## 概述
-x402 Foundation是由[[Coinbase]]和[[Cloudflare]]共同建立的组织，旨在推动x402协议成为互联网级开放标准。
+x402 Foundation是由[[Coinbase]]和[[Cloudflare]]共同建立的组织，旨在推动x402协议成为[[互联网]]级开放标准。
 
 ## 关键内容
-1. **使命**：推动x402（[[x402 Protocol|HTTP 402]]状态码复活计划）成为互联网级开放标准，为机器间支付提供标准化方案。
+1. **使命**：推动x402（[[x402 Protocol|HTTP 402]]状态码复活计划）成为[[互联网]]级开放标准，为机器间支付提供标准化方案。
 
 2. **成员贡献**：[[Cloudflare]]在[[Agents]] SDK内建x402支持，在MCP集成中支持x402协议，并提出延迟支付方案；[[Coinbase]]主导协议开发。
 

@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.60</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">person</span><span class="tag">ai-engineering</span><span class="tag">evaluation</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">person</span><span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="gian-segato">Gian Segato</h1>
 <h2 id="_1">概述</h2>
-<p>Anthropic 工程师，发表关于 Agentic 编码评测中基础设施噪声量化的研究，揭示了资源配置对 Benchmark 分数的显著影响。</p>
+<p><a href="Anthropic.html">Anthropic</a> 工程师，发表关于 Agentic 编码评测中<a href="../concepts/基础设施噪声.html">基础设施噪声</a>量化的研究，揭示了资源<a href="../concepts/Configuration.html">配置</a>对 Benchmark 分数的显著影响。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心研究</strong>：通过受控实验量化了基础设施配置对 <a href="SWE-bench.html">SWE-bench</a> 和 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 的影响，发现在 Terminal-Bench 2.0 上不同资源配置之间的成功率差距可达 <strong>6 个百分点</strong>（p &lt; 0.01）。</li>
-<li><strong>关键发现</strong>：执行方法论会改变 Benchmark 实际测量的内容——资源配置不同的 Agent 实际上在"做不同的测试"。</li>
+<li><strong>核心研究</strong>：通过受控实验量化了基础设施<a href="../concepts/Configuration.html">配置</a>对 <a href="SWE-bench.html">SWE-bench</a> 和 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 的影响，发现在 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 上不同资源<a href="../concepts/Configuration.html">配置</a>之间的成功率差距可达 <strong>6 个百分点</strong>（p &lt; 0.01）。</li>
+<li><strong>关键发现</strong>：执行方法论会改变 Benchmark 实际测量的内容——资源<a href="../concepts/Configuration.html">配置</a>不同的 Agent 实际上在"做不同的测试"。</li>
 <li><strong>工程建议</strong>：提出分别规定 Kubernetes 资源的"保证分配"（requests）和"硬性上限"（limits），推荐 3× requests 作为 limits 的起点，可将基础设施错误率降低 2/3。</li>
 <li><strong>方法论贡献</strong>：推动 AI 评测领域向工程严谨性靠拢，揭示"模型能力"与"基础设施行为"之间的边界比单一 Benchmark 分数所暗示的更加模糊。</li>
 </ol>

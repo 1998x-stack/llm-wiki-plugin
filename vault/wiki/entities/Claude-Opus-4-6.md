@@ -58,8 +58,8 @@ supersedes: null
 
 ### 在知识库中的引用
 
-[[Context-Engineering]] 和 [[Agent Harness模式]] 中多次提及 Opus 4.5 和 [[Claude_Opus_4.6|Opus 4.6]] 的能力对比：
-- Opus 4.5 时代：需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务
+[[Context-Engineering]] 和 [[Agent Harness模式]] 中多次提及 [[Opus 4.5]] 和 [[Claude_Opus_4.6|Opus 4.6]] 的能力对比：
+- [[Opus 4.5]] 时代：需要 Sprint 分解 + [[上下文重置]] 才能完成长时任务
 - [[Claude_Opus_4.6|Opus 4.6]] 时代：模型能力提升，边界外移——部分 Harness 组件可被移除
 
 这体现了 [[生成器-评估器架构]] 中的核心观点：评估器的价值是条件性的，取决于任务相对于模型当前能力的位置。

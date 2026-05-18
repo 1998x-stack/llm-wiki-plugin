@@ -130,36 +130,36 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">论文</span><span class="tag">自然语言处理</span><span class="tag">深度学习</span><span class="tag">变压器架构</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">论文</span><span class="tag">自然语言处理</span><span class="tag">深度学习</span><span class="tag">变压器架构</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="attention-is-all-you-need">Attention Is All You Need</h1>
 <h2 id="_1">概述</h2>
-<p>由 Google Brain 团队于 2017 年发表的开创性论文，提出了完全基于注意力机制的 Transformer 架构，彻底改变了序列建模领域，奠定了现代大语言模型的基础。</p>
+<p>由 <a href="Google Brain.html">Google Brain</a> 团队于 2017 年发表的开创性论文，提出了完全基于<a href="../concepts/注意力机制.html">注意力机制</a>的 <a href="../concepts/Transformer 架构.html">Transformer 架构</a>，彻底改变了序列建模领域，奠定了现代大<a href="../concepts/Language-Model.html">语言模型</a>的基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>论文背景</strong>：</li>
-<li>作者：Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</li>
-<li>发表时间：2017 年 NeurIPS 会议</li>
+<li>作者：<a href="Ashish Vaswani.html">Ashish Vaswani</a>, <a href="Noam Shazeer.html">Noam Shazeer</a>, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin</li>
+<li>发表时间：2017 年 <a href="NeurIPS.html">NeurIPS</a> 会议</li>
 <li>
-<p>解决问题：RNN/LSTM 的顺序计算瓶颈和 CNN 在捕捉长距离依赖方面的局限</p>
+<p>解决问题：RNN/LSTM 的顺序<a href="../concepts/计算.html">计算</a>瓶颈和 CNN 在捕捉长距离依赖方面的局限</p>
 </li>
 <li>
 <p><strong>核心创新</strong>：</p>
 </li>
-<li>完全抛弃循环和卷积结构，仅使用注意力机制</li>
-<li>提出缩放点积注意力（Scaled Dot-Product Attention）</li>
-<li>引入多头注意力（Multi-Head Attention）机制</li>
-<li>使用位置编码（Positional Encoding）保留序列信息</li>
+<li>完全抛弃循环和卷积结构，仅使用<a href="../concepts/注意力机制.html">注意力机制</a></li>
+<li>提出<a href="../concepts/缩放点积注意力.html">缩放点积注意力</a>（<a href="../concepts/Scaled Dot-Product Attention.html">Scaled Dot-Product Attention</a>）</li>
+<li>引入<a href="../concepts/多头注意力.html">多头注意力</a>（<a href="../concepts/Multi-Head Attention.html">Multi-Head Attention</a>）机制</li>
+<li>使用<a href="../concepts/位置编码.html">位置编码</a>（<a href="../concepts/位置编码.html">Positional Encoding</a>）保留序列信息</li>
 <li>
 <p>实现高度并行化的训练过程</p>
 </li>
 <li>
 <p><strong>架构特点</strong>：</p>
 </li>
-<li>编码器-解码器结构，各包含 6 层</li>
-<li>每层包含多头自注意力和前馈网络</li>
-<li>使用残差连接和层归一化</li>
+<li><a href="../concepts/编码器-解码器架构（Seq2Seq）.html">编码器-解码器</a>结构，各包含 6 层</li>
+<li>每层包含<a href="../concepts/多头注意力.html">多头自注意力</a>和前馈网络</li>
+<li>使用<a href="../concepts/残差连接.html">残差连接</a>和<a href="../concepts/Layer Normalization.html">层归一化</a></li>
 <li>模型基础维度 d_model = 512</li>
 </ol>
 <h2 id="_3">来源</h2>

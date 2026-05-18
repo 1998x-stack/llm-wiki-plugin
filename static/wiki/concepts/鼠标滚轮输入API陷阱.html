@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> high</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-16</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-16</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">输入处理</span><span class="tag">API陷阱</span><span class="tag">鼠标输入</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UrhoX</span><span class="tag">Lua</span><span class="tag">输入处理</span><span class="tag">API陷阱</span><span class="tag">鼠标输入</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="api">鼠标滚轮输入API陷阱</h1>
 <h2 id="_1">概述</h2>
-<p>在 <a href="../entities/UrhoX引擎.html">UrhoX</a>/Urho3D Lua 中，<code>input.mouseMove</code> 返回 <code>IntVector2</code>（仅有 x、y），不含滚轮分量。滚轮值必须通过独立属性 <code>input.mouseMoveWheel</code> 获取，使用 <code>.z</code> 会得到 <code>nil</code> 并引发运算时崩溃。</p>
+<p>在 <a href="../entities/UrhoX引擎.html">UrhoX</a>/<a href="../entities/Urho3D.html">Urho3D</a> Lua 中，<code>input.mouseMove</code> 返回 <code>IntVector2</code>（仅有 x、y），不含滚轮分量。滚轮值必须通过独立属性 <code>input.mouseMoveWheel</code> 获取，使用 <code>.z</code> 会得到 <code>nil</code> 并引发运算时崩溃。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">属性类型对照</h3>
 <table>

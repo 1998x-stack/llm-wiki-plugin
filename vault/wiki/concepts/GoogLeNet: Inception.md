@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [computer-vision, CNN, architecture, inception]
+tags: [computer-vision, CNN, architecture, inception, 机器学习]
 aliases: [GoogLeNet, Inception, Inception 模块]
 relates_to:
   - target: Christian Szegedy

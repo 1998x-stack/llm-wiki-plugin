@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [信息论, 通信理论, 数学家, 计算机科学家]
+tags: [信息论, 通信理论, 数学家, 计算机科学家, AI工程]
 aliases: [Claude Elwood Shannon, 香农]
 relates_to:
 - target: '[[A Mathematical Theory of Communication]]'

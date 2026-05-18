@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">benchmark</span><span class="tag">coding-agent</span><span class="tag">evaluation</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">benchmark</span><span class="tag">coding-agent</span><span class="tag">evaluation</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="swe-bench">SWE-bench</h1>
 <h2 id="_1">概述</h2>
-<p>编码 Agent 评测基准，用于评估 AI 模型在真实软件工程任务中的表现，Anthropic Sonnet 模型在此评测中取得突破性表现。</p>
+<p>编码 <a href="../concepts/评测驱动开发.html">Agent 评测</a>基准，用于评估 AI 模型在真实软件工程任务中的表现，<a href="Anthropic.html">Anthropic</a> Sonnet 模型在此评测中取得突破性表现。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>评测定位</strong>：SWE-bench 是评估 AI 编码 Agent 能力的基准测试，聚焦于真实 GitHub issue 的解决能力。</li>
-<li><strong>Anthropic 的突破</strong>：Anthropic 的 Sonnet 模型在 SWE-bench 评测中取得突破性表现，验证了 ACI 设计原则的有效性。</li>
+<li><strong>评测定位</strong>：SWE-bench 是评估 AI 编码 Agent 能力的基准测试，聚焦于真实 <a href="GitHub.html">GitHub</a> issue 的解决能力。</li>
+<li><strong><a href="Anthropic.html">Anthropic</a> 的突破</strong>：<a href="Anthropic.html">Anthropic</a> 的 Sonnet 模型在 SWE-bench 评测中取得突破性表现，验证了 <a href="../concepts/ACI 设计原则.html">ACI 设计原则</a>的有效性。</li>
 <li><strong>ACI 实证案例</strong>：在 SWE-bench Agent 中发现，模型在 agent 离开根目录后使用相对路径时会出错。解决方案是要求工具<strong>始终使用绝对路径</strong>，这一改变使模型运行"无懈可击"。</li>
 <li><strong>工程意义</strong>：SWE-bench 的实证结果证明了工具定义和 ACI 设计对 Agent 性能的关键影响。</li>
-<li><strong>基础设施噪声交叉验证</strong>：在 SWE-Bench 上的交叉实验（227 个问题，每题 10 次采样，RAM 1x → 5x）显示成功率随 RAM 单调增加，但提升幅度仅 <strong>1.54 个百分点</strong>（5x vs 1x）。效应小于 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 的原因：SWE-Bench 任务资源需求普遍较低，资源约束较少成为瓶颈。但重要结论相同：资源配置对 SWE-Bench 也不是中性的。</li>
+<li><strong><a href="../concepts/基础设施噪声.html">基础设施噪声</a>交叉验证</strong>：在 SWE-Bench 上的交叉实验（227 个问题，每题 10 次采样，RAM 1x → 5x）显示成功率随 RAM 单调增加，但提升幅度仅 <strong>1.54 个百分点</strong>（5x vs 1x）。效应小于 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 的原因：SWE-Bench 任务资源需求普遍较低，资源约束较少成为瓶颈。但重要结论相同：资源<a href="../concepts/Configuration.html">配置</a>对 SWE-Bench 也不是中性的。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

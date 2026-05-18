@@ -137,7 +137,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>美国人工智能研究公司，成立于 2015 年，总部位于旧金山。以 <a href="../concepts/GPT 系列.html">GPT 系列</a>大模型和 <a href="ChatGPT.html">ChatGPT</a> 闻名，同时开源多个开发者工具。</p>
 <h2 id="_1">关键内容</h2>
 <ol>
-<li><strong>开发者工具线</strong>：发布 <a href="Codex CLI.html">Codex CLI</a>——以 <a href="Rust.html">Rust</a> 重写的本地编码 Agent，采用 Policy-First 架构与 OS 级沙箱隔离。</li>
+<li><strong>开发者工具线</strong>：发布 <a href="Codex CLI.html">Codex CLI</a>——以 <a href="Rust.html">Rust</a> 重写的本地编码 Agent，采用 Policy-First 架构与 OS 级<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>隔离。</li>
 <li><strong>开源策略</strong>：<a href="Codex CLI.html">Codex CLI</a> 以开源方式发布，允许社区审查其安全架构（<a href="../concepts/ExecPolicy.html">ExecPolicy</a>、Sandbox、MCP 层）。</li>
 <li><strong>工程哲学</strong>：选择 Rust 而非 <a href="TypeScript.html">TypeScript</a> 重写 <a href="Codex CLI.html">Codex</a>，体现了"安全隔离必须在系统调用层做"的底层思维。</li>
 <li><strong><a href="../concepts/Harness-Engineering.html">Harness Engineering</a> 先驱</strong>：进行了 3 个工程师 5 个月构建超过 100 万行代码的实验，所有代码均由 <a href="Codex CLI.html">Codex</a> 生成，提出了"Human steer. <a href="../concepts/Agents.html">Agents</a> execute."的核心哲学。</li>

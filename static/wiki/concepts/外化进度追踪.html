@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">状态管理</span><span class="tag">外部记忆</span><span class="tag">长时任务</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">状态管理</span><span class="tag">外部记忆</span><span class="tag">长时任务</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">外化进度追踪</h1>
 <h2 id="_2">概述</h2>
-<p>外化进度追踪是 Agent Harness 设计中的核心实践，使用文件系统作为外部记忆，通过结构化的进度文件（如 claude-progress.txt 和 features.json）实现跨会话的状态传递和任务协调。</p>
+<p>外化进度追踪是 <a href="Agent Harness模式.html">Agent Harness</a> 设计中的核心实践，使用文件系统作为外部记忆，通过结构化的进度文件（如 claude-progress.txt 和 features.json）实现跨会话的状态传递和任务协调。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心文件结构</strong>：</li>
@@ -177,7 +177,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>两者都使用文件外部化状态</li>
 <li>外化进度追踪更细粒度，专注于任务级别的进度</li>
-<li>Session 交接机制更宏观，关注跨会话的知识传递</li>
+<li><a href="Session 交接机制.html">Session 交接机制</a>更宏观，关注跨会话的知识传递</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

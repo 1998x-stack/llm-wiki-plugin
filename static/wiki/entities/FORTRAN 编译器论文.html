@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="fortran">FORTRAN 编译器论文</h1>
 <h2 id="_1">概述</h2>
-<p><a href="John Backus.html">John Backus</a> 等人于1957年发表的《The <a href="FORTRAN.html">FORTRAN</a> Automatic Coding System》，是编程语言史上第一篇系统描述高级语言编译器设计的论文，证明了编译生成的代码效率可达手写汇编的90%以上。</p>
+<p><a href="John Backus.html">John Backus</a> 等人于1957年发表的《The <a href="FORTRAN.html">FORTRAN</a> <a href="../concepts/Automatic Coding.html">Automatic Coding System</a>》，是编程语言史上第一篇系统描述高级语言编译器设计的论文，证明了编译生成的代码效率可达手写汇编的90%以上。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">论文信息</h3>
 <table>
@@ -148,39 +148,39 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><strong>标题</strong></td>
-<td>The <a href="FORTRAN.html">FORTRAN</a> Automatic Coding System</td>
-</tr>
-<tr>
-<td><strong>作者</strong></td>
-<td>John W. Backus, R.J. Beeber, S. Best 等13人</td>
-</tr>
-<tr>
-<td><strong>发表时间</strong></td>
-<td>1957年2月</td>
-</tr>
-<tr>
-<td><strong>Venue</strong></td>
-<td>Proceedings of the Western Joint Computer Conference (WJCC), pp. 188-198</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">六阶段编译器架构</h3>
-<ol>
-<li><strong>原始分析与中间表示生成</strong> — 扫描源代码，转换为三元组表示</li>
-<li><strong>公共子表达式消除</strong> — 识别重复<a href="../concepts/计算.html">计算</a>的子表达式</li>
+<td>The <a href="FORTRAN.html">FORTRAN</a> <span style="color:#e74c3c" title="broken link">Automatic Coding&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;作者&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;John W. Backus, R.J. Beeber, S. Best 等13人&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;发表时间&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1957年2月&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Venue&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Proceedings of the Western Joint Computer Conference (WJCC), pp. 188-198&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_4&quot;&gt;六阶段编译器架构&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;原始分析与中间表示生成&lt;/strong&gt; — 扫描源代码，转换为三元组表示&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;公共子表达式消除&lt;/strong&gt; — 识别重复[[计算</span>的子表达式</li>
 <li><strong>循环分析</strong> — 识别循环结构，确定嵌套深度</li>
-<li><strong>寄存器分配</strong> — 智能分配 IBM 704 的三个索引寄存器</li>
+<li><strong>寄存器分配</strong> — 智能分配 <a href="IBM 704.html">IBM 704</a> 的三个索引寄存器</li>
 <li><strong>指令合并与优化</strong> — 强度削减、利用特殊指令格式</li>
-<li><strong>最终代码生成与组装</strong> — 生成可执行目标代码</li>
+<li><strong>最终<a href="../concepts/代码生成.html">代码生成</a>与组装</strong> — 生成可执行目标代码</li>
 </ol>
 <h3 id="_5">性能数据</h3>
 <p><a href="FORTRAN.html">FORTRAN</a> 生成的代码效率通常达到手写汇编的 90% 以上，在某些以循环为主的科学<a href="../concepts/计算.html">计算</a>程序中甚至优于普通程序员的手写汇编。</p>
 <h3 id="_6">工程规模</h3>
-<p>编译器由约 18,000 行 IBM 704 汇编代码组成，是当时最大的软件项目之一。开发耗时近三年（1954年秋至1957年春），团队高峰约20人。</p>
+<p>编译器由约 18,000 行 <a href="IBM 704.html">IBM 704</a> 汇编代码组成，是当时最大的软件项目之一。开发耗时近三年（1954年秋至1957年春），团队高峰约20人。</p>
 <h3 id="_7">历史影响</h3>
 <ul>
 <li>彻底击碎了"编译器不可能高效"的神话</li>
-<li>1958年底超过半数 IBM 704 用户开始使用 <a href="FORTRAN.html">FORTRAN</a></li>
+<li>1958年底超过半数 <a href="IBM 704.html">IBM 704</a> 用户开始使用 <a href="FORTRAN.html">FORTRAN</a></li>
 <li>催生了编译器科学这一全新学科</li>
 <li>Backus 后来因 <a href="FORTRAN.html">FORTRAN</a> 和 BNF 的贡献获得1977年<a href="阿兰·图灵.html">图灵</a>奖</li>
 </ul>

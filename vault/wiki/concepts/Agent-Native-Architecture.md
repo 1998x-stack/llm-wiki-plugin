@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-engineering, architecture, design-pattern]
+tags: [ai-engineering, architecture, design-pattern, AI工程]
 aliases: ["Agent Native Architecture", "Agent-Native Architecture"]
 relates_to:
   - target: "[[Compound-Engineering]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, claude-code, tool-system]
+tags: [ai-tools, claude-code, tool-system, AI工程]
 aliases: ["工具生态系统", "Tool System"]
 relates_to: []
 supersedes: null
@@ -26,7 +26,7 @@ supersedes: null
 2. **工具调用数据流**：
    - LLM输出JSON Tool Call（tool_name + tool_input）
    - 经过[[Tool Hook Mechanism|PreToolUse Hook]]检查
-   - 在沙箱执行环境中运行（带[[Permissions|权限]]白名单检查）
+   - 在[[Claude Code 沙箱机制|沙箱]]执行环境中运行（带[[Permissions|权限]]白名单检查）
    - 结果以纯文本返回
    - 通过[[Tool Hook Mechanism|PostToolUse Hook]]进行质量检查
    - 最终追加到消息历史

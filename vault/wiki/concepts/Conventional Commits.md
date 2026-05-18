@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [git, 版本控制, 提交规范]
+tags: [git, 版本控制, 提交规范, 工具与框架]
 aliases: ["约定式提交", "Conventional Commits specification"]
 relates_to:
   - target: "[[Git Commit]]"

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">programming</span><span class="tag">software-engineering</span><span class="tag">computer-science</span><span class="tag">paper</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">programming</span><span class="tag">software-engineering</span><span class="tag">computer-science</span><span class="tag">paper</span><span class="tag">机器人学</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -141,20 +141,20 @@ relates_to:
 
 <h1 id="go-to-statement-considered-harmful">Go To Statement Considered Harmful</h1>
 <h2 id="_1">概述</h2>
-<p>Dijkstra在1968年发表的著名论文，论证了goto语句从根本上破坏了程序的逻辑结构可理解性，主张仅使用顺序、选择和循环三种控制结构来组织程序，为结构化编程运动奠定思想基石。</p>
+<p><a href="Edsger Dijkstra.html">Dijkstra</a>在1968年发表的著名论文，论证了<a href="../concepts/goto语句.html">goto语句</a>从根本上破坏了程序的逻辑结构可理解性，主张仅使用顺序、选择和循环三种控制结构来组织程序，为<a href="../concepts/结构化编程.html">结构化编程</a>运动奠定思想基石。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心论点</strong>：论文论证了goto语句从根本上破坏了程序的逻辑结构可理解性，使程序员无法在静态的程序文本与动态的执行过程之间建立可靠的心智对应。Dijkstra提出程序应当仅使用顺序（sequence）、选择（selection）和循环（iteration）三种控制结构来组织。</p>
+<p><strong>核心论点</strong>：论文论证了<a href="../concepts/goto语句.html">goto语句</a>从根本上破坏了程序的逻辑结构可理解性，使程序员无法在静态的程序文本与动态的执行过程之间建立可靠的心智对应。<a href="Edsger Dijkstra.html">Dijkstra</a>提出程序应当仅使用顺序（sequence）、选择（selection）和循环（iteration）三种控制结构来组织。</p>
 </li>
 <li>
-<p><strong>背景问题</strong>：1968年正值软件危机时期，当时主流编程语言都大量依赖goto语句，产生了"意大利面条式代码"。Dijkstra认为goto语句是程序正确性论证的最大障碍。</p>
+<p><strong>背景问题</strong>：1968年正值<a href="../concepts/软件危机.html">软件危机</a>时期，当时主流编程语言都大量依赖<a href="../concepts/goto语句.html">goto语句</a>，产生了"<a href="../concepts/意大利面条式代码.html">意大利面条式代码</a>"。<a href="Edsger Dijkstra.html">Dijkstra</a>认为<a href="../concepts/goto语句.html">goto语句</a>是程序正确性论证的最大障碍。</p>
 </li>
 <li>
-<p><strong>理论基础</strong>：论文建立在Bohm-Jacopini定理之上，该定理证明任何使用goto语句的程序都可以用仅包含顺序、条件选择和循环三种结构的等价程序替换。因此goto在表达能力上是冗余的。</p>
+<p><strong>理论基础</strong>：论文建立在<a href="../concepts/Bohm-Jacopini定理.html">Bohm-Jacopini定理</a>之上，该定理证明任何使用<a href="../concepts/goto语句.html">goto语句</a>的程序都可以用仅包含顺序、条件选择和循环三种结构的等价程序替换。因此goto在表达能力上是冗余的。</p>
 </li>
 <li>
-<p><strong>历史影响</strong>：这篇不到两页的编辑来信引发了结构化编程革命，直接影响了此后五十年间几乎所有编程语言的设计决策，包括Pascal、Java、Python等现代语言都限制或禁止了goto的使用。</p>
+<p><strong>历史影响</strong>：这篇不到两页的编辑来信引发了<a href="../concepts/结构化编程.html">结构化编程</a>革命，直接影响了此后五十年间几乎所有编程语言的设计决策，包括Pascal、Java、<a href="../concepts/Python.html">Python</a>等现代语言都限制或禁止了goto的使用。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

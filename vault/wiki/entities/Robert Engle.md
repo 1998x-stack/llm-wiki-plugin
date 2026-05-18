@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [计量经济学, 时间序列分析, 诺贝尔奖]
+tags: [计量经济学, 时间序列分析, 诺贝尔奖, 时间序列]
 aliases: ["Robert Engle", "罗伯特·恩格尔"]
 entity_type: person
 relates_to:
@@ -33,18 +33,18 @@ Robert Engle是美国计量经济学家，因其在ARCH模型和协整方面的�
 ## 关键内容
 
 1. **学术成就**：
-   - 提出了ARCH模型（自回归条件异方差模型）
-   - 与Clive Granger共同定义了协整概念（1987年）
+   - 提出了ARCH模型（[[ARCH 模型|自回归条件异方差模型]]）
+   - 与[[Clive Granger]]共同定义了协整概念（1987年）
    - 这些贡献为他赢得了2003年诺贝尔经济学奖
 
 2. **与协整的关系**：
    - 1987年与Granger共同发表关于协整和误差修正的开创性论文
-   - 为协整理论奠定了基础，后被Soren Johansen进一步发展完善
+   - 为协整理论奠定了基础，后被[[Soren Johansen]]进一步发展完善
    - Engle-Granger两步法是协整分析的先驱方法
 
 3. **学术影响**：
    - ARCH模型为金融风险管理提供了重要工具
-   - 协整理论解决了非平稳时间序列的回归问题
+   - 协整理论解决了非[[Stationary Time Series|平稳时间序列]]的回归问题
    - 与Johansen的工作相结合，形成了完整的协整分析体系
 
 ## 来源

@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">可靠性工程</span><span class="tag">配置管理</span><span class="tag">事故根因</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">可靠性工程</span><span class="tag">配置管理</span><span class="tag">事故根因</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">配置漂移</h1>
 <h2 id="_2">概述</h2>
-<p>配置漂移（Configuration Drift）指生产环境的配置随时间积累小改动，最终某个改动触发意外行为的事故根因模式，任何单一改动看起来安全但组合效应是意外的。</p>
+<p><a href="Configuration.html">配置</a>漂移（<a href="Configuration.html">Configuration</a> Drift）指生产环境的<a href="Configuration.html">配置</a>随时间积累小改动，最终某个改动触发意外行为的事故根因模式，任何单一改动看起来安全但组合效应是意外的。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>定义与特征</strong>：配置漂移是指生产环境配置在多次小改动后逐渐偏离预期状态的现象。典型特征包括：任何单一改动看起来都是安全的、组合效应是意外的、问题往往在特定负载或条件下才暴露。这种事故根因模式特别隐蔽，因为每次变更都经过了审查，但累积效应无法预测。</p>
+<p><strong>定义与特征</strong>：<a href="Configuration.html">配置</a>漂移是指生产环境<a href="Configuration.html">配置</a>在多次小改动后逐渐偏离预期状态的现象。典型特征包括：任何单一改动看起来都是安全的、组合效应是意外的、问题往往在特定负载或条件下才暴露。这种事故根因模式特别隐蔽，因为每次变更都经过了审查，但累积效应无法预测。</p>
 </li>
 <li>
-<p><strong>在 AI 系统中的特殊表现</strong>：对于 LLM 系统，"提示即配置"——系统提示词的修改本质上也是配置变更。提示的影响是全局的、非局部的，修改一处可能影响模型在所有任务上的行为。这使得配置漂移在 AI 系统中比传统软件更具破坏性。</p>
+<p><strong>在 AI 系统中的特殊表现</strong>：对于 LLM 系统，"提示即<a href="Configuration.html">配置</a>"——系统提示词的修改本质上也是<a href="Configuration.html">配置</a>变更。提示的影响是全局的、非局部的，修改一处可能影响模型在所有任务上的行为。这使得<a href="Configuration.html">配置</a>漂移在 AI 系统中比传统软件更具破坏性。</p>
 </li>
 <li>
-<p><strong>预防策略</strong>：配置即代码（Configuration as Code）是核心预防手段，将配置纳入版本控制系统；回归测试覆盖关键配置组合，确保配置变更不会引入意外行为；对于 AI 系统，还需要维护覆盖多行为维度的回归评测套件，小范围 A/B 测试后再全量推送，将提示版本控制纳入 CI/CD。</p>
+<p><strong>预防策略</strong>：<a href="Configuration.html">配置</a>即代码（<a href="Configuration.html">Configuration</a> as Code）是核心预防手段，将<a href="Configuration.html">配置</a>纳入版本控制系统；回归<a href="测试覆盖率.html">测试覆盖</a>关键<a href="Configuration.html">配置</a>组合，确保<a href="Configuration.html">配置</a>变更不会引入意外行为；对于 AI 系统，还需要维护覆盖多行为维度的回归评测套件，小范围 A/B 测试后再全量推送，将提示版本控制纳入 CI/CD。</p>
 </li>
 <li>
-<p><strong>与 Postmortem 的关系</strong>：配置漂移是 Anthropic 事后回顾中识别的三类常见根本原因之一。好的 Postmortem 实践会从配置漂移事故中提炼出系统级改进，如加强配置变更的自动化检测和告警。</p>
+<p><strong>与 <a href="Postmortem 文化.html">Postmortem</a> 的关系</strong>：<a href="Configuration.html">配置</a>漂移是 <a href="../entities/Anthropic.html">Anthropic</a> <a href="Postmortem 文化.html">事后回顾</a>中识别的三类常见根本原因之一。好的 <a href="Postmortem 文化.html">Postmortem</a> 实践会从<a href="Configuration.html">配置</a>漂移事故中提炼出系统级改进，如加强<a href="Configuration.html">配置</a>变更的自动化检测和告警。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

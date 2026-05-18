@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, debugging, problem-solving]
+tags: [gsd-agent, debugging, problem-solving, Agent系统]
 aliases: ["gsd-debugger", "GSD Debugger", "GSD调试智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

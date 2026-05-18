@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [time-series-analysis, statistics, probability-theory]
+tags: [time-series-analysis, statistics, probability-theory, 概率论]
 aliases: ["平稳时间序列", "Stationary Time Series", "Stationarity"]
 relates_to:
   - target: "[[Wold Decomposition Theorem]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, human-computer-collaboration]
+tags: [ai-engineering, human-computer-collaboration, AI工程]
 aliases: ["Humans steer. Agents execute.", "人掌舵，Agent 执行"]
 relates_to:
   - target: "[[Harness-Engineering]]"
@@ -24,7 +24,7 @@ supersedes: null
 
 1. **核心理念**：
    - 人负责掌舵（steer）：制定方向、设定目标、做出关键决策
-   - Agent 负责执行（execute）：具体实现、代码生成、任务执行
+   - Agent 负责执行（execute）：具体实现、[[代码生成]]、任务执行
    - 体现了人机协作的新模式，而非完全替代
 
 2. **应用实践**：

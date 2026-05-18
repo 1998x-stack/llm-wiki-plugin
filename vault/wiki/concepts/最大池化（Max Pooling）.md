@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "CNN", "池化"]
+tags: [深度学习, CNN, 池化, 机器学习]
 aliases: ["Max Pooling", "最大池化层", "最大下采样"]
 relates_to: ["AlexNet", "卷积神经网络（CNN）", "LeNet-5", "空间金字塔"]
 supersedes: null

@@ -26,7 +26,7 @@ supersedes: null
 
 1. **真并发能力**：Tokio 多线程运行时突破单线程事件循环局限，是 [[Codex CLI]] 选择 Rust 而非 [[TypeScript]] 的关键因素之一。
 2. **对比 Node.js 事件循环**：Node.js 单线程事件循环在同一时刻只能处理一个任务；Tokio 可在多个 OS 线程上并行调度异步任务。
-3. **在 [[Codex CLI|Codex]] 中的角色**：[[Codex CLI|Codex]] 的并发操作（并行 subagent 调度、MCP 通信、沙箱进程管理）均依赖 Tokio 运行时。
+3. **在 [[Codex CLI|Codex]] 中的角色**：[[Codex CLI|Codex]] 的并发操作（并行 subagent 调度、MCP 通信、[[Claude Code 沙箱机制|沙箱]]进程管理）均依赖 Tokio 运行时。
 
 ## 来源
 

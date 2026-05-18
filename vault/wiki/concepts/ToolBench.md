@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 大规模工具, 工具检索]
+tags: [LLM, 工具调用, 大规模工具, 工具检索, 工具与框架]
 aliases: ["ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs"]
 relates_to: []
 supersedes: null

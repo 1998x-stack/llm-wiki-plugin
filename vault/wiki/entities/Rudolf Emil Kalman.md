@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [control-theory, mathematics, engineering, kalman-filter]
+tags: [control-theory, mathematics, engineering, kalman-filter, AI工程]
 aliases: ["鲁道夫·卡尔曼", "Rudolf Kalman", "鲁道夫·埃米尔·卡尔曼"]
 entity_type: person
 relates_to: []

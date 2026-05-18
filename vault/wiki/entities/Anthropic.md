@@ -37,7 +37,7 @@ relates_to:
 ## 关键内容
 
 1. **核心产品**：
-   - **[[Claude_Code|Claude]]**：大[[Language-Model|语言模型]]系列（Haiku、Sonnet、Opus）
+   - **[[Claude_Code|Claude]]**：大[[Language-Model|语言模型]]系列（[[Claude 3 Haiku|Haiku]]、Sonnet、Opus）
    - **[[Claude Code]]**：AI 驱动代码编辑器
    - **[[Agent Skills]]**：开放规范 [[agentskills.io]]/specification
 
@@ -61,8 +61,8 @@ relates_to:
 
 4. **评测方法论研究**：
    - [[Gian Segato]] 等发表关于 Agentic 编码评测中[[基础设施噪声]]的量化研究
-   - 发现在 [[Terminal-Bench 2.0]] 上不同资源配置之间的成功率差距达 6 个百分点
-   - 提出 Benchmark 资源配置的校准原则：分别规定 requests 和 limits，推荐 3× 带宽
+   - 发现在 [[Terminal-Bench 2.0]] 上不同资源[[Configuration|配置]]之间的成功率差距达 6 个百分点
+   - 提出 Benchmark 资源[[Configuration|配置]]的校准原则：分别规定 requests 和 limits，推荐 3× 带宽
 
 ## 来源
 - [[01_claude_code_skill_system_overview]] — 系统架构全景

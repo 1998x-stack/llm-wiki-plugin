@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [mathematics, statistics, probability-theory]
+tags: [mathematics, statistics, probability-theory, 概率论]
 aliases: ["Harald Cramer", "哈拉尔德·克拉美尔"]
 relates_to:
   - target: "[[Herman Wold]]"

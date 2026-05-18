@@ -7,7 +7,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [时间序列分析, 自回归模型, 统计学]
+tags: [时间序列分析, 自回归模型, 统计学, 时间序列]
 aliases: ["On a Method of Investigating Periodicities in Disturbed Series", "Investigating Periodicities in Disturbed Series", "Yule 1927", "On a Method of Investigating Periodicities in Disturbed Series, with Special Reference to Wolfer's Sunspot Numbers"]
 relates_to:
   - target: "[[George Udny Yule]]"

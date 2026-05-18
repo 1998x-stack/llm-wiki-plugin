@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agents, multi-agent-systems, coordination]
+tags: [ai-agents, multi-agent-systems, coordination, AI工程]
 aliases: ["工作智能体", "Worker Agent", "Worker"]
 relates_to:
   - target: "[[Coordinator Mode]]"

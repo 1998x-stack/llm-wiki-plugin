@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent">多 Agent 架构</h1>
 <h2 id="_1">概述</h2>
-<p>多 Agent 架构是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong><span style="color:#e74c3c" title="broken link">子 Agent</span> 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
+<p>多 <a href="Agent 架构与设计原则.html">Agent 架构</a>是将复杂任务分配给并行运行的多个专门 Agent 实例的系统设计模式。核心价值：<strong><span style="color:#e74c3c" title="broken link">子 Agent</span> 通过各自独立<a href="上下文窗口.html">上下文窗口</a>进行并行探索，再将精简摘要返回给主 Agent</strong>，从而实现超越单 Agent 上下文限制的任务规模。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="agent_1">多 Agent 系统的适用条件</h3>
-<p><a href="../entities/Anthropic.html">Anthropic</a> 研究表明，多 Agent 架构在以下场景最有价值：
+<p><a href="../entities/Anthropic.html">Anthropic</a> 研究表明，多 <a href="Agent 架构与设计原则.html">Agent 架构</a>在以下场景最有价值：
 - <strong>重度并行化</strong>的任务（如广度优先研究：同时探索多个独立方向）
 - <strong>信息量超过单个<a href="上下文窗口.html">上下文窗口</a></strong>的任务
 - <strong>连接大量复杂工具</strong>的任务
 - 任务价值足以支付 <strong>~15× 于聊天的 token 成本</strong></p>
 <p><strong>不适合</strong>：大多数编码任务（真正可并行的子任务较少）、Agent 间需要实时协调的场景。</p>
 <h3 id="token">Token 消耗与性能的关系</h3>
-<p><a href="../entities/Anthropic.html">Anthropic</a> 在 BrowseComp 基准测试上的分析显示，<strong>三个因素解释了 95% 的性能方差</strong>：</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="BrowseComp.html">BrowseComp</a> 基准测试上的分析显示，<strong>三个因素解释了 95% 的性能方差</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -163,12 +163,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>~10%</td>
 </tr>
 <tr>
-<td>模型选择</td>
+<td><a href="模型选择.html">模型选择</a></td>
 <td>~5%</td>
 </tr>
 </tbody>
 </table>
-<p><strong>关键结论</strong>：多 Agent 架构的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。<a href="子 Agent 系统.html">多 Agent 系统</a> vs 单 Agent <a href="../entities/Claude_Code.html">Claude</a> Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
+<p><strong>关键结论</strong>：多 <a href="Agent 架构与设计原则.html">Agent 架构</a>的本质是<strong>通过并行 Agent 分布 token 使用来扩展容量</strong>。<a href="子 Agent 系统.html">多 Agent 系统</a> vs 单 Agent <a href="../entities/Claude_Code.html">Claude</a> Opus 4：内部研究 eval 上提升 <strong>90.2%</strong>。</p>
 <h3 id="-">编排者-工人模式（研究系统实现）</h3>
 <p><a href="../entities/Anthropic.html">Anthropic</a> Research 系统的具体架构：</p>
 <pre><code>用户查询
@@ -201,13 +201,13 @@ LeadResearcher 综合结果
 <li><strong>引导思考过程</strong>：让主 Agent 用 <a href="扩展思维.html">Extended Thinking</a> 规划方法，<span style="color:#e74c3c" title="broken link">子 Agent</span> 用 <a href="交错式思考.html">Interleaved Thinking</a> 评估每次工具结果</li>
 </ol>
 <h3 id="_4">工程可靠性挑战</h3>
-<p><strong>错误传播与状态</strong>：Agent 运行时间长，错误可传播。建议：
+<p><strong><a href="错误复合.html">错误传播</a>与状态</strong>：Agent 运行时间长，错误可传播。建议：
 - 结合 AI 的适应性（让 Agent 知道工具失败，自行适应）与确定性保障（重试逻辑、定期检查点）</p>
 <p><strong>调试</strong>：非确定性行为，同一提示不同运行产生不同结果。建议完整生产追踪。</p>
-<p><strong>部署</strong>：使用彩虹部署（<a href="Rainbow.html">Rainbow</a> <a href="应用部署.html">Deploy</a>ment）避免更新中断运行中的 Agent。</p>
+<p><strong>部署</strong>：使用<a href="彩虹部署.html">彩虹部署</a>（<a href="Rainbow.html">Rainbow</a> <a href="应用部署.html">Deploy</a>ment）避免更新中断运行中的 Agent。</p>
 <p><strong>当前局限</strong>：大多数实现中主 Agent 同步等待<span style="color:#e74c3c" title="broken link">子 Agent</span> 完成，创建信息流瓶颈。异步执行是下一步。</p>
 <h3 id="_5">并行工具调用</h3>
-<p>多 Agent 并行外，单个 Agent 内的并行工具调用也至关重要：
+<p>多 Agent 并行外，单个 Agent 内的<a href="并行工具调用.html">并行工具调用</a>也至关重要：
 - <span style="color:#e74c3c" title="broken link">子 Agent</span> 并行调用 3+ 个工具，而非顺序调用
 - 研究系统中此优化将复杂查询研究时间缩短 <strong>90%</strong></p>
 <h2 id="_6">来源</h2>

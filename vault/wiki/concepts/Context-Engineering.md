@@ -92,7 +92,7 @@ supersedes: null
 | 触发点 | 时间 | 内容 |
 |--------|------|------|
 | 长[[上下文窗口]]出现 | 2023 | [[Claude_Code|Claude]] 100K、GPT-4-turbo 128K，窗口从"稀缺资源"变为"待管理空间" |
-| RAG [[规范化理论|范式]]成熟 | 2023 | LlamaIndex / LangChain 标准化[[检索增强生成]]工作流 |
+| RAG [[规范化理论|范式]]成熟 | 2023 | LlamaIndex / [[LangChain]] 标准化[[检索增强生成]]工作流 |
 | Agent 框架崛起 | 2023–2024 | AutoGPT、LangGraph、CrewAI 使多轮工具调用成为标准 |
 | 工具调用（Function [[天职|Calling]]）标准化 | 2023 | [[OpenAI]] Function [[天职|Calling]] API，工具结果需要结构化注入上下文 |
 | 模型能力上移 | 2024 | 推理质量提升，"上下文组装质量"成为主要瓶颈 |
@@ -473,7 +473,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 
 ### 来源作者
 
-本文由 [[Anthropic]] Applied AI 团队撰写：[[Prithvi-Rajasekaran|Prithvi Rajasekaran]], Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。
+本文由 [[Anthropic]] Applied AI 团队撰写：[[Prithvi-Rajasekaran|Prithvi Rajasekaran]], Ethan Dixon, Carly Ryan, [[Jeremy Hadfield]]，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。
 
 ### Manus 的上下文工程六原则（2025）
 
@@ -482,7 +482,7 @@ Anthropic Applied AI 团队对上下文工程的核心定位：**在任意时刻
 1. **围绕 [[KV 缓存命中率]] 进行设计**：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍
 2. **遮蔽，而非移除**：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效
 3. **使用文件系统作为上下文**：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的
-4. **通过复述操控注意力**：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"
+4. **通过复述操控[[注意力机制|注意力]]**：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期[[注意力机制|注意力]]范围，避免"丢失在中间"
 5. **保留错误的内容**：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率
 6. **不要被[[少样本学习|少样本]]示例所困**：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏
 

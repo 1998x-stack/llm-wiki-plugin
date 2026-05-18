@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-development, software-engineering]
+tags: [ai-development, software-engineering, AI工程]
 aliases: [AI-assisted Development, AI辅助开发, Intelligent Development]
 relates_to: 
   - target: "[[Claude Code]]"

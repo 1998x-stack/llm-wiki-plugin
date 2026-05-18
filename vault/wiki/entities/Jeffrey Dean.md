@@ -7,7 +7,7 @@ created: 2026-04-17
 updated: 2026-04-17
 last_accessed: 2026-04-17
 source_count: 1
-tags:
+tags: [技术, 历史, 研究, AI工程]
 - 技术
 - 历史
 - 研究

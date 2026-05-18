@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [file-system, atomic-operation, data-integrity, safety]
+tags: [file-system, atomic-operation, data-integrity, safety, 计算理论]
 aliases: ["Atomic Write", "原子写入", "原子文件写入", "atomic file operation"]
 relates_to: 
   - target: "[[Write-Tools]]"

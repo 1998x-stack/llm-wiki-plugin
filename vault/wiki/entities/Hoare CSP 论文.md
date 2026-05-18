@@ -48,7 +48,7 @@ supersedes: null
 
 ## 概述
 
-[[Tony Hoare]] 于1978年发表的《[[CSP 模型|Communicating Sequential Processes]]》，提出了 [[CSP 模型]]——并发程序由多个独立的顺序进程组成，进程之间通过同步消息传递而非共享内存进行通信。
+[[Tony Hoare]] 于1978年发表的《[[CSP 模型|Communicating Sequential Processes]]》，提出了 [[CSP 模型]]——并发程序由多个独立的顺序进程组成，进程之间通过同步[[消息传递]]而非共享内存进行通信。
 
 ## 关键内容
 
@@ -65,20 +65,20 @@ supersedes: null
 ### 核心贡献
 
 - **进程（Process）**：每个进程是严格顺序的，拥有私有状态
-- **同步通信**：`P!e`（发送）和 `P?x`（接收），通过"会合"（rendezvous）实现
+- **[[同步通信]]**：`P!e`（发送）和 `P?x`（接收），通过"[[同步通信|会合]]"（rendezvous）实现
 - **守卫命令**：将 [[Edsger Dijkstra|Dijkstra]] 的守卫命令与输入/输出命令结合
 - **并行组合**：`[P1 || P2 || ... || Pn]`
 
 ### 经典示例
 
-- **缓冲进程**：生产者-消费者问题，没有锁和信号量
+- **缓冲进程**：生产者-消费者问题，没有锁和[[信号量]]
 - **素数筛法**：用递归进程链实现埃拉托斯特尼筛法
 - **哲学家就餐**：用 CSP 解决经典死锁问题
 
 ### 历史影响
 
-- 直接影响了 occam、Erlang、Go、Clojure core.async、Rust 等语言
-- Go 语言的 goroutine + channel 是 CSP 的当代实现
+- 直接影响了 [[occam]]、[[Erlang]]、Go、Clojure core.async、Rust 等语言
+- Go 语言的 [[goroutine]] + [[channel]] 是 CSP 的当代实现
 - 催生了著名格言："不要通过共享内存来通信，而要通过通信来共享内存"
 
 ## 来源

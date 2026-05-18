@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">嵌入平滑</h1>
 <h2 id="_2">概述</h2>
-<p>嵌入平滑是指在图神经网络的多层传播过程中，节点嵌入逐渐趋于相似的现象。在推荐系统中，这可能表现为相似用户或物品的嵌入向量逐渐靠近，但也可能导致过度平滑，使不同节点的嵌入失去区分度。</p>
+<p>嵌入平滑是指在图神经网络的多层传播过程中，节点嵌入逐渐趋于相似的现象。在推荐系统中，这可能表现为相似用户或物品的<a href="Embedding.html">嵌入向量</a>逐渐靠近，但也可能导致过度平滑，使不同节点的嵌入失去<a href="../entities/区分.html">区分</a>度。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>产生机制</strong>：</li>
@@ -148,33 +148,33 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>积极效应</strong>：</p>
 </li>
 <li>有助于传播协同信号，让品味相似的用户嵌入更相近</li>
-<li>在推荐系统中，通过邻域信息平滑可以改善冷启动问题</li>
+<li>在推荐系统中，通过邻域信息平滑可以改善<a href="冷启动问题.html">冷启动问题</a></li>
 <li>
 <p>有助于增强模型的泛化能力</p>
 </li>
 <li>
 <p><strong>消极效应</strong>：</p>
 </li>
-<li>过度平滑会导致所有节点嵌入趋于相同，丧失区分度</li>
+<li>过度平滑会导致所有节点嵌入趋于相同，丧失<a href="../entities/区分.html">区分</a>度</li>
 <li>影响模型表达能力，降低推荐精度</li>
 <li>
-<p>使不同节点的表示无法区分</p>
+<p>使不同节点的表示无法<a href="../entities/区分.html">区分</a></p>
 </li>
 <li>
 <p><strong>缓解策略</strong>：</p>
 </li>
-<li>LightGCN的层组合策略：将各层嵌入加权求和，保留低层信息</li>
-<li>APPNP的"teleport"机制：在传播中混入一定比例的初始特征</li>
-<li>跳跃连接(skip connections)：直接传递原始信息</li>
+<li><a href="../entities/LightGCN.html">LightGCN</a>的<a href="层组合.html">层组合</a>策略：将各层嵌入加权求和，保留低层信息</li>
+<li><a href="../entities/APPNP.html">APPNP</a>的"teleport"机制：在传播中混入一定比例的初始特征</li>
+<li><a href="skip connections">[跳跃连接（Skip Connection）|跳跃连接]</a>：直接传递原始信息</li>
 <li>
 <p>控制传播层数：避免过深的网络结构</p>
 </li>
 <li>
 <p><strong>在推荐系统中的体现</strong>：</p>
 </li>
-<li>LightGCN通过嵌入平滑将协同信号从一跳邻居扩展到多跳邻居</li>
+<li><a href="../entities/LightGCN.html">LightGCN</a>通过嵌入平滑将协同信号从一跳邻居扩展到多跳邻居</li>
 <li>通过平滑操作，品味相似的用户的嵌入自然地变得更加接近</li>
-<li>是LightGCN有效性的核心原因之一</li>
+<li>是<a href="../entities/LightGCN.html">LightGCN</a>有效性的核心原因之一</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

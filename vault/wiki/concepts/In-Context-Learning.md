@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, llm, learning]
+tags: [ai-engineering, llm, learning, AI工程]
 aliases: ["上下文学习", "In-Context Learning"]
 relates_to: []
 supersedes: null

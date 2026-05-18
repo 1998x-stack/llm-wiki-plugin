@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, code review, vulnerability assessment]
+tags: [security, "code review", "vulnerability assessment", AI工程]
 aliases: ["Secure Code Review", "安全代码审查", "Security Reviewer"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [person, entrepreneur, investor]
+tags: [person, entrepreneur, investor, AI工程]
 aliases: [Garry Tan, 加里·谭]
 entity_type: person
 relates_to: 

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["期刊", "科学", "学术出版"]
+tags: [期刊, 科学, 学术出版, AI工程]
 aliases: ["Nature", "自然期刊", "Nature 期刊"]
 relates_to:
   - target: "[[Learning Representations by Back-propagating Errors]]"

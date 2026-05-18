@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [文档生成, API, 开发工具, 技能]
+tags: [文档生成, API, 开发工具, 技能, 文档处理]
 aliases: ["API Documentation Generator", "API Doc Generator", "API文档自动生成工具", "api-documentation-generator"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["基金", "投资品种", "场内基金", "ETF"]
+tags: [基金, 投资品种, 场内基金, ETF, 经济学]
 aliases: ["ETF", "ETF基金", "交易型开放式指数基金", "场内基金", "ETF净值"]
 relates_to:
   - target: "[[AKShare]]"

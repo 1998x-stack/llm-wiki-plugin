@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 代码复用, 检索增强]
+tags: [LLM, 工具调用, 代码复用, 检索增强, AI工程]
 aliases: ["Customized LLM Agents Through Retrieval and Reuse of Code"]
 relates_to: []
 supersedes: null

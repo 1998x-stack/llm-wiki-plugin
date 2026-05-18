@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 技能库, 任务分解]
+tags: [LLM, 工具调用, 技能库, 任务分解, AI工程]
 aliases: ["Ghost in the Minecraft", "GITM"]
 relates_to: []
 supersedes: null
@@ -15,12 +15,12 @@ supersedes: null
 # Ghost in the Minecraft
 
 ## 概述
-Ghost in the Minecraft（GITM）是由Zhu等人提出的开放世界环境中的一般能力代理系统，通过LLM结合基于文本的知识和记忆来实现。与[[Voyager]]不同，GITM强调任务分解而非单步操作。
+Ghost in the Minecraft（GITM）是由Zhu等人提出的开放世界环境中的一般能力代理系统，通过LLM结合基于文本的知识和记忆来实现。与[[Voyager]]不同，GITM强调[[任务分解]]而非单步操作。
 
 ## 关键内容
 
 1. **核心理念**：
-   - 对于复杂任务，先进行任务分解，再映射到基本原语（primitive action）
+   - 对于复杂任务，先进行[[任务分解]]，再映射到基本原语（primitive action）
    - 将复杂目标分解为子目标树，通过LLM进行层次化分解
 
 2. **任务[[Factorization Machines|分解机]]制**：
@@ -35,8 +35,8 @@ Ghost in the Minecraft（GITM）是由Zhu等人提出的开放世界环境中的
 
 4. **与[[Voyager]]的差异**：
    - [[Voyager]]使用代码函数作为[[Skills|技能]]单元
-   - GITM使用任务分解树作为核心机制
-   - GITM更强调任务分解和[[Memory-Management|记忆管理]]
+   - GITM使用[[任务分解]]树作为核心机制
+   - GITM更强调[[任务分解]]和[[Memory-Management|记忆管理]]
 
 ## 来源
 - [[llm-skill-research-series.md]] — LLM Skill研究系列

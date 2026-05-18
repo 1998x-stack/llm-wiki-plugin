@@ -135,27 +135,27 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="writerreviewer-writerreviewer-pattern">Writer/Reviewer 模式（Writer/Reviewer Pattern）</h1>
 <h2 id="_1">概述</h2>
-<p>Writer/Reviewer 模式是一种利用两个独立 <a href="../projects/Claude Code.html">Claude Code</a> 会话进行代码编写和审查的并行工作模式，通过分离实现与审查上下文来提高代码质量。</p>
+<p><a href="Write.html">Write</a>r/Reviewer 模式是一种利用两个独立 <a href="../projects/Claude Code.html">Claude Code</a> 会话进行代码编写和审查的并行工作模式，通过分离实现与审查上下文来提高代码质量。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>基本架构</strong>：</li>
-<li><strong>会话 A（Writer）</strong>：负责实现功能，如"实现 API 限流中间件"</li>
-<li><strong>会话 B（Reviewer）</strong>：独立审查 Writer 的产出，如"审查 @src/middleware/rateLimiter.ts，寻找边界情况、竞争条件"</li>
+<li><strong>会话 A（<a href="Write.html">Write</a>r）</strong>：负责实现功能，如"实现 API 限流<a href="ROS (Robot Operating System).html">中间件</a>"</li>
+<li><strong>会话 B（Reviewer）</strong>：独立审查 <a href="Write.html">Write</a>r 的产出，如"审查 @src/middleware/rateLimiter.ts，寻找边界情况、竞争条件"</li>
 <li>
-<p>Writer 根据 Reviewer 的反馈进行修复，形成迭代循环</p>
+<p><a href="Write.html">Write</a>r 根据 Reviewer 的反馈进行修复，形成迭代循环</p>
 </li>
 <li>
-<p><strong>上下文隔离优势</strong>：两个会话拥有独立的 <a href="上下文窗口.html">上下文窗口</a>，Writer 的实现上下文不会污染 Reviewer 的审查视角。这避免了单一会话中"自己审查自己代码"的盲点。</p>
+<p><strong>上下文隔离优势</strong>：两个会话拥有独立的 <a href="上下文窗口.html">上下文窗口</a>，<a href="Write.html">Write</a>r 的实现上下文不会污染 Reviewer 的审查视角。这避免了单一会话中"自己审查自己代码"的盲点。</p>
 </li>
 <li>
 <p><strong>与 <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a> 的区别</strong>：</p>
 </li>
-<li>子 Agent 模式是主从关系——主 Agent 派发任务给子 Agent，子 Agent 返回摘要</li>
+<li><a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式</a>是主从关系——主 Agent 派发任务给<span style="color:#e74c3c" title="broken link">子 Agent</span>，<span style="color:#e74c3c" title="broken link">子 Agent</span> 返回摘要</li>
 <li>
-<p>Writer/Reviewer 是平等关系——两个会话独立运行，可以并行启动，互不依赖</p>
+<p><a href="Write.html">Write</a>r/Reviewer 是平等关系——两个会话独立运行，可以并行启动，互不依赖</p>
 </li>
 <li>
-<p><strong>与 <a href="多 Agent 系统.html">多 Agent 系统</a> 的关系</strong>：Writer/Reviewer 模式是 <a href="多 Agent 系统.html">多 Agent 系统</a> 的一种具体实现形态，属于双 Agent 协作的最简形态。更复杂的多 Agent 系统可以扩展为 Writer → Reviewer → Approver 的三阶段流水线。</p>
+<p><strong>与 <a href="多 Agent 系统.html">多 Agent 系统</a> 的关系</strong>：<a href="Write.html">Write</a>r/Reviewer 模式是 <a href="多 Agent 系统.html">多 Agent 系统</a> 的一种具体实现形态，属于双 Agent 协作的最简形态。更复杂的<a href="多 Agent 系统.html">多 Agent 系统</a>可以扩展为 <a href="Write.html">Write</a>r → Reviewer → Approver 的三阶段流水线。</p>
 </li>
 <li>
 <p><strong>适用场景</strong>：</p>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>需要独立视角的架构决策审查</p>
 </li>
 <li>
-<p><strong>上下文经济学意义</strong>：通过分离写入和审查上下文，避免了在单一会话中同时加载实现细节和审查标准导致的上下文过载，是 <a href="上下文经济学.html">上下文经济学</a> 的具体实践。</p>
+<p><strong><a href="上下文经济学.html">上下文经济学</a>意义</strong>：通过分离写入和审查上下文，避免了在单一会话中同时加载实现细节和审查标准导致的上下文过载，是 <a href="上下文经济学.html">上下文经济学</a> 的具体实践。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

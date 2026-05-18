@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-agent", "proactive-system", "future-ai", "claude-code"]
+tags: [ai-agent, proactive-system, future-ai, claude-code, AI工程]
 aliases: ["主动性Agent", "Proactive Agent", "Active Agent"]
 relates_to: ["KAIROS", "AutoDream", "Agent Architecture", "Claude Code 工程设计哲学"]
 supersedes: null

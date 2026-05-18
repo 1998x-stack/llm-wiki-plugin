@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [React, Architecture, Components]
+tags: [React, Architecture, Components, AI工程]
 aliases: ["composition-patterns", "React Composition Patterns"]
 relates_to: []
 supersedes: null

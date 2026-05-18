@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [Evolver, 安全机制, 代码进化]
+tags: [Evolver, 安全机制, 代码进化, AI工程]
 aliases: ["Evolver Solidify", "Evolver 固化机制"]
 relates_to:
   - target: "[[Evolver]]"

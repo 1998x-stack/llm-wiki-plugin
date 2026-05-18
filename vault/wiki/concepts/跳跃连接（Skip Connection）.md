@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "网络架构", "优化"]
+tags: [深度学习, 网络架构, 优化, 机器学习]
 aliases: ["Skip Connection", "跳跃连接", "Shortcut Connection", "捷径连接", "恒等捷径"]
 relates_to: ["残差网络（ResNet）", "残差连接（Residual Connection）", "恒等映射（Identity Mapping）", "梯度消失", "退化问题（Degradation Problem）"]
 supersedes: null

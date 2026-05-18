@@ -126,48 +126,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / Multi-Paxos</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> —</div>
-  <div class="meta-item"><strong>Created:</strong> —</div>
-  <div class="meta-item"><strong>Updated:</strong> —</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">共识算法</span><span class="tag">概率论</span></div>
 </div>
   <div class="content">
-    <hr />
-<p>type: concept
-status: active
-confidence: 0.85
-created: 2026-04-26
-updated: 2026-04-26
-last_accessed: 2026-04-26
-source_count: 2
-tags: [分布式系统, 理论基础, 共识算法]
-aliases: ["Multi-Paxos", "Multi-Paxos Algorithm"]
-relates_to:
-  - target: "<a href="Paxos算法.html">Paxos算法</a>"
-    type: extends
-    confidence: 0.9
-  - target: "<a href="状态机复制.html">状态机复制</a>"
-    type: implements
-    confidence: 0.8
-  - target: "<span style="color:#e74c3c" title="broken link">日志复制</span>
-    type: basis_for
-    confidence: 0.8
-  - target: "<a href="Raft算法.html">Raft算法</a>"
-    type: predecessor
-    confidence: 0.8
-supersedes: null</p>
-<hr />
-<h1 id="multi-paxos">Multi-Paxos</h1>
+    <h1 id="multi-paxos">Multi-Paxos</h1>
 <h2 id="_1">概述</h2>
-<p>Multi-Paxos是Paxos算法的扩展形式，用于实现一个有序的操作日志（replicated log），使所有节点能够执行相同顺序的操作以维护一致的状态。它通过为日志的每个位置运行一个独立的Paxos实例来实现多值共识。</p>
+<p>Multi-<a href="Paxos 算法.html">Paxos</a>是<a href="Paxos算法.html">Paxos算法</a>的扩展形式，用于实现一个有序的操作日志（replicated log），使所有节点能够执行相同顺序的操作以维护一致的状态。它通过为日志的每个位置运行一个独立的<a href="Paxos 算法.html">Paxos</a>实例来实现多值共识。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>基本概念</strong>：</li>
-<li>基本Paxos（Basic Paxos）解决的是就一个值达成共识的问题</li>
-<li>Multi-Paxos通过为日志的每个位置（slot）运行一个独立的Paxos实例来实现有序操作日志</li>
+<li>基本<a href="Paxos 算法.html">Paxos</a>（Basic <a href="Paxos 算法.html">Paxos</a>）解决的是就一个值达成共识的问题</li>
+<li>Multi-<a href="Paxos 算法.html">Paxos</a>通过为日志的每个位置（slot）运行一个独立的<a href="Paxos 算法.html">Paxos</a>实例来实现有序操作日志</li>
 <li>
-<p>日志的第i个位置对应第i个Paxos实例，决定第i个操作是什么</p>
+<p>日志的第i个位置对应第i个<a href="Paxos 算法.html">Paxos</a>实例，决定第i个操作是什么</p>
 </li>
 <li>
 <p><strong>关键优化</strong>：</p>
@@ -175,30 +150,30 @@ supersedes: null</p>
 <li><strong>Leader优化</strong>：如果存在稳定Leader，它可以跳过阶段一（Prepare），直接执行阶段二（Accept）</li>
 <li><strong>管道化（Pipelining）</strong>：Leader可同时发起多个slot的共识过程</li>
 <li>
-<p><strong>日志压缩（Log Compaction）</strong>：通过快照机制定期清理已执行的旧日志条目</p>
+<p><strong>日志压缩（Log <a href="上下文压缩.html">Compaction</a>）</strong>：通过快照机制定期清理已执行的旧日志条目</p>
 </li>
 <li>
-<p><strong>与基本Paxos的区别</strong>：</p>
+<p><strong>与基本<a href="Paxos 算法.html">Paxos</a>的区别</strong>：</p>
 </li>
-<li>基本Paxos只解决单值共识，Multi-Paxos解决多值共识</li>
-<li>Multi-Paxos引入了日志和状态机复制的概念</li>
+<li>基本<a href="Paxos 算法.html">Paxos</a>只解决单值共识，Multi-<a href="Paxos 算法.html">Paxos</a>解决多值共识</li>
+<li>Multi-<a href="Paxos 算法.html">Paxos</a>引入了日志和<a href="状态机复制.html">状态机复制</a>的概念</li>
 <li>
-<p>在实际系统中，Multi-Paxos是真正使用的协议形态</p>
+<p>在实际系统中，Multi-<a href="Paxos 算法.html">Paxos</a>是真正使用的协议形态</p>
 </li>
 <li>
 <p><strong>实现复杂性</strong>：</p>
 </li>
-<li>原始论文对Multi-Paxos的描述较粗略</li>
-<li>Leader选举、日志中空洞处理、配置变更等关键问题没有详述</li>
+<li>原始论文对Multi-<a href="Paxos 算法.html">Paxos</a>的描述较粗略</li>
+<li>Leader选举、日志中空洞处理、<a href="Configuration.html">配置</a>变更等关键问题没有详述</li>
 <li>
 <p>这导致不同的实现之间存在细微但重要的差异</p>
 </li>
 <li>
 <p><strong>实际应用</strong>：</p>
 </li>
-<li>作为许多分布式系统共识层的基础</li>
-<li>是后来Raft等算法的直接对标对象</li>
-<li>现代分布式系统中真正使用的Paxos形态</li>
+<li>作为许多<a href="分布式系统.html">分布式系统</a>共识层的基础</li>
+<li>是后来Raft等<a href="算法.html">算法</a>的直接对标对象</li>
+<li>现代<a href="分布式系统.html">分布式系统</a>中真正使用的<a href="Paxos 算法.html">Paxos</a>形态</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

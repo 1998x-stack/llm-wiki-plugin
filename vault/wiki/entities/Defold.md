@@ -25,11 +25,11 @@ entity_type: tool
 # Defold
 
 ## 概述
-Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以消息传递架构为核心设计，使用 Lua 5.1 作为脚本语言，组件之间通过 URL 寻址和 hash 消息通信。
+Defold 是由 King/Defold Foundation 开发的 2D 游戏引擎，以[[消息传递]]架构为核心设计，使用 Lua 5.1 作为脚本语言，组件之间通过 URL 寻址和 hash 消息通信。
 
 ## 关键内容
 
-1. **消息传递架构**：Defold 最核心的设计哲学。组件之间不直接调用方法，而通过 `msg.post(url, message_id, data)` 发送消息。`message_id` 用 `hash()` 压缩为整数，高效比较。
+1. **[[消息传递]]架构**：Defold 最核心的设计哲学。组件之间不直接调用方法，而通过 `msg.post(url, message_id, data)` 发送消息。`message_id` 用 `hash()` 压缩为整数，高效比较。
 
 2. **脚本生命周期**：Script 组件有固定入口函数：
    - `init(self)` — 初始化，相当于 constructor

@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="mlp">多层感知机（MLP）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="多层感知机.html">多层感知机</a>（Multi-Layer <a href="感知机（Perceptron）.html">Perceptron</a>, MLP）在单层<a href="../entities/感知机.html">感知机</a>基础上添加一个或多个隐藏层并引入非线性激活函数，能够学习任意非线性<a href="决策边界.html">决策边界</a>，解决了 XOR 等线性不可分问题。</p>
+<p><a href="多层感知机.html">多层感知机</a>（Multi-Layer <a href="感知机（Perceptron）.html">Perceptron</a>, MLP）在单层<a href="../entities/感知机.html">感知机</a>基础上添加一个或多个隐藏层并引入<a href="非线性激活.html">非线性激活</a>函数，能够学习任意非线性<a href="决策边界.html">决策边界</a>，解决了 XOR 等线性不可分问题。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>结构演进</strong>：从单层<a href="../entities/感知机.html">感知机</a>（输入→输出）到<a href="多层感知机.html">多层感知机</a>（输入→隐藏层→输出），每个隐藏层包含多个神经元，层与层之间全连接。关键改进是引入非线性激活函数（sigmoid、tanh、ReLU 等），替代<a href="../entities/感知机.html">感知机</a>的 sign 函数。</p>
+<p><strong>结构演进</strong>：从单层<a href="../entities/感知机.html">感知机</a>（输入→输出）到<a href="多层感知机.html">多层感知机</a>（输入→隐藏层→输出），每个隐藏层包含多个神经元，层与层之间全连接。关键改进是引入<a href="非线性激活.html">非线性激活</a>函数（sigmoid、tanh、ReLU 等），替代<a href="../entities/感知机.html">感知机</a>的 sign 函数。</p>
 </li>
 <li>
 <p><strong>解决 <a href="XOR 问题.html">XOR 问题</a></strong>：单层<a href="../entities/感知机.html">感知机</a>无法用一条直线分开 XOR 的四类样本。MLP 通过隐藏层将输入映射到新的特征空间，在该空间中样本变为线性可分，从而解决了这一经典难题。</p>

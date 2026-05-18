@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="top1-loss">TOP1 Loss</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/GRU4Rec.html">GRU4Rec</a> 提出的 pairwise 排序损失函数，包含正负样本分数比较项和负样本分数正则化项，内置稳定性使其在更大隐藏层尺寸下表现优于 BPR Loss。</p>
+<p><a href="../entities/GRU4Rec.html">GRU4Rec</a> 提出的 pairwise 排序损失函数，包含正负样本分数比较项和负样本分数正则化项，内置稳定性使其在更大隐藏层尺寸下表现优于 <a href="BPR Loss.html">BPR Loss</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>第二项</strong> $\sigma(\hat{r}_j^2)$：对负样本分数的正则化，是 TOP1 的独特之处，确保负样本分数不会变得过大，提供内置稳定性</p>
 </li>
 <li>
-<p><strong>与 BPR Loss 的对比</strong>：</p>
+<p><strong>与 <a href="BPR Loss.html">BPR Loss</a> 的对比</strong>：</p>
 </li>
 <li>TOP1 使用 rmsprop 优化器时表现更好，BPR 使用 adagrad 时更稳定</li>
 <li>TOP1 内置正则化使其在更大隐藏层尺寸下表现更好</li>

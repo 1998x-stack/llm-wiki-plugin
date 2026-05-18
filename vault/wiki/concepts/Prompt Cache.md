@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [AI工具, 性能优化, 成本控制, 缓存机制, ai-agent, claude-code]
+tags: [AI工具, 性能优化, 成本控制, 缓存机制, ai-agent, claude-code, AI工程]
 aliases: ["Prompt Cache", "Prompt Cache Optimization", "Cache Break Detection", "Prompt缓存"]
 relates_to: 
   - target: "[[Claude Code]]"

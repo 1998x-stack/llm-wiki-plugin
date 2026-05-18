@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [blockchain, payment, crypto, tempo]
+tags: [blockchain, payment, crypto, tempo, AI工程]
 aliases: ["Tempo", "Tempo L1 Blockchain"]
 relates_to:
   - target: "[[Paradigm]]"

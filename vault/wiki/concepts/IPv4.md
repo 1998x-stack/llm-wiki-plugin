@@ -46,7 +46,7 @@ supersedes: null
 
 ## 概述
 
-IPv4（Internet Protocol version 4）是互联网协议的第4版，使用32位地址（约43亿个唯一地址），1981年通过 RFC 791 标准化，至今仍是互联网的主要协议。
+IPv4（[[TCP_IP|Internet Protocol]] version 4）是[[互联网]]协议的第4版，使用32位地址（约43亿个唯一地址），1981年通过 RFC 791 标准化，至今仍是[[互联网]]的主要协议。
 
 ## 关键内容
 

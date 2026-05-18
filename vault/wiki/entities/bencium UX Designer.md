@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI工具, UX设计, Claude技能, 设计系统]
+tags: [AI工具, UX设计, Claude技能, 设计系统, AI设计]
 aliases: ["bencium/bencium-claude-code-design-skill", "bencium UX Designer Skill"]
 relates_to:
   - target: "[[AccessLint]]"

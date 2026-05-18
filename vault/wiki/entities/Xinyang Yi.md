@@ -22,22 +22,22 @@ supersedes: null
 # Xinyang Yi
 
 ## 概述
-Xinyang Yi 是一位机器学习研究员，在 Google 工作期间参与了 MMoE (Multi-gate Mixture-of-Experts) 架构的研发工作，是该领域奠基性论文的作者之一。
+Xinyang Yi 是一位机器学习研究员，在 [[Google]] 工作期间参与了 MMoE ([[MMoE|Multi-gate Mixture-of-Experts]]) 架构的研发工作，是该领域奠基性论文的作者之一。
 
 ## 关键内容
 
 ### 机构关联
-- Google：在 Google 任职期间参与 MMoE 架构的研究和开发
-- 作为论文第三作者参与了 MMoE 相关的 KDD 2018 论文
+- [[Google]]：在 [[Google]] 任职期间参与 MMoE 架构的研究和开发
+- 作为论文第三作者参与了 MMoE 相关的 [[KDD|KDD 2018]] 论文
 
 ### 主要贡献
-- **MMoE 论文合作者**：作为 KDD 2018 论文的重要作者之一，该论文提出了 MMoE 架构
-- **多任务学习研究**：在多任务学习和推荐系统领域做出了贡献
-- **架构创新**：参与了多门控混合专家网络架构的设计与实现
+- **[[MMoE 论文]]合作者**：作为 [[KDD|KDD 2018]] 论文的重要作者之一，该论文提出了 MMoE 架构
+- **[[多任务学习]]研究**：在[[多任务学习]]和推荐系统领域做出了贡献
+- **架构创新**：参与了[[MMoE|多门控混合专家网络]]架构的设计与实现
 
 ### 代表性工作
-- MMoE (Multi-gate Mixture-of-Experts) 架构：KDD 2018 论文的核心贡献之一
-- 该论文至今被引用数千次，是推荐系统多任务学习领域的奠基性工作之一
+- MMoE ([[MMoE|Multi-gate Mixture-of-Experts]]) 架构：[[KDD|KDD 2018]] 论文的核心贡献之一
+- 该论文至今被引用数千次，是推荐系统[[多任务学习]]领域的奠基性工作之一
 
 ## 来源
 - [[MMoE 论文]] — 作为论文作者

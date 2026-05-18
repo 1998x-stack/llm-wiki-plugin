@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [api, ai-models, anthropic, messaging]
+tags: [api, ai-models, anthropic, messaging, AI工程]
 aliases: ["Anthropic Messages API", "Anthropic API"]
 relates_to: 
   - target: "[[Claude Code]]"

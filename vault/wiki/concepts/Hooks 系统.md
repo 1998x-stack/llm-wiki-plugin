@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [architecture-pattern, agent-system, hooks, lifecycle]
+tags: [architecture-pattern, agent-system, hooks, lifecycle, AI工程]
 aliases: ["Hooks 系统", "Hook System", "Lifecycle Hooks"]
 relates_to:
   - target: "[[Claude Code]]"

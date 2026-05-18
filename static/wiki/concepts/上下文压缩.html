@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="compaction">上下文压缩（Compaction）</h1>
 <h2 id="_1">概述</h2>
-<p>上下文压缩是 <a href="../entities/Anthropic.html">Anthropic</a> 官方推出的<a href="服务.html">服务</a>端<a href="Context Management.html">上下文管理</a>策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始<a href="Transcripts.html">历史记录</a>，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（<a href="上下文压缩（Context Compaction）.html">Compact</a>ion / <a href="结构化笔记法.html">结构化笔记法</a> / 多 Agent 架构）的官方 API 实现。</p>
+<p>上下文压缩是 <a href="../entities/Anthropic.html">Anthropic</a> 官方推出的<a href="服务.html">服务</a>端<a href="Context Management.html">上下文管理</a>策略，当长时对话接近<a href="上下文窗口.html">上下文窗口</a>限制时，自动将旧内容压缩为简洁摘要，替换原始<a href="Transcripts.html">历史记录</a>，从而扩展有效上下文长度。这是 <a href="Context-Engineering.html">Context-Engineering</a> 中三种长时任务技术（<a href="上下文压缩（Context Compaction）.html">Compact</a>ion / <a href="结构化笔记法.html">结构化笔记法</a> / 多 <a href="Agent 架构与设计原则.html">Agent 架构</a>）的官方 API 实现。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心机制</h3>
 <p>启用压缩后，<a href="../entities/Claude_Code.html">Claude</a> 自动执行四步流程：

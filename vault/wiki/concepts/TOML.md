@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [数据格式, 配置管理, 工具]
+tags: [数据格式, 配置管理, 工具, 机器学习]
 aliases: [TOML, Tom's Obvious Minimal Language]
 relates_to:
   - target: "[[ExecPolicy]]"

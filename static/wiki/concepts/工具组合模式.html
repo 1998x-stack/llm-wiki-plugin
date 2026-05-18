@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">Agent</span><span class="tag">架构模式</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">Agent</span><span class="tag">架构模式</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="_1">工具组合模式</h1>
@@ -145,10 +145,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>验证循环</strong>：工具调用 → 检查结果 → 决定是否重试。这是保证工具执行可靠性的核心模式，与 <a href="工具错误处理.html">工具错误处理</a> 紧密配合——当工具返回错误时，验证循环决定是重试、切换备用工具还是上报。</p>
 </li>
 <li>
-<p><strong>与 Prompt Chaining 的比较</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a> 是提示词层面的链式编排，而工具组合模式是工具调用层面的编排。两者可结合使用：Prompt Chain 的每个步骤可能触发一组工具调用。</p>
+<p><strong>与 <a href="Prompt Chaining.html">Prompt Chaining</a> 的比较</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a> 是提示词层面的链式编排，而工具组合模式是工具调用层面的编排。两者可结合使用：<a href="Prompt Chaining.html">Prompt Chain</a> 的每个步骤可能触发一组工具调用。</p>
 </li>
 <li>
-<p><strong>与并行工具调用的协同</strong>：工具组合模式可利用 <a href="并行工具调用.html">并行工具调用</a> 优化性能——在分工专业化的框架下，独立的工具调用自动并行执行，无需开发者手动编排依赖图。</p>
+<p><strong>与<a href="并行工具调用.html">并行工具调用</a>的协同</strong>：工具组合模式可利用 <a href="并行工具调用.html">并行工具调用</a> 优化性能——在分工专业化的框架下，独立的工具调用自动并行执行，无需开发者手动编排依赖图。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

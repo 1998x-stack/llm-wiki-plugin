@@ -43,7 +43,7 @@ Tomas Mikolov 是捷克[[计算]]机科学家，[[Word2Vec]] [[Word2Vec|词向�
 
 - **[[Word2Vec]] 发明者**：提出 [[Skip-gram]] 和 CBOW 两种高效[[词嵌入（Word Embedding）|词向量]]学习架构
 - **[[负采样（Negative Sampling）]]**：设计了一种替代全量 [[Softmax]] 的高效训练方法，使训练速度提升 1000 倍以上
-- **语义向量算术发现**：首次展示[[词嵌入（Word Embedding）|词向量]]空间中的线性语义关系（如 king - man + woman ≈ queen）
+- **[[语义嵌入|语义向量]]算术发现**：首次展示[[词嵌入（Word Embedding）|词向量]]空间中的线性语义关系（如 king - man + woman ≈ queen）
 
 ### 职业背景
 

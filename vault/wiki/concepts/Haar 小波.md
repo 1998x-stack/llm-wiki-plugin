@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["计算机视觉", "特征提取", "传统方法", "小波分析"]
+tags: [计算机视觉, 特征提取, 传统方法, 小波分析, 机器学习]
 aliases: ["Haar 小波", "Haar Wavelet", "Haar-like 特征"]
 relates_to: ["特征工程（Feature Engineering）", "计算机视觉", "AlexNet", "SIFT（尺度不变特征变换）", "HOG（方向梯度直方图）"]
 supersedes: null

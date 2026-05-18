@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>安装部署</strong>：60 秒一键安装，支持 Linux、macOS、WSL2，通过 <code>hermes setup</code> 交互式向导<a href="../concepts/Configuration.html">配置</a></li>
 <li><strong>四层记忆体系</strong>：<a href="../concepts/语义记忆.html">语义记忆</a>（<a href="../concepts/语义记忆.html">MEMORY.md</a>，2,200 字符固定）、用户模型（USER.md，1,375 字符固定）、<a href="../concepts/情节记忆.html">情节记忆</a>（<a href="../concepts/FTS5.html">SQLite FTS5</a> 按需召回无上限）、<a href="../concepts/辩证推理.html">辩证用户建模</a>（<a href="Honcho.html">Honcho</a> 跨会话动态更新），总固定 Token 成本仅约 1,300</li>
 <li><strong><a href="../concepts/冻结快照模式.html">冻结快照模式</a></strong>：会话开始时加载 <a href="../concepts/语义记忆.html">MEMORY.md</a> + USER.md 为冻结快照注入 System Prompt，会话期间写入磁盘但不更新 Prompt，保护 KV Cache <a href="../concepts/KV 缓存命中率.html">前缀缓存</a></li>
-<li><strong>记忆安全</strong>：写入记忆前自动扫描凭证泄露、指令注入和过大条目，防止敏感信息持久化</li>
+<li><strong>记忆安全</strong>：写入记忆前自动扫描凭证泄露、<a href="../concepts/Prompt Injection.html">指令注入</a>和过大条目，防止敏感信息持久化</li>
 <li><strong><a href="../concepts/三层分离架构.html">三层分离架构</a></strong>：入口层（CLI/<a href="../concepts/网关与路由器.html">Gateway</a>/ACP/<a href="../concepts/Batch Runner.html">Batch Runner</a>）→ 核心层（AIAgent ~9,200 行）→ 持久化层（<a href="SQLite.html">SQLite</a> + FTS5）+ 执行后端层（Terminal 6/Browser 5/Web 4/MCP），入口统一但不耦合</li>
 <li><strong><a href="../concepts/同步编排引擎.html">同步编排引擎</a></strong>：AIAgent 是单线程同步循环而非异步事件驱动，简化状态管理，多任务通过<span style="color:#e74c3c" title="broken link">子 Agent</span> 委派解决</li>
 <li><strong><a href="../concepts/迭代预算.html">迭代预算</a></strong>：跟踪迭代次数、Token 消耗、工具调用次数，任一超阈值时优雅终止，防止无限循环</li>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>学习飞轮</strong>：会话 1 学习环境和用户偏好 → 会话 5 发现重复模式创建第一个<a href="../concepts/Skills.html">技能</a> → 会话 10 <a href="../concepts/Skills.html">技能</a>被复用并自我改进 → 会话 50 已有 15+ <a href="../concepts/Skills.html">技能</a>，同类型任务速度提升 3-5x → 持续运行成为专属 AI，复利增长</li>
 <li><strong><a href="../concepts/Skills.html">技能</a>创建触发条件</strong>：任务步骤数≥4、有明确验证步骤、有易出错关键步骤、用户显式要求记录、同类型任务历史出现≥2 次、涉及特定工具非显而易见用法、任务是通用模式而非本次特有</li>
 <li><strong><a href="../concepts/Memory Nudge.html">Memory Nudge</a> 机制</strong>：Agent 在长对话自然暂停点主动自我反思，检查是否有值得保存的环境事实、用户偏好、可复用工作流、<a href="../concepts/Skills.html">技能</a>问题或错误认知纠正</li>
-<li><strong>安全边界</strong>：<a href="../concepts/记忆安全扫描.html">记忆安全扫描</a>（凭证拦截、指令注入防护、大小限制）、命令执行授权（危险模式需用户批准）、容器隔离（Docker/Singularity 命名空间隔离）、凭证过滤（工具执行结果返回 LLM 前过滤敏感信息）</li>
+<li><strong>安全边界</strong>：<a href="../concepts/记忆安全扫描.html">记忆安全扫描</a>（凭证拦截、<a href="../concepts/Prompt Injection.html">指令注入</a>防护、大小限制）、命令执行授权（危险模式需用户批准）、容器隔离（Docker/Singularity 命名空间隔离）、凭证过滤（工具执行结果返回 LLM 前过滤敏感信息）</li>
 </ul>
 <h2 id="_3">来源</h2>
 <ul>

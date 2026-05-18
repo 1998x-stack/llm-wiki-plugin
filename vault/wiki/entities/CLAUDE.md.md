@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [configuration, architecture, constraints]
+tags: [configuration, architecture, constraints, AI工程]
 aliases: ["CLAUDE Configuration System", "概率性 AI 系统宪法"]
 relates_to: []
 supersedes: null

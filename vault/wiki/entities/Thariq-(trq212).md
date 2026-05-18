@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["person", "engineer", "anthropic"]
+tags: [person, engineer, anthropic, AI工程]
 aliases: ["Thariq", "@trq212"]
 relates_to: []
 supersedes: null

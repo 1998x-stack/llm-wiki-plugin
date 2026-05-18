@@ -170,10 +170,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="_4">核心贡献</h3>
 <ul>
-<li><strong><a href="../concepts/happened-before 关系.html">happened-before 关系</a>（--&gt;）</strong>：由三条规则归纳定义的严格偏序——进程内顺序、消息传递因果、传递性</li>
+<li><strong><a href="../concepts/happened-before 关系.html">happened-before 关系</a>（--&gt;）</strong>：由三条规则归纳定义的严格偏序——进程内顺序、<a href="../concepts/消息传递.html">消息传递</a>因果、传递性</li>
 <li><strong><a href="../concepts/逻辑时钟.html">逻辑时钟</a></strong>：每个进程维护一个整数计数器，通过 IR1（进程内递增）和 IR2（消息中取最大值+1）保证时钟条件</li>
 <li><strong>全序扩展</strong>：用进程 ID 打破并发事件的平局，将偏序扩展为全序</li>
-<li><strong>分布式互斥<a href="../concepts/算法.html">算法</a></strong>：基于全序的完全分布式互斥方案</li>
+<li><strong><a href="../concepts/分布式互斥算法.html">分布式互斥</a><a href="../concepts/算法.html">算法</a></strong>：基于全序的完全<a href="../concepts/分布式互斥算法.html">分布式互斥</a>方案</li>
 </ul>
 <h3 id="_5">历史影响</h3>
 <ul>

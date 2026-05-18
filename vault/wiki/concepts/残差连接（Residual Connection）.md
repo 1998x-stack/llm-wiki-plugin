@@ -22,7 +22,7 @@ supersedes: null
 2. **梯度流分析**：[[反向传播]]时 ∂L/∂x = ∂L/∂H · (∂F/∂x + 1)。无论 ∂F/∂x 多小（[[梯度消失]]），整体梯度至少有 ∂L/∂H · 1 这一项——梯度可以绕过任意层直接流向浅层，形成"梯度高速公路"。
 3. **为什么更容易学**：若最优解接近恒等映射 H*(x) ≈ x，则残差 F*(x) ≈ 0。将网络权重推向零比将权重推向恒等变换容易得多，这使深层网络的优化变得可行。
 4. **实现细节**：当输入输出维度不匹配时（stride≠1或通道数变化），shortcut需用1×1卷积进行投影对齐。BasicBlock用于[[残差网络（ResNet）|ResNet]]-18/34，Bottleneck用于[[残差网络（ResNet）|ResNet]]-50/101/152。
-5. **广泛影响**：[[残差连接]]已成为现代深度学习的默认组件，被[[Transformer]]（每个子层都有残差）、GPT、BERT、[[扩散模型]][[U-Net]]等架构采用。后续衍生出DenseNet（密集连接）、SENet（通道注意力+残差）等变体。
+5. **广泛影响**：[[残差连接]]已成为现代深度学习的默认组件，被[[Transformer]]（每个子层都有残差）、GPT、BERT、[[扩散模型]][[U-Net]]等架构采用。后续衍生出DenseNet（密集连接）、SENet（通道[[注意力机制|注意力]]+残差）等变体。
 
 ## 来源
 - [raw/articles/ai-papers/machine-learning/13_resnet_2015.md](../../raw/articles/ai-papers/machine-learning/13_resnet_2015.md) — 原始笔记文件

@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>围绕 KV 缓存进行设计</strong>：KV-cache 命中率是生产阶段 AI Agent 最重要的单一指标，直接影响延迟和成本</li>
 <li><strong>遮蔽，而非移除</strong>：使用<a href="../concepts/上下文感知.html">上下文感知</a>的状态机管理工具可用性，通过 logits 掩码而非动态增删工具</li>
 <li><strong>使用文件系统作为上下文</strong>：将文件系统视为终极上下文——大小不受限、天然持久化、Agent 可直接操作</li>
-<li><strong>通过复述操控注意力</strong>：通过不断重写待办事项列表将全局计划推入模型近期注意力范围</li>
+<li><strong>通过复述操控<a href="../concepts/注意力机制.html">注意力</a></strong>：通过不断重写待办事项列表将全局计划推入模型近期<a href="../concepts/注意力机制.html">注意力</a>范围</li>
 <li><strong>保留错误的内容</strong>：将失败的尝试保留在上下文中，让模型隐式更新其内部信念</li>
 <li><strong>不要被<a href="../concepts/少样本学习.html">少样本</a>示例所困</strong>：在行动和观察中引入结构化变化，打破模式避免 Agent 陷入重复节奏</li>
 </ol>

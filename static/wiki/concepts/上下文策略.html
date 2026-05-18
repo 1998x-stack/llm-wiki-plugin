@@ -144,7 +144,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>六大策略体系</strong>：</p>
 </li>
-<li><strong><a href="固定栈分配.html">固定栈分配</a></strong>：每次迭代以完全相同的方式分配上下文栈，确保关键约束始终位于注意力最高的开头和结尾位置，避免"lost in the middle"问题</li>
+<li><strong><a href="固定栈分配.html">固定栈分配</a></strong>：每次迭代以完全相同的方式分配上下文栈，确保关键约束始终位于<a href="注意力机制.html">注意力</a>最高的开头和结尾位置，避免"lost in the middle"问题</li>
 <li><strong><a href="子 Agent 卸载.html">子 Agent 卸载</a></strong>：将消耗大量 tokens 但只需结论的操作（测试套件 ~50k → ~100 tokens、编译 ~20k → ~50 tokens）卸载给<span style="color:#e74c3c" title="broken link">子 Agent</span>，主 Agent 保持精简</li>
 <li><strong><a href="观察遮蔽.html">观察遮蔽</a></strong>：当上下文接近限制时，保留最近 N 轮对话，将旧消息替换为摘要占位符；Ralph 的立场是不适合"每 Story 一迭代"模式，但子任务间可用</li>
 <li><strong>规范文件 vs 上下文内容</strong>：任何需要跨<a href="会话持久化.html">会话持久化</a>的信息必须在文件里（<a href="项目约定手册.html">AGENTS.md</a>、progress.txt），不能只在上下文里</li>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>不同模型的上下文策略差异</strong>：<a href="../entities/Claude_Code.html">Claude</a> 3.5 Sonnet/Opus（200k tokens）每迭代目标完成 1 Story，<a href="Dumb Zone.html">Dumb Zone</a> 估计 &gt;120k tokens；GPT-4o（128k tokens）<a href="Dumb Zone.html">Dumb Zone</a> &gt;80k tokens；<a href="../entities/Gemini CLI.html">Gemini</a> 1.5 Pro（1M tokens）可完成 2-3 Stories，但 Ralph 仍推荐每迭代 1 Story 以保持小粒度的清晰 <a href="Git Commit.html">git commit</a> 和低失败恢复成本。</p>
 </li>
 <li>
-<p><strong>Lost in the Middle 问题的工程应对</strong>：LLM 对上下文开头和结尾的注意力高于中间部分。上下文策略要求把最重要的约束（系统提示、<a href="项目约定手册.html">项目约定</a>、核心约束）放在最前面，文件引用放在最后，避免将重要信息埋在中间。</p>
+<p><strong>Lost in the Middle 问题的工程应对</strong>：LLM 对上下文开头和结尾的<a href="注意力机制.html">注意力</a>高于中间部分。上下文策略要求把最重要的约束（系统提示、<a href="项目约定手册.html">项目约定</a>、核心约束）放在最前面，文件引用放在最后，避免将重要信息埋在中间。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

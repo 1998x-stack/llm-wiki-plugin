@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [blockchain, payments, l1]
+tags: [blockchain, payments, l1, AI工程]
 aliases: ["Tempo Blockchain", "Tempo Network"]
 relates_to: []
 supersedes: null

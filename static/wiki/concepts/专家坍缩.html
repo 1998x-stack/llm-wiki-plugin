@@ -135,37 +135,37 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">专家坍缩</h1>
 <h2 id="_2">概述</h2>
-<p>专家坍缩是指在混合专家模型（如 MMoE）中，所有门控网络最终收敛到只使用同一个专家，导致其他专家被"遗弃"的现象。这使得模型退化为事实上的 Shared-Bottom 架构，浪费了额外的参数和计算资源。</p>
+<p>专家坍缩是指在<a href="MoE（混合专家）.html">混合专家模型</a>（如 MMoE）中，所有<a href="门控机制（Gating Mechanism）.html">门控</a>网络最终收敛到只使用同一个专家，导致其他专家被"遗弃"的现象。这使得模型退化为事实上的 Shared-Bottom 架构，浪费了额外的参数和<a href="计算.html">计算</a>资源。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">现象定义</h3>
 <ul>
-<li><strong>门控收敛</strong>：所有任务的门控网络最终只激活同一个专家网络</li>
+<li><strong><a href="门控机制（Gating Mechanism）.html">门控</a>收敛</strong>：所有任务的<a href="门控机制（Gating Mechanism）.html">门控</a>网络最终只激活同一个专家网络</li>
 <li><strong>资源浪费</strong>：大部分专家网络处于闲置状态，未发挥预期作用</li>
 <li><strong>功能退化</strong>：模型实际上退化为 Shared-Bottom 架构，失去了 MMoE 的设计优势</li>
 </ul>
 <h3 id="_5">产生原因</h3>
 <ul>
-<li><strong>训练不稳定</strong>：门控网络在训练过程中可能陷入局部最优解</li>
-<li><strong>专家极化</strong>：某些专家在训练初期表现稍好，导致门控网络过度依赖这些专家</li>
+<li><strong>训练不稳定</strong>：<a href="门控机制（Gating Mechanism）.html">门控</a>网络在训练过程中可能陷入局部最优解</li>
+<li><strong>专家极化</strong>：某些专家在训练初期表现稍好，导致<a href="门控机制（Gating Mechanism）.html">门控</a>网络过度依赖这些专家</li>
 <li><strong>初始化敏感</strong>：不同初始化条件下，可能出现专家选择的不均衡分布</li>
-<li><strong>损失函数设计</strong>：优化目标可能鼓励门控网络集中选择少数专家</li>
+<li><strong>损失函数设计</strong>：优化目标可能鼓励<a href="门控机制（Gating Mechanism）.html">门控</a>网络集中选择少数专家</li>
 </ul>
 <h3 id="mmoe">与 MMoE 的关系</h3>
 <ul>
-<li><strong>架构固有问题</strong>：专家坍缩是 MMoE 等混合专家模型的潜在风险</li>
+<li><strong>架构固有问题</strong>：专家坍缩是 MMoE 等<a href="MoE（混合专家）.html">混合专家模型</a>的潜在风险</li>
 <li><strong>参数浪费</strong>：导致额外的专家网络参数未被有效利用</li>
 <li><strong>表达能力受限</strong>：限制了模型对不同任务特征表示的能力</li>
 </ul>
 <h3 id="_6">解决方案</h3>
 <ul>
-<li><strong>Expert Dropout</strong>：论文中提到使用 Expert Dropout 来缓解专家极化问题</li>
+<li><strong><a href="Expert Dropout.html">Expert Dropout</a></strong>：论文中提到使用 <a href="Expert Dropout.html">Expert Dropout</a> 来缓解专家极化问题</li>
 <li><strong>平衡约束</strong>：在损失函数中加入专家使用平衡的约束项</li>
-<li><strong>路由正则化</strong>：通过正则化项鼓励门控网络分散选择不同专家</li>
+<li><strong>路由正则化</strong>：通过正则化项鼓励<a href="门控机制（Gating Mechanism）.html">门控</a>网络分散选择不同专家</li>
 <li><strong>初始化策略</strong>：采用特定的初始化策略来避免初始不平衡</li>
 </ul>
 <h3 id="_7">防治措施</h3>
 <ul>
-<li><strong>监控门控权重</strong>：在训练过程中监控各个门控网络的专家选择分布</li>
+<li><strong>监控<a href="门控机制（Gating Mechanism）.html">门控</a>权重</strong>：在训练过程中监控各个<a href="门控机制（Gating Mechanism）.html">门控</a>网络的专家选择分布</li>
 <li><strong>定期评估</strong>：评估每个专家网络的利用率和贡献度</li>
 <li><strong>动态调整</strong>：根据专家使用情况动态调整网络结构</li>
 </ul>

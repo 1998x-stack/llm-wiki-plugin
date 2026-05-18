@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [architecture-pattern, agent-system, context-management]
+tags: [architecture-pattern, agent-system, context-management, AI工程]
 aliases: ["Compressor wU2", "Context Compressor"]
 relates_to:
   - target: "[[Claude Code]]"

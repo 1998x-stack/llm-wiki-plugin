@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, memory-system, consolidation]
+tags: [ai-agent, memory-system, consolidation, AI工程]
 aliases: ["Memory Consolidation", "记忆整合", "Memory Integration", "Memory Synthesis"]
 relates_to:
   - target: "[[AutoDream]]"

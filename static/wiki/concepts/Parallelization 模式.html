@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">parallel-processing</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">parallel-processing</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="parallelization">Parallelization 模式</h1>
@@ -140,11 +140,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>工作流程</strong>：Input → [LLM-1] + [LLM-2] + [LLM-3] → [Aggregator] → Output。多个 LLM 并行处理，结果由聚合器整合。</li>
 <li><strong>两个关键变体</strong>：</li>
-<li><strong>分区（Sectioning）</strong>：将任务分解为并行独立子任务，各自处理不同部分</li>
+<li><strong>分区（Sectioning）</strong>：将<a href="任务分解.html">任务分解</a>为并行独立子任务，各自处理不同部分</li>
 <li><strong>投票（Voting）</strong>：同一任务运行多次，获取多样输出以提高置信度</li>
 <li><strong>适用场景</strong>：子任务可并行加速，或需要多视角/多次尝试以获得高置信度结果。</li>
-<li><strong>经典应用</strong>：内容安全审查（主任务 + 安全检查并行）是一个经典应用，比让同一 LLM 同时处理两个关注点效果更好。</li>
-<li><strong>与软件工程的对应</strong>：Parallelization 对应 Fork-Join 模式和 MapReduce 模式，先分后合的并行计算范式。</li>
+<li><strong>经典应用</strong>：内容<a href="安全分析.html">安全审查</a>（主任务 + 安全检查并行）是一个经典应用，比让同一 LLM 同时处理两个关注点效果更好。</li>
+<li><strong>与软件工程的对应</strong>：Parallelization 对应 Fork-Join 模式和 <a href="MapReduce.html">MapReduce</a> 模式，先分后合的并行<a href="计算.html">计算</a>范式。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

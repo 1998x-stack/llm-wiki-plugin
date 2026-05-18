@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, react, performance, skills]
+tags: [ai-tools, react, performance, skills, AI工程]
 aliases: ["react-best-practices", "React Best Practices", "React/Next.js Performance Rules"]
 relates_to:
   - target: "[[Vercel Agent Skills]]"

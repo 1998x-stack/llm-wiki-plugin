@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">缓存</span><span class="tag">性能优化</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">缓存</span><span class="tag">性能优化</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="_1">工具结果缓存</h1>
 <h2 id="_2">概述</h2>
-<p>工具结果缓存是 Claude API 的一项功能，允许在会话内缓存返回相同结果的工具调用（如获取配置、查询静态数据），减少重复计算的 token 消耗和延迟。</p>
+<p>工具结果缓存是 <a href="../entities/Claude_Code.html">Claude</a> API 的一项功能，允许在会话内缓存返回相同结果的工具调用（如获取<a href="Configuration.html">配置</a>、查询静态数据），减少重复<a href="计算.html">计算</a>的 token 消耗和延迟。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>缓存机制</strong>：通过在工具定义中设置 <code>cache_control: {"type": "ephemeral"}</code> 启用会话内缓存。适用于获取系统配置、查询静态数据等返回结果不变的工具调用。</p>
+<p><strong>缓存机制</strong>：通过在工具定义中<a href="Settings.html">设置</a> <code>cache_control: {"type": "ephemeral"}</code> 启用会话内缓存。适用于获取系统<a href="Configuration.html">配置</a>、查询静态数据等返回结果不变的工具调用。</p>
 </li>
 <li>
-<p><strong>与 Prompt Caching 的区别</strong>：<a href="Prompt Caching.html">Prompt Caching</a> 缓存的是输入上下文的 prefix，而工具结果缓存的是工具调用的输出结果。两者互补：前者减少输入 token 重复处理，后者避免重复执行相同工具。</p>
+<p><strong>与 <a href="Prompt Caching.html">Prompt Caching</a> 的区别</strong>：<a href="Prompt Caching.html">Prompt Caching</a> 缓存的是输入上下文的 prefix，而工具结果缓存的是工具调用的输出结果。两者互补：前者减少输入 token 重复处理，后者避免重复执行相同工具。</p>
 </li>
 <li>
-<p><strong>Token 成本优化</strong>：工具结果缓存直接减少重复工具调用的执行次数，是 <a href="Token 资源管理.html">Token 资源管理</a> 的重要策略之一。对于需要多次查询相同配置的场景，缓存可显著降低成本。</p>
+<p><strong>Token 成本优化</strong>：工具结果缓存直接减少重复工具调用的执行次数，是 <a href="Token 资源管理.html">Token 资源管理</a> 的重要策略之一。对于需要多次查询相同<a href="Configuration.html">配置</a>的场景，缓存可显著降低成本。</p>
 </li>
 <li>
-<p><strong>适用场景</strong>：系统配置查询、静态数据查询、权限信息获取等结果在单次会话内不变的工具调用。</p>
+<p><strong>适用场景</strong>：系统<a href="Configuration.html">配置</a>查询、静态数据查询、<a href="Permissions.html">权限</a>信息获取等结果在单次会话内不变的工具调用。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

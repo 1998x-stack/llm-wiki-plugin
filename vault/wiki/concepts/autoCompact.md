@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI工具, 上下文管理, 会话管理, 性能优化]
+tags: [AI工具, 上下文管理, 会话管理, 性能优化, AI工程]
 aliases: ["autoCompact", "AutoCompact Mechanism", "Context Compression"]
 relates_to: 
   - target: "[[Claude Code]]"

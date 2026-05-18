@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 开放平台, 专门化Agent]
+tags: [LLM, 开放平台, 专门化Agent, AI工程]
 aliases: ["OpenAgents: An Open Platform for Language Agents in the Wild"]
 relates_to: []
 supersedes: null

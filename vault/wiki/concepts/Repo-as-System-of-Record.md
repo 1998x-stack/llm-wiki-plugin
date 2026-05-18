@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [software-engineering, ai-engineering, knowledge-management]
+tags: [software-engineering, ai-engineering, knowledge-management, AI工程]
 aliases: ["Repository as System of Record", "仓库即记录系统", "Repo as System of Record"]
 relates_to:
   - target: "[[Harness-Engineering]]"
@@ -30,7 +30,7 @@ supersedes: null
 # Repo as System of Record
 
 ## 概述
-Repo as System of Record 是一种软件工程实践，指将任务定义、架构约束、质量标准等信息全部写在代码[[仓库]]中，而不是依赖口头约定或即时消息传递，使 AI 代理能够读取[[仓库]]获取所需的所有信息。
+Repo as System of Record 是一种软件工程实践，指将任务定义、架构约束、质量标准等信息全部写在代码[[仓库]]中，而不是依赖口头约定或即时[[消息传递]]，使 AI 代理能够读取[[仓库]]获取所需的所有信息。
 
 ## 关键内容
 

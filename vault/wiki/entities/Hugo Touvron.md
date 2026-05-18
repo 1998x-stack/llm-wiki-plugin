@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, NLP, LLM, open-source]
+tags: [person, NLP, LLM, open-source, AI工程]
 aliases: [Hugo Touvron]
 relates_to:
   - target: Meta AI

@@ -29,7 +29,7 @@ ICML 2024 论文，Meta 团队提出 1.5 万亿参数[[生成式推荐]]模型 H
 2. **标题含义**："Actions Speak Louder than Words"有双重含义——用户行为（actions）比文本描述（words）更能反映真实偏好；模型应直接从行为学习而非依赖物品描述。[[Ablation Study|消融实验]]验证：仅用内容特征下降 25.3%，仅用行为特征仅下降 2.6%。
 
 3. **核心贡献**：
-   - 提出 HSTU 架构，针对推荐场景改造 [[Transformer架构|Transformer]]（SiLU 注意力、相对偏置、U [[矩阵]][[门控机制（Gating Mechanism）|门控]]）。
+   - 提出 HSTU 架构，针对推荐场景改造 [[Transformer架构|Transformer]]（SiLU [[注意力机制|注意力]]、相对偏置、U [[矩阵]][[门控机制（Gating Mechanism）|门控]]）。
    - 提出 [[生成式推荐]] [[规范化理论|范式]]，将召回和排序统一为"预测下一个 token"的序列生成任务。
    - 提出 [[M-FALCON]] 高效推理[[算法]]，使 285 倍复杂度模型在相同推理预算下运行。
    - 首次验证 [[推荐系统 Scaling Laws]]，模型质量随[[计算]]量呈幂律增长，跨越三个数量级。

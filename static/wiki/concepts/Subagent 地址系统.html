@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent系统</span><span class="tag">Codex</span><span class="tag">架构</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent系统</span><span class="tag">Codex</span><span class="tag">架构</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="subagent">Subagent 地址系统</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Codex多Agent调度.html">Codex Multi-Agent</a> 系统中基于路径的可读地址方案（2026 年引入），用层级路径替代 UUID 标识 subagent，支持结构化消息传递和 TUI 树形展示。</p>
+<p><a href="Codex多Agent调度.html">Codex Multi-Agent</a> 系统中基于路径的可读地址方案（2026 年引入），用层级路径替代 UUID 标识 subagent，支持结构化<a href="消息传递.html">消息传递</a>和 TUI 树形展示。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>路径结构</strong>：地址采用类文件系统的层级路径格式。<code>/root</code> 指向主 Agent，<code>/root/agent_a</code> 指向主 Agent 派遣的第一个 subagent，<code>/root/agent_a/sub_1</code> 指向 agent_a 派遣的嵌套 subagent，<code>/root/agent_b</code> 指向第二个 subagent。</li>
 <li><strong>人类可读性</strong>：相比 UUID，路径地址直观展示 agent 的层级关系和派遣来源，开发者一眼就能看出哪个 agent 派生了哪个 subagent。</li>
-<li><strong>结构化消息传递</strong>：路径天然支持层级路由——消息可以沿路径树精确投递到目标 agent，也可以向子树广播。</li>
+<li><strong>结构化<a href="消息传递.html">消息传递</a></strong>：路径天然支持层级路由——消息可以沿路径树精确投递到目标 agent，也可以向子树广播。</li>
 <li><strong>TUI 树形展示</strong>：路径地址与 <a href="Codex TUI.html">Codex TUI</a> 的 agent 树结构完美映射，便于在终端界面中可视化整个 agent 团队的层级关系和运行状态。</li>
 <li><strong>嵌套深度关联</strong>：地址路径的深度直接受 <code>max_nesting_depth</code> <a href="Configuration.html">配置</a>限制（默认 1），防止路径无限增长导致的路由复杂化。</li>
 </ol>

@@ -63,7 +63,7 @@ supersedes: null
 - 限制了模型的灵活性和适应性
 
 **局限性 2：子代理协作困难**
-- 随着 Opus 4.5 等更强模型的推出，子代理（subagents）使用能力提升
+- 随着 [[Opus 4.5]] 等更强模型的推出，子代理（subagents）使用能力提升
 - 但子代理之间如何在共享待办清单上协作成为问题
 - Todo[[Write]] 的单一清单模型不支持多 Agent 协调
 
@@ -111,7 +111,7 @@ supersedes: null
 **时间线**：
 1. [[Claude Code]] 发布 → Todo[[Write]] 作为核心工具
 2. 发现局限性 → 添加系统提醒（每 5 轮）
-3. 模型能力提升 → Opus 4.5 子代理使用增加
+3. 模型能力提升 → [[Opus 4.5]] 子代理使用增加
 4. 认识到局限 → 开发 [[Task-Tool|Task Tool]]
 5. 最终取代 → Todo[[Write]] 被 [[Task-Tool|Task Tool]] 替代
 

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, neural-networks, history]
+tags: [paper, neural-networks, history, 脑科学]
 aliases: [McCulloch-Pitts 1943]
 relates_to:
   - target: Warren McCulloch

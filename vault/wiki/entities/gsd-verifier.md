@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, verification, quality-assurance]
+tags: [gsd-agent, verification, quality-assurance, AI工程]
 aliases: ["gsd-verifier", "GSD Verifier", "GSD验证智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

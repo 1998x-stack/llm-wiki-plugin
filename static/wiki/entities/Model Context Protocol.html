@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">protocol</span><span class="tag">tool-integration</span><span class="tag">anthropic</span><span class="tag">standard</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">protocol</span><span class="tag">tool-integration</span><span class="tag">anthropic</span><span class="tag">standard</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="model-context-protocol">Model Context Protocol</h1>
 <h2 id="_1">概述</h2>
-<p>Anthropic 提出的工具生态集成协议，用于标准化第三方工具与 LLM 的交互接口，是 ACI 设计原则的具体实现。</p>
+<p><a href="Anthropic.html">Anthropic</a> 提出的工具生态集成协议，用于标准化第三方工具与 LLM 的交互接口，是 <a href="../concepts/ACI 设计原则.html">ACI 设计原则</a>的具体实现。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>协议定位</strong>：Model Context Protocol (MCP) 是 Anthropic 提出的开放标准，用于 AI Agent 与外部工具/数据源之间的通信。</li>
-<li><strong>与增强型 LLM 的关系</strong>：增强型 LLM 需要检索（Retrieval）、工具（Tools）和记忆（Memory）三类增强能力，MCP 提供了集成第三方工具生态的标准化方式。</li>
+<li><strong>协议定位</strong>：Model Context Protocol (MCP) 是 <a href="Anthropic.html">Anthropic</a> 提出的开放标准，用于 AI Agent 与外部工具/数据源之间的通信。</li>
+<li><strong>与增强型 LLM 的关系</strong>：增强型 LLM 需要检索（Retrieval）、工具（<a href="../concepts/Tool System.html">Tools</a>）和记忆（Memory）三类增强能力，MCP 提供了集成第三方工具生态的标准化方式。</li>
 <li><strong>ACI 实践</strong>：MCP 是 <a href="../concepts/ACI (Agent-Computer Interface).html">ACI (Agent-Computer Interface)</a> 设计原则的具体实践，通过标准化的工具定义和接口文档，降低 Agent 使用工具的复杂度。</li>
 <li><strong>行业影响</strong>：MCP 被称为"AI 的 USB 接口"，旨在统一不同 AI 工具生态之间的互操作性。</li>
 </ol>

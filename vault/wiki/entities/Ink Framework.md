@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [terminal-ui, react, ui-framework]
+tags: [terminal-ui, react, ui-framework, AI设计]
 aliases: ["Ink", "Ink Framework", "React 终端 UI"]
 relates_to:
   - target: "[[Claude Code]]"

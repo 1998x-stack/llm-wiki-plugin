@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [knowledge-base, topic-organization, memory-storage]
+tags: [knowledge-base, topic-organization, memory-storage, AI工程]
 aliases: [Topic Files, 主题文件, 按主题组织的知识库]
 relates_to: 
   - target: "[[三层记忆架构]]"

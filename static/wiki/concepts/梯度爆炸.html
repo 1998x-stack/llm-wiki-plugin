@@ -130,41 +130,41 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">优化问题</span><span class="tag">梯度</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">优化问题</span><span class="tag">梯度</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">梯度爆炸</h1>
 <h2 id="_2">概述</h2>
-<p>梯度爆炸是深度神经网络训练中的另一种现象，与梯度消失相反，指在网络反向传播过程中，靠近输入层的梯度逐渐趋近于无穷大，导致参数更新幅度过大，训练过程变得极不稳定。</p>
+<p>梯度爆炸是深度神经网络训练中的另一种现象，与<a href="梯度消失.html">梯度消失</a>相反，指在网络<a href="反向传播.html">反向传播</a>过程中，靠近输入层的梯度逐渐趋近于无穷大，导致参数更新幅度过大，训练过程变得极不稳定。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>在RNN中的表现</strong>：</li>
 <li>在循环神经网络中，梯度爆炸问题同样存在</li>
-<li>误差信号在时间维度上传播时会被权重矩阵连乘</li>
-<li>当权重矩阵的特征值大于1时，信号会指数级膨胀</li>
+<li>误差信号在时间维度上传播时会被权重<a href="矩阵.html">矩阵</a>连乘</li>
+<li>当权重<a href="矩阵.html">矩阵</a>的特征值大于1时，信号会指数级膨胀</li>
 <li>
 <p>导致训练过程极不稳定，损失值可能突然变成NaN</p>
 </li>
 <li>
 <p><strong>数学原理</strong>：</p>
 </li>
-<li>在标准RNN中，误差信号沿时间每传递一步都会被乘以一个权重矩阵</li>
+<li>在标准RNN中，误差信号沿时间每传递一步都会被乘以一个权重<a href="矩阵.html">矩阵</a></li>
 <li>特征值如果大于1，信号就会指数级膨胀</li>
 <li>
-<p>这与梯度消失问题形成对比，两者都是结构性问题</p>
+<p>这与<a href="梯度消失.html">梯度消失</a>问题形成对比，两者都是结构性问题</p>
 </li>
 <li>
 <p><strong>解决方案</strong>：</p>
 </li>
 <li>梯度裁剪（Gradient Clipping）是最常用的方法，通过限制梯度的最大范数来防止爆炸</li>
-<li>LSTM通过常误差流（CEC）机制，让误差信号在记忆细胞中保持恒定不变，同时解决了梯度消失和梯度爆炸问题</li>
+<li>LSTM通过<a href="常误差流（Constant Error Carousel）.html">常误差流</a>（CEC）机制，让误差信号在<a href="记忆细胞.html">记忆细胞</a>中保持恒定不变，同时解决了<a href="梯度消失.html">梯度消失</a>和梯度爆炸问题</li>
 <li>
 <p>权重初始化策略（如Xavier初始化）也可以帮助缓解此问题</p>
 </li>
 <li>
-<p><strong>与梯度消失的关系</strong>：</p>
+<p><strong>与<a href="梯度消失.html">梯度消失</a>的关系</strong>：</p>
 </li>
-<li>梯度消失和梯度爆炸是同一问题的两个极端</li>
+<li><a href="梯度消失.html">梯度消失</a>和梯度爆炸是同一问题的两个极端</li>
 <li>两者都是由于深度网络中梯度的连乘效应造成的</li>
 <li>LSTM的创新设计同时解决了这两个问题</li>
 </ol>

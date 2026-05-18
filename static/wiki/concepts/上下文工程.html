@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.97</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">context-management</span><span class="tag">retrieval</span><span class="tag">agent-architecture</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">context-management</span><span class="tag">retrieval</span><span class="tag">agent-architecture</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">上下文工程</h1>
 <h2 id="_2">概述</h2>
-<p>上下文工程是在 LLM 推理过程中，从不断演化的可用信息宇宙中策展最优上下文 token 集合的艺术与科学——本质上是动态的、多轮的信息策展问题，正在替代提示工程成为 AI Agent 的核心挑战。</p>
+<p>上下文工程是在 LLM 推理过程中，从不断演化的可用信息宇宙中策展最优上下文 token 集合的艺术与科学——本质上是动态的、多轮的信息策展问题，正在替代<a href="提示工程.html">提示工程</a>成为 AI Agent 的核心挑战。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>从提示工程到上下文工程的范式跃迁</strong>：提示工程关注"如何编写和组织 LLM 指令"——是一次性、静态的文本设计问题；上下文工程关注"何时加入什么信息"——是动态的、多轮的信息策展问题。单次 LLM 调用（[System Prompt + User Query] → Response）演化为多轮 Agent 循环（[System Prompt + Tools + Memory + Message History + Tool Results] × N turns → Behavior），每一轮都生成新数据，无限堆积最终导致上下文质量下降。</p>
+<p><strong>从<a href="提示工程.html">提示工程</a>到上下文工程的范式跃迁</strong>：<a href="提示工程.html">提示工程</a>关注"如何编写和组织 LLM 指令"——是一次性、静态的文本设计问题；上下文工程关注"何时加入什么信息"——是动态的、多轮的信息策展问题。单次 LLM 调用（[System Prompt + User Query] → Response）演化为多轮 Agent 循环（[System Prompt + <a href="Tool System.html">Tools</a> + Memory + Message History + Tool Results] × N turns → Behavior），每一轮都生成新数据，无限堆积最终导致上下文质量下降。</p>
 </li>
 <li>
-<p><strong>上下文有限性的深层原因</strong>：即使上下文窗口不断扩大，上下文工程的重要性也不会消失。三大根因：①<strong>注意力稀释</strong>——Transformer 中 n 个 token 产生 n² 对注意力关系，超过一定规模后关系质量下降；②<strong>训练分布偏移</strong>——训练数据中较短序列比较长序列更常见，模型对长序列依赖的特化参数相对较少；③<strong>位置编码插值</strong>——长上下文通常需要 RoPE 外推等位置编码插值，引入位置理解退化。更大的窗口只是推迟问题，而非消除它。</p>
+<p><strong>上下文有限性的深层原因</strong>：即使<a href="上下文窗口.html">上下文窗口</a>不断扩大，上下文工程的重要性也不会消失。三大根因：①<strong><a href="Attention Dilution.html">注意力稀释</a></strong>——<a href="../entities/Transformer.html">Transformer</a> 中 n 个 token 产生 n² 对<a href="注意力机制.html">注意力</a>关系，超过一定规模后关系质量下降；②<strong>训练分布偏移</strong>——训练数据中较短序列比较长序列更常见，模型对长序列依赖的特化参数相对较少；③<strong><a href="位置编码.html">位置编码</a>插值</strong>——长上下文通常需要 RoPE 外推等<a href="位置编码.html">位置编码</a>插值，引入位置理解退化。更大的窗口只是推迟问题，而非消除它。</p>
 </li>
 <li>
-<p><strong>注意力预算的经济学</strong>：LLM 的"注意力"是有限的认知资源，每个新 token 消耗一定预算，边际回报递减。最优策略是找到<strong>最小高信噪比 token 集合</strong>，使期望输出质量最大化。这是所有具体技术的统一基础。</p>
+<p><strong><a href="注意力预算.html">注意力预算</a>的经济学</strong>：LLM 的"<a href="注意力机制.html">注意力</a>"是有限的认知资源，每个新 token 消耗一定预算，边际回报递减。最优策略是找到<strong>最小高<a href="信噪比.html">信噪比</a> token 集合</strong>，使期望输出质量最大化。这是所有具体技术的统一基础。</p>
 </li>
 <li>
 <p><strong>系统提示设计——"适当高度（Right Altitude）"原则</strong>：介于两种极端之间的黄金区间。极端一（过低）：硬编码复杂逻辑，脆弱难维护；极端二（过高）：过度抽象，缺乏具体信号。最优区间是提供足够具体的行为启发，同时允许灵活处理未预见情形。建议使用 XML 标签或 Markdown 标题划分不同部分（<code>&lt;background_information&gt;</code>、<code>&lt;instructions&gt;</code>、工具指南、输出格式），目标是充分说明预期行为所需的<strong>最少信息量</strong>。</p>
@@ -154,19 +154,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>工具设计原则</strong>：工具是 Agent 与信息/动作空间的契约，需满足 Token 高效（返回精炼信息）、行为高效（鼓励高效行为模式）、功能清晰（明确单一用途）、最小化工具集。常见失败模式是工具集过于臃肿、功能重叠，导致 Agent 在工具选择上浪费推理资源。</p>
 </li>
 <li>
-<p><strong>少样本示例策略</strong>：精心选择多样化、有代表性的典范示例，而非穷举所有边缘情况。危险做法是将大量边缘情况堆砌到 prompt 中——示例是"图片"不是规则集，过多边缘示例会淹没核心模式。</p>
+<p><strong><a href="少样本学习.html">少样本</a>示例策略</strong>：精心选择多样化、有代表性的典范示例，而非穷举所有边缘情况。危险做法是将大量边缘情况堆砌到 prompt 中——示例是"图片"不是规则集，过多边缘示例会淹没核心模式。</p>
 </li>
 <li>
-<p><strong>即时检索（JIT）vs 传统 RAG</strong>：传统 RAG 在查询时间前批量检索并注入上下文；JIT 检索在推理过程中由 Agent 主动用工具按需加载。JIT 核心优势：按需加载避免预置无用信息、动态适应任务进展、渐进式发现类似人类研究过程。<a href="../projects/Claude Code.html">Claude Code</a> 是典型案例：CLAUDE.md 直接注入高价值预置信息，glob/grep 等工具允许按需检索，绕过静态索引过期问题。</p>
+<p><strong>即时检索（JIT）vs 传统 RAG</strong>：传统 RAG 在查询时间前批量检索并注入上下文；JIT 检索在推理过程中由 Agent 主动用工具<a href="渐进式披露（Progressive Disclosure）.html">按需加载</a>。JIT 核心优势：<a href="渐进式披露（Progressive Disclosure）.html">按需加载</a>避免预置无用信息、动态适应任务进展、渐进式发现类似人类研究过程。<a href="../projects/Claude Code.html">Claude Code</a> 是典型案例：<a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 直接注入高价值预置信息，glob/grep 等工具允许按需检索，绕过静态索引过期问题。</p>
 </li>
 <li>
-<p><strong>长时任务三大技术</strong>：①<strong><a href="上下文压缩.html">上下文压缩</a></strong>——当上下文接近窗口限制时，将对话历史总结为摘要替换原始内容，Claude Code 方案是保留最近 5 个访问文件、架构决策、未解决 Bug，丢弃冗余工具输出；②<strong><a href="结构化笔记法.html">结构化笔记法</a></strong>——Agent 定期将重要信息写入持久化存储（如 NOTES.md），在需要时重新加载，Claude 玩宝可梦时自发建立结构化记忆展示了跨会话长时任务能力；③<strong><a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a></strong>——将长时任务分解，专业子 Agent 在各自干净上下文窗口中处理聚焦任务，返回精炼摘要（通常 1000-2000 token）给协调者。</p>
+<p><strong>长时任务三大技术</strong>：①<strong><a href="上下文压缩.html">上下文压缩</a></strong>——当上下文接近窗口限制时，将对话历史总结为摘要替换原始内容，<a href="../projects/Claude Code.html">Claude Code</a> 方案是保留最近 5 个访问文件、架构决策、未解决 Bug，丢弃冗余工具输出；②<strong><a href="结构化笔记法.html">结构化笔记法</a></strong>——Agent 定期将重要信息写入持久化存储（如 NOTES.md），在需要时重新加载，<a href="../entities/Claude_Code.html">Claude</a> 玩宝可梦时自发建立结构化记忆展示了跨会话长时任务能力；③<strong><a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a></strong>——将长时<a href="任务分解.html">任务分解</a>，专业<span style="color:#e74c3c" title="broken link">子 Agent</span> 在各自干净<a href="上下文窗口.html">上下文窗口</a>中处理聚焦任务，返回精炼摘要（通常 1000-2000 token）给协调者。</p>
 </li>
 <li>
-<p><strong>与人类认知的对应关系</strong>：工作记忆 ↔ 上下文窗口；外部组织系统（笔记、文件夹）↔ 持久化存储；注意力集中 ↔ 注意力权重集中；认知负荷限制 ↔ <a href="上下文腐烂.html">上下文腐烂</a>现象。这种类比提示了解决方案的设计方向——人类如何扩展认知能力，Agent 就可以如何设计。</p>
+<p><strong>与人类认知的对应关系</strong>：<a href="工作记忆.html">工作记忆</a> ↔ <a href="上下文窗口.html">上下文窗口</a>；外部组织系统（笔记、文件夹）↔ 持久化存储；<a href="注意力机制.html">注意力</a>集中 ↔ <a href="注意力机制.html">注意力</a>权重集中；认知负荷限制 ↔ <a href="上下文腐烂.html">上下文腐烂</a>现象。这种类比提示了解决方案的设计方向——人类如何扩展认知能力，Agent 就可以如何设计。</p>
 </li>
 <li>
-<p><strong>未来趋势</strong>：随着模型能力提升，Agentic 设计会趋向于让智能模型更智能地行动，人类策展的需求会逐渐减少。短期内上下文工程是核心竞争力，长期内模型可能自主掌握上下文管理策略，工程师角色将从"上下文策展者"转向"上下文质量保障者"。</p>
+<p><strong>未来趋势</strong>：随着模型能力提升，Agentic 设计会趋向于让智能模型更智能地行动，人类策展的需求会逐渐减少。短期内上下文工程是核心竞争力，长期内模型可能自主掌握<a href="上下文管理策略.html">上下文管理策略</a>，工程师角色将从"上下文策展者"转向"上下文<a href="质量保障.html">质量保障</a>者"。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

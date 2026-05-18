@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["论文", "计算机视觉", "深度学习", "CNN"]
+tags: [论文, 计算机视觉, 深度学习, CNN, 机器学习]
 aliases: ["ZFNet", "Zeiler Fergus Network", "Visualizing and Understanding Convolutional Networks (2013 论文)"]
 relates_to: ["AlexNet", "ImageNet Classification with Deep Convolutional Neural Networks (2012 论文)", "卷积神经网络（CNN）", "计算机视觉", "卷积核可视化", "ILSVRC（ImageNet大规模视觉识别挑战赛）"]
 supersedes: null

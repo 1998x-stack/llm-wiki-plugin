@@ -43,7 +43,7 @@ Cara Phillips 是 [[Anthropic]] 的技术作家，专注于多[[Agent Systems|�
 ### 发表作品
 
 - "Multi-agent coordination patterns: Five approaches and when to use them" (2026) — [[Anthropic]] 官方博客
-- 与 Eugene Yan, Jiri De Jonghe, Samuel Weller, Erik S. 共同撰写
+- 与 Eugene Yan, [[Jiri De Jonghe]], Samuel Weller, Erik S. 共同撰写
 
 ### 写作风格
 

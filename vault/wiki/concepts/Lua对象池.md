@@ -101,7 +101,7 @@ local sin, cos, sqrt = math.sin, math.cos, math.sqrt
 [[LuaJIT]] 的 JIT 编译器对循环内频繁创建 table 有特殊处理，但对象池仍然有效减少 GC 压力。FFI（Foreign Function Interface）可进一步绕过 Lua GC，直接分配 C 内存。
 
 ## 常见陷阱
-- **reset 不彻底**：归还时未清除所有字段，旧数据污染新的使用
+- **reset 不彻底**：归还时未清除所有字段，旧[[训练数据污染|数据污染]]新的使用
 - **pool 持有引用阻止 GC**：池中对象引用了外部重型资源（纹理、socket），即使"空闲"也不会被 GC 回收
 - **超出 maxSize 的对象静默丢弃**：release 超限时对象被抛弃，调用方不应再持有引用
 

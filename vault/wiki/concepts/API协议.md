@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [API, 协议, 接口规范, 通信协议]
+tags: [API, 协议, 接口规范, 通信协议, 社会科学]
 aliases: ["Application Programming Interface Protocol", "接口协议"]
 relates_to:
   - target: "[[MCP（Model Context Protocol）]]"
@@ -26,7 +26,7 @@ API（Application Programming Interface）协议是一套定义软件组件之�
 ## 关键内容
 
 1. **协议类型**：
-   - HTTP/HTTPS 协议：最常用的 Web API 协议
+   - HTTP/[[TLS协议|HTTPS]] 协议：最常用的 Web API 协议
    - RPC（Remote Procedure Call）协议：远程过程调用
    - REST（Representational State Transfer）：基于 HTTP 的架构风格
    - GraphQL：灵活的查询语言和运行时

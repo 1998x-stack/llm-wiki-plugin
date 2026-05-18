@@ -26,7 +26,7 @@ Mixture-of-Experts(MoE)是一种深度学习架构，训练多个小型专家网
 - 数学表达：`y = Σ g(x)_i * f_i(x)`，其中 `g(x)` 通过 softmax 产生，权重和为 1
 
 ### 从 MoE 到多任务学习的演进
-- **OMoE**(One-gate MoE)：将 MoE 应用于[[多任务学习]]的直接方式，所有任务共享同一[[门控机制（Gating Mechanism）|门控]]网络
+- **OMoE**([[One-gate MoE]])：将 MoE 应用于[[多任务学习]]的直接方式，所有任务共享同一[[门控机制（Gating Mechanism）|门控]]网络
 - **MMoE**(Multi-gate MoE)：为每任务配备独立[[门控机制（Gating Mechanism）|门控]]网络，实现任务特定的专家选择
 - MMoE 相比 Shared-Bottom 的进步：将底层网络模块化，不同输入激活不同专家组合
 

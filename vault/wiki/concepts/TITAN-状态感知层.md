@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI-Agent, Game-Testing, Perception, State-Abstraction]
+tags: [AI-Agent, Game-Testing, Perception, State-Abstraction, AI工程]
 aliases: ["TITAN Perception Layer", "TITAN状态感知层", "State Perception and Abstraction"]
 relates_to: 
   - target: "[[TITAN 框架]]"

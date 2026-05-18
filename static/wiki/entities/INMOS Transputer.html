@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">处理器</span><span class="tag">并发计算</span><span class="tag">硬件</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">处理器</span><span class="tag">并发计算</span><span class="tag">硬件</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="inmos-transputer">INMOS Transputer</h1>
 <h2 id="_1">概述</h2>
-<p>由INMOS公司设计的专门用于并发计算的处理器，其通信机制直接来源于CSP理论。</p>
+<p>由INMOS公司设计的专门用于并发<a href="../concepts/计算.html">计算</a>的处理器，其通信机制直接来源于CSP理论。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>CSP实现</strong>：该处理器是专为并发计算设计的，其硬件层面包含了通信通道，直接对应CSP中的通信通道概念。</p>
+<p><strong>CSP实现</strong>：该处理器是专为并发<a href="../concepts/计算.html">计算</a>设计的，其硬件层面包含了通信通道，直接对应CSP中的通信通道概念。</p>
 </li>
 <li>
-<p><strong>硬件通信</strong>：处理器内部实现了硬件级的通信机制，使CSP的同步通信理念能够在硬件层面得到直接支持。</p>
+<p><strong>硬件通信</strong>：处理器内部实现了硬件级的通信机制，使CSP的<a href="../concepts/同步通信.html">同步通信</a>理念能够在硬件层面得到直接支持。</p>
 </li>
 <li>
-<p><strong>occam支持</strong>：专为occam编程语言设计，occam语言的并发原语可以直接映射到Transputer的硬件功能。</p>
+<p><strong><a href="occam.html">occam</a>支持</strong>：专为<a href="occam.html">occam</a>编程语言设计，<a href="occam.html">occam</a>语言的并发原语可以直接映射到Transputer的硬件功能。</p>
 </li>
 <li>
 <p><strong>安全关键系统应用</strong>：其核心通信协议使用CSP进行形式化验证，应用于需要高可靠性保证的系统中。</p>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [payments, security, tokens]
+tags: [payments, security, tokens, AI工程]
 aliases: ["Payment Tokenization", "Secure Payment Tokens"]
 relates_to: []
 supersedes: null

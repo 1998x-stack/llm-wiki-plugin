@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["金融数据", "Python库", "A股数据", "免费API"]
+tags: [金融数据, Python库, A股数据, 免费API, 工具与框架]
 aliases: ["baostock", "Baostock SDK", "中国A股数据平台", "证券宝"]
 relates_to:
   - target: "[[A股行情数据]]"

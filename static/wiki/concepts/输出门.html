@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">门控机制</span><span class="tag">LSTM</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">门控机制</span><span class="tag">LSTM</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">输出门</h1>
 <h2 id="_2">概述</h2>
-<p>输出门是 LSTM 架构中的三个门控机制之一，用于控制记忆细胞中的信息有多少可以输出到网络的其他部分。输出门决定当前记忆细胞中的哪些信息需要用于计算当前时刻的输出。</p>
+<p>输出门是 LSTM 架构中的三个<a href="门控机制.html">门控机制</a>之一，用于控制<a href="记忆细胞.html">记忆细胞</a>中的信息有多少可以输出到网络的其他部分。输出门决定当前<a href="记忆细胞.html">记忆细胞</a>中的哪些信息需要用于<a href="计算.html">计算</a>当前时刻的输出。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>功能机制</strong>：</li>
-<li>输出门控制记忆细胞中的信息有多少可以输出到网络的其他部分</li>
-<li>通过 sigmoid 函数计算输出值（0 表示完全阻止，1 表示完全通过）</li>
+<li>输出<a href="门控机制（Gating Mechanism）.html">门控</a>制<a href="记忆细胞.html">记忆细胞</a>中的信息有多少可以输出到网络的其他部分</li>
+<li>通过 sigmoid 函数<a href="计算.html">计算</a>输出值（0 表示完全阻止，1 表示完全通过）</li>
 <li>有些信息虽然需要保存，但当前时刻并不需要使用，输出门会限制其流出</li>
 <li>
 <p>输出门的决策会影响 LSTM 单元当前时刻的隐藏状态 hₜ</p>
@@ -148,8 +148,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>数学表达</strong>：</p>
 </li>
-<li>输出门的计算公式为：oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)</li>
-<li>首先计算潜在输出：h̃ₜ = tanh(Cₜ)</li>
+<li>输出门的<a href="计算.html">计算</a>公式为：oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)</li>
+<li>首先<a href="计算.html">计算</a>潜在输出：h̃ₜ = tanh(Cₜ)</li>
 <li>最终的隐藏状态为：hₜ = oₜ ⊙ h̃ₜ</li>
 <li>
 <p>其中 hₜ₋₁ 是上一时刻的隐藏状态，xₜ 是当前时刻的输入</p>
@@ -157,24 +157,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>在 LSTM 中的作用</strong>：</p>
 </li>
-<li>与遗忘门和输入门协同工作，实现选择性记忆</li>
+<li>与<a href="遗忘门.html">遗忘门</a>和<a href="输入门.html">输入门</a>协同工作，实现选择性记忆</li>
 <li>决定从更新后的记忆中提取哪些信息作为当前时刻的输出</li>
-<li>控制记忆细胞对网络其他部分的影响程度</li>
+<li>控制<a href="记忆细胞.html">记忆细胞</a>对网络其他部分的影响程度</li>
 <li>
 <p>确保 LSTM 在每个时间步只输出必要的信息</p>
 </li>
 <li>
 <p><strong>与其他门的协作</strong>：</p>
 </li>
-<li>与遗忘门协调工作，平衡信息的保存与删除</li>
-<li>与输入门配合，控制新信息的接收和旧信息的输出</li>
+<li>与<a href="遗忘门.html">遗忘门</a>协调工作，平衡信息的保存与删除</li>
+<li>与<a href="输入门.html">输入门</a>配合，控制新信息的接收和旧信息的输出</li>
 <li>
 <p>三门协同实现选择性记忆、选择性遗忘、选择性输出的完整闭环</p>
 </li>
 <li>
 <p><strong>重要性</strong>：</p>
 </li>
-<li>输出门的存在确保了记忆细胞中的信息不是强制输出的</li>
+<li>输出门的存在确保了<a href="记忆细胞.html">记忆细胞</a>中的信息不是强制输出的</li>
 <li>允许 LSTM 在某些时间步保留信息而不立即使用</li>
 <li>提高了 LSTM 处理复杂序列的灵活性和精度</li>
 </ol>

@@ -55,7 +55,7 @@ supersedes: null
 
 4. **[[因果掩码]]（[[因果掩码|Causal Masking]]）**：SASRec 与标准 [[Transformer架构|Transformer]] Encoder 的关键区别。施加下三角掩码[[矩阵]]，第 i 位置只能看到自己及之前的位置，无法获取未来信息。这使得 SASRec 本质上等价于 [[Transformer架构|Transformer]] Decoder（[[AR 模型（自回归模型）|自回归]]模式），而非 Encoder 的双向模式。
 
-5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上注意力集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上[[Attention Dilution|注意力分散]]到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
+5. **自适应依赖距离**：最优雅的特性——在稀疏数据集（如 [[Amazon]] Beauty）上[[注意力机制|注意力]]集中于最近 1-2 个物品（行为类似一阶[[马尔可夫链]]）；在密集数据集（如 [[MovieLens]]-1M）上[[Attention Dilution|注意力分散]]到更远历史（行为类似 RNN）。模型自动根据数据特征调整建模策略，无需人工选择 MC 或 RNN。
 
 6. **正则化**：[[残差连接]] + [[Layer Normalization|层归一化]]（Post-norm）+ [[Dropout]]（密集数据集 0.2，稀疏数据集 0.5）。
 
@@ -67,7 +67,7 @@ supersedes: null
 
 10. **历史地位**：[[Transformer架构|Transformer]] 架构进入推荐系统领域的标志性里程碑，开创了推荐系统的 [[Transformer架构|Transformer]] 时代。催生了 [[BERT4Rec]]（2019）、[[TiSASRec]]（2020）、[[SSE-PT]]（2020）、BST（2019）、[[S3-Rec]]（2020）、[[LightSANs]]（2021）、[[DuoRec]]（2022）、[[SASRec+]]（2023）等一系列后续工作。阿里巴巴的 BST 直接受其启发应用于[[淘宝]][[CTR 预估|点击率预估]]系统。
 
-11. **局限性**：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向注意力在训练阶段信息利用不充分（后续 [[BERT4Rec]] 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少时间间隔建模（后续 [[TiSASRec]] 弥补）；"一正一负"训练目标非最优（后续 [[SASRec+]] 证明替换为全物品 softmax 可显著提升）。
+11. **局限性**：固定最大序列长度（默认 50-200），$O(n^2 d)$ 复杂度限制进一步增大；单向[[注意力机制|注意力]]在训练阶段信息利用不充分（后续 [[BERT4Rec]] 试图解决）；仅依赖物品 ID，无物品属性/用户画像；缺少[[时间间隔建模]]（后续 [[TiSASRec]] 弥补）；"一正一负"训练目标非最优（后续 [[SASRec+]] 证明替换为全物品 softmax 可显著提升）。
 
 ## 来源
 - [SASRec 原始论文 (ICDM 2018)](https://ieeexplore.ieee.org/document/8594844)

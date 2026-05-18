@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [transformer, time-series, forecasting, attention-mechanism, long-sequence]
+tags: [transformer, time-series, forecasting, attention-mechanism, long-sequence, AI工程]
 aliases: ["Informer", "Informer论文", "Beyond Efficient Transformer for Long Sequence Time-Series Forecasting"]
 relates_to: []
 supersedes: null

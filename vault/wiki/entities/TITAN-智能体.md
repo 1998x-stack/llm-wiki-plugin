@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-testing, agent, game-testing, langgraph]
+tags: [ai-testing, agent, game-testing, langgraph, AI工程]
 aliases: ["TITAN", "Testing Intelligent Trigger Agent for Novel bugs"]
 relates_to: 
   - target: "[[LangGraph]]"

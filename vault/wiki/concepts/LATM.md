@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具生成, 双LLM架构]
+tags: [LLM, 工具生成, 双LLM架构, LLM能力]
 aliases: ["Large Language Models as Tool Makers"]
 relates_to: []
 supersedes: null

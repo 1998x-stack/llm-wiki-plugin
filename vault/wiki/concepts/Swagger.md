@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [API, 文档工具, 开放标准]
+tags: [API, 文档工具, 开放标准, 工具与框架]
 aliases: ["Swagger Framework", "Swagger Tools", "Swagger UI", "Swagger Editor"]
 relates_to: []
 supersedes: null

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">优先经验回放</h1>
 <h2 id="_2">概述</h2>
-<p>优先<a href="经验回放.html">经验回放</a>（PER，Schaul et al., <a href="../entities/DeepMind.html">DeepMind</a>, ICLR 2016）针对 DQN 均匀采样的低效性，以 TD 误差绝对值为优先级指标，优先从<a href="经验回放.html">回放缓冲区</a>中采样高学习价值的 transition。配合<a href="重要性采样.html">重要性采样</a>修正（IS Correction）消除分布偏移引入的偏差，使用 SumTree 数据结构实现 O(log N) 采样效率。</p>
+<p>优先<a href="经验回放.html">经验回放</a>（PER，Schaul et al., <a href="../entities/DeepMind.html">DeepMind</a>, <a href="../entities/ICLR 2016.html">ICLR 2016</a>）针对 DQN 均匀采样的低效性，以 TD 误差绝对值为优先级指标，优先从<a href="经验回放.html">回放缓冲区</a>中采样高学习价值的 transition。配合<a href="重要性采样.html">重要性采样</a>修正（IS Correction）消除分布偏移引入的偏差，使用 SumTree 数据结构实现 O(log N) 采样效率。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>

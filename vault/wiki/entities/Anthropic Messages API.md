@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [api, llm-api, anthropic, ai-platform]
+tags: [api, llm-api, anthropic, ai-platform, AI工程]
 aliases: ["Anthropic Messages API", "Anthropic API"]
 relates_to:
   - target: "[[Anthropic]]"
@@ -28,7 +28,7 @@ relates_to:
 # Anthropic Messages API
 
 ## 概述
-[[Anthropic]] Messages API 是 [[Anthropic]] 提供的 API 接口，允许开发者直接访问 [[Claude_Code|Claude]] 模型的能力，支持消息传递模式的交互。
+[[Anthropic]] Messages API 是 [[Anthropic]] 提供的 API 接口，允许开发者直接访问 [[Claude_Code|Claude]] 模型的能力，支持[[消息传递]]模式的交互。
 
 ## 关键内容
 1. **功能特性**：Messages API 允许开发者以消息交换的方式与 [[Claude_Code|Claude]] 模型进行交互，支持多轮对话、工具调用等功能。

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="deepfm">DeepFM</h1>
 <h2 id="_1">概述</h2>
-<p>DeepFM是一种基于因子分解机的神经网络模型，用于点击率预测。该论文由华为诺亚方舟实验室的郭辉锋等人在IJCAI 2017发表，将因子分解机(FM)与深度神经网络(DNN)整合为端到端模型，通过共享Embedding层同时学习低阶和高阶特征交互，终结了CTR预估中的手工特征工程。</p>
+<p>DeepFM是一种基于<a href="Factorization Machines.html">因子分解机</a>的神经网络模型，用于<a href="../concepts/CTR 预估.html">点击率预测</a>。该论文由<a href="华为诺亚方舟实验室.html">华为诺亚方舟实验室</a>的<a href="Huifeng Guo.html">郭辉锋</a>等人在IJCAI 2017发表，将<a href="FM">[Factorization Machines|因子分解机]</a>与深度神经网络(DNN)整合为端到端模型，通过<a href="../concepts/共享Embedding.html">共享Embedding</a>层同时学习低阶和<a href="../concepts/高阶特征交互.html">高阶特征交互</a>，终结了CTR预估中的<a href="../concepts/手工特征工程.html">手工特征工程</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>并行架构</strong>：DeepFM 由两部分并行组成——FM 部分（浅层模块）负责捕获显式的低阶（二阶）<a href="../concepts/特征交叉.html">特征交互</a>，DNN 部分（深层模块）负责捕获隐式的高阶非线性<a href="../concepts/特征交叉.html">特征交互</a>。两部分共享同一组<a href="../concepts/嵌入表示.html">嵌入向量</a>，<a href="../concepts/联合训练.html">联合训练</a>。最终输出为 sigmoid(y_FM + y_DNN)。</li>
@@ -146,8 +146,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>后续影响</strong>：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（<a href="Google.html">Google</a> 2017，Cross Network 显式交叉）、<a href="xDeepFM.html">xDeepFM</a>（微软 2018，CIN 向量级显式交叉）、<a href="AutoInt.html">AutoInt</a>（2019，<a href="../concepts/多头注意力.html">多头自注意力</a>可解释交互）等。</li>
 <li><strong>局限性</strong>：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 <a href="xDeepFM.html">xDeepFM</a>、<a href="AutoInt.html">AutoInt</a>、DIN 分别针对这些局限进行了改进。</li>
 <li><strong>架构一般性</strong>：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep <a href="../concepts/共享嵌入.html">共享嵌入</a>"是可替换 Deep 部分实现的通用<a href="../concepts/规范化理论.html">范式</a>。</li>
-<li><strong>核心创新</strong>：用FM替代Wide&amp;Deep模型中的线性模型+Cross-product，通过共享Embedding消除特征工程，实现端到端学习的整体框架，并具有架构的一般性。</li>
-<li><strong>实验验证</strong>：在Criteo数据集和华为应用市场真实数据集上都取得最优性能，与次优模型相比AUC提升超过0.25%-0.37%，在线A/B测试中相比精心调优的LR模型CTR提升超过10%。</li>
+<li><strong>核心创新</strong>：用FM替代Wide&amp;Deep模型中的线性模型+Cross-product，通过<a href="../concepts/共享Embedding.html">共享Embedding</a>消除<a href="../concepts/特征工程（Feature Engineering）.html">特征工程</a>，实现端到端学习的整体框架，并具有架构的一般性。</li>
+<li><strong>实验验证</strong>：在<a href="Criteo.html">Criteo</a>数据集和华为应用市场真实数据集上都取得最优性能，与次优模型相比AUC提升超过0.25%-0.37%，在线A/B测试中相比精心调优的LR模型CTR提升超过10%。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

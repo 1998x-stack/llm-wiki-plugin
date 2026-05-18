@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [计算机历史, 电子工程, 硬件]
+tags: [计算机历史, 电子工程, 硬件, 数值分析]
 aliases: ["Electronic Numerical Integrator and Computer", "电子数值积分计算机"]
 entity_type: project
 relates_to: 

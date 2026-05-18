@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [finance, stocks, data, api, python-library, market-data, quantitative-finance]
+tags: [finance, stocks, data, api, python-library, market-data, quantitative-finance, 工具与框架]
 aliases: [yfinance, Yahoo Finance, Yahoo Finance API]
 relates_to: 
   - target: "[[Yahoo Finance]]"

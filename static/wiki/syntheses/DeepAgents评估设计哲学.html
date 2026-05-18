@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计哲学</strong>：先问"规则能否表达"，再决定是否需要 LLM。Judge 是最后手段，不是默认选项。准则粒度要细——一条准则一个可<a href="../concepts/判定问题.html">判定问题</a>，失败时 comment 才能定位。</p>
 <hr />
 <h2 id="vs_2">第三分离：能力 vs 基础设施</h2>
-<p><strong>混淆陷阱</strong>：沙箱 OOM / 超时导致的失败被统计为"模型能力退步"，污染横向对比数据。</p>
+<p><strong>混淆陷阱</strong>：<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a> OOM / 超时导致的失败被统计为"模型能力退步"，污染横向对比数据。</p>
 <p><strong>解法</strong>：结构化失败分类（<code>FailureCategory</code>）
 - <code>CAPABILITY</code>：模型能力/策略问题（无基础设施信号）
 - <code>INFRA_OOM / INFRA_TIMEOUT / INFRA_SANDBOX</code>：基础设施问题

@@ -139,18 +139,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "Behavior Sequence <a href="../concepts/Transformer架构.html">Transformer</a> for E-commerce Recommendation in Alibaba"，阿里巴巴团队发表于 KDD 2019。BST证明了SASRec开创的Transformer架构不仅在序列推荐任务中有效，在CTR预估等其他推荐场景中同样具有强大潜力。</p>
+<p><strong>论文信息</strong>：标题 "Behavior Sequence <a href="../concepts/Transformer架构.html">Transformer</a> for E-commerce Recommendation in Alibaba"，阿里巴巴团队发表于 KDD 2019。BST证明了<a href="SASRec.html">SASRec</a>开创的<a href="../concepts/Transformer架构.html">Transformer架构</a>不仅在<a href="../concepts/序列推荐.html">序列推荐</a>任务中有效，在CTR预估等其他推荐场景中同样具有强大潜力。</p>
 </li>
 <li>
-<p><strong>开发背景</strong>：阿里巴巴团队受SASRec成功的启发，将Self-Attention机制应用于淘宝的点击率预估系统。BST是SASRec在工业界应用的直接延伸。</p>
+<p><strong>开发背景</strong>：阿里巴巴团队受<a href="SASRec.html">SASRec</a>成功的启发，将<a href="../concepts/Self-Attention机制.html">Self-Attention机制</a>应用于<a href="淘宝.html">淘宝</a>的<a href="../concepts/CTR 预估.html">点击率预估</a>系统。BST是<a href="SASRec.html">SASRec</a>在工业界应用的直接延伸。</p>
 </li>
 <li>
 <p><strong>核心创新</strong>：</p>
 </li>
-<li><strong>行为序列建模</strong>：将用户的历史行为序列（如浏览、点击、购买）作为输入，使用Self-Attention机制建模用户兴趣的动态变化</li>
+<li><strong>行为序列建模</strong>：将用户的历史行为序列（如浏览、点击、购买）作为输入，使用<a href="../concepts/Self-Attention机制.html">Self-Attention机制</a>建模用户兴趣的动态变化</li>
 <li><strong>多场特征融合</strong>：不仅处理行为序列，还融合了用户画像、广告特征等多种特征场</li>
 <li>
-<p><strong>工业级优化</strong>：针对大规模线上系统的性能要求，进行了计算效率优化</p>
+<p><strong>工业级优化</strong>：针对大规模线上系统的性能要求，进行了<a href="../concepts/计算.html">计算</a>效率优化</p>
 </li>
 <li>
 <p><strong>核心方法</strong>：受 <a href="SASRec.html">SASRec</a> 启发，将用户行为序列通过 <a href="../concepts/Transformer架构.html">Transformer</a> Encoder 进行编码，生成的序列表示与用户画像、物品特征等拼接后输入 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型。与 <a href="SASRec.html">SASRec</a> 的纯序列预测不同，BST 是多特征融合的工业级推荐模型。</p>
@@ -158,17 +158,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>架构特点</strong>：</p>
 </li>
-<li><strong>借鉴SASRec</strong>：采用与SASRec类似的Self-Attention机制建模用户行为序列</li>
+<li><strong>借鉴<a href="SASRec.html">SASRec</a></strong>：采用与<a href="SASRec.html">SASRec</a>类似的<a href="../concepts/Self-Attention机制.html">Self-Attention机制</a>建模用户行为序列</li>
 <li><strong>特征嵌入</strong>：将用户行为、商品特征、上下文特征等统一映射到向量空间</li>
-<li><strong>注意力机制</strong>：计算当前广告与历史行为的相关性，动态聚合用户兴趣表示</li>
+<li><strong><a href="../concepts/注意力机制.html">注意力机制</a></strong>：<a href="../concepts/计算.html">计算</a>当前广告与历史行为的相关性，动态聚合用户兴趣表示</li>
 <li>
-<p><strong>工业部署</strong>：针对大规模在线服务进行了专门优化</p>
+<p><strong>工业部署</strong>：针对大规模在线<a href="../concepts/服务.html">服务</a>进行了专门优化</p>
 </li>
 <li>
 <p><strong>工业应用</strong>：</p>
 </li>
 <li><strong>阿里巴巴部署</strong>：BST在阿里巴巴的多个业务场景中得到应用</li>
-<li><strong>淘宝实践</strong>：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户</li>
+<li><strong><a href="淘宝.html">淘宝</a>实践</strong>：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户</li>
 <li>
 <p><strong>效果验证</strong>：在线A/B测试验证了显著的效果提升</p>
 </li>
@@ -176,10 +176,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>工业应用</strong>（原文）：直接部署于<a href="淘宝.html">淘宝</a>推荐系统，<a href="../concepts/服务.html">服务</a>数亿用户。证明了 <a href="../concepts/Transformer架构.html">Transformer</a> 架构在大规模工业推荐场景中的可行性和有效性。</p>
 </li>
 <li>
-<p><strong>学术意义</strong>：BST证明了SASRec提出的方法论在工业界的实际价值，为学术界和工业界的结合提供了典型范例。展示了Transformer架构从序列推荐到点击率预估的可扩展性。</p>
+<p><strong>学术意义</strong>：BST证明了<a href="SASRec.html">SASRec</a>提出的方法论在工业界的实际价值，为学术界和工业界的结合提供了典型范例。展示了<a href="../concepts/Transformer架构.html">Transformer架构</a>从<a href="../concepts/序列推荐.html">序列推荐</a>到<a href="../concepts/CTR 预估.html">点击率预估</a>的可扩展性。</p>
 </li>
 <li>
-<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：BST 将 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/Self-Attention机制.html">自注意力</a>序列编码思想迁移到 <a href="../concepts/CTR 预估.html">CTR 预估</a>场景，是 <a href="SASRec.html">SASRec</a> 工业影响力的最直接体现。两者架构相似，但 BST 增加了丰富的<a href="../concepts/特征工程（Feature Engineering）.html">特征工程</a>和工业级优化。BST直接受SASRec启发，将SASRec在序列推荐中的成功迁移到点击率预估场景，证明了Transformer架构在推荐系统中的普适性。</p>
+<p><strong>与 <a href="SASRec.html">SASRec</a> 的关系</strong>：BST 将 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/Self-Attention机制.html">自注意力</a>序列编码思想迁移到 <a href="../concepts/CTR 预估.html">CTR 预估</a>场景，是 <a href="SASRec.html">SASRec</a> 工业影响力的最直接体现。两者架构相似，但 BST 增加了丰富的<a href="../concepts/特征工程（Feature Engineering）.html">特征工程</a>和工业级优化。BST直接受<a href="SASRec.html">SASRec</a>启发，将<a href="SASRec.html">SASRec</a>在<a href="../concepts/序列推荐.html">序列推荐</a>中的成功迁移到<a href="../concepts/CTR 预估.html">点击率预估</a>场景，证明了<a href="../concepts/Transformer架构.html">Transformer架构</a>在推荐系统中的普适性。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

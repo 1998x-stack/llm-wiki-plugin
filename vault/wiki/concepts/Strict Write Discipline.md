@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [write-discipline, memory-integrity, consistency]
+tags: [write-discipline, memory-integrity, consistency, AI工程]
 aliases: [Strict Write Discipline, 严格写入纪律, 两阶段提交模式]
 relates_to: 
   - target: "[[三层记忆架构]]"

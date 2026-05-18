@@ -130,20 +130,20 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-architecture</span><span class="tag">engineering-patterns</span><span class="tag">anthropic</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-architecture</span><span class="tag">engineering-patterns</span><span class="tag">anthropic</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="ai-agent">AI Agent 架构模式</h1>
 <h2 id="_1">概述</h2>
-<p>Anthropic 提出的五种核心 AI Agent 构建模式，从简单的 Prompt Chaining 到完全自主的 Agent，构成了一套可组合的模式分类学框架。后续深化至长时运行场景，衍生出 <a href="Harness 设计.html">Harness 设计</a> 框架。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 提出的五种核心 AI Agent 构建模式，从简单的 <a href="Prompt Chaining.html">Prompt Chaining</a> 到完全自主的 Agent，构成了一套可组合的模式分类学框架。后续深化至长时运行场景，衍生出 <a href="Harness 设计.html">Harness 设计</a> 框架。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>设计哲学</strong>：最成功的 Agent 实现并非依赖复杂框架，而是使用简单的可组合模式（simple, composable patterns）。Anthropic 建议开发者直接使用 LLM API，许多模式仅需几行代码即可实现。</li>
-<li><strong>五种核心模式</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a>（提示链）、<a href="Routing 模式.html">Routing 模式</a>（路由）、<a href="Parallelization 模式.html">Parallelization 模式</a>（并行化）、<a href="Orchestrator-Workers 模式.html">Orchestrator-Workers 模式</a>（编排器-工作者）、<a href="Evaluator-Optimizer 模式.html">Evaluator-Optimizer 模式</a>（评估器-优化器）。这五种模式与软件工程经典设计模式存在深刻对应关系。</li>
-<li><strong>模式与软件工程的对应</strong>：Prompt Chaining ↔ Chain of Responsibility/Pipeline；Routing ↔ Strategy Pattern；Parallelization ↔ Fork-Join/MapReduce；Orchestrator-Workers ↔ Master-Worker/Actor Model；Evaluator-Optimizer ↔ Feedback Control Loop。</li>
-<li><strong>工作流 vs Agent 的选择</strong>：<a href="Agent vs Workflow.html">Agent vs Workflow</a> 是关键架构区分。工作流提供确定性和一致性，Agent 提供灵活性和模型驱动决策。除非任务天然开放且步骤无法预判，否则工作流通常优于自主 Agent。</li>
-<li><strong>ACI 设计原则</strong>：<a href="ACI (Agent-Computer Interface).html">ACI (Agent-Computer Interface)</a> 需要与 HCI 同等重视，工具定义应包含示例用法、边缘情况、输入格式要求，参数名称要让意图显而易见。</li>
-<li><strong>长时运行深化</strong>：针对应用开发场景，Anthropic 提出 <a href="Harness 设计.html">Harness 设计</a> 框架，包含 <a href="特性追踪器.html">特性追踪器</a>、<a href="上下文传递协议.html">上下文传递协议</a>、<a href="智能检查点触发.html">智能检查点触发</a>、<a href="三级自主权模型.html">三级自主权模型</a>、<a href="持续验证循环.html">持续验证循环</a> 和 <a href="技术债务追踪.html">技术债务追踪</a> 六大核心组件，本质上是"为 AI Agent 定制的 CI/CD 系统"。</li>
+<li><strong>设计哲学</strong>：最成功的 Agent 实现并非依赖复杂框架，而是使用简单的可组合模式（simple, composable patterns）。<a href="../entities/Anthropic.html">Anthropic</a> 建议开发者直接使用 LLM API，许多模式仅需几行代码即可实现。</li>
+<li><strong>五种核心模式</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a>（<a href="Prompt Chaining.html">提示链</a>）、<a href="Routing 模式.html">Routing 模式</a>（路由）、<a href="Parallelization 模式.html">Parallelization 模式</a>（并行化）、<a href="Orchestrator-Workers 模式.html">Orchestrator-Workers 模式</a>（编排器-工作者）、<a href="Evaluator-Optimizer 模式.html">Evaluator-Optimizer 模式</a>（评估器-优化器）。这五种模式与软件工程经典设计模式存在深刻对应关系。</li>
+<li><strong>模式与软件工程的对应</strong>：<a href="Prompt Chaining.html">Prompt Chaining</a> ↔ Chain of Responsibility/Pipeline；Routing ↔ Strategy Pattern；Parallelization ↔ <a href="Parallelization 模式.html">Fork-Join</a>/<a href="MapReduce.html">MapReduce</a>；<a href="多Agent架构.html">Orchestrator-Worker</a>s ↔ <a href="Orchestrator-Workers 模式.html">Master-Worker</a>/Actor Model；Evaluator-Optimizer ↔ Feedback Control Loop。</li>
+<li><strong>工作流 vs Agent 的选择</strong>：<a href="Agent vs Workflow.html">Agent vs Workflow</a> 是关键架构<a href="../entities/区分.html">区分</a>。工作流提供确定性和一致性，Agent 提供灵活性和模型驱动决策。除非任务天然开放且步骤无法预判，否则工作流通常优于自主 Agent。</li>
+<li><strong><a href="ACI 设计原则.html">ACI 设计原则</a></strong>：<a href="ACI (Agent-Computer Interface).html">ACI (Agent-Computer Interface)</a> 需要与 HCI 同等重视，工具定义应包含示例用法、边缘情况、输入格式要求，参数名称要让意图显而易见。</li>
+<li><strong>长时运行深化</strong>：针对应用开发场景，<a href="../entities/Anthropic.html">Anthropic</a> 提出 <a href="Harness 设计.html">Harness 设计</a> 框架，包含 <a href="特性追踪器.html">特性追踪器</a>、<a href="上下文传递协议.html">上下文传递协议</a>、<a href="智能检查点触发.html">智能检查点触发</a>、<a href="三级自主权模型.html">三级自主权模型</a>、<a href="持续验证循环.html">持续验证循环</a> 和 <a href="技术债务追踪.html">技术债务追踪</a> 六大核心组件，本质上是"为 AI Agent 定制的 CI/CD 系统"。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

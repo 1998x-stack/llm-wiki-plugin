@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [architecture, delegation, parallelism]
+tags: [architecture, delegation, parallelism, AI工程]
 aliases: ["Sub Agent", "Multi Agent System", "Delegation Layer", "子 Agent", "多 Agent 系统"]
 relates_to: []
 supersedes: null
@@ -15,7 +15,7 @@ supersedes: null
 # 子 Agent & 多 Agent 系统
 
 ## 概述
-[[Claude Code]] 中的委派层，提供受控并行而非无限递归的 Agent 架构，通过深度限制防止 Agent 扩散失控。
+[[Claude Code]] 中的委派层，提供受控并行而非无限递归的 [[Agent 架构与设计原则|Agent 架构]]，通过深度限制防止 Agent 扩散失控。
 
 ## 关键内容
 
@@ -44,7 +44,7 @@ supersedes: null
    - 多个子 Agent 可同时安全操作不同文件
    - 子 Agent 完成后自动清理 Worktree
 
-5. **模型选择策略**：
+5. **[[模型选择]]策略**：
    - 探索型（搜索、收集信息）：[[Claude-Haiku-4-5|claude-haiku-4-5]]（廉价快速）
    - 实现型（大多数编码）：[[Claude-Sonnet-4-6|claude-sonnet-4-6]]（平衡）
    - 架构决策/深度推理：[[Claude-Opus-4-6|claude-opus-4-6]]（最强）

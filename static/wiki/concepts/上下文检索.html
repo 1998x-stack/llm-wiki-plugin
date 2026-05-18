@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">RAG</span><span class="tag">信息检索</span><span class="tag">检索增强生成</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">RAG</span><span class="tag">信息检索</span><span class="tag">检索增强生成</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="_1">上下文检索</h1>
 <h2 id="_2">概述</h2>
-<p>上下文检索（Contextual Retrieval）是 Anthropic 提出的一种 RAG 改进方法，通过在文本块嵌入和索引前添加语境化解释前缀，解决传统 RAG 切分导致的上下文丢失问题，显著降低检索失败率。</p>
+<p>上下文检索（Contextual Retrieval）是 <a href="../entities/Anthropic.html">Anthropic</a> 提出的一种 RAG 改进方法，通过在文本块嵌入和索引前添加语境化解释前缀，解决传统 RAG 切分导致的上下文丢失问题，显著降低检索失败率。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心机制</strong>：在预处理阶段，使用 LLM（如 <a href="../entities/Claude 3 Haiku.html">Claude 3 Haiku</a>）为每个文本块生成 50-100 token 的语境前缀，包含文档级别信息（如来源文档、时间、主体等），使孤立文本块变得"可理解"后再进行嵌入和 <a href="../entities/BM25.html">BM25</a> 索引。</p>
 </li>
 <li>
-<p><strong>性能提升</strong>：实验表明，结合上下文嵌入和上下文 BM25 可将检索失败率降低 <strong>49%</strong>；进一步结合重排序（<a href="Reranking.html">Reranking</a>）可达 <strong>67%</strong>。基准失败率 5.7% → 语境嵌入 3.7% → +语境 BM25 2.9% → +Reranking 1.9%。</p>
+<p><strong>性能提升</strong>：实验表明，结合上下文嵌入和上下文 BM25 可将检索失败率降低 <strong>49%</strong>；进一步结合<a href="Reranking.html">重排序</a>（<a href="Reranking.html">Reranking</a>）可达 <strong>67%</strong>。基准失败率 5.7% → 语境嵌入 3.7% → +语境 BM25 2.9% → +<a href="Reranking.html">Reranking</a> 1.9%。</p>
 </li>
 <li>
 <p><strong>成本优化</strong>：利用 <a href="Prompt Caching.html">Prompt Caching</a> 特性，文档只需加载到缓存一次即可为所有片段重复使用，每百万文档 token 成本仅 1.02 美元。</p>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与传统方法对比</strong>：优于通用文档摘要添加到块、摘要索引等方法，且与 <a href="../projects/LightRAG.html">LightRAG</a>/<a href="../projects/GraphRAG.html">GraphRAG</a> 不互斥——前者在块级别添加上下文，后者在图结构层面建模，可叠加使用。</p>
 </li>
 <li>
-<p><strong>技术选型建议</strong>：&lt;200K token 直接放入 Context Window；200K-10M token 用标准 RAG + Contextual Retrieval；&gt;10M token 需 Contextual Retrieval + Reranking + 多阶段检索。</p>
+<p><strong>技术选型建议</strong>：&lt;200K token 直接放入 <a href="Context Window.html">Context Window</a>；200K-10M token 用标准 RAG + Contextual Retrieval；&gt;10M token 需 Contextual Retrieval + <a href="Reranking.html">Reranking</a> + 多阶段检索。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：预处理成本增加、动态知识库更新挑战、语境质量依赖 prompt 设计、对自包含信息块提升有限。</p>

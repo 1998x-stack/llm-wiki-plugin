@@ -126,84 +126,53 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / FLP不可能性定理</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> —</div>
-  <div class="meta-item"><strong>Created:</strong> —</div>
-  <div class="meta-item"><strong>Updated:</strong> —</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">不可能性定理</span><span class="tag">概率论</span></div>
 </div>
   <div class="content">
-    <hr />
-<p>type: concept
-status: active
-confidence: 0.85
-created: 2026-04-26
-updated: 2026-04-26
-last_accessed: 2026-04-26
-source_count: 2
-tags: [分布式系统, 理论基础, 不可能性定理]
-aliases: ["FLP不可能性定理", "Fischer-Lynch-Paterson定理", "FLP Impossibility", "Consensus Impossibility"]
-relates_to:
-  - target: "<a href="分布式共识.html">分布式共识</a>"
-    type: addresses
-    confidence: 0.9
-  - target: "<a href="Paxos算法.html">Paxos算法</a>"
-    type: addressed_by
-    confidence: 0.9
-  - target: "<span style="color:#e74c3c" title="broken link">Michael J. Fischer</span>"
-    type: authored
-    confidence: 0.8
-  - target: "<span style="color:#e74c3c" title="broken link">Nancy Lynch</span>"
-    type: authored
-    confidence: 0.8
-  - target: "<span style="color:#e74c3c" title="broken link">Michael S. Paterson</span>"
-    type: authored
-    confidence: 0.8
-  - target: "<span style="color:#e74c3c" title="broken link">异步模型</span>
-    type: applies_to
-    confidence: 0.9
-supersedes: null</p>
-<hr />
-<h1 id="flp">FLP不可能性定理</h1>
+    <h1 id="flp">FLP不可能性定理</h1>
 <h2 id="_1">概述</h2>
-<p>FLP不可能性定理是分布式系统理论中的一个重要结论，由Michael J. Fischer、Nancy A. Lynch和Michael S. Paterson于1985年提出，证明了在完全异步的系统中，即使只有一个进程可能发生崩溃故障，也不存在任何确定性算法能够保证共识一定能达成。</p>
+<p>FLP不可能性定理是<a href="分布式系统.html">分布式系统</a>理论中的一个重要结论，由Michael J. <a href="../entities/恩斯特·菲舍尔.html">Fischer</a>、Nancy A. Lynch和Michael S. Paterson于1985年提出，证明了在完全异步的系统中，即使只有一个进程可能发生崩溃故障，也不存在任何确定性<a href="算法.html">算法</a>能够保证共识一定能达成。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>定理内容</strong>：</li>
-<li>在异步分布式系统中，即使只有一个进程可能发生崩溃故障，也没有任何确定性算法能保证在有限时间内解决共识问题</li>
+<li>在异步<a href="分布式系统.html">分布式系统</a>中，即使只有一个进程可能发生崩溃故障，也没有任何确定性<a href="算法.html">算法</a>能保证在有限时间内解决共识问题</li>
 <li>
 <p>这个结果适用于完全异步的模型，其中没有时间上限或同步假设</p>
 </li>
 <li>
 <p><strong>核心观点</strong>：</p>
 </li>
-<li>异步模型中无法区分进程崩溃和极长延迟</li>
-<li>在某些执行路径中，算法可能会永远无法终止</li>
+<li>异步模型中无法<a href="../entities/区分.html">区分</a>进程崩溃和极长延迟</li>
+<li>在某些执行路径中，<a href="算法.html">算法</a>可能会永远无法终止</li>
 <li>
-<p>算法必须在所有可能的执行路径中都能终止，FLP定理才适用</p>
+<p><a href="算法.html">算法</a>必须在所有可能的执行路径中都能终止，FLP定理才适用</p>
 </li>
 <li>
 <p><strong>对领域的影响</strong>：</p>
 </li>
-<li>这个定理曾经被认为是分布式系统领域的悲观结果</li>
-<li>导致研究者们转向同步模型或概率算法</li>
+<li>这个定理曾经被认为是<a href="分布式系统.html">分布式系统</a>领域的悲观结果</li>
+<li>导致研究者们转向同步模型或概率<a href="算法.html">算法</a></li>
 <li>
-<p>促使了如Paxos等算法的诞生，这些算法通过保证安全性、有条件保证活性来绕过不可能性</p>
+<p>促使了如<a href="Paxos 算法.html">Paxos</a>等<a href="算法.html">算法</a>的诞生，这些<a href="算法.html">算法</a>通过保证安全性、有条件保证活性来绕过不可能性</p>
 </li>
 <li>
-<p><strong>Paxos的突破</strong>：</p>
+<p><strong><a href="Paxos 算法.html">Paxos</a>的突破</strong>：</p>
 </li>
-<li>Paxos算法通过"安全性永远保证，活性在合理条件下保证"的策略绕过了FLP定理的限制</li>
-<li>该算法不追求在所有情况下都终止，而是保证永不产生错误结果</li>
+<li><a href="Paxos算法.html">Paxos算法</a>通过"安全性永远保证，活性在合理条件下保证"的策略绕过了FLP定理的限制</li>
+<li>该<a href="算法.html">算法</a>不追求在所有情况下都终止，而是保证永不产生错误结果</li>
 <li>
-<p>为分布式共识问题提供了实用的解决方案</p>
+<p>为<a href="分布式共识.html">分布式共识</a>问题提供了实用的解决方案</p>
 </li>
 <li>
 <p><strong>现实意义</strong>：</p>
 </li>
-<li>为分布式系统设计提供了理论边界</li>
-<li>指导工程师理解分布式系统的固有复杂性</li>
-<li>成为评估共识算法的重要理论基础</li>
+<li>为<a href="分布式系统.html">分布式系统</a>设计提供了理论边界</li>
+<li>指导工程师理解<a href="分布式系统.html">分布式系统</a>的固有复杂性</li>
+<li>成为评估共识<a href="算法.html">算法</a>的重要理论基础</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

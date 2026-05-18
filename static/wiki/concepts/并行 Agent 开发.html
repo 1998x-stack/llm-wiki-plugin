@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">multi-agent</span><span class="tag">parallel-development</span><span class="tag">claude</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">multi-agent</span><span class="tag">parallel-development</span><span class="tag">claude</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">并行 Agent 开发</h1>
 <h2 id="_1">概述</h2>
-<p>并行 Agent 开发是使用多个 AI Agent 实例同时执行软件开发任务的方法论，通过任务分解和接口规范实现加速交付。</p>
+<p>并行 Agent 开发是使用多个 AI Agent 实例同时执行软件开发任务的方法论，通过<a href="任务分解.html">任务分解</a>和<a href="接口规范.html">接口规范</a>实现加速交付。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>团队架构设计</strong>：Anthropic C 编译器实验采用三层架构——架构师 Agent（Claude Opus 4）负责设计整体架构和分配任务，并行开发 Agent（Claude Sonnet 4，多实例）负责各模块实现，集成 Agent（Claude Opus 4）负责合并和冲突解决。</p>
+<p><strong>团队架构设计</strong>：<a href="../entities/Anthropic.html">Anthropic</a> <a href="C 编译器.html">C 编译器</a>实验采用三层架构——架构师 Agent（<a href="../entities/Claude_Code.html">Claude</a> Opus 4）负责设计整体架构和分配任务，并行开发 Agent（<a href="../entities/Claude-Sonnet-4.html">Claude Sonnet 4</a>，多实例）负责各模块实现，集成 Agent（<a href="../entities/Claude_Code.html">Claude</a> Opus 4）负责合并和冲突解决。</p>
 </li>
 <li>
-<p><strong>性能数据</strong>：单个 Agent 顺序开发估计时间约 40 小时，并行 Agent 团队实际完成时间约 12 小时，加速比约 3.3×（理论最大值更高，受协调开销影响）。</p>
+<p><strong>性能数据</strong>：单个 Agent 顺序开发估计时间约 40 小时，并行 <a href="Agent-Teams-Pattern.html">Agent 团队</a>实际完成时间约 12 小时，加速比约 3.3×（理论最大值更高，受协调开销影响）。</p>
 </li>
 <li>
 <p><strong>关键成功因素</strong>：</p>
 </li>
-<li>精确的接口规范：在并行工作前达成一致</li>
-<li>测试先行：用可执行测试规范行为</li>
+<li>精确的<a href="接口规范.html">接口规范</a>：在并行工作前达成一致</li>
+<li><a href="测试先行.html">测试先行</a>：用可执行测试规范行为</li>
 <li>清晰的任务边界：避免工作重叠和冲突</li>
 <li>
 <p>版本控制纪律：每个 Agent 在独立 git 分支工作</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>适用场景</strong>：模块接口清晰稳定、依赖是有向无环的、每个模块有独立验证手段的场景适合并行化；核心数据结构频繁变化、模块间循环依赖的场景不适合。</p>
 </li>
 <li>
-<p><strong>教育意义</strong>：C 编译器是"有向无环图"形式的典型复杂系统，清晰的数据流和模块边界天然适合并行开发。紧耦合模块场景下多 Agent 并行收益会大幅下降。</p>
+<p><strong>教育意义</strong>：<a href="C 编译器.html">C 编译器</a>是"有向无环图"形式的典型复杂系统，清晰的数据流和模块边界天然适合并行开发。紧耦合模块场景下多 Agent 并行收益会大幅下降。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

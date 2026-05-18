@@ -126,21 +126,64 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / happened-before 关系</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
 </div>
   <div class="content">
-    <h1 id="happened-before">happened-before 关系</h1>
+    <hr />
+<p>type: concept
+status: active
+confidence: 0.95
+created: 2026-04-17
+updated: 2026-04-17
+last_accessed: 2026-04-17
+source_count: 1
+tags: [技术, 研究, 计算理论, 概率论]
+- 技术
+- 研究
+- 计算理论
+aliases:
+- happened-before
+- 因果顺序
+- 事件偏序
+relates_to:
+- target: "<a href="../entities/Lamport 逻辑时钟论文.html">Lamport 逻辑时钟论文</a>"
+  type: caused_by
+  confidence: 0.99
+  note: 论文中首次定义
+- target: "<a href="../entities/Leslie Lamport.html">Leslie Lamport</a>"
+  type: caused_by
+  confidence: 0.99
+  note: 定义者
+- target: "<a href="逻辑时钟.html">逻辑时钟</a>"
+  type: implements
+  confidence: 0.95
+  note: 逻辑时钟实现了 happened-before 关系
+- target: "<a href="分布式系统.html">分布式系统</a>"
+  type: part_of
+  confidence: 0.95
+  note: 分布式系统理论的基本语言
+- target: "<a href="向量时钟.html">向量时钟</a>"
+  type: extends
+  confidence: 0.85
+  note: 向量时钟完整捕获了 happened-before 关系
+- target: "<a href="TCP-IP.html">TCP-IP</a>"
+  type: related_to
+  confidence: 0.7
+  note: 消息传递基于网络通信
+supersedes: null</p>
+<hr />
+<h1 id="happened-before">happened-before 关系</h1>
 <h2 id="_1">概述</h2>
 <p>happened-before 关系是<a href="分布式系统.html">分布式系统</a>中事件之间的因果偏序关系，由 <a href="../entities/Leslie Lamport.html">Leslie Lamport</a> 于1978年首次精确定义，是<a href="分布式系统.html">分布式系统</a>理论的基本语言。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">三条定义规则</h3>
 <ol>
 <li><strong>进程内顺序</strong>：同一进程中，先执行的事件因果上先于后执行的事件</li>
-<li><strong>消息传递因果</strong>：消息的发送事件因果上先于接收事件</li>
+<li><strong><a href="消息传递.html">消息传递</a>因果</strong>：消息的发送事件因果上先于接收事件</li>
 <li><strong>传递性</strong>：如果 a --&gt; b 且 b --&gt; c，则 a --&gt; c</li>
 </ol>
 <h3 id="concurrency">并发（Concurrency）</h3>

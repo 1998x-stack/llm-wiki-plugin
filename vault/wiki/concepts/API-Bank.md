@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 评估基准, API文档]
+tags: [LLM, 工具调用, 评估基准, API文档, AI工程]
 aliases: ["API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs"]
 relates_to: []
 supersedes: null

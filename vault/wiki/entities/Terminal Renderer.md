@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [terminal-ui, rendering, optimization]
+tags: [terminal-ui, rendering, optimization, 游戏开发]
 aliases: ["Terminal Rendering Engine", "CLI UI"]
 relates_to: []
 supersedes: null

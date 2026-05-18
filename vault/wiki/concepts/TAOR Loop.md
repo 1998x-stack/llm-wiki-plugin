@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [architecture-pattern, agent-system, loop-pattern]
+tags: [architecture-pattern, agent-system, loop-pattern, AI工程]
 aliases: ["TAOR Loop", "nO 主循环", "Think-Act-Observe-Repeat"]
 relates_to:
   - target: "[[Claude Code]]"

@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。
+Ablation Study（[[消融实验]]）是 [[SWE-agent]] 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。
 
 ## 关键内容
 
@@ -52,7 +52,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 
 | 组件 | 对比 | 结果 | 降幅 | 支撑的原则 |
 |------|------|------|------|-----------|
-| **Editor** | edit w/ linting vs edit w/o linting vs no edit | 有 linting 最优（18.0），无 linting 次之（15.0），无 edit 最差（10.3） | -3.0 / -7.7 | [[Guardrails]] 减少错误传播 |
+| **Editor** | edit w/ linting vs edit w/o linting vs no edit | 有 linting 最优（18.0），无 linting 次之（15.0），无 edit 最差（10.3） | -3.0 / -7.7 | [[Guardrails]] 减少[[错误复合|错误传播]] |
 | **Search** | summarized vs iterative vs no search | 总结式最优（18.0），迭代式最差（12.0），无搜索居中（15.7） | -6.0 / -2.3 | 反馈简洁、信息密度高 |
 | **File Viewer** | 100 lines vs 30 lines vs full file | 100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7） | -3.7 / -5.3 | 适中窗口利于局部推理 |
 | **Context** | last 5 obs vs full history vs w/o demo | 最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3） | -3.0 / -1.7 | 简洁反馈、[[工作记忆]]有限 |
@@ -81,7 +81,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 
 - **100 lines（18.0）**：最佳平衡。
 - **30 lines（14.3）**：局部上下文较少，可能不够支撑局部推理。
-- **Full file（12.7）**：整文件反而最差。LM 不像人类那样能轻松忽略不重要内容，多余信息会占 token、扰乱注意力。
+- **Full file（12.7）**：整文件反而最差。LM 不像人类那样能轻松忽略不重要内容，多余信息会占 token、扰乱[[注意力机制|注意力]]。
 
 **证明**：对 agent 来说，信息总量和信息可用性不是一回事。整文件虽然信息最全，但不是最可用。
 
@@ -111,7 +111,7 @@ Ablation Study（消融实验）是 [[SWE-agent]] 论文中用于验证"性能�
 
 ### 与 Agent 评估的关系
 
-消融实验是 [[Agent评估方法论]] 的重要组成部分，它回答了"哪个设计选择真正贡献了性能增益"这一因果问题。
+[[消融实验]]是 [[Agent评估方法论]] 的重要组成部分，它回答了"哪个设计选择真正贡献了性能增益"这一因果问题。
 
 ## 来源
 

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, ai-agents, subagents]
+tags: [ai-tools, ai-agents, subagents, AI工程]
 aliases: ["Subagents", "Sub intelligent agents"]
 relates_to:
   - target: "[[Claude Code]]"

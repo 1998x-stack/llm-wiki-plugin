@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [neural networks, machine learning, linear classifiers]
+tags: ["neural networks", "machine learning", "linear classifiers", AI工程]
 aliases: ["The Perceptron: A Probabilistic Model for Information Storage", "感知机模型", "Rosenblatt Perceptron"]
 relates_to: []
 supersedes: null

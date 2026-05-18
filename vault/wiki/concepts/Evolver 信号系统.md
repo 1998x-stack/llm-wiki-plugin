@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [evolver, signals, ai-tools, system-analysis]
+tags: [evolver, signals, ai-tools, system-analysis, AI工程]
 aliases: ["Evolver Signals System", "Evolver 信号系统"]
 relates_to: []
 supersedes: null

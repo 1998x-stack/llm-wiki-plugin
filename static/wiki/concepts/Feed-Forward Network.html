@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">feed-forward</span><span class="tag">deep-learning</span><span class="tag">nlp</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">feed-forward</span><span class="tag">deep-learning</span><span class="tag">nlp</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="feed-forward-network">Feed-Forward Network</h1>
@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>功能分工</strong>：</p>
 </li>
 <li><a href="注意力机制（Attention Mechanism）.html">注意力机制</a>：跨位置信息聚合（"哪些词相关？"）</li>
-<li>FFN：逐位置特征变换（"这个词的特征如何处理？"）</li>
+<li>FFN：逐位置<a href="特征变换.html">特征变换</a>（"这个词的特征如何处理？"）</li>
 <li>
 <p>两者协同实现全局信息整合与局部特征处理</p>
 </li>
@@ -159,12 +159,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>位置无关的变换：每个位置共享相同的权重<a href="矩阵.html">矩阵</a></li>
 <li>维度扩展：内部维度扩展4倍增强表达能力</li>
 <li>
-<p>非线性激活：ReLU函数引入非线性变换能力</p>
+<p><a href="非线性激活.html">非线性激活</a>：ReLU函数引入非线性变换能力</p>
 </li>
 <li>
 <p><strong>在架构中的作用</strong>：</p>
 </li>
-<li>每个注意力子层之后都有一个FFN</li>
+<li>每个<a href="注意力机制.html">注意力</a>子层之后都有一个FFN</li>
 <li>与<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>交替出现，形成层叠结构</li>
 <li><a href="残差连接.html">残差连接</a>和<a href="Layer Normalization.html">层归一化</a>保证训练稳定性</li>
 </ol>

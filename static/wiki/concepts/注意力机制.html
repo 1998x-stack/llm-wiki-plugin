@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">序列建模</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">神经网络</span><span class="tag">深度学习</span><span class="tag">序列建模</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">注意力机制</h1>
@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>核心思想</strong>：</li>
 <li>允许解码器在生成每个输出时，"回头看"输入序列的所有位置</li>
-<li>通过学习输入序列各部分的重要性权重来实现选择性关注</li>
+<li>通过学习输入序列各部分的<a href="重要性采样.html">重要性权重</a>来实现选择性关注</li>
 <li>
 <p>极大地增强了长距离依赖的捕捉能力</p>
 </li>
@@ -148,24 +148,24 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>历史发展</strong>：</p>
 </li>
 <li>2014年由Bahdanau等人首次提出用于神经机器翻译</li>
-<li>解决了编码器-解码器架构在处理长序列时的局限性</li>
+<li>解决了<a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器</a>架构在处理长序列时的局限性</li>
 <li>
-<p>成为连接LSTM时代和Transformer时代的桥梁</p>
+<p>成为连接LSTM时代和<a href="../entities/Transformer.html">Transformer</a>时代的桥梁</p>
 </li>
 <li>
 <p><strong>与LSTM的关系</strong>：</p>
 </li>
-<li>即使有了LSTM，编码器-解码器架构在处理长序列时仍然力不从心</li>
+<li>即使有了LSTM，<a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器</a>架构在处理长序列时仍然力不从心</li>
 <li>注意力机制是对LSTM能力的有力补充</li>
 <li>
-<p>为后续的Transformer架构奠定了基础</p>
+<p>为后续的<a href="Transformer架构.html">Transformer架构</a>奠定了基础</p>
 </li>
 <li>
 <p><strong>技术意义</strong>：</p>
 </li>
 <li>提供了一种新的建模序列关系的方法</li>
-<li>是从RNN/LSTM到Transformer架构演化的关键环节</li>
-<li>在2017年Transformer架构中得到了更加纯粹的应用</li>
+<li>是从RNN/LSTM到<a href="Transformer架构.html">Transformer架构</a>演化的关键环节</li>
+<li>在2017年<a href="Transformer架构.html">Transformer架构</a>中得到了更加纯粹的应用</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

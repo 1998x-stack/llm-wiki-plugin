@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">算法</span><span class="tag">互斥</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">算法</span><span class="tag">互斥</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">分布式互斥算法</h1>
 <h2 id="_2">概述</h2>
-<p>分布式互斥算法是解决多个分布式进程竞争共享资源访问权的算法，确保同一时刻只有一个进程能够访问临界区，是分布式系统中的基本同步原语。</p>
+<p>分布式互斥<a href="算法.html">算法</a>是解决多个分布式进程竞争共享资源访问权的<a href="算法.html">算法</a>，确保同一时刻只有一个进程能够访问临界区，是<a href="分布式系统.html">分布式系统</a>中的基本同步原语。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>问题定义</strong>：</li>
@@ -145,16 +145,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>需要保证互斥性、无饥饿、公平性</p>
 </li>
 <li>
-<p><strong>Lamport算法</strong>：</p>
+<p><strong>Lamport<a href="算法.html">算法</a></strong>：</p>
 </li>
-<li>基于逻辑时钟的全序关系</li>
+<li>基于<a href="逻辑时钟.html">逻辑时钟</a>的全序关系</li>
 <li>进程维护请求队列，按全序排序</li>
 <li>使用三种消息：请求、确认、释放</li>
 <li>
 <p>通信开销：每次进入临界区需3(N-1)条消息</p>
 </li>
 <li>
-<p><strong>算法步骤</strong>：</p>
+<p><strong><a href="算法.html">算法</a>步骤</strong>：</p>
 </li>
 <li>请求资源：向所有进程广播带时间戳的请求</li>
 <li>接收请求：加入本地队列并发送确认</li>
@@ -165,7 +165,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>局限性</strong>：</p>
 </li>
-<li>不容错：任何进程崩溃或消息丢失都会导致算法失效</li>
+<li>不容错：任何进程崩溃或消息丢失都会导致<a href="算法.html">算法</a>失效</li>
 <li>高通信开销：O(N)消息复杂度</li>
 <li>需要所有进程参与</li>
 </ol>

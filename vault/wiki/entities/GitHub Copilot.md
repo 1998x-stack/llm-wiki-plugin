@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [ai-tools, coding-assistant, github, microsoft]
+tags: [ai-tools, coding-assistant, github, microsoft, AI工程]
 aliases: ["GitHub Copilot", "Copilot"]
 relates_to:
   - target: "[[Claude Code]]"
@@ -21,7 +21,7 @@ supersedes: null
 # GitHub Copilot
 
 ## 概述
-GitHub 与 OpenAI 合作开发的 AI 代码补全工具，提供代码建议、自动补全和对话式编程辅助，是最早广泛采用的 AI 编程助手之一。
+[[GitHub]] 与 [[OpenAI]] 合作开发的 AI 代码补全工具，提供代码建议、自动补全和对话式编程辅助，是最早广泛采用的 AI 编程助手之一。
 
 ## 关键内容
 
@@ -31,7 +31,7 @@ GitHub 与 OpenAI 合作开发的 AI 代码补全工具，提供代码建议、�
    - **多语言支持**：支持主流编程语言和框架
 
 2. **对技术评测的影响**：
-   - AI 可以在几秒内解决大多数经典算法题
+   - AI 可以在几秒内解决大多数经典[[算法]]题
    - AI 可以通过多数代码完成性测试
    - AI 可以生成看起来合理的系统设计方案
    - 导致"[[评测通货膨胀]]"——通过传统评测不再意味着候选人具备传统评测试图验证的能力

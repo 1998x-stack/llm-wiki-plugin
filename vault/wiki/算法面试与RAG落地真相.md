@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 研究, 工作]
+tags: [技术, 研究, 工作, 计算理论]
 aliases: [算法面试, RAG落地真相, AI Agent面试]
 relates_to:
   - 检索增强生成

@@ -130,34 +130,34 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">attention-mechanism</span><span class="tag">sparse-attention</span><span class="tag">time-series</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">attention-mechanism</span><span class="tag">sparse-attention</span><span class="tag">time-series</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="probsparse">ProbSparse自注意力</h1>
 <h2 id="_1">概述</h2>
-<p>Informer模型提出的一种改进自注意力机制的方法，通过概率稀疏化减少计算复杂度，从O(L^2)降至O(L*ln L)。</p>
+<p><a href="Informer.html">Informer</a>模型提出的一种改进<a href="自注意力机制.html">自注意力机制</a>的方法，通过概率稀疏化减少<a href="计算.html">计算</a>复杂度，从O(L^2)降至O(L*ln L)。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心原理</strong>：</li>
-<li>标准自注意力中多数query的注意力分布接近均匀分布，信息含量极低</li>
-<li>只有少数query真正"专注"于某些key，呈现出尖锐的注意力分布，这些才是有价值的query</li>
+<li>标准<a href="Self-Attention机制.html">自注意力</a>中多数query的<a href="注意力机制.html">注意力</a>分布接近均匀分布，信息含量极低</li>
+<li>只有少数query真正"专注"于某些key，呈现出尖锐的<a href="注意力机制.html">注意力</a>分布，这些才是有价值的query</li>
 <li>
-<p>通过计算每个query的注意力分布与均匀分布间的KL散度衡量query稀疏性</p>
+<p>通过<a href="计算.html">计算</a>每个query的<a href="注意力机制.html">注意力</a>分布与均匀分布间的<a href="KL散度.html">KL散度</a>衡量query稀疏性</p>
 </li>
 <li>
 <p><strong>实现方法</strong>：</p>
 </li>
-<li>在所有query中只保留KL散度最高的Top-u个query（u = c * ln(L)，c为采样因子）</li>
-<li>对被淘汰的query，将其注意力输出设为所有value的均值</li>
+<li>在所有query中只保留<a href="KL散度.html">KL散度</a>最高的Top-u个query（u = c * ln(L)，c为采样因子）</li>
+<li>对被淘汰的query，将其<a href="注意力机制.html">注意力</a>输出设为所有value的均值</li>
 <li>
-<p>最终只需计算O(L * ln L)次点积，而非O(L^2)</p>
+<p>最终只需<a href="计算.html">计算</a>O(L * ln L)次点积，而非O(L^2)</p>
 </li>
 <li>
 <p><strong>优势与效果</strong>：</p>
 </li>
-<li>大幅提升计算效率，降低内存占用</li>
+<li>大幅提升<a href="计算.html">计算</a>效率，降低内存占用</li>
 <li>保持模型性能，专注于有价值的信息交互</li>
-<li>为处理长序列时间序列预测提供可行方案</li>
+<li>为处理<a href="长序列时间序列预测.html">长序列时间序列预测</a>提供可行方案</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

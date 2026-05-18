@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [深度学习, 优化问题, 神经网络训练, Batch Normalization]
+tags: [深度学习, 优化问题, 神经网络训练, "Batch Normalization", 机器学习]
 aliases: [Internal Covariate Shift, 协变量偏移, 内部协变量漂移]
 relates_to:
   - target: "[[Batch Normalization]]"

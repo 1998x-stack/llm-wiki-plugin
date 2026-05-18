@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [transformer, time-series, forecasting, research-paper]
+tags: [transformer, time-series, forecasting, research-paper, 时间序列]
 aliases: ["Autoformer", "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [tech-stack, ui-framework, terminal]
+tags: [tech-stack, ui-framework, terminal, AI设计]
 aliases: ["Ink", "React Ink"]
 relates_to:
   - target: "[[React]]"

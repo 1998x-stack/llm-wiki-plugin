@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">卷积神经网络</span><span class="tag">架构设计</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">卷积神经网络</span><span class="tag">架构设计</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="33">3×3卷积核</h1>
 <h2 id="_1">概述</h2>
-<p>3×3卷积核是深度学习中使用最广泛的卷积核尺寸，特别在<a href="VGGNet.html">VGGNet</a>架构中被系统性应用。通过多个3×3卷积的组合可以等效更大的<a href="感受野.html">感受野</a>，同时保持较少的参数量并增加非线性激活次数。</p>
+<p>3×3卷积核是深度学习中使用最广泛的卷积核尺寸，特别在<a href="VGGNet.html">VGGNet</a>架构中被系统性应用。通过多个3×3卷积的组合可以等效更大的<a href="感受野.html">感受野</a>，同时保持较少的参数量并增加<a href="非线性激活.html">非线性激活</a>次数。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong><a href="感受野.html">感受野</a>等效性</strong>：两个3×3卷积的串联可以获得5×5卷积相同的<a href="感受野.html">感受野</a>，三个3×3卷积串联等效于7×7卷积的<a href="感受野.html">感受野</a>，公式为：n个3×3卷积的等效<a href="感受野.html">感受野</a>大小为(2n+1)×(2n+1)。</p>
 </li>
 <li>
-<p><strong>非线性增强</strong>：相比于单个大卷积核，多个小卷积核串联可以在相同空间覆盖下引入更多非线性激活函数（如ReLU），增强网络的表达能力。</p>
+<p><strong>非线性增强</strong>：相比于单个大卷积核，多个小卷积核串联可以在相同空间覆盖下引入更多<a href="非线性激活.html">非线性激活</a>函数（如ReLU），增强网络的表达能力。</p>
 </li>
 <li>
 <p><strong><a href="VGGNet.html">VGGNet</a>中的应用</strong>：<a href="VGGNet.html">VGGNet</a>首次系统性地证明了只使用3×3卷积核，通过增加网络深度可以显著提升性能，这一设计理念成为后续许多架构的基础。</p>

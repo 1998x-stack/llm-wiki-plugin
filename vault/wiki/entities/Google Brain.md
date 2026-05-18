@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [company, research, ai, google]
+tags: [company, research, ai, google, AI工程]
 aliases: ["Google Research", "Google AI"]
 relates_to:
   - target: "[[Transformer]]"

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">tool-design</span><span class="tag">error-prevention</span><span class="tag">ACI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">tool-design</span><span class="tag">error-prevention</span><span class="tag">ACI</span><span class="tag">AI设计</span></div>
 </div>
   <div class="content">
     <h1 id="_1">防错设计</h1>
@@ -145,10 +145,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在 Agent 工具设计中的应用</strong>：防错设计是提升 <a href="工具描述质量.html">工具描述质量</a> 的具体方法。当工具接口本身限制了错误可能性时，即使工具描述不够完善，Agent 也不容易犯错。这与 <a href="ACI 设计原则.html">ACI 设计原则</a> 中"减少认知负担"的原则一致。</p>
 </li>
 <li>
-<p><strong>实践案例</strong>：Claude 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 上的经验表明，要求绝对路径而非相对路径可以显著减少文件操作错误。这是防错设计在代码编辑工具中的典型应用——通过强制使用绝对路径，消除了相对路径解析带来的歧义。</p>
+<p><strong>实践案例</strong>：<a href="../entities/Claude_Code.html">Claude</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 上的经验表明，要求绝对路径而非相对路径可以显著减少文件操作错误。这是防错设计在代码编辑工具中的典型应用——通过强制使用绝对路径，消除了相对路径解析带来的歧义。</p>
 </li>
 <li>
-<p><strong>与工具描述的关系</strong>：防错设计和工具描述质量是互补的。防错设计从接口层面预防错误，工具描述从文档层面指导正确使用。两者结合可以最大化 Agent 的工具使用成功率。Anthropic 的实践表明，这种结合能使任务完成时间减少 40%。</p>
+<p><strong>与工具描述的关系</strong>：防错设计和<a href="工具描述质量.html">工具描述质量</a>是互补的。防错设计从接口层面预防错误，工具描述从文档层面指导正确使用。两者结合可以最大化 Agent 的工具使用成功率。<a href="../entities/Anthropic.html">Anthropic</a> 的实践表明，这种结合能使任务完成时间减少 40%。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">prompt-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">prompt-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="prompt-chaining">Prompt Chaining</h1>
 <h2 id="_1">概述</h2>
-<p>将复杂任务分解为顺序执行的多个 LLM 调用步骤，每个步骤处理前一步的输出，可在中间插入程序化检查点（gate）以确保质量。</p>
+<p>将复杂<a href="任务分解.html">任务分解</a>为顺序执行的多个 LLM 调用步骤，每个步骤处理前一步的输出，可在中间插入程序化检查点（gate）以确保质量。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>工作流程</strong>：Input → [LLM1] → Gate? → [LLM2] → Gate? → [LLM3] → Output。每个 LLM 调用处理上一个的输出，可在中间步骤插入程序化检查（gate）。</li>
 <li><strong>适用场景</strong>：任务能被清晰拆分为固定子任务，以延迟换取更高精度。适合需要多阶段处理的场景，如内容生成→翻译、大纲→检验→正文。</li>
 <li><strong>典型案例</strong>：生成营销文案 → 翻译成目标语言；写文档大纲 → 检验大纲 → 基于大纲撰写正文。每个中间 gate 可以验证输出质量，不合格则终止或重试。</li>
 <li><strong>与软件工程的对应</strong>：Prompt Chaining 对应软件工程中的 Chain of Responsibility 模式和 Pipeline 模式，数据沿固定路径流动，每阶段进行特定处理。</li>
-<li><strong>优势与权衡</strong>：优势在于每步骤可独立优化和调试，gate 提供质量控制点；代价是增加端到端延迟，适合精度优先于速度的场景。</li>
+<li><strong>优势与权衡</strong>：优势在于每步骤可独立优化和调试，gate 提供<a href="质量保障.html">质量控制</a>点；代价是增加端到端延迟，适合精度优先于速度的场景。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

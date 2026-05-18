@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">并发计算</span><span class="tag">同步</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">并发计算</span><span class="tag">同步</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">异步通信</h1>
@@ -142,16 +142,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实现机制</strong>：发送方将消息放入缓冲区或队列后即可继续执行，接收方可在任意时间从缓冲区取出消息。</p>
 </li>
 <li>
-<p><strong>与同步通信对比</strong>：不需要发送方和接收方同时就绪，避免了不必要的阻塞，但增加了缓冲区管理的复杂性。</p>
+<p><strong>与<a href="同步通信.html">同步通信</a>对比</strong>：不需要发送方和接收方同时就绪，避免了不必要的阻塞，但增加了缓冲区管理的复杂性。</p>
 </li>
 <li>
-<p><strong>应用实例</strong>：Erlang的Actor模型采用异步通信，允许进程间通过邮箱传递消息，发送方无需等待接收方就绪。</p>
+<p><strong>应用实例</strong>：<a href="../entities/Erlang.html">Erlang</a>的Actor模型采用异步通信，允许进程间通过邮箱传递消息，发送方无需等待接收方就绪。</p>
 </li>
 <li>
-<p><strong>优缺点</strong>：相比同步通信，异步通信在某些场景下效率更高，但可能面临缓冲区溢出或消息丢失等问题。</p>
+<p><strong>优缺点</strong>：相比<a href="同步通信.html">同步通信</a>，异步通信在某些场景下效率更高，但可能面临缓冲区溢出或消息丢失等问题。</p>
 </li>
 <li>
-<p><strong>选择依据</strong>：在分布式系统中，异步通信的延迟可能比同步通信更可接受，但同步通信提供了更强的时序保证。</p>
+<p><strong>选择依据</strong>：在<a href="分布式系统.html">分布式系统</a>中，异步通信的延迟可能比<a href="同步通信.html">同步通信</a>更可接受，但<a href="同步通信.html">同步通信</a>提供了更强的时序保证。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

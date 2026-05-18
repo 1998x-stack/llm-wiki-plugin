@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, protocol, communication]
+tags: [ai-agent, protocol, communication, AI工程]
 aliases: ["A2A", "Agent-to-Agent Protocol", "Agent-to-Agent Communication Protocol"]
 relates_to:
   - target: "[[Evolver]]"

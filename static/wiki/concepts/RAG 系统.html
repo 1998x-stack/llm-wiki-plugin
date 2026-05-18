@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">retrieval</span><span class="tag">rag</span><span class="tag">knowledge-management</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">retrieval</span><span class="tag">rag</span><span class="tag">knowledge-management</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="rag">RAG 系统</h1>
 <h2 id="_1">概述</h2>
-<p>RAG（检索增强生成）是结合信息检索与语言生成的 AI 架构模式，通过从外部知识库检索相关上下文来增强模型生成能力。</p>
+<p>RAG（<a href="检索增强生成.html">检索增强生成</a>）是结合信息检索与语言生成的 AI 架构模式，通过从外部知识库检索相关上下文来增强模型生成能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>Contextual Retrieval 突破</strong>：2024 年 9 月 Anthropic 提出的上下文检索方法，通过为文本块添加语境前缀，降低检索失败率 49-67%。这是 RAG 系统的重要演进方向。</p>
+<p><strong><a href="上下文检索.html">Contextual Retrieval</a> 突破</strong>：2024 年 9 月 <a href="../entities/Anthropic.html">Anthropic</a> 提出的<a href="上下文检索.html">上下文检索</a>方法，通过为文本块添加语境前缀，降低检索失败率 49-67%。这是 RAG 系统的重要演进方向。</p>
 </li>
 <li>
-<p><strong>检索失败优化</strong>：传统 RAG 系统的核心问题是检索上下文不足，Contextual Retrieval 通过增加语境信息显著改善这一问题。</p>
+<p><strong>检索失败优化</strong>：传统 RAG 系统的核心问题是检索上下文不足，<a href="上下文检索.html">Contextual Retrieval</a> 通过增加语境信息显著改善这一问题。</p>
 </li>
 <li>
-<p><strong>与上下文工程的关系</strong>：RAG 是上下文工程的重要组成部分，提供外部知识检索能力，与压缩、记录、子 Agent 等技术共同构成完整的上下文管理框架。</p>
+<p><strong>与<a href="上下文工程.html">上下文工程</a>的关系</strong>：RAG 是<a href="上下文工程.html">上下文工程</a>的重要组成部分，提供外部知识检索能力，与压缩、记录、<span style="color:#e74c3c" title="broken link">子 Agent</span> 等技术共同构成完整的<a href="Context Management.html">上下文管理</a>框架。</p>
 </li>
 <li>
 <p><strong>工程实践挑战</strong>：RAG 系统的质量取决于检索准确性、上下文相关性和生成一致性，需要持续的评测和优化。</p>

@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">MCP</span><span class="tag">Claude Desktop</span><span class="tag">开发者体验</span><span class="tag">生态系统</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">MCP</span><span class="tag">Claude Desktop</span><span class="tag">开发者体验</span><span class="tag">生态系统</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="desktop-extensions">Desktop Extensions</h1>
 <h2 id="_1">概述</h2>
-<p>Desktop Extensions 是 Claude Desktop 的一键 MCP 服务器安装功能，将原本需要 10-30 分钟的技术操作简化为点击安装，大幅降低 AI 工具集成门槛。</p>
+<p>Desktop Extensions 是 <a href="../entities/Claude Desktop.html">Claude Desktop</a> 的一键 <a href="MCP 服务器.html">MCP 服务器</a>安装功能，将原本需要 10-30 分钟的技术操作简化为点击安装，大幅降低 AI 工具集成门槛。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>解决的核心问题</strong>：在 Desktop Extensions 之前，安装 MCP 服务器需要克隆代码、安装依赖、手动配置 config.json，对非技术用户几乎不可能。Extensions 将整个流程自动化，用户只需点击"Install"并确认权限。</p>
+<p><strong>解决的核心问题</strong>：在 Desktop Extensions 之前，安装 <a href="MCP 服务器.html">MCP 服务器</a>需要克隆代码、安装依赖、手动<a href="Configuration.html">配置</a> config.json，对非技术用户几乎不可能。Extensions 将整个流程自动化，用户只需点击"Install"并确认<a href="Permissions.html">权限</a>。</p>
 </li>
 <li>
-<p><strong>技术架构</strong>：扩展采用 <code>.dxt</code> 打包格式，包含 <code>manifest.json</code>（元数据和权限声明）、<code>server/</code>（MCP 服务器代码）、<code>assets/</code>（图标截图）和 <code>README.md</code>。运行时每个扩展在独立进程中隔离，敏感凭证存储在系统密钥链中。</p>
+<p><strong>技术架构</strong>：扩展采用 <code>.dxt</code> 打包格式，包含 <code>manifest.json</code>（元数据和<a href="Permissions.html">权限</a>声明）、<code>server/</code>（<a href="MCP 服务器.html">MCP 服务器</a>代码）、<code>assets/</code>（图标截图）和 <code>README.md</code>。运行时每个扩展在独立进程中隔离，敏感凭证存储在系统密钥链中。</p>
 </li>
 <li>
-<p><strong>安全模型</strong>：采用权限声明 + 用户确认模式，类似 iOS App 权限请求。扩展必须在 manifest.json 中声明所需权限（如 <code>internet</code>、<code>filesystem:read</code>），安装时用户可见并确认。</p>
+<p><strong>安全模型</strong>：采用<a href="Permissions.html">权限</a>声明 + 用户确认模式，类似 iOS App <a href="Permissions.html">权限</a>请求。扩展必须在 manifest.json 中声明所需<a href="Permissions.html">权限</a>（如 <code>internet</code>、<code>filesystem:read</code>），安装时用户可见并确认。</p>
 </li>
 <li>
 <p><strong>生态系统影响</strong>：降低安装门槛 → 更多用户尝试 → 更多开发者开发工具 → 生态繁荣。这种"基础设施降摩擦"的长期回报往往超过直接功能开发，是 AI 平台竞争的核心变量。</p>

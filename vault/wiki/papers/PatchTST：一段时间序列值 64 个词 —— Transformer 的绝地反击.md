@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [时间序列预测, Transformer, PatchTST, 机器学习]
+tags: [时间序列预测, Transformer, PatchTST, 机器学习, 时间序列]
 aliases: ["A Time Series is Worth 64 Words", "PatchTST", "时间序列分块", "通道独立"]
 relates_to: []
 supersedes: null

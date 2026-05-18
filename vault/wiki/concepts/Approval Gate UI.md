@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, Agent系统, 人机协同, 安全]
+tags: [技术, Agent系统, 人机协同, 安全, AI设计]
 aliases: [Approval Gate, 审批门, 审批界面]
 relates_to:
   - target: "[[Codex TUI]]"
@@ -35,7 +35,7 @@ Approval Gate UI 是 Agent 系统中关键的人机协同节点，将 [[ExecPoli
 |------|------|---------|
 | `untrusted` | 只允许已知安全的只[[Read|读操作]]自动执行 | 新[[仓库]]/高风险环境 |
 | `on-request` | Agent 遇到需要时才暂停询问（推荐交互模式）| 日常开发 |
-| `never` | 全自动，不暂停（配合外部沙箱使用）| CI/自动化脚本 |
+| `never` | 全自动，不暂停（配合外部[[Claude Code 沙箱机制|沙箱]]使用）| CI/自动化脚本 |
 | `granular` | 精细到每类动作独立[[Configuration|配置]] | 高级定制 |
 
 ## 界面设计要素

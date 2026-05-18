@@ -48,7 +48,7 @@ supersedes: null
 
 ## 概述
 
-[[Leslie Lamport]] 于1998年发表的《The Part-Time Parliament》（初稿完成于1989年），首次提出了 [[Paxos 算法]]——分布式共识问题的第一个实用解决方案。
+[[Leslie Lamport]] 于1998年发表的《[[Paxos算法|The Part-Time Parliament]]》（初稿完成于1989年），首次提出了 [[Paxos 算法]]——[[分布式共识]]问题的第一个实用解决方案。
 
 ## 关键内容
 
@@ -56,7 +56,7 @@ supersedes: null
 
 | 条目 | 内容 |
 |------|------|
-| **标题** | The Part-Time Parliament |
+| **标题** | [[Paxos算法|The Part-Time Parliament]] |
 | **作者** | [[Leslie Lamport]] |
 | **初稿完成** | 1989年 |
 | **正式发表** | 1998年5月，ACM TOCS, Vol. 16, No. 2, pp. 133-169 |

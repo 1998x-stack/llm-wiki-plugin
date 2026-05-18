@@ -45,7 +45,7 @@ supersedes: null
 
 ## 概述
 
-Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完全基于[[注意力机制（Attention Mechanism）|注意力机制]]的 [[Transformer 架构]]，开启了大[[Language-Model|语言模型]]与通用人工智能的新纪元。
+Vaswani 等人于2017年发表的《[[Attention Is All You Need]]》，提出了完全基于[[注意力机制（Attention Mechanism）|注意力机制]]的 [[Transformer 架构]]，开启了大[[Language-Model|语言模型]]与通用人工智能的新纪元。
 
 ## 关键内容
 
@@ -53,7 +53,7 @@ Vaswani 等人于2017年发表的《Attention Is All You Need》，提出了完�
 
 | 条目 | 内容 |
 |------|------|
-| **标题** | Attention Is All You Need |
+| **标题** | [[Attention Is All You Need]] |
 | **作者** | [[Ashish Vaswani]], [[Noam Shazeer]], Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin |
 | **发表时间** | 2017年 |
 | **会议** | [[NeurIPS]] 2017 |

@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">长时任务</span><span class="tag">架构模式</span><span class="tag">可靠性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">长时任务</span><span class="tag">架构模式</span><span class="tag">可靠性</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent-harness">Agent Harness 运行框架</h1>
 <h2 id="_1">概述</h2>
-<p>Agent Harness 运行框架是包裹 LLM Agent 的工程层，负责状态持久化、错误恢复、检查点管理和资源控制，使 Agent 能够跨多个上下文窗口连贯地执行长时任务。</p>
+<p><a href="Agent Harness模式.html">Agent Harness</a> 运行框架是包裹 L<a href="LM Agent.html">LM Agent</a> 的工程层，负责状态持久化、错误恢复、检查点管理和资源控制，使 Agent 能够跨多个<a href="上下文窗口.html">上下文窗口</a>连贯地执行长时任务。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心职责</strong>：</li>
-<li><strong>状态持久化</strong>：跨会话保存 Agent 进度，避免因上下文窗口限制导致早期决策被遗忘</li>
+<li><strong>状态持久化</strong>：跨会话保存 Agent 进度，避免因<a href="上下文窗口.html">上下文窗口</a>限制导致早期决策被遗忘</li>
 <li><strong>错误恢复</strong>：在工具调用或 API 错误时优雅处理，而非直接失败</li>
 <li><strong>检查点管理</strong>：周期性保存可验证状态，支持从中间点恢复</li>
 <li><strong>监控追踪</strong>：记录 Agent 行为模式，便于调试和诊断</li>
@@ -158,17 +158,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>长时任务的核心挑战</strong>：</p>
 </li>
-<li>任务执行时间往往超过单个上下文窗口所能承载的对话历史</li>
+<li>任务执行时间往往超过单个<a href="上下文窗口.html">上下文窗口</a>所能承载的对话历史</li>
 <li>代码库迁移等任务可能持续数小时</li>
-<li>上下文窗口逼近限制后，Agent 可能重复已完成工作或忘记重要约束</li>
+<li><a href="上下文窗口.html">上下文窗口</a>逼近限制后，Agent 可能重复已完成工作或忘记重要约束</li>
 <li>
 <p>单步错误在多步迭代中积累放大，传统"重启"策略成本极高</p>
 </li>
 <li>
-<p><strong>与分布式系统的类比</strong>：</p>
+<p><strong>与<a href="分布式系统.html">分布式系统</a>的类比</strong>：</p>
 </li>
-<li>Harness 设计与 <a href="Saga 模式.html">Saga 模式</a> 高度相似</li>
-<li>将长事务分解为可补偿的短步骤</li>
+<li><a href="Harness 设计.html">Harness 设计</a>与 <a href="Saga 模式.html">Saga 模式</a> 高度相似</li>
+<li>将<a href="Saga 模式.html">长事务分解</a>为可补偿的短步骤</li>
 <li>每步成功后记录进度</li>
 <li>
 <p>失败时从最近检查点回滚或继续</p>

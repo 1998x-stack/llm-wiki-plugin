@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [transformer, attention, nlp, google-brain, seq2seq]
+tags: [transformer, attention, nlp, google-brain, seq2seq, AI工程]
 aliases: ["Attention Is All You Need", "Transformer Paper", "Vaswani et al. 2017"]
 relates_to:
   - target: "[[Transformer]]"

@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心作用</strong>：将位置向量叠加到<a href="词嵌入（Word Embedding）.html">词向量</a>上（$x_i' = x_i + p_i$），使模型同时感知内容与位置信息，<a href="../entities/区分.html">区分</a>"狗咬人"与"人咬狗"等顺序不同的语义。</li>
-<li><strong>两大流派</strong>：<a href="绝对位置编码.html">绝对位置编码</a>编码 token 的绝对位置编号（"我在第几位"）；<a href="相对位置编码.html">相对位置编码</a>编码 token 间相对距离（"我离你多远"），直接注入注意力分数<a href="计算.html">计算</a>。</li>
+<li><strong>两大流派</strong>：<a href="绝对位置编码.html">绝对位置编码</a>编码 token 的绝对位置编号（"我在第几位"）；<a href="相对位置编码.html">相对位置编码</a>编码 token 间相对距离（"我离你多远"），直接注入<a href="注意力机制.html">注意力</a>分数<a href="计算.html">计算</a>。</li>
 <li><strong>选型原则</strong>：中短文本、标准预训练场景用<a href="绝对位置编码.html">绝对位置编码</a>已够用；长序列建模、外推能力要求高或关注结构关系时，<a href="相对位置编码.html">相对位置编码</a>更有优势。</li>
 <li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a> 使用可学习的位置嵌入（Learnable Positional <a href="Embedding.html">Embedding</a>）而非 <a href="Transformer架构.html">Transformer</a> 的正弦/余弦固定编码，实验证明这对推荐任务更为有效。位置编码与 <a href="因果掩码.html">因果掩码</a> 配合，使模型能够在保持时序因果性的同时捕获序列中的位置信息。</li>
 <li><strong>原版正弦/余弦编码</strong>（Vaswani et al., 2017）：$PE(pos, 2i) = \sin(pos / 10000^{2i/d_{model}})$，$PE(pos, 2i+1) = \cos(pos / 10000^{2i/d_{model}})$。特点：不同位置编码各不相同，相对位置差可通过线性变换推导，可泛化到训练时未见过的更长序列。</li>

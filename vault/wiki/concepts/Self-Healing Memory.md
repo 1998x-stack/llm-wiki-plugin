@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [memory-system, ai-agent, self-healing]
+tags: [memory-system, ai-agent, self-healing, AI工程]
 aliases: [自愈记忆, Self-Healing Memory System]
 relates_to: 
   - target: "[[三层记忆架构]]"

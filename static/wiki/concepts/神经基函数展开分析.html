@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列预测</span><span class="tag">深度学习</span><span class="tag">神经网络架构</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列预测</span><span class="tag">深度学习</span><span class="tag">神经网络架构</span><span class="tag">脑科学</span></div>
 </div>
   <div class="content">
     <h1 id="_1">神经基函数展开分析</h1>
 <h2 id="_2">概述</h2>
-<p>神经基函数展开分析（Neural Basis Expansion Analysis, NBEATS）是一种面向时间序列预测的神经网络方法，它结合了经典信号处理中的基函数展开思想与现代深度学习技术。</p>
+<p>神经基函数展开分析（<a href="N-BEATS.html">Neural Basis Expansion Analysis</a>, NBEATS）是一种面向<a href="时间序列预测.html">时间序列预测</a>的神经网络方法，它结合了经典信号处理中的基函数展开思想与现代深度学习技术。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心理念</strong>：</li>
 <li>将经典信号处理中的基函数展开思想应用于神经网络架构设计</li>
-<li>使用全连接网络替代传统的时间序列预测模型（如RNN、LSTM、CNN等）</li>
+<li>使用全连接网络替代传统的<a href="时间序列预测.html">时间序列预测</a>模型（如RNN、LSTM、CNN等）</li>
 <li>
 <p>通过神经网络学习基函数的展开系数，而非直接预测时序值</p>
 </li>
@@ -148,15 +148,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构特点</strong>：</p>
 </li>
 <li>基本块（Basic Block）包含全连接层和双路径输出（前向预测和后向回溯）</li>
-<li>采用双重残差连接：后向残差传递输入信号，前向聚合输出预测结果</li>
+<li>采用<a href="双重残差连接.html">双重残差连接</a>：后向残差传递输入信号，前向聚合输出预测结果</li>
 <li>
 <p>每个块专注于信号中不同层次的模式，避免重复学习</p>
 </li>
 <li>
-<p><strong>两种配置</strong>：</p>
+<p><strong>两种<a href="Configuration.html">配置</a></strong>：</p>
 </li>
-<li>通用型配置：允许网络自由学习任意映射关系，追求预测精度</li>
-<li>可解释型配置：通过基函数约束（趋势栈使用多项式，季节性栈使用傅里叶级数）实现模型可解释性</li>
+<li>通用型<a href="Configuration.html">配置</a>：允许网络自由学习任意映射关系，追求预测精度</li>
+<li>可解释型<a href="Configuration.html">配置</a>：通过基函数约束（<a href="趋势栈.html">趋势栈</a>使用多项式，<a href="季节性栈.html">季节性栈</a>使用傅里叶级数）实现模型可解释性</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

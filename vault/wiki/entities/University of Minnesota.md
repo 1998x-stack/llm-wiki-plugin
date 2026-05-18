@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [大学, 教育机构, 研究机构]
+tags: [大学, 教育机构, 研究机构, 推荐系统]
 aliases: ["University of Minnesota", "明尼苏达大学", "UMN", "Minnesota University"]
 entity_type: company
 relates_to:

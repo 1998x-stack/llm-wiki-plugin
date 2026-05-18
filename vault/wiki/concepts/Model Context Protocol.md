@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [protocol, ai-integration, external-services]
+tags: [protocol, ai-integration, external-services, AI工程]
 aliases: ["MCP", "Model Context Protocol", "模型上下文协议"]
 relates_to: 
   - target: "[[Claude Code]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [agent, data-science, analytics]
+tags: [agent, data-science, analytics, AI工程]
 aliases: ["数据科学家代理", "数据分析师代理"]
 relates_to:
   - target: "[[SQL]]"

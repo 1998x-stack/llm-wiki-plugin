@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [frontend, plugin, react, component-library]
+tags: [frontend, plugin, react, component-library, AI工程]
 aliases: ["Frontend Plugin", "jezweb Frontend Plugin"]
 relates_to:
   - target: "[[jezweb/claude-skills]]"

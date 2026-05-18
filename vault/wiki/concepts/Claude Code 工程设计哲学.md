@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["claude-code", "ai-agent", "engineering", "design-philosophy"]
+tags: [claude-code, ai-agent, engineering, design-philosophy, AI工程]
 aliases: ["CC工程哲学", "Claude Code Design Philosophy"]
 relates_to: ["Prompt Engineering", "三层记忆架构", "Cost-driven Architecture", "Multi-agent System", "Security Filter Layer"]
 supersedes: null

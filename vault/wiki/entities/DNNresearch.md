@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["公司", "AI", "深度学习"]
+tags: [公司, AI, 深度学习, AI工程]
 aliases: ["DNNresearch", "DNNresearch Inc."]
 relates_to: ["Geoffrey E. Hinton", "Google", "AlexNet", "深度学习"]
 supersedes: null

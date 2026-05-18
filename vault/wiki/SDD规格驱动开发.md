@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [技术, 方法论]
+tags: [技术, 方法论, AI工程]
 aliases: [Spec-Driven Development, SDD, 规格驱动开发]
 relates_to:
   - Harness Engineering

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, command-system, deprecated]
+tags: [ai-tools, command-system, deprecated, AI工程]
 aliases: ["Custom Slash Commands", "Slash Commands"]
 relates_to:
   - target: "[[Claude Code]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [superpowers, skill, planning, execution]
+tags: [superpowers, skill, planning, execution, AI工程]
 aliases: ["executing-plans", "executing-plans Skill"]
 relates_to:
   - target: "[[Superpowers]]"

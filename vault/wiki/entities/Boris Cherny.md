@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [engineer, ai-development, anthropic]
+tags: [engineer, ai-development, anthropic, AI工程]
 aliases: ["Boris Cherny", "博里斯·切尔尼"]
 relates_to: 
   - target: "[[Claude Code]]"

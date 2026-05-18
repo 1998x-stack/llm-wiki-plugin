@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-Bahdanau 加性注意力通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ [[计算]]对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是[[注意力机制（Attention Mechanism）|注意力机制]]的首次成功实现。
+Bahdanau 加性[[注意力机制|注意力]]通过前馈网络 $v^\top \tanh(W_a s + U_a h)$ [[计算]]对齐分数，使 Decoder 在每步动态聚焦源序列不同位置，是[[注意力机制（Attention Mechanism）|注意力机制]]的首次成功实现。
 
 ## 关键内容
 
@@ -69,7 +69,7 @@ class BahdanauAttention(nn.Module):
 
 ### 历史地位
 
-Bahdanau 注意力是[[注意力机制（Attention Mechanism）|注意力机制]]的**首次成功实现**，直接解决了 [[编码器-解码器架构（Seq2Seq）]] 的固定长度瓶颈。其对齐[[矩阵]]使机器翻译首次具备可解释性，为后续 [[Luong注意力]]、[[自注意力机制]] 乃至 [[Transformer架构]] 奠定了理论基础。
+Bahdanau [[注意力机制|注意力]]是[[注意力机制（Attention Mechanism）|注意力机制]]的**首次成功实现**，直接解决了 [[编码器-解码器架构（Seq2Seq）]] 的固定长度瓶颈。其对齐[[矩阵]]使机器翻译首次具备可解释性，为后续 [[Luong注意力]]、[[自注意力机制]] 乃至 [[Transformer架构]] 奠定了理论基础。
 
 ## 来源
 

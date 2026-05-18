@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [feature, ai-tools, voice-interface]
+tags: [feature, ai-tools, voice-interface, AI工程]
 aliases: ["VOICE_MODE", "Voice Mode", "语音模式"]
 relates_to:
   - target: "[[Claude Code]]"

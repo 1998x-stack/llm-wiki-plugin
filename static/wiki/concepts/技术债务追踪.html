@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">technical-debt</span><span class="tag">quality-management</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">technical-debt</span><span class="tag">quality-management</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">技术债务追踪</h1>
@@ -145,13 +145,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>严重程度分级</strong>：严重程度影响处理优先级。例如"认证竞争条件"标记为高（8h 工作量），"购物车 N+1 查询"标记为中（4h），"缺少 API 速率限制"标记为低（2h）。Harness 可根据严重程度自动提醒或升级。</p>
 </li>
 <li>
-<p><strong>与 <a href="特性追踪器.html">特性追踪器</a> 的互补</strong>：特性追踪器关注功能的开发进度，技术债务追踪关注已知的质量问题。两者共同构成完整的项目状态视图——一个管"做什么"，一个管"欠什么"。</p>
+<p><strong>与 <a href="特性追踪器.html">特性追踪器</a> 的互补</strong>：<a href="特性追踪器.html">特性追踪器</a>关注功能的开发进度，技术债务追踪关注已知的质量问题。两者共同构成完整的项目状态视图——一个管"做什么"，一个管"欠什么"。</p>
 </li>
 <li>
 <p><strong>上下文切换不丢失</strong>：Harness 的核心承诺是确保技术债务在上下文切换时不会丢失。每次 <a href="智能检查点触发.html">智能检查点触发</a> 时，技术债务日志会随上下文包一起持久化，新会话的 Agent 能立即看到所有待处理债务。</p>
 </li>
 <li>
-<p><strong>与已知问题的区分</strong>：<a href="上下文传递协议.html">上下文传递协议</a> 中的"已知问题"是当前开发中遇到的活跃 Bug（如 <code>auth-bug-01</code>），技术债务是架构或实现上的质量妥协（如 N+1 查询）。前者阻碍当前开发，后者影响长期质量。</p>
+<p><strong>与已知问题的<a href="../entities/区分.html">区分</a></strong>：<a href="上下文传递协议.html">上下文传递协议</a> 中的"已知问题"是当前开发中遇到的活跃 Bug（如 <code>auth-bug-01</code>），技术债务是架构或实现上的质量妥协（如 N+1 查询）。前者阻碍当前开发，后者影响长期质量。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

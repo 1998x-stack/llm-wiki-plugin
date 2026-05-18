@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [计算机网络, 协议, 互联网]
+tags: [计算机网络, 协议, 互联网, 计算理论]
 aliases: ["Transmission Control Protocol", "Internet Protocol", "传输控制协议-网际协议"]
 relates_to:
   - target: "[[Cerf-Kahn TCP-IP协议]]"
@@ -37,12 +37,12 @@ entity_type: tool
 # TCP/IP
 
 ## 概述
-传输控制协议/网际协议(Transmission Control Protocol/Internet Protocol)，互联网的核心协议族，由传输层TCP和网际层IP构成，定义了数据如何在网络中传输和路由。
+[[TCP-IP|传输控制协议/网际协议]](Transmission Control Protocol/[[互联网|Internet]] Protocol)，[[互联网]]的核心协议族，由传输层TCP和网际层IP构成，定义了数据如何在网络中传输和路由。
 
 ## 关键内容
 
 1. **协议组成**：
-   - IP协议(Internet Protocol)：负责寻址和路由，是无连接、不可靠的协议，只做尽力交付
+   - IP协议([[互联网|Internet]] Protocol)：负责寻址和路由，是无连接、不可靠的协议，只做尽力交付
    - TCP协议(Transmission Control Protocol)：负责端到端的可靠、有序、面向连接的数据传输
    - 后续发展出UDP(User Datagram Protocol)等传输层协议，提供更多选择
 
@@ -54,9 +54,9 @@ entity_type: tool
 
 3. **发展历程**：
    - 1974年由Cerf和Kahn在论文中首次提出
-   - 1978年TCP/IP分离，协议架构更加清晰
-   - 1983年ARPANET正式切换到TCP/IP，标志现代互联网诞生
-   - 成为全球互联网的基石协议
+   - 1978年[[TCP-IP|TCP/IP]]分离，协议架构更加清晰
+   - 1983年[[ARPANET]]正式切换到[[TCP-IP|TCP/IP]]，标志现代[[互联网]]诞生
+   - 成为全球[[互联网]]的基石协议
 
 ## 来源
 - [[Cerf-Kahn TCP-IP协议]] — 原始设计

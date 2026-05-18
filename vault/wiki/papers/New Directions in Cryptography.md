@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [密码学, 公钥密码学, 密钥交换, 数字签名, 离散对数]
+tags: [密码学, 公钥密码学, 密钥交换, 数字签名, 离散对数, 推荐系统]
 aliases: ["New Directions in Cryptography", "New Directions in Cryptography 论文"]
 relates_to: 
   - target: "[[Diffie-Hellman 密钥交换协议]]"

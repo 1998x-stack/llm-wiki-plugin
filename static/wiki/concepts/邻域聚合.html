@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">邻域聚合</h1>
 <h2 id="_2">概述</h2>
-<p>邻域聚合是图神经网络中的核心操作，通过收集节点邻居的信息来更新节点的表示。在推荐系统中，邻域聚合用于传播协同信号，使相似用户或物品的嵌入表示趋于接近。</p>
+<p>邻域聚合是图神经网络中的核心操作，通过收集节点邻居的信息来更新节点的表示。在推荐系统中，邻域聚合用于传播协同信号，使相似用户或物品的<a href="嵌入表示.html">嵌入表示</a>趋于接近。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>基本定义</strong>：</li>
@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>平均聚合：(1/|N_u|)Σ邻居嵌入</li>
 <li>加权聚合：Σ w_ij * e_j^(k)，其中w_ij为边权重</li>
 <li>
-<p>注意力聚合：Σ α_ij * e_j^(k)，其中α_ij为注意力权重</p>
+<p><a href="注意力机制.html">注意力</a>聚合：Σ α_ij * e_j^(k)，其中α_ij为<a href="注意力机制.html">注意力</a>权重</p>
 </li>
 <li>
 <p><strong>在推荐系统中的应用</strong>：</p>
@@ -163,10 +163,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>帮助发现潜在的协同模式</p>
 </li>
 <li>
-<p><strong>LightGCN中的邻域聚合</strong>：</p>
+<p><strong><a href="../entities/LightGCN.html">LightGCN</a>中的邻域聚合</strong>：</p>
 </li>
-<li>采用对称归一化邻域聚合：e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</li>
-<li>去除了传统的特征变换和非线性激活</li>
+<li>采用<a href="对称归一化.html">对称归一化</a>邻域聚合：e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</li>
+<li>去除了传统的<a href="特征变换.html">特征变换</a>和<a href="非线性激活.html">非线性激活</a></li>
 <li>
 <p>仅保留纯粹的邻域信息聚合操作</p>
 </li>
@@ -174,8 +174,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>优化策略</strong>：</p>
 </li>
 <li>归一化：避免度数大的节点主导聚合结果</li>
-<li>采样：对大规模图进行邻居采样以减少计算复杂度</li>
-<li>消息传递：将聚合信息通过消息函数进行预处理</li>
+<li>采样：对大规模图进行邻居采样以减少<a href="计算.html">计算</a>复杂度</li>
+<li><a href="消息传递.html">消息传递</a>：将聚合信息通过消息函数进行预处理</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

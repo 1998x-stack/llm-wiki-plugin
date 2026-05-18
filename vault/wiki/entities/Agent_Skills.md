@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-tools, extension-system, specification]
+tags: [ai-tools, extension-system, specification, AI工程]
 aliases: ["Agent Skills", "Skills System", "agentskills.io"]
 relates_to: []
 supersedes: null

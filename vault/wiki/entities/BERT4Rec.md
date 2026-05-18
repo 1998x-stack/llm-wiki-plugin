@@ -30,21 +30,21 @@ Sun 等人于 CIKM 2019 发表的论文，将双向 [[Transformer架构|Transfor
 
 ## 关键内容
 
-1. **论文信息**：标题 "BERT4Rec: [[序列推荐|Sequential Recommendation]] with Bidirectional Encoder Representations from [[Transformer架构|Transformer]]"，作者 Fei Sun 等人，发表于 CIKM 2019，arXiv: 1904.06690。作为[[SASRec]]的直接后续工作，BERT4Rec采用了双向注意力机制，与[[SASRec]]的单向因果注意力形成对比。
+1. **论文信息**：标题 "BERT4Rec: [[序列推荐|Sequential Recommendation]] with Bidirectional Encoder Representations from [[Transformer架构|Transformer]]"，作者 Fei Sun 等人，发表于 CIKM 2019，arXiv: 1904.06690。作为[[SASRec]]的直接后续工作，BERT4Rec采用了双向[[注意力机制]]，与[[SASRec]]的单向因果[[注意力机制|注意力]]形成对比。
 
 2. **核心创新**：与 [[SASRec]] 的单向（[[因果掩码]]）架构不同，BERT4Rec 采用双向 [[Transformer架构|Transformer]] Encoder，通过 Cloze（完形填空）任务训练——随机掩码序列中的某些物品，让模型预测被掩码的物品。这使得序列中每个位置都能利用双向上下文信息。允许模型在训练时同时看到目标物品的前后上下文，理论上能捕获更丰富的序列信息。
 
 3. **架构特点**：
-   - **双向注意力**：与[[SASRec]]的[[因果掩码]]不同，BERT4Rec允许序列中每个位置看到所有其他位置（除了被掩盖的物品）
-   - **Cloze任务**：随机掩盖序列中的部分物品，训练模型预测被掩盖的物品
-   - **位置编码**：保持[[Transformer架构|Transformer]]的位置感知能力
-   - **自回归推理**：在推理阶段采用自回归方式，逐步预测下一个物品
+   - **双向[[注意力机制|注意力]]**：与[[SASRec]]的[[因果掩码]]不同，BERT4Rec允许序列中每个位置看到所有其他位置（除了被掩盖的物品）
+   - **[[Cloze任务]]**：随机掩盖序列中的部分物品，训练模型预测被掩盖的物品
+   - **[[位置编码]]**：保持[[Transformer架构|Transformer]]的位置感知能力
+   - **[[AR 模型（自回归模型）|自回归]]推理**：在推理阶段采用[[AR 模型（自回归模型）|自回归]]方式，逐步预测下一个物品
 
-4. **与 [[SASRec]] 的竞争**：[[SASRec]]（单向）vs BERT4Rec（双向）是[[序列推荐]]领域持续时间最长的学术辩论之一。2023年的研究（"Turning Dross Into Gold Loss"）发现：BERT4Rec 的优势主要来自其损失函数（全物品 softmax [[交叉熵]]），而非双向注意力本身。当两者使用相同损失函数时，[[SASRec]] 在大多数数据集上实际表现更好，且训练速度更快。
+4. **与 [[SASRec]] 的竞争**：[[SASRec]]（单向）vs BERT4Rec（双向）是[[序列推荐]]领域持续时间最长的学术辩论之一。2023年的研究（"Turning Dross Into Gold Loss"）发现：BERT4Rec 的优势主要来自其损失函数（全物品 softmax [[交叉熵]]），而非双向[[注意力机制|注意力]]本身。当两者使用相同损失函数时，[[SASRec]] 在大多数数据集上实际表现更好，且训练速度更快。
 
-5. **架构差异**：BERT4Rec 使用双向注意力 + Cloze 训练，[[SASRec]] 使用[[因果掩码]] + [[二元交叉熵]]。BERT4Rec 在训练阶段信息利用更充分，但推理时需要额外步骤。
+5. **架构差异**：BERT4Rec 使用双向[[注意力机制|注意力]] + Cloze 训练，[[SASRec]] 使用[[因果掩码]] + [[二元交叉熵]]。BERT4Rec 在训练阶段信息利用更充分，但推理时需要额外步骤。
 
-6. **实验效果**：在多个公开数据集上取得了当时的最优性能，但由于其复杂的训练策略和计算开销，实际应用中需要权衡效果与效率。
+6. **实验效果**：在多个公开数据集上取得了当时的最优性能，但由于其复杂的训练策略和[[计算]]开销，实际应用中需要权衡效果与效率。
 
 7. **历史地位**：与 [[SASRec]] 共同奠定了 [[Transformer架构|Transformer]] 在[[序列推荐]]中的基础架构[[规范化理论|范式]]，后续工作多在此两者基础上改进。
 

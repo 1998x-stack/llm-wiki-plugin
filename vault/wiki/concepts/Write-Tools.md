@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-engineering, prompt-context, tools, file-operations, token-economics]
+tags: [ai-engineering, prompt-context, tools, file-operations, token-economics, AI工程]
 aliases: ["Write Tools", "文件写入工具", "Write File Operations", "文件写入机制"]
 relates_to: 
   - target: "[[Tool-Use]]"
@@ -49,7 +49,7 @@ supersedes: null
    - **Unified Patch**：最节省 token，但 LLM 对行号准确性差，fuzz 不匹配导致 apply 失败率高，工业实践中 [[Codex CLI|Codex]] [[Sandbox Mode|沙箱模式]]使用，[[Claude Code]] 则回避
 
 4. **安全与[[Permissions|权限]]机制**：
-   - 沙箱与[[Permissions|权限]]机制：[[Codex CLI|Codex]] 使用 OS 级隔离（macOS 的 `sandbox-exec`/[[Apple Sandbox|Seatbelt]]，Linux 的 `landlock` + `seccomp`），[[Claude Code]] 使用[[Permissions|权限]][[门控机制（Gating Mechanism）|门控]]（路径白名单检查 + 危险路径识别）
+   - [[Claude Code 沙箱机制|沙箱]]与[[Permissions|权限]]机制：[[Codex CLI|Codex]] 使用 OS 级隔离（macOS 的 `sandbox-exec`/[[Apple Sandbox|Seatbelt]]，Linux 的 `landlock` + `seccomp`），[[Claude Code]] 使用[[Permissions|权限]][[门控机制（Gating Mechanism）|门控]]（路径白名单检查 + 危险路径识别）
    - [[atomic_write|Atomic Write]]：使用 temp → fsync → rename 三步[[atomic_write|原子写入]]确保数据一致性，关键细节是 tempfile 必须在同一目录（同一文件系统），否则 `os.replace` 退化为 copy+delete，失去原子性保证
    - 唯一性约束：str_replace 要求 old_str 必须唯一，防止误替换[[重复代码]]块
    - Path traversal 检查：确保路径在工作区范围内，防止路径遍历攻击
@@ -61,8 +61,8 @@ supersedes: null
 
 6. **架构对比**：
    - **[[Claude Code]]**：write / str_replace / patch 三件套，[[Permissions|权限]][[门控机制（Gating Mechanism）|门控]]（进程级），同步逐步/YOLO 审批，Symbol-level 大文件读取
-   - **[[Codex CLI]]**：write / patch，OS 沙箱（内核级），suggest/auto-edit/full-auto 模式，行范围读取
-   - **[[Cursor]]**：[[AST-based diff]]（最精确方案，直接在语法树层面做 diff，解决行号漂移问题），无沙箱（IDE 内），inline accept/reject
+   - **[[Codex CLI]]**：write / patch，OS [[Claude Code 沙箱机制|沙箱]]（内核级），suggest/auto-edit/full-auto 模式，行范围读取
+   - **[[Cursor]]**：[[AST-based diff]]（最精确方案，直接在语法树层面做 diff，解决行号漂移问题），无[[Claude Code 沙箱机制|沙箱]]（IDE 内），inline accept/reject
 
 ## 来源
 - [[write-tools.md]] — 一、本质：不是一个工具，是一组分层机制

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["quality assurance", "multi-agent", "review process", "software engineering", "validation"]
+tags: ["quality assurance", multi-agent, "review process", "software engineering", validation, AI工程]
 aliases: ["Two-Stage Review", "两阶段评审", "双阶段审查", "Two Phase Review"]
 relates_to:
   - target: "[[subagent-driven-development Skill]]"

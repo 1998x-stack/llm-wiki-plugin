@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["RAG", "检索增强生成", "工具库"]
+tags: [RAG, 检索增强生成, 工具库, AI工程]
 aliases: ["Llama Index", "Llama-Hub"]
 relates_to:
   - target: "[[LangChain]]"

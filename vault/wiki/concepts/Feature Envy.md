@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [重构, 代码异味, 封装性]
+tags: [重构, 代码异味, 封装性, AI工程]
 aliases: ["Feature Envy", "特性眷恋"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, computer-vision, object-detection, yolo]
+tags: [paper, computer-vision, object-detection, yolo, 机器学习]
 aliases: [Redmon et al. 2016]
 relates_to:
   - target: Joseph Redmon

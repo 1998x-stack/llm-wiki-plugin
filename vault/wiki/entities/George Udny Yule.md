@@ -7,7 +7,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [统计学家, 时间序列分析, 自回归模型]
+tags: [统计学家, 时间序列分析, 自回归模型, 时间序列]
 aliases: ["George Udny Yule", "乔治·乌德尼·尤尔", "Yule"]
 relates_to:
   - target: "[[yule-1927-ar-model]]"

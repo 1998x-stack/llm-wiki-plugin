@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [MCP, Claude Code, 工具集成, API协议, 外部工具]
+tags: [MCP, "Claude Code", 工具集成, API协议, 外部工具, 工具与框架]
 aliases: ["Model Context Protocol", "MCP协议"]
 relates_to:
   - target: "[[Claude Code]]"
@@ -52,7 +52,7 @@ MCP（[[Model Context Protocol]]）是 [[Claude Code]] 访问外部工具、[[�
 6. **使用方式**：
    - 可将 [[MCP Prompts]] 暴露为 [[Slash Commands]]（如 `/mcp__github__list_prs`）
    - 支持通过 `@` 提及使用 MCP 资源
-   - 可作为代码执行接口减少上下文膨胀
+   - 可作为[[代码执行]]接口减少上下文膨胀
 
 ## 来源
 - [[claude-howto MCP 文档]] — 概念介绍、架构说明

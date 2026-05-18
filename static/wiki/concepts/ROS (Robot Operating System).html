@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ros-robot-operating-system">ROS (Robot Operating System)</h1>
 <h2 id="_1">概述</h2>
-<p>ROS（Robot <a href="操作系统.html">Operating System</a>）是一个开源的、模块化的机器人软件框架和元<a href="操作系统.html">操作系统</a>（meta-operating system），由 <a href="../entities/Morgan Quigley.html">Morgan Quigley</a> 等人于 2009 年提出。它并非传统意义上的<a href="操作系统.html">操作系统</a>内核，而是提供硬件抽象、底层设备控制、常用功能实现、进程间消息传递和包管理等功能的基础设施层。ROS 通过节点（Nodes）、话题（Topics）、<a href="服务.html">服务</a>（<a href="服务.html">Services</a>）和消息（Messages）构成的<a href="计算.html">计算</a>图模型，实现了不同编程语言编写的模块之间的松耦合通信，从根本上改变了机器人软件的开发<a href="规范化理论.html">范式</a>，被誉为机器人领域的"Android 时刻"。</p>
+<p>ROS（Robot <a href="操作系统.html">Operating System</a>）是一个开源的、模块化的机器人软件框架和元<a href="操作系统.html">操作系统</a>（meta-operating system），由 <a href="../entities/Morgan Quigley.html">Morgan Quigley</a> 等人于 2009 年提出。它并非传统意义上的<a href="操作系统.html">操作系统</a>内核，而是提供硬件抽象、底层设备控制、常用功能实现、进程间<a href="消息传递.html">消息传递</a>和包管理等功能的基础设施层。ROS 通过节点（Nodes）、话题（Topics）、<a href="服务.html">服务</a>（<a href="服务.html">Services</a>）和消息（Messages）构成的<a href="计算.html">计算</a>图模型，实现了不同编程语言编写的模块之间的松耦合通信，从根本上改变了机器人软件的开发<a href="规范化理论.html">范式</a>，被誉为机器人领域的"Android 时刻"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心架构：计算图模型</h3>
 <p>ROS 的核心抽象是<strong><a href="计算.html">计算</a>图</strong>（Computation Graph），这是一个由节点、话题和<a href="服务.html">服务</a>构成的对等网络（Peer-to-Peer）。
 *   <strong>节点</strong>（Node）：基本的<a href="计算.html">计算</a>单元，每个节点是一个独立的<a href="操作系统.html">操作系统</a>进程，执行特定功能（如传感器驱动、路径规划、电机控制）。节点间的故障隔离机制确保单一模块崩溃不会导致系统瘫痪。
-*   <strong>话题</strong>（Topic）：基于发布 - 订阅（Publish-Subscribe）模式的异步通信管道。发布者向特定话题发送数据流，任意数量的订阅者可接收数据，双方完全解耦，无需知晓彼此存在。这种机制非常适合处理连续的传感器数据流。
-*   <strong><a href="服务.html">服务</a></strong>（Service）：基于请求 - 响应（Request-Response）模式的同步通信机制，适用于需要即时反馈的任务（如逆运动学求解）。
+*   <strong>话题</strong>（Topic）：基于发布 - 订阅（Publish-Subscribe）模式的<a href="异步通信.html">异步通信</a>管道。发布者向特定话题发送数据流，任意数量的订阅者可接收数据，双方完全解耦，无需知晓彼此存在。这种机制非常适合处理连续的传感器数据流。
+*   <strong><a href="服务.html">服务</a></strong>（Service）：基于请求 - 响应（Request-Response）模式的<a href="同步通信.html">同步通信</a>机制，适用于需要即时反馈的任务（如逆运动学求解）。
 *   <strong>消息</strong>（Message）：定义数据传输格式的语言无关接口描述语言（IDL）。ROS 提供了丰富的标准消息库（如 <code>std_msgs</code>, <code>sensor_msgs</code>, <code>geometry_msgs</code>），定义了向量、四元数、激光扫描、图像等通用数据结构，确保了跨团队、跨语言的互操作性。</p>
 <h3 id="_4">关键设计特性</h3>
 <ol>

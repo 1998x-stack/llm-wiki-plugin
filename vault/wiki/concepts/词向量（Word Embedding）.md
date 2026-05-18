@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [词向量, 分布式表示, NLP, 稠密向量]
+tags: [词向量, 分布式表示, NLP, 稠密向量, LLM能力]
 aliases: [Word Embedding, 词嵌入, 分布式表示]
 relates_to: [Word2Vec, 词向量（Word Embedding）, CBOW（连续词袋模型）, Skip-gram, 分布式假说（Distributional Hypothesis）, BERT]
 supersedes: null

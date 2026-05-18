@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, computer-vision, multimodal]
+tags: [person, computer-vision, multimodal, AI工程]
 aliases: [Aditya Ramesh]
 relates_to:
   - target: OpenAI

@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: '2026-04-18'
 source_count: 1
-tags: ["技术", "AI", "目标检测", "计算机视觉"]
+tags: [技术, AI, 目标检测, 计算机视觉, AI工程]
 aliases:
   - YOLO
   - You Only Look Once

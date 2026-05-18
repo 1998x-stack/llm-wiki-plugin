@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI工具, 代码助手, 智能体系统, 多智能体]
+tags: [AI工具, 代码助手, 智能体系统, 多智能体, AI工程]
 aliases: ["AgentTool"]
 relates_to: 
   - target: "[[Claude Code]]"

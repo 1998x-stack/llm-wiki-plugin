@@ -16,19 +16,19 @@ supersedes: null
 # MMoE 论文
 
 ## 概述
-KDD 2018 发表的奠基性论文，提出 MMoE 架构解决[[多任务学习]]中的[[负迁移]]问题，成为推荐系统领域[[多任务学习]]的事实标准。
+[[KDD|KDD 2018]] 发表的奠基性论文，提出 MMoE 架构解决[[多任务学习]]中的[[负迁移]]问题，成为推荐系统领域[[多任务学习]]的事实标准。
 
 ## 关键内容
 
 ### 论文信息
 - **标题**：Modeling Task Relationships in Multi-task Learning with [[MMoE|Multi-gate Mixture-of-Experts]]
-- **作者**：[[Jiaqi Ma]], [[Zhe Zhao]], Xinyang Yi, Jilin Chen, Lichan Hong, [[Ed H. Chi]]
+- **作者**：[[Jiaqi Ma]], [[Zhe Zhao]], [[Xinyang Yi]], [[Jilin Chen]], [[Lichan Hong]], [[Ed H. Chi]]
 - **机构**：[[Google]] 推荐系统团队
-- **发表**：KDD 2018(第 24 届 ACM SIGKDD 国际知识发现与数据挖掘大会)，pp. 1930-1939
+- **发表**：[[KDD|KDD 2018]](第 24 届 ACM [[KDD|SIGKDD]] 国际知识发现与数据挖掘大会)，pp. 1930-1939
 - **DOI**：10.1145/3219819.3220007
 - 至今被引用数千次，是[[多任务学习]]在推荐系统领域的奠基性工作之一
-- 第一作者 [[Jiaqi Ma]] 当时是密歇根大学的博士生，在 Google 实习期间完成了这项工作
-- 通讯作者 [[Ed H. Chi]] 是 Google Research 的杰出科学家，长期深耕推荐系统和人机交互领域
+- 第一作者 [[Jiaqi Ma]] 当时是密歇根大学的博士生，在 [[Google]] 实习期间完成了这项工作
+- 通讯作者 [[Ed H. Chi]] 是 [[Google Brain|Google Research]] 的杰出科学家，长期深耕推荐系统和人机交互领域
 
 ### 核心贡献
 - 提出 MMoE 架构：为每个任务配备独立[[门控机制（Gating Mechanism）|门控]]网络，自适应选择共享专家组合

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [command-line, shell, adapter-pattern, automation]
+tags: [command-line, shell, adapter-pattern, automation, AI工程]
 aliases: ["Bash适配器", "通用适配器"]
 relates_to: 
   - target: "[[Claude Code]]"

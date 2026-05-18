@@ -24,7 +24,7 @@ supersedes: null
 # DeepFM
 
 ## 概述
-DeepFM是一种基于因子分解机的神经网络模型，用于点击率预测。该论文由华为诺亚方舟实验室的郭辉锋等人在IJCAI 2017发表，将因子分解机(FM)与深度神经网络(DNN)整合为端到端模型，通过共享Embedding层同时学习低阶和高阶特征交互，终结了CTR预估中的手工特征工程。
+DeepFM是一种基于[[Factorization Machines|因子分解机]]的神经网络模型，用于[[CTR 预估|点击率预测]]。该论文由[[华为诺亚方舟实验室]]的[[Huifeng Guo|郭辉锋]]等人在IJCAI 2017发表，将[[Factorization Machines|因子分解机]](FM)与深度神经网络(DNN)整合为端到端模型，通过[[共享Embedding]]层同时学习低阶和[[高阶特征交互]]，终结了CTR预估中的[[手工特征工程]]。
 
 ## 关键内容
 
@@ -36,8 +36,8 @@ DeepFM是一种基于因子分解机的神经网络模型，用于点击率预�
 6. **后续影响**：DeepFM 的"浅层 + 深层"并行架构启发了后续一系列工作，包括 DCN（[[Google]] 2017，Cross Network 显式交叉）、[[xDeepFM]]（微软 2018，CIN 向量级显式交叉）、[[AutoInt]]（2019，[[多头注意力|多头自注意力]]可解释交互）等。
 7. **局限性**：FM 组件仍局限于二阶交叉；DNN 高阶交互为黑盒难以解释；FM 暴力枚举所有特征对缺乏选择性；缺乏时序动态建模；DNN 学习的是维度级而非向量级交互。后续工作如 [[xDeepFM]]、[[AutoInt]]、DIN 分别针对这些局限进行了改进。
 8. **架构一般性**：DeepFM 框架具有可扩展性，论文提出 DeepFM-D（Deep 部分用标准 DNN）和 DeepFM-P（Deep 部分用 PNN）两个变体，"FM + Deep [[共享嵌入]]"是可替换 Deep 部分实现的通用[[规范化理论|范式]]。
-9. **核心创新**：用FM替代Wide&Deep模型中的线性模型+Cross-product，通过共享Embedding消除特征工程，实现端到端学习的整体框架，并具有架构的一般性。
-10. **实验验证**：在Criteo数据集和华为应用市场真实数据集上都取得最优性能，与次优模型相比AUC提升超过0.25%-0.37%，在线A/B测试中相比精心调优的LR模型CTR提升超过10%。
+9. **核心创新**：用FM替代Wide&Deep模型中的线性模型+Cross-product，通过[[共享Embedding]]消除[[特征工程（Feature Engineering）|特征工程]]，实现端到端学习的整体框架，并具有架构的一般性。
+10. **实验验证**：在[[Criteo]]数据集和华为应用市场真实数据集上都取得最优性能，与次优模型相比AUC提升超过0.25%-0.37%，在线A/B测试中相比精心调优的LR模型CTR提升超过10%。
 
 ## 来源
 - [DeepFM: A Factorization-Machine based Neural Network for CTR Prediction (IJCAI 2017)](https://arxiv.org/abs/1703.04247) — Guo, Tang, Ye, Li, He. 华为诺亚方舟实验室

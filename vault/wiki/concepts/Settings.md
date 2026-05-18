@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [configuration, settings, management]
+tags: [configuration, settings, management, AI工程]
 aliases: ["Settings", "设置", "配置设置"]
 relates_to: []
 supersedes: null

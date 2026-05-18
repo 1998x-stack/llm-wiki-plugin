@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [payments, commerce, protocol]
+tags: [payments, commerce, protocol, AI工程]
 aliases: ["Agentic Commerce Protocol"]
 relates_to: []
 supersedes: null

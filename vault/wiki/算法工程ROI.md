@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 方法论]
+tags: [技术, 方法论, 计算理论]
 aliases: [Algorithm Engineering ROI]
 relates_to: [得物, 得物面试洞察, AI替代率]
 supersedes: null

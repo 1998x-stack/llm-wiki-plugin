@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "优化方法", "网络架构"]
+tags: [深度学习, 优化方法, 网络架构, 机器学习]
 aliases: ["Residual Learning", "残差学习", "残差表示学习"]
 relates_to: ["残差网络（ResNet）", "残差连接（Residual Connection）", "跳跃连接（Skip Connection）", "退化问题（Degradation Problem）", "恒等映射（Identity Mapping）"]
 supersedes: null

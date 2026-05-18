@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [UrhoX, Lua, 输入处理, API陷阱, 鼠标输入]
+tags: [UrhoX, Lua, 输入处理, API陷阱, 鼠标输入, Lua编程]
 aliases: [mouseMove.z陷阱, mouseMoveWheel, 滚轮输入]
 relates_to: [UrhoX Lua开发准则, UrhoX引擎]
 supersedes: null
@@ -15,7 +15,7 @@ supersedes: null
 
 ## 概述
 
-在 [[UrhoX引擎|UrhoX]]/Urho3D Lua 中，`input.mouseMove` 返回 `IntVector2`（仅有 x、y），不含滚轮分量。滚轮值必须通过独立属性 `input.mouseMoveWheel` 获取，使用 `.z` 会得到 `nil` 并引发运算时崩溃。
+在 [[UrhoX引擎|UrhoX]]/[[Urho3D]] Lua 中，`input.mouseMove` 返回 `IntVector2`（仅有 x、y），不含滚轮分量。滚轮值必须通过独立属性 `input.mouseMoveWheel` 获取，使用 `.z` 会得到 `nil` 并引发运算时崩溃。
 
 ## 关键内容
 

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [clean-code, code-review, software-quality, robert-c-martin]
+tags: [clean-code, code-review, software-quality, robert-c-martin, AI工程]
 aliases: ["Clean Code Review", "Clean Code Principles", "Robert C. Martin Clean Code"]
 relates_to: []
 supersedes: null

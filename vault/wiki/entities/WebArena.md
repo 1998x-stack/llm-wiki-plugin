@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["基准测试", "计算机使用", "网页自动化", "评测"]
+tags: [基准测试, 计算机使用, 网页自动化, 评测, AI工程]
 aliases: ["WebArena"]
 relates_to:
   - target: "[[评测驱动开发]]"
@@ -19,7 +19,7 @@ supersedes: null
 # WebArena
 
 ## 概述
-WebArena 是计算机使用 Agent 的评测基准，用于评估 Agent 在网页环境中的自动化操作能力，论文编号 arxiv: 2307.13854。
+WebArena 是[[计算]]机使用 Agent 的评测基准，用于评估 Agent 在网页环境中的自动化操作能力，论文编号 arxiv: 2307.13854。
 
 ## 关键内容
 
@@ -29,8 +29,8 @@ WebArena 是计算机使用 Agent 的评测基准，用于评估 Agent 在网页
    - 提供标准化的网页自动化评测环境
 
 2. **在评测体系中的位置**：
-   - 与 OSWorld 共同构成计算机使用 Agent 的评测基准
-   - 与 SWE-bench（编码）、τ-Bench（对话）形成多类型 Agent 评测矩阵
+   - 与 [[OSWorld]] 共同构成[[计算]]机使用 Agent 的评测基准
+   - 与 [[SWE-bench]]（编码）、[[τ-Bench]]（对话）形成多类型 [[评测驱动开发|Agent 评测]][[矩阵]]
 
 3. **技术特点**：
    - 基于真实网页环境的仿真

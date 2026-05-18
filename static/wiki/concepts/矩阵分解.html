@@ -151,7 +151,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>传统优化方式</strong>：经典 MF 使用 pointwise 回归损失（如 MSE/SVD）优化，BPR 证明了同样的 MF 模型使用排序优化准则（BPR-OPT）能获得显著更好的排序质量。</p>
 </li>
 <li>
-<p><strong><a href="嵌入表示.html">隐向量</a>维度选择</strong>：实验表明<a href="嵌入表示.html">隐向量</a>维度从 8 到 128 变化时，BPR-MF 始终优于 SVD-MF 和 WR-MF，维度增加通常带来性能提升但需防止<a href="过拟合（Overfitting）.html">过拟合</a>。</p>
+<p><strong><a href="嵌入表示.html">隐向量</a>维度选择</strong>：实验表明<a href="嵌入表示.html">隐向量</a>维度从 8 到 128 变化时，BPR-MF 始终优于 SVD-MF 和 <a href="../entities/WR-MF.html">WR-MF</a>，维度增加通常带来性能提升但需防止<a href="过拟合（Overfitting）.html">过拟合</a>。</p>
 </li>
 <li>
 <p><strong>与深度学习的关系</strong>：Rendle (2020) 指出经过精心调优的 MF + BPR 在许多标准数据集上仍能与复杂深度学习模型竞争，提醒研究者不应忽视优化目标的重要性。</p>

@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题 "BPR: <a href="../concepts/BPR.html">Bayesian Personalized Ranking</a> from <a href="../concepts/隐式反馈.html">Implicit Feedback</a>"，作者 <a href="Steffen Rendle.html">Steffen Rendle</a>, Christoph Freudenthaler, Zeno Gantner, Lars Schmidt-Thieme，机构 University of Hildesheim，发表于 UAI 2009（第 25 届不确定性人工智能会议），页码 452-461，arXiv: 1205.2618。</p>
+<p><strong>论文信息</strong>：标题 "BPR: <a href="../concepts/BPR.html">Bayesian Personalized Ranking</a> from <a href="../concepts/隐式反馈.html">Implicit Feedback</a>"，作者 <a href="Steffen Rendle.html">Steffen Rendle</a>, Christoph Freudenthaler, Zeno Gantner, Lars Schmidt-Thieme，机构 <a href="University of Hildesheim.html">University of Hildesheim</a>，发表于 UAI 2009（第 25 届不确定性人工智能会议），页码 452-461，arXiv: 1205.2618。</p>
 </li>
 <li>
-<p><strong>时代背景</strong>：发表于 <a href="Netflix Prize.html">Netflix Prize</a> 竞赛余波之中，当时推荐系统研究聚焦于显式评分预测。BPR 将研究社区注意力引向更贴近工业实际的<a href="../concepts/隐式反馈.html">隐式反馈</a>场景和排序优化目标。</p>
+<p><strong>时代背景</strong>：发表于 <a href="Netflix Prize.html">Netflix Prize</a> 竞赛余波之中，当时推荐系统研究聚焦于显式评分预测。BPR 将研究社区<a href="../concepts/注意力机制.html">注意力</a>引向更贴近工业实际的<a href="../concepts/隐式反馈.html">隐式反馈</a>场景和排序优化目标。</p>
 </li>
 <li>
 <p><strong>核心贡献</strong>：</p>
@@ -154,13 +154,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>展示 BPR 框架的模型无关性，实例化为 BPR-MF 和 BPR-kNN</p>
 </li>
 <li>
-<p><strong>实验验证</strong>：在 Rossmann（在线购物，~10K 用户，~4K 物品，426K 交互）和 Netflix（DVD 租赁，~10K 用户，~5K 物品，565K 交互）两个真实数据集上验证。对比方法包括 Most-Popular、Cosine-kNN、SVD-MF（使用 pointwise 回归损失的矩阵分解）、WR-MF（Weighted Regularized MF，Hu et al. 2008 提出的加权正则化矩阵分解，为未交互物品分配较低但非零的置信度）。实验结果表明 BPR-MF 显著优于 SVD-MF 和 WR-MF，在不同隐向量维度下均取得最好性能，证明了优化准则的重要性。</p>
+<p><strong>实验验证</strong>：在 Rossmann（在线购物，~10K 用户，~4K 物品，426K 交互）和 <a href="Netflix.html">Netflix</a>（DVD 租赁，~10K 用户，~5K 物品，565K 交互）两个真实数据集上验证。对比方法包括 Most-Popular、Cosine-kNN、SVD-MF（使用 pointwise 回归损失的<a href="../concepts/矩阵分解.html">矩阵分解</a>）、<a href="WR-MF.html">WR-MF</a>（Weighted Regularized MF，Hu et al. 2008 提出的<a href="WR-MF.html">加权正则化矩阵分解</a>，为未交互物品分配较低但非零的置信度）。实验结果表明 BPR-MF 显著优于 SVD-MF 和 <a href="WR-MF.html">WR-MF</a>，在不同<a href="../concepts/嵌入表示.html">隐向量</a>维度下均取得最好性能，证明了优化准则的重要性。</p>
 </li>
 <li>
 <p><strong>金句</strong>："The prediction quality does not only depend on the model but also largely on the optimization criterion."（预测质量不仅取决于模型本身，也在很大程度上取决于优化准则。）</p>
 </li>
 <li>
-<p><strong>影响力</strong>：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐的标准<a href="../concepts/规范化理论.html">范式</a>，BPR Loss 成为事实标准。</p>
+<p><strong>影响力</strong>：截至 2025 年引用量 6000+，是推荐系统领域引用量最高的论文之一。确立了<a href="../concepts/隐式反馈.html">隐式反馈</a>推荐的标准<a href="../concepts/规范化理论.html">范式</a>，<a href="../concepts/BPR Loss.html">BPR Loss</a> 成为事实标准。</p>
 </li>
 <li>
 <p><strong>后续影响</strong>：直接催生<a href="../concepts/负采样.html">负采样</a>策略研究（DNS、IRGAN、ANCE）、Listwise 排序学习、深度推荐模型（<a href="../concepts/NeuMF.html">NeuMF</a>、<a href="DeepFM.html">DeepFM</a>）、图神经网络推荐（<a href="LightGCN.html">LightGCN</a>）、视觉增强推荐（VBPR）等研究方向。</p>

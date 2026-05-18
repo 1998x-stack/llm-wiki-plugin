@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [game-engine, c-language, lua, sdl2]
+tags: [game-engine, c-language, lua, sdl2, Lua编程]
 aliases: ["Luna Engine"]
 relates_to: 
   - target: "[[TITAN-智能体]]"
@@ -28,7 +28,7 @@ supersedes: null
 # Luna-Engine
 
 ## 概述
-Luna Engine是一个基于C语言、Lua脚本和SDL2的游戏引擎，采用类似[[Love2D]]的设计风格，用于支持多种游戏的开发和测试。
+Luna Engine是一个基于[[C语言]]、Lua脚本和SDL2的游戏引擎，采用类似[[Love2D]]的设计风格，用于支持多种游戏的开发和测试。
 
 ## 关键内容
 
@@ -36,7 +36,7 @@ Luna Engine是一个基于C语言、Lua脚本和SDL2的游戏引擎，采用类�
    - 使用C11语言编写引擎核心
    - 集成Lua 5.4作为游戏逻辑脚本语言
    - 采用SDL2进行图形渲染和输入处理
-   - 实现同步测试循环，支持与外部智能体的同步通信
+   - 实现同步测试循环，支持与外部智能体的[[同步通信]]
 
 2. **架构特性**：
    - 支持多种游戏类型，包括贪吃蛇、俄罗斯方块、飞扬的小鸟、打砖块、太空射击和2048等

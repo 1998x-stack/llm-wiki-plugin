@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: ["深度学习", "NLP", "预训练", "BERT", "句子理解"]
+tags: [深度学习, NLP, 预训练, BERT, 句子理解, 机器学习]
 aliases: ["Next Sentence Prediction", "NSP", "下一句预测", "句子对预测"]
 relates_to:
   - target: "[[BERT]]"
@@ -28,7 +28,7 @@ supersedes: null
 
 ## 概述
 
-下一句预测（Next Sentence Prediction, NSP）是 BERT 的第二个预训练任务，通过判断两个句子是否为连续文本，使模型学习句子间关系，对问答、自然语言推理（NLI）等任务有帮助。后续研究发现其贡献有限，RoBERTa 等模型选择去掉 NSP。
+下一句预测（Next Sentence Prediction, NSP）是 BERT 的第二个预训练任务，通过判断两个句子是否为连续文本，使模型学习句子间关系，对问答、自然语言推理（NLI）等任务有帮助。后续研究发现其贡献有限，RoBERTa 等[[模型选择]]去掉 NSP。
 
 ## 关键内容
 

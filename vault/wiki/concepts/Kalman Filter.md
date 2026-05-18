@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [control-theory, signal-processing, filtering, prediction, time-series-analysis]
+tags: [control-theory, signal-processing, filtering, prediction, time-series-analysis, 计算理论]
 aliases: ["卡尔曼滤波", "卡尔曼过滤器"]
 relates_to: []
 supersedes: null

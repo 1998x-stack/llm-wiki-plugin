@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [重构, 代码异味, 面向对象设计]
+tags: [重构, 代码异味, 面向对象设计, AI工程]
 aliases: ["Switch Statements", "条件语句"]
 relates_to:
   - target: "[[代码异味]]"

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="brain-hands-decoupling">脑手分离架构（Brain-Hands Decoupling）</h1>
 <h2 id="_1">概述</h2>
-<p>脑手分离架构是将 Agent 的"大脑"（<a href="../entities/Claude_Code.html">Claude</a> 及其控制框架）与"手"（沙箱和执行工具）及"会话"（事件日志）解耦的设计模式，使各组件可独立失败、替换和扩展。</p>
+<p>脑手分离架构是将 Agent 的"大脑"（<a href="../entities/Claude_Code.html">Claude</a> 及其控制框架）与"手"（<a href="Claude Code 沙箱机制.html">沙箱</a>和执行工具）及"会话"（事件日志）解耦的设计模式，使各组件可独立失败、替换和扩展。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">三个组件</h3>
 <table>
@@ -157,8 +157,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <td><strong>手（Hands）</strong></td>
 <td>执行器官</td>
-<td>沙箱、工具、<a href="MCP 服务器.html">MCP 服务器</a></td>
-<td><code>execute(name, input) → string</code></td>
+<td><span style="color:#e74c3c" title="broken link">Claude Code 沙箱机制&lt;/td&gt;
+&lt;td&gt;沙箱</span>、工具、<a href="MCP 服务器.html">MCP 服务器</a></td>
 </tr>
 <tr>
 <td><strong>会话（Session）</strong></td>
@@ -184,8 +184,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 - Harness 也变成"牲畜"——因<a href="会话日志.html">会话日志</a>在外部，harness 无需在崩溃中存活
 - 新 harness 通过 <code>wake(sessionId)</code> 重启，<code>getSession(id)</code> 获取事件日志，从最后事件恢复</p>
 <p><strong>安全边界：</strong>
-- 凭证永远不可达沙箱
-- Git 令牌在沙箱初始化时注入本地 remote
+- 凭证永远不可达<a href="Claude Code 沙箱机制.html">沙箱</a>
+- Git 令牌在<a href="Claude Code 沙箱机制.html">沙箱</a>初始化时注入本地 remote
 - MCP 工具通过专用代理调用，代理从保险库获取凭证</p>
 <h3 id="_6">性能收益</h3>
 <table>
@@ -212,7 +212,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>因为不需要沙箱的会话可立即开始推理，无需等待容器<a href="Configuration.html">配置</a>。</p>
+<p>因为不需要<a href="Claude Code 沙箱机制.html">沙箱</a>的会话可立即开始推理，无需等待容器<a href="Configuration.html">配置</a>。</p>
 <h3 id="_7">多脑多手</h3>
 <ul>
 <li><strong>多脑</strong>：启动多个无状态 harness，仅在需要时连接手</li>

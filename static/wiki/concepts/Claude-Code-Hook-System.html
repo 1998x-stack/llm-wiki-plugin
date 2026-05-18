@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 4. <strong>Summary Hook (<code>summary-hook</code>)</strong>：在用户停止问答或会话告一段落时触发。用于分析转录日志（transcript.jsonl），生成高层级的会话摘要（如完成的任务、学到的经验）。
 5. <strong>Cleanup Hook (<code>cleanup-hook</code>)</strong>：在会话彻底结束时触发。负责更新会话状态（如标记为 completed），执行资源清理，但不删除历史数据以保留记忆。</p>
 <h3 id="fire-and-forget">通信模式：即发即忘（Fire-and-Forget）</h3>
-<p>由于 Hook 脚本运行在主进程中且受严格的超时限制（默认 120 秒），复杂的处理逻辑（如 AI 压缩）不能同步执行。因此，高效的 Hook 实现通常采用异步通信模式：
+<p>由于 Hook 脚本运行在主进程中且受严格的超时限制（默认 120 秒），复杂的处理逻辑（如 AI 压缩）不能同步执行。因此，高效的 Hook 实现通常采用<a href="异步通信.html">异步通信</a>模式：
 - <strong>非阻塞调用</strong>：Hook 脚本通过 HTTP POST 请求将数据发送给后台 <a href="Worker Agent.html">Worker</a> <a href="服务.html">服务</a>。
 - <strong>快速返回</strong>：发出请求后立即返回控制权给主进程，不等待处理结果。
 - <strong>后台处理</strong>：<a href="Worker Agent.html">Worker</a> <a href="服务.html">服务</a>接收请求后，在独立进程中完成耗时的 AI 推理和数据库写入操作。</p>

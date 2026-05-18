@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [AI历史, 人工智能, 认知科学]
+tags: [AI历史, 人工智能, 认知科学, AI工程]
 aliases: [Marvin Minsky, 马文·明斯基, Minsky]
 relates_to:
   - "[[Seymour Papert]] — collaborator"

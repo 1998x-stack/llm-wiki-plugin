@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言</span><span class="tag">并发计算</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言</span><span class="tag">并发计算</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="go">Go</h1>
 <h2 id="_1">概述</h2>
-<p>由Google开发的编程语言，其并发模型直接基于CSP理论，通过goroutine和channel实现消息传递并发。</p>
+<p>由<a href="Google.html">Google</a>开发的编程语言，其并发模型直接基于CSP理论，通过<a href="../concepts/goroutine.html">goroutine</a>和<a href="../concepts/channel.html">channel</a>实现<a href="../concepts/消息传递.html">消息传递</a>并发。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>CSP实现</strong>：Go的并发模型直接来源于CSP，goroutine对应CSP的进程，channel对应CSP的通信通道。</p>
+<p><strong>CSP实现</strong>：Go的并发模型直接来源于CSP，<a href="../concepts/goroutine.html">goroutine</a>对应CSP的进程，<a href="../concepts/channel.html">channel</a>对应CSP的通信通道。</p>
 </li>
 <li>
-<p><strong>Goroutine</strong>：轻量级线程，可大量创建，独立运行，符合CSP进程中每个进程内部顺序执行的理念。</p>
+<p><strong><a href="../concepts/goroutine.html">Goroutine</a></strong>：轻量级线程，可大量创建，独立运行，符合CSP进程中每个进程内部顺序执行的理念。</p>
 </li>
 <li>
-<p><strong>Channel</strong>：类型安全的通信通道，默认同步通信，对应CSP的同步消息传递机制。</p>
+<p><strong><a href="../concepts/channel.html">Channel</a></strong>：类型安全的通信通道，默认<a href="../concepts/同步通信.html">同步通信</a>，对应CSP的同步<a href="../concepts/消息传递.html">消息传递</a>机制。</p>
 </li>
 <li>
-<p><strong>Select语句</strong>：类似CSP的守卫命令，允许在多个channel操作间进行非确定性选择。</p>
+<p><strong>Select语句</strong>：类似CSP的守卫命令，允许在多个<a href="../concepts/channel.html">channel</a>操作间进行非确定性选择。</p>
 </li>
 <li>
 <p><strong>工业影响</strong>：Go语言的成功使CSP理念在现代基础设施中得到广泛应用，Docker、Kubernetes等关键组件均使用Go编写。</p>

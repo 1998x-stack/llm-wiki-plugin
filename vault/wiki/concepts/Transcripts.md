@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [history-records, session-logs, memory-system]
+tags: [history-records, session-logs, memory-system, 推荐系统]
 aliases: [Transcripts, 会话记录, 历史记录]
 relates_to: 
   - target: "[[三层记忆架构]]"

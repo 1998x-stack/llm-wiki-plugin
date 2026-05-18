@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">feedback-loop</span><span class="tag">iteration</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">feedback-loop</span><span class="tag">iteration</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="evaluator-optimizer">Evaluator-Optimizer 模式</h1>
@@ -138,12 +138,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>一个 LLM 生成响应，另一个 LLM 提供评估和反馈，形成循环迭代机制，直到输出通过评估标准。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>工作流程</strong>：Input → [Generator] → [Evaluator] → Pass? → Output（若未通过则反馈给 Generator 重新生成）。形成闭环反馈循环。</li>
+<li><strong>工作流程</strong>：Input → <span style="color:#e74c3c" title="broken link">Generator</span>] → [Evaluator] → Pass? → Output（若未通过则反馈给 <a href="生成器.html">Generator</a> 重新生成）。形成闭环反馈循环。</li>
 <li><strong>适用场景的两个判断标准</strong>：</li>
 <li>LLM 响应在人工反馈后可明显改进</li>
 <li>LLM 能提供有效的反馈</li>
-<li><strong>典型案例</strong>：文学翻译（翻译器 + 评论器）；复杂搜索任务（多轮搜索+分析）；代码生成与审查循环。</li>
-<li><strong>工程要点</strong>：Evaluator 需要有明确的评估标准，避免无限循环。应设置最大迭代次数和收敛条件。</li>
+<li><strong>典型案例</strong>：文学翻译（翻译器 + 评论器）；复杂搜索任务（多轮搜索+分析）；<a href="代码生成.html">代码生成</a>与审查循环。</li>
+<li><strong>工程要点</strong>：Evaluator 需要有明确的评估标准，避免无限循环。应<a href="Settings.html">设置</a>最大迭代次数和收敛条件。</li>
 <li><strong>与软件工程的对应</strong>：Evaluator-Optimizer 对应 Feedback Control Loop（反馈控制循环），通过持续反馈调节系统输出。</li>
 </ol>
 <h2 id="_3">来源</h2>

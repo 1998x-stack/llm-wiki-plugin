@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算复杂度理论</span><span class="tag">算法理论</span><span class="tag">NP完全性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算复杂度理论</span><span class="tag">算法理论</span><span class="tag">NP完全性</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="np">NP完全性</h1>
 <h2 id="_1">概述</h2>
-<p>NP完全性是计算复杂度理论中的核心概念，指的是一类在NP中的"最难"问题。这类问题具有一个特殊性质：如果其中任何一个存在多项式时间算法，那么所有NP问题都存在多项式时间算法。</p>
+<p>NP完全性是<a href="计算复杂度理论.html">计算复杂度理论</a>中的核心概念，指的是一类在NP中的"最难"问题。这类问题具有一个特殊性质：如果其中任何一个存在多项式时间<a href="算法.html">算法</a>，那么所有NP问题都存在多项式时间<a href="算法.html">算法</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>定义</strong>：一个问题L是NP完全的，如果：(1) L ∈ NP（属于NP类）；(2) 对于NP中的每一个问题L'，都有L' ≤ₚ L（NP中所有问题都可以多项式时间归约到L）。</p>
+<p><strong>定义</strong>：一个问题L是NP完全的，如果：(1) L ∈ NP（属于NP类）；(2) 对于NP中的每一个问题L'，都有L' ≤ₚ L（NP中所有问题都可以<a href="多项式时间归约.html">多项式时间归约</a>到L）。</p>
 </li>
 <li>
-<p><strong>历史意义</strong>：NP完全性概念由Stephen Cook于1971年在其开创性论文中定义，并通过Cook定理证明了布尔可满足性问题(SAT)是NP完全的，从而建立了整个理论框架。</p>
+<p><strong>历史意义</strong>：NP完全性概念由<a href="../entities/Stephen Cook.html">Stephen Cook</a>于1971年在其开创性论文中定义，并通过<a href="Cook定理.html">Cook定理</a>证明了<a href="SAT">[布尔可满足性问题]</a>是NP完全的，从而建立了整个理论框架。</p>
 </li>
 <li>
-<p><strong>重要性</strong>：NP完全性揭示了大量看似无关的组合优化问题（来自逻辑学、图论、数论、运筹学等不同领域）在计算复杂度上是等价的。这意味着这些问题要么都有高效的多项式时间算法，要么都没有（假设P ≠ NP）。</p>
+<p><strong>重要性</strong>：NP完全性揭示了大量看似无关的组合优化问题（来自逻辑学、图论、数论、运筹学等不同领域）在<a href="计算.html">计算</a>复杂度上是等价的。这意味着这些问题要么都有高效的多项式时间<a href="算法.html">算法</a>，要么都没有（假设P ≠ NP）。</p>
 </li>
 <li>
-<p><strong>现实影响</strong>：NP完全性理论彻底改变了算法研究的方法论。研究者不再盲目寻找精确的多项式时间算法，而是先证明问题的复杂度，再选择合适的策略（近似算法、启发式方法或特殊情况下的高效算法）。</p>
+<p><strong>现实影响</strong>：NP完全性理论彻底改变了<a href="算法.html">算法</a>研究的方法论。研究者不再盲目寻找精确的多项式时间<a href="算法.html">算法</a>，而是先证明问题的复杂度，再选择合适的策略（近似<a href="算法.html">算法</a>、启发式方法或特殊情况下的高效<a href="算法.html">算法</a>）。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

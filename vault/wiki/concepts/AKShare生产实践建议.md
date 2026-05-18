@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [finance, data-api, production, best-practices]
+tags: [finance, data-api, production, best-practices, 经济学]
 aliases: ["AKShare生产实践", "财经数据API生产实践", "金融数据API最佳实践"]
 relates_to:
   - target: "[[AKShare]]"

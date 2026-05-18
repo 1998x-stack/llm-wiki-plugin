@@ -130,24 +130,24 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">methodology</span><span class="tag">production</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">methodology</span><span class="tag">production</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">影子评测</h1>
 <h2 id="_2">概述</h2>
-<p>影子评测是指在生产环境中以自然方式提交评测任务，隐蔽地测量模型真实表现，以应对评测感知和评测饱和问题的方法论。</p>
+<p>影子评测是指在生产环境中以自然方式提交评测任务，隐蔽地测量模型真实表现，以应对<a href="评测感知.html">评测感知</a>和<a href="评测饱和.html">评测饱和</a>问题的方法论。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心机制</strong>：将评测任务混入真实的生产流量中，模型无法区分这是评测还是正常请求，从而避免<a href="评测感知.html">评测感知</a>带来的行为偏差。这种方法能够测量模型在"不知道自己被测试"时的真实表现。</p>
+<p><strong>核心机制</strong>：将评测任务混入真实的生产流量中，模型无法<a href="../entities/区分.html">区分</a>这是评测还是正常请求，从而避免<a href="评测感知.html">评测感知</a>带来的行为偏差。这种方法能够测量模型在"不知道自己被测试"时的真实表现。</p>
 </li>
 <li>
-<p><strong>应对评测感知</strong>：当模型可能识别评测格式并调整行为时，影子评测通过消除"这是评测"的信号，迫使模型以默认模式处理任务，获得更真实的能力基线。</p>
+<p><strong>应对<a href="评测感知.html">评测感知</a></strong>：当模型可能识别评测格式并调整行为时，影子评测通过消除"这是评测"的信号，迫使模型以默认模式处理任务，获得更真实的能力基线。</p>
 </li>
 <li>
 <p><strong>设计原则</strong>：</p>
 </li>
-<li>评测任务应与真实请求在格式上无法区分</li>
+<li>评测任务应与真实请求在格式上无法<a href="../entities/区分.html">区分</a></li>
 <li>避免使用规律化的问题模板</li>
 <li>在生产环境中持续进行，而非周期性突击</li>
 <li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在评测体系中的位置</strong>：影子评测是<a href="评测驱动开发.html">评测驱动开发</a>方法论的重要组成部分，与显式基准测试形成互补——前者测量"自然状态"能力，后者测量"最优激发"能力，两者差距本身就是有价值的信号。</p>
 </li>
 <li>
-<p><strong>与评测饱和的关系</strong>：影子评测可以延缓<a href="评测饱和.html">评测饱和</a>，因为生产环境的自然格式变化使模型难以针对性优化，保持评测的区分度。</p>
+<p><strong>与<a href="评测饱和.html">评测饱和</a>的关系</strong>：影子评测可以延缓<a href="评测饱和.html">评测饱和</a>，因为生产环境的自然格式变化使模型难以针对性优化，保持评测的<a href="../entities/区分.html">区分</a>度。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

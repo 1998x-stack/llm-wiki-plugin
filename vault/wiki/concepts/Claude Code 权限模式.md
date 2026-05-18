@@ -45,7 +45,7 @@ supersedes: null
    - 自动化脚本用 `auto` 或 `dontAsk`
    - 信任 [[Claude_Code|Claude]] 的复杂任务用 `bypassPermissions`
 
-3. **安全考量**：[[Permissions|权限]]模式是 [[Claude Code]] 安全模型的核心。`auto` 模式虽然方便，但由后台安全分类器审查，仍属于 Research Preview 阶段。`bypassPermissions` 应仅在完全信任的场景下使用。
+3. **安全考量**：[[Permissions|权限]]模式是 [[Claude Code]] 安全模型的核心。`auto` 模式虽然方便，但由后台[[Auto Mode 安全分类器|安全分类器]]审查，仍属于 Research Preview 阶段。`bypassPermissions` 应仅在完全信任的场景下使用。
 
 ## 来源
 - [[09-advanced-features/README.md]] — Claude HowTo 高级功能指南

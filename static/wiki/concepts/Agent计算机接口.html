@@ -135,10 +135,10 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent-aci">Agent 计算机接口（ACI）</h1>
 <h2 id="_1">概述</h2>
-<p>Agent <a href="计算.html">计算</a>机接口（Agent-Computer Interface, ACI）是类比人机接口（HCI）的概念：为 L<a href="LM Agent.html">LM Agent</a> 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 中花费在工具优化上的时间多于整体提示词优化。</p>
+<p>Agent <a href="计算.html">计算</a>机接口（<a href="ACI (Agent-Computer Interface).html">Agent-Computer Interface</a>, ACI）是类比人机接口（HCI）的概念：为 L<a href="LM Agent.html">LM Agent</a> 设计工具接口需要与 HCI 同等的工程投入。工具的设计质量直接决定 Agent 的成功率——<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 中花费在工具优化上的时间多于整体提示词优化。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="swe-agent-aci">SWE-agent 论文的 ACI 贡献</h3>
-<p>Princeton 的 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文（"<a href="../entities/SWE-agent.html">SWE-agent</a>: Agent-Computer Interfaces Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：</p>
+<p>Princeton 的 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文（"<a href="../entities/SWE-agent.html">SWE-agent</a>: <a href="ACI (Agent-Computer Interface).html">Agent-Computer Interface</a>s Enable Automated Software Engineering"）是 ACI 理念的开创性实证研究。其核心论点：</p>
 <blockquote>
 <p>软件工程 agent 的效果，很大程度上取决于它和<a href="计算.html">计算</a>机交互的"接口设计"是否合适。</p>
 </blockquote>
@@ -156,37 +156,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>因此 <a href="../entities/SWE-agent.html">SWE-agent</a> 不是让模型直接裸用电脑，而是通过 ACI 提供一套更适合 Agent 的动作抽象。<strong>把"界面设计"从工程细节提升成研究对象</strong>，这是论文最有思想含量的贡献。</p>
 <p>实验结果：<a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 上 pass@1 达到 12.5%，在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上达到 87.7%。两者差距说明 ACI 设计在复杂任务上的价值远大于简单任务。</p>
 <h3 id="aci-vs-hci">ACI vs. HCI</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>HCI（Human-Computer Interface）</th>
-<th>ACI（Agent-Computer Interface）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>使用者</td>
-<td>人类</td>
-<td>L<a href="LM Agent.html">LM Agent</a></td>
-</tr>
-<tr>
-<td>设计约束</td>
-<td>视觉认知、操作直觉</td>
-<td>Token 有限性、输入格式偏好、幻觉风险</td>
-</tr>
-<tr>
-<td>文档形式</td>
-<td>用户手册、UI 标签</td>
-<td>工具名称、描述、参数定义</td>
-</tr>
-<tr>
-<td>测试方法</td>
-<td>用户测试</td>
-<td>工具调用评估 + transcript 分析</td>
-</tr>
-</tbody>
-</table>
+<p>| | HCI（Human-Computer Interface） | ACI（<a href="ACI (Agent-Computer Interface).html">Agent-Computer Interface</a>） |
+|--|--|--|
+| 使用者 | 人类 | L<a href="LM Agent.html">LM Agent</a> |
+| 设计约束 | 视觉认知、操作直觉 | Token 有限性、输入格式偏好、幻觉风险 |
+| 文档形式 | 用户手册、UI 标签 | 工具名称、描述、参数定义 |
+| 测试方法 | 用户测试 | 工具调用评估 + transcript 分析 |</p>
 <h3 id="_3">工具设计五大原则</h3>
 <p><strong>1. 选择正确的工具（而非多多益善）</strong></p>
 <p>更多工具不一定更好。常见错误：简单包装 API 端点而不考虑 Agent 的工作方式。</p>

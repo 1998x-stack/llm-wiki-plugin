@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究]
+tags: [研究, 经济学]
 aliases: [Swift 系统, SWIFT, 环球银行金融电信协会]
 relates_to:
   - 美元霸权

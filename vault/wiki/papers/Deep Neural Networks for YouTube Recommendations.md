@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [recommendation-systems, deep-learning, youtube]
+tags: [recommendation-systems, deep-learning, youtube, 推荐系统]
 aliases: [Deep Neural Networks for YouTube Recommendations, YouTube DNN Paper]
 relates_to:
   - {target: "[[YouTube]]", type: part_of}

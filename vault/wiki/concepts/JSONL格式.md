@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: [数据格式, 工程实践, 日志]
+tags: [数据格式, 工程实践, 日志, AI工程]
 aliases: [JSON Lines, JSONL, NDJSON]
 relates_to:
   - target: "[[Codex会话管理器]]"

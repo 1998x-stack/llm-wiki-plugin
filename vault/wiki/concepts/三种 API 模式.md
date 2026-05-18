@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: [api-mode, multi-provider, adapter]
+tags: [api-mode, multi-provider, adapter, Agent系统]
 aliases: [Three API Modes, API Adapter Pattern]
 relates_to:
   - Hermes Agent

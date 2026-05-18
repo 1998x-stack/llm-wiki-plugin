@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [心理学伦理, 研究规范, 专业准则]
+tags: [心理学伦理, 研究规范, 专业准则, 工具与框架]
 aliases: ["APA Ethics Code", "美国心理学会伦理规范", "APA伦理准则"]
 relates_to: 
   - target: "[[小艾伯特实验]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [Evolver, 代码变更, 风险控制]
+tags: [Evolver, 代码变更, 风险控制, 控制论]
 aliases: ["Blast Radius", "爆炸半径", "变更范围控制"]
 relates_to:
   - target: "[[Evolver]]"

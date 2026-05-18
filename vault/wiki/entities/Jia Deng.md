@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, computer-vision, dataset]
+tags: [person, computer-vision, dataset, 机器学习]
 aliases: [Jia Deng, 邓嘉]
 relates_to:
   - target: ImageNet

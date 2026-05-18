@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">多头注意力</h1>
 <h2 id="_2">概述</h2>
-<p>多头注意力（Multi-Head Attention）在 h 个独立子空间中并行执行 <a href="Self-Attention机制.html">Self-Attention机制</a>，再拼接并线性变换，使模型同时捕获不同类型的语义关系，是 <a href="Transformer架构.html">Transformer架构</a> 的标准注意力形式。</p>
+<p>多头<a href="注意力机制.html">注意力</a>（<a href="Multi-Head Attention.html">Multi-Head Attention</a>）在 h 个独立子空间中并行执行 <a href="Self-Attention机制.html">Self-Attention机制</a>，再拼接并线性变换，使模型同时捕获不同类型的语义关系，是 <a href="Transformer架构.html">Transformer架构</a> 的标准<a href="注意力机制.html">注意力</a>形式。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心公式</h3>
 <p>$$\text{MultiHead}(Q,K,V)=\text{Concat}(head_1,\dots,head_h)W_O$$</p>
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$head_i = \text{Attention}(QW_Q^i, KW_K^i, VW_V^i)$$</p>
 <p>每个 head 的投影维度通常为 $d_k = d_{model}/h$，保持总<a href="计算.html">计算</a>量与单头相当。</p>
 <h3 id="_5">为什么需要多头</h3>
-<p>单头注意力在单一表示子空间内学习关系。多头机制让模型在不同子空间里同时学习：</p>
+<p>单头<a href="注意力机制.html">注意力</a>在单一表示子空间内学习关系。多头机制让模型在不同子空间里同时学习：</p>
 <ul>
 <li><strong>语法依赖</strong>：主语-谓语关系</li>
 <li><strong>指代关系</strong>：代词与先行词</li>
@@ -152,10 +152,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <p>不同 head 自动分工，捕获互补的上下文信息。</p>
 <h3 id="_6">计算复杂度</h3>
-<p>多头注意力的总复杂度与单头相同（子空间维度缩小 h 倍，但有 h 个 head）：</p>
+<p>多头<a href="注意力机制.html">注意力</a>的总复杂度与单头相同（子空间维度缩小 h 倍，但有 h 个 head）：</p>
 <ul>
 <li>时间复杂度：$O(n^2 d)$</li>
-<li>空间复杂度：$O(n^2)$（每个 head 的注意力<a href="矩阵.html">矩阵</a>为 $n \times n$）</li>
+<li>空间复杂度：$O(n^2)$（每个 head 的<a href="注意力机制.html">注意力</a><a href="矩阵.html">矩阵</a>为 $n \times n$）</li>
 </ul>
 <h2 id="_7">来源</h2>
 <ul>

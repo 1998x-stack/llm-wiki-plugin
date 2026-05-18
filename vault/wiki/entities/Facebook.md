@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["公司", "互联网", "社交媒体", "AI"]
+tags: [公司, 互联网, 社交媒体, AI, AI工程]
 aliases: ["Facebook", "Meta", "Meta Platforms"]
 relates_to: ["深度学习", "Google", "百度", "Facebook AI Research (FAIR)", "Yann LeCun"]
 supersedes: null

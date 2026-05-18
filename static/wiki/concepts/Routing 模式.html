@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">classification</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">classification</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="routing">Routing 模式</h1>
 <h2 id="_1">概述</h2>
-<p>对输入进行分类并路由到专业化的后续处理流程，实现关注点分离和差异化处理。</p>
+<p>对输入进行分类并路由到专业化的后续处理流程，实现关注点分离和差<a href="异化.html">异化</a>处理。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>工作流程</strong>：Input → [Classifier] → Route A: [LLM-A] / Route B: [LLM-B] / Route C: [LLM-C]。先对输入进行分类，然后路由到专门的处理分支。</li>
-<li><strong>适用场景</strong>：存在需要差异化处理的明确类别，且分类精度有保障。分类器可以是 LLM 本身，也可以是传统 ML 模型。</li>
-<li><strong>典型案例</strong>：客服路由（退款/技术支持/一般询问）；根据问题难度路由到不同模型（如 Haiku 处理简单问题 vs Sonnet 处理复杂问题）。</li>
+<li><strong>适用场景</strong>：存在需要差<a href="异化.html">异化</a>处理的明确类别，且分类精度有保障。分类器可以是 LLM 本身，也可以是传统 ML 模型。</li>
+<li><strong>典型案例</strong>：客服路由（退款/技术支持/一般询问）；根据问题难度路由到不同模型（如 <a href="../entities/Claude 3 Haiku.html">Haiku</a> 处理简单问题 vs Sonnet 处理复杂问题）。</li>
 <li><strong>关键前提</strong>：分类精度必须有保障，否则错误路由会导致更差的结果。需要建立分类器的评估机制。</li>
 <li><strong>与软件工程的对应</strong>：Routing 对应 Strategy Pattern（策略模式），根据输入类型选择不同的处理策略。</li>
 </ol>

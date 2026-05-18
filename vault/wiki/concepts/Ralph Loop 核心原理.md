@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: [ai-tools, agent-patterns]
+tags: [ai-tools, agent-patterns, AI工程]
 aliases: ["Ralph Loop 原理", "Loop Mechanism", "外循环机制"]
 relates_to:
   - target: "[[Ralph Loop 系统]]"

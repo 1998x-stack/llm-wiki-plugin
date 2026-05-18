@@ -130,28 +130,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">深度学习</span><span class="tag">协同过滤</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">深度学习</span><span class="tag">协同过滤</span><span class="tag">脑科学</span></div>
 </div>
   <div class="content">
     <h1 id="_1">神经协同过滤</h1>
 <h2 id="_2">概述</h2>
-<p>用神经网络替代传统矩阵分解中的内积操作，构建通用的协同过滤框架，使模型能够从数据中自动学习任意复杂的用户-物品交互函数的推荐系统方法。</p>
+<p>用神经网络替代传统<a href="矩阵分解.html">矩阵分解</a>中的内积操作，构建通用的<a href="协同过滤.html">协同过滤</a>框架，使模型能够从数据中自动学习任意复杂的用户-物品交互函数的推荐系统方法。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想</strong>：将协同过滤中的交互函数从固定的手工设计(如内积)变为可学习的神经网络，利用深度学习的函数逼近能力捕获复杂的非线性交互模式。</p>
+<p><strong>核心思想</strong>：将<a href="协同过滤.html">协同过滤</a>中的交互函数从固定的手工设计(如内积)变为可学习的神经网络，利用深度学习的函数逼近能力捕获复杂的非线性交互模式。</p>
 </li>
 <li>
 <p><strong>框架组成</strong>：</p>
 </li>
 <li><strong>输入层</strong>：用户和物品的one-hot表示</li>
-<li><strong>嵌入层</strong>：将稀疏向量映射为稠密低维向量</li>
-<li><strong>神经协同过滤层</strong>：用神经网络学习交互函数</li>
+<li><strong><a href="嵌入表示.html">嵌入层</a></strong>：将稀疏向量映射为稠密低维向量</li>
+<li><strong>神经<a href="协同过滤.html">协同过滤</a>层</strong>：用神经网络学习交互函数</li>
 <li>
 <p><strong>输出层</strong>：输出交互概率</p>
 </li>
 <li>
-<p><strong>具体实现</strong>：包括GMF(广义矩阵分解)、MLP(多层感知机)和NeuMF(神经矩阵分解)三种实例化模型，其中NeuMF融合了线性与非线性建模能力。</p>
+<p><strong>具体实现</strong>：包括GMF(广义<a href="矩阵分解.html">矩阵分解</a>)、MLP(<a href="多层感知机.html">多层感知机</a>)和<a href="神经<a href="矩阵分解.html">矩阵分解</a>">[NeuMF]</a>三种实例化模型，其中<a href="NeuMF.html">NeuMF</a>融合了线性与非线性建模能力。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

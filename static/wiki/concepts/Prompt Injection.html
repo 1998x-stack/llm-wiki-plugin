@@ -150,15 +150,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="Auto Mode 安全分类器.html">Auto Mode 安全分类器</a></strong>：识别"来自被操作内容的指令"并阻止执行，即使 Agent 模型被影响</li>
 <li><strong>范围锚定</strong>：分类器验证操作是否在任务预期范围内，超出范围的操作被阻止</li>
 <li>
-<p><strong>多层次防御</strong>：任务范围定义 + 分类器评估 + 沙箱限制，三层叠加提供更强的保证</p>
+<p><strong>多层次防御</strong>：任务范围定义 + 分类器评估 + <a href="Claude Code 沙箱机制.html">沙箱</a>限制，三层叠加提供更强的保证</p>
 </li>
 <li>
-<p><strong>在 Claude Code 中的具体场景</strong>：</p>
+<p><strong>在 <a href="../projects/Claude Code.html">Claude Code</a> 中的具体场景</strong>：</p>
 </li>
 <li>Agent 读取一个被污染的文件</li>
 <li>文件内容试图操控 Agent 修改基础设施或发送敏感数据</li>
 <li>
-<p>分类器识别这种模式并阻止，同时在非交互模式下中止任务</p>
+<p>分类器识别这种模式并阻止，同时在<a href="非交互模式.html">非交互模式</a>下中止任务</p>
 </li>
 <li>
 <p><strong>与传统安全的关系</strong>：</p>

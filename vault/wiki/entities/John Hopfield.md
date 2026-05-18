@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["人物", "物理学", "神经网络", "诺贝尔奖"]
+tags: [人物, 物理学, 神经网络, 诺贝尔奖, 脑科学]
 aliases: ["John Hopfield", "约翰·霍普菲尔德", "Hopfield"]
 relates_to:
   - target: "[[Geoffrey E. Hinton]]"

@@ -49,7 +49,7 @@ supersedes: null
 | 层 | 路径 | 说明 |
 |---|------|------|
 | L1 系统级 | `/etc/codex/config.toml` | 企业 IT 管理员，用户不可覆盖 |
-| L2 用户级 | `~/.codex/config.toml` | 个人偏好：默认模型、沙箱、[[MCP 服务器]] |
+| L2 用户级 | `~/.codex/config.toml` | 个人偏好：默认模型、[[Claude Code 沙箱机制|沙箱]]、[[MCP 服务器]] |
 | L3 团队级 | `{project}/.codex/config.toml` | 提交 Git，团队共享 |
 | L4 子目录 | `{project}/src/auth/.codex/config.toml` | 特定目录专属[[Configuration|配置]] |
 | L5 Profile | `~/.codex/config.toml [profiles.xxx]` | 按场景切换 |
@@ -63,7 +63,7 @@ supersedes: null
 
 **[[Environment Variables|环境变量]]覆盖**：`CODEX_CONFIG_PATH` 可指定[[Configuration|配置]]文件路径，`CODEX_MODEL` 等部分[[Configuration|配置]]支持 env 直接覆盖。
 
-**沙箱与审批**：
+**[[Claude Code 沙箱机制|沙箱]]与审批**：
 ```toml
 sandbox_mode = "workspace-write"  # read-only | workspace-write | danger-full-access
 # workspace-write 细节：

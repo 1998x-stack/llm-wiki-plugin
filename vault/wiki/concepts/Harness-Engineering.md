@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [ai-engineering, agent-systems, software-architecture]
+tags: [ai-engineering, agent-systems, software-architecture, AI工程]
 aliases: ["Harness Engineering", "Harness 设计", "Harness工程"]
 relates_to:
   - target: "[[Prompt-Engineering]]"

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, deep-learning, NLP, GPT]
+tags: [person, deep-learning, NLP, GPT, AI工程]
 aliases: [Alec Radford]
 relates_to:
   - target: OpenAI

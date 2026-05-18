@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [payments, blockchain, microtransactions]
+tags: [payments, blockchain, microtransactions, AI工程]
 aliases: ["Machine-to-Machine Payments", "M2M Payments"]
 relates_to: []
 supersedes: null

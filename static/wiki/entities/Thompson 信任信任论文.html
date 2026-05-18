@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="thompson">Thompson 信任信任论文</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Ken Thompson.html">Ken Thompson</a> 于1984年发表的《Reflections on Trusting Trust》，展示了如何在编译器中植入自我复制的后门木马，揭示了源<a href="../concepts/Code-Review-for-Claude-Code.html">代码审查</a>的根本局限性，开创了<a href="../concepts/供应链安全.html">供应链安全</a>研究方向。这篇不到三页的演讲成为了计算机安全领域的经典文献，预见了现代供应链攻击的可能性。</p>
+<p><a href="Ken Thompson.html">Ken Thompson</a> 于1984年发表的《Reflections on Trusting Trust》，展示了如何在编译器中植入自我复制的后门木马，揭示了源<a href="../concepts/Code-Review-for-Claude-Code.html">代码审查</a>的根本局限性，开创了<a href="../concepts/供应链安全.html">供应链安全</a>研究方向。这篇不到三页的演讲成为了<a href="../concepts/计算.html">计算</a>机安全领域的经典文献，预见了现代供应链攻击的可能性。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">论文信息</h3>
 <table>
@@ -168,94 +168,94 @@ nav a.active { color: var(--link); font-weight: 600; }
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;领域&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;计算机安全、信任、编译器&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;_4&quot;&gt;历史背景&lt;/h3&gt;
-&lt;p&gt;1983年，Ken Thompson 与 Dennis Ritchie 因共同创造 UNIX 操作系统而获得 ACM 图灵奖。颁奖典礼上，Thompson 用一篇精妙的演讲向整个计算机科学界投下了一颗深水炸弹。当时正值冷战期间，安全研究尚处萌芽阶段，人们对软件供应链的信任几乎是无条件的。Thompson 以一种近乎轻描淡写的方式，揭示了一个根本性的信任困境。&lt;/p&gt;
-&lt;h3 id=&quot;_5&quot;&gt;三段式论证&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;自复制程序（Quine）&lt;/strong&gt;：程序可以输出自身的源代码，揭示自我描述和复制能力&lt;/li&gt;
-&lt;li&gt;Quine 程序展示了程序具备&quot;自我描述&quot;和&quot;自我复制&quot;的能力&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;程序将自身的关键部分编码为数据，然后通过逻辑将这些数据&quot;展开&quot;为完整程序文本&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;编译器知识编码&lt;/strong&gt;：编译器的知识可以存在于二进制文件中，而不存在于源代码中&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;以 C 语言中 \n 转义字符为例：编译器&quot;知道&quot;\n 等于换行符这件事，并不完全记录在源代码中&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;这个知识的一部分存储在编译器的二进制文件里，是通过自举过程从前一代编译器&quot;继承&quot;而来的&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;编译器木马&lt;/strong&gt;：将前两个概念结合，在编译器中植入自我复制的后门&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;当编译器检测到正在编译 UNIX 的 &lt;code&gt;login&lt;/code&gt; 程序时，自动插入后门代码&lt;/li&gt;
-&lt;li&gt;当编译器检测到正在编译自身时，自动复制全部木马逻辑到新编译器中&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;_6&quot;&gt;核心攻击方法&lt;/h3&gt;
-&lt;h4 id=&quot;_7&quot;&gt;攻击实施步骤&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;修改 C 编译器源代码，添加第一个木马：当编译 UNIX 的 &lt;code&gt;login&lt;/code&gt; 程序时，自动在二进制文件中插入后门代码&lt;/li&gt;
-&lt;li&gt;修改 C 编译器源代码，添加第二个木马：当编译自身时，自动复制全部木马逻辑&lt;/li&gt;
-&lt;li&gt;用干净的编译器编译被修改的源代码，产生第一个被感染的编译器&lt;/li&gt;
-&lt;li&gt;删除所有修改，将源代码恢复为干净版本&lt;/li&gt;
-&lt;li&gt;用被感染的编译器编译干净的源代码，新编译器仍包含木马（自复制机制）&lt;/li&gt;
-&lt;li&gt;用被感染的编译器编译 &lt;code&gt;login&lt;/code&gt; 程序，自动插入后门&lt;/li&gt;
-&lt;li&gt;审查所有源代码均显示干净，但后门依然存在&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;_8&quot;&gt;攻击特点&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;木马仅存在于编译器的二进制文件中，不存在于任何源代码中&lt;/li&gt;
-&lt;li&gt;通过编译器自举过程实现代际传播&lt;/li&gt;
-&lt;li&gt;源代码审查、代码差异比较、版本控制都无法检测到此木马&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;_9&quot;&gt;深层影响&lt;/h3&gt;
-&lt;h4 id=&quot;_10&quot;&gt;信任链断裂&lt;/h4&gt;
-&lt;p&gt;传统安全思维的信任链：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&quot;我审查了源代码 -&amp;gt; 源代码没有问题 -&amp;gt; 所以编译出的程序没有问题。&quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Thompson 揭示的实际信任链断裂：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&quot;我审查了源代码 -&amp;gt; 源代码没有问题 -&amp;gt; 但编译器可能会添加源代码中不存在的东西 -&amp;gt; 所以编译出的程序可能有问题。&quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;信任链追溯问题：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;编译器 N 由编译器 N-1 编译，编译器 N-1 由编译器 N-2 编译……在链条的某个起点，必须存在一个&quot;无条件被信任&quot;的二进制文件。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;_11&quot;&gt;哲学启示&lt;/h4&gt;
-&lt;p&gt;Thompson 将安全问题从技术层面提升到了认识论层面，质疑了&quot;你怎么知道你知道的东西是正确的？&quot;和&quot;你怎么知道你使用的工具是诚实的？&quot;等哲学问题。&lt;/p&gt;
-&lt;h3 id=&quot;_12&quot;&gt;创新点&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;揭示源代码审查的根本局限性&lt;/strong&gt;：源代码审查只能保证源代码本身没有问题，但无法保证从源代码到可执行程序的转换过程是忠实的&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;发现编译器作为攻击向量的可能性&lt;/strong&gt;：开创了通过攻击开发工具来间接攻击所有由该工具生产的软件的全新攻击思路&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;将信任从技术问题提升为哲学问题&lt;/strong&gt;：使&quot;信任&quot;从简单的二元概念（可信/不可信）演变为分层的、有条件的、可传递的复杂概念&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;自复制木马的概念&lt;/strong&gt;：恶意代码可在二进制层面实现自我复制和跨代传播，而不需要在任何源代码文件中留下痕迹&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;写作典范&lt;/strong&gt;：三段式层层递进的叙事结构，从编程技巧到编译器观察，最终到达安全结论&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;_13&quot;&gt;后续影响与缓解方案&lt;/h3&gt;
-&lt;h4 id=&quot;_14&quot;&gt;历史意义&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;开创了供应链安全研究方向&lt;/li&gt;
-&lt;li&gt;成为安全教科书的必讲内容&lt;/li&gt;
-&lt;li&gt;影响了可信计算技术发展&lt;/li&gt;
-&lt;li&gt;推动了可重现构建运动&lt;/li&gt;
-&lt;li&gt;预见了现代供应链攻击（如 SolarWinds 事件）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;_15&quot;&gt;现代回应&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;多样化双重编译（Diverse Double-Compiling, DDC）&lt;/strong&gt;：用两个独立开发的编译器分别编译同一份源代码，比较生成的二进制文件&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可重现构建（Reproducible Builds）&lt;/strong&gt;：给定相同源代码和构建环境，任何人都应得到逐位相同的二进制文件&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;形式化验证&lt;/strong&gt;：如 CompCert 编译器，通过数学证明保证编译器的正确性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;_16&quot;&gt;核心结论&lt;/h3&gt;
-&lt;p&gt;&quot;You can&#x27;t trust code that you did not totally create yourself.&quot;（你无法信任不是你自己完全创建的代码。）&lt;/p&gt;
-&lt;p&gt;但在现代软件工程中，&quot;完全自己创建&quot;是不可能的。每一个程序员都站在无数前人的工作之上，使用着自己没有完全理解、更不可能完全验证的工具。信任是不可避免的，而信任就意味着风险。&lt;/p&gt;
-&lt;h2 id=&quot;_17&quot;&gt;来源&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[[raw/books/计算机科学/15-thompson-trusting-trust.md</span></li>
+&lt;td&gt;[[计算</span>机安全、信任、编译器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">历史背景</h3>
+<p>1983年，<a href="Ken Thompson.html">Ken Thompson</a> 与 <a href="Dennis Ritchie.html">Dennis Ritchie</a> 因共同创造 <a href="UNIX.html">UNIX 操作系统</a>而获得 ACM <a href="Alan Turing.html">图灵</a>奖。颁奖典礼上，Thompson 用一篇精妙的演讲向整个<a href="../concepts/计算.html">计算</a>机科学界投下了一颗深水炸弹。当时正值冷战期间，安全研究尚处萌芽阶段，人们对软件供应链的信任几乎是无条件的。Thompson 以一种近乎轻描淡写的方式，揭示了一个根本性的信任困境。</p>
+<h3 id="_5">三段式论证</h3>
+<ol>
+<li><strong>自复制程序（Quine）</strong>：程序可以输出自身的源代码，揭示自我描述和复制能力</li>
+<li>Quine 程序展示了程序具备"自我描述"和"自我复制"的能力</li>
+<li>
+<p>程序将自身的关键部分编码为数据，然后通过逻辑将这些数据"展开"为完整程序文本</p>
+</li>
+<li>
+<p><strong>编译器知识编码</strong>：编译器的知识可以存在于二进制文件中，而不存在于源代码中</p>
+</li>
+<li>以 <a href="../concepts/C 语言.html">C 语言</a>中 \n 转义字符为例：编译器"知道"\n 等于换行符这件事，并不完全记录在源代码中</li>
+<li>
+<p>这个知识的一部分存储在编译器的二进制文件里，是通过自举过程从前一代编译器"继承"而来的</p>
+</li>
+<li>
+<p><strong>编译器木马</strong>：将前两个概念结合，在编译器中植入自我复制的后门</p>
+</li>
+<li>当编译器检测到正在编译 UNIX 的 <code>login</code> 程序时，自动插入后门代码</li>
+<li>当编译器检测到正在编译自身时，自动复制全部木马逻辑到新编译器中</li>
+</ol>
+<h3 id="_6">核心攻击方法</h3>
+<h4 id="_7">攻击实施步骤</h4>
+<ol>
+<li>修改 <a href="../concepts/C 编译器.html">C 编译器</a>源代码，添加第一个木马：当编译 UNIX 的 <code>login</code> 程序时，自动在二进制文件中插入后门代码</li>
+<li>修改 <a href="../concepts/C 编译器.html">C 编译器</a>源代码，添加第二个木马：当编译自身时，自动复制全部木马逻辑</li>
+<li>用干净的编译器编译被修改的源代码，产生第一个被感染的编译器</li>
+<li>删除所有修改，将源代码恢复为干净版本</li>
+<li>用被感染的编译器编译干净的源代码，新编译器仍包含木马（自复制机制）</li>
+<li>用被感染的编译器编译 <code>login</code> 程序，自动插入后门</li>
+<li>审查所有源代码均显示干净，但后门依然存在</li>
+</ol>
+<h4 id="_8">攻击特点</h4>
+<ul>
+<li>木马仅存在于编译器的二进制文件中，不存在于任何源代码中</li>
+<li>通过编译器自举过程实现代际传播</li>
+<li>源<a href="../concepts/代码审查.html">代码审查</a>、代码差异比较、版本控制都无法检测到此木马</li>
+</ul>
+<h3 id="_9">深层影响</h3>
+<h4 id="_10">信任链断裂</h4>
+<p>传统安全思维的信任链：</p>
+<blockquote>
+<p>"我审查了源代码 -&gt; 源代码没有问题 -&gt; 所以编译出的程序没有问题。"</p>
+</blockquote>
+<p>Thompson 揭示的实际信任链断裂：</p>
+<blockquote>
+<p>"我审查了源代码 -&gt; 源代码没有问题 -&gt; 但编译器可能会添加源代码中不存在的东西 -&gt; 所以编译出的程序可能有问题。"</p>
+</blockquote>
+<p>信任链追溯问题：</p>
+<blockquote>
+<p>编译器 N 由编译器 N-1 编译，编译器 N-1 由编译器 N-2 编译……在链条的某个起点，必须存在一个"无条件被信任"的二进制文件。</p>
+</blockquote>
+<h4 id="_11">哲学启示</h4>
+<p>Thompson 将安全问题从技术层面提升到了认识论层面，质疑了"你怎么知道你知道的东西是正确的？"和"你怎么知道你使用的工具是诚实的？"等哲学问题。</p>
+<h3 id="_12">创新点</h3>
+<ol>
+<li><strong>揭示源<a href="../concepts/代码审查.html">代码审查</a>的根本局限性</strong>：源<a href="../concepts/代码审查.html">代码审查</a>只能保证源代码本身没有问题，但无法保证从源代码到可执行程序的转换过程是忠实的</li>
+<li><strong>发现编译器作为攻击向量的可能性</strong>：开创了通过攻击开发工具来间接攻击所有由该工具生产的软件的全新攻击思路</li>
+<li><strong>将信任从技术问题提升为哲学问题</strong>：使"信任"从简单的二元概念（可信/不可信）演变为分层的、有条件的、可传递的复杂概念</li>
+<li><strong>自复制木马的概念</strong>：恶意代码可在二进制层面实现自我复制和跨代传播，而不需要在任何源代码文件中留下痕迹</li>
+<li><strong>写作典范</strong>：三段式层层递进的叙事结构，从编程技巧到编译器观察，最终到达安全结论</li>
+</ol>
+<h3 id="_13">后续影响与缓解方案</h3>
+<h4 id="_14">历史意义</h4>
+<ul>
+<li>开创了<a href="../concepts/供应链安全.html">供应链安全</a>研究方向</li>
+<li>成为安全教科书的必讲内容</li>
+<li>影响了可信<a href="../concepts/计算.html">计算</a>技术发展</li>
+<li>推动了<a href="../concepts/可重现构建.html">可重现构建</a>运动</li>
+<li>预见了现代供应链攻击（如 SolarWinds 事件）</li>
+</ul>
+<h4 id="_15">现代回应</h4>
+<ul>
+<li><strong>多样化双重编译（Diverse Double-Compiling, DDC）</strong>：用两个独立开发的编译器分别编译同一份源代码，比较生成的二进制文件</li>
+<li><strong><a href="../concepts/可重现构建.html">可重现构建</a>（<a href="../concepts/可重现构建.html">Reproducible Builds</a>）</strong>：给定相同源代码和构建环境，任何人都应得到逐位相同的二进制文件</li>
+<li><strong>形式化验证</strong>：如 CompCert 编译器，通过数学证明保证编译器的正确性</li>
+</ul>
+<h3 id="_16">核心结论</h3>
+<p>"You can't trust code that you did not totally create yourself."（你无法信任不是你自己完全创建的代码。）</p>
+<p>但在现代软件工程中，"完全自己创建"是不可能的。每一个程序员都站在无数前人的工作之上，使用着自己没有完全理解、更不可能完全验证的工具。信任是不可避免的，而信任就意味着风险。</p>
+<h2 id="_17">来源</h2>
+<ul>
+<li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/15-thompson-trusting-trust.md</span></li>
 <li>Thompson, K. (1984). Reflections on Trusting Trust. Communications of the ACM, 27(8), 761--763.</li>
 <li>Wheeler, D. A. (2005). Countering Trusting Trust through Diverse Double-Compiling. PhD dissertation, George Mason University.</li>
 </ul>

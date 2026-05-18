@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [工作, 方法论]
+tags: [工作, 方法论, LLM能力]
 aliases: [Ctrip Intelligent Customer Service OKR]
 relates_to:
   - OKR

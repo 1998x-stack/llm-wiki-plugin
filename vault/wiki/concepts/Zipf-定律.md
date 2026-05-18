@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [context-engineering, distributed-systems, power-laws]
+tags: [context-engineering, distributed-systems, power-laws, AI工程]
 aliases: ["齐夫定律", "Zipf's Law"]
 relates_to: []
 supersedes: null

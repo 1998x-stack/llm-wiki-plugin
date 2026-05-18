@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "agent-systems", "control-theory"]
+tags: [ai-engineering, agent-systems, control-theory, AI工程]
 aliases: ["Harness Engineering Is Cybernetics", "Harness工程与控制论"]
 relates_to:
   - target: "[[Harness-Engineering]]"

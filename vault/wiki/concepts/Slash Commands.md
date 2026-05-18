@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [claude, cli, commands, skills]
+tags: [claude, cli, commands, skills, AI工程]
 aliases: ["Slash Command", "斜杠命令"]
 relates_to:
   - target: "[[Claude Code]]"

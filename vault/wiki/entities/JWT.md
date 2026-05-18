@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [认证技术, 安全协议]
+tags: [认证技术, 安全协议, AI工程]
 aliases: ["JSON Web Token", "JWT", "JSON Web Tokens"]
 relates_to:
   - target: "[[API模块规范]]"

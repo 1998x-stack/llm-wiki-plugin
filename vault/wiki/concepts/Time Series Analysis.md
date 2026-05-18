@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [statistics, mathematics, data-analysis]
+tags: [statistics, mathematics, data-analysis, 时间序列]
 aliases: ["Time Series Analysis", "时间序列分析", "时间序列"]
 relates_to:
   - target: "[[Wold Decomposition Theorem]]"

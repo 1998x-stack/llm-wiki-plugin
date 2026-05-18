@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [person, developer, knowledge-management]
+tags: [person, developer, knowledge-management, AI工程]
 aliases: [Kieran Klaassen, 基兰·克拉森]
 entity_type: person
 relates_to: 

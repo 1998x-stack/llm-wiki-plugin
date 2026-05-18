@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 2
-tags:
+tags: [区块链, 金融, 方法论, 经济学]
   - 区块链
   - 金融
   - 方法论

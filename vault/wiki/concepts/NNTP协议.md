@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [网络协议, 互联网, 通信协议]
+tags: [网络协议, 互联网, 通信协议, 概率论]
 aliases: ["NNTP协议", "网络新闻传输协议", "Network News Transfer Protocol", "NNTP"]
 relates_to: 
   - target: "[[Usenet]]"
@@ -23,13 +23,13 @@ supersedes: null
 # NNTP协议
 
 ## 概述
-NNTP（Network News Transfer Protocol，网络新闻传输协议）是用于传输[[Usenet]][[Usenet|新闻组]]文章的互联网应用层协议，RFC 977定义了该协议的标准规范，为分布式[[Usenet|新闻组]]系统提供了底层通信机制。
+NNTP（Network News Transfer Protocol，网络新闻传输协议）是用于传输[[Usenet]][[Usenet|新闻组]]文章的[[互联网]]应用层协议，RFC 977定义了该协议的标准规范，为分布式[[Usenet|新闻组]]系统提供了底层通信机制。
 
 ## 关键内容
 
 1. **协议作用**：
    - 专门设计用于[[Usenet]][[Usenet|新闻组]]系统的文章传输
-   - 支持分布式、异步的[[Usenet|新闻组]]消息传递
+   - 支持分布式、异步的[[Usenet|新闻组]][[消息传递]]
    - 允许新闻[[服务]]器之间同步文章内容
 
 2. **在[[Usenet]]中的应用**：

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [GPU, 并行计算, 深度学习训练, 硬件加速]
+tags: [GPU, 并行计算, 深度学习训练, 硬件加速, 计算理论]
 aliases: [GPU Training, GPU Parallel Computing, CUDA 训练]
 relates_to: [AlexNet, Alex Krizhevsky, 卷积神经网络（CNN）, 反向传播（Backpropagation）]
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, quality-assurance, integration-testing]
+tags: [gsd-agent, quality-assurance, integration-testing, Agent系统]
 aliases: ["gsd-integration-checker", "GSD Integration Checker", "GSD集成检查智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

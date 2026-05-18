@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">资源路径引用规范</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中 <code>scripts/</code> 和 <code>assets/</code> 均被配置为资源根目录，引用其中的文件时直接从下一级开始，不需要加目录名前缀。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中 <code>scripts/</code> 和 <code>assets/</code> 均被<a href="Configuration.html">配置</a>为资源根目录，引用其中的文件时直接从下一级开始，不需要加目录名前缀。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>资源根目录规则</strong>：<code>scripts/</code> 和 <code>assets/</code> 都是资源根目录。引用资源时从下一级路径开始，如 <code>cache:GetResource("Texture2D", "Textures/player.png")</code> 对应 <code>assets/Textures/player.png</code>。</li>

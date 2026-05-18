@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, deep-learning, speech, generative-models]
+tags: [person, deep-learning, speech, generative-models, 深度学习]
 aliases: [Aaron van den Oord]
 relates_to:
   - target: WaveNet

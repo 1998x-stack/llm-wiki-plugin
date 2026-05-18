@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">prompt-context</span><span class="tag">tools</span><span class="tag">file-operations</span><span class="tag">token-economics</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">prompt-context</span><span class="tag">tools</span><span class="tag">file-operations</span><span class="tag">token-economics</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="write-tools">Write Tools</h1>
@@ -163,7 +163,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>安全与<a href="Permissions.html">权限</a>机制</strong>：</p>
 </li>
-<li>沙箱与<a href="Permissions.html">权限</a>机制：<a href="../entities/Codex CLI.html">Codex</a> 使用 OS 级隔离（macOS 的 <code>sandbox-exec</code>/<a href="../entities/Apple Sandbox.html">Seatbelt</a>，Linux 的 <code>landlock</code> + <code>seccomp</code>），<a href="../projects/Claude Code.html">Claude Code</a> 使用<a href="Permissions.html">权限</a><a href="门控机制（Gating Mechanism）.html">门控</a>（路径白名单检查 + 危险路径识别）</li>
+<li><a href="Claude Code 沙箱机制.html">沙箱</a>与<a href="Permissions.html">权限</a>机制：<a href="../entities/Codex CLI.html">Codex</a> 使用 OS 级隔离（macOS 的 <code>sandbox-exec</code>/<a href="../entities/Apple Sandbox.html">Seatbelt</a>，Linux 的 <code>landlock</code> + <code>seccomp</code>），<a href="../projects/Claude Code.html">Claude Code</a> 使用<a href="Permissions.html">权限</a><a href="门控机制（Gating Mechanism）.html">门控</a>（路径白名单检查 + 危险路径识别）</li>
 <li><a href="atomic_write.html">Atomic Write</a>：使用 temp → fsync → rename 三步<a href="atomic_write.html">原子写入</a>确保数据一致性，关键细节是 tempfile 必须在同一目录（同一文件系统），否则 <code>os.replace</code> 退化为 copy+delete，失去原子性保证</li>
 <li>唯一性约束：str_replace 要求 old_str 必须唯一，防止误替换<a href="重复代码.html">重复代码</a>块</li>
 <li>
@@ -181,8 +181,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>架构对比</strong>：</p>
 </li>
 <li><strong><a href="../projects/Claude Code.html">Claude Code</a></strong>：write / str_replace / patch 三件套，<a href="Permissions.html">权限</a><a href="门控机制（Gating Mechanism）.html">门控</a>（进程级），同步逐步/YOLO 审批，Symbol-level 大文件读取</li>
-<li><strong><a href="../entities/Codex CLI.html">Codex CLI</a></strong>：write / patch，OS 沙箱（内核级），suggest/auto-edit/full-auto 模式，行范围读取</li>
-<li><strong><a href="../entities/Cursor.html">Cursor</a></strong>：<a href="AST-based diff.html">AST-based diff</a>（最精确方案，直接在语法树层面做 diff，解决行号漂移问题），无沙箱（IDE 内），inline accept/reject</li>
+<li><strong><a href="../entities/Codex CLI.html">Codex CLI</a></strong>：write / patch，OS <a href="Claude Code 沙箱机制.html">沙箱</a>（内核级），suggest/auto-edit/full-auto 模式，行范围读取</li>
+<li><strong><a href="../entities/Cursor.html">Cursor</a></strong>：<a href="AST-based diff.html">AST-based diff</a>（最精确方案，直接在语法树层面做 diff，解决行号漂移问题），无<a href="Claude Code 沙箱机制.html">沙箱</a>（IDE 内），inline accept/reject</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

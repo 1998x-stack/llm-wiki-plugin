@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">parsing</span><span class="tag">lexical-analysis</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">parsing</span><span class="tag">lexical-analysis</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">词法分析</h1>
 <h2 id="_2">概述</h2>
-<p>词法分析是编译器的第一阶段，负责将源代码字符流转换为 Token 序列，为后续语法分析提供结构化输入。</p>
+<p>词法分析是编译器的第一阶段，负责将源代码字符流转换为 Token 序列，为后续<a href="语法分析.html">语法分析</a>提供结构化输入。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心职责</strong>：词法分析器（Lexer）读取源代码字符流，识别关键字、标识符、运算符、字面量等词法单元，输出 Token 序列供语法分析器使用。</p>
+<p><strong>核心职责</strong>：词法分析器（Lexer）读取源代码字符流，识别关键字、标识符、运算符、字面量等词法单元，输出 Token 序列供<a href="语法分析.html">语法分析</a>器使用。</p>
 </li>
 <li>
-<p><strong>接口定义关键性</strong>：在并行 Agent 开发中，Agent-Lexer 和 Agent-Parser 对 Token 结构的假设不同是常见的接口冲突来源，必须在接口规范文件中明确定义 Token 数据结构。</p>
+<p><strong><a href="接口规范.html">接口定义</a>关键性</strong>：在<a href="并行 Agent 开发.html">并行 Agent 开发</a>中，Agent-Lexer 和 Agent-<a href="语法分析.html">Parser</a> 对 Token 结构的假设不同是常见的接口冲突来源，必须在<a href="接口规范.html">接口规范</a>文件中明确定义 Token 数据结构。</p>
 </li>
 <li>
-<p><strong>与语法分析的关系</strong>：词法分析是语法分析的前置阶段，两者通过 Token 流接口连接，Token 结构的一致性直接影响编译器的正确性。</p>
+<p><strong>与<a href="语法分析.html">语法分析</a>的关系</strong>：词法分析是<a href="语法分析.html">语法分析</a>的前置阶段，两者通过 Token 流接口连接，Token 结构的一致性直接影响编译器的正确性。</p>
 </li>
 <li>
-<p><strong>AI 并行开发挑战</strong>：在 Anthropic 的 C 编译器实验中，词法分析器由独立的 Agent-Lexer 实现，需要在开始前确认已读取架构师 Agent 生成的接口规范。</p>
+<p><strong>AI 并行开发挑战</strong>：在 <a href="../entities/Anthropic.html">Anthropic</a> 的 <a href="C 编译器.html">C 编译器</a>实验中，词法分析器由独立的 Agent-Lexer 实现，需要在开始前确认已读取架构师 Agent 生成的<a href="接口规范.html">接口规范</a>。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

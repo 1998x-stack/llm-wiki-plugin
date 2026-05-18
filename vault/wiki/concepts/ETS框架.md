@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [时间序列分析, 统计框架, 状态空间模型]
+tags: [时间序列分析, 统计框架, 状态空间模型, 工具与框架]
 aliases: ["ETS Framework", "Error-Trend-Seasonal Framework", "误差-趋势-季节性框架"]
 relates_to:
   - target: "[[指数平滑]]"
@@ -38,10 +38,10 @@ ETS（Error, Trend, Seasonal）框架是[[罗布·海德曼|Rob J. Hyndman]]等�
 
 4. **理论意义**：
    - [[指数平滑]]不再只是"启发式[[算法]]"，而是有似然函数的正规统计方法
-   - 可以进行模型选择和区间预测
+   - 可以进行[[模型选择]]和区间预测
    - 某些[[指数平滑]]模型等价于特定的[[ARIMA|ARIMA模型]]
 
-5. **实践价值**：提供了自动化的模型选择机制，[[Python]]的statsmodels库、R的forecast包等都将ETS作为核心方法。
+5. **实践价值**：提供了自动化的[[模型选择]]机制，[[Python]]的statsmodels库、R的forecast包等都将ETS作为核心方法。
 
 6. **权威著作**：Hyndman等人2008年出版的《Forecasting with [[指数平滑|Exponential Smoothing]]: The State Space Approach》是该领域的标准参考。
 

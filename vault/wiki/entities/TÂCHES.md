@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [developer, open-source, ai-tools]
+tags: [developer, open-source, ai-tools, AI工程]
 aliases: [TÂCHES, TACHES]
 relates_to:
   - target: "[[GSD]]"

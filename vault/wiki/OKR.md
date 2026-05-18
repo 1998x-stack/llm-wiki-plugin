@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [方法论, 工作]
+tags: [方法论, 工作, 工具与框架]
 aliases: [Objectives and Key Results, 目标与关键结果]
 relates_to:
   - 携程智能客服OKR体系

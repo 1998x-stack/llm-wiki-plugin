@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [security, bash, ai-agent, threat-model, cli-tools]
+tags: [security, bash, ai-agent, threat-model, cli-tools, AI工程]
 aliases: ["BashSecurity", "Bash安全机制", "命令注入防护", "Shell安全"]
 relates_to:
   - target: "[[BashTool]]"

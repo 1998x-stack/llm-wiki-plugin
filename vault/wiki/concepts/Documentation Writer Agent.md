@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [subagent, documentation, technical-writing, api-docs]
+tags: [subagent, documentation, technical-writing, api-docs, AI工程]
 aliases: ["文档写作助手", "技术文档专家", "Technical Documentation Expert"]
 relates_to: []
 supersedes: null

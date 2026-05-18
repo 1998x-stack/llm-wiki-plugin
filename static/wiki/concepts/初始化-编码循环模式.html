@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">任务分解</span><span class="tag">架构模式</span><span class="tag">长时任务</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">任务分解</span><span class="tag">架构模式</span><span class="tag">长时任务</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="-">初始化-编码循环模式</h1>
 <h2 id="_1">概述</h2>
-<p>初始化-编码循环模式是 Agent Harness 设计中的核心架构模式，将长任务分解为"初始化"和"执行"两个分离的角色，通过外部进度文件实现状态传递和任务协调。</p>
+<p>初始化-编码循环模式是 <a href="Agent Harness模式.html">Agent Harness</a> 设计中的核心架构模式，将长<a href="任务分解.html">任务分解</a>为"初始化"和"执行"两个分离的角色，通过外部进度文件实现状态传递和任务协调。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>双角色分离</strong>：</li>
-<li><strong>Initializer Agent（初始化 Agent）</strong>：<ul>
+<li><strong><a href="Initializer Agent.html">Initializer Agent</a>（<a href="Initializer Agent.html">初始化 Agent</a>）</strong>：<ul>
 <li>理解完整任务的全貌和约束</li>
 <li>创建详细的任务规划文件（如 features.json）</li>
 <li>设定检查点标准和完成条件</li>
@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 </li>
 <li>
-<p><strong>Coding Agent（执行 Agent，可多实例）</strong>：</p>
+<p><strong><a href="编码 Agent 协议.html">Coding Agent</a>（执行 Agent，可多实例）</strong>：</p>
 <ul>
 <li>读取 claude-progress.txt 了解当前状态</li>
 <li>执行下一步具体任务</li>
@@ -166,7 +166,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>设计优势</strong>：</p>
 </li>
-<li>初始化 Agent 专注于全局规划和约束设定</li>
+<li><a href="Initializer Agent.html">初始化 Agent</a> 专注于全局规划和约束设定</li>
 <li>执行 Agent 专注于当前步骤的具体实现</li>
 <li>多实例执行 Agent 可并行处理独立任务</li>
 <li>
@@ -176,7 +176,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 Harness 的关系</strong>：</p>
 </li>
 <li>这是 <a href="Agent Harness 运行框架.html">Agent Harness 运行框架</a> 的核心设计模式之一</li>
-<li>解决了长时任务中上下文窗口边界的根本挑战</li>
+<li>解决了长时任务中<a href="上下文窗口.html">上下文窗口</a>边界的根本挑战</li>
 <li>配合 <a href="外化进度追踪.html">外化进度追踪</a> 和 <a href="检查点策略.html">检查点策略</a> 共同工作</li>
 </ol>
 <h2 id="_3">来源</h2>

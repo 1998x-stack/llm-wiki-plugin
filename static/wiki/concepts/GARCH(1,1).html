@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">finance</span><span class="tag">econometrics</span><span class="tag">volatility-modeling</span><span class="tag">time-series</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">finance</span><span class="tag">econometrics</span><span class="tag">volatility-modeling</span><span class="tag">time-series</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="garch11">GARCH(1,1)</h1>
 <h2 id="_1">概述</h2>
-<p>GARCH(1,1) 是 GARCH 模型中最常用的具体形式，仅包含一个滞后项的自回归成分和一个滞后项的条件方差成分，用三个参数有效地刻画了波动率的动态特征。</p>
+<p>GARCH(1,1) 是 <a href="GARCH 模型.html">GARCH 模型</a>中最常用的具体形式，仅包含一个滞后项的<a href="AR 模型（自回归模型）.html">自回归</a>成分和一个滞后项的条件方差成分，用三个参数有效地刻画了波动率的动态特征。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -155,7 +155,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>递归结构优势</strong>：由于包含方差自身的滞后项，GARCH(1,1) 具有递归结构，当前条件方差实际上隐含了所有历史误差平方的加权和，权重按几何级数衰减。</p>
 </li>
 <li>
-<p><strong>实际应用</strong>：在实证研究中，GARCH(1,1) 被证明通常是最佳选择，更高阶的 GARCH 模型很少能带来显著改进。估计结果中 α + β 通常接近于1，意味着波动率冲击的衰减速度极慢，很好地捕捉了金融数据中常见的"长记忆"特征。</p>
+<p><strong>实际应用</strong>：在实证研究中，GARCH(1,1) 被证明通常是最佳选择，更高阶的 <a href="GARCH 模型.html">GARCH 模型</a>很少能带来显著改进。估计结果中 α + β 通常接近于1，意味着波动率冲击的衰减速度极慢，很好地捕捉了金融数据中常见的"长记忆"特征。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

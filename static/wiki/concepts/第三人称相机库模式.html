@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">第三人称相机库模式</h1>
 <h2 id="_2">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中将第一人称相机改为第三人称时，必须使用 <code>ThirdPersonCamera</code> 库，禁止手动计算相机位置。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中将第一人称相机改为第三人称时，必须使用 <code>ThirdPersonCamera</code> 库，禁止手动<a href="计算.html">计算</a>相机位置。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>使用方式</strong>：<code>require "urhox-libs.Camera.ThirdPersonCamera"</code> 引入库，通过 <code>ThirdPersonCamera.Create(scene_, config)</code> 创建相机，配置中包含模式定义（距离、偏移、FOV）。</li>
-<li><strong>关键规则</strong>：不要手动计算相机位置（库内部封装，避免符号问题）；保持 yaw 更新逻辑不变（不要反转符号）；在 <code>PostUpdate</code> 中调用 <code>tpCamera_:Update(timeStep, characterNode, yaw, pitch)</code> 更新。</li>
+<li><strong>使用方式</strong>：<code>require "urhox-libs.Camera.ThirdPersonCamera"</code> 引入库，通过 <code>ThirdPersonCamera.Create(scene_, config)</code> 创建相机，<a href="Configuration.html">配置</a>中包含模式定义（距离、偏移、FOV）。</li>
+<li><strong>关键规则</strong>：不要手动<a href="计算.html">计算</a>相机位置（库内部封装，避免符号问题）；保持 yaw 更新逻辑不变（不要反转符号）；在 <code>PostUpdate</code> 中调用 <code>tpCamera_:Update(timeStep, characterNode, yaw, pitch)</code> 更新。</li>
 <li><strong>参考脚手架</strong>：<code>templates/scaffold-3d-character.lua</code> 包含完整的第三人称相机集成示例。</li>
 </ol>
 <h2 id="_4">来源</h2>

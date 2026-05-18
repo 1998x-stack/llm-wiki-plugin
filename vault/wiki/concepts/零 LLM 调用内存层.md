@@ -34,7 +34,7 @@ AI 记忆系统的架构设计原则：在内存的写入和读取过程中不�
   - 确定性行为（相同输入产生相同输出）
   - 完全离线运行
   - 可预测的性能表现
-- **依赖极简**：仅 [[ChromaDB]]（向量存储）+ PyYAML（[[Configuration|配置]]），无 LangChain、LlamaIndex、[[OpenAI]] SDK
+- **依赖极简**：仅 [[ChromaDB]]（向量存储）+ PyYAML（[[Configuration|配置]]），无 [[LangChain]]、LlamaIndex、[[OpenAI]] SDK
 
 ## 来源
 - [[raw/articles/ai-tools/mempalace/mempalace_01_overview.md]] — MemPalace 系列总览篇

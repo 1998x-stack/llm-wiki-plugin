@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [api设计, 后端开发, 规范]
+tags: [api设计, 后端开发, 规范, 工具与框架]
 aliases: ["API Module Specification", "API Specification"]
 relates_to:
   - target: "[[Zod]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [nlp, pre-trained models, autoregressive models]
+tags: [nlp, "pre-trained models", "autoregressive models", AI工程]
 aliases: ["XLNet", "Generalized Autoregressive Pretraining"]
 relates_to:
   - target: "[[XLNet: Generalized Autoregressive Pretraining (2019 论文)]]"

@@ -7,7 +7,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [refactoring, software-engineering, author]
+tags: [refactoring, software-engineering, author, AI工程]
 aliases: ["Martin Fowler", "马丁·福勒"]
 relates_to: []
 supersedes: null

@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">可靠性</span><span class="tag">状态管理</span><span class="tag">验证</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent工程</span><span class="tag">可靠性</span><span class="tag">状态管理</span><span class="tag">验证</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">检查点策略</h1>
 <h2 id="_2">概述</h2>
-<p>检查点策略是 Agent Harness 设计中的关键原则，通过可验证的客观状态（而非 Agent 自我报告）来判断任务进度和完成标准，防止过早声明完成并支持从中间点恢复。</p>
+<p>检查点策略是 <a href="Agent Harness模式.html">Agent Harness</a> 设计中的关键原则，通过可验证的客观状态（而非 Agent 自我报告）来判断任务进度和完成标准，防止过早声明完成并支持从中间点恢复。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心原则</strong>：</li>
@@ -163,8 +163,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>对策</strong>：</p>
 <ul>
-<li>在 Harness 中设置独立的完成验证机制</li>
-<li>对"任务完成"设置强制确认步骤</li>
+<li>在 Harness 中<a href="Settings.html">设置</a>独立的完成验证机制</li>
+<li>对"任务完成"<a href="Settings.html">设置</a>强制确认步骤</li>
 <li>依赖客观指标而非 Agent 自我报告</li>
 </ul>
 </li>

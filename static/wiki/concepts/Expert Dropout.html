@@ -130,48 +130,48 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">多任务学习</span><span class="tag">正则化技术</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">推荐系统</span><span class="tag">多任务学习</span><span class="tag">正则化技术</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="expert-dropout">Expert Dropout</h1>
 <h2 id="_1">概述</h2>
-<p>Expert Dropout 是一种专门用于混合专家模型（如 MMoE）的正则化技术，通过在训练过程中随机丢弃部分专家网络来防止专家极化问题，从而缓解专家坍缩现象。</p>
+<p>Expert <a href="Dropout.html">Dropout</a> 是一种专门用于<a href="MoE（混合专家）.html">混合专家模型</a>（如 MMoE）的正则化技术，通过在训练过程中<a href="Dropout（随机失活）.html">随机丢弃</a>部分专家网络来防止专家极化问题，从而缓解<a href="专家坍缩.html">专家坍缩</a>现象。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">技术定义</h3>
 <ul>
-<li><strong>随机丢弃</strong>：在训练过程中随机将某些专家网络的输出置零</li>
-<li><strong>防极化机制</strong>：防止门控网络过度依赖某些特定专家</li>
+<li><strong><a href="Dropout（随机失活）.html">随机丢弃</a></strong>：在训练过程中随机将某些专家网络的输出置零</li>
+<li><strong>防极化机制</strong>：防止<a href="门控机制（Gating Mechanism）.html">门控</a>网络过度依赖某些特定专家</li>
 <li><strong>正则化手段</strong>：作为一种正则化技术，提高模型的泛化能力</li>
 </ul>
 <h3 id="_4">工作原理</h3>
 <ul>
 <li><strong>训练时随机性</strong>：在每次前向传播中随机选择部分专家进行丢弃</li>
-<li><strong>强制多样化</strong>：迫使门控网络不能总是依赖相同的专家组合</li>
+<li><strong>强制多样化</strong>：迫使<a href="门控机制（Gating Mechanism）.html">门控</a>网络不能总是依赖相同的专家组合</li>
 <li><strong>负载均衡</strong>：鼓励所有专家网络都参与到模型训练中</li>
 </ul>
 <h3 id="mmoe">与 MMoE 的关系</h3>
 <ul>
-<li><strong>论文提及</strong>：MMoE 论文中提到使用 Expert Dropout 来缓解专家极化问题</li>
-<li><strong>针对性技术</strong>：专门为解决 MMoE 等混合专家模型的问题而设计</li>
+<li><strong>论文提及</strong>：<a href="../entities/MMoE 论文.html">MMoE 论文</a>中提到使用 Expert <a href="Dropout.html">Dropout</a> 来缓解专家极化问题</li>
+<li><strong>针对性技术</strong>：专门为解决 MMoE 等<a href="MoE（混合专家）.html">混合专家模型</a>的问题而设计</li>
 <li><strong>性能优化</strong>：帮助维持 MMoE 架构的预期效果</li>
 </ul>
 <h3 id="_5">应用场景</h3>
 <ul>
-<li><strong>混合专家模型训练</strong>：特别适用于 MoE、OMoE、MMoE 等架构</li>
-<li><strong>专家坍缩预防</strong>：用于预防和缓解专家坍缩现象</li>
+<li><strong><a href="MoE（混合专家）.html">混合专家模型</a>训练</strong>：特别适用于 MoE、OMoE、MMoE 等架构</li>
+<li><strong><a href="专家坍缩.html">专家坍缩</a>预防</strong>：用于预防和缓解<a href="专家坍缩.html">专家坍缩</a>现象</li>
 <li><strong>负载均衡</strong>：改善专家网络的使用均衡性</li>
 </ul>
 <h3 id="_6">优势</h3>
 <ul>
-<li><strong>防止过拟合</strong>：通过随机丢弃减少专家间的相互依赖</li>
+<li><strong>防止<a href="过拟合.html">过拟合</a></strong>：通过<a href="Dropout（随机失活）.html">随机丢弃</a>减少专家间的相互依赖</li>
 <li><strong>提高鲁棒性</strong>：增强模型对专家失效的容忍度</li>
-<li><strong>缓解坍缩</strong>：有效防止专家坍缩和极化问题</li>
+<li><strong>缓解坍缩</strong>：有效防止<a href="专家坍缩.html">专家坍缩</a>和极化问题</li>
 </ul>
 <h3 id="_7">局限性</h3>
 <ul>
 <li><strong>参数调整</strong>：需要调整 dropout 比率等超参数</li>
 <li><strong>训练时间</strong>：可能略微增加训练时间</li>
-<li><strong>不完全解决</strong>：无法完全消除专家坍缩问题</li>
+<li><strong>不完全解决</strong>：无法完全消除<a href="专家坍缩.html">专家坍缩</a>问题</li>
 </ul>
 <h2 id="_8">来源</h2>
 <ul>

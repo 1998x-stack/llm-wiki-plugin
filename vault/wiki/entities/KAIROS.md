@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, proactive-system, claude-code]
+tags: [ai-agent, proactive-system, claude-code, AI工程]
 aliases: ["KAIROS", "KAIROS守护进程", "合适时机"]
 relates_to:
   - target: "[[Claude Code]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [write-operation, code-modification, file-creation]
+tags: [write-operation, code-modification, file-creation, AI工程]
 aliases: ["Write", "Write操作", "写操作"]
 relates_to: 
   - target: "[[Claude Code]]"

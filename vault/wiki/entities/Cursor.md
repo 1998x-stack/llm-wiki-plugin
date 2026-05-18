@@ -35,7 +35,7 @@ AI 原生代码编辑器，基于 [[VS Code]] 构建，支持 [[Agent Skills]] �
 3. **跨工具兼容**：与 [[Claude Code]]、[[OpenAI Codex]]、[[Gemini CLI]] 共享 [[Skills|Skill]] 生态
 4. **[[Write-Tools|Write Tools]] 实现**：
    - 采用 [[AST-based diff]] 技术，这是目前最精确的方案——不依赖行号，直接在语法树层面做 diff，彻底解决了 unified patch 的行号漂移问题
-   - 无传统意义上的沙箱（在 IDE 内运行），信任环境中的代码修改操作
+   - 无传统意义上的[[Claude Code 沙箱机制|沙箱]]（在 IDE 内运行），信任环境中的代码修改操作
    - 采用 inline accept/reject 模式，用户可以直接在编辑器中接受或拒绝 AI 建议的修改
    - 采用 AST 感知的大文件处理策略，能够理解代码结构而非简单的行号定位
    - 部分支持多文件事务（通过 Composer 功能）

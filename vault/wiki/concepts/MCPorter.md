@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [mcp, orchestration, tool-composition, automation, claude-code]
+tags: [mcp, orchestration, tool-composition, automation, claude-code, AI工程]
 aliases: ["MC Porter", "MCP Tool Orchestration", "MCP 工具编排", "MCP 工具组合运行时"]
 relates_to:
   - target: "[[MCP]]"

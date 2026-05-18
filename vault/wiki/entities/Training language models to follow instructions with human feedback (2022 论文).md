@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, NLP, alignment, RLHF]
+tags: [paper, NLP, alignment, RLHF, AI工程]
 aliases: [Ouyang et al. 2022, InstructGPT 论文]
 relates_to:
   - target: Long Ouyang

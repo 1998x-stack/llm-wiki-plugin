@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "优化理论", "可视化"]
+tags: [深度学习, 优化理论, 可视化, 机器学习]
 aliases: ["Loss Landscape", "损失地形", "误差曲面", "Error Surface", "优化景观"]
 relates_to: ["残差网络（ResNet）", "残差连接（Residual Connection）", "梯度消失", "退化问题（Degradation Problem）"]
 supersedes: null

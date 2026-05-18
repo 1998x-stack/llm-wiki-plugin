@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI工具, 无障碍, Claude插件, WCAG]
+tags: [AI工具, 无障碍, Claude插件, WCAG, AI工程]
 aliases: ["accesslint/claude-marketplace", "AccessLint插件"]
 relates_to:
   - target: "[[bencium UX Designer]]"

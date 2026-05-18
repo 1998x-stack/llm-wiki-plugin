@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [深度学习, 计算机视觉, CNN, 架构, 论文]
+tags: [深度学习, 计算机视觉, CNN, 架构, 论文, 机器学习]
 aliases: [VGG, VGG-16, VGG-19, Very Deep Convolutional Networks, Very Deep Convolutional Networks for Large-Scale Image Recognition]
 relates_to:
   - target: "[[卷积神经网络（CNN）]]"
@@ -55,7 +55,7 @@ VGGNet 是由 [[Karen Simonyan]] 和 [[Andrew Zisserman]] 在 2014 年提出的�
 
 ## 关键内容
 
-1. **核心设计思想**：只使用 3×3 卷积核，通过不断叠加来增加网络深度。两个 3×3 卷积的[[感受野]]等同于一个 5×5 卷积，三个 3×3 等同于一个 7×7 卷积，但参数量更少（27C² vs 49C²），且增加了两次非线性激活，效果更佳。
+1. **核心设计思想**：只使用 3×3 卷积核，通过不断叠加来增加网络深度。两个 3×3 卷积的[[感受野]]等同于一个 5×5 卷积，三个 3×3 等同于一个 7×7 卷积，但参数量更少（27C² vs 49C²），且增加了两次[[非线性激活]]，效果更佳。
 
 2. **VGG 家族架构**：系统测试了 A-E 六种深度[[Configuration|配置]]，其中 VGG-16（13卷积+3全连接层，共16层，138M参数）和 VGG-19（16卷积+3全连接层，共19层，144M参数）最为经典。深度提升性能，但边际效应递减（19层比16层仅提升0.1%）。
 

@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [statistics, time-series-analysis, mathematics]
+tags: [statistics, time-series-analysis, mathematics, 概率论]
 aliases: ["George Edward Pelham Box", "George Box", "乔治·博克斯"]
 relates_to:
   - target: "[[Gwilym Jenkins]]"

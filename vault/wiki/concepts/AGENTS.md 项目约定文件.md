@@ -42,7 +42,7 @@ supersedes: null
    - **Learnings from Previous Sessions**：跨会话知识积累
    - **Dependency Map**：PRD 依赖关系图
 
-3. **与 [[Agent Harness模式|Agent Harness]] 的关系**：[[项目约定手册|AGENTS.md]] 是 [[Agent Harness模式]] 中项目层约定的载体。Harness 提供通用能力（规划、工具、沙箱），[[项目约定手册|AGENTS.md]] 注入项目特定约束，两者结合使 Agent 既能通用操作又遵守项目规范。
+3. **与 [[Agent Harness模式|Agent Harness]] 的关系**：[[项目约定手册|AGENTS.md]] 是 [[Agent Harness模式]] 中项目层约定的载体。Harness 提供通用能力（规划、工具、[[Claude Code 沙箱机制|沙箱]]），[[项目约定手册|AGENTS.md]] 注入项目特定约束，两者结合使 Agent 既能通用操作又遵守项目规范。
 
 4. **维护机制**：文件由 Agent 自动维护——发现新模式时更新 [[项目约定手册|AGENTS.md]]，Known Issues 和 Learnings 部分在会话过程中动态填充。这体现了"约定即代码"在 AI 开发中的延伸。
 

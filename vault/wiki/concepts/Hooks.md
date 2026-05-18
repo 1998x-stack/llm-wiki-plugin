@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-tools, automation, lifecycle, constraints]
+tags: [ai-tools, automation, lifecycle, constraints, AI工程]
 aliases: ["Hooks System", "Lifecycle Hooks", "Hook System", "钩子系统"]
 relates_to:
   - target: "[[Claude Code]]"

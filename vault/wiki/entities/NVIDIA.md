@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["公司", "硬件", "GPU", "AI芯片"]
+tags: [公司, 硬件, GPU, AI芯片, AI工程]
 aliases: ["NVIDIA", "英伟达", "Nvidia Corporation"]
 relates_to: ["GPU训练", "AlexNet", "深度学习", "Google", "DeepMind"]
 supersedes: null

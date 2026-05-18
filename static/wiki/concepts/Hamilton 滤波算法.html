@@ -130,33 +130,33 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">经济学</span><span class="tag">时间序列分析</span><span class="tag">计量经济学</span><span class="tag">算法</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">经济学</span><span class="tag">时间序列分析</span><span class="tag">计量经济学</span><span class="tag">算法</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="hamilton">Hamilton 滤波算法</h1>
 <h2 id="_1">概述</h2>
-<p>Hamilton 滤波算法是用于马尔可夫体制转换模型的一种高效算法，可在给定所有历史数据的条件下，计算出每个时刻处于各体制的概率。</p>
+<p>Hamilton 滤波<a href="算法.html">算法</a>是用于<a href="马尔可夫体制转换模型.html">马尔可夫体制转换模型</a>的一种高效<a href="算法.html">算法</a>，可在给定所有历史数据的条件下，<a href="计算.html">计算</a>出每个时刻处于各体制的概率。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心功能</strong>：算法能够从观测的时间序列数据中推断出不可观测的体制变量，计算每个时刻处于不同体制的概率</p>
+<p><strong>核心功能</strong>：<a href="算法.html">算法</a>能够从观测的<a href="Time Series Analysis.html">时间序列</a>数据中推断出不可观测的体制变量，<a href="计算.html">计算</a>每个时刻处于不同体制的概率</p>
 </li>
 <li>
-<p><strong>算法逻辑</strong>：</p>
+<p><strong><a href="算法.html">算法</a>逻辑</strong>：</p>
 </li>
-<li>预测步骤：根据上一期的体制概率和转移矩阵，预测本期体制的先验概率</li>
-<li>更新步骤：观察到本期数据后，利用贝叶斯定理将先验概率更新为后验概率</li>
+<li>预测步骤：根据上一期的体制概率和转移<a href="矩阵.html">矩阵</a>，预测本期体制的先验概率</li>
+<li>更新步骤：观察到本期数据后，利用<a href="贝叶斯定理.html">贝叶斯定理</a>将先验概率更新为后验概率</li>
 <li>
 <p>迭代：对每个时间点重复上述步骤</p>
 </li>
 <li>
-<p><strong>技术特点</strong>：巧妙地利用了隐马尔可夫模型的前向递推结构，使得似然函数的计算既精确又高效</p>
+<p><strong>技术特点</strong>：巧妙地利用了隐<a href="../entities/马尔可夫.html">马尔可夫</a>模型的前向递推结构，使得似然函数的<a href="计算.html">计算</a>既精确又高效</p>
 </li>
 <li>
 <p><strong>输出结果</strong>：对于每个时刻 t，得到处于特定体制的概率（如处于衰退体制的概率 P(S_t = 0 | y_1, y_2, ..., y_t)）</p>
 </li>
 <li>
-<p><strong>应用价值</strong>：通过计算体制概率，可以自动识别经济周期的转折点，与 NBER 官方认定的衰退日期高度吻合</p>
+<p><strong>应用价值</strong>：通过<a href="计算.html">计算</a>体制概率，可以自动识别经济周期的转折点，与 NBER 官方认定的衰退日期高度吻合</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

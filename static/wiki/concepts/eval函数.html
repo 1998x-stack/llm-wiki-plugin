@@ -126,32 +126,70 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / eval函数</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">编程语言</span><span class="tag">编译原理</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
 </div>
   <div class="content">
-    <h1 id="eval">eval函数</h1>
+    <hr />
+<p>type: concept
+status: active
+confidence: 0.9
+created: 2026-04-26
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 1
+tags: [技术, 编程语言, 编译原理, C++编程]
+  - 技术
+  - 编程语言
+  - 编译原理
+aliases:
+  - eval function
+  - eval
+  - 自解释器
+  - 元循环解释器
+relates_to:
+  - target: "<a href="../entities/LISP.html">LISP</a>"
+    type: core_component
+    confidence: 0.9
+  - target: "<a href="../entities/John McCarthy.html">John McCarthy</a>"
+    type: created_by
+    confidence: 0.9
+  - target: "<a href="S-表达式.html">S-表达式</a>"
+    type: operates_on
+    confidence: 0.9
+  - target: "<a href="同像性.html">同像性</a>"
+    type: enables
+    confidence: 0.9
+  - target: "<a href="λ演算.html">λ演算</a>"
+    type: implements
+    confidence: 0.9
+  - target: "<span style="color:#e74c3c" title="broken link">元编程</span>"
+    type: enables
+    confidence: 0.9
+supersedes: null</p>
+<hr />
+<h1 id="eval">eval函数</h1>
 <h2 id="_1">概述</h2>
-<p>eval函数是LISP语言中的一个核心函数，它接受一个S-表达式（代表LISP程序）和一个环境（变量绑定），返回该程序的求值结果。eval是LISP的自解释器，能够在不到一页纸的篇幅内定义LISP语言的完整语义。</p>
+<p>eval函数是LISP语言中的一个核心函数，它接受一个<a href="S-表达式.html">S-表达式</a>（代表LISP程序）和一个环境（变量绑定），返回该程序的求值结果。eval是LISP的自解释器，能够在不到一页纸的篇幅内定义LISP语言的完整语义。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心逻辑</strong>：eval的定义只有大约一页纸的篇幅，却完整地定义了一种图灵完备的编程语言的语义。其核心规则包括：如果表达式是原子则查找其值、如果是quote形式则直接返回、如果是cond形式则求值条件、如果是lambda形式则创建闭包、否则为函数调用。</p>
+<p><strong>核心逻辑</strong>：eval的定义只有大约一页纸的篇幅，却完整地定义了一种<a href="../entities/Alan Turing.html">图灵</a>完备的编程语言的语义。其核心规则包括：如果表达式是原子则查找其值、如果是quote形式则直接返回、如果是cond形式则求值条件、如果是lambda形式则创建闭包、否则为函数调用。</p>
 </li>
 <li>
-<p><strong>元循环解释器</strong>：eval被称为元循环解释器，因为它用LISP自身定义了LISP语言的解释器。这种"用自身定义自身"的能力根源于LISP的同像性：程序本身就是S-表达式，而eval是操纵S-表达式的函数。</p>
+<p><strong><a href="eval 函数.html">元循环解释器</a></strong>：eval被称为<a href="eval 函数.html">元循环解释器</a>，因为它用LISP自身定义了LISP语言的解释器。这种"用自身定义自身"的能力根源于LISP的<a href="同像性.html">同像性</a>：程序本身就是<a href="S-表达式.html">S-表达式</a>，而eval是操纵<a href="S-表达式.html">S-表达式</a>的函数。</p>
 </li>
 <li>
-<p><strong>历史意义</strong>：Alan Kay后来评价eval为"整个计算机科学中最美丽的东西"，并将其比作物理学中的Maxwell方程组。</p>
+<p><strong>历史意义</strong>：Alan Kay后来评价eval为"整个<a href="计算.html">计算</a>机科学中最美丽的东西"，并将其比作物理学中的Maxwell方程组。</p>
 </li>
 <li>
 <p><strong>实现的简洁性</strong>：整个eval的定义只有几条规则，却完整定义了LISP的语义，展示了LISP设计的数学优雅性。</p>
 </li>
 <li>
-<p><strong>现代影响</strong>：eval的概念在现代编程语言中仍然可见，如JavaScript的eval函数、Python的eval和exec函数等，尽管出于安全考虑通常有所限制。</p>
+<p><strong>现代影响</strong>：eval的概念在现代编程语言中仍然可见，如JavaScript的eval函数、<a href="Python.html">Python</a>的eval和exec函数等，尽管出于安全考虑通常有所限制。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

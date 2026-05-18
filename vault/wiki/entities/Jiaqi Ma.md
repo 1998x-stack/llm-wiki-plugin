@@ -23,10 +23,10 @@ supersedes: null
 ### 学术背景
 - 密歇根大学博士生期间在 [[Google]] 实习
 - 在 [[Google]] 推荐系统团队实习期间完成 MMoE 研究工作
-- 合作者包括 [[Zhe Zhao]], Xinyang Yi, Jilin Chen, Lichan Hong, [[Ed H. Chi]]
+- 合作者包括 [[Zhe Zhao]], [[Xinyang Yi]], [[Jilin Chen]], [[Lichan Hong]], [[Ed H. Chi]]
 
 ### 主要贡献
-- **[[MMoE 论文]]**(KDD 2018)：提出 [[MMoE|Multi-gate Mixture-of-Experts]] 架构
+- **[[MMoE 论文]]**([[KDD|KDD 2018]])：提出 [[MMoE|Multi-gate Mixture-of-Experts]] 架构
   - 为每个任务配备独立[[门控机制（Gating Mechanism）|门控]]网络，解决[[多任务学习]]中的[[负迁移]]问题
   - 在 [[YouTube]] 大规模推荐系统中验证有效性
   - 至今被引用数千次，成为推荐系统[[多任务学习]]的事实标准

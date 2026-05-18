@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [deprecated, protocol, transport, sse, mcp, legacy]
+tags: [deprecated, protocol, transport, sse, mcp, legacy, 推荐系统]
 aliases: ["SSE Transport", "Server-Sent Events Transport", "SSE 传输", "MCP SSE Connection"]
 relates_to:
   - target: "[[MCP]]"

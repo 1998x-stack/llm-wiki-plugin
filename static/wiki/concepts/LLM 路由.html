@@ -139,8 +139,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ul>
 <li><strong>Mem<a href="MemPalace 宫殿架构.html">Palace Architecture</a> v1 实践</strong>：</li>
-<li>索引时：Haiku 模型给每个会话分配 Room 标签</li>
-<li>查询时：Haiku 模型把问题路由到 1-2 个 Room</li>
+<li>索引时：<a href="../entities/Claude 3 Haiku.html">Haiku</a> 模型给每个会话分配 Room 标签</li>
+<li>查询时：<a href="../entities/Claude 3 Haiku.html">Haiku</a> 模型把问题路由到 1-2 个 Room</li>
 <li>结果：R@5 = 34.2%，62.5% 的查询零召回，比朴素基线还低 26 个百分点</li>
 <li><strong>失败根因</strong>：两个独立的 LLM 调用产生词汇不匹配。索引时标记为"relationship_advice"，查询时路由到"personal_guidance"——标签向量相似度不够</li>
 <li><strong>关键教训</strong>：用 LLM 做双端路由，必须保证两端共享同一套词汇体系</li>

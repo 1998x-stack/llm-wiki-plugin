@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [LLM工程, 工程方法论, AI工程]
+tags: [LLM工程, 工程方法论, AI工程, LLM能力]
 aliases: ["LLM Engineering Three Phases", "LLM工程三阶段对比"]
 relates_to:
   - target: "[[LLM-工程三阶段]]"
@@ -43,7 +43,7 @@ supersedes: null
    
    - **约束类型**: 从 Prompt 的软约束（语言描述）发展到 Context 的半软约束（结构化注入），再到 Harness 的硬约束（CI [[门控机制（Gating Mechanism）|门控]]，不可绕过）。
    
-   - **演化驱动力**: 从 Prompt 到 Context 的跃迁由[[上下文窗口]]突破（4K → 128K）、LLM推理能力提升和企业级RAG需求爆发触发；从 Context 到 Harness 的跃迁由 Agent能力跃迁、规模化代码生成后的质量崩溃以及[[OpenAI]] Harness案例的示范效应驱动。
+   - **演化驱动力**: 从 Prompt 到 Context 的跃迁由[[上下文窗口]]突破（4K → 128K）、LLM推理能力提升和企业级RAG需求爆发触发；从 Context 到 Harness 的跃迁由 Agent能力跃迁、规模化[[代码生成]]后的质量崩溃以及[[OpenAI]] Harness案例的示范效应驱动。
 
 3. **未来发展趋势**：
    - **短期趋势**（2025-2026）包括Harness基础设施产品化、多Agent协作标准化和自进化约束系统的发展。

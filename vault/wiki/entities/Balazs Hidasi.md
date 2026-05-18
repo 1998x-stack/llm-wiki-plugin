@@ -18,11 +18,11 @@ supersedes: null
 # Balazs Hidasi
 
 ## 概述
-匈牙利研究者，Gravity R&D 团队成员，[[GRU4Rec]] 论文第一作者，首次将[[门控机制（Gating Mechanism）|门控]]循环单元（GRU）引入[[会话推荐]]场景，开创了深度学习在[[序列推荐]]领域的先河。
+匈牙利研究者，[[Gravity R&D]] 团队成员，[[GRU4Rec]] 论文第一作者，首次将[[门控机制（Gating Mechanism）|门控]]循环单元（GRU）引入[[会话推荐]]场景，开创了深度学习在[[序列推荐]]领域的先河。
 
 ## 关键内容
 
-1. **代表工作**：[[GRU4Rec]] — "[[GRU4Rec|Session-based Recommendations with Recurrent Neural Networks]]"（ICLR 2016），第一作者。该论文累计被引用超过 4000 次（截至2025年），是推荐系统领域引用量最高的论文之一。
+1. **代表工作**：[[GRU4Rec]] — "[[GRU4Rec|Session-based Recommendations with Recurrent Neural Networks]]"（[[ICLR 2016]]），第一作者。该论文累计被引用超过 4000 次（截至2025年），是推荐系统领域引用量最高的论文之一。
 
 2. **核心贡献**：
    - 首次将深度 RNN（GRU）应用于[[会话推荐]]场景
@@ -34,7 +34,7 @@ supersedes: null
 
 4. **开源贡献**：维护 [[GRU4Rec]] 的官方代码[[仓库]]（Theano 实现和 [[PyTorch]] 官方实现），为后续研究者提供了可复现的基线。
 
-5. **机构背景**：Gravity R&D（匈牙利），与 Telefonica Research（西班牙）合作完成 [[GRU4Rec]] 研究。
+5. **机构背景**：[[Gravity R&D]]（匈牙利），与 [[Telefonica Research]]（西班牙）合作完成 [[GRU4Rec]] 研究。
 
 ## 来源
 - [GRU4Rec 原始论文 (arXiv)](https://arxiv.org/abs/1511.06939)

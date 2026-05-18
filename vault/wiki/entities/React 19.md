@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [javascript-library, frontend-framework, react]
+tags: [javascript-library, frontend-framework, react, AI设计]
 aliases: ["React 19", "React v19"]
 relates_to:
   - target: "[[React]]"

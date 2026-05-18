@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>事件订阅</strong>：在 <code>Start()</code> 中调用 <code>SubscribeToEvent("NanoVGRender", "HandleNanoVGRender")</code>。不使用 <code>Update</code> 或其他事件。</li>
 <li><strong>渲染框架</strong>：<code>HandleNanoVGRender(eventType, eventData)</code> 回调中，先调用 <code>nvgBeginFrame(vg, width, height, 1.0)</code>，执行绘制代码，最后调用 <code>nvgEndFrame(vg)</code> 完成一帧渲染。</li>
-<li><strong>适用场景</strong>：此模式仅适用于自定义矢量图形绘制（粒子、图表、特殊效果）。UI/HUD/字幕等通用界面应使用 <code>urhox-libs/UI</code> 组件，而非 raw NanoVG。</li>
+<li><strong>适用场景</strong>：此模式仅适用于自定义矢量图形绘制（粒子、图表、特殊效果）。UI/HUD/字幕等通用界面应使用 <code>urhox-libs/UI</code> 组件，而非 raw <a href="../entities/NanoVG.html">NanoVG</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

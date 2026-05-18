@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [开发工具, Shell框架]
+tags: [开发工具, Shell框架, 工具与框架]
 aliases: ["Oh My Zsh"]
 relates_to: []
 supersedes: null

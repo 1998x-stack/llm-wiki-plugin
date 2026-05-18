@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>每条准则应<strong>单条可判定</strong>、无歧义，不在一条内堆砌多个要求</li>
 <li>准则涉及工具调用行为（如"必须调用 <code>edit_file</code>"）时，需将完整轨迹送入评判上下文（<a href="../entities/DeepAgents.html">DeepAgents</a> 中用 <code>include_tool_calls=True</code>）</li>
 <li>固定 <code>judge_model</code> 版本，保证跨次运行可横向对比</li>
-<li><strong>给 LLM 评分器"退路"</strong>：当信息不足时允许返回 "Unknown"</li>
+<li><strong>给 LLM <a href="评分器设计.html">评分器</a>"退路"</strong>：当信息不足时允许返回 "Unknown"</li>
 <li><strong>为每个评测维度创建独立的 LLM-as-judge</strong>（而非一个模型评测所有维度）</li>
 <li>使用清晰的结构化评分标准（Rubric），而非模糊指令</li>
 <li><strong>定期与人类专家进行校准验证</strong>以确保评分一致性</li>

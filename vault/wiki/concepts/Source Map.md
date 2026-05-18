@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [development-tools, javascript, debugging]
+tags: [development-tools, javascript, debugging, AI工程]
 aliases: ["Source Map", ".map file", "JavaScript Source Map"]
 relates_to: 
   - target: "[[TypeScript]]"

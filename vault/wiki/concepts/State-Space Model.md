@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [control-theory, time-series-analysis, mathematical-modeling, dynamical-systems]
+tags: [control-theory, time-series-analysis, mathematical-modeling, dynamical-systems, 工具与框架]
 aliases: ["状态空间模型", "状态空间表示"]
 relates_to: []
 supersedes: null

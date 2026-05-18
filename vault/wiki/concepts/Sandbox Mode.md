@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, claude-code, tool-system, sandbox]
+tags: [ai-tools, claude-code, tool-system, sandbox, AI工程]
 aliases: ["Sandbox Mode", "沙箱模式"]
 relates_to: []
 supersedes: null
@@ -15,7 +15,7 @@ supersedes: null
 # Sandbox Mode
 
 ## 概述
-[[Claude Code]]中的沙箱模式，用于在CI/CD等场景中限制工具执行环境，特别是限制网络访问以增强安全性。
+[[Claude Code]]中的[[Claude Code 沙箱机制|沙箱]]模式，用于在CI/CD等场景中限制工具执行环境，特别是限制网络访问以增强安全性。
 
 ## 关键内容
 

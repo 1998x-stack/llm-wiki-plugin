@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [nlp, architecture, attention, google, deep-learning]
+tags: [nlp, architecture, attention, google, deep-learning, 机器学习]
 aliases: ["Transformer Architecture", "Transformer Model"]
 relates_to:
   - target: "[[Attention Is All You Need]]"
@@ -59,7 +59,7 @@ Transformer包含编码器（Encoder）和解码器（Decoder）两个部分，�
 ### 优势
 - **完全并行化**：相比RNN的串行[[计算]]，Transformer可以并行处理序列中的所有位置，大大提高了训练效率
 - **长距离依赖**：通过[[自注意力机制]]直接连接任意两个位置，更好地捕获长距离依赖关系
-- **可解释性**：注意力权重提供了模型决策过程的可视化
+- **可解释性**：[[注意力机制|注意力]]权重提供了模型决策过程的可视化
 
 ### 影响
 [[Transformer架构]]奠定了现代大[[Language-Model|语言模型]]的基础，BERT、GPT等模型均基于此架构或其变体。此外，该架构还成功扩展到了[[计算]]机视觉等领域，产生了[[Vision Transformer（ViT）|Vision Transformer]]等重要模型。

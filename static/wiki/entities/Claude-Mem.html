@@ -178,7 +178,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="Claude_Code.html">Claude</a>-Mem 遵循“用最简单的工具解决问题”的工程哲学，采用独特的“三层存储架构”：
 1. <strong>关系型数据层</strong>：利用 <a href="SQLite.html">SQLite</a> 原生索引处理时间范围、项目过滤和类型筛选（如“最近 7 天的 bugfix"）。
 2. <strong>全文检索层</strong>：利用 FTS5 的 BM25 <a href="../concepts/算法.html">算法</a>，在 10 万条记录下实现&lt;10ms 的查询速度，远优于传统 LIKE 查询。
-3. <strong>语义向量层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
+3. <strong><a href="../concepts/语义嵌入.html">语义向量</a>层</strong>：可选集成 <a href="ChromaDB.html">ChromaDB</a>，解决“词项不匹配但语义相关”的问题（例如搜索“认证安全”能找到包含"OAuth"但未出现“认证”一词的记录）。</p>
 <h3 id="_11">检索工作流</h3>
 <p>系统根据查询类型自动选择最优检索策略：
 - <strong>精确关键词检索</strong>：优先使用 FTS5 实现毫秒级响应

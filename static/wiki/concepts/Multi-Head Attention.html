@@ -130,32 +130,32 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">注意力机制</span><span class="tag">深度学习</span><span class="tag">多头机制</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">注意力机制</span><span class="tag">深度学习</span><span class="tag">多头机制</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="multi-head-attention">Multi-Head Attention</h1>
 <h2 id="_1">概述</h2>
-<p>一种扩展的注意力机制，将查询、键和值分别投影到多个不同的子空间中，在每个子空间独立执行注意力计算，最后将结果拼接起来，增强了模型的表达能力。</p>
+<p>一种扩展的<a href="注意力机制.html">注意力机制</a>，将查询、键和值分别投影到多个不同的子空间中，在每个子空间独立执行<a href="注意力机制.html">注意力</a><a href="计算.html">计算</a>，最后将结果拼接起来，增强了模型的表达能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>计算过程</strong>：</li>
+<li><strong><a href="计算.html">计算</a>过程</strong>：</li>
 <li>将 Q、K、V 分别投影到 h 个不同的低维子空间</li>
-<li>在每个子空间独立执行注意力计算：head_i = Attention(Q W_i^Q, K W_i^K, V W_i^V)</li>
+<li>在每个子空间独立执行<a href="注意力机制.html">注意力</a><a href="计算.html">计算</a>：head_i = Attention(Q W_i^Q, K W_i^K, V W_i^V)</li>
 <li>
 <p>拼接多头输出：Concat(head_1, ..., head_h) W^O</p>
 </li>
 <li>
 <p><strong>技术参数</strong>：</p>
 </li>
-<li>论文中使用 h = 8 个注意力头</li>
+<li>论文中使用 h = 8 个<a href="注意力机制.html">注意力</a>头</li>
 <li>每个头的维度为 d_k = d_v = d_model / h = 64</li>
 <li>
-<p>保持总体计算成本与单头相近</p>
+<p>保持总体<a href="计算.html">计算</a>成本与单头相近</p>
 </li>
 <li>
 <p><strong>优势特点</strong>：</p>
 </li>
-<li>能够在多个表示子空间中学习不同的注意力模式</li>
+<li>能够在多个表示子空间中学习不同的<a href="注意力机制.html">注意力</a>模式</li>
 <li>不同的头可以关注不同类型的关系（语法、语义、位置等）</li>
 <li>显著增强了模型的表达能力</li>
 </ol>

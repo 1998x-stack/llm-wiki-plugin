@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="luong">Luong注意力</h1>
 <h2 id="_1">概述</h2>
-<p>Luong 点积/乘性注意力以 $s^\top W h$ 替代 Bahdanau 的加性函数，参数更少、速度更快，是 <a href="缩放点积注意力.html">缩放点积注意力</a> 的直接前身。</p>
+<p>Luong 点积/乘性<a href="注意力机制.html">注意力</a>以 $s^\top W h$ 替代 Bahdanau 的加性函数，参数更少、速度更快，是 <a href="缩放点积注意力.html">缩放点积注意力</a> 的直接前身。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">三种变体</h3>
 <table>
@@ -166,12 +166,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <h3 id="bahdanau">与 Bahdanau 的核心差异</h3>
 <ol>
-<li><strong><a href="计算.html">计算</a>时机</strong>：Bahdanau 在 Decoder 输入前<a href="计算.html">计算</a>注意力；Luong 在 Decoder 状态更新后<a href="计算.html">计算</a></li>
+<li><strong><a href="计算.html">计算</a>时机</strong>：Bahdanau 在 Decoder 输入前<a href="计算.html">计算</a><a href="注意力机制.html">注意力</a>；Luong 在 Decoder 状态更新后<a href="计算.html">计算</a></li>
 <li><strong>维度约束</strong>：Luong 要求编码器与解码器隐藏维度相同；Bahdanau 无此限制</li>
 <li><strong>效率</strong>：Luong 点积变体无需额外前馈网络，速度显著快于 Bahdanau</li>
 </ol>
 <h3 id="_4">演化意义</h3>
-<p>Luong 注意力是 <a href="缩放点积注意力.html">缩放点积注意力</a> 的直接前身。Vaswani 等人在 <a href="Transformer 架构.html">Transformer</a> 中采用的 $QK^\top / \sqrt{d}$ 正是 Luong 点积注意力的缩放版本，去除了 $W$ <a href="矩阵.html">矩阵</a>并加入维度归一化以防止高维点积过大。</p>
+<p>Luong <a href="注意力机制.html">注意力</a>是 <a href="缩放点积注意力.html">缩放点积注意力</a> 的直接前身。Vaswani 等人在 <a href="Transformer 架构.html">Transformer</a> 中采用的 $QK^\top / \sqrt{d}$ 正是 Luong 点积<a href="注意力机制.html">注意力</a>的缩放版本，去除了 $W$ <a href="矩阵.html">矩阵</a>并加入维度归一化以防止高维点积过大。</p>
 <h2 id="_5">来源</h2>
 <ul>
 <li><a href="../entities/Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文).html">Neural Machine Translation by Jointly Learning to Align and Translate (2015 论文)</a> — 源文件中对比了 Luong 与 Bahdanau 注意力变体</li>

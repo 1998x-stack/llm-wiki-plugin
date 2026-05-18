@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [programming-language, javascript-superset]
+tags: [programming-language, javascript-superset, 工具与框架]
 aliases: ["TS", "TS语言"]
 relates_to: []
 supersedes: null

@@ -139,10 +139,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想</strong>：<a href="LightGCN.html">LightGCN</a> 虽然简化了 GCN，但仍需逐层进行邻域聚合的显式传播。UltraGCN 更进一步，直接逼近无限层图传播的极限，省掉了显式的多层传播过程。</p>
+<p><strong>核心思想</strong>：<a href="LightGCN.html">LightGCN</a> 虽然简化了 GCN，但仍需逐层进行<a href="../concepts/邻域聚合.html">邻域聚合</a>的显式传播。UltraGCN 更进一步，直接逼近无限层图传播的极限，省掉了显式的多层传播过程。</p>
 </li>
 <li>
-<p><strong>与 <a href="LightGCN.html">LightGCN</a> 的关系</strong>：UltraGCN 是 <a href="LightGCN.html">LightGCN</a> "Less is More" 哲学的延续。如果 <a href="LightGCN.html">LightGCN</a> 去掉了特征变换和非线性激活，UltraGCN 则去掉了显式传播本身。</p>
+<p><strong>与 <a href="LightGCN.html">LightGCN</a> 的关系</strong>：UltraGCN 是 <a href="LightGCN.html">LightGCN</a> "Less is More" 哲学的延续。如果 <a href="LightGCN.html">LightGCN</a> 去掉了<a href="../concepts/特征变换.html">特征变换</a>和<a href="../concepts/非线性激活.html">非线性激活</a>，UltraGCN 则去掉了显式传播本身。</p>
 </li>
 <li>
 <p><strong>技术路径</strong>：通过数学推导将无限层传播收敛到一个封闭解，避免了逐层<a href="../concepts/矩阵.html">矩阵</a>乘法带来的<a href="../concepts/计算.html">计算</a>开销。在保持甚至提升效果的同时，大幅降低了训练时间。</p>

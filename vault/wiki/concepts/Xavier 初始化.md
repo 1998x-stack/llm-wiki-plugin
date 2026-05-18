@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "神经网络", "初始化", "优化"]
+tags: [深度学习, 神经网络, 初始化, 优化, 概率论]
 aliases: ["Xavier Initialization", "Glorot Initialization", "Xavier 初始化", "Glorot 初始化"]
 relates_to:
   - target: "[[梯度消失]]"

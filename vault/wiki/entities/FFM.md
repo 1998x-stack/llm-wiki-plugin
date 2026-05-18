@@ -19,7 +19,7 @@ supersedes: null
 # FFM (Field-aware Factorization Machines)
 
 ## 概述
-Juan 等人于 RecSys 2016 提出的 FM 扩展模型，引入"场"（Field）概念，让不同场之间的[[特征交叉|特征交互]]使用不同的[[嵌入表示|隐向量]]，解决了 FM 对所有交叉等权处理的局限。
+Juan 等人于 [[RecSys 2016]] 提出的 FM 扩展模型，引入"场"（Field）概念，让不同场之间的[[特征交叉|特征交互]]使用不同的[[嵌入表示|隐向量]]，解决了 FM 对所有交叉等权处理的局限。
 
 ## 关键内容
 

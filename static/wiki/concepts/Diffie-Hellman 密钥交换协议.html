@@ -130,35 +130,35 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">密码学</span><span class="tag">公钥密码学</span><span class="tag">密钥交换</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">密码学</span><span class="tag">公钥密码学</span><span class="tag">密钥交换</span><span class="tag">LLM能力</span></div>
 </div>
   <div class="content">
     <h1 id="diffie-hellman">Diffie-Hellman 密钥交换协议</h1>
 <h2 id="_1">概述</h2>
-<p>人类历史上第一个公钥密钥交换协议，允许两个此前从未接触过的用户通过不安全的公开信道建立共享秘密，基于离散对数问题的数学困难性实现安全性。</p>
+<p>人类历史上第一个公钥密钥交换协议，允许两个此前从未接触过的用户通过不安全的公开信道建立共享秘密，基于<a href="离散对数问题.html">离散对数问题</a>的数学困难性实现安全性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>协议流程</strong>：</li>
 <li>双方公开选定大素数p和模p的原根g</li>
-<li>各自生成随机秘密整数，计算公开值并交换</li>
+<li>各自生成随机秘密整数，<a href="计算.html">计算</a>公开值并交换</li>
 <li>
-<p>基于收到的公开值和自己的秘密，计算出相同的共享密钥</p>
+<p>基于收到的公开值和自己的秘密，<a href="计算.html">计算</a>出相同的共享密钥</p>
 </li>
 <li>
 <p><strong>数学基础</strong>：
-   协议的安全性依赖于离散对数问题的计算困难性——给定g、p和g^a mod p，计算a在计算上是不可行的。目前最优的经典算法（数域筛法）具有亚指数级复杂度。</p>
+   协议的安全性依赖于<a href="离散对数问题.html">离散对数问题</a>的<a href="计算.html">计算</a>困难性——给定g、p和g^a mod p，<a href="计算.html">计算</a>a在<a href="计算.html">计算</a>上是不可行的。目前最优的经典<a href="算法.html">算法</a>（数域筛法）具有亚指数级复杂度。</p>
 </li>
 <li>
 <p><strong>具体实现</strong>：
-   Alice选择秘密a，计算A=g^a mod p发送给Bob；Bob选择秘密b，计算B=g^b mod p发送给Alice；双方分别计算K=B^a mod p=A^b mod p=g^(ab) mod p获得共享密钥。</p>
+   Alice选择秘密a，<a href="计算.html">计算</a>A=g^a mod p发送给Bob；Bob选择秘密b，<a href="计算.html">计算</a>B=g^b mod p发送给Alice；双方分别<a href="计算.html">计算</a>K=B^a mod p=A^b mod p=g^(ab) mod p获得共享密钥。</p>
 </li>
 <li>
 <p><strong>实际应用</strong>：
-   现代TLS 1.3协议中仍采用其椭圆曲线变体ECDHE作为唯一的密钥交换机制，广泛应用于HTTPS、SSH等安全协议中。</p>
+   现代TLS 1.3协议中仍采用其椭圆曲线变体ECDHE作为唯一的密钥交换机制，广泛应用于<a href="TLS协议.html">HTTPS</a>、SSH等安全协议中。</p>
 </li>
 <li>
 <p><strong>局限性</strong>：
-   协议本身缺乏身份认证功能，易受中间人攻击，需配合数字证书等机制使用。</p>
+   协议本身缺乏身份认证功能，易受<a href="中间人攻击.html">中间人攻击</a>，需配合数字证书等机制使用。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

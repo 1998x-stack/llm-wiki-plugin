@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言概念</span><span class="tag">Go语言</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言概念</span><span class="tag">Go语言</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="channel">channel</h1>
 <h2 id="_1">概述</h2>
-<p>Go语言中的通信机制，用于在goroutine之间传递数据，是CSP理论中同步通信的现代实现。</p>
+<p>Go语言中的通信机制，用于在<a href="goroutine.html">goroutine</a>之间传递数据，是CSP理论中<a href="同步通信.html">同步通信</a>的现代实现。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>CSP实现</strong>：Go的channel直接实现了CSP中的同步通信概念，对应CSP的通信通道。</p>
+<p><strong>CSP实现</strong>：Go的channel直接实现了CSP中的<a href="同步通信.html">同步通信</a>概念，对应CSP的通信通道。</p>
 </li>
 <li>
 <p><strong>类型安全</strong>：channel是类型安全的，只能传递指定类型的值，避免了类型错误。</p>
 </li>
 <li>
-<p><strong>同步机制</strong>：默认情况下，channel操作是同步的，发送和接收操作会阻塞直到另一方准备就绪，实现了CSP中的"会合"概念。</p>
+<p><strong>同步机制</strong>：默认情况下，channel操作是同步的，发送和接收操作会阻塞直到另一方准备就绪，实现了CSP中的"<a href="同步通信.html">会合</a>"概念。</p>
 </li>
 <li>
-<p><strong>缓冲支持</strong>：除了无缓冲channel外，Go还支持带缓冲的channel，允许一定程度的异步通信。</p>
+<p><strong>缓冲支持</strong>：除了无缓冲channel外，Go还支持带缓冲的channel，允许一定程度的<a href="异步通信.html">异步通信</a>。</p>
 </li>
 <li>
 <p><strong>Select语句</strong>：Go的select语句允许在多个channel操作间进行选择，类似CSP中的守卫命令。</p>

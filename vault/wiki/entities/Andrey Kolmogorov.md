@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [mathematics, probability-theory, statistics]
+tags: [mathematics, probability-theory, statistics, 概率论]
 aliases: ["Andrey Kolmogorov", "Андрей Колмогоров", "柯尔莫哥洛夫"]
 relates_to:
   - target: "[[Probability Theory]]"

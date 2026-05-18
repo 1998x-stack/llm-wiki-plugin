@@ -130,18 +130,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">注意力机制</span><span class="tag">深度学习</span><span class="tag">缩放机制</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">注意力机制</span><span class="tag">深度学习</span><span class="tag">缩放机制</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="scaled-dot-product-attention">Scaled Dot-Product Attention</h1>
 <h2 id="_1">概述</h2>
-<p>一种具体的注意力计算方法，通过点积计算查询和键的相似度，并除以键向量维度的平方根进行缩放，是 Transformer 中使用的基础注意力机制。</p>
+<p>一种具体的<a href="注意力机制.html">注意力</a><a href="计算.html">计算</a>方法，通过点积<a href="计算.html">计算</a>查询和键的相似度，并除以键向量维度的平方根进行缩放，是 <a href="../entities/Transformer.html">Transformer</a> 中使用的基础<a href="注意力机制.html">注意力机制</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>计算公式</strong>：</li>
+<li><strong><a href="计算.html">计算</a>公式</strong>：</li>
 <li>Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V</li>
 <li>
-<p>包括四个步骤：计算相似度、缩放、归一化、加权求和</p>
+<p>包括四个步骤：<a href="计算.html">计算</a>相似度、缩放、归一化、加权求和</p>
 </li>
 <li>
 <p><strong>缩放目的</strong>：</p>
@@ -154,9 +154,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>应用场景</strong>：</p>
 </li>
-<li>作为 Multi-Head Attention 的基础组件</li>
-<li>在编码器自注意力、解码器掩码自注意力、编码器-解码器交叉注意力中使用</li>
-<li>是 Transformer 架构的核心计算单元</li>
+<li>作为 <a href="Multi-Head Attention.html">Multi-Head Attention</a> 的基础组件</li>
+<li>在编码器<a href="Self-Attention机制.html">自注意力</a>、解码器掩码<a href="Self-Attention机制.html">自注意力</a>、<a href="编码器-解码器架构（Seq2Seq）.html">编码器-解码器</a>交叉<a href="注意力机制.html">注意力</a>中使用</li>
+<li>是 <a href="Transformer 架构.html">Transformer 架构</a>的核心<a href="计算.html">计算</a>单元</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

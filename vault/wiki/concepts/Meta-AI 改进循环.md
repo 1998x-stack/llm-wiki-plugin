@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [meta-ai, self-improvement, agent-engineering]
+tags: [meta-ai, self-improvement, agent-engineering, AI工程]
 aliases: [Meta-AI Improvement Loop, AI 自我改进循环, Meta-AI 改进循环]
 relates_to:
   - "[[工具测试 Agent]] — implements"
@@ -25,7 +25,7 @@ Meta-AI 改进循环指使用 AI 来改进 AI 系统自身使用的工件（如�
 
 1. **核心原则**：AI 可以改进 AI 使用的工件。这在实践中表现为三个层面：工具描述可以通过 AI 辅助迭代快速改善、Prompt 可以通过 AI 生成测试用例并分析失败来优化、Agent 策略可以通过 Agent 模拟来调试。这一原则是 [[工具测试 Agent]] 的理论基础。
 
-2. **工作流程**：运行示例 → 观察失败 → AI 分析原因 → AI 改写工件 → 重测验证 → 循环迭代。Anthropic 的实践表明，至少循环 5-10 次才能充分发现边缘情况。这与 [[评测驱动开发]] 的"测试-修复-验证"循环类似，但主体是 AI 而非人类工程师。
+2. **工作流程**：运行示例 → 观察失败 → AI 分析原因 → AI 改写工件 → 重测验证 → 循环迭代。[[Anthropic]] 的实践表明，至少循环 5-10 次才能充分发现边缘情况。这与 [[评测驱动开发]] 的"测试-修复-验证"循环类似，但主体是 AI 而非人类工程师。
 
 3. **量化效果**：经过 AI 辅助优化的工具描述使后续 Agent 任务完成时间减少 **40%**。这一数据证明了投资工具质量的 ROI，也验证了 Meta-AI 改进循环的有效性。该效果在 [[SWE-bench]] 等代码任务中尤为明显。
 

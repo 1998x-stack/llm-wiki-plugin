@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="tisasrec">TiSASRec</h1>
 <h2 id="_1">概述</h2>
-<p>Time-Interval Aware <a href="SASRec.html">SASRec</a>，2020 年提出的 <a href="SASRec.html">SASRec</a> 后续工作，在<a href="../concepts/Self-Attention机制.html">自注意力</a>中引入实际时间间隔建模，弥补了 <a href="SASRec.html">SASRec</a> 仅使用<a href="../concepts/位置编码.html">位置编码</a>而忽略交互时间语义的不足。</p>
+<p>Time-Interval Aware <a href="SASRec.html">SASRec</a>，2020 年提出的 <a href="SASRec.html">SASRec</a> 后续工作，在<a href="../concepts/Self-Attention机制.html">自注意力</a>中引入实际<a href="../concepts/时间间隔建模.html">时间间隔建模</a>，弥补了 <a href="SASRec.html">SASRec</a> 仅使用<a href="../concepts/位置编码.html">位置编码</a>而忽略交互时间语义的不足。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,32 +145,32 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心改进</strong>：<a href="SASRec.html">SASRec</a> 使用<a href="../concepts/位置编码.html">位置编码</a>表示物品在序列中的相对顺序，但没有考虑交互之间的实际时间间隔。Ti<a href="SASRec.html">SASRec</a> 在<a href="../concepts/Self-Attention机制.html">自注意力</a><a href="../concepts/计算.html">计算</a>中引入了时间间隔信息——用户一小时内连续浏览的物品和间隔数月的两次购买具有完全不同的语义关联。</p>
 </li>
 <li>
-<p><strong>方法</strong>：在 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/嵌入表示.html">嵌入层</a>中增加时间间隔嵌入（Time-Interval <a href="../concepts/Embedding.html">Embedding</a>），与物品嵌入和<a href="../concepts/位置编码.html">位置嵌入</a>一起输入<a href="../concepts/Self-Attention机制.html">自注意力</a>层。注意力权重同时考虑内容相关性和时间接近度。</p>
+<p><strong>方法</strong>：在 <a href="SASRec.html">SASRec</a> 的<a href="../concepts/嵌入表示.html">嵌入层</a>中增加时间间隔嵌入（Time-Interval <a href="../concepts/Embedding.html">Embedding</a>），与物品嵌入和<a href="../concepts/位置编码.html">位置嵌入</a>一起输入<a href="../concepts/Self-Attention机制.html">自注意力</a>层。<a href="../concepts/注意力机制.html">注意力</a>权重同时考虑内容相关性和时间接近度。</p>
 </li>
 <li>
 <p><strong>核心创新</strong>：</p>
 </li>
-<li><strong>时间间隔嵌入</strong>：为每个交互的时间间隔分配嵌入向量，编码时间距离信息</li>
-<li><strong>时间感知位置编码</strong>：结合相对位置信息和时间间隔信息，构建更丰富的序列表示</li>
-<li><strong>时间衰减机制</strong>：根据时间间隔长短对注意力权重进行衰减，长时间间隔的物品关注度更低</li>
-<li><strong>双重位置编码</strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
+<li><strong>时间间隔嵌入</strong>：为每个交互的时间间隔分配<a href="../concepts/Embedding.html">嵌入向量</a>，编码时间距离信息</li>
+<li><strong>时间感知<a href="../concepts/位置编码.html">位置编码</a></strong>：结合相对位置信息和时间间隔信息，构建更丰富的序列表示</li>
+<li><strong>时间衰减机制</strong>：根据时间间隔长短对<a href="../concepts/注意力机制.html">注意力</a>权重进行衰减，长时间间隔的物品关注度更低</li>
+<li><strong>双重<a href="../concepts/位置编码.html">位置编码</a></strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
 <li><strong>时间间隔编码</strong>：将连续交互间的时间间隔离散化，映射为可学习的时间嵌入</li>
 <li>
-<p><strong>增强的自注意力</strong>：在计算Q/K/V时融入时间间隔信息，使模型能够区分不同时间尺度的依赖关系</p>
+<p><strong>增强的<a href="../concepts/Self-Attention机制.html">自注意力</a></strong>：在<a href="../concepts/计算.html">计算</a>Q/K/V时融入时间间隔信息，使模型能够<a href="区分.html">区分</a>不同时间尺度的依赖关系</p>
 </li>
 <li>
-<p><strong>解决的问题</strong>：<a href="SASRec.html">SASRec</a> 的局限性之一——缺少时间间隔建模。在现实场景中，时间间隔是用户意图的重要信号：短时间内的密集交互通常反映明确的购买意图，而长时间跨度的交互可能反映周期性需求。SASRec使用位置编码来表示物品在序列中的相对顺序，但没有考虑交互之间的实际时间间隔，而TiSASRec在SASRec的基础上加入了时间间隔感知能力。</p>
+<p><strong>解决的问题</strong>：<a href="SASRec.html">SASRec</a> 的局限性之一——缺少<a href="../concepts/时间间隔建模.html">时间间隔建模</a>。在现实场景中，时间间隔是用户意图的重要信号：短时间内的密集交互通常反映明确的购买意图，而长时间跨度的交互可能反映周期性需求。<a href="SASRec.html">SASRec</a>使用<a href="../concepts/位置编码.html">位置编码</a>来表示物品在序列中的相对顺序，但没有考虑交互之间的实际时间间隔，而Ti<a href="SASRec.html">SASRec</a>在<a href="SASRec.html">SASRec</a>的基础上加入了<a href="../concepts/时间间隔建模.html">时间间隔感知</a>能力。</p>
 </li>
 <li>
 <p><strong>技术实现</strong>：</p>
 </li>
-<li><strong>双重位置编码</strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
+<li><strong>双重<a href="../concepts/位置编码.html">位置编码</a></strong>：不仅考虑序列中的相对位置，还考虑交互之间的实际时间戳</li>
 <li><strong>时间间隔编码</strong>：将连续交互间的时间间隔离散化，映射为可学习的时间嵌入</li>
 <li>
-<p><strong>增强的自注意力</strong>：在计算Q/K/V时融入时间间隔信息，使模型能够区分不同时间尺度的依赖关系</p>
+<p><strong>增强的<a href="../concepts/Self-Attention机制.html">自注意力</a></strong>：在<a href="../concepts/计算.html">计算</a>Q/K/V时融入时间间隔信息，使模型能够<a href="区分.html">区分</a>不同时间尺度的依赖关系</p>
 </li>
 <li>
-<p><strong>与SASRec的关系</strong>：TiSASRec直接扩展了SASRec的架构，在其基础上加入了时间间隔感知能力，保持了原有的自注意力机制和因果掩码设计。</p>
+<p><strong>与<a href="SASRec.html">SASRec</a>的关系</strong>：Ti<a href="SASRec.html">SASRec</a>直接扩展了<a href="SASRec.html">SASRec</a>的架构，在其基础上加入了<a href="../concepts/时间间隔建模.html">时间间隔感知</a>能力，保持了原有的<a href="../concepts/自注意力机制.html">自注意力机制</a>和<a href="../concepts/因果掩码.html">因果掩码</a>设计。</p>
 </li>
 <li>
 <p><strong>实验效果</strong>：在多个带有时间戳信息的数据集上验证了有效性，特别是在用户行为时间分布不均匀的场景下表现优异。</p>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [company, ai, development-tools]
+tags: [company, ai, development-tools, AI工程]
 aliases: ["Solayer Labs"]
 relates_to: 
   - target: "[[Chaofan Shou]]"

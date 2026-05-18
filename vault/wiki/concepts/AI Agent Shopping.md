@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai, agent, shopping]
+tags: [ai, agent, shopping, AI工程]
 aliases: ["AI Agent Shopping", "Autonomous Shopping"]
 relates_to: []
 supersedes: null

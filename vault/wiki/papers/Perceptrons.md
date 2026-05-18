@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [neural networks, theoretical limitations, machine learning theory]
+tags: ["neural networks", "theoretical limitations", "machine learning theory", 机器学习]
 aliases: ["Perceptrons", "感知机理论局限性", "Minsky-Papert Analysis"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["NanoVG", "字体", "显存泄漏", "UrhoX", "渲染"]
+tags: [NanoVG, 字体, 显存泄漏, UrhoX, 渲染, 游戏开发]
 aliases: [NanoVG字体创建, nvgCreateFont规范, 字体句柄复用]
 relates_to: [NanoVG, NanoVG渲染事件模式, Emoji自动Fallback]
 supersedes: null
@@ -19,8 +19,8 @@ supersedes: null
 
 ## 关键内容
 1. **初始化时创建**：在 `Start()` 中调用 `fontNormal = nvgCreateFont(vg, "sans", "Fonts/MiSans-Regular.ttf")`，只执行一次。返回值是字体句柄，可全局复用。
-2. **渲染时使用**：每帧绘制时先设置字体 `nvgFontFace(vg, "sans")`，再设置字号 `nvgFontSize(vg, 24)`，最后绘制文本 `nvgText(vg, 100, 100, "Hello World")`。
-3. **显存泄漏警告**：`nvgCreateFont` 每帧调用会导致显存持续增长，最终崩溃。这是 NanoVG 最常见的性能陷阱之一。
+2. **渲染时使用**：每帧绘制时先[[Settings|设置]]字体 `nvgFontFace(vg, "sans")`，再[[Settings|设置]]字号 `nvgFontSize(vg, 24)`，最后绘制文本 `nvgText(vg, 100, 100, "Hello World")`。
+3. **显存泄漏警告**：`nvgCreateFont` 每帧调用会导致显存持续增长，最终崩溃。这是 [[NanoVG]] 最常见的性能陷阱之一。
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/CLAUDE.md]] — UrhoX Lua AI 开发指南，规则 #7

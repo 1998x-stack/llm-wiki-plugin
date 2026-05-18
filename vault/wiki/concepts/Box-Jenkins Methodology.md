@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [time-series-analysis, statistics, modeling-methodology]
+tags: [time-series-analysis, statistics, modeling-methodology, 时间序列]
 aliases: ["Box-Jenkins Methodology", "Box-Jenkins 方法论", "Box-Jenkins Modeling"]
 relates_to:
   - target: "[[George Box]]"

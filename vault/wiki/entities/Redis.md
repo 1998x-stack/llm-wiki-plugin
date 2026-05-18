@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [缓存数据库, 内存数据库, NoSQL]
+tags: [缓存数据库, 内存数据库, NoSQL, AI工程]
 aliases: ["Redis", "Remote Dictionary Server"]
 relates_to:
   - target: "[[API模块规范]]"

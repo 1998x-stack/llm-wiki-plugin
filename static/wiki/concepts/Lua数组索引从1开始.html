@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">数组</span><span class="tag">索引</span><span class="tag">UrhoX</span><span class="tag">陷阱</span><span class="tag">游戏开发</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">数组</span><span class="tag">索引</span><span class="tag">UrhoX</span><span class="tag">陷阱</span><span class="tag">游戏开发</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="lua1">Lua数组索引从1开始</h1>
@@ -138,8 +138,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>Lua 数组索引从 1 开始而非 0，这是 Lua 语言的核心设计，在 <a href="../entities/UrhoX引擎.html">UrhoX</a> 开发中极易引发 <code>attempt to index a nil value</code> 错误。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>循环写法</strong>：<code>for i = 1, n do</code> 是正确的遍历方式，不是 <code>for i = 0, n-1 do</code>。边界计算时用 <code>math.max(1, index)</code> 确保索引 &gt;= 1。</li>
-<li><strong>典型错误</strong>：<code>array[0]</code> 在 Lua 中不存在，返回 <code>nil</code>，后续访问会触发 <code>attempt to index a nil value</code> 错误。这是从 JavaScript/Python/C 转 Lua 最常见的陷阱。</li>
+<li><strong>循环写法</strong>：<code>for i = 1, n do</code> 是正确的遍历方式，不是 <code>for i = 0, n-1 do</code>。边界<a href="计算.html">计算</a>时用 <code>math.max(1, index)</code> 确保索引 &gt;= 1。</li>
+<li><strong>典型错误</strong>：<code>array[0]</code> 在 Lua 中不存在，返回 <code>nil</code>，后续访问会触发 <code>attempt to index a nil value</code> 错误。这是从 JavaScript/<a href="Python.html">Python</a>/C 转 Lua 最常见的陷阱。</li>
 <li><strong>与 table.unpack 的关系</strong>：<code>table.unpack()</code> 返回的元素索引同样从 1 开始，在表构造器中展开时需注意位置（只在最后位置才能完全展开）。</li>
 </ol>
 <h2 id="_3">来源</h2>

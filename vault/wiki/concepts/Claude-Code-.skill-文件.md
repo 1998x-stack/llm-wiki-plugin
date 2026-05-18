@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 技能库, Claude Code]
+tags: [LLM, 工具调用, 技能库, "Claude Code", AI工程]
 aliases: ["Claude Code .skill 文件", "Skill 文件设计"]
 relates_to: []
 supersedes: null
@@ -22,13 +22,13 @@ supersedes: null
 1. **设计哲学与学术支撑**：
    - description字段对应Gorilla的检索机制，是LLM检索相关[[Skills|技能]]的语义锚点
    - 代码模板对应[[CRAFT]]的代码复用理念，提供可执行的代码[[骨骼系统|骨架]]
-   - 工作流对应GITM的任务分解树，将复杂任务分解为可验证子目标
+   - 工作流对应GITM的[[任务分解]]树，将复杂[[任务分解]]为可验证子目标
    - 约束规则对应[[Toolformer]]的负样本过滤机制
 
 2. **核心组成部分**：
    - name：[[Skills|技能]]标识
    - description：触发词密集的自然语言描述，用于[[Skills|技能]]检索
-   - 工作流：任务分解的线性展开
+   - 工作流：[[任务分解]]的线性展开
    - 代码模板：可执行的代码[[骨骼系统|骨架]]
    - 约束与禁忌：负样本示例和使用限制
    - 示例：Few-shot示例
@@ -36,7 +36,7 @@ supersedes: null
 3. **与学术研究的对应关系**：
    - 工具检索 ←→ Gorilla、[[AnyTool]]
    - [[Skills|技能]]库 ←→ [[Voyager]]
-   - 任务分解 ←→ GITM、[[HuggingGPT]]
+   - [[任务分解]] ←→ GITM、[[HuggingGPT]]
    - 示例演示 ←→ [[ReAct]]、[[Toolformer]]
    - 文档质量 ←→ [[API-Bank]]
    - 验证机制 ←→ [[AssistGPT]] PEIL

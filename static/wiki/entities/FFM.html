@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ffm-field-aware-factorization-machines">FFM (Field-aware Factorization Machines)</h1>
 <h2 id="_1">概述</h2>
-<p>Juan 等人于 RecSys 2016 提出的 FM 扩展模型，引入"场"（Field）概念，让不同场之间的<a href="../concepts/特征交叉.html">特征交互</a>使用不同的<a href="../concepts/嵌入表示.html">隐向量</a>，解决了 FM 对所有交叉等权处理的局限。</p>
+<p>Juan 等人于 <a href="RecSys 2016.html">RecSys 2016</a> 提出的 FM 扩展模型，引入"场"（Field）概念，让不同场之间的<a href="../concepts/特征交叉.html">特征交互</a>使用不同的<a href="../concepts/嵌入表示.html">隐向量</a>，解决了 FM 对所有交叉等权处理的局限。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>场的概念</strong>：在 <a href="../concepts/CTR 预估.html">CTR 预估</a>中，特征可归入不同的"场"（Field），如用户性别、年龄、广告类别等。FM 中每个特征只有一个<a href="../concepts/嵌入表示.html">隐向量</a>，而 FFM 中每个特征针对不同的交互场使用不同的<a href="../concepts/嵌入表示.html">隐向量</a>。例如特征"男性"与"体育广告"交互时用向量 $\mathbf{v}<em>{男性,广告}$，与"年龄=25"交互时用向量 $\mathbf{v}</em>{男性,人口统计}$。</li>

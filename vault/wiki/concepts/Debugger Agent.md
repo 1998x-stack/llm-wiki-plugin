@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [debugging, agent, troubleshooting, root-cause-analysis]
+tags: [debugging, agent, troubleshooting, root-cause-analysis, AI工程]
 aliases: ["Debug Agent", "调试代理"]
 relates_to: []
 supersedes: null

@@ -106,7 +106,7 @@ obj:Erase("key")
 Variant 互转：`Set[[Hal Varian|Varian]]t`/`Get[[Hal Varian|Varian]]t`、`Set[[Hal Varian|Varian]]tMap`/`Get[[Hal Varian|Varian]]tMap`。
 常量：`JSONValue.EMPTY`、`JSONValue.emptyArray`、`JSONValue.emptyObject`。
 
-> ⚠️ 引擎提供 `File`+JSON 的原生路径，但对于复杂 JSON 操作推荐优先使用 `cjson`（见 `engine-docs/recipes/json.md`），性能更好且 API 更简洁。
+> ⚠️ 引擎提供 `File`+JSON 的原生路径，但对于复杂 JSON 操作推荐优先使用 `[[cjson]]`（见 `engine-docs/recipes/json.md`），性能更好且 API 更简洁。
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/engine-docs/api/io.md]] — UrhoX Lua API 官方文档

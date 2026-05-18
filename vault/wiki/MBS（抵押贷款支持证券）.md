@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究, 工具]
+tags: [研究, 工具, 经济学]
 aliases: [MBS, Mortgage-Backed Security, 房贷债券]
 relates_to:
   - 2008年金融海啸

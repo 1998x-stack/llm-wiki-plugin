@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-Luong 点积/乘性注意力以 $s^\top W h$ 替代 Bahdanau 的加性函数，参数更少、速度更快，是 [[缩放点积注意力]] 的直接前身。
+Luong 点积/乘性[[注意力机制|注意力]]以 $s^\top W h$ 替代 Bahdanau 的加性函数，参数更少、速度更快，是 [[缩放点积注意力]] 的直接前身。
 
 ## 关键内容
 
@@ -39,13 +39,13 @@ Luong 点积/乘性注意力以 $s^\top W h$ 替代 Bahdanau 的加性函数，�
 
 ### 与 Bahdanau 的核心差异
 
-1. **[[计算]]时机**：Bahdanau 在 Decoder 输入前[[计算]]注意力；Luong 在 Decoder 状态更新后[[计算]]
+1. **[[计算]]时机**：Bahdanau 在 Decoder 输入前[[计算]][[注意力机制|注意力]]；Luong 在 Decoder 状态更新后[[计算]]
 2. **维度约束**：Luong 要求编码器与解码器隐藏维度相同；Bahdanau 无此限制
 3. **效率**：Luong 点积变体无需额外前馈网络，速度显著快于 Bahdanau
 
 ### 演化意义
 
-Luong 注意力是 [[缩放点积注意力]] 的直接前身。Vaswani 等人在 [[Transformer 架构|Transformer]] 中采用的 $QK^\top / \sqrt{d}$ 正是 Luong 点积注意力的缩放版本，去除了 $W$ [[矩阵]]并加入维度归一化以防止高维点积过大。
+Luong [[注意力机制|注意力]]是 [[缩放点积注意力]] 的直接前身。Vaswani 等人在 [[Transformer 架构|Transformer]] 中采用的 $QK^\top / \sqrt{d}$ 正是 Luong 点积[[注意力机制|注意力]]的缩放版本，去除了 $W$ [[矩阵]]并加入维度归一化以防止高维点积过大。
 
 ## 来源
 

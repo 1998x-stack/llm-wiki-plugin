@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [protocol, http, coinbase, cloudflare]
+tags: [protocol, http, coinbase, cloudflare, 计算理论]
 aliases: ["x402", "HTTP 402", "HTTP 402 Protocol"]
 relates_to:
   - target: "[[Coinbase]]"
@@ -24,7 +24,7 @@ supersedes: null
 # x402
 
 ## 概述
-x402 是 [[Coinbase]] 推动的 HTTP 402 状态码复兴计划，将沉睡 30 年的状态码"Payment Required"正式定义为互联网支付标准。
+x402 是 [[Coinbase]] 推动的 HTTP 402 状态码复兴计划，将沉睡 30 年的状态码"Payment Required"正式定义为[[互联网]]支付标准。
 
 ## 关键内容
 

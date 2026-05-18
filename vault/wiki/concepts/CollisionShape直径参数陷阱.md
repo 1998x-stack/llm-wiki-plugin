@@ -55,7 +55,7 @@ shape:SetSphere(1.0)  -- 直径 1.0，半径 0.5
 
 - 看到 `SetSphere`/`SetCylinder`/`SetCapsule`/`SetCone` 调用时，确认传入值是直径
 - 代码中使用 `diameter` 变量名提升可读性
-- API 定义见源码：`engine/Source/Urho3D/LuaScript/pkgs/Physics/CollisionShape.pkg`
+- API 定义见源码：`engine/Source/[[Urho3D]]/LuaScript/pkgs/Physics/CollisionShape.pkg`
 
 ## 来源
 

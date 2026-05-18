@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [deep-learning, speech, generative-models, audio]
+tags: [deep-learning, speech, generative-models, audio, 游戏开发]
 aliases: [WaveNet]
 relates_to:
   - target: Aaron van den Oord

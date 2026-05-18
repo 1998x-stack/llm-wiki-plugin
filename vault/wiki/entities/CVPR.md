@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["计算机视觉", "学术会议", "AI"]
+tags: [计算机视觉, 学术会议, AI, AI工程]
 aliases: ["CVPR", "Conference on Computer Vision and Pattern Recognition", "计算机视觉与模式识别会议"]
 relates_to: ["ILSVRC", "残差网络（ResNet）", "ImageNet"]
 supersedes: null

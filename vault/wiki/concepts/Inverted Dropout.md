@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [Dropout, 正则化, 推理优化, 不确定性估计]
+tags: [Dropout, 正则化, 推理优化, 不确定性估计, 机器学习]
 aliases: [Inverted Dropout, 反向 Dropout]
 relates_to: [Dropout（随机失活）, Inverted Dropout, MC Dropout, 过拟合（Overfitting）]
 supersedes: null

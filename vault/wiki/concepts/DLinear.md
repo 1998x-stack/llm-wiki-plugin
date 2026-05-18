@@ -24,7 +24,7 @@ supersedes: null
 # DLinear
 
 ## 概述
-DLinear 由香港中文大学曾爱玲等提出（AAAI 2023 Oral），用一个简单到令人尴尬的线性模型击败了几乎所有 [[Transformer架构|Transformer]] [[Time Series Analysis|时间序列]]变体，引发了对"[[Transformer架构|Transformer]] 是否真的适合[[Time Series Analysis|时间序列]]预测"的深刻反思。
+DLinear 由[[香港中文大学]][[曾爱玲]]等提出（AAAI 2023 Oral），用一个简单到令人尴尬的线性模型击败了几乎所有 [[Transformer架构|Transformer]] [[Time Series Analysis|时间序列]]变体，引发了对"[[Transformer架构|Transformer]] 是否真的适合[[Time Series Analysis|时间序列]]预测"的深刻反思。
 
 ## 关键内容
 

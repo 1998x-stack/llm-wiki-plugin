@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [testing-methodology, software-development]
+tags: [testing-methodology, software-development, AI工程]
 aliases: ["测试驱动开发", "Test Driven Development"]
 relates_to: []
 supersedes: null

@@ -36,7 +36,7 @@ supersedes: null
        ├── 调用 codex_exec("生成文档")   → Codex 子 Agent
        └── 调用 codex_review("检查PR")  → Codex 子 Agent
    ```
-   父 Agent 负责协调和任务分解，[[Codex CLI|Codex]] 作为执行节点被动态调用。
+   父 Agent 负责协调和[[任务分解]]，[[Codex CLI|Codex]] 作为执行节点被动态调用。
 
 3. **协议依赖**：依赖 [[MCP]] 等标准化协议实现解耦。任何支持 MCP 的 Agent 都可以被任何支持 MCP 的 [[Orchestrator Agent|Orchestrator]] 发现和调用，无需定制集成代码。
 

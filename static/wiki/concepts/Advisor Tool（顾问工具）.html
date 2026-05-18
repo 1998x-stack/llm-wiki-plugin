@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="advisor-tool">Advisor Tool（顾问工具）</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Anthropic.html">Anthropic</a> <a href="../entities/Claude_Code.html">Claude</a> API 的 Advisor 模式是一种<a href="服务.html">服务</a>端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/Haiku）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> <a href="../entities/Claude_Code.html">Claude</a> API 的 Advisor 模式是一种<a href="服务.html">服务</a>端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/<a href="../entities/Claude 3 Haiku.html">Haiku</a>）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心设计哲学</strong>：打破多模型协作必须多次 HTTP 往返的惯例。传统框架（LangGraph、AutoGen）需要 N 次网络往返，而 Advisor 模式在单次 <code>/v1/messages</code> 请求内部完成 Executor→Advisor→Executor 的完整协作流程。</p>
+<p><strong>核心设计哲学</strong>：打破多模型协作必须多次 HTTP 往返的惯例。传统框架（LangGraph、<a href="../entities/AutoGen.html">AutoGen</a>）需要 N 次网络往返，而 Advisor 模式在单次 <code>/v1/messages</code> 请求内部完成 Executor→Advisor→Executor 的完整协作流程。</p>
 </li>
 <li>
 <p><strong>触发流程</strong>：</p>

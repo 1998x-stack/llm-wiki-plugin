@@ -172,13 +172,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心原则</strong>："Find the simplest solution possible, and only increase complexity when needed."——许多应用优化单个 LLM 调用 + 检索 + in-context 示例即可，不需要多步 Agent 系统。</p>
 <h3 id="_3">五种核心工作流模式</h3>
 <h4 id="1-prompt-chaining">1. 提示链（Prompt Chaining）</h4>
-<p>将任务分解为顺序步骤，每次 LLM 调用处理前一次的输出，可加入程序化检查门（Gate）。</p>
+<p>将<a href="任务分解.html">任务分解</a>为顺序步骤，每次 LLM 调用处理前一次的输出，可加入程序化检查门（Gate）。</p>
 <p><strong>适用</strong>：任务可清晰分解为固定子任务，以延迟换精度。
 <strong>例</strong>：生成营销文案 → 翻译为另一种语言；写大纲 → 检查标准 → 基于大纲写文档。</p>
 <h4 id="2-routing">2. 路由（Routing）</h4>
 <p>对输入分类，导向专门的后续处理路径，实现关注点分离和专业化提示。</p>
 <p><strong>适用</strong>：有多个明确类别需分别处理，且分类本身可以准确执行。
-<strong>例</strong>：客服查询分流（退款 / 技术支持 / 一般问题）；简单问题路由到 Haiku 4.5，复杂问题路由到 <a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.5。</p>
+<strong>例</strong>：客服查询分流（退款 / 技术支持 / 一般问题）；简单问题路由到 <a href="../entities/Claude 3 Haiku.html">Haiku</a> 4.5，复杂问题路由到 <a href="../entities/Claude-Sonnet-4.html">Sonnet 4</a>.5。</p>
 <h4 id="3-parallelization">3. 并行化（Parallelization）</h4>
 <p>LLM 同时处理任务，结果聚合。两个变体：
 - <strong>Sectioning</strong>：将任务拆分为独立子任务并行执行
@@ -197,7 +197,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="agent-agent">Agent（自主 Agent）</h3>
 <p>真正的 Agent 是 LLM 基于<a href="环境反馈设计.html">环境反馈</a>在循环中使用工具。关键特征：
 - 任务明确后<strong>独立计划执行</strong>，必要时回来寻求帮助
-- 每步从环境获取"ground truth"（工具调用结果、代码执行结果）
+- 每步从环境获取"ground truth"（工具调用结果、<a href="代码执行.html">代码执行</a>结果）
 - 支持停止条件（最大迭代数），必要时暂停等待人类反馈</p>
 <p><strong>适用</strong>：开放性问题，无法提前预知步骤数；需要扩展性自主任务。</p>
 <h3 id="agent-aci">Agent 计算机接口（ACI）</h3>
@@ -205,7 +205,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 工具描述应像给初级开发者写文档
 - 参数明确、无歧义（<code>user_id</code> 优于 <code>user</code>）
 - 让 Agent 使用工具，观察错误，迭代改进描述
-- Poka-yoke（防呆设计）：让错误难以发生（如强制使用绝对路径）</p>
+- <a href="防错设计.html">Poka-yoke</a>（<a href="防错设计.html">防呆设计</a>）：让错误难以发生（如强制使用绝对路径）</p>
 <h3 id="_4">设计原则摘要</h3>
 <ol>
 <li><strong>保持 Agent 设计的简洁性</strong></li>

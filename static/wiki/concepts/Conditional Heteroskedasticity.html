@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">economics</span><span class="tag">finance</span><span class="tag">econometrics</span><span class="tag">volatility-modeling</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">economics</span><span class="tag">finance</span><span class="tag">econometrics</span><span class="tag">volatility-modeling</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="conditional-heteroskedasticity">Conditional Heteroskedasticity</h1>
 <h2 id="_1">概述</h2>
-<p>条件异方差（Conditional Heteroskedasticity）是指时间序列数据的条件方差随时间变化的现象，其中 GARCH 模型是对其的广义化建模方法。</p>
+<p>条件异方差（Conditional Heteroskedasticity）是指<a href="Time Series Analysis.html">时间序列</a>数据的条件方差随时间变化的现象，其中 <a href="GARCH 模型.html">GARCH 模型</a>是对其的广义化建模方法。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>基本概念</strong>：在传统的时间序列分析中，误差项通常假设为同方差（constant variance），但实际金融数据中经常观察到误差的方差随时间变化，这就是条件异方差现象。</p>
+<p><strong>基本概念</strong>：在传统的<a href="时间序列分析.html">时间序列分析</a>中，误差项通常假设为同方差（constant variance），但实际金融数据中经常观察到误差的方差随时间变化，这就是条件异方差现象。</p>
 </li>
 <li>
 <p><strong>条件 vs 无条件</strong>：无条件异方差关注的是整个序列的总体方差特征，而条件异方差关注的是在给定过去信息的条件下当前的方差。</p>
 </li>
 <li>
-<p><strong>建模发展</strong>：Engle 提出的 ARCH 模型首次为条件异方差提供了建模框架，而 Bollerslev 的 GARCH 模型进一步将其广义化，通过加入方差自身的滞后项解决了原模型的参数过多问题。</p>
+<p><strong>建模发展</strong>：Engle 提出的 <a href="ARCH 模型.html">ARCH 模型</a>首次为条件异方差提供了建模框架，而 Bollerslev 的 <a href="GARCH 模型.html">GARCH 模型</a>进一步将其广义化，通过加入方差自身的滞后项解决了原模型的参数过多问题。</p>
 </li>
 <li>
 <p><strong>实际意义</strong>：条件异方差建模对于风险度量、资产定价和宏观经济分析具有重要意义，因为它能够捕捉到金融市场的不确定性是如何随时间演变的。</p>

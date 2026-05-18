@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, reinforcement-learning, PPO]
+tags: [paper, reinforcement-learning, PPO, 强化学习]
 aliases: [Schulman et al. 2017]
 relates_to:
   - target: John Schulman

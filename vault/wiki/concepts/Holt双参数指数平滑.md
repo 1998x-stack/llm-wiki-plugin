@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [时间序列分析, 预测方法, 趋势分析]
+tags: [时间序列分析, 预测方法, 趋势分析, 时间序列]
 aliases: ["Holt Double Parameter Exponential Smoothing", "Holt双参数指数平滑", "Holt趋势模型"]
 relates_to:
   - target: "[[指数平滑]]"

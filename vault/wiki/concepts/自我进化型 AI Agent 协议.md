@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, protocol, evolution]
+tags: [ai-agent, protocol, evolution, AI工程]
 aliases: ["Self-Evolving Agent Protocol", "PCEC", "Protocol-Constrained Evolution Core"]
 relates_to:
   - target: "[[Evolver]]"

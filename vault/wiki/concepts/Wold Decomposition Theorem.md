@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [time-series-analysis, statistics, probability-theory, mathematical-theorems]
+tags: [time-series-analysis, statistics, probability-theory, mathematical-theorems, 时间序列]
 aliases: ["Wold 分解定理", "Wold Decomposition Theorem", "Wold's Decomposition Theorem"]
 relates_to:
   - target: "[[Herman Wold]]"

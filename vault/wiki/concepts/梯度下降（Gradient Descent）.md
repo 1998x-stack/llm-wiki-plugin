@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [优化算法, 深度学习, 数学]
+tags: [优化算法, 深度学习, 数学, 机器学习]
 aliases: ["Gradient Descent", "梯度下降法", "最速下降法", "GD"]
 relates_to:
   - target: "[[反向传播（Backpropagation）]]"

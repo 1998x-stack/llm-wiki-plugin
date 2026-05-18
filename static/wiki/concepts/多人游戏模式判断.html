@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">多人游戏</span><span class="tag">网络</span><span class="tag">配置</span><span class="tag">UrhoX</span><span class="tag">模式判断</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">多人游戏</span><span class="tag">网络</span><span class="tag">配置</span><span class="tag">UrhoX</span><span class="tag">模式判断</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="_1">多人游戏模式判断</h1>
@@ -138,8 +138,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中同时支持单机和多人的游戏，必须通过读取 <code>.project/settings.json</code> 的 <code>multiplayer.enabled</code> 字段判断当前运行模式。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>配置读取</strong>：读取 <code>.project/settings.json</code> 中的 <code>@runtime.multiplayer.enabled</code> 字段。<code>true</code> 表示多人模式，代码应放在 <code>network/Client.lua</code> 和 <code>network/Server.lua</code>；<code>false</code> 或不存在表示单机模式，代码放在 <code>network/Standalone.lua</code>。</li>
-<li><strong>为什么重要</strong>：此配置决定游戏发布后的运行模式和 AI 调试时的运行模式。对于同时支持单机和多人的项目，AI 必须根据此配置判断用户需求是实现单机版本还是多人版本。</li>
+<li><strong><a href="Configuration.html">配置</a>读取</strong>：读取 <code>.project/settings.json</code> 中的 <code>@runtime.multiplayer.enabled</code> 字段。<code>true</code> 表示多人模式，代码应放在 <code>network/Client.lua</code> 和 <code>network/Server.lua</code>；<code>false</code> 或不存在表示单机模式，代码放在 <code>network/Standalone.lua</code>。</li>
+<li><strong>为什么重要</strong>：此<a href="Configuration.html">配置</a>决定游戏发布后的运行模式和 AI 调试时的运行模式。对于同时支持单机和多人的项目，AI 必须根据此<a href="Configuration.html">配置</a>判断用户需求是实现单机版本还是多人版本。</li>
 <li><strong>工作流程</strong>：收到功能请求 → 读取 <code>.project/settings.json</code> → 检查 <code>@runtime.multiplayer.enabled</code> → 根据结果在对应文件中实现。</li>
 </ol>
 <h2 id="_4">来源</h2>

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">software-engineering</span><span class="tag">parallel-development</span><span class="tag">agent-coordination</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">software-engineering</span><span class="tag">parallel-development</span><span class="tag">agent-coordination</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="_1">接口规范</h1>
@@ -142,13 +142,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心作用</strong>：在并行开发中，接口规范文件（如 interface_spec.h）定义了各模块间的数据结构、函数签名和交互协议，是避免集成冲突的关键前置条件。</p>
 </li>
 <li>
-<p><strong>Anthropic 实验发现</strong>：C 编译器实验中，Agent-Lexer 和 Agent-Parser 对 Token 结构的假设不同、Agent-Parser 和 Agent-Semantic 对 AST 节点格式的理解分歧，都源于接口规范不够详细。</p>
+<p><strong><a href="../entities/Anthropic.html">Anthropic</a> 实验发现</strong>：<a href="C 编译器.html">C 编译器</a>实验中，Agent-<a href="词法分析.html">Lexer</a> 和 Agent-<a href="语法分析.html">Parser</a> 对 Token 结构的假设不同、Agent-<a href="语法分析.html">Parser</a> 和 Agent-Semantic 对 AST 节点格式的理解分歧，都源于接口规范不够详细。</p>
 </li>
 <li>
 <p><strong>执行纪律</strong>：所有并行 Agent 必须在开始工作前确认已读取规范，任何对接口的修改都需要通知其他 Agent，这需要严格的版本控制纪律。</p>
 </li>
 <li>
-<p><strong>与测试的关系</strong>：接口规范的可执行版本就是测试用例，测试先行方法将接口规范转化为可验证的代码，使并行 Agent 有明确的完成标准。</p>
+<p><strong>与测试的关系</strong>：接口规范的可执行版本就是测试用例，<a href="测试先行.html">测试先行</a>方法将接口规范转化为可验证的代码，使并行 Agent 有明确的完成标准。</p>
 </li>
 <li>
 <p><strong>对人类工程的启示</strong>：好的并行化场景需要模块接口清晰、稳定，模块间依赖是有向无环的，每个模块有独立的验证手段（单测）。</p>

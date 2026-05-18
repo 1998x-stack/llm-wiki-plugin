@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["RAG", "评估", "工具"]
+tags: [RAG, 评估, 工具, AI工程]
 aliases: ["RAG Assessment", "RAG评估工具"]
 relates_to:
   - target: "[[LlamaIndex]]"

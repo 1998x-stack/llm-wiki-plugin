@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI工具, 前端设计, Claude技能]
+tags: [AI工具, 前端设计, Claude技能, AI工程]
 aliases: ["frontend-design Skill", "Anthropic frontend-design", "Claude前端设计技能"]
 relates_to:
   - target: "[[Claude Code]]"

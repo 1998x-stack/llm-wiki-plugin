@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: ["计算机视觉", "数据增强", "深度学习"]
+tags: [计算机视觉, 数据增强, 深度学习, AI设计]
 aliases: ["PCA颜色增强", "PCA Color Augmentation", "PCA Color Jitter"]
 relates_to: ["数据增强（Data Augmentation）", "AlexNet", "卷积神经网络（CNN）", "过拟合（Overfitting）"]
 supersedes: null

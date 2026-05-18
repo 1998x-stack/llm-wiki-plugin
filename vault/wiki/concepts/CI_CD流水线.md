@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ci-cd, devops, automation, 质量保障]
+tags: [ci-cd, devops, automation, 质量保障, AI工程]
 aliases: ["CI/CD Pipeline", "Continuous Integration/Continuous Deployment", "持续集成/持续部署"]
 relates_to:
   - target: "[[Pre-commit Hooks]]"

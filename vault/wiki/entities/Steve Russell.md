@@ -7,7 +7,7 @@ created: 2026-04-17
 updated: 2026-04-17
 last_accessed: 2026-04-17
 source_count: 1
-tags:
+tags: [技术, 历史, 研究, 计算理论]
 - 技术
 - 历史
 - 研究
@@ -38,7 +38,7 @@ supersedes: null
 
 ## 概述
 
-美国[[计算]]机科学家，[[John McCarthy]] 的学生。1958年将 McCarthy 论文中的 `eval` 定义直接翻译为 IBM 704 机器码，无意中创造了历史上第一个 LISP 解释器。
+美国[[计算]]机科学家，[[John McCarthy]] 的学生。1958年将 McCarthy 论文中的 `eval` 定义直接翻译为 [[IBM 704]] 机器码，无意中创造了历史上第一个 LISP 解释器。
 
 ## 关键内容
 
@@ -52,7 +52,7 @@ supersedes: null
 ### 与 McCarthy 的关系
 
 - McCarthy 的学生
-- 在 MIT 的 IBM 704 [[计算]]机上完成了 LISP 解释器的实现
+- 在 MIT 的 [[IBM 704]] [[计算]]机上完成了 LISP 解释器的实现
 
 ## 来源
 

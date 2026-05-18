@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="urhox">UrhoX引擎</h1>
 <h2 id="_1">概述</h2>
-<p>UrhoX 是基于 Urho3D 1.8 扩展的游戏引擎，使用 Lua 5.4 作为脚本语言，集成 <a href="NanoVG.html">NanoVG</a> 矢量图形、Yoga Flexbox UI 系统、Box2D/3D 物理，面向 WebAssembly 平台发布。</p>
+<p>UrhoX 是基于 <a href="Urho3D.html">Urho3D</a> 1.8 扩展的游戏引擎，使用 Lua 5.4 作为脚本语言，集成 <a href="NanoVG.html">NanoVG</a> 矢量图形、Yoga Flexbox UI 系统、<a href="Box2D.html">Box2D</a>/3D 物理，面向 WebAssembly 平台发布。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心兼容性</strong>：基于 Urho3D 1.8，核心 API 95% 兼容，扩展了 <a href="NanoVG.html">NanoVG</a>（C API 完全对齐）、新 UI 系统（Yoga Flexbox + <a href="NanoVG.html">NanoVG</a>）、云变量/排行榜、视频播放等功能。</li>
+<li><strong>核心兼容性</strong>：基于 <a href="Urho3D.html">Urho3D</a> 1.8，核心 API 95% 兼容，扩展了 <a href="NanoVG.html">NanoVG</a>（C API 完全对齐）、新 UI 系统（Yoga Flexbox + <a href="NanoVG.html">NanoVG</a>）、云变量/排行榜、视频播放等功能。</li>
 <li><strong>脚本语言</strong>：Lua 5.4，支持位运算符 <code>&amp;|~&lt;&lt;&gt;&gt;</code>；事件数据通过 <a href="../concepts/Lua脚本宿主模式.html">tolua</a>++ 绑定访问（<code>eventData["Key"]:GetInt()</code> 或 <code>eventData:GetInt("Key")</code>）；数组索引从 1 开始。</li>
-<li><strong>坐标系与单位</strong>：Y-up 左手坐标系（与 Unity 相同），长度单位为米；Y 轴向上、X 轴向右、Z 轴向前。</li>
-<li><strong>UI 系统</strong>：新 UI 系统（<code>urhox-libs/UI</code>）基于 Yoga Flexbox + <a href="NanoVG.html">NanoVG</a>，提供 40+ 内置控件；原生 Urho3D UIElement 系统已废弃。</li>
+<li><strong>坐标系与单位</strong>：Y-up <a href="../concepts/Y-up左手坐标系.html">左手坐标系</a>（与 Unity 相同），长度单位为米；Y 轴向上、X 轴向右、Z 轴向前。</li>
+<li><strong>UI 系统</strong>：新 UI 系统（<code>urhox-libs/UI</code>）基于 Yoga Flexbox + <a href="NanoVG.html">NanoVG</a>，提供 40+ 内置控件；原生 <a href="Urho3D.html">Urho3D</a> UIElement 系统已废弃。</li>
 <li><strong>开发模式</strong>：代码必须放在 <code>/workspace/scripts/</code>；必须基于标准脚手架起手（2D/2D物理/3D场景/3D角色四类模板）；<code>graphics:SetMode()</code> 已禁用，使用 <code>GetWidth()/GetHeight()/GetDPR()</code> 获取屏幕信息。</li>
 <li><strong>多人/单机判断</strong>：通过 <code>.project/settings.json</code> 的 <code>@runtime.multiplayer.enabled</code> 字段决定代码放置位置（Client.lua / Server.lua / Standalone.lua）。</li>
 </ol>

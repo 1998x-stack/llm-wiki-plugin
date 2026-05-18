@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ci-cd, devops, automation, github]
+tags: [ci-cd, devops, automation, github, 工具与框架]
 aliases: ["GitHub Action", "GitHub Workflows", "GitHub 自动化"]
 relates_to:
   - target: "[[CI/CD 流水线]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [claude-skills, frontend, react, tailwind]
+tags: [claude-skills, frontend, react, tailwind, AI工程]
 aliases: ["jezweb/claude-skills", "jezweb Skills"]
 relates_to:
   - target: "[[Claude Code]]"

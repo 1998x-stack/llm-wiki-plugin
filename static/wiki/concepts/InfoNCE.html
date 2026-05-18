@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="infonce">InfoNCE</h1>
 <h2 id="_1">概述</h2>
-<p><a href="对比学习.html">对比学习</a>中的核心损失函数，通过最大化正样本对<a href="互信息.html">互信息</a>下界来学习高质量表征，在单负样本设定下退化为 BPR Loss。</p>
+<p><a href="对比学习.html">对比学习</a>中的核心损失函数，通过最大化正样本对<a href="互信息.html">互信息</a>下界来学习高质量表征，在单负样本设定下退化为 <a href="BPR Loss.html">BPR Loss</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>定义</strong>：InfoNCE = -E[log exp(sim(q, k⁺)/τ) / (exp(sim(q, k⁺)/τ) + Σ_i exp(sim(q, k_i⁻)/τ))]，其中 q 为查询向量，k⁺ 为正样本，k_i⁻ 为负样本，τ 为温度参数。</p>
 </li>
 <li>
-<p><strong>与 BPR Loss 的关系</strong>：当 InfoNCE 中只使用一个负样本时，退化为 BPR Loss 的形式。这意味着 BPR 可被理解为单负样本版本的<a href="对比学习.html">对比学习</a>，两者在数学结构上高度一致。</p>
+<p><strong>与 <a href="BPR Loss.html">BPR Loss</a> 的关系</strong>：当 InfoNCE 中只使用一个负样本时，退化为 <a href="BPR Loss.html">BPR Loss</a> 的形式。这意味着 BPR 可被理解为单负样本版本的<a href="对比学习.html">对比学习</a>，两者在数学结构上高度一致。</p>
 </li>
 <li>
 <p><strong>在推荐系统中的应用</strong>：现代图<a href="对比学习.html">对比学习</a>推荐模型（SGL、SimGCL、LightGCL）通常组合 L = L_BPR + λ · L_CL，其中 L_CL 常采用 InfoNCE 或其变体，用于学习更鲁棒的用户和物品表征。</p>

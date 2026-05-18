@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [frontend, ui-library, react, tailwind]
+tags: [frontend, ui-library, react, tailwind, AI设计]
 aliases: ["shadcn/ui", "shadcn"]
 relates_to:
   - target: "[[React]]"

@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong><a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>的提出</strong>：翻译每个目标词时，动态对源句子所有位置加权求和，生成该时刻专属的上下文向量 $c_t$，彻底解决固定长度瓶颈</li>
 <li><strong>对齐函数设计</strong>：$e_{it} = v^\top \tanh(W_a s_{t-1} + U_a h_i)$，通过小型前馈网络学习源位置与当前解码的相关性</li>
-<li><strong>可解释性突破</strong>：注意力权重 $\alpha$ 构成对齐<a href="../concepts/矩阵.html">矩阵</a>，使机器翻译首次可视化，英法翻译呈现对角线模式</li>
+<li><strong>可解释性突破</strong>：<a href="../concepts/注意力机制.html">注意力</a>权重 $\alpha$ 构成对齐<a href="../concepts/矩阵.html">矩阵</a>，使机器翻译首次可视化，英法翻译呈现对角线模式</li>
 <li><strong>实验验证</strong>：在英法翻译任务上 BLEU 分数显著提升，且长句翻译质量不再随长度急剧下降</li>
 </ol>
 <h3 id="_4">实验结果</h3>

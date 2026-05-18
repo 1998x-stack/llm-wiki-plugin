@@ -25,7 +25,7 @@ entity_type: tool
 # Solar2D
 
 ## 概述
-Solar2D（原 Corona SDK）是以 Lua 为唯一脚本语言的 2D 游戏框架，通过 Runtime 事件系统驱动游戏逻辑，内置 display 对象系统和 Box2D 物理集成，适合移动端 2D 游戏开发。
+Solar2D（原 Corona SDK）是以 Lua 为唯一脚本语言的 2D 游戏框架，通过 Runtime 事件系统驱动游戏逻辑，内置 display 对象系统和 [[Box2D]] 物理集成，适合移动端 2D 游戏开发。
 
 ## 关键内容
 

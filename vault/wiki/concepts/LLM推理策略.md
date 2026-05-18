@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [llm-strategy, ai-cost-optimization, inference-control]
+tags: [llm-strategy, ai-cost-optimization, inference-control, LLM能力]
 aliases: ["LLM Inference Strategy", "LLM推理策略", "频率控制策略"]
 relates_to: 
   - target: "[[TITAN-智能体]]"

@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [计量经济学, 统计学, 参数估计]
+tags: [计量经济学, 统计学, 参数估计, AI工程]
 aliases: ["Maximum Likelihood Estimation", "MLE", "最大似然法"]
 relates_to:
   - target: "[[Johansen检验]]"
@@ -24,7 +24,7 @@ supersedes: null
 # 最大似然估计 (Maximum Likelihood Estimation)
 
 ## 概述
-最大似然估计是一种常用的参数估计方法，通过最大化似然函数来估计模型参数。
+[[最大似然原理|最大似然估计]]是一种常用的参数估计方法，通过最大化似然函数来估计模型参数。
 
 ## 关键内容
 
@@ -33,8 +33,8 @@ supersedes: null
    - 基于已知的概率分布形式，通过样本数据推断总体参数
 
 2. **在协整分析中的应用**：
-   - Johansen方法采用最大似然估计，相比于Engle-Granger的OLS方法更加高效
-   - Johansen证明协整检验问题可转化为求解广义特征值问题
+   - Johansen方法采用[[最大似然原理|最大似然估计]]，相比于Engle-Granger的OLS方法更加高效
+   - Johansen证明[[协整分析（Cointegration）|协整检验]]问题可转化为求解广义特征值问题
    - 特征值按从大到小排列，每个对应一个可能的协整向量
 
 3. **优势**：

@@ -32,11 +32,11 @@ supersedes: null
 # GRU4Rec
 
 ## 概述
-[[Balazs Hidasi]] 等人于 ICLR 2016 发表的开创性论文，首次将 GRU 引入[[会话推荐]]场景，通过 [[Session-Parallel Mini-Batch]] 训练策略和排序损失函数，开创了深度学习在[[序列推荐]]领域的先河。
+[[Balazs Hidasi]] 等人于 [[ICLR 2016]] 发表的开创性论文，首次将 GRU 引入[[会话推荐]]场景，通过 [[Session-Parallel Mini-Batch]] 训练策略和排序损失函数，开创了深度学习在[[序列推荐]]领域的先河。
 
 ## 关键内容
 
-1. **论文信息**：标题 "[[会话推荐|Session-based Recommendations]] with [[循环神经网络（RNN）|Recurrent Neural Network]]s"，作者 [[Balazs Hidasi]], Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 Gravity R&D（匈牙利）/ Telefonica Research（西班牙），发表于 [[ICLR 2016]]，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。
+1. **论文信息**：标题 "[[会话推荐|Session-based Recommendations]] with [[循环神经网络（RNN）|Recurrent Neural Network]]s"，作者 [[Balazs Hidasi]], Alexandros Karatzoglou, Linas Baltrunas, Donat Tikk，机构 [[Gravity R&D]]（匈牙利）/ [[Telefonica Research]]（西班牙），发表于 [[ICLR 2016]]，首次公开 2015年11月（arXiv: 1511.06939），累计引用超过 4000 次（截至2025年）。
 
 2. **核心问题**：给定匿名用户在当前会话中的点击序列 $[x_1, x_2, ..., x_t]$，预测下一次最可能点击的物品 $x_{t+1}$。不使用任何跨会话的用户信息，不依赖显式用户画像，本质上是一个序列到一的预测问题。
 
@@ -48,7 +48,7 @@ supersedes: null
 
 6. **实验结果**：在 RSC15（YOOCHOOSE）数据集上，[[候选生成|Recall]]@20 达 0.5196，MRR@20 达 0.2164，相比 [[基于物品的协同过滤|Item-KNN]] 提升约 20-30%。后续 GRU4Rec v2（CIKM 2018）提出 BPR-max 和 TOP1-max，性能再提升 35%。
 
-7. **历史地位**：开创了基于深度学习的[[序列推荐]]研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, [[注意力机制（Attention Mechanism）|注意力机制]]）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯注意力）、[[SASRec]]（2018, [[Self-Attention机制|自注意力]]）、[[BERT4Rec]]（2019, 双向 [[Transformer架构|Transformer]]）、[[SR-GNN]]（2019, 图神经网络）等一系列后续工作。
+7. **历史地位**：开创了基于深度学习的[[序列推荐]]研究方向，将 NLP 中的序列建模思想迁移到推荐系统。催生了 NARM（2017, [[注意力机制（Attention Mechanism）|注意力机制]]）、HRNN（2017, 层次化 RNN）、STAMP（2018, 纯[[注意力机制|注意力]]）、[[SASRec]]（2018, [[Self-Attention机制|自注意力]]）、[[BERT4Rec]]（2019, 双向 [[Transformer架构|Transformer]]）、[[SR-GNN]]（2019, 图神经网络）等一系列后续工作。
 
 8. **局限性**：RNN 单向顺序处理无法并行化；完全丢失会话间信息；无法捕获全局物品关系；使用简单 one-hot 编码未利用物品侧信息；在某些场景下被精心设计的会话 KNN 方法超越。
 

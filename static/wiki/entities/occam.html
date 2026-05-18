@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言</span><span class="tag">并发计算</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言</span><span class="tag">并发计算</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="occam">occam</h1>
 <h2 id="_1">概述</h2>
-<p>为INMOS Transputer处理器设计的编程语言，是CSP理论的直接语言实现，语法几乎是对CSP的直接翻译。</p>
+<p>为<a href="INMOS Transputer.html">INMOS Transputer</a>处理器设计的编程语言，是CSP理论的直接语言实现，语法几乎是对CSP的直接翻译。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>CSP实现</strong>：occam的并发原语直接来源于CSP理论，进程通过通道进行同步通信，无共享内存。</p>
+<p><strong>CSP实现</strong>：occam的并发原语直接来源于CSP理论，进程通过通道进行<a href="../concepts/同步通信.html">同步通信</a>，无共享内存。</p>
 </li>
 <li>
-<p><strong>Transputer平台</strong>：专为INMOS Transputer处理器开发，该处理器包含硬件级别的通信通道，直接对应CSP的通信通道概念。</p>
+<p><strong>Transputer平台</strong>：专为<a href="INMOS Transputer.html">INMOS Transputer</a>处理器开发，该处理器包含硬件级别的通信通道，直接对应CSP的通信通道概念。</p>
 </li>
 <li>
-<p><strong>语言设计</strong>：强调简单性和可验证性，支持并行进程组合、同步通信和守卫命令等CSP核心概念。</p>
+<p><strong>语言设计</strong>：强调简单性和可验证性，支持并行进程组合、<a href="../concepts/同步通信.html">同步通信</a>和守卫命令等CSP核心概念。</p>
 </li>
 <li>
 <p><strong>工业意义</strong>：证明了CSP理论不仅能作为数学模型存在，还能高效地映射到实际的硬件和软件实现中。</p>

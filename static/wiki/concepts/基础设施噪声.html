@@ -130,21 +130,21 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">evaluation</span><span class="tag">infrastructure</span><span class="tag">benchmark</span><span class="tag">reliability</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">evaluation</span><span class="tag">infrastructure</span><span class="tag">benchmark</span><span class="tag">reliability</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">基础设施噪声</h1>
 <h2 id="_2">概述</h2>
-<p>Agentic 编码评测中，基础设施配置差异导致评测结果产生系统性偏差的现象，不同资源配置之间的成功率差距可达 6 个百分点，超过主流模型排行榜上顶级模型之间的差距。</p>
+<p>Agentic 编码评测中，基础设施<a href="Configuration.html">配置</a>差异导致评测结果产生系统性偏差的现象，不同资源<a href="Configuration.html">配置</a>之间的成功率差距可达 6 个百分点，超过主流模型排行榜上顶级模型之间的差距。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>核心机制</strong>：在 <a href="../entities/SWE-bench.html">SWE-bench</a> 和 <a href="../entities/Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 等 Agentic 评测中，运行环境不再是被动容器，而是问题解决过程的核心组件。资源配置不同的 Agent 实际上在"做不同的测试"。</li>
+<li><strong>核心机制</strong>：在 <a href="../entities/SWE-bench.html">SWE-bench</a> 和 <a href="../entities/Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 等 Agentic 评测中，运行环境不再是被动容器，而是问题解决过程的核心组件。资源<a href="Configuration.html">配置</a>不同的 Agent 实际上在"做不同的测试"。</li>
 <li><strong>两阶段行为</strong>：</li>
 <li><strong>阶段一（1x → 3x）</strong>：额外资源主要解决基础设施可靠性问题（容器被意外杀死），成功率在噪声范围内波动（p=0.40）</li>
 <li><strong>阶段二（3x → Uncapped）</strong>：额外资源帮助 Agent 采用需要大量资源的解题策略，成功率跳跃 +4 个百分点</li>
-<li><strong>典型策略差异</strong>：富资源策略可安装 pandas + networkx + scikit-learn 等大型依赖库，贫资源策略被迫使用标准库从零实现——不同资源配置在评测不同的模型能力维度。</li>
+<li><strong>典型策略差异</strong>：富资源策略可安装 pandas + networkx + scikit-learn 等大型依赖库，贫资源策略被迫使用标准库从零实现——不同资源<a href="Configuration.html">配置</a>在评测不同的模型能力维度。</li>
 <li><strong>量化影响</strong>：</li>
-<li>Terminal-Bench 2.0：1x → Uncapped 差距达 6 个百分点（p &lt; 0.01）</li>
+<li><a href="../entities/Terminal-Bench 2.0.html">Terminal-Bench 2.0</a>：1x → Uncapped 差距达 6 个百分点（p &lt; 0.01）</li>
 <li>SWE-Bench：5x vs 1x 仅高 1.54 个百分点（任务资源需求普遍较低）</li>
 <li>分差 &lt; 3 个百分点时应保持怀疑，可能处于基础设施噪声范围内</li>
 <li><strong>其他噪声来源</strong>：时间效应（通过率随一天中的时段波动）、并发级别、出口带宽、集群健康度。</li>

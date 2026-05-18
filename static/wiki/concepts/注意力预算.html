@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">注意力预算</h1>
 <h2 id="_2">概述</h2>
-<p>注意力预算（Attention Budget）是对 <a href="Transformer架构.html">Transformer</a> 模型处理上下文时有限注意力资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类<a href="工作记忆.html">工作记忆</a>的有限容量。</p>
+<p><a href="注意力机制.html">注意力</a>预算（Attention Budget）是对 <a href="Transformer架构.html">Transformer</a> 模型处理上下文时有限<a href="注意力机制.html">注意力</a>资源的比喻性描述：每个新 token 的加入都从这一"预算"中消耗一份，导致模型对任意 token 的关注深度随上下文增长而下降。这一概念类比人类<a href="工作记忆.html">工作记忆</a>的有限容量。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="n2">架构根因：n² 注意力计算</h3>
-<p><a href="Transformer架构.html">Transformer</a> 架构的<a href="自注意力机制.html">自注意力机制</a>要求每个 token 对上下文中<strong>所有其他 token</strong> 执行注意力<a href="计算.html">计算</a>，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
+<p><a href="Transformer架构.html">Transformer</a> 架构的<a href="自注意力机制.html">自注意力机制</a>要求每个 token 对上下文中<strong>所有其他 token</strong> 执行<a href="注意力机制.html">注意力</a><a href="计算.html">计算</a>，产生 <strong>n² 对位关系</strong>（n 为 token 数）。</p>
 <pre><code>n=1000  →  1,000,000 对位关系
 n=10000 →  100,000,000 对位关系
 n=100k  →  10^10 对位关系（理论极值）
 </code></pre>
 <p><a href="计算.html">计算</a>量虽可通过 Flash Attention 等技术优化，但模型<strong>理解</strong>这些关系的能力随 n 增大而被稀释——每一对关系分配到的"有效参数容量"减少。</p>
 <h3 id="_4">与人类工作记忆的类比</h3>
-<p>人类的<a href="工作记忆.html">工作记忆</a>容量有限（Miller's Law：约 7±2 个独立 chunk），超出容量时信息处理质量下降。LLM 的注意力预算扮演相同角色：</p>
+<p>人类的<a href="工作记忆.html">工作记忆</a>容量有限（Miller's Law：约 7±2 个独立 chunk），超出容量时信息处理质量下降。LLM 的<a href="注意力机制.html">注意力</a>预算扮演相同角色：</p>
 <table>
 <thead>
 <tr>
@@ -158,12 +158,12 @@ n=100k  →  10^10 对位关系（理论极值）
 <tr>
 <td>有限资源</td>
 <td><a href="工作记忆.html">工作记忆</a> chunk 数</td>
-<td>注意力预算（context tokens）</td>
-</tr>
-<tr>
-<td>退化现象</td>
-<td>认知过载、遗忘</td>
-<td><a href="上下文腐烂.html">上下文腐烂</a>、长距推理弱化</td>
+<td><span style="color:#e74c3c" title="broken link">注意力机制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;退化现象&lt;/td&gt;
+&lt;td&gt;认知过载、遗忘&lt;/td&gt;
+&lt;td&gt;[[上下文腐烂</span>、长距推理弱化</td>
 </tr>
 <tr>
 <td>优化策略</td>
@@ -173,7 +173,7 @@ n=100k  →  10^10 对位关系（理论极值）
 </tbody>
 </table>
 <h3 id="_5">工程含义</h3>
-<p>注意力预算有限直接推出<a href="Context-Engineering.html">上下文工程</a>的核心指导原则：</p>
+<p><a href="注意力机制.html">注意力</a>预算有限直接推出<a href="Context-Engineering.html">上下文工程</a>的核心指导原则：</p>
 <blockquote>
 <p><strong>找到最小化的高<a href="信噪比.html">信噪比</a> token 集合，最大化目标行为的概率。</strong></p>
 </blockquote>

@@ -20,15 +20,15 @@ supersedes: null
 # Ruiming Tang
 
 ## 概述
-汤汝明，华为诺亚方舟实验室研究员，IJCAI 2017论文《DeepFM: A Factorization-Machine based Neural Network for CTR Prediction》的重要作者之一，与郭辉锋等人共同提出了DeepFM模型。
+汤汝明，[[华为诺亚方舟实验室]]研究员，IJCAI 2017论文《[[DeepFM]]: [[DeepFM|A Factorization-Machine based Neural Network for CTR Prediction]]》的重要作者之一，与[[Huifeng Guo|郭辉锋]]等人共同提出了[[DeepFM]]模型。
 
 ## 关键内容
 
 1. **[[DeepFM]] 共同作者**：与 [[Huifeng Guo]] 等人合作，在 IJCAI 2017 发表 [[DeepFM]] 论文，设计了 FM + DNN [[共享嵌入]]的并行架构。
 2. **[[华为诺亚方舟实验室]]**：与 [[Huifeng Guo]]、[[Zhenguo Li]]、[[Xiuqiang He]] 同属华为 [[华为诺亚方舟实验室|Noah's Ark Research Lab]] 团队。
 3. **研究贡献**：在 [[DeepFM]] 工作中参与了模型架构设计和实验验证，包括在 [[Criteo]] 数据集和华为应用市场真实数据上的[[性能审查|性能评估]]。
-4. **主要贡献**：参与设计了DeepFM模型的核心架构，即将因子分解机(FM)与深度神经网络(DNN)整合为一个端到端模型，通过共享Embedding层同时学习低阶和高阶特征交互，彻底消除了Wide&Deep模型中对手工特征工程的依赖。
-5. **研究影响**：DeepFM论文在IJCAI 2017发表后引用量超过2700次（截至2026年），并在华为应用市场的在线A/B测试中相比精心调优的LR模型CTR提升超过10%，对工业界产生了显著影响。
+4. **主要贡献**：参与设计了[[DeepFM]]模型的核心架构，即将[[Factorization Machines|因子分解机]](FM)与深度神经网络(DNN)整合为一个端到端模型，通过[[共享Embedding]]层同时学习低阶和[[高阶特征交互]]，彻底消除了Wide&Deep模型中对[[手工特征工程]]的依赖。
+5. **研究影响**：[[DeepFM]]论文在IJCAI 2017发表后引用量超过2700次（截至2026年），并在华为应用市场的在线A/B测试中相比精心调优的LR模型CTR提升超过10%，对工业界产生了显著影响。
 
 ## 来源
 - [DeepFM (IJCAI 2017)](https://arxiv.org/abs/1703.04247)

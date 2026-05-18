@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [langgraph, state-machine, agentic-workflow, ai-architecture]
+tags: [langgraph, state-machine, agentic-workflow, ai-architecture, AI工程]
 aliases: ["LangGraph State Machine", "Agentic Workflow", "状态机工作流"]
 relates_to: 
   - target: "[[TITAN-智能体]]"

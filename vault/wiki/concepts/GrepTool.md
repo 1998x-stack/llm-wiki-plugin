@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, claude-code, tool-system, search]
+tags: [ai-tools, claude-code, tool-system, search, AI工程]
 aliases: ["GrepTool", "GrepTool 优势"]
 relates_to: []
 supersedes: null

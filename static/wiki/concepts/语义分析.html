@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">semantic-analysis</span><span class="tag">type-checking</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">semantic-analysis</span><span class="tag">type-checking</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">语义分析</h1>
@@ -139,16 +139,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心职责</strong>：语义分析器接收语法分析器输出的 AST，执行类型检查、作用域分析、符号表构建等任务，确保程序在语义上是合法的。</p>
+<p><strong>核心职责</strong>：语义分析器接收<a href="语法分析.html">语法分析</a>器输出的 AST，执行类型检查、作用域分析、符号表构建等任务，确保程序在语义上是合法的。</p>
 </li>
 <li>
-<p><strong>接口一致性挑战</strong>：在 Anthropic 的 C 编译器实验中，Agent-Parser 和 Agent-Semantic 对 AST 节点格式的理解出现分歧，凸显了统一数据结构定义的重要性。</p>
+<p><strong>接口一致性挑战</strong>：在 <a href="../entities/Anthropic.html">Anthropic</a> 的 <a href="C 编译器.html">C 编译器</a>实验中，Agent-<a href="语法分析.html">Parser</a> 和 Agent-Semantic 对 AST 节点格式的理解出现分歧，凸显了统一数据结构定义的重要性。</p>
 </li>
 <li>
-<p><strong>与代码生成的衔接</strong>：语义分析的输出作为代码生成阶段的输入，两者之间的接口（通常是中间表示 IR）必须清晰定义。</p>
+<p><strong>与<a href="代码生成.html">代码生成</a>的衔接</strong>：语义分析的输出作为<a href="代码生成.html">代码生成</a>阶段的输入，两者之间的接口（通常是中间表示 IR）必须清晰定义。</p>
 </li>
 <li>
-<p><strong>并行开发最优粒度</strong>：按编译器阶段分解（词法→语法→语义→代码生成）是最优的任务分解粒度，每阶段内可按子功能进一步细分。</p>
+<p><strong>并行开发最优粒度</strong>：按编译器阶段分解（词法→语法→语义→<a href="代码生成.html">代码生成</a>）是最优的<a href="任务分解.html">任务分解</a>粒度，每阶段内可按子功能进一步细分。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

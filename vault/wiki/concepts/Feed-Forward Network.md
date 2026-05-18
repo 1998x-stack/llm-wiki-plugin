@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [transformer, feed-forward, deep-learning, nlp]
+tags: [transformer, feed-forward, deep-learning, nlp, 机器学习]
 aliases: ["FFN", "Position-wise Feed-Forward Networks", "Feed-Forward Network"]
 relates_to:
   - target: "[[Attention Is All You Need]]"
@@ -39,16 +39,16 @@ supersedes: null
 
 2. **功能分工**：
    - [[注意力机制（Attention Mechanism）|注意力机制]]：跨位置信息聚合（"哪些词相关？"）
-   - FFN：逐位置特征变换（"这个词的特征如何处理？"）
+   - FFN：逐位置[[特征变换]]（"这个词的特征如何处理？"）
    - 两者协同实现全局信息整合与局部特征处理
 
 3. **实现方式**：
    - 位置无关的变换：每个位置共享相同的权重[[矩阵]]
    - 维度扩展：内部维度扩展4倍增强表达能力
-   - 非线性激活：ReLU函数引入非线性变换能力
+   - [[非线性激活]]：ReLU函数引入非线性变换能力
 
 4. **在架构中的作用**：
-   - 每个注意力子层之后都有一个FFN
+   - 每个[[注意力机制|注意力]]子层之后都有一个FFN
    - 与[[注意力机制（Attention Mechanism）|注意力机制]]交替出现，形成层叠结构
    - [[残差连接]]和[[Layer Normalization|层归一化]]保证训练稳定性
 

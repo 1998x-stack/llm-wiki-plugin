@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [NLP, 词向量, 模型架构]
+tags: [NLP, 词向量, 模型架构, AI工程]
 aliases: ["Continuous Bag of Words", "CBOW"]
 relates_to:
   - target: "[[Word2Vec]]"

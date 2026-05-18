@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-19</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-19</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent系统</span><span class="tag">设计模式</span><span class="tag">并行计算</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">Agent系统</span><span class="tag">设计模式</span><span class="tag">并行计算</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">批量同构任务模式</h1>
@@ -140,7 +140,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>模式定义</strong>：主 Agent 枚举所有任务目标（文件列表/数据库表/API 清单），生成 CSV 格式的任务列表，调用 <code>spawn_agents_on_csv</code> 批量派遣 worker agent，每个 worker 处理 CSV 中的一行任务。</li>
 <li><strong>典型场景</strong>：为 50 个 API endpoint 各写一份测试；将 30 个 <a href="Python.html">Python</a> 模块迁移到新框架；为 20 个数据库表生成 CRUD 代码。共同特征是任务结构相同、彼此独立、数量较多。</li>
-<li><strong>工作流程</strong>：主 Agent 枚举任务 → 生成 CSV → 调用 spawn_agents_on_csv → 等待所有 worker 完成 → 汇总结果生成报告。每个 <a href="Worker Agent.html">Worker Agent</a> 拥有独立上下文和独立沙箱，不共享 token 或文件系统。</li>
+<li><strong>工作流程</strong>：主 Agent 枚举任务 → 生成 CSV → 调用 spawn_agents_on_csv → 等待所有 worker 完成 → 汇总结果生成报告。每个 <a href="Worker Agent.html">Worker Agent</a> 拥有独立上下文和独立<a href="Claude Code 沙箱机制.html">沙箱</a>，不共享 token 或文件系统。</li>
 <li><strong>隔离性保证</strong>：每个 worker agent 运行在独立的<a href="上下文窗口.html">上下文窗口</a>中，互不干扰；独立的<a href="Codex沙箱系统.html">Codex沙箱系统</a>确保安全隔离；<code>default_worker_timeout</code>（默认 30 分钟）提供超时保护，防止单个 worker 卡死影响整体。</li>
 <li><strong>效率杠杆</strong>：7 个 Agent 并行工作 ≈ 串行工作时间的 1/7。开发者从"写代码"角色升级为"审批 + 方向把控"角色，实现<a href="人类监督带宽.html">人类监督带宽</a>的杠杆化。</li>
 </ol>

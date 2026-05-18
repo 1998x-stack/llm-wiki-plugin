@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, project-management, context-management]
+tags: [ai-tools, project-management, context-management, AI工程]
 aliases: ["Context File System", "上下文文件系统", ".planning directory", "持久化大脑"]
 relates_to:
   - target: "[[Context Window]]"

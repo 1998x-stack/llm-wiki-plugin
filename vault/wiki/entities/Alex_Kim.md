@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [person, researcher, security]
+tags: [person, researcher, security, AI工程]
 aliases: ["Alex Kim"]
 relates_to: []
 supersedes: null

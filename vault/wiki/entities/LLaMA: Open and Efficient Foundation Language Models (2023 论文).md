@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, NLP, LLM, open-source]
+tags: [paper, NLP, LLM, open-source, AI工程]
 aliases: [Touvron et al. 2023, LLaMA 论文]
 relates_to:
   - target: Hugo Touvron

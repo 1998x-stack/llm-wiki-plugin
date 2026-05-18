@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [generative-models, image-generation]
+tags: [generative-models, image-generation, 深度学习]
 aliases: [DDPM, Denoising Diffusion Probabilistic Models]
 relates_to:
   - target: Jonathan Ho

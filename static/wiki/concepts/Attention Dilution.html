@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">attention-mechanism</span><span class="tag">llm-limitations</span><span class="tag">context-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">attention-mechanism</span><span class="tag">llm-limitations</span><span class="tag">context-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="attention-dilution">Attention Dilution</h1>
 <h2 id="_1">概述</h2>
-<p>Attention Dilution（注意力稀释）是指随着 <a href="../entities/Transformer.html">Transformer</a> 模型<a href="上下文窗口.html">上下文窗口</a>长度增加，每个 token 的平均注意力权重下降的现象。这是 LLM <a href="Context Management.html">上下文管理</a>的核心限制之一，也是 <a href="Context Engineering.html">Context Engineering</a> 存在的重要动机。</p>
+<p>Attention Dilution（<a href="注意力机制.html">注意力</a>稀释）是指随着 <a href="../entities/Transformer.html">Transformer</a> 模型<a href="上下文窗口.html">上下文窗口</a>长度增加，每个 token 的平均<a href="注意力机制.html">注意力</a>权重下降的现象。这是 LLM <a href="Context Management.html">上下文管理</a>的核心限制之一，也是 <a href="Context Engineering.html">Context Engineering</a> 存在的重要动机。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术机理</strong>：</li>
 <li><a href="../entities/Transformer.html">Transformer</a> 的 <a href="Softmax.html">Softmax</a> Attention 机制：attention(Q,K,V) = softmax(QK^T / √d) · V</li>
-<li>当上下文长度 N 增大时，<a href="Softmax.html">Softmax</a> 分母增大 → 每个 token 平均注意力权重下降</li>
+<li>当上下文长度 N 增大时，<a href="Softmax.html">Softmax</a> 分母增大 → 每个 token 平均<a href="注意力机制.html">注意力</a>权重下降</li>
 <li>关键信息被"稀释"在大量噪声中</li>
 <li>
 <p>模型有效"关注"范围存在软上限</p>
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>对模型性能的影响</strong>：</p>
 </li>
-<li>信息冗余 → 注意力稀释（Lost in the Middle 问题）</li>
+<li>信息冗余 → <a href="注意力机制.html">注意力</a>稀释（Lost in the Middle 问题）</li>
 <li>模型可能忽略重要的上下文信息</li>
 <li>
 <p>随着上下文增长，召回准确信息的能力下降</p>
@@ -166,8 +166,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 <a href="Context Engineering.html">Context Engineering</a> 的关系</strong>：</p>
 </li>
 <li>Attention Dilution 是 <a href="Context Engineering.html">Context Engineering</a> 存在的根本原因之一</li>
-<li><a href="Context Engineering.html">Context Engineering</a> 的核心任务之一就是对抗注意力稀释的影响</li>
-<li>通过信息架构设计最大化有效注意力利用率</li>
+<li><a href="Context Engineering.html">Context Engineering</a> 的核心任务之一就是对抗<a href="注意力机制.html">注意力</a>稀释的影响</li>
+<li>通过信息架构设计最大化有效<a href="注意力机制.html">注意力</a>利用率</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

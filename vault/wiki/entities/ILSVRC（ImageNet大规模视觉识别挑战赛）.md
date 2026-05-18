@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["竞赛", "计算机视觉", "ImageNet", "深度学习"]
+tags: [竞赛, 计算机视觉, ImageNet, 深度学习, 机器学习]
 aliases: ["ILSVRC", "ImageNet Large Scale Visual Recognition Challenge", "ImageNet 竞赛"]
 relates_to: ["ImageNet", "ImageNet: A Large-Scale Hierarchical Image Database (2009 论文)", "AlexNet", "李飞飞", "Jia Deng", "计算机视觉", "ZFNet（2013 论文）", "VGGNet", "GoogLeNet: Inception", "残差网络（ResNet）", "Top-5 错误率"]
 supersedes: null

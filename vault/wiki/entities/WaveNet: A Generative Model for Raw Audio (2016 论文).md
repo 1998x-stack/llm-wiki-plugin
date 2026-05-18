@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, deep-learning, speech, generative-models]
+tags: [paper, deep-learning, speech, generative-models, 游戏开发]
 aliases: [van den Oord et al. 2016]
 relates_to:
   - target: Aaron van den Oord

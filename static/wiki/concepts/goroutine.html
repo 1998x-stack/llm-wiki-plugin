@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言概念</span><span class="tag">Go语言</span><span class="tag">CSP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">编程语言概念</span><span class="tag">Go语言</span><span class="tag">CSP</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="goroutine">goroutine</h1>
@@ -142,19 +142,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>CSP对应</strong>：goroutine在Go语言中扮演了CSP理论中"进程"的角色，每个goroutine在自己的空间中独立工作。</p>
 </li>
 <li>
-<p><strong>轻量特性</strong>：相比操作系统线程，goroutine非常轻量，可以轻松创建数千甚至数万个而不会耗尽系统资源。</p>
+<p><strong>轻量特性</strong>：相比<a href="操作系统.html">操作系统</a>线程，goroutine非常轻量，可以轻松创建数千甚至数万个而不会耗尽系统资源。</p>
 </li>
 <li>
-<p><strong>调度机制</strong>：由Go运行时系统调度，使用M:N调度模型（M个goroutine运行在N个操作系统线程上）。</p>
+<p><strong>调度机制</strong>：由Go运行时系统调度，使用M:N调度模型（M个goroutine运行在N个<a href="操作系统.html">操作系统</a>线程上）。</p>
 </li>
 <li>
 <p><strong>独立性</strong>：每个goroutine拥有自己的栈空间和执行状态，符合CSP中进程拥有私有状态的设计原则。</p>
 </li>
 <li>
-<p><strong>通信方式</strong>：goroutine之间通过channel进行通信，而不是通过共享内存，实现了CSP"不要通过共享内存来通信，而要通过通信来共享内存"的原则。</p>
+<p><strong>通信方式</strong>：goroutine之间通过<a href="channel.html">channel</a>进行通信，而不是通过共享内存，实现了CSP"不要通过共享内存来通信，而要通过通信来共享内存"的原则。</p>
 </li>
 <li>
-<p><strong>工程价值</strong>：使Go语言能够高效地处理大量并发任务，成为现代高并发服务器开发的重要工具。</p>
+<p><strong>工程价值</strong>：使Go语言能够高效地处理大量并发任务，成为现代高并发<a href="服务.html">服务</a>器开发的重要工具。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

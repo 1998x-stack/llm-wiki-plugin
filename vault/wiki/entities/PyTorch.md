@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: ["工具", "深度学习", "框架", "Python"]
+tags: [工具, 深度学习, 框架, Python, 工具与框架]
 aliases: ["PyTorch", "PyTorch 框架"]
 relates_to: ["AlexNet", "深度学习", "卷积神经网络（CNN）", "GPU训练", "迁移学习"]
 supersedes: null

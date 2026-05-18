@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">错误处理</span><span class="tag">Agent</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">错误处理</span><span class="tag">Agent</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="_1">工具错误处理</h1>
 <h2 id="_2">概述</h2>
-<p>工具错误处理是 Claude API 支持的新工具结果格式，允许工具返回结构化错误信息（含 <code>is_error</code> 标志），使模型能够根据错误类型自适应调整策略。</p>
+<p>工具<a href="错误处理.html">错误处理</a>是 <a href="../entities/Claude_Code.html">Claude</a> API 支持的新工具结果格式，允许工具返回结构化错误信息（含 <code>is_error</code> 标志），使模型能够根据错误类型自适应调整策略。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>错误结果格式</strong>：新的工具结果格式支持 <code>is_error: true</code> 标志和描述性错误内容。例如 API 限流时返回 <code>"API rate limit exceeded. Retry after 60 seconds."</code>，Claude 可据此理解错误性质。</p>
+<p><strong>错误结果格式</strong>：新的工具结果格式支持 <code>is_error: true</code> 标志和描述性错误内容。例如 API 限流时返回 <code>"API rate limit exceeded. Retry after 60 seconds."</code>，<a href="../entities/Claude_Code.html">Claude</a> 可据此理解错误性质。</p>
 </li>
 <li>
-<p><strong>自适应策略</strong>：Claude 会根据错误类型调整后续行为——等待后重试（如限流错误）、使用备用工具（如主数据源不可用时）、或告知用户（如权限不足等不可恢复错误）。</p>
+<p><strong>自适应策略</strong>：<a href="../entities/Claude_Code.html">Claude</a> 会根据错误类型调整后续行为——等待后重试（如限流错误）、使用备用工具（如主数据源不可用时）、或告知用户（如<a href="Permissions.html">权限</a>不足等不可恢复错误）。</p>
 </li>
 <li>
-<p><strong>与错误复合的关系</strong>：工具错误处理直接影响 <a href="错误复合.html">错误复合</a> 的风险——如果工具错误未被正确标记和处理，可能导致后续工具调用基于错误前提执行，产生复合错误链。</p>
+<p><strong>与<a href="错误复合.html">错误复合</a>的关系</strong>：工具<a href="错误处理.html">错误处理</a>直接影响 <a href="错误复合.html">错误复合</a> 的风险——如果工具错误未被正确标记和处理，可能导致后续工具调用基于错误前提执行，产生复合错误链。</p>
 </li>
 <li>
-<p><strong>验证循环模式</strong>：工具调用 → 检查结果 → 决定是否重试，构成基本的验证循环。这与工具组合模式中的验证循环一致，是构建可靠 Agent 系统的基础模式。</p>
+<p><strong>验证循环模式</strong>：工具调用 → 检查结果 → 决定是否重试，构成基本的验证循环。这与<a href="工具组合模式.html">工具组合模式</a>中的验证循环一致，是构建可靠 Agent 系统的基础模式。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

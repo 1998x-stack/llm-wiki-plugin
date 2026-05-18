@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, deep-learning, backpropagation]
+tags: [person, deep-learning, backpropagation, 机器学习]
 aliases: [Ronald Williams]
 relates_to:
   - target: David Rumelhart

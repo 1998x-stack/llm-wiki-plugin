@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究, 学习]
+tags: [研究, 学习, 经济学]
 aliases: [MBS, Mortgage-Backed Security]
 relates_to: []
 supersedes: null

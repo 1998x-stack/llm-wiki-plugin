@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [prompt-engineering, framework, ai-engineering]
+tags: [prompt-engineering, framework, ai-engineering, AI工程]
 aliases: ["CO-STAR 框架", "CO-STAR Framework"]
 relates_to: 
   - target: "[[Prompt-Engineering]]"

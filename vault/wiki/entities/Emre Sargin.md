@@ -22,11 +22,11 @@ supersedes: null
 # Emre Sargin
 
 ## 概述
-[[Google]]/[[YouTube]] 工程师，[[Deep Neural Networks for YouTube Recommendations]]（RecSys 2016）第三作者。
+[[Google]]/[[YouTube]] 工程师，[[Deep Neural Networks for YouTube Recommendations]]（[[RecSys 2016]]）第三作者。
 
 ## 关键内容
 
-1. **里程碑论文**：作为第三作者参与了 [[Deep Neural Networks for YouTube Recommendations]]（RecSys 2016）的研究和撰写。该论文确立了工业推荐系统的"[[候选生成]] + 排序"两阶段架构[[规范化理论|范式]]。
+1. **里程碑论文**：作为第三作者参与了 [[Deep Neural Networks for YouTube Recommendations]]（[[RecSys 2016]]）的研究和撰写。该论文确立了工业推荐系统的"[[候选生成]] + 排序"两阶段架构[[规范化理论|范式]]。
 
 2. **研究贡献**：与 [[Paul Covington]] 和 [[Jay Adams]] 共同完成了在 [[YouTube]] 超大规模场景下深度神经推荐系统的设计、实现和验证工作。
 

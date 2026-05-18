@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agents, multi-agent-systems, parallel-processing]
+tags: [ai-agents, multi-agent-systems, parallel-processing, AI工程]
 aliases: ["Agent 群", "Worker Agent"]
 relates_to: 
   - target: "[[Coordinator Mode]]"

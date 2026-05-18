@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [person, developer, open-source]
+tags: [person, developer, open-source, AI工程]
 aliases: [Jesse Vincent, 杰西·文森特]
 entity_type: person
 relates_to: 

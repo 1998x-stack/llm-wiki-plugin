@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["项目", "研究团队", "计算机视觉"]
+tags: [项目, 研究团队, 计算机视觉, 机器学习]
 aliases: ["ISI", "ICSI (International Computer Science Institute)"]
 relates_to: ["ILSVRC", "AlexNet", "SIFT（尺度不变特征变换）", "支持向量机"]
 supersedes: null

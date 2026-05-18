@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [mathematics, control-theory, signal-processing, cybernetics]
+tags: [mathematics, control-theory, signal-processing, cybernetics, 控制论]
 aliases: ["诺伯特·维纳", "维纳"]
 entity_type: person
 relates_to: []

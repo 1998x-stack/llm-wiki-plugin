@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [memory-index, pointer-index, context-management]
+tags: [memory-index, pointer-index, context-management, AI工程]
 aliases: [MEMORY.md, Memory Index File, 记忆索引文件]
 relates_to: 
   - target: "[[三层记忆架构]]"

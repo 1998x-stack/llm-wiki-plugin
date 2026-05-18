@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, anti-distillation, ai-systems]
+tags: [security, anti-distillation, ai-systems, AI工程]
 aliases: ["Undercover Mode", "卧底模式"]
 relates_to: 
   - target: "[[Claude Code]]"

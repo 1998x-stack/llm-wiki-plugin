@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>论文信息</strong>：来源于 "Turning Dross Into Gold Loss: is <a href="BERT4Rec.html">BERT4Rec</a> really better than <a href="SASRec.html">SASRec</a>?"（Petrov &amp; Macdonald, RecSys 2023）。</p>
 </li>
 <li>
-<p><strong>核心发现</strong>：<a href="BERT4Rec.html">BERT4Rec</a> 相比 <a href="SASRec.html">SASRec</a> 的优势主要来自其损失函数（全物品 softmax <a href="../concepts/交叉熵.html">交叉熵</a>），而非双向注意力本身。当 <a href="SASRec.html">SASRec</a> 使用相同的全物品 softmax 损失（称为 <a href="SASRec.html">SASRec</a>+）时，在大多数数据集上实际表现优于 <a href="BERT4Rec.html">BERT4Rec</a>，且训练速度更快。</p>
+<p><strong>核心发现</strong>：<a href="BERT4Rec.html">BERT4Rec</a> 相比 <a href="SASRec.html">SASRec</a> 的优势主要来自其损失函数（全物品 softmax <a href="../concepts/交叉熵.html">交叉熵</a>），而非双向<a href="../concepts/注意力机制.html">注意力</a>本身。当 <a href="SASRec.html">SASRec</a> 使用相同的全物品 softmax 损失（称为 <a href="SASRec.html">SASRec</a>+）时，在大多数数据集上实际表现优于 <a href="BERT4Rec.html">BERT4Rec</a>，且训练速度更快。</p>
 </li>
 <li>
 <p><strong>方法</strong>：将 <a href="SASRec.html">SASRec</a> 原始的"一正一负"<a href="../concepts/二元交叉熵.html">二元交叉熵</a>损失替换为全物品 softmax <a href="../concepts/二元交叉熵.html">交叉熵损失</a>，利用更多负样本信息进行更充分的优化。</p>

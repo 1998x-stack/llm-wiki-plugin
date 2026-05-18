@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: ["深度学习", "NLP", "预训练", "语言模型", "LLM基础"]
+tags: [深度学习, NLP, 预训练, 语言模型, LLM基础, LLM能力]
 aliases: ["Masked Language Model", "MLM", "掩码语言模型", "填空语言模型"]
 relates_to:
   - target: "[[BERT]]"

@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [逻辑学家, 数学家, 基础数学]
+tags: [逻辑学家, 数学家, 基础数学, 计算理论]
 aliases: ["Kurt Gödel", "库尔特·哥德尔"]
 entity_type: person
 relates_to:

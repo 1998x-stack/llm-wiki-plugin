@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">质量保障</span><span class="tag">安全工程</span><span class="tag">风险管理</span><span class="tag">多层防御</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">质量保障</span><span class="tag">安全工程</span><span class="tag">风险管理</span><span class="tag">多层防御</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">瑞士奶酪模型</h1>
 <h2 id="_2">概述</h2>
-<p>瑞士奶酪模型是安全工程中的多层防御理念，比喻每层质量保障方法都有漏洞，但多层叠加能拦截大多数问题，用于理解 Agent 性能的综合体系。</p>
+<p>瑞士奶酪模型是安全工程中的<a href="纵深防御.html">多层防御</a>理念，比喻每层<a href="质量保障.html">质量保障</a>方法都有漏洞，但多层叠加能拦截大多数问题，用于理解 Agent 性能的综合体系。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心理念</strong>：</li>
-<li>每层质量保障方法都有漏洞（像瑞士奶酪的孔洞）</li>
+<li>每层<a href="质量保障.html">质量保障</a>方法都有漏洞（像瑞士奶酪的孔洞）</li>
 <li>多层叠加能拦截大多数问题（孔洞不会完全对齐）</li>
 <li>
 <p>eval 只是理解 Agent 性能的工具之一，不是唯一手段</p>
 </li>
 <li>
-<p><strong>六层质量保障体系</strong>：</p>
+<p><strong>六层<a href="质量保障.html">质量保障</a>体系</strong>：</p>
 </li>
 <li><strong>自动化 eval</strong>：可重复、快速、无用户影响；需要前期投资，可能与真实使用不符；最佳时机：部署前、每次提交</li>
 <li><strong>生产监控</strong>：真实用户行为，发现意外问题；被动，问题先触达用户；最佳时机：部署后持续运行</li>
@@ -153,15 +153,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>用户反馈</strong>：发现意外问题，真实示例；稀疏、自选偏差，倾向严重问题；最佳时机：持续分类</li>
 <li><strong>手动 Transcript 审查</strong>：发现细微质量问题；不可扩展，时间密集；最佳时机：每周抽样</li>
 <li>
-<p><strong>系统性人工评测</strong>：黄金标准，处理主观任务；昂贵、周期长；最佳时机：校准 LLM 评分器时</p>
+<p><strong>系统性人工评测</strong>：黄金标准，处理主观任务；昂贵、周期长；最佳时机：校准 LLM <a href="评分器设计.html">评分器</a>时</p>
 </li>
 <li>
 <p><strong>工程启示</strong>：</p>
 </li>
 <li>不要依赖单一评测方法</li>
 <li>每层方法有其最佳使用时机</li>
-<li>综合使用才能建立完整的质量保障体系</li>
-<li>类似安全工程中的纵深防御（Defense in Depth）策略</li>
+<li>综合使用才能建立完整的<a href="质量保障.html">质量保障</a>体系</li>
+<li>类似安全工程中的<a href="纵深防御.html">纵深防御</a>（<a href="纵深防御.html">Defense in Depth</a>）策略</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

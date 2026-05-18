@@ -37,19 +37,19 @@ supersedes: null
 - **[[Transformer 架构|Transformer]]**：每层所有位置同时[[计算]]，直接建模全局上下文
 
 核心模块：
-1. **[[多头注意力]]（[[多头注意力|Multi-Head Attention]]）**：并行多子空间注意力
+1. **[[多头注意力]]（[[多头注意力|Multi-Head Attention]]）**：并行多子空间[[注意力机制|注意力]]
 2. **前馈网络（FFN）**：逐位置的非线性变换
 3. **[[Layer Normalization|层归一化]]（[[Layer Normalization|LayerNorm]]）**：稳定训练
 4. **[[残差连接]]**：缓解[[梯度消失]]
 
 ### 计算瓶颈
 
-[[Self-Attention机制|Self-Attention]] 的注意力[[矩阵]]大小为 $n \times n$（n 为序列长度），导致：
+[[Self-Attention机制|Self-Attention]] 的[[注意力机制|注意力]][[矩阵]]大小为 $n \times n$（n 为序列长度），导致：
 
 - 时间复杂度：$O(n^2 d)$
 - 空间复杂度：$O(n^2)$
 
-这是 [[Transformer 架构|Transformer]] 处理超长序列的主要障碍，也是 [[注意力预算]] 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。
+这是 [[Transformer 架构|Transformer]] 处理超长序列的主要障碍，也是 [[注意力预算]] 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性[[注意力机制|注意力]]）均以降低此复杂度为目标。
 
 ### 与 RNN/CNN 的比较
 

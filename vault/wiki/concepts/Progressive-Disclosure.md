@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["context-engineering", "information-architecture"]
+tags: [context-engineering, information-architecture, 信息论]
 aliases: ["Progressive Disclosure"]
 relates_to: []
 supersedes: null

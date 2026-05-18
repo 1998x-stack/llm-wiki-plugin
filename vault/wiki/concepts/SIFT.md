@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: ["计算机视觉", "特征提取", "传统方法"]
+tags: [计算机视觉, 特征提取, 传统方法, 机器学习]
 aliases: ["SIFT", "Scale-Invariant Feature Transform", "尺度不变特征变换"]
 relates_to: ["手工特征工程", "HOG", "Haar 小波", "AlexNet", "卷积神经网络（CNN）"]
 supersedes: null

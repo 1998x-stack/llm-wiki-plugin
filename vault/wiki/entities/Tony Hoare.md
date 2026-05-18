@@ -65,7 +65,7 @@ supersedes: null
 ### CSP 模型（1978）
 
 - 提出"[[CSP 模型|通信顺序进程]]"模型
-- 将并发编程从"共享内存+锁"转变为"消息传递"
+- 将并发编程从"共享内存+锁"转变为"[[消息传递]]"
 - 催生了著名格言："不要通过共享内存来通信，而要通过通信来共享内存"
 
 ### 图灵奖（1980）
@@ -75,7 +75,7 @@ supersedes: null
 ### 后续影响
 
 - 1985年出版专著 *[[CSP 模型|Communicating Sequential Processes]]*
-- CSP 影响了 occam、Erlang、Go、Clojure core.async、Rust 等语言
+- CSP 影响了 [[occam]]、[[Erlang]]、Go、Clojure core.async、Rust 等语言
 - Go 语言的设计者 Rob Pike 明确表示 Go 的并发模型直接来源于 CSP
 
 ## 来源

@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">检索增强生成</span><span class="tag">多Agent系统</span><span class="tag">信息检索</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">检索增强生成</span><span class="tag">多Agent系统</span><span class="tag">信息检索</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="rag">动态 RAG</h1>
 <h2 id="_1">概述</h2>
-<p>动态 RAG 是一种检索增强生成模式，系统在多步搜索中动态发现相关信息，并根据新发现实时适应搜索策略，而非预先检索后静态注入上下文。</p>
+<p>动态 RAG 是一种<a href="检索增强生成.html">检索增强生成</a>模式，系统在多步搜索中动态发现相关信息，并根据新发现实时适应搜索策略，而非预先检索后静态注入上下文。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -150,10 +150,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>迭代分析</strong>：多轮检索与分析交替进行，逐步生成高质量答案</p>
 </li>
 <li>
-<p><strong>在研究系统中的应用</strong>：Anthropic 的 Research 功能采用动态 RAG 模式，多 Agent 系统通过子 Agent 并行探索不同方向，每个子 Agent 独立进行动态检索，再将压缩后的信息传递给主 Agent 综合。</p>
+<p><strong>在研究系统中的应用</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 的 Research 功能采用动态 RAG 模式，<a href="多 Agent 系统.html">多 Agent 系统</a>通过<span style="color:#e74c3c" title="broken link">子 Agent</span> 并行探索不同方向，每个<span style="color:#e74c3c" title="broken link">子 Agent</span> 独立进行动态检索，再将压缩后的信息传递给主 Agent 综合。</p>
 </li>
 <li>
-<p><strong>信息论优势</strong>：动态 RAG 的本质是信息压缩——从海量语料中提炼洞见，子 Agent 在独立上下文窗口中并行探索，压缩信息后再传递给主 Agent，减少路径依赖，避免陷入局部最优。</p>
+<p><strong><a href="../maps/信息论.html">信息论</a>优势</strong>：动态 RAG 的本质是信息压缩——从海量语料中提炼洞见，<span style="color:#e74c3c" title="broken link">子 Agent</span> 在独立<a href="上下文窗口.html">上下文窗口</a>中并行探索，压缩信息后再传递给主 Agent，减少路径依赖，避免陷入局部最优。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

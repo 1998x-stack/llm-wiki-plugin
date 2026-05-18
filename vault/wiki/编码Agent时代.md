@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [技术, 研究]
+tags: [技术, 研究, AI工程]
 aliases: [编码 Agent 时代, Coding Agent Era]
 relates_to:
   - 判断力与执行力

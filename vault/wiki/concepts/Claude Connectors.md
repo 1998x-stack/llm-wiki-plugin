@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, integration, remote-services]
+tags: [ai-tools, integration, remote-services, AI工程]
 aliases: ["Claude Connectors", "Remote MCP Services"]
 relates_to:
   - target: "[[Claude Code]]"

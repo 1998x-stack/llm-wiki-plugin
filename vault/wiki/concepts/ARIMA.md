@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [时间序列分析, 预测方法, 统计模型]
+tags: [时间序列分析, 预测方法, 统计模型, 时间序列]
 aliases: ["ARIMA模型", "自回归积分滑动平均模型", "Autoregressive Integrated Moving Average"]
 relates_to:
   - target: "[[指数平滑]]"

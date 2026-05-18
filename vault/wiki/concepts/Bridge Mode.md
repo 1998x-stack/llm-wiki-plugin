@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ide-integration, authentication, security]
+tags: [ide-integration, authentication, security, AI工程]
 aliases: ["桥接模式", "IDE桥接"]
 relates_to: 
   - target: "[[Claude Code]]"

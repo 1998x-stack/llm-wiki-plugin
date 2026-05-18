@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [person, deep-learning, normalization, google]
+tags: [person, deep-learning, normalization, google, 机器学习]
 aliases: [Sergey Ioffe]
 relates_to:
   - target: Batch Normalization

@@ -52,7 +52,7 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 - **[[SWE-agent]]**（Princeton 2024）：
   - SWE-bench Full：**12.47%** resolved（GPT-4 Turbo）
   - SWE-bench Lite：**18.00%** resolved（GPT-4 Turbo）
-  - pass@k 曲线：k=6 时解决率升至 30%+，但单题波动明显
+  - [[pass@k vs pass^k|pass@k]] 曲线：k=6 时解决率升至 30%+，但单题波动明显
 - **Shell-only agent**（GPT-4 Turbo）：Lite 上 **11.00%**
 - **RAG**（GPT-4 Turbo）：Full 上 1.31%，Lite 上 2.67%
 
@@ -68,7 +68,7 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 ### Claude 3.5 Sonnet 的 SOTA 成绩
 
 [[Claude 3.5 Sonnet]] 在 SWE-bench Verified 上实现 **49%** 解决率（当时 SOTA，后续迭代达到更高）：
-- 采用简单单 Agent 架构（无复杂多 Agent 编排）
+- 采用简单[[单 Agent 架构]]（无复杂多 Agent 编排）
 - 核心发现：工具优化比 prompt 优化花更多时间
 - 关键工具改进：要求绝对路径解决相对路径错误
 - [[Think 工具]] 集成：实验提升 1.6%（Welch t 检验 p < 0.001，d=1.47）
@@ -88,11 +88,11 @@ SWE-bench 是软件工程 Agent 的基准测试集，用于评估 AI Agent 自�
 
 ### Eval 饱和问题
 
-SWE-bench 是评测饱和（eval saturation）的典型案例：
+SWE-bench 是[[评测饱和]]（eval saturation）的典型案例：
 - 从 30% 开始，顶级模型现在接近 80%，差距越来越难推动
 - 100% 通过率只能追踪回退，不能推动改进
 - 当 eval 饱和时，需要构建更难的新 eval
-- 这是 Anthropic 工程博客中强调的评测维护重要教训
+- 这是 [[Anthropic]] 工程博客中强调的评测维护重要教训
 
 ## 来源
 

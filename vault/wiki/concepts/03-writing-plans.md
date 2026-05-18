@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [source, claude-skills, planning, documentation]
+tags: [source, claude-skills, planning, documentation, AI工程]
 aliases: ["Skill 03: writing-plans", "writing-plans source"]
 relates_to:
   - target: "[[writing-plans Skill]]"

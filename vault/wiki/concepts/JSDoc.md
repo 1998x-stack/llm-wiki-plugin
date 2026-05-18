@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [文档工具, JavaScript, 注释规范]
+tags: [文档工具, JavaScript, 注释规范, AI工程]
 aliases: ["JavaScript Documentation", "JS Documentation", "JSDoc规范"]
 relates_to: []
 supersedes: null

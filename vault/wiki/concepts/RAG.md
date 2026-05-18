@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [AI Engineering, Retrieval Augmentation, LLM, context-engineering]
+tags: ["AI Engineering", "Retrieval Augmentation", LLM, context-engineering, AI工程]
 aliases: ["检索增强生成", "检索增强生成技术", "Retrieval-Augmented Generation", "RAG"]
 relates_to:
   - {target: Context Engineering, type: part_of, confidence: 0.8}

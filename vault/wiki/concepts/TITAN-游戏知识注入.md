@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI-Agent, Game-Testing, Knowledge-Management, Prompt-Engineering]
+tags: [AI-Agent, Game-Testing, Knowledge-Management, Prompt-Engineering, AI工程]
 aliases: ["Game Knowledge Injection", "游戏知识注入", "Per-Game Knowledge System"]
 relates_to: 
   - target: "[[TITAN 框架]]"

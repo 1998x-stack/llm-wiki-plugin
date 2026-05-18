@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Context Handoff 是 [[Pi-Agent]] pi-ai 层最独特的能力：一个会话可以在 [[Anthropic]] → [[OpenAI]] → [[Google]] 等不同 Provider 之间无缝延续，历史对话、[[Chain-of-Thought|思维链]]、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。
+[[上下文压缩|Context Handoff]] 是 [[Pi-Agent]] pi-ai 层最独特的能力：一个会话可以在 [[Anthropic]] → [[OpenAI]] → [[Google]] 等不同 Provider 之间无缝延续，历史对话、[[Chain-of-Thought|思维链]]、工具调用记录完整保留。这在其他统一 LLM API 中几乎没有对应实现。
 
 ## 关键内容
 
@@ -50,7 +50,7 @@ pi-ai 维护 Provider 无关的 `Context` 对象（消息数组），在切换 P
 
 ### 4. 依赖 JSONL 会话格式
 
-Context Handoff 的前提是 Pi 的 [[JSONL格式|JSONL]] [[会话持久化]]——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 Pi "会话 [[JSONL格式|JSONL]] 第一公民"哲学的直接产物。
+[[上下文压缩|Context Handoff]] 的前提是 Pi 的 [[JSONL格式|JSONL]] [[会话持久化]]——每条消息独立序列化，可跨 Provider 反序列化并继续。这是 Pi "会话 [[JSONL格式|JSONL]] 第一公民"哲学的直接产物。
 
 ## 来源
 

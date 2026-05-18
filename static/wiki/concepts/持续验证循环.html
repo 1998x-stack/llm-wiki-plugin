@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">quality-assurance</span><span class="tag">testing</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">quality-assurance</span><span class="tag">testing</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">持续验证循环</h1>
 <h2 id="_2">概述</h2>
-<p>持续验证循环是 Harness 中代码修改后自动运行测试并进入修复循环的质量保障机制，确保每次代码变更都经过适当层次的验证。</p>
+<p>持续验证循环是 Harness 中代码修改后自动运行测试并进入修复循环的<a href="质量保障.html">质量保障</a>机制，确保每次代码变更都经过适当层次的验证。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>多层次验证</strong>：应用开发有多层次的正确性标准——语法正确性（代码是否编译）、单测通过（功能是否如期工作）、集成测试（组件交互是否正确）、端到端测试（用户流程是否完整）。Harness 需要在每个检查点运行适当层次的验证。</p>
 </li>
 <li>
-<p><strong>与 <a href="Evaluator-Optimizer 模式.html">Evaluator-Optimizer 模式</a> 的关系</strong>：持续验证循环是 Evaluator-Optimizer 模式的具体实现——Agent 是 Optimizer（生成代码修改），测试套件是 Evaluator（验证正确性），修复循环是优化迭代过程。</p>
+<p><strong>与 <a href="Evaluator-Optimizer 模式.html">Evaluator-Optimizer 模式</a> 的关系</strong>：持续验证循环是 <a href="Evaluator-Optimizer 模式.html">Evaluator-Optimizer 模式</a>的具体实现——Agent 是 Optimizer（生成代码修改），测试套件是 Evaluator（验证正确性），修复循环是优化迭代过程。</p>
 </li>
 <li>
 <p><strong>快速反馈优先</strong>：验证循环优先运行快速的单测，只有通过单测后才可能运行更耗时的集成测试或端到端测试。这确保 Agent 能在最短时间内获得反馈，减少资源浪费。</p>

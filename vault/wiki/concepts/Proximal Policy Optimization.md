@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [reinforcement learning, policy optimization, deep rl]
+tags: ["reinforcement learning", "policy optimization", "deep rl", 强化学习]
 aliases: ["PPO", "Proximal Policy Optimization", "近端策略优化"]
 relates_to:
   - target: "[[Proximal Policy Optimization Algorithms (2017 论文)]]"

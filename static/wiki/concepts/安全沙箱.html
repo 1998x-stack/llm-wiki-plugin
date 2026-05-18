@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">security</span><span class="tag">sandbox</span><span class="tag">code-execution</span><span class="tag">mcp</span><span class="tag">agent-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">security</span><span class="tag">sandbox</span><span class="tag">code-execution</span><span class="tag">mcp</span><span class="tag">agent-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">安全沙箱</h1>
 <h2 id="_2">概述</h2>
-<p>代码执行的隔离运行环境，通过容器化技术（如 Docker/gVisor）限制文件系统访问、网络访问和资源消耗，防止任意代码执行导致的安全风险。</p>
+<p><a href="代码执行.html">代码执行</a>的隔离运行环境，通过容器化技术（如 Docker/gVisor）限制文件系统访问、网络访问和资源消耗，防止任意<a href="代码执行.html">代码执行</a>导致的安全风险。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>安全风险</strong>：</li>
-<li>任意代码执行可能导致文件系统破坏</li>
-<li>可能导致网络泄露，访问外部敏感服务</li>
+<li>任意<a href="代码执行.html">代码执行</a>可能导致文件系统破坏</li>
+<li>可能导致网络泄露，访问外部敏感<a href="服务.html">服务</a></li>
 <li>
 <p>可能导致资源耗尽（无限循环、内存泄漏）</p>
 </li>
@@ -159,27 +159,27 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>关键限制措施</strong>：</p>
 </li>
-<li><strong>文件系统</strong>：仅允许访问沙箱目录，不允许直接的文件系统写入</li>
+<li><strong>文件系统</strong>：仅允许访问<a href="Claude Code 沙箱机制.html">沙箱</a>目录，不允许直接的文件系统写入</li>
 <li><strong>网络访问</strong>：白名单模式或完全隔离，防止数据泄露</li>
-<li><strong>执行超时</strong>：通常设置 30 秒最大执行时间，防止无限循环</li>
+<li><strong>执行超时</strong>：通常<a href="Settings.html">设置</a> 30 秒最大执行时间，防止无限循环</li>
 <li>
 <p><strong>内存限制</strong>：防止资源耗尽攻击</p>
 </li>
 <li>
 <p><strong>与 <a href="代码执行.html">代码执行</a> 的关系</strong>：</p>
 </li>
-<li>安全沙箱是代码执行能力的前提条件</li>
-<li>没有安全沙箱的代码执行在生产环境中不可接受</li>
+<li>安全<a href="Claude Code 沙箱机制.html">沙箱</a>是<a href="代码执行.html">代码执行能力</a>的前提条件</li>
+<li>没有安全<a href="Claude Code 沙箱机制.html">沙箱</a>的<a href="代码执行.html">代码执行</a>在生产环境中不可接受</li>
 <li>
-<p>沙箱设计直接影响代码执行能力的可用性和信任度</p>
+<p><a href="Claude Code 沙箱机制.html">沙箱</a>设计直接影响<a href="代码执行.html">代码执行能力</a>的可用性和信任度</p>
 </li>
 <li>
 <p><strong>最佳实践</strong>：</p>
 </li>
-<li>始终在沙箱中执行，不允许绕过沙箱直接执行</li>
-<li>对超时和内存设置合理限制</li>
+<li>始终在<a href="Claude Code 沙箱机制.html">沙箱</a>中执行，不允许绕过<a href="Claude Code 沙箱机制.html">沙箱</a>直接执行</li>
+<li>对超时和内存<a href="Settings.html">设置</a>合理限制</li>
 <li>审查 Agent 生成的代码（特别是涉及外部系统时）</li>
-<li>沙箱目录外禁止写入，确保隔离性</li>
+<li><a href="Claude Code 沙箱机制.html">沙箱</a>目录外禁止写入，确保隔离性</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd, xml, prompt-engineering, structured-prompt]
+tags: [gsd, xml, prompt-engineering, structured-prompt, 机器学习]
 aliases: [XML Plan, XML 结构化 Prompt, XML Plan System, XML 结构化计划]
 relates_to:
   - target: "[[GSD]]"

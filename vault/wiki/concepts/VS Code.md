@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ide, editor, development-tool]
+tags: [ide, editor, development-tool, 工具与框架]
 aliases: ["Visual Studio Code", "VSCode"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [code-review, agent, quality-assurance, automation]
+tags: [code-review, agent, quality-assurance, automation, AI工程]
 aliases: ["Code Reviewer", "代码审查专家", "代码审查子代理"]
 relates_to:
   - target: "[[代码审查]]"

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [ImageNet, 评估指标, 分类精度, 竞赛]
+tags: [ImageNet, 评估指标, 分类精度, 竞赛, AI工程]
 aliases: [Top-5 Error Rate, Top-1 Error Rate, ImageNet 错误率]
 relates_to: [ImageNet, AlexNet, VGGNet, 残差网络（ResNet）]
 supersedes: null

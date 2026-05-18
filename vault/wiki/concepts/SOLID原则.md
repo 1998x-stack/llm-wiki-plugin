@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [design-principles, oop, software-engineering]
+tags: [design-principles, oop, software-engineering, 计算理论]
 aliases: ["SOLID Principles", "SOLID原则", "单一职责原则", "开闭原则", "里氏替换原则", "接口隔离原则", "依赖倒置原则"]
 relates_to:
   - target: "[[代码质量]]"

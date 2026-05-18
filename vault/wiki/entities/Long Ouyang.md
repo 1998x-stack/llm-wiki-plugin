@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, NLP, RLHF, alignment]
+tags: [person, NLP, RLHF, alignment, AI工程]
 aliases: [Long Ouyang]
 relates_to:
   - target: OpenAI

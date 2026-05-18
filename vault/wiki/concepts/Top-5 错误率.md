@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["计算机视觉", "评估指标", "ImageNet"]
+tags: [计算机视觉, 评估指标, ImageNet, AI工程]
 aliases: ["Top-5 Error Rate", "Top-5 错误率", "Top-5 Accuracy"]
 relates_to: ["AlexNet", "ImageNet", "ILSVRC", "深度学习（Deep Learning）"]
 supersedes: null

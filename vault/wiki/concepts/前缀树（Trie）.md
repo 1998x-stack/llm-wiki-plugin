@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [数据结构, 算法, 安全]
+tags: [数据结构, 算法, 安全, 计算理论]
 aliases: [Trie, 字典树, 前缀树]
 relates_to:
   - target: "[[ExecPolicy]]"

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [技术]
+tags: [技术, AI工程]
 aliases: [BGE M3, bge-m3]
 relates_to:
   - BGE-Reranker

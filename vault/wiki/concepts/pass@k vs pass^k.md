@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["ai-engineering", "evaluation", "统计", "非确定性"]
+tags: [ai-engineering, evaluation, 统计, 非确定性, AI工程]
 aliases: ["pass@k", "pass^k", "pass at k", "pass to the k"]
 relates_to:
   - target: "[[Agent 评测体系]]"
@@ -26,7 +26,7 @@ pass@k 和 pass^k 是处理 Agent 非确定性的两种核心统计指标，分�
 1. **pass@k（至少一次成功）**：
    - 公式：P(至少一次成功 | k 次尝试)
    - k 增大 → 分数升高
-   - 适用于：允许多次重试的场景、代码生成（找到一个有效解就够）
+   - 适用于：允许多次重试的场景、[[代码生成]]（找到一个有效解就够）
    - 直观理解：给 Agent 多次机会，只要有一次成功就算通过
 
 2. **pass^k（所有次均成功）**：
@@ -43,7 +43,7 @@ pass@k 和 pass^k 是处理 Agent 非确定性的两种核心统计指标，分�
    - 两者在 k=1 时相同，k 增大后说的是完全相反的故事
 
 4. **选择指南**：
-   - **代码生成/搜索任务**：用 pass@k（找到一个解就够）
+   - **[[代码生成]]/搜索任务**：用 pass@k（找到一个解就够）
    - **面向用户的对话/操作 Agent**：用 pass^k（用户期望每次可靠）
    - **内部工具/可重试场景**：用 pass@k
    - **生产环境/不可重试场景**：用 pass^k

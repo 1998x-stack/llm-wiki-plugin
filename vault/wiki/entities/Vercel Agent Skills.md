@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [AI Tools, Agent Skills, React, Next.js]
+tags: ["AI Tools", "Agent Skills", React, Next.js, AI工程]
 aliases: ["vercel-labs/agent-skills", "Vercel Skills"]
 relates_to:
   - target: "[[React Best Practices Skill]]"

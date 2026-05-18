@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [connect-operation, external-services, integration]
+tags: [connect-operation, external-services, integration, AI工程]
 aliases: ["Connect", "Connect操作", "连接操作"]
 relates_to: 
   - target: "[[Claude Code]]"

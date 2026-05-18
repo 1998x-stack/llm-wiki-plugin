@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">训练难度</h1>
 <h2 id="_2">概述</h2>
-<p>训练难度是指在机器学习模型训练过程中遇到的优化挑战，包括收敛缓慢、难以达到最优解、梯度消失或爆炸等问题。训练难度不同于过拟合，它是优化问题而非泛化问题。</p>
+<p>训练难度是指在机器学习模型训练过程中遇到的优化挑战，包括收敛缓慢、难以达到最优解、<a href="梯度消失.html">梯度消失</a>或爆炸等问题。训练难度不同于<a href="过拟合.html">过拟合</a>，它是优化问题而非泛化问题。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>定义与特征</strong>：</li>
 <li>模型在训练过程中难以降低损失函数值</li>
 <li>收敛速度慢或无法收敛到理想解</li>
-<li>优化景观崎岖，梯度信号不稳定</li>
+<li><a href="损失曲面（Loss Landscape）.html">优化景观</a>崎岖，梯度信号不稳定</li>
 <li>
 <p>训练损失持续高于预期水平</p>
 </li>
@@ -149,16 +149,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>主要原因</strong>：</p>
 </li>
 <li>模型结构过于复杂，参数过多</li>
-<li>损失函数的优化景观不平滑</li>
-<li>网络层数过深导致梯度消失</li>
+<li>损失函数的<a href="损失曲面（Loss Landscape）.html">优化景观</a>不平滑</li>
+<li>网络层数过深导致<a href="梯度消失.html">梯度消失</a></li>
 <li>不合适的激活函数或初始化方法</li>
 <li>
 <p>模型中包含不必要的复杂组件</p>
 </li>
 <li>
-<p><strong>与过拟合的区别</strong>：</p>
+<p><strong>与<a href="过拟合.html">过拟合</a>的区别</strong>：</p>
 </li>
-<li>过拟合：训练损失低但测试损失高（泛化问题）</li>
+<li><a href="过拟合.html">过拟合</a>：训练损失低但测试损失高（泛化问题）</li>
 <li>训练难度：训练损失持续较高（优化问题）</li>
 <li>
 <p>训练难度往往导致模型无法发挥全部潜力</p>
@@ -166,18 +166,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>缓解策略</strong>：</p>
 </li>
-<li>模型简化：移除不必要的复杂组件（如LightGCN的做法）</li>
-<li>改进优化算法：使用Adam、RMSprop等自适应优化器</li>
-<li>梯度裁剪：防止梯度爆炸</li>
-<li>批归一化：改善内部协变量偏移</li>
+<li>模型简化：移除不必要的复杂组件（如<a href="../entities/LightGCN.html">LightGCN</a>的做法）</li>
+<li>改进优化<a href="算法.html">算法</a>：使用Adam、RMSprop等自适应优化器</li>
+<li>梯度裁剪：防止<a href="梯度爆炸.html">梯度爆炸</a></li>
+<li><a href="Batch Normalization.html">批归一化</a>：改善<a href="内部协变量偏移.html">内部协变量偏移</a></li>
 <li>
-<p>残差连接：缓解梯度消失问题</p>
+<p><a href="残差连接.html">残差连接</a>：缓解<a href="梯度消失.html">梯度消失</a>问题</p>
 </li>
 <li>
 <p><strong>在推荐系统中的体现</strong>：</p>
 </li>
-<li>NGCF因包含特征变换和非线性激活而面临训练难度</li>
-<li>LightGCN通过移除这些组件显著降低训练难度</li>
+<li>NGCF因包含<a href="特征变换.html">特征变换</a>和<a href="非线性激活.html">非线性激活</a>而面临训练难度</li>
+<li><a href="../entities/LightGCN.html">LightGCN</a>通过移除这些组件显著降低训练难度</li>
 <li>训练难度的降低有助于模型达到更好的性能</li>
 </ol>
 <h2 id="_4">来源</h2>

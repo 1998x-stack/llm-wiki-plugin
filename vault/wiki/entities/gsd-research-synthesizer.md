@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, synthesis, consolidation]
+tags: [gsd-agent, synthesis, consolidation, Agent系统]
 aliases: ["gsd-research-synthesizer", "GSD Research Synthesizer", "GSD研究合成智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

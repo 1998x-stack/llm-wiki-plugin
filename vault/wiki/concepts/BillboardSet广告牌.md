@@ -6,7 +6,7 @@ created: 2026-04-16
 updated: 2026-04-16
 last_accessed: 2026-04-16
 source_count: 1
-tags: [渲染, 粒子效果, 广告牌, UrhoX]
+tags: [渲染, 粒子效果, 广告牌, UrhoX, 游戏开发]
 aliases: [BillboardSet, 广告牌集合, Sprite3D]
 relates_to: [StaticModel静态网格体, UrhoX引擎, PBR材质系统]
 supersedes: null

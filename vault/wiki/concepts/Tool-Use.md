@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, tools, protocol, ai-framework]
+tags: [ai-engineering, tools, protocol, ai-framework, AI工程]
 aliases: ["Tool Use", "工具使用协议", "tool_use 协议", "Anthropic Tool Use", "OpenAI Tool Use"]
 relates_to: 
   - target: "[[Tool System]]"
@@ -28,7 +28,7 @@ supersedes: null
 Tool-Use 是 [[Anthropic]] 和 [[OpenAI]] 等 LLM [[服务]]商提供的标准化工具调用协议，允许 LLM 以结构化方式调用外部工具。[[Write-Tools]] 正是基于此协议的具体实现。
 
 ## 关键内容
-1. **协议标准**：所有主流框架均遵循 [[Anthropic]] / [[OpenAI]] `tool_use` 协议，为工具调用提供了统一的接口规范，使 LLM 能够请求执行特定功能并接收返回结果。
+1. **协议标准**：所有主流框架均遵循 [[Anthropic]] / [[OpenAI]] `tool_use` 协议，为工具调用提供了统一的[[接口规范]]，使 LLM 能够请求执行特定功能并接收返回结果。
 
 2. **调用流程**：LLM 生成工具调用请求，包含工具名称和参数，然后由工具执行器解析并实际执行，最后将结果返回给 LLM 以继续推理过程。
 

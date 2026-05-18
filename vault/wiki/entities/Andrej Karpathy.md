@@ -7,7 +7,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-researcher, deep-learning, stanford, llm]
+tags: [ai-researcher, deep-learning, stanford, llm, AI工程]
 aliases: ["Andrej Karpathy", "Karpathy", "安德烈·卡帕西"]
 relates_to:
   - target: "[[Context Engineering]]"

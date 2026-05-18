@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [layout-engine, ui-framework, yoga-layout]
+tags: [layout-engine, ui-framework, yoga-layout, AI设计]
 aliases: ["Yoga", "Yoga Layout", "Yoga（Meta 开源）"]
 relates_to:
   - target: "[[Meta]]"

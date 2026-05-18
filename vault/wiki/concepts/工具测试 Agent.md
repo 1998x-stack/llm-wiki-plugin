@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [agent-engineering, meta-ai, tool-testing, MCP]
+tags: [agent-engineering, meta-ai, tool-testing, MCP, AI工程]
 aliases: [Tool Testing Agent, 工具验证 Agent, MCP 测试 Agent]
 relates_to:
   - "[[MCP]] — part_of"
@@ -29,7 +29,7 @@ supersedes: null
 
 2. **设计原理**：工具测试 Agent 基于"AI 可以改进 AI 使用的工件"这一核心原则。通过让 Agent 实际使用工具而非静态分析，能够发现人类工程师可能忽略的边缘情况和使用陷阱。这与 [[评测驱动开发]] 的理念一致——通过实际执行发现问题。
 
-3. **量化效果**：Anthropic 实践发现，经过优化的工具描述使后续 Agent 的任务完成时间减少 **40%**，因为避免了大多数错误。这一数据验证了工具测试 Agent 的有效性。
+3. **量化效果**：[[Anthropic]] 实践发现，经过优化的工具描述使后续 Agent 的任务完成时间减少 **40%**，因为避免了大多数错误。这一数据验证了工具测试 Agent 的有效性。
 
 4. **核心原则**：
    - 给 Agent 明确的启发规则
@@ -39,7 +39,7 @@ supersedes: null
 
 5. **实施建议**：运行 20+ 个示例输入观察工具使用错误、系统性记录 Agent 如何误用工具、提供失败案例让 AI 分析并改写工具描述、测试-改写-重测循环至少 5 次。这一流程与 [[Meta-AI 改进循环]] 的迭代逻辑一致。
 
-6. **与防错设计的关系**：工具测试 Agent 发现的常见问题可通过 [[防错设计]] 手段（如使用具体类型、枚举值、绝对路径）在接口层面预防，形成双重保障。
+6. **与[[防错设计]]的关系**：工具测试 Agent 发现的常见问题可通过 [[防错设计]] 手段（如使用具体类型、枚举值、绝对路径）在接口层面预防，形成双重保障。
 
 ## 来源
 - [[05_multi_agent_research]] — 第三节：Prompt 工程（工具设计与选择的关键性）

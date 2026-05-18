@@ -135,26 +135,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">外化工作记忆</h1>
 <h2 id="_2">概述</h2>
-<p>外化工作记忆（Externalized Working Memory）是认知科学概念在 AI Agent 设计中的应用，指通过外部持久化存储来减轻模型在复杂推理中对内部上下文记忆的负担。</p>
+<p>外化<a href="工作记忆.html">工作记忆</a>（Externalized <a href="工作记忆.html">Working Memory</a>）是认知科学概念在 AI Agent 设计中的应用，指通过外部持久化存储来减轻模型在复杂推理中对内部上下文记忆的负担。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">认知科学基础</h3>
-<p>人类在面对复杂问题时，也需要"写下来"帮助思考——清单、草稿纸、白板。这种将内部思维过程外部化的行为，在认知科学中被称为<strong>外化工作记忆</strong>。</p>
-<p>LLM 在处理长工具调用链时同样面临"工作记忆"压力：
+<p>人类在面对复杂问题时，也需要"写下来"帮助思考——清单、草稿纸、白板。这种将内部思维过程外部化的行为，在认知科学中被称为<strong>外化<a href="工作记忆.html">工作记忆</a></strong>。</p>
+<p>LLM 在处理长工具调用链时同样面临"<a href="工作记忆.html">工作记忆</a>"压力：
 - 之前哪些工具已调用
 - 收集到了哪些信息
 - 还缺少哪些信息
 - 当前状态是否符合策略要求</p>
 <h3 id="llm-agent">在 LLM Agent 中的实现</h3>
-<p>Think 工具提供了一个<strong>持久化的中间状态缓存</strong>，减轻了模型在下一次推理时需要从对话历史中重新推导中间状态的负担。</p>
+<p><a href="Think 工具.html">Think 工具</a>提供了一个<strong>持久化的中间状态缓存</strong>，减轻了模型在下一次推理时需要从对话历史中重新推导中间状态的负担。</p>
 <p>具体表现为：
 1. <strong>状态持久化</strong>：思考内容以结构化工具调用的形式保存在对话历史中
 2. <strong>显式中间推理</strong>：模型可以明确记录"我已经做了什么"和"我还需要做什么"
 3. <strong>策略核对表</strong>：模型可以在思考中列出需要验证的规则和条件</p>
 <h3 id="_5">设计价值</h3>
-<p>外化工作记忆机制揭示了 LLM 执行复杂工具调用链时的深层需求：
+<p>外化<a href="工作记忆.html">工作记忆</a>机制揭示了 LLM 执行复杂工具调用链时的深层需求：
 - LLM 不仅需要工具来<strong>访问外部信息</strong>
 - 还需要一种<strong>"内部记账"机制</strong>来维护推理状态</p>
-<p>Think 工具正是这种机制的最简实现：仅需定义一个无副作用的工具，就能为模型提供结构化推理空间。</p>
+<p><a href="Think 工具.html">Think 工具</a>正是这种机制的最简实现：仅需定义一个无副作用的工具，就能为模型提供结构化推理空间。</p>
 <h3 id="_6">与其他技术的关系</h3>
 <table>
 <thead>
@@ -166,17 +166,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td>Think 工具</td>
+<td><a href="Think 工具.html">Think 工具</a></td>
 <td>工具调用日志中的思考记录</td>
 <td>多步工具调用链中的动态推理</td>
 </tr>
 <tr>
-<td>Extended Thinking</td>
+<td><a href="Extended Thinking.html">Extended Thinking</a></td>
 <td>模型内部推理（不可见）</td>
 <td>工作开始前的深度规划</td>
 </tr>
 <tr>
-<td>Chain-of-Thought</td>
+<td><a href="Chain-of-Thought.html">Chain-of-Thought</a></td>
 <td>响应文本中的推理步骤</td>
 <td>单步复杂推理</td>
 </tr>
@@ -190,8 +190,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_7">实践启示</h3>
 <ol>
 <li><strong>为模型提供显式的中间推理空间</strong>是 Agent 系统设计的重要原则</li>
-<li>外化工作记忆的质量直接影响模型在复杂场景中的表现</li>
-<li>可以通过 prompt 示例引导模型更有效地使用外化工作记忆</li>
+<li>外化<a href="工作记忆.html">工作记忆</a>的质量直接影响模型在复杂场景中的表现</li>
+<li>可以通过 prompt 示例引导模型更有效地使用外化<a href="工作记忆.html">工作记忆</a></li>
 <li>需要权衡外化带来的 token 消耗与推理质量提升</li>
 </ol>
 <h2 id="_8">来源</h2>

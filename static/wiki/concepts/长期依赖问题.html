@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">序列建模</span><span class="tag">深度学习</span><span class="tag">记忆机制</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">序列建模</span><span class="tag">深度学习</span><span class="tag">记忆机制</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">长期依赖问题</h1>
@@ -155,17 +155,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>根本原因</strong>：</p>
 </li>
-<li>与梯度消失问题密切相关</li>
-<li>在反向传播过程中，误差信号沿时间传递时被权重矩阵连乘</li>
+<li>与<a href="梯度消失.html">梯度消失</a>问题密切相关</li>
+<li>在<a href="反向传播.html">反向传播</a>过程中，误差信号沿时间传递时被权重<a href="矩阵.html">矩阵</a>连乘</li>
 <li>
 <p>导致网络无法学习到长期的依赖关系</p>
 </li>
 <li>
 <p><strong>解决方案</strong>：</p>
 </li>
-<li>LSTM通过记忆细胞和门控机制解决了此问题</li>
-<li>记忆细胞提供了专门通道让信息可以无损地流过任意长的时间跨度</li>
-<li>门控机制控制信息的选择性记忆、遗忘和输出</li>
+<li>LSTM通过<a href="记忆细胞.html">记忆细胞</a>和<a href="门控机制.html">门控机制</a>解决了此问题</li>
+<li><a href="记忆细胞.html">记忆细胞</a>提供了专门通道让信息可以无损地流过任意长的时间跨度</li>
+<li><a href="门控机制.html">门控机制</a>控制信息的选择性记忆、遗忘和输出</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

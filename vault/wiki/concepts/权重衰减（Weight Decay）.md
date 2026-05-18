@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "优化", "正则化", "训练技巧"]
+tags: [深度学习, 优化, 正则化, 训练技巧, 机器学习]
 aliases: ["Weight Decay", "权重衰减", "L2 正则化"]
 relates_to: ["过拟合（Overfitting）", "随机梯度下降（SGD）", "AlexNet", "Adam（自适应矩估计）", "深度学习（Deep Learning）"]
 supersedes: null

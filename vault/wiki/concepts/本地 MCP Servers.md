@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [claude-code, mcp, local-services, tool-system, integration]
+tags: [claude-code, mcp, local-services, tool-system, integration, AI工程]
 aliases: ["Local MCP Servers", "本地MCP服务器", "本地 MCP Server"]
 relates_to:
   - target: "[[MCP]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [protocol, integration, standard]
+tags: [protocol, integration, standard, 工具与框架]
 aliases: ["Model Context Protocol", "模型上下文协议"]
 relates_to: []
 supersedes: null

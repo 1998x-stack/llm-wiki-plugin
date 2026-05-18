@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["工具与框架", "API服务", "HTTP接口"]
+tags: [工具与框架, API服务, HTTP接口, AI工程]
 aliases: ["AKTools", "AKTools HTTP API", "AKShare HTTP API", "FastAPI服务"]
 relates_to:
   - target: "[[AKShare]]"

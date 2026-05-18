@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [validation, schema, javascript, typescript]
+tags: [validation, schema, javascript, typescript, 工具与框架]
 aliases: ["Zod", "Zod schema validation"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, project-management, automation]
+tags: [ai-tools, project-management, automation, AI工程]
 aliases: ["GSD", "Get Shit Done", "GSD Framework"]
 relates_to:
   - target: "[[Context File System]]"

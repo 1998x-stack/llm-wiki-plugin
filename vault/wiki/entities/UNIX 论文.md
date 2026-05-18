@@ -52,7 +52,7 @@ supersedes: null
 
 ## 概述
 
-[[Dennis Ritchie]] 和 [[Ken Thompson]] 于1974年发表的《The UNIX Time-Sharing System》，是[[操作系统]]史上被引最多的文献之一（11,000+次），首次向世界正式介绍了 [[UNIX|UNIX 操作系统]]的设计哲学和实现细节。
+[[Dennis Ritchie]] 和 [[Ken Thompson]] 于1974年发表的《[[The UNIX Time-Sharing System]]》，是[[操作系统]]史上被引最多的文献之一（11,000+次），首次向世界正式介绍了 [[UNIX|UNIX 操作系统]]的设计哲学和实现细节。
 
 ## 关键内容
 
@@ -60,7 +60,7 @@ supersedes: null
 
 | 条目 | 内容 |
 |------|------|
-| **标题** | The UNIX Time-Sharing System |
+| **标题** | [[The UNIX Time-Sharing System]] |
 | **作者** | Dennis M. Ritchie, [[Ken Thompson]] |
 | **发表时间** | 1974年7月（正式版）；1973年10月在第四届 ACM SOSP 会议上宣读前一版本 |
 | **刊物** | Communications of the ACM, Vol. 17, No. 7, pp. 365-375 |

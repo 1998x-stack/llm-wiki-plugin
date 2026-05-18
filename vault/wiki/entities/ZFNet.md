@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["项目", "深度学习", "计算机视觉", "CNN"]
+tags: [项目, 深度学习, 计算机视觉, CNN, 机器学习]
 aliases: ["ZFNet", "Zeiler-Fergus Net", "Zeiler and Fergus Network"]
 relates_to: ["AlexNet", "VGGNet", "GoogLeNet: Inception", "残差网络（ResNet）", "卷积神经网络（CNN）"]
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [api, authentication, jwt, security]
+tags: [api, authentication, jwt, security, AI工程]
 aliases: ["JWT token", "JSON Web Token"]
 relates_to: []
 supersedes: null

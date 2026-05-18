@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-agent, self-evolving, protocol-engine, javascript]
+tags: [ai-agent, self-evolving, protocol-engine, javascript, AI工程]
 aliases: ["Evolver", "Self-Evolving Agent Protocol", "PCEC", "Protocol-Constrained Evolution Core"]
 entity_type: project
 relates_to:

@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>在 P5 中的应用</strong>：<a href="P5 论文.html">P5 论文</a> 选择 T5 作为骨干模型，因其设计哲学与"将所有推荐任务转化为自然语言输入-输出对"的思想高度契合。P5 使用了 T5-small（60.75M 参数）和 T5-base（223.28M 参数）两个变体，使用 SentencePiece 分词器（词汇表 32,128）。</p>
 </li>
 <li>
-<p><strong>架构特点</strong>：采用 encoder-decoder <a href="../concepts/Transformer架构.html">Transformer</a> 架构。T5-small 为 6 层编码器 + 6 层解码器，512 维，8 头注意力；T5-base 为 12 层编码器 + 12 层解码器，768 维，12 头注意力。</p>
+<p><strong>架构特点</strong>：采用 encoder-decoder <a href="../concepts/Transformer架构.html">Transformer</a> 架构。T5-small 为 6 层编码器 + 6 层解码器，512 维，8 头<a href="../concepts/注意力机制.html">注意力</a>；T5-base 为 12 层编码器 + 12 层解码器，768 维，12 头<a href="../concepts/注意力机制.html">注意力</a>。</p>
 </li>
 <li>
 <p><strong>预训练<a href="../concepts/规范化理论.html">范式</a></strong>：T5 通过大规模语料上的无监督预训练获得通用语言理解能力，下游任务通过微调适配。P5 沿用这一<a href="../concepts/规范化理论.html">范式</a>，从预训练 T5 检查点加载权重后进行推荐任务的联合微调。</p>

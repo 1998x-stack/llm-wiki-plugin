@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-agent, architecture, design-pattern]
+tags: [ai-agent, architecture, design-pattern, AI工程]
 aliases: ["Context Parity", "Context-Parity"]
 relates_to:
   - target: "[[Agent-Native-Architecture]]"

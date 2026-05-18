@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [git, security, workflow]
+tags: [git, security, workflow, 信息论]
 aliases: ["Git Safety Checks", "Git Security Checks", "Safety Checks"]
 relates_to: []
 supersedes: null

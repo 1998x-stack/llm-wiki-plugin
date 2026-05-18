@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, proactive-system, timing]
+tags: [ai-agent, proactive-system, timing, AI工程]
 aliases: ["Proactive Agent", "主动智能代理", "Proactivity", "主动性"]
 relates_to:
   - target: "[[KAIROS]]"

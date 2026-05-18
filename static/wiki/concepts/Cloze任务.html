@@ -142,10 +142,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>基本定义</strong>：Cloze任务源于心理学中的完形填空测试，指在一段文本中遮盖某些词汇，要求模型根据上下文信息恢复被遮盖的内容。在机器学习中，Cloze任务通常指随机掩盖序列中的某些位置，训练模型基于剩余信息预测被掩盖的元素。</p>
 </li>
 <li>
-<p><strong>NLP中的应用</strong>：BERT（Bidirectional Encoder Representations from Transformers）首次将Cloze任务系统性应用于语言模型预训练。通过随机掩盖输入序列中的部分token（通常是15%），训练模型恢复原始文本，使得模型能够学习双向上下文信息。</p>
+<p><strong>NLP中的应用</strong>：BERT（<a href="BERT.html">Bidirectional Encoder Representations from Transformers</a>）首次将Cloze任务系统性应用于<a href="Language-Model.html">语言模型</a>预训练。通过随机掩盖输入序列中的部分token（通常是15%），训练模型恢复原始文本，使得模型能够学习双向上下文信息。</p>
 </li>
 <li>
-<p><strong>推荐系统中的应用</strong>：在推荐系统中，特别是序列推荐领域，Cloze任务被用于建模用户行为序列。例如，BERT4Rec将用户的历史行为序列中的某些物品进行掩盖，训练模型预测被掩盖的物品，从而学习用户的长期兴趣和行为模式。</p>
+<p><strong>推荐系统中的应用</strong>：在推荐系统中，特别是<a href="序列推荐.html">序列推荐</a>领域，Cloze任务被用于建模用户行为序列。例如，<a href="../entities/BERT4Rec.html">BERT4Rec</a>将用户的历史行为序列中的某些物品进行掩盖，训练模型预测被掩盖的物品，从而学习用户的长期兴趣和行为模式。</p>
 </li>
 <li>
 <p><strong>技术实现</strong>：</p>
@@ -153,13 +153,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>掩盖策略</strong>：通常随机掩盖序列中一定比例的元素（如15%）</li>
 <li><strong>双向建模</strong>：允许模型同时利用掩盖位置的前后上下文信息</li>
 <li>
-<p><strong>训练目标</strong>：使用softmax交叉熵损失预测被掩盖的元素</p>
+<p><strong>训练目标</strong>：使用softmax<a href="二元交叉熵.html">交叉熵损失</a>预测被掩盖的元素</p>
 </li>
 <li>
-<p><strong>与自回归任务的区别</strong>：Cloze任务是双向的，模型可以同时看到目标位置的前后信息；而自回归任务（如GPT系列）是单向的，模型只能看到目标位置之前的信息。</p>
+<p><strong>与<a href="AR 模型（自回归模型）.html">自回归</a>任务的区别</strong>：Cloze任务是双向的，模型可以同时看到目标位置的前后信息；而<a href="AR 模型（自回归模型）.html">自回归</a>任务（如GPT系列）是单向的，模型只能看到目标位置之前的信息。</p>
 </li>
 <li>
-<p><strong>在BERT4Rec中的应用</strong>：BERT4Rec使用Cloze任务对用户行为序列进行预训练，将用户的历史交互序列视为"句子"，随机掩盖其中的部分物品，训练模型预测被掩盖的物品，从而学习用户的兴趣演化模式。</p>
+<p><strong>在<a href="../entities/BERT4Rec.html">BERT4Rec</a>中的应用</strong>：<a href="../entities/BERT4Rec.html">BERT4Rec</a>使用Cloze任务对用户行为序列进行预训练，将用户的历史交互序列视为"句子"，随机掩盖其中的部分物品，训练模型预测被掩盖的物品，从而学习用户的兴趣演化模式。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

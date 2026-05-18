@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">claude-code</span><span class="tag">tool-system</span><span class="tag">hooks</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">claude-code</span><span class="tag">tool-system</span><span class="tag">hooks</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="tool-hook-mechanism">Tool Hook Mechanism</h1>
@@ -150,7 +150,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>在工具执行完成后触发</li>
 <li>作为质量门（Quality Gate）检查</li>
-<li>用于结果验证、日志记录、后续处理</li>
+<li>用于<a href="Transcript vs Outcome.html">结果验证</a>、日志记录、后续处理</li>
 <li>
 <p>确保工具输出符合预期标准</p>
 </li>
@@ -159,7 +159,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>LLM输出工具调用</li>
 <li>PreToolUse Hook检查（可能拦截）</li>
-<li>工具在沙箱环境执行</li>
+<li>工具在<a href="Claude Code 沙箱机制.html">沙箱</a>环境执行</li>
 <li>PostToolUse Hook质量检查</li>
 <li>结果加入对话历史</li>
 </ol>

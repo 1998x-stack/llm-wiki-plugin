@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">图论</span><span class="tag">图神经网络</span><span class="tag">归一化</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">图论</span><span class="tag">图神经网络</span><span class="tag">归一化</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">对称归一化</h1>
 <h2 id="_2">概述</h2>
-<p>对称归一化是图神经网络中的一种归一化技术，通过对邻接矩阵进行对称归一化处理来平衡不同节点度数的影响，确保信息传播的稳定性。</p>
+<p>对称归一化是图神经网络中的一种归一化技术，通过对邻接<a href="矩阵.html">矩阵</a>进行对称归一化处理来平衡不同节点度数的影响，确保信息传播的稳定性。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>数学定义</strong>：</li>
-<li>对称归一化邻接矩阵：A_hat = D^(-1/2) A D^(-1/2)</li>
-<li>其中A为原始邻接矩阵，D为度矩阵（对角线为节点度数）</li>
+<li>对称归一化邻接<a href="矩阵.html">矩阵</a>：A_hat = D^(-1/2) A D^(-1/2)</li>
+<li>其中A为原始邻接<a href="矩阵.html">矩阵</a>，D为度<a href="矩阵.html">矩阵</a>（对角线为节点度数）</li>
 <li>
-<p>D^(-1/2)为度矩阵的负平方根（对角线为1/√d_i）</p>
+<p>D^(-1/2)为度<a href="矩阵.html">矩阵</a>的负平方根（对角线为1/√d_i）</p>
 </li>
 <li>
 <p><strong>归一化目的</strong>：</p>
@@ -155,15 +155,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>与其他归一化方法对比</strong>：</p>
 </li>
-<li>左归一化（随机游走）：D^(-1) A，保留行和为1的性质</li>
+<li>左归一化（<a href="随机游走.html">随机游走</a>）：D^(-1) A，保留行和为1的性质</li>
 <li>右归一化：A D^(-1)，保留列和为1的性质</li>
 <li>
 <p>对称归一化：D^(-1/2) A D^(-1/2)，同时考虑行和列的平衡</p>
 </li>
 <li>
-<p><strong>在LightGCN中的应用</strong>：</p>
+<p><strong>在<a href="../entities/LightGCN.html">LightGCN</a>中的应用</strong>：</p>
 </li>
-<li>使用对称归一化邻接矩阵D^(-1/2) A D^(-1/2)进行信息传播</li>
+<li>使用对称归一化邻接<a href="矩阵.html">矩阵</a>D^(-1/2) A D^(-1/2)进行信息传播</li>
 <li>形式为：e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</li>
 <li>
 <p>保持了图的对称性质，有助于梯度传播</p>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>优势特点</strong>：</p>
 </li>
 <li>保持图的对称性，有助于保留图的结构性质</li>
-<li>防止梯度消失或爆炸，提高训练稳定性</li>
+<li>防止<a href="梯度消失.html">梯度消失</a>或爆炸，提高训练稳定性</li>
 <li>适用于各种类型的图结构（包括二部图）</li>
 </ol>
 <h2 id="_4">来源</h2>

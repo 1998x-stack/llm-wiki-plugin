@@ -130,21 +130,21 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">cloud</span><span class="tag">kubernetes</span><span class="tag">infrastructure</span><span class="tag">google</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">cloud</span><span class="tag">kubernetes</span><span class="tag">infrastructure</span><span class="tag">google</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="google-kubernetes-engine-gke">Google Kubernetes Engine (GKE)</h1>
 <h2 id="_1">概述</h2>
-<p>Google 提供的托管 Kubernetes 服务，用于容器编排和管理，Anthropic 在其 GKE 集群上运行 Agentic 编码评测实验。</p>
+<p><a href="Google.html">Google</a> 提供的托管 Kubernetes <a href="../concepts/服务.html">服务</a>，用于容器编排和管理，<a href="Anthropic.html">Anthropic</a> 在其 GKE 集群上运行 Agentic 编码评测实验。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>在 AI 评测中的角色</strong>：Anthropic 在 GKE 集群上运行 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 时，发现基础设施错误率高达 6% 的任务因 Pod 错误失败，从而揭示了资源配置对评测结果的影响。</li>
+<li><strong>在 AI 评测中的角色</strong>：<a href="Anthropic.html">Anthropic</a> 在 GKE 集群上运行 <a href="Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 时，发现基础设施错误率高达 6% 的任务因 Pod 错误失败，从而揭示了资源<a href="../concepts/Configuration.html">配置</a>对评测结果的影响。</li>
 <li><strong>容器资源管理机制</strong>：</li>
 <li><strong>requests（保证分配）</strong>：预先保留的资源量</li>
 <li><strong>limits（硬性上限）</strong>：超过则触发 <a href="../concepts/OOM Kill.html">OOM Kill</a> 终止容器</li>
-<li>严格执行 requests = limits 配置会导致零余量，任何瞬时资源波动都会导致容器被终止</li>
-<li><strong>与沙箱供应商的差异</strong>：Terminal-Bench 官方排行榜的沙箱供应商允许临时超额分配，不立即终止容器，基础设施稳定性更好但评分方式实际上更宽松。</li>
-<li><strong>工程建议</strong>：推荐配置 requests 和 limits 之间保持 3× 带宽，如 requests: {cpu: 2, ram: 4GB}，limits: {cpu: 6, ram: 12GB}。</li>
+<li>严格执行 requests = limits <a href="../concepts/Configuration.html">配置</a>会导致零余量，任何瞬时资源波动都会导致容器被终止</li>
+<li><strong>与<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>供应商的差异</strong>：<a href="Terminal-Bench.html">Terminal-Bench</a> 官方排行榜的<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>供应商允许临时超额分配，不立即终止容器，基础设施稳定性更好但评分方式实际上更宽松。</li>
+<li><strong>工程建议</strong>：推荐<a href="../concepts/Configuration.html">配置</a> requests 和 limits 之间保持 3× 带宽，如 requests: {cpu: 2, ram: 4GB}，limits: {cpu: 6, ram: 12GB}。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

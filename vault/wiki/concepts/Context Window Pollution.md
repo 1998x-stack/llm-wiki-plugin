@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["superpowers", "multi-agent", "context management", "agent systems", "AI engineering"]
+tags: [superpowers, multi-agent, "context management", "agent systems", "AI engineering", AI工程]
 aliases: ["Context Window Pollution", "上下文窗口污染", "上下文污染"]
 relates_to:
   - target: "[[上下文窗口]]"

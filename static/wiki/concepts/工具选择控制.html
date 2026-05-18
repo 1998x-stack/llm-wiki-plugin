@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">Agent</span><span class="tag">API 设计</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">工具使用</span><span class="tag">Agent</span><span class="tag">API 设计</span><span class="tag">工具与框架</span></div>
 </div>
   <div class="content">
     <h1 id="_1">工具选择控制</h1>
 <h2 id="_2">概述</h2>
-<p>工具选择控制是 Claude API 的 <code>tool_choice</code> 参数功能，允许开发者精确控制模型何时使用工具、使用哪些工具，或完全禁用工具调用。</p>
+<p>工具选择控制是 <a href="../entities/Claude_Code.html">Claude</a> API 的 <code>tool_choice</code> 参数功能，允许开发者精确控制模型何时使用工具、使用哪些工具，或完全禁用工具调用。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>四种控制模式</strong>：</li>
-<li><code>auto</code>（默认）：让 Claude 自行决定是否使用工具</li>
-<li><code>any</code>：强制 Claude 使用至少一个工具</li>
+<li><code>auto</code>（默认）：让 <a href="../entities/Claude_Code.html">Claude</a> 自行决定是否使用工具</li>
+<li><code>any</code>：强制 <a href="../entities/Claude_Code.html">Claude</a> 使用至少一个工具</li>
 <li><code>tool</code> + <code>name</code>：强制使用特定工具，如确保 Agent 总是将计划写入文件（<code>save_plan</code>）</li>
 <li>
 <p><code>none</code>：完全不使用工具，即使定义了工具</p>
@@ -152,7 +152,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>禁用工具的价值</strong>：在对话的特定阶段只需要文本响应时使用；降低成本——工具定义消耗 token，禁用时可节省。这是 <a href="Token 资源管理.html">Token 资源管理</a> 的重要优化策略。</p>
 </li>
 <li>
-<p><strong>与并行工具调用的协同</strong>：工具选择控制可与 <a href="并行工具调用.html">并行工具调用</a> 结合使用，在不需要工具的步骤跳过工具定义，在需要时精确指定工具集合。</p>
+<p><strong>与<a href="并行工具调用.html">并行工具调用</a>的协同</strong>：工具选择控制可与 <a href="并行工具调用.html">并行工具调用</a> 结合使用，在不需要工具的步骤跳过工具定义，在需要时精确指定工具集合。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

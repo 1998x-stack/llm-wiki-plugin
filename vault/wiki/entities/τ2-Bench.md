@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["基准测试", "对话Agent", "评测"]
+tags: [基准测试, 对话Agent, 评测, AI工程]
 aliases: ["τ2-Bench", "Tau2-Bench", "Tau Squared Bench"]
 relates_to:
   - target: "[[τ-Bench]]"
@@ -19,12 +19,12 @@ supersedes: null
 # τ2-Bench
 
 ## 概述
-τ2-Bench 是 τ-Bench 的后续版本，用于对话 Agent 的进阶评测，论文编号 arxiv: 2506.07982。
+τ2-Bench 是 [[τ-Bench]] 的后续版本，用于对话 Agent 的进阶评测，论文编号 arxiv: 2506.07982。
 
 ## 关键内容
 
-1. **与 τ-Bench 的关系**：
-   - τ2-Bench 是 τ-Bench 的迭代升级版本
+1. **与 [[τ-Bench]] 的关系**：
+   - τ2-Bench 是 [[τ-Bench]] 的迭代升级版本
    - 延续了对话式 Agent 多轮交互评测的核心框架
 
 2. **改进方向**：

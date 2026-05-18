@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [skill, git, worktree, superpowers, workflow, isolation]
+tags: [skill, git, worktree, superpowers, workflow, isolation, AI工程]
 aliases: ["using-git-worktrees", "Git Worktree Skill", "工作树技能"]
 relates_to:
   - target: "[[Git Worktree]]"

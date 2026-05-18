@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [context-engineering, economics, power-laws]
+tags: [context-engineering, economics, power-laws, AI工程]
 aliases: ["帕累托原理", "二八定律", "Pareto Principle"]
 relates_to: []
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, theory, machine-learning]
+tags: [paper, theory, machine-learning, 机器学习]
 aliases: [Hornik 1989, 万能近似定理论文]
 relates_to:
   - target: 万能近似定理

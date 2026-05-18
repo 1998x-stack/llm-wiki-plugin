@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">dynamic-decomposition</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-pattern</span><span class="tag">workflow</span><span class="tag">dynamic-decomposition</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="orchestrator-workers">Orchestrator-Workers 模式</h1>
 <h2 id="_1">概述</h2>
-<p>中央 LLM（Orchestrator）动态分解任务、委派给工作 LLM，并综合结果，子任务由编排器根据具体输入动态确定而非预先定义。</p>
+<p>中央 LLM（<a href="Orchestrator Agent.html">Orchestrator</a>）动态分解任务、委派给工作 LLM，并综合结果，子任务由编排器根据具体输入动态确定而非预先定义。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>工作流程</strong>：Input → [Orchestrator] → [Worker-A] + [Worker-B] + [Worker-C] → [Synthesizer] → Output。编排器先分析任务，再动态决定需要多少工作者。</li>
-<li><strong>与并行化的关键区别</strong>：子任务是由 Orchestrator 根据具体输入<strong>动态确定</strong>的，而非预先定义。这是工作流模式中最接近 Agent 自主性的模式。</li>
+<li><strong>工作流程</strong>：Input → <span style="color:#e74c3c" title="broken link">Orchestrator</span>] → <span style="color:#e74c3c" title="broken link">Worker</span>-A] + <span style="color:#e74c3c" title="broken link">Worker</span>-B] + <span style="color:#e74c3c" title="broken link">Worker</span>-C] → [Synthesizer] → Output。编排器先分析任务，再动态决定需要多少工作者。</li>
+<li><strong>与并行化的关键区别</strong>：子任务是由 <a href="Orchestrator Agent.html">Orchestrator</a> 根据具体输入<strong>动态确定</strong>的，而非预先定义。这是工作流模式中最接近 Agent 自主性的模式。</li>
 <li><strong>适用场景</strong>：无法预判所需子任务数量的复杂任务，如修改多个文件的代码任务、需要动态分析的研究任务。</li>
 <li><strong>工程价值</strong>：在任务复杂度不确定时，让模型自行决定分解策略，避免人工预设的僵化结构。</li>
-<li><strong>与软件工程的对应</strong>：Orchestrator-Workers 对应 Master-Worker 模式和 Actor Model，中央协调器动态分配任务给工作节点。</li>
+<li><strong>与软件工程的对应</strong>：<a href="多Agent架构.html">Orchestrator-Worker</a>s 对应 Master-<a href="Worker Agent.html">Worker</a> 模式和 Actor Model，中央协调器动态分配任务给工作节点。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

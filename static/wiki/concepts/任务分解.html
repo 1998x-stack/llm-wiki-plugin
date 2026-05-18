@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">software-engineering</span><span class="tag">parallel-development</span><span class="tag">task-management</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">software-engineering</span><span class="tag">parallel-development</span><span class="tag">task-management</span><span class="tag">矩阵理论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">任务分解</h1>
@@ -139,16 +139,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>粒度是关键变量</strong>：Anthropic C 编译器实验发现，任务分解的粒度是并行 Agent 协作的核心变量——过粗分解导致并行 Agent 难以协调，过细分解导致协调开销超过并行收益。</p>
+<p><strong>粒度是关键变量</strong>：<a href="../entities/Anthropic.html">Anthropic</a> <a href="C 编译器.html">C 编译器</a>实验发现，任务分解的粒度是并行 Agent 协作的核心变量——过粗分解导致并行 Agent 难以协调，过细分解导致协调开销超过并行收益。</p>
 </li>
 <li>
-<p><strong>过粗分解的问题</strong>："实现 Parser"这类任务太大，边界情况的处理方式可能不一致，并行 Agent 难以有效协调工作。</p>
+<p><strong>过粗分解的问题</strong>："实现 <a href="语法分析.html">Parser</a>"这类任务太大，边界情况的处理方式可能不一致，并行 Agent 难以有效协调工作。</p>
 </li>
 <li>
 <p><strong>过细分解的问题</strong>：太多接口点意味着太多集成风险，协调开销可能超过并行带来的速度收益。</p>
 </li>
 <li>
-<p><strong>最优粒度策略</strong>：按编译器阶段分解（词法→语法→语义→代码生成），每阶段内按子功能进一步细分（如表达式解析、声明解析、语句解析）。</p>
+<p><strong>最优粒度策略</strong>：按编译器阶段分解（词法→语法→语义→<a href="代码生成.html">代码生成</a>），每阶段内按子功能进一步细分（如表达式解析、声明解析、语句解析）。</p>
 </li>
 <li>
 <p><strong>适用场景判断</strong>：模块接口清晰、稳定且依赖是有向无环的场景适合并行化；核心数据结构频繁变化、模块间循环依赖的场景不适合并行化。</p>

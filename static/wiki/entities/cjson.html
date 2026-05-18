@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">JSON</span><span class="tag">Lua库</span><span class="tag">编解码</span><span class="tag">高性能</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">JSON</span><span class="tag">Lua库</span><span class="tag">编解码</span><span class="tag">高性能</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="cjson">cjson</h1>
@@ -138,8 +138,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>cjson 是一个高性能的 Lua JSON 编解码库，基于 C 实现，比纯 Lua 实现快数倍。<a href="UrhoX引擎.html">UrhoX</a> 推荐使用 cjson 进行 JSON 操作。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>在 UrhoX 中的推荐</strong>：JSON 编解码推荐使用 cjson，相关文档见 <code>engine-docs/recipes/json.md</code>。</li>
-<li><strong>性能优势</strong>：cjson 是 C 扩展库，编解码速度远快于纯 Lua 实现，适合游戏配置加载、存档读写等场景。</li>
+<li><strong>在 <a href="UrhoX引擎.html">UrhoX</a> 中的推荐</strong>：JSON 编解码推荐使用 cjson，相关文档见 <code>engine-docs/recipes/json.md</code>。</li>
+<li><strong>性能优势</strong>：cjson 是 C 扩展库，编解码速度远快于纯 Lua 实现，适合游戏<a href="../concepts/Configuration.html">配置</a>加载、存档读写等场景。</li>
 <li><strong>使用方式</strong>：<code>local cjson = require "cjson"</code>，然后使用 <code>cjson.encode()</code> 和 <code>cjson.decode()</code> 进行编解码。</li>
 </ol>
 <h2 id="_3">来源</h2>

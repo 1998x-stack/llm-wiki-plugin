@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI测试, 游戏测试, 代码覆盖率, 强化学习]
+tags: [AI测试, 游戏测试, 代码覆盖率, 强化学习, AI工程]
 aliases: ["SMART Five-Stage Pipeline", "SMART Core Five-Stage Pipeline", "SMART五阶段流水线"]
 relates_to:
   - target: "[[AST差异解析]]"

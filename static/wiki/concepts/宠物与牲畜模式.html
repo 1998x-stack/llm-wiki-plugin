@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="pets-vs-cattle">宠物与牲畜模式（Pets vs Cattle）</h1>
 <h2 id="_1">概述</h2>
-<p>宠物与牲畜模式是云<a href="计算.html">计算</a>中的基础设施管理<a href="规范化理论.html">范式</a>：宠物是有名字、需人工照料、不可丢失的个体；牲畜是无名、可互换、失败时直接替换的群体。在 Agent 架构设计中，该模式指导如何将组件从"宠物"转变为"牲畜"以实现弹性。</p>
+<p>宠物与牲畜模式是云<a href="计算.html">计算</a>中的基础设施管理<a href="规范化理论.html">范式</a>：宠物是有名字、需人工照料、不可丢失的个体；牲畜是无名、可互换、失败时直接替换的群体。在 <a href="Agent 架构与设计原则.html">Agent 架构</a>设计中，该模式指导如何将组件从"宠物"转变为"牲畜"以实现弹性。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">两种模式对比</h3>
 <table>
@@ -172,7 +172,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="agent">在 Agent 架构中的应用</h3>
 <p><a href="../entities/Anthropic.html">Anthropic</a> 在构建 <a href="Managed-Agents.html">Managed-Agents</a> 时的演进历程：</p>
 <p><strong>第一阶段（宠物）：</strong>
-- 所有组件（会话、harness、沙箱）放在单个容器中
+- 所有组件（会话、harness、<a href="Claude Code 沙箱机制.html">沙箱</a>）放在单个容器中
 - 容器失败时会话丢失
 - 容器无响应时需人工"护理"恢复健康
 - 无法调试——打开容器 shell 意味着访问用户数据</p>

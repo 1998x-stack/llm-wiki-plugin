@@ -130,28 +130,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">programming-language</span><span class="tag">software-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">programming-language</span><span class="tag">software-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="c">C 编译器</h1>
 <h2 id="_1">概述</h2>
-<p>C 编译器是将 C 语言源代码转换为机器码的程序，包含词法分析、语法分析、语义分析和代码生成四个主要阶段，是检验 AI 系统编程能力的绝佳测试床。</p>
+<p>C 编译器是将 <a href="C 语言.html">C 语言</a>源代码转换为机器码的程序，包含<a href="词法分析.html">词法分析</a>、<a href="语法分析.html">语法分析</a>、<a href="语义分析.html">语义分析</a>和<a href="代码生成.html">代码生成</a>四个主要阶段，是检验 AI 系统编程能力的绝佳测试床。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>四阶段架构</strong>：C 编译器由词法分析（Lexer）、语法分析（Parser）、语义分析（Semantic Analysis）和代码生成（Codegen）四个主要阶段组成，各阶段有清晰的接口定义（Token、AST、IR、Machine Code）。</p>
+<p><strong>四阶段架构</strong>：C 编译器由<a href="词法分析.html">词法分析</a>（<a href="词法分析.html">Lexer</a>）、<a href="语法分析.html">语法分析</a>（<a href="语法分析.html">Parser</a>）、<a href="语义分析.html">语义分析</a>（<a href="语义分析.html">Semantic Analysis</a>）和<a href="代码生成.html">代码生成</a>（Codegen）四个主要阶段组成，各阶段有清晰的<a href="接口规范.html">接口定义</a>（Token、AST、IR、Machine Code）。</p>
 </li>
 <li>
 <p><strong>可并行性特征</strong>：各编译阶段相对独立，可以独立开发和测试，存在明确的正确性标准（如 GCC 测试套件、标准合规性），天然适合并行开发模式。</p>
 </li>
 <li>
-<p><strong>AI 并行团队实验</strong>：Anthropic 工程师使用多个并行 Claude 实例协作构建功能性 C 编译器，证明了 AI 并行团队在结构化软件工程任务上的可行性，加速比约 3.3×（单 Agent 40 小时 vs 并行 12 小时）。</p>
+<p><strong>AI 并行团队实验</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 工程师使用多个并行 <a href="../entities/Claude_Code.html">Claude</a> 实例协作构建功能性 C 编译器，证明了 AI 并行团队在结构化软件工程任务上的可行性，加速比约 3.3×（单 Agent 40 小时 vs 并行 12 小时）。</p>
 </li>
 <li>
-<p><strong>接口规范的关键性</strong>：并行开发时各 Agent 必须遵循统一的数据结构定义，架构师 Agent 需在开始前生成详细的接口规范文件（interface_spec.h），任何对接口的修改都需要通知其他 Agent。</p>
+<p><strong><a href="接口规范.html">接口规范</a>的关键性</strong>：并行开发时各 Agent 必须遵循统一的数据结构定义，架构师 Agent 需在开始前生成详细的<a href="接口规范.html">接口规范</a>文件（interface_spec.h），任何对接口的修改都需要通知其他 Agent。</p>
 </li>
 <li>
-<p><strong>测试驱动实践</strong>：在并行开发前先由一个 Agent 为每个模块编写完整的接口测试，测试本身成为接口规范的可执行版本，并行 Agent 有明确的完成标准。</p>
+<p><strong>测试驱动实践</strong>：在并行开发前先由一个 Agent 为每个模块编写完整的接口测试，测试本身成为<a href="接口规范.html">接口规范</a>的可执行版本，并行 Agent 有明确的完成标准。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

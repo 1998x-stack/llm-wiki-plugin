@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [prompt-engineering, advanced-technique, ai-engineering]
+tags: [prompt-engineering, advanced-technique, ai-engineering, AI工程]
 aliases: ["元提示", "Meta-Prompting", "Meta Prompting"]
 relates_to: 
   - target: "[[Prompt-Engineering]]"

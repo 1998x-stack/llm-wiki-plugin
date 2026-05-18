@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [git, pull-request, conventional-commits, code-review]
+tags: [git, pull-request, conventional-commits, code-review, AI工程]
 aliases: ["Pull Request Preparation Checklist", "PR Preparation", "PR Checklist"]
 relates_to: []
 supersedes: null

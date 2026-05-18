@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [nlp, large language models, open source]
+tags: [nlp, "large language models", "open source", AI工程]
 aliases: ["LLaMA", "Large Language Model Meta AI", "LLaMA系列"]
 relates_to:
   - target: "[[LLaMA: Open and Efficient Foundation Language Models (2023 论文)]]"

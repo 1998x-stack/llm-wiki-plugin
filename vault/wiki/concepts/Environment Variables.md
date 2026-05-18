@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [environment, configuration, settings]
+tags: [environment, configuration, settings, AI工程]
 aliases: ["Environment Variables", "环境变量", "环境变量系统"]
 relates_to: []
 supersedes: null
@@ -15,7 +15,7 @@ supersedes: null
 # Environment Variables
 
 ## 概述
-[[Claude Code]] 中的关键环境变量[[Configuration|配置]]，用于控制系统的各种行为和[[Settings|设置]]，包括 API 认证、模型选择和输出限制等。
+[[Claude Code]] 中的关键环境变量[[Configuration|配置]]，用于控制系统的各种行为和[[Settings|设置]]，包括 API 认证、[[模型选择]]和输出限制等。
 
 ## 关键内容
 

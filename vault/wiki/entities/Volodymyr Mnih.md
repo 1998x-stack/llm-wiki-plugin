@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, deep-learning, reinforcement-learning]
+tags: [person, deep-learning, reinforcement-learning, 强化学习]
 aliases: [Volodymyr Mnih]
 relates_to:
   - target: DeepMind

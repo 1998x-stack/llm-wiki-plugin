@@ -7,7 +7,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [person, computer-vision, CNN, researcher]
+tags: [person, computer-vision, CNN, researcher, 深度学习]
 aliases: [Karen Simonyan]
 relates_to:
   - target: "[[VGGNet]]"

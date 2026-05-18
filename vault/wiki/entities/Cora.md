@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [project, ai-product, secretary]
+tags: [project, ai-product, secretary, AI工程]
 aliases: ["Cora"]
 relates_to:
   - target: "[[Every-Innc]]"

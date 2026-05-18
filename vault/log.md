@@ -4,6 +4,41 @@ type: log
 
 # 操作日志
 
+## [2026-05-18 build]
+- 知识图谱: 3071 节点, 25178 边, 3 孤页, 17 连通分量
+- Keywords: 10579 个 (2817 titles + 5771 aliases + 1991 tags)
+- 同步: graph.json + graph-statistics.json + wiki HTML (3071 页)
+- Top 连接: 计算(684), 算法(370), Claude Code(336), 规范化理论(248), 推荐系统(220)
+
+## [2026-05-18 relink]
+- 术语词典: 8276 个
+- 扫描: 2870 个页面
+- 修改: 770 个页面, 4016 条新链接
+
+## [2026-05-18 reindex]
+- 完整性: OK (3013 页面, 0 缺失, 26 孤条目 — 均为 vault root maps/ 文件，已知行为)
+- 主题分类 (auto-classify): 26 个 topics — 原有 1568 页保留 + 541 页 tag 匹配 + 924 页 keyword 匹配 → 3033，去重至 3013
+  - AI工程: 706, 推荐系统: 270, 社会科学: 220, 机器学习: 205, 计算理论: 142, 经济学: 120, 工具与框架: 110, 游戏开发: 108, Agent系统: 101, 信息论: 71, 概率论: 70, 数值分析: 65, 脑科学: 65, 机器人学: 59, 天文学: 55, 时间序列: 55, LLM能力: 53, 强化学习: 46, 文档处理: 46, Lua编程: 38, AI设计: 37, 矩阵理论: 36, 深度学习: 26, 控制论: 22, C++编程: 14, 其他: 273
+- Tags 修复: 1343 个页面补充了 topic 标签
+- Maps: 26 个 map 文件生成 → maps/
+- Index: 精简为 46 行（统计表 + 名称列表）
+- Schema 同步: _schema/CLAUDE.md Topics 已更新
+- 快照: .claude/reindex.snapshot.json (3013 pages)
+
+## [2026-05-18 lint]
+- 扫描: 3024 个页面
+- ERROR: 6 → 0 | WARNING: 4660 → 4167
+- 自动修复: 8 个
+  - F2 (invalid frontmatter): 修复 6 页 YAML 未闭合引号 — `FLP不可能性定理`, `Multi-Paxos`, `TLS协议`, `状态机复制`, `统计套利`, `醉汉遛狗类比`
+  - F/I1 (index out of sync): 运行 snapshot_index --slim 重建 index.md，499 未入索引页面 → 6
+- 未修复（跳过）:
+  - B1 (3580 broken links): 大部分为 map 截断链接 + 正常内容演变，需 wiki:reindex + wiki:relink
+  - M1 (125 map broken links): 需 wiki:reindex 重建 maps
+  - M2 (1479 unmapped pages): 需 wiki:reindex 重建 topic-to-wiki.json
+  - O1 (225 orphan pages): 需 wiki:relink 自动链接
+  - F3 (212 overview too long): 需人工精简
+  - F4 (13 frontmatter misc issues): 需人工处理
+
 ## [2026-04-20 ingest: paper_03_alexnet.md]
 - 源文件: raw/articles/ai-papers/foundations/paper_03_alexnet.md
 - 新建实体: wiki/entities/李飞飞.md, wiki/entities/NVIDIA.md, wiki/entities/NeurIPS.md, wiki/entities/百度.md, wiki/entities/Facebook.md, wiki/entities/DNNresearch.md, wiki/entities/斯坦福大学.md, wiki/entities/Facebook AI Research (FAIR).md, wiki/entities/ILSVRC.md, wiki/entities/NEC-UIUC.md, wiki/entities/ISI.md, wiki/entities/ZFNet.md

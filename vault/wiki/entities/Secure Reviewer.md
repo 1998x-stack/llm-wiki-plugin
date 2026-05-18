@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, code review, subagent, claude]
+tags: [security, "code review", subagent, claude, AI工程]
 aliases: ["安全审查专家", "Security Review Agent", "Secure Reviewer Agent"]
 relates_to: []
 supersedes: null

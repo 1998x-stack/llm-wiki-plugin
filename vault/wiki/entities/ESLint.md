@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [开发工具, 代码检查]
+tags: [开发工具, 代码检查, AI工程]
 aliases: ["ESLint.js", "JavaScript Linter"]
 relates_to: []
 supersedes: null

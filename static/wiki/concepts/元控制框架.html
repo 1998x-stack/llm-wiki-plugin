@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心思想</h3>
 <blockquote>
-<p>"Meta-harness 设计意味着对 <a href="../entities/Claude_Code.html">Claude</a> 周围的接口有主见：我们预期 <a href="../entities/Claude_Code.html">Claude</a> 需要操纵状态（会话）和执行<a href="计算.html">计算</a>（沙箱）的能力。但对 <a href="../entities/Claude_Code.html">Claude</a> 需要的大脑或手的数量和位置不做假设。"</p>
+<p>"Meta-harness 设计意味着对 <a href="../entities/Claude_Code.html">Claude</a> 周围的接口有主见：我们预期 <a href="../entities/Claude_Code.html">Claude</a> 需要操纵状态（会话）和执行<a href="计算.html">计算</a>（<a href="Claude Code 沙箱机制.html">沙箱</a>）的能力。但对 <a href="../entities/Claude_Code.html">Claude</a> 需要的大脑或手的数量和位置不做假设。"</p>
 </blockquote>
 <p>元控制框架不对<strong>具体</strong>的 harness 有主见，而是对<strong>围绕 <a href="../entities/Claude_Code.html">Claude</a> 的接口</strong>有主见。</p>
 <h3 id="agent-harness">与 Agent Harness 模式的关系</h3>
@@ -173,7 +173,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>类比<a href="操作系统.html">操作系统</a>：<a href="操作系统.html">操作系统</a>通过将硬件虚拟化为 <code>process</code>、<code>file</code> 等通用抽象而延续数十年。<code>read()</code> 命令不关心访问的是 1970 年代的磁盘组还是现代 SSD。抽象层保持稳定，底层实现自由变化。</p>
 <p>元控制框架遵循同一模式：
 - <strong>会话</strong>：抽象为可追加、可查询的事件流
-- <strong>沙箱</strong>：抽象为 <code>execute(name, input) → string</code>
+- <strong><a href="Claude Code 沙箱机制.html">沙箱</a></strong>：抽象为 <code>execute(name, input) → string</code>
 - <strong>控制框架</strong>：抽象为可调用的循环，可独立失败和重启</p>
 <h3 id="harness">容纳的 Harness 类型</h3>
 <p>元控制框架可容纳：

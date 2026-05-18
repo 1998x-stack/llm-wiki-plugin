@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [neural networks, associative memory, energy-based models]
+tags: ["neural networks", "associative memory", "energy-based models", 脑科学]
 aliases: ["Hopfield Network", "霍普菲尔德网络", "Hopfield 网络"]
 relates_to:
   - target: "[[McCulloch-Pitts 神经元模型]]"

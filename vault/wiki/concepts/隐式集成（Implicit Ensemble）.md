@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "理论分析", "集成学习"]
+tags: [深度学习, 理论分析, 集成学习, 机器学习]
 aliases: ["Implicit Ensemble", "隐式模型集成", "路径集成", "Path Ensemble"]
 relates_to: ["残差网络（ResNet）", "残差连接（Residual Connection）", "跳跃连接（Skip Connection）"]
 supersedes: null

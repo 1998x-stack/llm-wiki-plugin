@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [feature, ai-tools, mystery]
+tags: [feature, ai-tools, mystery, AI工程]
 aliases: ["PENGUIN_MODE", "Penguin Mode", "企鹅模式"]
 relates_to:
   - target: "[[Claude Code]]"

@@ -62,7 +62,7 @@ BERT 本质是**纯 [[Transformer 架构|Transformer]] Encoder 堆叠**，无 De
 2. **[[Transformer 架构|Transformer]] Encoder Layer × L**：[[多头注意力]] + Add & [[Layer Normalization|LayerNorm]] + Feed-Forward + Add & [[Layer Normalization|LayerNorm]]
 3. **输出**：各位置的上下文化表示，每个 token 都能看到完整序列
 
-| [[Configuration|配置]] | 层数 L | 隐藏维度 H | 注意力头数 A | 参数量 |
+| [[Configuration|配置]] | 层数 L | 隐藏维度 H | [[注意力机制|注意力]]头数 A | 参数量 |
 |------|--------|-----------|------------|--------|
 | BERT-Base | 12 | 768 | 12 | 110M |
 | BERT-Large | 24 | 1024 | 16 | 340M |

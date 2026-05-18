@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [技术, 研究, 方法论]
+tags: [技术, 研究, 方法论, AI工程]
 aliases: [RAG落地教训, RAG数据分块陷阱]
 relates_to:
   - 检索增强生成

@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 工具, Rust, TUI]
+tags: [技术, 工具, Rust, TUI, AI设计]
 aliases: [Ratatui Framework]
 relates_to:
   - target: "[[Codex TUI]]"

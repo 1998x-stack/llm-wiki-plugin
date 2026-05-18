@@ -135,43 +135,43 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="embedding">共享Embedding</h1>
 <h2 id="_1">概述</h2>
-<p>共享Embedding是指在机器学习模型中多个组件或子网络共享同一套嵌入向量参数的技术。这种设计常见于推荐系统中的CTR预估模型，如DeepFM，其中FM组件和DNN组件共享同一套特征Embedding。</p>
+<p>共享<a href="Embedding.html">Embedding</a>是指在机器学习模型中多个组件或子网络共享同一套<a href="Embedding.html">嵌入向量</a>参数的技术。这种设计常见于推荐系统中的CTR预估模型，如<a href="../entities/DeepFM.html">DeepFM</a>，其中FM组件和DNN组件共享同一套特征<a href="Embedding.html">Embedding</a>。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术定义</strong>：</li>
-<li>共享Embedding是指在多任务或多组件模型中，不同子网络使用相同的嵌入层参数</li>
-<li>对于每个输入特征，其Embedding向量同时服务于模型的不同部分</li>
+<li>共享<a href="Embedding.html">Embedding</a>是指在多任务或多组件模型中，不同子网络使用相同的<a href="嵌入表示.html">嵌入层</a>参数</li>
+<li>对于每个输入特征，其<a href="Embedding.html">Embedding</a>向量同时<a href="服务.html">服务</a>于模型的不同部分</li>
 <li>
-<p>这种设计避免了为不同组件分别学习相同特征的嵌入向量</p>
+<p>这种设计避免了为不同组件分别学习相同特征的<a href="Embedding.html">嵌入向量</a></p>
 </li>
 <li>
 <p><strong>核心优势</strong>：</p>
 </li>
-<li><strong>参数效率</strong>：嵌入层通常占据模型参数量的绝大部分（因类别特征维度极高），共享可显著减少总参数量</li>
-<li><strong>联合优化</strong>：不同组件的梯度信号可以共同优化Embedding，使嵌入同时适配多种任务需求</li>
+<li><strong>参数效率</strong>：<a href="嵌入表示.html">嵌入层</a>通常占据模型参数量的绝大部分（因类别特征维度极高），共享可显著减少总参数量</li>
+<li><strong><a href="联合训练.html">联合优化</a></strong>：不同组件的梯度信号可以共同优化<a href="Embedding.html">Embedding</a>，使嵌入同时适配多种任务需求</li>
 <li>
 <p><strong>消除预训练</strong>：无需像FNN等模型那样需要预训练步骤，可以端到端训练</p>
 </li>
 <li>
-<p><strong>在DeepFM中的应用</strong>：</p>
+<p><strong>在<a href="../entities/DeepFM.html">DeepFM</a>中的应用</strong>：</p>
 </li>
-<li>DeepFM的FM组件和Deep组件使用完全相同的Embedding层参数</li>
-<li>对于每个特征i，其Embedding向量Vi同时用于FM的二阶交互计算⟨Vi, Vj⟩和Deep组件的拼接输入</li>
+<li><a href="../entities/DeepFM.html">DeepFM</a>的FM组件和Deep组件使用完全相同的<a href="Embedding.html">Embedding</a>层参数</li>
+<li>对于每个特征i，其<a href="Embedding.html">Embedding</a>向量Vi同时用于FM的二阶交互<a href="计算.html">计算</a>⟨Vi, Vj⟩和Deep组件的拼接输入</li>
 <li>
-<p>这使得FM的二阶交互信号和DNN的高阶交互信号可以共同优化Embedding</p>
+<p>这使得FM的二阶交互信号和DNN的高阶交互信号可以共同优化<a href="Embedding.html">Embedding</a></p>
 </li>
 <li>
 <p><strong>与其他技术的比较</strong>：</p>
 </li>
-<li>相比独立Embedding：减少了参数冗余，提高训练效率</li>
-<li>相比多任务学习：共享低层表示但保持高层任务特异性</li>
+<li>相比独立<a href="Embedding.html">Embedding</a>：减少了参数冗余，提高训练效率</li>
+<li>相比<a href="多任务学习.html">多任务学习</a>：共享低层表示但保持高层任务特异性</li>
 <li>
-<p>相比参数绑定：更灵活，允许不同组件使用相同的嵌入进行不同类型的计算</p>
+<p>相比参数绑定：更灵活，允许不同组件使用相同的嵌入进行不同类型的<a href="计算.html">计算</a></p>
 </li>
 <li>
 <p><strong>应用场景</strong>：</p>
 </li>
-<li>推荐系统中的Wide&amp;Deep、DeepFM等模型</li>
+<li>推荐系统中的Wide&amp;Deep、<a href="../entities/DeepFM.html">DeepFM</a>等模型</li>
 <li>多模态学习中的特征对齐</li>
 <li>预训练模型中的参数共享策略</li>
 </ol>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: ["竞赛", "计算机视觉", "深度学习", "数据集"]
+tags: [竞赛, 计算机视觉, 深度学习, 数据集, 机器学习]
 aliases: ["ILSVRC", "ImageNet Large Scale Visual Recognition Challenge", "ImageNet 竞赛"]
 relates_to: ["ImageNet", "李飞飞", "AlexNet", "深度学习", "斯坦福大学"]
 supersedes: null

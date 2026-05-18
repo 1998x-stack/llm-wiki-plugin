@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [payments, token, security]
+tags: [payments, token, security, AI工程]
 aliases: ["Shared Payment Tokens"]
 relates_to: []
 supersedes: null

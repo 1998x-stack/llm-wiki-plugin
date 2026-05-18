@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, generative-models, stable-diffusion]
+tags: [paper, generative-models, stable-diffusion, 深度学习]
 aliases: [Rombach et al. 2022, Stable Diffusion 论文]
 relates_to:
   - target: Robin Rombach

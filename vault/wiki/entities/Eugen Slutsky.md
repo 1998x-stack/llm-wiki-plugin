@@ -7,7 +7,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [统计学家, 经济学家, 时间序列分析]
+tags: [统计学家, 经济学家, 时间序列分析, 经济学]
 aliases: ["Eugen Slutsky", "尤金·斯卢茨基"]
 relates_to:
   - target: "[[George Udny Yule]]"

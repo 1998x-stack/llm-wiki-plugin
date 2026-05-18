@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-engineering, methodology, productivity, automation]
+tags: [ai-engineering, methodology, productivity, automation, AI工程]
 aliases: ["复利工程", "Compound Engineering", "CE"]
 relates_to:
   - target: "[[AI-Engineering]]"

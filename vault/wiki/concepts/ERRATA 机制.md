@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [version-control, documentation, skills-management]
+tags: [version-control, documentation, skills-management, AI工程]
 aliases: ["ERRATA 机制", "ERRATA.md", "版本变更管理"]
 relates_to:
   - target: "[[jezweb/claude-skills]]"

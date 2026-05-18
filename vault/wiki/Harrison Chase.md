@@ -7,7 +7,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [技术, 研究]
+tags: [技术, 研究, Agent系统]
 aliases: []
 relates_to:
   - LangChain

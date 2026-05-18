@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agents, multi-agent-systems, coordination]
+tags: [ai-agents, multi-agent-systems, coordination, AI工程]
 aliases: ["协调器智能体", "Orchestrator Agent", "Orchestrator"]
 relates_to:
   - target: "[[Coordinator Mode]]"
@@ -33,7 +33,7 @@ Orchestrator Agent是[[Claude Code]]多[[Agent Systems|智能体系统]]中的�
 
 1. **核心职责**：
    - 理解用户的高层目标
-   - 将任务分解为独立子任务
+   - 将[[任务分解]]为独立子任务
    - 分配子任务给[[Worker Agent]]s
    - 监控执行进度
    - 整合所有结果

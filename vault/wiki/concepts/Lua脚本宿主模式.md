@@ -36,7 +36,7 @@ supersedes: null
 ### 五层分层模型
 | 层 | 职责 |
 |----|------|
-| **1. VM 层** | [[Lua C API 绑定层|lua_State]] 初始化、模块加载器、沙箱/_ENV、GC [[Configuration|配置]]、[[错误处理]]入口 |
+| **1. VM 层** | [[Lua C API 绑定层|lua_State]] 初始化、模块加载器、[[Claude Code 沙箱机制|沙箱]]/_ENV、GC [[Configuration|配置]]、[[错误处理]]入口 |
 | **2. 绑定层** | 原生函数注册、userdata 封装、metatable 组装、类型转换 |
 | **3. 对象代理层** | 对象缓存、唯一实例映射、句柄有效性检查、反射/属性分发 |
 | **4. 调度与事件层** | Update/Timer/UI 回调/网络事件/coroutine 恢复 |
@@ -58,7 +58,7 @@ Lua thread（coroutine）对游戏引擎价值极高：异步等待不需要真�
 |------|------|---------|---------|-------|
 | **xLua**（Unity） | 高级桥接+热补丁层 | 生成代码/反射；`[LuaCallCSharp]` [[Configuration|配置]] | MonoBehaviour 为主，Lua 桥接 | 支持方法级 Hotfix（C#→Lua 替换） |
 | **tolua#**（Unity） | 静态 wrapper 工厂 | 预生成 wrapper 大面积导出 C# API | 同 xLua，更静态 | wrapper 路线，无系统 Hotfix |
-| **[[Cocos2d-x]]/Lua** | 官方 C++ 脚本桥 | LuaEngine+LuaStack；tolua++ 生成；handler id 回调 | ComponentLua 直接绑节点生命周期 | Lua 脚本可替换，非注入式 |
+| **[[Cocos2d-x]]/Lua** | 官方 C++ 脚本桥 | LuaEngine+LuaStack；[[tolua++]] 生成；handler id 回调 | ComponentLua 直接绑节点生命周期 | Lua 脚本可替换，非注入式 |
 | **[[Defold]]/Lua** | Lua-first 运行时协议 | userdata + url/hash；非大规模类镜像 | init/update/final 原生入口 | 脚本运行时迭代，非补丁方案 |
 
 **生命周期自然度**：[[Defold]] > Cocos/Lua > xLua ≈ tolua#

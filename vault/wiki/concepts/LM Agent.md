@@ -37,7 +37,7 @@ LM Agent 是将[[Language-Model|语言模型]]从"回答问题的文本系统"�
 
 > "LM acts as an agent when it iteratively takes actions and receives feedback."
 
-论文将 LM Agent 定义为：一个[[Language-Model|语言模型]]在环境中反复采取动作并接收反馈的系统。这决定了整篇论文的视角——研究的不是"代码生成"，而是"模型如何在软件工程环境里完成任务"。
+论文将 LM Agent 定义为：一个[[Language-Model|语言模型]]在环境中反复采取动作并接收反馈的系统。这决定了整篇论文的视角——研究的不是"[[代码生成]]"，而是"模型如何在软件工程环境里完成任务"。
 
 ### 范式转换
 

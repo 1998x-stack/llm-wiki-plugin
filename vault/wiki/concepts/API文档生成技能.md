@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [技能, 文档生成, API, Claude Code]
+tags: [技能, 文档生成, API, "Claude Code", 文档处理]
 aliases: ["API Documentation Generator Skill", "api-documentation-generator", "API Doc Generator Skill"]
 relates_to: []
 supersedes: null
@@ -15,7 +15,7 @@ supersedes: null
 # API文档生成技能
 
 ## 概述
-API文档生成[[Skills|技能]]是[[Claude Code]]的一个自动化[[Skills|技能]]，用于从源代码生成全面且准确的API文档。适用于创建或更新API文档、生成[[OpenAPI]]规范，或在用户提到API文档、端点或说明时使用。
+API文档生成[[Skills|技能]]是[[Claude Code]]的一个自动化[[Skills|技能]]，用于从源[[代码生成]]全面且准确的API文档。适用于创建或更新API文档、生成[[OpenAPI]]规范，或在用户提到API文档、端点或说明时使用。
 
 ## 关键内容
 1. **可生成内容**：

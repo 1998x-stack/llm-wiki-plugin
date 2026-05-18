@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心<a href="../concepts/规范化理论.html">范式</a>突破</strong>：将推荐系统的五大任务——<span style="color:#e74c3c" title="broken link">评分预测</span>、<a href="../concepts/序列推荐.html">序列推荐</a>、解释生成、评论摘要、直接推荐——全部转化为自然语言的输入-输出文本对，使用 T5 作为骨干模型，实现"一个模型走天下"。</p>
 </li>
 <li>
-<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头注意力）和 P5-base（223.28M参数，12层编解码器，768维，12头注意力），使用 SentencePiece 分词器（词汇表 32,128），4块 <a href="NVIDIA.html">NVIDIA</a> RTX A5000 GPU 训练 10 epochs。</p>
+<p><strong>模型变体</strong>：P5-small（60.75M参数，6层编解码器，512维，8头<a href="../concepts/注意力机制.html">注意力</a>）和 P5-base（223.28M参数，12层编解码器，768维，12头<a href="../concepts/注意力机制.html">注意力</a>），使用 SentencePiece 分词器（词汇表 32,128），4块 <a href="NVIDIA.html">NVIDIA</a> RTX A5000 GPU 训练 10 epochs。</p>
 </li>
 <li>
 <p><strong>47个<a href="../concepts/个性化 Prompt.html">个性化 Prompt</a> 模板</strong>：覆盖五类任务家族，每类包含多种措辞和格式。评分预测采用高斯采样将5个整数类别扩展为41个浮点数类别以避免<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>；<a href="../concepts/序列推荐.html">序列推荐</a>将用户历史交互编码为自然语言序列；解释生成和评论摘要利用文本生成能力；直接推荐以是/否形式判断偏好。</p>

@@ -135,27 +135,27 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="gru4rec">GRU4Rec 论文</h1>
 <h2 id="_1">概述</h2>
-<p>GRU4Rec论文《Session-based Recommendations with Recurrent Neural Networks》是2016年ICLR会议上发表的开创性工作，首次将门控循环单元(GRU)应用于基于会话的推荐场景，开启了深度学习在序列推荐领域的先河。</p>
+<p><a href="../entities/GRU4Rec.html">GRU4Rec</a>论文《<a href="会话推荐.html">Session-based Recommendations</a> with <a href="循环神经网络（RNN）.html">Recurrent Neural Network</a>s》是2016年ICLR会议上发表的开创性工作，首次将<a href="GRU">[GRU|门控循环单元]</a>应用于基于会话的推荐场景，开启了深度学习在<a href="序列推荐.html">序列推荐</a>领域的先河。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>研究背景</strong>：
-   2015年推荐系统领域面临转折点，协同过滤和矩阵分解方法在有长期用户历史的场景下表现优异，但在会话推荐场景下表现不佳。大量用户以匿名身份访问，缺乏长期历史记录，而传统的Item-KNN、马尔可夫链等方法无法有效利用完整的会话序列信息。</p>
+   2015年推荐系统领域面临转折点，<a href="协同过滤.html">协同过滤</a>和<a href="矩阵分解.html">矩阵分解</a>方法在有长期用户历史的场景下表现优异，但在<a href="会话推荐.html">会话推荐</a>场景下表现不佳。大量用户以匿名身份访问，缺乏长期<a href="Transcripts.html">历史记录</a>，而传统的Item-KNN、<a href="马尔可夫链.html">马尔可夫链</a>等方法无法有效利用完整的会话序列信息。</p>
 </li>
 <li>
 <p><strong>核心贡献</strong>：</p>
 </li>
-<li>首次将深度RNN应用于推荐系统，开创了序列推荐方向</li>
-<li>提出Session-Parallel Mini-Batch训练策略，解决RNN训练中处理长度不一序列的效率问题</li>
+<li>首次将深度RNN应用于推荐系统，开创了<a href="序列推荐.html">序列推荐</a>方向</li>
+<li>提出<a href="Session-Parallel Mini-Batch.html">Session-Parallel Mini-Batch</a>训练策略，解决RNN训练中处理长度不一序列的效率问题</li>
 <li>
-<p>设计Ranking-Aware Loss（BPR Loss和TOP1 Loss），强调推荐是排序问题而非分类问题</p>
+<p>设计Ranking-Aware Loss（<a href="BPR Loss.html">BPR Loss</a>和<a href="TOP1 Loss.html">TOP1 Loss</a>），强调推荐是排序问题而非分类问题</p>
 </li>
 <li>
 <p><strong>技术特点</strong>：</p>
 </li>
-<li>使用GRU单元建模会话序列，相比LSTM参数更少、训练更快</li>
+<li>使用<a href="../entities/GRU.html">GRU单元</a>建模会话序列，相比LSTM参数更少、训练更快</li>
 <li>采用1-of-N编码表示物品，通过隐藏状态捕获用户短期兴趣</li>
-<li>基于mini-batch的负采样策略，提高训练效率</li>
+<li>基于mini-batch的<a href="负采样.html">负采样</a>策略，提高训练效率</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

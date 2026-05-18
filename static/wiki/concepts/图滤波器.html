@@ -140,9 +140,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>基本定义</strong>：</li>
 <li>图滤波器是一种将图信号映射到另一个图信号的线性算子</li>
-<li>在频域中，图滤波器通过对拉普拉斯矩阵的特征值进行函数变换实现</li>
+<li>在频域中，图滤波器通过对<a href="拉普拉斯矩阵.html">拉普拉斯矩阵</a>的特征值进行函数变换实现</li>
 <li>
-<p>形式为：y = gθ(L)x = Ugθ(Λ)U^T x，其中L=UΛU^T为拉普拉斯矩阵的特征分解</p>
+<p>形式为：y = gθ(L)x = Ugθ(Λ)U^T x，其中L=UΛU^T为<a href="拉普拉斯矩阵.html">拉普拉斯矩阵</a>的特征分解</p>
 </li>
 <li>
 <p><strong>滤波器类型</strong>：</p>
@@ -153,19 +153,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>带通滤波器：保留特定频率范围内的分量</p>
 </li>
 <li>
-<p><strong>多项式图滤波器</strong>：</p>
+<p><strong><a href="多项式图滤波器.html">多项式图滤波器</a></strong>：</p>
 </li>
 <li>通过多项式函数近似滤波器：gθ(λ) = Σk θk λ^k</li>
 <li>对应的空间域操作为：y = gθ(L)x = Σk θk L^k x</li>
 <li>
-<p>包括LightGCN的均匀加权多项式：(1/(K+1)) Σk Ak</p>
+<p>包括<a href="../entities/LightGCN.html">LightGCN</a>的均匀加权多项式：(1/(K+1)) Σk Ak</p>
 </li>
 <li>
 <p><strong>常见实例</strong>：</p>
 </li>
 <li>SGC滤波器：gθ(A) = AK（K阶多项式）</li>
-<li>APPNP滤波器：基于PageRank的多项式滤波器</li>
-<li>LightGCN滤波器：均匀加权多项式滤波器，兼具低通和平滑特性</li>
+<li><a href="../entities/APPNP.html">APPNP</a>滤波器：基于PageRank的多项式滤波器</li>
+<li><a href="../entities/LightGCN.html">LightGCN</a>滤波器：均匀加权多项式滤波器，兼具低通和平滑特性</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

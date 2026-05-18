@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["项目", "AI研究", "计算机视觉"]
+tags: [项目, AI研究, 计算机视觉, AI工程]
 aliases: ["FAIR", "Facebook AI Research", "Meta AI Research"]
 relates_to: ["Facebook", "Yann LeCun", "深度学习", "ResNet", "PyTorch"]
 supersedes: null

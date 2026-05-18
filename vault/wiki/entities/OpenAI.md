@@ -30,7 +30,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **开发者工具线**：发布 [[Codex CLI]]——以 [[Rust]] 重写的本地编码 Agent，采用 Policy-First 架构与 OS 级沙箱隔离。
+1. **开发者工具线**：发布 [[Codex CLI]]——以 [[Rust]] 重写的本地编码 Agent，采用 Policy-First 架构与 OS 级[[Claude Code 沙箱机制|沙箱]]隔离。
 2. **开源策略**：[[Codex CLI]] 以开源方式发布，允许社区审查其安全架构（[[ExecPolicy]]、Sandbox、MCP 层）。
 3. **工程哲学**：选择 Rust 而非 [[TypeScript]] 重写 [[Codex CLI|Codex]]，体现了"安全隔离必须在系统调用层做"的底层思维。
 4. **[[Harness-Engineering|Harness Engineering]] 先驱**：进行了 3 个工程师 5 个月构建超过 100 万行代码的实验，所有代码均由 [[Codex CLI|Codex]] 生成，提出了"Human steer. [[Agents]] execute."的核心哲学。

@@ -130,42 +130,42 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-security</span><span class="tag">agent-safety</span><span class="tag">claude-code</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-security</span><span class="tag">agent-safety</span><span class="tag">claude-code</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="claude-code">Claude Code 沙箱机制</h1>
 <h2 id="_1">概述</h2>
-<p>Claude Code 沙箱机制是通过 OS 级别的系统调用过滤和资源隔离，在安全性与自主性之间取得平衡的安全基础设施，使 Agent 能在预定义范围内自主工作而无需用户逐操作审批。</p>
+<p><a href="../projects/Claude Code.html">Claude Code</a> 沙箱机制是通过 OS 级别的系统调用过滤和资源隔离，在安全性与自主性之间取得平衡的安全基础设施，使 Agent 能在预定义范围内自主工作而无需用户逐操作审批。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>设计哲学转变</strong>：从"逐操作审批"（用户作为实时监督者）转向"授权范围 + 沙箱"（用户作为范围定义者）。会话开始时用户定义工作范围，沙箱保证范围内操作安全，Claude Code 在此范围内自主工作。</p>
+<p><strong>设计哲学转变</strong>：从"逐操作审批"（用户作为实时监督者）转向"授权范围 + 沙箱"（用户作为范围定义者）。会话开始时用户定义工作范围，沙箱保证范围内操作安全，<a href="../projects/Claude Code.html">Claude Code</a> 在此范围内自主工作。</p>
 </li>
 <li>
-<p><strong>分层安全架构</strong>：用户进程（Claude Code）→ 受限系统调用接口 → 沙箱层（系统调用过滤）→ 受控资源访问 → OS 内核。三层隔离确保即使上层被绕过，底层仍有约束。</p>
+<p><strong>分层安全架构</strong>：用户进程（<a href="../projects/Claude Code.html">Claude Code</a>）→ 受限系统调用接口 → 沙箱层（系统调用过滤）→ 受控资源访问 → OS 内核。三层隔离确保即使上层被绕过，底层仍有约束。</p>
 </li>
 <li>
 <p><strong>文件系统隔离</strong>：允许访问项目目录、临时目录、只读系统路径；禁止访问主目录根、系统目录（/etc/、/var/）、其他用户目录、SSH 密钥和密码文件等敏感路径。</p>
 </li>
 <li>
-<p><strong>网络访问控制</strong>：默认禁止任意外部网络请求和内部网络扫描；仅允许指定包管理器仓库（npm、pypi、cargo）、Anthropic API 和用户显式白名单的域名。</p>
+<p><strong>网络访问控制</strong>：默认禁止任意外部网络请求和内部网络扫描；仅允许指定包管理器<a href="仓库.html">仓库</a>（npm、pypi、cargo）、<a href="../tools/Anthropic Messages API.html">Anthropic API</a> 和用户显式白名单的域名。</p>
 </li>
 <li>
-<p><strong>进程控制</strong>：允许生成子进程（测试、编译）和项目目录下的 git 操作；子进程继承父进程沙箱限制；禁止 setuid/setgid 权限提升、修改网络接口、访问原始设备。</p>
+<p><strong>进程控制</strong>：允许生成子进程（测试、编译）和项目目录下的 git 操作；子进程继承父进程沙箱限制；禁止 setuid/setgid <a href="Permissions.html">权限</a>提升、修改网络接口、访问原始设备。</p>
 </li>
 <li>
 <p><strong>三种操作类别</strong>：</p>
 </li>
-<li>类别 A（完全沙箱内，无需审批）：读写项目文件、运行测试、npm/pip install、git commit/push</li>
+<li>类别 A（完全沙箱内，无需审批）：读写项目文件、运行测试、npm/pip install、<a href="Git Commit.html">git commit</a>/push</li>
 <li>类别 B（需要一次性确认）：访问项目外文件、新域名网络请求、安装系统级软件</li>
 <li>
-<p>类别 C（始终禁止）：修改系统配置、访问密钥/凭证、向非白名单服务发送数据</p>
+<p>类别 C（始终禁止）：修改系统<a href="Configuration.html">配置</a>、访问密钥/凭证、向非白名单<a href="服务.html">服务</a>发送数据</p>
 </li>
 <li>
-<p><strong>提示注入防御</strong>：沙箱在系统层提供注入防御的最后一道防线。即使 Claude 被恶意文件中的注入指令欺骗，网络请求、系统文件修改、跨项目访问等操作仍会被沙箱拦截。</p>
+<p><strong><a href="提示注入防御.html">提示注入防御</a></strong>：沙箱在系统层提供注入防御的最后一道防线。即使 <a href="../entities/Claude_Code.html">Claude</a> 被恶意文件中的注入指令欺骗，网络请求、系统文件修改、跨项目访问等操作仍会被沙箱拦截。</p>
 </li>
 <li>
-<p><strong>与 Auto Mode 的协同</strong>：形成纵深防御（Defense in Depth）。Auto Mode 分类器在语义层阻止"超出任务范围"的操作，沙箱在系统层阻止"不被允许的系统调用"。两层叠加实现纵深防御。</p>
+<p><strong>与 Auto Mode 的协同</strong>：形成<a href="纵深防御.html">纵深防御</a>（<a href="纵深防御.html">Defense in Depth</a>）。Auto Mode 分类器在语义层阻止"超出任务范围"的操作，沙箱在系统层阻止"不被允许的系统调用"。两层叠加实现<a href="纵深防御.html">纵深防御</a>。</p>
 </li>
 <li>
 <p><strong>性能影响</strong>：文件访问 &lt; 5% 开销，进程启动 ~10ms 额外延迟，网络请求 &lt; 1% 开销，对交互式使用几乎不可感知。</p>

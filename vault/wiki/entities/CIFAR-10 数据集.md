@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["计算机视觉", "数据集", "图像分类"]
+tags: [计算机视觉, 数据集, 图像分类, AI工程]
 aliases: ["CIFAR-10", "Canadian Institute For Advanced Research 10", "CIFAR10"]
 relates_to: ["残差网络（ResNet）", "卷积神经网络（CNN）", "ILSVRC"]
 supersedes: null

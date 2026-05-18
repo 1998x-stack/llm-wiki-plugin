@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [protocol, communication, streaming]
+tags: [protocol, communication, streaming, 游戏开发]
 aliases: ["SSE 传输协议", "Server-Sent Events", "SSE", "服务器发送事件"]
 relates_to: []
 supersedes: null

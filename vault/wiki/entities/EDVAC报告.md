@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [计算机历史, 技术报告, 计算机体系结构]
+tags: [计算机历史, 技术报告, 计算机体系结构, 计算理论]
 aliases: ["Report on the EDVAC", "EDVAC Report", "EDVAC报告"]
 entity_type: paper
 relates_to: 

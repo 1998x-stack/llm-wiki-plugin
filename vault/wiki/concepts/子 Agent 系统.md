@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [agents, delegation, parallelism]
+tags: [agents, delegation, parallelism, AI工程]
 aliases: ["子 Agent 系统", "多 Agent 系统", "Sub Agent System", "Multi Agent System"]
 relates_to: []
 supersedes: null
@@ -36,7 +36,7 @@ relates_to:
 
 3. **实现机制**：
    - [[Git Worktree]]隔离：子Agent在临时[[Git Worktree]]中执行，防止污染主工作目录
-   - 模型选择策略：探索型用Haiku（廉价快速）、实现型用Sonnet（平衡）、架构决策用Opus（最强推理）
+   - [[模型选择]]策略：探索型用[[Claude 3 Haiku|Haiku]]（廉价快速）、实现型用Sonnet（平衡）、架构决策用Opus（最强推理）
    - 并行Agent Teams模式：多个专业Agent并行工作后由Validator汇总结果
 
 ## 来源

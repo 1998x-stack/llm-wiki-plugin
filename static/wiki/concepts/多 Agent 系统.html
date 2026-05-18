@@ -130,30 +130,30 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">multi-agent</span><span class="tag">architecture</span><span class="tag">parallel</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">multi-agent</span><span class="tag">architecture</span><span class="tag">parallel</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">多 Agent 系统</h1>
 <h2 id="_1">概述</h2>
-<p>多 Agent 系统是由多个协作 Agent 组成的 AI 架构模式，通过并行处理和任务分解实现复杂问题的解决，是 Anthropic 工程研究的重要方向。</p>
+<p>多 Agent 系统是由多个协作 Agent 组成的 AI 架构模式，通过并行处理和<a href="任务分解.html">任务分解</a>实现复杂问题的解决，是 <a href="../entities/Anthropic.html">Anthropic</a> 工程研究的重要方向。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>从原型到生产的工程实践</strong>：2025 年 6 月提出的多 Agent 研究系统工程指南，实现 90.2% 性能提升，总结 8 条 Prompt 工程原则。</p>
 </li>
 <li>
-<p><strong>并行 Agent 编程挑战</strong>：2026 年 2 月的 C 编译器构建案例揭示并行 Agent 编程中的接口规范挑战，证明多 Agent 协作需要严格的接口定义。</p>
+<p><strong>并行 Agent 编程挑战</strong>：2026 年 2 月的 <a href="C 编译器.html">C 编译器</a>构建案例揭示并行 Agent 编程中的<a href="接口规范.html">接口规范</a>挑战，证明多 Agent 协作需要严格的<a href="接口规范.html">接口定义</a>。</p>
 </li>
 <li>
 <p><strong>性能优化关键因素</strong>：</p>
 </li>
 <li>Token 使用量是性能的主要预测指标</li>
-<li>任务分解质量决定并行效率</li>
+<li><a href="任务分解.html">任务分解</a>质量决定并行效率</li>
 <li>
 <p>Agent 间通信开销影响整体性能</p>
 </li>
 <li>
-<p><strong>与简单模式的平衡</strong>：Anthropic 强调"do the simplest thing that works"，多 Agent 系统仅在单 Agent 无法满足需求时使用，避免过度工程化。</p>
+<p><strong>与简单模式的平衡</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 强调"do the simplest thing that works"，多 Agent 系统仅在单 Agent 无法满足需求时使用，避免过度工程化。</p>
 </li>
 <li>
 <p><strong>应用场景</strong>：</p>

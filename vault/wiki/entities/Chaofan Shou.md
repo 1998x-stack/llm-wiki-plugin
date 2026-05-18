@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [person, developer, ai-tools]
+tags: [person, developer, ai-tools, AI工程]
 aliases: ["赵凡", "Fried_rice", "@Fried_rice", "Chaofan Shou"]
 relates_to: 
   - target: "[[Claude Code]]"

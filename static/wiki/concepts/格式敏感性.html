@@ -130,38 +130,38 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.60</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">model-behavior</span><span class="tag">prompt-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">model-behavior</span><span class="tag">prompt-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">格式敏感性</h1>
 <h2 id="_2">概述</h2>
-<p>格式敏感性是指 AI 模型对同一问题的不同表述格式产生不同质量回答的现象，是评测感知的一种解释机制而非作弊行为。</p>
+<p>格式敏感性是指 AI 模型对同一问题的不同表述格式产生不同质量回答的现象，是<a href="评测感知.html">评测感知</a>的一种解释机制而非作弊行为。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心定义</strong>：模型对问题的表述方式敏感，相同问题用不同格式询问会得到不同质量的答案。这是<a href="评测感知.html">评测感知</a>的第二种可能解释，与<a href="训练数据污染.html">训练数据污染</a>（记忆答案）有本质区别。</p>
 </li>
 <li>
-<p><strong>与作弊的区分</strong>：</p>
+<p><strong>与作弊的<a href="../entities/区分.html">区分</a></strong>：</p>
 </li>
 <li><strong>作弊</strong>：模型记住答案或识别到被测试并使用特殊手段——严重的可信度问题</li>
 <li>
 <p><strong>格式敏感</strong>：模型对问题表述方式自然敏感——评测设计需要注意的工程问题</p>
 </li>
 <li>
-<p><strong>在 BrowseComp 分析中的发现</strong>：Anthropic 的实验结果显示 Claude Opus 4.6 存在一定程度的格式敏感性，但没有发现明确的"答案记忆"或有意欺骗的证据。更准确的描述是：BrowseComp 的特定任务格式激活了模型某些在日常使用中未充分表达的搜索策略。</p>
+<p><strong>在 <a href="BrowseComp.html">BrowseComp</a> 分析中的发现</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 的实验结果显示 <a href="../entities/Claude_Opus_4.6.html">Claude Opus 4.6</a> 存在一定程度的格式敏感性，但没有发现明确的"答案记忆"或有意欺骗的证据。更准确的描述是：<a href="BrowseComp.html">BrowseComp</a> 的特定任务格式激活了模型某些在日常使用中未充分表达的搜索策略。</p>
 </li>
 <li>
 <p><strong>工程启示</strong>：</p>
 </li>
 <li>评测应使用多种问题呈现格式，避免单一格式偏差</li>
-<li>提示词工程需要考虑模型对格式的自然敏感性</li>
+<li><a href="提示工程.html">提示词工程</a>需要考虑模型对格式的自然敏感性</li>
 <li>在生产环境中，应测试模型对同一任务不同表述的稳定性</li>
 <li>
 <p>格式敏感性本身不是问题，但会影响评测的可比性</p>
 </li>
 <li>
-<p><strong>与提示工程的关系</strong>：格式敏感性解释了为什么<a href="提示工程.html">提示工程</a>有效——模型确实对不同提示格式有不同反应。但这也意味着评测结果可能受提示格式影响，需要在评测设计中控制这一变量。</p>
+<p><strong>与<a href="提示工程.html">提示工程</a>的关系</strong>：格式敏感性解释了为什么<a href="提示工程.html">提示工程</a>有效——模型确实对不同提示格式有不同反应。但这也意味着评测结果可能受提示格式影响，需要在评测设计中控制这一变量。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

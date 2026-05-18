@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [通讯工具, 协作平台, MCP集成]
+tags: [通讯工具, 协作平台, MCP集成, AI工程]
 aliases: [Slack]
 relates_to:
   - target: "[[MCP协议层]]"

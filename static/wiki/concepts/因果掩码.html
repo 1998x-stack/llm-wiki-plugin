@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心机制</strong>：在 <a href="Self-Attention机制.html">Self-Attention</a> 的注意力<a href="矩阵.html">矩阵</a>上施加下三角掩码 $\mathbf{\Delta}$，其中 $\mathbf{\Delta}_{ij} = 1$（if $j \leq i$）或 $-\infty$（if $j &gt; i$）。这意味着第 i 个位置只能"看到"自己及之前的所有位置，无法获取未来信息。</p>
+<p><strong>核心机制</strong>：在 <a href="Self-Attention机制.html">Self-Attention</a> 的<a href="注意力机制.html">注意力</a><a href="矩阵.html">矩阵</a>上施加下三角掩码 $\mathbf{\Delta}$，其中 $\mathbf{\Delta}_{ij} = 1$（if $j \leq i$）或 $-\infty$（if $j &gt; i$）。这意味着第 i 个位置只能"看到"自己及之前的所有位置，无法获取未来信息。</p>
 </li>
 <li>
 <p><strong>在 <a href="../entities/SASRec.html">SASRec</a> 中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a> 与标准 <a href="Transformer架构.html">Transformer</a> Encoder 的关键区别。推荐场景天然要求预测必须基于历史信息——预测第 t 步时不能"看到"第 t 步之后的交互。因果掩码使 <a href="../entities/SASRec.html">SASRec</a> 本质上等价于 <a href="Transformer架构.html">Transformer</a> Decoder（<a href="AR 模型（自回归模型）.html">自回归</a>模式），而非 Encoder 的双向模式。</p>
 </li>
 <li>
-<p><strong>与双向注意力的对比</strong>：<a href="../entities/BERT4Rec.html">BERT4Rec</a> 使用双向注意力（无因果掩码），通过 Cloze 任务训练，序列中每个位置可以利用双向上下文。因果掩码的优势在于符合预测场景的因果性要求，且训练时可一次性预测序列中每个位置的下一个物品。</p>
+<p><strong>与双向<a href="注意力机制.html">注意力</a>的对比</strong>：<a href="../entities/BERT4Rec.html">BERT4Rec</a> 使用双向<a href="注意力机制.html">注意力</a>（无因果掩码），通过 Cloze 任务训练，序列中每个位置可以利用双向上下文。因果掩码的优势在于符合预测场景的因果性要求，且训练时可一次性预测序列中每个位置的下一个物品。</p>
 </li>
 <li>
 <p><strong>信息利用的权衡</strong>：因果掩码带来的一个局限是——在训练阶段，序列中靠前的物品无法利用后续物品的信息来优化自身表示，可能导致信息利用不充分。这正是 <a href="../entities/BERT4Rec.html">BERT4Rec</a> 试图解决的问题。</p>

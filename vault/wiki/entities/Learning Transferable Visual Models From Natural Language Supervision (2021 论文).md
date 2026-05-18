@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, multimodal, CLIP]
+tags: [paper, multimodal, CLIP, 机器学习]
 aliases: [Radford et al. 2021, CLIP 论文]
 relates_to:
   - target: Alec Radford

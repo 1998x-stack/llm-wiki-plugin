@@ -135,11 +135,11 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ani">ANI动画文件格式</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a>/Urho3D 引擎的二进制动画文件格式，存储骨骼动画的轨道、关键帧、通道（位移/旋转/缩放）和触发点数据。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a>/<a href="../entities/Urho3D.html">Urho3D</a> 引擎的二进制动画文件格式，存储骨骼动画的轨道、关键帧、通道（位移/旋转/缩放）和触发点数据。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心数据结构</strong>：包含动画名称、时长（秒）、骨骼轨道列表（每轨道含骨骼名、通道类型、关键帧数）和触发点（Trigger，带时间戳）；轨道数通常等于骨骼数。</li>
-<li><strong>通道类型</strong>：P（Position 位移）、R（Rotation 旋转）、S（Scale 缩放）。纯旋转动画最常见，位移通道通常只有根骨骼才有；查询时 Channels 字段统计各类型轨道数量。</li>
+<li><strong>通道类型</strong>：P（Position 位移）、R（Rotation 旋转）、S（Scale 缩放）。纯旋转动画最常见，位移通道通常只有根骨骼才有；查询时 <a href="channel.html">Channel</a>s 字段统计各类型轨道数量。</li>
 <li><strong>使用方式</strong>：通过 <a href="../entities/UrhoXCLI.html">UrhoXCLI</a> 的 <code>anim-info</code> 子命令查询文件信息；从 FBX 导入后需验证轨道数和关键帧数是否正确；<a href="动画重定向.html">动画重定向</a>前需对比源动画与目标模型的骨骼名称。</li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究, 工具]
+tags: [研究, 工具, 经济学]
 aliases: [CDO, Collateralized Debt Obligation, 担保债务凭证]
 relates_to:
   - 2008年金融海啸

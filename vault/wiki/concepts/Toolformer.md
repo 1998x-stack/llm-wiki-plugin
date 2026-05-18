@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 工具调用, 自监督学习]
+tags: [LLM, 工具调用, 自监督学习, AI工程]
 aliases: ["Toolformer: Language Models Can Teach Themselves to Use Tools"]
 relates_to: []
 supersedes: null

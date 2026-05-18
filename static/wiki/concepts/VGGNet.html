@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">CNN</span><span class="tag">架构</span><span class="tag">论文</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">计算机视觉</span><span class="tag">CNN</span><span class="tag">架构</span><span class="tag">论文</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="vggnet">VGGNet</h1>
@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心设计思想</strong>：只使用 3×3 卷积核，通过不断叠加来增加网络深度。两个 3×3 卷积的<a href="感受野.html">感受野</a>等同于一个 5×5 卷积，三个 3×3 等同于一个 7×7 卷积，但参数量更少（27C² vs 49C²），且增加了两次非线性激活，效果更佳。</p>
+<p><strong>核心设计思想</strong>：只使用 3×3 卷积核，通过不断叠加来增加网络深度。两个 3×3 卷积的<a href="感受野.html">感受野</a>等同于一个 5×5 卷积，三个 3×3 等同于一个 7×7 卷积，但参数量更少（27C² vs 49C²），且增加了两次<a href="非线性激活.html">非线性激活</a>，效果更佳。</p>
 </li>
 <li>
 <p><strong>VGG 家族架构</strong>：系统测试了 A-E 六种深度<a href="Configuration.html">配置</a>，其中 VGG-16（13卷积+3全连接层，共16层，138M参数）和 VGG-19（16卷积+3全连接层，共19层，144M参数）最为经典。深度提升性能，但边际效应递减（19层比16层仅提升0.1%）。</p>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [无障碍, WCAG, 前端开发]
+tags: [无障碍, WCAG, 前端开发, 工具与框架]
 aliases: ["Web Content Accessibility Guidelines", "WCAG 2.1"]
 relates_to: []
 supersedes: null

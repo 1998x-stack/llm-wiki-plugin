@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 1
-tags: [security, devops, saas]
+tags: [security, devops, saas, AI工程]
 aliases: ["Snyk", "Snyk Security"]
 relates_to:
   - target: "[[frontend-design Skill]]"

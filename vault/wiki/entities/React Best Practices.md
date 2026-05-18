@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [React, Performance, Optimization, Vercel]
+tags: [React, Performance, Optimization, Vercel, 工具与框架]
 aliases: ["react-best-practices", "React Performance Best Practices"]
 relates_to: []
 supersedes: null

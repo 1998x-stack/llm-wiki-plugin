@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [execute-operation, shell-commands, runtime-action]
+tags: [execute-operation, shell-commands, runtime-action, 推荐系统]
 aliases: ["Execute", "Execute操作", "执行操作"]
 relates_to: 
   - target: "[[Claude Code]]"

@@ -7,7 +7,7 @@ updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
 entity_type: company
-tags: [company, ai, llm, open-source]
+tags: [company, ai, llm, open-source, AI工程]
 aliases: ["DeepSeek", "深度求索", "深度求索（公司）"]
 relates_to:
   - target: "[[DeepSeek-V2/V3/R1]]"

@@ -26,9 +26,9 @@ supersedes: null
 
 1. **[[DeepFM]] 第一作者**：在 IJCAI 2017 发表 "[[DeepFM]]: A Factorization-Machine based Neural Network for [[CTR 预估|CTR Prediction]]"，提出用 FM 替代 [[Wide & Deep]] 中 Wide 部分的 LR，实现无需[[手工特征工程]]的端到端 [[CTR 预估]]。
 2. **[[华为诺亚方舟实验室]]**：隶属于华为 [[华为诺亚方舟实验室|Noah's Ark Research Lab]]，该实验室在推荐系统和 [[CTR 预估]]领域有持续的研究产出。
-3. **合作作者**：与 [[Ruiming Tang]]、[[Yunming Ye]]（哈尔滨工业大学深圳研究生院）、[[Zhenguo Li]]、[[Xiuqiang He]] 共同完成 [[DeepFM]] 工作。
-4. **主要贡献**：DeepFM模型的核心创新在于将因子分解机(FM)与深度神经网络(DNN)整合为一个端到端模型，通过共享Embedding层同时学习低阶和高阶特征交互，彻底消除了Wide&Deep模型中对手工特征工程的依赖。
-5. **研究影响**：DeepFM论文在IJCAI 2017发表后引用量超过2700次（截至2026年），并在华为应用市场的在线A/B测试中相比精心调优的LR模型CTR提升超过10%，对工业界产生了显著影响。
+3. **合作作者**：与 [[Ruiming Tang]]、[[Yunming Ye]]（[[哈尔滨工业大学深圳研究生院]]）、[[Zhenguo Li]]、[[Xiuqiang He]] 共同完成 [[DeepFM]] 工作。
+4. **主要贡献**：[[DeepFM]]模型的核心创新在于将[[Factorization Machines|因子分解机]](FM)与深度神经网络(DNN)整合为一个端到端模型，通过[[共享Embedding]]层同时学习低阶和[[高阶特征交互]]，彻底消除了Wide&Deep模型中对[[手工特征工程]]的依赖。
+5. **研究影响**：[[DeepFM]]论文在IJCAI 2017发表后引用量超过2700次（截至2026年），并在华为应用市场的在线A/B测试中相比精心调优的LR模型CTR提升超过10%，对工业界产生了显著影响。
 
 ## 来源
 - [DeepFM (IJCAI 2017)](https://arxiv.org/abs/1703.04247)

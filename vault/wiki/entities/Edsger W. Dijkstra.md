@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 3
-tags: [computer-science, programming, software-engineering, dutch-computer-scientist]
+tags: [computer-science, programming, software-engineering, dutch-computer-scientist, 计算理论]
 aliases: ["Edsger Wybe Dijkstra", "艾兹格·迪科斯彻", "迪杰斯特拉", "E.W. Dijkstra", "Dijkstra"]
 relates_to:
   - target: "[[Go To Statement Considered Harmful]]"
@@ -38,16 +38,16 @@ relates_to:
 # Edsger W. Dijkstra
 
 ## 概述
-Edsger Wybe Dijkstra（1930-2002），荷兰计算机科学家，对编程方法论、算法设计和计算机科学哲学做出根本性贡献。他因Go To Statement Considered Harmful论文推动结构化编程运动，发明了最短路径算法（Dijkstra算法）和信号量概念，并在1972年获得图灵奖。
+[[Edsger Dijkstra|Edsger Wybe Dijkstra]]（1930-2002），荷兰[[计算]]机科学家，对编程方法论、[[算法]]设计和[[计算]]机科学哲学做出根本性贡献。他因[[Go To Statement Considered Harmful]]论文推动[[结构化编程]]运动，发明了最短路径[[算法]]（[[Dijkstra算法]]）和[[信号量]]概念，并在1972年获得[[Alan Turing|图灵]]奖。
 
 ## 关键内容
-1. **Go To Statement Considered Harmful**：1968年发表的著名论文，论证goto语句破坏程序可理解性，主张仅使用顺序、选择、循环三种控制结构，引发结构化编程运动。
+1. **[[Go To Statement Considered Harmful]]**：1968年发表的著名论文，论证[[goto语句]]破坏程序可理解性，主张仅使用顺序、选择、循环三种控制结构，引发[[结构化编程]]运动。
 
-2. **Dijkstra算法**：1956年发明的单源最短路径算法，用于计算图中从单一节点到其他所有节点的最短路径，是图论和计算机科学的经典算法。
+2. **[[Dijkstra算法]]**：1956年发明的[[Dijkstra算法|单源最短路径算法]]，用于[[计算]]图中从单一节点到其他所有节点的最短路径，是图论和[[计算]]机科学的经典[[算法]]。
 
-3. **信号量概念**：提出信号量（semaphore）概念解决并发编程中的同步问题，对操作系统和并发编程产生深远影响。
+3. **[[信号量]]概念**：提出[[信号量]]（semaphore）概念解决并发编程中的同步问题，对[[操作系统]]和并发编程产生深远影响。
 
-4. **ALGOL 60贡献**：参与ALGOL 60语言设计并开发首个编译器，对程序设计语言发展有重要贡献。
+4. **[[ALGOL 60]]贡献**：参与[[ALGOL 60]]语言设计并开发首个编译器，对程序设计语言发展有重要贡献。
 
 5. **编程哲学**：强调程序应设计为可被人类理解，主张程序正确性可通过理性推理验证，而非仅依赖测试。
 

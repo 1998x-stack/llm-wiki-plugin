@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [技术, 工作]
+tags: [技术, 工作, AI工程]
 aliases: []
 relates_to:
   - 编码Agent时代

@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [计算机体系结构, 存储程序, 计算机历史]
+tags: [计算机体系结构, 存储程序, 计算机历史, 计算理论]
 aliases: ["First Draft of a Report on the EDVAC", "EDVAC报告"]
 entity_type: paper
 relates_to: 

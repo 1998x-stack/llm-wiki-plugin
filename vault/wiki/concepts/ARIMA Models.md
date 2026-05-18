@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [time-series-analysis, statistics, mathematical-models]
+tags: [time-series-analysis, statistics, mathematical-models, 时间序列]
 aliases: ["ARIMA Models", "差分整合移动自回归模型", "Autoregressive Integrated Moving Average Models"]
 relates_to:
   - target: "[[ARMA Models]]"

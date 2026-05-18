@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [person, computer-vision, CNN, inception]
+tags: [person, computer-vision, CNN, inception, 深度学习]
 aliases: [Christian Szegedy]
 relates_to:
   - target: GoogLeNet / Inception

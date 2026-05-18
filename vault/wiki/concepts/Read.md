@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [read-operation, file-access, code-understanding]
+tags: [read-operation, file-access, code-understanding, AI工程]
 aliases: ["Read", "Read操作", "读操作"]
 relates_to: 
   - target: "[[Claude Code]]"

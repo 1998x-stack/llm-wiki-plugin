@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [payments, api, protocol]
+tags: [payments, api, protocol, 计算理论]
 aliases: ["Machine Payments Protocol"]
 relates_to: []
 supersedes: null
@@ -24,7 +24,7 @@ relates_to:
 MPP（[[Machine Payments Protocol]]）由[[Tempo Labs]]与[[Stripe]]联合设计，基于[[x402 Protocol|HTTP 402]]状态码，已提交IETF规范草案。
 
 ## 关键内容
-1. **核心定位**：MPP解决任何API向任何客户端（Agent/App/人类）收取费用的问题，无需注册、无需API Key，是"按请求付费"的互联网原语。
+1. **核心定位**：MPP解决任何API向任何客户端（Agent/App/人类）收取费用的问题，无需注册、无需API Key，是"按请求付费"的[[互联网]]原语。
 
 2. **协议流程**：采用5步握手流程：GET请求→[[x402 Protocol|HTTP 402]]响应→客户端完成支付→重试请求→获得资源。
 

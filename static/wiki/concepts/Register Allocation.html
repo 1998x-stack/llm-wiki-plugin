@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span><span class="tag">C++编程</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -145,7 +145,7 @@ relates_to:
 
 <h1 id="register-allocation">Register Allocation</h1>
 <h2 id="_1">概述</h2>
-<p>寄存器分配是编译器优化技术中的关键环节，决定在程序的每个点上哪些变量应该保存在寄存器中，以减少内存访问并提高执行效率。</p>
+<p>寄存器分配是<a href="编译器优化.html">编译器优化技术</a>中的关键环节，决定在程序的每个点上哪些变量应该保存在寄存器中，以减少内存访问并提高执行效率。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术原理</strong>：</li>
@@ -155,17 +155,17 @@ relates_to:
 <p>在有限的寄存器资源下做出最优分配决策</p>
 </li>
 <li>
-<p><strong>FORTRAN中的实现</strong>：</p>
+<p><strong><a href="../entities/FORTRAN.html">FORTRAN</a>中的实现</strong>：</p>
 </li>
-<li>FORTRAN编译器的第四阶段专门负责寄存器分配</li>
-<li>IBM 704只有三个索引寄存器，使寄存器分配尤为关键</li>
+<li><a href="../entities/FORTRAN.html">FORTRAN</a>编译器的第四阶段专门负责寄存器分配</li>
+<li><a href="../entities/IBM 704.html">IBM 704</a>只有三个索引寄存器，使寄存器分配尤为关键</li>
 <li>
 <p>优先为内层循环中的热点变量分配寄存器</p>
 </li>
 <li>
 <p><strong>挑战与解决方案</strong>：</p>
 </li>
-<li>寄存器分配问题是NP完全问题，FORTRAN团队设计了启发式算法</li>
+<li>寄存器<a href="点数问题.html">分配问题</a>是<a href="NP完全性.html">NP完全问题</a>，<a href="../entities/FORTRAN.html">FORTRAN</a>团队设计了启发式<a href="算法.html">算法</a></li>
 <li>综合考虑变量的活跃范围和循环嵌套深度</li>
 <li>优先考虑内层循环中的变量，因为它们被执行的频率最高</li>
 </ol>

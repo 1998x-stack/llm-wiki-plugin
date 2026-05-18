@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [multimodal, computer vision, nlp, contrastive learning]
+tags: [multimodal, "computer vision", nlp, "contrastive learning", 机器学习]
 aliases: ["CLIP", "Contrastive Language-Image Pre-training", "对比语言-图像预训练"]
 relates_to:
   - target: "[[Learning Transferable Visual Models from Natural Language Supervision (2021 论文)]]"

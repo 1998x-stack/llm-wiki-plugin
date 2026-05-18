@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">共识问题</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">共识问题</span><span class="tag">概率论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">分布式共识</h1>
 <h2 id="_2">概述</h2>
-<p>分布式共识是分布式系统中的核心问题，指的是多个地理分散、通信不可靠、可能随时故障的计算节点就某个值或操作序列达成一致决定的过程。</p>
+<p>分布式共识是<a href="分布式系统.html">分布式系统</a>中的核心问题，指的是多个地理分散、通信不可靠、可能随时故障的<a href="计算.html">计算</a>节点就某个值或操作序列达成一致决定的过程。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>问题定义</strong>：</li>
-<li>在由n个进程组成的异步分布式系统中，其中至多f&lt;n/2个进程可能发生崩溃故障，消息可能丢失、重复或任意延迟，设计一个算法使得这些进程能够就一个值达成共识</li>
+<li>在由n个进程组成的异步<a href="分布式系统.html">分布式系统</a>中，其中至多f&lt;n/2个进程可能发生崩溃故障，消息可能丢失、重复或任意延迟，设计一个<a href="算法.html">算法</a>使得这些进程能够就一个值达成共识</li>
 <li>
 <p>必须满足安全性(Safety)和活性(Liveness)要求</p>
 </li>
@@ -160,17 +160,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>历史发展</strong>：</p>
 </li>
-<li>20世纪80年代末，计算机系统从单机向分布式过渡，面临节点故障、网络故障等挑战</li>
-<li>FLP不可能性定理表明在完全异步系统中确定性共识不可能，为该领域带来巨大挑战</li>
+<li>20世纪80年代末，<a href="计算.html">计算</a>机系统从单机向分布式过渡，面临节点故障、网络故障等挑战</li>
+<li><a href="FLP不可能性定理.html">FLP不可能性定理</a>表明在完全异步系统中确定性共识不可能，为该领域带来巨大挑战</li>
 <li>
-<p>Paxos算法首次提供了实用的解决方案</p>
+<p><a href="Paxos算法.html">Paxos算法</a>首次提供了实用的解决方案</p>
 </li>
 <li>
 <p><strong>实现方法</strong>：</p>
 </li>
 <li>基于多数派机制，任意两个多数派必然有交集</li>
 <li>通过提案编号和承诺机制协调冲突</li>
-<li>使用状态机复制保证一致的状态转换</li>
+<li>使用<a href="状态机复制.html">状态机复制</a>保证一致的状态转换</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

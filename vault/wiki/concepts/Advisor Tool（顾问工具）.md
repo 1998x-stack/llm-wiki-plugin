@@ -24,11 +24,11 @@ supersedes: null
 # Advisor Tool（顾问工具）
 
 ## 概述
-[[Anthropic]] [[Claude_Code|Claude]] API 的 Advisor 模式是一种[[服务]]端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/Haiku）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。
+[[Anthropic]] [[Claude_Code|Claude]] API 的 Advisor 模式是一种[[服务]]端多模型协作机制，允许在单次 HTTP 请求内部由廉价模型（Sonnet/[[Claude 3 Haiku|Haiku]]）执行主任务，在关键时刻调用昂贵模型（Opus）进行策略审阅，实现接近 Opus 质量、接近 Sonnet 成本的效果。
 
 ## 关键内容
 
-1. **核心设计哲学**：打破多模型协作必须多次 HTTP 往返的惯例。传统框架（LangGraph、AutoGen）需要 N 次网络往返，而 Advisor 模式在单次 `/v1/messages` 请求内部完成 Executor→Advisor→Executor 的完整协作流程。
+1. **核心设计哲学**：打破多模型协作必须多次 HTTP 往返的惯例。传统框架（LangGraph、[[AutoGen]]）需要 N 次网络往返，而 Advisor 模式在单次 `/v1/messages` 请求内部完成 Executor→Advisor→Executor 的完整协作流程。
 
 2. **触发流程**：
    - Executor 生成文本时触发 `server_tool_use(name="advisor")`

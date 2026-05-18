@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">网关与路由器</h1>
 <h2 id="_2">概述</h2>
-<p>网关（Gateway，今天称为路由器 Router）是连接两个或多个不同网络的专用设备，负责数据包格式转换、路由决策和分段，是互联网架构的核心组件。</p>
+<p><a href="网关.html">网关</a>（Gateway，今天称为路由器 Router）是连接两个或多个不同网络的专用设备，负责数据包格式转换、路由决策和分段，是<a href="互联网.html">互联网</a>架构的核心组件。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">核心职责</h3>
 <ul>
@@ -144,19 +144,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>分段与重组</strong>：大数据包拆分为小数据包以适应<a href="目标网络.html">目标网络</a>的 MTU</li>
 </ul>
 <h3 id="_5">关键设计原则——"哑网关"</h3>
-<p>Cerf 和 Kahn 做出了一个极具远见的决策：<strong>网关不维护端到端的连接状态</strong>。网关只负责逐包转发，不跟踪任何两个主机之间的通信会话。</p>
+<p>Cerf 和 Kahn 做出了一个极具远见的决策：<strong><a href="网关.html">网关</a>不维护端到端的连接状态</strong>。<a href="网关.html">网关</a>只负责逐包转发，不跟踪任何两个主机之间的通信会话。</p>
 <p>这意味着：
-- 网关是无状态的（stateless）
-- 网关可以随时重启而不影响已有通信
-- 大大简化了网关设计，提高了系统鲁棒性和可扩展性</p>
+- <a href="网关.html">网关</a>是无状态的（stateless）
+- <a href="网关.html">网关</a>可以随时重启而不影响已有通信
+- 大大简化了<a href="网关.html">网关</a>设计，提高了系统鲁棒性和可扩展性</p>
 <h3 id="_6">历史演变</h3>
 <ul>
 <li>论文中称为"Gateway"</li>
 <li>今天普遍称为"Router"（路由器）</li>
-<li>全球有数以百万计的路由器在互联网中运行</li>
+<li>全球有数以百万计的路由器在<a href="互联网.html">互联网</a>中运行</li>
 </ul>
 <h3 id="_7">与端到端原则的关系</h3>
-<p>网关的"哑"设计是<a href="端到端原则.html">端到端原则</a>的直接体现：中间设备不做任何不必要的复杂事情，所有智能功能都推到端系统。</p>
+<p><a href="网关.html">网关</a>的"哑"设计是<a href="端到端原则.html">端到端原则</a>的直接体现：中间设备不做任何不必要的复杂事情，所有智能功能都推到端系统。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/books/计算机科学/10-cerf-kahn-tcp-ip.md</span></li>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究, 工具]
+tags: [研究, 工具, 经济学]
 aliases: [NINJA Loan, 忍者贷款, 三无贷款]
 relates_to:
   - 2008年金融海啸

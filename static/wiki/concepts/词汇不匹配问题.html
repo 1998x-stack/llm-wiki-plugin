@@ -139,8 +139,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ul>
 <li><strong>在 <a href="../entities/MemPalace.html">MemPalace</a> v1 中的表现</strong>：</li>
-<li>索引时 Haiku 把会话标记为"relationship_advice"</li>
-<li>查询时 Haiku 把同一问题路由到"personal_guidance"</li>
+<li>索引时 <a href="../entities/Claude 3 Haiku.html">Haiku</a> 把会话标记为"relationship_advice"</li>
+<li>查询时 <a href="../entities/Claude 3 Haiku.html">Haiku</a> 把同一问题路由到"personal_guidance"</li>
 <li>两个标签的向量相似度不够高，导致路由失败</li>
 <li>结果：62.5% 的查询零召回，R@5 仅 34.2%</li>
 <li><strong>根因</strong>：两个独立的 LLM 调用没有共享上下文，各自生成分类标签</li>

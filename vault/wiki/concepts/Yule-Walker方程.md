@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [时间序列分析, 参数估计, 数学方法]
+tags: [时间序列分析, 参数估计, 数学方法, 时间序列]
 aliases: ["Yule-Walker Equations", "尤尔-沃克方程", "Yule-Walker方程"]
 relates_to:
   - target: "[[George Udny Yule]]"

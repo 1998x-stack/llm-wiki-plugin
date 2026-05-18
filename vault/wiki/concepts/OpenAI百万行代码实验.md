@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "experiment", "case-study"]
+tags: [ai-engineering, experiment, case-study, AI工程]
 aliases: ["OpenAI Codex Agent Experiment", "OpenAI百万行代码实验"]
 relates_to:
   - target: "[[Harness-Engineering]]"

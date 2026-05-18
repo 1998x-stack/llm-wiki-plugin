@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [compression, context-management, optimization]
+tags: [compression, context-management, optimization, LLM能力]
 aliases: ["Compact Instructions", "压缩指令", "上下文压缩指令"]
 relates_to: []
 supersedes: null

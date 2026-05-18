@@ -296,42 +296,22 @@ disable-model-invocation: true
 <h3 id="_12">工程价值</h3>
 <ol>
 <li>
-<p><strong>知识的组件化</strong>：将"如何做某事"的知识从"做什么"中分离，Agent 系统可积累大量专业 Skills，按需组合使用。</p>
+<p><strong>知识的组件化</strong>：将"如何做某事"的知识从"做什么"中分离，Agent 系统可积累大量专业 <a href="Skills.html">Skills</a>，按需组合使用。</p>
 </li>
 <li>
-<p><strong>可维护性</strong>：Skills 像代码一样进行版本控制、审查和更新。团队可共享和协作维护 Skills 库，形成组织级的 AI 能力积累。</p>
+<p><strong><a href="可维护性.html">可维护性</a></strong>：<a href="Skills.html">Skills</a> 像代码一样进行版本控制、审查和更新。团队可共享和协作维护 <a href="Skills.html">Skills</a> 库，形成组织级的 AI 能力积累。</p>
 </li>
 <li>
-<p><strong>上下文效率</strong>：只在需要时加载 Skills，避免 CLAUDE.md 过长问题，保持主上下文的清洁。</p>
+<p><strong>上下文效率</strong>：只在需要时加载 <a href="Skills.html">Skills</a>，避免 <a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 过长问题，保持主上下文的清洁。</p>
 </li>
 </ol>
 <h3 id="_13">实际应用场景</h3>
-<table>
-<thead>
-<tr>
-<th>场景</th>
-<th>Skill 示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>代码库迁移</td>
-<td>API 约定、命名规则、架构模式</td>
-</tr>
-<tr>
-<td>标准工作流</td>
-<td>fix-issue、code-review、deploy-staging</td>
-</tr>
-<tr>
-<td>领域知识</td>
-<td>法律合规检查、安全扫描、性能优化原则</td>
-</tr>
-<tr>
-<td>团队实践</td>
-<td>PR 格式、文档标准、测试覆盖要求</td>
-</tr>
-</tbody>
-</table>
+<p>| 场景 | <a href="Skills.html">Skill</a> 示例 |
+|---|---|
+| 代码库迁移 | API 约定、命名规则、架构模式 |
+| 标准工作流 | fix-issue、code-review、deploy-staging |
+| 领域知识 | 法律合规检查、安全扫描、性能优化原则 |
+| 团队实践 | PR 格式、文档标准、<a href="测试覆盖率.html">测试覆盖</a>要求 |</p>
 <h3 id="anthropic">在 Anthropic 生态中的位置</h3>
 <p>Agent <a href="Skills.html">Skills</a> 是开放标准，支持：<a href="../entities/Claude_Code.html">Claude</a>.ai、<a href="../projects/Claude Code.html">Claude Code</a>、<a href="../entities/Claude_Code.html">Claude</a> Agent SDK、<a href="../entities/Claude_Code.html">Claude</a> Developer Platform。</p>
 <p>与 <a href="MCP协议层.html">MCP协议层</a> 的互补关系：MCP 连接工具和<a href="服务.html">服务</a>，<a href="Skills.html">Skills</a> 教导 Agent 如何使用这些工具和<a href="服务.html">服务</a>的复杂工作流。</p>

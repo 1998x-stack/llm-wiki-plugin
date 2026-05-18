@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agents, multi-agent-systems, coordination]
+tags: [ai-agents, multi-agent-systems, coordination, AI工程]
 aliases: ["协调器模式", "Orchestrator Agent"]
 relates_to: 
   - target: "[[Agent Swarms]]"
@@ -26,7 +26,7 @@ Coordinator Mode是[[Claude Code]]中的[[Multi-Agent-Coordination-Patterns|多�
 ## 关键内容
 
 1. **角色分离机制**：
-   - [[Orchestrator Agent]]负责理解高层目标、任务分解、分配子任务、监控进度和[[质量保障|质量控制]]
+   - [[Orchestrator Agent]]负责理解高层目标、[[任务分解]]、分配子任务、监控进度和[[质量保障|质量控制]]
    - [[Worker Agent]]s具有有限工具集、独立上下文和Token配额，专注于特定子任务
 
 2. **核心设计特点**：

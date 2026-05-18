@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">RNN</span><span class="tag">序列建模</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">深度学习</span><span class="tag">RNN</span><span class="tag">序列建模</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="gru">GRU</h1>
 <h2 id="_1">概述</h2>
-<p>GRU（Gated Recurrent Unit，门控循环单元）是一种改进的循环神经网络单元，由Cho等人于2014年提出，相比LSTM参数更少、训练更快，已成为序列建模任务中的重要组件。</p>
+<p>GRU（Gated Recurrent Unit，<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>循环单元）是一种改进的循环神经网络单元，由Cho等人于2014年提出，相比LSTM参数更少、训练更快，已成为序列建模任务中的重要组件。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心机制</strong>：
-   GRU将LSTM的遗忘门和输入门合并为一个更新门，同时引入重置门，参数量减少约25%，训练速度提升10-30%。更新门控制前一时刻隐藏状态的信息保留程度，重置门决定在计算候选隐藏状态时前一时刻状态的遗忘程度。</p>
+   GRU将LSTM的<a href="../concepts/遗忘门.html">遗忘门</a>和<a href="../concepts/输入门.html">输入门</a>合并为一个更新门，同时引入重置门，参数量减少约25%，训练速度提升10-30%。更新<a href="../concepts/门控机制（Gating Mechanism）.html">门控</a>制前一时刻隐藏状态的信息保留程度，重置门决定在<a href="../concepts/计算.html">计算</a>候选隐藏状态时前一时刻状态的遗忘程度。</p>
 </li>
 <li>
 <p><strong>数学公式</strong>：</p>
@@ -152,8 +152,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>最终隐藏状态：h_t = (1 - z_t) ⊙ h_{t-1} + z_t ⊙ ~h_t</p>
 </li>
 <li>
-<p><strong>在GRU4Rec中的应用</strong>：
-   GRU4Rec论文比较了标准RNN、LSTM和GRU三种单元，发现GRU在推荐任务上表现最佳。GRU的参数效率和性能平衡使其成为序列推荐的理想选择，避免了标准RNN的梯度消失问题，同时在相对较短的会话序列上没有LSTM的过拟合倾向。</p>
+<p><strong>在<a href="GRU4Rec.html">GRU4Rec</a>中的应用</strong>：
+   <a href="GRU4Rec.html">GRU4Rec</a>论文比较了标准RNN、LSTM和GRU三种单元，发现GRU在推荐任务上表现最佳。GRU的参数效率和性能平衡使其成为<a href="../concepts/序列推荐.html">序列推荐</a>的理想选择，避免了标准RNN的<a href="../concepts/梯度消失.html">梯度消失</a>问题，同时在相对较短的会话序列上没有LSTM的<a href="../concepts/过拟合.html">过拟合</a>倾向。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

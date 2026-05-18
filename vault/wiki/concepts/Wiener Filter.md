@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [signal-processing, filtering, prediction, stationary-process]
+tags: [signal-processing, filtering, prediction, stationary-process, 概率论]
 aliases: ["维纳滤波", "维纳过滤器"]
 relates_to: []
 supersedes: null

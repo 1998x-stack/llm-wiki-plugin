@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [RAG, 图数据库, 知识图谱]
+tags: [RAG, 图数据库, 知识图谱, AI工程]
 aliases: [LightRAG]
 relates_to:
   - "[[上下文检索]] — compares_to"

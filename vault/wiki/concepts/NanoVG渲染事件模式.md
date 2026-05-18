@@ -20,7 +20,7 @@ supersedes: null
 ## 关键内容
 1. **事件订阅**：在 `Start()` 中调用 `SubscribeToEvent("NanoVGRender", "HandleNanoVGRender")`。不使用 `Update` 或其他事件。
 2. **渲染框架**：`HandleNanoVGRender(eventType, eventData)` 回调中，先调用 `nvgBeginFrame(vg, width, height, 1.0)`，执行绘制代码，最后调用 `nvgEndFrame(vg)` 完成一帧渲染。
-3. **适用场景**：此模式仅适用于自定义矢量图形绘制（粒子、图表、特殊效果）。UI/HUD/字幕等通用界面应使用 `urhox-libs/UI` 组件，而非 raw NanoVG。
+3. **适用场景**：此模式仅适用于自定义矢量图形绘制（粒子、图表、特殊效果）。UI/HUD/字幕等通用界面应使用 `urhox-libs/UI` 组件，而非 raw [[NanoVG]]。
 
 ## 来源
 - [[raw/articles/personal/ai-dev-kit/CLAUDE.md]] — UrhoX Lua AI 开发指南，规则 #6

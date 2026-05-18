@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 方法论]
+tags: [技术, 方法论, AI工程]
 aliases: [Code RAG, 代码场景RAG]
 relates_to:
   - 检索增强生成

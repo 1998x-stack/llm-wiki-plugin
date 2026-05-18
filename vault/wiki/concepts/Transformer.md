@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [transformer, attention, nlp, architecture, deep-learning]
+tags: [transformer, attention, nlp, architecture, deep-learning, 机器学习]
 aliases: ["Transformer Architecture", "Transformer Model"]
 relates_to:
   - target: "[[Attention Is All You Need]]"

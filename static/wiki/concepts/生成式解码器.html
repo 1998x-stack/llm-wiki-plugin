@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">decoder</span><span class="tag">time-series</span><span class="tag">forecasting</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">transformer</span><span class="tag">decoder</span><span class="tag">time-series</span><span class="tag">forecasting</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="_1">生成式解码器</h1>
 <h2 id="_2">概述</h2>
-<p>Informer模型提出的解码器设计，通过一步并行生成完整预测序列，避免自回归模式下的误差累积和低效问题。</p>
+<p><a href="Informer.html">Informer</a>模型提出的解码器设计，通过一步并行生成完整预测序列，避免<a href="AR 模型（自回归模型）.html">自回归</a>模式下的误差累积和低效问题。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>传统解码器问题</strong>：</li>
-<li>标准Transformer解码器采用自回归方式逐步生成输出</li>
+<li>标准<a href="../entities/Transformer.html">Transformer</a>解码器采用<a href="AR 模型（自回归模型）.html">自回归</a>方式逐步生成输出</li>
 <li>需预测720个时间步则需串行执行720次前向传播</li>
 <li>
 <p>效率极低且误差随步数不断累积</p>
@@ -156,7 +156,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>性能提升</strong>：</p>
 </li>
 <li>推理速度提升数个数量级</li>
-<li>根本上避免自回归模式下的误差累积问题</li>
+<li>根本上避免<a href="AR 模型（自回归模型）.html">自回归</a>模式下的误差累积问题</li>
 <li>适用于长期预测任务</li>
 </ol>
 <h2 id="_4">来源</h2>

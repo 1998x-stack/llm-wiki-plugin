@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="sgc">SGC</h1>
 <h2 id="_1">概述</h2>
-<p>Wu 等人于 ICML 2019 发表的简化图卷积论文，移除非线性激活并将多层权重<a href="../concepts/矩阵.html">矩阵</a>压缩为一个，面向节点分类任务，与 <a href="LightGCN.html">LightGCN</a> 共享简化思路但应用场景不同。</p>
+<p>Wu 等人于 ICML 2019 发表的简化图卷积论文，移除<a href="../concepts/非线性激活.html">非线性激活</a>并将多层权重<a href="../concepts/矩阵.html">矩阵</a>压缩为一个，面向节点分类任务，与 <a href="LightGCN.html">LightGCN</a> 共享简化思路但应用场景不同。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心思想</strong>：SGC 发现 GCN 中的非线性激活对节点分类任务的贡献有限，提出移除激活函数并将多层权重<a href="../concepts/矩阵.html">矩阵</a>压缩为单个线性变换。公式：<code>H^(K) = (D^(-1/2) A D^(-1/2))^K X Θ</code>。</p>
+<p><strong>核心思想</strong>：SGC 发现 GCN 中的<a href="../concepts/非线性激活.html">非线性激活</a>对节点分类任务的贡献有限，提出移除激活函数并将多层权重<a href="../concepts/矩阵.html">矩阵</a>压缩为单个线性变换。公式：<code>H^(K) = (D^(-1/2) A D^(-1/2))^K X Θ</code>。</p>
 </li>
 <li>
 <p><strong>与 <a href="LightGCN.html">LightGCN</a> 的区别</strong>：（a）SGC 面向节点分类，节点有丰富初始特征，简化的目的是提升可解释性和效率；<a href="LightGCN.html">LightGCN</a> 面向<a href="../concepts/协同过滤.html">协同过滤</a>，节点只有 ID 嵌入，简化有更根本的理由。（b）SGC 使用最后一层嵌入做预测，<a href="LightGCN.html">LightGCN</a> 使用所有层的加权组合。</p>
 </li>
 <li>
-<p><strong>理论联系</strong>：从谱图理论视角，SGC 对应单项式滤波器 <code>P_K(A) = A^K</code>，而 <a href="LightGCN.html">LightGCN</a> 对应均匀加权多项式 <code>P(A) = (1/(K+1)) Σ_{k=0}^{K} A^k</code>。两者都是多项式图滤波器的特例。</p>
+<p><strong>理论联系</strong>：从<a href="../concepts/谱图理论.html">谱图理论</a>视角，SGC 对应单项式滤波器 <code>P_K(A) = A^K</code>，而 <a href="LightGCN.html">LightGCN</a> 对应均匀加权多项式 <code>P(A) = (1/(K+1)) Σ_{k=0}^{K} A^k</code>。两者都是<a href="../concepts/多项式图滤波器.html">多项式图滤波器</a>的特例。</p>
 </li>
 <li>
 <p><strong>历史地位</strong>：SGC 是 GNN 简化趋势的早期代表之一，为后续 <a href="LightGCN.html">LightGCN</a> 等工作的简化思路提供了理论参考。</p>

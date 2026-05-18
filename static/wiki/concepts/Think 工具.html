@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="think">Think 工具</h1>
 <h2 id="_1">概述</h2>
-<p>Think 工具是一种为 LLM Agent 设计的显式"思考空间"机制，允许模型在复杂工具调用链中暂停并分析中间结果，从而提升策略遵从性和决策质量。</p>
+<p>Think 工具是一种为 L<a href="LM Agent.html">LM Agent</a> 设计的显式"思考空间"机制，允许模型在复杂工具调用链中暂停并分析中间结果，从而提升策略遵从性和决策质量。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心定义与实现</h3>
 <p>Think 工具的实现极其简单，仅需一个无副作用的工具定义：
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <thead>
 <tr>
 <th>特性</th>
-<th>Extended Thinking</th>
+<th><a href="Extended Thinking.html">Extended Thinking</a></th>
 <th>Think 工具</th>
 </tr>
 </thead>
@@ -180,18 +180,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>直觉类比：Extended Thinking 像是专家<strong>开始工作前</strong>的深度规划；Think 工具像是专家在<strong>看到化验结果后</strong>的即时分析。</p>
+<p>直觉类比：<a href="Extended Thinking.html">Extended Thinking</a> 像是专家<strong>开始工作前</strong>的深度规划；Think 工具像是专家在<strong>看到化验结果后</strong>的即时分析。</p>
 <h3 id="-bench">τ-Bench 评估结果</h3>
-<p>在 τ-Bench 航空域测试中：
+<p>在 <a href="../projects/τ-Bench.html">τ-Bench</a> 航空域测试中：
 - 基准（无 think，无 ET）：pass@1 = 0.332
-- Extended Thinking：pass@1 = 0.412
+- <a href="Extended Thinking.html">Extended Thinking</a>：pass@1 = 0.412
 - Think 工具（无 prompt 优化）：pass@1 = 0.404
 - <strong>Think 工具 + 优化 prompt</strong>：pass@1 = <strong>0.584</strong>（提升 54%）</p>
 <p>核心发现：
-1. Think + 优化 prompt 在航空域的改进远超 Extended Thinking
-2. 单独 Extended Thinking 和单独 Think 工具性能相近
+1. Think + 优化 prompt 在航空域的改进远超 <a href="Extended Thinking.html">Extended Thinking</a>
+2. 单独 <a href="Extended Thinking.html">Extended Thinking</a> 和单独 Think 工具性能相近
 3. <strong>Prompt 优化是关键杠杆</strong>——策略越复杂，示例越重要</p>
-<p>零售域策略相对简单，仅凭 Think 工具（无 prompt 优化）就超过了基准和 Extended Thinking（pass@1 = 0.812 vs 0.783）。</p>
+<p>零售域策略相对简单，仅凭 Think 工具（无 prompt 优化）就超过了基准和 <a href="Extended Thinking.html">Extended Thinking</a>（pass@1 = 0.812 vs 0.783）。</p>
 <h3 id="swe-bench">SWE-Bench 表现</h3>
 <ul>
 <li>实验规模：n=30（有 think 工具） vs n=144（无 think 工具）</li>
@@ -199,14 +199,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>效应量相当大但平均提升仅 1.6%，说明 think 工具在编码场景中<strong>改善了稳定性</strong>（减少极端失败），而非系统性提升所有任务</li>
 </ul>
 <h3 id="_4">认知科学视角：外化工作记忆</h3>
-<p>Think 工具从认知科学角度可理解为<strong>外化工作记忆（Externalized Working Memory）</strong>。人类在面对复杂问题时也需要"写下来"帮助思考——清单、草稿纸、白板。LLM 在处理长工具调用链时同样面临"工作记忆"压力：
+<p>Think 工具从认知科学角度可理解为<strong><a href="外化工作记忆.html">外化工作记忆</a>（<a href="外化工作记忆.html">Externalized Working Memory</a>）</strong>。人类在面对复杂问题时也需要"写下来"帮助思考——清单、草稿纸、白板。LLM 在处理长工具调用链时同样面临"<a href="工作记忆.html">工作记忆</a>"压力：
 - 之前哪些工具已调用
 - 收集到了哪些信息
 - 还缺少哪些信息
 - 当前状态是否符合策略要求</p>
 <p>Think 工具提供了一个<strong>持久化的中间状态缓存</strong>，减轻了模型在下一次推理时需要从对话历史中重新推导中间状态的负担。</p>
 <h3 id="chain-of-thought">与 Chain-of-Thought 的关系</h3>
-<p>Think 工具与 Chain-of-Thought（CoT）提示有内在联系，但存在重要区别：
+<p>Think 工具与 <a href="Chain-of-Thought.html">Chain-of-Thought</a>（CoT）提示有内在联系，但存在重要区别：
 - CoT 通过 prompt 隐式引导，Think 工具是显式工具调用
 - CoT 固定在响应开始，Think 工具<strong>动态</strong>在需要时才触发
 - CoT 混在响应文本中，Think 工具是结构化工具调用易于追踪
@@ -238,7 +238,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 若 think 内容质量低，可在 prompt 中提供更具体的示例
 - 定期清理工具调用历史，避免 context 膨胀</p>
 <h3 id="2025-12">更新说明（2025 年 12 月）</h3>
-<p>Extended Thinking 能力已大幅提升，在大多数场景下 Anthropic 现推荐使用 Extended Thinking 替代专用的 think 工具。但本文的分析仍具有重要的理论和实践价值。</p>
+<p><a href="Extended Thinking.html">Extended Thinking</a> 能力已大幅提升，在大多数场景下 <a href="../entities/Anthropic.html">Anthropic</a> 现推荐使用 <a href="Extended Thinking.html">Extended Thinking</a> 替代专用的 think 工具。但本文的分析仍具有重要的理论和实践价值。</p>
 <h2 id="_7">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/03_think_tool.md</span> — The "think" tool: Enabling Claude to stop and think in complex tool use situations</li>

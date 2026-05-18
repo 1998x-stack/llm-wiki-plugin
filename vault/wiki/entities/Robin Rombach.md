@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, generative-models, diffusion, stable-diffusion]
+tags: [person, generative-models, diffusion, stable-diffusion, 深度学习]
 aliases: [Robin Rombach]
 relates_to:
   - target: Stable Diffusion

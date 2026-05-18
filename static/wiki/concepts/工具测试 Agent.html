@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-engineering</span><span class="tag">meta-ai</span><span class="tag">tool-testing</span><span class="tag">MCP</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-engineering</span><span class="tag">meta-ai</span><span class="tag">tool-testing</span><span class="tag">MCP</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">工具测试 Agent</h1>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计原理</strong>：工具测试 Agent 基于"AI 可以改进 AI 使用的工件"这一核心原则。通过让 Agent 实际使用工具而非静态分析，能够发现人类工程师可能忽略的边缘情况和使用陷阱。这与 <a href="评测驱动开发.html">评测驱动开发</a> 的理念一致——通过实际执行发现问题。</p>
 </li>
 <li>
-<p><strong>量化效果</strong>：Anthropic 实践发现，经过优化的工具描述使后续 Agent 的任务完成时间减少 <strong>40%</strong>，因为避免了大多数错误。这一数据验证了工具测试 Agent 的有效性。</p>
+<p><strong>量化效果</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 实践发现，经过优化的工具描述使后续 Agent 的任务完成时间减少 <strong>40%</strong>，因为避免了大多数错误。这一数据验证了工具测试 Agent 的有效性。</p>
 </li>
 <li>
 <p><strong>核心原则</strong>：</p>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>实施建议</strong>：运行 20+ 个示例输入观察工具使用错误、系统性记录 Agent 如何误用工具、提供失败案例让 AI 分析并改写工具描述、测试-改写-重测循环至少 5 次。这一流程与 <a href="Meta-AI 改进循环.html">Meta-AI 改进循环</a> 的迭代逻辑一致。</p>
 </li>
 <li>
-<p><strong>与防错设计的关系</strong>：工具测试 Agent 发现的常见问题可通过 <a href="防错设计.html">防错设计</a> 手段（如使用具体类型、枚举值、绝对路径）在接口层面预防，形成双重保障。</p>
+<p><strong>与<a href="防错设计.html">防错设计</a>的关系</strong>：工具测试 Agent 发现的常见问题可通过 <a href="防错设计.html">防错设计</a> 手段（如使用具体类型、枚举值、绝对路径）在接口层面预防，形成双重保障。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

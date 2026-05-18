@@ -130,28 +130,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Anthropic</span><span class="tag">模型</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Anthropic</span><span class="tag">模型</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="claude-35-sonnet">Claude 3.5 Sonnet</h1>
 <h2 id="_1">概述</h2>
-<p>Claude 3.5 Sonnet 是 Anthropic 推出的 Claude 系列模型之一，在 SWE-bench Verified 上实现了当时 SOTA 成绩（49%），证明了单 Agent 架构配合优质工具集即可达到顶尖编码能力。</p>
+<p><a href="Claude_Code.html">Claude</a> 3.5 Sonnet 是 <a href="Anthropic.html">Anthropic</a> 推出的 <a href="Claude_Code.html">Claude</a> 系列模型之一，在 <a href="SWE-bench.html">SWE-bench</a> Verified 上实现了当时 SOTA 成绩（49%），证明了<a href="../concepts/单 Agent 架构.html">单 Agent 架构</a>配合优质工具集即可达到顶尖编码能力。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>SWE-bench SOTA 成绩</strong>：在 SWE-bench Verified 上达到 <strong>49%</strong> 解决率，为当时最高成绩，后续迭代达到更高。这一成绩标志着 Claude 在编码 Agent 基准上取得领先地位。</p>
+<p><strong><a href="SWE-bench.html">SWE-bench</a> SOTA 成绩</strong>：在 <a href="SWE-bench.html">SWE-bench</a> Verified 上达到 <strong>49%</strong> 解决率，为当时最高成绩，后续迭代达到更高。这一成绩标志着 <a href="Claude_Code.html">Claude</a> 在编码 Agent 基准上取得领先地位。</p>
 </li>
 <li>
-<p><strong>单 Agent 架构设计</strong>：采用相对简单的单 Agent 架构——Claude 3.5 Sonnet 作为核心推理引擎，配合精心设计的工具集（文件读写、命令执行、搜索等），无复杂的多 Agent 编排。体现了 Anthropic "简单优于复杂"的哲学。</p>
+<p><strong><a href="../concepts/单 Agent 架构.html">单 Agent 架构</a>设计</strong>：采用相对简单的<a href="../concepts/单 Agent 架构.html">单 Agent 架构</a>——<a href="Claude_Code.html">Claude</a> 3.5 Sonnet 作为核心推理引擎，配合精心设计的工具集（文件读写、命令执行、搜索等），无复杂的多 Agent 编排。体现了 <a href="Anthropic.html">Anthropic</a> "简单优于复杂"的哲学。</p>
 </li>
 <li>
-<p><strong>工具优化优先</strong>：在 SWE-bench 任务中，工程师花在<strong>工具优化</strong>上的时间多于花在<strong>整体 prompt</strong> 上的时间。关键发现包括要求工具始终使用绝对路径，解决了模型在相对路径上的系统性错误。</p>
+<p><strong>工具优化优先</strong>：在 <a href="SWE-bench.html">SWE-bench</a> 任务中，工程师花在<strong>工具优化</strong>上的时间多于花在<strong>整体 prompt</strong> 上的时间。关键发现包括要求工具始终使用绝对路径，解决了模型在相对路径上的系统性错误。</p>
 </li>
 <li>
-<p><strong>Think 工具集成</strong>：集成了 <a href="../concepts/Think 工具.html">Think 工具</a> 专为代码调试场景定制，实验表明平均提升性能 <strong>1.6%</strong>（Welch t 检验，p &lt; 0.001，效应量 d=1.47）。</p>
+<p><strong><a href="../concepts/Think 工具.html">Think 工具</a>集成</strong>：集成了 <a href="../concepts/Think 工具.html">Think 工具</a> 专为代码调试场景定制，实验表明平均提升性能 <strong>1.6%</strong>（Welch t 检验，p &lt; 0.001，效应量 d=1.47）。</p>
 </li>
 <li>
-<p><strong>产品意义</strong>：SWE-bench 成绩直接支撑了 <a href="../projects/Claude Code.html">Claude Code</a> 产品的核心价值主张——Claude 不仅是代码补全工具，而是能够独立解决真实软件工程问题的 Agent。</p>
+<p><strong>产品意义</strong>：<a href="SWE-bench.html">SWE-bench</a> 成绩直接支撑了 <a href="../projects/Claude Code.html">Claude Code</a> 产品的核心价值主张——<a href="Claude_Code.html">Claude</a> 不仅是代码补全工具，而是能够独立解决真实软件工程问题的 Agent。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -69,7 +69,7 @@ supersedes: null
 | 项目 | 内容 |
 |------|------|
 | **标题** | New Directions in Cryptography |
-| **作者** | [[Whitfield Diffie]], Martin E. Hellman |
+| **作者** | [[Whitfield Diffie]], [[Martin E. Hellman]] |
 | **发表时间** | 1976年11月 |
 | **期刊** | IEEE Transactions on [[信息论|Information Theory]], Vol. 22, No. 6, pp. 644-654 |
 

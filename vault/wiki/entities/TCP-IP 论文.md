@@ -60,7 +60,7 @@ supersedes: null
 
 ## 概述
 
-[[Vinton Cerf]] 和 [[Robert Kahn]] 于1974年发表的《A Protocol for Packet Network Intercommunication》，被广泛认为是"互联网的出生证明"，首次提出了 [[TCP-IP|TCP/IP]] 协议的核心设计。
+[[Vinton Cerf]] 和 [[Robert Kahn]] 于1974年发表的《[[Cerf-Kahn_TCP-IP协议|A Protocol for Packet Network Intercommunication]]》，被广泛认为是"[[互联网]]的出生证明"，首次提出了 [[TCP-IP|TCP/IP]] 协议的核心设计。
 
 ## 关键内容
 
@@ -68,8 +68,8 @@ supersedes: null
 
 | 字段 | 内容 |
 |------|------|
-| **标题** | A Protocol for Packet Network Intercommunication |
-| **作者** | Vinton G. Cerf, Robert E. Kahn |
+| **标题** | [[Cerf-Kahn_TCP-IP协议|A Protocol for Packet Network Intercommunication]] |
+| **作者** | [[Vinton_Cerf|Vinton G. Cerf]], [[Robert_Kahn|Robert E. Kahn]] |
 | **发表时间** | 1974年5月 |
 | **刊物** | IEEE Transactions on Communications, Vol. 22, No. 5, pp. 637-648 |
 

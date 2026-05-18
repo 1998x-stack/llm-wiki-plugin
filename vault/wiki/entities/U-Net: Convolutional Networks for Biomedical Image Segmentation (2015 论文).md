@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, computer-vision, segmentation]
+tags: [paper, computer-vision, segmentation, 深度学习]
 aliases: [Ronneberger et al. 2015]
 relates_to:
   - target: U-Net

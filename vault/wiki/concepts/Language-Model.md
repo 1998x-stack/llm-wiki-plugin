@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, llm, architecture]
+tags: [ai-engineering, llm, architecture, AI工程]
 aliases: ["语言模型", "Large Language Model", "LLM"]
 relates_to: []
 supersedes: null

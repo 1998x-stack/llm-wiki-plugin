@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, computer-vision, CNN, inception]
+tags: [paper, computer-vision, CNN, inception, 机器学习]
 aliases: [Szegedy et al. 2014, GoogLeNet 论文]
 relates_to:
   - target: Christian Szegedy

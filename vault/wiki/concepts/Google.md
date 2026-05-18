@@ -7,7 +7,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [搜索引擎, 科技公司, 人工智能]
+tags: [搜索引擎, 科技公司, 人工智能, 推荐系统]
 aliases: ["Google", "谷歌"]
 relates_to:
   - target: "[[Word2Vec]]"

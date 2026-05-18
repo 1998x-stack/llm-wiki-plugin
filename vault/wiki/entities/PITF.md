@@ -25,7 +25,7 @@ entity_type: paper
 # PITF
 
 ## 概述
-Pairwise Interaction Tensor Factorization，由 Steffen Rendle 与 Schmidt-Thieme 合作提出的针对标签推荐任务的成对交互张量分解模型，可被FM框架等价表示。
+Pairwise Interaction Tensor Factorization，由 [[Steffen Rendle]] 与 Schmidt-Thieme 合作提出的针对标签推荐任务的成对交互张量分解模型，可被FM框架等价表示。
 
 ## 关键内容
 

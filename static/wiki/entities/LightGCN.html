@@ -135,17 +135,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="lightgcn">LightGCN</h1>
 <h2 id="_1">概述</h2>
-<p><a href="何向南.html">何向南</a>团队于 SIGIR 2020 发表的图<a href="../concepts/协同过滤.html">协同过滤</a>经典论文，通过移除 GCN 中的特征变换和非线性激活，仅保留邻域聚合与层组合，实现"Less is More"，相比 NGCF 平均提升约 16%。</p>
+<p><a href="何向南.html">何向南</a>团队于 SIGIR 2020 发表的图<a href="../concepts/协同过滤.html">协同过滤</a>经典论文，通过移除 GCN 中的<a href="../concepts/特征变换.html">特征变换</a>和<a href="../concepts/非线性激活.html">非线性激活</a>，仅保留<a href="../concepts/邻域聚合.html">邻域聚合</a>与<a href="../concepts/层组合.html">层组合</a>，实现"Less is More"，相比 NGCF 平均提升约 16%。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心洞察</strong>：在<a href="../concepts/协同过滤.html">协同过滤</a>中，用户和物品节点仅由 ID <a href="../concepts/嵌入表示.html">嵌入表示</a>，不含丰富语义。对 ID 嵌入做<a href="../concepts/特征变换.html">特征变换</a>和<a href="../concepts/非线性激活.html">非线性激活</a>不仅无益，反而增加<a href="../concepts/训练难度.html">训练难度</a>。论文通过<a href="../concepts/消融实验.html">消融实验</a>证明：移除两者后（NGCF-fn 变体），效果反而超越原始 NGCF。</p>
 </li>
 <li>
-<p><strong>轻量级图卷积 (LGC)</strong>：每层仅做对称归一化邻域聚合，无权重<a href="../concepts/矩阵.html">矩阵</a> W、无激活函数、无自连接。公式：<code>e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</code>。<a href="../concepts/矩阵.html">矩阵</a>形式：<code>E^(k+1) = D^(-1/2) A D^(-1/2) E^(k)</code>。</p>
+<p><strong>轻量级图卷积 (LGC)</strong>：每层仅做<a href="../concepts/对称归一化.html">对称归一化</a><a href="../concepts/邻域聚合.html">邻域聚合</a>，无权重<a href="../concepts/矩阵.html">矩阵</a> W、无激活函数、无自连接。公式：<code>e_u^(k+1) = Σ_{i∈N_u} (1/√(|N_u|·|N_i|)) · e_i^(k)</code>。<a href="../concepts/矩阵.html">矩阵</a>形式：<code>E^(k+1) = D^(-1/2) A D^(-1/2) E^(k)</code>。</p>
 </li>
 <li>
-<p><strong>层组合策略</strong>：将所有层（第0层到第K层）的嵌入加权求和得到最终表示：<code>e_u = Σ_{k=0}^{K} α_k · e_u^(k)</code>。实验发现均匀权重 <code>α_k = 1/(K+1)</code> 已足够好。<a href="../concepts/层组合.html">层组合</a>保留初始信息、捕获多尺度特征、缓解过平滑、隐式实现自连接。</p>
+<p><strong><a href="../concepts/层组合.html">层组合</a>策略</strong>：将所有层（第0层到第K层）的嵌入加权求和得到最终表示：<code>e_u = Σ_{k=0}^{K} α_k · e_u^(k)</code>。实验发现均匀权重 <code>α_k = 1/(K+1)</code> 已足够好。<a href="../concepts/层组合.html">层组合</a>保留初始信息、捕获多尺度特征、缓解过平滑、隐式实现自连接。</p>
 </li>
 <li>
 <p><strong>训练方式</strong>：使用<a href="../concepts/BPR.html">BPR</a>损失，正则化仅施加在第0层嵌入 E^(0) 上（因为高层嵌入完全由第0层通过图传播得到）。预测分数为用户和物品最终嵌入的内积。</p>
@@ -160,13 +160,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>训练动态分析</strong>：LightGCN 在整个训练过程中始终保持更低的训练损失，且成功转化为更高的测试准确率。NGCF 的问题在于<a href="../concepts/训练难度.html">训练难度</a>而非<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>——多余组件使<a href="../concepts/损失曲面（Loss Landscape）.html">优化景观</a>变崎岖。</p>
 </li>
 <li>
-<p><strong>嵌入平滑直觉</strong>：经过 2 层 LightGCN 传播后，品味相似的用户的嵌入会自然变得更接近。这种基于协同信号的<a href="../concepts/嵌入平滑.html">嵌入平滑</a>被认为是有效性的核心原因。</p>
+<p><strong><a href="../concepts/嵌入平滑.html">嵌入平滑</a>直觉</strong>：经过 2 层 LightGCN 传播后，品味相似的用户的嵌入会自然变得更接近。这种基于协同信号的<a href="../concepts/嵌入平滑.html">嵌入平滑</a>被认为是有效性的核心原因。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：不包含辅助信息（Side Information）；超大规模图上的<a href="../concepts/计算.html">计算</a>挑战；均匀层组合权重可能非最优；无法处理<a href="../concepts/冷启动问题.html">冷启动问题</a>。2024 年 FourierKAN-GCF 对其<a href="../concepts/消融实验.html">消融实验</a>提出细粒度质疑。</p>
+<p><strong>局限性</strong>：不包含辅助信息（Side Information）；超大规模图上的<a href="../concepts/计算.html">计算</a>挑战；均匀<a href="../concepts/层组合.html">层组合</a>权重可能非最优；无法处理<a href="../concepts/冷启动问题.html">冷启动问题</a>。2024 年 FourierKAN-GCF 对其<a href="../concepts/消融实验.html">消融实验</a>提出细粒度质疑。</p>
 </li>
 <li>
-<p><strong>历史地位</strong>：截至 2025 年引用约 3,900+ 次，是图推荐领域引用最高的论文之一。取代 NGCF 成为图推荐方法的"标尺"基线。启发了 <a href="UltraGCN.html">UltraGCN</a>、<a href="SimpleX.html">SimpleX</a>、<a href="LightGCN++.html">LightGCN++</a>、SocialLGN 等后续工作。</p>
+<p><strong>历史地位</strong>：截至 2025 年引用约 3,900+ 次，是图推荐领域引用最高的论文之一。取代 NGCF 成为图推荐方法的"标尺"基线。启发了 <a href="UltraGCN.html">UltraGCN</a>、<a href="SimpleX.html">SimpleX</a>、<a href="LightGCN++.html">LightGCN++</a>、<a href="SocialLGN.html">SocialLGN</a> 等后续工作。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

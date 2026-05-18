@@ -89,7 +89,7 @@ supersedes: null
 
 ### 实现传奇
 
-[[Steve Russell]]（McCarthy 的学生）看到论文中的 `eval` 定义后，直接将其翻译为 IBM 704 机器码，无意中创造了历史上第一个 LISP 解释器。McCarthy 本人最初认为 `eval` 只是理论定义。
+[[Steve Russell]]（McCarthy 的学生）看到论文中的 `eval` 定义后，直接将其翻译为 [[IBM 704]] 机器码，无意中创造了历史上第一个 LISP 解释器。McCarthy 本人最初认为 `eval` 只是理论定义。
 
 ### 历史影响
 

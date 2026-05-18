@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [MCP, 传输协议, Claude Code, 连接方式]
+tags: [MCP, 传输协议, "Claude Code", 连接方式, AI工程]
 aliases: ["MCP Transport Protocols", "MCP 传输方式"]
 relates_to:
   - target: "[[MCP（Model Context Protocol）]]"

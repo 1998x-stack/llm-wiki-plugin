@@ -7,7 +7,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [paper, computer-vision, CNN, vgg, ImageNet]
+tags: [paper, computer-vision, CNN, vgg, ImageNet, 机器学习]
 aliases: [Simonyan & Zisserman 2014, Very Deep Convolutional Networks for Large-Scale Image Recognition]
 relates_to:
   - target: "[[Karen Simonyan]]"
@@ -44,7 +44,7 @@ supersedes: null
 
 ## 关键内容
 
-1. **统一 3×3 卷积设计**：摒弃 [[AlexNet]] 中使用的 11×11、5×5、3×3 混合卷积核，统一使用 3×3 卷积核。通过堆叠多个 3×3 卷积，既能获得更大的[[感受野]]，又能减少参数量并增加非线性激活，实现更好的性能。
+1. **统一 3×3 卷积设计**：摒弃 [[AlexNet]] 中使用的 11×11、5×5、3×3 混合卷积核，统一使用 3×3 卷积核。通过堆叠多个 3×3 卷积，既能获得更大的[[感受野]]，又能减少参数量并增加[[非线性激活]]，实现更好的性能。
 
 2. **VGG 家族架构**：系统测试了 A-E 六种不同深度[[Configuration|配置]]（从 11 层到 19 层），其中 [[VGGNet|VGG-16]]（13 个卷积层 + 3 个全连接层）和 [[VGGNet|VGG-19]]（16 个卷积层 + 3 个全连接层）最为经典，分别具有 138M 和 144M 参数。
 

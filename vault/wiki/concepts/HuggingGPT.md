@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 任务规划, 技能编排, AI模型集成]
+tags: [LLM, 任务规划, 技能编排, AI模型集成, AI工程]
 aliases: ["HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in HuggingFace"]
 relates_to: []
 supersedes: null
@@ -19,9 +19,9 @@ HuggingGPT是由Shen等人提出的系统，将HuggingFace上数千个专门AI�
 
 ## 关键内容
 
-1. **四阶段工作流**：
+1. **[[探索-规划-编码工作流|四阶段工作流]]**：
    - Task Planning（任务规划）：[[ChatGPT]]解析用户意图，分解为子任务列表
-   - Model Selection（模型选择）：从HuggingFace模型卡描述中检索最合适的模型
+   - [[模型选择|Model Selection]]（[[模型选择]]）：从HuggingFace模型卡描述中检索最合适的模型
    - Task Execution（并行执行）：无依赖任务并行执行，有依赖任务按序执行
    - Response Generation（结果整合）：将所有子任务结果整合为最终回答
 

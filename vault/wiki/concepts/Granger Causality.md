@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [计量经济学, 因果关系, 时间序列分析]
+tags: [计量经济学, 因果关系, 时间序列分析, 时间序列]
 aliases: ["Granger Causality", "格兰杰因果关系", "格兰杰因果检验"]
 relates_to:
   - target: "[[Clive Granger]]"
@@ -24,7 +24,7 @@ supersedes: null
 # Granger因果关系
 
 ## 概述
-Granger因果关系是由Clive Granger提出的一种因果关系检验方法，基于预测能力判断变量间的因果关系。
+Granger因果关系是由[[Clive Granger]]提出的一种因果关系检验方法，基于预测能力判断变量间的因果关系。
 
 ## 关键内容
 
@@ -33,13 +33,13 @@ Granger因果关系是由Clive Granger提出的一种因果关系检验方法，
    - 这是一种统计意义上的因果关系，不同于哲学上的严格因果关系
 
 2. **与协整的关系**：
-   - Granger因果关系和协整是时间序列分析中两个重要的概念
+   - Granger因果关系和协整是[[时间序列分析]]中两个重要的概念
    - 协整关注变量间的长期均衡关系
    - Granger因果关系关注变量间的预测关系和动态影响
 
 3. **学术意义**：
-   - Clive Granger因其在协整和因果关系方面的贡献获得了2003年诺贝尔经济学奖
-   - 与Soren Johansen在同一时期推动了计量经济学的发展
+   - [[Clive Granger]]因其在协整和因果关系方面的贡献获得了2003年诺贝尔经济学奖
+   - 与[[Soren Johansen]]在同一时期推动了计量经济学的发展
 
 ## 来源
 - [[10-johansen-1988-cointegration]] — 相关概念提及

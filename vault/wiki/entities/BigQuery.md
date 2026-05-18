@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [cloud-computing, big-data, analytics]
+tags: [cloud-computing, big-data, analytics, 概率论]
 aliases: ["Google BigQuery", "谷歌大数据分析平台"]
 relates_to:
   - target: "[[Data Scientist Agent]]"

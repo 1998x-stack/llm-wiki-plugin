@@ -565,14 +565,14 @@ $$</p>
 - 混合策略更适合内容变化不频繁的场景（如法律、金融工作）
 - 随模型能力提升，agent 设计会趋向于让智能模型自主行动，人类策展逐步减少</p>
 <h3 id="_15">来源作者</h3>
-<p>本文由 <a href="../entities/Anthropic.html">Anthropic</a> Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, Jeremy Hadfield，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
+<p>本文由 <a href="../entities/Anthropic.html">Anthropic</a> Applied AI 团队撰写：<a href="../entities/Prithvi-Rajasekaran.html">Prithvi Rajasekaran</a>, Ethan Dixon, Carly Ryan, <a href="../entities/Jeremy Hadfield.html">Jeremy Hadfield</a>，贡献者包括 Rafi Ayub, Hannah Moran, Cal Rueb, Connor Jennings。</p>
 <h3 id="manus-2025">Manus 的上下文工程六原则（2025）</h3>
 <p><a href="../entities/Manus.html">Manus</a> 团队通过四次框架重建总结出六条核心原则，是<a href="Context Engineering.html">上下文工程</a>在生产环境的重要实践补充：</p>
 <ol>
 <li><strong>围绕 <a href="KV 缓存命中率.html">KV 缓存命中率</a> 进行设计</strong>：KV-cache 命中率是生产阶段最重要的单一指标，Agent 的输入/输出 token 比约 100:1，缓存命中与未命中成本差 10 倍</li>
 <li><strong>遮蔽，而非移除</strong>：使用状态机 + logits 掩码管理工具可用性，避免动态增删工具导致 KV 缓存失效</li>
 <li><strong>使用文件系统作为上下文</strong>：文件系统是终极上下文——大小不受限、天然持久化、Agent 可直接操作；压缩策略始终设计为可恢复的</li>
-<li><strong>通过复述操控注意力</strong>：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期注意力范围，避免"丢失在中间"</li>
+<li><strong>通过复述操控<a href="注意力机制.html">注意力</a></strong>：不断重写待办事项列表（如 todo.md），将全局计划推入模型近期<a href="注意力机制.html">注意力</a>范围，避免"丢失在中间"</li>
 <li><strong>保留错误的内容</strong>：将失败尝试保留在上下文中，让模型隐式更新内部信念，降低重复同样错误的概率</li>
 <li><strong>不要被<a href="少样本学习.html">少样本</a>示例所困</strong>：在行动和观察中引入结构化变化（不同序列化模板、替代性措辞、微小噪音），打破模式避免 Agent 陷入重复节奏</li>
 </ol>

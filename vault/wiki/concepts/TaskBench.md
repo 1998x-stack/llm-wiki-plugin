@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [LLM, 任务编排, 评估基准]
+tags: [LLM, 任务编排, 评估基准, AI工程]
 aliases: ["TaskBench: Benchmarking Large Language Models for Task Automation"]
 relates_to: []
 supersedes: null

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">kubernetes</span><span class="tag">container</span><span class="tag">resource-management</span><span class="tag">reliability</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">kubernetes</span><span class="tag">container</span><span class="tag">resource-management</span><span class="tag">reliability</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="oom-kill">OOM Kill</h1>
@@ -140,12 +140,12 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>触发机制</strong>：Linux 容器资源有两个参数——requests（保证分配，预先保留）和 limits（硬性上限）。当容器内存使用超过 limits 时，触发 OOM Kill，容器被立即终止。</li>
 <li><strong>在 Agentic 评测中的影响</strong>：</li>
-<li>严格执行 requests = limits 配置（零余量）时，任何瞬时资源波动超过上限都会导致容器被终止</li>
-<li>在 Terminal-Bench 2.0 的 1x 配置下，多达 6% 的任务因 Pod 错误（含 OOM Kill）失败</li>
-<li>增加到 3x 配置后，基础设施错误率降至 2.1%（降低 63%，p &lt; 0.001）</li>
+<li>严格执行 requests = limits <a href="Configuration.html">配置</a>（零余量）时，任何瞬时资源波动超过上限都会导致容器被终止</li>
+<li>在 <a href="../entities/Terminal-Bench 2.0.html">Terminal-Bench 2.0</a> 的 1x <a href="Configuration.html">配置</a>下，多达 6% 的任务因 Pod 错误（含 OOM Kill）失败</li>
+<li>增加到 3x <a href="Configuration.html">配置</a>后，基础设施错误率降至 2.1%（降低 63%，p &lt; 0.001）</li>
 <li><strong>与解题能力的混淆</strong>：大多数 Pod 错误与模型解题能力无关，而是容器资源问题导致的。一个任务因 OOM Kill 失败，不代表 Agent 无法解决该问题。</li>
-<li><strong>沙箱供应商差异</strong>：Terminal-Bench 官方排行榜的沙箱供应商允许临时超额分配，不立即终止容器，基础设施稳定性更好但评分方式实际上更宽松。</li>
-<li><strong>缓解策略</strong>：推荐配置 requests 和 limits 之间保持 3× 带宽，如 RAM requests: 4GB，limits: 12GB，为瞬时资源波动提供余量。</li>
+<li><strong><a href="Claude Code 沙箱机制.html">沙箱</a>供应商差异</strong>：<a href="../entities/Terminal-Bench.html">Terminal-Bench</a> 官方排行榜的<a href="Claude Code 沙箱机制.html">沙箱</a>供应商允许临时超额分配，不立即终止容器，基础设施稳定性更好但评分方式实际上更宽松。</li>
+<li><strong>缓解策略</strong>：推荐<a href="Configuration.html">配置</a> requests 和 limits 之间保持 3× 带宽，如 RAM requests: 4GB，limits: 12GB，为瞬时资源波动提供余量。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

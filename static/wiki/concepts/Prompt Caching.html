@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">LLM工程</span><span class="tag">成本优化</span><span class="tag">Anthropic</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">LLM工程</span><span class="tag">成本优化</span><span class="tag">Anthropic</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="prompt-caching">Prompt Caching</h1>
 <h2 id="_1">概述</h2>
-<p>Prompt Caching 是 Anthropic 提供的一项工程特性，通过将长文档加载到缓存中供后续请求重复使用，显著降低批量 LLM 调用的成本。</p>
+<p>Prompt Caching 是 <a href="../entities/Anthropic.html">Anthropic</a> 提供的一项工程特性，通过将长文档加载到缓存中供后续请求重复使用，显著降低批量 LLM 调用的成本。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>工作原理</strong>：文档只需加载到缓存一次，后续请求可直接复用缓存中的文档表示，避免重复处理相同内容。</p>
 </li>
 <li>
-<p><strong>在上下文检索中的应用</strong>：生成语境前缀时，同一文档的多个文本块共享相同的文档上下文，利用 Prompt Caching 可将成本降至每百万文档 token 1.02 美元。</p>
+<p><strong>在<a href="上下文检索.html">上下文检索</a>中的应用</strong>：生成语境前缀时，同一文档的多个文本块共享相同的文档上下文，利用 Prompt Caching 可将成本降至每百万文档 token 1.02 美元。</p>
 </li>
 <li>
 <p><strong>成本估算</strong>：假设 800 token 块、8K token 文档、50 token 指令、100 token 语境，一次性生成语境化块的成本极低。</p>

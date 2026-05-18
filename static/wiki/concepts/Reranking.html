@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">信息检索</span><span class="tag">RAG</span><span class="tag">排序算法</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">信息检索</span><span class="tag">RAG</span><span class="tag">排序算法</span><span class="tag">推荐系统</span></div>
 </div>
   <div class="content">
     <h1 id="reranking">Reranking</h1>
 <h2 id="_1">概述</h2>
-<p>Reranking（检索重排序）是在初始检索后对候选文档块进行精细打分排序的技术，通过相关性模型对 Top 候选块重新评分，进一步提升检索准确性。</p>
+<p>Reranking（<a href="检索重排序.html">检索重排序</a>）是在初始检索后对候选文档块进行精细打分排序的技术，通过相关性模型对 Top 候选块重新评分，进一步提升检索准确性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -148,7 +148,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>成本-性能权衡</strong>：重排序增加了推理延迟，需要在性能提升和延迟增加之间找到平衡点。</p>
 </li>
 <li>
-<p><strong>与混合检索的关系</strong>：Reranking 是在语义嵌入 + BM25 混合检索之后的第三层增强，形成三层检索增强架构。</p>
+<p><strong>与<a href="混合搜索.html">混合检索</a>的关系</strong>：Reranking 是在<a href="语义嵌入.html">语义嵌入</a> + BM25 <a href="混合搜索.html">混合检索</a>之后的第三层增强，形成三层<a href="检索增强生成.html">检索增强</a>架构。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

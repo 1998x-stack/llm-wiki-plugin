@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">algorithm</span><span class="tag">graph-theory</span><span class="tag">computer-science</span><span class="tag">shortest-path</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">algorithm</span><span class="tag">graph-theory</span><span class="tag">computer-science</span><span class="tag">shortest-path</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -141,20 +141,20 @@ relates_to:
 
 <h1 id="dijkstra">Dijkstra算法</h1>
 <h2 id="_1">概述</h2>
-<p>Dijkstra算法是由荷兰计算机科学家Edsger W. Dijkstra于1956年发明的单源最短路径算法，用于计算加权图中从单一节点到其他所有节点的最短路径。该算法采用贪心策略，保证在所有边权重非负的情况下找到最短路径。</p>
+<p><a href="../entities/Edsger Dijkstra.html">Dijkstra</a><a href="算法.html">算法</a>是由荷兰<a href="计算.html">计算</a>机科学家<a href="../entities/Edsger W. Dijkstra.html">Edsger W. Dijkstra</a>于1956年发明的单源最短路径<a href="算法.html">算法</a>，用于<a href="计算.html">计算</a>加权图中从单一节点到其他所有节点的最短路径。该<a href="算法.html">算法</a>采用贪心策略，保证在所有边权重非负的情况下找到最短路径。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>算法原理</strong>：算法维护一个顶点集合，已确定最短路径的顶点放入集合，逐步扩展。每次选择距离源点最近的未处理顶点，更新其邻居的距离估计值。</p>
+<p><strong><a href="算法.html">算法</a>原理</strong>：<a href="算法.html">算法</a>维护一个顶点集合，已确定最短路径的顶点放入集合，逐步扩展。每次选择距离源点最近的未处理顶点，更新其邻居的距离估计值。</p>
 </li>
 <li>
-<p><strong>应用场景</strong>：广泛应用于路由算法、社交网络分析、游戏AI寻路、地图导航等领域。是图论和计算机科学中的经典算法之一。</p>
+<p><strong>应用场景</strong>：广泛应用于路由<a href="算法.html">算法</a>、社交网络分析、游戏AI寻路、地图导航等领域。是图论和<a href="计算.html">计算</a>机科学中的经典<a href="算法.html">算法</a>之一。</p>
 </li>
 <li>
 <p><strong>时间复杂度</strong>：使用优先队列（如斐波那契堆）时时间复杂度为O(V log V + E)，其中V为顶点数，E为边数。</p>
 </li>
 <li>
-<p><strong>约束条件</strong>：要求图中所有边的权重均为非负数。若存在负权重边，则需使用其他算法如Bellman-Ford算法。</p>
+<p><strong>约束条件</strong>：要求图中所有边的权重均为非负数。若存在负权重边，则需使用其他<a href="算法.html">算法</a>如Bellman-Ford<a href="算法.html">算法</a>。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

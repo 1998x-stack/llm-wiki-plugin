@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [深度学习, 归一化, 目标检测, CNN]
+tags: [深度学习, 归一化, 目标检测, CNN, 机器学习]
 aliases: [组归一化, GroupNorm, GN]
 relates_to:
   - target: Batch Normalization

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">LLM</span><span class="tag">任务规划</span><span class="tag">技能编排</span><span class="tag">AI模型集成</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">LLM</span><span class="tag">任务规划</span><span class="tag">技能编排</span><span class="tag">AI模型集成</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="hugginggpt">HuggingGPT</h1>
@@ -138,9 +138,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>HuggingGPT是由Shen等人提出的系统，将HuggingFace上数千个专门AI模型作为可调用的工具，用<a href="../entities/ChatGPT.html">ChatGPT</a>作为任务规划器和编排器。它是AI模型作为工具编排器的典型代表。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>四阶段工作流</strong>：</li>
+<li><strong><a href="探索-规划-编码工作流.html">四阶段工作流</a></strong>：</li>
 <li>Task Planning（任务规划）：<a href="../entities/ChatGPT.html">ChatGPT</a>解析用户意图，分解为子任务列表</li>
-<li>Model Selection（模型选择）：从HuggingFace模型卡描述中检索最合适的模型</li>
+<li><a href="模型选择.html">Model Selection</a>（<a href="模型选择.html">模型选择</a>）：从HuggingFace模型卡描述中检索最合适的模型</li>
 <li>Task Execution（并行执行）：无依赖任务并行执行，有依赖任务按序执行</li>
 <li>
 <p>Response Generation（结果整合）：将所有子任务结果整合为最终回答</p>

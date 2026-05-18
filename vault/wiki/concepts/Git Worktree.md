@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [git, workflow, isolation, superpowers, multi-agent]
+tags: [git, workflow, isolation, superpowers, multi-agent, Agent系统]
 aliases: ["Git Worktree", "Git Worktrees", "工作树", "Git Subtree"]
 relates_to:
   - target: "[[Superpowers]]"

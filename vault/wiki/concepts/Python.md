@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [programming-language, backend, scripting]
+tags: [programming-language, backend, scripting, 工具与框架]
 aliases: ["Python语言"]
 relates_to: []
 supersedes: null

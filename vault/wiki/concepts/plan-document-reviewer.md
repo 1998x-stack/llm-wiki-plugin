@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [superpowers, skill, planning, review]
+tags: [superpowers, skill, planning, review, AI工程]
 aliases: ["plan-document-reviewer", "Plan Document Reviewer"]
 relates_to:
   - target: "[[writing-plans Skill]]"

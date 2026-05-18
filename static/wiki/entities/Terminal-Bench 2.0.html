@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">benchmark</span><span class="tag">agentic-coding</span><span class="tag">evaluation</span><span class="tag">terminal</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">benchmark</span><span class="tag">agentic-coding</span><span class="tag">evaluation</span><span class="tag">terminal</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="terminal-bench-20">Terminal-Bench 2.0</h1>
@@ -139,11 +139,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>资源规范设计</strong>：2.0 版本引入了每任务推荐的 CPU 和 RAM 规格，但研究发现"规定资源 ≠ 一致执行"——执行方法论会改变 Benchmark 实际测量的内容。</li>
-<li><strong>基础设施噪声实验</strong>：<a href="Gian Segato.html">Gian Segato</a> 等在 Terminal-Bench 2.0 上进行了六种资源配置的受控实验（1x → 1.5x → 2x → 3x → 4x → Uncapped），发现：</li>
+<li><strong><a href="../concepts/基础设施噪声.html">基础设施噪声</a>实验</strong>：<a href="Gian Segato.html">Gian Segato</a> 等在 <a href="Terminal-Bench.html">Terminal-Bench</a> 2.0 上进行了六种资源<a href="../concepts/Configuration.html">配置</a>的受控实验（1x → 1.5x → 2x → 3x → 4x → Uncapped），发现：</li>
 <li>基础设施错误率随资源增加单调下降：1x 时 5.8% → 3x 时 2.1% → Uncapped 时 0.5%</li>
 <li>总成功率提升：1x → Uncapped 达 <strong>+6 个百分点</strong>（p &lt; 0.01）</li>
 <li>两阶段行为：3x 以下主要修复基础设施可靠性，3x 以上额外资源真正帮助 Agent 解决新任务</li>
-<li><strong>典型案例</strong>：<code>bn-fit-modify</code>（贝叶斯网络拟合）任务中，富资源策略可安装 pandas + networkx + scikit-learn，贫资源策略被迫使用标准库从零实现——不同资源配置在评测不同的模型能力。</li>
+<li><strong>典型案例</strong>：<code>bn-fit-modify</code>（<a href="托马斯·贝叶斯.html">贝叶斯</a>网络拟合）任务中，富资源策略可安装 pandas + networkx + scikit-learn，贫资源策略被迫使用标准库从零实现——不同资源<a href="../concepts/Configuration.html">配置</a>在评测不同的模型能力。</li>
 <li><strong>校准建议</strong>：推荐 3× requests 作为 limits 起点，可将基础设施错误率降低 2/3（5.8% → 2.1%，p &lt; 0.001），同时成功率提升保持在噪声范围内（p = 0.40）。</li>
 <li><strong>其他噪声来源</strong>：时间效应（通过率随一天中的时段波动）、并发级别、出口带宽、集群健康度。</li>
 </ol>
@@ -152,14 +152,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <thead>
 <tr>
 <th>维度</th>
-<th>SWE-bench</th>
-<th>Terminal-Bench 2.0</th>
+<th><a href="SWE-bench.html">SWE-bench</a></th>
+<th><a href="Terminal-Bench.html">Terminal-Bench</a> 2.0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>任务类型</td>
-<td>修复 GitHub Issues</td>
+<td>修复 <a href="GitHub.html">GitHub</a> Issues</td>
 <td>通用终端任务</td>
 </tr>
 <tr>
@@ -179,7 +179,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>Terminal-Bench 2.0 对资源配置更敏感（+6% vs SWE-bench 的 +1.54%），表明终端任务更依赖系统资源，而 SWE-bench 的代码修复任务对资源变化相对不敏感。</p>
+<p><a href="Terminal-Bench.html">Terminal-Bench</a> 2.0 对资源<a href="../concepts/Configuration.html">配置</a>更敏感（+6% vs <a href="SWE-bench.html">SWE-bench</a> 的 +1.54%），表明终端任务更依赖系统资源，而 <a href="SWE-bench.html">SWE-bench</a> 的代码修复任务对资源变化相对不敏感。</p>
 <h2 id="_3">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/claude-engineering/06_infrastructure_noise.md</span> — Quantifying infrastructure noise in agentic coding evals</li>

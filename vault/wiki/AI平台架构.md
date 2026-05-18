@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [技术, 工作]
+tags: [技术, 工作, AI工程]
 aliases: [AI Platform Architecture, AI基础设施]
 relates_to:
   - 工程思维

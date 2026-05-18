@@ -20,7 +20,7 @@ supersedes: null
 
 # Landlock
 
-Linux 内核的安全模块（Landlock LSM），从 5.13 版本引入，允许非特权进程创建沙箱，限制自身对文件系统的访问[[Permissions|权限]]。
+Linux 内核的安全模块（Landlock LSM），从 5.13 版本引入，允许非特权进程创建[[Claude Code 沙箱机制|沙箱]]，限制自身对文件系统的访问[[Permissions|权限]]。
 
 ## 关键内容
 

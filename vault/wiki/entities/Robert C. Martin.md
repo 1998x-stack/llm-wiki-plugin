@@ -7,7 +7,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [software-engineer, author, clean-code, software-quality]
+tags: [software-engineer, author, clean-code, software-quality, AI工程]
 aliases: ["Robert Cecil Martin", "Uncle Bob", "Bob Martin", "Robert C Martin"]
 relates_to: []
 supersedes: null

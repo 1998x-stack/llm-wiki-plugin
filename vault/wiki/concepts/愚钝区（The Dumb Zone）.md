@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 2
-tags: [ai-engineering, context-management, llm-behavior]
+tags: [ai-engineering, context-management, llm-behavior, AI工程]
 aliases: ["The Dumb Zone", "愚钝区", "LLM 性能衰减区", "上下文性能衰减区"]
 relates_to:
   - target: "[[上下文窗口]]"

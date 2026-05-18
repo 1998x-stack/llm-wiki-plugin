@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-commerce, protocol, stripe, openai]
+tags: [ai-commerce, protocol, stripe, openai, AI工程]
 aliases: ["ACP", "Agentic Commerce Protocol", "智能代理商务协议"]
 relates_to:
   - target: "[[Stripe]]"

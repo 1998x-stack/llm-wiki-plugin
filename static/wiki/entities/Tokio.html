@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>真并发能力</strong>：Tokio 多线程运行时突破单线程事件循环局限，是 <a href="Codex CLI.html">Codex CLI</a> 选择 Rust 而非 <a href="TypeScript.html">TypeScript</a> 的关键因素之一。</li>
 <li><strong>对比 Node.js 事件循环</strong>：Node.js 单线程事件循环在同一时刻只能处理一个任务；Tokio 可在多个 OS 线程上并行调度异步任务。</li>
-<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的角色</strong>：<a href="Codex CLI.html">Codex</a> 的并发操作（并行 subagent 调度、MCP 通信、沙箱进程管理）均依赖 Tokio 运行时。</li>
+<li><strong>在 <a href="Codex CLI.html">Codex</a> 中的角色</strong>：<a href="Codex CLI.html">Codex</a> 的并发操作（并行 subagent 调度、MCP 通信、<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>进程管理）均依赖 Tokio 运行时。</li>
 </ol>
 <h2 id="_2">来源</h2>
 <ul>

@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">checkpoint</span><span class="tag">state-management</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">checkpoint</span><span class="tag">state-management</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="_1">智能检查点触发</h1>
@@ -139,16 +139,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>触发事件类型</strong>：五类语义事件触发检查点——<code>feature_complete</code>（完成完整功能）、<code>tests_pass</code>（测试套件通过）、<code>breaking_change</code>（引入破坏性变更）、<code>architecture_decision</code>（做出重要架构决策）、<code>context_threshold</code>（上下文窗口 &gt; 70%）。</p>
+<p><strong>触发事件类型</strong>：五类语义事件触发检查点——<code>feature_complete</code>（完成完整功能）、<code>tests_pass</code>（测试套件通过）、<code>breaking_change</code>（引入破坏性变更）、<code>architecture_decision</code>（做出重要架构决策）、<code>context_threshold</code>（<a href="上下文窗口.html">上下文窗口</a> &gt; 70%）。</p>
 </li>
 <li>
 <p><strong>与固定间隔的对比</strong>：传统检查点按固定时间间隔触发，可能在不重要的中间状态浪费资源，或在重要决策点遗漏保存。智能检查点只在语义上有意义的时刻触发，效率更高。</p>
 </li>
 <li>
-<p><strong>上下文阈值触发</strong>：当上下文窗口使用超过 70% 时自动触发检查点，这是防止上下文溢出的安全机制。触发后 Harness 可以压缩上下文、外化状态到文件，或启动新会话。</p>
+<p><strong>上下文阈值触发</strong>：当<a href="上下文窗口.html">上下文窗口</a>使用超过 70% 时自动触发检查点，这是防止上下文溢出的安全机制。触发后 Harness 可以压缩上下文、外化状态到文件，或启动新会话。</p>
 </li>
 <li>
-<p><strong>与 <a href="特性追踪器.html">特性追踪器</a> 的联动</strong>：当特性追踪器中某个功能的状态从 <code>in_progress</code> 变为 <code>complete</code> 时，自动触发 <code>feature_complete</code> 检查点，记录该功能的完整开发历史。</p>
+<p><strong>与 <a href="特性追踪器.html">特性追踪器</a> 的联动</strong>：当<a href="特性追踪器.html">特性追踪器</a>中某个功能的状态从 <code>in_progress</code> 变为 <code>complete</code> 时，自动触发 <code>feature_complete</code> 检查点，记录该功能的完整开发历史。</p>
 </li>
 <li>
 <p><strong>检查点内容</strong>：每个检查点包含当前代码状态、<a href="特性追踪器.html">特性追踪器</a> 快照、<a href="上下文传递协议.html">上下文传递协议</a> 包、已知问题列表和 <a href="技术债务追踪.html">技术债务追踪</a> 日志。检查点 ≈ CI 构建，是 Harness 与 CI/CD 类比的核心对应点。</p>

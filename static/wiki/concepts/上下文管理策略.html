@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-18</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-18</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">context-management</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-tools</span><span class="tag">context-management</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">上下文管理策略</h1>
@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>根本问题</strong>：LLM 上下文只有 malloc() 没有 free()，每次工具调用都会追加内容且无法释放，最终进入<a href="愚钝区（The Dumb Zone）.html">愚钝区</a>导致质量急剧下降。Ralph 的根本解法是在进入 <a href="Dumb Zone.html">Dumb Zone</a> 前主动退出，让外循环重启新实例。</li>
-<li><strong><a href="固定栈分配.html">固定栈分配</a></strong>：每次迭代以完全相同的方式分配上下文（System Prompt → Project conventions → Core constraints → File references），利用 LLM 对开头和结尾注意力更高的特性，把最重要约束放在最前面。</li>
+<li><strong><a href="固定栈分配.html">固定栈分配</a></strong>：每次迭代以完全相同的方式分配上下文（System Prompt → Project conventions → Core constraints → File references），利用 LLM 对开头和结尾<a href="注意力机制.html">注意力</a>更高的特性，把最重要约束放在最前面。</li>
 <li><strong><a href="子 Agent 卸载.html">子 Agent 卸载</a></strong>：将消耗大量 tokens 但只需结论的操作（运行测试套件、编译、截图分析）卸载给<span style="color:#e74c3c" title="broken link">子 Agent</span>，主 Agent 只接收简洁结论，上下文增加从 ~50,000 tokens 降至 ~100 tokens。</li>
 <li><strong><a href="观察遮蔽.html">观察遮蔽</a></strong>：当上下文接近限制时，保留最近 N 轮对话，将旧消息替换为摘要占位符。Ralph 认为此策略不适合其"每 Story 一迭代"模式，但在 Story 实现过程中的子任务间可使用。</li>
 <li><strong>规范文件 vs 上下文内容</strong>：黄金规则——任何需要跨<a href="会话持久化.html">会话持久化</a>的信息必须在文件里，不能只在上下文里。发现新约定更新 <a href="项目约定手册.html">AGENTS.md</a>，完成 Story 更新 prd.json + progress.txt。</li>

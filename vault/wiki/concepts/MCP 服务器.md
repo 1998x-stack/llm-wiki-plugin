@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [MCP, 服务器, 工具集成, Claude Code]
+tags: [MCP, 服务器, 工具集成, "Claude Code", AI工程]
 aliases: ["MCP Server", "MCP 服务器"]
 relates_to:
   - target: "[[MCP（Model Context Protocol）]]"

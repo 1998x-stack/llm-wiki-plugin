@@ -36,7 +36,7 @@ supersedes: null
 # Think 工具
 
 ## 概述
-Think 工具是一种为 LLM Agent 设计的显式"思考空间"机制，允许模型在复杂工具调用链中暂停并分析中间结果，从而提升策略遵从性和决策质量。
+Think 工具是一种为 L[[LM Agent]] 设计的显式"思考空间"机制，允许模型在复杂工具调用链中暂停并分析中间结果，从而提升策略遵从性和决策质量。
 
 ## 关键内容
 
@@ -50,7 +50,7 @@ Think 工具的实现极其简单，仅需一个无副作用的工具定义：
 
 ### 与 Extended Thinking 的本质区别
 
-| 特性 | Extended Thinking | Think 工具 |
+| 特性 | [[Extended Thinking]] | Think 工具 |
 |------|------------------|-----------|
 | 触发时机 | 模型开始生成**之前** | 已开始生成**之中** |
 | 适用场景 | 深度计划、数学、编程 | 长工具调用链中处理工具输出 |
@@ -58,22 +58,22 @@ Think 工具的实现极其简单，仅需一个无副作用的工具定义：
 | 推理深度 | 更全面 | 更聚焦于新发现信息 |
 | 最优领域 | 非工具场景（编码/数学/物理） | 策略密集、顺序决策场景 |
 
-直觉类比：Extended Thinking 像是专家**开始工作前**的深度规划；Think 工具像是专家在**看到化验结果后**的即时分析。
+直觉类比：[[Extended Thinking]] 像是专家**开始工作前**的深度规划；Think 工具像是专家在**看到化验结果后**的即时分析。
 
 ### τ-Bench 评估结果
 
-在 τ-Bench 航空域测试中：
+在 [[τ-Bench]] 航空域测试中：
 - 基准（无 think，无 ET）：pass@1 = 0.332
-- Extended Thinking：pass@1 = 0.412
+- [[Extended Thinking]]：pass@1 = 0.412
 - Think 工具（无 prompt 优化）：pass@1 = 0.404
 - **Think 工具 + 优化 prompt**：pass@1 = **0.584**（提升 54%）
 
 核心发现：
-1. Think + 优化 prompt 在航空域的改进远超 Extended Thinking
-2. 单独 Extended Thinking 和单独 Think 工具性能相近
+1. Think + 优化 prompt 在航空域的改进远超 [[Extended Thinking]]
+2. 单独 [[Extended Thinking]] 和单独 Think 工具性能相近
 3. **Prompt 优化是关键杠杆**——策略越复杂，示例越重要
 
-零售域策略相对简单，仅凭 Think 工具（无 prompt 优化）就超过了基准和 Extended Thinking（pass@1 = 0.812 vs 0.783）。
+零售域策略相对简单，仅凭 Think 工具（无 prompt 优化）就超过了基准和 [[Extended Thinking]]（pass@1 = 0.812 vs 0.783）。
 
 ### SWE-Bench 表现
 
@@ -83,7 +83,7 @@ Think 工具的实现极其简单，仅需一个无副作用的工具定义：
 
 ### 认知科学视角：外化工作记忆
 
-Think 工具从认知科学角度可理解为**外化工作记忆（Externalized Working Memory）**。人类在面对复杂问题时也需要"写下来"帮助思考——清单、草稿纸、白板。LLM 在处理长工具调用链时同样面临"工作记忆"压力：
+Think 工具从认知科学角度可理解为**[[外化工作记忆]]（[[外化工作记忆|Externalized Working Memory]]）**。人类在面对复杂问题时也需要"写下来"帮助思考——清单、草稿纸、白板。LLM 在处理长工具调用链时同样面临"[[工作记忆]]"压力：
 - 之前哪些工具已调用
 - 收集到了哪些信息
 - 还缺少哪些信息
@@ -93,7 +93,7 @@ Think 工具提供了一个**持久化的中间状态缓存**，减轻了模型�
 
 ### 与 Chain-of-Thought 的关系
 
-Think 工具与 Chain-of-Thought（CoT）提示有内在联系，但存在重要区别：
+Think 工具与 [[Chain-of-Thought]]（CoT）提示有内在联系，但存在重要区别：
 - CoT 通过 prompt 隐式引导，Think 工具是显式工具调用
 - CoT 固定在响应开始，Think 工具**动态**在需要时才触发
 - CoT 混在响应文本中，Think 工具是结构化工具调用易于追踪
@@ -134,7 +134,7 @@ Think 工具与 Chain-of-Thought（CoT）提示有内在联系，但存在重要
 
 ### 更新说明（2025 年 12 月）
 
-Extended Thinking 能力已大幅提升，在大多数场景下 Anthropic 现推荐使用 Extended Thinking 替代专用的 think 工具。但本文的分析仍具有重要的理论和实践价值。
+[[Extended Thinking]] 能力已大幅提升，在大多数场景下 [[Anthropic]] 现推荐使用 [[Extended Thinking]] 替代专用的 think 工具。但本文的分析仍具有重要的理论和实践价值。
 
 ## 来源
 

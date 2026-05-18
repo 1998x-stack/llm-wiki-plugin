@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 架构模式, Agent系统]
+tags: [技术, 架构模式, Agent系统, AI工程]
 aliases: [App Server Pattern, WebSocket Server Mode]
 relates_to:
   - target: "[[Codex CLI]]"

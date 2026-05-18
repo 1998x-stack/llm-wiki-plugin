@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.97</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">agent-design</span><span class="tag">architecture</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">agent-design</span><span class="tag">architecture</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">Agent 架构与设计原则</h1>
@@ -139,22 +139,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>五种核心 Agent 模式</strong>：Anthropic 提出 Agent 分类学，最成功的使用场景采用简单可组合模式，而非过度复杂的架构设计。这一理念贯穿多篇文章，强调"do the simplest thing that works"。</p>
+<p><strong>五种核心 Agent 模式</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 提出 Agent 分类学，最成功的使用场景采用简单可组合模式，而非过度复杂的架构设计。这一理念贯穿多篇文章，强调"do the simplest thing that works"。</p>
 </li>
 <li>
-<p><strong>可扩展的受管理 Agent</strong>：2026 年提出的多层 Agent 架构，解耦"大脑"与"双手"，实现成本优化和规模化部署。通过分层设计平衡智能水平与资源消耗。</p>
+<p><strong><a href="可扩展的受管理 Agent.html">可扩展的受管理 Agent</a></strong>：2026 年提出的多层 Agent 架构，解耦"大脑"与"双手"，实现成本优化和规模化部署。通过分层设计平衡智能水平与资源消耗。</p>
 </li>
 <li>
-<p><strong>多 Agent 系统实践</strong>：从原型到生产的工程路径，实现 90.2% 性能提升。提出 8 条 Prompt 工程原则，强调并行 Agent 编程中的接口规范挑战，如 C 编译器构建案例所示。</p>
+<p><strong><a href="多 Agent 系统.html">多 Agent 系统</a>实践</strong>：从原型到生产的工程路径，实现 90.2% 性能提升。提出 8 条 Prompt 工程原则，强调并行 Agent 编程中的<a href="接口规范.html">接口规范</a>挑战，如 <a href="C 编译器.html">C 编译器</a>构建案例所示。</p>
 </li>
 <li>
-<p><strong>简单优于复杂原则</strong>：多篇文章反复验证的核心理念——最小高信噪比 token 集合、可组合模式优先、避免过度工程化。这是 Anthropic 工程哲学的基石。</p>
+<p><strong>简单优于复杂原则</strong>：多篇文章反复验证的核心理念——最小高<a href="信噪比.html">信噪比</a> token 集合、可组合模式优先、避免过度工程化。这是 <a href="../entities/Anthropic.html">Anthropic</a> 工程哲学的基石。</p>
 </li>
 <li>
-<p><strong>长时运行 Harness 设计</strong>：针对应用开发场景，Anthropic 提出 <a href="Harness 设计.html">Harness 设计</a> 框架，包含 <a href="特性追踪器.html">特性追踪器</a>、<a href="上下文传递协议.html">上下文传递协议</a>、<a href="智能检查点触发.html">智能检查点触发</a>、<a href="三级自主权模型.html">三级自主权模型</a>、<a href="持续验证循环.html">持续验证循环</a> 和 <a href="技术债务追踪.html">技术债务追踪</a>。Harness 本质上是"为 AI Agent 定制的 CI/CD 系统"，管理即时/短期/长期三种状态形态。</p>
+<p><strong>长时运行 <a href="Harness 设计.html">Harness 设计</a></strong>：针对应用开发场景，<a href="../entities/Anthropic.html">Anthropic</a> 提出 <a href="Harness 设计.html">Harness 设计</a> 框架，包含 <a href="特性追踪器.html">特性追踪器</a>、<a href="上下文传递协议.html">上下文传递协议</a>、<a href="智能检查点触发.html">智能检查点触发</a>、<a href="三级自主权模型.html">三级自主权模型</a>、<a href="持续验证循环.html">持续验证循环</a> 和 <a href="技术债务追踪.html">技术债务追踪</a>。Harness 本质上是"为 AI Agent 定制的 CI/CD 系统"，管理即时/短期/长期三种状态形态。</p>
 </li>
 <li>
-<p><strong>可扩展的受管理 Agent 架构</strong>：2026 年提出的三层分层设计（战略层/战术层/执行层），将推理与执行解耦并独立扩展，通过不同规模模型匹配任务复杂度，实现成本降低 60-80% 的同时保持关键推理质量。</p>
+<p><strong><a href="可扩展的受管理 Agent.html">可扩展的受管理 Agent</a> 架构</strong>：2026 年提出的三层分层设计（战略层/战术层/执行层），将推理与执行解耦并独立扩展，通过不同规模模型匹配任务复杂度，实现成本降低 60-80% 的同时保持关键推理质量。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

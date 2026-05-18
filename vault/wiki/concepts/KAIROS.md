@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agents, daemon-processes, autonomous-systems]
+tags: [ai-agents, daemon-processes, autonomous-systems, AI工程]
 aliases: ["KAIROS守护进程", "自主守护进程"]
 relates_to: 
   - target: "[[Claude Code]]"

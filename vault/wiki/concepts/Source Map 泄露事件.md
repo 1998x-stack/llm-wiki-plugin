@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, javascript, development-tools, source-map]
+tags: [security, javascript, development-tools, source-map, 工具与框架]
 aliases: ["Source Map Leak", "Source Map 泄露", ".map 文件泄露"]
 relates_to: 
   - target: "[[Claude Code]]"

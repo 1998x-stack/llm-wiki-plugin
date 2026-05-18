@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [技术]
+tags: [技术, AI工程]
 aliases: [BGE Reranker, BGE重排模型]
 relates_to:
   - RFF融合

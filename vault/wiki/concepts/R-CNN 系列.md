@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [computer-vision, object-detection, architecture]
+tags: [computer-vision, object-detection, architecture, 机器学习]
 aliases: [R-CNN, Fast R-CNN, Faster R-CNN, R-CNN 系列]
 relates_to:
   - target: Ross Girshick

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [multi-agent, orchestration, gsd-framework, ai-agents]
+tags: [multi-agent, orchestration, gsd-framework, ai-agents, AI工程]
 aliases: ["GSD Multi-Agent Orchestration", "GSD Subagent Orchestration"]
 relates_to: 
   - target: "[[GSD Framework]]"

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tool, open-source, claude-integration]
+tags: [ai-tool, open-source, claude-integration, AI工程]
 aliases: ["OpenCode Project"]
 relates_to: []
 supersedes: null

@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算复杂度理论</span><span class="tag">NP完全性</span><span class="tag">定理证明</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计算复杂度理论</span><span class="tag">NP完全性</span><span class="tag">定理证明</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <h1 id="cook-levin">Cook-Levin定理</h1>
 <h2 id="_1">概述</h2>
-<p>Cook-Levin定理是计算复杂度理论中的核心定理，它证明了布尔可满足性问题(SAT)是NP完全的，奠定了NP完全性理论的基础。</p>
+<p>Cook-Levin定理是<a href="../concepts/计算复杂度理论.html">计算复杂度理论</a>中的核心定理，它证明了<a href="SAT">[布尔可满足性问题]</a>是NP完全的，奠定了<a href="../concepts/NP完全性.html">NP完全性</a>理论的基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>定理内容</strong>：布尔可满足性问题(SAT)是NP完全的。这意味着SAT既属于NP类，又属于NP中最困难的问题——所有NP问题都可以在多项式时间内归约到SAT。</p>
+<p><strong>定理内容</strong>：<a href="SAT">[布尔可满足性问题]</a>是NP完全的。这意味着SAT既属于NP类，又属于NP中最困难的问题——所有NP问题都可以在多项式时间内归约到SAT。</p>
 </li>
 <li>
-<p><strong>证明方法</strong>：Cook通过将非确定性图灵机的计算过程编码为布尔公式，展示了任何NP问题的求解可以转化为SAT问题的求解。具体来说，图灵机的计算表(计算过程的二维表示)被系统性地编码为一组布尔约束。</p>
+<p><strong>证明方法</strong>：Cook通过将非确定性<a href="../concepts/图灵机.html">图灵机</a>的<a href="../concepts/计算.html">计算</a>过程编码为布尔公式，展示了任何NP问题的求解可以转化为SAT问题的求解。具体来说，<a href="../concepts/图灵机.html">图灵机</a>的<a href="../concepts/计算.html">计算</a>表(<a href="../concepts/计算.html">计算</a>过程的二维表示)被系统性地编码为一组布尔约束。</p>
 </li>
 <li>
-<p><strong>重要意义</strong>：这一定理首次确立了NP完全性的概念，揭示了大量看似无关的组合优化问题在计算复杂度上是等价的。它标志着计算复杂度理论进入了一个新纪元，成为理解计算难度的基石。</p>
+<p><strong>重要意义</strong>：这一定理首次确立了<a href="../concepts/NP完全性.html">NP完全性</a>的概念，揭示了大量看似无关的组合优化问题在<a href="../concepts/计算.html">计算</a>复杂度上是等价的。它标志着<a href="../concepts/计算复杂度理论.html">计算复杂度理论</a>进入了一个新纪元，成为理解<a href="../concepts/计算.html">计算</a>难度的基石。</p>
 </li>
 <li>
-<p><strong>历史背景</strong>：该定理由Stephen Cook在1971年首次提出，随后Leonid Levin独立发现了类似结果。这一发现催生了整个NP完全性理论，影响了算法设计、密码学、人工智能等多个领域。</p>
+<p><strong>历史背景</strong>：该定理由<a href="Stephen Cook.html">Stephen Cook</a>在1971年首次提出，随后<a href="Leonid Levin.html">Leonid Levin</a>独立发现了类似结果。这一发现催生了整个<a href="../concepts/NP完全性.html">NP完全性</a>理论，影响了<a href="../concepts/算法.html">算法</a>设计、密码学、人工智能等多个领域。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

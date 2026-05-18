@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UI系统</span><span class="tag">UrhoX</span><span class="tag">Yoga</span><span class="tag">Flexbox</span><span class="tag">NanoVG</span><span class="tag">废弃API</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">UI系统</span><span class="tag">UrhoX</span><span class="tag">Yoga</span><span class="tag">Flexbox</span><span class="tag">NanoVG</span><span class="tag">废弃API</span><span class="tag">AI设计</span></div>
 </div>
   <div class="content">
     <h1 id="ui">UI系统选择规范</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 有两套 UI 系统，原生 UI（Urho3D UIElement）已废弃，必须使用新 UI 系统（urhox-libs/UI，基于 Yoga Flexbox + NanoVG）。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 有两套 UI 系统，原生 UI（<a href="../entities/Urho3D.html">Urho3D</a> UIElement）已废弃，必须使用新 UI 系统（urhox-libs/UI，基于 Yoga Flexbox + <a href="../entities/NanoVG.html">NanoVG</a>）。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>新 UI 系统</strong>：<code>urhox-libs/UI</code>，基于 Yoga Flexbox 布局引擎和 NanoVG 渲染，提供 40+ 内置控件（Panel、Label、Button、Slider 等），通过 <code>UI.Init()</code> 初始化，<code>UI.SetRoot()</code> 设置根节点。</li>
-<li><strong>原生 UI 系统</strong>：基于 Urho3D UIElement，已标记为废弃，仅用于兼容旧代码，不再维护。新项目不应使用。</li>
-<li><strong>选择原则</strong>：文字、按钮、HUD、菜单、字幕 → <code>urhox-libs/UI</code> 组件；自定义图形、粒子、图表、特殊效果 → raw <a href="../entities/NanoVG.html">NanoVG</a>；不确定时先查 <code>urhox-libs/UI</code> 组件列表，无对应组件再用 NanoVG。</li>
+<li><strong>新 UI 系统</strong>：<code>urhox-libs/UI</code>，基于 Yoga Flexbox 布局引擎和 <a href="../entities/NanoVG.html">NanoVG</a> 渲染，提供 40+ 内置控件（Panel、Label、Button、Slider 等），通过 <code>UI.Init()</code> 初始化，<code>UI.SetRoot()</code> <a href="Settings.html">设置</a>根节点。</li>
+<li><strong>原生 UI 系统</strong>：基于 <a href="../entities/Urho3D.html">Urho3D</a> UIElement，已标记为废弃，仅用于兼容旧代码，不再维护。新项目不应使用。</li>
+<li><strong>选择原则</strong>：文字、按钮、HUD、菜单、字幕 → <code>urhox-libs/UI</code> 组件；自定义图形、粒子、图表、特殊效果 → raw <a href="../entities/NanoVG.html">NanoVG</a>；不确定时先查 <code>urhox-libs/UI</code> 组件列表，无对应组件再用 <a href="../entities/NanoVG.html">NanoVG</a>。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

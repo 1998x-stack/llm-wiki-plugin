@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">agent</span><span class="tag">质量保障</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">agent</span><span class="tag">质量保障</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="agent">Agent 评测体系</h1>
 <h2 id="_1">概述</h2>
-<p>Agent 评测体系是 AI Agent 质量保障的完整方法论，涵盖 Task/Trial/Grader/Transcript/Outcome 的术语定义、三类评分器选择策略、以及四类 Agent（编码、对话、研究、计算机使用）的具体评测方案。</p>
+<p><a href="评测驱动开发.html">Agent 评测</a>体系是 AI Agent <a href="质量保障.html">质量保障</a>的完整方法论，涵盖 Task/Trial/<a href="评分器设计.html">Grader</a>/Transcript/Outcome 的术语定义、三类<a href="评分器设计.html">评分器</a>选择策略、以及四类 Agent（编码、对话、研究、<a href="计算.html">计算</a>机使用）的具体评测方案。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心术语体系</strong>：</li>
@@ -143,17 +143,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>Trial（试验）</strong>：一次 Task 尝试（因 Agent 随机性需多次试验）</li>
 <li><strong>Transcript/Trace（记录/轨迹）</strong>：Trial 的完整记录，包含所有工具调用</li>
 <li><strong>Outcome（结果）</strong>：Trial 结束时环境的实际最终状态（客观事实，非 Agent 自我报告）</li>
-<li><strong>Grader（评分器）</strong>：对 Transcript 或 Outcome 进行打分的逻辑</li>
+<li><strong><a href="评分器设计.html">Grader</a>（<a href="评分器设计.html">评分器</a>）</strong>：对 Transcript 或 Outcome 进行打分的逻辑</li>
 <li><strong>Evaluation Suite（评测套件）</strong>：多个 Task 的集合</li>
-<li><strong>Evaluation Harness（评测框架）</strong>：运行评测的基础设施</li>
+<li><strong><a href="Evaluation Harness.html">Evaluation Harness</a>（<a href="Evaluation Harness.html">评测框架</a>）</strong>：运行评测的基础设施</li>
 <li>
-<p><strong>Agent Harness（Agent 框架）</strong>：让模型作为 Agent 行动的系统</p>
+<p><strong><a href="Agent Harness模式.html">Agent Harness</a>（Agent 框架）</strong>：让模型作为 Agent 行动的系统</p>
 </li>
 <li>
-<p><strong>Transcript vs Outcome 的关键区分</strong>：</p>
+<p><strong><a href="Transcript vs Outcome.html">Transcript vs Outcome</a> 的关键<a href="../entities/区分.html">区分</a></strong>：</p>
 </li>
 <li>航班预订 Agent 说"您的航班已预订"（Transcript 声明）</li>
-<li>评测者检查 SQL 数据库中是否存在预订记录（Outcome 验证）</li>
+<li>评测者检查 SQL 数据库中是否存在预订记录（<a href="Transcript vs Outcome.html">Outcome 验证</a>）</li>
 <li>
 <p><strong>好的评测验证 Outcome，不相信 Transcript 声明</strong></p>
 </li>
@@ -163,14 +163,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>Agent 的自主性、智能性、灵活性使其有用，但也使其难以评测</li>
 <li>无法预知执行路径、可能"绕过"评测假设、评测无法覆盖所有路径</li>
 <li>
-<p>Opus 4.5 案例：发现评测策略漏洞并利用，技术上"失败"但实际找到更优解</p>
+<p><a href="../entities/Opus 4.5.html">Opus 4.5</a> 案例：发现评测策略漏洞并利用，技术上"失败"但实际找到更优解</p>
 </li>
 <li>
 <p><strong>没有 eval 的代价</strong>：</p>
 </li>
 <li>用户报告 Agent 变差，团队无法量化</li>
 <li>调试完全被动：等待投诉 → 手动复现 → 修复 Bug → 希望没有新回退</li>
-<li>无法区分真实回退与噪声</li>
+<li>无法<a href="../entities/区分.html">区分</a>真实回退与噪声</li>
 <li>新模型发布时需数周测试，而有 eval 的竞争对手只需数天</li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -153,7 +153,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <h3 id="ai-agent">AI Agent 协同效应</h3>
 <p>在现代软件开发流程中，<strong>AI Agent</strong>（如 <a href="../projects/Claude Code.html">Claude Code</a>, <a href="../entities/Cursor.html">Cursor</a>）频繁执行文件读写与代码分析任务。现代 CLI 工具对此具有特殊价值：
-*   <strong>精确性</strong>：<code>rg</code> 和 <code>fd</code> 的 Git 感知能力确保 Agent 不会在生成的上下文中包含无关的依赖包或构建产物，从而提高代码生成的准确度。
+*   <strong>精确性</strong>：<code>rg</code> 和 <code>fd</code> 的 Git 感知能力确保 Agent 不会在生成的上下文中包含无关的依赖包或构建产物，从而提高<a href="代码生成.html">代码生成</a>的准确度。
 *   <strong>可解释性</strong>：<code>bat</code> 的行号和 <code>eza</code> 的树状结构帮助 Agent 更精准地引用代码位置，减少幻觉。
 *   <strong>容错性</strong>：<a href="Configuration.html">配置</a> <code>trash</code> 作为默认删除命令，为 Agent 的自主操作增加了回滚机制，符合“人机协作”的安全原则。
 *   <strong>数据管道</strong>：<code>jq</code> 和 <code>yq</code> 配合 <code>rg --json</code>，使得 Agent 能够高效地解析结构化数据，进行复杂的<a href="Configuration.html">配置</a>管理或日志分析。</p>

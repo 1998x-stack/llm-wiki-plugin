@@ -130,26 +130,26 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计量经济学</span><span class="tag">时间序列分析</span><span class="tag">统计模型</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">计量经济学</span><span class="tag">时间序列分析</span><span class="tag">统计模型</span><span class="tag">时间序列</span></div>
 </div>
   <div class="content">
     <h1 id="_1">向量自回归模型</h1>
 <h2 id="_2">概述</h2>
-<p>向量自回归模型(Vector Autoregression, VAR)是一种用于分析多个时间序列变量之间相互关系的计量经济学模型。</p>
+<p>向量<a href="Vector Autoregression, VAR">[自回归模型]</a>是一种用于分析多个<a href="Time Series Analysis.html">时间序列</a>变量之间相互关系的计量经济学模型。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>模型定义</strong>：</li>
-<li>向量自回归模型将系统中的每个变量表示为其自身及其它变量滞后值的函数</li>
+<li>向量<a href="自回归模型.html">自回归模型</a>将系统中的每个变量表示为其自身及其它变量滞后值的函数</li>
 <li>
 <p>形式为：ΔX_t = ΠX_{t-1} + Σ_{i=1}^{k-1} Γ_i ΔX_{t-i} + ε_t</p>
 </li>
 <li>
 <p><strong>在协整分析中的作用</strong>：</p>
 </li>
-<li>Johansen检验以VAR模型为起点</li>
-<li>矩阵Π的秩决定协整关系的数量</li>
+<li><a href="Johansen检验.html">Johansen检验</a>以V<a href="自回归模型.html">AR模型</a>为起点</li>
+<li><a href="矩阵.html">矩阵</a>Π的秩决定<a href="协整 (Cointegration).html">协整关系</a>的数量</li>
 <li>
-<p>如果Π的秩为零，变量之间没有协整关系；如果秩为r，则存在r个协整关系</p>
+<p>如果Π的秩为零，变量之间没有<a href="协整 (Cointegration).html">协整关系</a>；如果秩为r，则存在r个<a href="协整 (Cointegration).html">协整关系</a></p>
 </li>
 <li>
 <p><strong>应用价值</strong>：</p>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "分类", "激活函数", "概率"]
+tags: [深度学习, 分类, 激活函数, 概率, 机器学习]
 aliases: ["Softmax", "Softmax Function", "Softmax 函数", "归一化指数函数"]
 relates_to: ["交叉熵", "AlexNet", "Sigmoid激活函数", "多分类问题"]
 supersedes: null

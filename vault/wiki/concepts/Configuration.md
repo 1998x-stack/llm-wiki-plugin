@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [settings, configuration, management]
+tags: [settings, configuration, management, AI工程]
 aliases: ["Configuration", "配置", "配置系统"]
 relates_to: []
 supersedes: null
@@ -32,7 +32,7 @@ supersedes: null
 
 3. **关键[[Environment Variables|环境变量]]**：
    - ANTHROPIC_API_KEY：API 认证
-   - CLAUDE_MODEL：模型选择
+   - CLAUDE_MODEL：[[模型选择]]
    - MAX_MCP_OUTPUT_TOKENS：MCP 输出 Token 上限
    - ENABLE_TOOL_SEARCH：工具搜索模式
 

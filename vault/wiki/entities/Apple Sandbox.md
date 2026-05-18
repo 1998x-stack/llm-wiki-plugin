@@ -19,7 +19,7 @@ supersedes: null
 # Apple Sandbox
 
 ## 概述
-Apple 原生 macOS 沙箱机制（代号 Seatbelt），基于 Scheme 描述语言的访问控制策略，通过 `sandbox-exec` 工具对进程施加文件系统、网络和进程级别的访问限制。
+Apple 原生 macOS [[Claude Code 沙箱机制|沙箱]]机制（代号 Seatbelt），基于 Scheme 描述语言的访问控制策略，通过 `sandbox-exec` 工具对进程施加文件系统、网络和进程级别的访问限制。
 
 ## 关键内容
 
@@ -27,7 +27,7 @@ Apple 原生 macOS 沙箱机制（代号 Seatbelt），基于 Scheme 描述语�
 
 2. **动态策略生成**：[[Codex CLI]] 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动[[Configuration|配置]]策略文件。
 
-3. **调试支持**：`--log-denials` 模式可打印所有被拦截的系统调用，便于调试沙箱[[Configuration|配置]]错误。
+3. **调试支持**：`--log-denials` 模式可打印所有被拦截的系统调用，便于调试[[Claude Code 沙箱机制|沙箱]][[Configuration|配置]]错误。
 
 4. **零额外依赖**：作为 Apple 原生机制，无需安装额外软件或内核模块，macOS 系统自带支持。
 

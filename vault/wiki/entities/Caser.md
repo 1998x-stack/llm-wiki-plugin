@@ -24,7 +24,7 @@ Tang 与 Wang 于 WWW 2018 提出的 CNN [[序列推荐]]方法，用水平和�
 
 ## 关键内容
 
-1. **论文信息**：标题 "Personalized Top-N [[序列推荐|Sequential Recommendation]] via Convolutional Sequence [[Embedding]]"，作者 Jiaxi Tang 与 Ke Wang，发表于 WWW 2018（KDD 2018 也有相关版本）。
+1. **论文信息**：标题 "Personalized Top-N [[序列推荐|Sequential Recommendation]] via Convolutional Sequence [[Embedding]]"，作者 Jiaxi Tang 与 Ke Wang，发表于 WWW 2018（[[KDD|KDD 2018]] 也有相关版本）。
 
 2. **核心方法**：将用户历史交互序列视为二维图像（用户嵌入 × 序列位置），通过水平卷积（捕获序列模式）和垂直卷积（捕获点级特征）进行特征提取。CNN 支持并行[[计算]]，但[[感受野]]受限于卷积核大小，捕获长程依赖需要堆叠多层。
 

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [finance, data-api, comparison]
+tags: [finance, data-api, comparison, 经济学]
 aliases: ["金融数据API比较", "财经数据API对比", "数据接口对比"]
 relates_to:
   - target: "[[AKShare]]"

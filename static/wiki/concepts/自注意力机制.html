@@ -139,9 +139,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心限制</strong>：<a href="Self-Attention机制.html">Self-Attention</a> 只感知 token 间内容相关性，天然不包含顺序概念——对它来说输入是一个无序集合。因此必须配合<a href="位置编码.html">位置编码</a>才能感知序列顺序。</li>
-<li><strong>QKV <a href="计算.html">计算</a></strong>：每个 token 投影为 Query、Key、Value 三个向量，注意力权重由 Query 与所有 Key 的点积（经 softmax）确定，再对 Value 加权求和，得到<a href="上下文感知.html">上下文感知</a>的表示。</li>
-<li><strong>与<a href="位置编码.html">位置编码</a>的关系</strong>：<a href="绝对位置编码.html">绝对位置编码</a>在输入阶段叠加位置向量；<a href="相对位置编码.html">相对位置编码</a>则直接修改注意力分数<a href="计算.html">计算</a>，将相对距离 $i-j$ 纳入 $\text{AttentionScore}_{ij}$ 的<a href="计算.html">计算</a>函数中。</li>
-<li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a>（ICDM 2018）首次将 <a href="Self-Attention机制.html">Self-Attention</a> 完全应用于<a href="序列推荐.html">序列推荐</a>任务，通过 <a href="因果掩码.html">因果掩码</a> 实现单向<a href="AR 模型（自回归模型）.html">自回归</a>预测，开创了推荐系统的 <a href="Transformer架构.html">Transformer</a> 时代。其核心使用 <a href="缩放点积注意力.html">缩放点积注意力</a> <a href="计算.html">计算</a>物品间的注意力权重。</li>
+<li><strong>QKV <a href="计算.html">计算</a></strong>：每个 token 投影为 Query、Key、Value 三个向量，<a href="注意力机制.html">注意力</a>权重由 Query 与所有 Key 的点积（经 softmax）确定，再对 Value 加权求和，得到<a href="上下文感知.html">上下文感知</a>的表示。</li>
+<li><strong>与<a href="位置编码.html">位置编码</a>的关系</strong>：<a href="绝对位置编码.html">绝对位置编码</a>在输入阶段叠加位置向量；<a href="相对位置编码.html">相对位置编码</a>则直接修改<a href="注意力机制.html">注意力</a>分数<a href="计算.html">计算</a>，将相对距离 $i-j$ 纳入 $\text{AttentionScore}_{ij}$ 的<a href="计算.html">计算</a>函数中。</li>
+<li><strong>在推荐系统中的应用</strong>：<a href="../entities/SASRec.html">SASRec</a>（ICDM 2018）首次将 <a href="Self-Attention机制.html">Self-Attention</a> 完全应用于<a href="序列推荐.html">序列推荐</a>任务，通过 <a href="因果掩码.html">因果掩码</a> 实现单向<a href="AR 模型（自回归模型）.html">自回归</a>预测，开创了推荐系统的 <a href="Transformer架构.html">Transformer</a> 时代。其核心使用 <a href="缩放点积注意力.html">缩放点积注意力</a> <a href="计算.html">计算</a>物品间的<a href="注意力机制.html">注意力</a>权重。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

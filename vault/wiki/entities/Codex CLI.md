@@ -45,7 +45,7 @@ supersedes: null
 
 ## 一句话定义
 
-**LLM 推理引擎 + OS 级沙箱执行器 + 人机协同审批协议 + MCP 协议总线**
+**LLM 推理引擎 + OS 级[[Claude Code 沙箱机制|沙箱]]执行器 + 人机协同审批协议 + MCP 协议总线**
 
 ## 整体分层架构
 
@@ -56,7 +56,7 @@ supersedes: null
 | Agent Core | codex-rs/core | 业务逻辑、Model I/O、Tool Dispatch |
 | 策略层 | [[ExecPolicy]] | [[ExecPolicy|策略即代码]]的命令审批引擎 |
 | 协议层 | [[MCP协议层]] | 双向 MCP：客户端连工具，[[服务]]端暴露自身 |
-| 沙箱层 | [[Codex沙箱系统]] | macOS [[Apple Sandbox|Seatbelt]] / [[Landlock|Linux Landlock]]+[[seccomp]] |
+| [[Claude Code 沙箱机制|沙箱]]层 | [[Codex沙箱系统]] | macOS [[Apple Sandbox|Seatbelt]] / [[Landlock|Linux Landlock]]+[[seccomp]] |
 
 ## 核心组件（C1–C9）
 

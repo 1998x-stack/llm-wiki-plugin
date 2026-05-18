@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">paper</span><span class="tag">computer-vision</span><span class="tag">CNN</span><span class="tag">vgg</span><span class="tag">ImageNet</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">paper</span><span class="tag">computer-vision</span><span class="tag">CNN</span><span class="tag">vgg</span><span class="tag">ImageNet</span><span class="tag">机器学习</span></div>
 </div>
   <div class="content">
     <h1 id="very-deep-convolutional-networks-for-large-scale-image-recognition-2014">Very Deep Convolutional Networks for Large-Scale Image Recognition (2014 论文)</h1>
@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>统一 3×3 卷积设计</strong>：摒弃 <a href="../concepts/AlexNet.html">AlexNet</a> 中使用的 11×11、5×5、3×3 混合卷积核，统一使用 3×3 卷积核。通过堆叠多个 3×3 卷积，既能获得更大的<a href="../concepts/感受野.html">感受野</a>，又能减少参数量并增加非线性激活，实现更好的性能。</p>
+<p><strong>统一 3×3 卷积设计</strong>：摒弃 <a href="../concepts/AlexNet.html">AlexNet</a> 中使用的 11×11、5×5、3×3 混合卷积核，统一使用 3×3 卷积核。通过堆叠多个 3×3 卷积，既能获得更大的<a href="../concepts/感受野.html">感受野</a>，又能减少参数量并增加<a href="../concepts/非线性激活.html">非线性激活</a>，实现更好的性能。</p>
 </li>
 <li>
 <p><strong>VGG 家族架构</strong>：系统测试了 A-E 六种不同深度<a href="../concepts/Configuration.html">配置</a>（从 11 层到 19 层），其中 <a href="../concepts/VGGNet.html">VGG-16</a>（13 个卷积层 + 3 个全连接层）和 <a href="../concepts/VGGNet.html">VGG-19</a>（16 个卷积层 + 3 个全连接层）最为经典，分别具有 138M 和 144M 参数。</p>

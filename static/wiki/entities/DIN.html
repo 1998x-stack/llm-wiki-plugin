@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="din">DIN</h1>
 <h2 id="_1">概述</h2>
-<p>阿里巴巴 Guorui Zhou 等于 KDD 2018 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，首次将<a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>系统性地应用于工业级推荐系统，通过<a href="../concepts/局部激活单元.html">局部激活单元</a>打破固定长度用户向量的信息瓶颈。</p>
+<p>阿里巴巴 <a href="Guorui Zhou.html">Guorui Zhou</a> 等于 <a href="KDD.html">KDD 2018</a> 提出的 <a href="../concepts/CTR 预估.html">CTR 预估</a>模型，首次将<a href="../concepts/注意力机制（Attention Mechanism）.html">注意力机制</a>系统性地应用于工业级推荐系统，通过<a href="../concepts/局部激活单元.html">局部激活单元</a>打破固定长度用户向量的信息瓶颈。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心洞察：用户兴趣是多峰分布</strong> — 传统方法将所有历史行为等权相加（Sum/Average Pooling），假设用户兴趣是单峰分布。DIN 指出用户兴趣在向量空间中呈多峰分布，强行平均得到的向量可能落在完全不相关的位置上。</li>
+<li><strong>核心洞察：用户兴趣是<a href="../concepts/多峰分布（用户兴趣）.html">多峰分布</a></strong> — 传统方法将所有历史行为等权相加（Sum/Average Pooling），假设用户兴趣是单峰分布。DIN 指出用户兴趣在向量空间中呈<a href="../concepts/多峰分布（用户兴趣）.html">多峰分布</a>，强行平均得到的向量可能落在完全不相关的位置上。</li>
 <li><strong><a href="../concepts/局部激活单元.html">局部激活单元</a>（<a href="../concepts/局部激活单元.html">Local Activation Unit</a>）</strong> — 根据候选广告自适应地为用户历史行为分配权重。输入为 $[e_i; e_a; e_i \odot e_a]$ 的拼接（历史行为、候选广告、外积交互），通过小型 MLP 输出标量权重。刻意放弃 <a href="../concepts/Softmax.html">Softmax</a> 归一化以保留兴趣强度信息。</li>
-<li><strong><a href="../concepts/Target Attention.html">Target Attention</a> 机制</strong> — 以候选商品为 Query，历史行为为 Key 和 Value，实现 target-aware 的注意力。同一用户面对不同候选广告时自动"激活"不同的历史行为，得到完全不同的兴趣表示。</li>
+<li><strong><a href="../concepts/Target Attention.html">Target Attention</a> 机制</strong> — 以候选商品为 Query，历史行为为 Key 和 Value，实现 target-aware 的<a href="../concepts/注意力机制.html">注意力</a>。同一用户面对不同候选广告时自动"激活"不同的历史行为，得到完全不同的兴趣表示。</li>
 <li><strong><a href="../concepts/Dice 激活函数.html">Dice 激活函数</a></strong> — 数据自适应激活函数，通过引入输入均值和方差将分界点从固定的零移动到数据分布中心，可视为 PReLU 的泛化形式。</li>
 <li><strong><a href="../concepts/Mini-batch Aware Regularization.html">Mini-batch Aware Regularization</a></strong> — 频次感知正则化，只对当前 mini-batch 中出现的特征<a href="../concepts/计算.html">计算</a>正则项，低频特征获得更强约束，解决数亿参数规模下的<a href="../concepts/过拟合（Overfitting）.html">过拟合</a>问题。</li>
 <li><strong>工业级效果</strong> — 在阿里巴巴展示广告系统中取得 CTR 提升 10.0%、RPM 提升 3.8% 的在线 A/B 测试结果。0.001 的绝对 AUC 提升在数亿流量系统中即具有显著商业价值。</li>

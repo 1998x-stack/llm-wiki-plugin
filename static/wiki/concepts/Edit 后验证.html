@@ -266,7 +266,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 | <strong>No edit</strong> | <strong>10.3%</strong> | 没有专门 edit 工具，靠 shell 方式改文件 |</p>
 <p><strong>两层结论：</strong>
 1. <strong>有专门 edit 工具本身就重要</strong>：从 No edit (10.3) 到 edit action (15.0)，把编辑变成紧凑、受约束的专门动作，本身就能显著提升效果（+4.7 点）。
-2. <strong>edit 后做 validate / linting 进一步显著有益</strong>：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少错误传播。</p>
+2. <strong>edit 后做 validate / linting 进一步显著有益</strong>：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少<a href="错误复合.html">错误传播</a>。</p>
 <p><strong>准确表述</strong>：论文这里验证的主要是 linting / syntax-level guardrail，不是完整的 LSP/全仓语义检查。它证明的是"edit 后做轻量、即时的有效性校验有帮助"，而非"必须上完整 LSP 才有效"。</p>
 <h3 id="claude-code">Claude Code 分层验证方案</h3>
 <p>在 <a href="../projects/Claude Code.html">Claude Code</a> 平台中，edit 后验证被设计为<strong>四层架构</strong>（详见 <a href="Claude Code 分层验证.html">Claude Code 分层验证</a>）：</p>
@@ -280,7 +280,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </thead>
 <tbody>
 <tr>
-<td><strong>Tool Description</strong></td>
+<td><strong>Tool <a href="../entities/Descript.html">Descript</a>ion</strong></td>
 <td>"会用"：教会 <span style="color:#e74c3c" title="broken link">Claude_Code&lt;/td&gt;
 &lt;td&gt;Claude</span> 如何正确调用 validate 工具</td>
 </tr>

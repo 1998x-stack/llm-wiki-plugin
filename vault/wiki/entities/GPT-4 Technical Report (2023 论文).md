@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, NLP, LLM, multimodal]
+tags: [paper, NLP, LLM, multimodal, AI工程]
 aliases: [OpenAI 2023, GPT-4 论文]
 relates_to:
   - target: OpenAI

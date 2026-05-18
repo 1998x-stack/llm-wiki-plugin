@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="neural-collaborative-filtering">Neural Collaborative Filtering</h1>
 <h2 id="_1">概述</h2>
-<p><a href="何向南.html">何向南</a>等人于 WWW 2017 发表的里程碑论文，用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>中的内积操作，构建通用神经<a href="../concepts/协同过滤.html">协同过滤</a>框架（NCF），使模型能自动学习任意复杂的用户-物品交互函数。截至2026年引用超10000次。</p>
+<p><a href="何向南.html">何向南</a>等人于 <a href="WWW 2017.html">WWW 2017</a> 发表的里程碑论文，用神经网络替代<a href="../concepts/矩阵分解.html">矩阵分解</a>中的内积操作，构建通用神经<a href="../concepts/协同过滤.html">协同过滤</a>框架（NCF），使模型能自动学习任意复杂的用户-物品交互函数。截至2026年引用超10000次。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心洞察</strong>：<a href="../concepts/矩阵分解.html">矩阵分解</a>的内积是线性函数，表达能力有限。NCF 用可学习的神经网络 $f$ 替代固定内积，由于神经网络是通用函数逼近器，NCF 在表达能力上严格优于传统<a href="../concepts/矩阵分解.html">矩阵分解</a>。论文从理论上证明了<a href="../concepts/矩阵分解.html">矩阵分解</a>是 NCF 的一个特例（当 GMF 的激活函数为恒等函数、权重向量为全1时）。</li>

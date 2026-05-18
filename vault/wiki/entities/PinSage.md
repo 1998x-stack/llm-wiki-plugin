@@ -21,7 +21,7 @@ supersedes: null
 # PinSage
 
 ## 概述
-Pinterest 于 KDD 2018 发表的工业级图推荐系统，首次在数十亿节点规模上部署基于图卷积的推荐模型，证明了 GCN 在推荐领域的工业可行性。
+Pinterest 于 [[KDD|KDD 2018]] 发表的工业级图推荐系统，首次在数十亿节点规模上部署基于图卷积的推荐模型，证明了 GCN 在推荐领域的工业可行性。
 
 ## 关键内容
 
@@ -33,7 +33,7 @@ Pinterest 于 KDD 2018 发表的工业级图推荐系统，首次在数十亿节
 
 4. **工业影响**：PinSage 的成功部署证明了图推荐在大规模生产环境中的可行性，为后续工业级图推荐系统（如 Alibaba 的 EGES、Tencent 的图推荐系统）奠定了基础。
 
-5. **历史地位**：与 GC-MC（KDD 2018）、NGCF（SIGIR 2019）共同奠定了图推荐方向。PinSage 代表了"工业可行"路线，而 NGCF/[[LightGCN]] 代表了"学术精简"路线。
+5. **历史地位**：与 GC-MC（[[KDD|KDD 2018]]）、NGCF（SIGIR 2019）共同奠定了图推荐方向。PinSage 代表了"工业可行"路线，而 NGCF/[[LightGCN]] 代表了"学术精简"路线。
 
 ## 来源
 - [[15-lightgcn.md]] — LightGCN 论文中提及的图推荐标志性工作

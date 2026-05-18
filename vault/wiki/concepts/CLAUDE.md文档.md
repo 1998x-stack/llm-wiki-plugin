@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "documentation", "agent-guidance"]
+tags: [ai-engineering, documentation, agent-guidance, AI工程]
 aliases: ["CLAUDE.md Document", "CLAUDE.md 文档", "Agent Configuration Documentation"]
 relates_to:
   - target: "[[Harness-Engineering]]"

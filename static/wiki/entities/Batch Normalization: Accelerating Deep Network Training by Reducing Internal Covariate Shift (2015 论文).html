@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.95</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">paper</span><span class="tag">deep-learning</span><span class="tag">normalization</span><span class="tag">google</span><span class="tag">2015</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">paper</span><span class="tag">deep-learning</span><span class="tag">normalization</span><span class="tag">google</span><span class="tag">2015</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="batch-normalization-accelerating-deep-network-training-by-reducing-internal-covariate-shift-2015">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift (2015 论文)</h1>
@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="Sergey Ioffe.html">Sergey Ioffe</a> 与 <a href="Christian Szegedy.html">Christian Szegedy</a> 于 2015 年发表的论文，提出 <a href="../concepts/Batch Normalization.html">Batch Normalization</a> 技术，解决深度网络训练中的<a href="../concepts/内部协变量偏移.html">内部协变量偏移</a>问题，使训练速度提升 14 倍。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心问题</strong>：深度网络训练极其脆弱——学习率稍大则梯度爆炸发散，稍小则收敛极慢；对权重初始化极度敏感；Sigmoid 激活函数存在饱和区问题。</li>
+<li><strong>核心问题</strong>：深度网络训练极其脆弱——学习率稍大则<a href="../concepts/梯度爆炸.html">梯度爆炸</a>发散，稍小则收敛极慢；对权重初始化极度敏感；Sigmoid 激活函数存在饱和区问题。</li>
 <li><strong>核心方法</strong>：对每个 mini-batch <a href="../concepts/计算.html">计算</a>均值和方差，做归一化后引入可学习参数 γ（缩放）和 β（平移），让网络自行决定每层需要的分布。公式：$y_i = \gamma \frac{x_i - \mu_\mathcal{B}}{\sqrt{\sigma_\mathcal{B}^2 + \epsilon}} + \beta$</li>
 <li><strong>训练/推理差异</strong>：训练时使用当前 batch 统计量（引入正则化噪声），推理时使用训练过程中累积的滑动平均统计量。</li>
 <li><strong>实验结果</strong>：MNIST 上收敛快 14 倍；<a href="../concepts/ImageNet.html">ImageNet</a> 上 BN-<a href="../concepts/Inception Network.html">Inception</a> <a href="../concepts/Top-5 错误率.html">Top-5 错误率</a> 4.82%（超越当时人类表现 5.1%）；可使用大 100 倍的学习率而不发散。</li>

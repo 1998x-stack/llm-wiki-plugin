@@ -136,7 +136,7 @@ nav a.active { color: var(--link); font-weight: 600; }
     <h1 id="codex-cli">Codex CLI</h1>
 <p><a href="OpenAI.html">OpenAI</a> 以 Rust 重写并开源的<strong>本地编码 Agent</strong>。不是聊天机器人，而是一套把 LLM 决策与 OS 级执行边界融合的系统工程——运行在本地终端，读<a href="../concepts/仓库.html">仓库</a>、改文件、跑命令。</p>
 <h2 id="_1">一句话定义</h2>
-<p><strong>LLM 推理引擎 + OS 级沙箱执行器 + 人机协同审批协议 + MCP 协议总线</strong></p>
+<p><strong>LLM 推理引擎 + OS 级<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>执行器 + 人机协同审批协议 + MCP 协议总线</strong></p>
 <h2 id="_2">整体分层架构</h2>
 <table>
 <thead>
@@ -173,35 +173,35 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>双向 MCP：客户端连工具，<a href="../concepts/服务.html">服务</a>端暴露自身</td>
 </tr>
 <tr>
-<td>沙箱层</td>
+<td><span style="color:#e74c3c" title="broken link">Claude Code 沙箱机制&lt;/td&gt;
+&lt;td&gt;沙箱</span>层</td>
 <td><a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a></td>
-<td>macOS <span style="color:#e74c3c" title="broken link">Apple Sandbox&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;c1c9&quot;&gt;核心组件（C1–C9）&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;编号&lt;/th&gt;
-&lt;th&gt;组件&lt;/th&gt;
-&lt;th&gt;主要文件/crate&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;C1&lt;/td&gt;
-&lt;td&gt;TUI&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;codex-rs/tui/&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;C2&lt;/td&gt;
-&lt;td&gt;Exec Engine&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;core/exec.rs&lt;/code&gt;, &lt;code&gt;core/spawn.rs&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;C3&lt;/td&gt;
-&lt;td&gt;[[Codex沙箱系统</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="c1c9">核心组件（C1–C9）</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>组件</th>
+<th>主要文件/crate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>TUI</td>
+<td><code>codex-rs/tui/</code></td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Exec Engine</td>
+<td><code>core/exec.rs</code>, <code>core/spawn.rs</code></td>
+</tr>
+<tr>
+<td>C3</td>
+<td><a href="../concepts/Codex沙箱系统.html">Codex沙箱系统</a></td>
 <td><code>linux-sandbox/</code>, macOS seatbelt</td>
 </tr>
 <tr>

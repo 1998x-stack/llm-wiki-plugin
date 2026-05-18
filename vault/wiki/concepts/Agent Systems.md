@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI Engineering, Multi-Agent Systems, LLM]
+tags: ["AI Engineering", "Multi-Agent Systems", LLM, AI工程]
 aliases: ["智能体系统", "Agent Systems", "AI Agent Systems"]
 relates_to:
   - {target: Context Engineering, type: supports, confidence: 0.8}
@@ -25,14 +25,14 @@ supersedes: null
 ## 关键内容
 
 1. **核心组件**：
-   - 规划（Planning）：将复杂任务分解为可执行的子任务
+   - 规划（Planning）：将复杂[[任务分解]]为可执行的子任务
    - 记忆（Memory）：短期记忆存储当前上下文，长期记忆存储知识和经验
    - 工具使用（Tool Usage）：调用外部工具和[[服务]]扩展能力
    - 感知（Perception）：理解和处理来自环境的信息输入
 
 2. **架构模式**：
    - 单智能体系统：单个LLM驱动的智能体，执行特定任务
-   - 多智能体系统：多个智能体协作完成复杂任务
+   - [[多 Agent 系统|多智能体系统]]：多个智能体协作完成复杂任务
    - 分层智能体：不同层级智能体负责不同粒度的任务规划和执行
 
 3. **关键技术**：

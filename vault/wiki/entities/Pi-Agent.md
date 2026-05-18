@@ -93,7 +93,7 @@ Pi 由四个严格单向分层的包组成：
 
 ### 4. Terminal-Bench 验证
 
-Pi 在 Terminal-Bench 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：**Agent 性能瓶颈在于 [[Harness-Engineering|Harness 设计]]质量和上下文精确性，而非工具数量。**
+Pi 在 [[Terminal-Bench]] 排行榜上击败了许多工具集更丰富的 Agent，验证了核心命题：**Agent 性能瓶颈在于 [[Harness-Engineering|Harness 设计]]质量和上下文精确性，而非工具数量。**
 
 ## 来源
 

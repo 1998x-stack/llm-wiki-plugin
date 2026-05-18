@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["gsd", "subagent", "planning", "xml", "architecture", "Agent系统"]
+tags: [gsd, subagent, planning, xml, architecture, Agent系统, AI工程]
 aliases: ["gsd-planner", "GSD Planner", "规划子智能体"]
 relates_to:
   - target: "[[GSD]]"
@@ -38,7 +38,7 @@ GSD 系统中的规划[[Subagents-in-Claude-Code|子智能体]]，负责基于�
 
 2. **核心职责**：
    - 综合所有输入，理解"需要做什么"和"如何做"
-   - 将工作分解为 2-3 个原子 XML 计划
+   - 将[[任务分解|工作分解]]为 2-3 个原子 XML 计划
    - 每个计划控制在单个 200k 上下文可完成的规模内
    - 分析计划间依赖关系，标记 `<depends_on>` 标签
    - 确保垂直切片（每个计划是功能完整的端到端切片）

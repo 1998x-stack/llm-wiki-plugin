@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [claude, mcp, api, integration]
+tags: [claude, mcp, api, integration, AI工程]
 aliases: ["MCP Prompt", "MCP Server"]
 relates_to:
   - target: "[[Claude Code]]"

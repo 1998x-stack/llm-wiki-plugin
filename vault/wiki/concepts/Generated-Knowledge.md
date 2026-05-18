@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, prompt-engineering, knowledge]
+tags: [ai-engineering, prompt-engineering, knowledge, AI工程]
 aliases: ["生成知识", "Generated Knowledge"]
 relates_to: []
 supersedes: null

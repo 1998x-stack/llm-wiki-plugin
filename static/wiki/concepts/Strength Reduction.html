@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span><span class="tag">C++编程</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -145,19 +145,19 @@ relates_to:
 
 <h1 id="strength-reduction">Strength Reduction</h1>
 <h2 id="_1">概述</h2>
-<p>强度削减是一种编译器优化技术，将代价高昂的运算替换为代价较低的等价运算，例如将循环中的乘法替换为加法。</p>
+<p>强度削减是一种<a href="编译器优化.html">编译器优化技术</a>，将代价高昂的运算替换为代价较低的等价运算，例如将循环中的乘法替换为加法。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术原理</strong>：</li>
 <li>将高代价运算替换为低代价的等价运算</li>
-<li>例如，将循环中数组A(I)的地址计算（基地址 + I * 元素大小）优化为每次迭代在上一次结果上加一个常数</li>
+<li>例如，将循环中数组A(I)的地址<a href="计算.html">计算</a>（基地址 + I * 元素大小）优化为每次迭代在上一次结果上加一个常数</li>
 <li>
 <p>避免了循环中的昂贵乘法运算</p>
 </li>
 <li>
 <p><strong>实现细节</strong>：</p>
 </li>
-<li>在FORTRAN编译器的第五阶段（指令合并与优化）实现</li>
+<li>在<a href="../entities/FORTRAN.html">FORTRAN</a>编译器的第五阶段（指令合并与优化）实现</li>
 <li>特别适用于循环结构，因为循环中相同类型的优化可以被重复利用</li>
 <li>
 <p>需要分析循环变量的步长和使用模式才能正确应用</p>
@@ -166,8 +166,8 @@ relates_to:
 <p><strong>优化效果</strong>：</p>
 </li>
 <li>显著提高循环密集型程序的执行效率</li>
-<li>在FORTRAN编译器中证明了自动优化的有效性</li>
-<li>成为后续编译器优化的标准技术之一</li>
+<li>在<a href="../entities/FORTRAN.html">FORTRAN</a>编译器中证明了自动优化的有效性</li>
+<li>成为后续<a href="编译器优化.html">编译器优化</a>的标准技术之一</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bpr-loss">BPR Loss</h1>
 <h2 id="_1">概述</h2>
-<p>BPR Loss（Bayesian Personalized Ranking Loss）是一种用于个性化排序的成对损失函数，在GRU4Rec论文中被用于优化推荐系统的排序质量，强调正样本分数应高于负样本分数。</p>
+<p>BPR Loss（<a href="BPR.html">Bayesian Personalized Ranking</a> Loss）是一种用于个性化排序的成对损失函数，在<a href="../entities/GRU4Rec.html">GRU4Rec</a>论文中被用于优化推荐系统的排序质量，强调正样本分数应高于负样本分数。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -144,11 +144,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>
 <p><strong>设计原理</strong>：
-   与传统分类任务的交叉熵损失不同，BPR Loss关注的是推荐问题的本质——排序而非分类。它通过最大化正样本与负样本分数之间的间隔来优化模型，符合推荐系统中"正确物品应排在前列"的目标。</p>
+   与传统分类任务的<a href="二元交叉熵.html">交叉熵损失</a>不同，BPR Loss关注的是推荐问题的本质——排序而非分类。它通过最大化正样本与负样本分数之间的间隔来优化模型，符合推荐系统中"正确物品应排在前列"的目标。</p>
 </li>
 <li>
-<p><strong>在GRU4Rec中的应用</strong>：
-   GRU4Rec论文比较了多种损失函数，发现BPR Loss在使用adagrad优化器时表现稳定，显著优于交叉熵损失。BPR Loss特别适合处理推荐中的隐式反馈数据。</p>
+<p><strong>在<a href="../entities/GRU4Rec.html">GRU4Rec</a>中的应用</strong>：
+   <a href="../entities/GRU4Rec.html">GRU4Rec</a>论文比较了多种损失函数，发现BPR Loss在使用adagrad优化器时表现稳定，显著优于<a href="二元交叉熵.html">交叉熵损失</a>。BPR Loss特别适合处理推荐中的<a href="隐式反馈.html">隐式反馈</a>数据。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

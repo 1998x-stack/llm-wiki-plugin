@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">事件系统</span><span class="tag">tolua++</span><span class="tag">UrhoX</span><span class="tag">数据访问</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">事件系统</span><span class="tag">tolua++</span><span class="tag">UrhoX</span><span class="tag">数据访问</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="lua-eventdata">Lua-eventData访问模式</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 基于 tolua++ 绑定的事件系统中，<code>eventData</code> 的访问需要使用类型转换方法（<code>GetInt()</code>/<code>GetFloat()</code> 等），支持索引和键名两种调用方式。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 基于 <a href="../entities/tolua++.html">tolua++</a> 绑定的事件系统中，<code>eventData</code> 的访问需要使用类型转换方法（<code>GetInt()</code>/<code>GetFloat()</code> 等），支持索引和键名两种调用方式。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>三种正确访问方式</strong>：<code>eventData["X"]:GetInt()</code>（索引+类型方法）；<code>eventData["TimeStep"]:GetFloat()</code>（索引+类型方法）；<code>eventData:GetInt("X")</code>（键名+类型方法，更高效）。</li>
-<li><strong>常用事件字段</strong>：<code>TimeStep</code>（delta time，用 <code>GetFloat()</code>）；<code>X</code>/<code>Y</code> 等坐标值（用 <code>GetInt()</code> 或 <code>GetFloat()</code>）。完整事件字段定义见 <code>.emmylua/Events.d.lua</code>。</li>
-<li><strong>常见错误</strong>：直接访问 <code>eventData["X"]</code> 返回的是 tolua++ 包装对象，不是原生 Lua 值，必须调用类型转换方法。错误用法会导致 <code>attempt to call method 'GetInt'</code> 或类型不匹配。</li>
+<li><strong>常用事件字段</strong>：<code>TimeStep</code>（<a href="Delta-time运动模式.html">delta time</a>，用 <code>GetFloat()</code>）；<code>X</code>/<code>Y</code> 等坐标值（用 <code>GetInt()</code> 或 <code>GetFloat()</code>）。完整事件字段定义见 <code>.emmylua/Events.d.lua</code>。</li>
+<li><strong>常见错误</strong>：直接访问 <code>eventData["X"]</code> 返回的是 <a href="../entities/tolua++.html">tolua++</a> 包装对象，不是原生 Lua 值，必须调用类型转换方法。错误用法会导致 <code>attempt to call method 'GetInt'</code> 或类型不匹配。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

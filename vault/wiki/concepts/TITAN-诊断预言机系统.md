@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI-Agent, Game-Testing, Bug-Detection, Diagnostic-System]
+tags: [AI-Agent, Game-Testing, Bug-Detection, Diagnostic-System, AI工程]
 aliases: ["Diagnosis Oracle System", "诊断预言机系统", "TITAN Oracle System"]
 relates_to: 
   - target: "[[TITAN 框架]]"

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["ai-engineering", "evaluation", "质量保障"]
+tags: [ai-engineering, evaluation, 质量保障, AI工程]
 aliases: ["Transcript vs Outcome", "结果验证", "Outcome 验证"]
 relates_to:
   - target: "[[Agent 评测体系]]"
@@ -19,7 +19,7 @@ supersedes: null
 # Transcript vs Outcome
 
 ## 概述
-Transcript vs Outcome 是 Agent 评测中的核心区分概念，强调好的评测应验证环境的实际最终状态（Outcome），而非 Agent 的自我报告（Transcript 声明）。
+Transcript vs Outcome 是 [[评测驱动开发|Agent 评测]]中的核心[[区分]]概念，强调好的评测应验证环境的实际最终状态（Outcome），而非 Agent 的自我报告（Transcript 声明）。
 
 ## 关键内容
 
@@ -42,10 +42,10 @@ Transcript vs Outcome 是 Agent 评测中的核心区分概念，强调好的评
    - **好的评测验证 Outcome，不相信 Transcript 声明**
    - 避免检查 Agent 是否按特定步骤执行（路径评测）
    - **评测产出，不是路径**：Agent 经常找到评测设计者没有预期的有效方法
-   - Opus 4.5 案例：发现评测策略漏洞并利用，技术上"失败"但实际找到更优解
+   - [[Opus 4.5]] 案例：发现评测策略漏洞并利用，技术上"失败"但实际找到更优解
 
 5. **工程实践**：
-   - 结果验证评分器：检查 DB 状态、文件系统、API 响应等
+   - 结果验证[[评分器设计|评分器]]：检查 DB 状态、文件系统、API 响应等
    - 需要可访问的持久化状态
    - 最接近真实用户体验的评测方式
 

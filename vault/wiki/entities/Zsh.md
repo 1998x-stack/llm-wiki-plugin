@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [开发工具, Shell]
+tags: [开发工具, Shell, 工具与框架]
 aliases: ["Z Shell"]
 relates_to: []
 supersedes: null

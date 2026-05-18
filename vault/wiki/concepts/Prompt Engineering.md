@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI Engineering, Prompt Engineering, LLM]
+tags: ["AI Engineering", "Prompt Engineering", LLM, AI工程]
 aliases: ["提示工程", "Prompt Engineering"]
 relates_to:
   - {target: Context Engineering, type: supersedes, confidence: 0.9}
@@ -34,8 +34,8 @@ supersedes: null
    - Few-shot prompting：提供少量示例帮助模型理解任务模式
    - [[Chain-of-Thought]]：引导模型逐步推理，展示思考过程
    - [[指令调优|Instruction Tuning]]：优化指令格式以提高模型遵循性
-   - Prompt Chaining：将复杂任务分解为多个简单步骤
-   - Tool Description Optimization：工具描述直接影响模型行为，质量等同于产品质量
+   - [[Prompt Chaining]]：将复杂[[任务分解]]为多个简单步骤
+   - Tool [[Descript]]ion Optimization：工具描述直接影响模型行为，质量等同于产品质量
 
 3. **发展演变**：
    - 随着模型能力提升，从简单的指令式提示发展到复杂的多步骤提示

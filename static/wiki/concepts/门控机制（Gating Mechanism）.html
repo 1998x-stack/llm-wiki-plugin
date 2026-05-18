@@ -138,10 +138,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>通过 sigmoid 门控信号（∈[0,1]）精确控制信息流动的神经网络设计模式。LSTM 首次系统应用，包含<a href="遗忘门（Forget Gate）.html">遗忘门</a>、<a href="输入门（Input Gate）.html">输入门</a>、<a href="输出门（Output Gate）.html">输出门</a>，解决 RNN <a href="梯度消失.html">梯度消失</a>问题，成为序列建模标准<a href="规范化理论.html">范式</a>。</p>
 <h2 id="300">关键内容 (≥300字符, 用<span style="color:#e74c3c" title="broken link">双链</span>)</h2>
 <ol>
-<li><strong>核心思想</strong>：门控机制使用 <a href="Sigmoid激活函数.html">Sigmoid激活函数</a> 产生 [0, 1] 范围的控制信号，通过逐元素乘法（⊙）调节信息流的通过比例。0 表示完全阻断，1 表示完全通过，实现精确的"软开关"控制。</li>
+<li><strong>核心思想</strong>：<a href="门控机制.html">门控机制</a>使用 <a href="Sigmoid激活函数.html">Sigmoid激活函数</a> 产生 [0, 1] 范围的控制信号，通过逐元素乘法（⊙）调节信息流的通过比例。0 表示完全阻断，1 表示完全通过，实现精确的"软开关"控制。</li>
 <li><strong>LSTM 三門体系</strong>：<a href="遗忘门（Forget Gate）.html">遗忘门（Forget Gate）</a>（fₜ = σ(Wf·[hₜ₋₁, xₜ] + bf)）决定丢弃什么；<a href="输入门（Input Gate）.html">输入门（Input Gate）</a>（iₜ 控制更新量，C̃ₜ 为候选值）决定写入什么；<a href="输出门（Output Gate）.html">输出门（Output Gate）</a>（oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)）决定输出什么。三者共同调控 <a href="细胞状态（Cell State）.html">细胞状态（Cell State）</a>。</li>
-<li><strong>解决<a href="梯度消失.html">梯度消失</a></strong>：门控机制使 LSTM 的<a href="细胞状态（Cell State）.html">细胞状态</a>梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当<a href="遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时梯度无损传递。对比标准 <a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> 需要连乘小于 1 的数导致指数衰减，门控设计从根本上解决了 <a href="梯度消失.html">梯度消失</a> 问题。</li>
-<li><strong>历史影响</strong>：门控设计成为序列建模的标准<a href="规范化理论.html">范式</a>，后续 GRU（门控循环单元）、Attention 机制等都受到门控思想的影响。Hochreiter &amp; Schmidhuber (1997) 的门控设计被评为 ⭐⭐⭐⭐⭐ 的历史贡献。</li>
+<li><strong>解决<a href="梯度消失.html">梯度消失</a></strong>：<a href="门控机制.html">门控机制</a>使 LSTM 的<a href="细胞状态（Cell State）.html">细胞状态</a>梯度 ∂Cₜ/∂Cₜ₋₁ = fₜ，当<a href="遗忘门（Forget Gate）.html">遗忘门</a>接近 1 时梯度无损传递。对比标准 <a href="循环神经网络（RNN）.html">循环神经网络（RNN）</a> 需要连乘小于 1 的数导致指数衰减，门控设计从根本上解决了 <a href="梯度消失.html">梯度消失</a> 问题。</li>
+<li><strong>历史影响</strong>：门控设计成为序列建模的标准<a href="规范化理论.html">范式</a>，后续 GRU（<a href="../entities/GRU.html">门控循环单元</a>）、Attention 机制等都受到门控思想的影响。Hochreiter &amp; Schmidhuber (1997) 的门控设计被评为 ⭐⭐⭐⭐⭐ 的历史贡献。</li>
 </ol>
 <h2 id="_1">来源</h2>
 <ul>

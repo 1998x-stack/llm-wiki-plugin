@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [computer-vision, segmentation, architecture]
+tags: [computer-vision, segmentation, architecture, 机器学习]
 aliases: [U-Net, U 型网络]
 relates_to:
   - target: 卷积神经网络（CNN）

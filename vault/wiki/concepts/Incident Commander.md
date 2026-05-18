@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [devops-automation, agents, incident-response, coordination]
+tags: [devops-automation, agents, incident-response, coordination, AI工程]
 aliases: [Incident Commander, 事故指挥官]
 relates_to: []
 supersedes: null

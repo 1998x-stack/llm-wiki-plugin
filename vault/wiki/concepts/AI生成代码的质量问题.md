@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "code-generation", "quality-assurance"]
+tags: [ai-engineering, code-generation, quality-assurance, AI工程]
 aliases: ["AI-Slop", "AI生成代码的质量问题", "AI Generated Code Quality Issues"]
 relates_to:
   - target: "[[Harness-Engineering]]"

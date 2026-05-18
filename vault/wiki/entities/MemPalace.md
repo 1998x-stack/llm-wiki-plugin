@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 5
-tags: [ai-memory, rag, memory-palace, context-engineering, 开源, 本地运行]
+tags: [ai-memory, rag, memory-palace, context-engineering, 开源, 本地运行, AI工程]
 aliases: [MemPalace AI Memory, mempalace, MemPalace v3.0.0]
 relates_to:
   - target: "[[记忆宫殿]]"
@@ -43,7 +43,7 @@ supersedes: null
 - **[[LoCoMo]] 成绩**：R@10 = 88.9%，超过 [[Memori]] 的 81.95%
 - **核心发现**：[[原文逐字存储]] + 结构化检索的朴素方案，打败了让 AI 决定记什么的复杂方案。AAAK 和 Rooms 模式的分数低于原文模式，其价值在于降低 Token 消耗而非提升召回率
 - **社区透明度**：发布数小时内社区发现 token 估算和 benchmark 模式问题，官方当天修正并公开承认，赢得社区好感
-- **技术栈极简**：仅两个依赖 — [[ChromaDB]]（本地向量数据库）+ PyYAML。没有 LangChain、LlamaIndex、[[OpenAI]] SDK
+- **技术栈极简**：仅两个依赖 — [[ChromaDB]]（本地向量数据库）+ PyYAML。没有 [[LangChain]]、LlamaIndex、[[OpenAI]] SDK
 - **设计原则**：内存层应该是确定性的、免费的、离线的。所有 Room 检测、内容分类、压缩用正则和关键词评分完成
 - **MCP 集成**：提供 19 个 MCP 工具赋能 AI Agent
 - **快速上手**：`pip install mempalace` → `mempalace init` → `mempalace mine` → `mempalace search`

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [LLM工程, Prompt Engineering, Context Engineering, Harness Engineering]
+tags: [LLM工程, "Prompt Engineering", "Context Engineering", "Harness Engineering", LLM能力]
 aliases: ["LLM Engineering Three Phases", "Prompt-Context-Harness Engineering", "LLM工程发展三阶段"]
 relates_to:
   - target: "[[Prompt-Engineering]]"
@@ -43,7 +43,7 @@ LLM 工程的三个发展阶段：从 [[Prompt Engineering]]（[[Prompt Engineer
    - 核心问题："给 AI 什么信息，它才能做好？"
    - 操作对象：[[上下文窗口]]中的信息内容与结构
    - 关注层次：信息流（系统级别）
-   - 主要工具：LangChain、LlamaIndex、向量数据库
+   - 主要工具：[[LangChain]]、LlamaIndex、向量数据库
    - 技术机制：信息检索 + 上下文组装，半软约束（结构化注入）
    - 有状态（记忆系统），中等可扩展性
 

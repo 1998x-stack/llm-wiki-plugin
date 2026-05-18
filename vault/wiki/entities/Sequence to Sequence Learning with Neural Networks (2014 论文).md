@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, NLP, seq2seq]
+tags: [paper, NLP, seq2seq, 信息论]
 aliases: [Sutskever et al. 2014]
 relates_to:
   - target: Ilya Sutskever

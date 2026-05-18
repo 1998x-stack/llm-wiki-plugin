@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [claude-code, protocol, transport, websocket, mcp, real-time]
+tags: [claude-code, protocol, transport, websocket, mcp, real-time, AI工程]
 aliases: ["WebSocket Transport", "WebSocket Transport Protocol", "MCP WebSocket Connection"]
 relates_to:
   - target: "[[MCP]]"

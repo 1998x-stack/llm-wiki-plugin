@@ -26,7 +26,7 @@ supersedes: null
 
 ## 概述
 
-DDPG（Deep Deterministic Policy Gradient）由 [[DeepMind]] 于 ICLR 2016 发表（arXiv:1509.02971）。核心贡献：将 DQN 的[[经验回放]]与[[目标网络]]引入连续动作空间，结合确定性[[策略梯度定理]]（DPG，Silver et al. 2014），首次实现连续控制任务的端到端深度[[强化学习]]。确定性策略 a=μ_θ(s) 避免了 DQN 在连续空间中的 argmax 不可行问题，OU 噪声提供探索。软[[目标网络]]更新（τ=0.005）比 DQN 的硬复制更稳定。
+DDPG（Deep Deterministic Policy Gradient）由 [[DeepMind]] 于 [[ICLR 2016]] 发表（arXiv:1509.02971）。核心贡献：将 DQN 的[[经验回放]]与[[目标网络]]引入连续动作空间，结合确定性[[策略梯度定理]]（DPG，Silver et al. 2014），首次实现连续控制任务的端到端深度[[强化学习]]。确定性策略 a=μ_θ(s) 避免了 DQN 在连续空间中的 argmax 不可行问题，OU 噪声提供探索。软[[目标网络]]更新（τ=0.005）比 DQN 的硬复制更稳定。
 
 ## 关键内容
 

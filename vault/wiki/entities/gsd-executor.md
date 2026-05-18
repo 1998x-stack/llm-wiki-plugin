@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, executor, implementation]
+tags: [gsd-agent, executor, implementation, Agent系统]
 aliases: ["gsd-executor", "GSD Executor", "GSD执行智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

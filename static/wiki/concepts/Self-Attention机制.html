@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="self-attention">Self-Attention机制</h1>
 <h2 id="_1">概述</h2>
-<p>Self-Attention（自注意力）是 <a href="Transformer架构.html">Transformer</a> 的核心机制，让序列中每个位置根据内容动态关注其他所有位置，从而获得全局上下文表示，时间复杂度为 O(n²d)。</p>
+<p><a href="Self-Attention.html">Self-Attention</a>（自<a href="注意力机制.html">注意力</a>）是 <a href="Transformer架构.html">Transformer</a> 的核心机制，让序列中每个位置根据内容动态关注其他所有位置，从而获得全局上下文表示，时间复杂度为 O(n²d)。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">基本计算过程</h3>
 <p>输入<a href="矩阵.html">矩阵</a> $X \in \mathbb{R}^{n \times d}$（序列长度 n，维度 d）经三组线性变换映射为：</p>
@@ -144,10 +144,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>$$\text{Attention}(Q,K,V)=\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</p>
 <p><strong>四步流程：</strong></p>
 <ol>
-<li><strong><a href="计算.html">计算</a>注意力分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
+<li><strong><a href="计算.html">计算</a><a href="注意力机制.html">注意力</a>分数</strong>：$QK^T$，结果为 $n \times n$ <a href="矩阵.html">矩阵</a>，表示每个位置对所有位置的相似度</li>
 <li><strong>缩放</strong>：除以 $\sqrt{d_k}$，防止点积值过大导致 softmax <a href="梯度消失.html">梯度消失</a></li>
 <li><strong><a href="Softmax.html">Softmax</a> 归一化</strong>：对每行归一化，使权重之和为 1</li>
-<li><strong>加权求和</strong>：用注意力权重对 V 加权聚合，得到输出表示</li>
+<li><strong>加权求和</strong>：用<a href="注意力机制.html">注意力</a>权重对 V 加权聚合，得到输出表示</li>
 </ol>
 <h3 id="_4">直觉理解</h3>
 <ul>
@@ -170,16 +170,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>$O(n^2 d)$</td>
 </tr>
 <tr>
-<td>注意力权重乘 $V$：$(n \times n)(n \times d)$</td>
-<td>$O(n^2 d)$</td>
+<td><span style="color:#e74c3c" title="broken link">注意力机制&lt;/td&gt;
+&lt;td&gt;注意力</span>权重乘 $V$：$(n \times n)(n \times d)$</td>
 </tr>
 <tr>
 <td><strong>总时间复杂度</strong></td>
 <td>$O(n^2 d)$，简写 $O(n^2)$</td>
 </tr>
 <tr>
-<td><strong>空间复杂度</strong>（存储注意力<a href="矩阵.html">矩阵</a>）</td>
-<td>$O(n^2)$</td>
+<td><strong>空间复杂度</strong>（存储<span style="color:#e74c3c" title="broken link">注意力机制&lt;/td&gt;
+&lt;td&gt;注意力</span><a href="矩阵.html">矩阵</a>）</td>
 </tr>
 </tbody>
 </table>
@@ -191,7 +191,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <th>维度</th>
 <th>RNN</th>
 <th>CNN</th>
-<th>Self-Attention</th>
+<th><a href="Self-Attention.html">Self-Attention</a></th>
 </tr>
 </thead>
 <tbody>
@@ -221,7 +221,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>Self-Attention 的优势：能直接建模长距离依赖，无需按顺序传播，每个位置可直接看到全局上下文。</p>
+<p><a href="Self-Attention.html">Self-Attention</a> 的优势：能直接建模长距离依赖，无需按顺序传播，每个位置可直接看到全局上下文。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-Self-Attention机制解析/01-解释Transformer架构中的Self-Attention机制，并说明其计算复杂度.md</span> — 完整推导与复杂度分析</li>

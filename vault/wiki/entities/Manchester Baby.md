@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [计算机历史, 存储程序计算机, 硬件]
+tags: [计算机历史, 存储程序计算机, 硬件, 计算理论]
 aliases: ["Manchester Small-Scale Experimental Machine", "SSEM"]
 entity_type: project
 relates_to: 

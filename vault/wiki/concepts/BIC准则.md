@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: ["统计学", "模型选择", "信息论"]
+tags: [统计学, 模型选择, 信息论, 概率论]
 aliases: ["Bayesian Information Criterion", "BIC", "贝叶斯信息准则", "施瓦茨准则"]
 relates_to:
   - target: "[[模型选择]]"
@@ -30,7 +30,7 @@ supersedes: null
 # BIC准则
 
 ## 概述
-贝叶斯信息准则（Bayesian Information Criterion, BIC），又称施瓦茨准则，由吉迪恩·施瓦茨于1978年提出，公式为BIC = -2ln(L) + kln(n)，是一种基于贝叶斯理论的模型选择准则。
+[[托马斯·贝叶斯|贝叶斯]]信息准则（Bayesian Information Criterion, BIC），又称施瓦茨准则，由[[吉迪恩·施瓦茨]]于1978年提出，公式为BIC = -2ln(L) + kln(n)，是一种基于[[托马斯·贝叶斯|贝叶斯]]理论的[[模型选择]]准则。
 
 ## 关键内容
 

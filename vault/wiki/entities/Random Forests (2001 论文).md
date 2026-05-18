@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, machine-learning, ensemble]
+tags: [paper, machine-learning, ensemble, 机器学习]
 aliases: [Breiman 2001]
 relates_to:
   - target: Leo Breiman

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [generative models, text-to-image, diffusion models]
+tags: ["generative models", text-to-image, "diffusion models", 深度学习]
 aliases: ["Stable Diffusion", "Latent Diffusion", "SD", "LDM"]
 relates_to:
   - target: "[[High-Resolution Image Synthesis with Latent Diffusion Models (2022 论文)]]"

@@ -126,23 +126,64 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../entities/index.html">entities</a> / Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#4A90D9">entity</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">计算机科学</span><span class="tag">人工智能</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
 </div>
   <div class="content">
-    <h1 id="recursive-functions-of-symbolic-expressions-and-their-computation-by-machine-part-i">Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I</h1>
+    <hr />
+<p>type: entity
+entity_type: paper
+status: active
+confidence: 0.9
+created: 2026-04-26
+updated: 2026-04-26
+last_accessed: 2026-04-26
+source_count: 1
+tags: [技术, 计算机科学, 人工智能, 计算理论]
+  - 技术
+  - 计算机科学
+  - 人工智能
+aliases:
+  - Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I
+  - LISP 论文
+  - McCarthy 1960
+relates_to:
+  - target: "<a href="John McCarthy.html">John McCarthy</a>"
+    type: authored
+    confidence: 0.9
+  - target: "<a href="LISP.html">LISP</a>"
+    type: introduces
+    confidence: 0.9
+  - target: "<a href="../concepts/S-表达式.html">S-表达式</a>"
+    type: defines
+    confidence: 0.9
+  - target: "<a href="../concepts/eval函数.html">eval函数</a>"
+    type: defines
+    confidence: 0.9
+  - target: "<a href="../concepts/λ演算.html">λ演算</a>"
+    type: builds_upon
+    confidence: 0.9
+  - target: "<a href="../concepts/函数式编程.html">函数式编程</a>"
+    type: pioneers
+    confidence: 0.9
+  - target: "<a href="../concepts/垃圾回收.html">垃圾回收</a>"
+    type: introduces
+    confidence: 0.9
+supersedes: null</p>
+<hr />
+<h1 id="recursive-functions-of-symbolic-expressions-and-their-computation-by-machine-part-i">Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I</h1>
 <h2 id="_1">概述</h2>
-<p>《Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I》是 John McCarthy 于 1960 年发表在《Communications of the ACM》上的开创性论文。这篇论文介绍了 LISP 编程语言的设计和实现，奠定了函数式编程的基础。</p>
+<p>《Recursive Functions of <a href="../concepts/S-表达式.html">Symbolic Expression</a>s and Their Computation by Machine, Part I》是 <a href="John McCarthy.html">John McCarthy</a> 于 1960 年发表在《Communications of the ACM》上的开创性论文。这篇论文介绍了 LISP 编程语言的设计和实现，奠定了<a href="../concepts/函数式编程.html">函数式编程</a>的基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>LISP语言介绍</strong>：论文介绍了 LISP 编程语言，这是一种以列表处理为核心的语言，引入了递归函数、条件表达式、垃圾回收和"代码即数据"等革命性概念。</p>
+<p><strong>LISP语言介绍</strong>：论文介绍了 LISP 编程语言，这是一种以列表处理为核心的语言，引入了递归函数、条件表达式、<a href="../concepts/垃圾回收.html">垃圾回收</a>和"<a href="../concepts/同像性.html">代码即数据</a>"等革命性概念。</p>
 </li>
 <li>
-<p><strong>S-表达式定义</strong>：定义了 S-表达式（Symbolic Expressions）作为 LISP 的统一数据表示方法，原子是 S-表达式，如果 e1 和 e2 都是 S-表达式，则有序对 (e1 · e2) 也是 S-表达式。</p>
+<p><strong><a href="../concepts/S-表达式.html">S-表达式</a>定义</strong>：定义了 <a href="../concepts/S-表达式.html">S-表达式</a>（<a href="../concepts/S-表达式.html">Symbolic Expression</a>s）作为 LISP 的统一数据表示方法，原子是 <a href="../concepts/S-表达式.html">S-表达式</a>，如果 e1 和 e2 都是 <a href="../concepts/S-表达式.html">S-表达式</a>，则有序对 (e1 · e2) 也是 <a href="../concepts/S-表达式.html">S-表达式</a>。</p>
 </li>
 <li>
 <p><strong>五个基本函数</strong>：定义了 car（取对的第一个元素）、cdr（取对的第二个元素）、cons（构造新的对）、atom（判断是否为原子）、eq（判断两个原子是否相等）。</p>
@@ -151,16 +192,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>条件表达式</strong>：引入了 (cond (p1 e1) (p2 e2) ... (pn en)) 的形式，使得递归定义成为可能。</p>
 </li>
 <li>
-<p><strong>eval 函数</strong>：论文中最令人惊叹的部分是用 LISP 自身定义了一个通用的 LISP 解释器，这是元循环解释器的原型。</p>
+<p><strong><a href="../concepts/eval 函数.html">eval 函数</a></strong>：论文中最令人惊叹的部分是用 LISP 自身定义了一个通用的 LISP 解释器，这是<a href="../concepts/eval 函数.html">元循环解释器</a>的原型。</p>
 </li>
 <li>
-<p><strong>垃圾回收机制</strong>：首次在编程语言中引入了自动内存管理机制。</p>
+<p><strong><a href="../concepts/垃圾回收.html">垃圾回收</a>机制</strong>：首次在编程语言中引入了<a href="../concepts/垃圾回收.html">自动内存管理</a>机制。</p>
 </li>
 <li>
-<p><strong>同像性概念</strong>：程序和数据使用相同的表示形式，使得程序可以将其他程序作为数据来处理。</p>
+<p><strong><a href="../concepts/同像性.html">同像性</a>概念</strong>：程序和数据使用相同的表示形式，使得程序可以将其他程序作为数据来处理。</p>
 </li>
 <li>
-<p><strong>历史意义</strong>：这篇论文开创了函数式编程范式，对后续几十年的编程语言设计产生了深远影响。</p>
+<p><strong>历史意义</strong>：这篇论文开创了<a href="../concepts/函数式编程.html">函数式编程</a>范式，对后续几十年的编程语言设计产生了深远影响。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

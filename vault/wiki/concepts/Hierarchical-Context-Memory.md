@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [context-engineering, memory-system, ai-architecture]
+tags: [context-engineering, memory-system, ai-architecture, AI工程]
 aliases: ["分层上下文记忆", "Hierarchical Context Memory", "HCM"]
 relates_to:
   - {target: "[[Context-Design]]", type: implements, confidence: 0.9}

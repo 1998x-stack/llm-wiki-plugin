@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">meta-ai</span><span class="tag">self-improvement</span><span class="tag">agent-engineering</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">meta-ai</span><span class="tag">self-improvement</span><span class="tag">agent-engineering</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="meta-ai">Meta-AI 改进循环</h1>
@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心原则</strong>：AI 可以改进 AI 使用的工件。这在实践中表现为三个层面：工具描述可以通过 AI 辅助迭代快速改善、Prompt 可以通过 AI 生成测试用例并分析失败来优化、Agent 策略可以通过 Agent 模拟来调试。这一原则是 <a href="工具测试 Agent.html">工具测试 Agent</a> 的理论基础。</p>
 </li>
 <li>
-<p><strong>工作流程</strong>：运行示例 → 观察失败 → AI 分析原因 → AI 改写工件 → 重测验证 → 循环迭代。Anthropic 的实践表明，至少循环 5-10 次才能充分发现边缘情况。这与 <a href="评测驱动开发.html">评测驱动开发</a> 的"测试-修复-验证"循环类似，但主体是 AI 而非人类工程师。</p>
+<p><strong>工作流程</strong>：运行示例 → 观察失败 → AI 分析原因 → AI 改写工件 → 重测验证 → 循环迭代。<a href="../entities/Anthropic.html">Anthropic</a> 的实践表明，至少循环 5-10 次才能充分发现边缘情况。这与 <a href="评测驱动开发.html">评测驱动开发</a> 的"测试-修复-验证"循环类似，但主体是 AI 而非人类工程师。</p>
 </li>
 <li>
 <p><strong>量化效果</strong>：经过 AI 辅助优化的工具描述使后续 Agent 任务完成时间减少 <strong>40%</strong>。这一数据证明了投资工具质量的 ROI，也验证了 Meta-AI 改进循环的有效性。该效果在 <a href="../entities/SWE-bench.html">SWE-bench</a> 等代码任务中尤为明显。</p>

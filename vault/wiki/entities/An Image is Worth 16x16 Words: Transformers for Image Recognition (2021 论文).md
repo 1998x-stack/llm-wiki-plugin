@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, computer-vision, vision-transformer]
+tags: [paper, computer-vision, vision-transformer, 机器学习]
 aliases: [Dosovitskiy et al. 2021, ViT 论文]
 relates_to:
   - target: Alexey Dosovitskiy

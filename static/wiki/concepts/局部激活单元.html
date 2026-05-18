@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>放弃 <a href="Softmax.html">Softmax</a></strong> — 传统<a href="注意力机制（Attention Mechanism）.html">注意力机制</a>施加 <a href="Softmax.html">Softmax</a> 使 $\sum w_i = 1$，但 DIN 刻意不这样做。<a href="Softmax.html">Softmax</a> 会压缩权重的绝对值范围，弱化兴趣强度信息。去掉 <a href="Softmax.html">Softmax</a> 后，权重的绝对值能更好地反映用户对该候选商品的兴趣强度。</li>
 <li><strong>自适应性</strong> — 同一用户面对不同候选广告时，局部激活单元会自动"激活"不同的历史行为。例如面对跑鞋时激活篮球鞋行为，面对 Java 书籍时激活 <a href="Python.html">Python</a> 教程行为。</li>
 <li><strong><a href="Ablation Study.html">消融实验</a></strong> — 在阿里巴巴工业数据集上，局部激活单元相比 Sum Pooling 带来 +0.0067 的绝对 AUC 提升，是 DIN 各组件中贡献最大的部分。</li>
-<li><strong>与多峰分布的关系</strong> — 局部激活单元的设计直接源于"用户兴趣是多峰分布"的洞察。不试图用固定向量概括所有兴趣，而是面对不同候选时动态激活相关的那部分兴趣峰。</li>
+<li><strong>与<a href="多峰分布（用户兴趣）.html">多峰分布</a>的关系</strong> — 局部激活单元的设计直接源于"用户兴趣是<a href="多峰分布（用户兴趣）.html">多峰分布</a>"的洞察。不试图用固定向量概括所有兴趣，而是面对不同候选时动态激活相关的那部分兴趣峰。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [AI历史, 研究资金, 神经网络]
+tags: [AI历史, 研究资金, 神经网络, AI工程]
 aliases: [AI寒冬, AI Winter, 人工智能寒冬, 第一次AI寒冬]
 relates_to:
   - "[[Perceptrons (Minsky & Papert 1969)]] — caused_by"

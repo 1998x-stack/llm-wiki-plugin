@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, deep-learning, representation-learning]
+tags: [paper, deep-learning, representation-learning, 机器学习]
 aliases: [Hinton & Salakhutdinov 2006]
 relates_to:
   - target: Geoffrey E. Hinton

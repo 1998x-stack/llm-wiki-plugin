@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="ablation-study">Ablation Study</h1>
 <h2 id="_1">概述</h2>
-<p>Ablation Study（消融实验）是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。</p>
+<p>Ablation Study（<a href="消融实验.html">消融实验</a>）是 <a href="../entities/SWE-agent.html">SWE-agent</a> 论文中用于验证"性能增益来自哪些界面设计选择"的方法论。通过将 ACI 拆成搜索、编辑、viewer、context 等模块分别对比，将 agent 设计从"玄学调 prompt"变成了"可以分部件优化的 interface engineering"。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">为什么重要</h3>
 <blockquote>
@@ -166,28 +166,28 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>edit w/ linting vs edit w/o linting vs no edit</td>
 <td>有 linting 最优（18.0），无 linting 次之（15.0），无 edit 最差（10.3）</td>
 <td>-3.0 / -7.7</td>
-<td><a href="Guardrails.html">Guardrails</a> 减少错误传播</td>
-</tr>
-<tr>
-<td><strong>Search</strong></td>
-<td>summarized vs iterative vs no search</td>
-<td>总结式最优（18.0），迭代式最差（12.0），无搜索居中（15.7）</td>
-<td>-6.0 / -2.3</td>
-<td>反馈简洁、信息密度高</td>
-</tr>
-<tr>
-<td><strong>File Viewer</strong></td>
-<td>100 lines vs 30 lines vs full file</td>
-<td>100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7）</td>
-<td>-3.7 / -5.3</td>
-<td>适中窗口利于局部推理</td>
-</tr>
-<tr>
-<td><strong>Context</strong></td>
-<td>last 5 obs vs full history vs w/o demo</td>
-<td>最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3）</td>
-<td>-3.0 / -1.7</td>
-<td>简洁反馈、<a href="工作记忆.html">工作记忆</a>有限</td>
+<td><a href="Guardrails.html">Guardrails</a> 减少<span style="color:#e74c3c" title="broken link">错误复合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Search&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;summarized vs iterative vs no search&lt;/td&gt;
+&lt;td&gt;总结式最优（18.0），迭代式最差（12.0），无搜索居中（15.7）&lt;/td&gt;
+&lt;td&gt;-6.0 / -2.3&lt;/td&gt;
+&lt;td&gt;反馈简洁、信息密度高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;File Viewer&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;100 lines vs 30 lines vs full file&lt;/td&gt;
+&lt;td&gt;100-line 最优（18.0），30 行次之（14.3），整文件最差（12.7）&lt;/td&gt;
+&lt;td&gt;-3.7 / -5.3&lt;/td&gt;
+&lt;td&gt;适中窗口利于局部推理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Context&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;last 5 obs vs full history vs w/o demo&lt;/td&gt;
+&lt;td&gt;最近 5 条最优（18.0），full history（15.0），去掉 demo（16.3）&lt;/td&gt;
+&lt;td&gt;-3.0 / -1.7&lt;/td&gt;
+&lt;td&gt;简洁反馈、[[工作记忆</span>有限</td>
 </tr>
 </tbody>
 </table>
@@ -211,7 +211,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ul>
 <li><strong>100 lines（18.0）</strong>：最佳平衡。</li>
 <li><strong>30 lines（14.3）</strong>：局部上下文较少，可能不够支撑局部推理。</li>
-<li><strong>Full file（12.7）</strong>：整文件反而最差。LM 不像人类那样能轻松忽略不重要内容，多余信息会占 token、扰乱注意力。</li>
+<li><strong>Full file（12.7）</strong>：整文件反而最差。LM 不像人类那样能轻松忽略不重要内容，多余信息会占 token、扰乱<a href="注意力机制.html">注意力</a>。</li>
 </ul>
 <p><strong>证明</strong>：对 agent 来说，信息总量和信息可用性不是一回事。整文件虽然信息最全，但不是最可用。</p>
 <h4 id="context-ablation">Context Ablation</h4>
@@ -236,7 +236,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h3 id="_7">方法论价值</h3>
 <p>这组消融的价值在于，它把 agent 设计从"玄学调 prompt"变成了<strong>可以分部件优化的 interface engineering</strong>。每个组件都可以独立优化和验证，而非整体调参。</p>
 <h3 id="agent">与 Agent 评估的关系</h3>
-<p>消融实验是 <a href="Agent评估方法论.html">Agent评估方法论</a> 的重要组成部分，它回答了"哪个设计选择真正贡献了性能增益"这一因果问题。</p>
+<p><a href="消融实验.html">消融实验</a>是 <a href="Agent评估方法论.html">Agent评估方法论</a> 的重要组成部分，它回答了"哪个设计选择真正贡献了性能增益"这一因果问题。</p>
 <h2 id="_8">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/03-SWE-agent 论文的所有核心概念 展开详细分析 一个一个.md</span> — SWE-agent 核心概念分析</li>

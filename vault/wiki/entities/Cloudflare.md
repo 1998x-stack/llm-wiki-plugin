@@ -26,7 +26,7 @@ Cloudflare 是一家美国跨国科技企业，提供内容分发网络、DNS [[
 ## 关键内容
 
 1. **在 [[Agentic Commerce]] 中的角色**：
-   - 与 [[Coinbase]] 共建 [[x402 Foundation]]，推动 [[x402 Protocol|HTTP 402]] 成为互联网级开放标准
+   - 与 [[Coinbase]] 共建 [[x402 Foundation]]，推动 [[x402 Protocol|HTTP 402]] 成为[[互联网]]级开放标准
    - 在 [[Agents]] SDK 内置 x402 支持
    - 在 [[Model Context Protocol]] (MCP) 集成中支持 x402 协议
    - 提出"延迟支付方案"，支持按抓取付费模式

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [versioning, documentation, maintenance]
+tags: [versioning, documentation, maintenance, AI工程]
 aliases: ["ERRATA机制"]
 relates_to: []
 supersedes: null

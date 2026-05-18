@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, loop-mechanism, runtime]
+tags: [ai-agent, loop-mechanism, runtime, AI工程]
 aliases: ["TAOR Loop", "Think-Act-Observe-Repeat"]
 relates_to: []
 supersedes: null

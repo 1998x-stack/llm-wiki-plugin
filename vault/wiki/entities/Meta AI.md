@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [company, AI, LLM]
+tags: [company, AI, LLM, AI工程]
 aliases: [Meta AI, FAIR]
 relates_to:
   - target: LLaMA

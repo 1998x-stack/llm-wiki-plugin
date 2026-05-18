@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">基准测试</span><span class="tag">终端</span><span class="tag">通用Agent</span><span class="tag">评测</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">基准测试</span><span class="tag">终端</span><span class="tag">通用Agent</span><span class="tag">评测</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="terminal-bench">Terminal-Bench</h1>
@@ -142,19 +142,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>评估 Agent 在终端/命令行环境中的操作能力</li>
 <li>涵盖文件操作、系统管理、脚本编写等通用任务</li>
 <li>
-<p>提供标准化的终端任务评测框架</p>
+<p>提供标准化的终端任务<a href="../concepts/Evaluation Harness.html">评测框架</a></p>
 </li>
 <li>
 <p><strong>在评测体系中的位置</strong>：</p>
 </li>
-<li>与 SWE-bench（代码修复）、τ-Bench（对话）共同构成多维度 Agent 评测矩阵</li>
+<li>与 <a href="SWE-bench.html">SWE-bench</a>（代码修复）、<a href="../projects/τ-Bench.html">τ-Bench</a>（对话）共同构成多维度 <a href="../concepts/评测驱动开发.html">Agent 评测</a><a href="../concepts/矩阵.html">矩阵</a></li>
 <li>
-<p>被 Anthropic 用于基础设施噪声量化研究（不同资源配置对成功率的影响达 6 个百分点）</p>
+<p>被 <a href="Anthropic.html">Anthropic</a> 用于<a href="../concepts/基础设施噪声.html">基础设施噪声</a>量化研究（不同资源<a href="../concepts/Configuration.html">配置</a>对成功率的影响达 6 个百分点）</p>
 </li>
 <li>
 <p><strong>相关研究</strong>：</p>
 </li>
-<li>Anthropic 团队发现 Terminal-Bench 上资源配置差异导致的结果波动</li>
+<li><a href="Anthropic.html">Anthropic</a> 团队发现 Terminal-Bench 上资源<a href="../concepts/Configuration.html">配置</a>差异导致的结果波动</li>
 <li>推荐 requests 和 limits 之间保持 3× 带宽以获得稳定结果</li>
 </ol>
 <h2 id="_3">来源</h2>

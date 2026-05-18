@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [NLP, LLM, GPT]
+tags: [NLP, LLM, GPT, AI工程]
 aliases: [GPT, Generative Pre-trained Transformer, GPT 系列]
 relates_to:
   - target: Alec Radford
@@ -29,7 +29,7 @@ supersedes: null
 
 1. **GPT-1（2018）**：提出 [[预训练-微调范式]]，使用 [[Transformer]] 解码器进行生成式预训练。
 2. **GPT-2（2019）**：展示[[零样本学习]]能力，15 亿参数可通过自然语言提示完成任务。
-3. **[[GPT-3]]（2020）**：1750 亿参数，涌现出推理、代码生成等未明确训练的能力。
+3. **[[GPT-3]]（2020）**：1750 亿参数，涌现出推理、[[代码生成]]等未明确训练的能力。
 4. **GPT-4（2023）**：多模态超大模型，支持文本和图像输入。
 
 ## 来源

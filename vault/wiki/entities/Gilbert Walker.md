@@ -7,7 +7,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [气象学家, 统计学家, 时间序列分析]
+tags: [气象学家, 统计学家, 时间序列分析, 概率论]
 aliases: ["Gilbert Walker", "Sir Gilbert Walker", "吉尔伯特·沃克"]
 relates_to:
   - target: "[[George Udny Yule]]"

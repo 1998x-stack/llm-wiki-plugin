@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [重构, 代码优化]
+tags: [重构, 代码优化, AI工程]
 aliases: [Replace Temp with Query, 用查询替换临时变量]
 relates_to:
   - target: "[[重构目录]]"

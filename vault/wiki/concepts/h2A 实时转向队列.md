@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-agent, steering, real-time]
+tags: [ai-agent, steering, real-time, AI工程]
 aliases: ["h2A Real-time Steering Queue", "实时转向队列"]
 relates_to: []
 supersedes: null

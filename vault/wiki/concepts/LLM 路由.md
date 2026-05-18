@@ -27,8 +27,8 @@ supersedes: null
 
 ## 关键内容
 - **Mem[[MemPalace 宫殿架构|Palace Architecture]] v1 实践**：
-  - 索引时：Haiku 模型给每个会话分配 Room 标签
-  - 查询时：Haiku 模型把问题路由到 1-2 个 Room
+  - 索引时：[[Claude 3 Haiku|Haiku]] 模型给每个会话分配 Room 标签
+  - 查询时：[[Claude 3 Haiku|Haiku]] 模型把问题路由到 1-2 个 Room
   - 结果：R@5 = 34.2%，62.5% 的查询零召回，比朴素基线还低 26 个百分点
 - **失败根因**：两个独立的 LLM 调用产生词汇不匹配。索引时标记为"relationship_advice"，查询时路由到"personal_guidance"——标签向量相似度不够
 - **关键教训**：用 LLM 做双端路由，必须保证两端共享同一套词汇体系

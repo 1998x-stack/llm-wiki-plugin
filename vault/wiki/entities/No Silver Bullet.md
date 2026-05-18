@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 2
-tags: [软件工程, 论文, 本质困难, 偶然困难]
+tags: [软件工程, 论文, 本质困难, 偶然困难, AI工程]
 aliases: ["No Silver Bullet", "银弹问题", "No Silver Bullet -- Essence and Accident in Software Engineering"]
 relates_to: []
 supersedes: null
@@ -15,14 +15,14 @@ supersedes: null
 # No Silver Bullet
 
 ## 概述
-著名软件工程论文《No Silver Bullet -- Essence and Accident in Software Engineering》，由Frederick P. Brooks, Jr.于1986年发表，论证了软件工程中不存在能让生产力在十年内提高一个数量级的单一技术。
+著名软件工程论文《No Silver Bullet -- [[本质困难|Essence]] and [[偶然困难|Accident]] in Software Engineering》，由[[Frederick P. Brooks, Jr.]]于1986年发表，论证了软件工程中不存在能让生产力在十年内提高一个数量级的单一技术。
 
 ## 关键内容
 
 1. **核心观点**：
-   - 软件开发的困难分为"本质困难"(essence)和"偶然困难"(accident)
-   - 本质困难来自概念结构本身的复杂性，无法通过单一技术解决
-   - 偶然困难是工具和表达方式的不完善，可通过技术改进消除
+   - 软件开发的困难分为"[[本质困难]]"(essence)和"[[偶然困难]]"(accident)
+   - [[本质困难]]来自概念结构本身的复杂性，无法通过单一技术解决
+   - [[偶然困难]]是工具和表达方式的不完善，可通过技术改进消除
 
 2. **软件的四个本质特性**：
    - **复杂性**(Complexity)：软件实体是人类创造的最复杂的东西

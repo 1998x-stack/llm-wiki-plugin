@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [Word2Vec, 训练优化, Softmax, 计算效率]
+tags: [Word2Vec, 训练优化, Softmax, 计算效率, 计算理论]
 aliases: [Hierarchical Softmax, 层次化 Softmax, Huffman Softmax]
 relates_to: [Word2Vec, 负采样（Negative Sampling）, CBOW（连续词袋模型）, Skip-gram, 交叉熵]
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, reinforcement-learning, PPO]
+tags: [person, reinforcement-learning, PPO, 强化学习]
 aliases: [John Schulman]
 relates_to:
   - target: PPO（近端策略优化）

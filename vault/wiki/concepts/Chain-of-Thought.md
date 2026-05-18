@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-engineering, prompt-engineering, reasoning]
+tags: [ai-engineering, prompt-engineering, reasoning, AI工程]
 aliases: ["思维链", "Chain-of-Thought", "CoT"]
 relates_to: []
 supersedes: null

@@ -29,11 +29,11 @@ supersedes: null
 
 # Codex多Agent调度
 
-[[Codex CLI]] 的并行任务执行系统，让 [[Codex CLI|Codex]] 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Agent 将复杂任务分解后，派遣多个[[子 Agent & 多 Agent 系统|子 Agent]] 并行执行，收集汇总结果。
+[[Codex CLI]] 的并行任务执行系统，让 [[Codex CLI|Codex]] 从"单线程 AI 程序员"变成"AI 开发团队调度中心"。主 Agent 将复杂[[任务分解]]后，派遣多个[[子 Agent & 多 Agent 系统|子 Agent]] 并行执行，收集汇总结果。
 
 ## 核心价值
 
-单 Agent 面临[[上下文窗口]]有限、顺序执行、单点失败三大局限。Multi-Agent 解决：任务分解（每个 subagent 专注较小上下文）、并行执行、专业分工、隔离失败（subagent 失败不影响主流程）。
+单 Agent 面临[[上下文窗口]]有限、顺序执行、单点失败三大局限。Multi-Agent 解决：[[任务分解]]（每个 subagent 专注较小上下文）、并行执行、专业分工、隔离失败（subagent 失败不影响主流程）。
 
 ## 核心工具集（feature flag: multi_agents）
 
@@ -90,7 +90,7 @@ default_worker_timeout = 1800 # 默认 30 分钟超时
 
 批量同构任务（50 个 API endpoint 各写测试、30 个模块迁移框架）：
 1. 主 Agent 枚举任务目标 → 生成 CSV → 调用 spawn_agents_on_csv
-2. 每个 [[Worker Agent]] 独立上下文、独立沙箱
+2. 每个 [[Worker Agent]] 独立上下文、独立[[Claude Code 沙箱机制|沙箱]]
 3. 主 Agent wait 所有 worker → 汇总报告
 
 **DevDay 2025 案例**：7 个终端同时跑 7 个 [[Codex CLI|Codex]] 实例，各自开发一款 [[Phaser.js]] 游戏，开发者只做审批和方向把控——开发者带宽的杠杆化。

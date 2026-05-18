@@ -135,13 +135,13 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="csp">CSP 模型</h1>
 <h2 id="_1">概述</h2>
-<p>CSP（通信顺序进程）是 <a href="../entities/Tony Hoare.html">Tony Hoare</a> 于1978年提出的并发编程模型：程序由多个独立的顺序进程组成，进程之间通过同步消息传递而非共享内存进行通信。</p>
+<p>CSP（通信顺序进程）是 <a href="../entities/Tony Hoare.html">Tony Hoare</a> 于1978年提出的并发编程模型：程序由多个独立的顺序进程组成，进程之间通过同步<a href="消息传递.html">消息传递</a>而非共享内存进行通信。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心思想</h3>
 <ul>
 <li><strong>进程</strong>：每个进程是严格顺序的，拥有私有状态，不与其他进程共享任何变量</li>
-<li><strong>同步通信</strong>：发送方和接收方必须同时就绪才能完成通信（"会合"）</li>
-<li><strong>没有共享状态</strong>：不存在数据竞争、锁、信号量</li>
+<li><strong><a href="同步通信.html">同步通信</a></strong>：发送方和接收方必须同时就绪才能完成通信（"<a href="同步通信.html">会合</a>"）</li>
+<li><strong>没有共享状态</strong>：不存在数据竞争、锁、<a href="信号量.html">信号量</a></li>
 </ul>
 <h3 id="_4">基本命令</h3>
 <ul>
@@ -162,8 +162,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 </blockquote>
 <h3 id="_7">现代实现</h3>
 <ul>
-<li><strong>Go 语言</strong>：goroutine + channel + select</li>
-<li><strong>Erlang</strong>：轻量级进程 + 消息传递</li>
+<li><strong>Go 语言</strong>：<a href="goroutine.html">goroutine</a> + <a href="channel.html">channel</a> + select</li>
+<li><strong><a href="../entities/Erlang.html">Erlang</a></strong>：轻量级进程 + <a href="消息传递.html">消息传递</a></li>
 <li><strong>Clojure core.async</strong>：通道和 go 块</li>
 <li><strong>Rust</strong>：<code>std::sync::mpsc</code> 通道</li>
 </ul>

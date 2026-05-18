@@ -51,7 +51,7 @@ SWE-agent 是由 Princeton 团队（2024）开发的 AI Agent 系统，能将 LL
 
 - [[SWE-bench]] Full：**12.47%** resolved（GPT-4 Turbo）
 - [[SWE-bench]] Lite：**18.00%** resolved（GPT-4 Turbo）
-- pass@k 曲线：k=6 时解决率升至 30%+
+- [[pass@k vs pass^k|pass@k]] 曲线：k=6 时解决率升至 30%+
 
 ### Trajectory 格式
 

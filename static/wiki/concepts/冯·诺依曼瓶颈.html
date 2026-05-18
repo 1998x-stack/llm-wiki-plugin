@@ -126,14 +126,53 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / 冯·诺依曼瓶颈</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
-  <div class="meta-item"><strong>Created:</strong> 2026-04-17</div>
-  <div class="meta-item"><strong>Updated:</strong> 2026-04-17</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">技术</span><span class="tag">研究</span><span class="tag">计算理论</span></div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> —</div>
+  <div class="meta-item"><strong>Created:</strong> —</div>
+  <div class="meta-item"><strong>Updated:</strong> —</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
 </div>
   <div class="content">
-    <h1 id="_1">冯·诺依曼瓶颈</h1>
+    <hr />
+<p>type: concept
+status: active
+confidence: 0.9
+created: 2026-04-17
+updated: 2026-04-17
+last_accessed: 2026-04-17
+source_count: 1
+tags: [技术, 研究, 计算理论, AI工程]
+- 技术
+- 研究
+- 计算理论
+aliases:
+- von Neumann Bottleneck
+- 冯诺依曼瓶颈
+- Von Neumann Bottleneck
+relates_to:
+- target: "<a href="存储程序计算机.html">存储程序计算机</a>"
+  type: part_of
+  confidence: 0.95
+  note: 存储程序架构固有的性能限制
+- target: "<a href="../entities/约翰·冯·诺依曼.html">约翰·冯·诺依曼</a>"
+  type: caused_by
+  confidence: 0.85
+  note: 其 EDVAC 报告设计的架构存在此瓶颈
+- target: "<a href="../entities/First Draft of a Report on the EDVAC.html">First Draft of a Report on the EDVAC</a>"
+  type: originated_from
+  confidence: 0.85
+  note: 1945年冯·诺依曼的报告设计了存储程序架构，其CPU-内存通信模式导致了瓶颈
+- target: "<a href="../entities/John Backus.html">John Backus</a>"
+  type: related_to
+  confidence: 0.9
+  note: 1978年图灵奖演讲《Can Programming Be Liberated from the von Neumann Style?》明确命名并批判了此瓶颈
+- target: "<a href="../entities/FORTRAN.html">FORTRAN</a>"
+  type: related_to
+  confidence: 0.7
+  note: FORTRAN 编译器优化试图缓解此瓶颈
+supersedes: null</p>
+<hr />
+<h1 id="_1">冯·诺依曼瓶颈</h1>
 <h2 id="_2">概述</h2>
 <p><a href="../entities/冯·诺依曼.html">冯·诺依曼</a>瓶颈（von Neumann bottleneck）指<a href="存储程序计算机.html">存储程序计算机</a>中 CPU 与内存之间的数据传输通道成为系统性能的根本限制。无论 CPU 有多快，它都必须通过这条狭窄的通道"一个字一个字地"从内存中泵取数据和指令。</p>
 <h2 id="_3">关键内容</h2>

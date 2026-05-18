@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.75</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">code-generation</span><span class="tag">backend</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler</span><span class="tag">code-generation</span><span class="tag">backend</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">代码生成</h1>
@@ -139,16 +139,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>核心职责</strong>：代码生成器（Codegen）将语义分析后的中间表示转换为目标平台的机器码，涉及指令选择、寄存器分配、指令调度等关键任务。</p>
+<p><strong>核心职责</strong>：代码<a href="生成器.html">生成器</a>（Codegen）将<a href="语义分析.html">语义分析</a>后的中间表示转换为目标平台的机器码，涉及指令选择、寄存器分配、指令调度等关键任务。</p>
 </li>
 <li>
-<p><strong>x86-64 代码生成</strong>：在 Anthropic 的 C 编译器实验中，最终实现了基本的 x86-64 代码生成，通过了自定义测试套件约 85% 的测试。</p>
+<p><strong>x86-64 代码生成</strong>：在 <a href="../entities/Anthropic.html">Anthropic</a> 的 <a href="C 编译器.html">C 编译器</a>实验中，最终实现了基本的 x86-64 代码生成，通过了自定义测试套件约 85% 的测试。</p>
 </li>
 <li>
-<p><strong>接口依赖</strong>：代码生成阶段依赖语义分析阶段的输出，两者之间的接口必须清晰定义，包括中间表示格式、符号表结构等。</p>
+<p><strong>接口依赖</strong>：代码生成阶段依赖<a href="语义分析.html">语义分析</a>阶段的输出，两者之间的接口必须清晰定义，包括中间表示格式、符号表结构等。</p>
 </li>
 <li>
-<p><strong>并行开发可行性</strong>：代码生成阶段相对独立，可以与其他编译阶段并行开发，前提是接口规范已在开发前达成一致。</p>
+<p><strong>并行开发可行性</strong>：代码生成阶段相对独立，可以与其他编译阶段并行开发，前提是<a href="接口规范.html">接口规范</a>已在开发前达成一致。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

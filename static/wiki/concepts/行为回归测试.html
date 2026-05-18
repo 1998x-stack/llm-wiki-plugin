@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">测试</span><span class="tag">回归测试</span><span class="tag">AI 系统质量</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">测试</span><span class="tag">回归测试</span><span class="tag">AI 系统质量</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">行为回归测试</h1>
 <h2 id="_2">概述</h2>
-<p>行为回归测试（Behavioral Regression Testing）是 AI 系统特有的测试方法，通过维护覆盖多行为维度的评测套件，检测提示更新、配置变更或模型升级对系统行为的意外影响。</p>
+<p>行为回归测试（Behavioral Regression Testing）是 AI 系统特有的测试方法，通过维护覆盖多行为维度的评测套件，检测提示更新、<a href="Configuration.html">配置</a>变更或模型升级对系统行为的意外影响。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>定义与传统回归测试的区别</strong>：行为回归测试是 AI 系统中用于检测变更对模型行为意外影响的测试方法。与传统软件的回归测试（验证代码逻辑是否正确）不同，行为回归测试关注的是 LLM 输出的"质量"和"行为"是否符合预期。传统回归测试有明确的对错标准，而行为回归测试需要定义行为维度的评测指标。</p>
 </li>
 <li>
-<p><strong>在预防提示更新副作用中的作用</strong>：行为回归测试是阻止"意外影响"的关键防线。当提示词发生变更时，行为回归评测套件可以检测这一变更是否影响了模型在其他任务上的表现。这是预防提示更新副作用的核心手段。</p>
+<p><strong>在预防<a href="提示更新副作用.html">提示更新副作用</a>中的作用</strong>：行为回归测试是阻止"意外影响"的关键防线。当提示词发生变更时，行为回归评测套件可以检测这一变更是否影响了模型在其他任务上的表现。这是预防<a href="提示更新副作用.html">提示更新副作用</a>的核心手段。</p>
 </li>
 <li>
-<p><strong>从事故中提炼</strong>：好的 Postmortem 实践会将失败案例加入评测套件，防止相同失败复发。Anthropic 的改进模式包括：将失败案例加入评测套件、改进部署流水线增加金丝雀发布阶段、加强生产监控添加特定行为质量指标。</p>
+<p><strong>从事故中提炼</strong>：好的 <a href="Postmortem 文化.html">Postmortem</a> 实践会将失败案例加入评测套件，防止相同失败复发。<a href="../entities/Anthropic.html">Anthropic</a> 的改进模式包括：将失败案例加入评测套件、改进部署流水线增加<a href="金丝雀发布.html">金丝雀发布</a>阶段、加强生产监控添加特定行为质量指标。</p>
 </li>
 <li>
 <p><strong>实施要点</strong>：维护覆盖多行为维度的回归评测套件，确保评测覆盖各类任务场景；将行为回归测试纳入 CI/CD 流水线，在提示或模型变更前自动执行；建立行为质量基线，检测行为偏离；监控不只是技术指标，还包括行为质量指标。</p>

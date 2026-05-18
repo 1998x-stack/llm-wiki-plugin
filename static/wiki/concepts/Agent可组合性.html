@@ -147,7 +147,7 @@ nav a.active { color: var(--link); font-weight: 600; }
        ├── 调用 codex_exec("写测试")    → Codex 子 Agent
        ├── 调用 codex_exec("生成文档")   → Codex 子 Agent
        └── 调用 codex_review("检查PR")  → Codex 子 Agent</code>
-   父 Agent 负责协调和任务分解，<a href="../entities/Codex CLI.html">Codex</a> 作为执行节点被动态调用。</p>
+   父 Agent 负责协调和<a href="任务分解.html">任务分解</a>，<a href="../entities/Codex CLI.html">Codex</a> 作为执行节点被动态调用。</p>
 </li>
 <li>
 <p><strong>协议依赖</strong>：依赖 <a href="../entities/MCP.html">MCP</a> 等标准化协议实现解耦。任何支持 MCP 的 Agent 都可以被任何支持 MCP 的 <a href="Orchestrator Agent.html">Orchestrator</a> 发现和调用，无需定制集成代码。</p>

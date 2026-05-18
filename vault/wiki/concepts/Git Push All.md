@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [git, workflow, commands]
+tags: [git, workflow, commands, 工具与框架]
 aliases: ["Git Push All", "git push all", "Push All Changes"]
 relates_to: []
 supersedes: null

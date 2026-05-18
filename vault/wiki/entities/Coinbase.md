@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [crypto, payments, stablecoin]
+tags: [crypto, payments, stablecoin, Agent系统]
 aliases: ["Coinbase Inc."]
 relates_to: []
 supersedes: null
@@ -26,7 +26,7 @@ Coinbase是一家加密货币交易平台和金融[[服务]]公司，在[[Agenti
 ## 关键内容
 1. **x402协议**：Coinbase推动了[[x402 Protocol|HTTP 402]]状态码的复兴，将其发展为x402协议，专注于链上支付和稳定币交易。
 
-2. **x402基金会**：Coinbase与[[Cloudflare]]共同建立了[[x402 Foundation]]，旨在推动x402成为互联网级开放标准。
+2. **x402基金会**：Coinbase与[[Cloudflare]]共同建立了[[x402 Foundation]]，旨在推动x402成为[[互联网]]级开放标准。
 
 3. **链上支付基础设施**：Coinbase专注于稳定币支付的标准化，为AI Agent提供了链上支付能力。
 

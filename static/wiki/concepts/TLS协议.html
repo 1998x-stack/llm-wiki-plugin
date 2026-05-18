@@ -126,37 +126,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <div class="container">
   <div class="breadcrumb"><a href="../index.html">wiki</a> / <a href="../concepts/index.html">concepts</a> / TLS协议</div>
   <div class="meta-card">
-  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#95a5a6">unknown</span></div>
-  <div class="meta-item"><strong>Confidence:</strong> —</div>
-  <div class="meta-item"><strong>Created:</strong> —</div>
-  <div class="meta-item"><strong>Updated:</strong> —</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> —</div>
+  <div class="meta-item"><strong>Type:</strong> <span class="badge" style="background:#50C878">concept</span></div>
+  <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
+  <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
+  <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">密码学</span><span class="tag">安全协议</span><span class="tag">网络安全</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
-    <hr />
-<p>type: concept
-status: active
-confidence: 0.85
-created: 2026-04-26
-updated: 2026-04-26
-last_accessed: 2026-04-26
-source_count: 2
-tags: [密码学, 安全协议, 网络安全]
-aliases: ["Transport Layer Security", "SSL/TLS", "HTTPS"]
-relates_to: 
-  - target: "<a href="Diffie-Hellman 密钥交换协议.html">Diffie-Hellman 密钥交换协议</a>
-    type: utilizes
-  - target: "<a href="公钥密码学.html">公钥密码学</a>
-    type: based_on
-  - target: "<span style="color:#e74c3c" title="broken link">身份认证</span>
-    type: provides
-  - target: "<a href="中间人攻击.html">中间人攻击</a>
-    type: prevents
-supersedes: null</p>
-<hr />
-<h1 id="tls">TLS协议</h1>
+    <h1 id="tls">TLS协议</h1>
 <h2 id="_1">概述</h2>
-<p>传输层安全协议，用于在网络通信中提供端到端的安全保障，包括数据加密、身份认证和完整性验证，是现代互联网安全的基础协议。</p>
+<p>传输层安全协议，用于在网络通信中提供端到端的安全保障，包括数据加密、身份认证和完整性验证，是现代<a href="互联网.html">互联网</a>安全的基础协议。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -166,23 +145,23 @@ supersedes: null</p>
 <li>
 <p><strong>握手过程</strong>：</p>
 </li>
-<li>客户端和服务器协商协议版本和加密套件</li>
-<li>服务器发送数字证书进行身份验证</li>
+<li>客户端和<a href="服务.html">服务</a>器协商协议版本和加密套件</li>
+<li><a href="服务.html">服务</a>器发送数字证书进行身份验证</li>
 <li>使用如Diffie-Hellman等密钥交换协议建立共享密钥</li>
 <li>
 <p>生成会话密钥用于对称加密</p>
 </li>
 <li>
-<p><strong>与公钥密码学的关系</strong>：
-   TLS协议大量使用公钥密码学技术，包括数字证书、公钥加密、数字签名等，以实现身份认证和密钥交换。</p>
+<p><strong>与<a href="公钥密码学.html">公钥密码学</a>的关系</strong>：
+   TLS协议大量使用<a href="公钥密码学.html">公钥密码学</a>技术，包括数字证书、公钥加密、<a href="数字签名.html">数字签名</a>等，以实现身份认证和密钥交换。</p>
 </li>
 <li>
 <p><strong>安全机制</strong>：</p>
 </li>
-<li>使用公钥密码学进行身份验证</li>
+<li>使用<a href="公钥密码学.html">公钥密码学</a>进行身份验证</li>
 <li>使用密钥交换协议建立会话密钥</li>
 <li>
-<p>使用对称加密算法保护数据传输</p>
+<p>使用对称加密<a href="算法.html">算法</a>保护数据传输</p>
 </li>
 <li>
 <p><strong>演进与标准</strong>：

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">即时上下文检索</h1>
 <h2 id="_2">概述</h2>
-<p>即时上下文检索（Just-in-Time Context Retrieval）是一种 Agent 信息管理策略：Agent <strong>不在运行前预加载所有可能相关的数据</strong>，而是持有<strong>轻量标识符</strong>（文件路径、存储查询、URL 等），在运行时通过工具按需动态加载所需数据。这与预推理检索（Pre-inference Retrieval）相对。</p>
+<p>即时<a href="上下文检索.html">上下文检索</a>（Just-in-Time Context Retrieval）是一种 Agent 信息管理策略：Agent <strong>不在运行前预加载所有可能相关的数据</strong>，而是持有<strong>轻量标识符</strong>（文件路径、存储查询、URL 等），在运行时通过工具按需动态加载所需数据。这与预推理检索（Pre-inference Retrieval）相对。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">与预推理检索的对比</h3>
 <table>
@@ -143,7 +143,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tr>
 <th></th>
 <th>预推理检索（Pre-inference）</th>
-<th>即时上下文检索（JIT）</th>
+<th>即时<a href="上下文检索.html">上下文检索</a>（JIT）</th>
 </tr>
 </thead>
 <tbody>
@@ -175,7 +175,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="claude-code">Claude Code 的实现案例</h3>
-<p><a href="../entities/Claude-Code.html">Claude-Code</a> 是 JIT 上下文检索的典型实现：</p>
+<p><a href="../entities/Claude-Code.html">Claude-Code</a> 是 JIT <a href="上下文检索.html">上下文检索</a>的典型实现：</p>
 <ul>
 <li><strong><a href="../entities/CLAUDE.html.html">CLAUDE.md</a> 文件</strong>：直接载入上下文（预推理，小文件，高频引用）</li>
 <li><strong>glob / grep</strong>：作为探索工具，运行时按需查找文件路径或内容模式</li>
@@ -193,7 +193,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </ul>
 <p>文件夹层级、命名约定、时间戳共同构成了无需加载内容即可辅助决策的隐式元数据层。</p>
 <h3 id="_6">与渐进式披露的关系</h3>
-<p>即时上下文检索是<a href="渐进式披露-Progressive-Disclosure.html">渐进式披露</a>原则在 Agent 工具使用中的具体实现：
+<p>即时<a href="上下文检索.html">上下文检索</a>是<a href="渐进式披露-Progressive-Disclosure.html">渐进式披露</a>原则在 Agent 工具使用中的具体实现：
 - 先用轻量标识符（第一层）
 - 有明确目标再加载（第二层）
 - 精确定位后才读取完整内容（第三层）</p>

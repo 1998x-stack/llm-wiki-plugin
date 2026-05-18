@@ -135,12 +135,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">相对位置编码</h1>
 <h2 id="_2">概述</h2>
-<p>相对<a href="位置编码.html">位置编码</a>关注两个 token 之间相隔多远，而非各自处于第几位。位置信息直接注入注意力分数<a href="计算.html">计算</a>，使模型在决定"该关注谁"时显式考虑相对距离 $i-j$。</p>
+<p>相对<a href="位置编码.html">位置编码</a>关注两个 token 之间相隔多远，而非各自处于第几位。位置信息直接注入<a href="注意力机制.html">注意力</a>分数<a href="计算.html">计算</a>，使模型在决定"该关注谁"时显式考虑相对距离 $i-j$。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
-<li><strong>核心思想</strong>：注意力分数被建模为 $\text{AttentionScore}_{ij}=f(q_i,k_j,i-j)$，相对距离 $i-j$ 作为独立输入参与<a href="计算.html">计算</a>，而非简单加到 embedding 上。</li>
+<li><strong>核心思想</strong>：<a href="注意力机制.html">注意力</a>分数被建模为 $\text{AttentionScore}_{ij}=f(q_i,k_j,i-j)$，相对距离 $i-j$ 作为独立输入参与<a href="计算.html">计算</a>，而非简单加到 embedding 上。</li>
 <li><strong>优势</strong>：对序列平移更鲁棒（"形容词+名词"模式无论出现在位置 2-3 还是 50-51，相对距离不变）；对长序列外推更好；更适合建模局部模式和结构关系。</li>
-<li><strong>代价</strong>：实现比<a href="绝对位置编码.html">绝对位置编码</a>复杂，需修改注意力<a href="计算.html">计算</a>公式，工程优化难度更高，部分方案引入额外参数或<a href="计算.html">计算</a>开销，且不一定保留全局绝对位置信息。</li>
+<li><strong>代价</strong>：实现比<a href="绝对位置编码.html">绝对位置编码</a>复杂，需修改<a href="注意力机制.html">注意力</a><a href="计算.html">计算</a>公式，工程优化难度更高，部分方案引入额外参数或<a href="计算.html">计算</a>开销，且不一定保留全局绝对位置信息。</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

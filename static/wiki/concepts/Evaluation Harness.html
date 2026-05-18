@@ -130,18 +130,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">基础设施</span><span class="tag">质量保障</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">基础设施</span><span class="tag">质量保障</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="evaluation-harness">Evaluation Harness</h1>
 <h2 id="_1">概述</h2>
-<p>Evaluation Harness 是运行 Agent 评测的基础设施，负责管理评测环境隔离性、Trial 执行、评分器调度和结果收集，是评测体系的工程基础。</p>
+<p>Evaluation Harness 是运行 <a href="评测驱动开发.html">Agent 评测</a>的基础设施，负责管理评测环境隔离性、Trial 执行、<a href="评分器设计.html">评分器</a>调度和结果收集，是评测体系的工程基础。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心职责</strong>：</li>
 <li>运行 Evaluation Suite（多个 Task 的集合）</li>
 <li>管理 Trial 的执行环境（隔离性、干净状态）</li>
-<li>调度不同类型的评分器（代码、LLM、人工）</li>
+<li>调度不同类型的<a href="评分器设计.html">评分器</a>（代码、LLM、人工）</li>
 <li>
 <p>收集和汇总评测结果</p>
 </li>
@@ -150,22 +150,22 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li><strong>每次 Trial 必须从干净的环境开始</strong>（隔离性）</li>
 <li>避免共享状态（遗留文件、缓存数据）</li>
-<li>真实案例：Anthropic 内部评测中发现 Claude 通过检查之前 Trial 的 git 历史获得了不公平优势</li>
+<li>真实案例：<a href="../entities/Anthropic.html">Anthropic</a> 内部评测中发现 <a href="../entities/Claude_Code.html">Claude</a> 通过检查之前 Trial 的 git 历史获得了不公平优势</li>
 <li>
-<p>支持 pass@k 和 pass^k 两种统计模式</p>
+<p>支持 <a href="pass@k vs pass^k.html">pass@k</a> 和 <a href="pass@k vs pass^k.html">pass^k</a> 两种统计模式</p>
 </li>
 <li>
-<p><strong>与 Agent Harness 的区别</strong>：</p>
+<p><strong>与 <a href="Agent Harness模式.html">Agent Harness</a> 的区别</strong>：</p>
 </li>
 <li><strong>Evaluation Harness</strong>：运行评测的基础设施（评测侧）</li>
-<li><strong>Agent Harness</strong>：让模型作为 Agent 行动的系统（执行侧）</li>
+<li><strong><a href="Agent Harness模式.html">Agent Harness</a></strong>：让模型作为 Agent 行动的系统（执行侧）</li>
 <li>
 <p>两者配合完成完整的评测流程</p>
 </li>
 <li>
 <p><strong>开源实现</strong>：</p>
 </li>
-<li><a href="../entities/Harbor Framework.html">Harbor Framework</a>：容器化的 Agent 评测框架</li>
+<li><a href="../entities/Harbor Framework.html">Harbor Framework</a>：容器化的 <a href="Agent 评测体系.html">Agent 评测框架</a></li>
 <li>
 <p>提供隔离环境、模块化组件、标准化接口</p>
 </li>

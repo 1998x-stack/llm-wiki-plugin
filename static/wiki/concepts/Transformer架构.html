@@ -144,17 +144,17 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="Transformer 架构.html">Transformer</a></strong>：每层所有位置同时<a href="计算.html">计算</a>，直接建模全局上下文</li>
 </ul>
 <p>核心模块：
-1. <strong><a href="多头注意力.html">多头注意力</a>（<a href="多头注意力.html">Multi-Head Attention</a>）</strong>：并行多子空间注意力
+1. <strong><a href="多头注意力.html">多头注意力</a>（<a href="多头注意力.html">Multi-Head Attention</a>）</strong>：并行多子空间<a href="注意力机制.html">注意力</a>
 2. <strong>前馈网络（FFN）</strong>：逐位置的非线性变换
 3. <strong><a href="Layer Normalization.html">层归一化</a>（<a href="Layer Normalization.html">LayerNorm</a>）</strong>：稳定训练
 4. <strong><a href="残差连接.html">残差连接</a></strong>：缓解<a href="梯度消失.html">梯度消失</a></p>
 <h3 id="_4">计算瓶颈</h3>
-<p><a href="Self-Attention机制.html">Self-Attention</a> 的注意力<a href="矩阵.html">矩阵</a>大小为 $n \times n$（n 为序列长度），导致：</p>
+<p><a href="Self-Attention机制.html">Self-Attention</a> 的<a href="注意力机制.html">注意力</a><a href="矩阵.html">矩阵</a>大小为 $n \times n$（n 为序列长度），导致：</p>
 <ul>
 <li>时间复杂度：$O(n^2 d)$</li>
 <li>空间复杂度：$O(n^2)$</li>
 </ul>
-<p>这是 <a href="Transformer 架构.html">Transformer</a> 处理超长序列的主要障碍，也是 <a href="注意力预算.html">注意力预算</a> 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性注意力）均以降低此复杂度为目标。</p>
+<p>这是 <a href="Transformer 架构.html">Transformer</a> 处理超长序列的主要障碍，也是 <a href="注意力预算.html">注意力预算</a> 概念的架构根因。各类改进（Sparse Attention、Flash Attention、线性<a href="注意力机制.html">注意力</a>）均以降低此复杂度为目标。</p>
 <h3 id="rnncnn">与 RNN/CNN 的比较</h3>
 <p>| | RNN | CNN | <a href="Transformer 架构.html">Transformer</a> |
 |--|-----|-----|-------------|

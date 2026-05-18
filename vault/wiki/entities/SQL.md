@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [database, query-language, technology]
+tags: [database, query-language, technology, 计算理论]
 aliases: ["Structured Query Language", "结构化查询语言"]
 relates_to:
   - target: "[[Data Scientist Agent]]"

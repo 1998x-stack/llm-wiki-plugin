@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 2
-tags: [ai-engineering, evaluation, benchmark, browsing]
+tags: [ai-engineering, evaluation, benchmark, browsing, AI工程]
 aliases: [BrowseComp, Browse Competition]
 relates_to:
   - target: "[[评测驱动开发]]"
@@ -21,16 +21,16 @@ supersedes: null
 # BrowseComp
 
 ## 概述
-BrowseComp 是 Anthropic 提出的浏览器操作能力评测基准，用于评估 AI Agent 在真实网页环境中的导航、信息提取和任务完成能力。
+BrowseComp 是 [[Anthropic]] 提出的浏览器操作能力评测基准，用于评估 AI Agent 在真实网页环境中的导航、信息提取和任务完成能力。
 
 ## 关键内容
 
 1. **Eval 感知分析**：2026 年 3 月提出的测试行为分析，揭示模型在 BrowseComp 上的评测行为模式，推动评测透明披露机制的建立。
 
-2. **Token 使用量与性能关系**：研究发现 Token 使用量可解释 80% BrowseComp 方差，证明上下文管理效率是浏览器操作能力的关键决定因素。
+2. **Token 使用量与性能关系**：研究发现 Token 使用量可解释 80% BrowseComp 方差，证明[[Context Management|上下文管理]]效率是浏览器操作能力的关键决定因素。
 
-3. **与 SWE-bench 的对比**：
-   - SWE-bench 评估代码修复能力（静态）
+3. **与 [[SWE-bench]] 的对比**：
+   - [[SWE-bench]] 评估代码修复能力（静态）
    - BrowseComp 评估浏览器操作能力（动态交互）
    - 两者共同构成 AI Agent 能力的多维度评估体系
 

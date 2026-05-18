@@ -62,8 +62,8 @@ GSD 系统的核心架构模式，通过编排者（主会话）协调 11 个专
 
 6. **模型分配策略**：
    - `gsd-planner`：Opus（关键架构决策）
-   - `gsd-codebase-mapper`：Haiku（信息提取任务）
-   - `gsd-phase-researcher`：budget 模式可用 Haiku
+   - `gsd-codebase-mapper`：[[Claude 3 Haiku|Haiku]]（信息提取任务）
+   - `gsd-phase-researcher`：budget 模式可用 [[Claude 3 Haiku|Haiku]]
 
 ## 来源
 - [[04-multi-agent-orchestration]] — 多智能体编排架构

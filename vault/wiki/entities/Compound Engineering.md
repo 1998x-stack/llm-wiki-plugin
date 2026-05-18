@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tool, knowledge-compounding, claude-code]
+tags: [ai-tool, knowledge-compounding, claude-code, AI工程]
 aliases: [Compound Engineering, EveryInc/compound-engineering-plugin]
 entity_type: project
 relates_to: 

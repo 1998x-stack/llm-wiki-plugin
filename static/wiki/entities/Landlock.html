@@ -134,7 +134,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </div>
   <div class="content">
     <h1 id="landlock">Landlock</h1>
-<p>Linux 内核的安全模块（Landlock LSM），从 5.13 版本引入，允许非特权进程创建沙箱，限制自身对文件系统的访问<a href="../concepts/Permissions.html">权限</a>。</p>
+<p>Linux 内核的安全模块（Landlock LSM），从 5.13 版本引入，允许非特权进程创建<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>，限制自身对文件系统的访问<a href="../concepts/Permissions.html">权限</a>。</p>
 <h2 id="_1">关键内容</h2>
 <ol>
 <li><strong>文件系统隔离</strong>：Landlock 通过限制进程能访问的目录树来实现最小<a href="../concepts/Permissions.html">权限</a>原则，无需 root <a href="../concepts/Permissions.html">权限</a>即可<a href="../concepts/Configuration.html">配置</a>。</li>

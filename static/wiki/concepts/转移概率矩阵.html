@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">经济学</span><span class="tag">时间序列分析</span><span class="tag">计量经济学</span><span class="tag">矩阵</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">经济学</span><span class="tag">时间序列分析</span><span class="tag">计量经济学</span><span class="tag">矩阵</span><span class="tag">数值分析</span></div>
 </div>
   <div class="content">
     <h1 id="_1">转移概率矩阵</h1>
 <h2 id="_2">概述</h2>
-<p>转移概率矩阵是马尔可夫体制转换模型中的核心组件，描述不同体制之间切换的概率，决定了体制转换的动态过程。</p>
+<p>转移概率<a href="矩阵.html">矩阵</a>是<a href="马尔可夫体制转换模型.html">马尔可夫体制转换模型</a>中的核心组件，描述不同体制之间切换的概率，决定了<a href="体制转换.html">体制转换</a>的动态过程。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>定义</strong>：转移概率矩阵 P = [[p_00, p_01], [p_10, p_11]]，其中 p_ij 表示从体制 i 转移到体制 j 的概率</p>
+<p><strong>定义</strong>：转移概率<a href="矩阵.html">矩阵</a> P = [[p_00, p_01], [p_10, p_11]]，其中 p_ij 表示从体制 i 转移到体制 j 的概率</p>
 </li>
 <li>
 <p><strong>元素含义</strong>：</p>
@@ -160,7 +160,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>典型数值</strong>：根据 Hamilton (1989) 的实证结果，扩张期持续约 10 个季度（p_11 ≈ 0.90），衰退期持续约 4 个季度（p_00 ≈ 0.75）</p>
 </li>
 <li>
-<p><strong>模型估计</strong>：转移概率是模型的待估参数，通过极大似然估计方法从数据中学习得到</p>
+<p><strong>模型估计</strong>：转移概率是模型的待估参数，通过<a href="最大似然原理.html">极大似然</a>估计方法从数据中学习得到</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

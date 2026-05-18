@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [generative models, multimodal, text-to-image]
+tags: ["generative models", multimodal, text-to-image, AI工程]
 aliases: ["DALL-E", "DALL·E", "DALL-E 1"]
 relates_to:
   - target: "[[Zero-Shot Text-to-Image Generation (2021 论文)]]"

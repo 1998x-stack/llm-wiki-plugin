@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [css, styling, framework]
+tags: [css, styling, framework, AI工程]
 aliases: ["Tailwind CSS", "Tailwind", "Tailwind v4"]
 relates_to:
   - target: "[[React]]"

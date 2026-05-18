@@ -135,14 +135,14 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="_1">检索重排序</h1>
 <h2 id="_2">概述</h2>
-<p>检索重排序（Retrieval Reranking）是 RAG 流水线中的精排步骤：在初始召回（粗排）获得大量候选 Chunk 后，用专门的<strong>重排序模型</strong>对每个 Chunk 结合查询重新评分，筛选出最相关的 Top-K 个注入模型。</p>
+<p>检索<a href="Reranking.html">重排序</a>（Retrieval <a href="Reranking.html">Reranking</a>）是 RAG 流水线中的精排步骤：在初始召回（粗排）获得大量候选 Chunk 后，用专门的<strong><a href="Reranking.html">重排序</a>模型</strong>对每个 Chunk 结合查询重新评分，筛选出最相关的 Top-K 个注入模型。</p>
 <h2 id="_3">关键内容</h2>
 <h3 id="_4">动机：粗排的局限</h3>
 <p>初始召回（嵌入相似度 + BM25）速度快但精度有限，大知识库中常返回数百个相关性参差不齐的 Chunk。不加筛选地将大量 Chunk 注入模型会：
-- <strong>消耗<a href="注意力预算.html">注意力预算</a></strong>（见 <a href="注意力预算.html">注意力预算</a>），分散模型注意力
+- <strong>消耗<a href="注意力预算.html">注意力预算</a></strong>（见 <a href="注意力预算.html">注意力预算</a>），分散模型<a href="注意力机制.html">注意力</a>
 - 引入噪声，降低回答质量
 - 增加 token 成本和延迟</p>
-<p>重排序解决"多中取精"的问题。</p>
+<p><a href="Reranking.html">重排序</a>解决"多中取精"的问题。</p>
 <h3 id="_5">工作流程</h3>
 <pre><code>初始检索（粗排）→ Top-150 候选 Chunk
        ↓
@@ -167,7 +167,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>2.9%</td>
 </tr>
 <tr>
-<td>+ Reranking（Cohere）</td>
+<td>+ <a href="Reranking.html">Reranking</a>（Cohere）</td>
 <td><strong>1.9%</strong></td>
 </tr>
 </tbody>
@@ -184,15 +184,15 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><strong>延迟</strong></td>
-<td>重排序是额外的运行时步骤，即使并行评分也增加延迟</td>
-</tr>
-<tr>
-<td><strong>成本</strong></td>
-<td>重排粒度越细（候选越多）成本越高</td>
-</tr>
-<tr>
-<td><strong>粗排规模</strong></td>
-<td>候选 Chunk 越多（如 150 vs 50），精排潜力越大，但<a href="计算.html">计算</a>开销增加</td>
+<td><span style="color:#e74c3c" title="broken link">Reranking&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;成本&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;重排粒度越细（候选越多）成本越高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;粗排规模&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;候选 Chunk 越多（如 150 vs 50），精排潜力越大，但[[计算</span>开销增加</td>
 </tr>
 <tr>
 <td><strong>Top-K 选择</strong></td>

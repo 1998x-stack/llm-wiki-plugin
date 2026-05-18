@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["深度学习", "权重初始化", "优化"]
+tags: [深度学习, 权重初始化, 优化, AI工程]
 aliases: ["He Initialization", "Kaiming Initialization", "何恺明初始化", "Kaiming Normal", "kaiming_normal_"]
 relates_to: ["残差网络（ResNet）", "ReLU激活函数", "Xavier 初始化", "深度卷积网络"]
 supersedes: null

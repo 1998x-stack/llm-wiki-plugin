@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [RAG, 知识图谱, 微软]
+tags: [RAG, 知识图谱, 微软, LLM能力]
 aliases: [GraphRAG]
 relates_to:
   - "[[上下文检索]] — compares_to"

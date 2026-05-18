@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong>核心功能</strong>：存储文档及其向量嵌入；支持<a href="../concepts/近似最近邻检索.html">近似最近邻</a>（ANN）相似度搜索；支持元数据过滤</li>
 <li><strong>部署模式</strong>：本地内存模式（测试）、持久化磁盘模式（生产）、HTTP 客户端/<a href="../concepts/服务.html">服务</a>端模式</li>
 <li><strong>与传统数据库对比</strong>：<a href="SQLite.html">SQLite</a>/FTS5 适合精确关键词匹配；ChromaDB 适合语义相似度检索（"找意思相近的记忆"）</li>
-<li><strong>生态</strong>：与 LangChain、LlamaIndex 等 RAG 框架深度集成</li>
+<li><strong>生态</strong>：与 <a href="LangChain.html">LangChain</a>、LlamaIndex 等 RAG 框架深度集成</li>
 <li><strong>在 <a href="MemPalace.html">MemPalace</a> 中的应用</strong>：作为 <a href="MemPalace.html">MemPalace</a> 的唯一数据库依赖，负责<a href="../concepts/原文逐字存储.html">原文逐字存储</a>的嵌入存储与语义检索。<a href="MemPalace.html">MemPalace</a> 将对话切块后存入 ChromaDB，检索时通过向量语义搜索找到最相关的原始片段</li>
 </ul>
 <h2 id="_3">来源</h2>

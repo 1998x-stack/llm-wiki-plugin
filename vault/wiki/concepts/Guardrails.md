@@ -29,7 +29,7 @@ supersedes: null
 
 ## 概述
 
-Guardrails（护栏机制）是 Agent 系统中的错误 containment 策略，用于在错误刚出现时将其截断，防止错误传播污染整条轨迹。它是 [[ACI 设计原则]] 的第四条核心原则。
+Guardrails（护栏机制）是 Agent 系统中的错误 containment 策略，用于在错误刚出现时将其截断，防止[[错误复合|错误传播]]污染整条轨迹。它是 [[ACI 设计原则]] 的第四条核心原则。
 
 ## 关键内容
 

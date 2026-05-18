@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [AI-Agent, Game-Testing, Protocol, Synchronization]
+tags: [AI-Agent, Game-Testing, Protocol, Synchronization, AI工程]
 aliases: ["Sync Frame Protocol", "同步帧协议", "TITAN Sync Protocol"]
 relates_to: 
   - target: "[[TITAN 框架]]"
@@ -21,7 +21,7 @@ supersedes: null
 # TITAN-同步帧协议
 
 ## 概述
-[[TITAN 框架|TITAN]]框架中的一种同步通信协议，通过阻塞式I/O让游戏引擎等待LLM决策，解决LLM推理延迟与游戏实时性之间的矛盾。
+[[TITAN 框架|TITAN]]框架中的一种[[同步通信]]协议，通过阻塞式I/O让游戏引擎等待LLM决策，解决LLM推理延迟与游戏实时性之间的矛盾。
 
 ## 关键内容
 
@@ -40,7 +40,7 @@ supersedes: null
    - Agent → Engine: 支持keypressed, tick, screenshot, quit等动作
 
 4. **实现要点**：
-   - 游戏引擎在C语言中实现同步循环：阻塞等待 → 处理 → 推进 → 发射状态
+   - 游戏引擎在[[C语言]]中实现同步循环：阻塞等待 → 处理 → 推进 → 发射状态
    - 每次发送状态后阻塞等待stdin输入，直到收到智能体指令才继续
 
 ## 来源

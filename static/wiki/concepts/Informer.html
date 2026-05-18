@@ -139,13 +139,13 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>历史背景</strong>：<a href="Transformer架构.html">Transformer</a> 在 NLP 和 CV 领域势如破竹，但在<a href="Time Series Analysis.html">时间序列</a>预测中迟迟未能主导。三大瓶颈：O(L²) 注意力复杂度、编码器堆叠内存瓶颈、解码器<a href="AR 模型（自回归模型）.html">自回归</a>生成的误差累积。</p>
+<p><strong>历史背景</strong>：<a href="Transformer架构.html">Transformer</a> 在 NLP 和 CV 领域势如破竹，但在<a href="Time Series Analysis.html">时间序列</a>预测中迟迟未能主导。三大瓶颈：O(L²) <a href="注意力机制.html">注意力</a>复杂度、编码器堆叠内存瓶颈、解码器<a href="AR 模型（自回归模型）.html">自回归</a>生成的误差累积。</p>
 </li>
 <li>
-<p><strong>ProbSparse <a href="Self-Attention机制.html">自注意力</a></strong>：观察到注意力分布具有稀疏性——少数 query 主导注意力权重，多数接近均匀分布。只<a href="计算.html">计算</a>"重要"的 query-key 对，将复杂度从 O(L²) 降至 O(L log L)。</p>
+<p><strong>ProbSparse <a href="Self-Attention机制.html">自注意力</a></strong>：观察到<a href="注意力机制.html">注意力</a>分布具有稀疏性——少数 query 主导<a href="注意力机制.html">注意力</a>权重，多数接近均匀分布。只<a href="计算.html">计算</a>"重要"的 query-key 对，将复杂度从 O(L²) 降至 O(L log L)。</p>
 </li>
 <li>
-<p><strong>生成式解码器</strong>：一次性输出整个预测序列，而非<a href="AR 模型（自回归模型）.html">自回归</a>逐步生成，避免了误差累积问题。</p>
+<p><strong><a href="生成式解码器.html">生成式解码器</a></strong>：一次性输出整个预测序列，而非<a href="AR 模型（自回归模型）.html">自回归</a>逐步生成，避免了误差累积问题。</p>
 </li>
 <li>
 <p><strong>蒸馏操作</strong>：在编码器层之间引入蒸馏，逐步压缩序列长度，进一步降低内存消耗。</p>

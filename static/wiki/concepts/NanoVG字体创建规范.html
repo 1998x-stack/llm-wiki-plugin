@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">NanoVG</span><span class="tag">字体</span><span class="tag">显存泄漏</span><span class="tag">UrhoX</span><span class="tag">渲染</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">NanoVG</span><span class="tag">字体</span><span class="tag">显存泄漏</span><span class="tag">UrhoX</span><span class="tag">渲染</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="nanovg">NanoVG字体创建规范</h1>
@@ -139,8 +139,8 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>初始化时创建</strong>：在 <code>Start()</code> 中调用 <code>fontNormal = nvgCreateFont(vg, "sans", "Fonts/MiSans-Regular.ttf")</code>，只执行一次。返回值是字体句柄，可全局复用。</li>
-<li><strong>渲染时使用</strong>：每帧绘制时先设置字体 <code>nvgFontFace(vg, "sans")</code>，再设置字号 <code>nvgFontSize(vg, 24)</code>，最后绘制文本 <code>nvgText(vg, 100, 100, "Hello World")</code>。</li>
-<li><strong>显存泄漏警告</strong>：<code>nvgCreateFont</code> 每帧调用会导致显存持续增长，最终崩溃。这是 NanoVG 最常见的性能陷阱之一。</li>
+<li><strong>渲染时使用</strong>：每帧绘制时先<a href="Settings.html">设置</a>字体 <code>nvgFontFace(vg, "sans")</code>，再<a href="Settings.html">设置</a>字号 <code>nvgFontSize(vg, 24)</code>，最后绘制文本 <code>nvgText(vg, 100, 100, "Hello World")</code>。</li>
+<li><strong>显存泄漏警告</strong>：<code>nvgCreateFont</code> 每帧调用会导致显存持续增长，最终崩溃。这是 <a href="../entities/NanoVG.html">NanoVG</a> 最常见的性能陷阱之一。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

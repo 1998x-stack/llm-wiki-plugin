@@ -6,7 +6,7 @@ created: 2026-04-19
 updated: 2026-04-19
 last_accessed: 2026-04-19
 source_count: 1
-tags: [技术, 方法论]
+tags: [技术, 方法论, AI工程]
 aliases: [Agent-Native Tools, 面向AI Agent的工具]
 relates_to:
   - AI与游戏创作

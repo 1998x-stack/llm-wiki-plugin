@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [finance, backtesting, rust-framework]
+tags: [finance, backtesting, rust-framework, 工具与框架]
 aliases: ["AKQuant", "akquant"]
 entity_type: tool
 relates_to:

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [研究, 技术]
+tags: [研究, 技术, AI工程]
 aliases: [AI责任承担, AI权责对等]
 relates_to:
   - AI对就业的深层影响

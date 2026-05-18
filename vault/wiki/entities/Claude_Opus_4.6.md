@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-model, claude, opus]
+tags: [ai-model, claude, opus, AI工程]
 aliases: ["Claude Opus 4.6", "Opus 4.6"]
 relates_to: []
 supersedes: null

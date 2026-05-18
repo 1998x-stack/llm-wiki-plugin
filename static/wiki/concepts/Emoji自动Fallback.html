@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Emoji</span><span class="tag">字体回退</span><span class="tag">NanoVG</span><span class="tag">UrhoX</span><span class="tag">文本渲染</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Emoji</span><span class="tag">字体回退</span><span class="tag">NanoVG</span><span class="tag">UrhoX</span><span class="tag">文本渲染</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="emojifallback">Emoji自动Fallback</h1>
@@ -138,7 +138,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><a href="../entities/UrhoX引擎.html">UrhoX</a> 内置 Emoji 自动回退机制，文本渲染时无需指定额外的 Emoji 字体即可正常显示表情符号。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>自动回退</strong>：引擎在找不到字符时自动尝试 Emoji 字体，开发者无需手动配置或创建额外的 Emoji 字体。</li>
+<li><strong>自动回退</strong>：引擎在找不到字符时自动尝试 Emoji 字体，开发者无需手动<a href="Configuration.html">配置</a>或创建额外的 Emoji 字体。</li>
 <li><strong>使用方式</strong>：创建普通字体后（<code>nvgCreateFont</code>），直接在文本中使用 Emoji 字符即可，如 <code>nvgText(vg, 100, 100, "Hello 😀")</code>。</li>
 <li><strong>限制</strong>：回退机制依赖引擎内置的 Emoji 字体资源，如果引擎未打包对应字体，回退可能失败。</li>
 </ol>

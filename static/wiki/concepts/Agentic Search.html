@@ -142,7 +142,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 RAG 的本质区别</strong>：RAG 是"一次检索→生成"的静态管道（开卷考试类比）；Agentic Search 是"LLM 主动循环搜索"的动态决策循环（研究助理类比）。RAG 是 Agentic Search 的底层工具之一，传统 RAG 是 Agentic Search 的特例。</p>
 </li>
 <li>
-<p><strong>Agentic Search 工作流</strong>：用户任务 → LLM 规划（任务分解、子问题生成）→ 工具调用（向量搜索/BM25/文件读取/API/代码执行）→ 结果观察（评估是否满足需求）→ 迭代判断（需要更多信息则重新搜索）→ 生成最终答案。</p>
+<p><strong>Agentic Search 工作流</strong>：用户任务 → LLM 规划（<a href="任务分解.html">任务分解</a>、子问题生成）→ 工具调用（向量搜索/BM25/文件读取/API/<a href="代码执行.html">代码执行</a>）→ 结果观察（评估是否满足需求）→ 迭代判断（需要更多信息则重新搜索）→ 生成最终答案。</p>
 </li>
 <li>
 <p><strong>主流实现模式</strong>：</p>
@@ -158,7 +158,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>代码领域的 Agentic Search</strong>：RAG 在代码域的核心问题是 Chunking 破坏代码结构、静态索引快速过期、符号导航需要动态追踪依赖链。<a href="../entities/Boris Cherny.html">Boris Cherny</a>（<a href="../projects/Claude Code.html">Claude Code</a> 负责人）："早期版本用了 RAG + 向量数据库，但很快发现 Agentic Search 通常效果更好——更简单，没有安全、隐私、数据过期和可靠性问题。"最优解是"像资深工程师一样探索"（查看目录结构、追踪 import、读整个文件建立心智模型），工具集：Glob/Grep/Read/LSP/Bash。</p>
 </li>
 <li>
-<p><strong>技术栈</strong>：编排层 LangGraph/AutoGen/CrewAI/Agno；工具层 MCP 工具集；检索工具 向量库+grep+LSP+文件系统；记忆层 <a href="上下文窗口.html">上下文窗口</a>+外部存储；评估层 <a href="LLM-as-Judge.html">LLM-as-Judge</a>。</p>
+<p><strong>技术栈</strong>：编排层 LangGraph/<a href="../entities/AutoGen.html">AutoGen</a>/CrewAI/Agno；工具层 MCP 工具集；检索工具 向量库+grep+LSP+文件系统；记忆层 <a href="上下文窗口.html">上下文窗口</a>+外部存储；评估层 <a href="LLM-as-Judge.html">LLM-as-Judge</a>。</p>
 </li>
 <li>
 <p><strong>选型指南</strong>：</p>

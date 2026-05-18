@@ -6,7 +6,7 @@ created: 2026-04-21
 updated: 2026-04-21
 last_accessed: 2026-04-21
 source_count: 1
-tags: [技术, 研究]
+tags: [技术, 研究, 天文学]
 aliases: [RTG, Radioisotope Thermoelectric Generator, 放射性同位素热电发电机, 同位素核电源]
 relates_to:
   - 中国海王星探测计划

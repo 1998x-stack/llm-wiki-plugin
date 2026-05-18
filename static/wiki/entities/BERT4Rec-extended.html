@@ -135,29 +135,29 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="bert4rec">BERT4Rec</h1>
 <h2 id="_1">概述</h2>
-<p>由Sun等人于2019年提出的序列推荐模型，将BERT的双向编码器表示引入推荐系统，通过Cloze任务进行训练，是SASRec之后序列推荐领域的另一个重要里程碑。</p>
+<p>由Sun等人于2019年提出的<a href="../concepts/序列推荐.html">序列推荐</a>模型，将BERT的<a href="../concepts/BERT.html">双向编码器表示</a>引入推荐系统，通过<a href="../concepts/Cloze任务.html">Cloze任务</a>进行训练，是<a href="SASRec.html">SASRec</a>之后<a href="../concepts/序列推荐.html">序列推荐</a>领域的另一个重要里程碑。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>论文信息</strong>：标题"BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer"，作者Fajie Sun等，发表于CIKM 2019，arXiv: 1904.06690。作为SASRec的直接后续工作，BERT4Rec采用了双向注意力机制，与SASRec的单向因果注意力形成对比。</p>
+<p><strong>论文信息</strong>：标题"<a href="BERT4Rec.html">BERT4Rec</a>: <a href="BERT4Rec.html">Sequential Recommendation with Bidirectional Encoder Representations from Transformer</a>"，作者Fajie Sun等，发表于CIKM 2019，arXiv: 1904.06690。作为<a href="SASRec.html">SASRec</a>的直接后续工作，<a href="BERT4Rec.html">BERT4Rec</a>采用了双向<a href="../concepts/注意力机制.html">注意力机制</a>，与<a href="SASRec.html">SASRec</a>的单向因果<a href="../concepts/注意力机制.html">注意力</a>形成对比。</p>
 </li>
 <li>
-<p><strong>核心创新</strong>：与SASRec的单向因果掩码不同，BERT4Rec使用双向Transformer Encoder，通过Cloze任务（随机掩盖序列中的某些物品，预测被掩盖的物品）进行训练。这种方法允许模型在训练时同时看到目标物品的前后上下文，理论上能捕获更丰富的序列信息。</p>
+<p><strong>核心创新</strong>：与<a href="SASRec.html">SASRec</a>的单向<a href="../concepts/因果掩码.html">因果掩码</a>不同，<a href="BERT4Rec.html">BERT4Rec</a>使用双向<a href="Transformer.html">Transformer</a> Encoder，通过<a href="../concepts/Cloze任务.html">Cloze任务</a>（随机掩盖序列中的某些物品，预测被掩盖的物品）进行训练。这种方法允许模型在训练时同时看到目标物品的前后上下文，理论上能捕获更丰富的序列信息。</p>
 </li>
 <li>
 <p><strong>架构特点</strong>：</p>
 </li>
-<li><strong>双向注意力</strong>：与SASRec的因果掩码不同，BERT4Rec允许序列中每个位置看到所有其他位置（除了被掩盖的物品）</li>
-<li><strong>Cloze任务</strong>：随机掩盖序列中的部分物品，训练模型预测被掩盖的物品</li>
-<li><strong>位置编码</strong>：保持Transformer的位置感知能力</li>
+<li><strong>双向<a href="../concepts/注意力机制.html">注意力</a></strong>：与<a href="SASRec.html">SASRec</a>的<a href="../concepts/因果掩码.html">因果掩码</a>不同，<a href="BERT4Rec.html">BERT4Rec</a>允许序列中每个位置看到所有其他位置（除了被掩盖的物品）</li>
+<li><strong><a href="../concepts/Cloze任务.html">Cloze任务</a></strong>：随机掩盖序列中的部分物品，训练模型预测被掩盖的物品</li>
+<li><strong><a href="../concepts/位置编码.html">位置编码</a></strong>：保持<a href="Transformer.html">Transformer</a>的位置感知能力</li>
 <li>
-<p><strong>自回归推理</strong>：在推理阶段采用自回归方式，逐步预测下一个物品</p>
+<p><strong><a href="../concepts/AR 模型（自回归模型）.html">自回归</a>推理</strong>：在推理阶段采用<a href="../concepts/AR 模型（自回归模型）.html">自回归</a>方式，逐步预测下一个物品</p>
 </li>
 <li>
-<p><strong>与SASRec的对比</strong>：SASRec vs. BERT4Rec的争论是序列推荐领域持续时间最长的学术辩论之一。2023年的研究（"Turning Dross Into Gold Loss"）发现，BERT4Rec的优势主要来自其损失函数（全物品softmax交叉熵），而非双向注意力本身。当两者使用相同损失函数时，SASRec在大多数数据集上实际表现更好。</p>
+<p><strong>与<a href="SASRec.html">SASRec</a>的对比</strong>：<a href="SASRec.html">SASRec</a> vs. <a href="BERT4Rec.html">BERT4Rec</a>的争论是<a href="../concepts/序列推荐.html">序列推荐</a>领域持续时间最长的学术辩论之一。2023年的研究（"Turning Dross Into Gold Loss"）发现，<a href="BERT4Rec.html">BERT4Rec</a>的优势主要来自其损失函数（全物品softmax<a href="../concepts/交叉熵.html">交叉熵</a>），而非双向<a href="../concepts/注意力机制.html">注意力</a>本身。当两者使用相同损失函数时，<a href="SASRec.html">SASRec</a>在大多数数据集上实际表现更好。</p>
 </li>
 <li>
-<p><strong>实验效果</strong>：在多个公开数据集上取得了当时的最优性能，但由于其复杂的训练策略和计算开销，实际应用中需要权衡效果与效率。</p>
+<p><strong>实验效果</strong>：在多个公开数据集上取得了当时的最优性能，但由于其复杂的训练策略和<a href="../concepts/计算.html">计算</a>开销，实际应用中需要权衡效果与效率。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

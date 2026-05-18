@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [terminal-ui, rendering, optimization]
+tags: [terminal-ui, rendering, optimization, 游戏开发]
 aliases: ["Terminal Renderer Engine", "终端渲染引擎", "Terminal UI Rendering"]
 relates_to:
   - target: "[[Claude Code]]"

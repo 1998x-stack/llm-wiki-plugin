@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [code-diff, ast, code-analysis, ai-tools, file-operations]
+tags: [code-diff, ast, code-analysis, ai-tools, file-operations, AI工程]
 aliases: ["AST-based diff", "AST diff", "语法树差异检测", "抽象语法树差异"]
 relates_to: 
   - target: "[[Write-Tools]]"

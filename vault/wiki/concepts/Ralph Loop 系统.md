@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 3
-tags: [ai-tools, agent-patterns]
+tags: [ai-tools, agent-patterns, AI工程]
 aliases: ["Ralph Loop", "Ralph Loop System", "拉尔夫循环"]
 relates_to:
   - target: "[[编码 Agent 协议]]"

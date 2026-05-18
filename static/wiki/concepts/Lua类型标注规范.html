@@ -130,17 +130,17 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">类型标注</span><span class="tag">EmmyLua</span><span class="tag">LSP</span><span class="tag">UrhoX</span><span class="tag">代码质量</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Lua</span><span class="tag">类型标注</span><span class="tag">EmmyLua</span><span class="tag">LSP</span><span class="tag">UrhoX</span><span class="tag">代码质量</span><span class="tag">Lua编程</span></div>
 </div>
   <div class="content">
     <h1 id="lua">Lua类型标注规范</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> Lua 开发中，未赋值或赋 nil 的变量必须添加 <code>---@type</code> 类型标注，否则 LSP 无法推导类型，访问成员时报 <code>undefined-field</code> 错误或无任何提示。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> Lua 开发中，未赋值或赋 nil 的变量必须添加 <code>---@type</code> 类型<a href="../entities/标注.html">标注</a>，否则 LSP 无法推导类型，访问成员时报 <code>undefined-field</code> 错误或无任何提示。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>必须标注的场景</strong>：<code>local scene = nil</code> 必须加 <code>---@type Scene</code>；<code>local node</code>（未赋值）必须加 <code>---@type Node</code>。来自全局接口的调用（如 <code>local scene = Scene()</code>）自动传递类型推导，无需标注。</li>
-<li><strong>事件函数标注</strong>：建议为事件函数参数添加类型标注，如 <code>---@param eventType string</code> 和 <code>---@param eventData UpdateEventData</code>，完整事件类型定义见 <code>.emmylua/Events.d.lua</code>。</li>
-<li><strong>类型源头</strong>：<code>.emmylua/</code> 目录已提供足够的全局类型声明，用户只需标注空值变量，后续类型推导将自动传递。</li>
+<li><strong>必须<a href="../entities/标注.html">标注</a>的场景</strong>：<code>local scene = nil</code> 必须加 <code>---@type Scene</code>；<code>local node</code>（未赋值）必须加 <code>---@type Node</code>。来自全局接口的调用（如 <code>local scene = Scene()</code>）自动传递类型推导，无需<a href="../entities/标注.html">标注</a>。</li>
+<li><strong>事件函数<a href="../entities/标注.html">标注</a></strong>：建议为事件函数参数添加类型<a href="../entities/标注.html">标注</a>，如 <code>---@param eventType string</code> 和 <code>---@param eventData UpdateEventData</code>，完整事件类型定义见 <code>.emmylua/Events.d.lua</code>。</li>
+<li><strong>类型源头</strong>：<code>.emmylua/</code> 目录已提供足够的全局类型声明，用户只需<a href="../entities/标注.html">标注</a>空值变量，后续类型推导将自动传递。</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

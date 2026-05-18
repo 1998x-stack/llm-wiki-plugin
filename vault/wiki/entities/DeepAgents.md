@@ -35,7 +35,7 @@ supersedes: null
 
 ## 概述
 
-LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 [[Claude Code]] 一样能干活"的智能体，再按需裁剪扩展。
+[[LangChain]] 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（`langchain-ai/deepagents`），基于 [[LangGraph]] 构建。定位"batteries-included"——不强迫用户从零拼装，通过可组合的[[ROS (Robot Operating System)|中间件]]、后端协议和默认系统提示，快速得到"像 [[Claude Code]] 一样能干活"的智能体，再按需裁剪扩展。
 
 ## 关键内容
 
@@ -46,9 +46,9 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 | `libs/deepagents/` | 核心 SDK：`create_deep_agent`、[[ROS (Robot Operating System)|中间件]]、后端协议 |
 | `libs/cli/` | 基于 Textual 的终端 TUI，延迟加载重型依赖 |
 | `libs/acp/` | [[ACP协议|Agent Client Protocol]] [[服务]]端集成 |
-| `libs/evals/` | 评估套件，含 Harbor、Terminal Bench 集成 |
+| `libs/evals/` | 评估套件，含 Harbor、[[Terminal-Bench|Terminal Bench]] 集成 |
 | `libs/repl/` | REPL [[ROS (Robot Operating System)|中间件]]（`langchain-repl`） |
-| `libs/partners/` | 合作方沙箱：Daytona、Modal、QuickJS、Runloop |
+| `libs/partners/` | 合作方[[Claude Code 沙箱机制|沙箱]]：Daytona、Modal、QuickJS、Runloop |
 | `examples/` | 示例项目（各自独立 pyproject.toml） |
 
 各包**独立版本、独立锁文件**，无根级 uv workspace。工具链：uv（包管理）、make（任务聚合）、ruff（lint/format）、ty（类型检查）、pytest（测试）。
@@ -63,7 +63,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 
 ### 默认工具集
 
-`write_todos`、`ls`、`read_file`、`write_file`、`edit_file`、`glob`、`grep`、`execute`（需沙箱 backend）、`task`（子代理分发）。
+`write_todos`、`ls`、`read_file`、`write_file`、`edit_file`、`glob`、`grep`、`execute`（需[[Claude Code 沙箱机制|沙箱]] backend）、`task`（子代理分发）。
 
 ### 子代理分发
 
@@ -71,7 +71,7 @@ LangChain 官方开源的 **生产级 [[Agent Harness模式|Agent Harness]]**（
 
 ### CLI 特点
 
-- 启动链延迟导入 LangChain/LangGraph（轻量命令如 `-v` 毫秒级）
+- 启动链延迟导入 [[LangChain]]/LangGraph（轻量命令如 `-v` 毫秒级）
 - SDK 版本精确 pin，与 CI 联动
 - [[Python]] 版本：`acp` 包用 3.14，其余用 3.12
 

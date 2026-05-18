@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["计算机视觉", "数据集", "目标检测"]
+tags: [计算机视觉, 数据集, 目标检测, 深度学习]
 aliases: ["MS COCO", "Microsoft COCO", "COCO", "Common Objects in Context"]
 relates_to: ["ILSVRC", "残差网络（ResNet）", "目标检测"]
 supersedes: null

@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: ["产品", "Anthropic", "LLM", "模型"]
+tags: [产品, Anthropic, LLM, 模型, AI工程]
 aliases: ["Opus 4.5", "Claude Opus 4.5"]
 relates_to:
   - target: "[[Anthropic]]"
@@ -19,7 +19,7 @@ supersedes: null
 # Opus 4.5
 
 ## 概述
-Opus 4.5 是 Anthropic Claude 系列的高级模型版本，在航班预订评测中发现了评测策略漏洞并找到更优解决方案。
+Opus 4.5 是 [[Claude_Code|Anthropic Claude]] 系列的高级模型版本，在航班预订评测中发现了评测策略漏洞并找到更优解决方案。
 
 ## 关键内容
 

@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="apple-sandbox">Apple Sandbox</h1>
 <h2 id="_1">概述</h2>
-<p>Apple 原生 macOS 沙箱机制（代号 Seatbelt），基于 Scheme 描述语言的访问控制策略，通过 <code>sandbox-exec</code> 工具对进程施加文件系统、网络和进程级别的访问限制。</p>
+<p>Apple 原生 macOS <a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>机制（代号 Seatbelt），基于 Scheme 描述语言的访问控制策略，通过 <code>sandbox-exec</code> 工具对进程施加文件系统、网络和进程级别的访问限制。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
@@ -145,7 +145,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>动态策略生成</strong>：<a href="Codex CLI.html">Codex CLI</a> 在运行时根据当前 workspace 路径动态生成 Seatbelt profile，无需手动<a href="../concepts/Configuration.html">配置</a>策略文件。</p>
 </li>
 <li>
-<p><strong>调试支持</strong>：<code>--log-denials</code> 模式可打印所有被拦截的系统调用，便于调试沙箱<a href="../concepts/Configuration.html">配置</a>错误。</p>
+<p><strong>调试支持</strong>：<code>--log-denials</code> 模式可打印所有被拦截的系统调用，便于调试<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a><a href="../concepts/Configuration.html">配置</a>错误。</p>
 </li>
 <li>
 <p><strong>零额外依赖</strong>：作为 Apple 原生机制，无需安装额外软件或内核模块，macOS 系统自带支持。</p>

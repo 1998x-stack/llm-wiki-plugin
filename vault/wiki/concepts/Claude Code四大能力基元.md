@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [capability-primitives, ai-actions, coding-agent]
+tags: [capability-primitives, ai-actions, coding-agent, AI工程]
 aliases: ["Claude Code四大能力基元", "四大能力基元"]
 relates_to: 
   - target: "[[Claude Code]]"

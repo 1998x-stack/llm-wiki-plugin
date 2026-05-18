@@ -130,16 +130,16 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">示例管理</span><span class="tag">manifest</span><span class="tag">UrhoX</span><span class="tag">项目配置</span><span class="tag">文件复制</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">示例管理</span><span class="tag">manifest</span><span class="tag">UrhoX</span><span class="tag">项目配置</span><span class="tag">文件复制</span><span class="tag">游戏开发</span></div>
 </div>
   <div class="content">
     <h1 id="manifest-json">manifest-json检查规范</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中复制示例目录前必须检查 <code>manifest.json</code> 文件，确保完整复制所有必需的配置和资源文件。</p>
+<p><a href="../entities/UrhoX引擎.html">UrhoX</a> 中复制示例目录前必须检查 <code>manifest.json</code> 文件，确保完整复制所有必需的<a href="Configuration.html">配置</a>和资源文件。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>检查流程</strong>：复制示例目录前先检查是否存在 <code>manifest.json</code>。如果存在，按其 <code>includes</code> 字段复制所有匹配文件；如果 <code>copyAll: true</code>，复制整个目录（包括非 .lua 文件）；如果不存在，先用 <code>ls -la</code> 检查目录结构。</li>
-<li><strong>重要文件类型</strong>：<code>.fsm</code>（有限状态机）、<code>.blendspace</code>（混合空间）、<code>.json</code>（配置文件）等非代码文件同样重要，遗漏会导致示例无法正常运行。</li>
+<li><strong>重要文件类型</strong>：<code>.fsm</code>（有限状态机）、<code>.blendspace</code>（混合空间）、<code>.json</code>（<a href="Configuration.html">配置</a>文件）等非代码文件同样重要，遗漏会导致示例无法正常运行。</li>
 <li><strong>适用场景</strong>：此规范适用于所有示例目录的复制操作，确保示例的完整性和可运行性。</li>
 </ol>
 <h2 id="_3">来源</h2>

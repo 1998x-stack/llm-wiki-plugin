@@ -139,7 +139,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>阶段 1：探索（Plan Mode）</strong>：读取目标代码区域，理解现有架构和实现方式。例如"读取 /src/auth 理解会话和登录处理方式，以及如何管理密钥的环境变量。"此阶段不修改任何代码，只做信息收集。</p>
+<p><strong>阶段 1：探索（Plan Mode）</strong>：读取目标代码区域，理解现有架构和实现方式。例如"读取 /src/auth 理解会话和登录处理方式，以及如何管理密钥的<a href="Environment Variables.html">环境变量</a>。"此阶段不修改任何代码，只做信息收集。</p>
 </li>
 <li>
 <p><strong>阶段 2：规划（Plan Mode）</strong>：基于探索结果，制定详细的修改计划。明确哪些文件需要修改、会话流程是什么、潜在的边界情况。在 Plan Mode 中可用 Ctrl+G 将计划在编辑器中直接编辑。规划的适用场景包括：不确定方法时、修改多个文件时、对要修改的代码不熟悉时。</p>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>与 <a href="上下文窗口.html">上下文窗口</a> 的关系</strong>：分离探索与实现可以精确控制上下文内容——探索阶段在 Plan Mode 中累积的上下文不会影响实现阶段的 token 预算，体现了 <a href="上下文经济学.html">上下文经济学</a> 的核心思想。</p>
 </li>
 <li>
-<p><strong>与 <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a> 的配合</strong>：探索阶段可以委托给子 Agent 在独立上下文中进行代码库调查，只将摘要返回给主对话，进一步减少主上下文的噪声。</p>
+<p><strong>与 <a href="子 Agent 模式（Sub-Agent Pattern）.html">子 Agent 模式（Sub-Agent Pattern）</a> 的配合</strong>：探索阶段可以委托给<span style="color:#e74c3c" title="broken link">子 Agent</span> 在独立上下文中进行代码库调查，只将摘要返回给主对话，进一步减少主上下文的噪声。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">MCP</span><span class="tag">文件格式</span><span class="tag">打包</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">MCP</span><span class="tag">文件格式</span><span class="tag">打包</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="dxt">DXT 文件格式</h1>
 <h2 id="_1">概述</h2>
-<p>DXT（Desktop Extension）是 Claude Desktop 扩展的打包文件格式，包含 manifest.json、MCP 服务器代码、资源和文档的标准化结构。</p>
+<p>DXT（Desktop Extension）是 <a href="../entities/Claude Desktop.html">Claude Desktop</a> 扩展的打包文件格式，包含 manifest.json、<a href="MCP 服务器.html">MCP 服务器</a>代码、资源和文档的标准化结构。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>文件结构</strong>：一个 <code>.dxt</code> 文件是压缩包，包含四个核心部分：<code>manifest.json</code>（扩展元数据和依赖声明）、<code>server/</code>（MCP 服务器代码，如 <code>index.js</code>）、<code>assets/</code>（图标和截图）、<code>README.md</code>（用户文档）。</p>
+<p><strong>文件结构</strong>：一个 <code>.dxt</code> 文件是压缩包，包含四个核心部分：<code>manifest.json</code>（扩展元数据和依赖声明）、<code>server/</code>（<a href="MCP 服务器.html">MCP 服务器</a>代码，如 <code>index.js</code>）、<code>assets/</code>（图标和截图）、<code>README.md</code>（用户文档）。</p>
 </li>
 <li>
-<p><strong>manifest.json 关键字段</strong>：包含 <code>name</code>、<code>version</code>、<code>description</code> 等基本信息；<code>server</code> 对象指定运行类型（如 <code>node</code>）和入口文件；<code>permissions</code> 数组声明所需权限（如 <code>internet</code>、<code>filesystem:read</code>）；<code>configuration</code> 定义用户需提供的配置项（如 API 密钥），支持 <code>secret</code> 类型安全存储。</p>
+<p><strong>manifest.json 关键字段</strong>：包含 <code>name</code>、<code>version</code>、<code>description</code> 等基本信息；<code>server</code> 对象指定运行类型（如 <code>node</code>）和入口文件；<code>permissions</code> 数组声明所需<a href="Permissions.html">权限</a>（如 <code>internet</code>、<code>filesystem:read</code>）；<code>configuration</code> 定义用户需提供的<a href="Configuration.html">配置</a>项（如 API 密钥），支持 <code>secret</code> 类型安全存储。</p>
 </li>
 <li>
-<p><strong>打包与分发</strong>：开发者使用 <code>claude-desktop pack</code> 命令打包，可提交到 Anthropic 审核后发布到扩展市场，也可直接分发 <code>.dxt</code> 文件。</p>
+<p><strong>打包与分发</strong>：开发者使用 <code>claude-desktop pack</code> 命令打包，可提交到 <a href="../entities/Anthropic.html">Anthropic</a> 审核后发布到<a href="扩展市场.html">扩展市场</a>，也可直接分发 <code>.dxt</code> 文件。</p>
 </li>
 <li>
-<p><strong>与 Chrome Extension 的类比</strong>：DXT 格式对 MCP 生态的影响类似于 Chrome Extension Store 对浏览器扩展生态的影响——标准化打包和一键安装是生态繁荣的关键基础设施。</p>
+<p><strong>与 Chrome Extension 的类比</strong>：DXT 格式对 MCP 生态的影响类似于 Chrome <a href="扩展市场.html">Extension Store</a> 对浏览器扩展生态的影响——标准化打包和一键安装是生态繁荣的关键基础设施。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

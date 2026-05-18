@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [devops, ci-cd, automation, culture]
+tags: [devops, ci-cd, automation, culture, AI工程]
 aliases: ["DevOps Culture", "Development and Operations", "开发运维"]
 relates_to:
   - target: "[[CI/CD 流水线]]"

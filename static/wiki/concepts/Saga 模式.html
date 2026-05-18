@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">架构模式</span><span class="tag">长事务</span><span class="tag">Agent工程</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">架构模式</span><span class="tag">长事务</span><span class="tag">Agent工程</span><span class="tag">Agent系统</span></div>
 </div>
   <div class="content">
     <h1 id="saga">Saga 模式</h1>
 <h2 id="_1">概述</h2>
-<p>Saga 模式是分布式系统中处理长事务的设计模式，将长事务分解为一系列可补偿的短步骤，每步成功后记录进度，失败时从最近检查点回滚或继续，与 Agent Harness 设计高度相似。</p>
+<p>Saga 模式是<a href="分布式系统.html">分布式系统</a>中处理长事务的设计模式，将长事务分解为一系列可补偿的短步骤，每步成功后记录进度，失败时从最近检查点回滚或继续，与 <a href="Agent Harness模式.html">Agent Harness</a> 设计高度相似。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>核心思想</strong>：</li>
@@ -146,9 +146,9 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>每个步骤都有对应的补偿操作</p>
 </li>
 <li>
-<p><strong>与 Agent Harness 的类比</strong>：</p>
+<p><strong>与 <a href="Agent Harness模式.html">Agent Harness</a> 的类比</strong>：</p>
 </li>
-<li>Agent Harness 设计与 Saga 模式高度相似</li>
+<li><a href="Agent Harness模式.html">Agent Harness</a> 设计与 Saga 模式高度相似</li>
 <li>长时 Agent 任务 ≈ 分布式长事务</li>
 <li>Agent 的每个执行步骤 ≈ Saga 中的本地事务</li>
 <li>检查点 ≈ Saga 的补偿点</li>
@@ -159,14 +159,14 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>设计启示</strong>：</p>
 </li>
 <li>这种类比为 Harness 工程师提供了丰富的已知解决方案库</li>
-<li>可以从分布式系统领域借鉴成熟的错误处理和恢复策略</li>
+<li>可以从<a href="分布式系统.html">分布式系统</a>领域借鉴成熟的<a href="错误处理.html">错误处理</a>和恢复策略</li>
 <li>
 <p>Saga 模式的补偿机制可应用于 Agent 任务的回滚设计</p>
 </li>
 <li>
 <p><strong>在 Agent 工程中的应用</strong>：</p>
 </li>
-<li>将长时任务分解为可验证的短步骤</li>
+<li>将长时<a href="任务分解.html">任务分解</a>为可验证的短步骤</li>
 <li>每步成功后更新进度文件（如 claude-progress.txt）</li>
 <li>失败时从最近检查点恢复，而非从头开始</li>
 <li>设计补偿操作来撤销已完成的步骤</li>

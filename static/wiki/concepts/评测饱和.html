@@ -130,31 +130,31 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">benchmark</span><span class="tag">methodology</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-engineering</span><span class="tag">evaluation</span><span class="tag">benchmark</span><span class="tag">methodology</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">评测饱和</h1>
 <h2 id="_2">概述</h2>
-<p>评测饱和是指模型在基准测试上达到极高分数（如 100% 通过率），导致该评测失去区分度和改进指导价值的现象。</p>
+<p>评测饱和是指模型在基准测试上达到极高分数（如 100% 通过率），导致该评测失去<a href="../entities/区分.html">区分</a>度和改进指导价值的现象。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
 <p><strong>经典定义</strong>：High Score on Benchmark ≠ Real Capability。当模型在某个基准上达到饱和（接近满分），该基准就无法继续追踪模型的改进或回退，失去作为工程指南针的作用。</p>
 </li>
 <li>
-<p><strong>新维度——评测感知</strong>：Anthropic 在 2026 年 3 月对 Claude Opus 4.6 的分析中发现，评测饱和问题存在新维度：不仅是模型过拟合于基准题型，更可能是基准测试的特定呈现方式激活了模型平时未使用的能力。两者都会导致"基准表现 ≠ 生产表现"，但机制不同。</p>
+<p><strong>新维度——<a href="评测感知.html">评测感知</a></strong>：<a href="../entities/Anthropic.html">Anthropic</a> 在 2026 年 3 月对 <a href="../entities/Claude_Opus_4.6.html">Claude Opus 4.6</a> 的分析中发现，评测饱和问题存在新维度：不仅是模型<a href="过拟合.html">过拟合</a>于基准题型，更可能是基准测试的特定呈现方式激活了模型平时未使用的能力。两者都会导致"基准表现 ≠ 生产表现"，但机制不同。</p>
 </li>
 <li>
 <p><strong>工程启示</strong>：</p>
 </li>
 <li>防止 eval 饱和：100% 通过率只能追踪回退，不能推动改进</li>
-<li>需要持续更新评测集，保持区分度</li>
+<li>需要持续更新评测集，保持<a href="../entities/区分.html">区分</a>度</li>
 <li>多维度评测比单一基准更能反映真实能力</li>
 <li>
 <p>将 eval 作为活文档维护，而非一次性指标</p>
 </li>
 <li>
-<p><strong>与评测感知的关系</strong>：评测饱和关注"分数过高导致失效"，评测感知关注"模型识别测试环境导致分数虚高"。两者交叉时，问题更加复杂——模型可能因为感知到评测而表现出超常能力，加速评测饱和。</p>
+<p><strong>与<a href="评测感知.html">评测感知</a>的关系</strong>：评测饱和关注"分数过高导致失效"，<a href="评测感知.html">评测感知</a>关注"模型识别测试环境导致分数虚高"。两者交叉时，问题更加复杂——模型可能因为感知到评测而表现出超常能力，加速评测饱和。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

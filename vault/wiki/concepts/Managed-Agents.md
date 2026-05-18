@@ -38,13 +38,13 @@ supersedes: null
 
 ## 概述
 
-[[Claude_Code|Claude]] Managed [[Agents]] 是 [[Anthropic]] 在 [[Claude_Code|Claude]] Platform 中提供的托管[[服务]]，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、沙箱）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。
+[[Claude_Code|Claude]] Managed [[Agents]] 是 [[Anthropic]] 在 [[Claude_Code|Claude]] Platform 中提供的托管[[服务]]，代表用户运行长周期 Agent。它通过一组抽象接口（会话、控制框架、[[Claude Code 沙箱机制|沙箱]]）将 Agent 各组件解耦，使各组件的实现可独立替换而不影响其他部分。
 
 ## 关键内容
 
 ### 设计动机
 
-[[Agent Harness模式]] 编码了关于"[[Claude_Code|Claude]] 不能独立做什么"的假设，但这些假设会随模型进步而**过时**。例如：[[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入了[[上下文重置]]；但同样的 harness 用于 [[Claude_Code|Claude]] Opus 4.5 时，该行为消失了——重置变成了死重。
+[[Agent Harness模式]] 编码了关于"[[Claude_Code|Claude]] 不能独立做什么"的假设，但这些假设会随模型进步而**过时**。例如：[[Claude-Sonnet-4-5|Claude Sonnet 4.5]] 会在接近上下文限制时过早结束任务（[[上下文焦虑]]），因此在 harness 中加入了[[上下文重置]]；但同样的 harness 用于 [[Claude_Code|Claude]] [[Opus 4.5]] 时，该行为消失了——重置变成了死重。
 
 Managed [[Agents]] 的目标是设计一组**能超越任何特定实现的接口**，包括 [[Anthropic]] 今天运行的那些实现。
 
@@ -54,7 +54,7 @@ Managed [[Agents]] 的目标是设计一组**能超越任何特定实现的接�
 |------|------|------|
 | **会话（Session）** | 所有发生事件的追加日志 | `getEvents()`, `emitEvent(id, event)` |
 | **控制框架（Harness）** | 调用 [[Claude_Code|Claude]] 并路由工具调用的循环 | `wake(sessionId)`, `getSession(id)` |
-| **沙箱（Sandbox）** | [[Claude_Code|Claude]] 可运行代码和编辑文件的执行环境 | `execute(name, input) → string`, `provision({resources})` |
+| **[[Claude Code 沙箱机制|沙箱]]（Sandbox）** | [[Claude_Code|Claude]] 可运行代码和编辑文件的执行环境 | `execute(name, input) → string`, `provision({resources})` |
 
 ### 核心设计原则
 
@@ -64,18 +64,18 @@ Managed [[Agents]] 的目标是设计一组**能超越任何特定实现的接�
 
 ### 架构演进
 
-1. **初始设计**：所有组件放在单个容器中（会话、harness、沙箱共享环境）
+1. **初始设计**：所有组件放在单个容器中（会话、harness、[[Claude Code 沙箱机制|沙箱]]共享环境）
 2. **问题暴露**：容器变成"宠物"——失败时需人工修复，无法调试，无法连接客户 VPC（详见 [[宠物与牲畜模式]]）
-3. **解耦方案**：将"大脑"（[[Claude_Code|Claude]] + harness）与"手"（沙箱）和"会话"（事件日志）分离
+3. **解耦方案**：将"大脑"（[[Claude_Code|Claude]] + harness）与"手"（[[Claude Code 沙箱机制|沙箱]]）和"会话"（事件日志）分离
 
 ### 性能收益
 
-解耦后 p50 TTFT 下降约 **60%**，p95 TTFT 下降超过 **90%**。因为不需要沙箱的会话可立即开始推理，无需等待容器[[Configuration|配置]]。
+解耦后 p50 TTFT 下降约 **60%**，p95 TTFT 下降超过 **90%**。因为不需要[[Claude Code 沙箱机制|沙箱]]的会话可立即开始推理，无需等待容器[[Configuration|配置]]。
 
 ### 安全边界
 
 在耦合设计中，[[Claude_Code|Claude]] 生成的不可信代码与凭证运行在同一容器中。解耦后：
-- Git 令牌在沙箱初始化时注入本地 git remote，Agent 从不直接处理令牌
+- Git 令牌在[[Claude Code 沙箱机制|沙箱]]初始化时注入本地 git remote，Agent 从不直接处理令牌
 - 自定义工具通过 MCP 调用，OAuth 令牌存储在安全保险库中，由专用代理代为调用
 - Harness 从不知晓任何凭证
 

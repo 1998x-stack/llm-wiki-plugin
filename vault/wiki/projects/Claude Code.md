@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, coding-agent, terminal, typescript]
+tags: [ai-tools, coding-agent, terminal, typescript, Agent系统]
 aliases: ["Claude Code", "Claude"]
 relates_to:
   - target: "[[TAOR Loop]]"

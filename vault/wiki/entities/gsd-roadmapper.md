@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, roadmap, project-planning]
+tags: [gsd-agent, roadmap, project-planning, Agent系统]
 aliases: ["gsd-roadmapper", "GSD Roadmapper", "GSD路线图智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

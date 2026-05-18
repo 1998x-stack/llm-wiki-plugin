@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [nlp, sequence modeling, encoder-decoder]
+tags: [nlp, "sequence modeling", encoder-decoder, 计算理论]
 aliases: ["Sequence to Sequence", "Seq2Seq", "序列到序列模型"]
 relates_to:
   - target: "[[Sequence to Sequence Learning with Neural Networks (2014 论文)]]"

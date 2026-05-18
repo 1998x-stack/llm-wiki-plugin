@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [feature-flag, development, growthbook]
+tags: [feature-flag, development, growthbook, AI工程]
 aliases: ["Feature Flag System", "功能标志系统", "GrowthBook"]
 relates_to: 
   - target: "[[Claude Code]]"

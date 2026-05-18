@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-commerce, payment, stripe]
+tags: [ai-commerce, payment, stripe, AI工程]
 aliases: ["SPT", "Shared Payment Tokens", "共享支付令牌"]
 relates_to:
   - target: "[[Stripe]]"

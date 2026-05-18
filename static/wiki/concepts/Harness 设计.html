@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">agent-infrastructure</span><span class="tag">long-running-tasks</span><span class="tag">anthropic</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">harness-engineering</span><span class="tag">agent-infrastructure</span><span class="tag">long-running-tasks</span><span class="tag">anthropic</span><span class="tag">AI设计</span></div>
 </div>
   <div class="content">
     <h1 id="harness">Harness 设计</h1>
@@ -142,16 +142,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>核心定位</strong>：Harness 工程专注于长时运行应用开发场景，解决代码库状态积累性、多层次验证需求等挑战。好的 Harness 不只维护"当前状态"，还要维护<strong>决策历史</strong>。</p>
 </li>
 <li>
-<p><strong>状态的三种形态</strong>：Harness 需管理三类状态——<strong>即时状态</strong>（上下文窗口内的当前代码、测试结果、错误）、<strong>短期状态</strong>（检查点文件中的进行中功能、最近决策、活跃 Bug）、<strong>长期状态</strong>（Git 历史 + 文档中的架构演化、决策原因、完整测试历史）。</p>
+<p><strong>状态的三种形态</strong>：Harness 需管理三类状态——<strong>即时状态</strong>（<a href="上下文窗口.html">上下文窗口</a>内的当前代码、测试结果、错误）、<strong>短期状态</strong>（检查点文件中的进行中功能、最近决策、活跃 Bug）、<strong>长期状态</strong>（Git 历史 + 文档中的架构演化、决策原因、完整测试历史）。</p>
 </li>
 <li>
-<p><strong>与 CI/CD 的类比</strong>：应用开发 Harness 本质上是"为 AI Agent 定制的 CI/CD 系统"——检查点 ≈ CI 构建、<a href="特性追踪器.html">特性追踪器</a> ≈ 项目管理工具、<a href="持续验证循环.html">持续验证循环</a> ≈ 测试流水线、<a href="三级自主权模型.html">三级自主权模型</a> ≈ 代码审查流程。理解这个类比有助于借鉴 CI/CD 领域 20 年积累的最佳实践。</p>
+<p><strong>与 CI/CD 的类比</strong>：应用开发 Harness 本质上是"为 AI Agent 定制的 CI/CD 系统"——检查点 ≈ CI 构建、<a href="特性追踪器.html">特性追踪器</a> ≈ 项目管理工具、<a href="持续验证循环.html">持续验证循环</a> ≈ 测试流水线、<a href="三级自主权模型.html">三级自主权模型</a> ≈ <a href="代码审查.html">代码审查</a>流程。理解这个类比有助于借鉴 CI/CD 领域 20 年积累的最佳实践。</p>
 </li>
 <li>
-<p><strong>核心组件</strong>：完整的 Harness 包含 <a href="特性追踪器.html">特性追踪器</a>（Feature Tracker）、<a href="上下文传递协议.html">上下文传递协议</a>（会话交接标准化包）、<a href="智能检查点触发.html">智能检查点触发</a>（基于语义事件而非固定间隔）、<a href="三级自主权模型.html">三级自主权模型</a>（人机协作协议）、<a href="持续验证循环.html">持续验证循环</a>（代码修改后自动验证）、<a href="技术债务追踪.html">技术债务追踪</a>（确保上下文切换时技术债务不丢失）。</p>
+<p><strong>核心组件</strong>：完整的 Harness 包含 <a href="特性追踪器.html">特性追踪器</a>（<a href="特性追踪器.html">Feature Tracker</a>）、<a href="上下文传递协议.html">上下文传递协议</a>（<a href="上下文压缩.html">会话交接</a>标准化包）、<a href="智能检查点触发.html">智能检查点触发</a>（基于语义事件而非固定间隔）、<a href="三级自主权模型.html">三级自主权模型</a>（人机协作协议）、<a href="持续验证循环.html">持续验证循环</a>（代码修改后自动验证）、<a href="技术债务追踪.html">技术债务追踪</a>（确保上下文切换时技术债务不丢失）。</p>
 </li>
 <li>
-<p><strong>实践建议</strong>：设计时考虑会话边界（假设每 2-3 小时需要上下文重置）、让测试充当接口（并行开发前先写测试）、显式追踪技术债务、人工介入点要在 Harness 设计阶段明确决定。</p>
+<p><strong>实践建议</strong>：设计时考虑会话边界（假设每 2-3 小时需要<a href="上下文重置.html">上下文重置</a>）、让测试充当接口（并行开发前先写测试）、显式追踪技术债务、人工介入点要在 Harness 设计阶段明确决定。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学</span><span class="tag">图论</span><span class="tag">线性代数</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">数学</span><span class="tag">图论</span><span class="tag">线性代数</span><span class="tag">数值分析</span></div>
 </div>
   <div class="content">
     <h1 id="_1">拉普拉斯矩阵</h1>
 <h2 id="_2">概述</h2>
-<p>拉普拉斯矩阵是图论中的一个重要矩阵，用于描述图的结构性质。在谱图理论和图神经网络中，拉普拉斯矩阵是构建图卷积和其他图信号处理操作的基础。</p>
+<p><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>是图论中的一个重要<a href="矩阵.html">矩阵</a>，用于描述图的结构性质。在<a href="谱图理论.html">谱图理论</a>和图神经网络中，<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>是构建图卷积和其他图信号处理操作的基础。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>基本定义</strong>：</li>
-<li>未归一化拉普拉斯矩阵：L = D - A</li>
-<li>对称归一化拉普拉斯矩阵：Lsym = D^(-1/2) L D^(-1/2) = I - D^(-1/2) A D^(-1/2)</li>
-<li>随机游走归一化拉普拉斯矩阵：Lrw = D^(-1) L = I - D^(-1) A</li>
+<li>未归一化<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>：L = D - A</li>
+<li><a href="对称归一化.html">对称归一化</a><a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>：Lsym = D^(-1/2) L D^(-1/2) = I - D^(-1/2) A D^(-1/2)</li>
+<li><a href="随机游走.html">随机游走</a>归一化<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>：Lrw = D^(-1) L = I - D^(-1) A</li>
 <li>
-<p>其中D为度矩阵（对角线为节点度数），A为邻接矩阵，I为单位矩阵</p>
+<p>其中D为度<a href="矩阵.html">矩阵</a>（对角线为节点度数），A为邻接<a href="矩阵.html">矩阵</a>，I为单位<a href="矩阵.html">矩阵</a></p>
 </li>
 <li>
 <p><strong>重要性质</strong>：</p>
 </li>
-<li>对称半正定矩阵，所有特征值非负</li>
+<li>对称半正定<a href="矩阵.html">矩阵</a>，所有特征值非负</li>
 <li>最小特征值为0，对应的特征向量为常数向量</li>
 <li>第二小特征值λ2（Fiedler值）反映图的连通性</li>
 <li>
@@ -157,16 +157,16 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>在图神经网络中的应用</strong>：</p>
 </li>
-<li>GCN中的图卷积操作基于拉普拉斯矩阵</li>
-<li>LightGCN使用对称归一化邻接矩阵D^(-1/2) A D^(-1/2)进行传播</li>
+<li>GCN中的图卷积操作基于<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a></li>
+<li><a href="../entities/LightGCN.html">LightGCN</a>使用<a href="对称归一化.html">对称归一化</a>邻接<a href="矩阵.html">矩阵</a>D^(-1/2) A D^(-1/2)进行传播</li>
 <li>
-<p>通过拉普拉斯矩阵的特征分解实现谱域卷积</p>
+<p>通过<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>的特征分解实现谱域卷积</p>
 </li>
 <li>
 <p><strong>在推荐系统中的体现</strong>：</p>
 </li>
-<li>用户-物品二部图的拉普拉斯矩阵描述协同信号传播</li>
-<li>通过拉普拉斯矩阵的幂次操作实现高阶邻域信息聚合</li>
+<li>用户-物品二部图的<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>描述协同信号传播</li>
+<li>通过<a href="../entities/皮埃尔-西蒙·拉普拉斯.html">拉普拉斯</a><a href="矩阵.html">矩阵</a>的幂次操作实现高阶邻域信息聚合</li>
 <li>特征分解帮助理解嵌入在传播过程中的平滑效应</li>
 </ol>
 <h2 id="_4">来源</h2>

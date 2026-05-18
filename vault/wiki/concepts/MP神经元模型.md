@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [神经网络, AI历史, 计算模型]
+tags: [神经网络, AI历史, 计算模型, 脑科学]
 aliases: [MP神经元模型, McCulloch-Pitts neuron, MP neuron, McCulloch-Pitts神经元]
 relates_to:
   - "[[感知机（Perceptron）]] — extends"

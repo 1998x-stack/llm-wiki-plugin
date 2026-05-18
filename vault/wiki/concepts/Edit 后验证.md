@@ -138,7 +138,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 
 **两层结论：**
 1. **有专门 edit 工具本身就重要**：从 No edit (10.3) 到 edit action (15.0)，把编辑变成紧凑、受约束的专门动作，本身就能显著提升效果（+4.7 点）。
-2. **edit 后做 validate / linting 进一步显著有益**：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少错误传播。
+2. **edit 后做 validate / linting 进一步显著有益**：从 15.0 到 18.0（+3.0 点），说明仅仅"能编辑"还不够，把坏编辑拦下来、把语法/缩进类错误尽早暴露出来，会明显减少[[错误复合|错误传播]]。
 
 **准确表述**：论文这里验证的主要是 linting / syntax-level guardrail，不是完整的 LSP/全仓语义检查。它证明的是"edit 后做轻量、即时的有效性校验有帮助"，而非"必须上完整 LSP 才有效"。
 
@@ -148,7 +148,7 @@ Edit 后验证是 Agent 编辑系统中的即时校验机制，在每次代码�
 
 | 层级 | 职责 | 机制 |
 |------|------|------|
-| **Tool Description** | "会用"：教会 [[Claude_Code|Claude]] 如何正确调用 validate 工具 | 参数语义 + 使用示例 |
+| **Tool [[Descript]]ion** | "会用"：教会 [[Claude_Code|Claude]] 如何正确调用 validate 工具 | 参数语义 + 使用示例 |
 | **[[CLAUDE.md]]** | "想这么做"：定义项目验证策略和偏好 | 每个会话加载的持久指令 |
 | **[[Hooks]] / settings.json** | "真的会做"：PostToolUse 自动触发 lint/test | additionalContext + decision:block |
 | **LSP** | "即时反馈"：edit 后自动报告 type errors/warnings | 内建 code intelligence |

@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent设计</span><span class="tag">工具设计</span><span class="tag">防错</span><span class="tag">ACI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">Agent设计</span><span class="tag">工具设计</span><span class="tag">防错</span><span class="tag">ACI</span><span class="tag">AI设计</span></div>
 </div>
   <div class="content">
     <h1 id="poka-yoke">Poka-Yoke 工具设计</h1>
 <h2 id="_1">概述</h2>
-<p>Poka-Yoke 工具设计是一种 Agent 工具接口设计方法论，源自制造业防错理念，通过修改接口设计使错误在结构上无法发生，而非依赖模型"记住"正确用法。</p>
+<p>Poka-Yoke 工具设计是一种 Agent <a href="ACI (Agent-Computer Interface).html">工具接口设计</a>方法论，源自制造业防错理念，通过修改接口设计使错误在结构上无法发生，而非依赖模型"记住"正确用法。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
 <p><strong>核心理念</strong>：Poka-Yoke（防错）思维应用于 Agent 工具设计——通过改变工具接口使错误在结构上无法发生。这比在 prompt 中反复提醒模型"要注意 XX"更有效。</p>
 </li>
 <li>
-<p><strong>SWE-bench 实证案例</strong>：Anthropic 工程师发现 Agent 在从仓库根目录移动后，使用相对路径时出错。解决方案不是加强 prompt 警告，而是<strong>修改工具定义，要求始终使用绝对路径</strong>。效果：模型随后"无懈可击"地使用此工具。</p>
+<p><strong><a href="../entities/SWE-bench.html">SWE-bench</a> 实证案例</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 工程师发现 Agent 在从<a href="仓库.html">仓库</a>根目录移动后，使用相对路径时出错。解决方案不是加强 prompt 警告，而是<strong>修改工具定义，要求始终使用绝对路径</strong>。效果：模型随后"无懈可击"地使用此工具。</p>
 </li>
 <li>
-<p><strong>与 ACI 的关系</strong>：Poka-Yoke 工具设计是 <a href="ACI (Agent-Computer Interface).html">ACI (Agent-Computer Interface)</a> 设计原则的具体实践。Anthropic 在 SWE-bench 上花费在工具优化上的时间多于整体 prompt 优化，证实了工具接口设计应获得与 HCI 同等的工程重视。</p>
+<p><strong>与 ACI 的关系</strong>：Poka-Yoke 工具设计是 <a href="ACI (Agent-Computer Interface).html">ACI (Agent-Computer Interface)</a> 设计原则的具体实践。<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> 上花费在工具优化上的时间多于整体 prompt 优化，证实了<a href="ACI (Agent-Computer Interface).html">工具接口设计</a>应获得与 HCI 同等的工程重视。</p>
 </li>
 <li>
 <p><strong>设计原则</strong>：</p>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["ai-engineering", "architecture-decision", "debate"]
+tags: [ai-engineering, architecture-decision, debate, AI工程]
 aliases: ["Build Heavy Harness vs Trust The Model", "重Harness与信任模型之争"]
 relates_to:
   - target: "[[Harness-Engineering]]"
@@ -33,9 +33,9 @@ AI Agent工程中的一个重要争议，涉及如何平衡Harness（执行环�
 
 1. **Build Heavy Harness 阵营**：
    - 认为需要构建复杂的Harness来约束和引导AI Agent
-   - 证据包括：[[OpenAI]]的百万行代码实验、[[Stripe]]的Minions Agent、LangChain和[[SWE-agent]]的数据
+   - 证据包括：[[OpenAI]]的百万行代码实验、[[Stripe]]的Minions Agent、[[LangChain]]和[[SWE-agent]]的数据
    - 强调确定性分析工具与LLM结合的重要性（IBM Research数据显示：纯LLM[[代码审查]]仅捕获45%错误，结合确定性工具后跃升至94%）
-   - 通过Terminal Bench 2.0成绩从52.8%升至66.5%的案例证明Harness优化效果
+   - 通过[[Terminal-Bench|Terminal Bench]] 2.0成绩从52.8%升至66.5%的案例证明Harness优化效果
 
 2. **Trust The Model 阵营**：
    - 认为应采用"模型之上尽可能薄的包装层"的设计哲学

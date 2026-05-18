@@ -130,7 +130,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">compiler-optimization</span><span class="tag">programming-language</span><span class="tag">computer-science</span><span class="tag">计算理论</span></div>
 </div>
   <div class="content">
     <!-- relates_to 示例:
@@ -145,29 +145,29 @@ relates_to:
 
 <h1 id="loop-invariant-code-motion">Loop Invariant Code Motion</h1>
 <h2 id="_1">概述</h2>
-<p>循环不变量外提是一种编译器优化技术，将循环体内值在循环执行期间不会改变的表达式计算移到循环之前，只执行一次。</p>
+<p>循环不变量外提是一种<a href="编译器优化.html">编译器优化技术</a>，将循环体内值在循环执行期间不会改变的表达式<a href="计算.html">计算</a>移到循环之前，只执行一次。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li><strong>技术原理</strong>：</li>
 <li>识别循环体内使用但未被修改的表达式（如循环体内使用N+1但N在循环中未被修改）</li>
-<li>将这些不变的计算从循环内部移出到循环之前</li>
+<li>将这些不变的<a href="计算.html">计算</a>从循环内部移出到循环之前</li>
 <li>
-<p>在循环迭代次数较多时，可显著减少冗余计算</p>
+<p>在循环迭代次数较多时，可显著减少冗余<a href="计算.html">计算</a></p>
 </li>
 <li>
 <p><strong>实现细节</strong>：</p>
 </li>
-<li>是FORTRAN编译器实现的重要循环优化之一</li>
-<li>在迭代万次的循环中，这意味着节省了9999次冗余计算</li>
+<li>是<a href="../entities/FORTRAN.html">FORTRAN</a>编译器实现的重要循环优化之一</li>
+<li>在迭代万次的循环中，这意味着节省了9999次冗余<a href="计算.html">计算</a></li>
 <li>
-<p>体现了FORTRAN团队对科学计算特点的深刻理解</p>
+<p>体现了<a href="../entities/FORTRAN.html">FORTRAN</a>团队对科学<a href="计算.html">计算</a>特点的深刻理解</p>
 </li>
 <li>
 <p><strong>应用场景</strong>：</p>
 </li>
-<li>特别适用于科学计算程序，这类程序的绝大部分执行时间花在循环中</li>
-<li>在FORTRAN的六阶段编译器架构中专门用于循环分析和优化</li>
-<li>为后续编译器优化研究提供了重要启示</li>
+<li>特别适用于科学<a href="计算.html">计算</a>程序，这类程序的绝大部分执行时间花在循环中</li>
+<li>在<a href="../entities/FORTRAN.html">FORTRAN</a>的六阶段编译器架构中专门用于循环分析和优化</li>
+<li>为后续<a href="编译器优化.html">编译器优化</a>研究提供了重要启示</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

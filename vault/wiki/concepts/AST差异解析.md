@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [代码分析, AST, 差异检测, 软件测试]
+tags: [代码分析, AST, 差异检测, 软件测试, 文档处理]
 aliases: ["AST Difference Parsing", "AST差异分析", "抽象语法树差异解析"]
 relates_to:
   - target: "[[SMART 核心五阶段流水线]]"

@@ -26,7 +26,7 @@ supersedes: null
 
 1. **论文信息**：来源于 "Turning Dross Into Gold Loss: is [[BERT4Rec]] really better than [[SASRec]]?"（Petrov & Macdonald, RecSys 2023）。
 
-2. **核心发现**：[[BERT4Rec]] 相比 [[SASRec]] 的优势主要来自其损失函数（全物品 softmax [[交叉熵]]），而非双向注意力本身。当 [[SASRec]] 使用相同的全物品 softmax 损失（称为 [[SASRec]]+）时，在大多数数据集上实际表现优于 [[BERT4Rec]]，且训练速度更快。
+2. **核心发现**：[[BERT4Rec]] 相比 [[SASRec]] 的优势主要来自其损失函数（全物品 softmax [[交叉熵]]），而非双向[[注意力机制|注意力]]本身。当 [[SASRec]] 使用相同的全物品 softmax 损失（称为 [[SASRec]]+）时，在大多数数据集上实际表现优于 [[BERT4Rec]]，且训练速度更快。
 
 3. **方法**：将 [[SASRec]] 原始的"一正一负"[[二元交叉熵]]损失替换为全物品 softmax [[二元交叉熵|交叉熵损失]]，利用更多负样本信息进行更充分的优化。
 

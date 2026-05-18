@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [语言学, 分布式表示, 词向量, 语义]
+tags: [语言学, 分布式表示, 词向量, 语义, AI工程]
 aliases: [Distributional Hypothesis, 分布假说]
 relates_to: [Word2Vec, 词向量（Word Embedding）, CBOW（连续词袋模型）, Skip-gram, Tomas Mikolov]
 supersedes: null

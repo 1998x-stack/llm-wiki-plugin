@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">算法</span><span class="tag">信息检索</span><span class="tag">搜索引擎</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">算法</span><span class="tag">信息检索</span><span class="tag">搜索引擎</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="bm25">BM25</h1>
 <h2 id="_1">概述</h2>
-<p>BM25（Best Matching 25）是一种基于 TF-IDF 的词汇精确匹配排序函数，广泛用于信息检索系统，擅长技术术语、错误代码等精确标识符匹配。</p>
+<p>BM25（Best Matching 25）是一种基于 <a href="../concepts/TF-IDF.html">TF-IDF</a> 的词汇精确匹配排序函数，广泛用于<a href="../concepts/搜索引擎架构.html">信息检索系统</a>，擅长技术术语、错误代码等精确标识符匹配。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>算法原理</strong>：基于 TF-IDF 的改进版本，通过词频和逆文档频率计算文档与查询的相关性得分，是传统搜索引擎的核心算法之一。</p>
+<p><strong><a href="../concepts/算法.html">算法</a>原理</strong>：基于 <a href="../concepts/TF-IDF.html">TF-IDF</a> 的改进版本，通过词频和逆文档频率<a href="../concepts/计算.html">计算</a>文档与查询的相关性得分，是传统搜索引擎的核心<a href="../concepts/算法.html">算法</a>之一。</p>
 </li>
 <li>
 <p><strong>优势场景</strong>：对精确词语或短语匹配能力强，特别适合技术术语、错误代码（如"TS-999"）等精确标识符检索。</p>
 </li>
 <li>
-<p><strong>局限性</strong>：无语义理解能力，无法捕捉查询意图的语义相似性，需与语义嵌入结合形成混合检索。</p>
+<p><strong>局限性</strong>：无语义理解能力，无法捕捉查询意图的语义相似性，需与<a href="../concepts/语义嵌入.html">语义嵌入</a>结合形成<a href="../concepts/混合搜索.html">混合检索</a>。</p>
 </li>
 <li>
-<p><strong>在 RAG 中的应用</strong>：与语义嵌入互补，形成传统 RAG 的双引擎机制。在 <a href="../concepts/上下文检索.html">上下文检索</a> 中，语境化 BM25 进一步将检索失败率降低至 2.9%（相对基准降低 49%）。</p>
+<p><strong>在 RAG 中的应用</strong>：与<a href="../concepts/语义嵌入.html">语义嵌入</a>互补，形成传统 RAG 的双引擎机制。在 <a href="../concepts/上下文检索.html">上下文检索</a> 中，语境化 BM25 进一步将检索失败率降低至 2.9%（相对基准降低 49%）。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

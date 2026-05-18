@@ -32,7 +32,7 @@ supersedes: null
 
 5. **局限性**：AUC 对所有负样本一视同仁，不考虑推荐列表顶部位置的权重；在实际推荐中，用户更关注 Top-K 推荐，此时 NDCG、MRR 等指标更合适。
 
-6. **作为 BPR 实验的主要评价指标**：[[BPR 论文]]在 Rossmann 和 [[Netflix]] 数据集上以 AUC 为主要指标，证明 BPR-MF 显著优于 SVD-MF 和 WR-MF。
+6. **作为 BPR 实验的主要评价指标**：[[BPR 论文]]在 Rossmann 和 [[Netflix]] 数据集上以 AUC 为主要指标，证明 BPR-MF 显著优于 SVD-MF 和 [[WR-MF]]。
 
 ## 来源
 - [[BPR 论文]] — Rendle et al. (2009) UAI 2009, AUC 与 BPR-OPT 关系分析

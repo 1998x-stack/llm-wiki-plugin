@@ -141,7 +141,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <ol>
 <li><strong>状态外置</strong>：状态存储在 Session 和 Event Log 中，<a href="计算.html">计算</a>节点可随时替换。</li>
 <li><strong>Harness 无状态</strong>：工作器可随时崩溃或重新调度，不影响任务连续性。</li>
-<li><strong>Sandbox 隔离</strong>：沙箱仅作为执行器，失败仅表现为 Tool Failure 事件。</li>
+<li><strong>Sandbox 隔离</strong>：<a href="Claude Code 沙箱机制.html">沙箱</a>仅作为执行器，失败仅表现为 Tool Failure 事件。</li>
 <li><strong>凭证隔离</strong>：Secrets 对模型不可达，通过 Vault 引用绑定。</li>
 <li><strong>全事件流</strong>：工具执行、人工审批均通过事件流处理。</li>
 <li><strong>资源复用</strong>：Agent 和 Environment 是可复用的版本化资源。</li>

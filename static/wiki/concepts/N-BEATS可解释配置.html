@@ -130,22 +130,22 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列预测</span><span class="tag">深度学习</span><span class="tag">可解释AI</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">时间序列预测</span><span class="tag">深度学习</span><span class="tag">可解释AI</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="n-beats">N-BEATS可解释配置</h1>
 <h2 id="_1">概述</h2>
-<p>N-BEATS的可解释配置是该模型的一个运行模式，通过将不同的栈赋予明确的语义角色来实现模型的可解释性。</p>
+<p><a href="N-BEATS.html">N-BEATS</a>的可解释<a href="Configuration.html">配置</a>是该模型的一个运行模式，通过将不同的栈赋予明确的语义角色来实现模型的可解释性。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>趋势栈（Trend Stack）</strong>：</li>
+<li><strong><a href="趋势栈.html">趋势栈</a>（<a href="趋势栈.html">Trend Stack</a>）</strong>：</li>
 <li>基函数被约束为低阶多项式</li>
 <li>输出被表示为多项式系数与时间幂次向量的线性组合</li>
 <li>
 <p>只能生成平滑的趋势曲线：单调增长、单调下降或缓慢弯曲的走势</p>
 </li>
 <li>
-<p><strong>季节性栈（Seasonality Stack）</strong>：</p>
+<p><strong><a href="季节性栈.html">季节性栈</a>（<a href="季节性栈.html">Seasonality Stack</a>）</strong>：</p>
 </li>
 <li>基函数被约束为傅里叶级数，即正弦和余弦函数的线性组合</li>
 <li>
@@ -154,10 +154,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>设计意义</strong>：</p>
 </li>
-<li>直接来源于经典时间序列分解思想</li>
+<li>直接来源于经典<a href="Time Series Analysis.html">时间序列</a>分解思想</li>
 <li>通过基函数约束，让神经网络自动完成趋势、季节性和残差的分解</li>
 <li>每个成分都可以单独可视化和分析</li>
-<li>预测精度仅略低于通用配置，但获得极高透明度</li>
+<li>预测精度仅略低于通用<a href="Configuration.html">配置</a>，但获得极高透明度</li>
 </ol>
 <h2 id="_3">来源</h2>
 <ul>

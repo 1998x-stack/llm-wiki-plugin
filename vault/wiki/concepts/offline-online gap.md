@@ -27,7 +27,7 @@ supersedes: null
 
 2. **根源分析**：
    - 离线评估无法完全模拟用户的动态行为
-   - 推荐结果本身会改变用户行为（反馈循环 / Feedback Loop）
+   - 推荐结果本身会改变用户行为（反馈循环 / [[Evaluator-Optimizer 模式|Feedback Loop]]）
    - 不同的业务指标之间可能存在权衡
    - 离线数据存在[[选择偏差]]（[[选择偏差|Selection Bias]]）和[[位置偏差]]（[[位置偏差|Position Bias]]）
 

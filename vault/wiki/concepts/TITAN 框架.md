@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [AI-Agent, Automated-Testing, Video-Game-Testing, GPT-4o, langgraph, qwen]
+tags: [AI-Agent, Automated-Testing, Video-Game-Testing, GPT-4o, langgraph, qwen, AI工程]
 aliases: [“TITAN Framework”, “TITAN”, “Testing Intelligent Trigger Agent for Novel bugs”]
 relates_to: 
   - target: “[[TITAN-智能体]]”

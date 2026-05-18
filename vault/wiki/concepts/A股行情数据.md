@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: ["金融数据", "股票市场", "A股"]
+tags: [金融数据, 股票市场, A股, 经济学]
 aliases: ["A股行情", "A股实时行情", "A股数据", "A股K线", "A股历史数据"]
 relates_to:
   - target: "[[AKShare]]"

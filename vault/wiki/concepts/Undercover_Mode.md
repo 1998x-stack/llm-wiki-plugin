@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [security, privacy, ai-ethics]
+tags: [security, privacy, ai-ethics, AI工程]
 aliases: ["Undercover Mode", "隐藏模式", "AI Hiding"]
 relates_to:
   - target: "[[Claude Code]]"

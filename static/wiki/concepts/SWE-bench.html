@@ -149,7 +149,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li><strong><a href="../entities/SWE-agent.html">SWE-agent</a></strong>（Princeton 2024）：</li>
 <li>SWE-bench Full：<strong>12.47%</strong> resolved（GPT-4 Turbo）</li>
 <li>SWE-bench Lite：<strong>18.00%</strong> resolved（GPT-4 Turbo）</li>
-<li>pass@k 曲线：k=6 时解决率升至 30%+，但单题波动明显</li>
+<li><a href="pass@k vs pass^k.html">pass@k</a> 曲线：k=6 时解决率升至 30%+，但单题波动明显</li>
 <li><strong>Shell-only agent</strong>（GPT-4 Turbo）：Lite 上 <strong>11.00%</strong></li>
 <li><strong>RAG</strong>（GPT-4 Turbo）：Full 上 1.31%，Lite 上 2.67%</li>
 </ul>
@@ -161,7 +161,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - 证明了"接口设计质量直接决定 Agent 成功率"的核心假设</p>
 <h3 id="claude-35-sonnet-sota">Claude 3.5 Sonnet 的 SOTA 成绩</h3>
 <p><a href="../entities/Claude 3.5 Sonnet.html">Claude 3.5 Sonnet</a> 在 SWE-bench Verified 上实现 <strong>49%</strong> 解决率（当时 SOTA，后续迭代达到更高）：
-- 采用简单单 Agent 架构（无复杂多 Agent 编排）
+- 采用简单<a href="单 Agent 架构.html">单 Agent 架构</a>（无复杂多 Agent 编排）
 - 核心发现：工具优化比 prompt 优化花更多时间
 - 关键工具改进：要求绝对路径解决相对路径错误
 - <a href="Think 工具.html">Think 工具</a> 集成：实验提升 1.6%（Welch t 检验 p &lt; 0.001，d=1.47）
@@ -211,11 +211,11 @@ nav a.active { color: var(--link); font-weight: 600; }
 </table>
 <p><a href="../entities/SWE-agent.html">SWE-agent</a> 在 <a href="HumanEvalFix.html">HumanEvalFix</a> 上 87.7% vs SWE-bench 上 12.5% 的巨大差距说明：ACI 设计在复杂任务上的价值远大于简单任务——当任务复杂度从函数级提升到<a href="仓库.html">仓库</a>级时，好的交互界面带来的优势更加显著。</p>
 <h3 id="eval">Eval 饱和问题</h3>
-<p>SWE-bench 是评测饱和（eval saturation）的典型案例：
+<p>SWE-bench 是<a href="评测饱和.html">评测饱和</a>（eval saturation）的典型案例：
 - 从 30% 开始，顶级模型现在接近 80%，差距越来越难推动
 - 100% 通过率只能追踪回退，不能推动改进
 - 当 eval 饱和时，需要构建更难的新 eval
-- 这是 Anthropic 工程博客中强调的评测维护重要教训</p>
+- 这是 <a href="../entities/Anthropic.html">Anthropic</a> 工程博客中强调的评测维护重要教训</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/ChatGPT-Chat/ChatGPT-SWE-agent 论文核心观点/01-SWE agent论文 主要讲解什么核心点，什么观点？.md</span> — ChatGPT 对话总结</li>

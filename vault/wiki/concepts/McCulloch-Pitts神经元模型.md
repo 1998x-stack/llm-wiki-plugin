@@ -6,7 +6,7 @@ created: 2026-04-26
 updated: 2026-04-26
 last_accessed: 2026-04-26
 source_count: 1
-tags: [神经科学, 计算理论, 历史]
+tags: [神经科学, 计算理论, 历史, 脑科学]
 aliases: ["McCulloch-Pitts Neuron Model", "M-P模型"]
 relates_to: 
   - target: "[[Warren McCulloch]]"

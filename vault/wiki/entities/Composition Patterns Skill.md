@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, react, architecture, skills]
+tags: [ai-tools, react, architecture, skills, AI工程]
 aliases: ["composition-patterns", "React Composition Patterns", "Compound Components Pattern"]
 relates_to:
   - target: "[[Vercel Agent Skills]]"

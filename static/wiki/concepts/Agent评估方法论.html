@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="agent">Agent 评估方法论</h1>
 <h2 id="_1">概述</h2>
-<p><a href="../entities/Anthropic.html">Anthropic</a> 从内部实践和客户协作中提炼的 Agent 系统评估（Eval）系统方法论：词汇体系、评分器类型、能力评估与回归评估、pass@k vs pass^k 非确定性指标、以及从零构建评估体系的路线图。</p>
+<p><a href="../entities/Anthropic.html">Anthropic</a> 从内部实践和客户协作中提炼的 Agent 系统评估（Eval）系统方法论：词汇体系、<a href="评分器设计.html">评分器</a>类型、能力评估与回归评估、<a href="pass@k vs pass^k.html">pass@k vs pass^k</a> 非确定性指标、以及从零构建评估体系的路线图。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">核心词汇体系</h3>
 <table>
@@ -155,23 +155,23 @@ nav a.active { color: var(--link); font-weight: 600; }
 <td>对任务的一次尝试；模型输出随机性需多次试次</td>
 </tr>
 <tr>
-<td><strong>评分器（Grader）</strong></td>
-<td>评分某方面性能的逻辑；一个任务可含多个评分器</td>
-</tr>
-<tr>
-<td><strong>记录（Transcript / Trace）</strong></td>
-<td>试次完整记录：输出、工具调用、推理、中间结果</td>
-</tr>
-<tr>
-<td><strong>结果（Outcome）</strong></td>
-<td>试次结束时环境的最终状态（与 Transcript 区别：agent 说"已预订"≠数据库中有预订记录）</td>
-</tr>
-<tr>
-<td><strong>评估 Harness</strong></td>
-<td>端到端运行 eval 的基础设施</td>
-</tr>
-<tr>
-<td>**<span style="color:#e74c3c" title="broken link">Agent Harness模式&lt;/td&gt;
+<td>**<span style="color:#e74c3c" title="broken link">评分器设计&lt;/td&gt;
+&lt;td&gt;评分器</span>（<span style="color:#e74c3c" title="broken link">评分器设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;记录（Transcript / Trace）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;试次完整记录：输出、工具调用、推理、中间结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;结果（Outcome）&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;试次结束时环境的最终状态（与 Transcript 区别：agent 说&quot;已预订&quot;≠数据库中有预订记录）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;评估 Harness&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;端到端运行 eval 的基础设施&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;**[[Agent Harness模式&lt;/td&gt;
 &lt;td&gt;Agent Harness</span>（Scaffold）**</td>
 </tr>
 <tr>
@@ -181,19 +181,19 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tbody>
 </table>
 <h3 id="_4">三类评分器</h3>
-<p><strong>代码评分器（Code-based）</strong>：
+<p><strong>代码<a href="评分器设计.html">评分器</a>（Code-based）</strong>：
 - 字符串匹配、正则、二值测试（fail-to-pass）
-- 静态分析（lint、类型、安全）、结果验证、工具调用验证
+- 静态分析（lint、类型、安全）、<a href="Transcript vs Outcome.html">结果验证</a>、工具调用验证
 - 优势：快速、客观、可复现、易调试
 - 劣势：对有效变体脆弱，缺乏细微判断</p>
-<p><strong>模型评分器（Model-based / <a href="LLM-as-Judge.html">LLM-as-Judge</a>）</strong>：
+<p><strong>模型<a href="评分器设计.html">评分器</a>（Model-based / <a href="LLM-as-Judge.html">LLM-as-Judge</a>）</strong>：
 - 基于 Rubric 评分、自然语言断言、成对比较、多评判员共识
 - 优势：灵活、可扩展、捕捉细微差别
 - 劣势：不确定性、成本较高、需用人类<a href="../entities/标注.html">标注</a>校准
 - 建议：为每个维度单独调用 LLM judge；给 LLM 提供"Unknown"逃生路线防止幻觉</p>
-<p><strong>人类评分器（Human）</strong>：
+<p><strong>人类<a href="评分器设计.html">评分器</a>（Human）</strong>：
 - 领域专家审查、众包判断、A/B 测试
-- 优势：黄金标准质量，用于校准模型评分器
+- 优势：黄金标准质量，用于校准模型<a href="评分器设计.html">评分器</a>
 - 劣势：昂贵、慢、难以大规模</p>
 <h3 id="vs">能力评估 vs. 回归评估</h3>
 <p><strong>能力评估（Capability Evals）</strong>：
@@ -203,33 +203,33 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p><strong>回归评估（Regression Evals）</strong>：
 - 问"Agent 还能处理它过去处理的所有任务吗？"
 - 应接近 100% 通过率，下降信号有问题
-- <strong>eval 饱和（Eval Saturation）</strong>：通过率接近 100%，不再提供改进信号；需要更难的评估</p>
+- <strong>eval 饱和（<a href="评测饱和.html">Eval Saturation</a>）</strong>：通过率接近 100%，不再提供改进信号；需要更难的评估</p>
 <h3 id="passk-vs-passk">pass@k vs pass^k 指标</h3>
 <p>应对 Agent 行为非确定性的两个互补指标：</p>
-<p><strong>pass@k</strong>：k 次尝试中至少一次正确的概率
-- k 增大 → pass@k 升高
-- 适合"一次成功就行"的工具场景（代码生成）</p>
-<p><strong>pass^k</strong>：k 次尝试全部正确的概率
-- k 增大 → pass^k 下降
+<p><strong><a href="pass@k vs pass^k.html">pass@k</a></strong>：k 次尝试中至少一次正确的概率
+- k 增大 → <a href="pass@k vs pass^k.html">pass@k</a> 升高
+- 适合"一次成功就行"的工具场景（<a href="代码生成.html">代码生成</a>）</p>
+<p><strong><a href="pass@k vs pass^k.html">pass^k</a></strong>：k 次尝试全部正确的概率
+- k 增大 → <a href="pass@k vs pass^k.html">pass^k</a> 下降
 - 适合"需要每次可靠"的面向用户场景（客服 Agent）</p>
-<p>两者在 k=1 时相同；随 k 增大急剧分化——pass@k 趋向 100%，pass^k 趋向 0%。</p>
+<p>两者在 k=1 时相同；随 k 增大急剧分化——<a href="pass@k vs pass^k.html">pass@k</a> 趋向 100%，<a href="pass@k vs pass^k.html">pass^k</a> 趋向 0%。</p>
 <h3 id="8">从零到可信评估体系：8步路线图</h3>
 <p><strong>数据集构建阶段：</strong>
 1. <strong>尽早开始</strong>：20-50 个从真实失败中提取的任务即可启动，无需等待大规模套件
 2. <strong>从手动测试中转化</strong>：将已有的手动检查、bug 报告、用户反馈转化为测试用例
-3. <strong>编写无歧义任务与参考解答</strong>：两名领域专家能独立达成相同 pass/fail 判断；创建已知可通过的参考解答验证评分器
+3. <strong>编写无歧义任务与参考解答</strong>：两名领域专家能独立达成相同 pass/fail 判断；创建已知可通过的参考解答验证<a href="评分器设计.html">评分器</a>
 4. <strong>构建平衡问题集</strong>：同时测试"应该触发"和"不应该触发"的情况，避免单侧优化</p>
-<p><strong>Harness 和评分器设计：</strong>
+<p><strong>Harness 和<a href="评分器设计.html">评分器设计</a>：</strong>
 5. <strong>构建稳健的评估 Harness</strong>：每次试次从干净环境出发；防止跨试次共享状态
-6. <strong>评分器设计</strong>：优先使用确定性评分器；LLM judge 在必要时使用并用人类校准；支持部分分数；<strong>评估轨迹而非具体路径</strong>（Agent 可能发现有效的非预期解法）</p>
+6. <strong><a href="评分器设计.html">评分器设计</a></strong>：优先使用确定性<a href="评分器设计.html">评分器</a>；LLM judge 在必要时使用并用人类校准；支持部分分数；<strong>评估轨迹而非具体路径</strong>（Agent 可能发现有效的非预期解法）</p>
 <p><strong>长期维护：</strong>
-7. <strong>阅读 Transcript</strong>：分辨是真正的错误还是评分器拒绝了有效解法；验证评估确实在测量重要指标
+7. <strong>阅读 Transcript</strong>：分辨是真正的错误还是<a href="评分器设计.html">评分器</a>拒绝了有效解法；验证评估确实在测量重要指标
 8. <strong>监控饱和并持续贡献</strong>：eval 套件是活的工件，需明确所有权和持续维护</p>
 <h3 id="agent_1">不同 Agent 类型的评估策略</h3>
-<p><strong>编码 Agent</strong>：确定性评分器（<a href="单元测试.html">单元测试</a> pass/fail）是自然选择；可加 LLM Rubric 评估代码质量和交互方式</p>
+<p><strong>编码 Agent</strong>：确定性<a href="评分器设计.html">评分器</a>（<a href="单元测试.html">单元测试</a> pass/fail）是自然选择；可加 LLM Rubric 评估代码质量和交互方式</p>
 <p><strong>对话 Agent</strong>：多维成功（状态检查 + Transcript 约束 + LLM Rubric）；常需第二个 LLM 模拟用户</p>
 <p><strong>研究 Agent</strong>：接地性检查 + 覆盖度检查 + 来源质量检查；LLM judge 需频繁用专家人类判断校准</p>
-<p><strong><a href="计算.html">计算</a>机使用 Agent</strong>：需要在真实或沙箱环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）</p>
+<p><strong><a href="计算.html">计算</a>机使用 Agent</strong>：需要在真实或<a href="Claude Code 沙箱机制.html">沙箱</a>环境运行；URL/页面状态检查 + 后端状态验证（确认行动已实际发生）</p>
 <h3 id="_5">评估与其他方法的关系（多层防御）</h3>
 <table>
 <thead>
@@ -272,7 +272,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </tr>
 </tbody>
 </table>
-<p>类似安全工程中的"瑞士奶酪模型"：没有单一评估层能捕捉所有问题，多层组合使失误无处遁形。</p>
+<p>类似安全工程中的"<a href="瑞士奶酪模型.html">瑞士奶酪模型</a>"：没有单一评估层能捕捉所有问题，多<a href="层组合.html">层组合</a>使失误无处遁形。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Demystifying evals for AI agents.md</span></li>

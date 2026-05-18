@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [computer vision, convolutional neural networks, architecture]
+tags: ["computer vision", "convolutional neural networks", architecture, 机器学习]
 aliases: ["GoogLeNet", "Inception Network", "Inception", "Inception-v1"]
 relates_to:
   - target: "[[Going Deeper with Convolutions (2014 论文)]]"

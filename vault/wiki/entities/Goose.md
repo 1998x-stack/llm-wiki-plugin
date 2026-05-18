@@ -25,7 +25,7 @@ supersedes: null
 
 ## 概述
 
-Goose 是由 Block（Jack Dorsey 旗下公司）开源的通用 AI Agent CLI 工具，定位为不限于编程的通用自动化平台。支持多后端模型（含 [[Claude_Code|Claude]]），具备插件生态，但在纯代码生成评测中准确率偏低（约 7%），不推荐纯编程场景。
+Goose 是由 Block（Jack Dorsey 旗下公司）开源的通用 AI Agent CLI 工具，定位为不限于编程的通用自动化平台。支持多后端模型（含 [[Claude_Code|Claude]]），具备插件生态，但在纯[[代码生成]]评测中准确率偏低（约 7%），不推荐纯编程场景。
 
 ## 关键内容
 

@@ -203,7 +203,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 - <strong>Harness</strong>：编码任意<a href="Context Management.html">上下文管理</a>逻辑（如组织上下文以实现高 prompt 缓存命中率）</p>
 <p>这种分离使系统能适应未来模型所需的特定<a href="Context-Engineering.html">上下文工程</a>，而无需预测具体需要什么。</p>
 <h3 id="repl">类比：REPL 中的上下文对象</h3>
-<p>先前研究探索将上下文存储为 REPL 中的对象，LLM 通过编写代码来过滤或切片访问。会话日志提供相同好处，但上下文存储在会话日志中而非沙箱或 REPL 内。</p>
+<p>先前研究探索将上下文存储为 REPL 中的对象，LLM 通过编写代码来过滤或切片访问。会话日志提供相同好处，但上下文存储在会话日志中而非<a href="Claude Code 沙箱机制.html">沙箱</a>或 REPL 内。</p>
 <h2 id="_6">来源</h2>
 <ul>
 <li><span style="color:#e74c3c" title="broken link">raw/articles/ai-engineering/anthropic-engineering/Scaling Managed Agents_ Decoupling the brain from the hands.md</span> — Anthropic Engineering Blog</li>

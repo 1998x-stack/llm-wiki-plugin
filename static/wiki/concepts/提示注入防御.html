@@ -130,19 +130,19 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.85</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-security</span><span class="tag">prompt-injection</span><span class="tag">agent-safety</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">ai-security</span><span class="tag">prompt-injection</span><span class="tag">agent-safety</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">提示注入防御</h1>
 <h2 id="_2">概述</h2>
-<p>提示注入防御是保护 AI Agent 免受恶意输入操控的安全策略，通过在语义层和系统层建立多重防线，防止 Agent 被外部注入的恶意指令欺骗执行未授权操作。</p>
+<p><a href="Prompt Injection.html">提示注入</a>防御是保护 AI Agent 免受恶意输入操控的安全策略，通过在语义层和系统层建立多重防线，防止 Agent 被外部注入的恶意指令欺骗执行未授权操作。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>攻击场景</strong>：Claude Code 读取包含恶意指令的文件时，可能被操控尝试：上传项目文件到外部服务器、修改系统配置、访问其他项目的代码。这类攻击利用 LLM 对输入内容的信任。</p>
+<p><strong>攻击场景</strong>：<a href="../projects/Claude Code.html">Claude Code</a> 读取包含恶意指令的文件时，可能被操控尝试：上传项目文件到外部<a href="服务.html">服务</a>器、修改系统<a href="Configuration.html">配置</a>、访问其他项目的代码。这类攻击利用 LLM 对输入内容的信任。</p>
 </li>
 <li>
-<p><strong>沙箱维度的防御价值</strong>：即使 Claude 被注入指令欺骗，沙箱的系统级约束仍能阻止危险操作：</p>
+<p><strong><a href="Claude Code 沙箱机制.html">沙箱</a>维度的防御价值</strong>：即使 <a href="../entities/Claude_Code.html">Claude</a> 被注入指令欺骗，<a href="Claude Code 沙箱机制.html">沙箱</a>的系统级约束仍能阻止危险操作：</p>
 </li>
 <li>网络请求 → 被拦截（目标域名不在白名单）</li>
 <li>系统文件修改 → 被拦截（超出文件系统访问范围）</li>
@@ -150,10 +150,10 @@ nav a.active { color: var(--link); font-weight: 600; }
 <p>其他项目访问 → 被拦截（文件系统隔离限制）</p>
 </li>
 <li>
-<p><strong>纵深防御中的位置</strong>：提示注入防御是纵深防御体系中的重要一环。语义层分类器可识别可疑意图，沙箱层提供硬性系统约束，两者结合确保即使语义层失效，系统层仍能兜底。</p>
+<p><strong><a href="纵深防御.html">纵深防御</a>中的位置</strong>：<a href="Prompt Injection.html">提示注入</a>防御是<a href="纵深防御.html">纵深防御</a>体系中的重要一环。语义层分类器可识别可疑意图，<a href="Claude Code 沙箱机制.html">沙箱</a>层提供硬性系统约束，两者结合确保即使语义层失效，系统层仍能兜底。</p>
 </li>
 <li>
-<p><strong>与传统 Web 安全的类比</strong>：类似 Web 安全中的 CSP（Content Security Policy）和沙箱 iframe，不信任输入内容，通过执行环境约束限制恶意代码的影响范围。</p>
+<p><strong>与传统 Web 安全的类比</strong>：类似 Web 安全中的 CSP（Content Security Policy）和<a href="Claude Code 沙箱机制.html">沙箱</a> iframe，不信任输入内容，通过执行环境约束限制恶意代码的影响范围。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

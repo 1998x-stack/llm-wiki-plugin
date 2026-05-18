@@ -135,7 +135,7 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="content">
     <h1 id="hoare-csp">Hoare CSP 论文</h1>
 <h2 id="_1">概述</h2>
-<p><a href="Tony Hoare.html">Tony Hoare</a> 于1978年发表的《<a href="../concepts/CSP 模型.html">Communicating Sequential Processes</a>》，提出了 <a href="../concepts/CSP 模型.html">CSP 模型</a>——并发程序由多个独立的顺序进程组成，进程之间通过同步消息传递而非共享内存进行通信。</p>
+<p><a href="Tony Hoare.html">Tony Hoare</a> 于1978年发表的《<a href="../concepts/CSP 模型.html">Communicating Sequential Processes</a>》，提出了 <a href="../concepts/CSP 模型.html">CSP 模型</a>——并发程序由多个独立的顺序进程组成，进程之间通过同步<a href="../concepts/消息传递.html">消息传递</a>而非共享内存进行通信。</p>
 <h2 id="_2">关键内容</h2>
 <h3 id="_3">论文信息</h3>
 <table>
@@ -148,19 +148,43 @@ nav a.active { color: var(--link); font-weight: 600; }
 <tbody>
 <tr>
 <td><strong>标题</strong></td>
-<td><span style="color:#e74c3c" title="broken link">Dijkstra</span> 的守卫命令与输入/输出命令结合</li>
+<td><span style="color:#e74c3c" title="broken link">CSP 模型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;作者&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;[[Tony Hoare&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;发表时间&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1978年8月&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;刊物&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Communications of the ACM, Vol. 21, No. 8, pp. 666-677&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;引用量&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;超过10,000次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;_4&quot;&gt;核心贡献&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;进程（Process）&lt;/strong&gt;：每个进程是严格顺序的，拥有私有状态&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[[同步通信</span></strong>：<code>P!e</code>（发送）和 <code>P?x</code>（接收），通过"<a href="../concepts/同步通信.html">会合</a>"（rendezvous）实现</li>
+<li><strong>守卫命令</strong>：将 <a href="Edsger Dijkstra.html">Dijkstra</a> 的守卫命令与输入/输出命令结合</li>
 <li><strong>并行组合</strong>：<code>[P1 || P2 || ... || Pn]</code></li>
 </ul>
 <h3 id="_5">经典示例</h3>
 <ul>
-<li><strong>缓冲进程</strong>：生产者-消费者问题，没有锁和信号量</li>
+<li><strong>缓冲进程</strong>：生产者-消费者问题，没有锁和<a href="../concepts/信号量.html">信号量</a></li>
 <li><strong>素数筛法</strong>：用递归进程链实现埃拉托斯特尼筛法</li>
 <li><strong>哲学家就餐</strong>：用 CSP 解决经典死锁问题</li>
 </ul>
 <h3 id="_6">历史影响</h3>
 <ul>
-<li>直接影响了 occam、Erlang、Go、Clojure core.async、Rust 等语言</li>
-<li>Go 语言的 goroutine + channel 是 CSP 的当代实现</li>
+<li>直接影响了 <a href="occam.html">occam</a>、<a href="Erlang.html">Erlang</a>、Go、Clojure core.async、Rust 等语言</li>
+<li>Go 语言的 <a href="../concepts/goroutine.html">goroutine</a> + <a href="../concepts/channel.html">channel</a> 是 CSP 的当代实现</li>
 <li>催生了著名格言："不要通过共享内存来通信，而要通过通信来共享内存"</li>
 </ul>
 <h2 id="_7">来源</h2>

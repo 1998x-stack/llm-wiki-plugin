@@ -7,7 +7,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [NLP, 词向量, 神经网络, 表示学习]
+tags: [NLP, 词向量, 神经网络, 表示学习, 机器学习]
 aliases: ["Word2Vec", "Efficient Estimation of Word Representations in Vector Space"]
 relates_to:
   - target: "[[Tomas Mikolov]]"

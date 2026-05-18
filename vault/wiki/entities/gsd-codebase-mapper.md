@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [gsd-agent, codebase-analysis, mapping]
+tags: [gsd-agent, codebase-analysis, mapping, Agent系统]
 aliases: ["gsd-codebase-mapper", "GSD Codebase Mapper", "GSD代码库分析智能体"]
 relates_to: 
   - target: "[[GSD Framework]]"

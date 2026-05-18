@@ -130,28 +130,28 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">macos</span><span class="tag">security</span><span class="tag">sandbox</span><span class="tag">apple</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">macos</span><span class="tag">security</span><span class="tag">sandbox</span><span class="tag">apple</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="app-sandbox">App Sandbox</h1>
 <h2 id="_1">概述</h2>
-<p>App Sandbox 是 Apple 提供的 macOS 安全框架，通过声明式权限模型（entitlements）和系统级执行保证，限制应用程序对文件系统、网络、硬件等系统资源的访问范围。</p>
+<p>App Sandbox 是 Apple 提供的 macOS 安全框架，通过声明式<a href="../concepts/权限模型.html">权限模型</a>（entitlements）和系统级执行保证，限制应用程序对文件系统、网络、硬件等系统资源的访问范围。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
 <li>
-<p><strong>声明式权限模型</strong>：开发者通过 entitlements 文件声明应用需要的权限，系统在运行时强制执行这些限制。权限包括文件访问、网络请求、硬件访问等类别。</p>
+<p><strong>声明式<a href="../concepts/权限模型.html">权限模型</a></strong>：开发者通过 entitlements 文件声明应用需要的<a href="../concepts/Permissions.html">权限</a>，系统在运行时强制执行这些限制。<a href="../concepts/Permissions.html">权限</a>包括文件访问、网络请求、硬件访问等类别。</p>
 </li>
 <li>
-<p><strong>系统级执行保证</strong>：App Sandbox 由 macOS 内核强制执行，应用自身无法绕过或修改沙箱限制，提供了比应用层权限检查更强的安全保障。</p>
+<p><strong>系统级执行保证</strong>：App Sandbox 由 macOS 内核强制执行，应用自身无法绕过或修改<a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>限制，提供了比应用层<a href="../concepts/Permissions.html">权限</a>检查更强的安全保障。</p>
 </li>
 <li>
-<p><strong>在 Claude Code 中的应用</strong>：macOS 版本的 Claude Code 沙箱利用 App Sandbox 框架实现文件系统隔离和网络访问控制，确保 Agent 操作被限制在项目目录和预定义资源范围内。</p>
+<p><strong>在 <a href="../projects/Claude Code.html">Claude Code</a> 中的应用</strong>：macOS 版本的 <a href="../projects/Claude Code.html">Claude Code</a> <a href="../concepts/Claude Code 沙箱机制.html">沙箱</a>利用 App Sandbox 框架实现文件系统隔离和网络访问控制，确保 Agent 操作被限制在项目目录和预定义资源范围内。</p>
 </li>
 <li>
-<p><strong>与 Linux seccomp-BPF 的比较</strong>：App Sandbox 是 Apple 生态的专有框架，提供高层声明式 API；seccomp-BPF 是 Linux 内核的系统调用过滤机制，更底层但更灵活。两者都提供内核级强制执行保证。</p>
+<p><strong>与 Linux <a href="seccomp-BPF.html">seccomp-BPF</a> 的比较</strong>：App Sandbox 是 Apple 生态的专有框架，提供高层声明式 API；<a href="seccomp-BPF.html">seccomp-BPF</a> 是 Linux 内核的系统调用过滤机制，更底层但更灵活。两者都提供内核级强制执行保证。</p>
 </li>
 <li>
-<p><strong>性能影响</strong>：App Sandbox 的权限检查开销极小，文件访问 &lt; 5% 额外开销，对交互式使用几乎不可感知。</p>
+<p><strong>性能影响</strong>：App Sandbox 的<a href="../concepts/Permissions.html">权限</a>检查开销极小，文件访问 &lt; 5% 额外开销，对交互式使用几乎不可感知。</p>
 </li>
 </ol>
 <h2 id="_3">来源</h2>

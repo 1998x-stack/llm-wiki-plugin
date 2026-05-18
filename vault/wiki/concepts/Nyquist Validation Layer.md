@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ai-tools, project-management, verification]
+tags: [ai-tools, project-management, verification, AI工程]
 aliases: ["Nyquist Validation Layer", "Nyquist验证层", "验证合约", "需求-测试映射"]
 relates_to:
   - target: "[[GSD Framework]]"

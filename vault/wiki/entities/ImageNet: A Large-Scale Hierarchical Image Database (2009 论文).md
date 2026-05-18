@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, dataset, computer-vision]
+tags: [paper, dataset, computer-vision, 机器学习]
 aliases: [Deng et al. 2009]
 relates_to:
   - target: Jia Deng

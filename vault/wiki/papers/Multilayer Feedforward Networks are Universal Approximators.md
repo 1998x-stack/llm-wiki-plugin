@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [neural networks, theoretical foundation, approximation theory]
+tags: ["neural networks", "theoretical foundation", "approximation theory", 脑科学]
 aliases: ["Multilayer Feedforward Networks are Universal Approximators", "万能近似定理", "Hornik Universal Approximation"]
 relates_to: []
 supersedes: null

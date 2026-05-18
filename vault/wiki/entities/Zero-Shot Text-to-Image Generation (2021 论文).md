@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [paper, generative-models, text-to-image]
+tags: [paper, generative-models, text-to-image, AI工程]
 aliases: [Ramesh et al. 2021, DALL-E 论文]
 relates_to:
   - target: Aditya Ramesh

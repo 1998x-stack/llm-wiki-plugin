@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [ci-cd, devops, automation, 代码质量]
+tags: [ci-cd, devops, automation, 代码质量, AI工程]
 aliases: ["Pre-commit Hook", "预提交钩子", "Git Hooks"]
 relates_to:
   - target: "[[CI/CD 流水线]]"

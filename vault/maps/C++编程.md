@@ -1,8 +1,8 @@
 ---
 type: map
 topic: "C++编程"
-page_count: 10
-updated: 2026-04-18
+page_count: 13
+updated: 2026-05-18
 ---
 
 # C++编程
@@ -16,13 +16,16 @@ C++编程 相关概念与实体的集群。核心主题：C++ STL vector、C++�
 - [[C++ STL vector]] — `std::vector` 是 C++ 标准库中最常用的动态数组容器，支持自动扩容、随机访问（O(1)）和尾部高效插入/删除，替代原始固定数组的首选。 (confidence: 0.9)
 - [[C++基本语法]] — C++ 入门核心：变量与基本类型、输入输出（cin/cout）、条件判断、循环（for/while）、函数定义与调用、数组操作。 (confidence: 0.9)
 - [[C++指针与引用]] — C++ 中指针（`*`）和引用（`&`）的核心区别：引用是对象的不可改绑别名，指针是可变的地址值。`const` 修饰左边的东西（左边无则修饰右边），决定"谁只 (confidence: 0.9)
-- [[C++流缓冲区机制]] — C++ 流系统在程序内存与外部设备之间设置缓冲区，通过批量 IO 减少系统调用开销；刷新则在必要时强制将缓冲数据写出，平衡效率与及时性。 (confidence: 0.85)
+- [[C++流缓冲区机制]] — C++ 流系统在程序内存与外部设备之间[[Settings|设置]]缓冲区，通过批量 IO 减少系统调用开销；刷新则在必要时强制将缓冲数据写出，平衡效率与及时性 (confidence: 0.85)
 - [[C++流运算符重载实践]] — `operator<<` / `operator>>` 的标准实现模式：非成员函数 + friend 声明；输入重载须先读临时变量再赋值，避免部分更新；模板类需 (confidence: 0.9)
 - [[C++运算符重载与流]] — [[C++ iostream]] 的 `<<`（流插入）和 `>>`（流提取）本质是运算符重载，返回流引用以支持链式调用；自定义类型通过重载这两个运算符即可无缝 (confidence: 0.9)
-- [[C++面向对象基础]] — C++ 用 `class` 定义类，类封装属性（成员变量）和行为（成员函数），通过对象实例化访问；`public`/`private` 控制访问权限。 (confidence: 0.9)
+- [[C++面向对象基础]] — C++ 用 `class` 定义类，类封装属性（成员变量）和行为（成员函数），通过对象实例化访问；`public`/`private` 控制访问[[Permis (confidence: 0.9)
+- [[Common Subexpression Elimination]] — 公共子表达式消除是一种编译器优化技术，用于识别并消除程序中重复计算的子表达式，将重复的计算替换为对先前计算结果的引用。 (confidence: 0.9)
+- [[Register Allocation]] — 寄存器分配是编译器优化技术中的关键环节，决定在程序的每个点上哪些变量应该保存在寄存器中，以减少内存访问并提高执行效率。 (confidence: 0.85)
+- [[Strength Reduction]] — 强度削减是一种编译器优化技术，将代价高昂的运算替换为代价较低的等价运算，例如将循环中的乘法替换为加法。 (confidence: 0.9)
 
 ## 实体
 
 - [[C++ iostream]] — C++ 标准库中用于输入输出的流系统，提供类型安全、可扩展、可格式化的 IO 抽象，核心由流对象、运算符重载和状态格式控制三部分构成。 (confidence: 0.85)
 - [[ccls]] — 高性能 [[clangd|C/C++ 语言服务器]]，是 cquery（已停更）的继任者，在 C++17 支持上表现优秀，是 [[clangd]] 的主要替代方 (confidence: 0.75)
-- [[clangd]] — LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言服务器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功能的 L (confidence: 0.85)
+- [[clangd]] — LLVM/Clang 官方的 C/C++/ObjC/CUDA 语言[[服务]]器，基于 Clang 的 LibTooling 构建，是 C/C++ 生态中最全功 (confidence: 0.85)

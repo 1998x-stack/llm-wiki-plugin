@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [authentication, oauth, mcp, security, claude-code]
+tags: [authentication, oauth, mcp, security, claude-code, AI工程]
 aliases: ["OAuth 2.0", "OAuth Authentication", "MCP OAuth 2.0", "OAuth 2.0 认证协议"]
 relates_to:
   - target: "[[MCP]]"

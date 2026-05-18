@@ -130,25 +130,25 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.70</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">事故根因</span><span class="tag">依赖管理</span><span class="tag">AI 系统脆弱性</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">事故根因</span><span class="tag">依赖管理</span><span class="tag">AI 系统脆弱性</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">上游依赖变更</h1>
 <h2 id="_2">概述</h2>
-<p>上游依赖变更（Upstream Dependency Changes）指依赖的外部服务或数据源发生变更导致 Agent 行为异常的事故根因模式，LLM 对输入格式变化可能过度敏感是其特殊脆弱性。</p>
+<p>上游依赖变更（Upstream Dependency Changes）指依赖的外部<a href="服务.html">服务</a>或数据源发生变更导致 Agent 行为异常的事故根因模式，LLM 对输入格式变化可能过度敏感是其特殊脆弱性。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li>
-<p><strong>定义与场景</strong>：上游依赖变更是指系统依赖的外部服务、API 或数据源发生格式、结构或行为上的变更，导致下游 Agent 或 LLM 系统行为异常。典型场景包括：外部 API 返回格式变化、数据源 schema 更新、第三方服务行为变更等。</p>
+<p><strong>定义与场景</strong>：上游依赖变更是指系统依赖的外部<a href="服务.html">服务</a>、API 或数据源发生格式、结构或行为上的变更，导致下游 Agent 或 LLM 系统行为异常。典型场景包括：外部 API 返回格式变化、数据源 schema 更新、第三方<a href="服务.html">服务</a>行为变更等。</p>
 </li>
 <li>
-<p><strong>AI 系统的特殊脆弱性</strong>：LLM 对输入格式变化可能过度敏感，轻微的格式变化可能导致完全不同的输出。与传统软件中明确的类型检查和错误处理不同，LLM 可能"静默失败"——不报错但输出错误内容，这使得上游依赖变更在 AI 系统中更难检测。</p>
+<p><strong>AI 系统的特殊脆弱性</strong>：LLM 对输入格式变化可能过度敏感，轻微的格式变化可能导致完全不同的输出。与传统软件中明确的类型检查和<a href="错误处理.html">错误处理</a>不同，LLM 可能"静默失败"——不报错但输出错误内容，这使得上游依赖变更在 AI 系统中更难检测。</p>
 </li>
 <li>
-<p><strong>预防策略</strong>：对关键数据源的格式变化做版本化检测，建立自动化监控和告警机制；在 Agent 输入层增加格式验证和规范化处理；维护上游依赖的变更日志和兼容性测试；对于 ACI（Agent-Computer Interface）场景，需要特别关注工具接口格式的稳定性。</p>
+<p><strong>预防策略</strong>：对关键数据源的格式变化做版本化检测，建立自动化监控和告警机制；在 Agent 输入层增加格式验证和规范化处理；维护上游依赖的变更日志和兼容性测试；对于 ACI（<a href="ACI (Agent-Computer Interface).html">Agent-Computer Interface</a>）场景，需要特别关注工具接口格式的稳定性。</p>
 </li>
 <li>
-<p><strong>在 Postmortem 中的定位</strong>：上游依赖变更是 Anthropic 事后回顾中识别的三类常见根本原因之一，与配置漂移、提示更新副作用并列。这类事故根因强调了 AI 系统对外部环境变化的敏感性。</p>
+<p><strong>在 <a href="Postmortem 文化.html">Postmortem</a> 中的定位</strong>：上游依赖变更是 <a href="../entities/Anthropic.html">Anthropic</a> <a href="Postmortem 文化.html">事后回顾</a>中识别的三类常见根本原因之一，与<a href="配置漂移.html">配置漂移</a>、<a href="提示更新副作用.html">提示更新副作用</a>并列。这类事故根因强调了 AI 系统对外部环境变化的敏感性。</p>
 </li>
 </ol>
 <h2 id="_4">来源</h2>

@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [feature, easter-egg, gacha-system]
+tags: [feature, easter-egg, gacha-system, AI工程]
 aliases: ["BUDDY", "Terminal Pet System"]
 relates_to: []
 supersedes: null

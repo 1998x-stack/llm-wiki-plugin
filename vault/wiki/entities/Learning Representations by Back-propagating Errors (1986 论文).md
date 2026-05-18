@@ -7,7 +7,7 @@ created: 2026-04-20
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 3
-tags: [paper, deep-learning, backpropagation, neural-networks]
+tags: [paper, deep-learning, backpropagation, neural-networks, 机器学习]
 aliases: ["Rumelhart, Hinton, Williams 1986", "Learning Representations by Back-propagating Errors", "反向传播算法论文"]
 relates_to:
   - target: "[[David E. Rumelhart]]"

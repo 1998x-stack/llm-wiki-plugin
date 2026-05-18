@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [UX设计, 设计系统, 无障碍]
+tags: [UX设计, 设计系统, 无障碍, AI设计]
 aliases: ["Innovative UX Designer", "Controlled UX Designer"]
 relates_to: []
 supersedes: null

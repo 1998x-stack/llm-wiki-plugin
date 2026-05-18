@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: [person, ai-researcher]
+tags: [person, ai-researcher, AI工程]
 aliases: ["Nicholas Carlini"]
 relates_to: []
 supersedes: null
@@ -21,7 +21,7 @@ Nicholas Carlini 是一位知名的 AI 安全和机器学习研究者，在对�
 ## 关键内容
 
 1. **研究贡献**：
-   - 进行了让 16 个 Agent 并行构建 C 编译器的重要实验
+   - 进行了让 16 个 Agent 并行构建 [[C 编译器]]的重要实验
    - 强调大部分精力都花在设计 [[Claude_Code|Claude]] 周围的环境上
    - 在 AI 安全和对抗样本研究领域有重要影响力
 

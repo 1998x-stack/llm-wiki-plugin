@@ -18,7 +18,8 @@ updated: 2026-04-19
 | 最近 ingest | 2026-04-15（Wiener 过程与布朗运动） |
 | 最近 crystallize | 2026-04-15 18:42 |
 | 最近 consolidate | 2026-04-15 18:35 |
-| 最近 lint | 2026-04-19（347+ warnings, 0 errors → 自动修复3项：index重建+陈旧条目清理+Overview精简；需人工：运行 wiki:reindex 解决 240 未分类页面 + 76 孤儿页面） |
+| 最近 reindex | 2026-05-18（3013 页全部分类至 26 topics, 1343 页 tags 补全, maps + index 已重建） |
+| 最近 lint | 2026-05-18（0 errors, 4167 warnings → 自动修复：6 F2 invalid frontmatter + index.md 重建） |
 
 ## 最近活动
 

@@ -44,7 +44,7 @@ supersedes: null
 # Claude Code
 
 ## 概述
-[[Claude Code]] 是 [[Anthropic]] 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 [[Claude_Code|Claude]] 模型（Opus/Sonnet/Haiku）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（[[MCP协议层|Model Context Protocol]]）协议。通过 Hook 系统支持第三方插件扩展（如 [[Claude-Mem]]），是当代 AI 辅助软件工程（AISE）的核心工具。
+[[Claude Code]] 是 [[Anthropic]] 官方发布的 AI 编程助手 CLI（命令行界面）工具，基于 [[Claude_Code|Claude]] 模型（Opus/Sonnet/[[Claude 3 Haiku|Haiku]]）驱动。它深度集成于终端工作流，支持全代码库理解、多文件原子编辑、Git 集成和 MCP（[[MCP协议层|Model Context Protocol]]）协议。通过 Hook 系统支持第三方插件扩展（如 [[Claude-Mem]]），是当代 AI 辅助软件工程（AISE）的核心工具。
 
 ## 关键内容
 ### 核心特性
@@ -55,7 +55,7 @@ supersedes: null
 - **[[CLAUDE.md]]**：项目级指令文件，为 [[Claude Code]] 提供持久的项目上下文和规范
 ### 子代理架构
 
-[[Claude Code]] 支持并行 Agent 模式：主代理可将复杂任务分解为子任务，调度多个子代理并行处理，类似 [[MapReduce]]。
+[[Claude Code]] 支持并行 Agent 模式：主代理可将复杂[[任务分解]]为子任务，调度多个子代理并行处理，类似 [[MapReduce]]。
 
 ### 工具设计哲学
 
@@ -86,7 +86,7 @@ supersedes: null
 - **LSP**：每次 edit 后自动报告 type errors 和 warnings，作为第一道即时反馈
 - **[[Hooks]]（settings.json）**：通过 `PostToolUse` 钩子在 Edit/[[Write]] 后自动触发 lint/test，支持 `additionalContext` 回灌和 `decision: "block"` 阻断
 - **[[CLAUDE.md]]**：定义项目级验证策略（最小检查原则、提交前门槛等），每个会话自动加载
-- **Tool Description**：定义自定义 validate 工具的用法和示例，教会 [[Claude_Code|Claude]] 正确调用
+- **Tool [[Descript]]ion**：定义自定义 validate 工具的用法和示例，教会 [[Claude_Code|Claude]] 正确调用
 ## 来源
 
 - 综合自内部引用：[[Claude-Code-Hook-System]]、[[claude-cli-tools]] 等

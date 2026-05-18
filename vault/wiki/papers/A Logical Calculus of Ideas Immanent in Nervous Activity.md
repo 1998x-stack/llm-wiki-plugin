@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [neural networks, computational neuroscience, theoretical foundation]
+tags: ["neural networks", "computational neuroscience", "theoretical foundation", 脑科学]
 aliases: ["A Logical Calculus of Ideas Immanent in Nervous Activity", "神经元数学模型奠基论文", "McCulloch-Pitts Neuron"]
 relates_to: []
 supersedes: null

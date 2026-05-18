@@ -37,7 +37,7 @@ supersedes: null
    | 对缺失数据的处理 | 标记为 0 或忽略 | 只假设正样本排在缺失数据前面 |
    | 与最终评价指标的关系 | 间接 | 直接优化 AUC |
 
-4. **WR-MF 的尝试**：Hu et al. (2008) 提出的 Weighted Regularized MF 为未交互物品分配较低但非零的置信度，虽针对[[隐式反馈]]设计，但仍在 pointwise 层面优化，排序质量不如 BPR-MF。
+4. **[[WR-MF]] 的尝试**：Hu et al. (2008) 提出的 Weighted Regularized MF 为未交互物品分配较低但非零的置信度，虽针对[[隐式反馈]]设计，但仍在 pointwise 层面优化，排序质量不如 BPR-MF。
 
 5. **训练目标与评估目标的不匹配**：用 MSE 训练的模型最终却用 AUC/NDCG 评估，这种 mismatch 必然导致次优结果。BPR 通过直接优化与 AUC 等价的目标函数消除了这种不一致。
 

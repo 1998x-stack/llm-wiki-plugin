@@ -130,23 +130,23 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.80</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-26</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-26</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">时间概念</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">分布式系统</span><span class="tag">理论基础</span><span class="tag">时间概念</span><span class="tag">概率论</span></div>
 </div>
   <div class="content">
     <h1 id="_1">因果逻辑时钟</h1>
 <h2 id="_2">概述</h2>
-<p>因果逻辑时钟（Lamport时钟）是Leslie Lamport于1978年提出的一种分布式系统中的逻辑时间概念，用于定义分布式系统中事件的偏序关系，建立逻辑时间的概念。</p>
+<p>因果<a href="逻辑时钟.html">逻辑时钟</a>（Lamport时钟）是<a href="../entities/Leslie Lamport.html">Leslie Lamport</a>于1978年提出的一种<a href="分布式系统.html">分布式系统</a>中的逻辑时间概念，用于定义<a href="分布式系统.html">分布式系统</a>中事件的偏序关系，建立逻辑时间的概念。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>核心思想</strong>：</li>
-<li>在分布式系统中，物理时钟难以保持完全同步，因此引入逻辑时钟来捕获事件间的因果关系</li>
+<li>在<a href="分布式系统.html">分布式系统</a>中，物理时钟难以保持完全同步，因此引入<a href="逻辑时钟.html">逻辑时钟</a>来捕获事件间的因果关系</li>
 <li>
 <p>使用整数计数器来表示逻辑时间，通过简单的递增规则来维护时间顺序</p>
 </li>
 <li>
 <p><strong>基本规则</strong>：</p>
 </li>
-<li>每个进程维护自己的逻辑时钟，初始值为0</li>
+<li>每个进程维护自己的<a href="逻辑时钟.html">逻辑时钟</a>，初始值为0</li>
 <li>进程内部的事件发生时，时钟递增</li>
 <li>发送消息时，将当前时钟值附加到消息中</li>
 <li>
@@ -162,18 +162,18 @@ nav a.active { color: var(--link); font-weight: 600; }
 <li>
 <p><strong>应用场景</strong>：</p>
 </li>
-<li>分布式系统中的事件排序</li>
+<li><a href="分布式系统.html">分布式系统</a>中的事件排序</li>
 <li>确定事件间的因果关系</li>
 <li>用于分布式调试和日志分析</li>
 <li>
-<p>作为其他一致性算法的基础</p>
+<p>作为其他一致性<a href="算法.html">算法</a>的基础</p>
 </li>
 <li>
 <p><strong>意义</strong>：</p>
 </li>
-<li>为分布式系统中的时间概念提供了理论基础</li>
-<li>与Paxos算法、拜占庭将军问题共同构成了Lamport在分布式系统领域的三大贡献</li>
-<li>深刻影响了后续分布式系统的设计理念</li>
+<li>为<a href="分布式系统.html">分布式系统</a>中的时间概念提供了理论基础</li>
+<li>与<a href="Paxos算法.html">Paxos算法</a>、<a href="拜占庭将军问题.html">拜占庭将军问题</a>共同构成了Lamport在<a href="分布式系统.html">分布式系统</a>领域的三大贡献</li>
+<li>深刻影响了后续<a href="分布式系统.html">分布式系统</a>的设计理念</li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>

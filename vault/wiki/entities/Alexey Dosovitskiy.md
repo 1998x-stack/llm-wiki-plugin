@@ -6,7 +6,7 @@ created: 2026-04-20
 updated: 2026-04-20
 last_accessed: 2026-04-20
 source_count: 1
-tags: [person, computer-vision, vision-transformer]
+tags: [person, computer-vision, vision-transformer, 机器学习]
 aliases: [Alexey Dosovitskiy]
 relates_to:
   - target: Vision Transformer（ViT）

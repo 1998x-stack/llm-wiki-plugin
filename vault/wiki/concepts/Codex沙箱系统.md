@@ -32,7 +32,7 @@ supersedes: null
 
 # Codex沙箱系统
 
-[[Codex CLI]] 的执行边界层，用**[[操作系统]]内核级机制**限制 Agent 能触碰的文件系统范围和网络[[Permissions|权限]]。即使 LLM 生成了恶意命令，沙箱在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
+[[Codex CLI]] 的执行边界层，用**[[操作系统]]内核级机制**限制 Agent 能触碰的文件系统范围和网络[[Permissions|权限]]。即使 LLM 生成了恶意命令，[[Claude Code 沙箱机制|沙箱]]在内核层强制拦截——是 [[Codex CLI]] 三道防线中的最后一道。
 
 ## 为什么需要 OS 级沙箱
 
@@ -44,7 +44,7 @@ supersedes: null
 | 提示词注入 | [[仓库]]文件包含恶意指令，诱导 LLM 执行危险操作 |
 | 范围扩散 | Agent "顺手"修改 `~/.ssh/config` 或 `/etc/hosts` |
 
-OS 级沙箱提供**执行层面的强制约束**。
+OS 级[[Claude Code 沙箱机制|沙箱]]提供**执行层面的强制约束**。
 
 ## 三平台实现
 
@@ -56,7 +56,7 @@ OS 级沙箱提供**执行层面的强制约束**。
 
 **层 1：[[Landlock]]**（Linux 5.13+ 引入）
 
-基于 eBPF/LSM 的不可绕过文件系统沙箱：
+基于 eBPF/LSM 的不可绕过文件系统[[Claude Code 沙箱机制|沙箱]]：
 - 进程[[Settings|设置]]后**无法提权取消**（不可逆）
 - 规则自动继承到所有子进程（`cargo build`、`npm install` 等也受限）
 - 在 VFS 层拦截，无法被 `LD_PRELOAD` 或 ptrace 绕过
@@ -67,7 +67,7 @@ OS 级沙箱提供**执行层面的强制约束**。
 
 ### Windows
 
-实验性支持（Job Objects + AppContainer），建议在 WSL 中使用 Linux 沙箱。
+实验性支持（Job Objects + AppContainer），建议在 WSL 中使用 Linux [[Claude Code 沙箱机制|沙箱]]。
 
 ## 沙箱模式（sandbox_mode）
 

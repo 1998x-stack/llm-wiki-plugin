@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 2
-tags: [ai-tools, resource-management, efficiency]
+tags: [ai-tools, resource-management, efficiency, AI工程]
 aliases: ["Context Window", "Context Limit", "上下文窗口"]
 relates_to:
   - target: "[[Claude Code]]"

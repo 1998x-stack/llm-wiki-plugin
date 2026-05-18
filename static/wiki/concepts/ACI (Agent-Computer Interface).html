@@ -130,18 +130,18 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-20</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-20</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-design</span><span class="tag">interface</span><span class="tag">tool-design</span><span class="tag">engineering-principle</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">agent-design</span><span class="tag">interface</span><span class="tag">tool-design</span><span class="tag">engineering-principle</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="aci-agent-computer-interface">ACI (Agent-Computer Interface)</h1>
 <h2 id="_1">概述</h2>
-<p>Agent-Computer Interface 设计原则，强调工具定义需要与 prompt 工程同等重视，是 Anthropic 提出的核心工程洞见之一。</p>
+<p><a href="ACI 设计原则.html">Agent-Computer Interface 设计原则</a>，强调工具定义需要与 prompt 工程同等重视，是 <a href="../entities/Anthropic.html">Anthropic</a> 提出的核心工程洞见之一。</p>
 <h2 id="_2">关键内容</h2>
 <ol>
-<li><strong>核心洞见</strong>：将 ACI 与 HCI（Human-Computer Interface）进行类比——"思考投入到人机界面中的工作量，并计划投入同等工作量来创建良好的 Agent-计算机接口。"</li>
+<li><strong>核心洞见</strong>：将 ACI 与 HCI（Human-Computer Interface）进行类比——"思考投入到人机界面中的工作量，并计划投入同等工作量来创建良好的 Agent-<a href="计算.html">计算</a>机接口。"</li>
 <li><strong>工具定义最佳实践</strong>：好的工具定义通常包含<strong>示例用法、边缘情况、输入格式要求、与其他工具的清晰边界</strong>。参数名称要让意图显而易见，如同给初级开发者写优质文档。</li>
-<li><strong>防错设计（Poka-Yoke）</strong>：使用 poka-yoke 思维改变参数使错误更难发生。如 SWE-bench Agent 中发现模型在离开根目录后使用相对路径时会出错，解决方案是要求工具<strong>始终使用绝对路径</strong>。</li>
-<li><strong>SWE-bench 实证案例</strong>：Anthropic 在 SWE-bench Agent 中发现，模型在 agent 离开根目录后使用相对路径时会出错。改为要求工具始终使用绝对路径后，模型运行"无懈可击"。</li>
+<li><strong><a href="防错设计.html">防错设计</a>（Poka-Yoke）</strong>：使用 poka-yoke 思维改变参数使错误更难发生。如 <a href="../entities/SWE-bench.html">SWE-bench</a> Agent 中发现模型在离开根目录后使用相对路径时会出错，解决方案是要求工具<strong>始终使用绝对路径</strong>。</li>
+<li><strong><a href="../entities/SWE-bench.html">SWE-bench</a> 实证案例</strong>：<a href="../entities/Anthropic.html">Anthropic</a> 在 <a href="../entities/SWE-bench.html">SWE-bench</a> Agent 中发现，模型在 agent 离开根目录后使用相对路径时会出错。改为要求工具始终使用绝对路径后，模型运行"无懈可击"。</li>
 <li><strong>ACI 测试框架</strong>：建立工作台（workbench）运行大量示例输入，观察工具使用错误并迭代。工具文档是第一等公民，投入与 prompt 工程相同的精力。</li>
 </ol>
 <h2 id="_3">来源</h2>

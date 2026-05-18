@@ -6,7 +6,7 @@ created: 2026-04-25
 updated: 2026-04-25
 last_accessed: 2026-04-25
 source_count: 1
-tags: ["skills", "agent", "claude-code"]
+tags: [skills, agent, claude-code, AI工程]
 aliases: ["Agent Skills"]
 relates_to: []
 supersedes: null

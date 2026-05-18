@@ -6,7 +6,7 @@ created: 2026-04-18
 updated: 2026-04-18
 last_accessed: 2026-04-18
 source_count: 2
-tags: [ai-tools, agent-patterns]
+tags: [ai-tools, agent-patterns, AI工程]
 aliases: ["Coding Agent Protocol", "编码代理协议", "Coding Agent"]
 relates_to:
   - target: "[[Ralph Loop 系统]]"

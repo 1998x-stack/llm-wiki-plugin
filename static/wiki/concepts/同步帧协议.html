@@ -130,12 +130,12 @@ nav a.active { color: var(--link); font-weight: 600; }
   <div class="meta-item"><strong>Confidence:</strong> 0.90</div>
   <div class="meta-item"><strong>Created:</strong> 2026-04-25</div>
   <div class="meta-item"><strong>Updated:</strong> 2026-04-25</div>
-  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">protocols</span><span class="tag">synchronization</span><span class="tag">game-engine</span><span class="tag">ai-integration</span></div>
+  <div class="meta-item" style="grid-column: 1/-1"><strong>Tags:</strong> <span class="tag">protocols</span><span class="tag">synchronization</span><span class="tag">game-engine</span><span class="tag">ai-integration</span><span class="tag">AI工程</span></div>
 </div>
   <div class="content">
     <h1 id="_1">同步帧协议</h1>
 <h2 id="_2">概述</h2>
-<p>同步帧协议是一种标准化的JSON通信协议，用于在LLM驱动的智能体和游戏引擎之间进行同步通信，确保游戏状态与智能体决策之间的精确协调。</p>
+<p>同步帧协议是一种标准化的JSON通信协议，用于在LLM驱动的智能体和游戏引擎之间进行<a href="同步通信.html">同步通信</a>，确保游戏状态与智能体决策之间的精确协调。</p>
 <h2 id="_3">关键内容</h2>
 <ol>
 <li><strong>设计动机</strong>：</li>
@@ -157,7 +157,7 @@ nav a.active { color: var(--link); font-weight: 600; }
 </li>
 <li>引擎至智能体：JSON格式的状态消息，包含帧号、时间步长、FPS、游戏状态等信息</li>
 <li>智能体至引擎：包含动作类型的JSON命令，如按键、空推进、截图、退出等</li>
-<li>采用stdin/stdout管道进行同步通信</li>
+<li>采用stdin/stdout管道进行<a href="同步通信.html">同步通信</a></li>
 </ol>
 <h2 id="_4">来源</h2>
 <ul>
