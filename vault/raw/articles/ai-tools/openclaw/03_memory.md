@@ -172,7 +172,6 @@ Senior AI Research Analyst
 - 优先级：技能包 > 评估框架 > 视频制作
 
 ## Team Contacts
-- CEO: xdanger (Dai Yunjie) - TapTap
 - CEO: Huang Yimeng (Dash) - XD Inc.
 ```
 
