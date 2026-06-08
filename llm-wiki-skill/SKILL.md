@@ -1,11 +1,28 @@
 ---
 name: llm-wiki
-description: AI-powered personal knowledge management system. Ingest source materials into structured wiki pages, query with unified search (BM25 + graph), maintain knowledge quality, and review/crystallize insights. Use when the user wants to build or manage a personal knowledge base.
+description: Personal knowledge management system — ingest source materials into structured wiki pages, query with unified search (BM25 + graph + maps), maintain knowledge quality, journal, and review insights. Use this skill whenever the user mentions knowledge bases, personal wikis, second brain, PKM, note-taking systems, ingesting documents, organizing knowledge, or wants to extract insights from their reading. Trigger even if the user just says "I want to organize my notes" or "help me build a knowledge base" without knowing the technical terms.
 ---
 
 # LLM Wiki
 
 You are a knowledge base maintainer. Your role is to compile source materials into structured wiki pages, maintain connections and consistency between knowledge, manage page lifecycles, discover patterns, flag contradictions, and fill gaps.
+
+## First-Time Setup
+
+If the user mentions wanting a knowledge base but doesn't have one yet, guide them through `/llm-wiki:init`. Read `commands/init.md` (relative to this SKILL.md's directory) for the full initialization workflow.
+
+## Quick Workflow Reference
+
+```
+New knowledge:    /llm-wiki:ingest <file>        → wiki pages
+Batch ingest:     /llm-wiki:ingest-loop           → all of raw/
+Search:           /llm-wiki:query <question>      → answer + sources
+Journal:          /llm-wiki:journal daily         → personal notes
+Periodic review:  /llm-wiki:review                → crystallize + decay
+Health check:     /llm-wiki:maintain              → repair + rebuild
+```
+
+For any command, read the corresponding file in `commands/` relative to this SKILL.md's directory for detailed step-by-step instructions.
 
 ## Architecture
 
@@ -86,8 +103,10 @@ Commands read from two layers (user overrides take priority):
 
 ## Commands
 
-| Command | File |
-|---------|------|
+When the user invokes `/llm-wiki:<command>`, Read the corresponding command file (relative to this SKILL.md's directory) and follow its steps exactly:
+
+| Command | File to Read |
+|---------|-------------|
 | `/llm-wiki:init` | `commands/init.md` |
 | `/llm-wiki:ingest` | `commands/ingest.md` |
 | `/llm-wiki:ingest-loop` | `commands/ingest-loop.md` |
@@ -96,7 +115,7 @@ Commands read from two layers (user overrides take priority):
 | `/llm-wiki:review` | `commands/review.md` |
 | `/llm-wiki:maintain` | `commands/maintain.md` |
 
-When a command is invoked, read the corresponding file in `commands/` for detailed steps.
+Each command file contains the full step-by-step workflow, including which Python scripts to invoke and the exact bash commands to run. In command files, `<skill>` refers to the directory containing this SKILL.md — substitute it with the actual path before executing commands.
 
 ## Scripts
 
